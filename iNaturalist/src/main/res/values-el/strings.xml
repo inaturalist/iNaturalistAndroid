@@ -19,8 +19,8 @@
     <string name="signing_in">Γίνεται σύνδεση...</string>
     <string name="signed_in">Συνδεθήκατε!</string>
     <string name="please_sign_in">Παρακαλώ συνδεθείτε</string>
-    <string name="please_sign_in_description">Please sign in to your iNaturalist account or sign up for a new one.</string>
-    <string name="please_enable_location_services">Please enable location services in order to find your current location...</string>
+    <string name="please_sign_in_description">Παρακαλούμε συνδεθείτε στο λογαριασμό σας στο iNaturalist ή εγγραφείτε για ένα νέο.</string>
+    <string name="please_enable_location_services">Παρακαλούμε ενεργοποιήστε τις υπηρεσίες τοποθεσίας για να βρείτε την τρέχουσα τοποθεσία σας...</string>
     <string name="go_to_settings">Μετάβαση στις ρυθμίσεις</string>
     <string name="photo_not_specified">Δεν ορίστηκε φωτογραφία</string>
     <string name="set_date">Ημερομηνία</string>
@@ -28,7 +28,7 @@
     <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
     <string name="something_went_wrong">Blast, something went wrong: %1$s</string>
     <string name="edit">Επεξεργασία</string>
-    <string name="oh_no">Oh no! %1$s</string>
+    <string name="oh_no">Ωχ όχι! %1$s</string>
     <string name="observations">Οι παρατηρήσεις μου</string>
     <string name="map">Χάρτης</string>
     <string name="settings">Ρυθμίσεις</string>
@@ -118,9 +118,9 @@
     <string name="about_this_app">Πληροφορίες</string>
     <string name="about_taxon_short">Πληροφορίες</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
-    <string name="geoprivacy">Geoprivacy</string>
+    <string name="geoprivacy">Γεωαπόρρητο</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
-    <string name="geoprivacy_with_value">Geoprivacy: %1$s</string>
+    <string name="geoprivacy_with_value">Γεωαπόρρητο: %1$s</string>
     <string name="delete_confirmation">Είσαι σίγουρος/η ότι θέλεις να διαγράψεις αυτήν την παρατήρηση;</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">Οδηγοί</string>
@@ -152,7 +152,7 @@
     <string name="sync_1_observation">Συγχρονισμός 1 παρατήρησης</string>
     <string name="sync_observations">Συγχρονισμός παρατηρήσεων</string>
     <string name="lets_get_started">Ας αρχίσουμε!</string>
-    <string name="view_nearby_observations">View Nearby Observations</string>
+    <string name="view_nearby_observations">Δείτε τις Παρατηρήσεις που Βρίσκονται Κοντά</string>
     <string name="skip_for_now">Παράλειψη για τώρα</string>
     <string-array name="tutorial_titles">
         <item></item>
@@ -162,8 +162,8 @@
         <item>Συμβάλλετε</item>
     </string-array>
     <string-array name="tutorial_descriptions">
-        <item>Explore and Connect with Nature</item>
-        <item>Get outside! Find something wild, and take a clear, full frame photo.</item>
+        <item>Εξερευνήστε και Συνδεθείτε με τη Φύση</item>
+        <item>Βγείτε έξω! Βρείτε κάτι άγριο και τραβήξτε μια καθαρή φωτογραφία πλήρους κάδρου.</item>
         <item>Μοιραστείτε τις παρατηρήσεις σας με την κοινότητα του iNaturalist.</item>
         <item>Επιστρέψτε αργότερα για σχόλια και προσδιορισμούς στις παρατηρήσεις σας!</item>
         <item><![CDATA[<b>Research Grade</b> observations are shared with scientists working to better understand and protect nature.]]></item>
@@ -171,10 +171,10 @@
     <string-array name="geoprivacy_items">
         <item>Ανοιχτό</item>
         <item>Κρυμμένο</item>
-        <item>Private</item>
+        <item>Απόρρητο</item>
     </string-array>
     <string name="alert_sign_out">Are you sure you want to sign out? This will delete all your observations on this device. It will not affect any observations you\'ve uploaded to iNaturalist.</string>
-    <string name="alert_unsupported_media_type">Sorry, but there was a problem loading the photo from this source</string>
+    <string name="alert_unsupported_media_type">Λυπούμαστε, αλλά παρουσιάστηκε πρόβλημα κατά τη φόρτωση της φωτογραφίας από αυτήν την πηγή</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
     <string name="explore">Εξερευνήστε</string>
     <string name="restricted_to_current_map_area">Περιορισμός στην τρέχουσα περιοχή του χάρτη</string>
@@ -184,11 +184,11 @@
     <string name="remove">Αφαίρεση;</string>
     <string name="no_observations_found">Δεν υπάρχουν παρατηρήσεις ακόμα</string>
     <string name="license_none">Με την επιφύλαξη παντός δικαιώματος</string>
-    <string name="sources_and_attribution">Sources and Attribution</string>
+    <string name="sources_and_attribution">Πηγές και Απόδοση</string>
     <string name="photos"><![CDATA[<b>Φωτογραφίες:</b> %1$s]]></string>
     <string name="text"><![CDATA[<b>Κείμενο:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
-    <string name="alert_message_use_inaturalist">The main iNaturalist Network. Clicking OK will set your app as part of the global iNaturalist network.</string>
+    <string name="alert_message_use_inaturalist">Το κύριο Δίκτυο iNaturalist. Κάνοντας κλικ στο OK θα οριστεί η εφαρμογή σας ως μέρος του παγκόσμιου δικτύου iNaturalist.</string>
     <string name="alert_message_use_naturalista">NaturaLista is a member of the iNaturalist Network in Mexico. Local institutions supporting NaturaLista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_naturewatchnz">iNaturalist NZ is a member of the iNaturalist Network in New Zealand. Local institutions supporting iNaturalist NZ will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Local institutions supporting iNaturalist Canada will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
@@ -207,14 +207,14 @@
     <string name="download_guide_alert">Κατεβάζει %1$s των δεδομένων για χρήση του οδηγού χωρίς σύνδεση στο διαδίκτυο.</string>
     <string name="download">Λήψη</string>
     <string name="failed_to_download_guide">Σφάλμα στη λήψης του οδηγού</string>
-    <string name="internet_connection_seems_to_be_offline">The Internet connection appears to be offline.</string>
+    <string name="internet_connection_seems_to_be_offline">Η σύνδεση στο διαδίκτυο φαίνεται να είναι offline.</string>
     <string name="downloading">Γίνεται λήψη...</string>
     <string name="extracting">Εξαγωγή...</string>
     <string name="downloaded">Λήφθηκε</string>
     <string name="delete_download">Διαγραφή λήψεων</string>
     <string name="re_download">Κατεβάστε ξανά</string>
     <string name="error">Σφάλμα</string>
-    <string name="could_not_retrieve_guide">Could not retrieve the guide details - probably a network error.</string>
+    <string name="could_not_retrieve_guide">Δεν ήταν δυνατή η ανάκτηση των λεπτομερειών του οδηγού - πιθανώς ένα σφάλμα δικτύου.</string>
     <string name="inat_support_email_subject">Βοήθεια για το iNaturalist (έκδοση %1$s - %2$s; ID χρήστη - %3$s)</string>
     <string name="send_email">Αποστολή email...</string>
     <string name="login_with">Συνδέσου με</string>
@@ -229,7 +229,7 @@
     <string name="min_6_chars">Τουλάχιστον 6 χαρακτήρες</string>
     <string name="use_my_license"><![CDATA[Ναι, συμφωνώ να προστεθεί άδεια στο περιεχόμενό μου για να χρησιμοποιηθεί από ερευνητές. <b>Μάθετε περισσότερα</b>]]></string>
     <string name="content_licensing">Άδεια χρήσης περιεχομένου</string>
-    <string name="content_licensing_description">Check this box if you want to apply a Creative Commons Attribution-NonCommercial license to your photos. You can choose a different license or remove the license later, but this is the best license for sharing with researchers.</string>
+    <string name="content_licensing_description">Tσέκαρε το κουτί αν θέλεις να διανέμονται οι φωτογραφίες σου με την άδεια Creative Commons Αναφορά Δημιουργού-Μη Εμπορική Χρήση. Μπορείς στο μέλλον να διαλέξεις διαφορετική άδεια ή να την αφαιρέσεις, αλλά η συγκεκριμένη είναι η καλύτερα άδεια για την επιστημονική χρήση των παρατηρήσεων σου.</string>
     <!-- Try to keep this about the length of the English text -->
     <string name="username_or_email">Όνομα χρήστη ή email</string>
     <string name="forgot">Ξεχάσατε τον κωδικό σας;</string>
@@ -241,7 +241,7 @@
     <string name="login_signup">Σύνδεση/Εγγραφή</string>
     <string name="please_sign_in_via_settings_for_guides">Πρέπει να εισέλθετε για να δείτε τις τους οδηγούς σας.</string>
     <string name="please_sign_in_for_updates">Πρέπει να εισέλθετε για να δείτε τις της ειδοποιήσεις σας.</string>
-    <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="https://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
+    <string name="by_using_inat_terms"><![CDATA[Χρησιμοποιώντας το iNaturalist συμφωνείτε με τους <b><a href="https://www.inaturalist.org/pages/terms">Όρους Χρήσης της Υπηρεσίας</a></b> και <b><a href="https://www.inaturalist.org/pages/privacy">την Πολιτική Απορρήτου</a></b>]]></string>
     <string name="activity">Δραστηριότητα</string>
     <string name="camera">Λήψη Φωτογραφίας</string>
     <string name="upload_photo">Επιλογή εικόνας</string>
@@ -251,7 +251,7 @@
     <string name="notes">Σημειώσεις</string>
     <string name="location_is">Τοποθεσία</string>
     <string name="is_captive">Είναι σε αιχμαλωσία / καλλιεργούμενο</string>
-    <string name="location_visibility">Location Visibility</string>
+    <string name="location_visibility">Ορατότητα Τοποθεσίας</string>
     <string name="set_location">Τοποθεσία</string>
     <string name="coordinates_lat">Γεωγρ. πλάτος:</string>
     <string name="coordinates_lon">Γεωγρ. μήκος:</string>
@@ -260,7 +260,7 @@
     <string name="downloading_observations">Λήψη παρατηρήσεων...</string>
     <string name="no_thanks">Όχι ευχαριστώ</string>
     <string name="turn_on">Ενεργοποιήστε</string>
-    <string name="introducing_auto_sync">Introducing Auto-Sync!</string>
+    <string name="introducing_auto_sync">Εισαγωγή Αυτόματου Συγχρονισμού!</string>
     <string name="turn_on_auto_sync">Turn on Auto-Sync in Settings and your observations will be automatically uploaded to iNaturalist.</string>
     <string name="automatic_upload">Automatic Upload (Auto Sync)</string>
     <string name="waiting_to_upload">Waiting to upload...</string>
@@ -279,8 +279,8 @@
     <string name="casual_grade_add_photo"><![CDATA[Πρόσθεσε <b>φωτογραφία</b> για να προωθηθεί ή παρατήρηση στο status «Χρειάζεται προσδιορισμό»]]></string>
     <string name="casual_grade_captive"><![CDATA[ Observation is casual grade because it is <b>captive/cultivated</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ Observation needs <b>more identifications</b> from the community to become "Research Grade" status. ]]></string>
-    <string name="included_in_projects">Included in %1$d projects</string>
-    <string name="included_in_projects_singular">Included in %1$d project</string>
+    <string name="included_in_projects">Περιλαμβάνεται σε %1$d εργασίες</string>
+    <string name="included_in_projects_singular">Περιλαμβάνεται σε %1$d εργασία</string>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy is a setting you can make on your observations that controls how the spatial coordinates (latitude and longitude) are displayed. Here are the options:<br/><b>open</b> - Everyone can see the coordinates unless the taxon is threatened. <br/><b>obscured</b> - Public coordinates shown as a random point within a 0.2 by 0.2 degree area that contains the true coordinates, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. True coordinates are only visible to you and the curators of projects to which you add the observation. <br/><b>private</b> - Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. <br/><br/>Note that curators of individual projects can always see the coordinates regardless of your geoprivacy setting, so if you are concerned about who has access to the coordinates you should be sure you trust the curators of the projects in which you participate. ]]></string>
     <string name="id_title">%1$s\'s ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
@@ -303,24 +303,24 @@
     <string name="login_in_to_fav">Log In or Sign Up to see faves or fave this observation...</string>
     <string name="sync_obs_to_see_favs">Sync this observation to see faves...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
-    <string name="sync_obs_to_add_comments_ids">Sync this observation in order to leave a comment or suggest an identification...</string>
+    <string name="sync_obs_to_add_comments_ids">Συγχρονίστε αυτήν την παρατήρηση για να αφήσετε ένα σχόλιο ή να προτείνετε μια αναγνώριση...</string>
     <string name="no_photo">Δεν υπάρχουν φωτογραφίες</string>
     <string name="about_this_species">Πληροφορίες για το είδος</string>
     <string name="view_on_wikipedia">Αρθρο στη Βικιπαίδεια</string>
     <string name="photo"><![CDATA[Φωτογραφία: <b><a href="%1$s">%2$s</a></b>]]></string>
     <string name="photo_attr"><![CDATA[Φωτογραφία: <b>%1$s</b>]]></string>
     <string name="finding_current_location">Εντοπισμός τρέχουσας τοποθεσίας...</string>
-    <string name="flag_as_captive">Flag as Captive/Cultivated</string>
+    <string name="flag_as_captive">Επισήμανση ως αιχμαλωτισμένο/καλλιεργούμενο</string>
     <string name="observation_flagged_as_captive">Η παρατήρηση έχει επισημανθεί ως σε αιχμαλωσία / καλλιεργούμενο</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Are you sure you want to flag this observation as captive/cultivated? (Pressing yes will also close the observation viewer window)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive">Είστε βέβαιοι ότι θέλετε να επισημάνετε αυτήν την παρατήρηση ως αιχμαλωσία / καλλιέργεια; (Πατώντας ναι θα κλείσει το παράθυρο προβολής παρατήρησης)</string>
     <string name="do_you_agree_to_the_following">Συμφωνείς με τα εξής;</string>
     <string name="terms">Όροι</string>
     <string name="observation_rules">Κανόνες παρατήρησης</string>
     <string name="couldnt_load_project_details">Couldn\'t load project details: %1$s</string>
     <string name="no_people_found">Δεν βρέθηκαν άτομα</string>
-    <string name="rank">Rank</string>
-    <string name="identifications">Identifications</string>
-    <string name="no_news_found">No news items found</string>
+    <string name="rank">Κατάταξη</string>
+    <string name="identifications">Αναγνωρίσεις</string>
+    <string name="no_news_found">Δεν βρέθηκαν νέα είδη</string>
     <string name="news">Νέα</string>
     <string name="article">Άρθρο</string>
     <string name="couldnt_load_project_news">Couldn\'t load project news: %1$s</string>
@@ -726,17 +726,29 @@
     <string name="pin_current_location">Pin Current Location</string>
     <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
     <string name="delete_this_pinned_location">Delete this pinned location?</string>
+    <!-- Verb, as in "Duplicate this photo" -->
     <string name="duplicate">Duplicate</string>
     <string name="couldnt_duplicate_photo">Couldn\'t duplicate photo!</string>
     <string name="couldnt_edit_photo">Couldn\'t edit photo!</string>
+    <!-- Verb, as in "Rotate this photo" -->
     <string name="ucrop_rotate">Rotate</string>
+    <!-- Verb, as in "Scale (resize) this photo" -->
     <string name="ucrop_scale">Scale</string>
+    <!-- Verb, as in "Crop this photo" -->
     <string name="ucrop_crop">Crop</string>
+    <!-- Label for adjusting the brightness of an image -->
     <string name="ucrop_brightness">Brightness</string>
+    <!-- Label for adjusting the contrast of an image -->
     <string name="ucrop_contrast">Contrast</string>
+    <!-- Label for adjusting the saturation of an image -->
     <string name="ucrop_saturation">Saturation</string>
+    <!-- Label for adjusting the sharpness of an image -->
     <string name="ucrop_sharpness">Sharpness</string>
+    <!-- Label for image cropping mode that maintains the original aspect ratio -->
     <string name="ucrop_label_original">Original</string>
+    <!-- Label for image cropping mode that has no limits on the aspect ratio -->
+    <string name="ucrop_label_free">Free</string>
+    <!-- Verb phrase, button label to edit an observation photo -->
     <string name="ucrop_label_edit_photo">Edit Photo</string>
     <string name="service_temporarily_unavailable">Service temporarily unavailable.</string>
     <string name="please_try_again_in_a_few_hours">Please try again in a few hours.</string>
@@ -746,4 +758,21 @@
     <string name="minutes">minutes</string>
     <string name="seconds_value">seconds</string>
     <string name="shop_the_inat_store">Shop the iNat Store</string>
+    <string name="delete_your_account">Delete Your Account</string>
+    <string name="delete_account_message"><![CDATA[By deleting your account you will remove:<br/><br/><ul><li> All of your observations, including the work of the all the people who have helped you out with identifications.</li><li> All of the identifications you\'ve added to the observations of other people, which will potentially affect the data quality of those observations.</li><li> All of the comments you\'ve added.</li></ul><br/>Furthermore, this action cannot be undone. If you change your mind later, you aren\'t getting any of that content back.<br/><br/>If this service generates too many notifications, consider <a href="https://www.inaturalist.org/users/edit">editing your settings on the website</a> to opt out of certain notifications or stop receiving email from us. If you\'re having trouble with a specific person, consider <a href="https://www.inaturalist.org/users/edit">muting them</a> instead of deleting your account.<br/><br/>If you\'re still sure you want to delete your account, enter <b>\"%1$s\"</b> in the form below and click the button to delete your account and all your data.]]></string>
+    <string name="your_account_has_been_deleted">Your account has been deleted</string>
+    <string name="you_must_enter_username_in_the_form_to_delete_account">You must enter \'%1$s\' in the form to delete your account</string>
+    <!-- Second person hint text asking the user to enter their username -->
+    <string name="type_your_username">Type your username</string>
+    <string name="error_deleting_account">There was an error deleting your account - please check your Internet connection</string>
+    <string name="verify_your_password">Verify Your Password</string>
+    <string name="third_party_data_sharing">Third-party Data Sharing</string>
+    <string name="disable_third_party_data_sharing">Disable Third-party Data Sharing</string>
+    <string name="do_not_collect_third_party_data">Do not collect stability and usage data using third party services</string>
+    <string name="enabled">Enabled</string>
+    <string name="disabled">Disabled</string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring, since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
 </resources>

@@ -363,7 +363,7 @@
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">更新鑑定描述</string>
     <string name="your_identification">您的 ID: %1$s</string>
-    <string name="onboarding_species_name">Name what you saw if you can, even if that\'s just \"insect\" or \"bird,\" or just leave this blank. Others may help you identify it!</string>
+    <string name="onboarding_species_name">如果能夠的話，請填寫您看到的生物名字，即便只是「昆蟲」或「鳥類」，或乾脆留空。其他人也許會幫您鑑定！</string>
     <string name="upload_complete">上傳完成！</string>
     <string name="onboarding_upload_description">請稍後回來查看其他人對你的觀察記錄的辨認及評論。</string>
     <string name="importing_photos">正在匯入照片中...</string>
@@ -519,7 +519,7 @@
     <string name="search_users">搜尋使用者</string>
     <string name="quality_grade">品質等級</string>
     <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
-    <string name="date_observed">Date Observed</string>
+    <string name="date_observed">觀察日期</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
     <string name="any">任一</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
@@ -726,24 +726,53 @@
     <string name="pin_current_location">釘選現在的位置</string>
     <string name="location_pinned_successfully">現在的位址已成功釘選</string>
     <string name="delete_this_pinned_location">您要刪除這筆釘選的位置嗎？</string>
-    <string name="duplicate">Duplicate</string>
-    <string name="couldnt_duplicate_photo">Couldn\'t duplicate photo!</string>
-    <string name="couldnt_edit_photo">Couldn\'t edit photo!</string>
-    <string name="ucrop_rotate">Rotate</string>
-    <string name="ucrop_scale">Scale</string>
-    <string name="ucrop_crop">Crop</string>
-    <string name="ucrop_brightness">Brightness</string>
-    <string name="ucrop_contrast">Contrast</string>
+    <!-- Verb, as in "Duplicate this photo" -->
+    <string name="duplicate">重複</string>
+    <string name="couldnt_duplicate_photo">無法複製照片！</string>
+    <string name="couldnt_edit_photo">無法編輯照片！</string>
+    <!-- Verb, as in "Rotate this photo" -->
+    <string name="ucrop_rotate">旋轉</string>
+    <!-- Verb, as in "Scale (resize) this photo" -->
+    <string name="ucrop_scale">縮放</string>
+    <!-- Verb, as in "Crop this photo" -->
+    <string name="ucrop_crop">裁切</string>
+    <!-- Label for adjusting the brightness of an image -->
+    <string name="ucrop_brightness">亮度</string>
+    <!-- Label for adjusting the contrast of an image -->
+    <string name="ucrop_contrast">對比</string>
+    <!-- Label for adjusting the saturation of an image -->
     <string name="ucrop_saturation">飽和度</string>
+    <!-- Label for adjusting the sharpness of an image -->
     <string name="ucrop_sharpness">銳利度</string>
+    <!-- Label for image cropping mode that maintains the original aspect ratio -->
     <string name="ucrop_label_original">原始照片</string>
+    <!-- Label for image cropping mode that has no limits on the aspect ratio -->
+    <string name="ucrop_label_free">無限制</string>
+    <!-- Verb phrase, button label to edit an observation photo -->
     <string name="ucrop_label_edit_photo">編輯照片</string>
     <string name="service_temporarily_unavailable">暫時無法使用服務。</string>
     <string name="please_try_again_in_a_few_hours">請在幾個小時之後再試一次。</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
-    <string name="please_try_again_in_x">Please try again in %1$d %2$s.</string>
-    <string name="hours">hours</string>
-    <string name="minutes">minutes</string>
-    <string name="seconds_value">seconds</string>
-    <string name="shop_the_inat_store">Shop the iNat Store</string>
+    <string name="please_try_again_in_x">請在 %1$d %2$s 再試一次</string>
+    <string name="hours">小時</string>
+    <string name="minutes">分鐘</string>
+    <string name="seconds_value">秒</string>
+    <string name="shop_the_inat_store">在 iNat 商店購物</string>
+    <string name="delete_your_account">刪除您的帳戶</string>
+    <string name="delete_account_message"><![CDATA[刪除您的帳戶意味著您將移除：<br/><br/><ul><li>您所有的觀察記錄，包含幫您鑑定的所有人之相關內容。</li><li>所有您對其他人觀察記錄的鑑定，這將潛在地影響那些觀察記錄的資料品質。</li><li>所有您添加的評論。</li></ul><br/>此外，此動作無法復原。如果您之後改變心意的話，您無法找回任何過去的內容。<br/><br/>如果本服務跳出太多通知的話，請考慮編輯您在網站上的<a href="https://www.inaturalist.org/users/edit">帳號設定</a>把某些通知選項關閉，或是停止接收電子郵件。如果您對特定人士很感冒的話，可考慮以<a href="https://www.inaturalist.org/users/edit">禁言他們</a>來取代刪除您的帳號<br/><br/>如果您非常確定想要刪除您的帳號，在下面的表單中輸入<b>\"%1$s\"</b>，並且按下按鈕刪除您的帳號及所有資料。]]></string>
+    <string name="your_account_has_been_deleted">您的帳號已經刪除了</string>
+    <string name="you_must_enter_username_in_the_form_to_delete_account">您必須在表單中輸入「%1$s」來刪除您的帳號</string>
+    <!-- Second person hint text asking the user to enter their username -->
+    <string name="type_your_username">輸入您的使用者名稱</string>
+    <string name="error_deleting_account">刪除您的帳號時出現問題-請確認您的網路連線</string>
+    <string name="verify_your_password">Verify Your Password</string>
+    <string name="third_party_data_sharing">Third-party Data Sharing</string>
+    <string name="disable_third_party_data_sharing">Disable Third-party Data Sharing</string>
+    <string name="do_not_collect_third_party_data">Do not collect stability and usage data using third party services</string>
+    <string name="enabled">Enabled</string>
+    <string name="disabled">Disabled</string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring, since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
 </resources>

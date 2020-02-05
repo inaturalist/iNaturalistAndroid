@@ -193,7 +193,7 @@
     <string name="alert_message_use_naturewatchnz">iNaturalist NZ ist Mitglied des iNaturalist Network in Neuseeland. Lokale Institutionen, die iNaturalist NZ unterstützen, haben Zugang zu Ihrer E-Mail-Adresse und zu den tatsächlichen Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1.000 Beobachtungen beigetragen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist Kanada ist Mitglied des iNaturalist Network in Kanada. Lokale Institutionen, die Naturalist Kanada unterstützen, haben Zugang zu Ihrer E-Mail-Adresse und zu den tatsächlichen Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1.000 Beobachtungen beigetragen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
     <string name="alert_message_use_naturalistacolombia">Naturalista ist Mitglied des iNaturalist Network in Kolumbien. Lokale Institutionen, die Naturalista unterstützen, haben Zugang zu Ihrer E-Mail-Adresse und zu den echten Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1000 Beobachtungen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4All is a member of the iNaturalist Network in Portugal. Local institutions supporting Biodiversity4All will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All ist Mitglied des iNaturalist Network in Portugal. Lokale Institutionen, die Biodiversity4All unterstützen, haben Zugang zu Ihrer E-Mail-Adresse und zu den echten Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1000 Beobachtungen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
     <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá is a member of the iNaturalist Network in Panama. Local institutions supporting iNaturalist Panamá will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador ist Mitglied des iNaturalist Network in Ecuador. Lokale Institutionen, die NaturaLista unterstützen, haben Zugang zu Ihrer E-Mail-Adresse und zu den tatsächlichen Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1.000 Beobachtungen beigetragen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia ist Mitglied des iNaturalist Network in Australien. Lokale Institutionen, die NaturaLista unterstützen, haben Zugang zu Ihrer E-Mail-Adresse und zu den tatsächlichen Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1.000 Beobachtungen beigetragen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
@@ -726,17 +726,29 @@
     <string name="pin_current_location">Aktuelle Position anheften</string>
     <string name="location_pinned_successfully">Aktuelle Position angeheftet</string>
     <string name="delete_this_pinned_location">Diese anheftete Position löschen?</string>
+    <!-- Verb, as in "Duplicate this photo" -->
     <string name="duplicate">Duplizieren</string>
     <string name="couldnt_duplicate_photo">Foto konnte nicht dupliziert werden!</string>
     <string name="couldnt_edit_photo">Foto konnte nicht bearbeitet werden!</string>
+    <!-- Verb, as in "Rotate this photo" -->
     <string name="ucrop_rotate">Drehen</string>
+    <!-- Verb, as in "Scale (resize) this photo" -->
     <string name="ucrop_scale">Skalieren</string>
+    <!-- Verb, as in "Crop this photo" -->
     <string name="ucrop_crop">Zuschneiden</string>
+    <!-- Label for adjusting the brightness of an image -->
     <string name="ucrop_brightness">Helligkeit</string>
+    <!-- Label for adjusting the contrast of an image -->
     <string name="ucrop_contrast">Kontrast</string>
+    <!-- Label for adjusting the saturation of an image -->
     <string name="ucrop_saturation">Sättigung</string>
+    <!-- Label for adjusting the sharpness of an image -->
     <string name="ucrop_sharpness">Schärfe</string>
+    <!-- Label for image cropping mode that maintains the original aspect ratio -->
     <string name="ucrop_label_original">Original</string>
+    <!-- Label for image cropping mode that has no limits on the aspect ratio -->
+    <string name="ucrop_label_free">Kostenlos</string>
+    <!-- Verb phrase, button label to edit an observation photo -->
     <string name="ucrop_label_edit_photo">Foto bearbeiten</string>
     <string name="service_temporarily_unavailable">Dienst derzeit nicht verfügbar.</string>
     <string name="please_try_again_in_a_few_hours">Bitte versuchen Sie es in einigen Stunden erneut.</string>
@@ -746,4 +758,21 @@
     <string name="minutes">Minuten</string>
     <string name="seconds_value">Sekunden</string>
     <string name="shop_the_inat_store">Im iNat Store einkaufen</string>
+    <string name="delete_your_account">Eigenes Benutzerkonto löschen</string>
+    <string name="delete_account_message"><![CDATA[By deleting your account you will remove:<br/><br/><ul><li> All of your observations, including the work of the all the people who have helped you out with identifications.</li><li> All of the identifications you\'ve added to the observations of other people, which will potentially affect the data quality of those observations.</li><li> All of the comments you\'ve added.</li></ul><br/>Furthermore, this action cannot be undone. If you change your mind later, you aren\'t getting any of that content back.<br/><br/>If this service generates too many notifications, consider <a href="https://www.inaturalist.org/users/edit">editing your settings on the website</a> to opt out of certain notifications or stop receiving email from us. If you\'re having trouble with a specific person, consider <a href="https://www.inaturalist.org/users/edit">muting them</a> instead of deleting your account.<br/><br/>If you\'re still sure you want to delete your account, enter <b>\"%1$s\"</b> in the form below and click the button to delete your account and all your data.]]></string>
+    <string name="your_account_has_been_deleted">Ihr Konto wurde gelöscht</string>
+    <string name="you_must_enter_username_in_the_form_to_delete_account">Sie müssen „%1$s” in das Formular eingeben, um Ihr Konto löschen zu können</string>
+    <!-- Second person hint text asking the user to enter their username -->
+    <string name="type_your_username">Benutzernamen eingeben</string>
+    <string name="error_deleting_account">Das Löschen Ihres Kontos ist fehlgeschlagen. Bitte überprüfen Sie Ihre Internetverbindung.</string>
+    <string name="verify_your_password">Verify Your Password</string>
+    <string name="third_party_data_sharing">Third-party Data Sharing</string>
+    <string name="disable_third_party_data_sharing">Disable Third-party Data Sharing</string>
+    <string name="do_not_collect_third_party_data">Do not collect stability and usage data using third party services</string>
+    <string name="enabled">Enabled</string>
+    <string name="disabled">Disabled</string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring, since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
 </resources>

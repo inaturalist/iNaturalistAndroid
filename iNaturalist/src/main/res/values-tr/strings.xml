@@ -124,7 +124,7 @@
     <string name="delete_confirmation">Bu gözlemi silmek istediğinden emin misin?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">Rehberler</string>
-    <string name="my_guides">Senin</string>
+    <string name="my_guides">Sizin</string>
     <string name="nearby_guides">Yakında</string>
     <string name="all_guides">Hepsi</string>
     <string name="no_taxa">Bu rehber için sınıflar bulunamadı!</string>
@@ -426,7 +426,7 @@
     <string name="taxonomy">Sınıflandırma</string>
     <string name="about_this_section">Bu Bölüm Hakkında</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
-    <string name="taxonomy_info">Bunlar, bu sınıfın atalarıyla bağlıdırlar. En kapsamlıdan en özele doğru sıralanar. Yaşam Ağacı\'nda aşağı yukarı hareket etmek için bu bağlantıları kullanın. Örneğin, bir organizmanın ne olduğunu bilmiyorsanız ancak hangi gruba girdiğini biliyorsanız, bu konuda daha çok bilgi edinmek için listeden bir sınıfa dokunun.</string>
+    <string name="taxonomy_info">Bunlar, bu sınıfın atalarıyla bağlıdır. En kapsamlıdan en özele doğru sıralanır. Yaşam Ağacı\'nda aşağı yukarı hareket etmek için bu bağlantıları kullanın. Örneğin, bir organizmanın ne olduğunu bilmiyorsanız ancak hangi gruba girdiğini biliyorsanız, bu konuda daha çok bilgi edinmek için listeden bir sınıfa dokunun.</string>
     <string name="more_info_on_inat">iNaturalist.org üzerinden daha çok bilgi</string>
     <string name="view_suggestions">Önerileri Görüntüle</string>
     <string name="species_search">Tür Ara</string>
@@ -641,12 +641,12 @@
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Belirlenemiyor</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
-    <string name="joined_projects_all_caps">KATILDI</string>
+    <string name="joined_projects_all_caps">KATILDIĞIN</string>
     <string name="nearby_projects_all_caps">YAKINDAKİ</string>
     <string name="featured_projects_all_caps">ÖNE ÇIKAN</string>
     <!-- Text for a button or label that allows someone to join a project -->
     <string name="join_all_caps">KATIL</string>
-    <string name="my_guides_all_caps">SENİN</string>
+    <string name="my_guides_all_caps">SİZİN</string>
     <string name="nearby_guides_all_caps">YAKINDAKİ</string>
     <string name="all_guides_all_caps">TÜMÜ</string>
     <string name="description_all_caps">AÇIKLAMA</string>
@@ -726,17 +726,29 @@
     <string name="pin_current_location">Geçerli Konumu Sabitle</string>
     <string name="location_pinned_successfully">Geçerli Konum Başarıyla Sabitlendi</string>
     <string name="delete_this_pinned_location">Bu sabitlenmiş konum silinsin mi?</string>
+    <!-- Verb, as in "Duplicate this photo" -->
     <string name="duplicate">Çoğalt</string>
     <string name="couldnt_duplicate_photo">Fotoğraf çoğaltılamadı!</string>
     <string name="couldnt_edit_photo">Fotoğraf düzenlenemedi!</string>
+    <!-- Verb, as in "Rotate this photo" -->
     <string name="ucrop_rotate">Döndür</string>
+    <!-- Verb, as in "Scale (resize) this photo" -->
     <string name="ucrop_scale">Ölçek</string>
+    <!-- Verb, as in "Crop this photo" -->
     <string name="ucrop_crop">Kırp</string>
+    <!-- Label for adjusting the brightness of an image -->
     <string name="ucrop_brightness">Parlaklık</string>
+    <!-- Label for adjusting the contrast of an image -->
     <string name="ucrop_contrast">Renk karşıtlığı</string>
+    <!-- Label for adjusting the saturation of an image -->
     <string name="ucrop_saturation">Renk doygunluğu</string>
+    <!-- Label for adjusting the sharpness of an image -->
     <string name="ucrop_sharpness">Keskinlik</string>
+    <!-- Label for image cropping mode that maintains the original aspect ratio -->
     <string name="ucrop_label_original">Asıl</string>
+    <!-- Label for image cropping mode that has no limits on the aspect ratio -->
+    <string name="ucrop_label_free">Ücretsiz</string>
+    <!-- Verb phrase, button label to edit an observation photo -->
     <string name="ucrop_label_edit_photo">Fotoğrafı Düzenle</string>
     <string name="service_temporarily_unavailable">Hizmet geçici olarak kullanılamıyor.</string>
     <string name="please_try_again_in_a_few_hours">Lütfen birkaç saat içinde tekrar deneyin.</string>
@@ -746,4 +758,21 @@
     <string name="minutes">dakika</string>
     <string name="seconds_value">saniye</string>
     <string name="shop_the_inat_store">iNat Mağazasında Alışveriş Yapın</string>
+    <string name="delete_your_account">Hesabınızı Silin</string>
+    <string name="delete_account_message"><![CDATA[Hesabınızı silerek şunları kaldıracaksınız:<br/><br/><ul><li> Tanımlamalarda size yardımcı olan tüm insanların çalışmalarını da içermek üzere tüm gözlemleriniz.</li><li> Diğer kişilerin gözlemlerine eklediğiniz ve bu gözlemlerin veri niteliğini potansiyel olarak etkileyecek tüm tanımlamalar.</li><li> Eklediğiniz tüm yorumlar.</li></ul><br/> Ayrıca, bu işlem geri alınamaz. Daha sonra düşüncenizi değiştirirseniz, bu içeriğin hiçbirini geri alamazsınız.<br/><br/> Bu hizmet çok fazla bildirim oluşturuyorsa, belirli bildirimlerden vazgeçmek ya da bizden e-posta almayı durdurmak için <a href="https://www.inaturalist.org/users/edit">sayfadaki ayarlarınızı düzenlemeyi</a> düşünün. Belirli bir kişiyle ilgili sorun yaşıyorsanız hesabınızı silmek yerine <a href="https://www.inaturalist.org/users/edit">onları sessize almayı</a> düşünün.<br/><br/> Eğer hesabınızı hala silmek istediğinizden eminseniz, aşağıdaki forma <b>\"%1$s\"</b> girin ve hesabınızı ve tüm verilerinizi silmek için düğmeye tıklayın.]]></string>
+    <string name="your_account_has_been_deleted">Hesabınız silindi</string>
+    <string name="you_must_enter_username_in_the_form_to_delete_account">Hesabınızı silmek için forma \'%1$s\' girmelisiniz</string>
+    <!-- Second person hint text asking the user to enter their username -->
+    <string name="type_your_username">Kullanıcı adınızı girin</string>
+    <string name="error_deleting_account">Hesabınız silinirken bir hata oluştu - lütfen İnternet bağlantınızı kontrol edin</string>
+    <string name="verify_your_password">Verify Your Password</string>
+    <string name="third_party_data_sharing">Third-party Data Sharing</string>
+    <string name="disable_third_party_data_sharing">Disable Third-party Data Sharing</string>
+    <string name="do_not_collect_third_party_data">Do not collect stability and usage data using third party services</string>
+    <string name="enabled">Enabled</string>
+    <string name="disabled">Disabled</string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring, since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
 </resources>

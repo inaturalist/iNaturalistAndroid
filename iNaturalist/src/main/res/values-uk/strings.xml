@@ -205,7 +205,8 @@
 Чи хочете ви змінити вашу мережеву приналежність?</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia є частиною мережі iNuturalist у Австралії. Місцеві організації, що підтримують iNaturalist Australia, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є більше 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
 Чи хочете ви змінити вашу мережеву приналежність?</string>
-    <string name="alert_message_use_argentinat">ArgentiNat is a member of the iNaturalist Network in Argentina. Local institutions supporting ArgentiNat will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat є частиною мережі iNuturalist в Аргентині. Місцеві організації, що підтримують ArgentiNat, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є більше 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
+Чи хочете ви змінити вашу мережеву приналежність?</string>
     <string name="editor">Редактор</string>
     <string name="license">Ліцензія</string>
     <string name="download_for_offline_use">Завантажено для використання в автономному режимі</string>
@@ -371,7 +372,7 @@
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Опис оновлення ідентифікації</string>
     <string name="your_identification">Ваш ID: %1$s</string>
-    <string name="onboarding_species_name">Name what you saw if you can, even if that\'s just \"insect\" or \"bird,\" or just leave this blank. Others may help you identify it!</string>
+    <string name="onboarding_species_name">Якщо можете, назвіть те, що ви бачили. Навіть якщо це лише \"комаха\" або \"птах\". Або залиште поле незаповненим. Інші користувачі можуть допомогти Вам ідентифікувати це!</string>
     <string name="upload_complete">Вивантаження завершено!</string>
     <string name="onboarding_upload_description">Поверніться через деякий час для перевірки коментарів та ідентифікацій для вашого спостереження(-нь).</string>
     <string name="importing_photos">Імпортування фото...</string>
@@ -527,7 +528,7 @@
     <string name="search_users">Знайти користувачів...</string>
     <string name="quality_grade">Клас якості</string>
     <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
-    <string name="date_observed">Date Observed</string>
+    <string name="date_observed">Дата спостереження</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
     <string name="any">Усі</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
@@ -624,7 +625,7 @@
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_budding">Брунькування</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_flower_budding">Flower Budding</string>
+    <string name="annotation_value_flower_budding">Бутонізація</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Дорослий</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -712,7 +713,7 @@
     <string name="soundcloud">Soundcloud</string>
     <string name="record_sound">Записати звук</string>
     <string name="no_recorder_found">Чи не знайдено пристрій запису звуку за замовчуванням!</string>
-    <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
+    <string name="couldnt_retrieve_sound">Не вдалося отримати звук із основного записувача - спробуйте натомість звук імпортувати</string>
     <string name="upload_sound">Оберіть звук</string>
     <string name="multi_select_sound_description">Імпорт декількох аудіо шляхом довгого натискання на одне аудіо</string>
     <string name="alert_unsupported_audio_type">Вибачте, але виникли труднощі з завантаженням аудіо з цього джерела</string>
@@ -725,33 +726,62 @@
     <string name="clear_all_debug_logs">Видалити усі файли журналу відлагодження</string>
     <string name="clears_up_storage_room_on_your_phone">Очистити кеш програми</string>
     <string name="number_of_days_to_store_logs">Кількість днів зберігання журналів</string>
-    <string name="send_debug_logs_from_start_date">Send Debug Logs From Start Date</string>
-    <string name="send_debug_logs_by_email">Send debug logs by email (from specified start date)</string>
+    <string name="send_debug_logs_from_start_date">Надіслати журнал відлагодження з початкової дати</string>
+    <string name="send_debug_logs_by_email">Надіслати звіт про технічну неполадку електронною поштою (із назначенною датою початку)</string>
     <string name="debug_settings">Налаштування відлагодження</string>
-    <string name="are_you_sure_you_want_to_delete_logs">Are you sure you want to delete all debug logs? Only press \'Yes\' if you want clear up storage room for your phone</string>
+    <string name="are_you_sure_you_want_to_delete_logs">Ви впевнені, що хочете видалити всі звіти про технічні неполадки? Натисніть \"Так\" тільки якщо Ви бажаєте очистити сховище Вашого телефону</string>
     <string name="no_log_files_found">Для цього діапазону дат файли журналу не знайдені - спробувати більш ранні дати?</string>
     <string name="choose_pinned_location">Обрати закріплене місце</string>
     <string name="pin_current_location">Закріпити поточне місце</string>
     <string name="location_pinned_successfully">Поточне місце успішно закріплено</string>
     <string name="delete_this_pinned_location">Видалити це закріплене місце?</string>
-    <string name="duplicate">Duplicate</string>
-    <string name="couldnt_duplicate_photo">Couldn\'t duplicate photo!</string>
-    <string name="couldnt_edit_photo">Couldn\'t edit photo!</string>
-    <string name="ucrop_rotate">Rotate</string>
-    <string name="ucrop_scale">Scale</string>
-    <string name="ucrop_crop">Crop</string>
-    <string name="ucrop_brightness">Brightness</string>
-    <string name="ucrop_contrast">Contrast</string>
-    <string name="ucrop_saturation">Saturation</string>
-    <string name="ucrop_sharpness">Sharpness</string>
-    <string name="ucrop_label_original">Original</string>
-    <string name="ucrop_label_edit_photo">Edit Photo</string>
-    <string name="service_temporarily_unavailable">Service temporarily unavailable.</string>
-    <string name="please_try_again_in_a_few_hours">Please try again in a few hours.</string>
+    <!-- Verb, as in "Duplicate this photo" -->
+    <string name="duplicate">Дублювати</string>
+    <string name="couldnt_duplicate_photo">Не вдалося продублювати фото!</string>
+    <string name="couldnt_edit_photo">Не вдалося відредагувати фото!</string>
+    <!-- Verb, as in "Rotate this photo" -->
+    <string name="ucrop_rotate">Обернути</string>
+    <!-- Verb, as in "Scale (resize) this photo" -->
+    <string name="ucrop_scale">Масштабувати</string>
+    <!-- Verb, as in "Crop this photo" -->
+    <string name="ucrop_crop">Обрізати</string>
+    <!-- Label for adjusting the brightness of an image -->
+    <string name="ucrop_brightness">Яскравість</string>
+    <!-- Label for adjusting the contrast of an image -->
+    <string name="ucrop_contrast">Контрастність</string>
+    <!-- Label for adjusting the saturation of an image -->
+    <string name="ucrop_saturation">Насиченість</string>
+    <!-- Label for adjusting the sharpness of an image -->
+    <string name="ucrop_sharpness">Різкість</string>
+    <!-- Label for image cropping mode that maintains the original aspect ratio -->
+    <string name="ucrop_label_original">Оригінал</string>
+    <!-- Label for image cropping mode that has no limits on the aspect ratio -->
+    <string name="ucrop_label_free">Без обмежень</string>
+    <!-- Verb phrase, button label to edit an observation photo -->
+    <string name="ucrop_label_edit_photo">Редагувати фото</string>
+    <string name="service_temporarily_unavailable">Сервіс тимчасово недоступний.</string>
+    <string name="please_try_again_in_a_few_hours">Будь ласка, спробуйте знов за кілька годин.</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
-    <string name="please_try_again_in_x">Please try again in %1$d %2$s.</string>
-    <string name="hours">hours</string>
-    <string name="minutes">minutes</string>
-    <string name="seconds_value">seconds</string>
-    <string name="shop_the_inat_store">Shop the iNat Store</string>
+    <string name="please_try_again_in_x">Будь ласка, спробуйте знову через %1$d %2$s.</string>
+    <string name="hours">годин</string>
+    <string name="minutes">хвилин</string>
+    <string name="seconds_value">секунд</string>
+    <string name="shop_the_inat_store">Придбати в iNat Store</string>
+    <string name="delete_your_account">Видалити свій обліковий запис</string>
+    <string name="delete_account_message"><![CDATA[Видаливши свій обліковий запис ви також видалите:<br/><br/><ul><li> Усі ваші спостереження, включаючи роботу всіх людей, які допомогли вам з ідентифікацією.</li><li> Усі ідентифікації, які ви додали до спостережень інших людей, які потенційно можуть вплинути на якість даних цих спостережень.</li><li> Усі ваші коментарі</li></ul><br/>Крім того, цю дію не можна скасувати. Якщо ви передумаєте, то не зможете відновити жодного змісту з вищеописаного.<br/><br/>Якщо ця програма генерує занадто багато сповіщень <a href="https://www.inaturalist.org/users/edit">змініть налаштування на сайті</a>, щоб відмовитися від певних сповіщень або припинити отримувати електронну пошту від нас. Якщо у вас виникають проблеми з конкретною людиною, зверніть увагу на <a href="https://www.inaturalist.org/users/edit">можливість ігнорувати її</a>, а не видаляти свій обліковий запис.<br/><br/>Якщо ви досі впевнені, що хочете видалити свій обліковий запис, тоді введіть <b>\"%1$s\"</b> у форму нижче та натисніть кнопку, щоб видалити свій обліковий запис та всі ваші дані.]]></string>
+    <string name="your_account_has_been_deleted">Ваш обліковий запис був видалений</string>
+    <string name="you_must_enter_username_in_the_form_to_delete_account">Щоб видалити свій обліковий запис введіть \'%1$s\' у форму</string>
+    <!-- Second person hint text asking the user to enter their username -->
+    <string name="type_your_username">Введіть ім\'я користувача</string>
+    <string name="error_deleting_account">Сталася помилка при видаленні вашого облікового запису - будь ласка, перевірте підключення до інтернету</string>
+    <string name="verify_your_password">Verify Your Password</string>
+    <string name="third_party_data_sharing">Third-party Data Sharing</string>
+    <string name="disable_third_party_data_sharing">Disable Third-party Data Sharing</string>
+    <string name="do_not_collect_third_party_data">Do not collect stability and usage data using third party services</string>
+    <string name="enabled">Enabled</string>
+    <string name="disabled">Disabled</string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring, since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
 </resources>

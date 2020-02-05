@@ -36,12 +36,12 @@
     <string name="delete_photo">Hapus foto</string>
     <string name="menu">Menu</string>
     <string name="my_location">Lokasi saya</string>
-    <string name="nearby_observations">Dekat pengamatan</string>
+    <string name="nearby_observations">Pengamatan terdekat</string>
     <string name="add">Tambahkan</string>
     <string name="view_on_inat">Lihat di iNaturalist.org</string>
     <string name="reload">Muat ulang</string>
-    <string name="view_in_browser">Melihat di browser</string>
-    <string name="add_observation">Menambahkan pengamatan</string>
+    <string name="view_in_browser">Lihat di browser</string>
+    <string name="add_observation">Tambah pengamatan</string>
     <string name="take_picture">Ambil gambar</string>
     <string name="save">Simpan</string>
     <string name="no_observations_yet">Belum ada pengamatan!</string>
@@ -51,7 +51,7 @@
     <string name="username">Nama Pengguna</string>
     <string name="password">Sandi</string>
     <string name="unknown">Tidak Diketahui</string>
-    <string name="unknown_species">Spesies yang tidak diketahui</string>
+    <string name="unknown_species">Spesies tidak diketahui</string>
     <string name="com_facebook_dialogloginactivity_ok_button">OKE</string>
     <string name="com_facebook_loginview_log_out_button">Keluar</string>
     <string name="com_facebook_loginview_log_in_button">Masuk</string>
@@ -363,7 +363,7 @@
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Pembaruan Deskripsi Identitas</string>
     <string name="your_identification">ID Anda: %1$s</string>
-    <string name="onboarding_species_name">Name what you saw if you can, even if that\'s just \"insect\" or \"bird,\" or just leave this blank. Others may help you identify it!</string>
+    <string name="onboarding_species_name">Beri nama apa yang anda lihat, walaupun itu hanya sekedar \"serangga\" atau \"burung\", atau biarkan ini kosong. Orang lain mungkin dapat membantu anda mengidentifikasinya!</string>
     <string name="upload_complete">Unggahan Selesai!</string>
     <string name="onboarding_upload_description">Segera periksa kembali untuk identifikasi dan komentar di pengamatan Anda.</string>
     <string name="importing_photos">Mengimpor foto...</string>
@@ -519,7 +519,7 @@
     <string name="search_users">Cari pengguna...</string>
     <string name="quality_grade">Kualitas Kelas</string>
     <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
-    <string name="date_observed">Date Observed</string>
+    <string name="date_observed">Tanggal pengamatan</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
     <string name="any">Apa saja</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
@@ -726,24 +726,53 @@
     <string name="pin_current_location">Sematkan Lokasi Saat Ini</string>
     <string name="location_pinned_successfully">Lokasi Saat Ini Berhasil Disematkan</string>
     <string name="delete_this_pinned_location">Hapus lokasi yang disematkan ini?</string>
-    <string name="duplicate">Duplicate</string>
-    <string name="couldnt_duplicate_photo">Couldn\'t duplicate photo!</string>
-    <string name="couldnt_edit_photo">Couldn\'t edit photo!</string>
-    <string name="ucrop_rotate">Rotate</string>
-    <string name="ucrop_scale">Scale</string>
-    <string name="ucrop_crop">Crop</string>
-    <string name="ucrop_brightness">Brightness</string>
-    <string name="ucrop_contrast">Contrast</string>
-    <string name="ucrop_saturation">Saturation</string>
-    <string name="ucrop_sharpness">Sharpness</string>
-    <string name="ucrop_label_original">Original</string>
-    <string name="ucrop_label_edit_photo">Edit Photo</string>
-    <string name="service_temporarily_unavailable">Service temporarily unavailable.</string>
-    <string name="please_try_again_in_a_few_hours">Please try again in a few hours.</string>
+    <!-- Verb, as in "Duplicate this photo" -->
+    <string name="duplicate">Duplikat</string>
+    <string name="couldnt_duplicate_photo">Tidak dapat menduplikasi foto!</string>
+    <string name="couldnt_edit_photo">Tidak dapat mengedit foto!</string>
+    <!-- Verb, as in "Rotate this photo" -->
+    <string name="ucrop_rotate">Putar</string>
+    <!-- Verb, as in "Scale (resize) this photo" -->
+    <string name="ucrop_scale">Ubah ukuran</string>
+    <!-- Verb, as in "Crop this photo" -->
+    <string name="ucrop_crop">Potong</string>
+    <!-- Label for adjusting the brightness of an image -->
+    <string name="ucrop_brightness">Kecerahan</string>
+    <!-- Label for adjusting the contrast of an image -->
+    <string name="ucrop_contrast">Kontras</string>
+    <!-- Label for adjusting the saturation of an image -->
+    <string name="ucrop_saturation">Saturasi</string>
+    <!-- Label for adjusting the sharpness of an image -->
+    <string name="ucrop_sharpness">Ketajaman</string>
+    <!-- Label for image cropping mode that maintains the original aspect ratio -->
+    <string name="ucrop_label_original">Orisinal</string>
+    <!-- Label for image cropping mode that has no limits on the aspect ratio -->
+    <string name="ucrop_label_free">Bebas</string>
+    <!-- Verb phrase, button label to edit an observation photo -->
+    <string name="ucrop_label_edit_photo">Edit Foto</string>
+    <string name="service_temporarily_unavailable">Layanan sementara tidak tersedia.</string>
+    <string name="please_try_again_in_a_few_hours">Silahkan coba lagi dalam beberapa saat.</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
-    <string name="please_try_again_in_x">Please try again in %1$d %2$s.</string>
-    <string name="hours">hours</string>
-    <string name="minutes">minutes</string>
-    <string name="seconds_value">seconds</string>
-    <string name="shop_the_inat_store">Shop the iNat Store</string>
+    <string name="please_try_again_in_x">Silahkan coba lagi dalam %1$d %2$s.</string>
+    <string name="hours">jam</string>
+    <string name="minutes">menit</string>
+    <string name="seconds_value">detik</string>
+    <string name="shop_the_inat_store">Belanja di iNat Store</string>
+    <string name="delete_your_account">Hapus Akun Anda</string>
+    <string name="delete_account_message"><![CDATA[Dengan menghapus akun anda, Anda akan menghapus: <br/><br/><ul><li> Semua pengamatan anda, termasuk pekerjaan semua orang yang telah membantu anda mengidentifikasi diri.</li><li> Semua identifikasi yang anda tambahkan ke pengamatan orang lain, yang berpotensi akan mempengaruhi kualitas data dari pengamatan tersebut.</li><li> Semua komentar yang anda tambahkan.</li></ ul><br/>Selanjutnya, tindakan ini tidak dapat diurungkan. Jika anda berubah pikiran nanti, anda tidak akan mendapatkan konten itu kembali.<br/><br/>Jika layanan ini menghasilkan terlalu banyak pemberitahuan, pertimbangkan <a href ="https://www.inaturalist.org/pengguna/edit"> edit pengaturan anda di situs web</a> untuk menyisih dari pemberitahuan tertentu atau berhenti menerima email dari kami. Jika anda mengalami masalah dengan orang tertentu, pertimbangkan <a href="https://www.inaturalist.org/pengguna/edit"> membisukan mereka</a>daripada menghapus akun anda.<br/>< br/>Jika anda masih yakin ingin menghapus akun anda, masukkan <b>\"%1$s\"</b> dalam formulir di bawah ini dan klik tombol untuk menghapus akun anda dan semua data anda.]]></string>
+    <string name="your_account_has_been_deleted">Akun anda telah dihapus</string>
+    <string name="you_must_enter_username_in_the_form_to_delete_account">Anda harus memasukkan \'%1$s\' di formulir untuk menghapus akun anda</string>
+    <!-- Second person hint text asking the user to enter their username -->
+    <string name="type_your_username">Ketikkan nama pengguna anda</string>
+    <string name="error_deleting_account">Terjadi kesalahan saat menghapus akun anda - silakan periksa koneksi Internet anda</string>
+    <string name="verify_your_password">Verify Your Password</string>
+    <string name="third_party_data_sharing">Third-party Data Sharing</string>
+    <string name="disable_third_party_data_sharing">Disable Third-party Data Sharing</string>
+    <string name="do_not_collect_third_party_data">Do not collect stability and usage data using third party services</string>
+    <string name="enabled">Enabled</string>
+    <string name="disabled">Disabled</string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring, since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
 </resources>

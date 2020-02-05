@@ -726,17 +726,29 @@
     <string name="pin_current_location">Fest nåværende beliggenhet</string>
     <string name="location_pinned_successfully">Nåværende beliggenhet ble festet vellykket</string>
     <string name="delete_this_pinned_location">Slett denne festede beliggenheten?</string>
+    <!-- Verb, as in "Duplicate this photo" -->
     <string name="duplicate">Dupliser</string>
     <string name="couldnt_duplicate_photo">Kunne ikke duplisere bilde!</string>
     <string name="couldnt_edit_photo">Kunne ikke redigere bilde!</string>
+    <!-- Verb, as in "Rotate this photo" -->
     <string name="ucrop_rotate">Rotér</string>
+    <!-- Verb, as in "Scale (resize) this photo" -->
     <string name="ucrop_scale">Skalér</string>
+    <!-- Verb, as in "Crop this photo" -->
     <string name="ucrop_crop">Beskjær</string>
+    <!-- Label for adjusting the brightness of an image -->
     <string name="ucrop_brightness">Lysstyrke</string>
+    <!-- Label for adjusting the contrast of an image -->
     <string name="ucrop_contrast">Kontrast</string>
+    <!-- Label for adjusting the saturation of an image -->
     <string name="ucrop_saturation">Metning</string>
+    <!-- Label for adjusting the sharpness of an image -->
     <string name="ucrop_sharpness">Skarphet</string>
+    <!-- Label for image cropping mode that maintains the original aspect ratio -->
     <string name="ucrop_label_original">Original</string>
+    <!-- Label for image cropping mode that has no limits on the aspect ratio -->
+    <string name="ucrop_label_free">Gratis</string>
+    <!-- Verb phrase, button label to edit an observation photo -->
     <string name="ucrop_label_edit_photo">Rediger bilde</string>
     <string name="service_temporarily_unavailable">Tjeneste midlertidig utilgjengelig.</string>
     <string name="please_try_again_in_a_few_hours">Vennligst prøv igjen om noen timer.</string>
@@ -746,4 +758,24 @@
     <string name="minutes">minutter</string>
     <string name="seconds_value">sekunder</string>
     <string name="shop_the_inat_store">Handle i iNat butikken</string>
+    <string name="delete_your_account">Slett din konto</string>
+    <string name="delete_account_message"><![CDATA[Ved å slette din konto fjerner du:<br/><br/><ul><li>
+Alle dine observasjoner, inklusivt alt arbeid av alle personer som har hjulpet deg med identifikasjoner.</li><li> Alle identifikasjoner som du har lagt til andres observasjoner, noe som potensielt påvirker datakvaliteten til disse observasjoner.</li><li> 
+Alle kommentarer som du har lagt til.</li></ul><br/>
+Utover det, denne handlingen kan ikke angres. Hvis du ombestemmer deg senere, får du ikke noe av det innholdet tilbake.<br/><br/>Hvis denne tjenesten genererer for mange meldinger, vurder å <a href="https://www.inaturalist.org/users/edit">redigere dine innstillinger på nettsiden</a> for å slå av bestemte meldinger eller å slutte å motta e-post fra oss. Hvis du har problemer med en bestemt person, vurder å <a href="https://www.inaturalist.org/users/edit">ignorere vedkommende</a> i stedet for å slette din konto.<br/><br/>Hvis du fortsatt er sikker på at du vil slette din konto, skriv <b>\"%1$s\"</b> i skjemaet under og trykk på knappen for å slette din konto og alle dine data.]]></string>
+    <string name="your_account_has_been_deleted">Din konto har blitt slettet</string>
+    <string name="you_must_enter_username_in_the_form_to_delete_account">Du må skrive \"%1$s\" i skjemaet for å slette din konto</string>
+    <!-- Second person hint text asking the user to enter their username -->
+    <string name="type_your_username">Skriv ditt brukernavn</string>
+    <string name="error_deleting_account">Det oppstod en feil under sletting av din konto - vennligst sjekk din internettforbindelse</string>
+    <string name="verify_your_password">Verify Your Password</string>
+    <string name="third_party_data_sharing">Third-party Data Sharing</string>
+    <string name="disable_third_party_data_sharing">Disable Third-party Data Sharing</string>
+    <string name="do_not_collect_third_party_data">Do not collect stability and usage data using third party services</string>
+    <string name="enabled">Enabled</string>
+    <string name="disabled">Disabled</string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring, since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
 </resources>
