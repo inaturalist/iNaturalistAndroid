@@ -185,14 +185,16 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         	this.photo_url = o.getString(photoUrlSize);
         } else {
         	try {
-				this.photo_url = o.getJSONObject("photo").getString(photoUrlSize);
+        	    if (!o.getJSONObject("photo").isNull(photoUrlSize)) {
+                    this.photo_url = o.getJSONObject("photo").optString(photoUrlSize, null);
+                }
 			} catch (Exception e) {
 			}
         }
 
         if (o.has("photo")) {
             JSONObject photo = o.getJSONObject("photo");
-            if ((this.photo_url == null) && (photo.has("url"))) this.photo_url = photo.optString("url");
+            if ((this.photo_url == null) && (photo.has("url")) && (!photo.isNull("url"))) this.photo_url = photo.optString("url");
 
             this.photo_id = photo.optInt("id");
             this.photo_id_was = this.photo_id;
@@ -200,7 +202,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
             this._photo_id_was = this._photo_id;
         }
 
-        if ((this.photo_url == null) && (o.has("url"))) {
+        if ((this.photo_url == null) && (o.has("url")) && (!o.isNull("url"))) {
             this.photo_url = o.getString("url");
         }
 
