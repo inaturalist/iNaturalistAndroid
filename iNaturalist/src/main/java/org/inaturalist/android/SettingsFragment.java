@@ -34,6 +34,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private static final int REQUEST_CODE_LOGIN = 0x1000;
     private static final int REQUEST_CODE_DELETE_ACCOUNT = 0x1001;
     private static final int REQUEST_CODE_THIRD_PARTY_DATA_SHARING = 0x1002;
+    private static final int REQUEST_CODE_VERIFY_PASSWORD = 0x1003;
 
     private static final String DONATION_URL = "http://www.inaturalist.org/donate?utm_source=Android&utm_medium=mobile";
     private static final String SHOP_URL = "https://store.inaturalist.org/?utm_source=android&utm_medium=mobile&utm_campaign=store";
@@ -311,14 +312,14 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         mDeleteAccount.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                // Open deletion screen
-                Intent intent = new Intent(getActivity(), DeleteAccount.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivityForResult(intent, REQUEST_CODE_DELETE_ACCOUNT);
+                // Force user to login again (verify password)
+                Intent intent = new Intent(getActivity(), LoginSignupActivity.class);
+                intent.putExtra(LoginSignupActivity.VERIFY_PASSWORD, true);
+                startActivityForResult(intent, REQUEST_CODE_VERIFY_PASSWORD);
+
                 return false;
             }
         });
-
-
 
 
         // Show app version
@@ -425,6 +426,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         if ((requestCode == REQUEST_CODE_LOGIN) && (resultCode == Activity.RESULT_OK)) {
             // Refresh login state
             refreshSettings();
+        } else if ((requestCode == REQUEST_CODE_VERIFY_PASSWORD) && (resultCode == Activity.RESULT_OK)) {
+            // User verified password - Open deletion screen
+            Intent intent = new Intent(getActivity(), DeleteAccount.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivityForResult(intent, REQUEST_CODE_DELETE_ACCOUNT);
         } else if ((requestCode == REQUEST_CODE_DELETE_ACCOUNT) && (resultCode == Activity.RESULT_OK)) {
             // User deleted account - sign out immediately
             signOut();
