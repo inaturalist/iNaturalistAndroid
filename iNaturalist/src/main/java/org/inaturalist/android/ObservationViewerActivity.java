@@ -12,6 +12,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -19,6 +20,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -28,6 +31,7 @@ import android.text.Html;
 import android.text.InputType;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.util.Pair;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -54,6 +58,11 @@ import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.cocosw.bottomsheet.BottomSheet;
 import com.evernote.android.state.State;
 
@@ -75,8 +84,10 @@ import org.lucasr.twowayview.TwoWayView;
 import org.tinylog.Logger;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -89,6 +100,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -97,6 +109,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     private static final int REQUEST_CODE_LOGIN = 0x102;
     private static final int REQUEST_CODE_EDIT_OBSERVATION = 0x103;
     private static final int SHARE_REQUEST_CODE = 0x104;
+    private static final int OBSERVATION_PHOTOS_REQUEST_CODE = 0x105;
 
     public static final int RESULT_FLAGGED_AS_CAPTIVE = 0x300;
     public static final int RESULT_OBSERVATION_CHANGED = 0x301;
@@ -304,6 +317,34 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         private List<SoundPlayer> mPlayers = new ArrayList<>();
 
+        public void refreshPhotoPositions(Integer position, boolean doNotUpdate) {
+            int currentPosition = position == null ? 0 : 1;
+            int count = mImageCursor.getCount();
+
+            if (count == 0) return;
+
+            mImageCursor.moveToPosition(0);
+
+            do {
+                if ((position == null) || (mImageCursor.getPosition() != position.intValue()))  {
+                    ObservationPhoto currentOp = new ObservationPhoto(mImageCursor);
+                    currentOp.position = currentPosition;
+                    ContentValues cv = currentOp.getContentValues();
+                    if (doNotUpdate && currentOp._synced_at != null) {
+                        cv.put(ObservationPhoto._SYNCED_AT, currentOp._synced_at.getTime());
+                    }
+
+                    if (currentOp.photo_filename != null) {
+                        getContentResolver().update(ObservationPhoto.CONTENT_URI, cv, "photo_filename = '" + currentOp.photo_filename + "'", null);
+                    } else {
+                        getContentResolver().update(ObservationPhoto.CONTENT_URI, cv, "photo_url = '" + currentOp.photo_url + "'", null);
+                    }
+
+                    currentPosition++;
+                }
+            } while (mImageCursor.moveToNext());
+        }
+
         public PhotosViewPagerAdapter() {
             if (!mReadOnly) {
                 if (mObservation.id != null) {
@@ -342,6 +383,27 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             return mReadOnly ?
                     (mObservation.photos.size() + mObservation.sounds.size()) :
                     mImageCursor.getCount() + mSoundCursor.getCount();
+        }
+
+        public int getPhotoCount() {
+            return mReadOnly ? mObservation.photos.size() : mImageCursor.getCount();
+        }
+
+        public void setAsFirstPhoto(int position) {
+            // Set current photo to be positioned first
+            mImageCursor.moveToPosition(position);
+            ObservationPhoto op = new ObservationPhoto(mImageCursor);
+            op.position = 0;
+            if (op.photo_filename != null) {
+                getContentResolver().update(ObservationPhoto.CONTENT_URI, op.getContentValues(), "photo_filename = '" + op.photo_filename + "'", null);
+            } else {
+                getContentResolver().update(ObservationPhoto.CONTENT_URI, op.getContentValues(), "photo_url = '" + op.photo_url + "'", null);
+            }
+
+            // Update the rest of the photos to be positioned afterwards
+            refreshPhotoPositions(position, false);
+
+            reloadPhotos();
         }
 
         @Override
@@ -473,11 +535,12 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID, mObservation.id);
                         intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID_INTERNAL, mObservation._id);
                         intent.putExtra(ObservationPhotosViewer.IS_NEW_OBSERVATION, true);
-                        intent.putExtra(ObservationPhotosViewer.READ_ONLY, true);
+                        intent.putExtra(ObservationPhotosViewer.READ_ONLY, false);
+                        startActivityForResult(intent, OBSERVATION_PHOTOS_REQUEST_CODE);
                     } else {
                         intent.putExtra(ObservationPhotosViewer.OBSERVATION, mObsJson);
+                        startActivity(intent);
                     }
-                    startActivity(intent);
                 }
             });
 
@@ -2577,6 +2640,56 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, this, INaturalistService.class);
             serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
             ContextCompat.startForegroundService(this, serviceIntent2);
+
+        } else if (requestCode == OBSERVATION_PHOTOS_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                Integer setFirstPhotoIndex = data.getIntExtra(ObservationPhotosViewer.SET_DEFAULT_PHOTO_INDEX, -1);
+                Integer deletePhotoIndex = data.getIntExtra(ObservationPhotosViewer.DELETE_PHOTO_INDEX, -1);
+                Integer duplicatePhotoIndex = data.getIntExtra(ObservationPhotosViewer.DUPLICATE_PHOTO_INDEX, -1);
+
+                if (data.hasExtra(ObservationPhotosViewer.REPLACED_PHOTOS)) {
+                    // Photos the user has edited
+                    String rawReplacedPhotos = data.getStringExtra(ObservationPhotosViewer.REPLACED_PHOTOS);
+                    rawReplacedPhotos = rawReplacedPhotos.substring(1, rawReplacedPhotos.length() - 1);
+                    String parts[] = rawReplacedPhotos.split(",");
+                    List<Pair<Uri, Long>> replacedPhotos = new ArrayList<>();
+                    for (String value : parts) {
+                        value = value.trim();
+                        String[] innerParts = value.substring(5, value.length() - 1).split(" ", 2);
+                        replacedPhotos.add(new Pair<Uri, Long>(Uri.parse(innerParts[0]), Long.valueOf(innerParts[1])));
+                    }
+
+                    for (Pair<Uri, Long> replacedPhoto : replacedPhotos) {
+                        int index = replacedPhoto.second.intValue();
+                        Uri photoUri = replacedPhoto.first;
+
+                        // Delete old photo
+                        deletePhoto(index, false);
+
+                        // Add new photo instead
+                        Uri createdUri = createObservationPhotoForPhoto(photoUri, index, false);
+                    }
+
+                    reloadPhotos();
+                }
+
+                if (setFirstPhotoIndex > -1) {
+                    // Set photo as first
+                    if (setFirstPhotoIndex < mPhotosAdapter.getPhotoCount()) {
+                        mPhotosAdapter.setAsFirstPhoto(setFirstPhotoIndex);
+                    }
+
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_NEW_DEFAULT_PHOTO);
+                } else if (deletePhotoIndex > -1) {
+                    // Delete photo
+                    deletePhoto(deletePhotoIndex, true);
+
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_DELETE_PHOTO);
+                } else if (duplicatePhotoIndex > -1) {
+                    // Duplicate photo
+                    duplicatePhoto(duplicatePhotoIndex);
+                }
+            }
         }
     }
 
@@ -2712,5 +2825,154 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
+
+    private void deletePhoto(int position, boolean refreshPositions) {
+        PhotosViewPagerAdapter adapter = mPhotosAdapter;
+        if (position >= adapter.getPhotoCount()) {
+            return;
+        }
+
+        Cursor cursor = adapter.getCursor();
+        cursor.moveToPosition(position);
+
+        ObservationPhoto op = new ObservationPhoto(cursor);
+
+        // Mark photo as deleted
+        ContentValues cv = new ContentValues();
+        cv.put(ObservationPhoto.IS_DELETED, 1);
+        int updateCount = getContentResolver().update(op.getUri(), cv, null, null);
+
+        reloadPhotos();
+
+        if (refreshPositions) {
+            // Refresh the positions of all other photos
+            adapter = mPhotosAdapter;
+            adapter.refreshPhotoPositions(null, false);
+        }
+    }
+
+    private void duplicatePhoto(int position) {
+        PhotosViewPagerAdapter adapter = mPhotosAdapter;
+        if (position >= adapter.getPhotoCount()) {
+            return;
+        }
+
+        Cursor cursor = adapter.getCursor();
+        cursor.moveToPosition(position);
+
+        ObservationPhoto op = new ObservationPhoto(cursor);
+
+        // Add a duplicate of this photo (in a position ahead of this one)
+
+        // Copy file
+        String photoUrl = op.photo_url;
+        String photoFileName = op.photo_filename;
+        final File destFile = new File(getFilesDir(), UUID.randomUUID().toString() + ".jpeg");
+
+        Logger.tag(TAG).info("Duplicate: " + op + ":" + photoFileName + ":" + photoUrl);
+
+        if (photoFileName != null) {
+            // Local file - copy it
+            try {
+                FileUtils.copyFile(new File(photoFileName), destFile);
+                addDuplicatedPhoto(op, destFile);
+            } catch (IOException e) {
+                Logger.tag(TAG).error(e);
+                Toast.makeText(getApplicationContext(), getString(R.string.couldnt_duplicate_photo), Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+        } else {
+            // Online only - need to download it and then copy
+            Glide.with(this)
+                    .asBitmap()
+                    .load(photoUrl)
+                    .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.AUTOMATIC))
+                    .into(new CustomTarget<Bitmap>() {
+                        @Override
+                        public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                            // Save downloaded bitmap into local file
+                            try {
+                                OutputStream outStream = new FileOutputStream(destFile);
+                                resource.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
+                                outStream.close();
+                                addDuplicatedPhoto(op, destFile);
+                            } catch (Exception e) {
+                                Logger.tag(TAG).error(e);
+                                Toast.makeText(getApplicationContext(), getString(R.string.couldnt_duplicate_photo), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onLoadCleared(@Nullable Drawable placeholder) {
+                        }
+
+                        @Override
+                        public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                            Logger.tag(TAG).error("onLoadedFailed");
+                            Toast.makeText(getApplicationContext(), getString(R.string.couldnt_duplicate_photo), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+    }
+
+    private void addDuplicatedPhoto(ObservationPhoto originalPhoto, File duplicatedPhotoFile) {
+        // Create new photo observation with the duplicated photo file
+
+        Uri createdUri = createObservationPhotoForPhoto(Uri.fromFile(duplicatedPhotoFile), originalPhoto.position, true);
+
+        if (createdUri == null) {
+            Logger.tag(TAG).error("addDuplicatedPhoto - couldn't create duplicate OP");
+            Toast.makeText(getApplicationContext(), getString(R.string.couldnt_duplicate_photo), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        reloadPhotos();
+
+        // Refresh the positions of all other photos
+        mPhotosAdapter.refreshPhotoPositions(originalPhoto.position, false);
+    }
+
+
+    private Uri createObservationPhotoForPhoto(Uri photoUri, int position, boolean isDuplicated) {
+        String path = FileUtils.getPath(this, photoUri);
+        String extension = FileUtils.getExtension(this, photoUri);
+
+        if ((extension == null) && (path != null)) {
+            int i = path.lastIndexOf('.');
+            if (i >= 0) {
+                extension = path.substring(i + 1).toLowerCase();
+            }
+        }
+
+        if ((extension == null) || (
+                (!extension.toLowerCase().equals("jpg")) &&
+                        (!extension.toLowerCase().equals("jpeg")) &&
+                        (!extension.toLowerCase().equals("png"))
+        )) {
+            return null;
+        }
+
+        // Resize photo to 2048x2048 max
+        String resizedPhoto = ImageUtils.resizeImage(this, path, photoUri, 2048);
+
+        if (resizedPhoto == null) {
+            return null;
+        }
+
+
+        ObservationPhoto op = new ObservationPhoto();
+
+        op.uuid = UUID.randomUUID().toString();
+
+        ContentValues cv = op.getContentValues();
+        cv.put(ObservationPhoto._OBSERVATION_ID, mObservation._id);
+        cv.put(ObservationPhoto.OBSERVATION_ID, mObservation.id);
+        cv.put(ObservationPhoto.PHOTO_FILENAME, resizedPhoto);
+        cv.put(ObservationPhoto.ORIGINAL_PHOTO_FILENAME, isDuplicated ? null : path);
+        cv.put(ObservationPhoto.POSITION, position);
+
+        return getContentResolver().insert(ObservationPhoto.CONTENT_URI, cv);
+    }
 
 }

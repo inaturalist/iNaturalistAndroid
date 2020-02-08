@@ -327,7 +327,7 @@ public class ObservationEditor extends AppCompatActivity {
             ContentResolver cr = getContentResolver();
             String mimeType = cr.getType(mSharePhotos.get(0));
             if (mimeType == null) {
-                String extension = getExtension(this, mSharePhotos.get(0));
+                String extension = FileUtils.getExtension(this, mSharePhotos.get(0));
                 mSharedAudio = (extension != null) && ((extension.toLowerCase().equals("mp3")) ||
                 (extension.toLowerCase().equals("wav")) ||
                 (extension.toLowerCase().equals("3gp")) ||
@@ -2518,33 +2518,7 @@ public class ObservationEditor extends AppCompatActivity {
         return cursor.getString(index);
     }
 
-    public static void copyFile(File src, File dst) throws IOException {
-        InputStream in = new FileInputStream(src);
-        copyInputStream(in, dst);
-    }
 
-    public static void copyFileFromUri(Context context, Uri uri, File dst) throws IOException {
-        InputStream in = context.getContentResolver().openInputStream(uri);
-        copyInputStream(in, dst);
-    }
-
-    public static void copyInputStream(InputStream in, File dst) throws IOException {
-        try {
-            OutputStream out = new FileOutputStream(dst);
-            try {
-                // Transfer bytes from in to out
-                byte[] buf = new byte[1024];
-                int len;
-                while ((len = in.read(buf)) > 0) {
-                    out.write(buf, 0, len);
-                }
-            } finally {
-                out.close();
-            }
-        } finally {
-            in.close();
-        }
-    }
 
     private void prepareCapturedSound(Uri selectedSoundUri, boolean translateUriToPath) {
         // We can't control where the audio file gets saved to - just copy it locally
@@ -2562,7 +2536,7 @@ public class ObservationEditor extends AppCompatActivity {
 
         if (!filePath.startsWith("/")) {
             // Content provider
-            fileExtension = "." + getExtension(this, Uri.parse(filePath));
+            fileExtension = "." + FileUtils.getExtension(this, Uri.parse(filePath));
         } else {
             // Filename - get extension directly from file path
             fileExtension = filePath.substring(filePath.lastIndexOf('.'));
@@ -2572,11 +2546,11 @@ public class ObservationEditor extends AppCompatActivity {
         try {
             if (selectedSoundUri.toString().startsWith("/")) {
                 // Filename
-                copyFile(new File(filePath), destFile);
+                FileUtils.copyFile(new File(filePath), destFile);
             } else {
                 // ContentProvider
                 InputStream is = getContentResolver().openInputStream(selectedSoundUri);
-                copyInputStream(is, destFile);
+                FileUtils.copyInputStream(is, destFile);
             }
         } catch (IOException e) {
             Logger.tag(TAG).error(e);
@@ -2833,28 +2807,10 @@ public class ObservationEditor extends AppCompatActivity {
         return createObservationPhotoForPhoto(photoUri, ((GalleryCursorAdapter)mGallery.getAdapter()).getPhotoCount(), false);
     }
 
-    public static String getExtension(Context context, Uri uri) {
-        String extension;
-
-        //Check uri format to avoid null
-        if (uri.getScheme().equals(ContentResolver.SCHEME_CONTENT)) {
-            //If scheme is a content
-            final MimeTypeMap mime = MimeTypeMap.getSingleton();
-            extension = mime.getExtensionFromMimeType(context.getContentResolver().getType(uri));
-        } else {
-            //If scheme is a File
-            //This will replace white spaces with %20 and also other special characters. This will avoid returning null values on file name with spaces and special characters.
-            extension = MimeTypeMap.getFileExtensionFromUrl(Uri.fromFile(new File(uri.getPath())).toString());
-
-        }
-
-        return extension;
-    }
-
     private Uri createObservationSoundForSound(Uri soundUri) {
         mPhotosChanged = true;
 
-        String extension = getExtension(this, soundUri);
+        String extension = FileUtils.getExtension(this, soundUri);
 
         if (extension == null) {
             ContentResolver cr = getContentResolver();
@@ -2883,7 +2839,7 @@ public class ObservationEditor extends AppCompatActivity {
         // Copy file to local cache
         File destFile = new File(getFilesDir(), UUID.randomUUID().toString() + "." + extension);
         try {
-            copyFileFromUri(this, soundUri, destFile);
+            FileUtils.copyFileFromUri(this, soundUri, destFile);
         } catch (IOException e) {
             Logger.tag(TAG).error(e);
             Toast.makeText(this,  R.string.couldnt_retrieve_sound, Toast.LENGTH_LONG).show();
@@ -2904,7 +2860,7 @@ public class ObservationEditor extends AppCompatActivity {
         mPhotosChanged = true;
 
         String path = FileUtils.getPath(this, photoUri);
-        String extension = getExtension(this, photoUri);
+        String extension = FileUtils.getExtension(this, photoUri);
 
         if ((extension == null) && (path != null)) {
             int i = path.lastIndexOf('.');
@@ -3097,7 +3053,7 @@ public class ObservationEditor extends AppCompatActivity {
         if (photoFileName != null) {
             // Local file - copy it
             try {
-                copyFile(new File(photoFileName), destFile);
+                FileUtils.copyFile(new File(photoFileName), destFile);
                 addDuplicatedPhoto(op, destFile);
             } catch (IOException e) {
                 Logger.tag(TAG).error(e);
