@@ -58,7 +58,7 @@ class PlaceAdapter extends ArrayAdapter<String> {
             placeName.setText(item.optString("display_name"));
             placeName.setTextColor(Color.parseColor("#000000"));
             placeType.setText(PlaceUtils.placeTypeToStringResource(item.optInt("place_type", 0)));
-            placeType.setVisibility(View.VISIBLE);
+            placeType.setVisibility(item.optBoolean("no_place_type") ? View.GONE : View.VISIBLE);
 
             if (item.optBoolean("is_recent_result")) {
                 // A recent place (from the search history)

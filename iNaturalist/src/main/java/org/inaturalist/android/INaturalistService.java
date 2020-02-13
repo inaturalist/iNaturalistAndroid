@@ -306,6 +306,7 @@ public class INaturalistService extends IntentService {
     public static final String GET_CURRENT_LOCATION_RESULT = "get_current_location_result";
     public static final String TAXON_OBSERVATION_BOUNDS_RESULT = "taxon_observation_bounds_result";
     public static final String USER_DETAILS_RESULT = "user_details_result";
+    public static final String PLACE_DETAILS_RESULT = "place_details_result";
     public static final String REFRESH_CURRENT_USER_SETTINGS_RESULT = "refresh_current_user_settings_result";
     public static final String UPDATE_CURRENT_USER_DETAILS_RESULT = "update_current_user_details_result";
     public static final String OBSERVATION_SYNC_PROGRESS = "observation_sync_progress";
@@ -343,6 +344,8 @@ public class INaturalistService extends IntentService {
     public static final String LATITUDE = "latitude";
     public static final String OBSERVED_ON = "observed_on";
     public static final String USERNAME = "username";
+    public static final String PLACE = "place";
+    public static final String PLACE_ID = "place_id";
     public static final String LOCATION = "location";
     public static final String FILTERS = "filters";
     public static final String PROGRESS = "progress";
@@ -478,6 +481,7 @@ public class INaturalistService extends IntentService {
     public static String ACTION_REGISTER_USER_RESULT = "register_user_result";
     public static String TAXA_GUIDE_RESULT = "taxa_guide_result";
     public static String ACTION_GET_SPECIFIC_USER_DETAILS = "get_specific_user_details";
+    public static String ACTION_GET_PLACE_DETAILS = "get_place_details";
     public static String ACTION_PIN_LOCATION = "pin_location";
     public static String ACTION_DELETE_PINNED_LOCATION = "delete_pinned_location";
     public static String ACTION_REFRESH_CURRENT_USER_SETTINGS = "refresh_current_user_settings";
@@ -1168,6 +1172,16 @@ public class INaturalistService extends IntentService {
                 String title = intent.getStringExtra(TITLE);
 
                 boolean success = pinLocation(latitude, longitude, accuracy, geoprivacy, title);
+
+
+            } else if (action.equals(ACTION_GET_PLACE_DETAILS)) {
+                long placeId = intent.getIntExtra(PLACE_ID, 0);
+                BetterJSONObject place = getPlaceDetails(placeId);
+
+                Intent reply = new Intent(PLACE_DETAILS_RESULT);
+                reply.putExtra(PLACE, place);
+                sendBroadcast(reply);
+
 
             } else if (action.equals(ACTION_GET_SPECIFIC_USER_DETAILS)) {
                 String username = intent.getStringExtra(USERNAME);
@@ -4490,6 +4504,22 @@ public class INaturalistService extends IntentService {
             return null;
         }
     }
+
+
+    private BetterJSONObject getPlaceDetails(long placeId) throws AuthenticationException {
+        String url = API_HOST + "/places/" + placeId;
+        JSONArray json = get(url, false);
+        try {
+            if (json == null) return null;
+            if (json.length() == 0) return null;
+            JSONArray results = json.getJSONObject(0).getJSONArray("results");
+            return new BetterJSONObject(results.getJSONObject(0));
+        } catch (JSONException e) {
+            Logger.tag(TAG).error(e);
+            return null;
+        }
+    }
+
 
     private BetterJSONObject getUserDetails() throws AuthenticationException {
         String url = HOST + "/users/edit.json";

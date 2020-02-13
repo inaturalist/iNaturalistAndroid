@@ -69,6 +69,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
     private INaturalistApp mApp;
 
     private BottomSheetDialog mBottomSheetDialog = null;
+    private PlaceDetailsReceiver mPlaceDetailsReceiver;
 
     public int getStatusBarHeight() {
         int result = 0;
@@ -550,6 +551,11 @@ public class BaseFragmentActivity extends AppCompatActivity {
             IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_USER_DETAILS_RESULT);
             Logger.tag(TAG).info("Registering ACTION_GET_USER_DETAILS_RESULT");
             safeRegisterReceiver(mUserDetailsReceiver, filter);
+
+            mPlaceDetailsReceiver = new PlaceDetailsReceiver();
+            IntentFilter filter2 = new IntentFilter(INaturalistService.PLACE_DETAILS_RESULT);
+            Logger.tag(TAG).info("Registering PLACE_DETAILS_RESULT");
+            safeRegisterReceiver(mPlaceDetailsReceiver, filter2);
         }
     }
 
@@ -596,6 +602,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
         }
 
         safeUnregisterReceiver(mUserDetailsReceiver);
+        safeUnregisterReceiver(mPlaceDetailsReceiver);
     }
 
     // Need to wrap the unregisterReceiver call in a try/catch, since sometimes the OS iteself
@@ -625,6 +632,25 @@ public class BaseFragmentActivity extends AppCompatActivity {
         }
     }
 
+    private class PlaceDetailsReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Logger.tag(TAG).info("Got GET_PLACE_DETAILS_RESULT");
+            BetterJSONObject place = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.PLACE);
+
+            if (place == null) {
+                return;
+            }
+
+            SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+
+            editor.putString("user_place_display_name", place.getString("display_name"));
+            editor.apply();
+        }
+    }
+
+
     private class UserDetailsReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -653,6 +679,18 @@ public class BaseFragmentActivity extends AppCompatActivity {
             editor.putString("user_bio", user.getString("description"));
             editor.putString("user_email", user.getString("email"));
             editor.putString("user_full_name", user.getString("name"));
+
+            Integer placeId = user.getInt("place_id");
+            editor.putLong("user_place_id", placeId != null ? placeId : -1);
+            if (placeId != null) {
+                // Get place details (display name)
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_PLACE_DETAILS, null, BaseFragmentActivity.this, INaturalistService.class);
+                serviceIntent.putExtra(INaturalistService.PLACE_ID, placeId.intValue());
+                ContextCompat.startForegroundService(BaseFragmentActivity.this, serviceIntent);
+            } else {
+                editor.putString("user_place_display_name", getString(R.string.global));
+            }
+
             editor.putLong("last_user_details_refresh_time", System.currentTimeMillis());
             String currentUsername = prefs.getString("username", null);
             String newUsername = user.getString("login");
