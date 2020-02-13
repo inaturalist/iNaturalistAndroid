@@ -538,6 +538,10 @@
             android:name=".ThirdPartyDataSharingActivity"
             android:configChanges="orientation"
             android:label=""></activity>
+        <activity
+            android:name=".PlaceSearchActivity"
+            android:configChanges="orientation"
+            android:label=""></activity>
 
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"

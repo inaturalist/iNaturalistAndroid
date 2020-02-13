@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -35,6 +36,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private static final int REQUEST_CODE_DELETE_ACCOUNT = 0x1001;
     private static final int REQUEST_CODE_THIRD_PARTY_DATA_SHARING = 0x1002;
     private static final int REQUEST_CODE_VERIFY_PASSWORD = 0x1003;
+    private static final int REQUEST_CODE_CHANGE_NAME_PLACE = 0x1004;
 
     private static final String DONATION_URL = "http://www.inaturalist.org/donate?utm_source=Android&utm_medium=mobile";
     private static final String SHOP_URL = "https://store.inaturalist.org/?utm_source=android&utm_medium=mobile&utm_campaign=store";
@@ -53,6 +55,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private Preference mShop;
     private Preference mDeleteAccount;
     private Preference mThirdPartyDataSharing;
+    private Preference mNamePlacePreference;
 
     private SharedPreferences mPreferences;
     private ActivityHelper mHelper;
@@ -87,6 +90,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         mDeleteAccount = (Preference) getPreferenceManager().findPreference("delete_account");
         mThirdPartyDataSharing = (Preference) getPreferenceManager().findPreference("third_party_data_sharing");
         mVersion = (Preference) getPreferenceManager().findPreference("version");
+        mNamePlacePreference = (Preference) getPreferenceManager().findPreference("name_place");
 
         mHelper = new ActivityHelper(getActivity());
         mPreferences = getActivity().getSharedPreferences("iNaturalistPreferences", Activity.MODE_PRIVATE);
@@ -354,6 +358,19 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 return false;
             }
         });
+
+        mNamePlacePreference.setVisible(mApp.currentUserLogin() != null);
+        String placeName = mApp.getPrefs().getString("user_place_display_name", getString(R.string.global));
+        mNamePlacePreference.setTitle(Html.fromHtml(String.format(getString(R.string.common_names_place), placeName)));
+
+        mNamePlacePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Intent intent = new Intent(getActivity(), PlaceSearchActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivityForResult(intent, REQUEST_CODE_CHANGE_NAME_PLACE);
+                return false;
+            }
+        });
     }
 
     private void refreshLanguageSettings() {
@@ -436,6 +453,30 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         } else if (requestCode == REQUEST_CODE_THIRD_PARTY_DATA_SHARING) {
             // Refresh third party data sharing setting
             refreshSettings();
+        } else if (requestCode == REQUEST_CODE_CHANGE_NAME_PLACE) {
+            if (resultCode == Activity.RESULT_OK) {
+                // Update common name place
+                int placeId = data.getIntExtra(PlaceSearchActivity.PLACE_ID, -1);
+                String placeDisplayName = data.getStringExtra(PlaceSearchActivity.PLACE_DISPLAY_NAME);
+
+                SharedPreferences.Editor editor = mApp.getPrefs().edit();
+                editor.putString("user_place_display_name", placeDisplayName);
+                editor.putInt("user_place_id", placeId);
+                editor.apply();
+
+                // Update remotely
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_CURRENT_USER_DETAILS, null, getActivity(), INaturalistService.class);
+                JSONObject userDetails = new JSONObject();
+                try {
+                    userDetails.put("place_id", placeId == -1 ? "" : placeId);
+                } catch (JSONException e) {
+                    Logger.tag(TAG).error(e);
+                }
+                serviceIntent.putExtra(INaturalistService.USER, new BetterJSONObject(userDetails));
+                ContextCompat.startForegroundService(getActivity(), serviceIntent);
+
+                refreshSettings();
+            }
         }
     }
 
