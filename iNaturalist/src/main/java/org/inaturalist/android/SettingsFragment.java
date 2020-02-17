@@ -235,9 +235,22 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             @Override
             public boolean onPreferenceChange(Preference preference, Object o) {
                 int index = mLanguagePreference.findIndexOfValue((String)o);
-                String locale = LocaleHelper.SupportedLocales[index];
+                String locale = getResources().getStringArray(R.array.language_values)[index];
                 mPrefEditor.putString("pref_locale", locale);
                 mPrefEditor.commit();
+
+                if (mApp.loggedIn()) {
+                    Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_CURRENT_USER_DETAILS, null, getActivity(), INaturalistService.class);
+                    JSONObject userDetails = new JSONObject();
+                    try {
+                        userDetails.put("locale", locale.replace("-r", "-"));
+                    } catch (JSONException e) {
+                        Logger.tag(TAG).error(e);
+                    }
+                    serviceIntent.putExtra(INaturalistService.USER, new BetterJSONObject(userDetails));
+                    ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                }
+
                 mApp.applyLocaleSettings();
                 mApp.restart();
                 getActivity().finish();
@@ -375,7 +388,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     private void refreshLanguageSettings() {
         String prefLocale = mPreferences.getString("pref_locale", "");
-        String[] supportedLocales = LocaleHelper.SupportedLocales;
+        String[] supportedLocales = getResources().getStringArray(R.array.language_values);
 
         if (prefLocale.equals("")) {
             // Use device locale

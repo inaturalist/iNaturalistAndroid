@@ -109,11 +109,10 @@ public class BaseFragmentActivity extends AppCompatActivity {
     }
 
     public void onDrawerCreate(Bundle savedInstanceState) {
-        mApp = (INaturalistApp) getApplication();
-
         if (!mApp.getPrefersNoTracking()) {
             Fabric.with(this, new Crashlytics());
         }
+
 
         moveDrawerToTop();
 
@@ -542,8 +541,17 @@ public class BaseFragmentActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        mApp = (INaturalistApp) getApplication();
+        mApp.applyLocaleSettings(getBaseContext());
+
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+
         if (mDrawerToggle != null) {
             mDrawerToggle.syncState();
 
@@ -672,6 +680,15 @@ public class BaseFragmentActivity extends AppCompatActivity {
 
             SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();
+
+            String newLocale = user.getString("locale").replace("-", "-r");
+            String oldLocale = prefs.getString("pref_locale", "");
+            oldLocale = oldLocale.replace("-r", "-");
+            if (!oldLocale.equals(newLocale)) {
+                // User locale changed (server-side)
+                editor.putString("pref_locale", newLocale.replace("-", "-r"));
+                mApp.applyLocaleSettings(getBaseContext());
+            }
 
             editor.putInt("observation_count", user.getInt("observations_count"));
             String iconUrl = user.has("medium_user_icon_url") ? user.getString("medium_user_icon_url") : user.getString("user_icon_url");
