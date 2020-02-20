@@ -897,7 +897,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             return;
         }
 
-        if (mObservation.id == null) {
+        if ((mObservation == null) || (mObservation.id == null)) {
             // Observation not synced
             mSyncToAddFave.setVisibility(View.VISIBLE);
             mLoginToAddFave.setVisibility(View.GONE);
