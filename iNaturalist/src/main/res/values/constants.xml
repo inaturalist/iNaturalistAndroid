@@ -98,65 +98,65 @@
     </string-array>
     <string-array name="language_names">
 	    <item>@string/use_device_language_settings</item>
-		<item>@string/locale_ar</item>
-		<item>@string/locale_bg</item>
-		<item>@string/locale_ca</item>
-		<item>@string/locale_cs</item>
-		<item>@string/locale_da</item>
-		<item>@string/locale_de</item>
-		<item>@string/locale_el</item>
-		<item>@string/locale_en</item>
-		<item>@string/locale_en_rau</item>
-		<item>@string/locale_en_rgb</item>
-		<item>@string/locale_en_rnz</item>
-		<item>@string/locale_en_rus</item>
-		<item>@string/locale_es</item>
-		<item>@string/locale_es_rar</item>
-		<item>@string/locale_es_rco</item>
-		<item>@string/locale_es_res</item>
-		<item>@string/locale_es_rmx</item>
-		<item>@string/locale_et</item>
-		<item>@string/locale_eu</item>
-		<item>@string/locale_fi</item>
-		<item>@string/locale_fil</item>
-		<item>@string/locale_fr</item>
-		<item>@string/locale_fr_rca</item>
-		<item>@string/locale_gl</item>
-		<item>@string/locale_he</item>
-		<item>@string/locale_he_ril</item>
-		<item>@string/locale_hi</item>
-		<item>@string/locale_hr</item>
-		<item>@string/locale_hu</item>
-		<item>@string/locale_id</item>
-		<item>@string/locale_it</item>
-		<item>@string/locale_ja</item>
-		<item>@string/locale_ka</item>
-		<item>@string/locale_ko</item>
-		<item>@string/locale_lt</item>
-		<item>@string/locale_mi</item>
-		<item>@string/locale_nb</item>
-		<item>@string/locale_nl</item>
-		<item>@string/locale_nn_rno</item>
-		<item>@string/locale_no</item>
-		<item>@string/locale_pa_rin</item>
-		<item>@string/locale_pl</item>
-		<item>@string/locale_pt</item>
-		<item>@string/locale_pt_rbr</item>
-		<item>@string/locale_pt_rpt</item>
-		<item>@string/locale_ro</item>
-		<item>@string/locale_ru</item>
-		<item>@string/locale_sk</item>
-		<item>@string/locale_sq</item>
-		<item>@string/locale_sv</item>
-		<item>@string/locale_sv_rse</item>
-		<item>@string/locale_sw</item>
-		<item>@string/locale_tl</item>
-		<item>@string/locale_tr</item>
-		<item>@string/locale_uk</item>
-		<item>@string/locale_vi</item>
-		<item>@string/locale_zh_rcn</item>
-		<item>@string/locale_zh_rhk</item>
-		<item>@string/locale_zh_rtw</item>
+		<item>عربى</item>
+		<item>Български</item>
+		<item>Català</item>
+		<item>Čeština</item>
+		<item>Dansk</item>
+		<item>Deutsch</item>
+		<item>Ελληνικά</item>
+		<item>English</item>
+		<item>English (Australia)</item>
+		<item>English (United Kingdom)</item>
+		<item>English (New Zealand)</item>
+		<item>English (United States)</item>
+		<item>Español</item>
+		<item>Español (Argentina)</item>
+		<item>Español (Colombia)</item>
+		<item>Español (España)</item>
+		<item>Español (Mexico)</item>
+		<item>Eesti Keel</item>
+		<item>Suomi</item>
+		<item>Euskara</item>
+		<item>Pilipino</item>
+		<item>Français</item>
+		<item>Français (Canada)</item>
+		<item>Galego</item>
+		<item>עברית</item>
+		<item>עברית (ישראל)</item>
+		<item>हिन्दी</item>
+		<item>Hravtski</item>
+		<item>Magyar</item>
+		<item>Bahasa Indonesia</item>
+		<item>Italiano</item>
+		<item>日本語</item>
+		<item>ქართული ენა</item>
+		<item>한국어</item>
+		<item>Lietuvių Kalba</item>
+		<item>Māori</item>
+		<item>Norsk Bokmål</item>
+		<item>Nederlands</item>
+		<item>Norsk Nynorsk (Norway)</item>
+		<item>Norsk</item>
+		<item>ਪੰਜਾਬੀ (ਭਾਰਤ)</item>
+		<item>Polski</item>
+		<item>Português</item>
+		<item>Português (Brazil)</item>
+		<item>Português (Portugal)</item>
+		<item>Română</item>
+		<item>Русский</item>
+		<item>Slovenčina</item>
+		<item>Shqipe</item>
+		<item>Svenska</item>
+		<item>Svenska (Sverige)</item>
+		<item>KiSwahili</item>
+		<item>Tagalog</item>
+		<item>Türkçe</item>
+		<item>Українська</item>
+		<item>Tiếng Việt</item>
+		<item>中文 (中国)</item>
+		<item>中文 (香港)</item>
+		<item>中文 (台湾)</item>
 	</string-array>
 
 </resources>
