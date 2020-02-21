@@ -928,6 +928,21 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private void recordSound() {
+        if (!mApp.isAudioRecordingPermissionGranted()) {
+            mApp.requestAudioRecordingPermission(this, new INaturalistApp.OnRequestPermissionResult() {
+                @Override
+                public void onPermissionGranted() {
+                    recordSound();
+                }
+
+                @Override
+                public void onPermissionDenied() {
+                }
+            });
+
+            return;
+        }
+
         try {
             Intent intent = new Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION);
             startActivityForResult(intent, RECORD_SOUND_ACTIVITY_REQUEST_CODE);
