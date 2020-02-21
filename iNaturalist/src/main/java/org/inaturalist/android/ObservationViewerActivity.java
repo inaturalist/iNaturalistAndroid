@@ -1252,7 +1252,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 intent.putExtra(IdentificationActivity.LONGITUDE, mObservation.longitude);
                 intent.putExtra(IdentificationActivity.LATITUDE, mObservation.latitude);
                 if (mObservation._id != null) {
-                    if (((PhotosViewPagerAdapter)mPhotosViewPager.getAdapter()).getCount() > 0) {
+                    if (((PhotosViewPagerAdapter)mPhotosViewPager.getAdapter()).getPhotoCount() > 0) {
                         Cursor imageCursor = ((PhotosViewPagerAdapter) mPhotosViewPager.getAdapter()).getCursor();
 
                         int pos = imageCursor.getPosition();
