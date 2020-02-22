@@ -942,6 +942,21 @@ public class ObservationEditor extends AppCompatActivity {
 
             return;
         }
+        if (!mApp.isExternalStoragePermissionGranted()) {
+            mApp.requestExternalStoragePermission(this, new INaturalistApp.OnRequestPermissionResult() {
+                @Override
+                public void onPermissionGranted() {
+                    recordSound();
+                }
+
+                @Override
+                public void onPermissionDenied() {
+                }
+            });
+
+            return;
+        }
+
 
         try {
             Intent intent = new Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION);
