@@ -96,13 +96,12 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         mPreferences = getActivity().getSharedPreferences("iNaturalistPreferences", Activity.MODE_PRIVATE);
         mPrefEditor = mPreferences.edit();
 
-        mApp.applyLocaleSettings(getActivity());
-
         refreshSettings();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        ((INaturalistApp) getActivity().getApplicationContext()).applyLocaleSettings(getActivity());
         super.onCreate(savedInstanceState);
         refreshSettings();
     }
@@ -183,6 +182,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
 
         mAutoSyncPreference.setChecked(mApp.getAutoSync());
+        //mAutoSyncPreference.setTitle(R.string.automatic_upload);
         mAutoSyncPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
