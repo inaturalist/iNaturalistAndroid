@@ -116,6 +116,7 @@ public class ObservationProjectsViewer extends AppCompatActivity {
 
         mAdapter = new ProjectAdapter(this, mObservationProjects);
         mProjectList.setAdapter(mAdapter);
+        mHelper.resizeList(mProjectList);
     }
 
     @Override
