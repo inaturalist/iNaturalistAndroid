@@ -13,6 +13,7 @@
         <item>inaturalistecuador</item>
         <item>inaturalistaustralia</item>
         <item>argentinat</item>
+        <item>inaturalistil</item>
     </string-array>
 
     <!-- The names of the iNat networks -->
@@ -26,6 +27,7 @@
     <string name="network_inaturalistecuador">iNaturalist Ecuador</string>
     <string name="network_inaturalistaustralia">iNaturalist Australia</string>
     <string name="network_argentinat">ArgentiNat</string>
+    <string name="network_inaturalistil">iNaturalist Israel</string>
 
     <!-- If value==1 -> change app name/title in the Android launcher, when network is changed.
     Otherwise, just keep it as the original app name ("iNaturalist") -->
@@ -39,6 +41,7 @@
     <string name="change_app_title_inaturalistecuador">0</string>
     <string name="change_app_title_inaturalistaustralia">0</string>
     <string name="change_app_title_argentinat">0</string>
+    <string name="change_app_title_inaturalistil">0</string>
 
 
     <!-- The ISO-3166 alpha-2 country code to use for each network type - used when detecting the user's country -->
@@ -52,6 +55,7 @@
     <string name="inat_country_inaturalistecuador">ec</string> <!-- Ecuador -->
     <string name="inat_country_inaturalistaustralia">au</string> <!-- Australia -->
     <string name="inat_country_argentinat">ar</string> <!-- Argentina -->
+    <string name="inat_country_inaturalistil">il</string> <!-- Israel -->
 
      <!-- The country display name to use for each network type - used when detecting the user's country -->
     <string name="inat_country_name_inaturalist">Global</string>
@@ -64,6 +68,7 @@
     <string name="inat_country_name_inaturalistecuador">Ecuador</string>
     <string name="inat_country_name_inaturalistaustralia">Australia</string>
     <string name="inat_country_name_argentinat">Argentina</string>
+    <string name="inat_country_name_inaturalistil">Israel</string>
 
     <!-- The domain endpoint to use for each network type - used when adding new observations -->
     <string name="inat_host_inaturalist">https://www.inaturalist.org</string>
@@ -76,6 +81,7 @@
     <string name="inat_host_inaturalistecuador">https://ecuador.inaturalist.org</string>
     <string name="inat_host_inaturalistaustralia">https://inaturalist.ala.org.au</string>
     <string name="inat_host_argentinat">https://www.argentinat.org</string>
+    <string name="inat_host_inaturalistil">https://israel.inaturalist.org/</string>
 
     <!-- The site id parameter to use for each network type - used when adding new observations -->
     <string name="inat_site_id_inaturalist">1</string>
@@ -88,6 +94,7 @@
     <string name="inat_site_id_inaturalistecuador">14</string>
     <string name="inat_site_id_inaturalistaustralia">9</string>
     <string name="inat_site_id_argentinat">16</string>
+    <string name="inat_site_id_inaturalistil">15</string>
 
     <!-- The lexicon name to use for each network type - used when searching for taxa (so we'll
     	know which display name to use for the results) -->
@@ -101,6 +108,7 @@
     <string name="inat_lexicon_inaturalistecuador">Spanish</string>
     <string name="inat_lexicon_inaturalistaustralia">English</string>
     <string name="inat_lexicon_argentinat">Spanish</string>
+    <string name="inat_lexicon_inaturalistil">Hebrew</string>
 
     <!-- The logo drawable name to use for each network type -->
     <string name="inat_logo_inaturalist">logo_text</string>
@@ -113,4 +121,5 @@
     <string name="inat_logo_inaturalistecuador">logo_ecuador</string>
     <string name="inat_logo_inaturalistaustralia">logo_australia</string>
     <string name="inat_logo_argentinat">logo_argentinat</string>
+    <string name="inat_logo_inaturalistil">logo_inaturalistil</string>
 </resources>
