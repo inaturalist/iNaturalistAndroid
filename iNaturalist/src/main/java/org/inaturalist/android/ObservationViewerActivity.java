@@ -346,7 +346,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         }
 
         public PhotosViewPagerAdapter() {
-            if (!mReadOnly) {
+            if (!mReadOnly && mObservation != null) {
                 if (mObservation.id != null) {
                     mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                             ObservationPhoto.PROJECTION,
