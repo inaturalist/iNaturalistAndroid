@@ -161,7 +161,10 @@ public class AndroidStateBundlers {
                 try {
                     JSONArray arr = new JSONArray(obsString);
                     for (int i = 0; i < arr.length(); i++) {
-                        results.add(new BetterJSONObject(arr.getJSONObject(i)));
+                        JSONObject obj = arr.getJSONObject(i);
+                        if (obj != null) {
+                            results.add(new BetterJSONObject(obj));
+                        }
                     }
 
                     return results;
