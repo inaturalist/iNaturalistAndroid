@@ -13,7 +13,7 @@
     <string name="street">Χάρτης</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Δορυφόρος</string>
-    <string name="couldnt_load_nearby_observations">Δεν είναι δυνατή η φόρτωση κοντινών παρατηρήσεων: %1$s</string>
+    <string name="couldnt_load_nearby_observations">Δεν είναι δυνατή η φόρτωση παρατηρήσεων σε κοντινή απόσταση: %1$s</string>
     <string name="username_invalid">Λανθασμένος κωδικός πρόσβασης, παρακαλώ δοκιμάστε ξανά.</string>
     <string name="signing_in">Γίνεται σύνδεση...</string>
     <string name="signed_in">Συνδεθήκατε!</string>
@@ -25,7 +25,7 @@
     <string name="set_date">Ημερομηνία</string>
     <string name="set_time">Ώρα</string>
     <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
-    <string name="something_went_wrong">Blast, something went wrong: %1$s</string>
+    <string name="something_went_wrong">Να πάρει, κάτι πήγε λάθος: %1$s</string>
     <string name="edit">Επεξεργασία</string>
     <string name="oh_no">Ωχ όχι! %1$s</string>
     <string name="observations">Οι παρατηρήσεις μου</string>
@@ -99,7 +99,7 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">Αποχώρηση</string>
     <string name="join">Γίνετε μέλος</string>
-    <string name="no_check_list">No Taxa in Check List!</string>
+    <string name="no_check_list">Δεν υπάρχουν Taxa στην Λίστα Ελέγχου!</string>
     <string name="failed_to_add_obs_to_project">Απέτυχε η προσθήκη της παρατήρησης \'%1$s\' στο πρότζεκτ \'%2$s\': %3$s</string>
     <string name="invalid_project_field">Παρακαλώ εισάγετε τιμή για το πεδίο \"%1s\"</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
@@ -142,7 +142,7 @@
     <string name="leave_project_confirmation">Είστε βέβαιος/η ότι θέλετε να αποχωρήσετε από αυτό το πρότζεκτ;</string>
     <string name="discard_location_changes">Είσαι σίγουρος/η ότι θέλεις να απορρίψεις τις αλλαγές;</string>
     <string name="edit_location">Επεξεργασία τοποθεσίας</string>
-    <string name="edit_locality_notes">Edit Locality Notes</string>
+    <string name="edit_locality_notes">Επεξεργασία Σημειώσεων Τοποθεσίας</string>
     <string name="get_current_location">Αναζήτηση τρέχουσας τοποθεσίας</string>
     <string name="pull_to_refresh">Τραβήξτε για ανανέωση...</string>
     <string name="release_to_refresh">Απελευθερώστε για ανανέωση...</string>
@@ -151,7 +151,7 @@
     <string name="sync_1_observation">Συγχρονισμός 1 παρατήρησης</string>
     <string name="sync_observations">Συγχρονισμός παρατηρήσεων</string>
     <string name="lets_get_started">Ας αρχίσουμε!</string>
-    <string name="view_nearby_observations">Δείτε τις Παρατηρήσεις που Βρίσκονται Κοντά</string>
+    <string name="view_nearby_observations">Δείτε τις Παρατηρήσεις που Βρίσκονται σε Κοντινή Απόσταση</string>
     <string name="skip_for_now">Παράλειψη για τώρα</string>
     <string-array name="tutorial_titles">
         <item></item>
@@ -172,7 +172,7 @@
         <item>Κρυμμένο</item>
         <item>Απόρρητο</item>
     </string-array>
-    <string name="alert_sign_out">Are you sure you want to sign out? This will delete all your observations on this device. It will not affect any observations you\'ve uploaded to iNaturalist.</string>
+    <string name="alert_sign_out">Είστε βέβαιοι ότι θέλετε να αποσυνδεθείτε; Αυτό θα διαγράψει όλες τις παρατηρήσεις σας σε αυτή τη συσκευή. Δεν θα επηρεάσει τυχόν παρατηρήσεις που έχετε στείλει στο iNaturalist.</string>
     <string name="alert_unsupported_media_type">Λυπούμαστε, αλλά παρουσιάστηκε πρόβλημα κατά τη φόρτωση της φωτογραφίας από αυτήν την πηγή</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
     <string name="explore">Εξερευνήστε</string>
@@ -188,15 +188,16 @@
     <string name="text"><![CDATA[<b>Κείμενο:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">Το κύριο Δίκτυο iNaturalist. Κάνοντας κλικ στο OK θα οριστεί η εφαρμογή σας ως μέρος του παγκόσμιου δικτύου iNaturalist.</string>
-    <string name="alert_message_use_naturalista">NaturaLista is a member of the iNaturalist Network in Mexico. Local institutions supporting NaturaLista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturewatchnz">iNaturalist NZ is a member of the iNaturalist Network in New Zealand. Local institutions supporting iNaturalist NZ will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Local institutions supporting iNaturalist Canada will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Local institutions supporting Naturalista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4All is a member of the iNaturalist Network in Portugal. Local institutions supporting Biodiversity4All will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá is a member of the iNaturalist Network in Panama. Local institutions supporting iNaturalist Panamá will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador is a member of the iNaturalist Network in Ecuador. Local institutions supporting iNaturalist Ecuador will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia is a member of the iNaturalist Network in Australia. Local institutions supporting iNaturalist Australia will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_argentinat">ArgentiNat is a member of the iNaturalist Network in Argentina. Local institutions supporting ArgentiNat will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalista">Το NaturaLista είναι μέλος του Δικτύου iNaturalist στο Μεξικό. Τα τοπικά ιδρύματα που υποστηρίζουν το NaturaLista θα έχουν πρόσβαση στη διεύθυνση ηλεκτρονικού ταχυδρομείου σας και πρόσβαση στις αληθινές συντεταγμένες για παρατηρήσεις που είναι δημοσίως δυσδιάκριτες ή απόρρητες. Μην αλλάζεται πειραματικά το δίκτυό σας εάν έχετε περισσότερες από 1000 παρατηρήσεις. Θέλετε να αλλάξετε το δίκτυό σας;</string>
+    <string name="alert_message_use_naturewatchnz">Το iNaturalist NZ είναι μέλος του Δικτύου iNaturalist στην Νέα Ζηλανδία. Τα τοπικά ιδρύματα που υποστηρίζουν το iNaturalist NZ θα έχουν πρόσβαση στη διεύθυνση ηλεκτρονικού ταχυδρομείου σας και πρόσβαση στις αληθινές συντεταγμένες για παρατηρήσεις που είναι δημοσίως δυσδιάκριτες ή απόρρητες. Μην αλλάζεται πειραματικά το δίκτυό σας εάν έχετε περισσότερες από 1000 παρατηρήσεις. Θέλετε να αλλάξετε το δίκτυό σας;</string>
+    <string name="alert_message_use_inaturalistcanada">Το iNaturalist Canada είναι μέλος του Δικτύου iNaturalist στον Καναδά. Τα τοπικά ιδρύματα που υποστηρίζουν το iNaturalist Canada θα έχουν πρόσβαση στη διεύθυνση ηλεκτρονικού ταχυδρομείου σας και πρόσβαση στις αληθινές συντεταγμένες για παρατηρήσεις που είναι δημοσίως δυσδιάκριτες ή απόρρητες. Μην αλλάζεται πειραματικά το δίκτυό σας εάν έχετε περισσότερες από 1000 παρατηρήσεις. Θέλετε να αλλάξετε το δίκτυό σας;</string>
+    <string name="alert_message_use_naturalistacolombia">Το Naturalista είναι μέλος του Δικτύου iNaturalist στην Κολομβία. Τα τοπικά ιδρύματα που υποστηρίζουν το Naturalista θα έχουν πρόσβαση στη διεύθυνση ηλεκτρονικού ταχυδρομείου σας και πρόσβαση στις αληθινές συντεταγμένες για παρατηρήσεις που είναι δημοσίως δυσδιάκριτες ή απόρρητες. Μην αλλάζεται πειραματικά το δίκτυό σας εάν έχετε περισσότερες από 1000 παρατηρήσεις. Θέλετε να αλλάξετε το δίκτυό σας;</string>
+    <string name="alert_message_use_biodiversity4all">Το Biodiversity4All είναι μέλος του Δικτύου iNaturalist στην Πορτογαλία. Τα τοπικά ιδρύματα που υποστηρίζουν το Biodiversity4All θα έχουν πρόσβαση στη διεύθυνση ηλεκτρονικού ταχυδρομείου σας και πρόσβαση στις αληθινές συντεταγμένες για παρατηρήσεις που είναι δημοσίως δυσδιάκριτες ή απόρρητες. Μην αλλάζεται πειραματικά το δίκτυό σας εάν έχετε περισσότερες από 1000 παρατηρήσεις. Θέλετε να αλλάξετε το δίκτυό σας;</string>
+    <string name="alert_message_use_inaturalistpanama">Το iNaturalist Panamá είναι μέλος του Δικτύου iNaturalist στον Παναμά. Τα τοπικά ιδρύματα που υποστηρίζουν το iNaturalist Panamá θα έχουν πρόσβαση στη διεύθυνση ηλεκτρονικού ταχυδρομείου σας και πρόσβαση στις αληθινές συντεταγμένες για παρατηρήσεις που είναι δημοσίως δυσδιάκριτες ή απόρρητες. Μην αλλάζεται πειραματικά το δίκτυό σας εάν έχετε περισσότερες από 1000 παρατηρήσεις. Θέλετε να αλλάξετε το δίκτυό σας;</string>
+    <string name="alert_message_use_inaturalistecuador">Το iNaturalist Ecuador είναι μέλος του Δικτύου iNaturalist στο Εκουαδόρ. Τα τοπικά ιδρύματα που υποστηρίζουν το iNaturalist Ecuador θα έχουν πρόσβαση στη διεύθυνση ηλεκτρονικού ταχυδρομείου σας και πρόσβαση στις αληθινές συντεταγμένες για παρατηρήσεις που είναι δημοσίως δυσδιάκριτες ή απόρρητες. Μην αλλάζεται πειραματικά το δίκτυό σας εάν έχετε περισσότερες από 1000 παρατηρήσεις. Θέλετε να αλλάξετε το δίκτυό σας;</string>
+    <string name="alert_message_use_inaturalistaustralia">Το iNaturalist Australia είναι μέλος του Δικτύου iNaturalist στην Αυστραλία. Τα τοπικά ιδρύματα που υποστηρίζουν το iNaturalist Australia θα έχουν πρόσβαση στη διεύθυνση ηλεκτρονικού ταχυδρομείου σας και πρόσβαση στις αληθινές συντεταγμένες για παρατηρήσεις που είναι δημοσίως δυσδιάκριτες ή απόρρητες. Μην αλλάζεται πειραματικά το δίκτυό σας εάν έχετε περισσότερες από 1000 παρατηρήσεις. Θέλετε να αλλάξετε το δίκτυό σας;</string>
+    <string name="alert_message_use_argentinat">Το ArgentiNat είναι μέλος του Δικτύου iNaturalist στην Αργεντινή. Τα τοπικά ιδρύματα που υποστηρίζουν το ArgentiNat θα έχουν πρόσβαση στη διεύθυνση ηλεκτρονικού ταχυδρομείου σας και πρόσβαση στις αληθινές συντεταγμένες για παρατηρήσεις που είναι δημοσίως δυσδιάκριτες ή απόρρητες. Μην αλλάζεται πειραματικά το δίκτυό σας εάν έχετε περισσότερες από 1000 παρατηρήσεις. Θέλετε να αλλάξετε το δίκτυό σας;</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Συντάκτης</string>
     <string name="license">Άδεια</string>
     <string name="download_for_offline_use">Λήψη για χρήση χωρίς σύνδεση</string>
@@ -322,7 +323,7 @@
     <string name="no_news_found">Δεν βρέθηκαν νέα είδη</string>
     <string name="news">Νέα</string>
     <string name="article">Άρθρο</string>
-    <string name="couldnt_load_project_news">Couldn\'t load project news: %1$s</string>
+    <string name="couldnt_load_project_news">Δεν ήταν δυνατή η φόρτωση των νέων του πρότζεκτ: %1$s</string>
     <string name="couldnt_load_user_details">Δεν ήταν δυνατή η φόρτωση των στοιχείων του χρήστη: %1$s</string>
     <string name="more_bio"><![CDATA[<b><font color="#ffffff">Περισσότερα »</font></b>]]></string>
     <string name="no_location">Χωρίς τοποθεσία</string>
@@ -345,9 +346,9 @@
     <string name="language">Γλώσσα</string>
     <string name="version">Έκδοση</string>
     <string name="inat_network">Δίκτυο iNaturalist</string>
-    <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
+    <string name="inat_network_description">Το iNaturalist Network είναι ένα πλαίσιο για την τοπικοποίηση της κοινότητας του iNaturalist. Οι δικτυακοί τόποι υποστηρίζονται από τοπικούς φορείς που έχουν υπογράψει συμφωνία με το iNaturalist για να ενθαρρύνουν την τοπική χρήση και να ωφελήσουν την τοπική βιοποικιλότητα.</string>
     <string name="more_info">Περισσότερες πληροφορίες</string>
-    <string name="select_network">Select Network Affiliation</string>
+    <string name="select_network">Επιλογή Δικτύου</string>
     <string name="help">Βοήθεια</string>
     <string name="stop">Διακοπή</string>
     <string name="resume">Συνέχεια</string>
@@ -387,7 +388,7 @@
     <string name="what_to_look_for">What To Look For</string>
     <string name="have_been_seen_here">Έχει Παρατηρηθεί Εδώ</string>
     <string name="observe">Παρατηρήστε</string>
-    <string name="nearby_missions">Κοντινές Αποστολές</string>
+    <string name="nearby_missions">Αποστολές σε Κοντινή Απόσταση</string>
     <string name="searching_your_area">Αναζητώντας στην περιοχή σου...</string>
     <string name="expanding_your_search_area">Διεύρυνση της περιοχής αναζήτησης...</string>
     <string name="introducing_missions">Introducing Missions!</string>
@@ -402,7 +403,7 @@
     <string name="you_will_only_receive_updates_when_following">(Θα ενημερώνεσαι μόνο όταν ακολουθείς παρατηρήσεις)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> πρότεινε προσδιορισμό: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> σχόλιασε: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="deleted_photos_from_cache_error">Φαίνεται ότι διαγράψατε μια φωτογραφία διαγράφοντας την προσωρινή μνήμη της εφαρμογής πριν την αποστολή. Θα χρειαστεί να προσθέσετε την φωτογραφία πίσω στην παρατήρηση σας από την γκαλερί σας. Στο μέλλον, βεβαιωθείτε ότι έχετε ανεβάσει όλες τις φωτογραφίες σας προτού εκκαθαρίσετε την προσωρινή μνήμη εφαρμογών.</string>
+    <string name="deleted_photos_from_cache_error">Φαίνεται ότι διαγράψατε μια φωτογραφία διαγράφοντας την προσωρινή μνήμη της εφαρμογής πριν την αποστολή. Θα χρειαστεί να προσθέσετε την φωτογραφία πίσω στην παρατήρηση σας από την γκαλερί σας. Στο μέλλον, βεβαιωθείτε ότι έχετε ανεβάσει όλες τις φωτογραφίες σας προτού εκκαθαρίσετε την προσωρινή μνήμη της εφαρμογής.</string>
     <string name="new_activities">%1s νέα</string>
     <string name="no_results_found">Δέν βρέθηκαν αποτελέσματα...</string>
     <string name="syncing_x_out_of_y_observations">Συγχρονισμός %1$d των %2$d παρατηρήσεων...</string>
@@ -438,7 +439,7 @@
     <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Οπτικά Παρόμοια</string>
     <string name="visually_similar_seen_nearby">Visually Similar / Seen Nearby</string>
-    <string name="seen_nearby">Seen Nearby</string>
+    <string name="seen_nearby">Εθεάθη σε κοντινή απόσταση</string>
     <string name="enlarge">Μεγέθυνση</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">View Children</string>
@@ -561,7 +562,7 @@
     <string name="must_be_connected_to_load_more_obs">Πρέπει να είσαι συνδεδεμένος/η στο διαδίκτυο για τη φόρτωση περισσότερων παρατηρήσεων</string>
     <string name="inat_about_title">Το iNaturalist είναι μια κοινή πρωτοβουλία από την Ακαδημία Επιστημών της Καλιφόρνια και του National Geographic Society.</string>
     <string name="inat_credits"><![CDATA[Το iNaturalist υπάρχει χάρη σε κάθε άτομο που συμμετέχει στην κοινότητά μας. Οι άνθρωποι που κατασκευάζουν το λογισμικό, σχεδιάζουν το περιβάλλον, διατηρούν την υποδομή μας, υποστηρίζουν την κοινότητα και ενθαρρύνουν τις συνεργασίες είναι οι Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard και ο Ken-ichi Ueda.<br/><br/>H CalTech και η Cornell Tech βοήθησαν στην ανάπτυξη του συστήματος μηχανικής όρασης που προτείνει αναγνωρίσεις από φωτογραφίες. Ευχαριστούμε τους Grant Van Horn, Serge Belongie και τον Pietro Perona για την προώθηση της έρευνας στον τομέα της μηχανικής όρασης.  Περισσότερες πληροφορίες μπορείτε να βρείτε στο <a href="http://www.visipedia.org">visipedia.org</a>. Ιδιαίτερες ευχαριστίες στην NVIDIA για την πρόσθετη βοήθεια.]]></string>
-    <string name="inat_credits_networks_pre"><![CDATA[Το διεθνές δίκτυο iNaturalist υποστηρίζει τοπικούς, πλήρως ενοποιημένους ιστότοπους βασισμένους στο iNaturalist στις ακόλουθες χώρες, χάρη στην υποστήριξη των συνδεδεμένων συνεργαζόμενων εταίρων.]]></string>
+    <string name="inat_credits_networks_pre"><![CDATA[Το διεθνές Δίκτυο iNaturalist υποστηρίζει τοπικούς, πλήρως ενοποιημένους ιστότοπους βασισμένους στο iNaturalist στις ακόλουθες χώρες, χάρη στην υποστήριξη των συνδεδεμένων συνεργαζόμενων οργανισμών.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Συντελεστές</string>
     <string name="password_changed">Ο κωδικός πρόσβασης που χρησιμοποιείται από την εφαρμογή δεν είναι πια σωστός - αλλάξατε τον κωδικό σας στην ιστοσελίδα; Παρακαλώ εισάγετε τον νέο κωδικό σας εδώ</string>
@@ -641,13 +642,13 @@
     <string name="annotation_value_cannot_be_determined">Δε μπορεί να προσδιοριστεί</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">ΕΓΓΕΓΡΑΜΕΝΟΣ</string>
-    <string name="nearby_projects_all_caps">NEARBY</string>
+    <string name="nearby_projects_all_caps">ΣΕ ΚΟΝΤΙΝΗ ΑΠΟΣΤΑΣΗ</string>
     <string name="featured_projects_all_caps">FEATURED</string>
     <!-- Text for a button or label that allows someone to join a project -->
     <string name="join_all_caps">ΕΓΓΡΑΦΗ</string>
-    <string name="my_guides_all_caps">YOURS</string>
-    <string name="nearby_guides_all_caps">NEARBY</string>
-    <string name="all_guides_all_caps">ALL</string>
+    <string name="my_guides_all_caps">ΔΙΚΗ ΣΑΣ</string>
+    <string name="nearby_guides_all_caps">ΣΕ ΚΟΝΤΙΝΗ ΑΠΟΣΤΑΣΗ</string>
+    <string name="all_guides_all_caps">ΟΛΟΙ</string>
     <string name="description_all_caps">ΠΕΡΙΓΡΑΦΗ</string>
     <string name="quantity_all_caps">Ποσότητα</string>
     <string name="observation_count_all_caps">%1$s ΠΑΡΑΤΗΡΗΣΕΙΣ</string>
@@ -682,19 +683,23 @@
     <string name="verifiable">Verifiable</string>
     <string name="no_annotation">No Annotation</string>
     <string name="donate_to_inaturalist">Δωρεά στο iNaturalist</string>
-    <string name="prefers_scientific_name_first">Show scientific names first</string>
-    <string name="prefers_scientific_name_first_description">Show scientific names before common names.</string>
-    <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, and Parks Canada operating iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
-    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
-    <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) operating NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
-    <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network operating iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
-    <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
-    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="mark_all_as_viewed">Mark all as viewed</string>
-    <string name="content_hidden">Content Hidden</string>
-    <string name="show_hidden_content">Show Hidden Content</string>
-    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
-    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
+    <string name="prefers_scientific_name_first">Εμφάνιση επιστημονικών ονομάτων πρώτα</string>
+    <string name="prefers_scientific_name_first_description">Εμφάνιση επιστημονικών ονομάτων πριν από τις κοινές ονομασίες.</string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[Καναδάς: Η Canadian Wildlife Federation, το Βασιλικό Μουσείο του Οντάριο, το NatureServe καναδα, και το Parks Canada λειτουργούν το iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[Κολομβία: Το Instituto Humboldt λειτουργεί το Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalista"><![CDATA[Μεξικό: Η Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) λειτουργεί το NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[Νέα Ζηλανδία: Το Δίκτυο Καταγραφής Βιοποικιλότητας της Νέας Ζηλανδίας λειτουργεί το iNaturalist NZ — Mātaki Taiao  (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
+    <string name="network_credit_biodiversity4all"><![CDATA[Πορτογαλία: Η Associação Biodiversidade Para Todos λειτουργεί το Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[Παναμάς: Το Ministerio de Ambient λειτουργεί το iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="mark_all_as_viewed">Σήμανση όλων ως προβεβλημένα</string>
+    <string name="content_hidden">Κρυμμένο Περιεχόμενο</string>
+    <string name="show_hidden_content">Eμφάνιση Kρυμμένου Περιεχομένου</string>
+    <string name="content_hidden_because">Το περιεχόμενο κρυμμένο από @%1$s στο %2$s επειδή: \"%3$s\"</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Επικοινωνήστε με την υποστήριξη</a>]]></string>
     <string name="content">Περιεχόμενο</string>
     <string name="has_photos">Έχει Φωτογραφίες</string>
     <string name="has_sounds">Έχει Ήχους</string>
@@ -710,12 +715,12 @@
     <string name="invalid_audio_extension">Σφάλμα κατά την εισαγωγή ήχου (-ων): Μπορεί να εισαχθούν μόνο αρχεία ήχων με επεκτάσεις WAV/MP3/AMR</string>
     <string name="importing_sounds">Εισαγωγή ήχου(-ων)...</string>
     <string name="observation_sound">Ήχος Παρατήρησης</string>
-    <string name="deleted_sounds_from_cache_error">It looks like you deleted a sound by clearing the app cache before uploading. You will need to add the sound back to your observation from your gallery. In the future, please make sure you have uploaded all your sounds before clearing the app cache.</string>
+    <string name="deleted_sounds_from_cache_error">Φαίνεται ότι διαγράψατε έναν ήχο διαγράφοντας την προσωρινή μνήμη της εφαρμογής πριν την αποστολή. Θα χρειαστεί να προσθέσετε τον ήχο πίσω στην παρατήρηση σας από την γκαλερί σας. Στο μέλλον, βεβαιωθείτε ότι έχετε ανεβάσει όλους τους ήχους σας πριν καθαρίσετε την προσωρινή μνήμη της εφαρμογής.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
-    <string name="seconds">%1$.1f sec</string>
+    <string name="seconds">%1$.1f δευτ.</string>
     <string name="clear_all_debug_logs">Clear All Debug Logs</string>
-    <string name="clears_up_storage_room_on_your_phone">Clears up storage room on your phone</string>
-    <string name="number_of_days_to_store_logs">Number of days to store logs</string>
+    <string name="clears_up_storage_room_on_your_phone">Καθαρίζει τον χώρο αποθήκευσης στο τηλέφωνό σας</string>
+    <string name="number_of_days_to_store_logs">Αριθμός ημερών για την αποθήκευση των αρχείων καταγραφής</string>
     <string name="send_debug_logs_from_start_date">Send Debug Logs From Start Date</string>
     <string name="send_debug_logs_by_email">Send debug logs by email (from specified start date)</string>
     <string name="debug_settings">Debug Settings</string>
@@ -728,38 +733,38 @@
     <!-- Verb, as in "Duplicate this photo" -->
     <string name="duplicate">Duplicate</string>
     <string name="couldnt_duplicate_photo">Couldn\'t duplicate photo!</string>
-    <string name="couldnt_edit_photo">Couldn\'t edit photo!</string>
+    <string name="couldnt_edit_photo">Δεν ήταν δυνατή η επεξεργασία της φωτογραφίας!</string>
     <!-- Verb, as in "Rotate this photo" -->
-    <string name="ucrop_rotate">Rotate</string>
+    <string name="ucrop_rotate">Περιστροφή</string>
     <!-- Verb, as in "Scale (resize) this photo" -->
-    <string name="ucrop_scale">Scale</string>
+    <string name="ucrop_scale">Προσαρμογή</string>
     <!-- Verb, as in "Crop this photo" -->
-    <string name="ucrop_crop">Crop</string>
+    <string name="ucrop_crop">Περικοπή</string>
     <!-- Label for adjusting the brightness of an image -->
-    <string name="ucrop_brightness">Brightness</string>
+    <string name="ucrop_brightness">Φωτεινότητα</string>
     <!-- Label for adjusting the contrast of an image -->
-    <string name="ucrop_contrast">Contrast</string>
+    <string name="ucrop_contrast">Αντίθεση</string>
     <!-- Label for adjusting the saturation of an image -->
-    <string name="ucrop_saturation">Saturation</string>
+    <string name="ucrop_saturation">Κορεσμός</string>
     <!-- Label for adjusting the sharpness of an image -->
-    <string name="ucrop_sharpness">Sharpness</string>
+    <string name="ucrop_sharpness">Οξύτητα</string>
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
-    <string name="ucrop_label_original">Original</string>
+    <string name="ucrop_label_original">Αρχική</string>
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
-    <string name="ucrop_label_free">Free</string>
+    <string name="ucrop_label_free">Ελεύθερη</string>
     <!-- Verb phrase, button label to edit an observation photo -->
-    <string name="ucrop_label_edit_photo">Edit Photo</string>
-    <string name="service_temporarily_unavailable">Service temporarily unavailable.</string>
-    <string name="please_try_again_in_a_few_hours">Please try again in a few hours.</string>
+    <string name="ucrop_label_edit_photo">Επεξεργασία Φωτογραφίας</string>
+    <string name="service_temporarily_unavailable">Η υπηρεσία προσωρινά μη διαθέσιμη.</string>
+    <string name="please_try_again_in_a_few_hours">Παρακαλώ προσπαθήστε ξανά σε λίγες ώρες.</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
-    <string name="please_try_again_in_x">Please try again in %1$d %2$s.</string>
-    <string name="hours">hours</string>
-    <string name="minutes">minutes</string>
-    <string name="seconds_value">seconds</string>
-    <string name="shop_the_inat_store">Shop the iNat Store</string>
-    <string name="delete_your_account">Delete Your Account</string>
+    <string name="please_try_again_in_x">Παρακαλώ προσπαθήστε ξανά σε %1$d %2$s.</string>
+    <string name="hours">ώρες</string>
+    <string name="minutes">λεπτά</string>
+    <string name="seconds_value">δευτερόλεπτα</string>
+    <string name="shop_the_inat_store">Αγοράστε από το iNat Kατάστημα</string>
+    <string name="delete_your_account">Διαγραφή Του Λογαριασμού σας</string>
     <string name="delete_account_message"><![CDATA[By deleting your account you will remove:<br/><br/><ul><li> All of your observations, including the work of the all the people who have helped you out with identifications.</li><li> All of the identifications you\'ve added to the observations of other people, which will potentially affect the data quality of those observations.</li><li> All of the comments you\'ve added.</li></ul><br/>Furthermore, this action cannot be undone. If you change your mind later, you aren\'t getting any of that content back.<br/><br/>If this service generates too many notifications, consider <a href="https://www.inaturalist.org/users/edit">editing your settings on the website</a> to opt out of certain notifications or stop receiving email from us. If you\'re having trouble with a specific person, consider <a href="https://www.inaturalist.org/users/edit">muting them</a> instead of deleting your account.<br/><br/>If you\'re still sure you want to delete your account, enter <b>\"%1$s\"</b> in the form below and click the button to delete your account and all your data.]]></string>
-    <string name="your_account_has_been_deleted">Your account has been deleted</string>
+    <string name="your_account_has_been_deleted">Ο λογαριασμός σας έχει διαγραφεί</string>
     <string name="you_must_enter_username_in_the_form_to_delete_account">You must enter \'%1$s\' in the form to delete your account</string>
     <!-- Second person hint text asking the user to enter their username -->
     <string name="type_your_username">Type your username</string>
@@ -776,62 +781,5 @@
     <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
     <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
-    <string name="search_places">Search Places</string>
-    <string name="locale_ar">Arabic</string>
-    <string name="locale_bg">Bulgarian</string>
-    <string name="locale_ca">Catalan</string>
-    <string name="locale_cs">Czech</string>
-    <string name="locale_da">Danish</string>
-    <string name="locale_de">German</string>
-    <string name="locale_el">Greek</string>
-    <string name="locale_en">English</string>
-    <string name="locale_en_rau">English (Australia)</string>
-    <string name="locale_en_rgb">English (United Kingdom)</string>
-    <string name="locale_en_rnz">English (New Zealand)</string>
-    <string name="locale_en_rus">English (United States)</string>
-    <string name="locale_es">Spanish</string>
-    <string name="locale_es_rar">Spanish (Argentina)</string>
-    <string name="locale_es_rco">Spanish (Colombia)</string>
-    <string name="locale_es_res">Spanish (Spain)</string>
-    <string name="locale_es_rmx">Spanish (Mexico)</string>
-    <string name="locale_et">Estonian</string>
-    <string name="locale_fi">Finnish</string>
-    <string name="locale_fil">Filipino</string>
-    <string name="locale_fr">French</string>
-    <string name="locale_fr_rca">French (Canada)</string>
-    <string name="locale_he">Hebrew</string>
-    <string name="locale_he_ril">Hebrew (Israel)</string>
-    <string name="locale_hi">Hindi</string>
-    <string name="locale_hr">Croatian</string>
-    <string name="locale_hu">Hungarian</string>
-    <string name="locale_id">Indonesian</string>
-    <string name="locale_it">Italian</string>
-    <string name="locale_ja">Japanese</string>
-    <string name="locale_ka">Georgian</string>
-    <string name="locale_ko">Korean</string>
-    <string name="locale_lt">Lithuanian</string>
-    <string name="locale_mi">Maori</string>
-    <string name="locale_nb">Norwegian Bokmål</string>
-    <string name="locale_nl">Dutch</string>
-    <string name="locale_nn_rno">Norwegian Nynorsk (Norway)</string>
-    <string name="locale_no">Norwegian</string>
-    <string name="locale_pa_rin">Punjabi (India)</string>
-    <string name="locale_pl">Polish</string>
-    <string name="locale_pt">Portuguese</string>
-    <string name="locale_pt_rbr">Portuguese (Brazil)</string>
-    <string name="locale_pt_rpt">Portuguese (Portugal)</string>
-    <string name="locale_ro">Romanian</string>
-    <string name="locale_ru">Russian</string>
-    <string name="locale_sk">Slovak</string>
-    <string name="locale_sq">Albanian</string>
-    <string name="locale_sv">Swedish</string>
-    <string name="locale_sv_rse">Swedish (Sweden)</string>
-    <string name="locale_sw">Swahili</string>
-    <string name="locale_tl">Tagalog</string>
-    <string name="locale_tr">Turkish</string>
-    <string name="locale_uk">Ukrainian</string>
-    <string name="locale_vi">Vietnamese</string>
-    <string name="locale_zh_rcn">Chinese (China)</string>
-    <string name="locale_zh_rhk">Chinese (Hong Kong)</string>
-    <string name="locale_zh_rtw">Chinese (Taiwan)</string>
+    <string name="search_places">Αναζήτηση Τόπων</string>
 </resources>

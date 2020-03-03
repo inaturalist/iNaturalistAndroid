@@ -198,6 +198,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador es miembro de la red iNaturalist en Ecuador. Las instituciones locales que apoyan a iNaturalist Ecuador tendrán acceso a tu dirección de correo electrónico y a las coordenadas reales de tus observaciones aunque estén públicamente oscurecidas o sean privadas. No cambies experimentalmente tu afiliación si tienes más de 1000 observaciones. ¿Deseas cambiar tu afiliación?</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia es miembro de la red iNaturalist en Australia. Las instituciones locales que apoyan a iNaturalist Australia tendrán acceso a tu dirección de correo electrónico y a las coordenadas reales de tus observaciones aunque estén públicamente oscurecidas o sean privadas. No cambies experimentalmente tu afiliación si tienes más de 1000 observaciones. ¿Deseas cambiar tu afiliación?</string>
     <string name="alert_message_use_argentinat">ArgentiNat es miembro de la red iNaturalist en Argentina. Las instituciones locales que apoyan a ArgentiNat tendrán acceso a tu dirección de correo electrónico y a las coordenadas reales de tus observaciones aunque estén públicamente oscurecidas o sean privadas. Por favor, no cambies experimentalmente tu afiliación si tienes más de 1000 observaciones. ¿Deseas cambiar tu afiliación?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editor</string>
     <string name="license">Licencia</string>
     <string name="download_for_offline_use">Descarga para uso fuera de línea</string>
@@ -562,17 +563,17 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="must_be_connected_to_load_more_obs">Debes estar conectado a internet para cargar más observaciones</string>
     <string name="inat_about_title">iNaturalist es una iniciativa conjunta de la Academia de Ciencias de California y la National Geographic Society.</string>
     <string name="inat_credits"><![CDATA[iNaturalist existe gracias a todas las personas que participan en nuestra comunidad. Las personas que desarrollan el software, mantienen nuestra infraestructura, ayudan a la comunidad y fomentan las colaboraciones son Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard y Ken-Ichi Ueda.<br/><br/>Caltech y Cornell Tech ayudaron a desarrollar el sistema de visión artificial que reconoce especies a partir de fotografías. Agradecemos a Grant Van Horn, Serge Belongie y Pietro Perona por su investigación avanzada en visión artificial. Pueden obtener más información en <a href="http://www.visipedia.org">visipedia.org</a>. Agradecemos especialmente su ayuda adicional a NVIDIA.]]></string>
-    <string name="inat_credits_networks_pre"><![CDATA[La Red Internacional iNaturalist soporta sitios web localizados, totalmente integrados y basados en iNaturalist en los siguientes países, gracias al apoyo de organizaciones asociadas.]]></string>
-    <string name="inat_credits_post"><![CDATA[iNaturalist agradece profundamente los desarrolladores de código abierto que han suministrado gran parte del software del que dependemos cada días. Vea las contribuciones al código abierto en <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a>.<br/>Agradecemos la ayuda suministrada para la traducción de los voluntarios de la comunidad crowdin.com, especialmente a Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, i katunchik. <br/>Stios IUCN de categoria II places suministrados por IUCN i UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Disponible en: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
+    <string name="inat_credits_networks_pre"><![CDATA[La Red Internacional iNaturalist apoya sitios web localizados totalmente integrados y basados en iNaturalist en los siguientes países, gracias al apoyo de las organizaciones asociadas a los mismos.]]></string>
+    <string name="inat_credits_post"><![CDATA[iNaturalist también está profundamente agradecido con los desarrolladores de código abierto que han proporcionado gran parte del software en el que confiamos todos los días. Ver <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github. om/inaturalist/iNaturalistAndroid</a> por contribuciones de código abierto.<br/> Agradecemos la ayuda de traducción proporcionada por los voluntarios en la crowdin de la comunidad, especialmente Eduardo Martínez, Lin Cheng-Tao, KestrelLam, Carlos Galindo Leal, vilseskog, NCAA, ldö a, radana, Mykola Pukhalskyi, danieleseglie, y katunchik. <br/>Lugares de categoría II áreas protegidas <a href="http://www.protectedplanet.net">e UICN proporcionados por UICN y UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Disponible en: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Créditos</string>
     <string name="password_changed">La contraseña de la aplicación ya no es correcta - ¿cambiaste tu contraseña en el sitio web? Introduce la nueva aquí</string>
     <string name="just_so_you_know">Para que sepas...</string>
     <string name="ask_for_g_plus_permissions">Google nos obliga a pedir permiso para acceder a tus contactos para poder utilizar tu cuenta de Google, a pesar de que no accedemos a tus contactos por cualquier otra razón. Si rechazas este permiso, necesitarás registrarse o iniciar sesión con un usuario y contraseña.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[¿Nuevo en %1$s? <b>¡Regístrate ahora!</b>]]></string>
-    <string name="see_more_observations">Ver más observaciones</string>
-    <string name="see_more_species">Ver más especies</string>
-    <string name="see_more_identifications">Ver más identificaciones</string>
-    <string name="collection_and_umbrella_projects">Proyectos Colección y Paraguas</string>
+    <string name="see_more_observations">Ve más observaciones</string>
+    <string name="see_more_species">Ve más especies</string>
+    <string name="see_more_identifications">Ve más identificaciones</string>
+    <string name="collection_and_umbrella_projects">Proyectos de Colección y de Paraguas</string>
     <string name="description">Descripción</string>
     <string name="quantity">Cant.</string>
     <!-- Number of observations. Do not change the format to $d -->
@@ -602,36 +603,36 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Ninguno</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
-    <string name="annotation_name_plant_phenology">Fenología vegetal</string>
+    <string name="annotation_name_plant_phenology">Fenología de la planta</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
-    <string name="annotation_name_life_stage">Estadio biológico</string>
+    <string name="annotation_name_life_stage">Etapa de vida</string>
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Sexo</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
-    <string name="annotation_name_alive_or_dead">Vivo o Muerto</string>
+    <string name="annotation_name_alive_or_dead">Vivo o muerto</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Floración</string>
     <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">Fructificando</string>
+    <string name="annotation_value_fruiting">Fructificación</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_budding">Germinando</string>
+    <string name="annotation_value_budding">Brotes</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_flower_budding">Yemas Florales</string>
+    <string name="annotation_value_flower_budding">Con yemas florales</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Adulto</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
-    <string name="annotation_value_teneral">Teneral</string>
+    <string name="annotation_value_teneral">Adulto tierno</string>
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
-    <string name="annotation_value_pupa">Pupa</string>
+    <string name="annotation_value_pupa">Pupa o crisálida</string>
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
     <string name="annotation_value_nymph">Ninfa</string>
     <!-- Noun for the arthropod life stage between egg and adult -->
-    <string name="annotation_value_larva">Larva</string>
+    <string name="annotation_value_larva">Larva u oruga</string>
     <string name="annotation_value_egg">Huevo</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
     <string name="annotation_value_juvenile">Juvenil</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
-    <string name="annotation_value_subimago">Subimago</string>
+    <string name="annotation_value_subimago">Subadulto</string>
     <string name="annotation_value_female">Hembra</string>
     <string name="annotation_value_male">Macho</string>
     <!-- Adjective, alive and shows no signs of imminent death -->
@@ -639,14 +640,14 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <!-- Adjective, dead or shows signs of imminent death -->
     <string name="annotation_value_dead">Muerto</string>
     <!-- Value for when the value of the attribute cannot be determined -->
-    <string name="annotation_value_cannot_be_determined">Indeterminado</string>
+    <string name="annotation_value_cannot_be_determined">No se puede determinar</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">UNIDO</string>
     <string name="nearby_projects_all_caps">CERCANO</string>
     <string name="featured_projects_all_caps">DESTACADO</string>
     <!-- Text for a button or label that allows someone to join a project -->
     <string name="join_all_caps">ÚNETE</string>
-    <string name="my_guides_all_caps">TUYO</string>
+    <string name="my_guides_all_caps">TUS</string>
     <string name="nearby_guides_all_caps">CERCANO</string>
     <string name="all_guides_all_caps">TODOS</string>
     <string name="description_all_caps">DESCRIPCIÓN</string>
@@ -659,9 +660,9 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="people_all_caps">PERSONAS</string>
     <string name="identifiers_all_caps">IDENTIFICADORES</string>
     <string name="identifications_all_caps">IDENTIFICACIONES</string>
-    <string name="news_all_caps">NUEVOS</string>
+    <string name="news_all_caps">NOTICIAS</string>
     <string name="got_it_all_caps">¡DE ACUERDO!</string>
-    <string name="view_all_all_caps">VER TODOS</string>
+    <string name="view_all_all_caps">VER TODO</string>
     <string name="new_all_caps">NUEVO</string>
     <string name="observers_all_caps">OBSERVADORES</string>
     <string name="observations_regular">Observaciones</string>
@@ -669,73 +670,77 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="research_grade_qualification">Calificado como de Grado de Investigación</string>
     <string name="date_specified">Fecha especificada</string>
     <string name="location_specified">Ubicación especificada</string>
-    <string name="has_photos_or_sounds">Tiene fotos o sonidos</string>
-    <string name="has_id_supported_by_two_or_more">Tiene una ID apoyada por dos o más</string>
-    <string name="date_is_accurate">La fecha es ajustada</string>
-    <string name="location_is_accurate">La ubicación es ajustada</string>
-    <string name="organism_is_wild">Organismo salvaje</string>
+    <string name="has_photos_or_sounds">Tiene fotos o audios</string>
+    <string name="has_id_supported_by_two_or_more">Tiene ID apoyada por dos o más</string>
+    <string name="date_is_accurate">La fecha es correcta</string>
+    <string name="location_is_accurate">Ubicación correcta</string>
+    <string name="organism_is_wild">El organismo es silvestre</string>
     <string name="evidence_of_organism">Evidencia del organismo</string>
     <string name="recent_evidence_of_an_organism">Evidencia reciente de un organismo</string>
     <string name="community_id_at_species_level_or_lower">ID de la comunidad a nivel específico o inferior</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Basado en la evidencia, ¿Puede confirmar o mejorar la ID de la Comunidad?</string>
-    <string name="no_as_good_as_it_can_be">No, es lo máximo posible</string>
+    <string name="no_as_good_as_it_can_be">No, es tan buena como puede ser</string>
     <string name="seasonality">Estacionalidad</string>
     <string name="verifiable">Verificable</string>
-    <string name="no_annotation">Sin Anotaciones</string>
-    <string name="donate_to_inaturalist">Donar a iNaturalist</string>
-    <string name="prefers_scientific_name_first">Mostrar primero los nombres científicos</string>
-    <string name="prefers_scientific_name_first_description">Mostrar los nombres científicos antes de los nombres vulgares.</string>
+    <string name="no_annotation">Sin anotación</string>
+    <string name="donate_to_inaturalist">Dona a iNaturalist</string>
+    <string name="prefers_scientific_name_first">Muestra nombres científicos primero</string>
+    <string name="prefers_scientific_name_first_description">Muestra nombres científicos antes que nombres comunes.</string>
     <string name="network_credit_inaturalistcanada"><![CDATA[Canadá: Canadian Wildlife Federation, el Royal Ontario Museum, el NatureServe Canada, y Parks Canada gestionan iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
     <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: el Instituto Humboldt gestiona Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
-    <string name="network_credit_naturalista"><![CDATA[México: la Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) gestiona NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
+    <string name="network_credit_naturalista"><![CDATA[México: Comisión Nacional para el Conocimiento y Uso de la Biodiversidad (CONABIO) gestiona NaturaLista (NaturaLista.mx).]]></string>
     <string name="network_credit_naturewatchnz"><![CDATA[Nueva Zelanda: New Zealand Biodiversity Recording Network gestiona iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: la Associação Biodiversidade Para Todos gestiona Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panamá: el Ministerio de Ambiente gestiona iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="mark_all_as_viewed">Marcar todos como vistos</string>
-    <string name="content_hidden">Contenido ocultado</string>
-    <string name="show_hidden_content">Mostrar contenido ocultado</string>
+    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="mark_all_as_viewed">Marca todas como revisadas</string>
+    <string name="content_hidden">Contenido oculto</string>
+    <string name="show_hidden_content">Muestra contenido oculto</string>
     <string name="content_hidden_because">Contenido ocultado por @%1$s de %2$s porque: \"%3$s\"</string>
-    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org"> Contacta con el Soporte</a>]]></string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org"> Contacta a soporte</a>]]></string>
     <string name="content">Contenido</string>
     <string name="has_photos">Tiene fotos</string>
-    <string name="has_sounds">Tiene sonidos</string>
-    <string name="could_not_play_sound">No se pudo reproducir el sonido - probablemente por un problema en la red</string>
-    <string name="cant_play_soundcloud"><![CDATA[Para escuchar sonidos de Soundcloud, visite el sitio <a href="%1$s">web </a>.]]></string>
+    <string name="has_sounds">Tiene audios</string>
+    <string name="could_not_play_sound">No se pudo reproducir el audio - probablemente por un problema en la red</string>
+    <string name="cant_play_soundcloud"><![CDATA[Para escuchar audios de Soundcloud, visita el sitio <a href="%1$s">web </a>.]]></string>
     <string name="soundcloud">SoundCloud</string>
-    <string name="record_sound">Grabar Sonido</string>
-    <string name="no_recorder_found">¡No se ha encontrado un grabador de sonido predeterminado!</string>
-    <string name="couldnt_retrieve_sound">No se ha podido recuperar el sonido de la grabadora predeterminada - intente, en vez de eso, importar el sonido</string>
-    <string name="upload_sound">Elegir Sonido</string>
-    <string name="multi_select_sound_description">Importar múltiples sonidos presionando un tiempo sobre un solo sonido</string>
-    <string name="alert_unsupported_audio_type">Lo sentimos, ha habido un problema al cargar el sonido desde esta fuente</string>
-    <string name="invalid_audio_extension">Error al importar el(los) sonido(s): Sólo se pueden importar archivos de sonido con extensiones WAV/MP3/AMR</string>
-    <string name="importing_sounds">Importando sonido(s)...</string>
-    <string name="observation_sound">Sonido de la Observación</string>
-    <string name="deleted_sounds_from_cache_error">Parece que ha eliminado un sonido al borrar el caché de la aplicación antes de subirlo. Necesitará volver a agregar el sonido a su observación desde la galería. En el futuro, por favor, asegúrese de que se han subido todos los sonidos antes de borrar la memoria caché de la aplicación.</string>
+    <string name="record_sound">Graba audio</string>
+    <string name="no_recorder_found">¡No se encontró grabadora predeterminada!</string>
+    <string name="couldnt_retrieve_sound">No se pudo recuperar el audio de la grabadora predeterminada - intenta importar el audio en su lugar</string>
+    <string name="upload_sound">Elege sonido</string>
+    <string name="multi_select_sound_description">Importa múltiples audios presionando por un tiempo un solo audio</string>
+    <string name="alert_unsupported_audio_type">Lo sentimos, ha habido un problema al cargar el audio desde esta fuente</string>
+    <string name="invalid_audio_extension">Error al importar el(los) audio(s): Sólo se pueden importar archivos de audio con extensiones WAV/MP3/AMR</string>
+    <string name="importing_sounds">Importando audio(s)...</string>
+    <string name="observation_sound">Audio de la observación</string>
+    <string name="deleted_sounds_from_cache_error">Parece que ha eliminado un audio al borrar el caché de la aplicación antes de subirlo. Necesitarás volver a agregar el audio a tu observación desde la galería. En el futuro, por favor, asegúrate de que se han subido todos los audios antes de borrar la memoria caché de la aplicación.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
-    <string name="seconds">%1$.1f s.</string>
-    <string name="clear_all_debug_logs">Eliminar todos los registros de depuración</string>
+    <string name="seconds">%1$.1f seg</string>
+    <string name="clear_all_debug_logs">Elimina todos los registros de depuración</string>
     <string name="clears_up_storage_room_on_your_phone">Limpia el espacio de almacenamiento en tu teléfono</string>
     <string name="number_of_days_to_store_logs">Número de días para almacenar registros</string>
-    <string name="send_debug_logs_from_start_date">Enviar registros de depuración desde la fecha de inicio</string>
-    <string name="send_debug_logs_by_email">Enviar registros de depuración por correo electrónico (desde la fecha de inicio especificada)</string>
-    <string name="debug_settings">Ajustes de Depuración</string>
-    <string name="are_you_sure_you_want_to_delete_logs">¿Está seguro de que desea eliminar todos los registros de depuración? Pulse \'Sí\' solo si desea borrar el espacio de almacenamiento de su teléfono</string>
+    <string name="send_debug_logs_from_start_date">Envia registros de depuración desde la fecha de inicio</string>
+    <string name="send_debug_logs_by_email">Envia registros de depuración por correo electrónico (desde la fecha de inicio especificada)</string>
+    <string name="debug_settings">Ajustes de depuración</string>
+    <string name="are_you_sure_you_want_to_delete_logs">¿Está seguro de que deseas eliminar todos los registros de depuración? Pulsa \'Sí\' solo si deseas limpiar el espacio de almacenamiento de tu teléfono</string>
     <string name="no_log_files_found">No se encontraron registros para ese rango de fechas - ¿quieres probar con una fecha anterior?</string>
-    <string name="choose_pinned_location">Escoger ubicación anclada</string>
-    <string name="pin_current_location">Anclar la ubicación actual</string>
-    <string name="location_pinned_successfully">Ubicación actual anclada con éxito</string>
-    <string name="delete_this_pinned_location">¿Desea borrar esta ubicación anclada?</string>
+    <string name="choose_pinned_location">Escoge ubicación anclada</string>
+    <string name="pin_current_location">Obtén la ubicación actual</string>
+    <string name="location_pinned_successfully">Ubicación actual ajustada con éxito</string>
+    <string name="delete_this_pinned_location">¿Elimina esta ubicación fijada?</string>
     <!-- Verb, as in "Duplicate this photo" -->
     <string name="duplicate">Duplicar</string>
     <string name="couldnt_duplicate_photo">¡No se pudo duplicar la foto!</string>
-    <string name="couldnt_edit_photo">¡No se ha podido editar la foto!</string>
+    <string name="couldnt_edit_photo">¡No se pudo editar la foto!</string>
     <!-- Verb, as in "Rotate this photo" -->
-    <string name="ucrop_rotate">Rotar</string>
+    <string name="ucrop_rotate">Rota</string>
     <!-- Verb, as in "Scale (resize) this photo" -->
-    <string name="ucrop_scale">Escalar</string>
+    <string name="ucrop_scale">Escala</string>
     <!-- Verb, as in "Crop this photo" -->
-    <string name="ucrop_crop">Recortar</string>
+    <string name="ucrop_crop">Recorta</string>
     <!-- Label for adjusting the brightness of an image -->
     <string name="ucrop_brightness">Brillo</string>
     <!-- Label for adjusting the contrast of an image -->
@@ -747,9 +752,9 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
     <string name="ucrop_label_original">Original</string>
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
-    <string name="ucrop_label_free">Libre</string>
+    <string name="ucrop_label_free">Gratis</string>
     <!-- Verb phrase, button label to edit an observation photo -->
-    <string name="ucrop_label_edit_photo">Editar foto</string>
+    <string name="ucrop_label_edit_photo">Edita foto</string>
     <string name="service_temporarily_unavailable">El servicio no está disponible temporalmente.</string>
     <string name="please_try_again_in_a_few_hours">Por favor, inténtalo de nuevo en unas horas.</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
@@ -758,83 +763,24 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="minutes">minutos</string>
     <string name="seconds_value">segundos</string>
     <string name="shop_the_inat_store">Compra en la tienda de iNat</string>
-    <string name="delete_your_account">Eliminar tu cuenta</string>
-    <string name="delete_account_message"><![CDATA[Al eliminar tu cuenta, se borrarán:<br/><br/><ul><li> Todas tus observaciones, incluyendo el trabajo de la gente que te ha ayudado con las identificaciones.</li><li> Todas las identificaciones que has añadido a las observaciones de otras personas, lo cual puede afectar a la calidad de sus datos.</li><li> Todos los comentarios que has añadido.</li></ul><br/>Además, esta acción no se puede deshacer. Si cambias de opinión más tarde no podrás recuperar esos contenidos.<br/><br/>Si este servicio genera demasiadas notificaciones, considera <a href="https://www.inaturalist.org/users/edit">editar tu configuración en el sitio web</a> para dejar de recibir determinados tipos de notificaciones o correo electrónico de nuestra parte. Si tienes problemas con una persona en concreto, considera <a href="https://www.inaturalist.org/users/edit">silenciarla</a> en lugar de eliminar tu cuenta.<br/><br/>Si aun así estás seguro de que quieres eliminar tu cuenta, escribe <b>\"%1$s\"</b> en el siguiente formulario y haz clic en el botón para eliminar tu cuenta y todos tus datos.]]></string>
+    <string name="delete_your_account">Elimina tu cuenta</string>
+    <string name="delete_account_message"><![CDATA[Al eliminar tu cuenta, se borrarán:<br/><br/><ul><li> Todas tus observaciones, incluyendo el trabajo de la gente que te ha ayudado con las identificaciones.</li><li> Todas las identificaciones que has añadido a las observaciones de otras personas, lo cual puede afectar a la calidad de sus datos.</li><li> Todos los comentarios que has añadido.</li></ul><br/>Además, esta acción no se puede deshacer. Si cambias de opinión más tarde no podrás recuperar esos contenidos.<br/><br/>Si este servicio genera demasiadas notificaciones, considera <a href="https://www.inaturalist.org/users/edit">editar tu configuración en el sitio web</a> para dejar de recibir determinados tipos de notificaciones o correos electrónicos de nuestra parte. Si tienes problemas con una persona en concreto, considera <a href="https://www.inaturalist.org/users/edit">silenciarla</a> en lugar de eliminar tu cuenta.<br/><br/>Si aun así estás seguro de que quieres eliminar tu cuenta, escribe <b>\"%1$s\"</b> en el siguiente formulario y elige en el botón para eliminar tu cuenta y todos tus datos.]]></string>
     <string name="your_account_has_been_deleted">Tu cuenta ha sido eliminada</string>
     <string name="you_must_enter_username_in_the_form_to_delete_account">Introduce \'%1$s\' en el formulario para eliminar tu cuenta</string>
     <!-- Second person hint text asking the user to enter their username -->
-    <string name="type_your_username">Introduce tu nombre de usuario</string>
+    <string name="type_your_username">Escribe tu nombre de usuario</string>
     <string name="error_deleting_account">Ha ocurrido un error al eliminar tu cuenta - por favor, comprueba tu conexión a Internet</string>
     <string name="verify_your_password">Verifica tu contraseña</string>
-    <string name="third_party_data_sharing">Compartir datos con terceros</string>
-    <string name="disable_third_party_data_sharing">Desactivar compartir datos con terceros</string>
-    <string name="do_not_collect_third_party_data">No recopilar datos de estabilidad ni de uso usando servicios de terceros</string>
+    <string name="third_party_data_sharing">Comparte datos con terceros</string>
+    <string name="disable_third_party_data_sharing">Desactiva compartir datos con terceros</string>
+    <string name="do_not_collect_third_party_data">No recopiles datos de estabilidad ni de uso usando servicios de terceros</string>
     <string name="enabled">Activado</string>
     <string name="disabled">Desactivado</string>
     <string name="third_party_data_sharing_notes1"><![CDATA[Utilizamos una variedad de servicios de terceros para monitorear la estabilidad y diagnosticar errores y problemas en nuestro software. Estas terceras partes incluyen:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Crashlytics Firebase</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
-    <string name="third_party_data_sharing_notes2"><![CDATA[La información que compartimos con terceras partes incluye:<br/><ul><li> Direcciones IP (que pueden utilizarse para obtener ubicación a escala de ciudad, y rastrearte a través de diferentes sitios web y servicios; ten en cuenta que hemos habilitado <a href="https://support.google.com/analytics/answer/2763052">anonimización IP</a> en Google Analytics y <a href="https://firebase.google.com/support/privacy">Crashlytics Firebase</a> no registra la dirección IP, que sepamos)</li><li>Detalles sobre el navegador, como marca, modelo y versión</li><li>Información sobre fallos, como qué linea de código los causó</li><li>Detalles sobre el dispositivo, como la marca y modelo de tu teléfono móvil</li></ul>]]></string>
-    <string name="third_party_data_sharing_notes3"><![CDATA[<b>Estos servicios de terceros nos proporcionan un enorme valor</b> manteniendo la estabilidad y usabilidad de iNaturalist equipo con nuestro personal relativamente reducido. En los dispositivos móviles, casi no hay otra forma `para que podamos conocer los problemas que están sucediendo, ya que el software se está ejecutando en dispositivos que no controlamos. A veces
-ni siquiera somos conscientes de que estos problemas ocurran hasta que lo conocemos a través de los
-datos que estos servicios proporcionan. <b>Al compartir esta información, nos estás ayudando a servirte a ti y a toda la comunidad iNaturalist.</b>]]></string>
+    <string name="third_party_data_sharing_notes2"><![CDATA[La información que compartimos con terceras partes incluye:<br/><ul><li> Direcciones IP (que pueden utilizarse para obtener ubicación a escala de ciudad, y rastrearte a través de diferentes sitios web y servicios; ten en cuenta que hemos habilitado <a href="https://support.google.com/analytics/answer/2763052">anonimización IP</a> en Google Analytics y <a href="https://firebase.google.com/support/privacy">Crashlytics Firebase</a> no registra la dirección IP, que sepamos).</li><li>Detalles sobre el navegador, como marca, modelo y versión</li><li>Información sobre fallos, como qué linea de código los causó.</li><li>Detalles sobre el dispositivo, como la marca y modelo de tu teléfono móvil.</li></ul>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b>Estos servicios de terceros nos proporcionan un enorme valor</b> manteniendo la estabilidad y usabilidad de iNaturalist con nuestro reducido personal. En los dispositivos móviles, casi no hay otra forma para que podamos conocer los problemas que están sucediendo, ya que el software se está ejecutando en dispositivos que no controlamos. A veces ni siquiera somos conscientes de que estos problemas ocurren hasta que lo conocemos a través de los datos que estos servicios proporcionan. <b>Al compartir esta información, nos estás ayudando a servirte a ti y a toda la comunidad iNaturalist.</b>]]></string>
     <string name="third_party_data_sharing_notes4"><![CDATA[Ten en cuenta que esta opción solo se aplica a las estadísticas de uso y errores que estamos enviando explícitamente a estas empresas. Todos los servidores de iNaturalist son proporcionados y alojados por Microsoft, todas las imágenes de iNaturalist están alojadas en Amazon, y casi todos los mapas de iNaturalist son servidos por Google, lo que significa que cada vez que ves una observación en iNaturalist, estás conectándote a los servicios proporcionados por estas empresas y exponiendo tu dirección IP a ellas, como mínimo (en la aplicación de iPhone usamos Apple Maps). iNaturalist probablemente no existiría sin los servicios que ofrecen estas empresas, y aunque podemos limitar la cantidad y los tipos de datos que compartes con ellos mientras usas iNat, no podemos detener el flujo de datos por completo.]]></string>
-    <string name="common_names_place"><![CDATA[Lugar para los nombres comunes: <b>%1$s</b>]]></string>
-    <string name="tap_to_prioritize_common_names">Pulse para priorizar los nombres comunes de un lugar específico.</string>
-    <string name="search_places">Buscar lugares</string>
-    <string name="locale_ar">Árabe</string>
-    <string name="locale_bg">Búlgaro</string>
-    <string name="locale_ca">Catalán</string>
-    <string name="locale_cs">Checo</string>
-    <string name="locale_da">Danés</string>
-    <string name="locale_de">Alemán</string>
-    <string name="locale_el">Griego</string>
-    <string name="locale_en">Inglés</string>
-    <string name="locale_en_rau">Inglés (Australia)</string>
-    <string name="locale_en_rgb">Inglés (Reino Unido)</string>
-    <string name="locale_en_rnz">Inglés (Nueva Zelanda)</string>
-    <string name="locale_en_rus">Inglés (Estados Unidos)</string>
-    <string name="locale_es">Español</string>
-    <string name="locale_es_rar">Español (Argentina)</string>
-    <string name="locale_es_rco">Español (Colombia)</string>
-    <string name="locale_es_res">Español (España)</string>
-    <string name="locale_es_rmx">Español (México)</string>
-    <string name="locale_et">Estonio</string>
-    <string name="locale_fi">Finlandés</string>
-    <string name="locale_fil">Filipino</string>
-    <string name="locale_fr">Francés</string>
-    <string name="locale_fr_rca">Francés (Canadá)</string>
-    <string name="locale_he">Hebreo</string>
-    <string name="locale_he_ril">Hebreo (Israel)</string>
-    <string name="locale_hi">Hindi</string>
-    <string name="locale_hr">Croata</string>
-    <string name="locale_hu">Húngaro</string>
-    <string name="locale_id">Indonesio</string>
-    <string name="locale_it">Italiano</string>
-    <string name="locale_ja">Japonés</string>
-    <string name="locale_ka">Georgiano</string>
-    <string name="locale_ko">Coreano</string>
-    <string name="locale_lt">Lituano</string>
-    <string name="locale_mi">Maorí</string>
-    <string name="locale_nb">Noruego Bokmål</string>
-    <string name="locale_nl">Holandés</string>
-    <string name="locale_nn_rno">Noruego Nynorsk (Noruega)</string>
-    <string name="locale_no">Noruego</string>
-    <string name="locale_pa_rin">Punjabi (India)</string>
-    <string name="locale_pl">Polaco</string>
-    <string name="locale_pt">Portugués</string>
-    <string name="locale_pt_rbr">Portugués (Brasil)</string>
-    <string name="locale_pt_rpt">Portugués (Portugal)</string>
-    <string name="locale_ro">Rumano</string>
-    <string name="locale_ru">Ruso</string>
-    <string name="locale_sk">Eslovaco</string>
-    <string name="locale_sq">Albanés</string>
-    <string name="locale_sv">Sueco</string>
-    <string name="locale_sv_rse">Sueco (Suecia)</string>
-    <string name="locale_sw">Swahili</string>
-    <string name="locale_tl">Tagalo</string>
-    <string name="locale_tr">Turco</string>
-    <string name="locale_uk">Ucraniano</string>
-    <string name="locale_vi">Vietnamita</string>
-    <string name="locale_zh_rcn">Chino (China)</string>
-    <string name="locale_zh_rhk">Chino (Hong Kong)</string>
-    <string name="locale_zh_rtw">Chino (Taiwan)</string>
+    <string name="common_names_place"><![CDATA[Lugar de nombres comunes: <b>%1$s</b>]]></string>
+    <string name="tap_to_prioritize_common_names">Pulsa para priorizar los nombres comunes de un lugar específico.</string>
+    <string name="search_places">Busca lugares</string>
 </resources>

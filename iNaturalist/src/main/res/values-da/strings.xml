@@ -197,6 +197,7 @@
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador er medlem af iNaturalist Network i Ecuador. Lokale institutioner, som støtter iNaturalist Ecuador, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australien er medlem af iNaturalist Network i Australien. Lokale institutioner, som støtter Naturalist Australien, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
     <string name="alert_message_use_argentinat">ArgentiNat er medlem af iNaturalist Network i Argentina. Lokale institutioner, som støtter NaturaLista, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Isreal er medlem af iNaturalist Network i Isreal. Lokale institutioner, som støtter Naturalist Australien, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
     <string name="editor">Redaktør</string>
     <string name="license">Licens</string>
     <string name="download_for_offline_use">Download til offlinebrug</string>
@@ -690,6 +691,10 @@
     <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network, som driver iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos, som driver Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente, som driver iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina understøtter ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia understøtter iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) understøtter iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa understøtter iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Markér alle som set</string>
     <string name="content_hidden">Indhold skjult</string>
     <string name="show_hidden_content">Vis Skjult Indhold</string>
@@ -774,64 +779,7 @@
     <string name="third_party_data_sharing_notes2"><![CDATA[Oplysninger, som deler med disse tredjeparter, omfatter:<br/><ul><li> IP-adresser (som kan bruges til at udlede placering til opløsning på byniveau samt til at spore dig på tværs af forskellige websteder og tjenester. Bemærk, at vi har aktiveret <a href="https://support.google.com/analytics/answer/2763052">IP-anonymisering</a> i Google Analytics, og <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> registrerer os bekendt ikke IP-adresse)</li><li>Browseroplysninger, såsom mærke, model og version</li><li>Nedbrudsoplysninger, såsom præcist dén kodelinje, der forårsagede et nedbrud</li><li>Enhedsoplysninger, såsom mærke og model af en mobilenhed</li></ul>]]></string>
     <string name="third_party_data_sharing_notes3"><![CDATA[<b>Disse tjenester fra tredjeparter giver os enorm værdi</b> mht. at bevare iNaturalists stabilitet og anvendelighed med vores relativt lille personale. På mobile enheder er der næsten ingen anden måde, hvorpå vi kan få indsigt i problemer, som opstår, da softwaren kører på enheder, vi ikke kontrollerer. Nogle gange er vi ikke engang klar over, at sådanne problemer opstår, før vi ser dem i de data, disse tjenester leverer. <b>Ved at dele disse oplysninger hjælper du os med at tjene dig og hele iNaturalist-fællesskabet.</b>]]></string>
     <string name="third_party_data_sharing_notes4"><![CDATA[Bemærk, at denne mulighed kun gælder for analyse- og nedbrudsdata, som vi eksplicit sender til disse virksomheder. Alle iNaturalist-servere leveres og driftes af Microsoft, alle iNaturalist-billeder er lagres hos Amazon, og næsten alle iNaturalist-kort leveres af Google, hvilket betyder, at hver gang du ser på en observation på iNaturalist, opretter du forbindelse til tjenester leveret af disse virksomheder, og afslører som et minimum din IP-adresse for dem (i iPhone-appen benyttes Apples kort). iNaturalist ville sandsynligvis ikke eksistere uden de tjenester, disse virksomheder leverer, og selv om vi kan begrænse den mængde og de datatyper, du deler med dem under brugen af iNat, kan vi ikke fuldstændigt stoppe datastrømmen.]]></string>
-    <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
-    <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
+    <string name="common_names_place"><![CDATA[Almindelig stedbetegnelse: <b>%1$s</b>]]></string>
+    <string name="tap_to_prioritize_common_names">Tryk for at prioritere almindelige stedbetegnelse fra et bestemt sted.</string>
     <string name="search_places">Søg steder</string>
-    <string name="locale_ar">Arabisk</string>
-    <string name="locale_bg">Bulgarsk</string>
-    <string name="locale_ca">Catalansk</string>
-    <string name="locale_cs">Tjekkisk</string>
-    <string name="locale_da">Dansk</string>
-    <string name="locale_de">Tysk</string>
-    <string name="locale_el">Græsk</string>
-    <string name="locale_en">Engelsk</string>
-    <string name="locale_en_rau">Engelsk (Australien)</string>
-    <string name="locale_en_rgb">Engelsk (Storbritannien)</string>
-    <string name="locale_en_rnz">Engelsk (New Zealand)</string>
-    <string name="locale_en_rus">Engelsk (USA)</string>
-    <string name="locale_es">Spansk</string>
-    <string name="locale_es_rar">Spansk (Argentina)</string>
-    <string name="locale_es_rco">Spansk (Colombia)</string>
-    <string name="locale_es_res">Spansk (Spanien)</string>
-    <string name="locale_es_rmx">Spansk (Mexico)</string>
-    <string name="locale_et">Estisk</string>
-    <string name="locale_fi">Finsk</string>
-    <string name="locale_fil">Filipinsk</string>
-    <string name="locale_fr">Fransk</string>
-    <string name="locale_fr_rca">Fransk (Canada)</string>
-    <string name="locale_he">Hebraisk</string>
-    <string name="locale_he_ril">Hebraisk (Israel)</string>
-    <string name="locale_hi">Hindi</string>
-    <string name="locale_hr">Kroatisk</string>
-    <string name="locale_hu">Ungarsk</string>
-    <string name="locale_id">Indonesisk</string>
-    <string name="locale_it">Italiensk</string>
-    <string name="locale_ja">Japansk</string>
-    <string name="locale_ka">Georgisk</string>
-    <string name="locale_ko">Koreansk</string>
-    <string name="locale_lt">Litauisk</string>
-    <string name="locale_mi">Maori</string>
-    <string name="locale_nb">Norsk Bokmål</string>
-    <string name="locale_nl">Hollandsk</string>
-    <string name="locale_nn_rno">Norsk Nynorsk (Norge)</string>
-    <string name="locale_no">Norsk</string>
-    <string name="locale_pa_rin">Punjabi (Indien)</string>
-    <string name="locale_pl">Polsk</string>
-    <string name="locale_pt">Portugisisk</string>
-    <string name="locale_pt_rbr">Portugisisk (Brasilien)</string>
-    <string name="locale_pt_rpt">Portugisisk (Portugal)</string>
-    <string name="locale_ro">Rumænsk</string>
-    <string name="locale_ru">Russisk</string>
-    <string name="locale_sk">Slovakisk</string>
-    <string name="locale_sq">Albansk</string>
-    <string name="locale_sv">Svensk</string>
-    <string name="locale_sv_rse">Svensk (Sverige)</string>
-    <string name="locale_sw">Swahili</string>
-    <string name="locale_tl">Tagalog</string>
-    <string name="locale_tr">Tyrkisk</string>
-    <string name="locale_uk">Ukrainsk</string>
-    <string name="locale_vi">Vietnamesisk</string>
-    <string name="locale_zh_rcn">Kinesisk (Kina)</string>
-    <string name="locale_zh_rhk">Kinesisk (Hong Kong)</string>
-    <string name="locale_zh_rtw">Kinesisk (Taiwan)</string>
 </resources>

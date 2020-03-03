@@ -197,6 +197,7 @@
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador ist Mitglied des iNaturalist Network in Ecuador. Lokale Institutionen, die NaturaLista unterstützen, haben Zugang zu Ihrer E-Mail-Adresse und zu den tatsächlichen Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1.000 Beobachtungen beigetragen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia ist Mitglied des iNaturalist Network in Australien. Lokale Institutionen, die NaturaLista unterstützen, haben Zugang zu Ihrer E-Mail-Adresse und zu den tatsächlichen Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1.000 Beobachtungen beigetragen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
     <string name="alert_message_use_argentinat">ArgentiNat ist Mitglied des iNaturalist Network in Argentinien. Lokale Institutionen, die ArgentiNat unterstützen, haben Zugang zu Ihrer E-Mail-Adresse und zu den wahren Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1000 Beobachtungen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editor</string>
     <string name="license">Lizenz</string>
     <string name="download_for_offline_use">Herunterladen für Offline Verwendung</string>
@@ -690,6 +691,10 @@
     <string name="network_credit_naturewatchnz"><![CDATA[Neuseeland: Neuseeland Biodiversitätserfassungsnetzwerk mit iNaturalist NZ - Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Biodiversität für alle, die Biodiversity4All betreiben (<a href="https://biodiversity4all.org"> Biodiversity4All.org </a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Umweltministerium betreibt iNaturalistPa (<a href="https://panama.inaturalist.org"> panama.inaturalist.org </a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Alle als „Gesehen” kennzeichnen</string>
     <string name="content_hidden">Inhalt ausgeblendet</string>
     <string name="show_hidden_content">Ausgeblendeten Inhalt anzeigen</string>
@@ -777,61 +782,4 @@
     <string name="common_names_place"><![CDATA[Gebräuchliche Ortsbezeichnungen: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Antippen, um gebräuchliche Namen eines bestimmten Ortes zu bevorzugen.</string>
     <string name="search_places">Orte suchen</string>
-    <string name="locale_ar">Arabisch</string>
-    <string name="locale_bg">Bulgarisch</string>
-    <string name="locale_ca">Katalanisch</string>
-    <string name="locale_cs">Tschechisch</string>
-    <string name="locale_da">Dänisch</string>
-    <string name="locale_de">Deutsch</string>
-    <string name="locale_el">Griechisch</string>
-    <string name="locale_en">Englisch</string>
-    <string name="locale_en_rau">Englisch (Australien)</string>
-    <string name="locale_en_rgb">Englisch (Großbritannien)</string>
-    <string name="locale_en_rnz">Englisch (Neuseeland)</string>
-    <string name="locale_en_rus">Englisch (Vereinigte Staaten)</string>
-    <string name="locale_es">Spanisch</string>
-    <string name="locale_es_rar">Spanisch (Argentinien)</string>
-    <string name="locale_es_rco">Spanisch (Kolumbien)</string>
-    <string name="locale_es_res">Spanisch (Spanien)</string>
-    <string name="locale_es_rmx">Spanisch (Mexiko)</string>
-    <string name="locale_et">Estnisch</string>
-    <string name="locale_fi">Finnisch</string>
-    <string name="locale_fil">Philippinisch</string>
-    <string name="locale_fr">Französisch</string>
-    <string name="locale_fr_rca">Französisch (Kanada)</string>
-    <string name="locale_he">Hebräisch</string>
-    <string name="locale_he_ril">Hebräisch (Israel)</string>
-    <string name="locale_hi">Hindi</string>
-    <string name="locale_hr">Kroatisch</string>
-    <string name="locale_hu">Ungarisch</string>
-    <string name="locale_id">Indonesisch</string>
-    <string name="locale_it">Italienisch</string>
-    <string name="locale_ja">Japanisch</string>
-    <string name="locale_ka">Georgisch</string>
-    <string name="locale_ko">Koreanisch</string>
-    <string name="locale_lt">Litauisch</string>
-    <string name="locale_mi">Maorisch</string>
-    <string name="locale_nb">Norwegisch Bokmål</string>
-    <string name="locale_nl">Niederländisch</string>
-    <string name="locale_nn_rno">Norwegisch Nynorsk (Norwegen)</string>
-    <string name="locale_no">Norwegisch</string>
-    <string name="locale_pa_rin">Pandschabi (Indien)</string>
-    <string name="locale_pl">Polnisch</string>
-    <string name="locale_pt">Portugiesisch</string>
-    <string name="locale_pt_rbr">Portugiesisch (Brasilien)</string>
-    <string name="locale_pt_rpt">Portugiesisch (Portugal)</string>
-    <string name="locale_ro">Rumänisch</string>
-    <string name="locale_ru">Russisch</string>
-    <string name="locale_sk">Slowakisch</string>
-    <string name="locale_sq">Albanisch</string>
-    <string name="locale_sv">Schwedisch</string>
-    <string name="locale_sv_rse">Schwedisch (Schweden)</string>
-    <string name="locale_sw">Suahelisch</string>
-    <string name="locale_tl">Tagalog</string>
-    <string name="locale_tr">Türkisch</string>
-    <string name="locale_uk">Ukrainisch</string>
-    <string name="locale_vi">Vietnamesisch</string>
-    <string name="locale_zh_rcn">Chinesisch (China)</string>
-    <string name="locale_zh_rhk">Chinesisch (Hongkong)</string>
-    <string name="locale_zh_rtw">Chinesisch (Taiwan)</string>
 </resources>

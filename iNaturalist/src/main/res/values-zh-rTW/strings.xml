@@ -197,6 +197,7 @@
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador 是 iNaturalist 附屬網路在厄瓜多的成員。支援 iNaturalist Ecuador 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia 是 iNaturalist 附屬網路在澳洲的成員。支援 iNaturalist Australia 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
     <string name="alert_message_use_argentinat">ArgentiNat 是 iNaturalist 附屬網路阿根廷的成員。支援 ArgentiNat 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">編輯</string>
     <string name="license">授權</string>
     <string name="download_for_offline_use">下載供離線使用</string>
@@ -690,6 +691,10 @@
     <string name="network_credit_naturewatchnz"><![CDATA[紐西蘭：營運 iNaturalist NZ  的紐西蘭生物多樣性紀錄網路— Mātaki Taiao (New Zealand Biodiversity Recording Network; inaturalist.nz)。]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[葡萄牙: 營運 Biodisy4all 的全民生物多樣性協會 (Associação Biodiversidade Para Todos; <a href="https://biodiversity4all.org">biodistiny4al. org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[巴拿馬: 營運 iNaturalistPa 的環境部 (Ministerio de Ambiente; <a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">標記為已讀</string>
     <string name="content_hidden">內容已隱藏</string>
     <string name="show_hidden_content">顯示隱藏內容</string>
@@ -764,74 +769,17 @@
     <!-- Second person hint text asking the user to enter their username -->
     <string name="type_your_username">輸入您的使用者名稱</string>
     <string name="error_deleting_account">刪除您的帳號時出現問題-請確認您的網路連線</string>
-    <string name="verify_your_password">Verify Your Password</string>
-    <string name="third_party_data_sharing">Third-party Data Sharing</string>
-    <string name="disable_third_party_data_sharing">Disable Third-party Data Sharing</string>
-    <string name="do_not_collect_third_party_data">Do not collect stability and usage data using third-party services</string>
-    <string name="enabled">Enabled</string>
-    <string name="disabled">Disabled</string>
-    <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third-party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="verify_your_password">請確認您的密碼</string>
+    <string name="third_party_data_sharing">第三方資料共享</string>
+    <string name="disable_third_party_data_sharing">停用第三方資料共享</string>
+    <string name="do_not_collect_third_party_data">不要使用第三方服務來收集穩定性和使用資料分析</string>
+    <string name="enabled">已啟用</string>
+    <string name="disabled">已停用</string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[我們使用不同的第三方服務來監測我們軟體的穩定性與診斷臭蟲和問題。這些第三方服務包含：<br/><ul><li>Google<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
     <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
     <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third-party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
     <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
-    <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
-    <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
-    <string name="search_places">Search Places</string>
-    <string name="locale_ar">Arabic</string>
-    <string name="locale_bg">Bulgarian</string>
-    <string name="locale_ca">Catalan</string>
-    <string name="locale_cs">Czech</string>
-    <string name="locale_da">Danish</string>
-    <string name="locale_de">German</string>
-    <string name="locale_el">Greek</string>
-    <string name="locale_en">English</string>
-    <string name="locale_en_rau">English (Australia)</string>
-    <string name="locale_en_rgb">English (United Kingdom)</string>
-    <string name="locale_en_rnz">English (New Zealand)</string>
-    <string name="locale_en_rus">English (United States)</string>
-    <string name="locale_es">Spanish</string>
-    <string name="locale_es_rar">Spanish (Argentina)</string>
-    <string name="locale_es_rco">Spanish (Colombia)</string>
-    <string name="locale_es_res">Spanish (Spain)</string>
-    <string name="locale_es_rmx">Spanish (Mexico)</string>
-    <string name="locale_et">Estonian</string>
-    <string name="locale_fi">Finnish</string>
-    <string name="locale_fil">Filipino</string>
-    <string name="locale_fr">French</string>
-    <string name="locale_fr_rca">French (Canada)</string>
-    <string name="locale_he">Hebrew</string>
-    <string name="locale_he_ril">Hebrew (Israel)</string>
-    <string name="locale_hi">Hindi</string>
-    <string name="locale_hr">Croatian</string>
-    <string name="locale_hu">Hungarian</string>
-    <string name="locale_id">Indonesian</string>
-    <string name="locale_it">Italian</string>
-    <string name="locale_ja">Japanese</string>
-    <string name="locale_ka">Georgian</string>
-    <string name="locale_ko">Korean</string>
-    <string name="locale_lt">Lithuanian</string>
-    <string name="locale_mi">Maori</string>
-    <string name="locale_nb">Norwegian Bokmål</string>
-    <string name="locale_nl">Dutch</string>
-    <string name="locale_nn_rno">Norwegian Nynorsk (Norway)</string>
-    <string name="locale_no">Norwegian</string>
-    <string name="locale_pa_rin">Punjabi (India)</string>
-    <string name="locale_pl">Polish</string>
-    <string name="locale_pt">Portuguese</string>
-    <string name="locale_pt_rbr">Portuguese (Brazil)</string>
-    <string name="locale_pt_rpt">Portuguese (Portugal)</string>
-    <string name="locale_ro">Romanian</string>
-    <string name="locale_ru">Russian</string>
-    <string name="locale_sk">Slovak</string>
-    <string name="locale_sq">Albanian</string>
-    <string name="locale_sv">Swedish</string>
-    <string name="locale_sv_rse">Swedish (Sweden)</string>
-    <string name="locale_sw">Swahili</string>
-    <string name="locale_tl">Tagalog</string>
-    <string name="locale_tr">Turkish</string>
-    <string name="locale_uk">Ukrainian</string>
-    <string name="locale_vi">Vietnamese</string>
-    <string name="locale_zh_rcn">Chinese (China)</string>
-    <string name="locale_zh_rhk">Chinese (Hong Kong)</string>
-    <string name="locale_zh_rtw">Chinese (Taiwan)</string>
+    <string name="common_names_place"><![CDATA[俗名的地點：<b>%1$s/b>]]></string>
+    <string name="tap_to_prioritize_common_names">點選以指定從特定地點來顯示優先的俗名</string>
+    <string name="search_places">搜尋地點</string>
 </resources>
