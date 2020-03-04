@@ -681,6 +681,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
             SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();
 
+            boolean shouldRestart = false;
             String newLocale = user.getString("locale").replace("-", "-r");
             String oldLocale = prefs.getString("pref_locale", "");
             oldLocale = oldLocale.replace("-r", "-");
@@ -688,6 +689,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 // User locale changed (server-side)
                 editor.putString("pref_locale", newLocale.replace("-", "-r"));
                 mApp.applyLocaleSettings(getBaseContext());
+                shouldRestart = true;
             }
 
             editor.putInt("observation_count", user.getInt("observations_count"));
@@ -752,6 +754,12 @@ public class BaseFragmentActivity extends AppCompatActivity {
             }
 
             refreshUserDetails();
+
+            if (shouldRestart) {
+                // Happens when user locale changed remotely - we need to restart to fully apply language changes
+                finish();
+                mApp.restart();
+            }
         }
     }
 
