@@ -509,6 +509,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             LoginManager.getInstance().logOut();
         }
 
+        boolean shouldRestart = false;
+
 		mPrefEditor.remove("username");
 		mPrefEditor.remove("credentials");
 		mPrefEditor.remove("password");
@@ -526,7 +528,14 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         mPrefEditor.remove("pref_observation_errors");
         mPrefEditor.remove("unread_activities");
         mPrefEditor.remove("prefers_scientific_name_first");
-		mPrefEditor.commit();
+        mPrefEditor.remove("last_language");
+        String prevLocale = mPreferences.getString("pref_locale", "");
+        mPrefEditor.remove("pref_locale");
+        mPrefEditor.remove("user_place_display_name");
+        mPrefEditor.remove("user_place_id");
+        mPrefEditor.commit();
+
+		shouldRestart = !prevLocale.equals("");
 
 
         // Delete all locally-cached photo files
@@ -563,5 +572,11 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         ((SettingsActivity)getActivity()).refreshUserDetails();
 
         mDeleteAccount.setVisible(false);
-	}
+
+        if (shouldRestart) {
+            mApp.applyLocaleSettings();
+            mApp.restart();
+            getActivity().finish();
+        }
+    }
 }
