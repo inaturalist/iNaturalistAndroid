@@ -105,6 +105,7 @@ import android.text.Html;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.Pair;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -2427,8 +2428,16 @@ public class ObservationEditor extends AppCompatActivity {
 
         } else if (requestCode == RECORD_SOUND_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                Uri uri = data.getData();
-                prepareCapturedSound(uri, true);
+                final Uri uri = data.getData();
+                mHelper.loading();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        prepareCapturedSound(uri, true);
+                    }
+                    // #780 - Hack - Google Recorder app needs a few more seconds to finish saving file (does this in the background)
+                }, 2000);
             }
 
         } else if (requestCode == RECORD_SOUND_INTERNAL_ACTIVITY_REQUEST_CODE) {
@@ -2547,8 +2556,6 @@ public class ObservationEditor extends AppCompatActivity {
         int index = cursor.getColumnIndex(MediaStore.Audio.AudioColumns.DATA);
         return cursor.getString(index);
     }
-
-
 
     private void prepareCapturedSound(Uri selectedSoundUri, boolean translateUriToPath) {
         // We can't control where the audio file gets saved to - just copy it locally
