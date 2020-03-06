@@ -20,6 +20,7 @@ import com.squareup.picasso.Picasso;
 import android.Manifest;
 
 import io.fabric.sdk.android.Fabric;
+import com.crashlytics.android.Crashlytics;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -369,6 +370,9 @@ public class INaturalistApp extends MultiDexApplication {
 
         settingsEditor.putBoolean("prefers_no_tracking", value);
         settingsEditor.apply();
+
+        AnalyticsClient.getInstance().setDisabled(value);
+        // FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(!value);
     }
 
     public void setUserRoles(Set<String> roles) {

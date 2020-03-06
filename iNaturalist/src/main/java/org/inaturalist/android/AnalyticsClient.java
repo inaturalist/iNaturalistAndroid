@@ -185,7 +185,7 @@ public class AnalyticsClient {
 
     private Application mApplication;
     private Activity mCurrentActivity;
-    private final boolean mDisabled;
+    private boolean mDisabled;
 
     private AnalyticsClient(Application application, boolean disabled) {
         mApplication = application;
@@ -278,5 +278,9 @@ public class AnalyticsClient {
         // Extract just the activity class name (not including the package namespace)
         String[] parts = className.split("\\.");
         return parts[parts.length - 1];
+    }
+
+    public void setDisabled(boolean disabled) {
+        mDisabled = disabled;
     }
 }
