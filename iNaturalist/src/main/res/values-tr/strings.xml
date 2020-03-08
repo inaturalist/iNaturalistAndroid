@@ -197,6 +197,7 @@
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ekvador, Ekvador\'daki iNaturalist Ağı üyesidir. iNaturalist Ekvador\'u destekleyen yerel kurumlar gözlemler için e-posta adresinize ve kamu tarafından gizlenmiş ya da özel olan gerçek konumlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Avustralya, Avustralya\'daki iNaturalist Ağı üyesidir. iNaturalist Avustralya\'yı destekleyen yerel kurumlar gözlemler için e-posta adresinize ve kamu tarafından gizlenmiş ya da özel olan gerçek konumlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
     <string name="alert_message_use_argentinat">ArgentiNat, Arjantin’deki iNaturalist Ağı\'nın bir üyesidir. ArgentiNat\'ı destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamusal olarak gizlenmiş ya da özel gözlemleriniz için gerçek koordinatlarınıza erişebilecek. 1000\'den çok gözleminiz varsa lütfen deneyerek üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Düzenleyici</string>
     <string name="license">Lisans</string>
     <string name="download_for_offline_use">Çevrimdışı kullanım için indir</string>
@@ -690,6 +691,10 @@
     <string name="network_credit_naturewatchnz"><![CDATA[Yeni Zelanda: iNaturalist NZ’yi işleten Yeni Zelanda Biyoçeşitlilik Kayıt Ağı — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portekiz: Associação Biodiversidade Para Todos, Biodiversity4All\'ı (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>) işletir]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panama: iNaturalistPa\'yı (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>) işleten Çevre Bakanlığıdır]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Tümünü görüntülendi olarak işaretle</string>
     <string name="content_hidden">İçerik Gizlendi</string>
     <string name="show_hidden_content">Gizli İçeriği Göster</string>
@@ -773,65 +778,8 @@
     <string name="third_party_data_sharing_notes1"><![CDATA[Yazılımımızdaki kararlılığı izlemek, hataları ve sorunları bulmak için çeşitli üçüncü taraf hizmetleri kullanıyoruz. Bu üçüncü parti uygulamalar şunları içerir: <br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
     <string name="third_party_data_sharing_notes2"><![CDATA[Bu üçüncü taraflarla paylaştığımız bilgiler şunları içerir: <br/><ul><li>IP adresleri (il düzeyinde konum elde etmek ve sizi farklı web sayfaları ve hizmetler arasında izlemek için kullanılabilir; Google Analytics\'te <a href="https://support.google.com/analytics/answer/2763052">IP anonimleştirmeyi</a> etkinleştirdiğimizi ve <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics\'in</a> IP adresini bilgimize kaydetmediğini unutmayın)</li><li>Marka, model ve sürüm gibi tarayıcı ayrıntıları</li><li>Çökme ayrıntıları, tam olarak hangi kod satırının kilitlenmeye neden olduğu gibi</li><li>Cep telefonu marka ve modeli gibi cihaz ayrıntıları</li></ul>]]></string>
     <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third-party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
-    <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[Bu seçeneğin yalnızca bu şirketlere açıkça gönderdiğimiz analizler ve kilitlenme verileri için geçerli olduğunu unutmayın.  Tüm iNaturalist sunucuları Microsoft tarafından sağlanır ve barındırılır, tüm iNaturalist görüntüleri Amazon tarafından barındırılır ve hemen hemen tüm iNaturalist haritaları Google tarafından sunulur, yani iNaturalist ile ilgili her incelemeye baktığınızda, bu şirketler tarafından sağlanan hizmetlere bağlanırsınız ve  IP adresinizi en azından onlara maruz bırakma (iPhone uygulamasında Apple\'ın haritalarını kullanıyoruz).  iNaturalist muhtemelen bu şirketlerin sağladığı hizmetler olmadan var olamazdı ve iNat kullanırken onlarla paylaştığınız veri miktarını ve türünü sınırlayabilirken, veri akışını tamamen durduramayız.]]></string>
     <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
-    <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
-    <string name="search_places">Search Places</string>
-    <string name="locale_ar">Arabic</string>
-    <string name="locale_bg">Bulgarian</string>
-    <string name="locale_ca">Catalan</string>
-    <string name="locale_cs">Czech</string>
-    <string name="locale_da">Danish</string>
-    <string name="locale_de">German</string>
-    <string name="locale_el">Greek</string>
-    <string name="locale_en">English</string>
-    <string name="locale_en_rau">English (Australia)</string>
-    <string name="locale_en_rgb">English (United Kingdom)</string>
-    <string name="locale_en_rnz">English (New Zealand)</string>
-    <string name="locale_en_rus">English (United States)</string>
-    <string name="locale_es">Spanish</string>
-    <string name="locale_es_rar">Spanish (Argentina)</string>
-    <string name="locale_es_rco">Spanish (Colombia)</string>
-    <string name="locale_es_res">Spanish (Spain)</string>
-    <string name="locale_es_rmx">Spanish (Mexico)</string>
-    <string name="locale_et">Estonian</string>
-    <string name="locale_fi">Finnish</string>
-    <string name="locale_fil">Filipino</string>
-    <string name="locale_fr">French</string>
-    <string name="locale_fr_rca">French (Canada)</string>
-    <string name="locale_he">Hebrew</string>
-    <string name="locale_he_ril">Hebrew (Israel)</string>
-    <string name="locale_hi">Hindi</string>
-    <string name="locale_hr">Croatian</string>
-    <string name="locale_hu">Hungarian</string>
-    <string name="locale_id">Indonesian</string>
-    <string name="locale_it">Italian</string>
-    <string name="locale_ja">Japanese</string>
-    <string name="locale_ka">Georgian</string>
-    <string name="locale_ko">Korean</string>
-    <string name="locale_lt">Lithuanian</string>
-    <string name="locale_mi">Maori</string>
-    <string name="locale_nb">Norwegian Bokmål</string>
-    <string name="locale_nl">Dutch</string>
-    <string name="locale_nn_rno">Norwegian Nynorsk (Norway)</string>
-    <string name="locale_no">Norwegian</string>
-    <string name="locale_pa_rin">Punjabi (India)</string>
-    <string name="locale_pl">Polish</string>
-    <string name="locale_pt">Portuguese</string>
-    <string name="locale_pt_rbr">Portuguese (Brazil)</string>
-    <string name="locale_pt_rpt">Portuguese (Portugal)</string>
-    <string name="locale_ro">Romanian</string>
-    <string name="locale_ru">Russian</string>
-    <string name="locale_sk">Slovak</string>
-    <string name="locale_sq">Albanian</string>
-    <string name="locale_sv">Swedish</string>
-    <string name="locale_sv_rse">Swedish (Sweden)</string>
-    <string name="locale_sw">Swahili</string>
-    <string name="locale_tl">Tagalog</string>
-    <string name="locale_tr">Turkish</string>
-    <string name="locale_uk">Ukrainian</string>
-    <string name="locale_vi">Vietnamese</string>
-    <string name="locale_zh_rcn">Chinese (China)</string>
-    <string name="locale_zh_rhk">Chinese (Hong Kong)</string>
-    <string name="locale_zh_rtw">Chinese (Taiwan)</string>
+    <string name="tap_to_prioritize_common_names">Belirli bir yerden ortak adlara öncelik vermek için dokunun.</string>
+    <string name="search_places">Yerleri Ara</string>
 </resources>

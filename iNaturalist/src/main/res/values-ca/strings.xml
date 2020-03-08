@@ -197,6 +197,7 @@
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador és membre de la Xarxa iNaturalist de l\'Equador. Les institucions locals que donen suport a iNaturalist Ecuador tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Austalia és membre de la Xarxa iNaturalist d\'Austràlia. Les institucions locals que donen suport a iNaturalist Ecuador tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
     <string name="alert_message_use_argentinat">ArgentiNat és membre de la Xarxa iNaturalist a Argentin. Les Institucions locals que donen suport a ArgentiNat tenen accés a la vostra adreça de correu electrònic i a les coordenades reals de les observacions encara que siguin enfosquides o privades. Si us plau, no canvieu experimentalment la vostra afiliació si teniu més de 1000 observacions. Voleu canviar la vostra afiliació?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editor</string>
     <string name="license">Llicència</string>
     <string name="download_for_offline_use">Descarregar per a ús fora de línia</string>
@@ -690,6 +691,10 @@
     <string name="network_credit_naturewatchnz"><![CDATA[Nova Zelanda: La New Zealand Biodiversity Recording Network manté iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: l\'Associação Biodiversidade Para Todos manté Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panamà: el Ministerio de Ambiente manté iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Marca tot com a vist</string>
     <string name="content_hidden">Contingut amagat</string>
     <string name="show_hidden_content">Mostra Contingut Amagat</string>
@@ -774,64 +779,7 @@
     <string name="third_party_data_sharing_notes2"><![CDATA[La informació de compartim amb Tercers inclouen:<br/><ul><li>Adreça IP (que pot ser usada per obtenir la localització a un nivell de resolució de ciutat, i seguir-vos a través de diversos llocs web i serveis; recordeu que hem habilitat <a href="https://support.google.com/analytics/answer/2763052">l\'anonimització IP</a> a Google Analytics i <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> no enregistra l\'adreça IP, fins on coneixem)</li><li>Detalls del Navegador, com el fabricant, el model i la versió</li><li>Detalls de l\'errada, com la línia exacta de codi que ha provocat l\'errada</li><li>Detalls del terminal, com el fabricant i el model del telèfon mòbil</li></ul>]]></string>
     <string name="third_party_data_sharing_notes3"><![CDATA[<b>Aquests serveis de Tercers ens proporcionen un gran valor </b> mantenint l\'estabilitat i usabilitat d\'iNaturalist amb el nostre relativament reduït personal. En dispositius mòbils, no hi ha gairebé una altra forma de poder conèixer els problemes que estan succeint, donat que el programari està corrent en dispositius que no controlem. De vegades no som fins i tot conscient que aquests problemes estiguin succeint fins que no veiem en les dades que ens proporcionen aquests serveis. <b>Compartint aquesta informació, ens esteu ajudant a ser-vos d\'ajut, a tu i tota la comunitat d\'iNaturalist.</b>]]></string>
     <string name="third_party_data_sharing_notes4"><![CDATA[Observeu que aquesta opció només s\'aplica a l\'analítica i dades de fallades que explícitament estem enviant a aquestes empreses. Tots els servidors d\'iNaturalist són proporcionats i allotjats per Microsoft, totes les imatges d\'iNaturalist són allotjades a Amazon, i gairebé tots els mapes d\'iNaturalist se serveixen des de Google, el que significa que cada vegada que mireu a una observació d\'iNaturalist, esteu connectant amb els serveis proporcionats per aquestes empreses i exposant-los, al menys, la vostra adreça d\'IP (a l\'aplicació d\'iPhone utilitzem els mapes d\'Apple). iNaturalist probablement no existiria sense els serveis que proporciones aquestes empreses, i malgrat que podem limitar el volum i tipus de dades que compartiu amb elles mentre utilitzant iNat, no podem parar íntegrament el flux de dades.]]></string>
-    <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
-    <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
-    <string name="search_places">Search Places</string>
-    <string name="locale_ar">Arabic</string>
-    <string name="locale_bg">Bulgarian</string>
-    <string name="locale_ca">Catalan</string>
-    <string name="locale_cs">Czech</string>
-    <string name="locale_da">Danish</string>
-    <string name="locale_de">German</string>
-    <string name="locale_el">Greek</string>
-    <string name="locale_en">English</string>
-    <string name="locale_en_rau">English (Australia)</string>
-    <string name="locale_en_rgb">English (United Kingdom)</string>
-    <string name="locale_en_rnz">English (New Zealand)</string>
-    <string name="locale_en_rus">English (United States)</string>
-    <string name="locale_es">Spanish</string>
-    <string name="locale_es_rar">Spanish (Argentina)</string>
-    <string name="locale_es_rco">Spanish (Colombia)</string>
-    <string name="locale_es_res">Spanish (Spain)</string>
-    <string name="locale_es_rmx">Spanish (Mexico)</string>
-    <string name="locale_et">Estonian</string>
-    <string name="locale_fi">Finnish</string>
-    <string name="locale_fil">Filipino</string>
-    <string name="locale_fr">French</string>
-    <string name="locale_fr_rca">French (Canada)</string>
-    <string name="locale_he">Hebrew</string>
-    <string name="locale_he_ril">Hebrew (Israel)</string>
-    <string name="locale_hi">Hindi</string>
-    <string name="locale_hr">Croatian</string>
-    <string name="locale_hu">Hungarian</string>
-    <string name="locale_id">Indonesian</string>
-    <string name="locale_it">Italian</string>
-    <string name="locale_ja">Japanese</string>
-    <string name="locale_ka">Georgian</string>
-    <string name="locale_ko">Korean</string>
-    <string name="locale_lt">Lithuanian</string>
-    <string name="locale_mi">Maori</string>
-    <string name="locale_nb">Norwegian Bokmål</string>
-    <string name="locale_nl">Dutch</string>
-    <string name="locale_nn_rno">Norwegian Nynorsk (Norway)</string>
-    <string name="locale_no">Norwegian</string>
-    <string name="locale_pa_rin">Punjabi (India)</string>
-    <string name="locale_pl">Polish</string>
-    <string name="locale_pt">Portuguese</string>
-    <string name="locale_pt_rbr">Portuguese (Brazil)</string>
-    <string name="locale_pt_rpt">Portuguese (Portugal)</string>
-    <string name="locale_ro">Romanian</string>
-    <string name="locale_ru">Russian</string>
-    <string name="locale_sk">Slovak</string>
-    <string name="locale_sq">Albanian</string>
-    <string name="locale_sv">Swedish</string>
-    <string name="locale_sv_rse">Swedish (Sweden)</string>
-    <string name="locale_sw">Swahili</string>
-    <string name="locale_tl">Tagalog</string>
-    <string name="locale_tr">Turkish</string>
-    <string name="locale_uk">Ukrainian</string>
-    <string name="locale_vi">Vietnamese</string>
-    <string name="locale_zh_rcn">Chinese (China)</string>
-    <string name="locale_zh_rhk">Chinese (Hong Kong)</string>
-    <string name="locale_zh_rtw">Chinese (Taiwan)</string>
+    <string name="common_names_place"><![CDATA[Lloc per als noms comuns: <b>%1$s</b>]]></string>
+    <string name="tap_to_prioritize_common_names">Premeu per prioritzar els noms comuns d\'un lloc particular.</string>
+    <string name="search_places">Cerca llocs</string>
 </resources>
