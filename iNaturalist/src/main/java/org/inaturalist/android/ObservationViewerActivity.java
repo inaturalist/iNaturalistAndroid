@@ -382,7 +382,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         public int getCount() {
             return mReadOnly ?
                     (mObservation.photos.size() + mObservation.sounds.size()) :
-                    mImageCursor.getCount() + mSoundCursor.getCount();
+                    (mImageCursor != null ? mImageCursor.getCount() : 0) +
+                    (mSoundCursor != null ? mSoundCursor.getCount() : 0);
         }
 
         public int getPhotoCount() {
