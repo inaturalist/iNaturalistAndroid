@@ -23,8 +23,6 @@ import org.tinylog.Logger;
 public class DeleteAccount extends BaseFragmentActivity {
     private static final String TAG = "About";
 
-    private static final int REQUEST_CODE_LOGIN = 0x1001;
-
     private TextView mMessage;
     private INaturalistApp mApp;
     private EditText mUsernameText;
@@ -77,11 +75,12 @@ public class DeleteAccount extends BaseFragmentActivity {
                     return;
                 }
 
+                // Delete the profile
+                mHelper.loading();
 
-                // Force user to login again
-                Intent intent = new Intent(DeleteAccount.this, LoginSignupActivity.class);
-                intent.putExtra(LoginSignupActivity.VERIFY_PASSWORD, true);
-                startActivityForResult(intent, REQUEST_CODE_LOGIN);
+                // Delete account
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_DELETE_ACCOUNT, null, DeleteAccount.this, INaturalistService.class);
+                ContextCompat.startForegroundService(DeleteAccount.this, serviceIntent);
             }
         });
 
@@ -125,22 +124,6 @@ public class DeleteAccount extends BaseFragmentActivity {
 
             DeleteAccount.this.setResult(RESULT_OK);
             DeleteAccount.this.finish();
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        Logger.tag(TAG).debug("onActivityResult - " + requestCode + ":" + resultCode);
-
-        if ((requestCode == REQUEST_CODE_LOGIN) && (resultCode == Activity.RESULT_OK)) {
-            // User verified password - delete the profile
-            mHelper.loading();
-
-            // Delete account
-            Intent serviceIntent = new Intent(INaturalistService.ACTION_DELETE_ACCOUNT, null, DeleteAccount.this, INaturalistService.class);
-            ContextCompat.startForegroundService(DeleteAccount.this, serviceIntent);
         }
     }
 
