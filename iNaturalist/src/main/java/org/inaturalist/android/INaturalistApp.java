@@ -790,7 +790,7 @@ public class INaturalistApp extends MultiDexApplication {
         }
         Locale.setDefault(locale);
 
-        Logger.tag(TAG).info("applyLocaleSettings - %s / %s / %s", lang, locale, deviceLocale);
+        Logger.tag(TAG).info(String.format("applyLocaleSettings - %s / %s / %s", lang, locale, deviceLocale));
 
         Resources standardResources = context.getResources();
         AssetManager assets = standardResources.getAssets();
@@ -805,13 +805,13 @@ public class INaturalistApp extends MultiDexApplication {
             setLastLocale();
             lastLanguage = locale.getLanguage();
         }
-        Logger.tag(TAG).info("hasLocaleChanged - %s / %s", lastLanguage, locale);
+        Logger.tag(TAG).info(String.format("hasLocaleChanged - %s / %s", lastLanguage, locale));
         return !locale.getLanguage().equals(lastLanguage);
     }
 
     public void setLastLocale() {
         String newLanguage = locale.getLanguage();
-        Logger.tag(TAG).info("setLastLocale - %s", newLanguage);
+        Logger.tag(TAG).info(String.format("setLastLocale - %s", newLanguage));
         getPrefs().edit().putString("last_language", newLanguage).commit();
     }
     

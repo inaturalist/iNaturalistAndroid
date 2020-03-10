@@ -238,7 +238,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             public boolean onPreferenceChange(Preference preference, Object o) {
                 int index = mLanguagePreference.findIndexOfValue((String)o);
                 String locale = getResources().getStringArray(R.array.language_values)[index];
-                Logger.tag(TAG).info("Setting onPreferenceChange - %s", locale);
+                Logger.tag(TAG).info(String.format("Setting onPreferenceChange - %s", locale));
                 mPrefEditor.putString("pref_locale", locale);
                 mPrefEditor.commit();
 
@@ -391,7 +391,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     private void refreshLanguageSettings() {
         String prefLocale = mPreferences.getString("pref_locale", "");
-        Logger.tag(TAG).info("refreshLanguageSettings - %s", prefLocale);
+        Logger.tag(TAG).info(String.format("refreshLanguageSettings - %s", prefLocale));
         String[] supportedLocales = getResources().getStringArray(R.array.language_values);
 
         if (prefLocale.equals("")) {
