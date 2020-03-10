@@ -783,5 +783,7 @@
     <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
     <string name="search_places">Search Places</string>
+    <string name="restart_app">Restart App</string>
+    <string name="disable_third_party_sharing_restart">In order to disable third party data sharing immediately, we have to restart the app.</string>
 </resources>
 

@@ -1,5 +1,6 @@
 package org.inaturalist.android;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ public class ThirdPartyDataSharingFragment extends PreferenceFragmentCompat {
     private CheckBoxPreference mDisableThirdPartyDataSharing;
 
     private INaturalistApp mApp;
+    private ActivityHelper mHelper;
 
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
@@ -39,6 +41,7 @@ public class ThirdPartyDataSharingFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mHelper = new ActivityHelper(getActivity());
         refreshSettings();
     }
 
@@ -60,6 +63,22 @@ public class ThirdPartyDataSharingFragment extends PreferenceFragmentCompat {
                 }
                 serviceIntent.putExtra(INaturalistService.USER, new BetterJSONObject(userDetails));
                 ContextCompat.startForegroundService(getActivity(), serviceIntent);
+
+                if (newValue) {
+                    // Restart to apply changes
+                    mHelper.confirm(getString(R.string.restart_app), getString(R.string.disable_third_party_sharing_restart), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            mApp.restart();
+                            getActivity().finish();
+                        }
+                    }, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                }
             }
 
             return false;
