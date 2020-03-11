@@ -685,7 +685,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
             String newLocale = user.getString("locale").replace("-", "-r");
             String oldLocale = prefs.getString("pref_locale", "");
             oldLocale = oldLocale.replace("-r", "-");
-            if (!oldLocale.equals(newLocale)) {
+            if (!oldLocale.equals(newLocale) && (!oldLocale.equals(""))) {
                 // User locale changed (server-side)
                 editor.putString("pref_locale", newLocale.replace("-", "-r"));
                 mApp.applyLocaleSettings(getBaseContext());

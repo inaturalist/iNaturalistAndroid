@@ -242,7 +242,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 mPrefEditor.putString("pref_locale", locale);
                 mPrefEditor.commit();
 
-                if (mApp.loggedIn()) {
+                if (mApp.loggedIn() && !locale.equals("")) {
                     Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_CURRENT_USER_DETAILS, null, getActivity(), INaturalistService.class);
                     JSONObject userDetails = new JSONObject();
                     try {

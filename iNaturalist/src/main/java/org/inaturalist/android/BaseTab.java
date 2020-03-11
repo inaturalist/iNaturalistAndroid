@@ -324,7 +324,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
                         }
                     });
                 }
-            } else {
+            } else if (getActivity() != null){
                 Logger.tag(TAG).info("Calling " + getActionName());
                 Intent serviceIntent = new Intent(getActionName(), null, getActivity(), INaturalistService.class);
                 ContextCompat.startForegroundService(getActivity(), serviceIntent);
