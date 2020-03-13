@@ -110,7 +110,9 @@ public class HtmlUtils {
         });
 
         textView.setLinksClickable(true);
-        textView.setFocusable(false);
+        // Leaving this commented out in case it was doing something useful, but
+        // it was also making it impossible to select text
+        // textView.setFocusable(false);
         textView.setText(finalHtmlText);
     }
 

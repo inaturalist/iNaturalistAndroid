@@ -864,6 +864,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
         } else {
             mWikipediaSummary.setVisibility(View.VISIBLE);
             HtmlUtils.fromHtml(mWikipediaSummary, wikiSummary + " " + getString(R.string.source_wikipedia));
+            mWikipediaSummary.setTextIsSelectable(true);
         }
 
 
