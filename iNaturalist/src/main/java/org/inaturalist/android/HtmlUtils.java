@@ -41,6 +41,10 @@ public class HtmlUtils {
     public static void fromHtml(TextView textView, String html) {
         Context context = textView.getContext();
 
+        // Replace new lines (\n) with <br> tags
+        html = html.replaceAll("\r", "");
+        html = html.replaceAll("\n", "<br />");
+
         // For displaying <img> tags
         Picasso picasso = Picasso.with(context);
         PicassoImageGetter imageGetter = new PicassoImageGetter(picasso, textView);
