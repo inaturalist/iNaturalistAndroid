@@ -431,7 +431,7 @@
     <string name="view_suggestions">View Suggestions</string>
     <string name="species_search">Species Search</string>
     <string name="were_not_confident">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</string>
-    <string name="top_species_suggestions">Here\'s our top %1$d species suggestions:</string>
+    <string name="top_species_suggestions">Top %1$d suggestions:</string>
     <string name="pretty_sure_rank">We\'re pretty sure it\'s in this %1$s:</string>
     <string name="what_did_you_see">What did you see?</string>
     <string name="suggest_species">Suggest Species</string>
@@ -784,7 +784,7 @@
     <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
     <string name="search_places">Search Places</string>
     <string name="restart_app">Restart App</string>
-    <string name="disable_third_party_sharing_restart">In order to disable third party data sharing immediately, we have to restart the app.</string>
+    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
     <string name="are_you_sure_you_want_to_delete_observations">Are you sure you want to delete these %1$d observations?</string>
 </resources>
 

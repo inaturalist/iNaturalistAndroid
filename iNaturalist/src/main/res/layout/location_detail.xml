@@ -15,6 +15,7 @@
         android:textColor="#000000"
         android:text="@string/location_coords"
         android:gravity="left"
+        android:textIsSelectable="true"
         />
     <fragment
         android:id="@+id/map"
