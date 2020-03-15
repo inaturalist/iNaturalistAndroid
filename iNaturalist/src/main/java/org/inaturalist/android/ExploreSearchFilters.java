@@ -140,7 +140,7 @@ public class ExploreSearchFilters implements Serializable {
         StringBuilder url = new StringBuilder();
 
         if (!iconicTaxa.isEmpty()) {
-            url.append("&iconic_taxa=" + StringUtils.join(iconicTaxa, ","));
+            url.append("&iconic_taxa=" + StringUtils.join(iconicTaxa, ",").toLowerCase());
         }
 
         if (taxon != null) {

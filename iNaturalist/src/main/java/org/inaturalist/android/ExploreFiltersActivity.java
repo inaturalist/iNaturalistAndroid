@@ -56,7 +56,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
     public static final String ALL_ANNOTATIONS = "all_annotations";
 
     private static final String[] ICONIC_TAXA = {
-            "Plantae", "Aves", "Insecta", "Amphibia", "Reptilia", "Fungi", "Animalia", "Chromista", "Protozoa", "Actinopterygii", "Mammalia", "Mollusca", "Arachnida"
+            "Plantae", "Aves", "Insecta", "Amphibia", "Reptilia", "Fungi", "Animalia", "Chromista", "Protozoa", "Actinopterygii", "Mammalia", "Mollusca", "Arachnida", "Unknown"
     };
 
     private static final int REQUEST_CODE_SEARCH_PROJECTS = 0x1000;
