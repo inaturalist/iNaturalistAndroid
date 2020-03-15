@@ -13,12 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.evernote.android.state.State;
 
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.livefront.bridge.Bridge;
 
 import org.json.JSONArray;
@@ -35,7 +35,7 @@ public class MissionsGridActivity extends AppCompatActivity {
     private static final String TAG = "MissionsGridActivity";
 
     UserSpeciesAdapter mMissionsAdapter;
-    private PullToRefreshGridViewExtended mMissionsGrid;
+    private GridView mMissionsGrid;
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
     @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mMissions;
@@ -67,8 +67,7 @@ public class MissionsGridActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(R.string.recommended_for_you);
         }
 
-        mMissionsGrid = (PullToRefreshGridViewExtended) findViewById(R.id.missions);
-        mMissionsGrid.setMode(PullToRefreshBase.Mode.DISABLED);
+        mMissionsGrid = findViewById(R.id.missions);
         mMissionsGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {

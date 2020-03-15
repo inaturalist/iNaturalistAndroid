@@ -15,6 +15,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -42,12 +43,12 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
     private String mLoggedInUsername;
     private boolean mIsGrid;
     private int mDimension;
-    private PullToRefreshGridViewExtended mGrid;
+    private GridView mGrid;
     private HashMap<Integer, Boolean> mObservationLoaded;
 
     private AbsListView.OnScrollListener mOriginalScrollListener;
 
-    public UserIdentificationsAdapter(Context context, ArrayList<JSONObject> results, String username, boolean isGrid, PullToRefreshGridViewExtended grid) {
+    public UserIdentificationsAdapter(Context context, ArrayList<JSONObject> results, String username, boolean isGrid, GridView grid) {
         super(context, android.R.layout.simple_list_item_1);
 
         mContext = context;

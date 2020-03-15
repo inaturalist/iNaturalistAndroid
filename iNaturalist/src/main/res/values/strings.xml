@@ -785,5 +785,6 @@
     <string name="search_places">Search Places</string>
     <string name="restart_app">Restart App</string>
     <string name="disable_third_party_sharing_restart">In order to disable third party data sharing immediately, we have to restart the app.</string>
+    <string name="are_you_sure_you_want_to_delete_observations">Are you sure you want to delete these %1$d observations?</string>
 </resources>
 

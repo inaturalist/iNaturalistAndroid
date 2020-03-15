@@ -4,7 +4,10 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.inaturalist.android.INaturalistApp.INotificationCallback;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -15,7 +18,6 @@ import com.evernote.android.state.State;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.livefront.bridge.Bridge;
 
 import android.annotation.SuppressLint;
@@ -37,11 +39,13 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import com.google.android.material.tabs.TabLayout;
-import androidx.core.app.ActivityCompat;
+
 import androidx.core.content.ContextCompat;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -105,24 +109,26 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     private ProgressBar mLoadingIdentifications;
     private TextView mIdentificationsEmpty;
     private ImageView mIdentificationsEmptyIcon;
-    private PullToRefreshListView mIdentificationsList;
-    private PullToRefreshGridViewExtended mIdentificationsGrid;
+    private ListView mIdentificationsList;
+    private GridView mIdentificationsGrid;
 
     private ProgressBar mLoadingSpecies;
     private TextView mSpeciesEmpty;
     private ImageView mSpeciesEmptyIcon;
-    private PullToRefreshListView mSpeciesList;
-    private PullToRefreshGridViewExtended mSpeciesGrid;
+    private ListView mSpeciesList;
+    private GridView mSpeciesGrid;
 
     private ProgressBar mLoadingObservations;
     private TextView mObservationsEmpty;
     private ImageView mObservationsEmptyIcon;
-    private PullToRefreshListView mObservationsList;
-    private PullToRefreshGridViewExtended mObservationsGrid;
+    private ListView mObservationsList;
+    private GridView mObservationsGrid;
 
     @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mSpecies;
     @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mIdentifications;
-    
+
+    @State(AndroidStateBundlers.SetBundler.class) public Set<Long> mObsIdsToSync = new HashSet<>();
+
     @State public int mTotalIdentifications = 0;
     @State public int mTotalSpecies = 0;
 
@@ -148,12 +154,13 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     private Button mShowMoreIdentifications;
 
     public static boolean sActivityCreated = false;
+    private SwipeRefreshLayout mListSwipeContainer;
+    private SwipeRefreshLayout mGridSwipeContainer;
+    private ViewGroup mDeleteContainer;
+    private TextView mDeleteSync;
 
 
-
-	
-	
-	private boolean isNetworkAvailable() {
+    private boolean isNetworkAvailable() {
 	    ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
@@ -195,9 +202,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-            mObservationsList.onRefreshComplete();
+            mListSwipeContainer.setRefreshing(false);
             mObservationsList.refreshDrawableState();
-            mObservationsGrid.onRefreshComplete();
+            mGridSwipeContainer.setRefreshing(false);
             mObservationsGrid.refreshDrawableState();
 
             mObservationListAdapter.refreshCursor();
@@ -331,7 +338,24 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         osc.close();
 
         if (mSyncingTopBar != null) {
-            if (obsToSync.keySet().size() > 0) {
+            mDeleteContainer.setVisibility(View.GONE);
+
+            if (mObsIdsToSync.size() > 0) {
+                // User chose specific observations to sync
+
+                if (mObsIdsToSync.size() == 1) {
+                    mSyncingStatus.setText(R.string.sync_1_observation);
+                } else {
+                    mSyncingStatus.setText(String.format(getResources().getString(R.string.sync_x_observations), mObsIdsToSync.size()));
+                }
+
+                mSyncingTopBar.setVisibility(View.VISIBLE);
+                mUserCanceledSync = true; // To make it so that the button on the sync bar will trigger a sync
+                mCancelSync.setText(R.string.upload);
+
+                mDeleteContainer.setVisibility(View.VISIBLE);
+
+            } else if (obsToSync.keySet().size() > 0) {
                 int count = obsToSync.keySet().size();
                 if (count == 1) {
                     mSyncingStatus.setText(R.string.sync_1_observation);
@@ -707,7 +731,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         // save last position of list so we can resume there later
         // http://stackoverflow.com/questions/3014089/maintain-save-restore-scroll-position-when-returning-to-a-listview
         if (mObservationsGrid != null) {
-            AbsListView lv = mIsGrid[0] ? mObservationsGrid.getRefreshableView() : mObservationsList.getRefreshableView();
+            AbsListView lv = mIsGrid[0] ? mObservationsGrid : mObservationsList;
             mLastIndex = lv.getFirstVisiblePosition();
             View v = lv.getChildAt(0);
             mLastTop = (v == null) ? 0 : v.getTop();
@@ -790,11 +814,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         if (mLoadingObservations != null) {
             if (mIsGrid[0]) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    GridView grid = mObservationsGrid.getRefreshableView();
-                    grid.setSelectionFromTop(mLastIndex, mLastTop);
+                    mObservationsGrid.setSelectionFromTop(mLastIndex, mLastTop);
                 }
             } else {
-                ListView lv = mObservationsList.getRefreshableView();
+                ListView lv = mObservationsList;
                 lv.setSelectionFromTop(mLastIndex, mLastTop);
             }
 
@@ -921,7 +944,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     }
 
 
-    private void onRefreshView(final PullToRefreshBase pullToRefresh) {
+    private void onRefreshView(final SwipeRefreshLayout refreshView) {
         if (!isNetworkAvailable() || !isLoggedIn()) {
             Thread t = (new Thread(new Runnable() {
                 @Override
@@ -934,7 +957,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            pullToRefresh.onRefreshComplete();
+                            refreshView.setRefreshing(false);
                         }
                     });
                 }
@@ -992,6 +1015,16 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         switch (item.getItemId()) {
             case R.id.observation_view_type:
                 mIsGrid[mViewPager.getCurrentItem()] = !mIsGrid[mViewPager.getCurrentItem()];
+
+                if (mViewPager.getCurrentItem() == 0) {
+                    if (mIsGrid[0]) {
+                        mListSwipeContainer.setEnabled(false);
+                        mGridSwipeContainer.setEnabled(true);
+                    } else {
+                        mListSwipeContainer.setEnabled(true);
+                        mGridSwipeContainer.setEnabled(false);
+                    }
+                }
 
                 mLastIndex = 0;
                 mLastTop = 0;
@@ -1051,13 +1084,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             return PAGE_COUNT;
         }
 
-        private void initPullToRefreshList(PullToRefreshBase pullToRefresh, ViewGroup layout) {
-            pullToRefresh.getLoadingLayoutProxy().setPullLabel(getResources().getString(R.string.pull_to_refresh));
-            pullToRefresh.getLoadingLayoutProxy().setReleaseLabel(getResources().getString(R.string.release_to_refresh));
-            pullToRefresh.getLoadingLayoutProxy().setRefreshingLabel(getResources().getString(R.string.refreshing));
-            pullToRefresh.setReleaseRatio(2.5f);
-        }
-
         @Override
         public Object instantiateItem(ViewGroup collection, int position) {
             LayoutInflater inflater = LayoutInflater.from(mContext);
@@ -1101,18 +1127,15 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mIdentificationsEmpty.setText(R.string.no_identifications_found);
                     mIdentificationsEmptyIcon = (ImageView) layout.findViewById(R.id.empty_icon);
                     mIdentificationsEmptyIcon.setImageResource(R.drawable.ic_empty_id);
-                    mIdentificationsList = (PullToRefreshListView) layout.findViewById(R.id.list);
-                    mIdentificationsList.setMode(PullToRefreshBase.Mode.DISABLED);
-                    mIdentificationsGrid = (PullToRefreshGridViewExtended) layout.findViewById(R.id.grid);
-                    mIdentificationsGrid.setMode(PullToRefreshBase.Mode.DISABLED);
+                    mIdentificationsList = layout.findViewById(R.id.list);
+                    ((SwipeRefreshLayout)layout.findViewById(R.id.list_swipe_container)).setEnabled(false);
+                    mIdentificationsGrid = layout.findViewById(R.id.grid);
+                    ((SwipeRefreshLayout)layout.findViewById(R.id.grid_swipe_container)).setEnabled(false);
                     mShowMoreIdentifications = (Button) layout.findViewById(R.id.show_more);
                     mShowMoreIdentifications.setText(R.string.see_more_identifications);
 
                     layout.findViewById(R.id.syncing_top_bar).setVisibility(View.GONE);
                     layout.findViewById(R.id.add_observation).setVisibility(View.GONE);
-
-                    initPullToRefreshList(mIdentificationsList, layout);
-                    initPullToRefreshList(mIdentificationsGrid, layout);
 
                     OnItemClickListener onIdentificationsClick = new AdapterView.OnItemClickListener() {
                         @Override
@@ -1148,18 +1171,15 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mSpeciesEmpty.setText(R.string.no_species_found);
                     mSpeciesEmptyIcon = (ImageView) layout.findViewById(R.id.empty_icon);
                     mSpeciesEmptyIcon.setImageResource(R.drawable.ic_empty_leaf);
-                    mSpeciesList = (PullToRefreshListView) layout.findViewById(R.id.list);
-                    mSpeciesList.setMode(PullToRefreshBase.Mode.DISABLED);
-                    mSpeciesGrid = (PullToRefreshGridViewExtended) layout.findViewById(R.id.grid);
-                    mSpeciesGrid.setMode(PullToRefreshBase.Mode.DISABLED);
+                    mSpeciesList = layout.findViewById(R.id.list);
+                    ((SwipeRefreshLayout)layout.findViewById(R.id.list_swipe_container)).setEnabled(false);
+                    mSpeciesGrid = layout.findViewById(R.id.grid);
+                    ((SwipeRefreshLayout)layout.findViewById(R.id.grid_swipe_container)).setEnabled(false);
                     mShowMoreSpecies = (Button) layout.findViewById(R.id.show_more);
                     mShowMoreSpecies.setText(R.string.see_more_species);
 
                     layout.findViewById(R.id.syncing_top_bar).setVisibility(View.GONE);
                     layout.findViewById(R.id.add_observation).setVisibility(View.GONE);
-
-                    initPullToRefreshList(mSpeciesList, layout);
-                    initPullToRefreshList(mSpeciesGrid, layout);
 
                     OnItemClickListener onSpeciesClick = new AdapterView.OnItemClickListener() {
                         @Override
@@ -1187,9 +1207,21 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mObservationsEmpty.setText(R.string.no_observations_found_new);
                     mObservationsEmptyIcon = (ImageView) layout.findViewById(R.id.empty_icon);
                     mObservationsEmptyIcon.setImageResource(R.drawable.ic_empty_binoculars);
-                    mObservationsList = (PullToRefreshListView) layout.findViewById(R.id.list);
-                    mObservationsGrid = (PullToRefreshGridViewExtended) layout.findViewById(R.id.grid);
+                    mListSwipeContainer = layout.findViewById(R.id.list_swipe_container);
+                    mObservationsList = layout.findViewById(R.id.list);
+                    ((SwipeRefreshLayout)layout.findViewById(R.id.list_swipe_container)).setEnabled(true);
+                    mObservationsGrid = layout.findViewById(R.id.grid);
+                    ((SwipeRefreshLayout)layout.findViewById(R.id.grid_swipe_container)).setEnabled(true);
+                    mGridSwipeContainer = layout.findViewById(R.id.grid_swipe_container);
                     mLoadingMoreResults = (ViewGroup) layout.findViewById(R.id.loading_more_results);
+
+                    if (mIsGrid[0]) {
+                        mListSwipeContainer.setEnabled(false);
+                        mGridSwipeContainer.setEnabled(true);
+                    } else {
+                        mListSwipeContainer.setEnabled(true);
+                        mGridSwipeContainer.setEnabled(false);
+                    }
 
                     mOnboardingSyncing = (ViewGroup) layout.findViewById(R.id.onboarding_syncing);
                     mOnboardingSyncingClose = layout.findViewById(R.id.onboarding_syncing_close);
@@ -1202,9 +1234,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                             prefs.edit().putBoolean("onboarded_syncing", true).commit();
                         }
                     });
-
-                    initPullToRefreshList(mObservationsList, layout);
-                    initPullToRefreshList(mObservationsGrid, layout);
 
                     OnItemClickListener onClick = new OnItemClickListener() {
                         @Override
@@ -1238,10 +1267,36 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mObservationsList.setOnItemClickListener(onClick);
                     mObservationsGrid.setOnItemClickListener(onClick);
 
+                    AdapterView.OnItemLongClickListener onLongClick = new AdapterView.OnItemLongClickListener() {
+                        @Override
+                        public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
+                            // Multiple-selection mode
+                            if (mObsIdsToSync.contains(id)) {
+                                mObsIdsToSync.remove(id);
+                            } else {
+                                mObsIdsToSync.add(id);
+                            }
+
+                            mObservationListAdapter.setSelectedObservations(mObsIdsToSync);
+                            mObservationGridAdapter.setSelectedObservations(mObsIdsToSync);
+
+                            refreshSyncBar();
+
+                            mObservationListAdapter.refreshCursor();
+                            mObservationGridAdapter.refreshCursor();
+
+                            return true;
+                        }
+                    };
+                    mObservationsList.setOnItemLongClickListener(onLongClick);
+                    mObservationsGrid.setOnItemLongClickListener(onLongClick);
+
                     mSyncingTopBar = (ViewGroup) layout.findViewById(R.id.syncing_top_bar);
                     mSyncingTopBar.setVisibility(View.GONE);
                     mSyncingStatus = (TextView) layout.findViewById(R.id.syncing_status);
                     mCancelSync = (TextView) layout.findViewById(R.id.cancel_sync);
+                    mDeleteContainer = (ViewGroup) layout.findViewById(R.id.delete_container);
+                    mDeleteSync = (TextView) layout.findViewById(R.id.delete);
 
                     if (mApp.getAutoSync()) {
                         // Auto sync
@@ -1250,6 +1305,31 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                         // Manual
                         mCancelSync.setText(R.string.upload);
                     }
+
+                    mDeleteSync.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            // User chose to delete specific observations
+                            mHelper.confirm(
+                                    getString(R.string.are_you_sure),
+                                    String.format(getString(R.string.are_you_sure_you_want_to_delete_observations), mObsIdsToSync.size()),
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            deleteSelectedObservations();
+                                        }
+                                    },
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            
+                                        }
+                                    },
+                                    getString(R.string.yes),
+                                    getString(R.string.no)
+                            );
+                        }
+                    });
 
                     mCancelSync.setOnClickListener(new OnClickListener() {
                         @Override
@@ -1308,6 +1388,11 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                                 mSyncingStatus.setText(R.string.syncing);
                                 // Re-sync
                                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
+                                if (mObsIdsToSync.size() > 0) {
+                                    Long[] obsIds = new Long[mObsIdsToSync.size()];
+                                    mObsIdsToSync.toArray(obsIds);
+                                    serviceIntent.putExtra(INaturalistService.OBS_IDS_TO_SYNC, ArrayUtils.toPrimitive(obsIds));
+                                }
                                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                                 ContextCompat.startForegroundService(ObservationListActivity.this, serviceIntent);
 
@@ -1343,18 +1428,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mObservationsGrid.setOnScrollListener(mObservationGridAdapter);
 
                     // Set a listener to be invoked when the list should be refreshed.
-                    mObservationsList.setOnRefreshListener(new OnRefreshListener<ListView>() {
-                        @Override
-                        public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                            onRefreshView(mObservationsList);
-                        }
-                    });
-                    mObservationsGrid.setOnRefreshListener(new OnRefreshListener<GridView>() {
-                        @Override
-                        public void onRefresh(PullToRefreshBase<GridView> refreshView) {
-                            onRefreshView(mObservationsGrid);
-                        }
-                    });
+                    mListSwipeContainer.setOnRefreshListener(() -> onRefreshView(mListSwipeContainer));
+                    mGridSwipeContainer.setOnRefreshListener(() -> onRefreshView(mGridSwipeContainer));
 
                     refreshSyncBar();
 
@@ -1401,6 +1476,43 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         public boolean isViewFromObject(View view, Object object) {
             return view == object;
         }
+    }
+
+    private void deleteSelectedObservations() {
+        for (Long obsId : mObsIdsToSync) {
+            Uri uri = ContentUris.withAppendedId(getIntent().getData(), obsId);
+            Cursor cursor = managedQuery(uri, Observation.PROJECTION, null, null, null);
+            Observation observation = new Observation(cursor);
+
+            if (observation.id == null) {
+                // Local observation (not yet synced) - delete locally only
+                getContentResolver().delete(uri, null, null);
+
+                // Delete any observation photos taken with it
+                getContentResolver().delete(ObservationPhoto.CONTENT_URI, "_observation_id=?", new String[]{observation._id.toString()});
+
+                // Delete any observation sounds taken with it
+                getContentResolver().delete(ObservationSound.CONTENT_URI, "_observation_id=?", new String[]{observation._id.toString()});
+
+            } else {
+
+                // Only mark as deleted (so we'll later on sync the deletion)
+                ContentValues cv = observation.getContentValues();
+                cv.put(Observation.IS_DELETED, 1);
+                Logger.tag(TAG).debug("delete: Update: " + uri + ":" + cv);
+                getContentResolver().update(uri, cv, null, null);
+            }
+        }
+
+
+        mObsIdsToSync.clear();
+        mObservationListAdapter.setSelectedObservations(mObsIdsToSync);
+        mObservationGridAdapter.setSelectedObservations(mObsIdsToSync);
+
+        refreshSyncBar();
+
+        mObservationListAdapter.refreshCursor();
+        mObservationGridAdapter.refreshCursor();
     }
 
 
@@ -1511,18 +1623,28 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             Bundle extras = intent.getExtras();
 
             Integer obsId = extras.getInt(INaturalistService.OBSERVATION_ID);
+            Integer obsIdInternal = extras.getInt(INaturalistService.OBSERVATION_ID_INTERNAL);
             Float progress = extras.getFloat(INaturalistService.PROGRESS);
 
             if ((obsId == null) || (progress == null) || (mObservationListAdapter == null) || (mObservationGridAdapter == null)) {
                 return;
             }
 
-            Logger.tag(TAG).debug(String.format("Updating progress for %d: %f", obsId, progress));
+            Logger.tag(TAG).debug(String.format("Updating progress for %d / %d: %f", obsId, obsIdInternal, progress));
+
+            if (progress == 100 && mObsIdsToSync.contains(Long.valueOf(obsIdInternal))) {
+                mObsIdsToSync.remove(Long.valueOf(obsIdInternal));
+                mObservationListAdapter.setSelectedObservations(mObsIdsToSync);
+                mObservationGridAdapter.setSelectedObservations(mObsIdsToSync);
+            }
 
             mObservationListAdapter.updateProgress(obsId, progress);
             mObservationListAdapter.notifyDataSetChanged();
             mObservationGridAdapter.updateProgress(obsId, progress);
             mObservationGridAdapter.notifyDataSetChanged();
+
+            mObservationListAdapter.refreshCursor();
+            mObservationGridAdapter.refreshCursor();
         }
     }
 

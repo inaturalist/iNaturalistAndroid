@@ -20,16 +20,43 @@
         android:minHeight="48dp">
 
 
-        <TextView
-            android:id="@+id/cancel_sync"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#fff"
-            android:text="@string/stop"
-            android:textStyle="bold"
+        <LinearLayout
+            android:id="@+id/button_container"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:id="@+id/cancel_sync"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:text="@string/stop"
+                android:textStyle="bold"
+                />
+            <LinearLayout
+                android:id="@+id/delete_container"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#fff"
+                    android:text=" | "
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:id="@+id/delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#fff"
+                    android:text="@string/delete"
+                    android:textStyle="bold"
+                    />
+            </LinearLayout>
+        </LinearLayout>
         <TextView
             android:id="@+id/syncing_status"
             android:layout_width="wrap_content"
@@ -38,7 +65,7 @@
             android:layout_alignParentLeft="true"
             android:text="Posting 1 of 5 observation(s)..."
             android:textColor="#fff"
-            android:layout_toLeftOf="@id/cancel_sync"
+            android:layout_toLeftOf="@id/button_container"
             />
 
     </RelativeLayout>
@@ -94,25 +121,37 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
-        <org.inaturalist.android.PullToRefreshGridViewExtended
-            android:id="@+id/grid"
-            android:paddingTop="5dp"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:numColumns="3"
-            android:verticalSpacing="3dp"
-            android:horizontalSpacing="3dp"
-            android:paddingLeft="1dp"
-            android:paddingRight="1dp"
-            android:stretchMode="columnWidth"
-            android:gravity="center"
-            android:orientation="vertical"/>
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/grid_swipe_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <GridView
+                android:id="@+id/grid"
+                android:paddingTop="5dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:numColumns="3"
+                android:verticalSpacing="3dp"
+                android:horizontalSpacing="3dp"
+                android:paddingLeft="1dp"
+                android:paddingRight="1dp"
+                android:stretchMode="columnWidth"
+                android:gravity="center"
+                android:orientation="vertical"/>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-        <com.handmark.pulltorefresh.library.PullToRefreshListView
-            android:id="@+id/list"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"/>
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/list_swipe_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ListView
+                android:id="@+id/list"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"/>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
         <ImageView

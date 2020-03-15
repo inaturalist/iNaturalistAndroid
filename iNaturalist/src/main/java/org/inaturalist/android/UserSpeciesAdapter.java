@@ -48,7 +48,7 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
     private Context mContext;
     private int mViewType;
     private int mDimension;
-    private PullToRefreshGridViewExtended mGrid;
+    private GridView mGrid;
 
     private HashMap<Integer, Boolean> mObservationLoaded;
 
@@ -62,7 +62,7 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
         this(context, results, VIEW_TYPE_LIST, null);
     }
 
-    public UserSpeciesAdapter(Context context, ArrayList<JSONObject> results, int viewType, PullToRefreshGridViewExtended grid) {
+    public UserSpeciesAdapter(Context context, ArrayList<JSONObject> results, int viewType, GridView grid) {
         super(context, android.R.layout.simple_list_item_1);
 
         mContext = context;

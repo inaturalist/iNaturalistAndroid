@@ -17,6 +17,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -263,6 +264,7 @@ public class INaturalistService extends IntentService {
     public static final String AUTHENTICATION_FAILED = "authentication_failed";
     public static final String IDENTIFICATION_ID = "identification_id";
     public static final String OBSERVATION_ID = "observation_id";
+    public static final String OBSERVATION_ID_INTERNAL = "observation_id_internal";
     public static final String METRIC = "metric";
     public static final String ATTRIBUTE_ID = "attribute_id";
     public static final String VALUE_ID = "value_id";
@@ -366,6 +368,7 @@ public class INaturalistService extends IntentService {
     public static final String PAGE_NUMBER = "page_number";
     public static final String PAGE_SIZE = "page_size";
     public static final String ID = "id";
+    public static final String OBS_IDS_TO_SYNC = "obs_ids_to_sync";
 
     public static final int NEAR_BY_OBSERVATIONS_PER_PAGE = 25;
     public static final int EXPLORE_DEFAULT_RESULTS_PER_PAGE = 30;
@@ -1765,9 +1768,15 @@ public class INaturalistService extends IntentService {
 
             } else if (action.equals(ACTION_SYNC)) {
                 if (!mIsSyncing && !mApp.getIsSyncing()) {
+                    long[] idsToSync = null;
+
+                    if (intent.hasExtra(OBS_IDS_TO_SYNC)) {
+                        idsToSync = intent.getExtras().getLongArray(OBS_IDS_TO_SYNC);
+                    }
+
                     mIsSyncing = true;
                     mApp.setIsSyncing(mIsSyncing);
-                    syncObservations();
+                    syncObservations(idsToSync);
 
                     // Update last sync time
                     long lastSync = System.currentTimeMillis();
@@ -1844,7 +1853,7 @@ public class INaturalistService extends IntentService {
         }
     }
 
-    private void syncObservations() throws AuthenticationException, CancelSyncException, SyncFailedException {
+    private void syncObservations(long[] idsToSync) throws AuthenticationException, CancelSyncException, SyncFailedException {
         try {
             Logger.tag(TAG).debug("syncObservations: enter");
 
@@ -1875,95 +1884,109 @@ public class INaturalistService extends IntentService {
             Logger.tag(TAG).error(e);
         }
 
-        mApp.notify(getString(R.string.preparing), getString(R.string.preparing));
+        if (idsToSync == null) {
+            mApp.notify(getString(R.string.preparing), getString(R.string.preparing));
 
-        Logger.tag(TAG).debug("syncObservations: Calling syncRemotelyDeletedObs");
-        if (!syncRemotelyDeletedObs()) throw new SyncFailedException();
+            Logger.tag(TAG).debug("syncObservations: Calling syncRemotelyDeletedObs");
+            if (!syncRemotelyDeletedObs()) throw new SyncFailedException();
 
-        // First, download remote observations (new/updated)
-        Logger.tag(TAG).debug("syncObservations: Calling getUserObservations");
-        if (!getUserObservations(0)) throw new SyncFailedException();
+            // First, download remote observations (new/updated)
+            Logger.tag(TAG).debug("syncObservations: Calling getUserObservations");
+            if (!getUserObservations(0)) throw new SyncFailedException();
 
-        Logger.tag(TAG).debug("syncObservations: After calling getUserObservations");
+            Logger.tag(TAG).debug("syncObservations: After calling getUserObservations");
+        } else {
+            mProjectObservations = new ArrayList<SerializableJSONArray>();
+            mProjectFieldValues = new Hashtable<Integer, Hashtable<Integer, ProjectFieldValue>>();
+        }
 
-        // Gather the list of observations that need syncing (because they're new, been updated
-        // or had their photos/project fields updated
         Set<Integer> observationIdsToSync = new HashSet<>();
+        Cursor c;
 
-        // Any new/updated observations
-        Cursor c = getContentResolver().query(Observation.CONTENT_URI,
-                Observation.PROJECTION,
-                "(_synced_at IS NULL) OR (_updated_at > _synced_at AND _synced_at IS NOT NULL)",
-                null,
-                Observation.DEFAULT_SORT_ORDER);
-
-        c.moveToFirst();
-        while (!c.isAfterLast()) {
-            Integer internalId = c.getInt(c.getColumnIndexOrThrow(Observation._ID));
-
-            // Make sure observation is not currently being edited by user (split-observation bug)
-            if (!mApp.isObservationCurrentlyBeingEdited(internalId)) {
-                observationIdsToSync.add(internalId);
-            } else {
-                Logger.tag(TAG).error("syncObservations: Observation " + internalId + " is currently being edited - not syncing it");
+        if (idsToSync != null) {
+            // User chose to sync specific observations only
+            for (long id : idsToSync) {
+                observationIdsToSync.add(Integer.valueOf((int)id));
             }
-            c.moveToNext();
+
+        } else {
+            // Gather the list of observations that need syncing (because they're new, been updated
+            // or had their photos/project fields updated
+            // Any new/updated observations
+            c = getContentResolver().query(Observation.CONTENT_URI,
+                    Observation.PROJECTION,
+                    "(_synced_at IS NULL) OR (_updated_at > _synced_at AND _synced_at IS NOT NULL)",
+                    null,
+                    Observation.DEFAULT_SORT_ORDER);
+
+            c.moveToFirst();
+            while (!c.isAfterLast()) {
+                Integer internalId = c.getInt(c.getColumnIndexOrThrow(Observation._ID));
+
+                // Make sure observation is not currently being edited by user (split-observation bug)
+                if (!mApp.isObservationCurrentlyBeingEdited(internalId)) {
+                    observationIdsToSync.add(internalId);
+                } else {
+                    Logger.tag(TAG).error("syncObservations: Observation " + internalId + " is currently being edited - not syncing it");
+                }
+                c.moveToNext();
+            }
+
+            c.close();
+            Logger.tag(TAG).debug("syncObservations: observationIdsToSync: " + observationIdsToSync);
+
+            // Any observation that has new/updated/deleted photos
+            c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                    ObservationPhoto.PROJECTION,
+                    "(_synced_at IS NULL) OR (_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL) OR " +
+                            "(is_deleted = 1)",
+                    null,
+                    ObservationPhoto.DEFAULT_SORT_ORDER);
+
+            c.moveToFirst();
+            while (!c.isAfterLast()) {
+                observationIdsToSync.add(c.getInt(c.getColumnIndexOrThrow(ObservationPhoto._OBSERVATION_ID)));
+                c.moveToNext();
+            }
+
+            c.close();
+
+            Logger.tag(TAG).debug("syncObservations: observationIdsToSync 2: " + observationIdsToSync);
+
+            // Any observation that has new/deleted sounds
+            c = getContentResolver().query(ObservationSound.CONTENT_URI,
+                    ObservationSound.PROJECTION,
+                    "(id IS NULL) OR (is_deleted = 1)",
+                    null,
+                    ObservationSound.DEFAULT_SORT_ORDER);
+
+            c.moveToFirst();
+            while (!c.isAfterLast()) {
+                observationIdsToSync.add(c.getInt(c.getColumnIndexOrThrow(ObservationSound._OBSERVATION_ID)));
+                c.moveToNext();
+            }
+
+            c.close();
+
+
+            Logger.tag(TAG).debug("syncObservations: observationIdsToSync 2b: " + observationIdsToSync);
+
+
+            // Any observation that has new/updated project fields.
+            c = getContentResolver().query(ProjectFieldValue.CONTENT_URI,
+                    ProjectFieldValue.PROJECTION,
+                    "(_synced_at IS NULL) OR (_updated_at > _synced_at AND _synced_at IS NOT NULL)",
+                    null,
+                    ProjectFieldValue.DEFAULT_SORT_ORDER);
+
+            c.moveToFirst();
+            while (!c.isAfterLast()) {
+                observationIdsToSync.add(c.getInt(c.getColumnIndexOrThrow(ProjectFieldValue.OBSERVATION_ID)));
+                c.moveToNext();
+            }
+
+            c.close();
         }
-
-        c.close();
-        Logger.tag(TAG).debug("syncObservations: observationIdsToSync: " + observationIdsToSync);
-
-        // Any observation that has new/updated/deleted photos
-        c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
-                ObservationPhoto.PROJECTION,
-                "(_synced_at IS NULL) OR (_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL) OR " +
-                        "(is_deleted = 1)",
-                null,
-                ObservationPhoto.DEFAULT_SORT_ORDER);
-
-        c.moveToFirst();
-        while (!c.isAfterLast()) {
-            observationIdsToSync.add(c.getInt(c.getColumnIndexOrThrow(ObservationPhoto._OBSERVATION_ID)));
-            c.moveToNext();
-        }
-
-        c.close();
-
-        Logger.tag(TAG).debug("syncObservations: observationIdsToSync 2: " + observationIdsToSync);
-
-        // Any observation that has new/deleted sounds
-        c = getContentResolver().query(ObservationSound.CONTENT_URI,
-                ObservationSound.PROJECTION,
-                "(id IS NULL) OR (is_deleted = 1)",
-                null,
-                ObservationSound.DEFAULT_SORT_ORDER);
-
-        c.moveToFirst();
-        while (!c.isAfterLast()) {
-            observationIdsToSync.add(c.getInt(c.getColumnIndexOrThrow(ObservationSound._OBSERVATION_ID)));
-            c.moveToNext();
-        }
-
-        c.close();
-
-
-        Logger.tag(TAG).debug("syncObservations: observationIdsToSync 2b: " + observationIdsToSync);
-
-
-        // Any observation that has new/updated project fields.
-        c = getContentResolver().query(ProjectFieldValue.CONTENT_URI,
-                ProjectFieldValue.PROJECTION,
-                "(_synced_at IS NULL) OR (_updated_at > _synced_at AND _synced_at IS NOT NULL)",
-                null,
-                ProjectFieldValue.DEFAULT_SORT_ORDER);
-
-        c.moveToFirst();
-        while (!c.isAfterLast()) {
-            observationIdsToSync.add(c.getInt(c.getColumnIndexOrThrow(ProjectFieldValue.OBSERVATION_ID)));
-            c.moveToNext();
-        }
-
-        c.close();
         Logger.tag(TAG).debug("syncObservations: observationIdsToSync 3: " + observationIdsToSync);
 
         List<Integer> obsIdsToRemove = new ArrayList<>();
@@ -2039,16 +2062,18 @@ public class INaturalistService extends IntentService {
 
         c.close();
 
-        Logger.tag(TAG).debug("syncObservations: Calling delete obs");
-        deleteObservations(); // Delete locally-removed observations
+        if (idsToSync == null) {
+            Logger.tag(TAG).debug("syncObservations: Calling delete obs");
+            deleteObservations(); // Delete locally-removed observations
 
-        Logger.tag(TAG).debug("syncObservations: Calling saveJoinedProj");
-        // General project data
-        saveJoinedProjects();
-        Logger.tag(TAG).debug("syncObservations: Calling storeProjObs");
-        storeProjectObservations();
+            Logger.tag(TAG).debug("syncObservations: Calling saveJoinedProj");
+            // General project data
+            saveJoinedProjects();
+            Logger.tag(TAG).debug("syncObservations: Calling storeProjObs");
+            storeProjectObservations();
 
-        redownloadOldObservations();
+            redownloadOldObservations();
+        }
 
         Logger.tag(TAG).debug("syncObservations: Done");
         mPreferences.edit().putLong("last_user_details_refresh_time", 0); // Force to refresh user details
@@ -2068,6 +2093,7 @@ public class INaturalistService extends IntentService {
         // Notify the client of the new progress (so we'll update the progress bars)
         Intent reply = new Intent(OBSERVATION_SYNC_PROGRESS);
         reply.putExtra(OBSERVATION_ID, observation.id);
+        reply.putExtra(OBSERVATION_ID_INTERNAL, observation._id);
         reply.putExtra(PROGRESS, newProgress);
         sendBroadcast(reply);
     }

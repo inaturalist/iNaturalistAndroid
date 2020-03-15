@@ -16,7 +16,9 @@ import org.tinylog.Logger;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /** Where all the android-state custom bundlers are implemented */
 public class AndroidStateBundlers {
@@ -40,6 +42,31 @@ public class AndroidStateBundlers {
 
                     String[] innerParts = value.substring(5, value.length() - 1).split(" ", 2);
                     results.add(new Pair<Uri, Long>(Uri.parse(innerParts[0]), Long.valueOf(innerParts[1])));
+                }
+
+                return results;
+
+            } else {
+                return null;
+            }
+        }
+    }
+
+    public static final class SetBundler implements Bundler<Set<Long>> {
+        @Override
+        public void put(@NonNull String key, @NonNull Set<Long> value, @NonNull Bundle bundle) {
+            String str = value.toString();
+            bundle.putString(key, str.substring(1, str.length() - 1));
+        }
+
+        @Nullable
+        @Override
+        public Set<Long> get(@NonNull String key, @NonNull Bundle bundle) {
+            if (bundle.containsKey(key)) {
+                String parts[] = bundle.getString(key).split(",");
+                Set<Long> results = new HashSet<>();
+                for (String value : parts) {
+                    results.add(Long.valueOf(value.trim()));
                 }
 
                 return results;

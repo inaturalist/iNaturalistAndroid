@@ -28,6 +28,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.AbsListView;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SimpleCursorAdapter;
@@ -60,9 +61,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -77,18 +80,23 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
     private final Activity mContext;
     private INaturalistApp mApp;
-    private PullToRefreshGridViewExtended mGrid;
+    private GridView mGrid;
 
     private CircularProgressBar mCurrentProgressBar = null;
     private boolean mLoadingAdditionalObs = false;
     private OnLoadingMoreResultsListener mOnLoadingMoreResultsListener = null;
     private boolean mNoMoreObsLeft = false;
 
+    private Set<Long> mSelectedObservations = new HashSet<>();
 
     public interface OnLoadingMoreResultsListener {
         void onLoadingMoreResultsStart();
         void onLoadingMoreResultsFinish();
         void onLoadingMoreResultsFailed();
+    }
+
+    public void setSelectedObservations(Set<Long> observations) {
+        mSelectedObservations = observations;
     }
 
     public void setOnLoadingMoreResultsListener(OnLoadingMoreResultsListener listener) {
@@ -99,7 +107,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         this(context, c, false, null);
     }
 
-    public ObservationCursorAdapter(Context context, Cursor c, boolean isGrid, PullToRefreshGridViewExtended grid) {
+    public ObservationCursorAdapter(Context context, Cursor c, boolean isGrid, GridView grid) {
         super(context, isGrid ? R.layout.observation_grid_item : R.layout.list_item, c, new String[] {}, new int[] {});
         mIsGrid = isGrid;
         mGrid = grid;
@@ -373,6 +381,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         public Long updatedAt;
         public Observation observation;
 
+        public ViewGroup selected;
+
         public ViewHolder(ViewGroup view) {
             obsId = -1;
 
@@ -395,6 +405,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             progressInner = view.findViewById(R.id.progress_inner);
 
             soundsIndicator = view.findViewById(R.id.has_sounds);
+
+            selected = view.findViewById(R.id.selected);
         }
 
     }
@@ -469,6 +481,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         View soundsIndicator = holder.soundsIndicator;
 
+        View selected = holder.selected;
+
         String placeGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.PLACE_GUESS));
         String privatePlaceGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.PRIVATE_PLACE_GUESS));
         Double latitude = c.getDouble(c.getColumnIndexOrThrow(Observation.LATITUDE));
@@ -480,6 +494,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             mDimension = mGrid.getColumnWidth();
             obsImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
             progress.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
+            selected.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
 
             int newDimension = (int) (mDimension * 0.48); // So final image size will be 48% of original size
             int speciesGuessHeight = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, mContext.getResources().getDisplayMetrics());
@@ -796,9 +811,22 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         }
 
 
+        if (mSelectedObservations.contains(obsId)) {
+            if (!mIsGrid) {
+                view.setBackgroundResource(R.color.inatapptheme_color_highlighted);
+            } else {
+                view.findViewById(R.id.selected).setVisibility(View.VISIBLE);
+            }
+        } else {
+            if (mIsGrid) {
+                view.findViewById(R.id.selected).setVisibility(View.GONE);
+            }
+        }
+
         holder.obsId = obsId;
         holder.updatedAt = updatedAt;
         holder.observation = new Observation(c);
+
 
         return view;
     }
