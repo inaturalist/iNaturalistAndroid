@@ -1712,7 +1712,9 @@ public class ObservationEditor extends AppCompatActivity {
     private Uri getOutputMediaFileUri() {
         ContentValues values = new ContentValues();
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String name = "observation_" + mObservation._created_at.getTime() + "_" + timeStamp;
+        long creationTs;
+        creationTs = mObservation._created_at == null ? (new Date()).getTime() : mObservation._created_at.getTime();
+        String name = "observation_" + creationTs + "_" + timeStamp;
         values.put(android.provider.MediaStore.Images.Media.TITLE, name);
         return getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
     }
