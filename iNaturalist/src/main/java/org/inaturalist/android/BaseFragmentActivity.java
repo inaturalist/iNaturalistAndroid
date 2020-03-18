@@ -684,8 +684,9 @@ public class BaseFragmentActivity extends AppCompatActivity {
             boolean shouldRestart = false;
             String newLocale = user.getString("locale").replace("-", "-r");
             String oldLocale = prefs.getString("pref_locale", "");
-            if (!oldLocale.equals(newLocale.toLowerCase()) && (!oldLocale.equals(""))) {
+            if (!oldLocale.toLowerCase().equals(newLocale.toLowerCase()) && (!oldLocale.equals(""))) {
                 // User locale changed (server-side)
+                Logger.tag(TAG).debug(String.format("Restarting app - locale changed from %s to %s", oldLocale, newLocale));
                 editor.putString("pref_locale", newLocale);
                 mApp.applyLocaleSettings(getBaseContext());
                 shouldRestart = true;
