@@ -1288,8 +1288,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                             return true;
                         }
                     };
-                    mObservationsList.setOnItemLongClickListener(onLongClick);
-                    mObservationsGrid.setOnItemLongClickListener(onLongClick);
+                    //mObservationsList.setOnItemLongClickListener(onLongClick);
+                    //mObservationsGrid.setOnItemLongClickListener(onLongClick);
 
                     mSyncingTopBar = (ViewGroup) layout.findViewById(R.id.syncing_top_bar);
                     mSyncingTopBar.setVisibility(View.GONE);
