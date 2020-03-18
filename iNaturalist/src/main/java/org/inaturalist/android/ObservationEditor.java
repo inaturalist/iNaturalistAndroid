@@ -1147,17 +1147,22 @@ public class ObservationEditor extends AppCompatActivity {
     // User canceled - revert any changes made to the observation photos/sounds
     private void revertPhotosAndSounds() {
         // Mark any deleted photos as non-deleted
-        for (ObservationPhoto photo : mPhotosRemoved) {
-            ContentValues cv = new ContentValues();
-            cv.put(ObservationPhoto.IS_DELETED, 0);
-            if (photo._synced_at != null) cv.put(ObservationPhoto._SYNCED_AT, photo._synced_at.getTime());
-            getContentResolver().update(photo.getUri(), cv, null, null);
+        if (mPhotosRemoved != null) {
+            for (ObservationPhoto photo : mPhotosRemoved) {
+                ContentValues cv = new ContentValues();
+                cv.put(ObservationPhoto.IS_DELETED, 0);
+                if (photo._synced_at != null)
+                    cv.put(ObservationPhoto._SYNCED_AT, photo._synced_at.getTime());
+                getContentResolver().update(photo.getUri(), cv, null, null);
+            }
         }
-        // Mark any deleted sounds as non-deleted
-        for (ObservationSound sound : mSoundsRemoved) {
-            ContentValues cv = new ContentValues();
-            cv.put(ObservationSound.IS_DELETED, 0);
-            getContentResolver().update(sound.getUri(), cv, null, null);
+        if (mSoundsRemoved != null) {
+            // Mark any deleted sounds as non-deleted
+            for (ObservationSound sound : mSoundsRemoved) {
+                ContentValues cv = new ContentValues();
+                cv.put(ObservationSound.IS_DELETED, 0);
+                getContentResolver().update(sound.getUri(), cv, null, null);
+            }
         }
 
 
