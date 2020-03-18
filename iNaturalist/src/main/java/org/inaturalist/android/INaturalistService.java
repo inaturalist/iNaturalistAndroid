@@ -2068,6 +2068,11 @@ public class INaturalistService extends IntentService {
 
             Logger.tag(TAG).debug("syncObservations: Calling saveJoinedProj");
             // General project data
+            mApp.notify(SYNC_PHOTOS_NOTIFICATION,
+                    getString(R.string.projects),
+                    getString(R.string.cleaning_up),
+                    getString(R.string.syncing));
+
             saveJoinedProjects();
             Logger.tag(TAG).debug("syncObservations: Calling storeProjObs");
             storeProjectObservations();
@@ -3224,11 +3229,6 @@ public class INaturalistService extends IntentService {
     }
 
     private boolean saveJoinedProjects() throws AuthenticationException, CancelSyncException, SyncFailedException {
-        mApp.notify(SYNC_PHOTOS_NOTIFICATION,
-                getString(R.string.projects),
-                getString(R.string.cleaning_up),
-                getString(R.string.syncing));
-
         SerializableJSONArray projects = getJoinedProjects();
 
         checkForCancelSync();
