@@ -342,12 +342,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
             if (mObsIdsToSync.size() > 0) {
                 // User chose specific observations to sync
-
-                if (mObsIdsToSync.size() == 1) {
-                    mSyncingStatus.setText(R.string.sync_1_observation);
-                } else {
-                    mSyncingStatus.setText(String.format(getResources().getString(R.string.sync_x_observations), mObsIdsToSync.size()));
-                }
+                int numObsToSync = mObsIdsToSync.size();
+                mSyncingStatus.setText(getResources().getQuantityString(R.plurals.sync_x_observations, numObsToSync, numObsToSync));
 
                 mSyncingTopBar.setVisibility(View.VISIBLE);
                 mUserCanceledSync = true; // To make it so that the button on the sync bar will trigger a sync
@@ -357,11 +353,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
             } else if (obsToSync.keySet().size() > 0) {
                 int count = obsToSync.keySet().size();
-                if (count == 1) {
-                    mSyncingStatus.setText(R.string.sync_1_observation);
-                } else {
-                    mSyncingStatus.setText(String.format(getResources().getString(R.string.sync_x_observations), count));
-                }
+                mSyncingStatus.setText(getResources().getQuantityString(R.plurals.sync_x_observations, count, count));
                 mSyncingTopBar.setVisibility(View.VISIBLE);
                 mUserCanceledSync = true; // To make it so that the button on the sync bar will trigger a sync
                 mCancelSync.setText(R.string.upload);
@@ -1310,9 +1302,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                         @Override
                         public void onClick(View view) {
                             // User chose to delete specific observations
+                            int numObsToDelete = mObsIdsToSync.size();
                             mHelper.confirm(
                                     getString(R.string.are_you_sure),
-                                    String.format(getString(R.string.are_you_sure_you_want_to_delete_observations), mObsIdsToSync.size()),
+                                    getResources().getQuantityString(R.plurals.are_you_sure_you_want_to_delete_observations, numObsToDelete, numObsToDelete),
                                     new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {

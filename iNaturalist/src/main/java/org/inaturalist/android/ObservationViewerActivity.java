@@ -2760,7 +2760,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         if ((mProjects != null) && (mProjects.size() > 0)) {
             mIncludedInProjectsContainer.setVisibility(View.VISIBLE);
             int count = mProjects.size();
-            mIncludedInProjects.setText(String.format(getString(count > 1 ? R.string.included_in_projects : R.string.included_in_projects_singular), count));
+            mIncludedInProjects.setText(getResources().getQuantityString(R.plurals.included_in_projects, count, count));
         } else {
             mIncludedInProjectsContainer.setVisibility(View.GONE);
         }

@@ -233,12 +233,10 @@ public class BaseFragmentActivity extends AppCompatActivity {
         }
 
         if (obsCount > -1) {
-            if (obsCount == 1) {
-                ((TextView) findViewById(R.id.observation_count)).setText(String.format(mApp.getStringResourceByName("observation_count_single_all_caps", "observation_count_single"), obsCount));
-            } else {
-                DecimalFormat formatter = new DecimalFormat("#,###,###");
-                ((TextView) findViewById(R.id.observation_count)).setText(String.format(mApp.getStringResourceByName("observation_count_all_caps", "observation_count"), formatter.format(obsCount)));
-            }
+            DecimalFormat formatter = new DecimalFormat("#,###,###");
+            ((TextView) findViewById(R.id.observation_count)).setText(
+                getResources().getQuantityString(R.plurals.observation_count_all_caps, obsCount, formatter.format(obsCount))
+            );
         } else {
             String conditions = "(_synced_at IS NULL";
             if (username != null) {
@@ -249,12 +247,9 @@ public class BaseFragmentActivity extends AppCompatActivity {
             Cursor cursor = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, conditions, null, Observation.DEFAULT_SORT_ORDER);
 
             int count = cursor.getCount();
-            if (count == 1) {
-                ((TextView) findViewById(R.id.observation_count)).setText(String.format(mApp.getStringResourceByName("observation_count_single_all_caps", "observation_count_single"), count));
-            } else {
-                ((TextView) findViewById(R.id.observation_count)).setText(String.format(mApp.getStringResourceByName("observation_count_all_caps", "observation_count"), count));
-            }
-
+            ((TextView) findViewById(R.id.observation_count)).setText(
+                getResources().getQuantityString(R.plurals.observation_count_all_caps, count, count)
+            );
             cursor.close();
         }
 
