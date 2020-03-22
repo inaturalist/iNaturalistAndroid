@@ -1,141 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#DDD"
+    android:background="#CCCCCC"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/observation_iconic_pic"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/iconic_taxon_actinopterygii"
-        android:layout_centerInParent="true"
-        android:tint="#ffffff"
-        android:visibility="visible"
-        />
-
-    <ImageView
-        android:id="@+id/observation_pic"
+    <RelativeLayout
+        android:id="@+id/container"
+        android:padding="0dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/iconic_taxon_unknown"
-        android:layout_centerInParent="true"
-        android:scaleType="centerCrop"
-        android:visibility="gone"
-        />
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:background="#DDD"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/observation_iconic_pic"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/iconic_taxon_actinopterygii"
+                android:layout_centerInParent="true"
+                android:tint="#ffffff"
+                android:visibility="visible"
+                />
+
+            <ImageView
+                android:id="@+id/observation_pic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/iconic_taxon_unknown"
+                android:layout_centerInParent="true"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                />
 
 
-    <LinearLayout
-        android:id="@+id/bottom_container"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true"
+            <LinearLayout
+                android:id="@+id/bottom_container"
+                android:orientation="vertical"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/comment_id_container"
+                    android:background="#EA118D"
+                    android:padding="5dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/comment_pic"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_chat_bubble_black_24dp"
+                        android:tint="#ffffff"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginTop="2dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/comment_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="31"
+                        android:layout_marginRight="8dp"
+                        android:textColor="#ffffff"
+                        />
+
+                    <ImageView
+                        android:id="@+id/id_pic"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_id"
+                        android:tint="#ffffff"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginTop="2dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/id_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12"
+                        android:textColor="#ffffff"
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/species_guess"
+                    android:layout_width="fill_parent"
+                    android:layout_height="30dp"
+                    android:background="#88000000"
+                    android:textColor="#ffffff"
+                    android:padding="5dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:gravity="left|center_vertical"
+                    android:textSize="12dp"
+                    android:text="TextView" />
+
+
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:visibility="gone"
+                android:id="@+id/progress"
+                android:background="#c8000000"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                    android:id="@+id/progress_inner"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:visibility="visible"
+                    android:layout_centerInParent="true"
+                    app:cpb_background_progressbar_color="#88669900"
+                    app:cpb_background_progressbar_width="7dp"
+                    app:cpb_progressbar_color="#669900"
+                    app:cpb_progressbar_width="7dp" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/has_sounds"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/sound"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:scaleType="centerCrop"
+                android:tint="#ffffff"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:visibility="gone"
+                />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/checkbox_container"
         android:layout_alignParentLeft="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:id="@+id/comment_id_container"
-            android:background="#EA118D"
-            android:padding="5dp"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/comment_pic"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:src="@drawable/ic_chat_bubble_black_24dp"
-                android:tint="#ffffff"
-                android:layout_marginRight="2dp"
-                android:layout_marginTop="2dp"
-                />
-
-            <TextView
-                android:id="@+id/comment_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="31"
-                android:layout_marginRight="8dp"
-                android:textColor="#ffffff"
-                />
-
-            <ImageView
-                android:id="@+id/id_pic"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:src="@drawable/ic_id"
-                android:tint="#ffffff"
-                android:layout_marginRight="2dp"
-                android:layout_marginTop="2dp"
-                />
-
-            <TextView
-                android:id="@+id/id_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="12"
-                android:textColor="#ffffff"
-                />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/species_guess"
-            android:layout_width="fill_parent"
-            android:layout_height="30dp"
-            android:background="#88000000"
-            android:textColor="#ffffff"
-            android:padding="5dp"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:gravity="left|center_vertical"
-            android:textSize="12dp"
-            android:text="TextView" />
-
-
-    </LinearLayout>
-
-
-    <RelativeLayout
-        android:visibility="gone"
-        android:id="@+id/progress"
-        android:background="#c8000000"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <com.mikhaellopez.circularprogressbar.CircularProgressBar
-            android:id="@+id/progress_inner"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:visibility="visible"
-            android:layout_centerInParent="true"
-            app:cpb_background_progressbar_color="#88669900"
-            app:cpb_background_progressbar_width="7dp"
-            app:cpb_progressbar_color="#669900"
-            app:cpb_progressbar_width="7dp" />
-    </RelativeLayout>
-
-    <ImageView
-        android:id="@+id/has_sounds"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:src="@drawable/sound"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:scaleType="centerCrop"
-        android:tint="#ffffff"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
-        android:visibility="gone"
-        />
-
-    <RelativeLayout
-        android:visibility="gone"
-        android:id="@+id/selected"
-        android:background="#80009688"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp">
+        <View
+            android:layout_centerInParent="true"
+            android:background="@drawable/circular_checkbox"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <ImageView
+            android:id="@+id/checkbox"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/baseline_check_circle_24"
+            android:tint="#000000"
+            android:adjustViewBounds="true"
+            />
     </RelativeLayout>
+
+
 </RelativeLayout>

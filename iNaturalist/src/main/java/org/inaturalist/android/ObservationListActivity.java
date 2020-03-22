@@ -40,6 +40,7 @@ import android.os.Build;
 import android.os.Bundle;
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.PagerAdapter;
@@ -144,7 +145,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     private ViewGroup mOnboardingSyncing;
     private View mOnboardingSyncingClose;
 
-    private boolean mSelectedBottomGrid = false;
     private TextView mAddButtonText;
 
     @State public boolean mFromObsEdit = false;
@@ -156,8 +156,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     public static boolean sActivityCreated = false;
     private SwipeRefreshLayout mListSwipeContainer;
     private SwipeRefreshLayout mGridSwipeContainer;
-    private ViewGroup mDeleteContainer;
-    private TextView mDeleteSync;
+    private View mAddButton;
+    private boolean mMultiSelectionMode = false;
+    private TextView mMultiSelectionObsCount;
 
 
     private boolean isNetworkAvailable() {
@@ -263,6 +264,13 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     
     /** Shows the sync required bottom bar, if needed */
     private void refreshSyncBar() {
+        if (mMultiSelectionMode && mSyncingTopBar != null) {
+            mSyncingTopBar.setVisibility(View.GONE);
+
+            mMultiSelectionObsCount.setText(String.valueOf(mObsIdsToSync.size()));
+            return;
+        }
+
         if (mApp.getAutoSync()) {
             // Auto sync is on - no need for manual sync (only if the sync wasn't paused by the user)
             if (!mUserCanceledSync) {
@@ -338,24 +346,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         osc.close();
 
         if (mSyncingTopBar != null) {
-            mDeleteContainer.setVisibility(View.GONE);
-
-            if (mObsIdsToSync.size() > 0) {
-                // User chose specific observations to sync
-
-                if (mObsIdsToSync.size() == 1) {
-                    mSyncingStatus.setText(R.string.sync_1_observation);
-                } else {
-                    mSyncingStatus.setText(String.format(getResources().getString(R.string.sync_x_observations), mObsIdsToSync.size()));
-                }
-
-                mSyncingTopBar.setVisibility(View.VISIBLE);
-                mUserCanceledSync = true; // To make it so that the button on the sync bar will trigger a sync
-                mCancelSync.setText(R.string.upload);
-
-                mDeleteContainer.setVisibility(View.VISIBLE);
-
-            } else if (obsToSync.keySet().size() > 0) {
+            if (obsToSync.keySet().size() > 0) {
                 int count = obsToSync.keySet().size();
                 if (count == 1) {
                     mSyncingStatus.setText(R.string.sync_1_observation);
@@ -988,7 +979,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     }
 
     private void refreshGridListMenuIcon() {
-        if (mMenu != null) {
+        if ((mMenu != null) && (!mMultiSelectionMode)) {
             int index = mViewPager.getCurrentItem();
             if (!mIsGrid[index]) {
                 mMenu.getItem(0).setIcon(R.drawable.grid_view_gray);
@@ -1238,6 +1229,34 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     OnItemClickListener onClick = new OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+
+                            if (mMultiSelectionMode) {
+                                // Multi-selection mode - add/remove the observation
+
+                                if (mObsIdsToSync.contains(id)) {
+                                    mObsIdsToSync.remove(id);
+                                } else {
+                                    mObsIdsToSync.add(id);
+                                }
+
+                                if (mObsIdsToSync.size() == 0) {
+                                    // Exit multi-selection mode in this case
+                                    setMultiSelectionMode(false);
+                                } else {
+                                    mObservationListAdapter.setSelectedObservations(mObsIdsToSync);
+                                    mObservationGridAdapter.setSelectedObservations(mObsIdsToSync);
+
+                                    mObservationListAdapter.refreshCursor();
+                                    mObservationGridAdapter.refreshCursor();
+
+                                    refreshSyncBar();
+                                }
+
+                                return;
+                            }
+
+                            // Regular mode - open up the observation details screen
+
                             Uri uri = ContentUris.withAppendedId(getIntent().getData(), id);
 
                             String action = getIntent().getAction();
@@ -1270,33 +1289,22 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     AdapterView.OnItemLongClickListener onLongClick = new AdapterView.OnItemLongClickListener() {
                         @Override
                         public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
+                            // Like in Google Photos - long-clicking only adds, doesn't remove
+                            mObsIdsToSync.add(id);
+
                             // Multiple-selection mode
-                            if (mObsIdsToSync.contains(id)) {
-                                mObsIdsToSync.remove(id);
-                            } else {
-                                mObsIdsToSync.add(id);
-                            }
-
-                            mObservationListAdapter.setSelectedObservations(mObsIdsToSync);
-                            mObservationGridAdapter.setSelectedObservations(mObsIdsToSync);
-
-                            refreshSyncBar();
-
-                            mObservationListAdapter.refreshCursor();
-                            mObservationGridAdapter.refreshCursor();
+                            setMultiSelectionMode(true);
 
                             return true;
                         }
                     };
-                    //mObservationsList.setOnItemLongClickListener(onLongClick);
-                    //mObservationsGrid.setOnItemLongClickListener(onLongClick);
+                    mObservationsList.setOnItemLongClickListener(onLongClick);
+                    mObservationsGrid.setOnItemLongClickListener(onLongClick);
 
                     mSyncingTopBar = (ViewGroup) layout.findViewById(R.id.syncing_top_bar);
                     mSyncingTopBar.setVisibility(View.GONE);
                     mSyncingStatus = (TextView) layout.findViewById(R.id.syncing_status);
                     mCancelSync = (TextView) layout.findViewById(R.id.cancel_sync);
-                    mDeleteContainer = (ViewGroup) layout.findViewById(R.id.delete_container);
-                    mDeleteSync = (TextView) layout.findViewById(R.id.delete);
 
                     if (mApp.getAutoSync()) {
                         // Auto sync
@@ -1305,31 +1313,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                         // Manual
                         mCancelSync.setText(R.string.upload);
                     }
-
-                    mDeleteSync.setOnClickListener(new OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            // User chose to delete specific observations
-                            mHelper.confirm(
-                                    getString(R.string.are_you_sure),
-                                    String.format(getString(R.string.are_you_sure_you_want_to_delete_observations), mObsIdsToSync.size()),
-                                    new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            deleteSelectedObservations();
-                                        }
-                                    },
-                                    new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            
-                                        }
-                                    },
-                                    getString(R.string.yes),
-                                    getString(R.string.no)
-                            );
-                        }
-                    });
 
                     mCancelSync.setOnClickListener(new OnClickListener() {
                         @Override
@@ -1388,11 +1371,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                                 mSyncingStatus.setText(R.string.syncing);
                                 // Re-sync
                                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
-                                if (mObsIdsToSync.size() > 0) {
-                                    Long[] obsIds = new Long[mObsIdsToSync.size()];
-                                    mObsIdsToSync.toArray(obsIds);
-                                    serviceIntent.putExtra(INaturalistService.OBS_IDS_TO_SYNC, ArrayUtils.toPrimitive(obsIds));
-                                }
                                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                                 ContextCompat.startForegroundService(ObservationListActivity.this, serviceIntent);
 
@@ -1433,9 +1411,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                     refreshSyncBar();
 
-                    View addButton = (View) layout.findViewById(R.id.add_observation);
+                    mAddButton = layout.findViewById(R.id.add_observation);
                     mAddButtonText = (TextView) layout.findViewById(R.id.add_observation_text);
-                    addButton.setVisibility(View.VISIBLE);
+                    mAddButton.setVisibility(View.VISIBLE);
                     mAddButtonText.setVisibility(mObservationListAdapter.getCount() > 0 ? View.GONE : View.VISIBLE);
 
                     OnClickListener onAddObs = new OnClickListener() {
@@ -1446,7 +1424,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                         }
                     };
 
-                    addButton.setOnClickListener(onAddObs);
+                    mAddButton.setOnClickListener(onAddObs);
                     mAddButtonText.setOnClickListener(onAddObs);
 
 
@@ -1479,6 +1457,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     }
 
     private void deleteSelectedObservations() {
+        List<Long> remoteIdsToDelete = new ArrayList<>();
+
         for (Long obsId : mObsIdsToSync) {
             Uri uri = ContentUris.withAppendedId(getIntent().getData(), obsId);
             Cursor cursor = managedQuery(uri, Observation.PROJECTION, null, null, null);
@@ -1486,6 +1466,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
             if (observation.id == null) {
                 // Local observation (not yet synced) - delete locally only
+
                 getContentResolver().delete(uri, null, null);
 
                 // Delete any observation photos taken with it
@@ -1495,8 +1476,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 getContentResolver().delete(ObservationSound.CONTENT_URI, "_observation_id=?", new String[]{observation._id.toString()});
 
             } else {
-
-                // Only mark as deleted (so we'll later on sync the deletion)
+                // Need to remotely delete
+                remoteIdsToDelete.add(obsId);
+                // Mark for deletion (so we'll later on sync the deletion)
                 ContentValues cv = observation.getContentValues();
                 cv.put(Observation.IS_DELETED, 1);
                 Logger.tag(TAG).debug("delete: Update: " + uri + ":" + cv);
@@ -1504,15 +1486,17 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             }
         }
 
+        if (remoteIdsToDelete.size() > 0) {
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_DELETE_OBSERVATIONS, null, ObservationListActivity.this, INaturalistService.class);
+            Long[] obsIds = new Long[remoteIdsToDelete.size()];
+            remoteIdsToDelete.toArray(obsIds);
+            serviceIntent.putExtra(INaturalistService.OBS_IDS_TO_DELETE, ArrayUtils.toPrimitive(obsIds));
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            ContextCompat.startForegroundService(ObservationListActivity.this, serviceIntent);
 
-        mObsIdsToSync.clear();
-        mObservationListAdapter.setSelectedObservations(mObsIdsToSync);
-        mObservationGridAdapter.setSelectedObservations(mObsIdsToSync);
+        }
 
-        refreshSyncBar();
-
-        mObservationListAdapter.refreshCursor();
-        mObservationGridAdapter.refreshCursor();
+        setMultiSelectionMode(false);
     }
 
 
@@ -1631,12 +1615,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             }
 
             Logger.tag(TAG).debug(String.format("Updating progress for %d / %d: %f", obsId, obsIdInternal, progress));
-
-            if (progress == 100 && mObsIdsToSync.contains(Long.valueOf(obsIdInternal))) {
-                mObsIdsToSync.remove(Long.valueOf(obsIdInternal));
-                mObservationListAdapter.setSelectedObservations(mObsIdsToSync);
-                mObservationGridAdapter.setSelectedObservations(mObsIdsToSync);
-            }
 
             mObservationListAdapter.updateProgress(obsId, progress);
             mObservationListAdapter.notifyDataSetChanged();
@@ -1835,6 +1813,100 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             // Trigger another sync if needed, since the user added/changed an observation
             triggerSyncIfNeeded();
         }
+    }
+
+    private void setMultiSelectionMode(boolean mode) {
+        if (!mode) {
+            mObsIdsToSync.clear();
+        }
+
+        mMultiSelectionMode = mode;
+
+        mObservationListAdapter.setSelectedObservations(mObsIdsToSync);
+        mObservationGridAdapter.setSelectedObservations(mObsIdsToSync);
+
+        mObservationListAdapter.setMultiSelectionMode(mode);
+        mObservationGridAdapter.setMultiSelectionMode(mode);
+
+        mObservationListAdapter.refreshCursor();
+        mObservationGridAdapter.refreshCursor();
+
+        mAddButton.setVisibility(mode ? View.GONE : View.VISIBLE);
+        mSyncingTopBar.setVisibility(mode ? View.GONE : View.VISIBLE);
+
+        mTabLayout.setVisibility(mode ? View.GONE : View.VISIBLE);
+
+        if (mode) {
+            getSupportActionBar().setCustomView(R.layout.multi_selection_action_bar);
+            getSupportActionBar().setDisplayShowCustomEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            
+            mMultiSelectionObsCount = (TextView) getSupportActionBar().getCustomView().findViewById(R.id.observation_count);
+            View exitMultiObs = getSupportActionBar().getCustomView().findViewById(R.id.exit);
+
+            exitMultiObs.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    setMultiSelectionMode(false);
+                }
+            });
+
+
+            View uploadMultiObs = getSupportActionBar().getCustomView().findViewById(R.id.sync);
+            uploadMultiObs.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Sync those selected observations only
+                    Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
+                    Long[] obsIds = new Long[mObsIdsToSync.size()];
+                    mObsIdsToSync.toArray(obsIds);
+                    serviceIntent.putExtra(INaturalistService.OBS_IDS_TO_SYNC, ArrayUtils.toPrimitive(obsIds));
+                    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                    ContextCompat.startForegroundService(ObservationListActivity.this, serviceIntent);
+
+                    // Exit multi-batch mode immediately
+                    setMultiSelectionMode(false);
+                }
+            });
+
+            View deleteMultiObs = getSupportActionBar().getCustomView().findViewById(R.id.delete);
+            deleteMultiObs.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // User chose to delete specific observations
+                    mHelper.confirm(
+                            getString(R.string.are_you_sure),
+                            String.format(getString(R.string.are_you_sure_you_want_to_delete_observations), mObsIdsToSync.size()),
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    deleteSelectedObservations();
+                                }
+                            },
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                }
+                            },
+                            getString(R.string.yes),
+                            getString(R.string.no)
+                    );
+                }
+            });
+
+            mMenu.clear();
+        } else {
+            getSupportActionBar().setDisplayShowCustomEnabled(false);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.my_observations_menu, mMenu);
+            refreshGridListMenuIcon();
+        }
+
+
+        refreshSyncBar();
     }
 
 }

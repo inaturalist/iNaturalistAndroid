@@ -31,6 +31,7 @@ import java.util.Set;
 import java.util.TimeZone;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -369,6 +370,7 @@ public class INaturalistService extends IntentService {
     public static final String PAGE_SIZE = "page_size";
     public static final String ID = "id";
     public static final String OBS_IDS_TO_SYNC = "obs_ids_to_sync";
+    public static final String OBS_IDS_TO_DELETE = "obs_ids_to_delete";
 
     public static final int NEAR_BY_OBSERVATIONS_PER_PAGE = 25;
     public static final int EXPLORE_DEFAULT_RESULTS_PER_PAGE = 30;
@@ -400,6 +402,7 @@ public class INaturalistService extends IntentService {
     public static String ACTION_GET_TAXON_SUGGESTIONS = "get_taxon_suggestions";
     public static String ACTION_FIRST_SYNC = "first_sync";
     public static String ACTION_PULL_OBSERVATIONS = "pull_observations";
+    public static String ACTION_DELETE_OBSERVATIONS = "delete_observations";
     public static String ACTION_GET_OBSERVATION = "get_observation";
     public static String ACTION_GET_AND_SAVE_OBSERVATION = "get_and_save_observation";
     public static String ACTION_FLAG_OBSERVATION_AS_CAPTIVE = "flag_observation_as_captive";
@@ -1766,6 +1769,19 @@ public class INaturalistService extends IntentService {
                     }
                 }
 
+            } else if (action.equals(ACTION_DELETE_OBSERVATIONS)) {
+                if (!mIsSyncing && !mApp.getIsSyncing()) {
+                    long[] idsToDelete = null;
+                    idsToDelete = intent.getExtras().getLongArray(OBS_IDS_TO_DELETE);
+
+                    Logger.tag(TAG).debug("DeleteObservations: Calling delete obs");
+                    mIsSyncing = true;
+                    mApp.setIsSyncing(mIsSyncing);
+                    deleteObservations(idsToDelete);
+                } else {
+                    // Already in middle of syncing
+                    dontStopSync = true;
+                }
             } else if (action.equals(ACTION_SYNC)) {
                 if (!mIsSyncing && !mApp.getIsSyncing()) {
                     long[] idsToSync = null;
@@ -1809,7 +1825,7 @@ public class INaturalistService extends IntentService {
         } finally {
             mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
 
-            if (mIsSyncing && !dontStopSync && (action.equals(ACTION_SYNC) || action.equals(ACTION_FIRST_SYNC) || action.equals(ACTION_PULL_OBSERVATIONS))) {
+            if (mIsSyncing && !dontStopSync && (action.equals(ACTION_SYNC) || action.equals(ACTION_FIRST_SYNC) || action.equals(ACTION_PULL_OBSERVATIONS) || action.equals(ACTION_DELETE_OBSERVATIONS))) {
                 mIsSyncing = false;
                 mApp.setIsSyncing(mIsSyncing);
 
@@ -2064,7 +2080,7 @@ public class INaturalistService extends IntentService {
 
         if (idsToSync == null) {
             Logger.tag(TAG).debug("syncObservations: Calling delete obs");
-            deleteObservations(); // Delete locally-removed observations
+            deleteObservations(null); // Delete locally-removed observations
 
             Logger.tag(TAG).debug("syncObservations: Calling saveJoinedProj");
             // General project data
@@ -3372,13 +3388,24 @@ public class INaturalistService extends IntentService {
         return true;
     }
 
-    private boolean deleteObservations() throws AuthenticationException, CancelSyncException, SyncFailedException {
-        // Remotely delete any locally-removed observations
-        Cursor c = getContentResolver().query(Observation.CONTENT_URI,
-                Observation.PROJECTION,
-                "is_deleted = 1",
-                null,
-                Observation.DEFAULT_SORT_ORDER);
+    private boolean deleteObservations(long[] idsToDelete) throws AuthenticationException, CancelSyncException, SyncFailedException {
+        Cursor c;
+
+        if (idsToDelete != null) {
+            // Remotely delete selected observations only
+            c = getContentResolver().query(Observation.CONTENT_URI,
+                    Observation.PROJECTION,
+                    "_id in (" + StringUtils.join(ArrayUtils.toObject(idsToDelete), ",") + ")",
+                    null,
+                    Observation.DEFAULT_SORT_ORDER);
+        } else {
+            // Remotely delete any locally-removed observations (marked for deletion)
+            c = getContentResolver().query(Observation.CONTENT_URI,
+                    Observation.PROJECTION,
+                    "is_deleted = 1",
+                    null,
+                    Observation.DEFAULT_SORT_ORDER);
+        }
 
         Logger.tag(TAG).debug("deleteObservations: Deleting " + c.getCount());
 

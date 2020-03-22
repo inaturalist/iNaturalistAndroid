@@ -72,6 +72,7 @@ import static android.content.Context.MODE_PRIVATE;
 class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListView.OnScrollListener {
     private static final String TAG = "SimpleCursorAdapter";
     private final GetAdditionalObsReceiver mGetAdditionalObsReceiver;
+    private final ActivityHelper mHelper;
 
     private int mDimension;
     private HashMap<String, String[]> mPhotoInfo = new HashMap<String, String[]>();
@@ -89,6 +90,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
     private Set<Long> mSelectedObservations = new HashSet<>();
 
+    private boolean mMultiSelectionMode = false;
+
     public interface OnLoadingMoreResultsListener {
         void onLoadingMoreResultsStart();
         void onLoadingMoreResultsFinish();
@@ -103,6 +106,10 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         mOnLoadingMoreResultsListener = listener;
     }
 
+    public void setMultiSelectionMode(boolean mode) {
+        mMultiSelectionMode = mode;
+    }
+
     public ObservationCursorAdapter(Context context, Cursor c) {
         this(context, c, false, null);
     }
@@ -113,6 +120,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         mGrid = grid;
         mContext = (Activity)context;
         mApp = (INaturalistApp) mContext.getApplicationContext();
+        mHelper = new ActivityHelper(mContext);
 
         getPhotoInfo(true);
 
@@ -356,7 +364,11 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
     private static class ViewHolder {
         public long obsId;
-        
+
+        public ViewGroup checkboxContainer;
+        public ImageView checkbox;
+        public ViewGroup container;
+
         public ImageView obsImage;
         public ImageView obsIconicImage;
         public TextView speciesGuess;
@@ -381,11 +393,12 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         public Long updatedAt;
         public Observation observation;
 
-        public ViewGroup selected;
-
         public ViewHolder(ViewGroup view) {
             obsId = -1;
 
+            checkboxContainer = (ViewGroup) view.findViewById(R.id.checkbox_container);
+            checkbox = (ImageView) view.findViewById(R.id.checkbox);
+            container = (ViewGroup) view.findViewById(R.id.container);
             obsImage = (ImageView) view.findViewById(R.id.observation_pic);
             obsIconicImage = (ImageView) view.findViewById(R.id.observation_iconic_pic);
             speciesGuess = (TextView) view.findViewById(R.id.species_guess);
@@ -405,8 +418,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             progressInner = view.findViewById(R.id.progress_inner);
 
             soundsIndicator = view.findViewById(R.id.has_sounds);
-
-            selected = view.findViewById(R.id.selected);
         }
 
     }
@@ -415,6 +426,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         final View view = super.getView(position, convertView, parent);
         ViewHolder holder;
         Cursor c = this.getCursor();
+
         if (c.getCount() == 0) {
             return view;
         }
@@ -435,32 +447,11 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
-
-            Observation observation = new Observation(c);
-            if ((holder.obsId == obsId) && (holder.observation != null) && (holder.observation.equals(observation))) {
-                String photoFilename = photoInfo != null ? (photoInfo[2] != null ? photoInfo[2] : photoInfo[0]) : null;
-                if ((holder.photoFilename == photoFilename) &&
-                        (holder.hasErrors == hasErrors) &&
-                        (holder.isBeingSynced == isBeingSynced) &&
-                        (holder.isBeingSynced == (mApp.getObservationIdBeingSynced() == obsId))) {
-
-
-                    int desiredDimension = 0, currentDimension = 0;
-
-                    if (mGrid != null) {
-                        // Make sure the screen hasn't been rotated (and that means the image will be of a different size)
-                        desiredDimension = mGrid.getColumnWidth();
-                        currentDimension = holder.obsImage.getLayoutParams().width;
-                    }
-
-                    if (desiredDimension == currentDimension) {
-                        // This view is already showing the current obs
-                        return view;
-                    }
-                }
-            }
         }
 
+        ViewGroup checkboxContainer = holder.checkboxContainer;
+        ImageView checkbox = holder.checkbox;
+        ViewGroup container = holder.container;
         final ImageView obsImage = holder.obsImage;
         ImageView obsIconicImage = holder.obsIconicImage;
         TextView speciesGuess = holder.speciesGuess;
@@ -481,8 +472,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         View soundsIndicator = holder.soundsIndicator;
 
-        View selected = holder.selected;
-
         String placeGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.PLACE_GUESS));
         String privatePlaceGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.PRIVATE_PLACE_GUESS));
         Double latitude = c.getDouble(c.getColumnIndexOrThrow(Observation.LATITUDE));
@@ -490,11 +479,16 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         Double privateLatitude = c.getDouble(c.getColumnIndexOrThrow(Observation.PRIVATE_LATITUDE));
         Double privateLongitude = c.getDouble(c.getColumnIndexOrThrow(Observation.PRIVATE_LONGITUDE));
 
+        (mIsGrid ? checkboxContainer : checkbox).setVisibility(mMultiSelectionMode ? View.VISIBLE : View.GONE);
+
         if (mIsGrid) {
             mDimension = mGrid.getColumnWidth();
+            if (mMultiSelectionMode && (mSelectedObservations.contains(obsId))) {
+                // If current grid item is selected (in multi selection mode) - account for inner padding
+                mDimension -= (int)(2 * mHelper.dpToPx(10));
+            }
             obsImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
             progress.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
-            selected.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
 
             int newDimension = (int) (mDimension * 0.48); // So final image size will be 48% of original size
             int speciesGuessHeight = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, mContext.getResources().getDisplayMetrics());
@@ -812,14 +806,20 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
 
         if (mSelectedObservations.contains(obsId)) {
+            checkbox.setImageResource(R.drawable.baseline_check_circle_24);
+
             if (!mIsGrid) {
-                view.setBackgroundResource(R.color.inatapptheme_color_highlighted);
+                view.setBackgroundColor(Color.parseColor("#C9CBD5"));
             } else {
-                view.findViewById(R.id.selected).setVisibility(View.VISIBLE);
+                int padding = (int)mHelper.dpToPx(10);
+                container.setPadding(padding, padding, padding, padding);
+                view.setBackgroundColor(Color.parseColor("#CCCCCC"));
             }
         } else {
+            checkbox.setImageResource(R.drawable.baseline_radio_button_unchecked_24);
+
             if (mIsGrid) {
-                view.findViewById(R.id.selected).setVisibility(View.GONE);
+                container.setPadding(0, 0, 0, 0);
             }
         }
 
@@ -895,35 +895,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             }
         }
     }
-
-    private void refreshCommentsIdSize(final TextView view, Long value) {
-        ViewTreeObserver observer = view.getViewTreeObserver();
-        // Make sure the height and width of the rectangle are the same (i.e. a square)
-        observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-            @Override
-            public void onGlobalLayout() {
-                int dimension = view.getHeight();
-                ViewGroup.LayoutParams params = view.getLayoutParams();
-
-                if (dimension > view.getWidth()) {
-                    // Only resize if there's enough room
-                    params.width = dimension;
-                    view.setLayoutParams(params);
-                }
-
-                ViewTreeObserver observer = view.getViewTreeObserver();
-                if(Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-                    observer.removeGlobalOnLayoutListener(this);
-                } else {
-                    observer.removeOnGlobalLayoutListener(this);
-                }
-            }
-        });
-
-        view.setText(value.toString());
-    }
-
 
     // For caching observation thumbnails
     private HashMap<String, Bitmap> mObservationThumbnails = new HashMap<>();
