@@ -1,5 +1,6 @@
 package org.inaturalist.android;
 
+import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -829,6 +830,72 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
 
         return view;
+    }
+
+    // Used to animate moving into/out a specific item from a multi-observation mode
+    public void setItemSelected(View view, boolean selected) {
+
+        ViewGroup checkboxContainer = (ViewGroup) view.findViewById(R.id.checkbox_container);
+        ImageView checkbox = (ImageView) view.findViewById(R.id.checkbox);
+        ImageView obsImage = (ImageView) view.findViewById(R.id.observation_pic);
+        View progress = view.findViewById(R.id.progress);
+        ImageView obsIconicImage = (ImageView) view.findViewById(R.id.observation_iconic_pic);
+        ViewGroup container = (ViewGroup) view.findViewById(R.id.container);
+
+        (mIsGrid ? checkboxContainer : checkbox).setVisibility(mMultiSelectionMode ? View.VISIBLE : View.GONE);
+
+        if (mIsGrid) {
+            mDimension = mGrid.getColumnWidth();
+            if (mMultiSelectionMode && selected) {
+                // If current grid item is selected (in multi selection mode) - account for inner padding
+                mDimension -= (int)(2 * mHelper.dpToPx(10));
+            }
+            obsImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
+            progress.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
+
+            int newDimension = (int) (mDimension * 0.48); // So final image size will be 48% of original size
+            int speciesGuessHeight = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, mContext.getResources().getDisplayMetrics());
+            int leftRightMargin = (mDimension - newDimension) / 2;
+            int topBottomMargin = (mDimension - speciesGuessHeight - newDimension) / 2;
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(newDimension, newDimension);
+            layoutParams.setMargins(leftRightMargin, topBottomMargin, leftRightMargin, 0);
+            obsIconicImage.setLayoutParams(layoutParams);
+        }
+
+
+        ValueAnimator animator = null;
+        int padding = (int)mHelper.dpToPx(10);
+
+
+        if (selected) {
+            checkbox.setImageResource(R.drawable.baseline_check_circle_24);
+
+            if (!mIsGrid) {
+                view.setBackgroundColor(Color.parseColor("#C9CBD5"));
+            } else {
+                animator = ValueAnimator.ofInt(0, padding);
+                view.setBackgroundColor(Color.parseColor("#CCCCCC"));
+            }
+        } else {
+            checkbox.setImageResource(R.drawable.baseline_radio_button_unchecked_24);
+
+            if (!mIsGrid) {
+                view.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            } else {
+                animator = ValueAnimator.ofInt(padding, 0);
+            }
+        }
+
+        if (mIsGrid) {
+            animator.addUpdateListener(valueAnimator -> {
+                Integer currentPadding = (Integer) valueAnimator.getAnimatedValue();
+                container.setPadding(currentPadding, currentPadding, currentPadding, currentPadding);
+            });
+            animator.setDuration(100);
+            animator.start();
+        }
+
+
     }
 
     // Should the specified observation be locked for editing (e.g. it's currently being uploaded)

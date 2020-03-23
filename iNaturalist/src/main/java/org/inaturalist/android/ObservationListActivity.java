@@ -1232,11 +1232,13 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                             if (mMultiSelectionMode) {
                                 // Multi-selection mode - add/remove the observation
+                                boolean selected = false;
 
                                 if (mObsIdsToSync.contains(id)) {
                                     mObsIdsToSync.remove(id);
                                 } else {
                                     mObsIdsToSync.add(id);
+                                    selected = true;
                                 }
 
                                 if (mObsIdsToSync.size() == 0) {
@@ -1246,8 +1248,14 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                                     mObservationListAdapter.setSelectedObservations(mObsIdsToSync);
                                     mObservationGridAdapter.setSelectedObservations(mObsIdsToSync);
 
-                                    mObservationListAdapter.refreshCursor();
-                                    mObservationGridAdapter.refreshCursor();
+                                    // Refresh the view of only the selected item
+                                    if (adapterView instanceof  ListView) {
+                                        mObservationListAdapter.setItemSelected(view, selected);
+                                        //mObservationListAdapter.getView(position, view, mObservationsList);
+                                    } else {
+                                        mObservationGridAdapter.setItemSelected(view, selected);
+                                        //mObservationGridAdapter.getView(position, view, mObservationsGrid);
+                                    }
 
                                     refreshSyncBar();
                                 }
