@@ -131,7 +131,7 @@
                     android:id="@+id/suggestions_description"
                     android:textSize="14sp"
                     android:textColor="#8B000000"
-                    android:text="@string/were_not_confident"
+                    android:text="@plurals/were_not_confident"
                     android:layout_marginLeft="17dp"
                     android:layout_marginRight="17dp"
                     android:layout_marginTop="23dp"

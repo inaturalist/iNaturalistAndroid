@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import androidx.core.content.ContextCompat;
@@ -320,14 +321,16 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
             }
         };
 
+        int numSuggestions = mTaxonSuggestions.size();
+        Resources res = getResources();
         if (mTaxonCommonAncestor == null) {
             // No common ancestor
-            mSuggestionsDescription.setText(String.format(getString(R.string.were_not_confident), mTaxonSuggestions.size()));
+            mSuggestionsDescription.setText(res.getQuantityString(R.plurals.were_not_confident, numSuggestions, numSuggestions));
             mCommonAncestorDescription.setVisibility(View.GONE);
             mCommonAncestorList.setVisibility(View.GONE);
         } else {
             // Show common ancestor
-            mSuggestionsDescription.setText(String.format(getString(R.string.top_species_suggestions), mTaxonSuggestions.size()));
+            mSuggestionsDescription.setText(res.getQuantityString(R.plurals.top_species_suggestions, numSuggestions, numSuggestions));
             List<BetterJSONObject> commonAncestor = new ArrayList<>();
             commonAncestor.add(mTaxonCommonAncestor);
             mCommonAncestorList.setAdapter(new TaxonSuggestionAdapter(this, commonAncestor, onSuggestion, false));
