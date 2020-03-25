@@ -367,6 +367,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         public long obsId;
 
         public ViewGroup checkboxContainer;
+        public View checkboxBackground;
         public ImageView checkbox;
         public ViewGroup container;
 
@@ -398,6 +399,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             obsId = -1;
 
             checkboxContainer = (ViewGroup) view.findViewById(R.id.checkbox_container);
+            checkboxBackground = (View) view.findViewById(R.id.checkbox_background);
             checkbox = (ImageView) view.findViewById(R.id.checkbox);
             container = (ViewGroup) view.findViewById(R.id.container);
             obsImage = (ImageView) view.findViewById(R.id.observation_pic);
@@ -451,6 +453,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         }
 
         ViewGroup checkboxContainer = holder.checkboxContainer;
+        View checkboxBackground = holder.checkboxBackground;
         ImageView checkbox = holder.checkbox;
         ViewGroup container = holder.container;
         final ImageView obsImage = holder.obsImage;
@@ -486,7 +489,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             mDimension = mGrid.getColumnWidth();
             if (mMultiSelectionMode && (mSelectedObservations.contains(obsId))) {
                 // If current grid item is selected (in multi selection mode) - account for inner padding
-                mDimension -= (int)(2 * mHelper.dpToPx(10));
+                //mDimension -= (int)(2 * mHelper.dpToPx(10));
             }
             obsImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
             progress.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
@@ -808,19 +811,25 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         if (mSelectedObservations.contains(obsId)) {
             checkbox.setImageResource(R.drawable.baseline_check_circle_24);
+            checkbox.setAlpha(1.0f);
 
             if (!mIsGrid) {
                 view.setBackgroundColor(Color.parseColor("#C9CBD5"));
             } else {
+                checkboxBackground.setVisibility(View.VISIBLE);
                 int padding = (int)mHelper.dpToPx(10);
                 container.setPadding(padding, padding, padding, padding);
                 view.setBackgroundColor(Color.parseColor("#CCCCCC"));
+                obsImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension - padding * 2, mDimension - padding * 2));
             }
         } else {
             checkbox.setImageResource(R.drawable.baseline_radio_button_unchecked_24);
+            checkbox.setAlpha(0.5f);
 
             if (mIsGrid) {
+                checkboxBackground.setVisibility(View.GONE);
                 container.setPadding(0, 0, 0, 0);
+                obsImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
             }
         }
 
@@ -835,33 +844,13 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     // Used to animate moving into/out a specific item from a multi-observation mode
     public void setItemSelected(View view, boolean selected) {
 
+        View checkboxBackground = view.findViewById(R.id.checkbox_background);
         ViewGroup checkboxContainer = (ViewGroup) view.findViewById(R.id.checkbox_container);
         ImageView checkbox = (ImageView) view.findViewById(R.id.checkbox);
         ImageView obsImage = (ImageView) view.findViewById(R.id.observation_pic);
-        View progress = view.findViewById(R.id.progress);
-        ImageView obsIconicImage = (ImageView) view.findViewById(R.id.observation_iconic_pic);
         ViewGroup container = (ViewGroup) view.findViewById(R.id.container);
 
         (mIsGrid ? checkboxContainer : checkbox).setVisibility(mMultiSelectionMode ? View.VISIBLE : View.GONE);
-
-        if (mIsGrid) {
-            mDimension = mGrid.getColumnWidth();
-            if (mMultiSelectionMode && selected) {
-                // If current grid item is selected (in multi selection mode) - account for inner padding
-                mDimension -= (int)(2 * mHelper.dpToPx(10));
-            }
-            obsImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
-            progress.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
-
-            int newDimension = (int) (mDimension * 0.48); // So final image size will be 48% of original size
-            int speciesGuessHeight = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, mContext.getResources().getDisplayMetrics());
-            int leftRightMargin = (mDimension - newDimension) / 2;
-            int topBottomMargin = (mDimension - speciesGuessHeight - newDimension) / 2;
-            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(newDimension, newDimension);
-            layoutParams.setMargins(leftRightMargin, topBottomMargin, leftRightMargin, 0);
-            obsIconicImage.setLayoutParams(layoutParams);
-        }
-
 
         ValueAnimator animator = null;
         int padding = (int)mHelper.dpToPx(10);
@@ -869,19 +858,23 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         if (selected) {
             checkbox.setImageResource(R.drawable.baseline_check_circle_24);
+            checkbox.setAlpha(1.0f);
 
             if (!mIsGrid) {
                 view.setBackgroundColor(Color.parseColor("#C9CBD5"));
             } else {
+                checkboxBackground.setVisibility(View.VISIBLE);
                 animator = ValueAnimator.ofInt(0, padding);
                 view.setBackgroundColor(Color.parseColor("#CCCCCC"));
             }
         } else {
             checkbox.setImageResource(R.drawable.baseline_radio_button_unchecked_24);
+            checkbox.setAlpha(0.5f);
 
             if (!mIsGrid) {
                 view.setBackgroundColor(Color.parseColor("#FFFFFF"));
             } else {
+                checkboxBackground.setVisibility(View.GONE);
                 animator = ValueAnimator.ofInt(padding, 0);
             }
         }
@@ -890,8 +883,10 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             animator.addUpdateListener(valueAnimator -> {
                 Integer currentPadding = (Integer) valueAnimator.getAnimatedValue();
                 container.setPadding(currentPadding, currentPadding, currentPadding, currentPadding);
+                obsImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension - currentPadding * 2, mDimension - currentPadding * 2));
+
             });
-            animator.setDuration(100);
+            animator.setDuration(200);
             animator.start();
         }
 

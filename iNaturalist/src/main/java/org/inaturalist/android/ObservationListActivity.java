@@ -1251,10 +1251,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                                     // Refresh the view of only the selected item
                                     if (adapterView instanceof  ListView) {
                                         mObservationListAdapter.setItemSelected(view, selected);
-                                        //mObservationListAdapter.getView(position, view, mObservationsList);
                                     } else {
                                         mObservationGridAdapter.setItemSelected(view, selected);
-                                        //mObservationGridAdapter.getView(position, view, mObservationsGrid);
                                     }
 
                                     refreshSyncBar();
@@ -1882,9 +1880,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 @Override
                 public void onClick(View view) {
                     // User chose to delete specific observations
+                    int numObsToDelete = mObsIdsToSync.size();
                     mHelper.confirm(
                             getString(R.string.are_you_sure),
-                            String.format(getString(R.string.are_you_sure_you_want_to_delete_observations), mObsIdsToSync.size()),
+                            getResources().getQuantityString(R.plurals.are_you_sure_you_want_to_delete_observations, numObsToDelete, numObsToDelete),
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
