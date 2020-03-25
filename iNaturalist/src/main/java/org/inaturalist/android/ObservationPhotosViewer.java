@@ -175,8 +175,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                     Intent data = new Intent();
                     data.putExtra(DUPLICATE_PHOTO_INDEX, mViewPager.getCurrentItem());
                     if (mReplacedPhotos.size() > 0) {
-                        String replacedPhotos = mReplacedPhotos.toString();
-                        data.putExtra(REPLACED_PHOTOS, replacedPhotos);
+                        data.putExtra(REPLACED_PHOTOS, replacedPhotosToString());
                     }
                     setResult(RESULT_OK, data);
                     finish();
@@ -249,12 +248,38 @@ public class ObservationPhotosViewer extends AppCompatActivity {
     private void checkForReplacedPhotos() {
         if (mReplacedPhotos.size() > 0) {
             Intent data = new Intent();
-            String replacedPhotos = mReplacedPhotos.toString();
-            data.putExtra(REPLACED_PHOTOS, replacedPhotos);
+            data.putExtra(REPLACED_PHOTOS, replacedPhotosToString());
             setResult(RESULT_OK, data);
         } else {
             setResult(RESULT_CANCELED);
         }
+    }
+
+    private String replacedPhotosToString() {
+        // On some devices (like older Android 6 Samsung), string representation of a list of pairs
+        // is not the same as other devices - convert it to a standard representation)
+        StringBuilder builder = new StringBuilder();
+
+        builder.append('[');
+
+        for (int i = 0; i < mReplacedPhotos.size(); i++) {
+            Pair<Uri, Long> pair = mReplacedPhotos.get(i);
+
+            builder.append("Pair{");
+            builder.append(pair.first.toString());
+            builder.append(' ');
+            builder.append(pair.second.toString());
+
+            if (i < mReplacedPhotos.size() - 1) {
+                builder.append("}, ");
+            } else {
+                builder.append('}');
+            }
+        }
+
+        builder.append(']');
+
+        return builder.toString();
     }
 
     @Override
