@@ -1525,7 +1525,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     }
 
     private void getCommentIdList() {
-        if ((mObservation.id != null) && (mCommentsIds == null)) {
+        if ((mObservation != null) && (mObservation.id != null) && (mCommentsIds == null)) {
             BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, this);
             mObservationReceiver = new ObservationReceiver();
             IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
