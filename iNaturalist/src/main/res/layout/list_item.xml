@@ -8,12 +8,23 @@
     android:layout_width="fill_parent"
     android:layout_height="70dp">
 
+
+    <ImageView
+        android:id="@+id/checkbox"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/baseline_radio_button_unchecked_24"
+        />
+
     <ImageView
         android:id="@+id/observation_iconic_pic"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:src="@drawable/iconic_taxon_unknown"
-        android:layout_alignParentLeft="true"
+        android:layout_toRightOf="@id/checkbox"
         android:layout_centerVertical="true"
         android:layout_marginRight="9dp"
         android:background="#DDD"
@@ -28,7 +39,7 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:src="@drawable/iconic_taxon_unknown"
-        android:layout_alignParentLeft="true"
+        android:layout_toRightOf="@id/checkbox"
         android:layout_centerVertical="true"
         android:layout_marginRight="9dp"
         android:background="#DDDDDD"

@@ -66,7 +66,10 @@ public class AndroidStateBundlers {
                 String parts[] = bundle.getString(key).split(",");
                 Set<Long> results = new HashSet<>();
                 for (String value : parts) {
-                    results.add(Long.valueOf(value.trim()));
+                    value = value.trim();
+                    if (value.length() == 0) continue;
+
+                    results.add(Long.valueOf(value));
                 }
 
                 return results;
@@ -91,7 +94,10 @@ public class AndroidStateBundlers {
                 String parts[] = bundle.getString(key).split(",");
                 List<Integer> results = new ArrayList<>();
                 for (String value : parts) {
-                    results.add(Integer.valueOf(value.trim()));
+                    value = value.trim();
+                    if (value.length() == 0) continue;
+
+                    results.add(Integer.valueOf(value));
                 }
 
                 return results;
