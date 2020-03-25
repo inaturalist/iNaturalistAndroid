@@ -58,6 +58,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -552,7 +554,17 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             }
         }
 
-        Long observationTimestamp = c.getLong(c.getColumnIndexOrThrow(Observation.TIME_OBSERVED_AT));
+        Long observationTimestamp = 0L;
+
+        if (c.isNull(c.getColumnIndexOrThrow(Observation.TIME_OBSERVED_AT))) {
+            if (!c.isNull(c.getColumnIndexOrThrow(Observation.OBSERVED_ON))) {
+                observationTimestamp = c.getLong(c.getColumnIndexOrThrow(Observation.OBSERVED_ON));
+            } else {
+                observationTimestamp = 0L;
+            }
+        } else {
+            observationTimestamp = c.getLong(c.getColumnIndexOrThrow(Observation.TIME_OBSERVED_AT));
+        }
 
         if (!mIsGrid) {
             if (observationTimestamp == 0) {
