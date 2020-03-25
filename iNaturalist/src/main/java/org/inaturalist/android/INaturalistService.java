@@ -2043,8 +2043,15 @@ public class INaturalistService extends IntentService {
         c.moveToFirst();
 
         while (!c.isAfterLast()) {
+            int totalObs = c.getCount();
             mApp.notify(getString(R.string.syncing_observations),
-                    String.format(getString(R.string.syncing_x_out_of_y_observations), (c.getPosition() + 1), c.getCount()));
+                    getResources().getQuantityString(
+                        R.plurals.syncing_x_out_of_y_observations,
+                        totalObs,
+                        (c.getPosition() + 1),
+                        totalObs
+                    )
+            );
 
             Observation observation = new Observation(c);
 

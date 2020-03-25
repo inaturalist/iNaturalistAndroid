@@ -1040,7 +1040,7 @@
                 android:layout_toRightOf="@id/projects_icon"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="8dp"
-                android:text="@string/included_in_projects"
+                android:text="@plurals/included_in_projects"
                 android:textSize="16sp"
                 />
         </RelativeLayout>
