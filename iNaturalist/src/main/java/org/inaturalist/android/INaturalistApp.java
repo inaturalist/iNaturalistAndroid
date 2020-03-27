@@ -20,7 +20,6 @@ import com.squareup.picasso.Picasso;
 import android.Manifest;
 
 import io.fabric.sdk.android.Fabric;
-import com.crashlytics.android.Crashlytics;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -254,9 +253,37 @@ public class INaturalistApp extends MultiDexApplication {
         if (username != null) {
             setShownOnboarding(true);
         }
+
+        Logger.tag(TAG).debug("Listing all files in getFilesDir: " + getFilesDir());
+        long total = listFilesRecursively(getFilesDir());
+        Logger.tag(TAG).debug("All files in getFilesDir: " + getFilesDir() + ": total: " + total);
+
+        Logger.tag(TAG).debug("Listing all files in getExternalCacheDir: " + getExternalCacheDir());
+        total = listFilesRecursively(getExternalCacheDir());
+        Logger.tag(TAG).debug("All files in getExternalCacheDir: " + getExternalCacheDir() + ": total: " + total);
+
+        Logger.tag(TAG).debug("Listing all files in getCacheDir: " + getCacheDir());
+        total = listFilesRecursively(getExternalCacheDir());
+        Logger.tag(TAG).debug("All files in getCacheDir: " + getExternalCacheDir() + ": total: " + total);
     }
-    
-    
+
+    private long listFilesRecursively(File root) {
+        File[] list = root.listFiles();
+        long total = 0;
+
+        for (File f : list) {
+            if (f.isDirectory()) {
+                total += listFilesRecursively(f);
+            } else {
+                total += f.length();
+                Logger.tag(TAG).debug("File: " + f.getAbsoluteFile() + ": " + f.length());
+            }
+        }
+
+        return total;
+    }
+
+
     /* Used for accessing iNat service results - since passing large amounts of intent data
      * is impossible (for example, returning a huge list of projects/guides won't work via intents)
      */
