@@ -58,6 +58,8 @@ import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ablanco.zoomy.TapListener;
+import com.ablanco.zoomy.Zoomy;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
@@ -526,26 +528,30 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 }
             }
 
-            imageView.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(ObservationViewerActivity.this, ObservationPhotosViewer.class);
-                    intent.putExtra(ObservationPhotosViewer.CURRENT_PHOTO_INDEX, position);
-
-                    if (!mReadOnly) {
-                        intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID, mObservation.id);
-                        intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID_INTERNAL, mObservation._id);
-                        intent.putExtra(ObservationPhotosViewer.IS_NEW_OBSERVATION, true);
-                        intent.putExtra(ObservationPhotosViewer.READ_ONLY, false);
-                        startActivityForResult(intent, OBSERVATION_PHOTOS_REQUEST_CODE);
-                    } else {
-                        intent.putExtra(ObservationPhotosViewer.OBSERVATION, mObsJson);
-                        startActivity(intent);
-                    }
-                }
-            });
-
             ((ViewPager)container).addView(imageView, 0);
+
+            new Zoomy.Builder(ObservationViewerActivity.this)
+                    .target(imageView)
+                    .tapListener(new TapListener() {
+                        @Override
+                        public void onTap(View v) {
+                            Intent intent = new Intent(ObservationViewerActivity.this, ObservationPhotosViewer.class);
+                            intent.putExtra(ObservationPhotosViewer.CURRENT_PHOTO_INDEX, position);
+
+                            if (!mReadOnly) {
+                                intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID, mObservation.id);
+                                intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID_INTERNAL, mObservation._id);
+                                intent.putExtra(ObservationPhotosViewer.IS_NEW_OBSERVATION, true);
+                                intent.putExtra(ObservationPhotosViewer.READ_ONLY, false);
+                                startActivityForResult(intent, OBSERVATION_PHOTOS_REQUEST_CODE);
+                            } else {
+                                intent.putExtra(ObservationPhotosViewer.OBSERVATION, mObsJson);
+                                startActivity(intent);
+                            }
+                        }
+                    })
+                    .register();
+
             return imageView;
         }
 
