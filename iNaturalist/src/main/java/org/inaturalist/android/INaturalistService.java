@@ -1925,6 +1925,7 @@ public class INaturalistService extends IntentService {
                 observationIdsToSync.add(Integer.valueOf((int)id));
             }
 
+            Logger.tag(TAG).debug("syncObservations: observationIdsToSync multi-selection: " + observationIdsToSync);
         } else {
             // Gather the list of observations that need syncing (because they're new, been updated
             // or had their photos/project fields updated
@@ -1940,11 +1941,7 @@ public class INaturalistService extends IntentService {
                 Integer internalId = c.getInt(c.getColumnIndexOrThrow(Observation._ID));
 
                 // Make sure observation is not currently being edited by user (split-observation bug)
-                if (!mApp.isObservationCurrentlyBeingEdited(internalId)) {
-                    observationIdsToSync.add(internalId);
-                } else {
-                    Logger.tag(TAG).error("syncObservations: Observation " + internalId + " is currently being edited - not syncing it");
-                }
+                observationIdsToSync.add(internalId);
                 c.moveToNext();
             }
 
@@ -2028,6 +2025,16 @@ public class INaturalistService extends IntentService {
 
         Logger.tag(TAG).debug("syncObservations: obsIdsToRemove: " + obsIdsToRemove);
 
+        for (Integer obsId : observationIdsToSync) {
+            // Make sure observation is not currently being edited by user (split-observation bug)
+            if (mApp.isObservationCurrentlyBeingEdited(obsId)) {
+                Logger.tag(TAG).error("syncObservations: Observation " + obsId + " is currently being edited - not syncing it");
+                obsIdsToRemove.add(obsId);
+            }
+        }
+
+        Logger.tag(TAG).debug("syncObservations: obsIdsToRemove 2: " + obsIdsToRemove);
+
         for (Integer obsId : obsIdsToRemove) {
             observationIdsToSync.remove(obsId);
         }
@@ -2054,6 +2061,12 @@ public class INaturalistService extends IntentService {
             );
 
             Observation observation = new Observation(c);
+
+            // Make sure observation is not currently being edited by user (split-observation bug)
+            if (mApp.isObservationCurrentlyBeingEdited(observation._id)) {
+                Logger.tag(TAG).error("syncObservations: Observation " + observation._id + " is currently being edited - not syncing it");
+                continue;
+            }
 
             mCurrentObservationProgress = 0.0f;
             mTotalProgressForObservation = getTotalProgressForObservation(observation);
@@ -3422,6 +3435,7 @@ public class INaturalistService extends IntentService {
 
         // for each observation DELETE to /observations/:id
         ArrayList<Integer> obsIds = new ArrayList<Integer>();
+        ArrayList<Integer> internalObsIds = new ArrayList<Integer>();
         c.moveToFirst();
         while (c.isAfterLast() == false) {
             Observation observation = new Observation(c);
@@ -3433,6 +3447,7 @@ public class INaturalistService extends IntentService {
             }
 
             obsIds.add(observation.id);
+            internalObsIds.add(observation._id);
             c.moveToNext();
         }
 
@@ -3443,10 +3458,14 @@ public class INaturalistService extends IntentService {
         getContentResolver().delete(Observation.CONTENT_URI, "is_deleted = 1", null);
         // Delete associated project-fields and photos
         int count1 = getContentResolver().delete(ObservationPhoto.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
-        int count2 = getContentResolver().delete(ProjectObservation.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
-        int count3 = getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
+        int count2 = getContentResolver().delete(ObservationSound.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
+        int count3 = getContentResolver().delete(ProjectObservation.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
+        int count4 = getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
+        int count5 = getContentResolver().delete(ObservationPhoto.CONTENT_URI, "_observation_id in (" + StringUtils.join(internalObsIds, ",") + ")", null);
+        int count6 = getContentResolver().delete(ObservationSound.CONTENT_URI, "_observation_id in (" + StringUtils.join(internalObsIds, ",") + ")", null);
 
-        Logger.tag(TAG).debug("deleteObservations: " + count1 + ":" + count2 + ":" + count3);
+        Logger.tag(TAG).debug("deleteObservations: " + count1 + ":" + count2 + ":" + count3 + ":" + count4 + ":" + count5 + ":" + count6);
+
 
         checkForCancelSync();
 
