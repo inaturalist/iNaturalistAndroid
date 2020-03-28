@@ -15,6 +15,7 @@
 
 	<ImageView android:src="@drawable/ic_delete_black_24dp"
 		android:id="@+id/delete"
+		android:tint="#74AC00"
 		android:layout_height="24dp"
 		android:layout_width="24dp"
 		android:layout_marginRight="10dp"
@@ -23,9 +24,10 @@
 
 	<ImageView android:src="@drawable/baseline_cloud_upload_black_24"
 		android:id="@+id/sync"
+		android:tint="#74AC00"
 		android:layout_height="24dp"
 		android:layout_width="24dp"
-        android:layout_toLeftOf="@id/delete"
+		android:layout_toLeftOf="@id/delete"
 		android:layout_marginRight="20dp"
 		android:layout_centerVertical="true" />
 
