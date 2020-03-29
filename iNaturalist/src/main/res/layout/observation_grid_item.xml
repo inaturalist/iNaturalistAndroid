@@ -164,7 +164,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/baseline_check_circle_24"
-            android:tint="#000000"
+            android:tint="#74AC00"
             android:adjustViewBounds="true"
             />
     </RelativeLayout>

@@ -824,9 +824,10 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         if (mSelectedObservations.contains(obsId)) {
             checkbox.setImageResource(R.drawable.baseline_check_circle_24);
             checkbox.setAlpha(1.0f);
+            checkbox.setColorFilter(Color.parseColor("#74Ac00"));
 
             if (!mIsGrid) {
-                view.setBackgroundColor(Color.parseColor("#C9CBD5"));
+                view.setBackgroundColor(Color.parseColor("#DDDDDD"));
             } else {
                 checkboxBackground.setVisibility(View.VISIBLE);
                 int padding = (int)mHelper.dpToPx(10);
@@ -839,9 +840,12 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             checkbox.setAlpha(0.5f);
 
             if (mIsGrid) {
+                checkbox.setColorFilter(Color.parseColor("#FFFFFF"));
                 checkboxBackground.setVisibility(View.GONE);
                 container.setPadding(0, 0, 0, 0);
                 obsImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
+            } else {
+                checkbox.setColorFilter(Color.parseColor("#000000"));
             }
         }
 
@@ -870,10 +874,11 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         if (selected) {
             checkbox.setImageResource(R.drawable.baseline_check_circle_24);
+            checkbox.setColorFilter(Color.parseColor("#74Ac00"));
             checkbox.setAlpha(1.0f);
 
             if (!mIsGrid) {
-                view.setBackgroundColor(Color.parseColor("#C9CBD5"));
+                view.setBackgroundColor(Color.parseColor("#DDDDDD"));
             } else {
                 checkboxBackground.setVisibility(View.VISIBLE);
                 animator = ValueAnimator.ofInt(0, padding);
@@ -885,7 +890,9 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
             if (!mIsGrid) {
                 view.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                checkbox.setColorFilter(Color.parseColor("#000000"));
             } else {
+                checkbox.setColorFilter(Color.parseColor("#FFFFFF"));
                 checkboxBackground.setVisibility(View.GONE);
                 animator = ValueAnimator.ofInt(padding, 0);
             }
@@ -896,9 +903,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 Integer currentPadding = (Integer) valueAnimator.getAnimatedValue();
                 container.setPadding(currentPadding, currentPadding, currentPadding, currentPadding);
                 obsImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension - currentPadding * 2, mDimension - currentPadding * 2));
-
             });
-            animator.setDuration(200);
+            animator.setDuration(75);
             animator.start();
         }
 
