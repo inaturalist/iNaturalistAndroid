@@ -288,23 +288,15 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         		Observation.SYNC_ORDER);
         c.moveToFirst();
         while (!c.isAfterLast()) {
-            obsToSync.put(c.getLong(c.getColumnIndex(Observation._ID)), true);
+            Long obsId = c.getLong(c.getColumnIndex(Observation._ID));
+            obsToSync.put(obsId, true);
+            Logger.tag(TAG).debug("refreshSyncBar - adding updated obs - " + obsId);
             c.moveToNext();
         }
 
         c.close();
         
         Cursor opc = getContentResolver().query(ObservationPhoto.CONTENT_URI,
-        		/*
-        		new String[]{
-        		ObservationPhoto._ID, 
-        		ObservationPhoto._OBSERVATION_ID,
-        		ObservationPhoto._PHOTO_ID, 
-        		ObservationPhoto.PHOTO_URL,
-        		ObservationPhoto._UPDATED_AT,
-        		ObservationPhoto._SYNCED_AT
-            },
-            */
         		ObservationPhoto.PROJECTION,
             "((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NULL)) OR " +
             "((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NOT NULL) AND (_updated_at > _synced_at)) OR " +
@@ -315,7 +307,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         boolean photosChanged = false;
         opc.moveToFirst();
         while (!opc.isAfterLast()) {
-            obsToSync.put(opc.getLong(opc.getColumnIndex(ObservationPhoto._OBSERVATION_ID)), true);
+            Long obsId = opc.getLong(opc.getColumnIndex(ObservationPhoto._OBSERVATION_ID));
+            obsToSync.put(obsId, true);
+            Logger.tag(TAG).debug("refreshSyncBar - adding photo for obs - " + obsId + ": photo = " + (new ObservationPhoto(opc)).toString());
             opc.moveToNext();
             photosChanged = true;
         }
@@ -324,12 +318,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
 
         Cursor osc = getContentResolver().query(ObservationSound.CONTENT_URI,
-        		new String[]{
-        		ObservationSound._ID,
-                ObservationSound.ID,
-                ObservationSound._OBSERVATION_ID,
-        		ObservationSound.IS_DELETED
-            },
+            ObservationSound.PROJECTION,
             "(id IS NULL) OR " +
             "(is_deleted = 1)",
             null,
@@ -338,12 +327,16 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         boolean soundsChanged = false;
         osc.moveToFirst();
         while (!osc.isAfterLast()) {
-            obsToSync.put(osc.getLong(osc.getColumnIndex(ObservationSound._OBSERVATION_ID)), true);
+            Long obsId = osc.getLong(osc.getColumnIndex(ObservationSound._OBSERVATION_ID));
+            obsToSync.put(obsId, true);
+            Logger.tag(TAG).debug("refreshSyncBar - adding sound for obs - " + obsId + ": sound = " + (new ObservationSound(osc)).toString());
             osc.moveToNext();
             soundsChanged = true;
         }
 
         osc.close();
+
+        Logger.tag(TAG).debug("refreshSyncBar - total - " + obsToSync.keySet().size());
 
         if (mSyncingTopBar != null) {
             if (obsToSync.keySet().size() > 0) {
@@ -388,6 +381,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         if (savedInstanceState == null) {
             SharedPreferences settings = mApp.getPrefs();
             String isGridArray = settings.getString("me_screen_list_grid", null);
+            Logger.tag(TAG).debug("Restore grid state: " + isGridArray);
             if (isGridArray != null) {
                 int i = 0;
                 for (String value : isGridArray.split(",")) {
@@ -726,10 +720,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
 
         // Save listview/gridview preferences
-        SharedPreferences settings = mApp.getPrefs();
-        SharedPreferences.Editor settingsEditor = settings.edit();
-        settingsEditor.putString("me_screen_list_grid", String.format("%s,%s,%s", mIsGrid[0], mIsGrid[1], mIsGrid[2]));
-        settingsEditor.apply();
+        saveGridState();
 
         safeUnregisterReceiver(mObservationSyncProgressReceiver);
         safeUnregisterReceiver(mNewsReceiver);
@@ -738,6 +729,15 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         safeUnregisterReceiver(mConnectivityListener);
 
         mSyncRequested = false;
+    }
+
+    private void saveGridState() {
+        // Save listview/gridview preferences
+        SharedPreferences settings = mApp.getPrefs();
+        SharedPreferences.Editor settingsEditor = settings.edit();
+        settingsEditor.putString("me_screen_list_grid", String.format("%s,%s,%s", mIsGrid[0], mIsGrid[1], mIsGrid[2]));
+        Logger.tag(TAG).debug("saveGridState: " + String.format("%s,%s,%s", mIsGrid[0], mIsGrid[1], mIsGrid[2]));
+        settingsEditor.apply();
     }
 
     @Override
@@ -1002,6 +1002,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         switch (item.getItemId()) {
             case R.id.observation_view_type:
                 mIsGrid[mViewPager.getCurrentItem()] = !mIsGrid[mViewPager.getCurrentItem()];
+                saveGridState();
 
                 if (mViewPager.getCurrentItem() == 0) {
                     if (mIsGrid[0]) {
@@ -1472,10 +1473,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 getContentResolver().delete(uri, null, null);
 
                 // Delete any observation photos taken with it
-                getContentResolver().delete(ObservationPhoto.CONTENT_URI, "_observation_id=?", new String[]{observation._id.toString()});
+                int count1 = getContentResolver().delete(ObservationPhoto.CONTENT_URI, "_observation_id=?", new String[]{observation._id.toString()});
 
                 // Delete any observation sounds taken with it
-                getContentResolver().delete(ObservationSound.CONTENT_URI, "_observation_id=?", new String[]{observation._id.toString()});
+                int count2 = getContentResolver().delete(ObservationSound.CONTENT_URI, "_observation_id=?", new String[]{observation._id.toString()});
+
+                Logger.tag(TAG).debug("deleteSelectedObservations: " + count1 + ":" + count2);
 
             } else {
                 // Need to remotely delete
