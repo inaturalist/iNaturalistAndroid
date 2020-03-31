@@ -59,6 +59,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ablanco.zoomy.TapListener;
+import com.ablanco.zoomy.ZoomListener;
 import com.ablanco.zoomy.Zoomy;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -418,7 +419,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         public Object instantiateItem(ViewGroup container, final int position) {
             ImageView imageView = new ImageView(ObservationViewerActivity.this);
             imageView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
             int imageId = 0;
             String photoFilename = null;
@@ -487,7 +488,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 Picasso.with(ObservationViewerActivity.this)
                         .load(imageUrl)
                         .fit()
-                        .centerCrop()
+                        .centerInside()
                         .into(imageView, new Callback() {
                             @Override
                             public void onSuccess() {
