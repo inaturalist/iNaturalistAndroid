@@ -115,7 +115,8 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.squareup.okhttp3:okhttp:3.12.3'
     implementation 'com.mikhaellopez:circularprogressbar:1.1.1'
-    implementation 'androidx.exifinterface:exifinterface:1.0.0'
+    implementation 'androidx.exifinterface:exifinterface:1.1.0'
+    implementation 'it.sephiroth.android.exif:library:+'
     implementation 'io.jsonwebtoken:jjwt:0.7.0'
     implementation 'com.github.budowski:android-maps-utils:0.5.2'
     implementation project(':smoothrescale')

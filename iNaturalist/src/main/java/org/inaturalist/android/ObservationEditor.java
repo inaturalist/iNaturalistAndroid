@@ -97,6 +97,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.exifinterface.media.ExifInterface;
+import it.sephiroth.android.library.exif2.*;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -2948,10 +2949,14 @@ public class ObservationEditor extends AppCompatActivity {
         try {
             InputStream is = getContentResolver().openInputStream(photoUri);
             Logger.tag(TAG).info("importPhotoMetadata: IS = " + is);
-            ExifInterface exif = new ExifInterface(is);
+
+            it.sephiroth.android.library.exif2.ExifInterface exif = new it.sephiroth.android.library.exif2.ExifInterface();
+            exif.readExif(is, it.sephiroth.android.library.exif2.ExifInterface.Options.OPTION_ALL);
+
+            //ExifInterface exif = new ExifInterface(is);
             Logger.tag(TAG).info("importPhotoMetadata: Exif = " + exif);
             uiToObservation();
-            double[] latLng = exif.getLatLong();
+            double[] latLng = exif.getLatLongAsDoubles(); // exif.getLatLong();
             if (latLng != null) {
                 Logger.tag(TAG).info("importPhotoMetadata: Got lng/lat = " + latLng[0] + "/" + latLng[1]);
                 stopGetLocation();
@@ -2977,12 +2982,6 @@ public class ObservationEditor extends AppCompatActivity {
             } else {
                 // No coordinates - don't override the observation coordinates
                 Logger.tag(TAG).error("importPhotoMetadata: No lat/lng");
-                String latValue = exif.getAttribute(ExifInterface.TAG_GPS_LATITUDE);
-                String latRef = exif.getAttribute(ExifInterface.TAG_GPS_LATITUDE_REF);
-                String lngValue = exif.getAttribute(ExifInterface.TAG_GPS_LONGITUDE);
-                String lngRef = exif.getAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF);
-
-                Logger.tag(TAG).error(String.format("importPhotoMetadata: Attributes: %s / %s / %s / %s", latValue, latRef, lngValue, lngRef));
             }
 
             try {
@@ -3004,12 +3003,11 @@ public class ObservationEditor extends AppCompatActivity {
             }
 
 
-            String datetime;
-            if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-                // Older Android (before v7), doesn't parse the EXIF tag of TAG_DATETIME_ORIGINAL
-                datetime = exif.getAttribute(ExifInterface.TAG_DATETIME);
-            } else {
-                datetime = exif.getAttribute(ExifInterface.TAG_DATETIME_ORIGINAL);
+            String datetime = null;
+            datetime = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_DATE_TIME_ORIGINAL);
+
+            if (datetime == null) {
+                datetime = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_DATE_TIME);
             }
 
             if (datetime != null) {
