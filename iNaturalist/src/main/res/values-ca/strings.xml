@@ -147,8 +147,10 @@
     <string name="pull_to_refresh">Llisca per a refrescar...</string>
     <string name="release_to_refresh">Deixa anar per a refrescar...</string>
     <string name="refreshing">Actualitzant...</string>
-    <string name="sync_x_observations">Sincronitzar %1$d observacions</string>
-    <string name="sync_1_observation">Sincronitzar 1 observació</string>
+    <plurals name="sync_x_observations">
+        <item quantity="one">Sincronitzar %1$d observació</item>
+        <item quantity="other">Sincronitzar %1$d observacions</item>
+    </plurals>
     <string name="sync_observations">Sincronitzar Observacions</string>
     <string name="lets_get_started">Comencem!</string>
     <string name="view_nearby_observations">Veure observacions properes</string>
@@ -195,9 +197,9 @@
     <string name="alert_message_use_biodiversity4all">Biodiversity4All és membre de la Xarxa iNaturalist a Portugal. Les Institucions locals que donen suport a Biodiversity4All tenen accés a la vostra adreça de correu electrònic i a les coordenades reals de les observacions encara que siguin enfosquides o privades. Si us plau, no canvieu experimentalment la vostra afiliació si teniu més de 1000 observacions. Voleu canviar la vostra afiliació?</string>
     <string name="alert_message_use_inaturalistpanama">iNaturalist Panamà és membre de la Xarxa iNaturalist a Panamà. Les Institucions locals que donen suport a iNaturalist Panamà tenen accés a la vostra adreça de correu electrònic i a les coordenades reals de les observacions encara que siguin enfosquides o privades. Si us plau, no canvieu experimentalment la vostra afiliació si teniu més de 1000 observacions. Voleu canviar la vostra afiliació?</string>
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador és membre de la Xarxa iNaturalist de l\'Equador. Les institucions locals que donen suport a iNaturalist Ecuador tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
-    <string name="alert_message_use_inaturalistaustralia">iNaturalist Austalia és membre de la Xarxa iNaturalist d\'Austràlia. Les institucions locals que donen suport a iNaturalist Ecuador tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Austalia és membre de la Xarxa iNaturalist d\'Austràlia. Les institucions locals que donen suport a iNaturalist Australia tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
     <string name="alert_message_use_argentinat">ArgentiNat és membre de la Xarxa iNaturalist a Argentin. Les Institucions locals que donen suport a ArgentiNat tenen accés a la vostra adreça de correu electrònic i a les coordenades reals de les observacions encara que siguin enfosquides o privades. Si us plau, no canvieu experimentalment la vostra afiliació si teniu més de 1000 observacions. Voleu canviar la vostra afiliació?</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel és membre de la Xarxa iNaturalist d\'Israel. Les institucions locals que donen suport a iNaturalist Israel tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
     <string name="editor">Editor</string>
     <string name="license">Llicència</string>
     <string name="download_for_offline_use">Descarregar per a ús fora de línia</string>
@@ -279,8 +281,10 @@
     <string name="casual_grade_add_photo"><![CDATA[ Afegir una <b>foto</b> per avançar aquesta observació a la condició de "Necessita ID". ]]></string>
     <string name="casual_grade_captive"><![CDATA[ Observació de grau casual grau perquè és <b>captiu/cultivat</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ Observació necessita <b>més identificacions</b> de la comunitat per considerar-la de "Grau d\'investigació". ]]></string>
-    <string name="included_in_projects">Incorporat en %1$d projectes</string>
-    <string name="included_in_projects_singular">Incorporat en %1$d projecte</string>
+    <plurals name="included_in_projects">
+        <item quantity="one">Incorporat en %1$d projecte</item>
+        <item quantity="other">Incorporat en %1$d projectes</item>
+    </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivacitat és una característica que podeu incorporar a les observacions que controla com es mostren les coordenades espacials (latitud i longitud). Aquestes són les opcions: <br/> <b>oberta</b> - tothom pot veure les coordenades excepte si el tàxon està amenaçat. <br/> <b>enfosquida</b> - les coordenades públics es mostren com a punt de l\'atzar en una àrea de 0,2 per 0,2 graus que conté les coordenades reals, el que representa una àrea quadrada de 22 x 22 km d\'incertesa a l\'equador, que disminueix a mesura s\'acosten als pols. Les coordenades reals només són visibles per a vostè i els administradors dels projectes als que afegiu l\'observació. <br/> <b>privada</b> - coordenades completament ocultes en els mapes públics, les coordenades reals només són visibles per a vostè i els administradors dels projectes als que afegiu l\'observació. <br/> <br/> Tingueu en compte que els administradors de projectes individuals poden veure sempre les coordenades independentment de la geoprivacitat especificada, per tant si esteu preocupats per qui té accés a les coordenades cal que us assegureu que confieu en els administradors dels projectes en els quals participeu. ]]></string>
     <string name="id_title">ID de %1$s • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
@@ -406,7 +410,10 @@
     <string name="deleted_photos_from_cache_error">Sembla que heu suprimit una foto al buidar la memòria cau abans de pujar-la. Haureu de tornar a afegir la foto a l\'observació des de la galeria. En el futur, si us plau, assegureu-vos que heu penjat totes les seves fotos abans de netejar la memòria cau de l\'aplicació.</string>
     <string name="new_activities">%1s nou</string>
     <string name="no_results_found">No s\'han trobat resultats...</string>
-    <string name="syncing_x_out_of_y_observations">Sincronitzant %1$d de %2$d noves observacions...</string>
+    <plurals name="syncing_x_out_of_y_observations">
+        <item quantity="one">Sincronitzant %1$d de %2$d observació...</item>
+        <item quantity="other">Sincronitzant %1$d de %2$d observacions...</item>
+    </plurals>
     <string name="deleting_observations">Esborrant observacions...</string>
     <string name="preparing">Preparant...</string>
     <string name="add_edit_remark">Afegir o editar un comentari</string>
@@ -430,8 +437,15 @@
     <string name="more_info_on_inat">Més informació a iNaturalist.org</string>
     <string name="view_suggestions">Veure suggeriments</string>
     <string name="species_search">Cerca espècies</string>
-    <string name="were_not_confident">No estem prou segurs com per fer una recomanació, per aquí teniu els nostres %1$d suggeriments:</string>
-    <string name="top_species_suggestions">Aquí estan les nostres %1$d millors propostes d\'espècies:</string>
+    <plurals name="were_not_confident">
+        <!-- This will probably never happen -->
+        <item quantity="one">No estem prou segurs per fer una recomanació, per aquest és el suggeriment número %1$d:</item>
+        <item quantity="other">No estem prou segurs per fer una recomanació, per aquests són els primers %1$d suggeriments:</item>
+    </plurals>
+    <plurals name="top_species_suggestions">
+        <item quantity="one">El suggeriment %1$d:</item>
+        <item quantity="other">Els primers %1$d suggeriments:</item>
+    </plurals>
     <string name="pretty_sure_rank">Estem força segurs que està entre aquests %1$s:</string>
     <string name="what_did_you_see">Què heu vist?</string>
     <string name="suggest_species">Suggerir espècies</string>
@@ -575,9 +589,6 @@
     <string name="collection_and_umbrella_projects">Projectes Col·lecció i Paraigües</string>
     <string name="description">Descripció</string>
     <string name="quantity">Qtat.</string>
-    <!-- Number of observations. Do not change the format to $d -->
-    <string name="observation_count">%1$s observacions</string>
-    <string name="observation_count_single">%1$d observació</string>
     <string name="agree2">D\'acord</string>
     <string name="project_observations">Observacions</string>
     <string name="project_species">Espècies</string>
@@ -651,8 +662,10 @@
     <string name="all_guides_all_caps">TOTS</string>
     <string name="description_all_caps">DESCRIPCIÓ</string>
     <string name="quantity_all_caps">QUANTITAT</string>
-    <string name="observation_count_all_caps">%1$s OBSERVACIONS</string>
-    <string name="observation_count_single_all_caps">%1$d OBSERVACIÓ</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="one">%1$s OBSERVACIÓ</item>
+        <item quantity="other">%1$s OBSERVACIONS</item>
+    </plurals>
     <string name="agree_all_caps">D\'ACORD</string>
     <string name="observations_all_caps">OBSERVACIONS</string>
     <string name="species_all_caps">ESPÈCIE</string>
@@ -691,10 +704,10 @@
     <string name="network_credit_naturewatchnz"><![CDATA[Nova Zelanda: La New Zealand Biodiversity Recording Network manté iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: l\'Associação Biodiversidade Para Todos manté Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panamà: el Ministerio de Ambiente manté iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
-    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
-    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina dona suport a ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia dona suport a iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) dona suport a iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa dona suport a iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Marca tot com a vist</string>
     <string name="content_hidden">Contingut amagat</string>
     <string name="show_hidden_content">Mostra Contingut Amagat</string>
@@ -782,4 +795,10 @@
     <string name="common_names_place"><![CDATA[Lloc per als noms comuns: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Premeu per prioritzar els noms comuns d\'un lloc particular.</string>
     <string name="search_places">Cerca llocs</string>
+    <string name="restart_app">Reiniciar l\'app</string>
+    <string name="disable_third_party_sharing_restart">Per inhabilitar la compartició de dades amb tercers immediatament, l\'app s\'ha de reiniciar.</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="one">Segur que voleu d\'esborrar aquesta %1$d observació?</item>
+        <item quantity="other">Segur que voleu esborrar aquestes %1$d observacions?</item>
+    </plurals>
 </resources>

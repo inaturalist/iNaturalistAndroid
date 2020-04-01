@@ -147,8 +147,11 @@
     <string name="pull_to_refresh">Trage pentru a reîmprospăta...</string>
     <string name="release_to_refresh">Dă drumul pentru a reîmprospăta...</string>
     <string name="refreshing">Se reîmprospătează...</string>
-    <string name="sync_x_observations">Sincronizează %1$d observări</string>
-    <string name="sync_1_observation">Sincronizare 1 observație</string>
+    <plurals name="sync_x_observations">
+        <item quantity="one">Sync %1$d observation</item>
+        <item quantity="few">Sync %1$d observations</item>
+        <item quantity="other">Sync %1$d observations</item>
+    </plurals>
     <string name="sync_observations">Sincronizează observări</string>
     <string name="lets_get_started">Să începem!</string>
     <string name="view_nearby_observations">Vezi observațiile din apropiere</string>
@@ -279,8 +282,11 @@
     <string name="casual_grade_add_photo"><![CDATA[ Adaugă o <b>imagine</b> pentru a avansa această observație la starea “Necesită ID”. ]]></string>
     <string name="casual_grade_captive"><![CDATA[ Observația are un grad casual deoarece este <b>captivă/cultivatp</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ Observația are nevoie de <b>mai multe identificări</b>de la comunitate pentru a avea status "Grad de Cercetare". ]]></string>
-    <string name="included_in_projects">Inclus în proiectele %1$d</string>
-    <string name="included_in_projects_singular">Inclus în proiectul %1$d</string>
+    <plurals name="included_in_projects">
+        <item quantity="one">Included in %1$d project</item>
+        <item quantity="few">Included in %1$d projects</item>
+        <item quantity="other">Included in %1$d projects</item>
+    </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Confidențialitatea geografică este o setare pe care o puteți face observațiilor, care controlează felul în care coordonatele spațiale (latitudine și longitudine) sunt afișate. Aici sunt opțiunile: <br/><b>deschide</b> - În cazul în care taxonul nu este amenințat, toată lumea poate vedea coordonatele. <br/><b>obscur</b> - Coordonate publice care sunt aratate ca un punct aleatoriu într-o zonă cu 0,2 grade de 0,2 grade care conține coordonatele reale și care funcționează la o arie de 22x22 km pătrați de incertitudine la ecuator, scăzând pe măsură ce vă apropiați de poli. Coordonatele adevărate sunt vizibile doar pentru tine și pentru persoanele pe care le-ai adăugat la observație.<br/><b>privat</b> - Coordonatele complet ascunse din hartă, coordonatele adevărate sunt vizibile doar pentru tine și pentru persoanele pe care le-ai adăugat la observație. <br/><br/>Reține că cei care au proiecte individuale pot să vadă întotdeauna coordonatele indiferent de setările de confidențialitate geografică, și dacă vă faceți griji cu privire la cine are acces la coordonate are trebui să aveți încredere în persoanele care participă în proiectele în care participați și dumneavoastră. ]]></string>
     <string name="id_title">%1$s\'s ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
@@ -406,7 +412,11 @@
     <string name="deleted_photos_from_cache_error">Se pare că ai șters o poză înainte să o încarci, în timp ce eliberai memoria cache. Va trebui să adaugi poza din observația ta, din galeria proprie. În viitor, asigură-te că ai încărcat toate pozele, înainte să eliberezi cache-ul aplicației.</string>
     <string name="new_activities">%1s nou</string>
     <string name="no_results_found">Nici un rezultat găsit...</string>
-    <string name="syncing_x_out_of_y_observations">Se sincronizează %1$d din %2$d observații...</string>
+    <plurals name="syncing_x_out_of_y_observations">
+        <item quantity="one">Syncing %1$d of %2$d observation...</item>
+        <item quantity="few">Syncing %1$d of %2$d observations...</item>
+        <item quantity="other">Syncing %1$d of %2$d observations...</item>
+    </plurals>
     <string name="deleting_observations">Se șterg observațiile...</string>
     <string name="preparing">Se pregătește...</string>
     <string name="add_edit_remark">Adaugă/Editează remarcă</string>
@@ -430,8 +440,17 @@
     <string name="more_info_on_inat">Mai multe informații pe iNaturalist.org</string>
     <string name="view_suggestions">Vezi Sugestii</string>
     <string name="species_search">Căutare specie</string>
-    <string name="were_not_confident">Nu suntem suficienți de siguri pentru a face o recomandare, dar acestea sunt primele %1$d sugestii:</string>
-    <string name="top_species_suggestions">Acestea sunt primele specii %1$d sugerate:</string>
+    <plurals name="were_not_confident">
+        <!-- This will probably never happen -->
+        <item quantity="one">We\'re not confident enough to make a recommendation, but here is our number %1$d suggestion:</item>
+        <item quantity="few">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+        <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+    </plurals>
+    <plurals name="top_species_suggestions">
+        <item quantity="one">Top %1$d suggestion:</item>
+        <item quantity="few">Top %1$d suggestions:</item>
+        <item quantity="other">Top %1$d suggestions:</item>
+    </plurals>
     <string name="pretty_sure_rank">Suntem destul de siguri că este aceasta %1$s:</string>
     <string name="what_did_you_see">Ce ai văzut?</string>
     <string name="suggest_species">Sugerează Specii</string>
@@ -575,9 +594,6 @@
     <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
     <string name="description">Descriere</string>
     <string name="quantity">Cant</string>
-    <!-- Number of observations. Do not change the format to $d -->
-    <string name="observation_count">%1$s observații</string>
-    <string name="observation_count_single">%1$d observație</string>
     <string name="agree2">De acord</string>
     <string name="project_observations">Observații</string>
     <string name="project_species">Specii</string>
@@ -651,8 +667,11 @@
     <string name="all_guides_all_caps">ALL</string>
     <string name="description_all_caps">DESCRIPTION</string>
     <string name="quantity_all_caps">QTY</string>
-    <string name="observation_count_all_caps">%1$s OBSERVATIONS</string>
-    <string name="observation_count_single_all_caps">%1$d OBSERVATION</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="one">%1$s OBSERVATION</item>
+        <item quantity="few">%1$s OBSERVATIONS</item>
+        <item quantity="other">%1$s OBSERVATIONS</item>
+    </plurals>
     <string name="agree_all_caps">AGREE</string>
     <string name="observations_all_caps">OBSERVATIONS</string>
     <string name="species_all_caps">SPECIES</string>
@@ -782,4 +801,11 @@
     <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
     <string name="search_places">Search Places</string>
+    <string name="restart_app">Restart App</string>
+    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="one">Are you sure you want to delete this %1$d observation?</item>
+        <item quantity="few">Are you sure you want to delete these %1$d observations?</item>
+        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+    </plurals>
 </resources>

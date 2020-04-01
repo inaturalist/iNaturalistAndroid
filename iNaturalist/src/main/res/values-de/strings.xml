@@ -19,7 +19,7 @@
     <string name="signed_in">Sie sind angemeldet!</string>
     <string name="please_sign_in">Bitte anmelden</string>
     <string name="please_sign_in_description">Bitte melde dich mit deinem iNaturalist Account an oder erstelle einen neuen Account.</string>
-    <string name="please_enable_location_services">Bitte aktivieren Sie Ortungsdienste, um Ihren aktuellen Standort zu finden...</string>
+    <string name="please_enable_location_services">Bitte aktiviere Ortungsdienste, um deinen aktuellen Standort zu finden...</string>
     <string name="go_to_settings">Zu den Einstellungen</string>
     <string name="photo_not_specified">Foto nicht festgelegt</string>
     <string name="set_date">Datum</string>
@@ -71,13 +71,13 @@
     <string name="com_facebook_loading">Ladevorgang...</string>
     <string name="com_facebook_internet_permission_error_title">AndroidManifest Fehler</string>
     <string name="com_facebook_internet_permission_error_message">WebView Login erfordert INTERNET Berechtigung</string>
-    <string name="com_facebook_requesterror_web_login">Facebook-Konto ist gesperrt. Bitte auf www.facebook.com einloggen zum Fortfahren.</string>
-    <string name="com_facebook_requesterror_relogin">Bitte erneut in die App einloggen um dein Facebook Konto zu verbinden.</string>
+    <string name="com_facebook_requesterror_web_login">Facebook-Konto ist gesperrt. Bitte auf www.facebook.com einloggen um fortzufahren</string>
+    <string name="com_facebook_requesterror_relogin">Bitte erneut in die App einloggen um dein Facebook-Konto zu verbinden.</string>
     <string name="com_facebook_requesterror_password_changed">Dein Facebook Passwort hat sich geändert. Bitte erneut einloggen in die App um dein Facebook Konto zu verbinden.</string>
     <string name="com_facebook_requesterror_reconnect">Bitte erneut in die App einloggen um dein Facebook-Konto zu verbinden.</string>
     <string name="com_facebook_requesterror_permissions">Die App ist dazu nicht berechtigt. Um die Berechtigungen zu ändern, melde dich bitte nochmals in der App an.</string>
     <string name="edit_observation">Beobachtung bearbeiten</string>
-    <string name="discard_changes">Sind Sie sicher, dass Sie die Änderungen verwerfen möchten?</string>
+    <string name="discard_changes">Bist du sicher, dass du die Änderungen verwerfen möchtest?</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
@@ -142,13 +142,15 @@
     <string name="leave_project_confirmation">Bist du sicher, dass du dieses Projekt verlassen willst?</string>
     <string name="discard_location_changes">Bist du sicher, dass du die Änderungen verwerfen möchtest?</string>
     <string name="edit_location">Standort bearbeiten</string>
-    <string name="edit_locality_notes">Lokale Notizen bearbeiten</string>
+    <string name="edit_locality_notes">Ortsbezeichnung bearbeiten</string>
     <string name="get_current_location">Aktuellen Standort abrufen</string>
     <string name="pull_to_refresh">Ziehen, um zu aktualisieren...</string>
     <string name="release_to_refresh">Zum Aktualisieren loslassen...</string>
     <string name="refreshing">Aktualisieren...</string>
-    <string name="sync_x_observations">%1$d Beobachtungen synchronisieren</string>
-    <string name="sync_1_observation">Eine Beobachtung synchronisieren</string>
+    <plurals name="sync_x_observations">
+        <item quantity="one">%1$d Beobachtung synchronisieren</item>
+        <item quantity="other">%1$d Beobachtungen synchronisieren</item>
+    </plurals>
     <string name="sync_observations">Beobachtungen synchronisieren</string>
     <string name="lets_get_started">Los geht\'s!</string>
     <string name="view_nearby_observations">Beobachtungen in der Nähe</string>
@@ -164,11 +166,11 @@
         <item>Erkunde und entdecke die Natur</item>
         <item>Geh nach draußen! Finde eine wilde Art und mache ein eindeutiges Vollbildfoto.</item>
         <item>Teile deine Beobachtung mit der iNaturalist Community.</item>
-        <item>Kommen Sie zurück, um Kommentare und Identifizierungen für Ihre Beobachtung zu sehen!</item>
+        <item>Schau regelmäßig vorbei, um Kommentare und Bestimmungen zu deinen Beobachtungen zu sehen!</item>
         <item><![CDATA[Beobachtungen in <b>Forschungsqualität</b> werden mit Wissenschaftlern geteilt, die die Natur besser verstehen und beschützen wollen.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
-        <item>Öffnen</item>
+        <item>öffentlich</item>
         <item>Versteckt</item>
         <item>Privat</item>
     </string-array>
@@ -193,18 +195,18 @@
     <string name="alert_message_use_inaturalistcanada">iNaturalist Kanada ist Mitglied des iNaturalist Network in Kanada. Lokale Institutionen, die Naturalist Kanada unterstützen, haben Zugang zu Ihrer E-Mail-Adresse und zu den tatsächlichen Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1.000 Beobachtungen beigetragen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
     <string name="alert_message_use_naturalistacolombia">Naturalista ist Mitglied des iNaturalist Network in Kolumbien. Lokale Institutionen, die Naturalista unterstützen, haben Zugang zu Ihrer E-Mail-Adresse und zu den echten Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1000 Beobachtungen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
     <string name="alert_message_use_biodiversity4all">Biodiversity4All ist Mitglied des iNaturalist Network in Portugal. Lokale Institutionen, die Biodiversity4All unterstützen, haben Zugang zu Ihrer E-Mail-Adresse und zu den echten Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1000 Beobachtungen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
-    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá is a member of the iNaturalist Network in Panama. Local institutions supporting iNaturalist Panamá will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá ist Mitglied des iNaturalist Netzwerks in Panama. Lokale Institutionen, die iNaturalist Panamá unterstützen, haben Zugriff auf Ihre E-Mail-Adresse und Zugriff auf die wahren Koordinaten für öffentliche oder private Beobachtungen. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1000 Beobachtungen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador ist Mitglied des iNaturalist Network in Ecuador. Lokale Institutionen, die NaturaLista unterstützen, haben Zugang zu Ihrer E-Mail-Adresse und zu den tatsächlichen Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1.000 Beobachtungen beigetragen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia ist Mitglied des iNaturalist Network in Australien. Lokale Institutionen, die NaturaLista unterstützen, haben Zugang zu Ihrer E-Mail-Adresse und zu den tatsächlichen Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1.000 Beobachtungen beigetragen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
     <string name="alert_message_use_argentinat">ArgentiNat ist Mitglied des iNaturalist Network in Argentinien. Lokale Institutionen, die ArgentiNat unterstützen, haben Zugang zu Ihrer E-Mail-Adresse und zu den wahren Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1000 Beobachtungen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel ist Mitglied des iNaturalist Network in Israel. Lokale Institutionen, die iNaturalist Israel unterstützen, haben Zugriff auf Ihre E-Mail-Adresse und Zugriff auf die wahren Koordinaten für Beobachtungen, die öffentlich verdeckt oder privat sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1000 Beobachtungen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
     <string name="editor">Editor</string>
     <string name="license">Lizenz</string>
     <string name="download_for_offline_use">Herunterladen für Offline Verwendung</string>
     <string name="download_not_available">Download nicht verfügbar</string>
     <string name="guide_editor_must_enable_this_feature">Guideeditor muss dieses Feature erlauben.</string>
     <string name="are_you_sure">Bist du sicher?</string>
-    <string name="download_guide_alert">Dies wird %1$s herunterladen, sodass du diesen Guide auch ohne Internetverbindung benutzen kannst.</string>
+    <string name="download_guide_alert">Dies wird %1$s an Daten herunterladen, sodass du diesen Guide auch ohne Internetverbindung benutzen kannst.</string>
     <string name="download">Download</string>
     <string name="failed_to_download_guide">Herunterladen des Guides gescheitert</string>
     <string name="internet_connection_seems_to_be_offline">Du scheinst offline zu sein.</string>
@@ -217,7 +219,7 @@
     <string name="could_not_retrieve_guide">Konnte Details des Guides nicht abrufen - vermutlich ein Netzwerkfehler.</string>
     <string name="inat_support_email_subject">Hilfe für iNaturalist (Version %1$s - %2$s; User ID - %3$s)</string>
     <string name="send_email">Email senden...</string>
-    <string name="login_with">Anmelden mit</string>
+    <string name="login_with">Anmelden über</string>
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-Mail</string>
@@ -227,13 +229,13 @@
     <string name="log_in">Einloggen</string>
     <string name="sign_up">Registrieren</string>
     <string name="min_6_chars">Mind. 6 Zeichen</string>
-    <string name="use_my_license"><![CDATA[Ja, mein Content soll so lizenziert werden, dass Wissenschaftler meine Beobachtungen nutzen können. <b>Mehr Informationen</b>]]></string>
-    <string name="content_licensing">Content-Lizensierung</string>
+    <string name="use_my_license"><![CDATA[Ja, mein Inhalt soll so lizenziert werden, dass Wissenschaftler meine Beobachtungen nutzen können. <b>Mehr Informationen</b>]]></string>
+    <string name="content_licensing">Inhalts-Lizenzierung</string>
     <string name="content_licensing_description">Benutze eine Create Commons Attribution-NonCommercial-Lizenz für meine Fotos - dies ist die beste Lizenz, um meine Fotos der Wissenschaft zur Verfügung zu stellen. Du kannst später eine andere Lizenz wählen oder die Lizenz entfernen.</string>
     <!-- Try to keep this about the length of the English text -->
     <string name="username_or_email">Benutzername oder E-Mail</string>
     <string name="forgot">Vergessen?</string>
-    <string name="or_login_with">Oder anmelden mit:</string>
+    <string name="or_login_with">Oder anmelden über:</string>
     <string name="registering">Registrierung läuft...</string>
     <string name="recommended_next_step">Empfohlener nächster Schritt</string>
     <string name="could_not_register_user">Registrierung fehlgeschlagen</string>
@@ -246,16 +248,16 @@
     <string name="camera">Foto machen</string>
     <string name="upload_photo">Bild auswählen</string>
     <string name="menu_text">Foto überspringen</string>
-    <string name="first">1er</string>
+    <string name="first">1.</string>
     <string name="make_first">Erste erstellen</string>
-    <string name="notes">Notizen</string>
+    <string name="notes">Bemerkungen</string>
     <string name="location_is">Standort ist</string>
-    <string name="is_captive">Dies ist gezüchtet, angepflanzt oder kultiviert</string>
+    <string name="is_captive">War es in Gefangenschaft, gezüchtet o. kultiviert?</string>
     <string name="location_visibility">Standortsichtbarkeit</string>
     <string name="set_location">Standort</string>
     <string name="coordinates_lat">Breite:</string>
     <string name="coordinates_lon">Länge:</string>
-    <string name="coordinates_acc">Genauigkeit</string>
+    <string name="coordinates_acc">Präzision</string>
     <string name="required">* Erforderlich</string>
     <string name="downloading_observations">Beobachtungen werden heruntergeladen...</string>
     <string name="no_thanks">Nein, danke</string>
@@ -277,10 +279,12 @@
     <string name="casual_grade_add_location"><![CDATA[ Füge einen <b>Ort</b> hinzu, um diese Beobachtung in den “Benötigt ID”-Status aufsteigen zu lassen. ]]></string>
     <string name="casual_grade_add_date"><![CDATA[ Füge ein <b>Datum</b> hinzu, um diese Beobachtung in den “Benötigt ID”-Status aufsteigen zu lassen. ]]></string>
     <string name="casual_grade_add_photo"><![CDATA[ Füge ein <b>Foto</b> hinzu, um diese Beobachtung in den “Benötigt ID”-Status aufsteigen zu lassen. ]]></string>
-    <string name="casual_grade_captive"><![CDATA[ Beobachtung ist als Hobbyqualität markiert, da sie <b>in Gefangenschaft/kultiviert</b> ist. ]]></string>
-    <string name="needs_id_more_ids"><![CDATA[ Beobachtung benötigt <b>mehr Identifikationen</b> von der Community, um Forschungsqualität zu erreichen. ]]></string>
-    <string name="included_in_projects">Zu %1$d Projekten hinzugefügt</string>
-    <string name="included_in_projects_singular">Zu %1$d Projekt hinzugefügt</string>
+    <string name="casual_grade_captive"><![CDATA[ Beobachtung kann nur Hobbyqualität erreichen, da sie das Kriterium <b>in Gefangenschaft/kultiviert</b> erfüllt. ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ Beobachtung benötigt <b>weitere Bestimmungen</b> von anderen Benutzern, um Forschungsqualität zu erreichen. ]]></string>
+    <plurals name="included_in_projects">
+        <item quantity="one">In %1$d Projekt enthalten</item>
+        <item quantity="other">In %1$d Projekten enthalten</item>
+    </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivatsphäre ist eine Einstellung für deine Beobachtungen, die bestimmt, wie deren Koordinaten (Längen- und Breitengrad) dargestellt werden. Dies sind die Optionen: <br/><b>offen</b> - Wenn die Art nicht bedroht ist, kann jeder die Koordinaten sehen. <br/><b>versteckt</b> - Öffentliche Koordinaten werden als zufälliger Punkt in einer 0.2*0.2°-Gebiet um die wahren Koordinaten angezeigt. Dies entspricht am Äquator 22 Qaudratkilometer, weniger nahe der Pole. Nur du und Kuratoren von Projekten, denen du deine Beobachtung hinzufügst, können die wahren Koordinaten sehen. <br/><b>privat</b> - Koordinaten werden nicht in den öffentlichen Karten dargestellt. Nur du und Kuratoren von Projekten, denen du deine Beobachtung hinzufügst, können die wahren Koordinaten sehen.<br/><br/>Projektkuratoren beteiligter Projekte können immer die wahren Koordinaten sehen. Solltest du dich um die Privatheit der Koordinaten deiner Beobachtungen sorgen, solltest du also nur an Projekten teilnehmen, deren Kuratoren du vertraust. ]]></string>
     <string name="id_title">%1$ss ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
@@ -295,24 +299,24 @@
     <string name="fave_this_observation">Favorisiere diese Beobachtung</string>
     <string name="faved">Favorisiert</string>
     <string name="be_the_first_to_fave_this_obs">Sei der erste, der diese Beobachtung favorisiert...</string>
-    <string name="leave_a_comment">Kommentar schreiben oder Identifikation vorschlagen...</string>
-    <string name="location_coords">Breite: %1$s Länge: %2$s Akk. %3$s</string>
+    <string name="leave_a_comment">Kommentar schreiben oder eine Bestimmung vorschlagen...</string>
+    <string name="location_coords">Breite %1$s Länge %2$s Präzision %3$s</string>
     <string name="location_coords_no_acc">Breite: %1$s Länge: %2$s</string>
     <string name="location">Standort</string>
-    <string name="login_in_to_add_comments_ids">Einloggen/Anmelden, um Kommentar zu verfassen oder eine Identifikation vorzuschlagen...</string>
+    <string name="login_in_to_add_comments_ids">Einloggen/Anmelden, um Kommentar zu verfassen oder eine Bestimmung vorzuschlagen...</string>
     <string name="login_in_to_fav">Einloggen/Anmelden, um zu favorisieren oder Favorisierungen anzusehen...</string>
     <string name="sync_obs_to_see_favs">Diese Beobachtung synchronisieren, um Favoriten zu sehen …</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Diese Beobachtung synchronisieren, um einen Kommentar zu hinterlassen oder eine Identifizierung vorzuschlagen …</string>
-    <string name="no_photo">Keine Fotos</string>
+    <string name="no_photo">ohne Foto</string>
     <string name="about_this_species">Über diese Art</string>
     <string name="view_on_wikipedia">Wikipedia-Artikel</string>
     <string name="photo"><![CDATA[Foto: <b><a href="%1$s">%2$s</a></b>]]></string>
     <string name="photo_attr"><![CDATA[Foto: <b>%1$s</b>]]></string>
     <string name="finding_current_location">Suche nach aktuellen Standort...</string>
-    <string name="flag_as_captive">Als in Gefangenschaft/kultiviert markieren</string>
-    <string name="observation_flagged_as_captive">Beobachtung wurde als in Gefangenschaft/kultiviert markiert</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Bist du dir sicher dass du dies als in Gefangenschaft/kultiviert markieren willst? (Ja Drücken wird das Beobachtungsfenster schließen)</string>
+    <string name="flag_as_captive">in Gefangenschaft/kultiviert?</string>
+    <string name="observation_flagged_as_captive">Beobachtung wurde als \"in Gefangenschaft/kultiviert\" markiert</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive">Bist du sicher, dass du diese Beobachtung als \"in Gefangenschaft/kultiviert\" markieren möchtest? (Durch Drücken von \"Ja\" wird auch das Beobachtungsfenster geschlossen)</string>
     <string name="do_you_agree_to_the_following">Stimmst du dem Folgenden zu?</string>
     <string name="terms">Bedingungen</string>
     <string name="observation_rules">Regeln für Beobachtungen</string>
@@ -327,7 +331,7 @@
     <string name="couldnt_load_user_details">Konnte Nutzerdetails nicht laden: %1$s</string>
     <string name="more_bio"><![CDATA[<b><font color="#ffffff">Mehr »</font></b>]]></string>
     <string name="no_location">Kein Standort</string>
-    <string name="add_to_projects">Zu Projekte hinzufügen</string>
+    <string name="add_to_projects">Zu einem Projekt hinzufügen</string>
     <string name="are_you_sure_you_want_to_save_obs_without_coords">Möchtest du wirklich diese Beobachtung ohne Koordinaten speichern?</string>
     <string name="users_identification">%1$ss ID: %2$s</string>
     <string name="edit_profile">Profil bearbeiten</string>
@@ -352,7 +356,7 @@
     <string name="help">Hilfe</string>
     <string name="stop">Stop</string>
     <string name="resume">Fortsetzen</string>
-    <string name="cleaning_up">Bereinige...</string>
+    <string name="cleaning_up">Aufräumen...</string>
     <string name="syncing">Synchronisation wird ausgeführt …</string>
     <string name="syncing_observation_fields">Beobachtungsfelder werden synchronisiert...</string>
     <string name="syncing_observations">Beobachtungen werden synchronisiert …</string>
@@ -363,11 +367,11 @@
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Identifikationsbeschreibung aktualisieren</string>
     <string name="your_identification">Deine ID: %1$s</string>
-    <string name="onboarding_species_name">Wenn Sie können, nennen Sie das, was Sie gesehen haben, auch wenn es nur „Insekt” oder „Vogel” ist, oder lassen Sie das Feld einfach leer. Andere könnten Ihnen sicher dabei helfen, es zu identifizieren!</string>
+    <string name="onboarding_species_name">Falls möglich, gib ein, was du gesehen hast - auch wenn es nur „Insekt” oder „Vogel” ist, oder lasse das Feld einfach leer. Andere können helfen, es zu bestimmen! Allerdings wird es eher bestimmt, wenn man bereits selber etwas einträgt.</string>
     <string name="upload_complete">Hochladen abgeschlossen!</string>
     <string name="onboarding_upload_description">Komm bald für Identifikationen und Kommentare zu deinen Beobachtungen zurück.</string>
     <string name="importing_photos">Importiere Foto(s)...</string>
-    <string name="multi_select_description">Importiere mehrere Fotos, indem du lange auf ein Foto drückst</string>
+    <string name="multi_select_description">Importiere mehrere Fotos durch langes Drücken auf ein einzelnes Foto</string>
     <string name="preparing_photo">Foto vorbereiten...</string>
     <string name="recommended_for_you">Für dich empfohlen</string>
     <string name="missions">Missionen</string>
@@ -378,35 +382,38 @@
     <string name="insects">Insekten</string>
     <string name="reptiles">Reptilien</string>
     <string name="fish">Fische</string>
-    <string name="mollusks">Mollusken</string>
+    <string name="mollusks">Weichtiere</string>
     <string name="amphibians">Amphibien</string>
     <string name="fungi">Pilze</string>
     <string name="birds">Vögel</string>
-    <string name="arachnids">Arachniden</string>
+    <string name="arachnids">Spinnentiere</string>
     <string name="no_connectivity">Keine Verbindung</string>
     <string name="no_recommended_missions">Hier scheint es keine Empfehlungen zu geben. Versuche es woanders erneut.</string>
     <string name="what_to_look_for">Wonach du suchen kannst</string>
     <string name="have_been_seen_here">Wurden hier gesehen</string>
     <string name="observe">Beobachten</string>
-    <string name="nearby_missions">Missionen in Ihrer Nähe</string>
+    <string name="nearby_missions">Missionen in der Nähe</string>
     <string name="searching_your_area">In der Nähe suchen...</string>
-    <string name="expanding_your_search_area">Erweitern Sie Ihren Suchbereich...</string>
+    <string name="expanding_your_search_area">Erweitere den Suchbereich...</string>
     <string name="introducing_missions">Neu: Missionen!</string>
     <string name="missions_onboarding_description">Missionen sind Echtzeitvorschläge, nach was du in deiner Nähe suchen kannst. So kannst du neue Spezies entdecken! (Benötigt Internetverbindung)</string>
     <string name="ok_got_it">OK, verstanden!</string>
     <string name="could_not_download_observations">Konnte neueste Beobachtungen nicht herunterladen - Verbindungsproblem. Versuch es später noch einmal.</string>
     <string name="no_news_yet">Noch keine Neuigkeiten. Bleib dran!</string>
-    <string name="my_content">Mein Content</string>
-    <string name="following">Gefolgt</string>
+    <string name="my_content">Mein Inhalt</string>
+    <string name="following">Folge ich</string>
     <string name="no_updates_yet">Noch keine Updates. Bleib dran!</string>
     <string name="you_will_only_receive_updates_when_creating">(Du wirst erst Updates erhalten wenn du Beobachtungen erstellt hast)</string>
     <string name="you_will_only_receive_updates_when_following">(Du wirst erst Updates erhalten, wenn du Beobachtungen folgst)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> hat eine ID vorgeschlagen: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> hat kommentiert: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Es scheint dass du ein Foto durch das Leeren des App-Caches vor dem Upload gelöscht hast. Bitte füge das Foto erneut zu deiner Beobachtung aus der Galerie hinzu. Achte in Zukunft darauf, dass alle Fotos hochgeladen wurden, bevor du den App-Cache leerst.</string>
-    <string name="new_activities">%1s neu</string>
+    <string name="new_activities">%1s neue</string>
     <string name="no_results_found">Keine Ergebnisse gefunden...</string>
-    <string name="syncing_x_out_of_y_observations">Synchronisiert %1$d von %2$d Beobachtungen...</string>
+    <plurals name="syncing_x_out_of_y_observations">
+        <item quantity="one">%1$d von %2$d Beobachtung wird synchronisiert …</item>
+        <item quantity="other">%1$d von %2$d Beobachtungen werden synchronisiert …</item>
+    </plurals>
     <string name="deleting_observations">Beobachtungen werden gelöscht...</string>
     <string name="preparing">Vorbereitung...</string>
     <string name="add_edit_remark">Anmerkung hinzufügen/ändern</string>
@@ -426,19 +433,26 @@
     <string name="taxonomy">Taxonomie</string>
     <string name="about_this_section">Über diesen Abschnitt</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
-    <string name="taxonomy_info">Dies sind Links zur Vorfahren dieses speziellen Taxons. Sind sind in der Reihenfolge von grob nach fein sortiert. Nutzen Sie diese Links um nach oben und unten durch den Lebensbaum zu bewegen. Wenn Sie zum Beispiel einen Organismus nicht kennen, aber wissen in welche Gruppierung er gehört, klicken Sie auf ein Taxon aus der Liste um mehr Informationen anzuzeigen.</string>
+    <string name="taxonomy_info">Hier finden sich Links zu höheren hierarchischen Ebenen dieses speziellen Taxons, in der Reihenfolge von grob nach fein sortiert. Nutze diese Links um sich durch den Stammbaum zu bewegen. Wenn du z.B. den genauen Namen eines Organismus nicht kennst, aber weißt wo er einzuordnen ist, klicke auf ein Taxon aus der Liste um mehr Informationen anzuzeigen.</string>
     <string name="more_info_on_inat">Weitere Informationen auf iNaturalist.org</string>
     <string name="view_suggestions">Vorschläge anzeigen</string>
-    <string name="species_search">Arten-Suche</string>
-    <string name="were_not_confident">Wir sind nicht sicher genug, um eine Empfehlung abzugeben, aber hier sind unserer Top %1$d Vorschläge:</string>
-    <string name="top_species_suggestions">Hier sind unserer Top %1$d Vorschläge für die Art:</string>
+    <string name="species_search">Suche nach Arten</string>
+    <plurals name="were_not_confident">
+        <!-- This will probably never happen -->
+        <item quantity="one">Wir sind nicht sicher genug, um eine Empfehlung abzugeben, aber hier ist unserer Nummer %1$d Vorschlag:</item>
+        <item quantity="other">Wir sind nicht sicher genug, um eine Empfehlung abzugeben, aber hier sind unserer Top %1$d Vorschläge:</item>
+    </plurals>
+    <plurals name="top_species_suggestions">
+        <item quantity="one">Top %1$d Vorschlag:</item>
+        <item quantity="other">Top %1$d Vorschläge:</item>
+    </plurals>
     <string name="pretty_sure_rank">Wir sind ziemlich sicher, dass es in dieser %1$s ist:</string>
-    <string name="what_did_you_see">Was haben Sie gesehen?</string>
+    <string name="what_did_you_see">Was hast du gefunden?</string>
     <string name="suggest_species">Art vorschlagen</string>
-    <string name="suggest_species_description">Die Art basierend auf der optischen Ähnlichkeit zu Fotos vorschlagen.</string>
+    <string name="suggest_species_description"> Vom Algorithmus eine Art vorschlagen lassen, basierend auf visuellen Vergleichen anderer Fotos </string>
     <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Optisch Ähnliche</string>
-    <string name="visually_similar_seen_nearby">Optisch Ähnliche / In der Nähe gesehen</string>
+    <string name="visually_similar_seen_nearby">Aussehen ähnlich / Gesehen in der Nähe</string>
     <string name="seen_nearby">In der Nähe gesehen</string>
     <string name="enlarge">Vergrößern</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
@@ -447,7 +461,7 @@
     <string name="taxon_has_no_photos">Von diesem Taxon existiert kein Foto.</string>
     <string name="terrain">Gelände</string>
     <string name="filters">Filter</string>
-    <string name="exploring_all">Alle entdecken</string>
+    <string name="exploring_all">Alle Lebewesen</string>
     <string name="nearby">In der Nähe</string>
     <string name="couldnt_load_results">Konnte Ergebnisse nicht laden: %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
@@ -517,7 +531,7 @@
     <string name="project">Projekt</string>
     <string name="user">Benutzer</string>
     <string name="search_users">Benutzer suchen...</string>
-    <string name="quality_grade">Güteklasse</string>
+    <string name="quality_grade">Qualitätsstufe</string>
     <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
     <string name="date_observed">Beobachtungsdatum</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
@@ -538,15 +552,15 @@
     <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
     <string name="date_hour">%d Std.</string>
     <!-- Compact form of "X days ago", so "3 days ago" would be "3d" -->
-    <string name="date_day">%d Tage</string>
+    <string name="date_day">%dT</string>
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
     <string name="date_week">%dw</string>
     <string name="new_observation">Neue Beobachtung</string>
     <string name="inactive_taxon">Inaktives Taxon</string>
-    <string name="no_identifications_found">Verfolgen Sie die Identifizierungen, die Sie für Beobachtungen durch andere Personen hier vorschlagen.</string>
-    <string name="no_species_found">Dies ist eine Liste der Arten, die Sie am häufigsten beobachtet haben.\n\nZu Ihrer Information: Es gibt schätzungsweise 9 Millionen Arten auf dem Planeten, also geh raus und beobachte sie!</string>
+    <string name="no_identifications_found">Hier kannst du die Bestimmungen nachverfolgen, die du für Beobachtungen anderer Personen abgegeben hast</string>
+    <string name="no_species_found">Dies ist eine Liste der Arten, die du am häufigsten beobachtet hast.\n\nZu deiner Information: Es gibt schätzungsweise 9 Millionen Arten auf dem Planeten, also geh raus und beobachte welche!</string>
     <string name="make_an_observation">Eine Beobachtung machen</string>
-    <string name="no_observations_found_new">Beobachtungen sind Berichte über Ihre Begegnungen mit einzelnen Lebewesen zu bestimmten Zeiten und an bestimmten Orten.</string>
+    <string name="no_observations_found_new">Eine Beobachtung ist die Aufzeichnung (Bild/Ton) einer Begegnung mit einem Lebewesen zu einer bestimmten Zeit und an einem definierten Ort.</string>
     <string name="discard_comment">Möchten Sie diesen Kommentar wirklich löschen?</string>
     <string name="leave_comment">Kommentar hinzufügen...</string>
     <string name="swipe">Wischen</string>
@@ -558,26 +572,23 @@
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Nein, aber ist ein Mitglied von <b>%1$s</b>.]]></string>
     <string name="submit">Absenden</string>
     <string name="change_password">Passwort ändern</string>
-    <string name="search_projects_youve_joined">Projekte suchen, denen Sie beigetreten sind...</string>
-    <string name="must_be_connected_to_load_more_obs">Sie müssen mit dem Internet verbunden sein, um weitere Beobachtungen zu laden</string>
+    <string name="search_projects_youve_joined">Suche Projekte, denen du beigetreten bist...</string>
+    <string name="must_be_connected_to_load_more_obs">Du musst mit dem Internet verbunden sein, um weitere Beobachtungen zu laden</string>
     <string name="inat_about_title">iNaturalist ist eine gemeinsame Initiative der California Academy of Sciences und der National Geographic Society.</string>
-    <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="http://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
+    <string name="inat_credits"><![CDATA[iNaturalist existiert dank jeder Person, die an unserer Gemeinschaft teilnimmt. Die Leute, die die Software bauen, die Schnittstellen entwerfen, unsere Infrastruktur pflegen, die Community unterstützen und die Zusammenarbeit fördern, sind Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, und Ken-ichi Ueda.<br/><br/>CalTech und Cornell Tech haben dabei geholfen, das Computer-Vision-System zu entwickeln, das Identifizierungen von Fotografien vorschlägt. Wir danken Grant Van Horn, Serge Belongie, und Pietro Perona für die Fortschritte in der Computer-Vision-Forschung. Weitere Informationen findest du unter <a href="http://www.visipedia.org">visipedia.org</a>. Vielen Dank an NVIDIA für zusätzliche Hilfe.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[Das internationale iNaturalist-Netzwerk unterstützt lokalisierte, voll integrierte, iNaturalist-basierte Websites in den folgenden Ländern, dank der Unterstützung durch angeschlossene Partnerorganisationen.]]></string>
-    <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
+    <string name="inat_credits_post"><![CDATA[iNaturalist ist auch den Open-Source-Entwicklern sehr dankbar, die so viel von der Software bereitgestellt haben, auf die wir uns tagtäglich verlassen. Siehe <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github. om/inaturalist/iNaturalistAndroid</a> für Open-Source-Beiträge.<br/> Wir sind dankbar für die Übersetzungsunterstützung von Freiwilligen der Crowdin.com Community, insbesondere Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie und katunchik. <br/>IUCN Kategorie II Orte von IUCN und UNEP-WCMC (2015), Die World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Verfügbar auf: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Danksagungen</string>
-    <string name="password_changed">Das von der App verwendete Passwort funktioniert nicht mehr. Haben Sie Ihr Passwort auf der Website geändert? Bitte geben Sie hier das Neue ein</string>
-    <string name="just_so_you_know">Nur damit Sie es wissen …</string>
-    <string name="ask_for_g_plus_permissions">Google verlangt, dass wir um Erlaubnis bitten, auf Ihre Kontakte zuzugreifen, um Ihr Google-Konto nutzen zu können, auch wenn wir niemals auf Ihre Kontakte zugreifen. Wenn Sie diese Erlaubnis verweigern, müssen Sie sich mit einem Benutzernamen und Passwort anmelden.</string>
-    <string name="new_to_inat_sign_up_now"><![CDATA[Neu bei %1$s? <b>Jetzt anmelden!</b>]]></string>
+    <string name="password_changed">Das von der App verwendete Passwort funktioniert nicht mehr - hast du dein Passwort auf der Website geändert? Bitte gib hier das Aktuelle ein</string>
+    <string name="just_so_you_know">Nur damit du es weißt...</string>
+    <string name="ask_for_g_plus_permissions">Google verlangt, dass wir um Erlaubnis bitten, auf deine Kontakte zuzugreifen, um dein Google-Konto nutzen zu können, auch wenn wir niemals auf diese Kontakte zugreifen. Wenn du diese Erlaubnis verweigerst, musst du dich mit einem Benutzernamen und Passwort anmelden.</string>
+    <string name="new_to_inat_sign_up_now"><![CDATA[Neu auf %1$s? <b>Jetzt anmelden!</b>]]></string>
     <string name="see_more_observations">Weitere Beobachtungen anzeigen</string>
     <string name="see_more_species">Weitere Arten anzeigen</string>
     <string name="see_more_identifications">Weitere Identifikationen anzeigen</string>
     <string name="collection_and_umbrella_projects">Sammlungs- und Schirmprojekte</string>
     <string name="description">Beschreibung</string>
     <string name="quantity">Menge</string>
-    <!-- Number of observations. Do not change the format to $d -->
-    <string name="observation_count">%1$s Beobachtungen</string>
-    <string name="observation_count_single">%1$d Beobachtung</string>
     <string name="agree2">Zustimmen</string>
     <string name="project_observations">Beobachtungen</string>
     <string name="project_species">Arten</string>
@@ -602,17 +613,17 @@
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Keine</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
-    <string name="annotation_name_plant_phenology">Pflanzenphänologie</string>
+    <string name="annotation_name_plant_phenology">Phänologie</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
-    <string name="annotation_name_life_stage">Lebensabschnitt</string>
+    <string name="annotation_name_life_stage">Entwicklungsstufe</string>
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Geschlecht</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">Tot oder Lebendig</string>
     <!-- Adjective, having open flowers -->
-    <string name="annotation_value_flowering">Blütezeit</string>
+    <string name="annotation_value_flowering">Blühend</string>
     <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">Fruchtbildung</string>
+    <string name="annotation_value_fruiting">Fruchttragend</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_budding">Knospenbildung</string>
     <!-- Adjective, having unopened flowers -->
@@ -620,7 +631,7 @@
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Ausgewachsen</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
-    <string name="annotation_value_teneral">Nach der Häutung</string>
+    <string name="annotation_value_teneral">frisch gehäutet</string>
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
     <string name="annotation_value_pupa">Puppe</string>
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
@@ -629,9 +640,9 @@
     <string name="annotation_value_larva">Larve</string>
     <string name="annotation_value_egg">Ei</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
-    <string name="annotation_value_juvenile">Jugendlich</string>
+    <string name="annotation_value_juvenile">Juvenil</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
-    <string name="annotation_value_subimago">Insektenkunde</string>
+    <string name="annotation_value_subimago">Subimago</string>
     <string name="annotation_value_female">Weiblich</string>
     <string name="annotation_value_male">Männlich</string>
     <!-- Adjective, alive and shows no signs of imminent death -->
@@ -641,24 +652,26 @@
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Nicht bestimmbar</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
-    <string name="joined_projects_all_caps">VERBUNDEN</string>
+    <string name="joined_projects_all_caps">Beigetreten</string>
     <string name="nearby_projects_all_caps">In der Nähe</string>
-    <string name="featured_projects_all_caps">Vorgestellt</string>
+    <string name="featured_projects_all_caps">Featured</string>
     <!-- Text for a button or label that allows someone to join a project -->
     <string name="join_all_caps">Teilnehmen</string>
-    <string name="my_guides_all_caps">Ihre</string>
+    <string name="my_guides_all_caps">Deine</string>
     <string name="nearby_guides_all_caps">In der Nähe</string>
     <string name="all_guides_all_caps">Alle</string>
     <string name="description_all_caps">Beschreibung</string>
     <string name="quantity_all_caps">Menge</string>
-    <string name="observation_count_all_caps">%1$s Beobachtungen</string>
-    <string name="observation_count_single_all_caps">%1$d Beobachtung</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="one">%1$s Beobachtung</item>
+        <item quantity="other">%1$s Beobachtungen</item>
+    </plurals>
     <string name="agree_all_caps">Zustimmen</string>
     <string name="observations_all_caps">Beobachtungen</string>
     <string name="species_all_caps">Arten</string>
     <string name="people_all_caps">Personen</string>
-    <string name="identifiers_all_caps">Identifizierungsmerkmale</string>
-    <string name="identifications_all_caps">Identifizierung</string>
+    <string name="identifiers_all_caps">Bestimmer</string>
+    <string name="identifications_all_caps">Bestimmungen</string>
     <string name="news_all_caps">Neuigkeiten</string>
     <string name="got_it_all_caps">Verstanden!</string>
     <string name="view_all_all_caps">Alle anzeigen</string>
@@ -670,9 +683,9 @@
     <string name="date_specified">Angegebenes Datum</string>
     <string name="location_specified">Angegebener Ort</string>
     <string name="has_photos_or_sounds">Enthält Fotos oder Tonaufnahmen</string>
-    <string name="has_id_supported_by_two_or_more">Enthält Kennung, die von zwei oder mehreren unterstützt wird</string>
-    <string name="date_is_accurate">Datum ist genau</string>
-    <string name="location_is_accurate">Ort ist genau</string>
+    <string name="has_id_supported_by_two_or_more">Hat zwei oder mehr übereinstimmende Bestimmungen (IDs)</string>
+    <string name="date_is_accurate">Datum stimmt</string>
+    <string name="location_is_accurate">Standort ist korrekt</string>
     <string name="organism_is_wild">Frei lebender Organismus</string>
     <string name="evidence_of_organism">Nachweis des Organismus</string>
     <string name="recent_evidence_of_an_organism">Neueste Beweise für einen Organismus</string>
@@ -683,7 +696,7 @@
     <string name="verifiable">Nachweisbar</string>
     <string name="no_annotation">Keine Anmerkungen</string>
     <string name="donate_to_inaturalist">An iNaturalist spenden</string>
-    <string name="prefers_scientific_name_first">Wissenschaftliche Namen zuerst anzeigen</string>
+    <string name="prefers_scientific_name_first">Wissenschaftliche Namen zuerst</string>
     <string name="prefers_scientific_name_first_description">Wissenschaftliche Namen vor allgemeinen Namen anzeigen.</string>
     <string name="network_credit_inaturalistcanada"><![CDATA[Kanada: Canadian Wildlife Federation, das Royal Ontario Museum, NatureServe Canada und Parks Canada, die iNaturalist Canada betreiben (<a href="https://inaturalist.ca">inaturalist.ca</a>).]]></string>
     <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt, das Naturalista betreibt (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
@@ -691,11 +704,11 @@
     <string name="network_credit_naturewatchnz"><![CDATA[Neuseeland: Neuseeland Biodiversitätserfassungsnetzwerk mit iNaturalist NZ - Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Biodiversität für alle, die Biodiversity4All betreiben (<a href="https://biodiversity4all.org"> Biodiversity4All.org </a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Umweltministerium betreibt iNaturalistPa (<a href="https://panama.inaturalist.org"> panama.inaturalist.org </a>)]]></string>
-    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
-    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
-    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
-    <string name="mark_all_as_viewed">Alle als „Gesehen” kennzeichnen</string>
+    <string name="network_credit_argentinat"><![CDATA[Argentinien: Fundación Vida Silvestre Argentina unterstützt ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Australien: Atlas of Living Australia unterstützt iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) unterstützt iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Israel: Universität Haifa unterstützt iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="mark_all_as_viewed">Alle als „angesehen” kennzeichnen</string>
     <string name="content_hidden">Inhalt ausgeblendet</string>
     <string name="show_hidden_content">Ausgeblendeten Inhalt anzeigen</string>
     <string name="content_hidden_because">Inhalt von @%1$s auf %2$s ausgeblendet. Grund: %3$s</string>
@@ -706,30 +719,30 @@
     <string name="could_not_play_sound">Tonaufnahmen konnten nicht wiedergegeben werden - möglicherweise ein Netzwerkproblem</string>
     <string name="cant_play_soundcloud"><![CDATA[Um Soundcloud-Tonaufnahmen anzuhören, besuchen Sie bitte die <a href="%1$s">Website</a>.]]></string>
     <string name="soundcloud">SoundCloud</string>
-    <string name="record_sound">Geräusche aufzeichnen</string>
+    <string name="record_sound">Tonaufnahme starten</string>
     <string name="no_recorder_found">Kein Standard-Tonaufnahmegerät gefunden!</string>
     <string name="couldnt_retrieve_sound">Die Tonaufnahme konnte nicht vom Standardgerät abgerufen werden - versuchen Sie stattdessen, das Geräusch zu importieren.</string>
     <string name="upload_sound">Tonaufnahme auswählen</string>
-    <string name="multi_select_sound_description">Importieren Sie mehrerer Tonaufnahmen durch langes Drücken auf eine einzelne Tonaufnahme.</string>
+    <string name="multi_select_sound_description">Importiere mehrere Tonaufnahmen durch langes Drücken auf eine einzelne Aufnahme.</string>
     <string name="alert_unsupported_audio_type">Leider gab es ein Problem beim Laden der Tonaufnahmen von dieser Quelle</string>
     <string name="invalid_audio_extension">Fehler beim Importieren der Tonaufnahme(n): Nur Audiodateien mit den Dateiendungen WAV/MP3/AMR können importiert werden</string>
     <string name="importing_sounds">Tonaufnahme(n) werden importiert …</string>
-    <string name="observation_sound">Beobachtungsgeräusche</string>
-    <string name="deleted_sounds_from_cache_error">Es sieht so aus, als hätten Sie eine Tonaufnahme gelöscht, indem Sie den Zwischenspeicher der App vor dem Hochladen geleert haben. Sie müssen die Tonaufnahme Ihrer Beobachtung erneut aus Ihrer Galerie hinzufügen. Bitte stellen Sie in Zukunft sicher, dass Sie alle Ihre Tonaufnahmen hochgeladen haben, bevor Sie den Zwischenspeicher der App leeren.</string>
+    <string name="observation_sound">Tonaufnahme der Beobachtung</string>
+    <string name="deleted_sounds_from_cache_error">Es sieht so aus, als hättest du eine Tonaufnahme gelöscht, indem du den Zwischenspeicher der App vor dem Hochladen geleert hast. Du musst die Tonaufnahme deiner Beobachtung erneut aus deiner Galerie hinzufügen. Bitte stelle in Zukunft sicher, dass du alle Tonaufnahmen hochgeladen hast, bevor du den Zwischenspeicher der App leerst.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f Sek.</string>
     <string name="clear_all_debug_logs">Alle Fehlerprotokolle löschen</string>
-    <string name="clears_up_storage_room_on_your_phone">Speicherplatz auf Ihrem Mobiltelefon bereinigen</string>
+    <string name="clears_up_storage_room_on_your_phone">Speicherplatz auf deinem Mobiltelefon bereinigen</string>
     <string name="number_of_days_to_store_logs">Anzahl der Tage für die Speicherung von Protokollen</string>
     <string name="send_debug_logs_from_start_date">Fehlerprotokolle senden ab Startdatum</string>
     <string name="send_debug_logs_by_email">Fehlerprotokolle per E-Mail senden (ab angegebenem Startdatum)</string>
     <string name="debug_settings">Fehlerbehebungseinstellungen</string>
-    <string name="are_you_sure_you_want_to_delete_logs">Möchten Sie wirklich alle Fehlerprotokolle löschen? Drücken Sie nur dann auf „Ja”, wenn Sie Speicher auf Ihrem Mobilgeräte freigeben möchten.</string>
+    <string name="are_you_sure_you_want_to_delete_logs">Möchtest du wirklich alle Fehlerprotokolle löschen? Drücke nur dann auf „Ja”, wenn du Speicher auf deinem Mobilgerät freigeben möchtest.</string>
     <string name="no_log_files_found">Keine Protokolldateien für diesen Datumsbereich vorhanden — Ein früheres Datum versuchen?</string>
-    <string name="choose_pinned_location">Anheftete Position auswählen</string>
-    <string name="pin_current_location">Aktuelle Position anheften</string>
-    <string name="location_pinned_successfully">Aktuelle Position angeheftet</string>
-    <string name="delete_this_pinned_location">Diese anheftete Position löschen?</string>
+    <string name="choose_pinned_location">Angepinnten Standort auswählen</string>
+    <string name="pin_current_location">Aktuellen Standort anpinnen</string>
+    <string name="location_pinned_successfully">Aktueller Standort erfolgreich angepinnt</string>
+    <string name="delete_this_pinned_location">Diesen angepinnten Ort löschen?</string>
     <!-- Verb, as in "Duplicate this photo" -->
     <string name="duplicate">Duplizieren</string>
     <string name="couldnt_duplicate_photo">Foto konnte nicht dupliziert werden!</string>
@@ -751,7 +764,7 @@
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
     <string name="ucrop_label_original">Original</string>
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
-    <string name="ucrop_label_free">Kostenlos</string>
+    <string name="ucrop_label_free">Frei</string>
     <!-- Verb phrase, button label to edit an observation photo -->
     <string name="ucrop_label_edit_photo">Foto bearbeiten</string>
     <string name="service_temporarily_unavailable">Dienst derzeit nicht verfügbar.</string>
@@ -763,23 +776,29 @@
     <string name="seconds_value">Sekunden</string>
     <string name="shop_the_inat_store">Im iNat Store einkaufen</string>
     <string name="delete_your_account">Eigenes Benutzerkonto löschen</string>
-    <string name="delete_account_message"><![CDATA[By deleting your account you will remove:<br/><br/><ul><li> All of your observations, including the work of the all the people who have helped you out with identifications.</li><li> All of the identifications you\'ve added to the observations of other people, which will potentially affect the data quality of those observations.</li><li> All of the comments you\'ve added.</li></ul><br/>Furthermore, this action cannot be undone. If you change your mind later, you aren\'t getting any of that content back.<br/><br/>If this service generates too many notifications, consider <a href="https://www.inaturalist.org/users/edit">editing your settings on the website</a> to opt out of certain notifications or stop receiving email from us. If you\'re having trouble with a specific person, consider <a href="https://www.inaturalist.org/users/edit">muting them</a> instead of deleting your account.<br/><br/>If you\'re still sure you want to delete your account, enter <b>\"%1$s\"</b> in the form below and click the button to delete your account and all your data.]]></string>
-    <string name="your_account_has_been_deleted">Ihr Konto wurde gelöscht</string>
-    <string name="you_must_enter_username_in_the_form_to_delete_account">Sie müssen „%1$s” in das Formular eingeben, um Ihr Konto löschen zu können</string>
+    <string name="delete_account_message"><![CDATA[Durch das Löschen deines Kontos entfernst du:<br/><br/><ul><li> Alle deine Beobachtungen, einschließlich der Arbeit aller Personen, die dir mit den Identifikationen geholfen haben.</li><li> Alle Identifikationen, die du zu den Beobachtungen anderer Personen hinzugefügt hast, was die Datenqualität dieser Beobachtungen möglicherweise beeinträchtigt.</li><li> Alle Kommentare, die du hinzugefügt hast.</li></ul><br/> Außerdem kann diese Aktion nicht rückgängig gemacht werden. Wenn du es dir später anders überlegst, bekommst du nichts mehr von diesem Inhalt zurück.<br/><br/> Wenn dir dieser Dienst zu viele Benachrichtigungen erzeugt, dann ziehe es in Betracht, <a href="https://www.inaturalist.org/users/edit"> deine Einstellungen auf der Webseite zu ändern</a>, um bestimmte Benachrichtigungen abzubestellen oder keine E-Mails mehr von uns zu erhalten. Wenn du Probleme mit einer bestimmten Person hast, kannst du diese <a href="https://www.inaturalist.org/users/edit">stummschalten</a>, anstatt dein Konto zu löschen.<br/><br/> Wenn du immer noch sicher bist, dass du dein Konto löschen willst, gib <b>\"%1$s\"</b> in das untenstehende Formular ein und klicke auf die Schaltfläche, um dein Konto und alle deine Daten zu löschen.]]></string>
+    <string name="your_account_has_been_deleted">Dein Benutzerkonto wurde gelöscht</string>
+    <string name="you_must_enter_username_in_the_form_to_delete_account">Du musst „%1$s” in das Formular eingeben, um dein Konto löschen zu können</string>
     <!-- Second person hint text asking the user to enter their username -->
     <string name="type_your_username">Benutzernamen eingeben</string>
-    <string name="error_deleting_account">Das Löschen Ihres Kontos ist fehlgeschlagen. Bitte überprüfen Sie Ihre Internetverbindung.</string>
-    <string name="verify_your_password">Bestätigen Sie Ihr Passwort</string>
+    <string name="error_deleting_account">Das Löschen deines Kontos ist fehlgeschlagen. Bitte überprüfe deine Internetverbindung.</string>
+    <string name="verify_your_password">Passwortbestätigung</string>
     <string name="third_party_data_sharing">Datenaustausch von Drittanbietern</string>
     <string name="disable_third_party_data_sharing">Datenaustausch mit Drittanbietern deaktivieren</string>
     <string name="do_not_collect_third_party_data">Keine Stabilitäts- und Nutzungsdaten mit Hilfe von Diensten durch Dritte erfassen</string>
     <string name="enabled">Aktiviert</string>
     <string name="disabled">Deaktiviert</string>
-    <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third-party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[Wir nutzen eine Vielzahl von Drittanbietern zur Überwachung der Stabilität und Diagnose von Fehlern und Problemen in unserer Software. Zu diesen Dritten gehören:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase-Crashlytics</a>)</li><li><a href="https://newrelic.com/">Neues Relic</a></li></ul>]]></string>
     <string name="third_party_data_sharing_notes2"><![CDATA[Zu den Informationen, die wir mit diesen Dritten austauschen, gehören: <br/><ul><li>IP-Adressen (die verwendet werden können, um den Standort in Stadtauflösung abzuleiten und Sie über verschiedene Websites und Dienste zu verfolgen. Beachten Sie, dass wir die <a href="https://support.google.com/analytics/answer/2763052">IP-Anonymisierung</a> in Google Analytics aktiviert haben und <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> unseres Wissens keine IP-Adresse aufzeichnet)</li><li>Browserdetails, wie Marke, Modell und Version</li><li>Absturz-Details, wie z.B. welche Codezeile genau einen Absturz verursacht hat</li><li>Gerätedetails, wie Marke und Modell eines Mobiltelefons</li></ul>]]></string>
-    <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third-party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
-    <string name="third_party_data_sharing_notes4"><![CDATA[Beachten Sie, dass diese Option nur für Analyse- und Absturzdaten gilt, die wir bewusst an diese Unternehmen senden. Alle iNaturalist-Server werden von Microsoft zur Verfügung gestellt und verwaltet, alle iNaturalist-Fotos befinden sich auf Servern von Amazon, und fast alle iNaturalist-Karten werden von Google zur Verfügung gestellt. Dies bedeutet, dass Sie jedes Mal, wenn Sie sich eine Beobachtung auf iNaturalist ansehen, eine Verbindung zu diesen Firmen herstellen und ihnen zumindest Ihre IP-Adresse preisgeben (in der iPhone-App verwenden wir die Karten von Apple). iNaturalist würde ohne die Dienstleistungen, die diese Unternehmen anbieten, wahrscheinlich nicht existieren, und obwohl wir die Menge und die Art der Daten, die Sie bei der Nutzung von iNat mit ihnen teilen, begrenzen können, können wir den Datenfluss nicht vollständig unterbinden.]]></string>
-    <string name="common_names_place"><![CDATA[Gebräuchliche Ortsbezeichnungen: <b>%1$s</b>]]></string>
-    <string name="tap_to_prioritize_common_names">Antippen, um gebräuchliche Namen eines bestimmten Ortes zu bevorzugen.</string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b>Diese Dienstleistungen von Drittanbietern bieten uns einen enormen Wert</b> bei der Aufrechterhaltung der Stabilität und Nutzbarkeit von iNaturalist mit unserer relativ kleinen Anzahl an Mitarbeitern. Auf mobilen Geräten gibt es fast keine andere Möglichkeit, Erkenntnisse über aufgetretene Probleme zu gewinnen, da die Software auf Geräten läuft, die wir nicht verwalten. Manchmal sind wir uns nicht einmal darüber im Klaren, dass solche Probleme überhaupt auftreten, bis wir sie in den Daten sehen, die diese Dienste zur Verfügung stellen. <b>Indem du diese Informationen teilst, hilfst du uns, dir und der gesamten iNaturalist-Gemeinschaft besser zu dienen.</b>]]></string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[Beachte, dass diese Option nur für Analyse- und Absturzdaten gilt, die wir bewusst an diese Unternehmen senden. Alle iNaturalist-Server werden von Microsoft zur Verfügung gestellt und verwaltet, alle iNaturalist-Fotos befinden sich auf Servern von Amazon, und fast alle iNaturalist-Karten werden von Google zur Verfügung gestellt. Dies bedeutet, dass du jedes Mal, wenn du dir eine Beobachtung auf iNaturalist ansiehst, eine Verbindung zu diesen Firmen herstellst und ihnen zumindest deine IP-Adresse preisgibst (in der iPhone-App verwenden wir die Karten von Apple). iNaturalist würde ohne die Dienstleistungen, die diese Unternehmen anbieten, wahrscheinlich nicht existieren, und obwohl wir die Menge und die Art der Daten, die du bei der Nutzung von iNat mit ihnen teilst, begrenzen können, können wir den Datenfluss nicht vollständig unterbinden.]]></string>
+    <string name="common_names_place"><![CDATA[Regionale Namen von diesem Ort: <b>%1$s</b>]]></string>
+    <string name="tap_to_prioritize_common_names">Auswählen, um die gebräuchlichen Namen eines bestimmten Ortes zu bevorzugen.</string>
     <string name="search_places">Orte suchen</string>
+    <string name="restart_app">App neustarten</string>
+    <string name="disable_third_party_sharing_restart">Um die Nutzung von Daten durch Drittanbieter sofort zu deaktivieren, muss die Anwendung neu gestartet werden.</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="one">Are you sure you want to delete this %1$d observation?</item>
+        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+    </plurals>
 </resources>

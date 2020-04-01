@@ -147,8 +147,12 @@
     <string name="pull_to_refresh">Потяните, чтобы обновить...</string>
     <string name="release_to_refresh">Отпустите для обновления...</string>
     <string name="refreshing">Обновление...</string>
-    <string name="sync_x_observations">Синхронизация %1$d наблюдений</string>
-    <string name="sync_1_observation">Синхронизировать 1 наблюдение</string>
+    <plurals name="sync_x_observations">
+        <item quantity="one">Синхронизировать %1$d наблюдение</item>
+        <item quantity="few">Синхронизировать %1$d наблюдения</item>
+        <item quantity="many">Синхронизировать %1$d наблюдений</item>
+        <item quantity="other">Синхронизировать %1$d наблюдений</item>
+    </plurals>
     <string name="sync_observations">Синхронизация наблюдений</string>
     <string name="lets_get_started">Давайте начнем!</string>
     <string name="view_nearby_observations">Просмотр ближайших наблюдений</string>
@@ -279,8 +283,12 @@
     <string name="casual_grade_add_photo"><![CDATA[ Добавьте <b>фото</b> для перехода этого наблюдения в статус «Требуется ID». ]]></string>
     <string name="casual_grade_captive"><![CDATA[ Наблюдению присвоен Класс (Casual Grade) случайных наблюдений, потому что это наблюдение объекта<b>в неволе/культивируемое</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ Наблюдение требует <b>больше идентификации</b> от сообщества, чтобы получить статус (Research Grade) исследовательский уровень. ]]></string>
-    <string name="included_in_projects">Включено в %1$d проектов</string>
-    <string name="included_in_projects_singular">Включено в проект %1$d</string>
+    <plurals name="included_in_projects">
+        <item quantity="one">Включено в %1$d проект</item>
+        <item quantity="few">Включено в %1$d проекта</item>
+        <item quantity="many">Включено в %1$d проектов</item>
+        <item quantity="other">Включено в %1$d проектов</item>
+    </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Конфиденциальность геоданных (Geoprivacy) - это настройка, которую вы можете задать в своих наблюдениях, она управляет пространственным отображением 
  координат (широты и долготы). Вот варианты:<br/><b>доступно</b> - Каждый может видеть координаты, если таксон не находится под угрозой. <br/><b>скрыто</b> - общедоступные координаты показываются как случайные точки в пределах области 0,2 на 0,2 градуса, которая содержит истинные координаты, что представляет собой квадратную область неопределенности около 22x22 км на экваторе, размер уменьшается по мере приближения к полюсам. Истинные координаты видны только вам и кураторам проектов, к которым вы добавляете наблюдение. <br/><b>частные</b> - Координаты полностью скрыты от общедоступных карт, истинные координаты видны только вам и кураторам проектов, к которым вы добавляете наблюдение. <br/><br/> Обратите внимание на то, что кураторы отдельных проектов всегда могут видеть координаты, независимо от настройки конфиденциальности геоданных, поэтому, если вас беспокоит, кто имеет доступ к координатам, вы должны быть уверены, что доверяете кураторам проектов, в которых Вы участвуете. ]]></string>
     <string name="id_title">%1$s\'s ID • %2$s</string>
@@ -407,7 +415,12 @@
     <string name="deleted_photos_from_cache_error">Похоже, что вы удалили фотографию, очистив кэш приложения перед загрузкой. Вам будет нужно добавить фотографию обратно в ваши наблюдения из вашей галереи. В будущем, пожалуйста, убедитесь, что вы загрузили все ваши фото перед очисткой кэша приложения.</string>
     <string name="new_activities">%1s новых</string>
     <string name="no_results_found">Результаты не найдены...</string>
-    <string name="syncing_x_out_of_y_observations">Синхронизация %1$d из %2$d наблюдений...</string>
+    <plurals name="syncing_x_out_of_y_observations">
+        <item quantity="one">Синхронизируется %1$d из%2$d наблюдение</item>
+        <item quantity="few">Синхронизируется %1$d из%2$d наблюдения</item>
+        <item quantity="many">Синхронизируется %1$d из%2$d наблюдений</item>
+        <item quantity="other">Синхронизируется %1$d из%2$d наблюдений</item>
+    </plurals>
     <string name="deleting_observations">Удаление наблюдений...</string>
     <string name="preparing">Идет подготовка...</string>
     <string name="add_edit_remark">Добавить/редактировать замечание</string>
@@ -431,8 +444,19 @@
     <string name="more_info_on_inat">Более подробная информация о iNaturalist.org</string>
     <string name="view_suggestions">Посмотреть предложения</string>
     <string name="species_search">Поиск видов</string>
-    <string name="were_not_confident">Мы не уверены полностью, что можем давать рекомендации, но вот наши Топ %1$d предложений:</string>
-    <string name="top_species_suggestions">Вот наш топ %1$d видов предложения:</string>
+    <plurals name="were_not_confident">
+        <!-- This will probably never happen -->
+        <item quantity="one">Мы не настолько уверены, чтобы давать рекомендации, но вот наше %1$d предложение</item>
+        <item quantity="few">Мы не настолько уверены, чтобы давать рекомендации, но вот наши %1$d предложения</item>
+        <item quantity="many">Мы не настолько уверены, чтобы давать рекомендации, но вот наши лучшие из %1$d предложений</item>
+        <item quantity="other">Мы не настолько уверены, чтобы давать рекомендации, но вот наши лучшие из %1$d предложений</item>
+    </plurals>
+    <plurals name="top_species_suggestions">
+        <item quantity="one">Наше лучшее из %1$d предложение</item>
+        <item quantity="few">Наши лучшие из %1$d предложений</item>
+        <item quantity="many">Наши лучшие из %1$d предложений</item>
+        <item quantity="other">Наши лучшие из %1$d предложений</item>
+    </plurals>
     <string name="pretty_sure_rank">Мы уверены, что это в этой %1$s:</string>
     <string name="what_did_you_see">Что Вы видели?</string>
     <string name="suggest_species">Предложить вид</string>
@@ -576,9 +600,6 @@
     <string name="collection_and_umbrella_projects">Коллекционные и зонтичные проекты</string>
     <string name="description">Описание</string>
     <string name="quantity">Кол-во</string>
-    <!-- Number of observations. Do not change the format to $d -->
-    <string name="observation_count">%1$s наблюдений</string>
-    <string name="observation_count_single">наблюдение %1$d</string>
     <string name="agree2">Согласен</string>
     <string name="project_observations">Наблюдения</string>
     <string name="project_species">Виды</string>
@@ -652,8 +673,12 @@
     <string name="all_guides_all_caps">ВСЕ</string>
     <string name="description_all_caps">ОПИСАНИЕ</string>
     <string name="quantity_all_caps">КОЛ-ВО</string>
-    <string name="observation_count_all_caps">%1$s НАБЛЮДЕНИЙ</string>
-    <string name="observation_count_single_all_caps">%1$d НАБЛЮДЕНИЕ</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="one">%1$s НАБЛЮДЕНИЕ</item>
+        <item quantity="few">%1$s НАБЛЮДЕНИЯ</item>
+        <item quantity="many">%1$s НАБЛЮДЕНИЙ</item>
+        <item quantity="other">%1$s НАБЛЮДЕНИЙ</item>
+    </plurals>
     <string name="agree_all_caps">СОГЛАСЕН</string>
     <string name="observations_all_caps">НАБЛЮДЕНИЯ</string>
     <string name="species_all_caps">ВИДЫ</string>
@@ -783,4 +808,12 @@
     <string name="common_names_place"><![CDATA[Место общих названий: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Нажмите, чтобы установить приоритет общих имен из определенного места.</string>
     <string name="search_places">Поиск мест</string>
+    <string name="restart_app">Перезапуск</string>
+    <string name="disable_third_party_sharing_restart">Для немедленного прекращения обмена данными со сторонними компаниями необходимо перезапустить приложение</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="one">Вы уверены, что хотите удалить это %1$d наблюдение?</item>
+        <item quantity="few">Вы уверены, что хотите удалить эти %1$d наблюдения?</item>
+        <item quantity="many">Вы уверены, что хотите удалить эти %1$d наблюдений?</item>
+        <item quantity="other">Вы уверены, что хотите удалить эти %1$d наблюдений?</item>
+    </plurals>
 </resources>

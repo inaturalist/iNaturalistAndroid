@@ -147,8 +147,10 @@
     <string name="pull_to_refresh">Deslizar para atualizar...</string>
     <string name="release_to_refresh">Soltar para atualizar...</string>
     <string name="refreshing">A atualizar...</string>
-    <string name="sync_x_observations">Sincronizar %1$d observações</string>
-    <string name="sync_1_observation">Sincronizar 1 observação</string>
+    <plurals name="sync_x_observations">
+        <item quantity="one">Sync %1$d observation</item>
+        <item quantity="other">Sync %1$d observations</item>
+    </plurals>
     <string name="sync_observations">Sincronizar Observações</string>
     <string name="lets_get_started">Vamos começar!</string>
     <string name="view_nearby_observations">Ver as Observações nas Proximidades</string>
@@ -279,8 +281,10 @@
     <string name="casual_grade_add_photo"><![CDATA[ Adicionar uma <b>foto</b> para avançar esta observação para o estatuto de "Precisa de Identificação". ]]></string>
     <string name="casual_grade_captive"><![CDATA[ Observação é de grau casual porque é <b>de cativeiro/cultivada</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ A observação necessita de <b>mais identificações</b> da comunidade para ficar com o estatuto de "Grau de Pesquisa". ]]></string>
-    <string name="included_in_projects">Incluídas em %1$d projetos</string>
-    <string name="included_in_projects_singular">Incluída em %1$d projeto</string>
+    <plurals name="included_in_projects">
+        <item quantity="one">Included in %1$d project</item>
+        <item quantity="other">Included in %1$d projects</item>
+    </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivacidade é uma configuração que pode definir para as suas observações que controla a forma como as coordenadas (latitude e longitude) são apresentadas. As opções são:<br/><b>pública</b> - Todos podem ver as coordenadas a não ser que o táxon esteja ameaçado. <br/><b>oculta</b> - As coordenadas públicas são apresentadas por um ponto aleatório numa área de 0,2 por 0,2 graus que contém as verdadeiras coordenadas, o que resulta numa área de incerteza de 22x22 km quadrados no equador, que diminui à medida que se aproxima dos pólos. As verdadeiras coordenadas só são visíveis para si e para os curadores dos projetos a que adiciona a observação. <br/><b>privada</b> - As coordenadas ficam completamente escondidas nos mapas públicos, as coordenadas verdadeiras só são visíveis para si e para os curadores dos projetos a que adiciona a observação. <br/><br/>Note que os curadores dos projetos individuais podem sempre ver as coordenadas apesar da sua configuração de geoprivacidade, por isso se está preocupado com quem tem acesso às coordenadas deve ter a certeza que pode confiar nos curadores dos projetos em que participa. ]]></string>
     <string name="id_title">Identificação de %1$s • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
@@ -406,7 +410,10 @@
     <string name="deleted_photos_from_cache_error">Como limpou o cache da aplicação antes de carregar o ficheiro, eliminou uma foto. Precisa de adicionar novamente a foto à sua observação a partir da galeria. De futuro, por favor verifique que carregou todas as fotos antes de limpar a cache da aplicação.</string>
     <string name="new_activities">%1s nova(s)</string>
     <string name="no_results_found">Nenhum Resultado Encontrado...</string>
-    <string name="syncing_x_out_of_y_observations">A sincronizar %1$d de %2$d observações...</string>
+    <plurals name="syncing_x_out_of_y_observations">
+        <item quantity="one">Syncing %1$d of %2$d observation...</item>
+        <item quantity="other">Syncing %1$d of %2$d observations...</item>
+    </plurals>
     <string name="deleting_observations">A Excluir Observações...</string>
     <string name="preparing">A preparar...</string>
     <string name="add_edit_remark">Adicionar/Editar Comentários</string>
@@ -430,8 +437,15 @@
     <string name="more_info_on_inat">Mais informações em iNaturalist.org</string>
     <string name="view_suggestions">Ver Sugestões</string>
     <string name="species_search">Procurar Espécies</string>
-    <string name="were_not_confident">Não estamos confiantes o suficiente para fazer uma recomendação, mas aqui estão as nossas %1$d melhores sugestões:</string>
-    <string name="top_species_suggestions">Aqui estão as nossas melhores %1$d sugestões de espécies:</string>
+    <plurals name="were_not_confident">
+        <!-- This will probably never happen -->
+        <item quantity="one">We\'re not confident enough to make a recommendation, but here is our number %1$d suggestion:</item>
+        <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+    </plurals>
+    <plurals name="top_species_suggestions">
+        <item quantity="one">Top %1$d suggestion:</item>
+        <item quantity="other">Top %1$d suggestions:</item>
+    </plurals>
     <string name="pretty_sure_rank">Temos quase a certeza que pertence a %1$s:</string>
     <string name="what_did_you_see">O que viu?</string>
     <string name="suggest_species">Sugerir Espécie(s)</string>
@@ -577,9 +591,6 @@ nossa comunidade de código aberto]]></string>
     <string name="collection_and_umbrella_projects">Projetos de tipo Coleção e Umbrela</string>
     <string name="description">Descrição</string>
     <string name="quantity">Quantidade</string>
-    <!-- Number of observations. Do not change the format to $d -->
-    <string name="observation_count">%1$s observações</string>
-    <string name="observation_count_single">%1$d observação</string>
     <string name="agree2">Concordo</string>
     <string name="project_observations">Observações</string>
     <string name="project_species">Espécies</string>
@@ -653,8 +664,10 @@ nossa comunidade de código aberto]]></string>
     <string name="all_guides_all_caps">TODOS</string>
     <string name="description_all_caps">DESCRIÇÃO</string>
     <string name="quantity_all_caps">QUANTIDADE</string>
-    <string name="observation_count_all_caps">%1$s OBSERVAÇÕES</string>
-    <string name="observation_count_single_all_caps">%1$d OBSERVAÇÃO</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="one">%1$s OBSERVATION</item>
+        <item quantity="other">%1$s OBSERVATIONS</item>
+    </plurals>
     <string name="agree_all_caps">CONCORDO</string>
     <string name="observations_all_caps">OBSERVAÇÕES</string>
     <string name="species_all_caps">ESPÉCIES</string>
@@ -784,4 +797,10 @@ nossa comunidade de código aberto]]></string>
     <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
     <string name="search_places">Search Places</string>
+    <string name="restart_app">Restart App</string>
+    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="one">Are you sure you want to delete this %1$d observation?</item>
+        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+    </plurals>
 </resources>

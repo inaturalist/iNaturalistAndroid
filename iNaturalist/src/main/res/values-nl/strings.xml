@@ -28,7 +28,7 @@
     <string name="something_went_wrong">Help, iets ging fout: %1$s</string>
     <string name="edit">Wijzigen</string>
     <string name="oh_no">O nee! %1$s</string>
-    <string name="observations">Mijn observaties</string>
+    <string name="observations">Mijn waarnemingen</string>
     <string name="map">Kaart</string>
     <string name="settings">Instellingen</string>
     <string name="projects">Projecten</string>
@@ -147,8 +147,10 @@
     <string name="pull_to_refresh">Trek naar beneden om te verversen...</string>
     <string name="release_to_refresh">Laat los om te verversen...</string>
     <string name="refreshing">Vernieuwen...</string>
-    <string name="sync_x_observations">%1$d Waarneming opslaan</string>
-    <string name="sync_1_observation">Waarneming opslaan</string>
+    <plurals name="sync_x_observations">
+        <item quantity="one">Synchroniseer %1$d waarneming</item>
+        <item quantity="other">Synchroniseer %1$d waarnemingen</item>
+    </plurals>
     <string name="sync_observations">Waarnemingen opslaan</string>
     <string name="lets_get_started">Aan de slag!</string>
     <string name="view_nearby_observations">Nabijgelegen observaties bekijken</string>
@@ -197,7 +199,7 @@
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador is lid van het iNaturalist Network in Ecuador. Lokale instellingen die iNaturalist Ecuador ondersteunen, hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia is lid van het iNaturalist Network in Australië. Lokale instellingen die iNaturalist Australia ondersteunen hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
     <string name="alert_message_use_argentinat">ArgentiNat is lid van het iNaturalist Netwerk in Argentinië. Lokale instellingen die ArgentiNat ondersteunen zullen toegang hebben tot uw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel is lid van het iNaturalist Network in Israel. Lokale instellingen die iNaturalist Israel ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
     <string name="editor">Redacteur</string>
     <string name="license">Licentie</string>
     <string name="download_for_offline_use">Downloaden voor offline gebruik</string>
@@ -279,8 +281,10 @@
     <string name="casual_grade_add_photo"><![CDATA[ Voeg een <b>foto</b> toe om deze waarneming te upgraden naar "Needs ID" status. ]]></string>
     <string name="casual_grade_captive"><![CDATA[ Waarneming krijgt \'casual grade\' omdat ze <b>in gevangenschap/gekweekt</b> heeft. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ Waarneming heeft <b>meer determinaties</b> nodig van de gemeenschap om de onderzoekskwaliteit te bereiken. ]]></string>
-    <string name="included_in_projects">Opgenomen in %1$d projecten</string>
-    <string name="included_in_projects_singular">Opgenomen in %1$d project</string>
+    <plurals name="included_in_projects">
+        <item quantity="one">Opgenomen in %1$d project</item>
+        <item quantity="other">Opgenomen in %1$d projecten</item>
+    </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy is een instelling die bepaalt hoe de ruimtelijke coördinaten (breedte- en lengtegraad) worden weergegeven. Dit zijn de opties:<br/><b>openbaar:</b> - Iedereen kan de coördinaten zien tenzij het taxon niet wordt bedreigd. <br/><b>gedimd</b> - De coördinaten worden weergegeven als een willekeurig punt binnen een gebied van 0,2 bij 0,2 graden dat de werkelijke coördinaten bevat, wat overeenkomt met een gebied van ongeveer 22 x 22 km onzekerheid aan de evenaar, aflopend richting de polen. Alleen jij en de curatoren van projecten waaraan je je waarneming toevoegt, kunnen de echte coördinaten zien. <br/><b> privé</b> - coördinaten worden niet weergegeven op openbare kaarten. Alleen u en de curatoren van projecten waaraan u uw waarneming toevoegt, kunnen de echte coördinaten zien. <br/><br/>Projectcuratoren van betrokken projecten kunnen altijd de echte coördinaten zien. Als u de privacy van de coördinaten van uw waarnemingen belangrijk vindt, moet u alleen deelnemen aan projecten waarvan u de trustees vertrouwt. ]]></string>
     <string name="id_title">%1$s\'s ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
@@ -406,7 +410,10 @@
     <string name="deleted_photos_from_cache_error">Het lijkt erop dat u een foto hebt verwijderd door het cachegeheugen van de app wissen voordat u deze hebt ge upload. U moet de foto opnieuw toevoegen aan uw waarneming van uw galerij. Controleer in het vervolg eerst dat u al uw foto\'s hebt geüpload vóórdat u het cachegeheugen van de app wist.</string>
     <string name="new_activities">nieuwe %1s</string>
     <string name="no_results_found">Niets gevonden...</string>
-    <string name="syncing_x_out_of_y_observations">%1$d van de %2$d waarnemingen aan het uploaden...</string>
+    <plurals name="syncing_x_out_of_y_observations">
+        <item quantity="one">%1$d van de %2$d waarneming aan het synchroniseren...</item>
+        <item quantity="other">%1$d van de %2$d waarnemingen aan het synchroniseren...</item>
+    </plurals>
     <string name="deleting_observations">Waarnemingen verwijderen...</string>
     <string name="preparing">Aan het voorbereiden...</string>
     <string name="add_edit_remark">Voeg/Bewerk een opmerking</string>
@@ -430,8 +437,15 @@
     <string name="more_info_on_inat">Meer Info op iNaturalist.org</string>
     <string name="view_suggestions">Suggesties bekijken</string>
     <string name="species_search">Soort zoeken</string>
-    <string name="were_not_confident">We zijn niet zeker genoeg om een aanbeveling te doen, maar hier zijn onze %1$d beste voorstellen:</string>
-    <string name="top_species_suggestions">Dit zijn onze suggesties voor de beste %1$d soorten:</string>
+    <plurals name="were_not_confident">
+        <!-- This will probably never happen -->
+        <item quantity="one">We zijn niet zeker genoeg om een aanbeveling te doen, maar hier is onze top %1$d suggestie:</item>
+        <item quantity="other">We zijn niet zeker genoeg om een aanbeveling te doen, maar hier zijn onze top %1$d suggesties:</item>
+    </plurals>
+    <plurals name="top_species_suggestions">
+        <item quantity="one">Top %1$d suggestie:</item>
+        <item quantity="other">Top %1$d suggesties:</item>
+    </plurals>
     <string name="pretty_sure_rank">We zijn vrij zeker van dat het in deze %1$s is:</string>
     <string name="what_did_you_see">Wat heb je waargenomen?</string>
     <string name="suggest_species">Soort suggereren</string>
@@ -575,9 +589,6 @@
     <string name="collection_and_umbrella_projects">Collectie en Parapluprojecten</string>
     <string name="description">Beschrijving</string>
     <string name="quantity">Aantal</string>
-    <!-- Number of observations. Do not change the format to $d -->
-    <string name="observation_count">%1$s waarnemingen</string>
-    <string name="observation_count_single">%1$d waarneming</string>
     <string name="agree2">Akkoord</string>
     <string name="project_observations">Waarnemingen</string>
     <string name="project_species">Soort</string>
@@ -651,8 +662,10 @@
     <string name="all_guides_all_caps">ALLES</string>
     <string name="description_all_caps">BESCHRIJVING</string>
     <string name="quantity_all_caps">Antl</string>
-    <string name="observation_count_all_caps">%1$s WAARNEMINGEN</string>
-    <string name="observation_count_single_all_caps">%1$d WAARNEMING</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="one">%1$s WAARNEMING</item>
+        <item quantity="other">%1$s WAARNEMINGEN</item>
+    </plurals>
     <string name="agree_all_caps">EENS</string>
     <string name="observations_all_caps">WAARNEMINGEN</string>
     <string name="species_all_caps">SOORTEN</string>
@@ -691,10 +704,10 @@
     <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network operating iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
-    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
-    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina steunt ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia steunt iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) steunt iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa steunt iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Markeer alle berichten als gelezen</string>
     <string name="content_hidden">Inhoud verborgen</string>
     <string name="show_hidden_content">Toon verborgen inhoud</string>
@@ -763,9 +776,9 @@
     <string name="seconds_value">seconden</string>
     <string name="shop_the_inat_store">Shop in de iNat winkel</string>
     <string name="delete_your_account">Verwijder je account</string>
-    <string name="delete_account_message"><![CDATA[By deleting your account you will remove:<br/><br/><ul><li> All of your observations, including the work of the all the people who have helped you out with identifications.</li><li> All of the identifications you\'ve added to the observations of other people, which will potentially affect the data quality of those observations.</li><li> All of the comments you\'ve added.</li></ul><br/>Furthermore, this action cannot be undone. If you change your mind later, you aren\'t getting any of that content back.<br/><br/>If this service generates too many notifications, consider <a href="https://www.inaturalist.org/users/edit">editing your settings on the website</a> to opt out of certain notifications or stop receiving email from us. If you\'re having trouble with a specific person, consider <a href="https://www.inaturalist.org/users/edit">muting them</a> instead of deleting your account.<br/><br/>If you\'re still sure you want to delete your account, enter <b>\"%1$s\"</b> in the form below and click the button to delete your account and all your data.]]></string>
+    <string name="delete_account_message"><![CDATA[Door je account te verwijderen verwijder je:<br/><br/><ul><li> Al je waarnemingen inclusief het werk van alle mensen die je hebben geholpen met de determinatie.</li><li> Alle determinaties die je aan de waarnemingen van andere mensen hebt toegevoegd, wat de kwaliteit van de gegevens van die waarnemingen mogelijk zal beïnvloeden.</li><li> Alle commentaren die je hebt toegevoegd.</li></ul><br/>Deze actie kan niet ongedaan worden gemaakt. Als je later van gedachten verandert, krijg je die inhoud niet meer terug.<br/><br/>Als deze service te veel meldingen genereert, overweeg <a href="https://www.inaturalist.org/users/edit">je instellingen op de website aan te passen</a> om bepaalde meldingen niet meer te ontvangen of stop het ontvangen van e-mail. Als je problemen hebt met een specifieke persoon, overweeg dan <a href="https://www.inaturalist.org/users/edit">om deze gebruiker te dempen</a> in plaats van je account te verwijderen.<br/><br/>Als je nog steeds zeker bent dat je je account wilt verwijderen voer <b>\"%1$s\"</b> in het onderstaande formulier in en klik op de knop om jouw account en al jouw gegevens te verwijderen.]]></string>
     <string name="your_account_has_been_deleted">Jouw account is verwijderd</string>
-    <string name="you_must_enter_username_in_the_form_to_delete_account">You must enter \'%1$s\' in the form to delete your account</string>
+    <string name="you_must_enter_username_in_the_form_to_delete_account">Je moet de \'%1$s\'  in het formulier invoeren om je account te verwijderen</string>
     <!-- Second person hint text asking the user to enter their username -->
     <string name="type_your_username">Voer je gebruikersnaam in</string>
     <string name="error_deleting_account">Er is een fout opgetreden bij het verwijderen van je account - controleer je internetverbinding</string>
@@ -776,10 +789,16 @@
     <string name="enabled">Ingeschakeld</string>
     <string name="disabled">Uitgeschakeld</string>
     <string name="third_party_data_sharing_notes1"><![CDATA[We gebruiken verschillende diensten van derden om stabiliteit in de gaten te houden en bugs en problemen in onze software te vinden. Onder deze derden vallen:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
-    <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
+    <string name="third_party_data_sharing_notes2"><![CDATA[Informatie die we delen met andere partijen:<br/><ul><li> IP-adressen (die kunnen worden gebruikt om jouw locatie af te leiden tot op stedelijk niveau en je te traceren over verschillende websites en diensten; we hebben <a href="https://support.google.com/analytics/answer/2763052">IP anonimisatie</a> ingeschakeld in Google Analytics en <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> neemt geen IP-adres op voor zover wij weten)</li><li>Browser details, zoals type, model en versie</li><li>Crash details, zoals precies welke coderingsregel heeft geleid tot een crash</li><li>Apparaat details, zoals type en model van een mobiele telefoon</li></ul>]]></string>
     <string name="third_party_data_sharing_notes3"><![CDATA[<b>Deze services van derden zijn erg waardevol voor ons</b> bij het stabiel en bruikbaar houden van iNaturalist met ons relatief kleine aantal werknemers. Op mobiele apparaten is er nagenoeg geen andere manier om inzicht te krijgen in de problemen die zich voordoen, aangezien de software draait op apparaten waarover we geen controle hebben. Soms weten we niet eens dat zulke problemen zich voordoen voordat we ze in de data van zulke diensten zien. <b>Door deze informatie te delen help je ons, en de gehele gemeenschap op iNaturalist.</b>]]></string>
-    <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
-    <string name="common_names_place"><![CDATA[Plaats voor volksnamen: <b>%1$s</b>]]></string>
-    <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
-    <string name="search_places">Search Places</string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[Deze optie is alleen van toepassing op de analytische en crashgegevens die wij expliciet naar deze bedrijven sturen. Alle iNaturalist servers zijn geleverd en gehost door Microsoft, alle iNaturalist afbeeldingen worden gehost door Amazon en bijna alle iNaturalist kaarten worden geleverd door Google. Dit betekent dat wanneer je naar een waarneming op iNaturalist kijkt je verbonden bent met diensten aangeboden door deze bedrijven en zij op zijn minst beschikken over je IP-adres (de iPhone app gebruikt Apple\'s maps). iNaturalist zou waarschijnlijk niet bestaan zonder de diensten die deze bedrijven leveren. Hoewel iNaturalist de hoeveelheid en soort gegevens kan beperken die je met hen deelt tijdens het gebruik van iNat, kunnen we de datastroom niet helemaal stoppen.]]></string>
+    <string name="common_names_place"><![CDATA[Plaats voor lokale namen: <b>%1$s</b>]]></string>
+    <string name="tap_to_prioritize_common_names">Tik om lokale namen van een bepaalde plek te prioriteren.</string>
+    <string name="search_places">Plaatsen zoeken</string>
+    <string name="restart_app">App herstarten</string>
+    <string name="disable_third_party_sharing_restart">Om gegevens delen van derden onmiddellijk uit te schakelen moet de app opnieuw opgestart worden.</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="one">Weet je zeker dat je deze (%1$d) waarneming wilt verwijderen?</item>
+        <item quantity="other">Weet je zeker dat je deze %1$d waarnemingen wilt verwijderen?</item>
+    </plurals>
 </resources>

@@ -147,8 +147,9 @@
     <string name="pull_to_refresh">引っ張って更新します...</string>
     <string name="release_to_refresh">離して更新</string>
     <string name="refreshing">更新中...</string>
-    <string name="sync_x_observations">%1$d 個の観察記録を同期</string>
-    <string name="sync_1_observation">1 観察記録を同期</string>
+    <plurals name="sync_x_observations">
+        <item quantity="other">Sync %1$d observations</item>
+    </plurals>
     <string name="sync_observations">観察記録を同期</string>
     <string name="lets_get_started">始めましょう!</string>
     <string name="view_nearby_observations">近隣の観察記録を表示</string>
@@ -279,8 +280,9 @@
     <string name="casual_grade_add_photo"><![CDATA[ <b>写真</b>を追加して、この観察記録を"IDが必要"の状態に進めます。 ]]></string>
     <string name="casual_grade_captive"><![CDATA[ <b>飼育/栽培</b>のため、観察記録は一般用です。 ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ 観察記録が、「研究用」の状態になるには、コミュニティから<b>さらに同定</b>が必要です。 ]]></string>
-    <string name="included_in_projects">%1$dプロジェクトに含まれています</string>
-    <string name="included_in_projects_singular">%1$dプロジェクトに含まれています</string>
+    <plurals name="included_in_projects">
+        <item quantity="other">Included in %1$d projects</item>
+    </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy は、あなたが観察をすることができる空間座標 (緯度と経度) の表示方法を制御する設定です。ここでのオプションは: <br/><b>オープン</b> - 分類群を侵害しない限り、だれでも座標を見ることができます。<br/><b>隠蔽</b> - 赤道面座標系を含む 0.2 × 0.2 度の領域内のランダム点として表示される公共測地座標系で、極に近づくにつれて減少する、赤道では不確実な約 22 x 22 km の正方形の領域ということになります。赤道面座標系は、あなたとあなたが観察記録を追加したプロジェクトのキュレーターにのみ表示されます。<br/><b>プライベート</b> - 座標は公図から完全に隠蔽されます。赤道面座標系は、あなたとあなたが観察記録を追加したプロジェクトのキュレーターにのみ表示されます。<br/><br/>個々のプロジェクトのキュレーターは Geoprivacy の設定に関係なく、常に座標を見ることができるため、誰が座標にアクセスするかについて不安がある場合は、参加しているプロジェクトのキュレーターを確認する必要があることにご注意ください。 ]]></string>
     <string name="id_title">%1$s\'s ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
@@ -406,7 +408,9 @@
     <string name="deleted_photos_from_cache_error">アップロードする前に、アプリのキャッシュを消去して、写真を削除したようです。観察記録に戻ってギャラリーから写真を追加する必要があります。今後は、アプリのキャッシュを消去する前に、すべての写真をアップロードしていることを確認してください。</string>
     <string name="new_activities">新しい %1s</string>
     <string name="no_results_found">結果は見つかりませんでした...</string>
-    <string name="syncing_x_out_of_y_observations">%1$d / %2$d の観察記録を同期しています...</string>
+    <plurals name="syncing_x_out_of_y_observations">
+        <item quantity="other">Syncing %1$d of %2$d observations...</item>
+    </plurals>
     <string name="deleting_observations">観察記録を削除しています...</string>
     <string name="preparing">準備しています...</string>
     <string name="add_edit_remark">注釈の追加/編集</string>
@@ -430,8 +434,13 @@
     <string name="more_info_on_inat">iNaturalist.org の詳細情報</string>
     <string name="view_suggestions">提案の表示</string>
     <string name="species_search">種検索</string>
-    <string name="were_not_confident">私たちは勧告することに十分自信がないが、これは私たちのトップ %1$d の提案です:</string>
-    <string name="top_species_suggestions">私たちのトップ %1$d 種の提案は次のとおりです:</string>
+    <plurals name="were_not_confident">
+        <!-- This will probably never happen -->
+        <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+    </plurals>
+    <plurals name="top_species_suggestions">
+        <item quantity="other">Top %1$d suggestions:</item>
+    </plurals>
     <string name="pretty_sure_rank">この %1$s にあるはずです:</string>
     <string name="what_did_you_see">何を見ましたか？</string>
     <string name="suggest_species">種の提案</string>
@@ -575,9 +584,6 @@
     <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
     <string name="description">説明</string>
     <string name="quantity">数量</string>
-    <!-- Number of observations. Do not change the format to $d -->
-    <string name="observation_count">%1$s件の観察記録</string>
-    <string name="observation_count_single">%1$d件の観察記録</string>
     <string name="agree2">賛成</string>
     <string name="project_observations">観察記録</string>
     <string name="project_species">種</string>
@@ -651,8 +657,9 @@
     <string name="all_guides_all_caps">ALL</string>
     <string name="description_all_caps">DESCRIPTION</string>
     <string name="quantity_all_caps">QTY</string>
-    <string name="observation_count_all_caps">%1$s OBSERVATIONS</string>
-    <string name="observation_count_single_all_caps">%1$d OBSERVATION</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="other">%1$s OBSERVATIONS</item>
+    </plurals>
     <string name="agree_all_caps">AGREE</string>
     <string name="observations_all_caps">OBSERVATIONS</string>
     <string name="species_all_caps">SPECIES</string>
@@ -782,4 +789,9 @@
     <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
     <string name="search_places">Search Places</string>
+    <string name="restart_app">Restart App</string>
+    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+    </plurals>
 </resources>

@@ -147,8 +147,12 @@
     <string name="pull_to_refresh">Obnovíť potiahnutím...</string>
     <string name="release_to_refresh">Obnoviť uvoľnením...</string>
     <string name="refreshing">Obnovuje sa...</string>
-    <string name="sync_x_observations">Synchronizácia %1$d pozorovaní</string>
-    <string name="sync_1_observation">Synchronizujem 1 pozorovanie</string>
+    <plurals name="sync_x_observations">
+        <item quantity="one">Sync %1$d observation</item>
+        <item quantity="few">Sync %1$d observations</item>
+        <item quantity="many">Sync %1$d observations</item>
+        <item quantity="other">Sync %1$d observations</item>
+    </plurals>
     <string name="sync_observations">Synchronizácia pozorovaní</string>
     <string name="lets_get_started">Začnime!</string>
     <string name="view_nearby_observations">Pozorovania v mojej blízkosti</string>
@@ -279,8 +283,12 @@
     <string name="casual_grade_add_photo"><![CDATA[ Pridajte <b>foto</b> a posuňte pozorovanie do stavu "Vyžaduje určenie". ]]></string>
     <string name="casual_grade_captive"><![CDATA[ Pozorovanie je bežného určenia, pretože je <b>v zajatí/v kultivácii</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ Pozorovanie potrebuje <b>viac identifikácií</b> od používateľov aby nadobudlo status "Potvrdené určenie". ]]></string>
-    <string name="included_in_projects">Zahrnuté v %1$d projektov</string>
-    <string name="included_in_projects_singular">Zahrnuté v %1$d projektov</string>
+    <plurals name="included_in_projects">
+        <item quantity="one">Included in %1$d project</item>
+        <item quantity="few">Included in %1$d projects</item>
+        <item quantity="many">Included in %1$d projects</item>
+        <item quantity="other">Included in %1$d projects</item>
+    </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy je nastavenie vašich pozorovaní, ktoré, ktoré riadi zobrazovanie priestorových súradníc (zemepisnú šírku a dĺžku). Možnosti sú: <br/> <b>verejné</b> - každý môže vidieť súradnice, ak druh nie je ohrozený. <br/> <b>skryté</b> - verejné súradnice zobrazené ako náhodný bod v rámci oblasti 0,2 x 0,2 stupňa, ktorý obsahuje skutočné súradnice, čo je asi 22 x 22 km štvorcových neistoty v oblasti na rovníku, klesá smerom k pólom. Skutočné súradnice sú viditeľné len pre vás a kurátorov projektov, do ktorých pridáte pozorovania. <br/> <b>súkromné</b> - koordináty sú úplne skryté z verejných máp, skutočné súradnice sú viditeľné len pre vás a kurátorov projektov, do ktorý pridáte pozorovanie. <br/> <br/>Zdôrazňujeme, že kurátori jednotlivé projektov môžu vždy vidieť súradnice bez ohľadu na nastavenia geosúkromia, takže ak pochybujete o tom kto má prístup k súradniciam mali by ste dôverovať kurátorom projektov, v ktorých sa zúčastníte. ]]></string>
     <string name="id_title">Určil %1$s • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
@@ -406,7 +414,12 @@
     <string name="deleted_photos_from_cache_error">Zdá sa, že ste odstránili fotografiu vymazaním vyrovnávacej pamäte aplikácií pred jej nahranim.  Budete musieť pridať fotografiu späť do svojho pozorovania z vašej galérie. Nabudúce sa uistite, že ste nahrali všetky fotografie pred vymazaním vyrovnávacej pamäte aplikácie.</string>
     <string name="new_activities">%1s nových</string>
     <string name="no_results_found">Neboli nájdené žiadne výsledky...</string>
-    <string name="syncing_x_out_of_y_observations">Synchronizujem %1$d z %2$d pozorovaní...</string>
+    <plurals name="syncing_x_out_of_y_observations">
+        <item quantity="one">Syncing %1$d of %2$d observation...</item>
+        <item quantity="few">Syncing %1$d of %2$d observations...</item>
+        <item quantity="many">Syncing %1$d of %2$d observations...</item>
+        <item quantity="other">Syncing %1$d of %2$d observations...</item>
+    </plurals>
     <string name="deleting_observations">Mažem pozorovania...</string>
     <string name="preparing">Pripravuje sa...</string>
     <string name="add_edit_remark">Pridať/upraviť opis</string>
@@ -430,8 +443,19 @@
     <string name="more_info_on_inat">Viac informácií na iNaturalist.org</string>
     <string name="view_suggestions">Pozrite návrhy</string>
     <string name="species_search">Vyhľadávanie druhov</string>
-    <string name="were_not_confident">Nie sme si istí aby sme urobili odporúčanie, ale tu je top %1$d navrhov:</string>
-    <string name="top_species_suggestions">Tu je naších top %1$d návrhov druhov:</string>
+    <plurals name="were_not_confident">
+        <!-- This will probably never happen -->
+        <item quantity="one">We\'re not confident enough to make a recommendation, but here is our number %1$d suggestion:</item>
+        <item quantity="few">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+        <item quantity="many">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+        <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+    </plurals>
+    <plurals name="top_species_suggestions">
+        <item quantity="one">Top %1$d suggestion:</item>
+        <item quantity="few">Top %1$d suggestions:</item>
+        <item quantity="many">Top %1$d suggestions:</item>
+        <item quantity="other">Top %1$d suggestions:</item>
+    </plurals>
     <string name="pretty_sure_rank">Sme si celkom istý, že je to v %1$s:</string>
     <string name="what_did_you_see">Čo ste videli?</string>
     <string name="suggest_species">Návrhy druhov</string>
@@ -575,9 +599,6 @@
     <string name="collection_and_umbrella_projects">Kolekcie a projekty Umbrella</string>
     <string name="description">Popis</string>
     <string name="quantity">Počet</string>
-    <!-- Number of observations. Do not change the format to $d -->
-    <string name="observation_count">%1$s pozorovania</string>
-    <string name="observation_count_single">%1$d pozorovanie</string>
     <string name="agree2">Súhlasím</string>
     <string name="project_observations">Pozorovania</string>
     <string name="project_species">Druhy</string>
@@ -651,8 +672,12 @@
     <string name="all_guides_all_caps">ALL</string>
     <string name="description_all_caps">DESCRIPTION</string>
     <string name="quantity_all_caps">QTY</string>
-    <string name="observation_count_all_caps">%1$s OBSERVATIONS</string>
-    <string name="observation_count_single_all_caps">%1$d OBSERVATION</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="one">%1$s OBSERVATION</item>
+        <item quantity="few">%1$s OBSERVATIONS</item>
+        <item quantity="many">%1$s OBSERVATIONS</item>
+        <item quantity="other">%1$s OBSERVATIONS</item>
+    </plurals>
     <string name="agree_all_caps">SÚHLAS</string>
     <string name="observations_all_caps">POZOROVANIA</string>
     <string name="species_all_caps">DRUHY</string>
@@ -782,4 +807,12 @@
     <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
     <string name="search_places">Search Places</string>
+    <string name="restart_app">Restart App</string>
+    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="one">Are you sure you want to delete this %1$d observation?</item>
+        <item quantity="few">Are you sure you want to delete these %1$d observations?</item>
+        <item quantity="many">Are you sure you want to delete these %1$d observations?</item>
+        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+    </plurals>
 </resources>

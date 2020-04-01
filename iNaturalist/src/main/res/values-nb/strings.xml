@@ -147,8 +147,10 @@
     <string name="pull_to_refresh">Dra for å oppdatere...</string>
     <string name="release_to_refresh">Slipp for å oppdatere...</string>
     <string name="refreshing">Oppdaterer...</string>
-    <string name="sync_x_observations">Synkronisér %1$d observasjoner</string>
-    <string name="sync_1_observation">Synkronisér 1 observasjon</string>
+    <plurals name="sync_x_observations">
+        <item quantity="one">Synkronisér %1$d observasjon</item>
+        <item quantity="other">Synkronisér %1$d observasjoner</item>
+    </plurals>
     <string name="sync_observations">Synkronisér observasjoner</string>
     <string name="lets_get_started">La oss begynne!</string>
     <string name="view_nearby_observations">Vis nære observasjoner</string>
@@ -279,8 +281,10 @@
     <string name="casual_grade_add_photo"><![CDATA[ Legg til et <b>fotografi</b> for å fremheve denne observasjonen til “trenger-ID-status". ]]></string>
     <string name="casual_grade_captive"><![CDATA[ Observasjon er i uformell klasse fordi den er <b>bevart/kultivert</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ Observasjon trenger <b>flere identifikasjoner</b> fra fellesskapet for å få status som "Forskningsgrad". ]]></string>
-    <string name="included_in_projects">Inkludert i %1$d prosjekter</string>
-    <string name="included_in_projects_singular">Inkludert i %1$d prosjekt</string>
+    <plurals name="included_in_projects">
+        <item quantity="one">Inkludert i %1$d prosjekt</item>
+        <item quantity="other">Inkludert i %1$d prosjekter</item>
+    </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivat er en innstilling du kan bruke på observasjonene dine som kontrollerer hvordan de romlige koordinatene (breddegrad og lengdegrad) vises. Her er innstillingene:<br/><b>åpn</b> - Alle kan se koordinater med mindre gruppen er utrydningstruet. <br/><b>skjult</b> - Offentlige koordinater vises som tilfeldige punkter innen et 0.2-av-0.2-gradsområde som virker cirka 22x22km² fra ekvator og minsker når du nærmer deg polene. Sanne koordinater er bare synlige for deg og administratorene i prosjektene du legger observasjonen din til. <br/><b>privat</b> - <br/><br/>Notér at moderatorene i individuelle prosjekter alltid kan se koordinater uansett hvilken geoprivatinnstilling du bruker, så hvis du er bekymret over hvem som har tilgang til koordinater bør du være sikker på at du kan stole på administratorene i prosjektene du deltar i. ]]></string>
     <string name="id_title">%1$s sin ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
@@ -406,7 +410,10 @@
     <string name="deleted_photos_from_cache_error">Det ser ut til at du har slettet et bilde ved å rydde appens cache før opplasting. Du må derfor legge bildet til observasjoner fra galleriet på nytt. Sørg for at du har lastet opp alle dine bilder før du rydder appcachen i fremtiden.</string>
     <string name="new_activities">%1s nye</string>
     <string name="no_results_found">Ingen resultat funnet...</string>
-    <string name="syncing_x_out_of_y_observations">Synkroniserer %1$d av %2$d observasjoner...</string>
+    <plurals name="syncing_x_out_of_y_observations">
+        <item quantity="one">Synkroniserer %1$d av %2$d observasjon...</item>
+        <item quantity="other">Synkroniserer %1$d av %2$d observasjoner...</item>
+    </plurals>
     <string name="deleting_observations">Sletter observasjoner...</string>
     <string name="preparing">Forbereder...</string>
     <string name="add_edit_remark">Legg til/redigér merknad</string>
@@ -430,8 +437,15 @@
     <string name="more_info_on_inat">Vis på iNaturalist.org</string>
     <string name="view_suggestions">Vis forslag</string>
     <string name="species_search">Artssøk</string>
-    <string name="were_not_confident">Vi er ikke sikker nok til å komme med en anbefaling, men her er våre topp %1$d forslag:</string>
-    <string name="top_species_suggestions">Her er våre topp %1$d artsforslag:</string>
+    <plurals name="were_not_confident">
+        <!-- This will probably never happen -->
+        <item quantity="one">Vi er ikke sikker nok til å komme med en anbefaling, men her er vår topp %1$d forslag:</item>
+        <item quantity="other">Vi er ikke sikker nok til å komme med en anbefaling, men her er våre topp %1$d forslag:</item>
+    </plurals>
+    <plurals name="top_species_suggestions">
+        <item quantity="one">Topp %1$d forslag:</item>
+        <item quantity="other">Topp %1$d forslag:</item>
+    </plurals>
     <string name="pretty_sure_rank">Vi er ganske sikre på at den er i denne %1$s:</string>
     <string name="what_did_you_see">Hva så du?</string>
     <string name="suggest_species">Foreslå arter</string>
@@ -575,9 +589,6 @@
     <string name="collection_and_umbrella_projects">Samling og paraplyprosjekter</string>
     <string name="description">Beskrivelse</string>
     <string name="quantity">Antall</string>
-    <!-- Number of observations. Do not change the format to $d -->
-    <string name="observation_count">%1$s observasjoner</string>
-    <string name="observation_count_single">%1$d observasjon</string>
     <string name="agree2">Enig</string>
     <string name="project_observations">Observasjoner</string>
     <string name="project_species">Arter</string>
@@ -651,8 +662,10 @@
     <string name="all_guides_all_caps">ALLE</string>
     <string name="description_all_caps">BESKRIVELSE</string>
     <string name="quantity_all_caps">ANTALL</string>
-    <string name="observation_count_all_caps">%1$s OBSERVASJONER</string>
-    <string name="observation_count_single_all_caps">%1$d OBSERVASJON</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="one">%1$s OBSERVASJON</item>
+        <item quantity="other">%1$s OBSERVASJONER</item>
+    </plurals>
     <string name="agree_all_caps">GODTA</string>
     <string name="observations_all_caps">OBSERVASJONER</string>
     <string name="species_all_caps">ARTER</string>
@@ -785,4 +798,10 @@ Utover det, denne handlingen kan ikke angres. Hvis du ombestemmer deg senere, f�
     <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
     <string name="search_places">Search Places</string>
+    <string name="restart_app">Start app på nytt</string>
+    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="one">Er du sikker på at du vil slette denne (%1$d) observasjonen?</item>
+        <item quantity="other">Er du sikker på at du vil slette disse %1$d observasjoner?</item>
+    </plurals>
 </resources>

@@ -147,8 +147,12 @@
     <string name="pull_to_refresh">Patraukyte, kad atnaujintumėte...</string>
     <string name="release_to_refresh">Atleiskite, kad atnaujintumėte...</string>
     <string name="refreshing">Atnaujinama...</string>
-    <string name="sync_x_observations">Sinchronizuoti %1$d stebėjimus</string>
-    <string name="sync_1_observation">Synchronizuoti 1 stebėjimą</string>
+    <plurals name="sync_x_observations">
+        <item quantity="one">Sinch. %1$d stebėjimas</item>
+        <item quantity="few">Sinch. %1$d stebėjimai</item>
+        <item quantity="many">Sinch. %1$d stebėjimai</item>
+        <item quantity="other">Sinch. %1$d stebėjimai</item>
+    </plurals>
     <string name="sync_observations">Synchronizuoti stebėjimus</string>
     <string name="lets_get_started">Pradėkime!</string>
     <string name="view_nearby_observations">Žiūrėti stebėjimus netoliese</string>
@@ -279,8 +283,12 @@
     <string name="casual_grade_add_photo"><![CDATA[ Pridėkite <b>nuotrauką</b>, kad šis stebėjimas įgautu „Trūksta ID“ statusą. ]]></string>
     <string name="casual_grade_captive"><![CDATA[ Stebėjimas netinkamas, nes organizmas <b>naminis/kultivuojamas</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ Stebėjimui reikia <b>daugiau identifikacijų</b> iš bendruomenės, kad įgautų „Identifikuoto“ statusą. ]]></string>
-    <string name="included_in_projects">Įtrauktas į %1$d projektus</string>
-    <string name="included_in_projects_singular">Įtrauktas į %1$d projektą</string>
+    <plurals name="included_in_projects">
+        <item quantity="one">Įtrauktas į %1$d projektą</item>
+        <item quantity="few">Įtrauktas į %1$d projektus</item>
+        <item quantity="many">Įtrauktas į %1$d projektus</item>
+        <item quantity="other">Įtrauktas į %1$d projektus</item>
+    </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy is a setting you can make on your observations that controls how the spatial coordinates (latitude and longitude) are displayed. Here are the options:<br/><b>open</b> - Everyone can see the coordinates unless the taxon is threatened. <br/><b>obscured</b> - Public coordinates shown as a random point within a 0.2 by 0.2 degree area that contains the true coordinates, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. True coordinates are only visible to you and the curators of projects to which you add the observation. <br/><b>private</b> - Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. <br/><br/>Note that curators of individual projects can always see the coordinates regardless of your geoprivacy setting, so if you are concerned about who has access to the coordinates you should be sure you trust the curators of the projects in which you participate. ]]></string>
     <string name="id_title">%1$s ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
@@ -406,7 +414,12 @@
     <string name="deleted_photos_from_cache_error">Panašu, kad ištrynėte nuotrauką iš talpyklos dar nespėjus jos užkrauti. Jums teks į stebėjimą nuotrauką įkelti iš galerijos. Ateityje, prieš išvalant talpyklą, įsitikinkite, kad visos nuotraukos buvo užkrautos.</string>
     <string name="new_activities">%1s nauja</string>
     <string name="no_results_found">Rezultatų nerasta...</string>
-    <string name="syncing_x_out_of_y_observations">Synchronizuojamas %1$d iš %2$d stebėjimų...</string>
+    <plurals name="syncing_x_out_of_y_observations">
+        <item quantity="one">Sinchronizuojamas %1$d iš %2$d stebėjimas...</item>
+        <item quantity="few">Sinchronizuojami %1$d iš %2$d stebėjimai...</item>
+        <item quantity="many">Sinchronizuojami %1$d iš %2$d stebėjimai...</item>
+        <item quantity="other">Sinchronizuojami %1$d iš %2$d stebėjimai...</item>
+    </plurals>
     <string name="deleting_observations">Stebėjimai ištrinami...</string>
     <string name="preparing">Ruošiama...</string>
     <string name="add_edit_remark">Pridėti/redaguoti pastabą</string>
@@ -430,8 +443,19 @@
     <string name="more_info_on_inat">Daugiau informacijos tinklalapyje</string>
     <string name="view_suggestions">Žiūrėti pasiūlymus</string>
     <string name="species_search">Rūšies paieška</string>
-    <string name="were_not_confident">Mes nesame pakankamai užtikrinti, kad teiktumėme rekomendacijas, bet čia yra mūsų top %1$d pasiūlymai:</string>
-    <string name="top_species_suggestions">Čia yra mūsų top %1$d rūšies pasiūlymai:</string>
+    <plurals name="were_not_confident">
+        <!-- This will probably never happen -->
+        <item quantity="one">Mes nesame pakankamai užtikrinti, kad teiktumėme rekomendacijas, bet čia yra mūsų numeris %1$d pasiūlymas:</item>
+        <item quantity="few">Mes nesame pakankamai užtikrinti, kad teiktumėme rekomendacijas, tačiau čia yra mūsų %1$d geriausių pasiūlymų:</item>
+        <item quantity="many">Mes nesame pakankamai užtikrinti, kad teiktumėme rekomendacijas, tačiau čia yra mūsų %1$d geriausių pasiūlymų:</item>
+        <item quantity="other">Mes nesame pakankamai užtikrinti, kad teiktumėme rekomendacijas, tačiau čia yra mūsų %1$d geriausių pasiūlymų:</item>
+    </plurals>
+    <plurals name="top_species_suggestions">
+        <item quantity="one">Top %1$d pasiūlymas:</item>
+        <item quantity="few">Top %1$d pasiūlymai:</item>
+        <item quantity="many">Top %1$d pasiūlymai:</item>
+        <item quantity="other">Top %1$d pasiūlymai:</item>
+    </plurals>
     <string name="pretty_sure_rank">Mes įsitikinę, jog tai priklauso šiai %1$s:</string>
     <string name="what_did_you_see">Ką pamatėte?</string>
     <string name="suggest_species">Siūlyti rūšį</string>
@@ -575,9 +599,6 @@
     <string name="collection_and_umbrella_projects">Grupiniai ir skėtiniai projektai</string>
     <string name="description">Aprašymas</string>
     <string name="quantity">Vnt</string>
-    <!-- Number of observations. Do not change the format to $d -->
-    <string name="observation_count">%1$s Stebėjimai</string>
-    <string name="observation_count_single">%1$d Stebėjimas</string>
     <string name="agree2">Sutinku</string>
     <string name="project_observations">Stebėjimai</string>
     <string name="project_species">Rūšys</string>
@@ -651,8 +672,12 @@
     <string name="all_guides_all_caps">VISI</string>
     <string name="description_all_caps">APRAŠYMAS</string>
     <string name="quantity_all_caps">VNT</string>
-    <string name="observation_count_all_caps">%1$s STEBĖJIMAI</string>
-    <string name="observation_count_single_all_caps">%1$d STEBĖJIMAS</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="one">%1$s STEBĖJIMAS</item>
+        <item quantity="few">%1$s STEBĖJIMAI</item>
+        <item quantity="many">%1$s STEBĖJIMAI</item>
+        <item quantity="other">%1$s STEBĖJIMAI</item>
+    </plurals>
     <string name="agree_all_caps">SUTINKU</string>
     <string name="observations_all_caps">STEBĖJIMAI</string>
     <string name="species_all_caps">RŪŠYS</string>
@@ -770,9 +795,9 @@
     <string name="type_your_username">Įveskite savo vartotojo vardą</string>
     <string name="error_deleting_account">Nepavyko ištrinti jūsų paskyros - prašome pasitikrinti interneto ryšį</string>
     <string name="verify_your_password">Patvirtinkite slaptažodį</string>
-    <string name="third_party_data_sharing">Third-party Data Sharing</string>
-    <string name="disable_third_party_data_sharing">Disable Third-party Data Sharing</string>
-    <string name="do_not_collect_third_party_data">Do not collect stability and usage data using third-party services</string>
+    <string name="third_party_data_sharing">Duomenų dalinimasis su trečiąja šalimi</string>
+    <string name="disable_third_party_data_sharing">Išjungti duomenų dalinimąsi su trečiąja šalimi</string>
+    <string name="do_not_collect_third_party_data">Nerinkti stabilumo ir naudojimo duomenų su trečiųjų šalių paslaugomis</string>
     <string name="enabled">Įjungta</string>
     <string name="disabled">Išjungta</string>
     <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third-party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
@@ -782,4 +807,12 @@
     <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
     <string name="search_places">Ieškoti vietų</string>
+    <string name="restart_app">Perkrauti programėlę</string>
+    <string name="disable_third_party_sharing_restart">Perkraukite programėlę, jeigu norite dabar pat nutraukti duomenų dalinimąsi su trečiąja šalimi.</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="one">Ar tikrai norite ištrinti šį %1$d stebėjimą?</item>
+        <item quantity="few">Ar tikrai norite ištrinti šiuos %1$d stebėjimus?</item>
+        <item quantity="many">Ar tikrai norite ištrinti šiuos %1$d stebėjimus?</item>
+        <item quantity="other">Ar tikrai norite ištrinti šiuos %1$d stebėjimus?</item>
+    </plurals>
 </resources>

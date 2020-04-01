@@ -147,8 +147,10 @@
     <string name="pull_to_refresh">Træk for at opdatere...</string>
     <string name="release_to_refresh">Slip for at opdatere...</string>
     <string name="refreshing">Opdaterer...</string>
-    <string name="sync_x_observations">Synk %1$d observationer</string>
-    <string name="sync_1_observation">Synk 1 observation</string>
+    <plurals name="sync_x_observations">
+        <item quantity="one">Synk %1$d observation</item>
+        <item quantity="other">Synk %1$d observationer</item>
+    </plurals>
     <string name="sync_observations">Synk Observationer</string>
     <string name="lets_get_started">Lad os komme i gang!</string>
     <string name="view_nearby_observations">Vis observationer i nærheden</string>
@@ -279,8 +281,10 @@
     <string name="casual_grade_add_photo"><![CDATA[ Tilføj et <b>foto</b> for at fremrykke denne observation til "Behøver ID"-status. ]]></string>
     <string name="casual_grade_captive"><![CDATA[ Observation er i uspecificeret kvalitet, da den er <b>fangeskab/dyrket</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ Observation behøver <b>yderligere identifikationer</b> fra fællesskabet for at opnå status som "Forskningskvalitet". ]]></string>
-    <string name="included_in_projects">Inkluderet i %1$d projekter</string>
-    <string name="included_in_projects_singular">Inkluderet i %1$d projekter</string>
+    <plurals name="included_in_projects">
+        <item quantity="one">Inkludér i %1$d projekt</item>
+        <item quantity="other">Inkludér i %1$d projekter</item>
+    </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Geofortrolighed er en indstilling, du kan vælge til dine observationer, der styrer, hvordan de rumlige koordinater (bredde- og længdegrad) vises. Her er mulighederne:<br/><b>Åben</b> - Alle kan se koordinaterne, medmindre taxonen er truet.<br/><b>Sløret</b> - Offentlige koordinater vises som et tilfældigt punkt inden for et 0,2 x 0,2 graders område indeholdende de sande koordinater, som omregnet svarer til ca. 22 kvadratkilometers usikkerhed ved ækvator, og som mindskes, når du nærmer dig polerne. Sande koordinater er kun synlige for dig og bestyrerne af projektet, hvortil du føjer observationen.<br/><b>Fortrolig</b> - Koordinater er helt skjult på offentlige landkort. Sande koordinater er kun synlige for dig og bestyrerene af det project, hvortil du føjer observationen. <br/><br/>Bemærk, at bestyrere for individuelle projekter altid kan se koordinaterne uanset dine geofortrolighedsindstillinger, så er du bekymret over, hvem som har adgang til koordinaterne, skal du være sikker på, at du kan stole på bestyrerne af de projekter, hvori du deltager. ]]></string>
     <string name="id_title">%1$ss ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
@@ -406,7 +410,10 @@
     <string name="deleted_photos_from_cache_error">Ser ud til, at du slettede et foto inden upload ved at rydde app\'ens cache. Du skal føje fotoet til din observation igen fra dit Galleri. Tjek fremadrettet, at du har uploadet alle dine fotos, inden du evt. rydder app-cachen.</string>
     <string name="new_activities">%1s nye</string>
     <string name="no_results_found">Ingen resultater fundet...</string>
-    <string name="syncing_x_out_of_y_observations">Synker %1$d af %2$d observationer...</string>
+    <plurals name="syncing_x_out_of_y_observations">
+        <item quantity="one">Synker %1$d af %2$d observation...</item>
+        <item quantity="other">Synker %1$d af %2$d observationer...</item>
+    </plurals>
     <string name="deleting_observations">Sletter observationer...</string>
     <string name="preparing">Klargør...</string>
     <string name="add_edit_remark">Tilføj/redigér bemærkning</string>
@@ -430,8 +437,15 @@
     <string name="more_info_on_inat">Yderligere info på iNaturalist.org</string>
     <string name="view_suggestions">Se forslag</string>
     <string name="species_search">Artssøgning</string>
-    <string name="were_not_confident">Vi er ikke tilstrækkelig sikre til at foretage en anbefaling, men her er vores top %1$d forslag:</string>
-    <string name="top_species_suggestions">Her er vores top %1$d artsforslag:</string>
+    <plurals name="were_not_confident">
+        <!-- This will probably never happen -->
+        <item quantity="one">Vi er ikke sikre nok til at komme med en anbefaling, men her er vores forslag nummer %1$d:</item>
+        <item quantity="other">Vi er ikke sikre på nok til at komme med en anbefaling, men her er vores %1$d bedste forslag:</item>
+    </plurals>
+    <plurals name="top_species_suggestions">
+        <item quantity="one">Top %1$d forslag:</item>
+        <item quantity="other">%1$d bedste forslag:</item>
+    </plurals>
     <string name="pretty_sure_rank">Vi er ret sikre på, at den er i denne %1$s:</string>
     <string name="what_did_you_see">Hvad så du?</string>
     <string name="suggest_species">Foreslå arter</string>
@@ -575,9 +589,6 @@
     <string name="collection_and_umbrella_projects">Samling og Paraplyprojekter</string>
     <string name="description">Beskrivelse</string>
     <string name="quantity">Antal</string>
-    <!-- Number of observations. Do not change the format to $d -->
-    <string name="observation_count">%1$s observationer</string>
-    <string name="observation_count_single">%1$d observation</string>
     <string name="agree2">Enig</string>
     <string name="project_observations">Observationer</string>
     <string name="project_species">Arter</string>
@@ -651,8 +662,10 @@
     <string name="all_guides_all_caps">ALLE</string>
     <string name="description_all_caps">BESKRIVELSE</string>
     <string name="quantity_all_caps">ANTAL</string>
-    <string name="observation_count_all_caps">%1$s OBSERVATIONER</string>
-    <string name="observation_count_single_all_caps">%1$d OBSERVATION</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="one">%1$s OBSERVATION</item>
+        <item quantity="other">%1$s OBSERVATIONER</item>
+    </plurals>
     <string name="agree_all_caps">ACCEPTÉR</string>
     <string name="observations_all_caps">OBSERVATIONER</string>
     <string name="species_all_caps">ARTER</string>
@@ -782,4 +795,10 @@
     <string name="common_names_place"><![CDATA[Almindelig stedbetegnelse: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Tryk for at prioritere almindelige stedbetegnelse fra et bestemt sted.</string>
     <string name="search_places">Søg steder</string>
+    <string name="restart_app">Genstart app</string>
+    <string name="disable_third_party_sharing_restart">For straks at deaktivere tredjeparts datadeling, skal appen genstartes.</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="one">Sikker på, at du vil slette denne %1$d observation?</item>
+        <item quantity="other">Sikker på, at du vil slette disse %1$d observationer?</item>
+    </plurals>
 </resources>
