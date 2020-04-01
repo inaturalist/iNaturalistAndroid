@@ -545,17 +545,14 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     .zoomListener(new ZoomListener() {
                         @Override
                         public void onViewBeforeStartedZooming(View view) {
-                            Logger.error("AAA - before zooming");
                             imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
                             imageView.setImageBitmap(mBitmaps.get(position));
                         }
                         @Override
                         public void onViewStartedZooming(View view) {
-                            Logger.error("AAA - started zooming");
                         }
                         @Override
                         public void onViewEndedZooming(View view) {
-                            Logger.error("AAA - after zooming");
                             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
                         }
                     })
