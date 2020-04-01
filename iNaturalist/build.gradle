@@ -134,7 +134,7 @@ dependencies {
     implementation 'me.saket:better-link-movement-method:2.2.0'
     implementation 'com.github.budowski:uCrop-n-Edit:v2.2.4e-inaturalist'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
-    implementation 'com.ablanco.zoomy:zoomy:1.1.0'
+    implementation 'com.github.budowski:Zoomy:v1.1.1'
     annotationProcessor 'com.evernote:android-state-processor:1.4.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
     androidTestImplementation 'androidx.annotation:annotation:1.0.0'

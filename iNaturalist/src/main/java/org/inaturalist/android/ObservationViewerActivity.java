@@ -78,6 +78,7 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.livefront.bridge.Bridge;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import org.json.JSONArray;
@@ -101,6 +102,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -319,6 +321,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         private Cursor mSoundCursor = null;
 
         private List<SoundPlayer> mPlayers = new ArrayList<>();
+        private HashMap<Integer, Bitmap> mBitmaps = new HashMap<>();
 
         public void refreshPhotoPositions(Integer position, boolean doNotUpdate) {
             int currentPosition = position == null ? 0 : 1;
@@ -419,7 +422,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         public Object instantiateItem(ViewGroup container, final int position) {
             ImageView imageView = new ImageView(ObservationViewerActivity.this);
             imageView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
             int imageId = 0;
             String photoFilename = null;
@@ -487,26 +490,31 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
                 Picasso.with(ObservationViewerActivity.this)
                         .load(imageUrl)
-                        .fit()
-                        .centerInside()
-                        .into(imageView, new Callback() {
-                            @Override
-                            public void onSuccess() {
-                            }
+                        .into(new Target() {
+                                  @Override
+                                  public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                                      imageView.setImageBitmap(bitmap);
+                                      mBitmaps.put(position, bitmap);
+                                  }
 
-                            @Override
-                            public void onError() {
-                                // Failed to load observation photo
-                                try {
-                                    JSONObject eventParams = new JSONObject();
-                                    eventParams.put(AnalyticsClient.EVENT_PARAM_SIZE, AnalyticsClient.EVENT_PARAM_VALUE_MEDIUM);
+                                  @Override
+                                  public void onBitmapFailed(Drawable errorDrawable) {
+                                      // Failed to load observation photo
+                                      try {
+                                          JSONObject eventParams = new JSONObject();
+                                          eventParams.put(AnalyticsClient.EVENT_PARAM_SIZE, AnalyticsClient.EVENT_PARAM_VALUE_MEDIUM);
 
-                                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_PHOTO_FAILED_TO_LOAD, eventParams);
-                                } catch (JSONException e) {
-                                    Logger.tag(TAG).error(e);
-                                }
-                            }
-                        });
+                                          AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_PHOTO_FAILED_TO_LOAD, eventParams);
+                                      } catch (JSONException e) {
+                                          Logger.tag(TAG).error(e);
+                                      }
+                                  }
+
+                                  @Override
+                                  public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+                                  }
+                              });
 
             } else {
                 // Offline photo
@@ -524,6 +532,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     bitmapImage = BitmapFactory.decodeFile(photoFilename, options);
                     bitmapImage = ImageUtils.rotateAccordingToOrientation(bitmapImage, photoFilename);
                     imageView.setImageBitmap(bitmapImage);
+                    mBitmaps.put(position, bitmapImage);
                 } catch (Exception e) {
                     Logger.tag(TAG).error(e);
                 }
@@ -533,6 +542,23 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
             new Zoomy.Builder(ObservationViewerActivity.this)
                     .target(imageView)
+                    .zoomListener(new ZoomListener() {
+                        @Override
+                        public void onViewBeforeStartedZooming(View view) {
+                            Logger.error("AAA - before zooming");
+                            imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+                            imageView.setImageBitmap(mBitmaps.get(position));
+                        }
+                        @Override
+                        public void onViewStartedZooming(View view) {
+                            Logger.error("AAA - started zooming");
+                        }
+                        @Override
+                        public void onViewEndedZooming(View view) {
+                            Logger.error("AAA - after zooming");
+                            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                        }
+                    })
                     .tapListener(new TapListener() {
                         @Override
                         public void onTap(View v) {

@@ -1322,7 +1322,6 @@ public class ObservationEditor extends AppCompatActivity {
         stopGetLocation();
         uiToProjectFieldValues();
         if (isFinishing()) {
-        	
         	if (!mDeleted) {
         		if (isDeleteable()) {
         			delete(true);
