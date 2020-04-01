@@ -174,8 +174,8 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/record_sound"
-                    android:tint="#2c2c2c"
+                    android:src="@drawable/microphone_white"
+                    android:tint="#000000"
                     />
             </LinearLayout>
             <TextView
