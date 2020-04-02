@@ -574,13 +574,13 @@ public class BaseFragmentActivity extends AppCompatActivity {
             mSelectedBottomGrid = false;
         }
     }
-    
+
     private boolean isNetworkAvailable() {
 	    ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-	}	
- 	
+	}
+
 
     @Override
     protected void onResume() {
@@ -590,7 +590,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
             refreshUserDetails();
         }
     }
-    
+
     @Override
     protected void onPause() {
         super.onPause();

@@ -104,8 +104,8 @@ public class INaturalistApp extends MultiDexApplication {
     public static SimpleDateFormat SHORT_TIME_FORMAT = new SimpleDateFormat("hh:mm a z");
     private static Integer SYNC_NOTIFICATION = 3;
     private static Context context;
-    private Locale locale = null;
-    private Locale deviceLocale = null;
+    private Locale mLocale = null;
+    private Locale mDeviceLocale = null;
     private OnDownloadFileProgress mDownloadCallback;
     private boolean mOnboardingShownBefore = false;
 
@@ -235,9 +235,9 @@ public class INaturalistApp extends MultiDexApplication {
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         INaturalistApp.context = getApplicationContext();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            deviceLocale = getResources().getConfiguration().getLocales().get(0);
+            mDeviceLocale = getResources().getConfiguration().getLocales().get(0);
         } else {
-            deviceLocale = getResources().getConfiguration().locale;
+            mDeviceLocale = getResources().getConfiguration().locale;
         }
         applyLocaleSettings();
 
@@ -731,7 +731,7 @@ public class INaturalistApp extends MultiDexApplication {
         int resId = getResourceIdByName(name, "string");
         String value = null;
 
-        if ((resId != 0) && (!locale.getLanguage().equals("en"))) {
+        if ((resId != 0) && (!mLocale.getLanguage().equals("en"))) {
             String defaultLanguageValue = null;
 
             try {
@@ -803,26 +803,26 @@ public class INaturalistApp extends MultiDexApplication {
         Configuration config = context.getResources().getConfiguration();
 
         String lang = settings.getString("pref_locale", "");
-        if (!"".equals(lang) && !config.locale.getLanguage().equals(lang)) {
+        if (!lang.equals("")) {
         	String parts[] = lang.split("-r");
         	if (parts.length > 1) {
         		// Language + country code
-        		locale = new Locale(parts[0], parts[1]);
+        		mLocale = new Locale(parts[0], parts[1]);
         	} else {
         		// Just the language code
-        		locale = new Locale(lang);
+        		mLocale = new Locale(lang);
         	}
         } else {
-        	locale = deviceLocale;
+        	mLocale = mDeviceLocale;
         }
-        Locale.setDefault(locale);
+        Locale.setDefault(mLocale);
 
-        Logger.tag(TAG).info(String.format("applyLocaleSettings - %s / %s / %s", lang, locale, deviceLocale));
+        Logger.tag(TAG).info(String.format("applyLocaleSettings - %s / %s / %s", lang, mLocale, mDeviceLocale));
 
         Resources standardResources = context.getResources();
         AssetManager assets = standardResources.getAssets();
         DisplayMetrics metrics = standardResources.getDisplayMetrics();
-        config.locale = locale;
+        config.locale = mLocale;
         Resources defaultResources = new Resources(assets, metrics, config);
     }
 
@@ -830,14 +830,14 @@ public class INaturalistApp extends MultiDexApplication {
         String lastLanguage = getPrefs().getString("last_language", null);
         if (lastLanguage == null) {
             setLastLocale();
-            lastLanguage = locale.getLanguage();
+            lastLanguage = mLocale.getLanguage();
         }
-        Logger.tag(TAG).info(String.format("hasLocaleChanged - %s / %s", lastLanguage, locale));
-        return !locale.getLanguage().equals(lastLanguage);
+        Logger.tag(TAG).info(String.format("hasLocaleChanged - %s / %s", lastLanguage, mLocale));
+        return !mLocale.getLanguage().equals(lastLanguage);
     }
 
     public void setLastLocale() {
-        String newLanguage = locale.getLanguage();
+        String newLanguage = mLocale.getLanguage();
         Logger.tag(TAG).info(String.format("setLastLocale - %s", newLanguage));
         getPrefs().edit().putString("last_language", newLanguage).commit();
     }
@@ -854,10 +854,9 @@ public class INaturalistApp extends MultiDexApplication {
     	super.onConfigurationChanged(newConfig);
 
     	Configuration config = new Configuration(newConfig);
-    	if (locale != null)
-        {
-    		config.locale = locale;
-            Locale.setDefault(locale);
+    	if (mLocale != null) {
+            config.locale = mLocale;
+            Locale.setDefault(mLocale);
             getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         }
     }
