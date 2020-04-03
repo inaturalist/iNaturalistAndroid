@@ -1327,7 +1327,7 @@ public class ObservationEditor extends AppCompatActivity {
         		if (isDeleteable()) {
         			delete(true);
         		} else if (!mCanceled) {
-        			save();
+        			save(true);
         		}
         	}
 
@@ -1649,11 +1649,28 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private final boolean save() {
-        Logger.tag(TAG).info("save: " + mCursor + ":" + mObservation);
+        return save(false);
+    }
+
+    private final boolean save(boolean noValidation) {
+        Logger.tag(TAG).info("save: " + mCursor + ":" + mObservation + ":" + noValidation);
 
         if (mCursor == null) { return true; }
 
         uiToObservation();
+
+        if (!noValidation) {
+            if ((mObservation.id != null) && (mObservation.created_at != null) && (mObservation.observed_on != null) &&
+                    (mObservation.observed_on.after(mObservation.created_at))) {
+                SimpleDateFormat df = new SimpleDateFormat("d MMM yyyy hh:mm a");
+
+                mHelper.alert(
+                        getString(R.string.error),
+                        String.format(getString(R.string.future_observed_on_date_error),
+                                df.format(mObservation.created_at), df.format(mObservation.observed_on)));
+                return false;
+            }
+        }
         
         boolean updatedProjects = saveProjects();
         saveProjectFields();

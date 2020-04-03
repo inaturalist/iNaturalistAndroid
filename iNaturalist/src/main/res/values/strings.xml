@@ -830,5 +830,6 @@
         <item quantity="many">Are you sure you want to delete these %1$d observations?</item>
         <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
     </plurals>
+    <string name="future_observed_on_date_error">Your observation was created (and submitted) on %1$s, but you\'re trying to set an observation date that is later than that: %2$s</string>
 </resources>
 
