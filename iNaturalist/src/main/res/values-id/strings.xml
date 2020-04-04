@@ -147,8 +147,9 @@
     <string name="pull_to_refresh">Tarik untuk me-refresh...</string>
     <string name="release_to_refresh">Lepas untuk me-refresh...</string>
     <string name="refreshing">Refresh...</string>
-    <string name="sync_x_observations">Sinkronisasi %1$d pengamatan</string>
-    <string name="sync_1_observation">Sinkronisasi 1 pengamatan</string>
+    <plurals name="sync_x_observations">
+        <item quantity="other">Sync %1$d observations</item>
+    </plurals>
     <string name="sync_observations">Sinkronisasi pengamatan</string>
     <string name="lets_get_started">Ayo mulai!</string>
     <string name="view_nearby_observations">Lihat Dekat Pengamatan</string>
@@ -279,8 +280,9 @@
     <string name="casual_grade_add_photo"><![CDATA[ Tambahkan <b>foto</b> untuk memajukan pengamatan ini menjadi status "Butuh ID". ]]></string>
     <string name="casual_grade_captive"><![CDATA[ Pengamatan adalah kelas kasual karena <b>dipelihara/dibudidayakan</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ Pengamatan membutuhkan <b>ilebih banyak identifikasi</b> dari masyarakat untuk menjadi status "Kelas Riset". ]]></string>
-    <string name="included_in_projects">Termasuk dalam proyek-proyek %1$d</string>
-    <string name="included_in_projects_singular">Termasuk dalam proyek %1$d</string>
+    <plurals name="included_in_projects">
+        <item quantity="other">Included in %1$d projects</item>
+    </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy is a setting you can make on your observations that controls how the spatial coordinates (latitude and longitude) are displayed. Here are the options:<br/><b>open</b> - Everyone can see the coordinates unless the taxon is threatened. <br/><b>obscured</b> - Public coordinates shown as a random point within a 0.2 by 0.2 degree area that contains the true coordinates, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. True coordinates are only visible to you and the curators of projects to which you add the observation. <br/><b>private</b> - Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. <br/><br/>Note that curators of individual projects can always see the coordinates regardless of your geoprivacy setting, so if you are concerned about who has access to the coordinates you should be sure you trust the curators of the projects in which you participate. ]]></string>
     <string name="id_title">%1$s\'s ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
@@ -406,7 +408,9 @@
     <string name="deleted_photos_from_cache_error">Sepertinya Anda menghapus foto dengan membersihkan tembolok aplikasi sebelum mengunggah. Anda akan perlu untuk menambahkan foto kembali ke pengamatan dari galeri Anda. Ke depannya, harap pastikan Anda telah mengunggah semua foto Anda sebelum membersihkan tembolok aplikasi.</string>
     <string name="new_activities">%1s baru</string>
     <string name="no_results_found">Tidak Ada Hasil Ditemukan...</string>
-    <string name="syncing_x_out_of_y_observations">Sinkronisasi %1$d dari %2$d pengamatan...</string>
+    <plurals name="syncing_x_out_of_y_observations">
+        <item quantity="other">Syncing %1$d of %2$d observations...</item>
+    </plurals>
     <string name="deleting_observations">Menghapus Pengamatan...</string>
     <string name="preparing">Mempersiapkan...</string>
     <string name="add_edit_remark">Menambah/Mengubah Ucapan</string>
@@ -430,8 +434,13 @@
     <string name="more_info_on_inat">Info lainnya di iNaturalist.org</string>
     <string name="view_suggestions">Lihat Saran</string>
     <string name="species_search">Cari Spesies</string>
-    <string name="were_not_confident">Kami tidak cukup percaya diri untuk membuat rekomendasi, namun inilah %1$d saran utama kami:</string>
-    <string name="top_species_suggestions">Berikut adalah %1$d saran spesies kami:</string>
+    <plurals name="were_not_confident">
+        <!-- This will probably never happen -->
+        <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+    </plurals>
+    <plurals name="top_species_suggestions">
+        <item quantity="other">Top %1$d suggestions:</item>
+    </plurals>
     <string name="pretty_sure_rank">Kami cukup yakin %1$s ini di:</string>
     <string name="what_did_you_see">Apa yang Anda lihat?</string>
     <string name="suggest_species">Sarankan Spesies</string>
@@ -575,9 +584,6 @@
     <string name="collection_and_umbrella_projects">Proyek Koleksi dan Payung</string>
     <string name="description">Keterangan</string>
     <string name="quantity">Qty</string>
-    <!-- Number of observations. Do not change the format to $d -->
-    <string name="observation_count">%1$s pengamatan</string>
-    <string name="observation_count_single">%1$d pengamatan</string>
     <string name="agree2">Setuju</string>
     <string name="project_observations">Pengamatan</string>
     <string name="project_species">Spesies</string>
@@ -651,8 +657,9 @@
     <string name="all_guides_all_caps">SEMUA</string>
     <string name="description_all_caps">DESKRIPSI</string>
     <string name="quantity_all_caps">JUMLAH</string>
-    <string name="observation_count_all_caps">%1$s PENGAMATAN</string>
-    <string name="observation_count_single_all_caps">%1$d PENGAMATAN</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="other">%1$s OBSERVATIONS</item>
+    </plurals>
     <string name="agree_all_caps">SETUJU</string>
     <string name="observations_all_caps">PENGAMATAN</string>
     <string name="species_all_caps">JENIS</string>
@@ -782,4 +789,9 @@
     <string name="common_names_place"><![CDATA[Daerah nama lokal: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Ketuk untuk memprioritaskan nama lokal dari daerah tertentu.</string>
     <string name="search_places">Cari Daerah</string>
+    <string name="restart_app">Mulai ulang aplikasi</string>
+    <string name="disable_third_party_sharing_restart">Untuk segera menonaktifkan berbagi data pihak ketiga, aplikasi harus dinyalakan ulang.</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+    </plurals>
 </resources>

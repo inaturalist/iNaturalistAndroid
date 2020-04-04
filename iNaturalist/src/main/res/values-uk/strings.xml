@@ -147,8 +147,12 @@
     <string name="pull_to_refresh">Потягніть, щоб оновити...</string>
     <string name="release_to_refresh">Відпустіть, щоб оновити...</string>
     <string name="refreshing">Оновлення...</string>
-    <string name="sync_x_observations">%1$d спостережень</string>
-    <string name="sync_1_observation">Синхронізувати 1 спостереження</string>
+    <plurals name="sync_x_observations">
+        <item quantity="one">Sync %1$d observation</item>
+        <item quantity="few">Sync %1$d observations</item>
+        <item quantity="many">Sync %1$d observations</item>
+        <item quantity="other">Sync %1$d observations</item>
+    </plurals>
     <string name="sync_observations">Синхронізація спостережень</string>
     <string name="lets_get_started">Давайте почнемо!</string>
     <string name="view_nearby_observations">Переглянути спостереження поблизу</string>
@@ -288,8 +292,12 @@
     <string name="casual_grade_add_photo"><![CDATA[ Додайте <b>фото</b> для переходу цього спостереження в статус «Потрібен ID». ]]></string>
     <string name="casual_grade_captive"><![CDATA[ Спостереженню присвоєно Звичайний статус (Casual Grade) тому що це спостереження об\'єкта <b>утримується в неволі або культивується</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ Щоб отримати "Дослідницький статус" (Research Grade) спостереженню потрібно <b>більше ідентифікацій</b> від спільноти. ]]></string>
-    <string name="included_in_projects">Включено в проекти %1$d</string>
-    <string name="included_in_projects_singular">Включено в проект %1$d</string>
+    <plurals name="included_in_projects">
+        <item quantity="one">Included in %1$d project</item>
+        <item quantity="few">Included in %1$d projects</item>
+        <item quantity="many">Included in %1$d projects</item>
+        <item quantity="other">Included in %1$d projects</item>
+    </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Геоприватність - це параметр налаштування, який ви можете задати в своїх спостереженнях. Він керує показом просторових координат (широти й довготи). Ось варіанти: <br/><b>публічна</b> - кожен може побачити координати, якщо таксон не перебуває під загрозою. <br/><b>прихована</b> - загальнодоступні координати показуються як випадкова точка в межах області 0,2 на 0,2 градуса, яка в свою чергу містить справжні координати, що представляє собою квадратну область невизначеності близько 22x22 км на екваторі, розмір зменшується в міру наближення до полюсів. Справжні координати видно тільки вам і кураторам проектів, до яких Ви додаєте спостереження. <br/><b>приватна</b> - координати повністю приховані, справжні координати видно лише Вам і кураторам проектів, до яких Ви додаєте спостереження. <br/><br/> Зверніть увагу на те, що куратори окремих проектів завжди можуть бачити координати, незалежно від налаштувань конфіденційності геоданих, тому, якщо Вас турбує, хто має доступ до координат, Ви повинні бути впевнені, що довіряєте кураторам проектів, в яких Ви берете участь. ]]></string>
     <string name="id_title">%1$s\'s ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
@@ -415,7 +423,12 @@
     <string name="deleted_photos_from_cache_error">Схоже, ви видалили фото під час очищення кешу програми до того, як відвантажили його. Вам потрібно заново додати його до вашого спостереження із вашої галереї. Надалі, будь ласка, переконуйтеся, що ви відвантажили всі свої фотографії, перш ніж очистити кеш програми.</string>
     <string name="new_activities">%1s нових</string>
     <string name="no_results_found">Нічого не знайдено...</string>
-    <string name="syncing_x_out_of_y_observations">Синхронізація %1$d із %2$d спостережень...</string>
+    <plurals name="syncing_x_out_of_y_observations">
+        <item quantity="one">Syncing %1$d of %2$d observation...</item>
+        <item quantity="few">Syncing %1$d of %2$d observations...</item>
+        <item quantity="many">Syncing %1$d of %2$d observations...</item>
+        <item quantity="other">Syncing %1$d of %2$d observations...</item>
+    </plurals>
     <string name="deleting_observations">Видалення спостережень...</string>
     <string name="preparing">Підготовка...</string>
     <string name="add_edit_remark">Додати/змінити зауваження</string>
@@ -439,8 +452,19 @@
     <string name="more_info_on_inat">Детальніше на iNaturalist.org</string>
     <string name="view_suggestions">Подивитись пропозиції</string>
     <string name="species_search">Пошук видів</string>
-    <string name="were_not_confident">Ми не впевнені, що можемо давати рекомендації, але ось наш топ-%1$d пропозицій:</string>
-    <string name="top_species_suggestions">Ось наш топ-%1$d пропонованих видів:</string>
+    <plurals name="were_not_confident">
+        <!-- This will probably never happen -->
+        <item quantity="one">We\'re not confident enough to make a recommendation, but here is our number %1$d suggestion:</item>
+        <item quantity="few">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+        <item quantity="many">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+        <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+    </plurals>
+    <plurals name="top_species_suggestions">
+        <item quantity="one">Top %1$d suggestion:</item>
+        <item quantity="few">Top %1$d suggestions:</item>
+        <item quantity="many">Top %1$d suggestions:</item>
+        <item quantity="other">Top %1$d suggestions:</item>
+    </plurals>
     <string name="pretty_sure_rank">Ми впевнені, що це %1$s:</string>
     <string name="what_did_you_see">Що ви бачите?</string>
     <string name="suggest_species">Запропонувати вид</string>
@@ -584,9 +608,6 @@
     <string name="collection_and_umbrella_projects">Колекційні та парасолькові проекти</string>
     <string name="description">Опис</string>
     <string name="quantity">К-сть</string>
-    <!-- Number of observations. Do not change the format to $d -->
-    <string name="observation_count">%1$s спостережень</string>
-    <string name="observation_count_single">%1$d спостереження</string>
     <string name="agree2">Згоден</string>
     <string name="project_observations">Спостереження</string>
     <string name="project_species">Види</string>
@@ -660,8 +681,12 @@
     <string name="all_guides_all_caps">УСІ</string>
     <string name="description_all_caps">ОПИС</string>
     <string name="quantity_all_caps">К-КСТЬ</string>
-    <string name="observation_count_all_caps">%1$s СПОСТЕРЕЖЕНЬ</string>
-    <string name="observation_count_single_all_caps">%1$d СПОСТЕРЕЖЕННЯ</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="one">%1$s OBSERVATION</item>
+        <item quantity="few">%1$s OBSERVATIONS</item>
+        <item quantity="many">%1$s OBSERVATIONS</item>
+        <item quantity="other">%1$s OBSERVATIONS</item>
+    </plurals>
     <string name="agree_all_caps">ПОГОДЖУЮСЯ</string>
     <string name="observations_all_caps">СПОСТЕРЕЖЕННЯ</string>
     <string name="species_all_caps">ВИДИ</string>
@@ -790,5 +815,13 @@
     <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
     <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
-    <string name="search_places">Search Places</string>
+    <string name="search_places">Пошук місць</string>
+    <string name="restart_app">Restart App</string>
+    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="one">Are you sure you want to delete this %1$d observation?</item>
+        <item quantity="few">Are you sure you want to delete these %1$d observations?</item>
+        <item quantity="many">Are you sure you want to delete these %1$d observations?</item>
+        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+    </plurals>
 </resources>

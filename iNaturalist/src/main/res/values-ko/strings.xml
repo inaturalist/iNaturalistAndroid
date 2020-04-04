@@ -109,13 +109,13 @@
     <string name="search_guides">안내서 검색 중...</string>
     <string name="save_observation">관찰 기록 저장</string>
     <!-- Header for a description an individual guide -->
-    <string name="about_guide">About</string>
-    <string name="about_guide_all_caps">ABOUT</string>
+    <string name="about_guide">소개</string>
+    <string name="about_guide_all_caps">소개</string>
     <!-- Header for a description an individual project -->
-    <string name="about_project">About</string>
-    <string name="about_project_all_caps">ABOUT</string>
-    <string name="about_this_app">About</string>
-    <string name="about_taxon_short">About</string>
+    <string name="about_project">소개</string>
+    <string name="about_project_all_caps">소개</string>
+    <string name="about_this_app">소개</string>
+    <string name="about_taxon_short">소개</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">위치정보 보호</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
@@ -136,7 +136,7 @@
     <string name="choose_location">위치 선택</string>
     <string name="done">완료</string>
     <string name="please_sign_in_via_settings">내가 참여하는 프로젝트를 보려면 로그인해야 합니다.</string>
-    <string name="contact_support">Contact Support</string>
+    <string name="contact_support">고객 지원 문의</string>
     <string name="credits">iNaturalist의 설립과 디자인은 캘리포니아 과학원에서 지원하였습니다.</string>
     <string name="leave_project">프로젝트 나가기</string>
     <string name="leave_project_confirmation">정말로 이 프로젝트에서 나가시겠습니까?</string>
@@ -147,12 +147,13 @@
     <string name="pull_to_refresh">새로 고침</string>
     <string name="release_to_refresh">놓아서 새로 고침</string>
     <string name="refreshing">새로 고침 중...</string>
-    <string name="sync_x_observations">%1$d 관찰 기록 동기화</string>
-    <string name="sync_1_observation">Sync 1 observation</string>
+    <plurals name="sync_x_observations">
+        <item quantity="other">Sync %1$d observations</item>
+    </plurals>
     <string name="sync_observations">관찰 기록 동기화</string>
-    <string name="lets_get_started">Let\'s get started!</string>
+    <string name="lets_get_started">시작해 봅시다!</string>
     <string name="view_nearby_observations">View Nearby Observations</string>
-    <string name="skip_for_now">Skip for Now</string>
+    <string name="skip_for_now">일단 건너뛰기</string>
     <string-array name="tutorial_titles">
         <item></item>
         <item>Observe</item>
@@ -161,10 +162,10 @@
         <item>Contribute</item>
     </string-array>
     <string-array name="tutorial_descriptions">
-        <item>Explore and Connect with Nature</item>
-        <item>Get outside! Find something wild, and take a clear, full frame photo.</item>
-        <item>Share your observation with the iNaturalist community.</item>
-        <item>Check back for comments and identifications on your observation!</item>
+        <item>자연을 탐구하고 자연과 소통하기</item>
+        <item>밖으로 나가 보세요! 야생을 발견하고 선명한 풀프레임 사진을 찍어 보세요.</item>
+        <item>iNaturalist 커뮤니티에 관찰 일기를 공유하세요.</item>
+        <item>관찰 일기에서 댓글과 생물 종을 나중에 확인해 보세요!</item>
         <item><![CDATA[<b>Research Grade</b> observations are shared with scientists working to better understand and protect nature.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
@@ -188,14 +189,14 @@
     <string name="text"><![CDATA[<b>문장:</b>%1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">iNaturalist의 메인 네트워크입니다. 확인을 누르면 회원님의 앱을 전세계 iNaturalist 네트워크에 등록합니다.</string>
-    <string name="alert_message_use_naturalista">NaturaLista is a member of the iNaturalist Network in Mexico. Local institutions supporting NaturaLista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturewatchnz">iNaturalist NZ is a member of the iNaturalist Network in New Zealand. Local institutions supporting iNaturalist NZ will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Local institutions supporting iNaturalist Canada will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Local institutions supporting Naturalista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4All is a member of the iNaturalist Network in Portugal. Local institutions supporting Biodiversity4All will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá is a member of the iNaturalist Network in Panama. Local institutions supporting iNaturalist Panamá will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador is a member of the iNaturalist Network in Ecuador. Local institutions supporting iNaturalist Ecuador will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia is a member of the iNaturalist Network in Australia. Local institutions supporting iNaturalist Australia will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalista">NaturaLista는 멕시코에 위치한 iNaturalist Network의 멤버입니다. NaturaLista를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰 일기의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZ는 뉴질랜드에 위치한 iNaturalist Network의 멤버입니다. iNaturalist NZ를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰 일기의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada는 캐나다에 위치한 iNaturalist Network의 멤버입니다. iNaturalist Canada를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰 일기의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
+    <string name="alert_message_use_naturalistacolombia">Naturalista는 콜롬비아에 위치한 iNaturalist Network의 멤버입니다. Naturalista를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰 일기의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All는 포르투갈에 위치한 iNaturalist Network의 멤버입니다. Biodiversity4All를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰 일기의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá는 파나마에 위치한 iNaturalist Network의 멤버입니다. iNaturalist Panamá를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰 일기의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador는 에콰도르에 위치한 iNaturalist Network의 멤버입니다. iNaturalist Ecuador를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰 일기의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia는 호주에 위치한 iNaturalist Network의 멤버입니다. iNaturalist Australia를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰 일기의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
     <string name="alert_message_use_argentinat">ArgentiNat is a member of the iNaturalist Network in Argentina. Local institutions supporting ArgentiNat will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">편집기</string>
@@ -279,8 +280,9 @@
     <string name="casual_grade_add_photo"><![CDATA[ <b>사진</b>을 추가하면 이 관찰 기록의 등급이 "생물 식별 필요"로 올라갑니다. ]]></string>
     <string name="casual_grade_captive"><![CDATA[ <b>사육/재배</b> 중인 생물의 관찰 기록은 "일반 등급" 으로 설정 됩니다. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ 관찰 기록이 "연구 등급"으로 심사되려면 사람들의 <b>생물 식별이 더</b> 필요합니다. ]]></string>
-    <string name="included_in_projects">%1$d 프로젝트에 포함됩니다.</string>
-    <string name="included_in_projects_singular">%1$d 프로젝트에 포함됩니다.</string>
+    <plurals name="included_in_projects">
+        <item quantity="other">Included in %1$d projects</item>
+    </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ 위치정보 보호는 회원님이 관찰한 생물의 위치 좌표(위도와 경도)를 바꿀 수 있습니다. 다음과 같은 선택지가 있습니다: <br/><b>공개</b> - 모든 사람이 멸종위기가 아닌 생물 종의 좌표를 볼 수 있습니다.<br/> <b>위치 불명료</b>- 생물 종이 발견된 좌표로부터 위도 0.2º x 경도 0.2º 범위 내에서 무작위적으로 위치 좌표를 표시합니다. 이것은 적도 기준으로 484제곱킬로미터(22㎞x22㎞) 범위 내(극지방으로 갈 수록 좁아집니다)에서 위치 정보를 모호하게 만드는 것 입니다. 정확한 위치 정보는 관찰자와 관찰 기록을 등록한 프로젝트의 책임자만 알 수 있습니다.<br/><b>비공개</b> - 관찰 생물이 발견된 위치 좌표를 공개하지 않습니다. 관찰자와 관찰 기록을 등록한 프로젝트의 책임자에게만 위치 정보가 공개됩니다. <br/><br/>관찰 기록을 등록한 프로젝트의 책임자는 회원님이 설정한 장소 공개여부와 관계 없이 항상 생물의 정확한 위치 좌표를 알 수 있습니다. 그래서 사람들이 정확한 위치 좌표에 접근하는 것이 우려된다면 참여하고 있는 프로젝트의 책임자를 항상 신뢰 할 수 있어야 합니다. ]]></string>
     <string name="id_title">%1$s의 생물 종 정보 • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
@@ -406,8 +408,10 @@
     <string name="deleted_photos_from_cache_error">It looks like you deleted a photo by clearing the app cache before uploading. You will need to add the photo back to your observation from your gallery. In the future, please make sure you have uploaded all your photos before clearing the app cache.</string>
     <string name="new_activities">%1s new</string>
     <string name="no_results_found">No Results Found...</string>
-    <string name="syncing_x_out_of_y_observations">Syncing %1$d of %2$d observations...</string>
-    <string name="deleting_observations">Deleting Observations...</string>
+    <plurals name="syncing_x_out_of_y_observations">
+        <item quantity="other">Syncing %1$d of %2$d observations...</item>
+    </plurals>
+    <string name="deleting_observations">Deleting observations...</string>
     <string name="preparing">Preparing...</string>
     <string name="add_edit_remark">Add/Edit Remark</string>
     <string name="restore">Restore</string>
@@ -430,8 +434,13 @@
     <string name="more_info_on_inat">More Info on iNaturalist.org</string>
     <string name="view_suggestions">View Suggestions</string>
     <string name="species_search">Species Search</string>
-    <string name="were_not_confident">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</string>
-    <string name="top_species_suggestions">Here\'s our top %1$d species suggestions:</string>
+    <plurals name="were_not_confident">
+        <!-- This will probably never happen -->
+        <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+    </plurals>
+    <plurals name="top_species_suggestions">
+        <item quantity="other">Top %1$d suggestions:</item>
+    </plurals>
     <string name="pretty_sure_rank">We\'re pretty sure it\'s in this %1$s:</string>
     <string name="what_did_you_see">What did you see?</string>
     <string name="suggest_species">Suggest Species</string>
@@ -575,9 +584,6 @@
     <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
     <string name="description">설명</string>
     <string name="quantity">수량</string>
-    <!-- Number of observations. Do not change the format to $d -->
-    <string name="observation_count">%1$s 관찰 기록</string>
-    <string name="observation_count_single">%1$d 관찰 기록</string>
     <string name="agree2">동의함</string>
     <string name="project_observations">관찰 기록</string>
     <string name="project_species">종</string>
@@ -651,8 +657,9 @@
     <string name="all_guides_all_caps">ALL</string>
     <string name="description_all_caps">DESCRIPTION</string>
     <string name="quantity_all_caps">QTY</string>
-    <string name="observation_count_all_caps">%1$s OBSERVATIONS</string>
-    <string name="observation_count_single_all_caps">%1$d OBSERVATION</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="other">%1$s OBSERVATIONS</item>
+    </plurals>
     <string name="agree_all_caps">AGREE</string>
     <string name="observations_all_caps">OBSERVATIONS</string>
     <string name="species_all_caps">SPECIES</string>
@@ -782,4 +789,9 @@
     <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
     <string name="search_places">Search Places</string>
+    <string name="restart_app">Restart App</string>
+    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+    </plurals>
 </resources>

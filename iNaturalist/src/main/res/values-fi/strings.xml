@@ -147,8 +147,10 @@
     <string name="pull_to_refresh">Vedä päivittääksesi...</string>
     <string name="release_to_refresh">Irroita päivittääksesi...</string>
     <string name="refreshing">Päivitetään...</string>
-    <string name="sync_x_observations">Synkronoidaan %1$d havaintoa</string>
-    <string name="sync_1_observation">Synkronoidaan 1 havaintoa</string>
+    <plurals name="sync_x_observations">
+        <item quantity="one">Synkronoi %1$d havainto</item>
+        <item quantity="other">Synkronoi %1$d havaintoa</item>
+    </plurals>
     <string name="sync_observations">Synkronoidaan havaintoja</string>
     <string name="lets_get_started">Aloitetaan!</string>
     <string name="view_nearby_observations">Näytä läheiset havainnot</string>
@@ -165,7 +167,7 @@
         <item>Mene ulos! Löydä jotain villiä, ja ota selvä kokokuva.</item>
         <item>Jaa havaintosi iNaturalist-yhteisön kanssa.</item>
         <item>Tarkista kommentit ja tunnistamiset havainnossasi!</item>
-        <item><![CDATA[<b>Tutkimusaste</b> havainnot jaetaan tutkijoiden kanssa jotta he ymmärtäisivät ja suojelisivat luontoa paremmin.]]></item>
+        <item><![CDATA[<b>Tutkimustason</b> havainnot jaetaan kansainväliseen GBIF-palveluun tutkijoiden käyttöön.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
         <item>Avoin</item>
@@ -215,7 +217,7 @@
     <string name="re_download">Lataa uudelleen</string>
     <string name="error">Virhe</string>
     <string name="could_not_retrieve_guide">Oppaan tietoja ei voitu hakea - todennäköisesti verkkovirhe.</string>
-    <string name="inat_support_email_subject">Auta iNaturalistia (versio %1$s - %2$s; käyttäjätunniste - %3$s)</string>
+    <string name="inat_support_email_subject">Help with iNaturalist (versio %1$s - %2$s; käyttäjätunniste - %3$s)</string>
     <string name="send_email">Lähetä sähköposti...</string>
     <string name="login_with">Kirjaudu käyttäen</string>
     <string name="facebook">Facebook</string>
@@ -229,7 +231,7 @@
     <string name="min_6_chars">Väh. 6 merkkiä</string>
     <string name="use_my_license"><![CDATA[Kyllä, lisensoi sisältöni, niin tiedemiehet voivat käyttää tietojani. <b>Lisätietoja</b>]]></string>
     <string name="content_licensing">Sisällön lisensointi</string>
-    <string name="content_licensing_description">Valitse tämä valintaruutu, jos haluat käyttää Creative Commons Nimeä-EiKaupallinen lisenssiä kuviisi. Voit valita eri lisenssin tai poistaa lisenssin myöhemmin, mutta tämä on paras lisenssi jaettavaksi tutkijoiden kanssa.</string>
+    <string name="content_licensing_description">Laita rasti tähän ruutuun, jos haluat käyttää Creative Commons Nimeä-EiKaupallinen -lisenssiä kuvillesi. Voit valita eri lisenssin tai poistaa lisenssin myöhemmin, mutta tämä on hyvä lisenssi kuvien jakamiseksi tutkijoille.</string>
     <!-- Try to keep this about the length of the English text -->
     <string name="username_or_email">Käyttäjänimi tai sähköposti</string>
     <string name="forgot">Unohtuiko?</string>
@@ -271,23 +273,25 @@
     <string name="share">Jaa</string>
     <string name="unable_to_acquire_location">Sijaintia ei voi hakea</string>
     <string name="casual_grade">Epämuodollinen</string>
-    <string name="needs_id">Tarvitsee tunnisteen</string>
-    <string name="research_grade">Tutkimusaste</string>
+    <string name="needs_id">Tarvitsee tunnistuksen</string>
+    <string name="research_grade">Tutkimustaso</string>
     <string name="data_quality">Tietojen laatu</string>
-    <string name="casual_grade_add_location"><![CDATA[ Lisää <b>sijainti</b> edistääksesi tämän havainnon ”Tarvitsee tunnisteen” tilaan. ]]></string>
-    <string name="casual_grade_add_date"><![CDATA[ Lisää <b>päivämäärä</b> edistääksesi tämän havainnon ”Tarvitsee tunnisteen” tilaan. ]]></string>
-    <string name="casual_grade_add_photo"><![CDATA[ Lisää <b>kuva</b> edistääksesi tämän havainnon ”Tarvitsee tunnisteen” tilaan. ]]></string>
+    <string name="casual_grade_add_location"><![CDATA[ Lisää <b>sijainti</b>, jotta tämä havainto nousisi ”Tarvitsee tunnistuksen” -tasolle. ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ Lisää <b>päivämäärä</b>, jotta tämä havainto nousisi ”Tarvitsee tunnistuksen” -tasolle. ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[ Lisää <b>kuva</b>, jotta tämä havainto nousisi ”Tarvitsee tunnistuksen” -tasolle. ]]></string>
     <string name="casual_grade_captive"><![CDATA[ Havainto on epämuodollinen, koska se on <b>tarhattu/viljelty</b>. ]]></string>
-    <string name="needs_id_more_ids"><![CDATA[ Havainto tarvitsee <b>lisää tunnistuksia</b> yhteisöltä tullakseen "Tutkimusaste" tilaan. ]]></string>
-    <string name="included_in_projects">Sisältyy %1$d projektiin</string>
-    <string name="included_in_projects_singular">Sisältyy %1$d projektiin</string>
+    <string name="needs_id_more_ids"><![CDATA[ Havainto tarvitsee <b>lisää tunnistuksia</b>, jotta se nousisi tutkimustasolle. ]]></string>
+    <plurals name="included_in_projects">
+        <item quantity="one">Mukana %1$d projektissa</item>
+        <item quantity="other">Mukana %1$d projektissa</item>
+    </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Sijainnin tietosuoja on asetus, jolla voit säädellä miten havainnon sijainti ja koordinaatit näytetään. vaihtoehdot ovat:
 <br/><b>Avoin</b> - kaikki näkevät koordinaatit, ellei taksoni ole uhattu.
 <br/><b>Karkeistettu</b> - Julkiset koordinaatit näytetään satunnaisessa paikassa 0,2 x 0,2 asteen alueella todellisten koodinaattien sijainnista. Tämä tarkoittaa noin 22 x 22 kilometrin neliötä päiväntasaajalla ja pienenee kohti maapallon napoja. Todelliset koordinaatit näytetään vain sinulle ja niiden projektien kuraattoreille, joihin lisää havainnon.
 <br/><b>Yksityinen</b> - Koordinaatit piilotetaan kokonaan julkislta kartoilta. Todelliset koordinaatit näytetään vain sinulle ja niiden projektien kuraattoreille, joihin lisää havainnon.
 <br/><br/>
 Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät aina koodinaatit huomioimatta sijainnin tietosuoja-asetuksia. Jos olet huolissasi siitä kuka näkee koordinaatit, on sinun oltava varma että luotat projektien kuraattoreihin ennen kuin lisäät havaintoja niihin. ]]></string>
-    <string name="id_title">%1$s:n tunniste • %2$s</string>
+    <string name="id_title">Tunnistus käyttäjältä %1$s • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">Poista</string>
     <string name="delete_id">Peruuta tunnistus</string>
@@ -295,7 +299,7 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="delete_id_message">Haluatko varmasti peruuttaa tämän tunnistamisen?</string>
     <string name="delete_comment_message">Haluatko varmasti poistaa tämän kommentin?</string>
     <string name="comment">Kommentti</string>
-    <string name="suggest_id">Ehdota tunnistetta</string>
+    <string name="suggest_id">Ehdota tunnistusta</string>
     <string name="update_comment">Päivitä kommentti</string>
     <string name="fave_this_observation">Merkitse tämä havainto suosikiksi</string>
     <string name="faved">Merkitty suosikiksi</string>
@@ -334,7 +338,7 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="no_location">Ei sijaintia</string>
     <string name="add_to_projects">Lisää projektiin</string>
     <string name="are_you_sure_you_want_to_save_obs_without_coords">Haluatko varmasti tallentaa havainnon ilman koordinaatteja?</string>
-    <string name="users_identification">%1$s:n tunniste: %2$s</string>
+    <string name="users_identification">Käyttäjän %1$s tunnistus: %2$s</string>
     <string name="edit_profile">Muokkaa profiilia</string>
     <string name="remove_photo">Poista kuva</string>
     <string name="name">Nimi</string>
@@ -374,7 +378,7 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="importing_photos">Tuodaan kuva/kuvia...</string>
     <string name="multi_select_description">Tuo useita kuvia painamalla yksittäistä äänitettä pitkään</string>
     <string name="preparing_photo">Valmistellaan kuvaa...</string>
-    <string name="recommended_for_you">Sinulle suositeltu</string>
+    <string name="recommended_for_you">Suositellaan sinulle</string>
     <string name="missions">Tehtävät</string>
     <string name="browse_by_category">Selaa luokittain</string>
     <string name="couldnt_load_recommended_missions">Ei voitu ladata suositeltuja tehtäviä: %1$s</string>
@@ -402,16 +406,19 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="could_not_download_observations">Ei voitu ladata viimeisimpiä havaintoja - Yhteysongelmia. Yritä myöhemmin uudelleen.</string>
     <string name="no_news_yet">Ei vielä uutisia. Pysy kanavalla!</string>
     <string name="my_content">Oma sisältö</string>
-    <string name="following">Seuraa</string>
+    <string name="following">Seuraamasi</string>
     <string name="no_updates_yet">Ei päivityksiä vielä. Pysy kanavalla!</string>
     <string name="you_will_only_receive_updates_when_creating">(Saat päivityksiä vain, kun olet luonut havaintoja)</string>
     <string name="you_will_only_receive_updates_when_following">(Saat päivityksiä vain, kun seuraat havaintoja)</string>
-    <string name="user_activity_id"><![CDATA[<b>%1$s</b> ehdotti tunnisteen: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_id"><![CDATA[<b>%1$s</b> ehdotti tunnistusta: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> kommentoi: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Näyttää siltä, että poistit valokuvan tyhjentämällä sovelluksen välimuistin ennen tallentamista. Sinun on lisättävä kuva takaisin havaintoosi galleristasi. Tulevaisuudessa, varmista, että olet tallentanut kaikki valokuvasi ennen sovelluksen välimuistin tyhjentämistä.</string>
     <string name="new_activities">%1s uutta</string>
     <string name="no_results_found">Tuloksia ei löytynyt...</string>
-    <string name="syncing_x_out_of_y_observations">Synkronoidaan %1$d/%2$d havaintoa...</string>
+    <plurals name="syncing_x_out_of_y_observations">
+        <item quantity="one">Synkronoidaan %1$d/%2$d havainnosta...</item>
+        <item quantity="other">Synkronoidaan %1$d/%2$d havainnosta...</item>
+    </plurals>
     <string name="deleting_observations">Poistetaan havaintoja...</string>
     <string name="preparing">Valmistellaan...</string>
     <string name="add_edit_remark">Lisää/muokkaa huomautus</string>
@@ -435,8 +442,15 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="more_info_on_inat">Lisää tietoja iNaturalist.orgissa</string>
     <string name="view_suggestions">Näytä ehdotukset</string>
     <string name="species_search">Lajihaku</string>
-    <string name="were_not_confident">Emme ole riittävän varmoja tehdäksemme suosituksen, mutta tässä on meidän top %1$d ehdotusta:</string>
-    <string name="top_species_suggestions">Tässä on meidän top %1$d lajiehdotuksia:</string>
+    <plurals name="were_not_confident">
+        <!-- This will probably never happen -->
+        <item quantity="one">Me emme ole riittävän varmoja tehdäksemme suositusta, mutta tässä on %1$d. ehdotuksemme:</item>
+        <item quantity="other">Me emme ole riittävän varmoja tehdäksemme suositusta, mutta tässä on %1$d parasta ehdotustammme:</item>
+    </plurals>
+    <plurals name="top_species_suggestions">
+        <item quantity="one">Top %1$d suggestion:</item>
+        <item quantity="other">Top %1$d suggestions:</item>
+    </plurals>
     <string name="pretty_sure_rank">Olemme melko varmoja, että se on tässä %1$s:</string>
     <string name="what_did_you_see">Mitä näet?</string>
     <string name="suggest_species">Ehdota lajia</string>
@@ -447,7 +461,7 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="seen_nearby">Nähty lähistöllä</string>
     <string name="enlarge">Suurenna</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
-    <string name="view_children">Näytä lapset</string>
+    <string name="view_children">Näytä alemmat taksonit</string>
     <string name="invalid_photo_extension">Virhe tuodessa kuvaa/kuvia: Voidaan tuoda vain kuvatiedostoja JPG/JPEG/PNG päätteillä</string>
     <string name="taxon_has_no_photos">Tällä taksonilla ei ole kuvia.</string>
     <string name="terrain">Maasto</string>
@@ -456,7 +470,7 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="nearby">Lähistöllä</string>
     <string name="couldnt_load_results">Ei voitu ladata tuloksia: %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
-    <string name="research_grade_initials">TA</string>
+    <string name="research_grade_initials">TT</string>
     <string name="taxon_search_hint">esim. linnut, monarkki</string>
     <string name="location_search_hint">esim. kaupunki. osavaltio, puisto, maa...</string>
     <string name="no_taxon">Taksonia ei löytynyt</string>
@@ -585,9 +599,6 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="collection_and_umbrella_projects">Kokoelma- ja sateenvarjoprojektit</string>
     <string name="description">Kuvaus</string>
     <string name="quantity">Määrä</string>
-    <!-- Number of observations. Do not change the format to $d -->
-    <string name="observation_count">%1$s havaintoa</string>
-    <string name="observation_count_single">%1$d havainto</string>
     <string name="agree2">Samaa mieltä</string>
     <string name="project_observations">Havaintoa</string>
     <string name="project_species">Lajia</string>
@@ -661,8 +672,10 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="all_guides_all_caps">KAIKKI</string>
     <string name="description_all_caps">KUVAUS</string>
     <string name="quantity_all_caps">KPL</string>
-    <string name="observation_count_all_caps">%1$s HAVAINTOA</string>
-    <string name="observation_count_single_all_caps">%1$d HAVAINTO</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="one">%1$s HAVAINTO</item>
+        <item quantity="other">%1$s HAVAINTOA</item>
+    </plurals>
     <string name="agree_all_caps">SAMAA MIELTÄ</string>
     <string name="observations_all_caps">HAVAINTOA</string>
     <string name="species_all_caps">LAJIA</string>
@@ -676,18 +689,18 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="observers_all_caps">HAVAINNOIJAA</string>
     <string name="observations_regular">Havaintoa</string>
     <string name="data_quality_assessment">Tietojen laadunarviointi</string>
-    <string name="research_grade_qualification">Tutkimusasteen pätevyys</string>
+    <string name="research_grade_qualification">Tutkimustason perusteet</string>
     <string name="date_specified">Päivämäärä määritetty</string>
     <string name="location_specified">Sijainti määritetty</string>
     <string name="has_photos_or_sounds">On kuvia tai ääniä</string>
-    <string name="has_id_supported_by_two_or_more">Onko tunnistetta kannattamassa kaksi tai enemmän</string>
+    <string name="has_id_supported_by_two_or_more">Kaksi tai useampi kannattaa samaa tunnistusta</string>
     <string name="date_is_accurate">Päivämäärä on oikea</string>
     <string name="location_is_accurate">Sijainti on oikea</string>
     <string name="organism_is_wild">Eliö on villi</string>
     <string name="evidence_of_organism">Todiste eliöstä</string>
     <string name="recent_evidence_of_an_organism">Viimeaikaiset todisteet eliöstä</string>
     <string name="community_id_at_species_level_or_lower">Yhteisö on tunnistanut havainnon lajilleen tai tarkemmin</string>
-    <string name="based_on_evidence_can_community_id_be_confirmed">Perustuen näyttöön, voiko yhteisön tunnistetta edelleen vahvistaa tai parantaa?</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Voiko yhteisön tekemää tunnistusta vielä vahvistaa tai parantaa perustuen havainnon tietoihin?</string>
     <string name="no_as_good_as_it_can_be">Ei, se on niin hyvä kuin se voi olla</string>
     <string name="seasonality">Kausiluonteisuus</string>
     <string name="verifiable">Todennettavissa</string>
@@ -792,4 +805,10 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
     <string name="search_places">Search Places</string>
+    <string name="restart_app">Käynnistä sovellus uudelleen</string>
+    <string name="disable_third_party_sharing_restart">Sovellus on käynnistettävä uudelleen datan jakamisen estämiseksi. </string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="one">Are you sure you want to delete this %1$d observation?</item>
+        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+    </plurals>
 </resources>

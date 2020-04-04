@@ -147,8 +147,10 @@
     <string name="pull_to_refresh">Pull to refresh...</string>
     <string name="release_to_refresh">Release to refresh...</string>
     <string name="refreshing">მიმდინარეობს განახლება...</string>
-    <string name="sync_x_observations">%1$d დაკვირვების სინქრონიზაცია</string>
-    <string name="sync_1_observation">1 დაკვირვების სინქრონიზაცია</string>
+    <plurals name="sync_x_observations">
+        <item quantity="one">Sync %1$d observation</item>
+        <item quantity="other">Sync %1$d observations</item>
+    </plurals>
     <string name="sync_observations">დაკვირვებების სინქრონიზაცია</string>
     <string name="lets_get_started">დავიწყოთ!</string>
     <string name="view_nearby_observations">შორიახლო დაკვირვებების ნახვა</string>
@@ -279,8 +281,10 @@
     <string name="casual_grade_add_photo"><![CDATA[ Add a <b>photo</b> to advance this observation to “Needs ID” status. ]]></string>
     <string name="casual_grade_captive"><![CDATA[ Observation is casual grade because it is <b>captive/cultivated</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ Observation needs <b>more identifications</b> from the community to become "Research Grade" status. ]]></string>
-    <string name="included_in_projects">Included in %1$d projects</string>
-    <string name="included_in_projects_singular">Included in %1$d project</string>
+    <plurals name="included_in_projects">
+        <item quantity="one">Included in %1$d project</item>
+        <item quantity="other">Included in %1$d projects</item>
+    </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy is a setting you can make on your observations that controls how the spatial coordinates (latitude and longitude) are displayed. Here are the options:<br/><b>open</b> - Everyone can see the coordinates unless the taxon is threatened. <br/><b>obscured</b> - Public coordinates shown as a random point within a 0.2 by 0.2 degree area that contains the true coordinates, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. True coordinates are only visible to you and the curators of projects to which you add the observation. <br/><b>private</b> - Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. <br/><br/>Note that curators of individual projects can always see the coordinates regardless of your geoprivacy setting, so if you are concerned about who has access to the coordinates you should be sure you trust the curators of the projects in which you participate. ]]></string>
     <string name="id_title">%1$s-ის ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
@@ -406,7 +410,10 @@
     <string name="deleted_photos_from_cache_error">It looks like you deleted a photo by clearing the app cache before uploading. You will need to add the photo back to your observation from your gallery. In the future, please make sure you have uploaded all your photos before clearing the app cache.</string>
     <string name="new_activities">%1s ახალი</string>
     <string name="no_results_found">No Results Found...</string>
-    <string name="syncing_x_out_of_y_observations">Syncing %1$d of %2$d observations...</string>
+    <plurals name="syncing_x_out_of_y_observations">
+        <item quantity="one">Syncing %1$d of %2$d observation...</item>
+        <item quantity="other">Syncing %1$d of %2$d observations...</item>
+    </plurals>
     <string name="deleting_observations">დაკვირვებების წაშლა...</string>
     <string name="preparing">Preparing...</string>
     <string name="add_edit_remark">Add/Edit Remark</string>
@@ -430,8 +437,15 @@
     <string name="more_info_on_inat">მეტი ინფორმაცია iNaturalist.org-ზე</string>
     <string name="view_suggestions">ვარაუდების ნახვა</string>
     <string name="species_search">სახეობის ძებნა</string>
-    <string name="were_not_confident">საკმარისად დარწმუნებული არ ვართ რეკომენდაცი რომ მოგცეთ, მაგრამ ეს არის ჩვენი პირველი %1$d ვარაუდი:</string>
-    <string name="top_species_suggestions">Here\'s our top %1$d species suggestions:</string>
+    <plurals name="were_not_confident">
+        <!-- This will probably never happen -->
+        <item quantity="one">We\'re not confident enough to make a recommendation, but here is our number %1$d suggestion:</item>
+        <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+    </plurals>
+    <plurals name="top_species_suggestions">
+        <item quantity="one">Top %1$d suggestion:</item>
+        <item quantity="other">Top %1$d suggestions:</item>
+    </plurals>
     <string name="pretty_sure_rank">We\'re pretty sure it\'s in this %1$s:</string>
     <string name="what_did_you_see">რა დაინახეთ?</string>
     <string name="suggest_species">Suggest Species</string>
@@ -575,9 +589,6 @@
     <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
     <string name="description">აღწერა</string>
     <string name="quantity">რაოდ.</string>
-    <!-- Number of observations. Do not change the format to $d -->
-    <string name="observation_count">%1$s დაკვირვება</string>
-    <string name="observation_count_single">%1$d დაკვირვება</string>
     <string name="agree2">ვეთანხმები</string>
     <string name="project_observations">დაკვირვებები</string>
     <string name="project_species">სახეობა</string>
@@ -651,8 +662,10 @@
     <string name="all_guides_all_caps">ყველა</string>
     <string name="description_all_caps">DESCRIPTION</string>
     <string name="quantity_all_caps">რაოდ.</string>
-    <string name="observation_count_all_caps">%1$s OBSERVATIONS</string>
-    <string name="observation_count_single_all_caps">%1$d OBSERVATION</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="one">%1$s OBSERVATION</item>
+        <item quantity="other">%1$s OBSERVATIONS</item>
+    </plurals>
     <string name="agree_all_caps">ვეთანხმები</string>
     <string name="observations_all_caps">OBSERVATIONS</string>
     <string name="species_all_caps">სახეობა</string>
@@ -782,4 +795,10 @@
     <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
     <string name="search_places">Search Places</string>
+    <string name="restart_app">Restart App</string>
+    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="one">Are you sure you want to delete this %1$d observation?</item>
+        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+    </plurals>
 </resources>
