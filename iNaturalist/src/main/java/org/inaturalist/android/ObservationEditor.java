@@ -143,6 +143,10 @@ public class ObservationEditor extends AppCompatActivity {
     public static final int RESULT_DELETED = 0x1000;
     public static final int RESULT_RETURN_TO_OBSERVATION_LIST = 0x1001;
     public static final int RESULT_REFRESH_OBS = 0x1002;
+
+    private static final int MAX_PHOTOS_PER_OBSERVATION = 20; // Max photos per observation
+    private static final int PHOTO_COUNT_WARNING = 10; // After how many photos should we show a warning to to the user
+
     @State(AndroidStateBundlers.UriBundler.class) public Uri mUri;
     private Cursor mCursor;
     private Cursor mImageCursor;
@@ -245,6 +249,8 @@ public class ObservationEditor extends AppCompatActivity {
     @State public boolean mSharedAudio;
 
     private BottomSheetDialog mBottomSheetDialog;
+    private View mTakePhotoButton;
+    private View mPhotoWarningContainer;
 
     @Override
 	protected void onStop()
@@ -487,6 +493,20 @@ public class ObservationEditor extends AppCompatActivity {
             }
             });
 
+        mPhotoWarningContainer = findViewById(R.id.warning_multiple_photos);
+        mPhotoWarningContainer.setVisibility(View.GONE);
+
+        View closePhotoWarning = findViewById(R.id.warning_multiple_photos_close);
+        closePhotoWarning.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPhotoWarningContainer.setVisibility(View.GONE);
+            }
+        });
+
+        TextView closePhotoWarningText = findViewById(R.id.warning_multiple_photos_text);
+        closePhotoWarningText.setText(String.format(getString(R.string.warning_multiple_photos), MAX_PHOTOS_PER_OBSERVATION));
+
         mGeoprivacy = (Spinner) findViewById(R.id.geoprivacy);
         mSpeciesGuessTextView = (EditText) findViewById(R.id.speciesGuess);
         mSpeciesGuessSub = (TextView) findViewById(R.id.speciesGuessSub);
@@ -659,13 +679,18 @@ public class ObservationEditor extends AppCompatActivity {
 
         mTopActionBar.setLogo(R.drawable.ic_arrow_back);
         mTopActionBar.setTitle(getString(R.string.details));
-        takePhoto = findViewById(R.id.take_photo);
+        mTakePhotoButton = findViewById(R.id.take_photo);
 
-
-        takePhoto.setOnClickListener(new OnClickListener() {
+        mTakePhotoButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                openImageIntent(ObservationEditor.this);
+                if (mImageCursor.getCount() >= MAX_PHOTOS_PER_OBSERVATION) {
+                    mHelper.alert(getString(R.string.error),
+                            String.format(getString(R.string.no_more_photos_allowed),
+                                    MAX_PHOTOS_PER_OBSERVATION));
+                } else {
+                    openImageIntent(ObservationEditor.this);
+                }
             }
         });
 
@@ -2813,6 +2838,7 @@ public class ObservationEditor extends AppCompatActivity {
                 if (mPhotosAndSoundsAdded != null) {
                     for (final Uri photo : photos) {
                         if (photo == null) continue;
+                        if (position >= MAX_PHOTOS_PER_OBSERVATION) break;
 
                         Uri createdUri = createObservationPhotoForPhoto(photo, position, false);
 
@@ -3375,6 +3401,18 @@ public class ObservationEditor extends AppCompatActivity {
         mImageCursor.moveToFirst();
     	mSoundCursor.moveToFirst();
         mGallery.setAdapter(new GalleryCursorAdapter(this, mImageCursor, mSoundCursor));
+
+        if (mImageCursor.getCount() >= MAX_PHOTOS_PER_OBSERVATION) {
+            mTakePhotoButton.setAlpha(0.1f);
+        } else {
+            mTakePhotoButton.setAlpha(1.0f);
+        }
+
+        if (mImageCursor.getCount() >= PHOTO_COUNT_WARNING) {
+            mPhotoWarningContainer.setVisibility(View.VISIBLE);
+        } else {
+            mPhotoWarningContainer.setVisibility(View.GONE);
+        }
     }
 
     public class GalleryCursorAdapter extends BaseAdapter {

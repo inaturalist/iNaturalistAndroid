@@ -70,6 +70,71 @@
         android:focusableInTouchMode="true" />
 
     <RelativeLayout
+        android:id="@+id/warning_multiple_photos"
+        android:background="#F1F6E5"
+        android:layout_width="fill_parent"
+        android:paddingBottom="12dp"
+        android:layout_marginTop="0dp"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_alignParentTop="true"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="10dp">
+            <View
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/arrow_up"
+                android:layout_marginTop="-10dp"
+                android:layout_marginLeft="22dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/info_icon2"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_info_outline_black_24dp"
+            android:layout_marginLeft="16dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="18dp"
+            android:tint="@color/inatapptheme_color"
+            />
+
+        <TextView
+            android:id="@+id/warning_multiple_photos_text"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/warning_multiple_photos"
+            android:layout_marginRight="16dp"
+            android:layout_toRightOf="@id/info_icon2"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/info_icon2"
+            android:textSize="14sp"
+            />
+
+        <TextView
+            android:id="@+id/warning_multiple_photos_close"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/got_it_all_caps"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/warning_multiple_photos_text"
+            android:paddingTop="10dp"
+            android:textColor="#8BB929"
+            android:textStyle="bold"
+            android:layout_marginRight="16dp"
+            />
+    </RelativeLayout>
+
+
+
+
+    <RelativeLayout
         android:id="@+id/species_guess_container"
         android:layout_width="fill_parent"
         android:paddingLeft="16dp"
