@@ -234,6 +234,10 @@ public class BaseFragmentActivity extends AppCompatActivity {
 
         if (obsCount > -1) {
             DecimalFormat formatter = new DecimalFormat("#,###,###");
+            Logger.tag(TAG).info("obsCount: " + obsCount);
+            Logger.tag(TAG).info("formatter.format(0): " + formatter.format(0));
+            Logger.tag(TAG).info("formatter.format(obsCount): " + formatter.format(obsCount));
+            Logger.tag(TAG).info("getResources().getQuantityString(R.plurals.observation_count_all_caps, obsCount, obsCount): " + getResources().getQuantityString(R.plurals.observation_count_all_caps, obsCount, obsCount));
             ((TextView) findViewById(R.id.observation_count)).setText(
                 getResources().getQuantityString(R.plurals.observation_count_all_caps, obsCount, formatter.format(obsCount))
             );

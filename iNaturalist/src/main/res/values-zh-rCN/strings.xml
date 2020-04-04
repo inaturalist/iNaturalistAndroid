@@ -147,8 +147,9 @@
     <string name="pull_to_refresh">下拉来重新整理...</string>
     <string name="release_to_refresh">放开以重新整理...</string>
     <string name="refreshing">重新整理中...</string>
-    <string name="sync_x_observations">同步 %1$d 笔观察记录中...</string>
-    <string name="sync_1_observation">同步一笔观察记录中...</string>
+    <plurals name="sync_x_observations">
+        <item quantity="other">Sync %1$d observations</item>
+    </plurals>
     <string name="sync_observations">同步观察记录</string>
     <string name="lets_get_started">让我们开始吧 ！</string>
     <string name="view_nearby_observations">查看附近的观察记录</string>
@@ -279,8 +280,9 @@
     <string name="casual_grade_add_photo"><![CDATA[ 新增一张<b>照片</b>，让此笔观察记录进展至「需要 ID」状态。 ]]></string>
     <string name="casual_grade_captive"><![CDATA[ 观察记录列为一般等级因为它是圈养/栽培的。 ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ 观察记录需要从社群中取得<b>更多的鉴定</b>以成为「研究等级」。 ]]></string>
-    <string name="included_in_projects">包括在 %1$d 任务中</string>
-    <string name="included_in_projects_singular">包括在 %1$d 任务中</string>
+    <plurals name="included_in_projects">
+        <item quantity="other">Included in %1$d projects</item>
+    </plurals>
     <string name="geoprivacy_explanation"><![CDATA[地理资讯隐私权(Geoprivacy)的设定控制了您的观察记录中如何显示空间座标 （纬度和经度）。选项为： <br/> <b>开放</b>—每个人都可以看到座标，除非此分类群受到威胁。 <br/><b>遮敝</b>—公开的座标是在 0.2 x 0.2 度范围内随机显示，其中包含了真实座标，这相当于大约在赤道有 22 x 22 公里面积的开放座标，而随着接近两极此面积会逐渐减少。真实的座标是仅对您和您向其中新增加的观察专案策展人可见。<br/> <b>私人</b>—座标在公开地图上是完全隐藏的，只有您和您加入到观察专案中的策展人才能看到真实的座标。 <br/> <br/>注意：个别专案策展人不管您的地理资讯隐私权如何设定，他还是可以看到您的座标，所以如果对于谁可以存取座标有疑虑的话，您应该确保您信任您所参与的专案策展人。]]></string>
     <string name="id_title">%1$s 的 ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
@@ -406,7 +408,9 @@
     <string name="deleted_photos_from_cache_error">看起来您在上传前清除了 App 的快取而删除了一张照片。您需要从您的照片库中重新加回此照片至您的观察记录。之后当您清理 App 快取时请确定您已经上传了所有照片。</string>
     <string name="new_activities">%1s 新</string>
     <string name="no_results_found">找不到结果...</string>
-    <string name="syncing_x_out_of_y_observations">正在同步 %2$d 笔观察记录中的第 %1$d 笔...</string>
+    <plurals name="syncing_x_out_of_y_observations">
+        <item quantity="other">Syncing %1$d of %2$d observations...</item>
+    </plurals>
     <string name="deleting_observations">删除观察记录中...</string>
     <string name="preparing">准备中...</string>
     <string name="add_edit_remark">新增/编辑备注</string>
@@ -430,8 +434,13 @@
     <string name="more_info_on_inat">iNaturalist.org 网站上的更多资讯</string>
     <string name="view_suggestions">查看建议</string>
     <string name="species_search">物种搜寻</string>
-    <string name="were_not_confident">我们信心不足以致于无法提出此物种的建议，但这是我们最高的 %1$d 笔建议：</string>
-    <string name="top_species_suggestions">这里是我们最高 %1$d 种的相关之物种建议：</string>
+    <plurals name="were_not_confident">
+        <!-- This will probably never happen -->
+        <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+    </plurals>
+    <plurals name="top_species_suggestions">
+        <item quantity="other">Top %1$d suggestions:</item>
+    </plurals>
     <string name="pretty_sure_rank">我们很肯定的是在这 %1$s:</string>
     <string name="what_did_you_see">您看到什么？</string>
     <string name="suggest_species">建议的物种</string>
@@ -575,9 +584,6 @@
     <string name="collection_and_umbrella_projects">搜集型和统筹型项目</string>
     <string name="description">描述</string>
     <string name="quantity">数量</string>
-    <!-- Number of observations. Do not change the format to $d -->
-    <string name="observation_count">%1$s 笔观察记录</string>
-    <string name="observation_count_single">%1$d 笔观察记录</string>
     <string name="agree2">同意</string>
     <string name="project_observations">观察资料</string>
     <string name="project_species">物种</string>
@@ -651,8 +657,9 @@
     <string name="all_guides_all_caps">所有</string>
     <string name="description_all_caps">描述</string>
     <string name="quantity_all_caps">数量</string>
-    <string name="observation_count_all_caps">%1$s观察记录们</string>
-    <string name="observation_count_single_all_caps">%1$d观察记录</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="other">%1$s OBSERVATIONS</item>
+    </plurals>
     <string name="agree_all_caps">同意</string>
     <string name="observations_all_caps">观察记录</string>
     <string name="species_all_caps">物种</string>
@@ -782,4 +789,9 @@
     <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
     <string name="search_places">Search Places</string>
+    <string name="restart_app">Restart App</string>
+    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+    </plurals>
 </resources>

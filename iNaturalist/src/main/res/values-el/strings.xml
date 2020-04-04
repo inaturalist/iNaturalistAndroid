@@ -147,8 +147,10 @@
     <string name="pull_to_refresh">Τραβήξτε για ανανέωση...</string>
     <string name="release_to_refresh">Απελευθερώστε για ανανέωση...</string>
     <string name="refreshing">Ανανέωση...</string>
-    <string name="sync_x_observations">Συγχρονισμός %1$d παρατηρήσεων</string>
-    <string name="sync_1_observation">Συγχρονισμός 1 παρατήρησης</string>
+    <plurals name="sync_x_observations">
+        <item quantity="one">Sync %1$d observation</item>
+        <item quantity="other">Sync %1$d observations</item>
+    </plurals>
     <string name="sync_observations">Συγχρονισμός παρατηρήσεων</string>
     <string name="lets_get_started">Ας αρχίσουμε!</string>
     <string name="view_nearby_observations">Δείτε τις Παρατηρήσεις που Βρίσκονται σε Κοντινή Απόσταση</string>
@@ -279,8 +281,10 @@
     <string name="casual_grade_add_photo"><![CDATA[Πρόσθεσε <b>φωτογραφία</b> για να προωθηθεί ή παρατήρηση στο status «Χρειάζεται προσδιορισμό»]]></string>
     <string name="casual_grade_captive"><![CDATA[ Observation is casual grade because it is <b>captive/cultivated</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ Observation needs <b>more identifications</b> from the community to become "Research Grade" status. ]]></string>
-    <string name="included_in_projects">Περιλαμβάνεται σε %1$d εργασίες</string>
-    <string name="included_in_projects_singular">Περιλαμβάνεται σε %1$d εργασία</string>
+    <plurals name="included_in_projects">
+        <item quantity="one">Included in %1$d project</item>
+        <item quantity="other">Included in %1$d projects</item>
+    </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy is a setting you can make on your observations that controls how the spatial coordinates (latitude and longitude) are displayed. Here are the options:<br/><b>open</b> - Everyone can see the coordinates unless the taxon is threatened. <br/><b>obscured</b> - Public coordinates shown as a random point within a 0.2 by 0.2 degree area that contains the true coordinates, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. True coordinates are only visible to you and the curators of projects to which you add the observation. <br/><b>private</b> - Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. <br/><br/>Note that curators of individual projects can always see the coordinates regardless of your geoprivacy setting, so if you are concerned about who has access to the coordinates you should be sure you trust the curators of the projects in which you participate. ]]></string>
     <string name="id_title">%1$s\'s ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
@@ -406,7 +410,10 @@
     <string name="deleted_photos_from_cache_error">Φαίνεται ότι διαγράψατε μια φωτογραφία διαγράφοντας την προσωρινή μνήμη της εφαρμογής πριν την αποστολή. Θα χρειαστεί να προσθέσετε την φωτογραφία πίσω στην παρατήρηση σας από την γκαλερί σας. Στο μέλλον, βεβαιωθείτε ότι έχετε ανεβάσει όλες τις φωτογραφίες σας προτού εκκαθαρίσετε την προσωρινή μνήμη της εφαρμογής.</string>
     <string name="new_activities">%1s νέα</string>
     <string name="no_results_found">Δέν βρέθηκαν αποτελέσματα...</string>
-    <string name="syncing_x_out_of_y_observations">Συγχρονισμός %1$d των %2$d παρατηρήσεων...</string>
+    <plurals name="syncing_x_out_of_y_observations">
+        <item quantity="one">Syncing %1$d of %2$d observation...</item>
+        <item quantity="other">Syncing %1$d of %2$d observations...</item>
+    </plurals>
     <string name="deleting_observations">Διαγράφονται οι παρατηρήσεις...</string>
     <string name="preparing">Προετοιμασία...</string>
     <string name="add_edit_remark">Προσθήκη/Επεξεργασία σχολίου</string>
@@ -426,25 +433,32 @@
     <string name="taxonomy">Ταξινομία</string>
     <string name="about_this_section">Σχετικά με αυτήν την ενότητα</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
-    <string name="taxonomy_info">These are links to ancestors of this particular taxon. They are in order from coarser to more refined. Use these links to move up and down the Tree of Life. For example, if you don\'t know what an organism is, but know what grouping it falls into, tap on a taxon from the list to view more information about it.</string>
+    <string name="taxonomy_info">Αυτοί είναι οι δεσμοί με τους προγόνους αυτού του συγκεκριμένου taxon. Είναι σε σειρά από τους πιο πρωτόγονους έως τους πιο εκλεπτυσμένους. Χρησιμοποιήστε αυτούς τους συνδέσμους για να μετακινηθείτε πάνω και κάτω στο Δέντρο της Ζωής. Για παράδειγμα, αν δεν ξέρετε τι είναι ένας οργανισμός, αλλά ξέρετε σε ποια ομάδα ανήκει, πατήστε σε μια ταξινομική κατηγορία από τη λίστα για να δείτε περισσότερες πληροφορίες σχετικά με αυτό.</string>
     <string name="more_info_on_inat">Περισσότερες πληροφορίες στο iNaturalist.org</string>
     <string name="view_suggestions">Προβολή Προτάσεων</string>
     <string name="species_search">Αναζήτηση ειδών</string>
-    <string name="were_not_confident">Δεν είμαστε αρκετά βέβαιοι για να κάνουμε μια σύσταση, αλλά εδώ είναι οι %1$d καλύτερες προτάσεις:</string>
-    <string name="top_species_suggestions">Εδώ είναι οι καλύτερες %1$d προτάσεις ειδών:</string>
+    <plurals name="were_not_confident">
+        <!-- This will probably never happen -->
+        <item quantity="one">We\'re not confident enough to make a recommendation, but here is our number %1$d suggestion:</item>
+        <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+    </plurals>
+    <plurals name="top_species_suggestions">
+        <item quantity="one">Top %1$d suggestion:</item>
+        <item quantity="other">Top %1$d suggestions:</item>
+    </plurals>
     <string name="pretty_sure_rank">We\'re pretty sure it\'s in this %1$s:</string>
     <string name="what_did_you_see">Τι είδες;</string>
     <string name="suggest_species">Πρόταση Ειδών</string>
     <string name="suggest_species_description">Πρόταση ειδών βάσει της οπτικής ομοιότητας με τις φωτογραφίες.</string>
     <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Οπτικά Παρόμοια</string>
-    <string name="visually_similar_seen_nearby">Visually Similar / Seen Nearby</string>
+    <string name="visually_similar_seen_nearby">Οπτικά Παρόμοια/Εθεάθη σε Κοντινή Απόσταση</string>
     <string name="seen_nearby">Εθεάθη σε κοντινή απόσταση</string>
     <string name="enlarge">Μεγέθυνση</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">View Children</string>
     <string name="invalid_photo_extension">Σφάλμα κατά την εισαγωγή φωτογραφίας(-ών): Μπορεί να εισαχθούν μόνο αρχεία φωτογραφιών με επεκτάσεις JPG/JPEG/PNG</string>
-    <string name="taxon_has_no_photos">This taxon has no photos.</string>
+    <string name="taxon_has_no_photos">Αυτό το taxon δεν έχει φωτογραφίες.</string>
     <string name="terrain">Έδαφος</string>
     <string name="filters">Φίλτρα</string>
     <string name="exploring_all">Εξερεύνηση όλων</string>
@@ -454,8 +468,8 @@
     <string name="research_grade_initials">RG</string>
     <string name="taxon_search_hint">π.χ. πουλιά, μονάρχης</string>
     <string name="location_search_hint">e.g. city, state, park, country...</string>
-    <string name="no_taxon">Sorry, taxon not found</string>
-    <string name="please_select_taxon">Please select a valid taxon from the list (or clear the taxon field).</string>
+    <string name="no_taxon">Λυπούμαστε, το taxon δεν βρέθηκε</string>
+    <string name="please_select_taxon">Παρακαλώ επιλέξτε ένα έγκυρο taxon από την λίστα (ή διαγράψτε το πεδίο taxon).</string>
     <string name="sorry_no_location">Λυπούμαστε, η τοποθεσία δεν βρέθηκε</string>
     <string name="location_not_found">Η τοποθεσία ή το μέρος που αναζητήσατε δεν βρίσκεται στη βάση δεδομένων μας. Επιλέξτε μια θέση από τη λίστα επιλογών κάτω από το πεδίο αναζήτησης της τοποθεσίας ή διαγράψτε το πεδίο αναζήτησης.</string>
     <string name="undefined">Μη ορισμένο</string>
@@ -476,7 +490,7 @@
     <string name="supername">Supername</string>
     <string name="point_of_interest">Σημείο ενδιαφέροντος</string>
     <string name="region">Περιοχή</string>
-    <string name="colloquial">Colloquial</string>
+    <string name="colloquial">καθομιλουμένη</string>
     <string name="zone">Ζώνη</string>
     <string name="historical_state">Ιστορικό Κράτος</string>
     <string name="historical_county">Ιστορική Κομητεία</string>
@@ -502,11 +516,11 @@
     <!-- https://gadm.org place type, presumably describing an area larger than an individual property but smaller than a neighborhood -->
     <string name="village_block">Village block</string>
     <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
-    <string name="sum">Sum</string>
+    <string name="sum">Σουμ (Περιφέρειες της Μογγολίας)</string>
     <string name="shire">Κομητεία</string>
     <string name="prefecture_city">Πόλη του νομού</string>
     <!-- Indonesian sub-sub-national place type -->
-    <string name="regency">Regency</string>
+    <string name="regency">Αντιβασιλεία</string>
     <string name="constituency">Εκλογική περιφέρεια</string>
     <string name="local_authority">Τοπική αρχή</string>
     <string name="poblacion">Poblacion</string>
@@ -542,7 +556,7 @@
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
     <string name="date_week">%d ε</string>
     <string name="new_observation">Νέα παρατήρηση</string>
-    <string name="inactive_taxon">Inactive Taxon</string>
+    <string name="inactive_taxon">Ανενεργό Taxon</string>
     <string name="no_identifications_found">Παρακολούθηση αναγνωρίσεων που προτείνετε για παρατηρήσεις άλλων εδώ.</string>
     <string name="no_species_found">Αυτή είναι μια λίστα με τα είδη που παρατηρήσατε περισσότερο.\n\n\Ενημερωτικά: Υπάρχουν περίπου 9 εκατομμύρια είδη στον πλανήτη, βγείτε έξω και παρατηρήστε τα!</string>
     <string name="make_an_observation">Κάντε μια παρατήρηση</string>
@@ -575,9 +589,6 @@
     <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
     <string name="description">Περιγραφή</string>
     <string name="quantity">Ποσότητα</string>
-    <!-- Number of observations. Do not change the format to $d -->
-    <string name="observation_count">%1$s παρατηρήσεις</string>
-    <string name="observation_count_single">%1$d παρατήρηση</string>
     <string name="agree2">Συμφωνώ</string>
     <string name="project_observations">Παρατηρήσεις</string>
     <string name="project_species">Είδος</string>
@@ -651,8 +662,10 @@
     <string name="all_guides_all_caps">ΟΛΟΙ</string>
     <string name="description_all_caps">ΠΕΡΙΓΡΑΦΗ</string>
     <string name="quantity_all_caps">Ποσότητα</string>
-    <string name="observation_count_all_caps">%1$s ΠΑΡΑΤΗΡΗΣΕΙΣ</string>
-    <string name="observation_count_single_all_caps">%1$d ΠΑΡΑΤΗΡΗΣΗ</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="one">%1$s OBSERVATION</item>
+        <item quantity="other">%1$s OBSERVATIONS</item>
+    </plurals>
     <string name="agree_all_caps">ΣΥΜΦΩΝΩ</string>
     <string name="observations_all_caps">ΠΑΡΑΤΗΡΗΣΕΙΣ</string>
     <string name="species_all_caps">ΕΙΔΗ</string>
@@ -723,9 +736,9 @@
     <string name="number_of_days_to_store_logs">Αριθμός ημερών για την αποθήκευση των αρχείων καταγραφής</string>
     <string name="send_debug_logs_from_start_date">Send Debug Logs From Start Date</string>
     <string name="send_debug_logs_by_email">Send debug logs by email (from specified start date)</string>
-    <string name="debug_settings">Debug Settings</string>
-    <string name="are_you_sure_you_want_to_delete_logs">Are you sure you want to delete all debug logs? Only press \'Yes\' if you want clear up storage room for your phone</string>
-    <string name="no_log_files_found">No log files found for that date range - try earlier date?</string>
+    <string name="debug_settings">Ρυθμίσεις Αποσφαλμάτωσης</string>
+    <string name="are_you_sure_you_want_to_delete_logs">Είστε σίγουροι ότι θέλετε να διαγράψετε τα αρχεία αποσφαλμάτωσης; Πατήστε \'Ναι\' μόνο εάν θέλετε να καθαρίσετε το χώρο αποθήκευσης του τηλεφώνου σας</string>
+    <string name="no_log_files_found">Δεν βρέθηκαν αρχεία καταγραφής για αυτό το εύρος ημερομηνιών - Προσπαθήστε προγενέστερη ημερομηνία;</string>
     <string name="choose_pinned_location">Choose Pinned Location</string>
     <string name="pin_current_location">Pin Current Location</string>
     <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
@@ -763,23 +776,29 @@
     <string name="seconds_value">δευτερόλεπτα</string>
     <string name="shop_the_inat_store">Αγοράστε από το iNat Kατάστημα</string>
     <string name="delete_your_account">Διαγραφή Του Λογαριασμού σας</string>
-    <string name="delete_account_message"><![CDATA[By deleting your account you will remove:<br/><br/><ul><li> All of your observations, including the work of the all the people who have helped you out with identifications.</li><li> All of the identifications you\'ve added to the observations of other people, which will potentially affect the data quality of those observations.</li><li> All of the comments you\'ve added.</li></ul><br/>Furthermore, this action cannot be undone. If you change your mind later, you aren\'t getting any of that content back.<br/><br/>If this service generates too many notifications, consider <a href="https://www.inaturalist.org/users/edit">editing your settings on the website</a> to opt out of certain notifications or stop receiving email from us. If you\'re having trouble with a specific person, consider <a href="https://www.inaturalist.org/users/edit">muting them</a> instead of deleting your account.<br/><br/>If you\'re still sure you want to delete your account, enter <b>\"%1$s\"</b> in the form below and click the button to delete your account and all your data.]]></string>
+    <string name="delete_account_message"><![CDATA[Με τη διαγραφή του λογαριασμού σας θα καταργήσετε:<br/><br/><ul><li> Όλες τις παρατηρήσεις σας, συμπεριλαμβανομένου του έργου όλων των ανθρώπων που σας βοήθησαν με τις αναγνωρίσεις.</li><li> Όλες οι αναγνωρίσεις που προσθέσατε στις παρατηρήσεις άλλων ανθρώπων, οι οποίες ενδέχεται να επηρεάσουν την ποιότητα των δεδομένων αυτών των παρατηρήσεων.</li><li> Όλα τα σχόλια που έχετε προσθέσει.</li></ul><br/>Επιπλέον, αυτή η ενέργεια δεν μπορεί να ανακληθεί. Αν αλλάξετε γνώμη αργότερα, δεν παίρνετε πίσω αυτό το περιεχόμενο.<br/><br/>Εάν η υπηρεσία αυτή δημιουργεί πάρα πολλές ειδοποιήσεις, σκεφτείτε <a href="https://www.inaturalist.org/users/edit">την επεξεργασία των ρυθμίσεών σας στον ιστότοπο</a> για να εξαιρεθείτε από ορισμένες ειδοποιήσεις ή να σταματήσετε να λαμβάνετε μηνύματα ηλεκτρονικού ταχυδρομείου από εμάς. Εάν αντιμετωπίζετε προβλήματα με ένα συγκεκριμένο άτομο, σκεφτείτε <a href="https://www.inaturalist.org/users/edit">τη σίγαση τους</a> αντί να διαγράψετε το λογαριασμό σας.<br/><br/>Εάν είστε ακόμα βέβαιοι ότι θέλετε να διαγράψετε το λογαριασμό σας, εισαγάγετε<b>\"%1$s\"</b> στην παρακάτω φόρμα και κάντε κλικ στο κουμπί για να διαγράψετε το λογαριασμό σας και όλα τα δεδομένα σας.]]></string>
     <string name="your_account_has_been_deleted">Ο λογαριασμός σας έχει διαγραφεί</string>
-    <string name="you_must_enter_username_in_the_form_to_delete_account">You must enter \'%1$s\' in the form to delete your account</string>
+    <string name="you_must_enter_username_in_the_form_to_delete_account">Πρέπει να εισαγάγετε\'%1$s\' στη φόρμα για να διαγράψετε το λογαριασμό σας</string>
     <!-- Second person hint text asking the user to enter their username -->
-    <string name="type_your_username">Type your username</string>
-    <string name="error_deleting_account">There was an error deleting your account - please check your Internet connection</string>
-    <string name="verify_your_password">Verify Your Password</string>
-    <string name="third_party_data_sharing">Third-party Data Sharing</string>
-    <string name="disable_third_party_data_sharing">Disable Third-party Data Sharing</string>
-    <string name="do_not_collect_third_party_data">Do not collect stability and usage data using third-party services</string>
-    <string name="enabled">Enabled</string>
-    <string name="disabled">Disabled</string>
-    <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third-party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="type_your_username">Πληκτρολογήστε το όνομα χρήστη</string>
+    <string name="error_deleting_account">Παρουσιάστηκε σφάλμα κατά τη διαγραφή του λογαριασμού σας - ελέγξτε τη σύνδεση στο Internet</string>
+    <string name="verify_your_password">Eπαληθεύστε Tον Kωδικό σας</string>
+    <string name="third_party_data_sharing">Κοινή Χρήση Δεδομένων Τρίτων</string>
+    <string name="disable_third_party_data_sharing">Απενεργοποίηση Κοινής Χρήσης Δεδομένων Τρίτων</string>
+    <string name="do_not_collect_third_party_data">Μη συλλέγετε δεδομένα σταθερότητας και χρήσης χρησιμοποιώντας υπηρεσίες τρίτων</string>
+    <string name="enabled">Ενεργοποιημένο</string>
+    <string name="disabled">Απενεργοποιημένο</string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[Χρησιμοποιούμε μια ποικιλία υπηρεσιών τρίτων για την παρακολούθηση της σταθερότητας και τη διάγνωση σφαλμάτων και προβλημάτων στο λογισμικό μας. Αυτά τα τρίτα μέρη περιλαμβάνουν:<br/><ul><li>το Google (<a href="https://analytics.google.com/">το Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">το Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">το New Relic</a></li></ul>]]></string>
     <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
     <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third-party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
     <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
     <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
     <string name="search_places">Αναζήτηση Τόπων</string>
+    <string name="restart_app">Restart App</string>
+    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="one">Are you sure you want to delete this %1$d observation?</item>
+        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+    </plurals>
 </resources>

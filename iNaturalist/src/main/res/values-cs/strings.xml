@@ -147,8 +147,12 @@
     <string name="pull_to_refresh">Pro obnovení posuňte dolů...</string>
     <string name="release_to_refresh">Pro obnovení uvolněte...</string>
     <string name="refreshing">Obnovuje se...</string>
-    <string name="sync_x_observations">Synchronizace %1$d pozorování</string>
-    <string name="sync_1_observation">Synchronizovat 1 pozorování</string>
+    <plurals name="sync_x_observations">
+        <item quantity="one">Sync %1$d observation</item>
+        <item quantity="few">Sync %1$d observations</item>
+        <item quantity="many">Sync %1$d observations</item>
+        <item quantity="other">Sync %1$d observations</item>
+    </plurals>
     <string name="sync_observations">Synchronizovat pozorování</string>
     <string name="lets_get_started">Pojďme na to!</string>
     <string name="view_nearby_observations">Prohlédnout pozorování v okolí</string>
@@ -279,8 +283,12 @@
     <string name="casual_grade_add_photo"><![CDATA[ Přidat <b>foto</b> k postoupení tohoto pozorování do stavu "Potřebuje ID". ]]></string>
     <string name="casual_grade_captive"><![CDATA[ Pozorování je zařazeno do neformální třídy, protože to žije <b>v zajetí/je pěstováno</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ K pozorování je potřeba <b>více identifikací</b> z komunity, aby pozorování přešlo do stavu "výzkumný stupeň". ]]></string>
-    <string name="included_in_projects">Zahrnuto v %1$d projektech</string>
-    <string name="included_in_projects_singular">Zahrnuto v %1$d projektu</string>
+    <plurals name="included_in_projects">
+        <item quantity="one">Included in %1$d project</item>
+        <item quantity="few">Included in %1$d projects</item>
+        <item quantity="many">Included in %1$d projects</item>
+        <item quantity="other">Included in %1$d projects</item>
+    </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ "Geosoukromí" je nastavení vašeho pozorování, řídí, jak se zobrazují vaše prostorové souřadnice (zeměpisná šířka a délka). Zde jsou možnosti: <br/> <b> otevřeno </ b> - Každý může vidět souřadnice, pokud není daný taxon ohrožen. <br/> <b> zakryté </ b> - veřejné souřadnice jsou zobrazeny jako náhodný bod v oblasti 0,2 na 0,2 stupně, který obsahuje skutečné souřadnice, což je asi plocha 22 x 22 km, nepřesné jsou na rovníku, směrem k pólům nepřesnost klesá. Pravé souřadnice jsou viditelné pouze vám a kurátorům projektů, ke kterým přidáte pozorování. <br/> <b> soukromé </ b> - souřadnice jsou zcela skryté na veřejných mapách, pravé souřadnice jsou viditelné pouze pro vás a kurátory projektů, ke kterým přidáte pozorování. <br/> <br/> Vezměte na vědomí, že kurátoři jednotlivých projektů mohou vždy vidět souřadnice bez ohledu na vaše nastavení "geosoukromí", takže pokud máte obavy o to, kdo má přístup k souřadnicím, měli byste si být jisti, že důvěřujete kurátorům projektů, kterých se účastníte. ]]></string>
     <string name="id_title">%1$s\'s identifikace • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
@@ -406,7 +414,12 @@
     <string name="deleted_photos_from_cache_error">Zdá se, že čištěním mezipaměti před náhráváním, se vám podařilo vymazat fotku. Budete muset přidat fotku z pozorování z vaší galerie. V budoucnu se ujistěte, že jste nahráli všechny své fotky před čištěním mezipaměti aplikace.</string>
     <string name="new_activities">%1s nové</string>
     <string name="no_results_found">Nebyly nalezeny žádné výsledky...</string>
-    <string name="syncing_x_out_of_y_observations">Synchronizace %1$d z %2$d pozorování</string>
+    <plurals name="syncing_x_out_of_y_observations">
+        <item quantity="one">Syncing %1$d of %2$d observation...</item>
+        <item quantity="few">Syncing %1$d of %2$d observations...</item>
+        <item quantity="many">Syncing %1$d of %2$d observations...</item>
+        <item quantity="other">Syncing %1$d of %2$d observations...</item>
+    </plurals>
     <string name="deleting_observations">Mazání pozorování...</string>
     <string name="preparing">Připravuje se...</string>
     <string name="add_edit_remark">Přidat/Upravit poznámku</string>
@@ -430,8 +443,19 @@
     <string name="more_info_on_inat">Více informací na iNaturalist.org</string>
     <string name="view_suggestions">Zobrazit návrhy</string>
     <string name="species_search">Hledání druhů</string>
-    <string name="were_not_confident">Nejsme dostatečně přesvědčeni, abychom mohli něco doporučit, ale tady jsou naše hlavní návrhy %1$d:</string>
-    <string name="top_species_suggestions">Zde jsou naše nejoblíbenější náměty %1$d druhů:</string>
+    <plurals name="were_not_confident">
+        <!-- This will probably never happen -->
+        <item quantity="one">We\'re not confident enough to make a recommendation, but here is our number %1$d suggestion:</item>
+        <item quantity="few">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+        <item quantity="many">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+        <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+    </plurals>
+    <plurals name="top_species_suggestions">
+        <item quantity="one">Top %1$d suggestion:</item>
+        <item quantity="few">Top %1$d suggestions:</item>
+        <item quantity="many">Top %1$d suggestions:</item>
+        <item quantity="other">Top %1$d suggestions:</item>
+    </plurals>
     <string name="pretty_sure_rank">Jsme si jisti, že je to v tomto %1$s:</string>
     <string name="what_did_you_see">Co jste viděli?</string>
     <string name="suggest_species">Navrhnout druhy</string>
@@ -575,9 +599,6 @@
     <string name="collection_and_umbrella_projects">Kolekce a zastřešující projekty</string>
     <string name="description">Popis</string>
     <string name="quantity">Množství</string>
-    <!-- Number of observations. Do not change the format to $d -->
-    <string name="observation_count">%1$s pozorování</string>
-    <string name="observation_count_single">%1$d pozorování</string>
     <string name="agree2">Souhlasím</string>
     <string name="project_observations">Pozorování</string>
     <string name="project_species">Druhy</string>
@@ -651,8 +672,12 @@
     <string name="all_guides_all_caps">Vše</string>
     <string name="description_all_caps">POPIS</string>
     <string name="quantity_all_caps">Množství</string>
-    <string name="observation_count_all_caps">%1$s POZOROVÁNÍ</string>
-    <string name="observation_count_single_all_caps">%1$d POZOROVÁNÍ</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="one">%1$s OBSERVATION</item>
+        <item quantity="few">%1$s OBSERVATIONS</item>
+        <item quantity="many">%1$s OBSERVATIONS</item>
+        <item quantity="other">%1$s OBSERVATIONS</item>
+    </plurals>
     <string name="agree_all_caps">SOUHLASÍM</string>
     <string name="observations_all_caps">POZOROVÁNÍ</string>
     <string name="species_all_caps">DRUH</string>
@@ -781,5 +806,13 @@
     <string name="third_party_data_sharing_notes4"><![CDATA[Tato možnost se týká pouze analytických dat a dat o selhání, které těmto společnostem výslovně zasíláme. Všechny servery iNaturalist jsou poskytovány a hostovány společností Microsoft, všechny obrázky iNaturalist jsou hostovány Amazonem a téměř všechny mapy iNaturalistu jsou zobrazovány společností Google, což znamená, že pokaždé, když se podíváte na pozorování na iNaturalist, připojujete se ke službám poskytovaným těmito společnostmi a odhalujete jim přinejmenším vaši IP adresu (v aplikaci pro iPhone používáme mapy společnosti Apple). iNaturalist by pravděpodobně neexistoval bez služeb, které tyto společnosti poskytují, a přestože můžete omezit množství a druh dat, které s nimi sdílíte při používání iNat, nemůžeme úplně zastavit tok dat.]]></string>
     <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
-    <string name="search_places">Search Places</string>
+    <string name="search_places">Vyhledat místa</string>
+    <string name="restart_app">Restart App</string>
+    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="one">Are you sure you want to delete this %1$d observation?</item>
+        <item quantity="few">Are you sure you want to delete these %1$d observations?</item>
+        <item quantity="many">Are you sure you want to delete these %1$d observations?</item>
+        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+    </plurals>
 </resources>

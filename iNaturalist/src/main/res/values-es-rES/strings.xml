@@ -147,8 +147,10 @@
     <string name="pull_to_refresh">Tirar para actualizar...</string>
     <string name="release_to_refresh">Suelta para actualizar...</string>
     <string name="refreshing">Actualizando...</string>
-    <string name="sync_x_observations">Sincronizar %1$d observaciones</string>
-    <string name="sync_1_observation">Sincronizar 1 observación</string>
+    <plurals name="sync_x_observations">
+        <item quantity="one">Sincronizar %1$d observación</item>
+        <item quantity="other">Sincronizar %1$d observaciones</item>
+    </plurals>
     <string name="sync_observations">Sincronización de observaciones</string>
     <string name="lets_get_started">¡Empecemos!</string>
     <string name="view_nearby_observations">Ver observaciones cercanas</string>
@@ -197,7 +199,7 @@
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador es miembro de la red iNaturalist en Ecuador. Las instituciones locales que apoyan a iNaturalist Ecuador tendrán acceso a tu dirección de correo electrónico y a las coordenadas reales de tus observaciones aunque estén públicamente oscurecidas o sean privadas. No cambies experimentalmente tu afiliación si tienes más de 1000 observaciones. ¿Deseas cambiar tu afiliación?</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia es miembro de la red iNaturalist en Australia. Las instituciones locales que apoyan a iNaturalist Australia tendrán acceso a tu dirección de correo electrónico y a las coordenadas reales de tus observaciones aunque estén públicamente oscurecidas o sean privadas. No cambies experimentalmente tu afiliación si tienes más de 1000 observaciones. ¿Deseas cambiar tu afiliación?</string>
     <string name="alert_message_use_argentinat">ArgentiNat es miembro de la red iNaturalist en Argentina. Las instituciones locales que apoyan a ArgentiNat tendrán acceso a tu dirección de correo electrónico y a las coordenadas reales de tus observaciones aunque estén públicamente oscurecidas o sean privadas. Por favor, no cambies experimentalmente tu afiliación si tienes más de 1000 observaciones. ¿Deseas cambiar tu afiliación?</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel es miembro de la red iNaturalist en Israel. Las instituciones locales que apoyan a iNaturalist Israel tendrán acceso a tu dirección de correo electrónico y a las coordenadas reales de tus observaciones aunque estén públicamente oscurecidas o sean privadas. No cambies experimentalmente tu afiliación si tienes más de 1000 observaciones. ¿Deseas cambiar tu afiliación?</string>
     <string name="editor">Editor</string>
     <string name="license">Licencia</string>
     <string name="download_for_offline_use">Descargar para uso fuera de línea</string>
@@ -279,8 +281,10 @@
     <string name="casual_grade_add_photo"><![CDATA[ Agregar una <b>foto</b> para adelantar esta observación al estado "Necesita ID". ]]></string>
     <string name="casual_grade_captive"><![CDATA[ Observación de grado casual porque es <b>cautivo/cultivado</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ La observación necesita <b>más identificaciones</b> de la comunidad para convertirse en "grado de investigación". ]]></string>
-    <string name="included_in_projects">Incluido en %1$d proyectos</string>
-    <string name="included_in_projects_singular">Incluido en %1$d proyecto</string>
+    <plurals name="included_in_projects">
+        <item quantity="one">Incluido en %1$d proyecto</item>
+        <item quantity="other">Incluido en %1$d proyectos</item>
+    </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ La Geoprivacidad es una característica que puedes incorporar a las observaciones que controla cómo se muestran las coordenadas espaciales (latitud y longitud). Estas son las opciones: <br/> <b>abierta</b> - todos pueden ver las coordenadas excepto si el taxón está amenazado. <br/> <b>oscurecida</b> - las coordenadas públicas se muestran como un punto al azar en una área de 0,2 por 0,2 grados que contiene las coordenadas reales, lo que representa una área cuadrada de 22 x 22 km de incertidumbre en el ecuador, que disminuye a medida se acerca a los polos. Las coordenadas reales únicamente son visibles por ti y los administradores de los proyectos a los que incorporas la observación. <br/> <b>privada</b> - coordenadas completamente ocultas en los mapas públicos, las coordenadas reales únicamente son visibles para ti y los administradores de los proyectos a los que incorporas la observación. <br/> <br/> Ten en cuenta que los administradores de proyectos individuales pueden ver siempre las coordenadas, independientemente de la geoprivacidad que especifiques, por tanto si estás preocupado por quién tiene acceso a las coordenadas, es necesario que os aseguréis que confías en los administradores de los proyectos en los que participas. ]]></string>
     <string name="id_title">ID de %1$s • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
@@ -406,7 +410,10 @@
     <string name="deleted_photos_from_cache_error">Parece que ha eliminado una foto al borrar la caché de la aplicación antes de subirla. Necesitará volver a agregar la foto a su observación desde la galería. En el futuro, por favor, asegúrese de que han subido todas las fotos antes de eliminar la memoria caché de la aplicación.</string>
     <string name="new_activities">%1s nuevo</string>
     <string name="no_results_found">No se han encontrado resultados...</string>
-    <string name="syncing_x_out_of_y_observations">Sincronizando %1$d de %2$d observaciones...</string>
+    <plurals name="syncing_x_out_of_y_observations">
+        <item quantity="one">Sincronizando %1$d de %2$d observación</item>
+        <item quantity="other">Sincronizando %1$d de %2$d observaciones</item>
+    </plurals>
     <string name="deleting_observations">Borrando observaciones...</string>
     <string name="preparing">Preparando...</string>
     <string name="add_edit_remark">Agregar/editar comentario</string>
@@ -430,8 +437,15 @@
     <string name="more_info_on_inat">Más información en iNaturalist.org</string>
     <string name="view_suggestions">Ver Sugerencias</string>
     <string name="species_search">Búsqueda de especies</string>
-    <string name="were_not_confident">No estamos suficientemente seguros para hacer una recomendación, pero estas son nuestras %1$d mejores sugerencias:</string>
-    <string name="top_species_suggestions">Estas son nuestras %1$d mejores sugerencias de especies:</string>
+    <plurals name="were_not_confident">
+        <!-- This will probably never happen -->
+        <item quantity="one">No estamos suficientemente seguros para hacer una recomendación, pero esta es nuestra sugerencia número %1$d:</item>
+        <item quantity="other">No estamos suficientemente seguros para hacer una recomendación, pero estas nuestras primeras %1$d sugerencias:</item>
+    </plurals>
+    <plurals name="top_species_suggestions">
+        <item quantity="one">La sugerencia número %1$d:</item>
+        <item quantity="other">Las %1$d principales sugerencias:</item>
+    </plurals>
     <string name="pretty_sure_rank">Estamos bastante seguros de que está entre estos %1$s:</string>
     <string name="what_did_you_see">¿Qué has visto?</string>
     <string name="suggest_species">Sugiere especies</string>
@@ -575,9 +589,6 @@
     <string name="collection_and_umbrella_projects">Proyectos Colección y Paraguas</string>
     <string name="description">Descripción</string>
     <string name="quantity">Cant.</string>
-    <!-- Number of observations. Do not change the format to $d -->
-    <string name="observation_count">%1$s observaciones</string>
-    <string name="observation_count_single">%1$d observación</string>
     <string name="agree2">De acuerdo</string>
     <string name="project_observations">Observaciones</string>
     <string name="project_species">Especies</string>
@@ -651,8 +662,10 @@
     <string name="all_guides_all_caps">TODOS</string>
     <string name="description_all_caps">DESCRIPCIÓN</string>
     <string name="quantity_all_caps">CANTIDAD</string>
-    <string name="observation_count_all_caps">%1$s OBSERVACIONES</string>
-    <string name="observation_count_single_all_caps">%1$d OBSERVACIÓN</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="one">%1$s OBSERVACIÓN</item>
+        <item quantity="other">%1$s OBSERVACIONES</item>
+    </plurals>
     <string name="agree_all_caps">DE ACUERDO</string>
     <string name="observations_all_caps">OBSERVACIONES</string>
     <string name="species_all_caps">ESPECIE</string>
@@ -691,10 +704,10 @@
     <string name="network_credit_naturewatchnz"><![CDATA[Nueva Zelanda: New Zealand Biodiversity Recording Network gestiona iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: la Associação Biodiversidade Para Todos gestiona Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panamá: el Ministerio de Ambiente gestiona iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
-    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
-    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina apoya a ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia apoya iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) apoya iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa apoya iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Marcar todos como vistos</string>
     <string name="content_hidden">Contenido ocultado</string>
     <string name="show_hidden_content">Mostrar contenido ocultado</string>
@@ -784,4 +797,10 @@ datos que estos servicios proporcionan. <b>Al compartir esta información, nos e
     <string name="common_names_place"><![CDATA[Lugar para los nombres comunes: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Pulse para priorizar los nombres comunes de un lugar específico.</string>
     <string name="search_places">Buscar lugares</string>
+    <string name="restart_app">Reiniciar la aplicación</string>
+    <string name="disable_third_party_sharing_restart">Para deshabilitar la compartición de datos con terceros inmediatamente, es necesario reiniciar la aplicación.</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="one">¿Estás seguro de que deseas borrar esta %1$d observación?</item>
+        <item quantity="other">¿Estás seguro de que deseas borrar estas %1$d observaciones?</item>
+    </plurals>
 </resources>
