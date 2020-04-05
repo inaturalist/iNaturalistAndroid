@@ -12,6 +12,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -490,32 +491,28 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
                 Picasso.with(ObservationViewerActivity.this)
                         .load(imageUrl)
-                        .into(new Target() {
-                                  @Override
-                                  public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                                      imageView.setImageBitmap(bitmap);
-                                      mBitmaps.put(position, bitmap);
-                                  }
+                        .into(imageView, new Callback() {
+                            @Override
+                            public void onSuccess() {
+                                BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
+                                Bitmap bitmap = drawable.getBitmap();
 
-                                  @Override
-                                  public void onBitmapFailed(Drawable errorDrawable) {
-                                      // Failed to load observation photo
-                                      try {
-                                          JSONObject eventParams = new JSONObject();
-                                          eventParams.put(AnalyticsClient.EVENT_PARAM_SIZE, AnalyticsClient.EVENT_PARAM_VALUE_MEDIUM);
+                                mBitmaps.put(position, bitmap);
+                            }
 
-                                          AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_PHOTO_FAILED_TO_LOAD, eventParams);
-                                      } catch (JSONException e) {
-                                          Logger.tag(TAG).error(e);
-                                      }
-                                  }
+                            @Override
+                            public void onError() {
+                                // Failed to load observation photo
+                                try {
+                                    JSONObject eventParams = new JSONObject();
+                                    eventParams.put(AnalyticsClient.EVENT_PARAM_SIZE, AnalyticsClient.EVENT_PARAM_VALUE_MEDIUM);
 
-                                  @Override
-                                  public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-                                  }
-                              });
-
+                                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_PHOTO_FAILED_TO_LOAD, eventParams);
+                                } catch (JSONException e) {
+                                    Logger.tag(TAG).error(e);
+                                }
+                            }
+                        });
             } else {
                 // Offline photo
                 int newHeight = mPhotosViewPager.getMeasuredHeight();
