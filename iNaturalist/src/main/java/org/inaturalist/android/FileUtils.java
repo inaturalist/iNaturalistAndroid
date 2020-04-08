@@ -119,33 +119,6 @@ public class FileUtils {
     }
 
     /**
-     * Returns the path only (without file name).
-     *
-     * @param file
-     * @return
-     */
-    public static File getPathWithoutFilename(File file) {
-        if (file != null) {
-            if (file.isDirectory()) {
-                // no file to be split off. Return everything
-                return file;
-            } else {
-                String filename = file.getName();
-                String filepath = file.getAbsolutePath();
-
-                // Construct path without file name.
-                String pathwithoutname = filepath.substring(0,
-                        filepath.length() - filename.length());
-                if (pathwithoutname.endsWith("/")) {
-                    pathwithoutname = pathwithoutname.substring(0, pathwithoutname.length() - 1);
-                }
-                return new File(pathwithoutname);
-            }
-        }
-        return null;
-    }
-
-    /**
      * @return The MIME type for the given file.
      */
     public static String getMimeType(File file) {
@@ -157,15 +130,6 @@ public class FileUtils {
 
         return "application/octet-stream";
     }
-
-    /**
-     * @return The MIME type for the give Uri.
-     */
-    public static String getMimeType(Context context, Uri uri) {
-        File file = new File(getPath(context, uri));
-        return getMimeType(file);
-    }
-
 
     /**
      * @param uri The Uri to check.
@@ -253,7 +217,6 @@ public class FileUtils {
      * @param context The context.
      * @param uri The Uri to query.
      * @see #isLocal(String)
-     * @see #getFile(Context, Uri)
      * @author paulburke
      */
     @SuppressLint("NewApi")
@@ -295,6 +258,11 @@ public class FileUtils {
                     if (id.startsWith("raw:")) {
                         return id.replaceFirst("raw:", "");
                     }
+                }
+
+                if (id.startsWith("msf:")) {
+                    // On certain models, the download directory file URI looks like "msf:12345" - we don't know how to handle this
+                    return null;
                 }
 
                 final Uri contentUri = ContentUris.withAppendedId(
@@ -340,195 +308,6 @@ public class FileUtils {
         }
 
         return null;
-    }
-
-    /**
-     * Convert Uri into File, if possible.
-     *
-     * @return file A local file that the Uri was pointing to, or null if the
-     *         Uri is unsupported or pointed to a remote resource.
-     * @see #getPath(Context, Uri)
-     * @author paulburke
-     */
-    public static File getFile(Context context, Uri uri) {
-        if (uri != null) {
-            String path = getPath(context, uri);
-            if (path != null && isLocal(path)) {
-                return new File(path);
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Get the file size in a human-readable string.
-     *
-     * @param size
-     * @return
-     * @author paulburke
-     */
-    public static String getReadableFileSize(int size) {
-        final int BYTES_IN_KILOBYTES = 1024;
-        final DecimalFormat dec = new DecimalFormat("###.#");
-        final String KILOBYTES = " KB";
-        final String MEGABYTES = " MB";
-        final String GIGABYTES = " GB";
-        float fileSize = 0;
-        String suffix = KILOBYTES;
-
-        if (size > BYTES_IN_KILOBYTES) {
-            fileSize = size / BYTES_IN_KILOBYTES;
-            if (fileSize > BYTES_IN_KILOBYTES) {
-                fileSize = fileSize / BYTES_IN_KILOBYTES;
-                if (fileSize > BYTES_IN_KILOBYTES) {
-                    fileSize = fileSize / BYTES_IN_KILOBYTES;
-                    suffix = GIGABYTES;
-                } else {
-                    suffix = MEGABYTES;
-                }
-            }
-        }
-        return String.valueOf(dec.format(fileSize) + suffix);
-    }
-
-    /**
-     * Attempt to retrieve the thumbnail of given File from the MediaStore. This
-     * should not be called on the UI thread.
-     *
-     * @param context
-     * @param file
-     * @return
-     * @author paulburke
-     */
-    public static Bitmap getThumbnail(Context context, File file) {
-        return getThumbnail(context, getUri(file), getMimeType(file));
-    }
-
-    /**
-     * Attempt to retrieve the thumbnail of given Uri from the MediaStore. This
-     * should not be called on the UI thread.
-     *
-     * @param context
-     * @param uri
-     * @return
-     * @author paulburke
-     */
-    public static Bitmap getThumbnail(Context context, Uri uri) {
-        return getThumbnail(context, uri, getMimeType(context, uri));
-    }
-
-    /**
-     * Attempt to retrieve the thumbnail of given Uri from the MediaStore. This
-     * should not be called on the UI thread.
-     *
-     * @param context
-     * @param uri
-     * @param mimeType
-     * @return
-     * @author paulburke
-     */
-    public static Bitmap getThumbnail(Context context, Uri uri, String mimeType) {
-        if (DEBUG)
-            Logger.tag(TAG).debug("Attempting to get thumbnail");
-
-        if (!isMediaUri(uri)) {
-            Logger.tag(TAG).error("You can only retrieve thumbnails for images and videos.");
-            return null;
-        }
-
-        Bitmap bm = null;
-        if (uri != null) {
-            final ContentResolver resolver = context.getContentResolver();
-            Cursor cursor = null;
-            try {
-                cursor = resolver.query(uri, null, null, null, null);
-                if (cursor.moveToFirst()) {
-                    final int id = cursor.getInt(0);
-                    if (DEBUG)
-                        Logger.tag(TAG).debug("Got thumb ID: " + id);
-
-                    if (mimeType.contains("video")) {
-                        bm = MediaStore.Video.Thumbnails.getThumbnail(
-                                resolver,
-                                id,
-                                MediaStore.Video.Thumbnails.MINI_KIND,
-                                null);
-                    }
-                    else if (mimeType.contains(FileUtils.MIME_TYPE_IMAGE)) {
-                        bm = MediaStore.Images.Thumbnails.getThumbnail(
-                                resolver,
-                                id,
-                                MediaStore.Images.Thumbnails.MINI_KIND,
-                                null);
-                    }
-                }
-            } catch (Exception e) {
-                if (DEBUG)
-                    Logger.tag(TAG).error("getThumbnail", e);
-            } finally {
-                if (cursor != null)
-                    cursor.close();
-            }
-        }
-        return bm;
-    }
-
-    /**
-     * File and folder comparator. TODO Expose sorting option method
-     *
-     * @author paulburke
-     */
-    public static Comparator<File> sComparator = new Comparator<File>() {
-        @Override
-        public int compare(File f1, File f2) {
-            // Sort alphabetically by lower case, which is much cleaner
-            return f1.getName().toLowerCase().compareTo(
-                    f2.getName().toLowerCase());
-        }
-    };
-
-    /**
-     * File (not directories) filter.
-     *
-     * @author paulburke
-     */
-    public static FileFilter sFileFilter = new FileFilter() {
-        @Override
-        public boolean accept(File file) {
-            final String fileName = file.getName();
-            // Return files only (not directories) and skip hidden files
-            return file.isFile() && !fileName.startsWith(HIDDEN_PREFIX);
-        }
-    };
-
-    /**
-     * Folder (directories) filter.
-     *
-     * @author paulburke
-     */
-    public static FileFilter sDirFilter = new FileFilter() {
-        @Override
-        public boolean accept(File file) {
-            final String fileName = file.getName();
-            // Return directories only and skip hidden directories
-            return file.isDirectory() && !fileName.startsWith(HIDDEN_PREFIX);
-        }
-    };
-
-    /**
-     * Get the Intent for selecting content to be used in an Intent Chooser.
-     *
-     * @return The intent for opening a file with Intent.createChooser()
-     * @author paulburke
-     */
-    public static Intent createGetContentIntent() {
-        // Implicitly allow the user to select a particular kind of data
-        final Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        // The MIME data type filter
-        intent.setType("*/*");
-        // Only return URIs that can be opened with ContentResolver
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        return intent;
     }
 
     public static void copyFile(File src, File dst) throws IOException {
