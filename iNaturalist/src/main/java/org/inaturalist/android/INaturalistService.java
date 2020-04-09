@@ -261,6 +261,8 @@ public class INaturalistService extends IntentService {
         TIMEZONE_ID_TO_INAT_TIMEZONE.put("Pacific/Tongatapu", "Nuku'alofa");
     }
 
+    private static final int MAX_OBSVERATIONS_TO_REDOWNLOAD = 100; // Happens when user switches language and we need the new taxon name in that language
+
     public static final String USER = "user";
     public static final String AUTHENTICATION_FAILED = "authentication_failed";
     public static final String IDENTIFICATION_ID = "identification_id";
@@ -2522,6 +2524,7 @@ public class INaturalistService extends IntentService {
         Integer lastObsId = c.getInt(c.getColumnIndexOrThrow(Observation.ID));
         c.close();
         JSONArray results = null;
+        int obsCount = 0;
 
         do {
             Logger.tag(TAG).debug("redownloadOldObservationsForTaxonNames: " + currentObsId);
@@ -2568,8 +2571,11 @@ public class INaturalistService extends IntentService {
                 getContentResolver().update(obs.getUri(), cv, null, null);
 
                 currentObsId = obs.id;
+                obsCount++;
+
+                if (obsCount > MAX_OBSVERATIONS_TO_REDOWNLOAD) break;
             }
-        } while ((results.length() > 0) && (currentObsId > lastObsId));
+        } while ((results.length() > 0) && (currentObsId > lastObsId) && (obsCount <= MAX_OBSVERATIONS_TO_REDOWNLOAD));
 
         Logger.tag(TAG).debug("redownloadOldObservationsForTaxonNames - finished");
         mApp.setLastLocale();
