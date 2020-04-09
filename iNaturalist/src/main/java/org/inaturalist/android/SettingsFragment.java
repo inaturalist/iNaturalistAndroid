@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -22,7 +21,6 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import android.text.Html;
 import android.view.View;
-
 import com.facebook.login.LoginManager;
 
 import org.json.JSONException;
@@ -30,6 +28,7 @@ import org.json.JSONObject;
 import org.tinylog.Logger;
 
 import java.io.File;
+import java.util.Arrays;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
     private static final int REQUEST_CODE_LOGIN = 0x1000;
@@ -236,8 +235,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         mLanguagePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object o) {
-                int index = mLanguagePreference.findIndexOfValue((String)o);
-                String locale = getResources().getStringArray(R.array.language_values)[index];
+                String locale = (String)o;
                 Logger.tag(TAG).info(String.format("Setting onPreferenceChange - %s", locale));
                 mPrefEditor.putString("pref_locale", locale);
                 mPrefEditor.commit();
@@ -257,10 +255,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 mApp.applyLocaleSettings();
                 mApp.restart();
                 getActivity().finish();
+
                 return false;
             }
         });
-
 
         mVersion.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
@@ -399,6 +397,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             mLanguagePreference.setSummary(R.string.use_device_language_settings);
             mLanguagePreference.setValueIndex(0);
         } else {
+            // TODO - offline case
             for (int i = 0; i < supportedLocales.length; i++) {
                 if (prefLocale.equalsIgnoreCase(supportedLocales[i])) {
                     mLanguagePreference.setSummary(getResources().getStringArray(R.array.language_names)[i]);

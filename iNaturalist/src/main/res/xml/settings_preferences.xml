@@ -46,7 +46,7 @@
         android:summary="@string/enabled"
         />
 
-    <ListPreference
+    <org.inaturalist.android.LanguageListPreference
         android:layout="@layout/custom_preference"
         android:key="language"
         android:title="@string/language"
