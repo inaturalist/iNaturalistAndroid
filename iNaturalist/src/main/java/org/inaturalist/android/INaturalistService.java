@@ -580,22 +580,28 @@ public class INaturalistService extends IntentService {
 
 
     private void startIntentForeground() {
+        String channelId = "inaturalist_service";
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             Logger.tag(TAG).info("Service startIntentForeground");
 
             // See: https://stackoverflow.com/a/46449975/1233767
-            String CHANNEL_ID = "inaturalist_service";
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
-                    "Channel human readable title",
+            NotificationChannel channel = new NotificationChannel(channelId,
+                    " ",
                     NotificationManager.IMPORTANCE_LOW);
 
             ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE)).createNotificationChannel(channel);
 
-            Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
-                    .setContentTitle("")
-                    .setContentText("").build();
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
+                    .setOngoing(false)
+                    .setPriority(NotificationCompat.PRIORITY_MIN)
+                    .setContentTitle(getString(R.string.app_name))
+                    .setContentText(getString(R.string.running_in_background_notfication))
+                    .setCategory(Notification.CATEGORY_SERVICE)
+                    .setSmallIcon(R.drawable.ic_notification);
+            Notification notification = builder.build();
 
-            startForeground(1, notification);
+            startForeground(101, notification);
         }
     }
 

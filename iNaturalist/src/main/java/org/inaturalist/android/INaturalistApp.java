@@ -95,7 +95,6 @@ public class INaturalistApp extends MultiDexApplication {
     private static final int DEFAULT_DEBUG_LOG_DAY_COUNT = 3;
 
     private SharedPreferences mPrefs;
-    private NotificationManager mNotificationManager;
 	private boolean mIsSyncing = false;
     public static Integer VERSION = 1;
     public static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
@@ -232,7 +231,6 @@ public class INaturalistApp extends MultiDexApplication {
         //Picasso.with(getApplicationContext())
         //        .setIndicatorsEnabled(true);
 
-        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         INaturalistApp.context = getApplicationContext();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             mDeviceLocale = getResources().getConfiguration().getLocales().get(0);
@@ -885,9 +883,7 @@ public class INaturalistApp extends MultiDexApplication {
                 "_synced_at IS NULL OR (_updated_at > _synced_at)", null, Observation.DEFAULT_SORT_ORDER);
         Cursor opCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI, ObservationPhoto.PROJECTION, 
                 "_synced_at IS NULL OR (_updated_at > _synced_at)", null, ObservationPhoto.DEFAULT_SORT_ORDER);
-        if (!mIsSyncing) {
-            mNotificationManager.cancel(SYNC_NOTIFICATION);
-        } else {
+        if (mIsSyncing) {
             Resources res = getResources();
             serviceNotify(SYNC_NOTIFICATION, 
                     res.getString(R.string.sync_required),
@@ -933,16 +929,10 @@ public class INaturalistApp extends MultiDexApplication {
     }
 
     public void sweepingNotify(Integer id, String title, String content, String ticker, Intent intent) {
-        if (mNotificationManager != null) {
-            mNotificationManager.cancelAll();
-        }
         notify(id, title, content, ticker, intent);
     }
     
     public void sweepingNotify(Integer id, String title, String content, String ticker) {
-        if (mNotificationManager != null) {
-            mNotificationManager.cancelAll();
-        }
         notify(id, title, content, ticker);
     }
     
@@ -961,10 +951,6 @@ public class INaturalistApp extends MultiDexApplication {
     }
 
     public void notify(String title, String content) {
-        if (mNotificationManager == null) {
-            mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        }
-        //mNotificationManager.notify(id, notification);
         if (mNotificationCallback != null) {
         	mNotificationCallback.onNotification(title, content);
         }
