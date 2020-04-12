@@ -44,6 +44,8 @@ public class HtmlUtils {
         // Replace new lines (\n) with <br> tags
         html = html.replaceAll("\r", "");
         html = html.replaceAll("\n", "<br />");
+        html = html.replaceAll("<", "&lt;");
+        html = html.replaceAll(">", "&gt;");
 
         // For displaying <img> tags
         Picasso picasso = Picasso.with(context);
