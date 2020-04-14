@@ -96,7 +96,6 @@
                 android:maxLines="1000"
                 android:singleLine="false"
                 android:lineSpacingMultiplier="1.2"
-                android:autoLink="web"
                 android:linksClickable="true"
                 android:text="TextView" />
         </LinearLayout>

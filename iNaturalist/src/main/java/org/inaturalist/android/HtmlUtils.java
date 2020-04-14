@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -32,6 +33,12 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import io.noties.markwon.Markwon;
+import io.noties.markwon.ext.strikethrough.StrikethroughPlugin;
+import io.noties.markwon.ext.tables.TablePlugin;
+import io.noties.markwon.ext.tables.TableTheme;
+import io.noties.markwon.html.HtmlPlugin;
+import io.noties.markwon.linkify.LinkifyPlugin;
 import me.saket.bettermovementmethod.BetterLinkMovementMethod;
 
 public class HtmlUtils {
@@ -41,38 +48,28 @@ public class HtmlUtils {
     public static void fromHtml(TextView textView, String html) {
         Context context = textView.getContext();
 
+        TableTheme tableTheme = new TableTheme.Builder()
+                .tableBorderWidth(3)
+                .tableCellPadding(0)
+                .build();
+
+
+        final Markwon markwon = Markwon.builder(context)
+                .usePlugin(TablePlugin.create(tableTheme))
+                .usePlugin(LinkifyPlugin.create())
+                .usePlugin(HtmlPlugin.create())
+                .usePlugin(StrikethroughPlugin.create())
+                .build();
+
         // Replace new lines (\n) with <br> tags
         html = html.replaceAll("\r", "");
-        html = html.replaceAll("\n", "<br />");
-        html = html.replaceAll("<", "&lt;");
-        html = html.replaceAll(">", "&gt;");
+        html = html.replaceAll("\n", "  \n");
 
-        // For displaying <img> tags
-        Picasso picasso = Picasso.with(context);
-        PicassoImageGetter imageGetter = new PicassoImageGetter(picasso, textView);
-
-        Spanned htmlText;
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.M) {
-            htmlText = Html.fromHtml(html, imageGetter, null);
-        } else {
-            htmlText = Html.fromHtml(html,
-                    Html.FROM_HTML_OPTION_USE_CSS_COLORS |
-                            Html.FROM_HTML_SEPARATOR_LINE_BREAK_BLOCKQUOTE |
-                            Html.FROM_HTML_SEPARATOR_LINE_BREAK_HEADING |
-                            Html.FROM_HTML_SEPARATOR_LINE_BREAK_LIST |
-                            Html.FROM_HTML_SEPARATOR_LINE_BREAK_LIST_ITEM |
-                            Html.FROM_HTML_SEPARATOR_LINE_BREAK_PARAGRAPH |
-                            Html.TO_HTML_PARAGRAPH_LINES_CONSECUTIVE,
-                    imageGetter,
-                    null
-            );
-        }
+        Spanned htmlText = markwon.toMarkdown(html);
 
         URLSpan[] currentSpans = htmlText.getSpans(0, htmlText.length(), URLSpan.class);
 
-        // So pressing on links will work (open up a browser or email client)
         SpannableString buffer = new SpannableString(htmlText);
-        Linkify.addLinks(buffer, Linkify.ALL);
 
         // Turn @username mentions into clickable links
         Linkify.TransformFilter filter = new Linkify.TransformFilter() {
