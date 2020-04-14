@@ -119,6 +119,9 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
     public ObservationCursorAdapter(Context context, Cursor c, boolean isGrid, GridView grid) {
         super(context, isGrid ? R.layout.observation_grid_item : R.layout.list_item, c, new String[] {}, new int[] {});
+
+        Logger.tag(TAG).debug("initialize");
+
         mIsGrid = isGrid;
         mGrid = grid;
         mContext = (Activity)context;
@@ -431,6 +434,9 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         final View view = super.getView(position, convertView, parent);
         ViewHolder holder;
         Cursor c = this.getCursor();
+
+        Logger.tag(TAG).debug("getView " + position);
+
 
         if (c.getCount() == 0) {
             return view;

@@ -3,6 +3,7 @@ package org.inaturalist.android;
 import android.content.Context;
 import android.os.Environment;
 
+import org.tinylog.Logger;
 import org.tinylog.configuration.Configuration;
 
 import java.io.BufferedInputStream;
@@ -29,6 +30,7 @@ public class LoggingUtils {
 
     private static final int MAX_LOG_FILE_SIZE_MB = 10; // After what size (in MB) should we move to the next log file
     private static final int COMPRESSION_BUFFER_SIZE = 1024;
+    private static final String TAG = "LoggingUtils";
 
     private static GlobalExceptionHandler sExceptionHandler;
 
@@ -76,6 +78,8 @@ public class LoggingUtils {
         // Find all uncompressed log files and compresses them into zip files (saves room, and
         // required when sending large log files over email)
 
+        Logger.tag(TAG).debug("compressDebugLogs");
+
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.HOUR_OF_DAY, 0);
         cal.set(Calendar.MINUTE, 0);
@@ -114,6 +118,8 @@ public class LoggingUtils {
                 continue;
             }
         }
+
+        Logger.tag(TAG).debug("compressDebugLogs - end");
     }
 
     private static boolean compressFile(String inputFilename, String zipFileName) {
@@ -192,6 +198,8 @@ public class LoggingUtils {
     }
 
     public static void clearOldLogs(Context context, int dayCount) {
+        Logger.tag(TAG).debug("clearOldLogs");
+
         // Clear old log files (older than the last X days, according to debug settings)
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.HOUR_OF_DAY, 0);
@@ -204,5 +212,7 @@ public class LoggingUtils {
         for (File file : files) {
             file.delete();
         }
+
+        Logger.tag(TAG).debug("clearOldLogs - done");
     }
 }

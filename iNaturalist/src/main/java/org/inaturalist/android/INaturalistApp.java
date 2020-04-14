@@ -213,10 +213,28 @@ public class INaturalistApp extends MultiDexApplication {
 
         // Initialize the logger
         LoggingUtils.initializeLogger(this);
-        // Clear out old log files
-        LoggingUtils.clearOldLogs(this, getDebugLogDayCount());
-        // Compress any uncompressed log files
-        LoggingUtils.compressDebugLogs(this);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // Clear out old log files
+                LoggingUtils.clearOldLogs(INaturalistApp.this, getDebugLogDayCount());
+                // Compress any uncompressed log files
+                LoggingUtils.compressDebugLogs(INaturalistApp.this);
+
+                Logger.tag(TAG).debug("Listing all files in getFilesDir: " + getFilesDir());
+                long total = listFilesRecursively(getFilesDir());
+                Logger.tag(TAG).debug("All files in getFilesDir: " + getFilesDir() + ": total: " + total);
+
+                Logger.tag(TAG).debug("Listing all files in getExternalCacheDir: " + getExternalCacheDir());
+                total = listFilesRecursively(getExternalCacheDir());
+                Logger.tag(TAG).debug("All files in getExternalCacheDir: " + getExternalCacheDir() + ": total: " + total);
+
+                Logger.tag(TAG).debug("Listing all files in getCacheDir: " + getCacheDir());
+                total = listFilesRecursively(getExternalCacheDir());
+                Logger.tag(TAG).debug("All files in getCacheDir: " + getExternalCacheDir() + ": total: " + total);
+            }
+        }).start();
 
         Logger.tag(TAG).debug("onCreate");
 
@@ -251,18 +269,6 @@ public class INaturalistApp extends MultiDexApplication {
         if (username != null) {
             setShownOnboarding(true);
         }
-
-        Logger.tag(TAG).debug("Listing all files in getFilesDir: " + getFilesDir());
-        long total = listFilesRecursively(getFilesDir());
-        Logger.tag(TAG).debug("All files in getFilesDir: " + getFilesDir() + ": total: " + total);
-
-        Logger.tag(TAG).debug("Listing all files in getExternalCacheDir: " + getExternalCacheDir());
-        total = listFilesRecursively(getExternalCacheDir());
-        Logger.tag(TAG).debug("All files in getExternalCacheDir: " + getExternalCacheDir() + ": total: " + total);
-
-        Logger.tag(TAG).debug("Listing all files in getCacheDir: " + getCacheDir());
-        total = listFilesRecursively(getExternalCacheDir());
-        Logger.tag(TAG).debug("All files in getCacheDir: " + getExternalCacheDir() + ": total: " + total);
     }
 
     private long listFilesRecursively(File root) {

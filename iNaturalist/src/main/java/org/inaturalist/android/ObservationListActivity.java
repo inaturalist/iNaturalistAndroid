@@ -363,6 +363,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         super.onCreate(savedInstanceState);
         sActivityCreated = true;
 
+        Logger.tag(TAG).debug("onCreate");
+
         Bridge.restoreInstanceState(this, savedInstanceState);
 
         setContentView(R.layout.observation_list);
@@ -1076,6 +1078,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         public Object instantiateItem(ViewGroup collection, int position) {
             LayoutInflater inflater = LayoutInflater.from(mContext);
             ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.observations_list_grid, collection, false);
+
+            Logger.tag(TAG).debug("instantiateItem - " + position);
 
             ((ViewGroup) layout.findViewById(R.id.loading_more_results)).setVisibility(View.GONE);
 
