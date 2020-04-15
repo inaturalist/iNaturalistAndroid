@@ -47,10 +47,12 @@ public class HtmlUtils {
     /** Formats HTML string onto the specified text view */
     public static void fromHtml(TextView textView, String html) {
         Context context = textView.getContext();
+        ActivityHelper helper = new ActivityHelper(context);
 
         TableTheme tableTheme = new TableTheme.Builder()
                 .tableBorderWidth(3)
-                .tableCellPadding(0)
+                .tableCellPadding((int)helper.dpToPx(6))
+                .tableOddRowBackgroundColor(Color.parseColor("#00ffffff"))
                 .build();
 
 
@@ -116,7 +118,7 @@ public class HtmlUtils {
         // Leaving this commented out in case it was doing something useful, but
         // it was also making it impossible to select text
         // textView.setFocusable(false);
-        textView.setText(finalHtmlText);
+        markwon.setParsedMarkdown(textView, finalHtmlText);
     }
 
     /** Used for displaying <img> tags */
