@@ -59,6 +59,8 @@ public class Observation implements BaseColumns, Serializable {
     public Integer last_identifications_count;
     public Boolean is_deleted;
     public String preferred_common_name;
+    public Boolean prefers_community_taxon;
+    public Boolean prefers_community_taxon_was;
 
     public SerializableJSONArray comments;
     public SerializableJSONArray identifications;
@@ -165,6 +167,7 @@ public class Observation implements BaseColumns, Serializable {
     public static final String SCIENTIFIC_NAME = "scientific_name";
     public static final String RANK_LEVEL = "rank_level";
     public static final String RANK = "rank";
+    public static final String PREFERS_COMMUNITY_TAXON = "prefers_community_taxon";
 
 
     public static final String[] PROJECTION = new String[] {
@@ -211,7 +214,8 @@ public class Observation implements BaseColumns, Serializable {
         Observation.OWNERS_IDENTIFICATION_FROM_VISION,
         Observation.SCIENTIFIC_NAME,
         Observation.RANK_LEVEL,
-        Observation.RANK
+        Observation.RANK,
+        Observation.PREFERS_COMMUNITY_TAXON,
     };
 
     static {
@@ -260,6 +264,7 @@ public class Observation implements BaseColumns, Serializable {
         PROJECTION_MAP.put(Observation.LAST_IDENTIFICATIONS_COUNT, Observation.LAST_IDENTIFICATIONS_COUNT);
         PROJECTION_MAP.put(Observation.LAST_COMMENTS_COUNT, Observation.LAST_COMMENTS_COUNT);
         PROJECTION_MAP.put(Observation.IS_DELETED, Observation.IS_DELETED);
+        PROJECTION_MAP.put(Observation.PREFERS_COMMUNITY_TAXON, Observation.PREFERS_COMMUNITY_TAXON);
     }
 
     public Observation() {}
@@ -340,6 +345,9 @@ public class Observation implements BaseColumns, Serializable {
         this.user_login_was = this.user_login;
         this.is_deleted = bc.getBoolean(IS_DELETED);
         this.is_deleted_was = this.is_deleted;
+        Object value = bc.get(PREFERS_COMMUNITY_TAXON);
+        this.prefers_community_taxon = value == null ? null : Boolean.valueOf((String)value);
+        this.prefers_community_taxon_was = this.prefers_community_taxon;
 
         this.comments_count = bc.getInteger(COMMENTS_COUNT);
         this.identifications_count = bc.getInteger(IDENTIFICATIONS_COUNT);
@@ -416,6 +424,9 @@ public class Observation implements BaseColumns, Serializable {
         this.user_login = o.getString("user_login");
         this.user_login_was = this.user_login;
         this.is_deleted_was = this.is_deleted;
+        JSONObject preferences = o.getJSONObject("preferences");
+        this.prefers_community_taxon = preferences.isNull("prefers_community_taxon") ? null : preferences.optBoolean("prefers_community_taxon");
+        this.prefers_community_taxon_was = this.prefers_community_taxon;
 
         this.comments = o.getJSONArray("comments");
         this.identifications = o.getJSONArray("identifications");
@@ -600,6 +611,7 @@ public class Observation implements BaseColumns, Serializable {
         bo.put("user_login", user_login);
         bo.put("identifications_count", identifications_count);
         bo.put("comment_count", comments_count);
+        bo.put("prefers_community_taxon", prefers_community_taxon);
 
         return bo.getJSONObject();
     }
@@ -793,6 +805,7 @@ public class Observation implements BaseColumns, Serializable {
         cv.put(LAST_COMMENTS_COUNT, last_comments_count);
         cv.put(LAST_IDENTIFICATIONS_COUNT, last_identifications_count);
         cv.put(IS_DELETED, is_deleted);
+        cv.put(PREFERS_COMMUNITY_TAXON, (String)(prefers_community_taxon == null ? null : prefers_community_taxon.toString()));
 
         return cv;
     }
@@ -869,6 +882,7 @@ public class Observation implements BaseColumns, Serializable {
                 + "activity_viewed_at INTEGER,"
                 + "last_activity_at INTEGER,"
                 + "is_deleted INTEGER,"
+                + "prefers_community_taxon TEXT DEFAULT NULL,"
                 + "owners_identification_from_vision INTEGER,"
                 + "scientific_name TEXT,"
                 + "rank_level INTEGER,"
@@ -909,6 +923,7 @@ public class Observation implements BaseColumns, Serializable {
     public boolean user_id_changed() { return !String.valueOf(user_id).equals(String.valueOf(user_id_was)); }
     public boolean user_login_changed() { return !String.valueOf(user_login).equals(String.valueOf(user_login_was)); }
     public boolean is_deleted_changed() { return is_deleted != is_deleted_was; }
+    public boolean prefers_community_taxon_changed() { return prefers_community_taxon != prefers_community_taxon_was; }
 
 
     public boolean isDirty() {
@@ -945,6 +960,7 @@ public class Observation implements BaseColumns, Serializable {
         if (user_id_changed()) { return true; }
         if (user_login_changed()) { return true; }
         if (is_deleted_changed()) { return true; }
+        if (prefers_community_taxon_changed()) { return true; }
 
         return false;
     }

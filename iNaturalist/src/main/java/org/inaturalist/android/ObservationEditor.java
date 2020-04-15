@@ -251,6 +251,7 @@ public class ObservationEditor extends AppCompatActivity {
     private BottomSheetDialog mBottomSheetDialog;
     private View mTakePhotoButton;
     private View mPhotoWarningContainer;
+    private Menu mMenu;
 
     @Override
 	protected void onStop()
@@ -277,7 +278,19 @@ public class ObservationEditor extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
 
+        mMenu = menu;
         inflater.inflate(R.menu.observation_editor_menu, menu);
+
+        if (mObservation != null) {
+            if ((mObservation.prefers_community_taxon == null) || (mObservation.prefers_community_taxon == true)) {
+                mMenu.getItem(2).setTitle(R.string.opt_out_of_community_taxon);
+            } else {
+                mMenu.getItem(2).setTitle(R.string.opt_in_to_community_taxon);
+            }
+
+            mMenu.getItem(2).setEnabled(mApp.isNetworkAvailable());
+        }
+
 
         return true;
     }
@@ -1315,6 +1328,24 @@ public class ObservationEditor extends AppCompatActivity {
                         },
                         null);
                 return true;
+
+            case R.id.prefers_community_taxon:
+                if ((mObservation.prefers_community_taxon == null) || (mObservation.prefers_community_taxon == true)) {
+                    confirm(ObservationEditor.this, R.string.opt_out_of_community_taxon, R.string.opt_out_message,
+                            R.string.ok, R.string.cancel,
+                            new Runnable() {
+                                public void run() {
+                                    mObservation.prefers_community_taxon = false;
+                                    mMenu.getItem(2).setTitle(R.string.opt_in_to_community_taxon);
+                                }
+                            },
+                            null);
+                } else {
+                    mObservation.prefers_community_taxon = true;
+                    mMenu.getItem(2).setTitle(R.string.opt_out_of_community_taxon);
+                }
+
+                return true;
         }
         return true;
     }
@@ -1540,6 +1571,16 @@ public class ObservationEditor extends AppCompatActivity {
 
     private void observationToUi() {
         List<String> values = Arrays.asList(getResources().getStringArray(R.array.geoprivacy_values));
+
+        if (mMenu != null) {
+            if ((mObservation.prefers_community_taxon == null) || (mObservation.prefers_community_taxon == true)) {
+                mMenu.getItem(2).setTitle(R.string.opt_out_of_community_taxon);
+            } else {
+                mMenu.getItem(2).setTitle(R.string.opt_in_to_community_taxon);
+            }
+
+            mMenu.getItem(2).setEnabled(mApp.isNetworkAvailable());
+        }
 
         if (mObservation.geoprivacy != null) {
             int index = values.indexOf(mObservation.geoprivacy);

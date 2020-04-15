@@ -835,5 +835,8 @@
     <string name="warning_multiple_photos">If you\'re adding photos of different kinds of organisms to this observation, or the same kind at different places or times, you should remove those photos and add them as separate observations. An observation can only have %1$d photos.</string>
     <string name="choosing_specific_language_warning">Choosing a specific language for your account requires an Internet connection</string>
     <string name="running_in_background_notfication">Running in the background so we can run without interruption</string>
+    <string name="opt_out_of_community_taxon">Opt out of the Community Taxon</string>
+    <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
+    <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
 </resources>
 

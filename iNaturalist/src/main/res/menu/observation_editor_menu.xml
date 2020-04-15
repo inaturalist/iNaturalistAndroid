@@ -10,4 +10,8 @@
         android:id="@+id/delete_observation"
         android:title="@string/delete"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/prefers_community_taxon"
+        android:title="@string/opt_out_of_community_taxon"
+        app:showAsAction="never" />
 </menu>
