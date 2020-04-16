@@ -19,6 +19,7 @@ import com.drew.metadata.Metadata;
 import com.drew.metadata.exif.GpsDirectory;
 import com.evernote.android.state.State;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.livefront.bridge.Bridge;
@@ -154,7 +155,6 @@ public class ObservationEditor extends AppCompatActivity {
     private EditText mSpeciesGuessTextView;
     private TextView mSpeciesGuessSub;
     private TextView mDescriptionTextView;
-    private TextView mSaveButton;
     private TextView mObservedOnStringTextView;
     private TextView mObservedOnButton;
     private TextView mTimeObservedAtButton;
@@ -182,7 +182,7 @@ public class ObservationEditor extends AppCompatActivity {
     private TaxonReceiver mTaxonReceiver;
 
     private ActionBar mTopActionBar;
-    private ImageButton mDeleteButton;
+    private ImageView mDeleteButton;
     private ImageButton mViewOnInat;
     private TableLayout mProjectFieldsTable;
 
@@ -252,6 +252,7 @@ public class ObservationEditor extends AppCompatActivity {
     private View mTakePhotoButton;
     private View mPhotoWarningContainer;
     private Menu mMenu;
+    private ImageView mBottomTakePhoto;
 
     @Override
 	protected void onStop()
@@ -283,12 +284,12 @@ public class ObservationEditor extends AppCompatActivity {
 
         if (mObservation != null) {
             if ((mObservation.prefers_community_taxon == null) || (mObservation.prefers_community_taxon == true)) {
-                mMenu.getItem(2).setTitle(R.string.opt_out_of_community_taxon);
+                mMenu.getItem(0).setTitle(R.string.opt_out_of_community_taxon);
             } else {
-                mMenu.getItem(2).setTitle(R.string.opt_in_to_community_taxon);
+                mMenu.getItem(0).setTitle(R.string.opt_in_to_community_taxon);
             }
 
-            mMenu.getItem(2).setEnabled(mApp.isNetworkAvailable());
+            mMenu.getItem(0).setEnabled(mApp.isNetworkAvailable());
         }
 
 
@@ -556,7 +557,6 @@ public class ObservationEditor extends AppCompatActivity {
             }
         });
 
-        mSaveButton = (TextView) findViewById(R.id.save_observation);
         mObservedOnButton = (TextView) findViewById(R.id.observed_on);
         mObservedOnStringTextView = (TextView) findViewById(R.id.observed_on_string);
         mTimeObservedAtButton = (TextView) findViewById(R.id.time_observed_at);
@@ -569,7 +569,130 @@ public class ObservationEditor extends AppCompatActivity {
         mLocationProgressView = (ProgressBar) findViewById(R.id.locationProgress);
         mLocationRefreshButton = (View) findViewById(R.id.locationRefreshButton);
         mTopActionBar = getSupportActionBar();
-        mDeleteButton = (ImageButton) findViewById(R.id.delete_observation);
+        mDeleteButton = findViewById(R.id.delete_observation);
+
+        mDeleteButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Display a confirmation dialog
+                confirm(ObservationEditor.this, R.string.delete_observation, R.string.delete_confirmation,
+                        R.string.yes, R.string.no,
+                        new Runnable() {
+                            public void run() {
+                                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_DELETE);
+
+                                delete((mObservation == null) || (mObservation.id == null));
+                                Toast.makeText(ObservationEditor.this, R.string.observation_deleted, Toast.LENGTH_SHORT).show();
+
+                                setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_DELETED);
+
+                                // Update cached obs count
+                                SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = prefs.edit();
+                                editor.putInt("observation_count", prefs.getInt("observation_count", 0) - 1);
+                                editor.commit();
+
+                                finish();
+                            }
+                        },
+                        null);
+            }
+        });
+
+        FloatingActionButton saveObs = findViewById(R.id.save_observation);
+        saveObs.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (hasNoCoords()) {
+                    // Confirm with the user that he's about to save an observation with no coordinates
+                    confirm(ObservationEditor.this, R.string.save_observation, R.string.are_you_sure_you_want_to_save_obs_without_coords,
+                            R.string.yes, R.string.no,
+                            new Runnable() {
+                                @Override
+                                public void run() {
+                                    uiToProjectFieldValues();
+                                    if (save()) {
+                                        if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
+                                            // New observation - Update cached obs count
+                                            JSONObject params = new JSONObject();
+                                            try {
+                                                params.put(AnalyticsClient.EVENT_PARAM_ONLINE_REACHABILITY, mApp.isNetworkAvailable() ? AnalyticsClient.EVENT_PARAM_VALUE_YES : AnalyticsClient.EVENT_PARAM_VALUE_NO);
+                                                params.put(AnalyticsClient.EVENT_PARAM_FROM_VISION_SUGGESTION, mFromSuggestion);
+                                            } catch (JSONException e) {
+                                                Logger.tag(TAG).error(e);
+                                            }
+                                            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_SAVE, params);
+
+                                            SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = prefs.edit();
+                                            editor.putInt("observation_count", prefs.getInt("observation_count", 0) + 1);
+                                            editor.commit();
+                                        }
+                                        if (mSharePhotos != null) {
+                                            returnToObsList();
+                                        }
+
+                                        setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_REFRESH_OBS);
+                                        finish();
+                                    }
+                                }
+                            }, null);
+
+                    return;
+                }
+
+                uiToProjectFieldValues();
+                if (save()) {
+                    if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
+                        // New observation - Update cached obs count
+                        JSONObject params = new JSONObject();
+                        try {
+                            params.put(AnalyticsClient.EVENT_PARAM_ONLINE_REACHABILITY, mApp.isNetworkAvailable() ? AnalyticsClient.EVENT_PARAM_VALUE_YES : AnalyticsClient.EVENT_PARAM_VALUE_NO);
+                            params.put(AnalyticsClient.EVENT_PARAM_FROM_VISION_SUGGESTION, mFromSuggestion);
+                        } catch (JSONException e) {
+                            Logger.tag(TAG).error(e);
+                        }
+                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_SAVE, params);
+
+                        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putInt("observation_count", prefs.getInt("observation_count", 0) + 1);
+                        editor.commit();
+                    }
+
+
+                    if (mSharePhotos != null) {
+                        returnToObsList();
+                    }
+
+                    setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_REFRESH_OBS);
+                    finish();
+                }
+            }
+        });
+
+        mBottomTakePhoto = findViewById(R.id.take_photo_bottom);
+        mBottomTakePhoto.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mImageCursor.getCount() >= MAX_PHOTOS_PER_OBSERVATION) {
+                    mHelper.alert(getString(R.string.error),
+                            String.format(getString(R.string.no_more_photos_allowed),
+                                    MAX_PHOTOS_PER_OBSERVATION));
+                } else {
+                    openImageIntent(ObservationEditor.this, true, false);
+                }
+            }
+        });
+
+        ImageView bottomRecordSound = findViewById(R.id.record_sound);
+        bottomRecordSound.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openImageIntent(ObservationEditor.this, false, true);
+            }
+        });
+
         mViewOnInat = (ImageButton) findViewById(R.id.view_on_inat);
         mProjectSelector = (TextView) findViewById(R.id.select_projects);
         mProjectCount = (TextView) findViewById(R.id.project_count);
@@ -702,7 +825,7 @@ public class ObservationEditor extends AppCompatActivity {
                             String.format(getString(R.string.no_more_photos_allowed),
                                     MAX_PHOTOS_PER_OBSERVATION));
                 } else {
-                    openImageIntent(ObservationEditor.this);
+                    openImageIntent(ObservationEditor.this, false, false);
                 }
             }
         });
@@ -1236,98 +1359,6 @@ public class ObservationEditor extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 return onBack();
-            case R.id.save_observation:
-                if (hasNoCoords()) {
-                    // Confirm with the user that he's about to save an observation with no coordinates
-                    confirm(ObservationEditor.this, R.string.save_observation, R.string.are_you_sure_you_want_to_save_obs_without_coords,
-                            R.string.yes, R.string.no,
-                            new Runnable() {
-                                @Override
-                                public void run() {
-                                    uiToProjectFieldValues();
-                                    if (save()) {
-                                        if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
-                                            // New observation - Update cached obs count
-                                            JSONObject params = new JSONObject();
-                                            try {
-                                                params.put(AnalyticsClient.EVENT_PARAM_ONLINE_REACHABILITY, mApp.isNetworkAvailable() ? AnalyticsClient.EVENT_PARAM_VALUE_YES : AnalyticsClient.EVENT_PARAM_VALUE_NO);
-                                                params.put(AnalyticsClient.EVENT_PARAM_FROM_VISION_SUGGESTION, mFromSuggestion);
-                                            } catch (JSONException e) {
-                                                Logger.tag(TAG).error(e);
-                                            }
-                                            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_SAVE, params);
-
-                                            SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
-                                            SharedPreferences.Editor editor = prefs.edit();
-                                            editor.putInt("observation_count", prefs.getInt("observation_count", 0) + 1);
-                                            editor.commit();
-                                        }
-                                        if (mSharePhotos != null) {
-                                            returnToObsList();
-                                        }
-
-                                        setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_REFRESH_OBS);
-                                        finish();
-                                    }
-                                }
-                            }, null);
-
-                    return true;
-                }
-
-                uiToProjectFieldValues();
-                if (save()) {
-                    if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
-                        // New observation - Update cached obs count
-                        JSONObject params = new JSONObject();
-                        try {
-                            params.put(AnalyticsClient.EVENT_PARAM_ONLINE_REACHABILITY, mApp.isNetworkAvailable() ? AnalyticsClient.EVENT_PARAM_VALUE_YES : AnalyticsClient.EVENT_PARAM_VALUE_NO);
-                            params.put(AnalyticsClient.EVENT_PARAM_FROM_VISION_SUGGESTION, mFromSuggestion);
-                        } catch (JSONException e) {
-                            Logger.tag(TAG).error(e);
-                        }
-                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_SAVE, params);
-
-                        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = prefs.edit();
-                        editor.putInt("observation_count", prefs.getInt("observation_count", 0) + 1);
-                        editor.commit();
-                    }
-
-
-                    if (mSharePhotos != null) {
-                        returnToObsList();
-                    }
-
-                    setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_REFRESH_OBS);
-                    finish();
-                }
-                return true;
-            case R.id.delete_observation:
-                // Display a confirmation dialog
-                confirm(ObservationEditor.this, R.string.delete_observation, R.string.delete_confirmation,
-                        R.string.yes, R.string.no,
-                        new Runnable() {
-                            public void run() {
-
-                                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_DELETE);
-
-                                delete((mObservation == null) || (mObservation.id == null));
-                                Toast.makeText(ObservationEditor.this, R.string.observation_deleted, Toast.LENGTH_SHORT).show();
-
-                                setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_DELETED);
-
-                                // Update cached obs count
-                                SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
-                                SharedPreferences.Editor editor = prefs.edit();
-                                editor.putInt("observation_count", prefs.getInt("observation_count", 0) - 1);
-                                editor.commit();
-
-                                finish();
-                            }
-                        },
-                        null);
-                return true;
 
             case R.id.prefers_community_taxon:
                 if ((mObservation.prefers_community_taxon == null) || (mObservation.prefers_community_taxon == true)) {
@@ -1336,13 +1367,13 @@ public class ObservationEditor extends AppCompatActivity {
                             new Runnable() {
                                 public void run() {
                                     mObservation.prefers_community_taxon = false;
-                                    mMenu.getItem(2).setTitle(R.string.opt_in_to_community_taxon);
+                                    mMenu.getItem(0).setTitle(R.string.opt_in_to_community_taxon);
                                 }
                             },
                             null);
                 } else {
                     mObservation.prefers_community_taxon = true;
-                    mMenu.getItem(2).setTitle(R.string.opt_out_of_community_taxon);
+                    mMenu.getItem(0).setTitle(R.string.opt_out_of_community_taxon);
                 }
 
                 return true;
@@ -1574,12 +1605,12 @@ public class ObservationEditor extends AppCompatActivity {
 
         if (mMenu != null) {
             if ((mObservation.prefers_community_taxon == null) || (mObservation.prefers_community_taxon == true)) {
-                mMenu.getItem(2).setTitle(R.string.opt_out_of_community_taxon);
+                mMenu.getItem(0).setTitle(R.string.opt_out_of_community_taxon);
             } else {
-                mMenu.getItem(2).setTitle(R.string.opt_in_to_community_taxon);
+                mMenu.getItem(0).setTitle(R.string.opt_in_to_community_taxon);
             }
 
-            mMenu.getItem(2).setEnabled(mApp.isNetworkAvailable());
+            mMenu.getItem(0).setEnabled(mApp.isNetworkAvailable());
         }
 
         if (mObservation.geoprivacy != null) {
@@ -3445,8 +3476,10 @@ public class ObservationEditor extends AppCompatActivity {
 
         if (mImageCursor.getCount() >= MAX_PHOTOS_PER_OBSERVATION) {
             mTakePhotoButton.setAlpha(0.1f);
+            mBottomTakePhoto.setAlpha(0.1f);
         } else {
             mTakePhotoButton.setAlpha(1.0f);
+            mBottomTakePhoto.setAlpha(1.0f);
         }
 
         if (mImageCursor.getCount() >= PHOTO_COUNT_WARNING) {
@@ -3801,7 +3834,7 @@ public class ObservationEditor extends AppCompatActivity {
     }	
 
     
-    private void openImageIntent(final Activity activity) {
+    private void openImageIntent(final Activity activity, boolean photoOnly, boolean soundOnly) {
         mBottomSheetDialog = new ExpandedBottomSheetDialog(this);
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -3850,6 +3883,15 @@ public class ObservationEditor extends AppCompatActivity {
 
         View noMedia = sheetView.findViewById(R.id.no_media_container);
         noMedia.setVisibility(View.GONE);
+
+        if (photoOnly) {
+            sheetView.findViewById(R.id.record_sound_container).setVisibility(View.GONE);
+            sheetView.findViewById(R.id.choose_sound_container).setVisibility(View.GONE);
+        }
+        if (soundOnly) {
+            sheetView.findViewById(R.id.take_photo_container).setVisibility(View.GONE);
+            sheetView.findViewById(R.id.choose_image_container).setVisibility(View.GONE);
+        }
     }
 
 

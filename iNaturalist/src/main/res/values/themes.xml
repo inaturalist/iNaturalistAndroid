@@ -38,7 +38,7 @@
 
   <style name="iNatAppTheme" parent="@style/_iNatAppTheme"/>
 
-    <style name="_iNatAppTheme" parent="@style/Theme.AppCompat.Light">
+    <style name="_iNatAppTheme" parent="Theme.MaterialComponents.Light.Bridge">
         <!--<item name="switchStyle">@style/Widget.Holo.Light.CompoundButton.Switch</item>-->
         <!-- <item name="android:typeface">monospace</item> -->
 

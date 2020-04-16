@@ -10,7 +10,7 @@
         <item name="android:src">@drawable/ic_more_vert_black_24dp</item>
     </style>
 
-    <style name="_iNatAppTheme" parent="@style/Theme.AppCompat.Light">
+    <style name="_iNatAppTheme" parent="Theme.MaterialComponents.Light.Bridge">
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 
         <item name="android:windowContentTransitions">true</item>
