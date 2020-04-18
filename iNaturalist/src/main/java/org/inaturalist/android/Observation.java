@@ -425,7 +425,7 @@ public class Observation implements BaseColumns, Serializable {
         this.user_login_was = this.user_login;
         this.is_deleted_was = this.is_deleted;
         JSONObject preferences = o.getJSONObject("preferences");
-        this.prefers_community_taxon = preferences.isNull("prefers_community_taxon") ? null : preferences.optBoolean("prefers_community_taxon");
+        this.prefers_community_taxon = (preferences == null) || (preferences.isNull("prefers_community_taxon")) ? null : preferences.optBoolean("prefers_community_taxon");
         this.prefers_community_taxon_was = this.prefers_community_taxon;
 
         this.comments = o.getJSONArray("comments");
