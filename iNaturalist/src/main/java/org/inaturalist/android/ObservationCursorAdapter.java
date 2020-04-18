@@ -689,7 +689,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         }
 
         if (!syncNeeded) {
-            // See if it's an existing observation with a new photo
+            // See if it's an existing observation with a new photo or an updated photo
 
             Cursor opc = mContext.getContentResolver().query(ObservationPhoto.CONTENT_URI,
                     new String[]{
@@ -700,7 +700,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                             ObservationPhoto._UPDATED_AT,
                             ObservationPhoto._SYNCED_AT
                     },
-                    "_observation_id = ? AND photo_url IS NULL AND _synced_at IS NULL",
+                    "(_observation_id = ?) AND ((photo_url IS NULL AND _synced_at IS NULL) OR (_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL))",
                     new String[] { String.valueOf(obsId) },
                     ObservationPhoto._ID);
             if (opc.getCount() > 0) {

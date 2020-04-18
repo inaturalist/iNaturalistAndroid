@@ -299,7 +299,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         Cursor opc = getContentResolver().query(ObservationPhoto.CONTENT_URI,
         		ObservationPhoto.PROJECTION,
             "((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NULL)) OR " +
-            "((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NOT NULL) AND (_updated_at > _synced_at)) OR " +
+            "((_updated_at IS NOT NULL) AND (_synced_at IS NOT NULL) AND (_updated_at > _synced_at)) OR " +
             "(is_deleted = 1)",
             null, 
             ObservationPhoto._ID);
