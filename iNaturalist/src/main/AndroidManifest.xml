@@ -329,6 +329,17 @@
             </intent-filter>
         </activity-alias>
         <activity-alias
+            android:name=".ObservationListActivity.inaturalistfi"
+            android:targetActivity=".ObservationListActivity"
+            android:configChanges="orientation"
+            android:enabled="false"
+            android:label="@string/network_inaturalistfi">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
             android:name=".ObservationListActivity.inaturalistil"
             android:targetActivity=".ObservationListActivity"
             android:configChanges="orientation"
