@@ -55,16 +55,69 @@ def import_crowdin_for_android(zip_path, options={}):
     if locale == "he":
       for new_android_locale in ["iw", "iw-rIL", "he-rIL"]:
         copy_to_android_locale(src, new_android_locale, options)
+    elif android_locale == "sv-rSE":
+      copy_to_android_locale(src, "sv", options)
+
+def validate_translation(path, key, text, en_string, errors, warnings, options={}):
+  if options.debug:
+    print("\tkey:         {}".format(key))
+    print("\ten_string:   {}".format(en_string))
+    print("\ttranslation: {}".format(text))
+  # Ensure all variables in the English string are in the translation
+  for match in re.finditer(ANDROID_FORMAT_PATTERN, en_string):
+    translation_mismatch = None
+    number_of_usages = 0
+    for tm in re.finditer(ANDROID_FORMAT_PATTERN, text):
+      indexes_match = tm.group("argument_index") == match.group("argument_index")
+      conversions_match = tm.group("conversion") == match.group("conversion")
+      if indexes_match:
+        number_of_usages += 1
+      if indexes_match and not conversions_match:
+        translation_mismatch = tm
+    # if variable missing in node.text:
+    if translation_mismatch or number_of_usages == 0:
+      if key not in errors[path]:
+        errors[path][key] = []
+      errors[path][key].append("Missing variable {}".format(match.group(0)))
+      if options.debug:
+        print("\t\t{}".format(errors[path][key][-1]))
+    # if too many usages
+    if number_of_usages > 1:
+      if key not in warnings[path]:
+        warnings[path][key] = []
+      warnings[path][key].append("Too many usages of {}".format(match.group(0)))
+      if options.debug:
+        print("\t\t{}".format(warnings[path][key][-1]))
+  # Warn about variables that are no longer present in English
+  if text:
+    en_indexes = [m.group("argument_index") for m in re.finditer(ANDROID_FORMAT_PATTERN, en_string)]
+    for match in re.finditer(ANDROID_FORMAT_PATTERN, text):
+      if match.group("argument_index") not in en_indexes:
+        if key not in errors[path]:
+          errors[path][key] = []
+        errors[path][key].append("Extraneous variable {}".format(tm.group(0)))
+        if options.debug:
+          print("\t\t{}".format(errors[path][key][-1]))
+  # if unescaped single quotes
+  if text and re.search(r"[^\\]'", text):
+    if key not in errors[path]:
+      errors[path][key] = []
+    errors[path][key].append("Unescaped single quote")
+    if options.debug:
+      print("\t\t{}".format(errors[path][key][-1]))
 
 def validate_android_translations(options={}):
   # Build the English reference dicts
   en_tree = ET.parse("iNaturalist/src/main/res/values/strings.xml")
   en_strings = {}
   en_string_arrays = {}
+  en_string_plurals = {}
   for node in en_tree.findall("string"):
     en_strings[node.get("name")] = node.text
   for node in en_tree.findall("string-array"):
     en_string_arrays[node.get("name")] = [child.text for child in node]
+  for node in en_tree.findall("plurals"):
+    en_string_plurals[node.get("name")] = {child.get("quantity"): child.text for child in node}
   # Compile validation errors
   errors = {}
   warnings = {}
@@ -78,57 +131,33 @@ def validate_android_translations(options={}):
     tree = ET.parse(path)
     for node in tree.findall("string"):
       key = node.get("name")
+      text = node.text
       if options.key and options.key not in key:
         continue
       if key not in en_strings:
         continue
       en_string = en_strings[key]
-      if options.debug:
-        print("\tkey:         {}".format(key))
-        print("\ten_string:   {}".format(en_string))
-        print("\ttranslation: {}".format(node.text))
-      # Ensure all variables in the English string are in the translation
-      for match in re.finditer(ANDROID_FORMAT_PATTERN, en_string):
-        translation_mismatch = None
-        number_of_usages = 0
-        for tm in re.finditer(ANDROID_FORMAT_PATTERN, node.text):
-          indexes_match = tm.group("argument_index") == match.group("argument_index")
-          conversions_match = tm.group("conversion") == match.group("conversion")
-          if indexes_match:
-            number_of_usages += 1
-          if indexes_match and not conversions_match:
-            translation_mismatch = tm
-        # if variable missing in node.text:
-        if translation_mismatch or number_of_usages == 0:
-          if key not in errors[path]:
-            errors[path][key] = []
-          errors[path][key].append("Missing variable {}".format(match.group(0)))
-          if options.debug:
-            print("\t\t{}".format(errors[path][key][-1]))
-        # if too many usages
-        if number_of_usages > 1:
-          if key not in warnings[path]:
-            warnings[path][key] = []
-          warnings[path][key].append("Too many usages of {}".format(match.group(0)))
-          if options.debug:
-            print("\t\t{}".format(warnings[path][key][-1]))
-      # Warn about variables that are no longer present in English
-      if node.text:
-        en_indexes = [m.group("argument_index") for m in re.finditer(ANDROID_FORMAT_PATTERN, en_string)]
-        for match in re.finditer(ANDROID_FORMAT_PATTERN, node.text):
-          if match.group("argument_index") not in en_indexes:
-            if key not in errors[path]:
-              errors[path][key] = []
-            errors[path][key].append("Extraneous variable {}".format(tm.group(0)))
-            if options.debug:
-              print("\t\t{}".format(errors[path][key][-1]))
-      # if unescaped single quotes
-      if node.text and re.search(r"[^\\]'", node.text):
-        if key not in errors[path]:
-          errors[path][key] = []
-        errors[path][key].append("Unescaped single quote")
-        if options.debug:
-          print("\t\t{}".format(errors[path][key][-1]))
+      validate_translation(path, key, text, en_string, errors, warnings, options)
+    for string_array in tree.findall("string-array"):
+      key = string_array.get("name")
+      if options.key and options.key not in key:
+        continue
+      if key not in en_string_arrays:
+        continue
+      for idx, item in enumerate(string_array):
+        en_string = en_string_arrays[key][idx]
+        if item.text:
+          validate_translation(path, "{}.{}".format(key, idx), item.text, en_string, errors, warnings, options)
+    for plural in tree.findall("plurals"):
+      key = plural.get("name")
+      if options.key and options.key not in key:
+        continue
+      if key not in en_string_plurals:
+        continue
+      for item in plural:
+        item_key = item.get("quantity")
+        en_string = en_string_plurals[key][item_key]
+        validate_translation(path, "{}.{}".format(key, item_key), item.text, en_string, errors, warnings, options)
 
   # Print validation errors
   for path in glob("iNaturalist/src/main/res/values-*/strings.xml"):
