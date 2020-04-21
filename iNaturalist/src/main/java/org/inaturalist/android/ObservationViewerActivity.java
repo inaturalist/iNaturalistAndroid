@@ -1580,6 +1580,10 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         int dataQuality = DATA_QUALITY_CASUAL_GRADE;
         int reasonText = 0;
 
+        if (mObservation == null) {
+            return;
+        }
+
         Logger.tag(TAG).debug("refreshDataQuality: " + mObservation.id);
 
         if (((mObservation.latitude == null) && (mObservation.longitude == null)) && ((mObservation.private_latitude == null) && (mObservation.private_longitude == null))) {
