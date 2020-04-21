@@ -225,7 +225,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
                 for (int i = 0; i < mReplacedPhotos.size(); i++) {
                     Pair<Uri, Long> pair = mReplacedPhotos.get(i);
-                    if (pair.second == mCurrentPhotoIndex) {
+                    if ((pair.second == mCurrentPhotoIndex) && (mCurrentPhotoIndex < mReplacedPhotos.size())) {
                         // User already edited this photo before - just replace the edit
                         mReplacedPhotos.set(mCurrentPhotoIndex, new Pair<Uri, Long>(uri, Long.valueOf(mCurrentPhotoIndex)));
                         return;
