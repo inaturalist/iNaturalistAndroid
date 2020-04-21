@@ -1642,7 +1642,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
             String username = extras.getString(INaturalistService.USERNAME);
 
-            if (!username.equals(mApp.currentUserLogin())) {
+            if ((username == null) || (mApp.currentUserLogin() == null) || !username.equals(mApp.currentUserLogin())) {
                 // Results returned for another user
                 return;
             }
