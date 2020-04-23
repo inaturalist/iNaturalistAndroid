@@ -5309,6 +5309,10 @@ public class INaturalistService extends IntentService {
             JSONArray results = null;
             try {
                 results = json.getJSONObject(0).getJSONArray("results");
+
+                int totalObsCount = json.getJSONObject(0).getInt("total_results");
+                SharedPreferences settings = mApp.getPrefs();
+                settings.edit().putInt("observation_count", totalObsCount).commit();
             } catch (JSONException e) {
                 Logger.tag(TAG).error(e);
                 return false;
