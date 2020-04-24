@@ -1071,6 +1071,7 @@ public class INaturalistApp extends MultiDexApplication {
     private void requestPermissions(final Activity activity, final String[] permissions, OnRequestPermissionResult cb) {
         for (String permission: permissions) {
             mPermissionsCbByPermissionName.put(permission, cb);
+            mPrefs.edit().putBoolean(permission, true).commit();
         }
 
         // Run on a background thread, not to block / mess up the UI thread
@@ -1115,23 +1116,31 @@ public class INaturalistApp extends MultiDexApplication {
 
 
     public boolean isCameraPermissionGranted() {
-        return (PermissionChecker.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED);
+        return (PermissionChecker.checkSelfPermission(this, Manifest.permission.CAMERA) == PermissionChecker.PERMISSION_GRANTED);
     }
 
 
     public boolean isLocationPermissionGranted() {
         return (
-                (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) &&
-                        (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+                (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PermissionChecker.PERMISSION_GRANTED) &&
+                        (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PermissionChecker.PERMISSION_GRANTED)
+        );
+    }
+
+    public boolean isPermissionPermanentlyDenied(Activity activity, String permission) {
+        return (
+                (PermissionChecker.checkSelfPermission(this, permission) != PermissionChecker.PERMISSION_GRANTED) &&
+                (!ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) &&
+                (mPrefs.getBoolean(permission, false))
         );
     }
 
     public boolean isExternalStoragePermissionGranted() {
-        return (PermissionChecker.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+        return (PermissionChecker.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_GRANTED);
     }
 
     public boolean isAudioRecordingPermissionGranted() {
-        return (PermissionChecker.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED);
+        return (PermissionChecker.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PermissionChecker.PERMISSION_GRANTED);
     }
 
 }

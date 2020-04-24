@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.tinylog.Logger;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -24,12 +25,14 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.PermissionChecker;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -194,7 +197,24 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         mObservationsMapMyLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!mApp.isLocationPermissionGranted()) {
+                if (mApp.isPermissionPermanentlyDenied(LocationChooserActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                    // User permanently denied location permissions - we cannot show the Android OS location permissions dialog again
+                    mHelper.confirm(R.string.permission_required, R.string.to_access_your_location, R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+
+                            // Open the app's settings screen, so the user can enable the location permission
+                            Intent intent = new Intent();
+                            intent.setAction(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                            Uri uri = Uri.fromParts("package", getPackageName(), null);
+                            intent.setData(uri);
+                            startActivity(intent);
+                        }
+                    });
+
+                    return;
+                } else if (!mApp.isLocationPermissionGranted()) {
                     if (!mAskedForLocationPermission) {
                         mAskedForLocationPermission = true;
                         mApp.requestLocationPermission(LocationChooserActivity.this, new INaturalistApp.OnRequestPermissionResult() {

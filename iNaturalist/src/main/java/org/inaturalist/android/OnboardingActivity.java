@@ -13,6 +13,8 @@ import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.PermissionChecker;
+
 import android.text.Html;
 import android.view.View;
 import android.view.Window;
@@ -170,7 +172,7 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
                 }
 
                 if ((Build.VERSION.SDK_INT < Build.VERSION_CODES.O) &&
-                    (ContextCompat.checkSelfPermission(OnboardingActivity.this, android.Manifest.permission.GET_ACCOUNTS) != PackageManager.PERMISSION_GRANTED)) {
+                    (ContextCompat.checkSelfPermission(OnboardingActivity.this, android.Manifest.permission.GET_ACCOUNTS) != PermissionChecker.PERMISSION_GRANTED)) {
                     mHelper.confirm(R.string.just_so_you_know, R.string.ask_for_g_plus_permissions, R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -195,7 +197,7 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == PERMISSIONS_REQUEST) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (grantResults.length > 0 && grantResults[0] == PermissionChecker.PERMISSION_GRANTED) {
                 mSignInTask.signIn(INaturalistService.LoginType.GOOGLE, null, null);
             }
         }

@@ -428,7 +428,7 @@ public class ExploreSearchActivity extends AppCompatActivity {
                 // Show location search history
                 mResults = loadPlaceSearchHistory();
 
-                if (isLocationPermissionGranted()) {
+                if (mApp.isLocationPermissionGranted()) {
                     // Always add a "My location" result to the beginning of the search history
                     mResults.add(0, getMyLocationResult());
                 }
@@ -633,13 +633,6 @@ public class ExploreSearchActivity extends AppCompatActivity {
             Logger.tag(TAG).error(e);
             return null;
         }
-    }
-
-    private boolean isLocationPermissionGranted() {
-        return (
-                (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) &&
-                        (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-        );
     }
 
 }
