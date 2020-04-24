@@ -3058,6 +3058,10 @@ public class ObservationEditor extends AppCompatActivity {
         return getContentResolver().insert(ObservationPhoto.CONTENT_URI, cv);
     }
 
+    boolean areCoordsValid(double[] latLng) {
+        return ((latLng != null) && (latLng.length >= 2) && (!Double.isNaN(latLng[0])) && (!Double.isNaN(latLng[1])));
+    }
+
     private void importPhotoMetadata(Uri photoUri) {
 
         Logger.tag(TAG).info("importPhotoMetadata: " + photoUri);
@@ -3068,11 +3072,19 @@ public class ObservationEditor extends AppCompatActivity {
             it.sephiroth.android.library.exif2.ExifInterface exif = new it.sephiroth.android.library.exif2.ExifInterface();
             exif.readExif(is, it.sephiroth.android.library.exif2.ExifInterface.Options.OPTION_ALL);
 
-            //ExifInterface exif = new ExifInterface(is);
             Logger.tag(TAG).info("importPhotoMetadata: Exif = " + exif);
             uiToObservation();
-            double[] latLng = exif.getLatLongAsDoubles(); // exif.getLatLong();
-            if (latLng != null) {
+            double[] latLng = exif.getLatLongAsDoubles();
+
+            if (!areCoordsValid(latLng)) {
+                Logger.tag(TAG).error("importPhotoMetadata: Invalid lat/lng = " + latLng + ": trying regular EXIF library");
+                is.close();
+                is = getContentResolver().openInputStream(photoUri);
+                ExifInterface orgExif = new ExifInterface(is);
+                latLng = orgExif.getLatLong();
+            }
+
+            if (areCoordsValid(latLng)) {
                 Logger.tag(TAG).info("importPhotoMetadata: Got lng/lat = " + latLng[0] + "/" + latLng[1]);
                 stopGetLocation();
                 mObservation.latitude = latLng[0];
@@ -3096,7 +3108,7 @@ public class ObservationEditor extends AppCompatActivity {
 
             } else {
                 // No coordinates - don't override the observation coordinates
-                Logger.tag(TAG).error("importPhotoMetadata: No lat/lng");
+                Logger.tag(TAG).error("importPhotoMetadata: No lat/lng: " + latLng);
             }
 
             try {
