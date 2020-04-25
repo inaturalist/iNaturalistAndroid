@@ -6065,8 +6065,8 @@ public class INaturalistService extends IntentService {
                     Logger.tag(TAG).error(response.getStatusLine().toString());
             }
         } catch (IOException e) {
-            //request.abort();
-            Logger.tag(TAG).warn("Error for URL " + url, e);
+            Logger.tag(TAG).error("Error for URL " + url + ":" + e);
+            Logger.tag(TAG).error(e);
         }
         return null;
     }
