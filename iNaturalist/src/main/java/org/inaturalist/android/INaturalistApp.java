@@ -214,6 +214,30 @@ public class INaturalistApp extends MultiDexApplication {
         // Initialize the logger
         LoggingUtils.initializeLogger(this);
 
+        Logger.tag(TAG).debug("onCreate");
+
+        // Based on official suggestion from Google: https://issuetracker.google.com/issues/154855417#comment398
+        try {
+            SharedPreferences hasFixedGoogleBug154855417 = getSharedPreferences("google_bug_154855417", Context.MODE_PRIVATE);
+            if (!hasFixedGoogleBug154855417.contains("fixed")) {
+                Logger.tag(TAG).debug("Fixing GMaps SDK Bug - 154855417");
+
+                File corruptedZoomTables = new File(getFilesDir(), "ZoomTables.data");
+                File corruptedSavedClientParameters = new File(getFilesDir(), "SavedClientParameters.data.cs");
+                File corruptedClientParametersData =
+                        new File(
+                                getFilesDir(),
+                                "DATA_ServerControlledParametersManager.data.v1."
+                                        + getBaseContext().getPackageName());
+                corruptedZoomTables.delete();
+                corruptedSavedClientParameters.delete();
+                corruptedClientParametersData.delete();
+                hasFixedGoogleBug154855417.edit().putBoolean("fixed", true).apply();
+            }
+        } catch (Exception e) {
+
+        }
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -235,8 +259,6 @@ public class INaturalistApp extends MultiDexApplication {
                 Logger.tag(TAG).debug("All files in getCacheDir: " + getExternalCacheDir() + ": total: " + total);
             }
         }).start();
-
-        Logger.tag(TAG).debug("onCreate");
 
         SHORT_TIME_FORMAT = new SimpleDateFormat(DateFormat.is24HourFormat(getApplicationContext()) ? "HH:mm z" : "hh:mm a z");
 
