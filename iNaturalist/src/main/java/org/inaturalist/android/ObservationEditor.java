@@ -345,6 +345,24 @@ public class ObservationEditor extends AppCompatActivity {
             // Share photo/sound(s) with iNaturalist
             Logger.tag(TAG).error("Insert 1");
 
+            // See if the sending app is a blacklisted one
+            String sendingPackageName = this.getReferrer().getHost();
+            Logger.tag(TAG).debug("Shared from: " + sendingPackageName);
+
+            List<String> blacklistedApps = Arrays.asList(getResources().getStringArray(R.array.blacklisted_sharing_apps));
+
+            if (blacklistedApps.contains(sendingPackageName)) {
+                Logger.tag(TAG).error("App photo/sound was shared from is blocked : " + blacklistedApps.toString());
+
+                mHelper.confirm(R.string.forbidden, R.string.app_you_shared_blocked, R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        delete(true);
+                        finish();
+                    }
+                });
+            }
+
             // Detect if sounds or photos are shared here
             ContentResolver cr = getContentResolver();
             String mimeType = cr.getType(mSharePhotos.get(0));
