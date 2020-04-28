@@ -725,6 +725,7 @@ public class INaturalistService extends IntentService {
                 Intent reply = new Intent(HISTOGRAM_RESULT);
                 reply.putExtra(HISTOGRAM_RESULT, results);
                 reply.putExtra(RESEARCH_GRADE, researchGrade);
+                reply.putExtra(TAXON_ID, taxonId);
 
                 sendBroadcast(reply);
 
@@ -734,6 +735,7 @@ public class INaturalistService extends IntentService {
 
                 Intent reply = new Intent(POPULAR_FIELD_VALUES_RESULT);
                 reply.putExtra(POPULAR_FIELD_VALUES_RESULT, results);
+                reply.putExtra(TAXON_ID, taxonId);
 
                 sendBroadcast(reply);
 

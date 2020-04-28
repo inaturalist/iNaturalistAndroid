@@ -169,10 +169,11 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
             BetterJSONObject results;
 
             results = (BetterJSONObject) intent.getSerializableExtra(intent.getAction());
+            int taxonId =  intent.getIntExtra(INaturalistService.TAXON_ID, -1);
 
-           Logger.tag(TAG).debug("HistogramReceiver - " + intent.getAction());
+            Logger.tag(TAG).debug("HistogramReceiver - " + intent.getAction());
 
-            if (results == null) {
+            if ((results == null) || (taxonId != mTaxon.getInt("id"))) {
                 return;
             }
 

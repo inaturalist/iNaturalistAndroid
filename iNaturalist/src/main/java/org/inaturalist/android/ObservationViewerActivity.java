@@ -1690,9 +1690,13 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 }
 
                 if (mObsJson != null) {
-                    Intent intent = new Intent(ObservationViewerActivity.this, DataQualityAssessment.class);
-                    intent.putExtra(DataQualityAssessment.OBSERVATION, new BetterJSONObject(mObsJson));
-                    startActivity(intent);
+                    try {
+                        Intent intent = new Intent(ObservationViewerActivity.this, DataQualityAssessment.class);
+                        intent.putExtra(DataQualityAssessment.OBSERVATION, new BetterJSONObject(getMinimalObservation(new JSONObject(mObsJson))));
+                        startActivity(intent);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         };
@@ -3007,4 +3011,33 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         return getContentResolver().insert(ObservationPhoto.CONTENT_URI, cv);
     }
 
+
+    // Returns a minimal version of an observation JSON (used to lower memory usage)
+    private JSONObject getMinimalObservation(JSONObject observation) {
+        JSONObject minimaldObs = new JSONObject();
+
+        try {
+            minimaldObs.put("id", observation.optInt("id"));
+            if (observation.has("votes") && !observation.isNull("votes")) minimaldObs.put("votes", observation.optJSONArray("votes"));
+            if (observation.has("observed_on") && !observation.isNull("observed_on")) minimaldObs.put("observed_on", observation.optString("observed_on"));
+            if (observation.has("location") && !observation.isNull("location")) minimaldObs.put("location", observation.optString("location"));
+            if (observation.has("photos") && !observation.isNull("photos")) {
+                minimaldObs.put("photo_count", observation.optJSONArray("photos").length());
+            } else {
+                minimaldObs.put("photo_count", 0);
+            }
+            if (observation.has("identifications") && !observation.isNull("identifications")) {
+                minimaldObs.put("identification_count", observation.optJSONArray("identifications").length());
+            } else {
+                minimaldObs.put("identification_count", 0);
+            }
+            if (observation.has("community_taxon") && !observation.isNull("community_taxon")) minimaldObs.put("community_taxon", observation.optJSONObject("community_taxon"));
+
+        } catch (JSONException e) {
+            Logger.tag(TAG).error(e);
+            return null;
+        }
+
+        return minimaldObs;
+    }
 }
