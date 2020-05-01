@@ -677,6 +677,11 @@ public class INaturalistService extends IntentService {
                 saveJoinedProjects();
                 boolean success = getUserObservations(INITIAL_SYNC_OBSERVATION_COUNT);
 
+                // Get total obs count
+                BetterJSONObject user = getUserDetails();
+                int totalObsCount = user.getInt("observations_count");
+                mPreferences.edit().putInt("observation_count", totalObsCount).commit();
+
                 Cursor c = getContentResolver().query(Observation.CONTENT_URI,
                         Observation.PROJECTION,
                         "(is_deleted = 0 OR is_deleted is NULL) AND (user_login = '" + mLogin + "')",
@@ -5311,10 +5316,6 @@ public class INaturalistService extends IntentService {
             JSONArray results = null;
             try {
                 results = json.getJSONObject(0).getJSONArray("results");
-
-                int totalObsCount = json.getJSONObject(0).getInt("total_results");
-                SharedPreferences settings = mApp.getPrefs();
-                settings.edit().putInt("observation_count", totalObsCount).commit();
             } catch (JSONException e) {
                 Logger.tag(TAG).error(e);
                 return false;
