@@ -164,15 +164,15 @@
     </string-array>
     <string-array name="tutorial_descriptions">
         <item>Erkunde und entdecke die Natur</item>
-        <item>Geh nach draußen! Finde eine wilde Art und mache ein eindeutiges Vollbildfoto.</item>
+        <item>Geh nach draußen! Finde eine wilde Art und mache ein gut bestimmbares Foto.</item>
         <item>Teile deine Beobachtung mit der iNaturalist Community.</item>
         <item>Schau regelmäßig vorbei, um Kommentare und Bestimmungen zu deinen Beobachtungen zu sehen!</item>
         <item><![CDATA[Beobachtungen in <b>Forschungsqualität</b> werden mit Wissenschaftlern geteilt, die die Natur besser verstehen und beschützen wollen.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
         <item>öffentlich</item>
-        <item>Versteckt</item>
-        <item>Privat</item>
+        <item>verdeckt</item>
+        <item>privat</item>
     </string-array>
     <string name="alert_sign_out">Bist du dir sicher, dass du dich abmelden willst? Dies wird alle deine Beobachtungen von diesem Gerät löschen. Deine hochgeladenen Beobachtungen auf iNaturalist sind davon nicht betroffen.</string>
     <string name="alert_unsupported_media_type">Entschuldige. Es gab ein Problem beim Laden des Fotos von dieser Quelle</string>
@@ -200,6 +200,7 @@
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia ist Mitglied des iNaturalist Network in Australien. Lokale Institutionen, die NaturaLista unterstützen, haben Zugang zu Ihrer E-Mail-Adresse und zu den tatsächlichen Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1.000 Beobachtungen beigetragen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
     <string name="alert_message_use_argentinat">ArgentiNat ist Mitglied des iNaturalist Network in Argentinien. Lokale Institutionen, die ArgentiNat unterstützen, haben Zugang zu Ihrer E-Mail-Adresse und zu den wahren Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1000 Beobachtungen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel ist Mitglied des iNaturalist Network in Israel. Lokale Institutionen, die iNaturalist Israel unterstützen, haben Zugriff auf Ihre E-Mail-Adresse und Zugriff auf die wahren Koordinaten für Beobachtungen, die öffentlich verdeckt oder privat sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1000 Beobachtungen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland ist Mitglied des iNaturalist-Netzwerks in Finnland. Lokale Institutionen, die iNaturalist Finland unterstützen, haben Zugang zu deiner E-Mail-Adresse und zu den echten Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändere deine Zugehörigkeit nicht experimentell, wenn du mehr als 1000 Beobachtungen hast. Möchtest du deine Zugehörigkeit ändern?</string>
     <string name="editor">Editor</string>
     <string name="license">Lizenz</string>
     <string name="download_for_offline_use">Herunterladen für Offline Verwendung</string>
@@ -252,7 +253,7 @@
     <string name="make_first">Erste erstellen</string>
     <string name="notes">Bemerkungen</string>
     <string name="location_is">Standort ist</string>
-    <string name="is_captive">War es in Gefangenschaft, gezüchtet o. kultiviert?</string>
+    <string name="is_captive">Zeigt die Beobachtung ein Tier in Haltung, eine angepflanzte oder kultivierte Pflanze etc.?</string>
     <string name="location_visibility">Standortsichtbarkeit</string>
     <string name="set_location">Standort</string>
     <string name="coordinates_lat">Breite:</string>
@@ -279,7 +280,7 @@
     <string name="casual_grade_add_location"><![CDATA[ Füge einen <b>Ort</b> hinzu, um diese Beobachtung in den “Benötigt ID”-Status aufsteigen zu lassen. ]]></string>
     <string name="casual_grade_add_date"><![CDATA[ Füge ein <b>Datum</b> hinzu, um diese Beobachtung in den “Benötigt ID”-Status aufsteigen zu lassen. ]]></string>
     <string name="casual_grade_add_photo"><![CDATA[ Füge ein <b>Foto</b> hinzu, um diese Beobachtung in den “Benötigt ID”-Status aufsteigen zu lassen. ]]></string>
-    <string name="casual_grade_captive"><![CDATA[ Beobachtung kann nur Hobbyqualität erreichen, da sie das Kriterium <b>in Gefangenschaft/kultiviert</b> erfüllt. ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ Beobachtung kann nur Hobbyqualität erreichen, da sie das Kriterium <b>in Haltung/kultiviert</b> erfüllt. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ Beobachtung benötigt <b>weitere Bestimmungen</b> von anderen Benutzern, um Forschungsqualität zu erreichen. ]]></string>
     <plurals name="included_in_projects">
         <item quantity="one">In %1$d Projekt enthalten</item>
@@ -314,9 +315,9 @@
     <string name="photo"><![CDATA[Foto: <b><a href="%1$s">%2$s</a></b>]]></string>
     <string name="photo_attr"><![CDATA[Foto: <b>%1$s</b>]]></string>
     <string name="finding_current_location">Suche nach aktuellen Standort...</string>
-    <string name="flag_as_captive">in Gefangenschaft/kultiviert?</string>
-    <string name="observation_flagged_as_captive">Beobachtung wurde als \"in Gefangenschaft/kultiviert\" markiert</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Bist du sicher, dass du diese Beobachtung als \"in Gefangenschaft/kultiviert\" markieren möchtest? (Durch Drücken von \"Ja\" wird auch das Beobachtungsfenster geschlossen)</string>
+    <string name="flag_as_captive">Als \"in Haltung/kultiviert\" markieren</string>
+    <string name="observation_flagged_as_captive">Beobachtung wurde als \"in Haltung/kultiviert\" markiert</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive">Bist du sicher, dass du diese Beobachtung als \"in Haltung/kultiviert\" markieren möchtest? (Durch Drücken von \"Ja\" wird auch das Beobachtungsfenster geschlossen)</string>
     <string name="do_you_agree_to_the_following">Stimmst du dem Folgenden zu?</string>
     <string name="terms">Bedingungen</string>
     <string name="observation_rules">Regeln für Beobachtungen</string>
@@ -369,7 +370,7 @@
     <string name="your_identification">Deine ID: %1$s</string>
     <string name="onboarding_species_name">Falls möglich, gib ein, was du gesehen hast - auch wenn es nur „Insekt” oder „Vogel” ist, oder lasse das Feld einfach leer. Andere können helfen, es zu bestimmen! Allerdings wird es eher bestimmt, wenn man bereits selber etwas einträgt.</string>
     <string name="upload_complete">Hochladen abgeschlossen!</string>
-    <string name="onboarding_upload_description">Komm bald für Identifikationen und Kommentare zu deinen Beobachtungen zurück.</string>
+    <string name="onboarding_upload_description">Überprüfe deine Beobachtungen regelmäßig auf IDs und Kommentare</string>
     <string name="importing_photos">Importiere Foto(s)...</string>
     <string name="multi_select_description">Importiere mehrere Fotos durch langes Drücken auf ein einzelnes Foto</string>
     <string name="preparing_photo">Foto vorbereiten...</string>
@@ -466,7 +467,7 @@
     <string name="couldnt_load_results">Konnte Ergebnisse nicht laden: %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">RG</string>
-    <string name="taxon_search_hint">z.B. Vögel, Monarch</string>
+    <string name="taxon_search_hint">z.B. Vögel, Spatz</string>
     <string name="location_search_hint">z.B. Stadt, Park, Land...</string>
     <string name="no_taxon">Tut uns leid, kein Taxon gefunden</string>
     <string name="please_select_taxon">Bitte wählen Sie ein gültiges Taxon aus der Liste (oder löschen sie das Taxon-Feld).</string>
@@ -552,9 +553,9 @@
     <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
     <string name="date_hour">%d Std.</string>
     <!-- Compact form of "X days ago", so "3 days ago" would be "3d" -->
-    <string name="date_day">%dT</string>
+    <string name="date_day">%d T.</string>
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
-    <string name="date_week">%dw</string>
+    <string name="date_week">%d Wo.</string>
     <string name="new_observation">Neue Beobachtung</string>
     <string name="inactive_taxon">Inaktives Taxon</string>
     <string name="no_identifications_found">Hier kannst du die Bestimmungen nachverfolgen, die du für Beobachtungen anderer Personen abgegeben hast</string>
@@ -613,7 +614,7 @@
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Keine</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
-    <string name="annotation_name_plant_phenology">Phänologie</string>
+    <string name="annotation_name_plant_phenology">Phänologie (Pflanze)</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Entwicklungsstufe</string>
     <!-- Noun, describes sex of the organism -->
@@ -708,6 +709,7 @@
     <string name="network_credit_inaturalistaustralia"><![CDATA[Australien: Atlas of Living Australia unterstützt iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) unterstützt iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: Universität Haifa unterstützt iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Finnland: Das Finnische Museum für Naturgeschichte (LUOMUS) unterstützt iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="mark_all_as_viewed">Alle als „angesehen” kennzeichnen</string>
     <string name="content_hidden">Inhalt ausgeblendet</string>
     <string name="show_hidden_content">Ausgeblendeten Inhalt anzeigen</string>
@@ -798,7 +800,23 @@
     <string name="restart_app">App neustarten</string>
     <string name="disable_third_party_sharing_restart">Um die Nutzung von Daten durch Drittanbieter sofort zu deaktivieren, muss die Anwendung neu gestartet werden.</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
-        <item quantity="one">Are you sure you want to delete this %1$d observation?</item>
-        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+        <item quantity="one">Möchtest du diese %1$d Beobachtung wirklich löschen?</item>
+        <item quantity="other">Möchtest du diese %1$d Beobachtungen wirklich löschen?</item>
     </plurals>
+    <string name="future_observed_on_date_error">Die Beobachtung wurde am %1$s erstellt (und hochgeladen), jedoch versuchst du, ein Beobachtungsdatum später als %2$s anzugeben.</string>
+    <string name="no_more_photos_allowed">Beobachtungen dürfen nur %1$d Fotos enthalten. Um weitere hinzuzufügen, musst du dafür andere entfernen.</string>
+    <string name="warning_multiple_photos">Wenn du eine Beobachtung mit Fotos von verschiedenen Arten oder der gleichen Art, aber an verschiedenen Orten oder zu verschiedenen Zeitpunkten erstellst, sollten diese Fotos entfernt werden und als separate Beobachtungen hochgeladen werden. Eine Beobachtung darf nur %1$d Fotos enthalten.</string>
+    <string name="choosing_specific_language_warning">Um eine bestimmte Sprache für dein Konto zu wählen ist eine Internetverbindung notwendig</string>
+    <string name="running_in_background_notfication">Läuft im Hintergrund, damit keine Unterbrechungen auftreten</string>
+    <string name="opt_out_of_community_taxon">Das Community-Taxon ablehnen</string>
+    <string name="opt_in_to_community_taxon">Dem Community-Taxon wieder beitreten</string>
+    <string name="opt_out_message">Die Nichtbeteiligung am Community-Taxon zwingt diese Beobachtung, das von dir gewählte Taxon anzuzeigen, auch wenn sie den IDs anderer Benutzer widerspricht. Falls genügend andere Benutzer nicht mit deiner ID übereinstimmen, wird die Beobachtung zu \'Hobbyqualität\'. Du solltest diese Option nur dann nutzen, wenn du sicher bist, dass deine ID korrekt ist und andere Bestimmungen falsch sind.</string>
+    <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
+    <string name="permission_required">Berechtigung erforderlich</string>
+    <!-- Message displayed when the user tries to perform an action that requires location permission -->
+    <string name="to_access_your_location">Damit diese App auf deinen Standort zugreifen kann, musst du ihr die Zugriffsberechtigung für den Standort erteilen.</string>
+    <!-- Dialog title when displaying a message that an action is not permitted -->
+    <string name="forbidden">Verweigert</string>
+    <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
+    <string name="app_you_shared_blocked">Die Fotos der App, die du mit iNaturalist teilen möchtest, sind nicht für Beobachtungen geeignet, da sie entweder keinen Beweis für eine Begnung mit einem Lebewesen darstellen, weil sie unangemessene Produktmarken oder kommerzielle Inhalte enthalten, oder weil sie auf andere Weise gegen unsere Nutzungsbedingungen verstoßen.</string>
 </resources>

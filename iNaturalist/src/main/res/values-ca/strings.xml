@@ -200,6 +200,7 @@
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Austalia és membre de la Xarxa iNaturalist d\'Austràlia. Les institucions locals que donen suport a iNaturalist Australia tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
     <string name="alert_message_use_argentinat">ArgentiNat és membre de la Xarxa iNaturalist a Argentin. Les Institucions locals que donen suport a ArgentiNat tenen accés a la vostra adreça de correu electrònic i a les coordenades reals de les observacions encara que siguin enfosquides o privades. Si us plau, no canvieu experimentalment la vostra afiliació si teniu més de 1000 observacions. Voleu canviar la vostra afiliació?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel és membre de la Xarxa iNaturalist d\'Israel. Les institucions locals que donen suport a iNaturalist Israel tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finlàndia és membre de la xarxa iNaturalist a Finlàndia. Les institucions locals que donen suport a iNaturalist Finlàndia tindran accés a la teva adreça de correu electrònic i a les coordenades reals de les teves observacions encara que estiguin públicament enfosquides o siguin privades. Per favor, no canviïs de forma experimental la teva afiliació si tens més de 1000 observacions. Vols canviar la teva afiliació?</string>
     <string name="editor">Editor</string>
     <string name="license">Llicència</string>
     <string name="download_for_offline_use">Descarregar per a ús fora de línia</string>
@@ -708,6 +709,7 @@
     <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia dona suport a iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) dona suport a iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa dona suport a iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Finlàndia: Museu Finès d\'Història Natural (LUOMUS) dóna suport iNaturalist Finlàndia (<a href="https://inaturalist.laji.fi/"> inaturalist.laji.fi </a>)]]></string>
     <string name="mark_all_as_viewed">Marca tot com a vist</string>
     <string name="content_hidden">Contingut amagat</string>
     <string name="show_hidden_content">Mostra Contingut Amagat</string>
@@ -776,7 +778,7 @@
     <string name="seconds_value">segons</string>
     <string name="shop_the_inat_store">Compra a la botiga d\'iNat</string>
     <string name="delete_your_account">Elimineu el vostre compte</string>
-    <string name="delete_account_message"><![CDATA[Esborrant el vostre compte elimineu:<br/><br/><ul><li>Totes les vostres observacions, inclòs el treball de totes les persones que us han ajudat amb les vostres identificacions.</li><li>Totes les identificacions que heu afegit a les observacions d\'altri, el que pot afectar la qualitat de les dades de les seves observacions.</li><li>Tots els comentaris que heu afegit.</li></ul><br/>A més, aquesta acció no es pot desfer. Si canvieu d\'idea més endavant, no podreu recuperar el contingut.<br/><br/>Si aquest servei genera excessives notificacions, considereu <a href="https://www.inaturalist.org/users/edit">editar les vostres preferències en el lloc web</a> per desseleccionar algunes notificacions o deixar de rebre missatges de correu electrònic nostres. Si teniu algun problema amb alguna persona en concret, considereu <a href="https://www.inaturalist.org/users/edit">bloquejar-la</a> en comptes d\'esborrar el vostre compte.<br/><br/>Si encara esteu segur que encara voleu esborrar el vostre compte introduïu <b>\"%1$s" \</b> en el formulari de sota i premeu el botó per esborrar el vostre compte i totes les vostres dades.]]></string>
+    <string name="delete_account_message"><![CDATA[Esborrant el vostre compte elimineu:<br/><br/><ul><li>Totes les vostres observacions, inclòs el treball de totes les persones que us han ajudat amb les vostres identificacions.</li><li>Totes les identificacions que heu afegit a les observacions d\'altri, el que pot afectar la qualitat de les dades de les seves observacions.</li><li>Tots els comentaris que heu afegit.</li></ul><br/>A més, aquesta acció no es pot desfer. Si canvieu d\'idea més endavant, no podreu recuperar el contingut.<br/><br/>Si aquest servei genera excessives notificacions, considereu <a href="https://www.inaturalist.org/users/edit">editar les vostres preferències en el lloc web</a> per desseleccionar algunes notificacions o deixar de rebre missatges de correu electrònic nostres. Si teniu algun problema amb alguna persona en concret, considereu <a href="https://www.inaturalist.org/users/edit">bloquejar-la</a> en comptes d\'esborrar el vostre compte.<br/><br/>Si encara esteu segur que encara voleu esborrar el vostre compte introduïu <b>\"%1$s\"</b> en el formulari de sota i premeu el botó per esborrar el vostre compte i totes les vostres dades.]]></string>
     <string name="your_account_has_been_deleted">El vostre compte s\'ha esborrat</string>
     <string name="you_must_enter_username_in_the_form_to_delete_account">Heu d\'escriure \'%1$s\' al formulari per esborrar el vostre compte</string>
     <!-- Second person hint text asking the user to enter their username -->
@@ -801,4 +803,20 @@
         <item quantity="one">Segur que voleu d\'esborrar aquesta %1$d observació?</item>
         <item quantity="other">Segur que voleu esborrar aquestes %1$d observacions?</item>
     </plurals>
+    <string name="future_observed_on_date_error">La vostra observació va ser creada (i enviada) el %1$s, però heu intentat establir una data d\'observació posterior a aquesta data: %2$s</string>
+    <string name="no_more_photos_allowed">Les observacions únicament poden tenir %1$d fotos. Per afegir més heu d\'eliminar alguna.</string>
+    <string name="warning_multiple_photos">Si  esteu afegint fotografies de diferents tipus d\'organismes a aquesta observació, o del mateix tipus però de diferents llocs o dates, heu d\'eliminar aquestes fotos i afegir-les com a observacions separades. Una observació únicament pot tenir %1$d fotos.</string>
+    <string name="choosing_specific_language_warning">Triar un idioma específic per al teu compte requereix una connexió a Internet</string>
+    <string name="running_in_background_notfication">Executant-se en segon pla perquè puguem funcionar sense interrupcions</string>
+    <string name="opt_out_of_community_taxon">Desactiva el Taxó de la Comunitat</string>
+    <string name="opt_in_to_community_taxon">Unir-se al Taxó de la Comunitat</string>
+    <string name="opt_out_message">Excloure del taxó de la comunitat obliga a aquesta observació a estar associada amb el tàxon del teu identificació actual, no a un taxó derivat de totes les identificacions que s\'han afegit a aquesta observació. Si hi ha prou identificacions que no estan d\'acord amb tu, el teu observació es convertirà en Casual. Només has d\'optar per excloure\'t si estàs segur que el teu identificació és correcta i les altres són incorrectes.</string>
+    <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
+    <string name="permission_required">Es requereix autorització</string>
+    <!-- Message displayed when the user tries to perform an action that requires location permission -->
+    <string name="to_access_your_location">Per accedir a la teva ubicació has de concedir permís d\'accés a la ubicació a aquesta aplicació.</string>
+    <!-- Dialog title when displaying a message that an action is not permitted -->
+    <string name="forbidden">Prohibit</string>
+    <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
+    <string name="app_you_shared_blocked">L\'aplicació des de la qual que va compartir les fotos no produeix fotos adequades per a observacions, perquè no representen proves de la seva experiència amb altres organismes, perquè inclouen marques o continguts comercials inapropiats, o perquè infringeixen les nostres condicions de servei d\'altres maneres.</string>
 </resources>

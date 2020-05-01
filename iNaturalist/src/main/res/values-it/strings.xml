@@ -200,6 +200,7 @@
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia è membro del Network iNaturalist in Australia. Le istituzioni locali che supportano iNaturalist Australia avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione solo per provare se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
     <string name="alert_message_use_argentinat">ArgentiNat è membro del Network iNaturalist in Argentina. Le istituzioni locali che supportano ArgentiNat avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione solo per provare se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israele è membro del Network iNaturalist in Israele. Le istituzioni locali che supportano iNaturalist Israele avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione solo per provare se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finlandia è membro del Network iNaturalist in Finlandia. Le istituzioni locali che supportano iNaturalist Finlandia avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione solo per provare se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
     <string name="editor">Editor</string>
     <string name="license">Licenza</string>
     <string name="download_for_offline_use">Scarica per uso non in linea</string>
@@ -708,6 +709,7 @@
     <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: L\'Atlas of Living Australia sta sostenendo iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: L\'Instituto Nacional de Biodiversidad (INABIO) sta sostenendo iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israele: L\'Università di Haifa sta sostenendo iNaturalist Israele (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Finlandia: Museo Finlandese di Storia Naturale (LUOMUS) che supporta iNaturalist Finlandia (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="mark_all_as_viewed">Segna tutti come visti</string>
     <string name="content_hidden">Contenuto Nascosto</string>
     <string name="show_hidden_content">Mostra il contenuto nascosto</string>
@@ -801,4 +803,20 @@
         <item quantity="one">Sei sicuro di voler eliminare questa %1$d osservazione?</item>
         <item quantity="other">Sei sicuro di voler eliminare queste %1$d osservazioni?</item>
     </plurals>
+    <string name="future_observed_on_date_error">La tua osservazione è stata creata (e inviata) il %1$s, ma stai cercando di impostare una data dell\'osservazione successiva al: %2$s</string>
+    <string name="no_more_photos_allowed">Le osservazioni possono avere solo %1$d foto. Per aggiungerne altre dovrai rimuoverne alcune.</string>
+    <string name="warning_multiple_photos">Se stai aggiungendo foto di diversi tipi di organismi a questa osservazione, o dello stesso tipo in posti o tempi diversi, dovresti rimuovere queste foto ed aggiungerle come osservazioni separate. Un\'osservazione può avere solo %1$d foto.</string>
+    <string name="choosing_specific_language_warning">La scelta di una lingua specifica per il tuo account richiede una connessione Internet</string>
+    <string name="running_in_background_notfication">In esecuzione in background in modo da poter eseguire senza interruzioni</string>
+    <string name="opt_out_of_community_taxon">Escludi il Taxon della Comunità</string>
+    <string name="opt_in_to_community_taxon">Scegli il Taxon della Comunità</string>
+    <string name="opt_out_message">Escludendo il Taxon della Comunità associ forzatamente questa osservazione al taxon della tua identificazione attuale, non al taxon che deriva da tutte le identificazioni che sono state aggiunte a questa osservazione. Se abbastanza identificatori non sono d\'accordo con te, la tua osservazione diventerà Casuale. Escludilo solo se sei sicuro che la tua identificazione sia corretta e che altre identificazioni non siano sbagliate.</string>
+    <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
+    <string name="permission_required">Autorizzazione Richiesta</string>
+    <!-- Message displayed when the user tries to perform an action that requires location permission -->
+    <string name="to_access_your_location">Per accedere alla tua posizione devi concedere i permessi di accesso alla posizione a questa app.</string>
+    <!-- Dialog title when displaying a message that an action is not permitted -->
+    <string name="forbidden">Vietato</string>
+    <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
+    <string name="app_you_shared_blocked">L\'app da cui hai condiviso crea foto che non sono adatte alle osservazioni perché non rappresentano la prova della tua esperienza con un altro organismo, perché includono un marchio inappropriato o contenuti commerciali, o perché violano i nostri Termini di servizio in altri modi.</string>
 </resources>
