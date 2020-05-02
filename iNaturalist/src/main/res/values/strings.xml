@@ -840,9 +840,13 @@
     <string name="opt_out_of_community_taxon">Opt out of the Community Taxon</string>
     <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
     <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
+    <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
     <string name="permission_required">Permission Required</string>
+    <!-- Message displayed when the user tries to perform an action that requires location permission -->
     <string name="to_access_your_location">To access your location you must grant location access permission to this app.</string>
+    <!-- Dialog title when displaying a message that an action is not permitted -->
     <string name="forbidden">Forbidden</string>
+    <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
 </resources>
 

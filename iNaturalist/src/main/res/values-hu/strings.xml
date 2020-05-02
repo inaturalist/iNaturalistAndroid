@@ -190,16 +190,17 @@
     <string name="text"><![CDATA[<b>Szöveg:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">Az elsődleges iNaturalist Network. Az OK-ra koppintva az alkalmazás a globális iNaturalist hálózat részévé válik.</string>
-    <string name="alert_message_use_naturalista">NaturaLista is a member of the iNaturalist Network in Mexico. Local institutions supporting NaturaLista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturewatchnz">iNaturalist NZ is a member of the iNaturalist Network in New Zealand. Local institutions supporting iNaturalist NZ will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Local institutions supporting iNaturalist Canada will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Local institutions supporting Naturalista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4All is a member of the iNaturalist Network in Portugal. Local institutions supporting Biodiversity4All will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá is a member of the iNaturalist Network in Panama. Local institutions supporting iNaturalist Panamá will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador is a member of the iNaturalist Network in Ecuador. Local institutions supporting iNaturalist Ecuador will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia is a member of the iNaturalist Network in Australia. Local institutions supporting iNaturalist Australia will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_argentinat">ArgentiNat is a member of the iNaturalist Network in Argentina. Local institutions supporting ArgentiNat will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalista">A NaturaLista a mexikói iNaturalist Network tagja. A NaturaLista helyi intézményi támogatói hozzáférhetnek az emailcímedhez és a megfigyeléseid pontos, egyébként fedett vagy privát koordinátáihoz. Kérjük, hogy próbaképpen ne módosíts a partneri beállításokon, ha 1000-nél több megfigyelésed van. Szeretnéd módosítani a partneri beállításaidat?</string>
+    <string name="alert_message_use_naturewatchnz">Az iNaturalist NZ az új zélandi iNaturalist Network tagja. Az iNaturalist NZ helyi intézményi támogatói hozzáférhetnek az emailcímedhez és a megfigyeléseid pontos, egyébként fedett vagy privát koordinátáihoz. Kérjük, hogy próbaképpen ne módosíts a partneri beállításokon, ha 1000-nél több megfigyelésed van. Szeretnéd módosítani a partneri beállításaidat?</string>
+    <string name="alert_message_use_inaturalistcanada">Az iNaturalist Canada a kanadai iNaturalist Network tagja. Az iNaturalist Canada helyi intézményi támogatói hozzáférhetnek az emailcímedhez és a megfigyeléseid pontos, egyébként fedett vagy privát koordinátáihoz. Kérjük, hogy próbaképpen ne módosíts a partneri beállításokon, ha 1000-nél több megfigyelésed van. Szeretnéd módosítani a partneri beállításaidat?</string>
+    <string name="alert_message_use_naturalistacolombia">A Naturalista az kolumbiai iNaturalist Network tagja. A Naturalista helyi intézményi támogatói hozzáférhetnek az emailcímedhez és a megfigyeléseid pontos, egyébként fedett vagy privát koordinátáihoz. Kérjük, hogy próbaképpen ne módosíts a partneri beállításokon, ha 1000-nél több megfigyelésed van. Szeretnéd módosítani a partneri beállításaidat?</string>
+    <string name="alert_message_use_biodiversity4all">A Biodiversity4All a portugál iNaturalist Network tagja. A Biodiversity4All helyi intézményi támogatói hozzáférhetnek az emailcímedhez és a megfigyeléseid pontos, egyébként fedett vagy privát koordinátáihoz. Kérjük, hogy próbaképpen ne módosíts a partneri beállításokon, ha 1000-nél több megfigyelésed van. Szeretnéd módosítani a partneri beállításaidat?</string>
+    <string name="alert_message_use_inaturalistpanama">Az iNaturalist Panamá a panamai iNaturalist Network tagja. Az iNaturalist Panamá helyi intézményi támogatói hozzáférhetnek az emailcímedhez és a megfigyeléseid pontos, egyébként fedett vagy privát koordinátáihoz. Kérjük, hogy próbaképpen ne módosíts a partneri beállításokon, ha 1000-nél több megfigyelésed van. Szeretnéd módosítani a partneri beállításaidat?</string>
+    <string name="alert_message_use_inaturalistecuador">Az iNaturalist Ecuador az equádori iNaturalist Network tagja. Az iNaturalist Ecuador helyi intézményi támogatói hozzáférhetnek az emailcímedhez és a megfigyeléseid pontos, egyébként fedett vagy privát koordinátáihoz. Kérjük, hogy próbaképpen ne módosíts a partneri beállításokon, ha 1000-nél több megfigyelésed van. Szeretnéd módosítani a partneri beállításaidat?</string>
+    <string name="alert_message_use_inaturalistaustralia">Az iNaturalist Australia az ausztrál iNaturalist Network tagja. Az iNaturalist Australia helyi intézményi támogatói hozzáférhetnek az emailcímedhez és a megfigyeléseid pontos, egyébként fedett vagy privát koordinátáihoz. Kérjük, hogy próbaképpen ne módosíts a partneri beállításokon, ha 1000-nél több megfigyelésed van. Szeretnéd módosítani a partneri beállításaidat?</string>
+    <string name="alert_message_use_argentinat">Az ArgentiNat az argentín iNaturalist Network tagja. Az ArgentiNat helyi intézményi támogatói hozzáférhetnek az emailcímedhez és a megfigyeléseid pontos, egyébként fedett vagy privát koordinátáihoz. Kérjük, hogy próbaképpen ne módosíts a partneri beállításokon, ha 1000-nél több megfigyelésed van. Szeretnéd módosítani a partneri beállításaidat?</string>
+    <string name="alert_message_use_inaturalistil">Az iNaturlaist Israel az iyraeli iNaturalist Network tagja. Az iNaturalist Israel helyi intézményi támogatói hozzáférhetnek az emailcímedhez és a megfigyeléseid pontos, egyébként fedett vagy privát koordinátáihoz. Kérjük, hogy próbaképpen ne módosíts a partneri beállításokon, ha 1000-nél több megfigyelésed van. Szeretnéd módosítani a partneri beállításaidat?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland is a member of the iNaturalist Network in Finland. Local institutions supporting iNaturalist Finland will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Szerkesztő</string>
     <string name="license">Licensz</string>
     <string name="download_for_offline_use">Letöltés kapcsolat nélküli használatra</string>
@@ -231,7 +232,7 @@
     <string name="min_6_chars">Minimum 6 karakter</string>
     <string name="use_my_license"><![CDATA[Igen, engedélyezem a tartalmaim használatát, ezzel a tudóstársadalom több adathoz juthat. <b>További információ</b>]]></string>
     <string name="content_licensing">Tartalomlicensz</string>
-    <string name="content_licensing_description">Check this box if you want to apply a Creative Commons Attribution-NonCommercial license to your photos. You can choose a different license or remove the license later, but this is the best license for sharing with researchers.</string>
+    <string name="content_licensing_description">A fotóid Nem kereskedelmi Creative Commons megjelöléséhez pipáld ki ezt a négyzetet. Később ezt eltávolíthatod és módosíthatod, de a kutatókkal való megosztáshoz ez a legmegfelelőbb licensz.</string>
     <!-- Try to keep this about the length of the English text -->
     <string name="username_or_email">Felhasználónév vagy e-mail</string>
     <string name="forgot">Nem emlékszel rá?</string>
@@ -263,8 +264,8 @@
     <string name="no_thanks">Köszönöm, nem</string>
     <string name="turn_on">Bekapcsolás</string>
     <string name="introducing_auto_sync">Bemutatkozik az Auto-Sync!</string>
-    <string name="turn_on_auto_sync">Turn on Auto-Sync in Settings and your observations will be automatically uploaded to iNaturalist.</string>
-    <string name="automatic_upload">Automatic Upload (Auto Sync)</string>
+    <string name="turn_on_auto_sync">A Beállításoknál kapcsold be az Autoszinkront, így a megfigyeléseid automatikusan feltöltődnek az iNaturlaist-re.</string>
+    <string name="automatic_upload">Automatikus feltöltés (Autoszinkron)</string>
     <string name="waiting_to_upload">Várakozás a feltöltésre...</string>
     <string name="uploading">Feltöltés...</string>
     <string name="failed_to_add_to_project">%1$s projekthez adás sikertelen. Ok: %2$s</string>
@@ -273,12 +274,12 @@
     <string name="share">Megosztás</string>
     <string name="unable_to_acquire_location">Hely meghatározása sikertelen</string>
     <string name="casual_grade">Hobbiszintű</string>
-    <string name="needs_id">Meghatározás szükséges</string>
+    <string name="needs_id">Meghatározásra vár</string>
     <string name="research_grade">Tudományos szintű</string>
     <string name="data_quality">Adatminőség</string>
-    <string name="casual_grade_add_location"><![CDATA[Adj meg <b>helyet</b> ahhoz, hogy a megfigyelés "Meghatározás szükséges" státuszt kapjon.]]></string>
-    <string name="casual_grade_add_date"><![CDATA[ Add a <b>date</b> to advance this observation to “Needs ID” status. ]]></string>
-    <string name="casual_grade_add_photo"><![CDATA[ Add a <b>photo</b> to advance this observation to “Needs ID” status. ]]></string>
+    <string name="casual_grade_add_location"><![CDATA[Adj meg <b>helyet</b> ahhoz, hogy a megfigyelés "Meghatározásra vár" státuszt kapjon.]]></string>
+    <string name="casual_grade_add_date"><![CDATA[Adj meg <b>dátumot</b> ahhoz, hogy a megfigyelés "Meghatározásra vár" státuszt kapjon.]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[Adj hozzá <b>fényképet</b>, hogy a megfigyelés "Meghatározásra vár" státuszt kapjon.]]></string>
     <string name="casual_grade_captive"><![CDATA[A megfigyelés hobbiszintű, mivel az organizmus <b>fogságban lévő/kultivált</b>.]]></string>
     <string name="needs_id_more_ids"><![CDATA[A megfigyeléshez <b>több meghatározás</b> kell a közösségtől, hogy tudományos szintre emelkedjen.]]></string>
     <plurals name="included_in_projects">
@@ -298,16 +299,16 @@
     <string name="update_comment">Hozzászólás módosítása</string>
     <string name="fave_this_observation">Kedvencként megjelölés</string>
     <string name="faved">Kedvenc</string>
-    <string name="be_the_first_to_fave_this_obs">Be the first to fave this observation...</string>
-    <string name="leave_a_comment">Leave a comment or suggest an identification...</string>
+    <string name="be_the_first_to_fave_this_obs">Elsőként kedvencelheted ezt a megfigyelést...</string>
+    <string name="leave_a_comment">Javasolj meghatározást vagy írj megjegyzést...</string>
     <string name="location_coords">Szél: %1$s Hossz: %2$s Pontosság: %3$s</string>
     <string name="location_coords_no_acc">Szél.: %1$s Hossz.: %2$s</string>
     <string name="location">Hely</string>
     <string name="login_in_to_add_comments_ids">Meghatározáshoz vagy hozzászóláshoz jelentkezz be vagy regisztrálj...</string>
-    <string name="login_in_to_fav">Log In or Sign Up to see faves or fave this observation...</string>
-    <string name="sync_obs_to_see_favs">Sync this observation to see faves...</string>
+    <string name="login_in_to_fav">A kedvencelésekhez lépj be vagy regisztrálj...</string>
+    <string name="sync_obs_to_see_favs">Szinkronizáld ezt a megfigyelést a kedvencelésekhez...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
-    <string name="sync_obs_to_add_comments_ids">Sync this observation in order to leave a comment or suggest an identification...</string>
+    <string name="sync_obs_to_add_comments_ids">Megjegyzés írásához és meghatározáshoz szinkronizáld ezt a megfigyelést...</string>
     <string name="no_photo">Nincs fotó</string>
     <string name="about_this_species">A fajról</string>
     <string name="view_on_wikipedia">Wikipédia-szócikk</string>
@@ -358,7 +359,7 @@
     <string name="resume">Folytatás</string>
     <string name="cleaning_up">Tisztítás…</string>
     <string name="syncing">Szinkronizálás...</string>
-    <string name="syncing_observation_fields">Syncing observation fields...</string>
+    <string name="syncing_observation_fields">Megfigyelések mezőinek szinkronizálása...</string>
     <string name="syncing_observations">Megfigyelések szinkronizálása...</string>
     <string name="syncing_paused">Szüneteltetve</string>
     <string name="upload">Feltöltés</string>
@@ -367,11 +368,11 @@
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Meghatározás leírásának frissítése</string>
     <string name="your_identification">Azonosítód: %1$s </string>
-    <string name="onboarding_species_name">Name what you saw if you can, even if that\'s just \"insect\" or \"bird,\" or just leave this blank. Others may help you identify it!</string>
+    <string name="onboarding_species_name">Ha felismered amit láttál, add meg a nevét (pl. pitypang, rovar), vagy hagyd üresen. Mások segíteni fognak ebben.</string>
     <string name="upload_complete">A feltöltés sikeres</string>
     <string name="onboarding_upload_description">Nézz vissza hamarosan a megfigyelése(i)dre érkezett hozzászólásokra és meghatározásokra.</string>
     <string name="importing_photos">Fénykép(ek) importálása...</string>
-    <string name="multi_select_description">Import multiple photos by long-pressing on a single photo</string>
+    <string name="multi_select_description">A fényképet nyomvatartva több fényképet is importálhatsz. </string>
     <string name="preparing_photo">Fénykép előkészítése</string>
     <string name="recommended_for_you">Neked ajánlott</string>
     <string name="missions">Küldetések</string>
@@ -482,15 +483,15 @@
     <string name="country">Ország</string>
     <string name="island">Sziget</string>
     <string name="airport">Repülőtér</string>
-    <string name="drainage">Drainage</string>
-    <string name="land_feature">Land Feature</string>
+    <string name="drainage">Csatorna</string>
+    <string name="land_feature">Felszíni forma</string>
     <string name="miscellaneous">Egyéb</string>
     <string name="nationality">Nemzetiség</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
-    <string name="supername">Supername</string>
+    <string name="supername">Régió</string>
     <string name="point_of_interest">Látnivaló</string>
     <string name="region">Régió</string>
-    <string name="colloquial">Colloquial</string>
+    <string name="colloquial">Köznyelvi</string>
     <string name="zone">Zóna</string>
     <string name="historical_state">Történelmi állam</string>
     <string name="historical_county">Történelmi ország</string>
@@ -502,11 +503,11 @@
     <string name="territory">Terület</string>
     <string name="district">Kerület</string>
     <string name="province">Tartomány</string>
-    <string name="municipality">Municipality</string>
-    <string name="parish">Parish</string>
-    <string name="department_segment">Department Segment</string>
+    <string name="municipality">Község</string>
+    <string name="parish">Közösség</string>
+    <string name="department_segment">Területrész</string>
     <string name="city_building">City Building</string>
-    <string name="commune">Commune</string>
+    <string name="commune">Közösség</string>
     <string name="governorate">Kormányzóság</string>
     <string name="prefecture">Prefektúra</string>
     <string name="canton">Megye</string>
@@ -698,16 +699,17 @@
     <string name="donate_to_inaturalist">Az iNaturalist támogatása</string>
     <string name="prefers_scientific_name_first">A tudományos név legyen az első</string>
     <string name="prefers_scientific_name_first_description">Tudományos név megjelenítése elsőként</string>
-    <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, and Parks Canada operating iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
-    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
-    <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) operating NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
-    <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network operating iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[Kanada: az iNaturalist Canada működtetői a Canadian Wildlife Federation, a Royal Ontario Museum, a NatureServe Canada és a Parks Canada(<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[Kolumbia: a Naturalista működtetője az Instituto Humboldt(<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalista"><![CDATA[Mexikó: a NaturaLista működtetője a Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO)(<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[Új Zéland: az iNaturalist NZ — Mātaki Taiao működtetője a New Zealand Biodiversity Recording Network(<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
-    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
-    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
-    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: az iNaturlaistPa működtetője a Ministerio de Ambiente(<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Argentína: az ArgentiNat támogatója a Fundación Vida Silvestre Argentina(<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Ausztrália: az iNaturalist Australia támogatója az Atlas of Living Australia(<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Equádor: az iNaturalist Ecuador támógatója az Instituto Nacional de Biodiversidad (INABIO)(<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Izrael: iNaturalist Israel támogatója: University of Haifa (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Naturalist History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="mark_all_as_viewed">Mind megjelölése megtekintettként</string>
     <string name="content_hidden">Rejtett tartalom</string>
     <string name="show_hidden_content">Rejtett tartalom megjelenítése</string>
@@ -723,7 +725,7 @@
     <string name="no_recorder_found">Nincs alapértelmezett hangfelvevő!</string>
     <string name="couldnt_retrieve_sound">A hang nem elérhető az alapértelmezett felvevőből. Próbáld inkább importálni.</string>
     <string name="upload_sound">Hang kiválasztása</string>
-    <string name="multi_select_sound_description">Import multiple sounds by long-pressing on a single sound</string>
+    <string name="multi_select_sound_description">A hangikont nyomvatartva több hangot is importálhatsz. </string>
     <string name="alert_unsupported_audio_type">A hang betöltése ebből a forrásból sajnos sikertelen</string>
     <string name="invalid_audio_extension">Hang(ok) importálása sikertelen: csak WAW, MP3 és AMR kiterjesztésű fájlok importálhatók.</string>
     <string name="importing_sounds">Hang(ok) importálása...</string>
@@ -738,7 +740,7 @@
     <string name="send_debug_logs_by_email">Műveleti napló küldése emailben (megadott dátumtól)</string>
     <string name="debug_settings">Hibakeresési beállítások</string>
     <string name="are_you_sure_you_want_to_delete_logs">Are you sure you want to delete all debug logs? Only press \'Yes\' if you want clear up storage room for your phone</string>
-    <string name="no_log_files_found">No log files found for that date range - try earlier date?</string>
+    <string name="no_log_files_found">Nem található naplófájl erre az időtartamra. Talán próbáld korábbról.</string>
     <string name="choose_pinned_location">Tárolt helyzetek</string>
     <string name="pin_current_location">Jelenlegi helyzet tárolása</string>
     <string name="location_pinned_successfully">Jelenlegi helyzet sikeresen eltárolva</string>
@@ -776,7 +778,7 @@
     <string name="seconds_value">másodperc</string>
     <string name="shop_the_inat_store">Vásárlás az iNat Boltban</string>
     <string name="delete_your_account">A fiók törlése</string>
-    <string name="delete_account_message"><![CDATA[By deleting your account you will remove:<br/><br/><ul><li> All of your observations, including the work of the all the people who have helped you out with identifications.</li><li> All of the identifications you\'ve added to the observations of other people, which will potentially affect the data quality of those observations.</li><li> All of the comments you\'ve added.</li></ul><br/>Furthermore, this action cannot be undone. If you change your mind later, you aren\'t getting any of that content back.<br/><br/>If this service generates too many notifications, consider <a href="https://www.inaturalist.org/users/edit">editing your settings on the website</a> to opt out of certain notifications or stop receiving email from us. If you\'re having trouble with a specific person, consider <a href="https://www.inaturalist.org/users/edit">muting them</a> instead of deleting your account.<br/><br/>If you\'re still sure you want to delete your account, enter <b>\"%1$s\"</b> in the form below and click the button to delete your account and all your data.]]></string>
+    <string name="delete_account_message"><![CDATA[A fiókod megszüntetésével törlődnek az alábbiak: <br/><br/><ul><li> Minden megfigyelésed, beleértve mindazon felhasználók munkái, akik segítettek meghatározásaikkal.</li><li> Más felhasználók megfigyeléseihez adott minden meghatározásod, amely negatív hatással lehet azok adatminőségére.</li><li> Minden hozzászólásod.</li></ul><br/>Továbbá, a fiók megszüntetése visszavonhatatlan. Ha később meggondolnád magad, nem tudjuk visszaállítani a tartalmaidat.<br/><br/>Ha túl sok értesítést kapsz tőlünk, <a href="https://www.inaturalist.org/users/edit">módosítsd a beállításaidat a weboldalon</a>, ezzel letilthatod a különféle értesítéseket és emaileket. Ha egy felhasználó aktivitása kellemetlen számodra, <a href="https://www.inaturalist.org/users/edit">elnémíthatod</a> a fiókod megszüntetése nélkül.<br/><br/>Ha ezek után is meg szeretnéd szüntetni a fiókod, írd be ezt az alábbi mzőbe: <b>%1$s</b>, majd nyomd meg a gombot a fiókod és az adataid törléséhez.]]></string>
     <string name="your_account_has_been_deleted">Töröltük a fiókod.</string>
     <string name="you_must_enter_username_in_the_form_to_delete_account">A fiókod törléséhez írd be ezt a mezőbe: %1$s</string>
     <!-- Second person hint text asking the user to enter their username -->
@@ -801,4 +803,20 @@
         <item quantity="one">Biztosan törlöd ezt az %1$d megfigyelést?</item>
         <item quantity="other">Biztosan törölsz %1$d megfigyelést?</item>
     </plurals>
+    <string name="future_observed_on_date_error">A megfigyelésed dátuma %1$s, de az új dátum (%2$s) ettől későbbi.</string>
+    <string name="no_more_photos_allowed">Egy megfigyelés legfeljebb %1$d fényképet tartalmazhat. Továbbiak hozzáadásához először el kell távolítanod néhányat.</string>
+    <string name="warning_multiple_photos">Ne adj fényképet többféle organizmusról, különféle időpontról vagy helyről egy megfigyeléshez, inkább külön megfigyeléshez töltsd fel. Egy megfigyelés legfeljebb %1$d fényképet tartalmazhat.</string>
+    <string name="choosing_specific_language_warning">Choosing a specific language for your account requires an Internet connection</string>
+    <string name="running_in_background_notfication">Running in the background so we can run without interruption</string>
+    <string name="opt_out_of_community_taxon">Opt out of the Community Taxon</string>
+    <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
+    <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
+    <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
+    <string name="permission_required">Permission Required</string>
+    <!-- Message displayed when the user tries to perform an action that requires location permission -->
+    <string name="to_access_your_location">To access your location you must grant location access permission to this app.</string>
+    <!-- Dialog title when displaying a message that an action is not permitted -->
+    <string name="forbidden">Forbidden</string>
+    <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
+    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
 </resources>

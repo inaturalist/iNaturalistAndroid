@@ -202,6 +202,7 @@
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia - это член сети iNaturalist Network в Австралии. Местные организации, поддерживающие iNaturalist Australia, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
     <string name="alert_message_use_argentinat">ArgentiNat - это член сети iNaturalist Network в Аргентине. Местные организации, поддерживающие ArgentiNat, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel - это член сети iNaturalist Network в Израиле. Местные организации, поддерживающие iNaturalist Israel, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland - это член сети iNaturalist Network в Финляндии. Местные организации, поддерживающие iNaturalist Finland, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
     <string name="editor">Редактор</string>
     <string name="license">Лицензия</string>
     <string name="download_for_offline_use">Загрузить для использования в автономном режиме</string>
@@ -721,6 +722,7 @@
     <string name="network_credit_inaturalistaustralia"><![CDATA[Австралия: Атлас живой природы Австралии, поддерживающий iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
     <string name="network_credit_inaturalistecuador"><![CDATA[Эквадор: Национальный институт биоразнообразия (INABIO), поддерживающий iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Израиль: Университет Хайфы поддерживающий iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Финляндия: Финский Музей естествознания (LUOMUS) поддерживающий  iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="mark_all_as_viewed">Пометить все как просмотренные</string>
     <string name="content_hidden">Скрытый контент</string>
     <string name="show_hidden_content">Показать скрытый контент</string>
@@ -816,4 +818,20 @@
         <item quantity="many">Вы уверены, что хотите удалить эти %1$d наблюдений?</item>
         <item quantity="other">Вы уверены, что хотите удалить эти %1$d наблюдений?</item>
     </plurals>
+    <string name="future_observed_on_date_error">Ваше наблюдение было создано (и отправлено) %1$s, но вы пытаетесь установить более позднюю дату наблюдения, а именно: %2$s</string>
+    <string name="no_more_photos_allowed">Наблюдения могут содержать только %1$d фото. Чтобы добавить больше, вам нужно будет некоторые удалить.</string>
+    <string name="warning_multiple_photos">Если вы добавляете к этому наблюдению фото разных видов организмов или одного и того же вида в разных местах или времени, вы должны удалить эти фотографии и добавить их как отдельные наблюдения. Наблюдение может включать только %1$d фото.</string>
+    <string name="choosing_specific_language_warning">Выбор определенного языка для вашей учетной записи требует подключения к интернету</string>
+    <string name="running_in_background_notfication">Работает в фоновом режиме, так что мы можем работать бесперебойно</string>
+    <string name="opt_out_of_community_taxon">Отказаться от таксона сообщества</string>
+    <string name="opt_in_to_community_taxon">Присоединиться к таксону сообщества</string>
+    <string name="opt_out_message">Отказ от таксона сообщества приводит  к тому, что это наблюдение будет ассоциироваться с таксоном из вашей текущей идентификации, а не с таксоном, полученным из всех идентификаций, которые были добавлены к этому наблюдению. Если достаточное количество экспертов не согласны с вами, ваше наблюдение получит статус Обычное. Вы должны отказаться только в том случае, если вы уверены, что ваша идентификация правильна, а другие идентификации неверны.</string>
+    <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
+    <string name="permission_required">Требуется разрешение</string>
+    <!-- Message displayed when the user tries to perform an action that requires location permission -->
+    <string name="to_access_your_location">Для доступа к вашему местоположению вы должны предоставить этому приложению разрешение к доступу .</string>
+    <!-- Dialog title when displaying a message that an action is not permitted -->
+    <string name="forbidden">Запрещено</string>
+    <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
+    <string name="app_you_shared_blocked">Приложение, которым вы поделились, создает фотографии, которые не подходят для наблюдений, потому что они не являются доказательством вашего опыта работы с другим организмом, потому что они включают ненадлежащий брендинг или коммерческий контент, или потому что они нарушают наши условия предоставления услуг каким-либо другим способом.</string>
 </resources>

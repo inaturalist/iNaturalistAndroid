@@ -200,6 +200,7 @@
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia is lid van het iNaturalist Network in Australië. Lokale instellingen die iNaturalist Australia ondersteunen hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
     <string name="alert_message_use_argentinat">ArgentiNat is lid van het iNaturalist Netwerk in Argentinië. Lokale instellingen die ArgentiNat ondersteunen zullen toegang hebben tot uw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel is lid van het iNaturalist Network in Israel. Lokale instellingen die iNaturalist Israel ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland is lid van het iNaturalist Network in Finland. Lokale instellingen die iNaturalist Finland ondersteunen hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
     <string name="editor">Redacteur</string>
     <string name="license">Licentie</string>
     <string name="download_for_offline_use">Downloaden voor offline gebruik</string>
@@ -708,6 +709,7 @@
     <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia steunt iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) steunt iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa steunt iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Naturalist History (LUOMUS) dat iNaturalist Finland ondersteunt (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="mark_all_as_viewed">Markeer alle berichten als gelezen</string>
     <string name="content_hidden">Inhoud verborgen</string>
     <string name="show_hidden_content">Toon verborgen inhoud</string>
@@ -801,4 +803,20 @@
         <item quantity="one">Weet je zeker dat je deze (%1$d) waarneming wilt verwijderen?</item>
         <item quantity="other">Weet je zeker dat je deze %1$d waarnemingen wilt verwijderen?</item>
     </plurals>
+    <string name="future_observed_on_date_error">Je waarneming is gemaakt (en wordt ingediend) op %1$s maar je probeert een waarnemingsdatum in te stellen die later is dan dat: %2$s</string>
+    <string name="no_more_photos_allowed">Waarnemingen kunnen slechts %1$d foto\'s bevatten. Om meer toe te voegen moet je er een paar verwijderen.</string>
+    <string name="warning_multiple_photos">Als je foto\'s van verschillende soorten organismen aan deze waarneming toevoegt of dezelfde soort op verschillende plaatsen of tijden moet je deze foto\'s verwijderen en als aparte waarnemingen toevoegen. Een waarneming kan slechts %1$d foto\'s bevatten.</string>
+    <string name="choosing_specific_language_warning">Voor het kiezen van een specifieke taal voor je account heb je een internetverbinding nodig</string>
+    <string name="running_in_background_notfication">Verwerking vindt op de achtergrond plaats zodat het zonder onderbreking kan worden uitgevoerd</string>
+    <string name="opt_out_of_community_taxon">Afmelden voor het gemeenschapstaxon</string>
+    <string name="opt_in_to_community_taxon">het gemeenschapstaxon toestaan</string>
+    <string name="opt_out_message">Door het weigeren van het gemeenschapstaxon zal deze waarneming geassocieerd worden met het taxon op basis van je huidige determinatie en dus niet een taxon worden dat is afgeleid van alle determinaties die aan deze waarneming zijn toegevoegd. Als genoeg determinatoren het niet met je eens zijn zal jouw waarneming Casual worden. Je moet je het alleen weigeren als je er zeker van bent dat jouw determinatie correct is en de andere determinaties onjuist zijn.</string>
+    <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
+    <string name="permission_required">Permission Required</string>
+    <!-- Message displayed when the user tries to perform an action that requires location permission -->
+    <string name="to_access_your_location">To access your location you must grant location access permission to this app.</string>
+    <!-- Dialog title when displaying a message that an action is not permitted -->
+    <string name="forbidden">Forbidden</string>
+    <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
+    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
 </resources>

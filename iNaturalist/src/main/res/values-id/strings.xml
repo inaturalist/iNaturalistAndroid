@@ -148,7 +148,7 @@
     <string name="release_to_refresh">Lepas untuk me-refresh...</string>
     <string name="refreshing">Refresh...</string>
     <plurals name="sync_x_observations">
-        <item quantity="other">Sync %1$d observations</item>
+        <item quantity="other">Sinkronisasi %1$d pengamatan</item>
     </plurals>
     <string name="sync_observations">Sinkronisasi pengamatan</string>
     <string name="lets_get_started">Ayo mulai!</string>
@@ -189,7 +189,7 @@
     <string name="text"><![CDATA[<b>Teks:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">Jaringan utama iNaturalist. Mengklik OK akan mengatur aplikasi Anda sebagai bagian dari jaringan global iNaturalist.</string>
-    <string name="alert_message_use_naturalista">NaturaLista adalah anggota Jaringan iNaturalist di Meksiko. Institusi lokal yang mendukung NaturaLista akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
+    <string name="alert_message_use_naturalista">NaturaLista adalah anggota iNaturalist Network di Meksiko. Institusi lokal yang mendukung NaturaLista akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
     <string name="alert_message_use_naturewatchnz">iNaturalist NZ adalah anggota Jaringan iNaturalist di Selandia Baru. Institusi lokal yang mendukung iNaturalist NZ akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist Canada adalah anggota Jaringan iNaturalist di Kanada. Institusi lokal yang mendukung iNaturalist Kanada akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
     <string name="alert_message_use_naturalistacolombia">Naturalista adalah anggota Jaringan iNaturalist di Kolombia. Institusi lokal yang mendukung Naturalista akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
@@ -198,7 +198,8 @@
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador adalah anggota Jaringan iNaturalist di Ekuador. Institusi lokal yang mendukung iNaturalist Ecuador akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia adalah anggota Jaringan iNaturalist di Australia. Institusi lokal yang mendukung iNaturalist Australia akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
     <string name="alert_message_use_argentinat">ArgentiNat adalah anggota Jaringan iNaturalist di Argentina. Institusi lokal yang mendukung ArgentiNat akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel adalah anggota iNaturalist Network di Israel. Institusi lokal yang mendukung iNaturalist Israel akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland adalah anggota iNaturalist Network di Finlandia. Institusi lokal yang mendukung iNaturalist Finland akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
     <string name="editor">Penyunting</string>
     <string name="license">Lisensi</string>
     <string name="download_for_offline_use">Download untuk penggunaan offline</string>
@@ -281,7 +282,7 @@
     <string name="casual_grade_captive"><![CDATA[ Pengamatan adalah kelas kasual karena <b>dipelihara/dibudidayakan</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ Pengamatan membutuhkan <b>ilebih banyak identifikasi</b> dari masyarakat untuk menjadi status "Kelas Riset". ]]></string>
     <plurals name="included_in_projects">
-        <item quantity="other">Included in %1$d projects</item>
+        <item quantity="other">Termasuk dalam %1$d proyek</item>
     </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy is a setting you can make on your observations that controls how the spatial coordinates (latitude and longitude) are displayed. Here are the options:<br/><b>open</b> - Everyone can see the coordinates unless the taxon is threatened. <br/><b>obscured</b> - Public coordinates shown as a random point within a 0.2 by 0.2 degree area that contains the true coordinates, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. True coordinates are only visible to you and the curators of projects to which you add the observation. <br/><b>private</b> - Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. <br/><br/>Note that curators of individual projects can always see the coordinates regardless of your geoprivacy setting, so if you are concerned about who has access to the coordinates you should be sure you trust the curators of the projects in which you participate. ]]></string>
     <string name="id_title">%1$s\'s ID • %2$s</string>
@@ -409,7 +410,7 @@
     <string name="new_activities">%1s baru</string>
     <string name="no_results_found">Tidak Ada Hasil Ditemukan...</string>
     <plurals name="syncing_x_out_of_y_observations">
-        <item quantity="other">Syncing %1$d of %2$d observations...</item>
+        <item quantity="other">mengsinkronisasi %1$d dari %2$d pengamatan...</item>
     </plurals>
     <string name="deleting_observations">Menghapus Pengamatan...</string>
     <string name="preparing">Mempersiapkan...</string>
@@ -436,10 +437,10 @@
     <string name="species_search">Cari Spesies</string>
     <plurals name="were_not_confident">
         <!-- This will probably never happen -->
-        <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+        <item quantity="other">Kami tidak cukup percaya diri untuk membuat rekomendasi, namun inilah %1$d saran utama kami:</item>
     </plurals>
     <plurals name="top_species_suggestions">
-        <item quantity="other">Top %1$d suggestions:</item>
+        <item quantity="other">%1$d usulan utama:</item>
     </plurals>
     <string name="pretty_sure_rank">Kami cukup yakin %1$s ini di:</string>
     <string name="what_did_you_see">Apa yang Anda lihat?</string>
@@ -658,7 +659,7 @@
     <string name="description_all_caps">DESKRIPSI</string>
     <string name="quantity_all_caps">JUMLAH</string>
     <plurals name="observation_count_all_caps">
-        <item quantity="other">%1$s OBSERVATIONS</item>
+        <item quantity="other">%1$s PENGAMATAN</item>
     </plurals>
     <string name="agree_all_caps">SETUJU</string>
     <string name="observations_all_caps">PENGAMATAN</string>
@@ -698,10 +699,11 @@
     <string name="network_credit_naturewatchnz"><![CDATA[Selandia Baru: Jaringan Rekaman Keanekaragaman Hayati Selandia Baru mengoperasikan iNaturalist NZ - Mātaki Taiao (<a href="https://inaturalist.nz"> inaturalist.nz </a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Keanekaragaman Hayati Untuk Semua Asosiasi yang mengoperasikan Biodiversity4All (<a href="https://biodiversity4all.org"> Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente yang mengoperasikan iNaturalistPa (<a href="https://panama.inaturalist.org"> panama.inaturalist.org</a>)]]></string>
-    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
-    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
-    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina mendukung ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia mendukung iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Ekuador: Instituto Nacional de Biodiversidad (INABIO) mendukung iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa mendukung iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Finlandia: Finnish Museum of Naturalist History (LUOMUS) mendukung iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="mark_all_as_viewed">Tandai semua sebagai dilihat</string>
     <string name="content_hidden">Konten Tersembunyi</string>
     <string name="show_hidden_content">Tampilkan Konten Tersembunyi</string>
@@ -792,6 +794,22 @@
     <string name="restart_app">Mulai ulang aplikasi</string>
     <string name="disable_third_party_sharing_restart">Untuk segera menonaktifkan berbagi data pihak ketiga, aplikasi harus dinyalakan ulang.</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
-        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+        <item quantity="other">Apakah Anda yakin Anda ingin menghapus %1$d pengamatan ini?</item>
     </plurals>
+    <string name="future_observed_on_date_error">Pengamatan Anda telah dibuat (dan diunggah) pada %1$s, tapi Anda hendak menyetel tanggal pengamatan setelah tanggal tersebut: %2$s</string>
+    <string name="no_more_photos_allowed">Pengamatan hanya dapat memiliki maksimal %1$d foto. Untuk menambah Anda harus menghapus beberapa</string>
+    <string name="warning_multiple_photos">Jika anda menambah foto jenis organisme yang berbeda-beda untuk pengamatan ini, atau jenis yang sama pada tempat atau waktu yang berbeda, Anda sebaiknya menghapus foto tersebut dan menguploadnya sebagai pengamatan terpisah. Satu pengamatan hanya dapat memiliki maksimal %1$d foto</string>
+    <string name="choosing_specific_language_warning">Memilih suatu bahasa untuk akun Anda membutuhkan koneksi internet</string>
+    <string name="running_in_background_notfication">Berjalan di latar belakang sehingga kami dapat berjalan tanpa interupsi</string>
+    <string name="opt_out_of_community_taxon">Tidak turut serta Takson Komunitas</string>
+    <string name="opt_in_to_community_taxon">Turut serta Takson Komunitas</string>
+    <string name="opt_out_message">Tidak turut serta Takson Komunitas akan memaksakan pengamatan ini untuk diasosiasikan dengan identifikasi Anda sekarang, tidak berdasarkan semua identifikasi-identifikasi yang telah ditambahkan pada pengamatan ini. Jika banyak pengidentifikasi yang tidak setuju dengan anda, maka pengamatan anda akan menjadi Kasual. Anda sebaiknya hanya tidak turut apabila anda sangat yakin identifikasi anda benar dan identifikasi lain salah.</string>
+    <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
+    <string name="permission_required">Permission Required</string>
+    <!-- Message displayed when the user tries to perform an action that requires location permission -->
+    <string name="to_access_your_location">To access your location you must grant location access permission to this app.</string>
+    <!-- Dialog title when displaying a message that an action is not permitted -->
+    <string name="forbidden">Forbidden</string>
+    <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
+    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
 </resources>
