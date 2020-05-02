@@ -119,7 +119,7 @@
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">地理资讯隐私权</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
-    <string name="geoprivacy_with_value">Geoprivacy: %1$s</string>
+    <string name="geoprivacy_with_value">地理信息隐私权：%1$s</string>
     <string name="delete_confirmation">您确定您想要删除此观察记录吗？</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">指南</string>
@@ -148,7 +148,7 @@
     <string name="release_to_refresh">放开以重新整理...</string>
     <string name="refreshing">重新整理中...</string>
     <plurals name="sync_x_observations">
-        <item quantity="other">Sync %1$d observations</item>
+        <item quantity="other">同步 %1$d 笔观察记录</item>
     </plurals>
     <string name="sync_observations">同步观察记录</string>
     <string name="lets_get_started">让我们开始吧 ！</string>
@@ -189,16 +189,17 @@
     <string name="text"><![CDATA[<b>文字：</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">主要的 iNaturalist 网路。点选「好的」按钮将设定您的 app 为全球 iNaturalist 网路的一部分。</string>
-    <string name="alert_message_use_naturalista">NaturaLista is a member of the iNaturalist Network in Mexico. Local institutions supporting NaturaLista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturewatchnz">iNaturalist NZ is a member of the iNaturalist Network in New Zealand. Local institutions supporting iNaturalist NZ will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Local institutions supporting iNaturalist Canada will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Local institutions supporting Naturalista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4All is a member of the iNaturalist Network in Portugal. Local institutions supporting Biodiversity4All will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá is a member of the iNaturalist Network in Panama. Local institutions supporting iNaturalist Panamá will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador is a member of the iNaturalist Network in Ecuador. Local institutions supporting iNaturalist Ecuador will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia is a member of the iNaturalist Network in Australia. Local institutions supporting iNaturalist Australia will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_argentinat">ArgentiNat is a member of the iNaturalist Network in Argentina. Local institutions supporting ArgentiNat will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalista">NaturaLista 是 iNaturalist 附属网络位于墨西哥的成员。此操作会让支援 NaturaLista 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZ 是 iNaturalist 附属网络位于新西兰的成员。此操作会让支援 iNaturalist NZ 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada 是 iNaturalist 附属网络位于加拿大的成员。此操作会让支援 iNaturalist Canada 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
+    <string name="alert_message_use_naturalistacolombia">Naturalista 是 iNaturalist 附属网络位于哥伦比亚的成员。此操作会让支援 Naturalista 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All 是 iNaturalist 附属网络位于葡萄牙的成员。此操作会让支援 Biodiversity4All 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá 是 iNaturalist 附属网络位于巴拿马的成员。此操作会让支援 iNaturalist Panamá 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador 是 iNaturalist 附属网络位于厄瓜多尔的成员。此操作会让支援 iNaturalist Ecuador 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia 是 iNaturalist 附属网络位于澳大利亚的成员。此操作会让支援 iNaturalist Australia 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
+    <string name="alert_message_use_argentinat">ArgentiNat 是 iNaturalist 附属网络位于阿根廷的成员。此操作会让支援 ArgentiNat 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel 是 iNaturalist 附属网络位于以色列的成员。此操作会让支援 iNaturalist Israel 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland is a member of the iNaturalist Network in Finland. Local institutions supporting iNaturalist Finland will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">编辑</string>
     <string name="license">授权</string>
     <string name="download_for_offline_use">下载供离线使用</string>
@@ -242,7 +243,7 @@
     <string name="login_signup">登入 / 注册</string>
     <string name="please_sign_in_via_settings_for_guides">您必须登入以查看您的指南。</string>
     <string name="please_sign_in_for_updates">您必须登入以查看您的更新资讯。</string>
-    <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="https://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
+    <string name="by_using_inat_terms"><![CDATA[使用 iNaturalist 即代表您同意<b><a href="https://www.inaturalist.org/pages/terms">服务条款</a></b>和<b><a href="https://www.inaturalist.org/pages/privacy">隐私权政策</a></b>]]></string>
     <string name="activity">活动</string>
     <string name="camera">拍照</string>
     <string name="upload_photo">选择图片</string>
@@ -281,7 +282,7 @@
     <string name="casual_grade_captive"><![CDATA[ 观察记录列为一般等级因为它是圈养/栽培的。 ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ 观察记录需要从社群中取得<b>更多的鉴定</b>以成为「研究等级」。 ]]></string>
     <plurals name="included_in_projects">
-        <item quantity="other">Included in %1$d projects</item>
+        <item quantity="other">包含在 %1$d 个任务中</item>
     </plurals>
     <string name="geoprivacy_explanation"><![CDATA[地理资讯隐私权(Geoprivacy)的设定控制了您的观察记录中如何显示空间座标 （纬度和经度）。选项为： <br/> <b>开放</b>—每个人都可以看到座标，除非此分类群受到威胁。 <br/><b>遮敝</b>—公开的座标是在 0.2 x 0.2 度范围内随机显示，其中包含了真实座标，这相当于大约在赤道有 22 x 22 公里面积的开放座标，而随着接近两极此面积会逐渐减少。真实的座标是仅对您和您向其中新增加的观察专案策展人可见。<br/> <b>私人</b>—座标在公开地图上是完全隐藏的，只有您和您加入到观察专案中的策展人才能看到真实的座标。 <br/> <br/>注意：个别专案策展人不管您的地理资讯隐私权如何设定，他还是可以看到您的座标，所以如果对于谁可以存取座标有疑虑的话，您应该确保您信任您所参与的专案策展人。]]></string>
     <string name="id_title">%1$s 的 ID • %2$s</string>
@@ -348,9 +349,9 @@
     <string name="language">语言</string>
     <string name="version">版本</string>
     <string name="inat_network">iNaturalist 网路</string>
-    <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
+    <string name="inat_network_description">iNaturalist 附属网络是给 iNaturalist 社区本地化的框架。网站服务由当地机构支援，而这些机构已和 iNaturalist 签署协议，以此鼓励使用 iNaturalist 并且能有利于当地的生物多样性。</string>
     <string name="more_info">更多资讯</string>
-    <string name="select_network">Select Network Affiliation</string>
+    <string name="select_network">选择附属网络</string>
     <string name="help">说明</string>
     <string name="stop">停止</string>
     <string name="resume">继续</string>
@@ -365,7 +366,7 @@
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">更新鉴定描述</string>
     <string name="your_identification">您的 ID: %1$s</string>
-    <string name="onboarding_species_name">Name what you saw if you can, even if that\'s just \"insect\" or \"bird,\" or just leave this blank. Others may help you identify it!</string>
+    <string name="onboarding_species_name">如果能的话，请填写您看到的生物的名字，即便只是“昆虫”或“鸟类”也行，或者干脆留空。其他人也许会帮您鉴定！</string>
     <string name="upload_complete">上传完成！</string>
     <string name="onboarding_upload_description">请稍后回来查看其他人对你的观察记录的辨认及评论。</string>
     <string name="importing_photos">正在汇入照片中...</string>
@@ -409,7 +410,7 @@
     <string name="new_activities">%1s 新</string>
     <string name="no_results_found">找不到结果...</string>
     <plurals name="syncing_x_out_of_y_observations">
-        <item quantity="other">Syncing %1$d of %2$d observations...</item>
+        <item quantity="other">正在同步 %2$d 笔观察记录中的第 %1$d 笔……</item>
     </plurals>
     <string name="deleting_observations">删除观察记录中...</string>
     <string name="preparing">准备中...</string>
@@ -436,10 +437,10 @@
     <string name="species_search">物种搜寻</string>
     <plurals name="were_not_confident">
         <!-- This will probably never happen -->
-        <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+        <item quantity="other">我们信心不足以至于无法提出对于此物种的建议，但这是我们最相近的前 %1$d 笔建议：</item>
     </plurals>
     <plurals name="top_species_suggestions">
-        <item quantity="other">Top %1$d suggestions:</item>
+        <item quantity="other">最相近的前 %1$d 笔建议：</item>
     </plurals>
     <string name="pretty_sure_rank">我们很肯定的是在这 %1$s:</string>
     <string name="what_did_you_see">您看到什么？</string>
@@ -528,7 +529,7 @@
     <string name="search_users">搜索用户...</string>
     <string name="quality_grade">质量级别</string>
     <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
-    <string name="date_observed">Date Observed</string>
+    <string name="date_observed">观察日期</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
     <string name="any">任意</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
@@ -570,9 +571,9 @@
     <string name="search_projects_youve_joined">搜索您所加入的项目...</string>
     <string name="must_be_connected_to_load_more_obs">您必须连接到网络才能加载更多观察记录</string>
     <string name="inat_about_title">iNaturalist 是由美国加利福尼亚科学院以及美国国家地理共同发起的平台。</string>
-    <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="http://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
-    <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
-    <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
+    <string name="inat_credits"><![CDATA[iNaturalist 的创建要归功于每一个参与我们社区的人。Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, 以及 Ken-ichi Ueda 等人开发软件、设计界面、维护基础设施、支援社区并促进合作。<br/><br/>加州理工学院 (CalTech) 和康奈尔科技校区 (Cornell Tech) 协助开发了可以识别图片，并提供物种鉴定上的建议的电脑视觉系统。我们感谢 Grant Van Horn, Serge Belongie, 以及 Pietro Perona 一同协助这项工作。更多资讯请访问 <a href="http://www.visipedia.org">visipedia.org</a>. 特别感谢 NVIDIA 提供帮助。]]></string>
+    <string name="inat_credits_networks_pre"><![CDATA[以下国家支持本地化的、全面整合的以及含有构建于 iNaturalist 基础上的网站的 iNaturalist 附属网络，感谢相关合作组织的协助。]]></string>
+    <string name="inat_credits_post"><![CDATA[iNaturalist 也深深的感谢开源开发者，他们为我们每天依赖的软件提供了许多东西。有关开源贡献，请参阅 <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a>.<br/> 我们感谢 crowdin.com 社区的志愿者提供的翻译协助，特别是 Eduardo Martínez, 林政道 (Lin Cheng-Tao), KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, 以及 katunchik. <br/>IUCN 第二类保护区由国际自然保护联盟 (IUCN) 和世界保护监测中心 (UNEP-WCMC) 提供，世界保护地数据库 (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. 可在 <a href="http://www.protectedplanet.net">www.protectedplanet.net</a> 查看。]]></string>
     <string name="credits_title">贡献者</string>
     <string name="password_changed">您在此应用中设置的密码无法通过验证。您是否在网页版中更改了密码呢？请在此输入新的密码</string>
     <string name="just_so_you_know">只是让您知道...</string>
@@ -614,7 +615,7 @@
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">性别</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
-    <string name="annotation_name_alive_or_dead">Alive or Dead</string>
+    <string name="annotation_name_alive_or_dead">活体或死亡</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">开花阶段</string>
     <!-- Adjective, having fruit -->
@@ -622,7 +623,7 @@
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_budding">花苞阶段</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_flower_budding">Flower Budding</string>
+    <string name="annotation_value_flower_budding">花芽</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">成体</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -641,11 +642,11 @@
     <string name="annotation_value_female">雌性</string>
     <string name="annotation_value_male">雄性</string>
     <!-- Adjective, alive and shows no signs of imminent death -->
-    <string name="annotation_value_alive">Alive</string>
+    <string name="annotation_value_alive">活体</string>
     <!-- Adjective, dead or shows signs of imminent death -->
-    <string name="annotation_value_dead">Dead</string>
+    <string name="annotation_value_dead">死亡</string>
     <!-- Value for when the value of the attribute cannot be determined -->
-    <string name="annotation_value_cannot_be_determined">Cannot Be Determined</string>
+    <string name="annotation_value_cannot_be_determined">无法确认</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">已加入</string>
     <string name="nearby_projects_all_caps">周边</string>
@@ -658,7 +659,7 @@
     <string name="description_all_caps">描述</string>
     <string name="quantity_all_caps">数量</string>
     <plurals name="observation_count_all_caps">
-        <item quantity="other">%1$s OBSERVATIONS</item>
+        <item quantity="other">%1$s 笔观察记录</item>
     </plurals>
     <string name="agree_all_caps">同意</string>
     <string name="observations_all_caps">观察记录</string>
@@ -692,16 +693,17 @@
     <string name="donate_to_inaturalist">捐助 iNaturalist</string>
     <string name="prefers_scientific_name_first">优先显示学名</string>
     <string name="prefers_scientific_name_first_description">在普通名称之前显示学名。</string>
-    <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, and Parks Canada operating iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
-    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
-    <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) operating NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
-    <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network operating iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[加拿大：iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>) 由加拿大野生动物联盟 (Canadian Wildlife Federation)、安大略皇家博物馆 (Royal Ontario Museum)、NatureServe Canada 以及加拿大公园局 (Parks Canada) 共同营运]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[哥伦比亚：Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>) 由洪堡研究所 (Instituto Humboldt) 营运]]></string>
+    <string name="network_credit_naturalista"><![CDATA[墨西哥：NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>) 由国家生物多样性使用及知识委员会 (Comisión nacional para el conocimiento y uso de la biodiversidad; CONABIO) 营运]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[新西兰：iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>) 由新西兰生物多样性记录网络 (New Zealand Biodiversity Recording Network) 营运]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
     <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
     <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Naturalist History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="mark_all_as_viewed">Mark all as viewed</string>
     <string name="content_hidden">Content Hidden</string>
     <string name="show_hidden_content">Show Hidden Content</string>
@@ -794,4 +796,20 @@
     <plurals name="are_you_sure_you_want_to_delete_observations">
         <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
     </plurals>
+    <string name="future_observed_on_date_error">Your observation was created (and submitted) on %1$s, but you\'re trying to set an observation date that is later than that: %2$s</string>
+    <string name="no_more_photos_allowed">Observations can only have %1$d photos. To add more you will need to remove some.</string>
+    <string name="warning_multiple_photos">If you\'re adding photos of different kinds of organisms to this observation, or the same kind at different places or times, you should remove those photos and add them as separate observations. An observation can only have %1$d photos.</string>
+    <string name="choosing_specific_language_warning">Choosing a specific language for your account requires an Internet connection</string>
+    <string name="running_in_background_notfication">Running in the background so we can run without interruption</string>
+    <string name="opt_out_of_community_taxon">Opt out of the Community Taxon</string>
+    <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
+    <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
+    <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
+    <string name="permission_required">Permission Required</string>
+    <!-- Message displayed when the user tries to perform an action that requires location permission -->
+    <string name="to_access_your_location">To access your location you must grant location access permission to this app.</string>
+    <!-- Dialog title when displaying a message that an action is not permitted -->
+    <string name="forbidden">Forbidden</string>
+    <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
+    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
 </resources>

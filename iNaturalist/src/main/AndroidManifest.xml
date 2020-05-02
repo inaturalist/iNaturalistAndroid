@@ -265,17 +265,6 @@
         <activity-alias
             android:name=".ObservationListActivity.naturewatchnz"
             android:targetActivity=".ObservationListActivity"
-            android:configChanges="orientation"
-            android:enabled="false"
-            android:label="@string/network_naturewatchnz">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity-alias>
-        <activity-alias
-            android:name=".ObservationListActivity.naturewatchnz"
-            android:targetActivity=".ObservationListActivity"
             android:enabled="false"
             android:configChanges="orientation"
             android:label="@string/network_naturewatchnz">

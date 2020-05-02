@@ -148,7 +148,7 @@
     <string name="release_to_refresh">拉開頁面更新...</string>
     <string name="refreshing">正在更新...</string>
     <plurals name="sync_x_observations">
-        <item quantity="other">Sync %1$d observations</item>
+        <item quantity="other">同步 %1$d 筆觀察記錄</item>
     </plurals>
     <string name="sync_observations">同步觀察記錄</string>
     <string name="lets_get_started">開始吧 ！</string>
@@ -198,7 +198,8 @@
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador 是 iNaturalist 附屬網路在厄瓜多的成員。支援 iNaturalist Ecuador 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia 是 iNaturalist 附屬網路在澳洲的成員。支援 iNaturalist Australia 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
     <string name="alert_message_use_argentinat">ArgentiNat 是 iNaturalist 附屬網路阿根廷的成員。支援 ArgentiNat 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel 是 iNaturalist 附屬網路在以色列的成員。支援 iNaturalist Israel 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland is a member of the iNaturalist Network in Finland. Local institutions supporting iNaturalist Finland will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">編輯器</string>
     <string name="license">許可證</string>
     <string name="download_for_offline_use">下載供離線使用</string>
@@ -281,7 +282,7 @@
     <string name="casual_grade_captive"><![CDATA[ 觀察記錄列為一般等級因為它是圈養/栽培的。 ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ 觀察記錄需要從社群中取得<b>更多次辨認</b>以成為「研究等級」。 ]]></string>
     <plurals name="included_in_projects">
-        <item quantity="other">Included in %1$d projects</item>
+        <item quantity="other">包含在 %1$d 個專案中</item>
     </plurals>
     <string name="geoprivacy_explanation"><![CDATA[地理資訊隱私權(Geoprivacy)的設定控制了您的觀察記錄中如何顯示空間座標 （緯度和經度）。選項為： <br/> <b>開放</b>—每個人都可以看到座標，除非此分類群受到威脅。 <br/><b>遮敝</b>—公開的座標是在 0.2 x 0.2 度範圍內隨機顯示，其中包含了真實座標，這相當於大約在赤道有 22 x 22 公里面積的開放座標，而隨著接近兩極此面積會逐漸減少。真實的座標是僅對您和您向其中新增加的觀察專案策展人可見。<br/> <b>私人</b>—座標在公開地圖上是完全隱藏的，只有您和您加入到觀察專案中的策展人才能看到真實的座標。 <br/> <br/>注意：個別專案策展人不管您的地理資訊隱私權如何設定，他還是可以看到您的座標，所以如果對於誰可以存取座標有疑慮的話，您應該確保您信任您所參與的專案策展人。]]></string>
     <string name="id_title">%1$s 的觀察記錄 • %2$s</string>
@@ -409,7 +410,7 @@
     <string name="new_activities">%1s 新</string>
     <string name="no_results_found">找不到結果...</string>
     <plurals name="syncing_x_out_of_y_observations">
-        <item quantity="other">Syncing %1$d of %2$d observations...</item>
+        <item quantity="other">正在同步 %2$d 筆觀察記錄中的第 %1$d 筆...</item>
     </plurals>
     <string name="deleting_observations">刪除觀察記錄中...</string>
     <string name="preparing">準備中...</string>
@@ -436,10 +437,10 @@
     <string name="species_search">物種搜尋</string>
     <plurals name="were_not_confident">
         <!-- This will probably never happen -->
-        <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+        <item quantity="other">我們信心不足以致於無法提出此物種的建議，但這是我們最相近的前 %1$d 筆建議：</item>
     </plurals>
     <plurals name="top_species_suggestions">
-        <item quantity="other">Top %1$d suggestions:</item>
+        <item quantity="other">最相近的前 %1$d 筆建議：</item>
     </plurals>
     <string name="pretty_sure_rank">我們很肯定的是在這 %1$s:</string>
     <string name="what_did_you_see">您看到什麼？</string>
@@ -658,7 +659,7 @@
     <string name="description_all_caps">描述</string>
     <string name="quantity_all_caps">數量</string>
     <plurals name="observation_count_all_caps">
-        <item quantity="other">%1$s OBSERVATIONS</item>
+        <item quantity="other">%1$s 筆觀察記錄</item>
     </plurals>
     <string name="agree_all_caps">同意</string>
     <string name="observations_all_caps">觀察記錄</string>
@@ -702,6 +703,7 @@
     <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Naturalist History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="mark_all_as_viewed">標記為已讀</string>
     <string name="content_hidden">內容已隱藏</string>
     <string name="show_hidden_content">顯示隱藏內容</string>
@@ -789,9 +791,25 @@
     <string name="common_names_place"><![CDATA[俗名的地點：<b>%1$s/b>]]></string>
     <string name="tap_to_prioritize_common_names">點選以指定從特定地點來顯示優先的俗名</string>
     <string name="search_places">搜尋地點</string>
-    <string name="restart_app">Restart App</string>
-    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
+    <string name="restart_app">重新啟動 App</string>
+    <string name="disable_third_party_sharing_restart">為了立刻關閉第三方資料共享，app 必須重新啟動。</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
-        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+        <item quantity="other">您確定要刪除這 %1$d 筆觀察記錄嗎？</item>
     </plurals>
+    <string name="future_observed_on_date_error">Your observation was created (and submitted) on %1$s, but you\'re trying to set an observation date that is later than that: %2$s</string>
+    <string name="no_more_photos_allowed">Observations can only have %1$d photos. To add more you will need to remove some.</string>
+    <string name="warning_multiple_photos">如果您要把不同的生物的照片加到這筆觀察記錄中，或是在不同地點或時間中的同一種生物，您必須需移除這些照片並且新增為分別的觀察記錄。一筆觀察記錄可以只有 %1$d 張照片。</string>
+    <string name="choosing_specific_language_warning">Choosing a specific language for your account requires an Internet connection</string>
+    <string name="running_in_background_notfication">Running in the background so we can run without interruption</string>
+    <string name="opt_out_of_community_taxon">Opt out of the Community Taxon</string>
+    <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
+    <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
+    <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
+    <string name="permission_required">Permission Required</string>
+    <!-- Message displayed when the user tries to perform an action that requires location permission -->
+    <string name="to_access_your_location">To access your location you must grant location access permission to this app.</string>
+    <!-- Dialog title when displaying a message that an action is not permitted -->
+    <string name="forbidden">Forbidden</string>
+    <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
+    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
 </resources>

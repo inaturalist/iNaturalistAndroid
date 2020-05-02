@@ -119,7 +119,7 @@
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">位置情報プライバシー</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
-    <string name="geoprivacy_with_value">Geoprivacy: %1$s</string>
+    <string name="geoprivacy_with_value">位置情報プライバシー: %1$s</string>
     <string name="delete_confirmation">本当にこの観察記録を削除してもよろしいですか？</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">ガイド</string>
@@ -148,7 +148,7 @@
     <string name="release_to_refresh">離して更新</string>
     <string name="refreshing">更新中...</string>
     <plurals name="sync_x_observations">
-        <item quantity="other">Sync %1$d observations</item>
+        <item quantity="other">%1$d の観測記録を同期</item>
     </plurals>
     <string name="sync_observations">観察記録を同期</string>
     <string name="lets_get_started">始めましょう!</string>
@@ -189,9 +189,9 @@
     <string name="text"><![CDATA[<b>本文:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">iNaturalistの一般ネットワークです。この設定にしていただくと、このアプリはiNaturalistの世界ネットワークを使用します。</string>
-    <string name="alert_message_use_naturalista">NaturaLista is a member of the iNaturalist Network in Mexico. Local institutions supporting NaturaLista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturewatchnz">iNaturalist NZ is a member of the iNaturalist Network in New Zealand. Local institutions supporting iNaturalist NZ will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Local institutions supporting iNaturalist Canada will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalista">NaturaListaはメキシコのiNaturalist Networkのメンバーです。 NaturaListaをサポートする地元の機関は、あなたのメールアドレスにアクセスでき、公的に隠されているか私的な観測の真の座標にアクセスできます。 観測値が1000を超える場合は、実験的に所属を変更しないでください。 所属を変更しますか？</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZは、ニュージーランドのiNaturalist Networkのメンバーです。 iNaturalist NZをサポートする地元の機関は、あなたのメールアドレスにアクセスでき、公的に隠されている、または私的な観測の真の座標にアクセスできます。 観測値が1000を超える場合は、実験的に所属を変更しないでください。 所属を変更しますか？</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canadaは、カナダのiNaturalist Networkのメンバーです。 iNaturalist Canadaをサポートする地元の機関は、あなたのメールアドレスにアクセスでき、公的に隠されているか私的な観測の真の座標にアクセスできます。 観測値が1000を超える場合は、実験的に所属を変更しないでください。 所属を変更しますか？</string>
     <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Local institutions supporting Naturalista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_biodiversity4all">Biodiversity4All is a member of the iNaturalist Network in Portugal. Local institutions supporting Biodiversity4All will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá is a member of the iNaturalist Network in Panama. Local institutions supporting iNaturalist Panamá will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
@@ -199,6 +199,7 @@
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia is a member of the iNaturalist Network in Australia. Local institutions supporting iNaturalist Australia will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_argentinat">ArgentiNat is a member of the iNaturalist Network in Argentina. Local institutions supporting ArgentiNat will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalistフィンランドは、フィンランドのiNaturalistネットワークのメンバーです。 iNaturalistフィンランドをサポートする地元の機関は、あなたのメールアドレスにアクセスでき、公的に隠されているか私的な観測の真の座標にアクセスできます。 観測値が1000を超える場合は、実験的に所属を変更しないでください。 所属を変更しますか？</string>
     <string name="editor">編集者</string>
     <string name="license">ライセンス</string>
     <string name="download_for_offline_use">オフラインでも使用できるようにダウンロードする</string>
@@ -702,6 +703,7 @@
     <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[フィンランド：iNaturalistフィンランド（<a href="https://inaturalist.laji.fi/"> inaturalist.laji.fi </a>）をサポートするフィンランド自然史博物館（LUOMUS）]]></string>
     <string name="mark_all_as_viewed">Mark all as viewed</string>
     <string name="content_hidden">Content Hidden</string>
     <string name="show_hidden_content">Show Hidden Content</string>
@@ -794,4 +796,20 @@
     <plurals name="are_you_sure_you_want_to_delete_observations">
         <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
     </plurals>
+    <string name="future_observed_on_date_error">Your observation was created (and submitted) on %1$s, but you\'re trying to set an observation date that is later than that: %2$s</string>
+    <string name="no_more_photos_allowed">Observations can only have %1$d photos. To add more you will need to remove some.</string>
+    <string name="warning_multiple_photos">If you\'re adding photos of different kinds of organisms to this observation, or the same kind at different places or times, you should remove those photos and add them as separate observations. An observation can only have %1$d photos.</string>
+    <string name="choosing_specific_language_warning">アカウントに特定の言語を選択するには、インターネット接続が必要です</string>
+    <string name="running_in_background_notfication">バックグラウンドで実行するため、中断することなく実行できます</string>
+    <string name="opt_out_of_community_taxon">コミュニティ分類群からオプトアウトする</string>
+    <string name="opt_in_to_community_taxon">コミュニティ分類群にオプトインする</string>
+    <string name="opt_out_message">コミュニティ分類群（Community Taxon)からオプトアウトすると現在の識別からの分類に強制的に関連付けられます。この観測は追加されたすべての識別から派生した分類となりません。 あなたが十分な識別子に同意しない場合、あなたの観察はカジュアルになります。 IDが正しく、他のIDが正しくない場合にのみ、オプトアウトしてください。</string>
+    <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
+    <string name="permission_required">Permission Required</string>
+    <!-- Message displayed when the user tries to perform an action that requires location permission -->
+    <string name="to_access_your_location">To access your location you must grant location access permission to this app.</string>
+    <!-- Dialog title when displaying a message that an action is not permitted -->
+    <string name="forbidden">Forbidden</string>
+    <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
+    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
 </resources>

@@ -2,48 +2,48 @@
 <resources>
     <string name="app_name">iNaturalist</string>
     <string name="email_address">이메일 주소</string>
-    <string name="delete_observation">관찰 기록 삭제</string>
-    <string name="observation_deleted">삭제된 관찰 기록</string>
+    <string name="delete_observation">관찰 삭제</string>
+    <string name="observation_deleted">삭제된 관찰</string>
     <string name="species_guess_hint">생물 종 이름</string>
     <string name="ok">확인</string>
     <string name="cancel">취소</string>
-    <string name="loading">불러오는 중</string>
+    <string name="loading">불러오는 중...</string>
     <string name="sync_required">동기화 요구됨</string>
-    <string name="sync_required_message">%1$d 관찰 기록, %2$d 사진 동기화</string>
-    <string name="street">도로</string>
+    <string name="sync_required_message">%1$d 관찰, %2$d 사진 동기화</string>
+    <string name="street">지도</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">위성</string>
-    <string name="couldnt_load_nearby_observations">주변의 관찰 기록을 불러올 수 없습니다: %1$s</string>
+    <string name="couldnt_load_nearby_observations">주변의 관찰을 불러올 수 없습니다: %1$s</string>
     <string name="username_invalid">사용자 이름과 비밀번호가 일치하지 않습니다. 다시 로그인 해주시기 바랍니다.</string>
     <string name="signing_in">로그인 중...</string>
     <string name="signed_in">로그인 성공!</string>
-    <string name="please_sign_in">로그인 해주세요</string>
+    <string name="please_sign_in">로그인하세요</string>
     <string name="please_sign_in_description">iNaturalist 계정으로 로그인 하시거나 새로운 계정으로 가입하시기 바랍니다.</string>
-    <string name="please_enable_location_services">당신의 현재 위치를 찾기 위해 위치 서비스를 활성화 하십시오.</string>
+    <string name="please_enable_location_services">내 현재 위치를 찾기 위해 위치 서비스를 활성화 하세요.</string>
     <string name="go_to_settings">설정으로 이동</string>
-    <string name="photo_not_specified">사진이 선정되지 않음</string>
+    <string name="photo_not_specified">사진이 특정되지 않음</string>
     <string name="set_date">설정 일자</string>
     <string name="set_time">설정 시간</string>
     <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
     <string name="something_went_wrong">이런, 뭔가 잘못되었습니다: %1$s</string>
     <string name="edit">수정</string>
-    <string name="oh_no">아, 안돼!%1$s</string>
-    <string name="observations">나의 관찰 기록</string>
+    <string name="oh_no">이런! %1$s</string>
+    <string name="observations">나의 관찰</string>
     <string name="map">지도</string>
     <string name="settings">설정</string>
     <string name="projects">프로젝트</string>
     <string name="delete_photo">사진 삭제</string>
     <string name="menu">메뉴</string>
     <string name="my_location">내 위치</string>
-    <string name="nearby_observations">가까운 관찰 생물</string>
+    <string name="nearby_observations">근처의 관찰</string>
     <string name="add">추가</string>
     <string name="view_on_inat">iNaturalist.org 에서 보기</string>
     <string name="reload">재실행</string>
     <string name="view_in_browser">브라우저에서 보기</string>
-    <string name="add_observation">관찰 기록 추가하기</string>
-    <string name="take_picture">사진 찍기</string>
+    <string name="add_observation">관찰 추가하기</string>
+    <string name="take_picture">사진 촬영</string>
     <string name="save">저장</string>
-    <string name="no_observations_yet">아직 작성된 관찰 기록이 없습니다!</string>
+    <string name="no_observations_yet">관찰이 없습니다!</string>
     <string name="or">또는</string>
     <string name="signed_out">로그아웃</string>
     <string name="view">보기</string>
@@ -52,62 +52,62 @@
     <string name="unknown">알 수 없음</string>
     <string name="unknown_species">알 수 없는 생물 종</string>
     <string name="com_facebook_dialogloginactivity_ok_button">확인</string>
-    <string name="com_facebook_loginview_log_out_button">로그 아웃</string>
+    <string name="com_facebook_loginview_log_out_button">로그아웃</string>
     <string name="com_facebook_loginview_log_in_button">로그인</string>
-    <string name="com_facebook_loginview_logged_in_as">%1$s 회원님 로그인 됨</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">페이스북 계정으로 로그인 했습니다.</string>
-    <string name="com_facebook_loginview_log_out_action">로그 아웃</string>
-    <string name="com_facebook_loginview_cancel_action">최소</string>
+    <string name="com_facebook_loginview_logged_in_as">%1$s 으로 로그인됨</string>
+    <string name="com_facebook_loginview_logged_in_using_facebook">페이스북 계정으로 로그인됨</string>
+    <string name="com_facebook_loginview_log_out_action">로그아웃</string>
+    <string name="com_facebook_loginview_cancel_action">취소</string>
     <string name="com_facebook_logo_content_description">페이스북 로고</string>
     <string name="com_facebook_usersettingsfragment_log_in_button">로그인...</string>
     <string name="com_facebook_usersettingsfragment_logged_in">로그인 됨</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">로그인 안 됨</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d여기 있었음</string>
+    <string name="com_facebook_usersettingsfragment_not_logged_in">로그인되지 않음</string>
+    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d가 여기 있었음</string>
     <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d 여기 있었음</string>
+    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d 가 여기 있었음</string>
     <string name="com_facebook_picker_done_button_text">완료</string>
     <string name="com_facebook_choose_friends">친구를 선택하세요</string>
-    <string name="com_facebook_nearby">내 주변</string>
+    <string name="com_facebook_nearby">인근</string>
     <string name="com_facebook_loading">불러오는 중...</string>
     <string name="com_facebook_internet_permission_error_title">AndroidManifest 오류</string>
-    <string name="com_facebook_internet_permission_error_message">웹사이트 창으로 로그인 하려면 인터넷 권한이 필요합니다.</string>
-    <string name="com_facebook_requesterror_web_login">페이스북 계정이 잠겨있습니다. www.facebook.com으로 로그인하고 재설정 후 다시 시도해 보세요.</string>
-    <string name="com_facebook_requesterror_relogin">페이스북 계정을 다시 연결하기 위해 앱에 로그인 해주십시오.</string>
+    <string name="com_facebook_internet_permission_error_message">웹사이트 창으로 로그인하려면 인터넷 권한이 필요합니다.</string>
+    <string name="com_facebook_requesterror_web_login">페이스북 계정이 잠겨있습니다. www.facebook.com으로 로그인한 후 다시 시도하세요.</string>
+    <string name="com_facebook_requesterror_relogin">페이스북 계정에 다시 연결하기 위해 앱에 로그인 해주십시오.</string>
     <string name="com_facebook_requesterror_password_changed">페이스북 비밀번호가 바뀐 상태입니다. 페이스북 계정으로 다시 연결하려면 이 앱에 다시 로그인 해야 합니다.</string>
-    <string name="com_facebook_requesterror_reconnect">페이스북 계정을 다시 연결하기 위해 앱에 로그인 해주십시오.</string>
+    <string name="com_facebook_requesterror_reconnect">페이스북 계정에 다시 연결하기 위해 앱에 로그인 해주십시오.</string>
     <string name="com_facebook_requesterror_permissions">이 앱으로 할 권한이 없습니다. 권한을 변경하기 위해 이 앱에 다시 로그인을 시도해보세요.</string>
-    <string name="edit_observation">관찰 기록 수정</string>
-    <string name="discard_changes">저장되지 않은 변경 내용이 취소됩니다. 계속 진행하시겠습니까?</string>
+    <string name="edit_observation">관찰 수정</string>
+    <string name="discard_changes">저장되지 않은 변경사항을 삭제하겠습니까?</string>
     <string name="yes">예</string>
     <string name="no">아니요</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
-    <string name="agree">동의하십니까?</string>
-    <string name="no_comments">아직 작성된 의견/생물 종 정보가 없습니다.</string>
+    <string name="agree">동의합니까?</string>
+    <string name="no_comments">아직 작성된 댓글/동정이 없습니다</string>
     <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
     <string name="you">회원님</string>
-    <string name="add_comment">의견 작성하기</string>
-    <string name="add_id">생물 종 정보 추가</string>
+    <string name="add_comment">댓글 추가</string>
+    <string name="add_id">동정 추가</string>
     <string name="remarks">의견...</string>
     <string name="enter_taxon_name">생물 이름이나 분류군을 입력하세요</string>
     <string name="no_projects">검색한 프로젝트를 찾을 수 없습니다!</string>
-    <string name="no_guides">검색한 안내서가 없습니다!</string>
+    <string name="no_guides">검색한 가이드를 찾을 수 없습니다!</string>
     <string name="loading_projects">프로젝트를 불러오는 중...</string>
-    <string name="joined_projects">참석</string>
-    <string name="nearby_projects">내 주변</string>
+    <string name="joined_projects">가입함</string>
+    <string name="nearby_projects">인근</string>
     <!-- Tab title for the list of featured projects in the Projects screen -->
-    <string name="featured_projects">특별 프로젝트</string>
+    <string name="featured_projects">Featured</string>
     <!-- Verb, used as a label for actions like leaving a project -->
-    <string name="leave">프로젝트 나가기</string>
+    <string name="leave">나가기</string>
     <string name="join">참가하기</string>
-    <string name="no_check_list">선택한 목록에서 해당 생물 분류군이 없습니다.</string>
-    <string name="failed_to_add_obs_to_project">\'%1$s\' 관찰 기록이 \'%2$s\': %3$s 프로젝트에 추가되지 못했습니다.</string>
+    <string name="no_check_list">리스트에 분류군이 없습니다!</string>
+    <string name="failed_to_add_obs_to_project">\'%1$s\' 관찰이 \'%2$s\': %3$s 프로젝트에 추가되지 않았습니다.</string>
     <string name="invalid_project_field">\'%1s\' 필드를 위한 정확한 값을 입력해 주십시오</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
-    <string name="select_projects">참가하고 있는 프로젝트 중에서 골라주십시오</string>
-    <string name="not_connected">이것을 시행하려면 인터넷 연결이 필요합니다!</string>
+    <string name="select_projects">참가하는 프로젝트에서 선택</string>
+    <string name="not_connected">실행하려면 인터넷 연결이 필요합니다!</string>
     <string name="search_projects">프로젝트 검색 중...</string>
-    <string name="search_guides">안내서 검색 중...</string>
-    <string name="save_observation">관찰 기록 저장</string>
+    <string name="search_guides">가이드 검색 중...</string>
+    <string name="save_observation">관찰 저장</string>
     <!-- Header for a description an individual guide -->
     <string name="about_guide">소개</string>
     <string name="about_guide_all_caps">소개</string>
@@ -119,306 +119,307 @@
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">위치정보 보호</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
-    <string name="geoprivacy_with_value">Geoprivacy: %1$s</string>
-    <string name="delete_confirmation">이 관찰 기록을 정말로 삭제하시겠습니까?</string>
+    <string name="geoprivacy_with_value">위치정보 보호: %1$s</string>
+    <string name="delete_confirmation">이 관찰을 정말로 삭제하시겠습니까?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
-    <string name="guides">안내서</string>
-    <string name="my_guides">나의 안내서</string>
-    <string name="nearby_guides">내 주변</string>
+    <string name="guides">가이드</string>
+    <string name="my_guides">내 가이드</string>
+    <string name="nearby_guides">내 주변의 가이드</string>
     <string name="all_guides">모두</string>
-    <string name="no_taxa">이 안내서에 없는 생물 분류군입니다.</string>
+    <string name="no_taxa">이 가이드에 없는 분류군입니다!</string>
     <string name="search_taxa">분류군 찾기..</string>
-    <string name="no_internet_guides">가이드가 인터넷 연결을 필요로 합니다.</string>
-    <string name="no_internet_projects">프로젝트가 인터넷 연결을 필요로 합니다.</string>
+    <string name="no_internet_guides">가이드는 인터넷 연결이 필요합니다.</string>
+    <string name="no_internet_projects">프로젝트는 인터넷 연결이 필요합니다.</string>
     <string name="locale_gl">갈리시아어</string>
     <string name="locale_eu">바스크어</string>
     <string name="use_device_language_settings">기기에 설정된 언어를 사용합니다</string>
     <string name="choose_location">위치 선택</string>
     <string name="done">완료</string>
     <string name="please_sign_in_via_settings">내가 참여하는 프로젝트를 보려면 로그인해야 합니다.</string>
-    <string name="contact_support">고객 지원 문의</string>
-    <string name="credits">iNaturalist의 설립과 디자인은 캘리포니아 과학원에서 지원하였습니다.</string>
+    <string name="contact_support">Contact Support</string>
+    <string name="credits">iNaturalist의 설립과 디자인은 캘리포니아 과학 아카데미(California Academy of Sciences)에서 지원하였습니다.</string>
     <string name="leave_project">프로젝트 나가기</string>
     <string name="leave_project_confirmation">정말로 이 프로젝트에서 나가시겠습니까?</string>
-    <string name="discard_location_changes">저장되지 않은 변경사항을 무시하겠습니까?</string>
+    <string name="discard_location_changes">저장되지 않은 변경사항을 삭제하겠습니까?</string>
     <string name="edit_location">위치 수정</string>
     <string name="edit_locality_notes">Edit Locality Notes</string>
     <string name="get_current_location">현재위치 등록</string>
-    <string name="pull_to_refresh">새로 고침</string>
-    <string name="release_to_refresh">놓아서 새로 고침</string>
+    <string name="pull_to_refresh">당겨서 새로고침...</string>
+    <string name="release_to_refresh">놓아서 새로 고침...</string>
     <string name="refreshing">새로 고침 중...</string>
     <plurals name="sync_x_observations">
-        <item quantity="other">Sync %1$d observations</item>
+        <item quantity="other">관찰 %1$d 개 동기화</item>
     </plurals>
-    <string name="sync_observations">관찰 기록 동기화</string>
+    <string name="sync_observations">관찰 동기화</string>
     <string name="lets_get_started">시작해 봅시다!</string>
-    <string name="view_nearby_observations">View Nearby Observations</string>
+    <string name="view_nearby_observations">근처의 관찰 보기</string>
     <string name="skip_for_now">일단 건너뛰기</string>
     <string-array name="tutorial_titles">
         <item></item>
-        <item>Observe</item>
-        <item>Share</item>
-        <item>Learn</item>
-        <item>Contribute</item>
+        <item>관찰하기</item>
+        <item>공유하기</item>
+        <item>배우기</item>
+        <item>기여하기</item>
     </string-array>
     <string-array name="tutorial_descriptions">
-        <item>자연을 탐구하고 자연과 소통하기</item>
-        <item>밖으로 나가 보세요! 야생을 발견하고 선명한 풀프레임 사진을 찍어 보세요.</item>
-        <item>iNaturalist 커뮤니티에 관찰 일기를 공유하세요.</item>
-        <item>관찰 일기에서 댓글과 생물 종을 나중에 확인해 보세요!</item>
-        <item><![CDATA[<b>Research Grade</b> observations are shared with scientists working to better understand and protect nature.]]></item>
+        <item>Explore and Connect with Nature</item>
+        <item>밖에 나가서 한 가지 생물을 관찰해 보세요. 야생에 서식하고 있어야 하며, 선명하고 자세한 사진을 촬영하세요.</item>
+        <item>내 관찰을 iNaturalist 공동체와 공유합니다.</item>
+        <item>나중에 내 관찰에 추가된 댓글과 동정을 확인해 보세요!</item>
+        <item><![CDATA[<b>연구 자료 등급</b> 관찰은 환경을 이해하고 보호하려는 과학자들과 공유됩니다.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
-        <item>모두 공개</item>
-        <item>위치 불명료</item>
+        <item>공개</item>
+        <item>숨김</item>
         <item>비공개</item>
     </string-array>
-    <string name="alert_sign_out">정말 로그아웃 하시겠습니까? 진행시 회원님의 기기에 저장된 모든 관찰 기록이 삭제됩니다. 물론, iNaturalist에 등록한 관찰 기록에는 영향을 미치지 않습니다.</string>
-    <string name="alert_unsupported_media_type">죄송합니다. 저희는 구글 드라이브나, 드롭박스 등 기타 웹하드에서 사진을 업로딩 하는 것을 지원하지 않습니다. 휴대하신 기기에 사진을 저장한 후 다시 시도해보세요.</string>
+    <string name="alert_sign_out">정말 계정을 삭제하겠습니까? 본 기기에 저장된 모든 관찰이 삭제됩니다. 하지만, iNaturalist에 업로드한 관찰에는 영향을 미치지 않습니다.</string>
+    <string name="alert_unsupported_media_type">죄송합니다. 저희는 구글 드라이브나, 드롭박스 등 기타 웹하드에의 사진 업로딩을 지원하지 않습니다. 휴대하신 기기에 사진을 저장한 후 다시 시도해보세요.</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
-    <string name="explore">탐구하기</string>
+    <string name="explore">둘러보기</string>
     <string name="restricted_to_current_map_area">현재 지도 영역만 나타내기</string>
     <string name="search">검색</string>
-    <string name="details">상세내용</string>
+    <string name="details">자세한 사항</string>
     <string name="observation_photos">관찰 사진</string>
-    <string name="remove">삭제?</string>
-    <string name="no_observations_found">등록된 관찰 기록을 찾지 못했습니다.</string>
-    <string name="license_none">없음, 저작권에 의해 보호됨</string>
+    <string name="remove">삭제합니까?</string>
+    <string name="no_observations_found">관찰을 찾지 못했습니다.</string>
+    <string name="license_none">없음, 모든 권리는 저작권자에게 있음</string>
     <string name="sources_and_attribution">출처와 저작자</string>
     <string name="photos"><![CDATA[<b>사진:</b> %1$s]]></string>
     <string name="text"><![CDATA[<b>문장:</b>%1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">iNaturalist의 메인 네트워크입니다. 확인을 누르면 회원님의 앱을 전세계 iNaturalist 네트워크에 등록합니다.</string>
-    <string name="alert_message_use_naturalista">NaturaLista는 멕시코에 위치한 iNaturalist Network의 멤버입니다. NaturaLista를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰 일기의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
-    <string name="alert_message_use_naturewatchnz">iNaturalist NZ는 뉴질랜드에 위치한 iNaturalist Network의 멤버입니다. iNaturalist NZ를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰 일기의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
-    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada는 캐나다에 위치한 iNaturalist Network의 멤버입니다. iNaturalist Canada를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰 일기의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
-    <string name="alert_message_use_naturalistacolombia">Naturalista는 콜롬비아에 위치한 iNaturalist Network의 멤버입니다. Naturalista를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰 일기의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4All는 포르투갈에 위치한 iNaturalist Network의 멤버입니다. Biodiversity4All를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰 일기의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
-    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá는 파나마에 위치한 iNaturalist Network의 멤버입니다. iNaturalist Panamá를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰 일기의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
-    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador는 에콰도르에 위치한 iNaturalist Network의 멤버입니다. iNaturalist Ecuador를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰 일기의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
-    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia는 호주에 위치한 iNaturalist Network의 멤버입니다. iNaturalist Australia를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰 일기의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
-    <string name="alert_message_use_argentinat">ArgentiNat is a member of the iNaturalist Network in Argentina. Local institutions supporting ArgentiNat will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="editor">편집기</string>
+    <string name="alert_message_use_naturalista">NaturaLista는 멕시코에 위치한 iNaturalist 네트워크의 멤버입니다. NaturaLista를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZ는 뉴질랜드에 위치한 iNaturalist 네트워크의 멤버입니다. iNaturalist NZ를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada는 캐나다에 위치한 iNaturalist 네트워크의 멤버입니다. iNaturalist Canada를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
+    <string name="alert_message_use_naturalistacolombia">Naturalista는 콜롬비아에 위치한 iNaturalist 네트워크의 멤버입니다. Naturalista를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All는 포르투갈에 위치한 iNaturalist 네트워크의 멤버입니다. Biodiversity4All를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá는 파나마에 위치한 iNaturalist 네트워크의 멤버입니다. iNaturalist Panamá를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador는 에콰도르에 위치한 iNaturalist 네트워크의 멤버입니다. iNaturalist Ecuador를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia는 호주에 위치한 iNaturalist 네트워크의 멤버입니다. iNaturalist Australia를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat는 아르헨티나에 위치한 iNaturalist 네트워크의 멤버입니다. iNaturalist Australia를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel은 이스라엘에 위치한 iNaturalist 네트워크의 멤버입니다. iNaturalist Australia를 지원하는 지역 기관들이 귀하의 메일 주소에 접근할 수 있으며 숨김 또는 비공개 되어있는 관찰의 실제 좌표에 접근할 수 있습니다. 관찰 일기가 1000개 이상일 경우 시험삼아 소속을 변경하지 마십시오. 소속을 변경하시겠습니까?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland is a member of the iNaturalist Network in Finland. Local institutions supporting iNaturalist Finland will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="editor">편집자</string>
     <string name="license">게시물 사용 권한</string>
-    <string name="download_for_offline_use">오프라인 사용을 위한 저장</string>
-    <string name="download_not_available">저장할 수 없습니다</string>
-    <string name="guide_editor_must_enable_this_feature">안내서 편집자는 이 특색이 드러나게 작성해야 합니다.</string>
-    <string name="are_you_sure">계속 진행하시겠습니까?</string>
-    <string name="download_guide_alert">%1$s에 관련된 데이터를 저장합니다. 이후에 인터넷 접속이 안될 때에도 이 안내서를 이용 할 수 있습니다.</string>
-    <string name="download">저장</string>
-    <string name="failed_to_download_guide">안내서 저장에 실패하였습니다.</string>
+    <string name="download_for_offline_use">오프라인 사용을 위해 저장</string>
+    <string name="download_not_available">다운로드할 수 없습니다</string>
+    <string name="guide_editor_must_enable_this_feature">가이드 편집자는 이 특색이 드러나게 작성해야 합니다.</string>
+    <string name="are_you_sure">확실합니까?</string>
+    <string name="download_guide_alert">%1$s에 관련된 데이터를 저장합니다. 이후에 인터넷 접속이 안될 때에도 이 가이드를 이용 할 수 있습니다.</string>
+    <string name="download">다운로드</string>
+    <string name="failed_to_download_guide">가이드 저장에 실패하였습니다.</string>
     <string name="internet_connection_seems_to_be_offline">인터넷에 연결되지 않았습니다.</string>
-    <string name="downloading">저장 중...</string>
+    <string name="downloading">다운로드중...</string>
     <string name="extracting">추출 중..</string>
-    <string name="downloaded">저장된 파일</string>
-    <string name="delete_download">저장된 파일 삭제</string>
-    <string name="re_download">다시 저장하기</string>
+    <string name="downloaded">다운로드됨</string>
+    <string name="delete_download">다운로드된 파일 삭제</string>
+    <string name="re_download">다시 다운로드하기</string>
     <string name="error">오류</string>
-    <string name="could_not_retrieve_guide">안내서의 세부내용을 검색하지 못했습니다 - 네트워크 오류일 가능성이 있습니다.</string>
+    <string name="could_not_retrieve_guide">가이드의 세부내용을 검색하지 못했습니다 - 네트워크 오류일 가능성이 있습니다.</string>
     <string name="inat_support_email_subject">iNaturalist 에 처음 오셨습니까? 도와드리겠습니다. (버젼 %1$s - %2$s; 사용자 아이디 - %3$s</string>
     <string name="send_email">이메일 보내기...</string>
-    <string name="login_with">아이디로 로그인</string>
+    <string name="login_with">다음으로 로그인: </string>
     <string name="facebook">페이스북</string>
     <string name="gplus">구글</string>
     <string name="email">이메일</string>
-    <string name="sign_up_with">아이디로 회원가입</string>
-    <string name="skip">건너 뛰기</string>
-    <string name="already_have_account">이미 계정을 갖고 계신가요?</string>
+    <string name="sign_up_with">다음으로 가입하기:</string>
+    <string name="skip">건너뛰기 ></string>
+    <string name="already_have_account">이미 계정이 있으십니까? </string>
     <string name="log_in">로그인</string>
-    <string name="sign_up">회원 가입</string>
-    <string name="min_6_chars">최소 6문자 이상 입력 해야 합니다</string>
+    <string name="sign_up">가입하기</string>
+    <string name="min_6_chars">암호는 6자리 이상이어야 합니다.</string>
     <string name="use_my_license"><![CDATA[예, 게시물 사용 권한을 설정하여 과학자들이 나의 게시물을 이용할 수 있게 합니다. <b>더 알아보기</b>]]></string>
     <string name="content_licensing">게시물 사용 권한</string>
-    <string name="content_licensing_description">게시하신 사진에 비영리사용-저작자표시 허가을 부여하고 싶다면 \'여기\'를 누르세요. 회원님은 다른 저작권 형태를 부과하거나 저작권을 삭제 할 수 있습니다. 하지만 비영리사용-저작자표시가 연구자들과 공유하기 가장 좋은 방법입니다.</string>
+    <string name="content_licensing_description">게시하신 사진에 저작자표시-비영리(BY-NC) 권한을 부여하고 싶다면 이 항목을 체크하세요. 이후에 다른 저작권 형태를 부과하거나 저작권을 삭제 할 수 있습니다. 하지만 저작자표시-비영리(BY-NC) 권한이 연구자들과 공유하기 가장 좋은 방법입니다.</string>
     <!-- Try to keep this about the length of the English text -->
     <string name="username_or_email">아이디 또는 이메일</string>
     <string name="forgot">잊어 버리셨습니까?</string>
     <string name="or_login_with">또는 다음으로 로그인 함:</string>
     <string name="registering">등록 중...</string>
-    <string name="recommended_next_step">Recommended Next Step</string>
-    <string name="could_not_register_user">사용자를 등록할 수 없습니다.</string>
+    <string name="recommended_next_step">권장된 다음 단계</string>
+    <string name="could_not_register_user">사용자를 등록할 수 없습니다</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
-    <string name="login_signup">로그인 / 회원 가입</string>
-    <string name="please_sign_in_via_settings_for_guides">작성한 안내서를 보려면 로그인 해야 합니다.</string>
-    <string name="please_sign_in_for_updates">회원님의 업데이트를 보려면 로그인 해야 합니다.</string>
-    <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="https://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
-    <string name="activity">탐사 활동</string>
+    <string name="login_signup">로그인 / 가입</string>
+    <string name="please_sign_in_via_settings_for_guides">작성한 가이드를 보려면 로그인해야 합니다.</string>
+    <string name="please_sign_in_for_updates">내 업데이트를 보려면 로그인해야 합니다.</string>
+    <string name="by_using_inat_terms"><![CDATA[iNaturalist를 이용하려면  <b><a href="https://www.inaturalist.org/pages/terms">서비스 이용 약관</a></b>과  <b><a href="https://www.inaturalist.org/pages/privacy">개인 정보 보호 정책</a></b>에 동의해야 합니다.]]></string>
+    <string name="activity">활동</string>
     <string name="camera">사진 촬영</string>
     <string name="upload_photo">사진 선택</string>
     <string name="menu_text">사진 등록 건너뛰기</string>
     <string name="first">첫 번째</string>
-    <string name="make_first">첫 번째로 가져오기</string>
+    <string name="make_first">첫 번째로 만들기</string>
     <string name="notes">메모</string>
     <string name="location_is">위치는</string>
-    <string name="is_captive">사육 중이거나 재배 중 입니다.</string>
+    <string name="is_captive">사육되거나 포획되었습니다.</string>
     <string name="location_visibility">위치 표시</string>
     <string name="set_location">장소 등록하기</string>
     <string name="coordinates_lat">위도:</string>
-    <string name="coordinates_lon">경도</string>
-    <string name="coordinates_acc">위치 오차 </string>
+    <string name="coordinates_lon">경도:</string>
+    <string name="coordinates_acc">정확도 </string>
     <string name="required">*필수</string>
-    <string name="downloading_observations">관찰 기록 저장 중...</string>
+    <string name="downloading_observations">관찰 다운로드 중...</string>
     <string name="no_thanks">아니요, 괜찮습니다.</string>
-    <string name="turn_on">작동</string>
-    <string name="introducing_auto_sync">자동 동기화 시작!</string>
-    <string name="turn_on_auto_sync">설정에서 자동-동기화를 작동하면 관찰 기록이 자동으로 iNaruralist에 등록 됩니다.</string>
-    <string name="automatic_upload">자동으로 올리기(자동 동기화)</string>
-    <string name="waiting_to_upload">올리는 중 입니다...</string>
-    <string name="uploading">게시 중...</string>
+    <string name="turn_on">켜기</string>
+    <string name="introducing_auto_sync">자동 동기화를 소개합니다!</string>
+    <string name="turn_on_auto_sync">설정에서 자동 동기화를 켜면 관찰 기록이 자동으로 iNaruralist에 등록 됩니다.</string>
+    <string name="automatic_upload">자동으로 업로드 (자동 동기화)</string>
+    <string name="waiting_to_upload">업로드를 기다리는 중...</string>
+    <string name="uploading">업로드 중...</string>
     <string name="failed_to_add_to_project">\'%1$s\': %2$s 프로젝트에 추가하는 것을 실패하였습니다.</string>
     <string name="needs_your_attention">당신의 관심이 필요합니다...</string>
-    <string name="observation">관찰 기록</string>
+    <string name="observation">관찰</string>
     <string name="share">공유하기</string>
     <string name="unable_to_acquire_location">위치를 알 수 없습니다.</string>
-    <string name="casual_grade">일반 등급</string>
-    <string name="needs_id">생물 종 정보 필요</string>
+    <string name="casual_grade">비공식적 등급</string>
+    <string name="needs_id">ID가 필요합니다</string>
     <string name="research_grade">연구 자료 등급</string>
     <string name="data_quality">자료의 등급</string>
-    <string name="casual_grade_add_location"><![CDATA[ <b>관찰 지역</b>을 추가하면 이 관찰 기록의 등급이 "생물 식별 필요"로 올라갑니다. ]]></string>
-    <string name="casual_grade_add_date"><![CDATA[ <b>날짜</b>을 추가하면 이 관찰 기록의 등급이 "생물 식별 필요"로 올라갑니다. ]]></string>
-    <string name="casual_grade_add_photo"><![CDATA[ <b>사진</b>을 추가하면 이 관찰 기록의 등급이 "생물 식별 필요"로 올라갑니다. ]]></string>
-    <string name="casual_grade_captive"><![CDATA[ <b>사육/재배</b> 중인 생물의 관찰 기록은 "일반 등급" 으로 설정 됩니다. ]]></string>
-    <string name="needs_id_more_ids"><![CDATA[ 관찰 기록이 "연구 등급"으로 심사되려면 사람들의 <b>생물 식별이 더</b> 필요합니다. ]]></string>
+    <string name="casual_grade_add_location"><![CDATA[ <b>관찰 위치</b>을 추가하면 이 관찰의 등급이 "ID 필요"로 올라갑니다. ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ <b>날짜</b>을 추가하면 이 관찰의 등급이 "ID 필요"로 올라갑니다. ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[ <b>사진</b>을 추가하면 이 관찰의 등급이 "ID 필요"로 올라갑니다. ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ <b>"사육됨/포획됨"</b>인 생물의 관찰은 "비공식적 등급" 으로 설정됩니다. ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ 관찰이 "연구 자료 등급"이 되려면 사용자들의 <b>동정</b>이 필요합니다. ]]></string>
     <plurals name="included_in_projects">
         <item quantity="other">Included in %1$d projects</item>
     </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ 위치정보 보호는 회원님이 관찰한 생물의 위치 좌표(위도와 경도)를 바꿀 수 있습니다. 다음과 같은 선택지가 있습니다: <br/><b>공개</b> - 모든 사람이 멸종위기가 아닌 생물 종의 좌표를 볼 수 있습니다.<br/> <b>위치 불명료</b>- 생물 종이 발견된 좌표로부터 위도 0.2º x 경도 0.2º 범위 내에서 무작위적으로 위치 좌표를 표시합니다. 이것은 적도 기준으로 484제곱킬로미터(22㎞x22㎞) 범위 내(극지방으로 갈 수록 좁아집니다)에서 위치 정보를 모호하게 만드는 것 입니다. 정확한 위치 정보는 관찰자와 관찰 기록을 등록한 프로젝트의 책임자만 알 수 있습니다.<br/><b>비공개</b> - 관찰 생물이 발견된 위치 좌표를 공개하지 않습니다. 관찰자와 관찰 기록을 등록한 프로젝트의 책임자에게만 위치 정보가 공개됩니다. <br/><br/>관찰 기록을 등록한 프로젝트의 책임자는 회원님이 설정한 장소 공개여부와 관계 없이 항상 생물의 정확한 위치 좌표를 알 수 있습니다. 그래서 사람들이 정확한 위치 좌표에 접근하는 것이 우려된다면 참여하고 있는 프로젝트의 책임자를 항상 신뢰 할 수 있어야 합니다. ]]></string>
-    <string name="id_title">%1$s의 생물 종 정보 • %2$s</string>
+    <string name="id_title">%1$s의 동정 • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">삭제</string>
-    <string name="delete_id">생물 종 정보 삭제</string>
+    <string name="delete_id">동정 삭제하기</string>
     <string name="delete_comment">댓글 삭제</string>
-    <string name="delete_id_message">선택한 생물 종 정보를 삭제 하시겠습니까?</string>
-    <string name="delete_comment_message">이 댓글결과를 삭제 하시겠습니까?</string>
+    <string name="delete_id_message">동정을 삭제하시겠습니까?</string>
+    <string name="delete_comment_message">이 댓글을 삭제하시겠습니까?</string>
     <string name="comment">댓글</string>
-    <string name="suggest_id">이 생물을 알아요</string>
-    <string name="update_comment">의견을 업데이트 합니다</string>
-    <string name="fave_this_observation">이 관찰 기록을 즐겨찾기에 등록합니다</string>
+    <string name="suggest_id">이름 제안하기</string>
+    <string name="update_comment">댓글 업데이트</string>
+    <string name="fave_this_observation">이 관찰을 즐겨찾기에 등록</string>
     <string name="faved">즐겨찾기에 등록됨</string>
-    <string name="be_the_first_to_fave_this_obs">이 관찰 기록을 첫번째로 즐겨찾기에 등록해 주세요...</string>
-    <string name="leave_a_comment">의견이나 생물 종 정보 남기기</string>
+    <string name="be_the_first_to_fave_this_obs">첫번째로 즐겨찾기에 등록하기...</string>
+    <string name="leave_a_comment">댓글이나 동정 추가하기</string>
     <string name="location_coords">위도: %1$s 경도: %2$s 위치 오차%3$s</string>
     <string name="location_coords_no_acc">위도: %1$s 경도: %2$s</string>
     <string name="location">위치</string>
-    <string name="login_in_to_add_comments_ids">의견을 남기거나 생물 정보 확인을 추가 하려면 로그인 하거나 회원 가입을 해야 합니다.</string>
-    <string name="login_in_to_fav">즐겨찾기 목록을 보거나 관찰 기록을 즐겨찾기에 등록하려면 로그인하거나 회원 가입을 해야 합니다</string>
-    <string name="sync_obs_to_see_favs">Sync this observation to see faves...</string>
+    <string name="login_in_to_add_comments_ids">댓글을 남기거나 동정을 추가하려면 로그인하거나 가입해야 합니다...</string>
+    <string name="login_in_to_fav">즐겨찾기 목록을 보거나 즐겨찾기에 추가하려면 로그인하거나 가입해야 합니다...</string>
+    <string name="sync_obs_to_see_favs">즐겨찾기를 보기 위해 이 관찰을 동기화하세요...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
-    <string name="sync_obs_to_add_comments_ids">Sync this observation in order to leave a comment or suggest an identification...</string>
+    <string name="sync_obs_to_add_comments_ids">댓글을 남기거나 동정을 추가하려면 이 관찰을 동기화하세요...</string>
     <string name="no_photo">사진 없음</string>
     <string name="about_this_species">이 종에 관하여</string>
     <string name="view_on_wikipedia">위키백과 문서</string>
     <string name="photo"><![CDATA[사진: <b><a href="%1$s">%2$s</a></b>]]></string>
-    <string name="photo_attr"><![CDATA[Photo: <b>%1$s</b>]]></string>
+    <string name="photo_attr"><![CDATA[사진: <b>%1$s</b>]]></string>
     <string name="finding_current_location">현재 위치를 찾는 중...</string>
-    <string name="flag_as_captive">사육/재배 관찰 기록으로 보고</string>
-    <string name="observation_flagged_as_captive">이 관찰 기록은 사육/재배 관찰 기록으로 보고되었습니다.</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">정말 이 관찰 기록을 사육/재배 관찰 기록으로 보고하시겠습니까? (예를 누르면 관찰 기록 창도 같이 닫힙니다)</string>
-    <string name="do_you_agree_to_the_following">팔로잉하는 것에 동의 하세요?</string>
-    <string name="terms">요구 사항</string>
+    <string name="flag_as_captive">\"포획됨 / 사육됨\"으로 플래그</string>
+    <string name="observation_flagged_as_captive">이 관찰은 \"포획됨 / 사육됨\"으로 플래그되었습니다</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive">정말 이 관찰을 \"포획됨 / 사육됨\"으로 플래그하시겠습니까?</string>
+    <string name="do_you_agree_to_the_following">다음에 동의합니까?</string>
+    <string name="terms">이용 약관</string>
     <string name="observation_rules">관찰 규칙</string>
     <string name="couldnt_load_project_details">프로젝트 세부 정보를 불러올 수 없습니다: %1$s</string>
-    <string name="no_people_found">검색한 사람을 찾지 못했습니다</string>
+    <string name="no_people_found">검색한 사용자를 찾지 못했습니다</string>
     <string name="rank">순위</string>
-    <string name="identifications">생물 종 정보 확인</string>
+    <string name="identifications">동정</string>
     <string name="no_news_found">새로운 항목이 발견되지 않았습니다</string>
     <string name="news">뉴스</string>
     <string name="article">글</string>
-    <string name="couldnt_load_project_news">프로젝트 뉴스를: %1$s 로딩하지 못했습니다.</string>
-    <string name="couldnt_load_user_details">Couldn\'t load user details: %1$s</string>
-    <string name="more_bio"><![CDATA[<b><font color="#ffffff">More »</font></b>]]></string>
-    <string name="no_location">No Location</string>
-    <string name="add_to_projects">Add to project(s)</string>
-    <string name="are_you_sure_you_want_to_save_obs_without_coords">Are you sure you want to save the observation without any coordinates?</string>
-    <string name="users_identification">%1$s\'s ID: %2$s</string>
-    <string name="edit_profile">Edit Profile</string>
-    <string name="remove_photo">Remove Photo</string>
-    <string name="name">Name</string>
-    <string name="tell_us_about_yourself">Tell us about yourself...</string>
-    <string name="view_profile">View Profile</string>
-    <string name="are_you_sure_you_want_to_remove_photo">Are you sure you would like to remove your photo?</string>
-    <string name="updating_profile">Updating Profile...</string>
-    <string name="there_was_a_problem_updating_profile">There was a problem while updating your profile!</string>
-    <string name="there_was_a_problem_updating_profile_params">There was a problem while updating your profile: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
-    <string name="log_out">Log out</string>
-    <string name="not_logged_in">Not logged in</string>
+    <string name="couldnt_load_project_news">프로젝트 뉴스를 불러올 수 없습니다: %1$s</string>
+    <string name="couldnt_load_user_details">사용자 정보를 불러올 수 없습니다: %1$s</string>
+    <string name="more_bio"><![CDATA[<b><font color="#ffffff">더 보기 »</font></b>]]></string>
+    <string name="no_location">위치 없음</string>
+    <string name="add_to_projects">프로젝트에 추가하기</string>
+    <string name="are_you_sure_you_want_to_save_obs_without_coords">정말로 위치 정보 없이 관찰을 게시하시겠습니까?</string>
+    <string name="users_identification">%1$s의 동정 • %2$s</string>
+    <string name="edit_profile">프로필 편집</string>
+    <string name="remove_photo">사진 제거</string>
+    <string name="name">이름</string>
+    <string name="tell_us_about_yourself">회원님에 대해 알려주세요...</string>
+    <string name="view_profile">프로필 보기</string>
+    <string name="are_you_sure_you_want_to_remove_photo">정말로 이 사진을 삭제합니까?</string>
+    <string name="updating_profile">프로필 업데이트중...</string>
+    <string name="there_was_a_problem_updating_profile">프로필을 업데이트하는 중에 문제가 발생했습니다!</string>
+    <string name="there_was_a_problem_updating_profile_params">프로필을 업데이트하는 중에 문제가 발생했습니다: %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[<b>%1$s</b>로 로그인됨]]></string>
+    <string name="log_out">로그아웃</string>
+    <string name="not_logged_in">로그인하지 않음</string>
     <string name="auto_upload_description">Auto-upload new observations and edits to observations</string>
-    <string name="language">Language</string>
-    <string name="version">Version</string>
-    <string name="inat_network">iNaturalist Network</string>
+    <string name="language">언어</string>
+    <string name="version">버전</string>
+    <string name="inat_network">iNaturalist 네트워크</string>
     <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
-    <string name="more_info">More Info</string>
-    <string name="select_network">Select Network Affiliation</string>
-    <string name="help">Help</string>
-    <string name="stop">Stop</string>
-    <string name="resume">Resume</string>
-    <string name="cleaning_up">Cleaning up...</string>
-    <string name="syncing">Syncing...</string>
-    <string name="syncing_observation_fields">Syncing observation fields...</string>
-    <string name="syncing_observations">Syncing observations...</string>
-    <string name="syncing_paused">Paused</string>
-    <string name="upload">Upload</string>
-    <string name="search_observations">Search Observations...</string>
-    <string name="withdraw">Withdraw</string>
+    <string name="more_info">자세한 정보</string>
+    <string name="select_network">네트워크 소속 선택</string>
+    <string name="help">도움말</string>
+    <string name="stop">중지</string>
+    <string name="resume">재개</string>
+    <string name="cleaning_up">정리중...</string>
+    <string name="syncing">동기화 중...</string>
+    <string name="syncing_observation_fields">관찰 필드 동기화 중...</string>
+    <string name="syncing_observations">관찰 동기화 중...</string>
+    <string name="syncing_paused">일시 정지됨</string>
+    <string name="upload">올리기</string>
+    <string name="search_observations">관찰 검색...</string>
+    <string name="withdraw">취소하기</string>
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Update Identification Description</string>
-    <string name="your_identification">Your ID: %1$s</string>
-    <string name="onboarding_species_name">Name what you saw if you can, even if that\'s just \"insect\" or \"bird,\" or just leave this blank. Others may help you identify it!</string>
-    <string name="upload_complete">Upload Complete!</string>
-    <string name="onboarding_upload_description">Check back soon for identifications and comments on your observation(s).</string>
-    <string name="importing_photos">Importing photo(s)...</string>
-    <string name="multi_select_description">Import multiple photos by long-pressing on a single photo</string>
-    <string name="preparing_photo">Preparing photo...</string>
-    <string name="recommended_for_you">Recommended for You</string>
-    <string name="missions">Missions</string>
-    <string name="browse_by_category">Browse By Category</string>
-    <string name="couldnt_load_recommended_missions">Couldn\'t load recommended missions: %1$s</string>
-    <string name="plants">Plants</string>
-    <string name="mammals">Mammals</string>
-    <string name="insects">Insects</string>
-    <string name="reptiles">Reptiles</string>
-    <string name="fish">Fish</string>
-    <string name="mollusks">Mollusks</string>
-    <string name="amphibians">Amphibians</string>
-    <string name="fungi">Fungi</string>
-    <string name="birds">Birds</string>
-    <string name="arachnids">Arachnids</string>
+    <string name="your_identification">내 동정: %1$s</string>
+    <string name="onboarding_species_name">할 수 있는 만큼 동정해 보세요! \'곤충\', \'물고기\' 등으로 하거나, 빈칸으로 두세요. 다른 사용자들이 이름을 찾는 것을 도와줄 것입니다.</string>
+    <string name="upload_complete">업로드 완료!</string>
+    <string name="onboarding_upload_description">나중에 내 관찰에 추가된 댓글과 동정을 확인해 보세요!</string>
+    <string name="importing_photos">사진을 가져오는 중...</string>
+    <string name="multi_select_description">사진을 길게 눌러 여러 장을 가져오기</string>
+    <string name="preparing_photo">사진 준비중...</string>
+    <string name="recommended_for_you">추천 사항</string>
+    <string name="missions">미션</string>
+    <string name="browse_by_category">카테고리별로 찾아보기</string>
+    <string name="couldnt_load_recommended_missions">추천된 미션을 로딩할 수 없음: %1$s</string>
+    <string name="plants">식물</string>
+    <string name="mammals">포유류</string>
+    <string name="insects">곤충</string>
+    <string name="reptiles">파충류</string>
+    <string name="fish">어류</string>
+    <string name="mollusks">연체동물</string>
+    <string name="amphibians">양서류</string>
+    <string name="fungi">진균류</string>
+    <string name="birds">조류</string>
+    <string name="arachnids">거미</string>
     <string name="no_connectivity">No Connectivity</string>
     <string name="no_recommended_missions">Looks like there’s no recommendations in this area. Try moving to a new location.</string>
     <string name="what_to_look_for">What To Look For</string>
-    <string name="have_been_seen_here">Have Been Seen Here</string>
-    <string name="observe">Observe</string>
-    <string name="nearby_missions">Nearby Missions</string>
-    <string name="searching_your_area">Searching your area...</string>
+    <string name="have_been_seen_here">여기에서 관찰됨</string>
+    <string name="observe">관찰하기</string>
+    <string name="nearby_missions">근처의 미션</string>
+    <string name="searching_your_area">내 장소를 찾는 중...</string>
     <string name="expanding_your_search_area">Expanding your search area...</string>
     <string name="introducing_missions">Introducing Missions!</string>
     <string name="missions_onboarding_description">Missions are realtime recommendations of what to look for around you. This way you can discover species new to you! (Requires connectivity)</string>
-    <string name="ok_got_it">Ok, got it!</string>
-    <string name="could_not_download_observations">Could not download latest observations - Connection problems. Try again later.</string>
-    <string name="no_news_yet">No news yet. Stay tuned!</string>
-    <string name="my_content">My Content</string>
-    <string name="following">Following</string>
-    <string name="no_updates_yet">No updates yet. Stay tuned!</string>
-    <string name="you_will_only_receive_updates_when_creating">(You will only receive updates once you\'ve created observations)</string>
-    <string name="you_will_only_receive_updates_when_following">(You will only receive updates once you\'re following observations)</string>
-    <string name="user_activity_id"><![CDATA[<b>%1$s</b> suggested an ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="user_activity_comment"><![CDATA[<b>%1$s</b> commented: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="ok_got_it">확인!</string>
+    <string name="could_not_download_observations">최근 관찰을 다운로드할 수 없습니다 - 네트워크 문제. 다시 시도하세요.</string>
+    <string name="no_news_yet">아직 뉴스가 없습니다. 지속적으로 확인하세요!</string>
+    <string name="my_content">내 콘텐츠</string>
+    <string name="following">팔로잉</string>
+    <string name="no_updates_yet">아직 업데이트가 없습니다. 지속적으로 확인하세요!</string>
+    <string name="you_will_only_receive_updates_when_creating">(관찰을 게시한 이후에만 업데이트를 받을 것입니다.)</string>
+    <string name="you_will_only_receive_updates_when_following">(관찰을 팔로우한 이후에만 업데이트를 받을 것입니다.)</string>
+    <string name="user_activity_id"><![CDATA[<b>%1$s</b> 가 동정을 추가했습니다: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_comment"><![CDATA[<b>%1$s</b> 가 댓글을 추가했습니다: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">It looks like you deleted a photo by clearing the app cache before uploading. You will need to add the photo back to your observation from your gallery. In the future, please make sure you have uploaded all your photos before clearing the app cache.</string>
     <string name="new_activities">%1s new</string>
-    <string name="no_results_found">No Results Found...</string>
+    <string name="no_results_found">결과가 없습니다</string>
     <plurals name="syncing_x_out_of_y_observations">
-        <item quantity="other">Syncing %1$d of %2$d observations...</item>
+        <item quantity="other"> %2$d개중 %1$d개 동기화 중...</item>
     </plurals>
-    <string name="deleting_observations">Deleting observations...</string>
-    <string name="preparing">Preparing...</string>
+    <string name="deleting_observations">관찰 삭제중...</string>
+    <string name="preparing">준비 중...</string>
     <string name="add_edit_remark">Add/Edit Remark</string>
-    <string name="restore">Restore</string>
-    <string name="compare">Compare</string>
-    <string name="select">Select</string>
-    <string name="source_wikipedia">(Source: Wikipedia)</string>
-    <string name="conservation_source"><![CDATA[<b>Source:</b> <i>%1$s</i>]]></string>
+    <string name="restore">복구</string>
+    <string name="compare">비교하기</string>
+    <string name="select">선택</string>
+    <string name="source_wikipedia">(출처: 위키백과)</string>
+    <string name="conservation_source"><![CDATA[<b>출처:</b> <i>%1$s</i>]]></string>
     <string name="conservation_status_least_concern">Of least concern</string>
     <string name="conservation_status_near_threatened">Near threatened</string>
     <string name="conservation_status_vulnerable">Vulnerable</string>
@@ -426,14 +427,14 @@
     <string name="conservation_status_critically_endangered">Critically endangered</string>
     <string name="conservation_status_extinct_in_the_wild">Extinct in the wild</string>
     <string name="conservation_status_extinct">Extinct</string>
-    <string name="map_of_observations">Map of Observations</string>
-    <string name="taxonomy">Taxonomy</string>
-    <string name="about_this_section">About This Section</string>
+    <string name="map_of_observations">관찰 지도</string>
+    <string name="taxonomy">분류</string>
+    <string name="about_this_section">이 섹션에 관하여</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
     <string name="taxonomy_info">These are links to ancestors of this particular taxon. They are in order from coarser to more refined. Use these links to move up and down the Tree of Life. For example, if you don\'t know what an organism is, but know what grouping it falls into, tap on a taxon from the list to view more information about it.</string>
-    <string name="more_info_on_inat">More Info on iNaturalist.org</string>
-    <string name="view_suggestions">View Suggestions</string>
-    <string name="species_search">Species Search</string>
+    <string name="more_info_on_inat">iNaturalist.org 에서 더 많은 정보 보기</string>
+    <string name="view_suggestions">제안 보기</string>
+    <string name="species_search">종 검색</string>
     <plurals name="were_not_confident">
         <!-- This will probably never happen -->
         <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
@@ -442,70 +443,70 @@
         <item quantity="other">Top %1$d suggestions:</item>
     </plurals>
     <string name="pretty_sure_rank">We\'re pretty sure it\'s in this %1$s:</string>
-    <string name="what_did_you_see">What did you see?</string>
-    <string name="suggest_species">Suggest Species</string>
-    <string name="suggest_species_description">Suggest species based on visual similarity to photos.</string>
+    <string name="what_did_you_see">무엇을 관찰했습니까?</string>
+    <string name="suggest_species">종 이름 제안하기</string>
+    <string name="suggest_species_description">사진과의 시각적 유사성에 따라 종 이름 제안하기</string>
     <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
-    <string name="visually_similar">Visually Similar</string>
-    <string name="visually_similar_seen_nearby">Visually Similar / Seen Nearby</string>
-    <string name="seen_nearby">Seen Nearby</string>
-    <string name="enlarge">Enlarge</string>
+    <string name="visually_similar">시각적으로 유사함</string>
+    <string name="visually_similar_seen_nearby">시각적으로 유사함/근처에서 관찰됨</string>
+    <string name="seen_nearby">근처에서 발견됨</string>
+    <string name="enlarge">확대</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
-    <string name="view_children">View Children</string>
-    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG extensions</string>
-    <string name="taxon_has_no_photos">This taxon has no photos.</string>
-    <string name="terrain">Terrain</string>
-    <string name="filters">Filters</string>
-    <string name="exploring_all">Exploring All</string>
-    <string name="nearby">Nearby</string>
-    <string name="couldnt_load_results">Couldn\'t load results: %1$s</string>
+    <string name="view_children">하위 분류군 보기</string>
+    <string name="invalid_photo_extension">사진 불러오기 오류: JPG/JPEG/PNG 파일만 추가할 수 있습니다</string>
+    <string name="taxon_has_no_photos">이 분류군은 사진이 없습니다.</string>
+    <string name="terrain">지형</string>
+    <string name="filters">필터</string>
+    <string name="exploring_all">둘러보기</string>
+    <string name="nearby">인근</string>
+    <string name="couldnt_load_results">결과를 불러올 수 없습니다: %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">RG</string>
-    <string name="taxon_search_hint">e.g. birds, monarch</string>
-    <string name="location_search_hint">e.g. city, state, park, country...</string>
-    <string name="no_taxon">Sorry, taxon not found</string>
+    <string name="taxon_search_hint">ex) 새, 나비</string>
+    <string name="location_search_hint">ex) 도시, 주, 공원, 지방...</string>
+    <string name="no_taxon">죄송합니다. 분류군을 찾을 수 없습니다.</string>
     <string name="please_select_taxon">Please select a valid taxon from the list (or clear the taxon field).</string>
     <string name="sorry_no_location">Sorry, location not found</string>
     <string name="location_not_found">The location or place you have searched is not in our database. Please choose a place from the list of options below the location search field or clear the search field.</string>
     <string name="undefined">Undefined</string>
     <string name="street_segment">Street Segment</string>
     <string name="intersection">Intersection</string>
-    <string name="town">Town</string>
-    <string name="state">State</string>
-    <string name="county">County</string>
+    <string name="town">마을</string>
+    <string name="state">시/도/주</string>
+    <string name="county">군</string>
     <string name="local_administrative_area">Local Administrative Area</string>
-    <string name="country">Country</string>
-    <string name="island">Island</string>
-    <string name="airport">Airport</string>
-    <string name="drainage">Drainage</string>
-    <string name="land_feature">Land Feature</string>
-    <string name="miscellaneous">Miscellaneous</string>
-    <string name="nationality">Nationality</string>
+    <string name="country">국가</string>
+    <string name="island">섬</string>
+    <string name="airport">공항</string>
+    <string name="drainage">유역</string>
+    <string name="land_feature">지형 정보</string>
+    <string name="miscellaneous">기타</string>
+    <string name="nationality">국적</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Supername</string>
-    <string name="point_of_interest">Point of Interest</string>
-    <string name="region">Region</string>
+    <string name="point_of_interest">관심 지역</string>
+    <string name="region">지역</string>
     <string name="colloquial">Colloquial</string>
-    <string name="zone">Zone</string>
-    <string name="historical_state">Historical State</string>
-    <string name="historical_county">Historical County</string>
-    <string name="continent">Continent</string>
+    <string name="zone">구역</string>
+    <string name="historical_state">역사적 시/군/주</string>
+    <string name="historical_county">역사적 도시</string>
+    <string name="continent">대륙</string>
     <string name="estate">Estate</string>
-    <string name="historical_town">Historical Town</string>
-    <string name="aggregate">Aggregate</string>
-    <string name="open_space">Open Space</string>
-    <string name="territory">Territory</string>
-    <string name="district">District</string>
-    <string name="province">Province</string>
-    <string name="municipality">Municipality</string>
-    <string name="parish">Parish</string>
+    <string name="historical_town">역사적 마을</string>
+    <string name="aggregate">집합</string>
+    <string name="open_space">열린 공간</string>
+    <string name="territory">지역</string>
+    <string name="district">구역</string>
+    <string name="province">지방</string>
+    <string name="municipality">지방 자치체</string>
+    <string name="parish">교구</string>
     <string name="department_segment">Department Segment</string>
-    <string name="city_building">City Building</string>
+    <string name="city_building">도시 건물</string>
     <string name="commune">Commune</string>
     <string name="governorate">Governorate</string>
-    <string name="prefecture">Prefecture</string>
-    <string name="canton">Canton</string>
-    <string name="republic">Republic</string>
+    <string name="prefecture">현</string>
+    <string name="canton">칸톤</string>
+    <string name="republic">공화국</string>
     <string name="division">Division</string>
     <string name="subdivision">Subdivision</string>
     <!-- https://gadm.org place type, presumably describing an area larger than an individual property but smaller than a neighborhood -->
@@ -520,28 +521,28 @@
     <string name="local_authority">Local Authority</string>
     <string name="poblacion">Poblacion</string>
     <string name="delegation">Delegation</string>
-    <string name="apply_filters">Apply Filters</string>
-    <string name="reset">Reset</string>
-    <string name="show_only_my_observations">Show Only My Observations</string>
-    <string name="project">Project</string>
-    <string name="user">User</string>
-    <string name="search_users">Search Users...</string>
-    <string name="quality_grade">Quality Grade</string>
+    <string name="apply_filters">필터 적용</string>
+    <string name="reset">재설정</string>
+    <string name="show_only_my_observations">내 관찰만 보기</string>
+    <string name="project">프로젝트</string>
+    <string name="user">사용자</string>
+    <string name="search_users">사용자 검색...</string>
+    <string name="quality_grade">품질 등급</string>
     <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
-    <string name="date_observed">Date Observed</string>
+    <string name="date_observed">관찰된 날짜</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
-    <string name="any">Any</string>
+    <string name="any">모두</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
     <string name="to">to</string>
-    <string name="exact_date">Exact Date</string>
-    <string name="start">Start</string>
-    <string name="end">End</string>
-    <string name="months">Months</string>
-    <string name="choose_months">Choose months(s)</string>
-    <string name="map_area">Map Area</string>
-    <string name="global">Global</string>
+    <string name="exact_date">정확한 날짜</string>
+    <string name="start">시작일</string>
+    <string name="end">종료일</string>
+    <string name="months">월별</string>
+    <string name="choose_months">월 선택</string>
+    <string name="map_area">지도 영역</string>
+    <string name="global">전체</string>
     <!-- As in redo search in the current map area -->
-    <string name="search_map_area">Search Map Area</string>
+    <string name="search_map_area">지도 영역 찾기</string>
     <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
     <string name="date_minute">%dm</string>
     <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
@@ -550,27 +551,27 @@
     <string name="date_day">%dd</string>
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
     <string name="date_week">%dw</string>
-    <string name="new_observation">New Observation</string>
-    <string name="inactive_taxon">Inactive Taxon</string>
+    <string name="new_observation">새로운 관찰</string>
+    <string name="inactive_taxon">비활성 분류군</string>
     <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
     <string name="no_species_found">This is a list of the species you have observed the most.\n\nFYI: There\'s an estimated 9 million species on the planet, so get out there and observe them!</string>
-    <string name="make_an_observation">Make an observation</string>
+    <string name="make_an_observation">관찰 만들기</string>
     <string name="no_observations_found_new">Observations are records of your encounters with individual organisms at particular times and locations.</string>
-    <string name="discard_comment">Are you sure you want to discard this comment?</string>
-    <string name="leave_comment">Leave a comment...</string>
-    <string name="swipe">Swipe</string>
-    <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Which Google Account?</string>
+    <string name="discard_comment">이 댓글을 삭제하시겠습니까?</string>
+    <string name="leave_comment">댓글을 추가하세요...</string>
+    <string name="swipe">스와이프</string>
+    <string name="swipe_indicator">></string>
+    <string name="select_google_account">어떤 구글 계정입니까?</string>
     <string name="potential_disagreement">Potential Disagreement</string>
     <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
     <string name="i_dont_know_but"><![CDATA[I don\'t know but I\'m sure this is <b>%1$s</b>.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
     <string name="submit">Submit</string>
-    <string name="change_password">Change Password</string>
-    <string name="search_projects_youve_joined">Search projects you\'ve joined...</string>
-    <string name="must_be_connected_to_load_more_obs">You must be connected to the Internet to load more observations</string>
-    <string name="inat_about_title">iNaturalist is a joint initiative by the California Academy of Sciences and the National Geographic Society.</string>
-    <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="http://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
+    <string name="change_password">비밀번호 변경</string>
+    <string name="search_projects_youve_joined">내가 가입한 프로젝트 검색...</string>
+    <string name="must_be_connected_to_load_more_obs">더 많은 관찰을 로딩하려면 인터넷에 연결되어 있어야 합니다</string>
+    <string name="inat_about_title">iNaturalist는 캘리포니아 과학 아카데미와 내셔널 지오그래픽과 공동으로 진행하는 프로젝트입니다. </string>
+    <string name="inat_credits"><![CDATA[iNaturalist는 우리 공동체에 참여하는 많은 사람들의 노력으로 유지됩니다. 소프트웨어를 개발하고, 인터페이스를 디자인하고, 공동체를 지원하고, 협력 사업을 진행하는 사람들은 Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda 입니다.<br/><br/>캘리포니아 공과대학교(Caltech)과 코넬대학교 Tech campus에서, 사진을 바탕으로 컴퓨터가 인식하여 이름을 제안하는 시스템을 개발하는 데 도움을 주었습니다. 특히 컴퓨터 인식 연구를 발전시킨 Grant Van Horn, Serge Belongie, and Pietro Perona에게 감사드립니다. 더 많은 정보는 <a href="http://www.visipedia.org">visipedia.org</a> 에서 확인할 수 있습니다. 추가적인 도움을 준 NVIDIA에도 감사드립니다.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Credits</string>
@@ -578,45 +579,45 @@
     <string name="just_so_you_know">Just So You Know...</string>
     <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
-    <string name="see_more_observations">See more observations</string>
-    <string name="see_more_species">See more species</string>
-    <string name="see_more_identifications">See more identifications</string>
+    <string name="see_more_observations">더 많은 관찰 보기</string>
+    <string name="see_more_species">더 많은 종 보기</string>
+    <string name="see_more_identifications">더 많은 동정 보기</string>
     <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
     <string name="description">설명</string>
     <string name="quantity">수량</string>
     <string name="agree2">동의함</string>
-    <string name="project_observations">관찰 기록</string>
+    <string name="project_observations">관찰</string>
     <string name="project_species">종</string>
-    <string name="project_people">사람</string>
-    <string name="project_identifiers">생물 종 정보 확인자</string>
-    <string name="got_it">Got it!</string>
-    <string name="view_all">View All</string>
-    <string name="new_badge">New</string>
-    <string name="observers">Observers</string>
+    <string name="project_people">사용자</string>
+    <string name="project_identifiers">동정한 사용자</string>
+    <string name="got_it">확인했습니다!</string>
+    <string name="view_all">모두 보기</string>
+    <string name="new_badge">신규</string>
+    <string name="observers">관찰자</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
-    <string name="attribute">Attribute</string>
+    <string name="attribute">속성</string>
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
-    <string name="value">Value</string>
+    <string name="value">값</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
-    <string name="disagree">Disagree</string>
+    <string name="disagree">동의하지 않음</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
-    <string name="annotations">Annotations</string>
+    <string name="annotations">주석</string>
     <!-- Used when filtering observations with annotations -->
-    <string name="with_annotation">With Annotation</string>
+    <string name="with_annotation">주석이 있음</string>
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
-    <string name="annotation_name">Annotation Name</string>
+    <string name="annotation_name">주석 이름</string>
     <!-- Annotation value for when no annotation has been chosen -->
-    <string name="none">None</string>
+    <string name="none">없음</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
     <string name="annotation_name_plant_phenology">Plant Phenology</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
-    <string name="annotation_name_life_stage">Life Stage</string>
+    <string name="annotation_name_life_stage">성장 단계</string>
     <!-- Noun, describes sex of the organism -->
-    <string name="annotation_name_sex">Sex</string>
+    <string name="annotation_name_sex">성별</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
-    <string name="annotation_name_alive_or_dead">Alive or Dead</string>
+    <string name="annotation_name_alive_or_dead">생존 여부</string>
     <!-- Adjective, having open flowers -->
-    <string name="annotation_value_flowering">Flowering</string>
+    <string name="annotation_value_flowering">개화 중</string>
     <!-- Adjective, having fruit -->
     <string name="annotation_value_fruiting">Fruiting</string>
     <!-- Adjective, having unopened flowers -->
@@ -624,28 +625,28 @@
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Flower Budding</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
-    <string name="annotation_value_adult">Adult</string>
+    <string name="annotation_value_adult">성체</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
-    <string name="annotation_value_teneral">Teneral</string>
+    <string name="annotation_value_teneral">우화 직후</string>
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
-    <string name="annotation_value_pupa">Pupa</string>
+    <string name="annotation_value_pupa">번데기</string>
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
-    <string name="annotation_value_nymph">Nymph</string>
+    <string name="annotation_value_nymph">약충</string>
     <!-- Noun for the arthropod life stage between egg and adult -->
-    <string name="annotation_value_larva">Larva</string>
-    <string name="annotation_value_egg">Egg</string>
+    <string name="annotation_value_larva">약충</string>
+    <string name="annotation_value_egg">알</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
-    <string name="annotation_value_juvenile">Juvenile</string>
+    <string name="annotation_value_juvenile">아성체</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
-    <string name="annotation_value_subimago">Subimago</string>
-    <string name="annotation_value_female">Female</string>
-    <string name="annotation_value_male">Male</string>
+    <string name="annotation_value_subimago">준성체</string>
+    <string name="annotation_value_female">암컷</string>
+    <string name="annotation_value_male">수컷</string>
     <!-- Adjective, alive and shows no signs of imminent death -->
-    <string name="annotation_value_alive">Alive</string>
+    <string name="annotation_value_alive">살아있음</string>
     <!-- Adjective, dead or shows signs of imminent death -->
-    <string name="annotation_value_dead">Dead</string>
+    <string name="annotation_value_dead">죽음</string>
     <!-- Value for when the value of the attribute cannot be determined -->
-    <string name="annotation_value_cannot_be_determined">Cannot Be Determined</string>
+    <string name="annotation_value_cannot_be_determined">확인할 수 없음</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">JOINED</string>
     <string name="nearby_projects_all_caps">NEARBY</string>
@@ -654,73 +655,75 @@
     <string name="join_all_caps">JOIN</string>
     <string name="my_guides_all_caps">YOURS</string>
     <string name="nearby_guides_all_caps">NEARBY</string>
-    <string name="all_guides_all_caps">ALL</string>
-    <string name="description_all_caps">DESCRIPTION</string>
+    <string name="all_guides_all_caps">모두</string>
+    <string name="description_all_caps">설명</string>
     <string name="quantity_all_caps">QTY</string>
     <plurals name="observation_count_all_caps">
         <item quantity="other">%1$s OBSERVATIONS</item>
     </plurals>
-    <string name="agree_all_caps">AGREE</string>
-    <string name="observations_all_caps">OBSERVATIONS</string>
-    <string name="species_all_caps">SPECIES</string>
-    <string name="people_all_caps">PEOPLE</string>
-    <string name="identifiers_all_caps">IDENTIFIERS</string>
-    <string name="identifications_all_caps">IDENTIFICATIONS</string>
-    <string name="news_all_caps">NEWS</string>
-    <string name="got_it_all_caps">GOT IT!</string>
-    <string name="view_all_all_caps">VIEW ALL</string>
+    <string name="agree_all_caps">동의</string>
+    <string name="observations_all_caps">관찰</string>
+    <string name="species_all_caps">종</string>
+    <string name="people_all_caps">사용자</string>
+    <string name="identifiers_all_caps">동정한 사용자</string>
+    <string name="identifications_all_caps">동정</string>
+    <string name="news_all_caps">뉴스</string>
+    <string name="got_it_all_caps">확인!</string>
+    <string name="view_all_all_caps">모두 보기</string>
     <string name="new_all_caps">NEW</string>
-    <string name="observers_all_caps">OBSERVERS</string>
-    <string name="observations_regular">Observations</string>
-    <string name="data_quality_assessment">Data Quality Assessment</string>
-    <string name="research_grade_qualification">Research Grade Qualification</string>
-    <string name="date_specified">Date specified</string>
-    <string name="location_specified">Location specified</string>
-    <string name="has_photos_or_sounds">Has photos or sounds</string>
-    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
-    <string name="date_is_accurate">Date is accurate</string>
-    <string name="location_is_accurate">Location is accurate</string>
-    <string name="organism_is_wild">Organism is wild</string>
-    <string name="evidence_of_organism">Evidence of organism</string>
-    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
+    <string name="observers_all_caps">관찰자</string>
+    <string name="observations_regular">관찰</string>
+    <string name="data_quality_assessment">데이터 품질 평가</string>
+    <string name="research_grade_qualification">연구 자료 등급 자격</string>
+    <string name="date_specified">날짜가 특정됨</string>
+    <string name="location_specified">위치가 특정됨</string>
+    <string name="has_photos_or_sounds">사진이나 음원이 있음</string>
+    <string name="has_id_supported_by_two_or_more">2명 이상이 이름에 동의함</string>
+    <string name="date_is_accurate">날짜가 정확함</string>
+    <string name="location_is_accurate">위치가 정확함</string>
+    <string name="organism_is_wild">야생에서 관찰된 생물임</string>
+    <string name="evidence_of_organism">생물의 증거임</string>
+    <string name="recent_evidence_of_an_organism">최근 생물의 증거임</string>
     <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
     <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
     <string name="seasonality">Seasonality</string>
     <string name="verifiable">Verifiable</string>
     <string name="no_annotation">No Annotation</string>
-    <string name="donate_to_inaturalist">Donate to iNaturalist</string>
-    <string name="prefers_scientific_name_first">Show scientific names first</string>
-    <string name="prefers_scientific_name_first_description">Show scientific names before common names.</string>
-    <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, and Parks Canada operating iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
-    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
-    <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) operating NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
-    <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network operating iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
-    <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
-    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
-    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
-    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
-    <string name="mark_all_as_viewed">Mark all as viewed</string>
+    <string name="donate_to_inaturalist">iNaturalist에 기부하기</string>
+    <string name="prefers_scientific_name_first">학명을 우선적으로 표시</string>
+    <string name="prefers_scientific_name_first_description">일반명 앞에 학명을 표시합니다.</string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[캐나다: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, 그리고 Parks Canada가 iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)
+를 운영하고 있습니다.]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[콜롬비아:  Instituto Humboldt가 Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)를 운영하고 있습니다.]]></string>
+    <string name="network_credit_naturalista"><![CDATA[멕시코:  Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO)가 NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)를 운영하고 있습니다.]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[뉴질랜드: New Zealand Biodiversity Recording Network가 iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)를 운영하고 있습니다.]]></string>
+    <string name="network_credit_biodiversity4all"><![CDATA[포르투갈: Associação Biodiversidade Para Todos가 Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)를 운영하고 있습니다.]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[파나마: Ministerio de Ambiente가 iNaturalistPa (panama.inaturalist.org)를 운영하고 있습니다.]]></string>
+    <string name="network_credit_argentinat"><![CDATA[아르헨티나: Fundación Vida Silvestre Argentina가 ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)를 운영하고 있습니다.]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[호주: Atlas of Living Australia가 iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)를 운영하고 있습니다.]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[에콰도르: Instituto Nacional de Biodiversidad (INABIO)가 iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)를 운영하고 있습니다.]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[이스라엘: University of Haifa가 iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)를 운영하고 있습니다.]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Naturalist History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="mark_all_as_viewed">모두 검토한 것으로 표시</string>
     <string name="content_hidden">Content Hidden</string>
     <string name="show_hidden_content">Show Hidden Content</string>
     <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
-    <string name="content">Content</string>
-    <string name="has_photos">Has Photos</string>
-    <string name="has_sounds">Has Sounds</string>
-    <string name="could_not_play_sound">Couldn\'t play sound - probably a network issue</string>
+    <string name="content">콘텐츠</string>
+    <string name="has_photos">사진이 있음</string>
+    <string name="has_sounds">음원이 있음</string>
+    <string name="could_not_play_sound">음원을 재생할 수 없음 - 네트워크 문제일 가능성이 있음</string>
     <string name="cant_play_soundcloud"><![CDATA[To listen to Soundcloud sounds, view the <a href="%1$s">website</a>.]]></string>
-    <string name="soundcloud">Soundcloud</string>
-    <string name="record_sound">Record Sound</string>
+    <string name="soundcloud">SoundCloud</string>
+    <string name="record_sound">소리 녹음</string>
     <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
-    <string name="upload_sound">Choose Sound</string>
-    <string name="multi_select_sound_description">Import multiple sounds by long-pressing on a single sound</string>
+    <string name="upload_sound">소리 선택</string>
+    <string name="multi_select_sound_description">음원을 길게 눌러 여러 음원를 가져오기</string>
     <string name="alert_unsupported_audio_type">Sorry, but there was a problem loading the sound from this source</string>
-    <string name="invalid_audio_extension">Error importing sound(s): Can only import sound files with WAV/MP3/AMR extensions</string>
-    <string name="importing_sounds">Importing sound(s)...</string>
+    <string name="invalid_audio_extension">음원 불러오기 오류: WAV/MP3/AMR 파일만 추가할 수 있습니다</string>
+    <string name="importing_sounds">음원을 가져오는 중...</string>
     <string name="observation_sound">Observation Sound</string>
     <string name="deleted_sounds_from_cache_error">It looks like you deleted a sound by clearing the app cache before uploading. You will need to add the sound back to your observation from your gallery. In the future, please make sure you have uploaded all your sounds before clearing the app cache.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
@@ -739,37 +742,37 @@
     <string name="delete_this_pinned_location">Delete this pinned location?</string>
     <!-- Verb, as in "Duplicate this photo" -->
     <string name="duplicate">Duplicate</string>
-    <string name="couldnt_duplicate_photo">Couldn\'t duplicate photo!</string>
-    <string name="couldnt_edit_photo">Couldn\'t edit photo!</string>
+    <string name="couldnt_duplicate_photo">사진을 복제할 수 없습니다!</string>
+    <string name="couldnt_edit_photo">사진을 수정할 수 없습니다!</string>
     <!-- Verb, as in "Rotate this photo" -->
-    <string name="ucrop_rotate">Rotate</string>
+    <string name="ucrop_rotate">회전하기</string>
     <!-- Verb, as in "Scale (resize) this photo" -->
-    <string name="ucrop_scale">Scale</string>
+    <string name="ucrop_scale">크기 조정하기</string>
     <!-- Verb, as in "Crop this photo" -->
-    <string name="ucrop_crop">Crop</string>
+    <string name="ucrop_crop">자르기</string>
     <!-- Label for adjusting the brightness of an image -->
-    <string name="ucrop_brightness">Brightness</string>
+    <string name="ucrop_brightness">밝기 조정</string>
     <!-- Label for adjusting the contrast of an image -->
     <string name="ucrop_contrast">Contrast</string>
     <!-- Label for adjusting the saturation of an image -->
     <string name="ucrop_saturation">Saturation</string>
     <!-- Label for adjusting the sharpness of an image -->
-    <string name="ucrop_sharpness">Sharpness</string>
+    <string name="ucrop_sharpness">선명도</string>
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
-    <string name="ucrop_label_original">Original</string>
+    <string name="ucrop_label_original">원본</string>
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
     <string name="ucrop_label_free">Free</string>
     <!-- Verb phrase, button label to edit an observation photo -->
-    <string name="ucrop_label_edit_photo">Edit Photo</string>
-    <string name="service_temporarily_unavailable">Service temporarily unavailable.</string>
-    <string name="please_try_again_in_a_few_hours">Please try again in a few hours.</string>
+    <string name="ucrop_label_edit_photo">사진 편집</string>
+    <string name="service_temporarily_unavailable">서비스를 잠시 이용할 수 없습니다</string>
+    <string name="please_try_again_in_a_few_hours">몇 시간 후에 다시 시도해 보세요.</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
     <string name="please_try_again_in_x">Please try again in %1$d %2$s.</string>
-    <string name="hours">hours</string>
-    <string name="minutes">minutes</string>
-    <string name="seconds_value">seconds</string>
-    <string name="shop_the_inat_store">Shop the iNat Store</string>
-    <string name="delete_your_account">Delete Your Account</string>
+    <string name="hours">시간</string>
+    <string name="minutes">분</string>
+    <string name="seconds_value">초</string>
+    <string name="shop_the_inat_store">iNaturalist 스토어에서 구매하기</string>
+    <string name="delete_your_account">계정 삭제하기</string>
     <string name="delete_account_message"><![CDATA[By deleting your account you will remove:<br/><br/><ul><li> All of your observations, including the work of the all the people who have helped you out with identifications.</li><li> All of the identifications you\'ve added to the observations of other people, which will potentially affect the data quality of those observations.</li><li> All of the comments you\'ve added.</li></ul><br/>Furthermore, this action cannot be undone. If you change your mind later, you aren\'t getting any of that content back.<br/><br/>If this service generates too many notifications, consider <a href="https://www.inaturalist.org/users/edit">editing your settings on the website</a> to opt out of certain notifications or stop receiving email from us. If you\'re having trouble with a specific person, consider <a href="https://www.inaturalist.org/users/edit">muting them</a> instead of deleting your account.<br/><br/>If you\'re still sure you want to delete your account, enter <b>\"%1$s\"</b> in the form below and click the button to delete your account and all your data.]]></string>
     <string name="your_account_has_been_deleted">Your account has been deleted</string>
     <string name="you_must_enter_username_in_the_form_to_delete_account">You must enter \'%1$s\' in the form to delete your account</string>
@@ -788,10 +791,26 @@
     <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
     <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
-    <string name="search_places">Search Places</string>
-    <string name="restart_app">Restart App</string>
+    <string name="search_places">장소 검색</string>
+    <string name="restart_app">앱 다시 시작</string>
     <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
         <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
     </plurals>
+    <string name="future_observed_on_date_error">Your observation was created (and submitted) on %1$s, but you\'re trying to set an observation date that is later than that: %2$s</string>
+    <string name="no_more_photos_allowed">Observations can only have %1$d photos. To add more you will need to remove some.</string>
+    <string name="warning_multiple_photos">If you\'re adding photos of different kinds of organisms to this observation, or the same kind at different places or times, you should remove those photos and add them as separate observations. An observation can only have %1$d photos.</string>
+    <string name="choosing_specific_language_warning">Choosing a specific language for your account requires an Internet connection</string>
+    <string name="running_in_background_notfication">Running in the background so we can run without interruption</string>
+    <string name="opt_out_of_community_taxon">Opt out of the Community Taxon</string>
+    <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
+    <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
+    <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
+    <string name="permission_required">Permission Required</string>
+    <!-- Message displayed when the user tries to perform an action that requires location permission -->
+    <string name="to_access_your_location">To access your location you must grant location access permission to this app.</string>
+    <!-- Dialog title when displaying a message that an action is not permitted -->
+    <string name="forbidden">Forbidden</string>
+    <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
+    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
 </resources>

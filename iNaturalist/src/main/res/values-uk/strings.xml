@@ -148,10 +148,10 @@
     <string name="release_to_refresh">Відпустіть, щоб оновити...</string>
     <string name="refreshing">Оновлення...</string>
     <plurals name="sync_x_observations">
-        <item quantity="one">Sync %1$d observation</item>
-        <item quantity="few">Sync %1$d observations</item>
-        <item quantity="many">Sync %1$d observations</item>
-        <item quantity="other">Sync %1$d observations</item>
+        <item quantity="one">Синхронізувати %1$d спостереження</item>
+        <item quantity="few">Синхронізувати %1$d спостереження</item>
+        <item quantity="many">Синхронізувати %1$d спостережень</item>
+        <item quantity="other">Синхронізувати %1$d спостереження</item>
     </plurals>
     <string name="sync_observations">Синхронізація спостережень</string>
     <string name="lets_get_started">Давайте почнемо!</string>
@@ -210,7 +210,10 @@
 Чи хочете ви змінити вашу мережеву приналежність?</string>
     <string name="alert_message_use_argentinat">ArgentiNat є частиною мережі iNuturalist в Аргентині. Місцеві організації, що підтримують ArgentiNat, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є більше 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
 Чи хочете ви змінити вашу мережеву приналежність?</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel є частиною мережі iNuturalist в Ізраїлі. Місцеві організації, що підтримують iNaturalist Israel, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є більше 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
+Чи хочете ви змінити вашу мережеву приналежність?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Panamá є частиною мережі iNuturalist у Фінляндії. Місцеві організації, що підтримують iNaturalist Panamá, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є більше 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
+Чи хочете ви змінити вашу мережеву приналежність?</string>
     <string name="editor">Редактор</string>
     <string name="license">Ліцензія</string>
     <string name="download_for_offline_use">Завантажено для використання в автономному режимі</string>
@@ -293,10 +296,10 @@
     <string name="casual_grade_captive"><![CDATA[ Спостереженню присвоєно Звичайний статус (Casual Grade) тому що це спостереження об\'єкта <b>утримується в неволі або культивується</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ Щоб отримати "Дослідницький статус" (Research Grade) спостереженню потрібно <b>більше ідентифікацій</b> від спільноти. ]]></string>
     <plurals name="included_in_projects">
-        <item quantity="one">Included in %1$d project</item>
-        <item quantity="few">Included in %1$d projects</item>
-        <item quantity="many">Included in %1$d projects</item>
-        <item quantity="other">Included in %1$d projects</item>
+        <item quantity="one">Включено в %1$d проект</item>
+        <item quantity="few">Включено в %1$d проекти</item>
+        <item quantity="many">Включено в %1$d проектів</item>
+        <item quantity="other">Включено в %1$d проекти</item>
     </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Геоприватність - це параметр налаштування, який ви можете задати в своїх спостереженнях. Він керує показом просторових координат (широти й довготи). Ось варіанти: <br/><b>публічна</b> - кожен може побачити координати, якщо таксон не перебуває під загрозою. <br/><b>прихована</b> - загальнодоступні координати показуються як випадкова точка в межах області 0,2 на 0,2 градуса, яка в свою чергу містить справжні координати, що представляє собою квадратну область невизначеності близько 22x22 км на екваторі, розмір зменшується в міру наближення до полюсів. Справжні координати видно тільки вам і кураторам проектів, до яких Ви додаєте спостереження. <br/><b>приватна</b> - координати повністю приховані, справжні координати видно лише Вам і кураторам проектів, до яких Ви додаєте спостереження. <br/><br/> Зверніть увагу на те, що куратори окремих проектів завжди можуть бачити координати, незалежно від налаштувань конфіденційності геоданих, тому, якщо Вас турбує, хто має доступ до координат, Ви повинні бути впевнені, що довіряєте кураторам проектів, в яких Ви берете участь. ]]></string>
     <string name="id_title">%1$s\'s ID • %2$s</string>
@@ -424,10 +427,10 @@
     <string name="new_activities">%1s нових</string>
     <string name="no_results_found">Нічого не знайдено...</string>
     <plurals name="syncing_x_out_of_y_observations">
-        <item quantity="one">Syncing %1$d of %2$d observation...</item>
-        <item quantity="few">Syncing %1$d of %2$d observations...</item>
-        <item quantity="many">Syncing %1$d of %2$d observations...</item>
-        <item quantity="other">Syncing %1$d of %2$d observations...</item>
+        <item quantity="one">Синхронізується %1$d з %2$d спостереження...</item>
+        <item quantity="few">Синхронізується %1$d з %2$d спостережень...</item>
+        <item quantity="many">Синхронізується %1$d з %2$d спостережень...</item>
+        <item quantity="other">Синхронізується %1$d з %2$d спостережень...</item>
     </plurals>
     <string name="deleting_observations">Видалення спостережень...</string>
     <string name="preparing">Підготовка...</string>
@@ -454,10 +457,10 @@
     <string name="species_search">Пошук видів</string>
     <plurals name="were_not_confident">
         <!-- This will probably never happen -->
-        <item quantity="one">We\'re not confident enough to make a recommendation, but here is our number %1$d suggestion:</item>
-        <item quantity="few">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
-        <item quantity="many">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
-        <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+        <item quantity="one">Ми не настільки впевнені, щоб давати рекомендації, але ось наша %1$d пропозиція</item>
+        <item quantity="few">Ми не настільки впевнені, щоб давати рекомендації, але ось наша %1$d пропозиція</item>
+        <item quantity="many">Ми не настільки впевнені, щоб давати рекомендації, але ось наша %1$d пропозиція</item>
+        <item quantity="other">Ми не настільки впевнені, щоб давати рекомендації, але ось наша %1$d пропозиція</item>
     </plurals>
     <plurals name="top_species_suggestions">
         <item quantity="one">Top %1$d suggestion:</item>
@@ -682,10 +685,10 @@
     <string name="description_all_caps">ОПИС</string>
     <string name="quantity_all_caps">К-КСТЬ</string>
     <plurals name="observation_count_all_caps">
-        <item quantity="one">%1$s OBSERVATION</item>
-        <item quantity="few">%1$s OBSERVATIONS</item>
-        <item quantity="many">%1$s OBSERVATIONS</item>
-        <item quantity="other">%1$s OBSERVATIONS</item>
+        <item quantity="one">%1$s СПОСТЕРЕЖЕННЯ</item>
+        <item quantity="few">%1$s СПОСТЕРЕЖЕННЯ</item>
+        <item quantity="many">%1$s СПОСТЕРЕЖЕНЬ</item>
+        <item quantity="other">%1$s СПОСТЕРЕЖЕННЯ</item>
     </plurals>
     <string name="agree_all_caps">ПОГОДЖУЮСЯ</string>
     <string name="observations_all_caps">СПОСТЕРЕЖЕННЯ</string>
@@ -725,10 +728,11 @@
     <string name="network_credit_naturewatchnz"><![CDATA[Нова Зеландія: Новозеландська мережа реєстрації біорізноманіття забезпечує роботу iNaturalist NZ - Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Португалія: Асоціація «Біорізноманіття для всіх» Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Панама: Міністерство навколишнього середовища забезпечує роботу iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
-    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
-    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Аргентина: Фонд дикої природи Аргентини підтримує ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Австралія: Атлас живої природи Австралії підтримує iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Еквадор: Національний інститут біорізноманіття (INABIO) підтримує iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Ізраїль: Хайфський університет підтримує iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Фінляндія: Фінський природознавчий музей (LUOMUS) підтримує iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="mark_all_as_viewed">Помітити всі як переглянуті</string>
     <string name="content_hidden">Прихований вміст</string>
     <string name="show_hidden_content">Показувати прихований вміст</string>
@@ -813,15 +817,31 @@
     <string name="third_party_data_sharing_notes2"><![CDATA[Інформація, яку ми розповідаємо третім особам:<br/><ul><li> IP-адреси (яку можна використовувати для отримання інформації на рівні роздільної здатності міста і відстеження вас на різних сайтах і послугах; Зверніть увагу, що ми увімкнули <a href="https://support.google.com/analytics/answer/2763052">IP-анонімність</a> в Google Analytics і <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> не запам\'ятовує IP-адресу наших знань)</li><li>Деталі браузера, таких як make, model, і версія</li><li>деталі збою, як саме рядок коду спричинив аварію</li><li>деталі пристрою, подобається зробити та модель мобільного телефону</li></ul>]]></string>
     <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third-party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
     <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
-    <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
-    <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
+    <string name="common_names_place"><![CDATA[Місце загальних назв: <b>%1$s</b>]]></string>
+    <string name="tap_to_prioritize_common_names">Натисніть, щоб встановити пріоритет загальних імен з певного місця.</string>
     <string name="search_places">Пошук місць</string>
-    <string name="restart_app">Restart App</string>
-    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
+    <string name="restart_app">Перезапуск</string>
+    <string name="disable_third_party_sharing_restart">Для негайного припинення обміну даними зі сторонніми компаніями необхідно перезапустити програму</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
         <item quantity="one">Are you sure you want to delete this %1$d observation?</item>
         <item quantity="few">Are you sure you want to delete these %1$d observations?</item>
         <item quantity="many">Are you sure you want to delete these %1$d observations?</item>
         <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
     </plurals>
+    <string name="future_observed_on_date_error">Your observation was created (and submitted) on %1$s, but you\'re trying to set an observation date that is later than that: %2$s</string>
+    <string name="no_more_photos_allowed">Спостереження можуть мати лише %1$d фотографій. Щоб додати більше, вам доведеться видалити деякі з них.</string>
+    <string name="warning_multiple_photos">If you\'re adding photos of different kinds of organisms to this observation, or the same kind at different places or times, you should remove those photos and add them as separate observations. An observation can only have %1$d photos.</string>
+    <string name="choosing_specific_language_warning">Вибір конкретної мови для вашого облікового запису потребує підключення до інтернету</string>
+    <string name="running_in_background_notfication">Працює у фоновому режимі, так що ми можемо працювати безперебійно</string>
+    <string name="opt_out_of_community_taxon">Opt out of the Community Taxon</string>
+    <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
+    <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
+    <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
+    <string name="permission_required">Потрібен дозвіл</string>
+    <!-- Message displayed when the user tries to perform an action that requires location permission -->
+    <string name="to_access_your_location">Щоб отримати доступ до вашого місцезнаходження, ви повинні надати дозвіл на доступ до GPS цьому додатку.</string>
+    <!-- Dialog title when displaying a message that an action is not permitted -->
+    <string name="forbidden">Заборонено</string>
+    <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
+    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
 </resources>

@@ -200,6 +200,7 @@
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australien är medlem i iNaturalist-nätverket i Australien. Lokala institutioner som stöder iNaturalist Australien kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 observationer. Vill du ändra din tillhörighet?</string>
     <string name="alert_message_use_argentinat">ArgentiNat är medlem i iNaturalist-nätverket i Argentina. Lokala institutioner som stödjer ArgentiNat kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 observationer. Vill du ändra din tillhörighet?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel är medlem i iNaturalist-nätverket i Israel. Lokala institutioner som stödjer iNaturalist Israel kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Experimentera inte med att ändra din tillhörighet om du har mer än 1000 observationer. Vill du ändra din tillhörighet?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland är medlem i iNaturalist-nätverket i Finland. Lokala institutioner som stöder iNaturalist Finland har tillgång till din e-postadress och tillgång till de verkliga koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 observationer. Vill du ändra din tillhörighet?</string>
     <string name="editor">Redigerare</string>
     <string name="license">Programvarulicens</string>
     <string name="download_for_offline_use">Ladda ner för användning offline</string>
@@ -439,12 +440,12 @@
     <string name="species_search">Artsök</string>
     <plurals name="were_not_confident">
         <!-- This will probably never happen -->
-        <item quantity="one">We\'re not confident enough to make a recommendation, but here is our number %1$d suggestion:</item>
-        <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+        <item quantity="one">Vi är inte tillräckligt säkra för att göra en rekommendation, men av våra förslag är detta nummer %1$d:</item>
+        <item quantity="other">Vi är inte tillräckligt säkra för att göra en rekommendation, men här är våra %1$d bästa förslag:</item>
     </plurals>
     <plurals name="top_species_suggestions">
-        <item quantity="one">Top %1$d suggestion:</item>
-        <item quantity="other">Top %1$d suggestions:</item>
+        <item quantity="one">Bästa förslag nummer %1$d:</item>
+        <item quantity="other">Bästa %1$d förslag:</item>
     </plurals>
     <string name="pretty_sure_rank">Vi är ganska säkra på att den tillhör denna %1$s:</string>
     <string name="what_did_you_see">Vad såg du?</string>
@@ -708,6 +709,7 @@
     <string name="network_credit_inaturalistaustralia"><![CDATA[Australien: Atlas of Living Australia stöder iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) stöder iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa stöder iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finska Naturhistoriska centralmuseet (LUOMUS) stöder iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="mark_all_as_viewed">Markera alla som lästa</string>
     <string name="content_hidden">Dolt innehåll</string>
     <string name="show_hidden_content">Visa dolt innehåll</string>
@@ -801,4 +803,20 @@
         <item quantity="one">Är du säker på att du vill ta bort denna %1$d observation?</item>
         <item quantity="other">Är du säker på att du vill ta bort dessa %1$d observationer?</item>
     </plurals>
+    <string name="future_observed_on_date_error">Din observation skapades (och skickades) den %1$s, men du försöker ange ett observationsdatum som är senare än det: %2$s</string>
+    <string name="no_more_photos_allowed">Observationer kan bara ha %1$d bilder. För att lägga till fler måste du först ta bort några.</string>
+    <string name="warning_multiple_photos">Om du lägger till bilder av olika sorts organismer till denna observation, eller samma sort på olika platser eller tider, bör du ta bort dessa bilder och lägga till dem som separata observationer. En observation kan bara ha %1$d bilder.</string>
+    <string name="choosing_specific_language_warning">Att välja ett specifikt språk för ditt konto kräver internetanslutning</string>
+    <string name="running_in_background_notfication">Körs i bakgrunden så att vi kan köra utan avbrott</string>
+    <string name="opt_out_of_community_taxon">Avaktivera Gemenskapens taxon</string>
+    <string name="opt_in_to_community_taxon">Aktivera Gemenskapens taxon</string>
+    <string name="opt_out_message">Genom att avaktivera Gemenskapens taxon kopplas denna observation till din nuvarande bestämnings taxon, inte det taxon som är resultatet av alla de bestämningar som lagts till denna observation. Om tillräckligt många av bestämningarna avviker från din egen kommer din observation att få Grundkvalitet. Du bör bara avaktivera om du är säker på att din bestämning är korrekt och andra bestämningar är felaktiga.</string>
+    <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
+    <string name="permission_required">Tillstånd krävs</string>
+    <!-- Message displayed when the user tries to perform an action that requires location permission -->
+    <string name="to_access_your_location">För att komma åt din plats måste du ge denna app tillstånd till platsåtkomst.</string>
+    <!-- Dialog title when displaying a message that an action is not permitted -->
+    <string name="forbidden">Förbjudet</string>
+    <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
+    <string name="app_you_shared_blocked">Appen du delade från skapar bilder som inte är lämpliga för observationer för att de inte fungerar som stöd för din upplevelse av en annan organism, för att de innehåller ett olämpligt varumärke eller kommersiellt innehåll eller för att de bryter mot våra användarvillkor på annat sätt.</string>
 </resources>

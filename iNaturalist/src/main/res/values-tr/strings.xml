@@ -148,8 +148,8 @@
     <string name="release_to_refresh">Yenilemek için bırakın...</string>
     <string name="refreshing">Yenileniyor...</string>
     <plurals name="sync_x_observations">
-        <item quantity="one">Sync %1$d observation</item>
-        <item quantity="other">Sync %1$d observations</item>
+        <item quantity="one">%1$d gözlem eşitleme</item>
+        <item quantity="other">%1$d gözlem eşitleme</item>
     </plurals>
     <string name="sync_observations">Gözlemleri Eşitle</string>
     <string name="lets_get_started">Haydi Başlayalım!</string>
@@ -199,7 +199,8 @@
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ekvador, Ekvador\'daki iNaturalist Ağı üyesidir. iNaturalist Ekvador\'u destekleyen yerel kurumlar gözlemler için e-posta adresinize ve kamu tarafından gizlenmiş ya da özel olan gerçek konumlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Avustralya, Avustralya\'daki iNaturalist Ağı üyesidir. iNaturalist Avustralya\'yı destekleyen yerel kurumlar gözlemler için e-posta adresinize ve kamu tarafından gizlenmiş ya da özel olan gerçek konumlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
     <string name="alert_message_use_argentinat">ArgentiNat, Arjantin’deki iNaturalist Ağı\'nın bir üyesidir. ArgentiNat\'ı destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamusal olarak gizlenmiş ya da özel gözlemleriniz için gerçek koordinatlarınıza erişebilecek. 1000\'den çok gözleminiz varsa lütfen deneyerek üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist İsrail, İsrail\'deki iNaturalist Ağı\'nın üyesidir. İNaturalist İsrail\'i destekleyen yerel kurumlar, e-posta adresinize ve genel olarak gizlenmiş ya da özel gözlemler için gerçek koordinatlara erişebilir. 1000\'den çok gözleminiz varsa, lütfen üyeliğinizi deneysel olarak değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finlandiya, Finlandiya\'daki iNaturalist Ağı üyesidir. iNaturalist Finlandiya’yı destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamu tarafından gizlenmiş ya da özel gözlemler için gerçek koordinatlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
     <string name="editor">Düzenleyici</string>
     <string name="license">Lisans</string>
     <string name="download_for_offline_use">Çevrimdışı kullanım için indir</string>
@@ -282,8 +283,8 @@
     <string name="casual_grade_captive"><![CDATA[ Gözlem sıradan sınıftadır çünkü o<b>kısıtlanmış/ekili</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ Gözlem "Araştırma Sınıfı" durumuna gelmek için topluluktan <b>daha cok tanımlamaya</b> gerek duyar. ]]></string>
     <plurals name="included_in_projects">
-        <item quantity="one">Included in %1$d project</item>
-        <item quantity="other">Included in %1$d projects</item>
+        <item quantity="one">%1$d projeye dahil</item>
+        <item quantity="other">%1$d projeye dahil</item>
     </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Coğrafi gizlilik, konum koordinatlarının (enlem ve boylam) nasıl görüntülendiğini kontrol eden, gözlemleriniz üzerinde yapabileceğiniz bir ayardır. Seçenekler şunlardır: <br/><b>açık</b> - Cins tehdit edilmediği sürece herkes koordinatları görebilir. <br/><b>gizlenmiş</b> - Gerçek koordinatları içermekle birlikte genel koordinatlar 0.2 x 0.2 derece alan içerisinde rastgele bir nokta olarak gösterilir, Ekvator\'da yaklaşık 22x22 kilometrekarelik belirsizlik alanına sahipken kutuplara gittikçe azalır. Gerçek koordinatlar yalnızca siz ve gözlemi eklediğiniz projelerin yetkilileri tarafından görülebilir. <br/><b> özel</b> - Herkese açık haritalardan tamamen gizlenmiş koordinatlar vardır ve gerçek koordinatlar yalnızca sizin ve gözlemi eklediğiniz projelerin yetkilileri tarafından görülebilir. <br/><br/> Kişisel projelerdeki yetkililerin coğrafi ayarlarınızdan bağımsız olarak koordinatları her zaman görebileceklerini unutmayın, bu nedenle koordinatlara kimlerin erişebileceği konusunda endişeleriniz varsa, katıldığınız projelerin yetkililerine güvendiğinizden emin olmalısınız. ]]></string>
     <string name="id_title">%1$s\'in kimliği • %2$s</string>
@@ -411,8 +412,8 @@
     <string name="new_activities">%1s yenilik</string>
     <string name="no_results_found">Sonuçlar Bulunamadı...</string>
     <plurals name="syncing_x_out_of_y_observations">
-        <item quantity="one">Syncing %1$d of %2$d observation...</item>
-        <item quantity="other">Syncing %1$d of %2$d observations...</item>
+        <item quantity="one">%2$d gözlemden %1$d tanesi eşitleniyor...</item>
+        <item quantity="other">%2$d gözlemden %1$d tanesi eşitleniyor...</item>
     </plurals>
     <string name="deleting_observations">Gözlemler Siliniyor...</string>
     <string name="preparing">Hazırlanıyor...</string>
@@ -439,12 +440,12 @@
     <string name="species_search">Tür Ara</string>
     <plurals name="were_not_confident">
         <!-- This will probably never happen -->
-        <item quantity="one">We\'re not confident enough to make a recommendation, but here is our number %1$d suggestion:</item>
-        <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+        <item quantity="one">Bir öneride bulunacak kadar kendimizden emin değiliz ancak %1$d önerimiz:</item>
+        <item quantity="other">Bir öneride bulunacak kadar kendimizden emin değiliz ancak %1$d önerimiz:</item>
     </plurals>
     <plurals name="top_species_suggestions">
-        <item quantity="one">Top %1$d suggestion:</item>
-        <item quantity="other">Top %1$d suggestions:</item>
+        <item quantity="one">İlk %1$d öneri:</item>
+        <item quantity="other">İlk %1$d öneri:</item>
     </plurals>
     <string name="pretty_sure_rank">Bunun %1$s içinde olduğuna oldukça eminiz:</string>
     <string name="what_did_you_see">Ne gördünüz?</string>
@@ -520,10 +521,10 @@
     <string name="shire">Shire</string>
     <string name="prefecture_city">İl Düzeyindeki Kent</string>
     <!-- Indonesian sub-sub-national place type -->
-    <string name="regency">Naiplik</string>
+    <string name="regency">Regency</string>
     <string name="constituency">Seçim bölgesi</string>
     <string name="local_authority">Yerel Yönetim</string>
-    <string name="poblacion">Nüfus</string>
+    <string name="poblacion">Poblacion</string>
     <string name="delegation">Delegasyon</string>
     <string name="apply_filters">Filtreleri Uygula</string>
     <string name="reset">Sıfırla</string>
@@ -663,8 +664,8 @@
     <string name="description_all_caps">AÇIKLAMA</string>
     <string name="quantity_all_caps">MİKTAR</string>
     <plurals name="observation_count_all_caps">
-        <item quantity="one">%1$s OBSERVATION</item>
-        <item quantity="other">%1$s OBSERVATIONS</item>
+        <item quantity="one">%1$s GÖZLEM</item>
+        <item quantity="other">%1$s GÖZLEM</item>
     </plurals>
     <string name="agree_all_caps">ONAYLIYORUM</string>
     <string name="observations_all_caps">GÖZLEM</string>
@@ -704,10 +705,11 @@
     <string name="network_credit_naturewatchnz"><![CDATA[Yeni Zelanda: iNaturalist NZ’yi işleten Yeni Zelanda Biyoçeşitlilik Kayıt Ağı — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portekiz: Associação Biodiversidade Para Todos, Biodiversity4All\'ı (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>) işletir]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panama: iNaturalistPa\'yı (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>) işleten Çevre Bakanlığıdır]]></string>
-    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
-    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
-    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Arjantin: Fundación Vida Silvestre Argentina, ArgentiNat\'ı destekliyor (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Avustralya: Atlas of Living Australia, iNaturalist Australia\'yı destekliyor (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Ekvador: Instituto Nacional de Biodiversidad (INABIO), iNaturalist Ecuador\'u destekliyor (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[İsrail: Hayfa Üniversitesi, iNaturalist Israel\'i destekliyor (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Finlandiya: Finnish Museum of Naturalist History (LUOMUS), iNaturalist Finlandiya\'yı destekliyor (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="mark_all_as_viewed">Tümünü görüntülendi olarak işaretle</string>
     <string name="content_hidden">İçerik Gizlendi</string>
     <string name="show_hidden_content">Gizli İçeriği Göster</string>
@@ -790,15 +792,32 @@
     <string name="disabled">Kapalı</string>
     <string name="third_party_data_sharing_notes1"><![CDATA[Yazılımımızdaki kararlılığı izlemek, hataları ve sorunları bulmak için çeşitli üçüncü taraf hizmetleri kullanıyoruz. Bu üçüncü parti uygulamalar şunları içerir: <br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
     <string name="third_party_data_sharing_notes2"><![CDATA[Bu üçüncü taraflarla paylaştığımız bilgiler şunları içerir: <br/><ul><li>IP adresleri (il düzeyinde konum elde etmek ve sizi farklı web sayfaları ve hizmetler arasında izlemek için kullanılabilir; Google Analytics\'te <a href="https://support.google.com/analytics/answer/2763052">IP anonimleştirmeyi</a> etkinleştirdiğimizi ve <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics\'in</a> IP adresini bilgimize kaydetmediğini unutmayın)</li><li>Marka, model ve sürüm gibi tarayıcı ayrıntıları</li><li>Çökme ayrıntıları, tam olarak hangi kod satırının kilitlenmeye neden olduğu gibi</li><li>Cep telefonu marka ve modeli gibi cihaz ayrıntıları</li></ul>]]></string>
-    <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third-party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[iNaturalist’in nispeten küçük kadromuzla istikrarını ve kullanılabilirliğini korumamıza, <b>bu üçüncü taraf hizmetler büyük değer katıyor</b>. Mobil aygıtlarda, ortaya çıkan sorunları anlamamızın neredeyse hiçbir yolu yoktur çünkü yazılım kontrol etmediğimiz aygıtlarda çalışıyor. Bazen, bu hizmetlerin sağladığı verilerde bunları görene kadar bu gibi sorunların yaşandığını bile bilmiyoruz. <b>Bu bilgiyi paylaşarak, size ve bütün iNaturalist topluluğuna hizmet etmemize yardımcı oluyorsunuz.</b>]]></string>
     <string name="third_party_data_sharing_notes4"><![CDATA[Bu seçeneğin yalnızca bu şirketlere açıkça gönderdiğimiz analizler ve kilitlenme verileri için geçerli olduğunu unutmayın.  Tüm iNaturalist sunucuları Microsoft tarafından sağlanır ve barındırılır, tüm iNaturalist görüntüleri Amazon tarafından barındırılır ve hemen hemen tüm iNaturalist haritaları Google tarafından sunulur, yani iNaturalist ile ilgili her incelemeye baktığınızda, bu şirketler tarafından sağlanan hizmetlere bağlanırsınız ve  IP adresinizi en azından onlara maruz bırakma (iPhone uygulamasında Apple\'ın haritalarını kullanıyoruz).  iNaturalist muhtemelen bu şirketlerin sağladığı hizmetler olmadan var olamazdı ve iNat kullanırken onlarla paylaştığınız veri miktarını ve türünü sınırlayabilirken, veri akışını tamamen durduramayız.]]></string>
-    <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
+    <string name="common_names_place"><![CDATA[Ortak adların yeri: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Belirli bir yerden ortak adlara öncelik vermek için dokunun.</string>
     <string name="search_places">Yerleri Ara</string>
-    <string name="restart_app">Restart App</string>
-    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
+    <string name="restart_app">Uygulamayı Yeniden Başlat</string>
+    <string name="disable_third_party_sharing_restart">Üçüncü taraf veri paylaşımını hemen devre dışı bırakmak için uygulamanın yeniden başlatılması gerekir.</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
-        <item quantity="one">Are you sure you want to delete this %1$d observation?</item>
-        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+        <item quantity="one">Bu %1$d gözlemi silmek istediğinden emin misin?</item>
+        <item quantity="other">Bu %1$d gözlemi silmek istediğinden emin misin?</item>
     </plurals>
+    <string name="future_observed_on_date_error">Gözleminiz %1$s üzeerinde oluşturuldu (ve gönderildi) ancak bundan daha sonraya bir gözlem tarihi ayarlamaya çalışıyorsunuz: %2$s</string>
+    <string name="no_more_photos_allowed">Gözlemlerde yalnızca %1$d fotoğraf bulundurabilir. Daha çok eklemek için bazılarını kaldırmanız gerekir.</string>
+    <string name="warning_multiple_photos">Bu gözleme farklı türden organizmaların fotoğraflarını ya da farklı yerlerde ya da zamanlarda aynı türden fotoğraflar ekliyorsanız, bu fotoğrafları kaldırmalı ve ayrı gözlemler olarak eklemelisiniz.
+Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
+    <string name="choosing_specific_language_warning">Hesabınızda belirli bir dil seçmek için internet bağlantısı gerekir</string>
+    <string name="running_in_background_notfication">İşlem arka planda gerçekleşir, böylece kesintisiz olarak yapılabilir</string>
+    <string name="opt_out_of_community_taxon">Topluluk Sınıfını reddetme</string>
+    <string name="opt_in_to_community_taxon">Topluluk Sınıfını onaylama</string>
+    <string name="opt_out_message">Topluluk Sınıfını reddetme, bu gözlemde var olan tanımlamanıza göre sınıfla ilişkilendirilecek ve bu nedenle bu gözleme eklenen tüm tanımlamalardan türetilen bir sınıf olmayacaktır. Yeterince kişi sizinle aynı düşüncede olmazsa, tanımlamanız Sıradan olur. Bunu yalnızca tanımlamanızın doğru olduğundan ve diğer tanımlamaların yanlış olduğundan eminseniz reddetmelisiniz.</string>
+    <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
+    <string name="permission_required">İzin Gerekli</string>
+    <!-- Message displayed when the user tries to perform an action that requires location permission -->
+    <string name="to_access_your_location">Konumunuza erişmek için bu uygulamaya konum erişimi izni vermeniz gerekir.</string>
+    <!-- Dialog title when displaying a message that an action is not permitted -->
+    <string name="forbidden">İzin Verilmedi</string>
+    <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
+    <string name="app_you_shared_blocked">Paylaştığınız uygulama, gözlemler için uygun olmayan fotoğraflar oluşturur çünkü başka bir organizma ile olan deneyimlerinizi kanıtlamazlar. Uygunsuz marka ya da ticari içerik barındırıyorlar ya da Hizmet Şartlarımızı başka şekillerde çiğniyorlar.</string>
 </resources>
