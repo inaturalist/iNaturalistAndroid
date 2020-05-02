@@ -2700,6 +2700,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         Uri photoUri = replacedPhoto.first;
 
                         // Delete old photo
+                        Logger.tag(TAG).debug(String.format("Replacing/deleting previous photo at index: %d: %s", index, photoUri));
                         deletePhoto(index, false);
 
                         // Add new photo instead
@@ -2874,6 +2875,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         ObservationPhoto op = new ObservationPhoto(cursor);
 
         // Mark photo as deleted
+        Logger.tag(TAG).debug(String.format("Marking photo for deletion: %s", op.toString()));
         ContentValues cv = new ContentValues();
         cv.put(ObservationPhoto.IS_DELETED, 1);
         int updateCount = getContentResolver().update(op.getUri(), cv, null, null);

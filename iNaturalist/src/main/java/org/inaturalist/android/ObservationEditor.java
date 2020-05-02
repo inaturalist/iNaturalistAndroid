@@ -1775,9 +1775,11 @@ public class ObservationEditor extends AppCompatActivity {
         uiToObservation();
 
         if (!noValidation) {
+            Logger.tag(TAG).info("Checking observation: " + mObservation.id + ": " + mObservation._id + ": " + mObservation.created_at + "; " + mObservation.observed_on);
             if ((mObservation.id != null) && (mObservation.created_at != null) && (mObservation.observed_on != null) &&
                     (mObservation.observed_on.after(mObservation.created_at))) {
-                SimpleDateFormat df = new SimpleDateFormat("d MMM yyyy hh:mm a");
+                Logger.tag(TAG).error("Invalid observation date - " + mObservation.observed_on.after(mObservation.created_at));
+                SimpleDateFormat df = new SimpleDateFormat("d MMM yyyy hh:mm:ss a");
 
                 mHelper.alert(
                         getString(R.string.error),
@@ -3318,6 +3320,7 @@ public class ObservationEditor extends AppCompatActivity {
         // Mark photo as deleted
         ContentValues cv = new ContentValues();
         cv.put(ObservationPhoto.IS_DELETED, 1);
+        Logger.tag(TAG).debug(String.format("Marking photo for deletion: %s", op.toString()));
         int updateCount = getContentResolver().update(op.getUri(), cv, null, null);
 
     	updateImagesAndSounds();
