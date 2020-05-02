@@ -1310,7 +1310,8 @@ public class INaturalistService extends IntentService {
                 String username = intent.getStringExtra(USERNAME);
                 JSONObject observations = getUserObservations(username);
                 if (observations != null) {
-                    observations = getMinimalObservationResults(new BetterJSONObject(observations)).getJSONObject();
+                    BetterJSONObject minimalObs = getMinimalObservationResults(new BetterJSONObject(observations));
+                    observations = minimalObs != null ? minimalObs.getJSONObject() : null;
                 }
 
                 Intent reply = new Intent(USER_OBSERVATIONS_RESULT);
