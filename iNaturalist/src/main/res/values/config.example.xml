@@ -2,7 +2,7 @@
 <!-- copy this file to config.xml and uncomment / fill in the values specific to your project -->
 <resources>
     <!-- https://developers.google.com/maps/documentation/android/ -->
-    <!-- <string name="gmaps_api_key">xxx</string>  -->
+    <!-- <string name="gmaps2_api_key">xxx</string>  -->
 
     <!-- Used by the app to do anonymous JWT authentication (when user is not logged in) -->
     <!-- <string name="jwt_anonymous_api_secret"></string> -->
