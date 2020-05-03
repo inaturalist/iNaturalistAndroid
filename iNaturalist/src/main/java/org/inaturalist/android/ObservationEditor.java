@@ -1515,7 +1515,7 @@ public class ObservationEditor extends AppCompatActivity {
             if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
                 if (mObservation.observed_on == null) {
                     if (mSharePhotos == null) {
-                        mObservation.observed_on = mObservation.observed_on_was = new Timestamp(System.currentTimeMillis());
+                        mObservation.observed_on = mObservation.observed_on_was = mObservation.created_at;
                         mObservation.time_observed_at = mObservation.time_observed_at_was = mObservation.observed_on;
                         mObservation.observed_on_string = mObservation.observed_on_string_was = mApp.formatDatetime(mObservation.time_observed_at);
                     }
