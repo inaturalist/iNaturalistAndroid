@@ -354,29 +354,17 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         public PhotosViewPagerAdapter() {
             if (!mReadOnly && mObservation != null) {
-                if (mObservation.id != null) {
-                    mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI,
-                            ObservationPhoto.PROJECTION,
-                            "(_observation_id=? or observation_id=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
-                            new String[]{mObservation._id.toString(), mObservation.id.toString()},
-                            ObservationPhoto.DEFAULT_SORT_ORDER);
-                    mSoundCursor = getContentResolver().query(ObservationSound.CONTENT_URI,
-                            ObservationSound.PROJECTION,
-                            "(_observation_id=? or observation_id=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
-                            new String[]{mObservation._id.toString(), mObservation.id.toString()},
-                            ObservationSound.DEFAULT_SORT_ORDER);
-                } else {
-                    mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI,
-                            ObservationPhoto.PROJECTION,
-                            "_observation_id=? and ((is_deleted = 0) OR (is_deleted IS NULL))",
-                            new String[]{mObservation._id.toString()},
-                            ObservationPhoto.DEFAULT_SORT_ORDER);
-                    mSoundCursor = getContentResolver().query(ObservationSound.CONTENT_URI,
-                            ObservationSound.PROJECTION,
-                            "_observation_id=? and ((is_deleted = 0) OR (is_deleted IS NULL))",
-                            new String[]{mObservation._id.toString()},
-                            ObservationSound.DEFAULT_SORT_ORDER);
-                }
+                mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                        ObservationPhoto.PROJECTION,
+                        "(observation_uuid=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
+                        new String[]{mObservation.uuid},
+                        ObservationPhoto.DEFAULT_SORT_ORDER);
+                mSoundCursor = getContentResolver().query(ObservationSound.CONTENT_URI,
+                        ObservationSound.PROJECTION,
+                        "(observation_uuid=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
+                        new String[]{mObservation.uuid},
+                        ObservationSound.DEFAULT_SORT_ORDER);
+
                 mImageCursor.moveToFirst();
             }
         }
@@ -562,6 +550,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                             if (!mReadOnly) {
                                 intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID, mObservation.id);
                                 intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID_INTERNAL, mObservation._id);
+                                intent.putExtra(ObservationPhotosViewer.OBSERVATION_UUID, mObservation.uuid);
                                 intent.putExtra(ObservationPhotosViewer.IS_NEW_OBSERVATION, true);
                                 intent.putExtra(ObservationPhotosViewer.READ_ONLY, false);
                                 startActivityForResult(intent, OBSERVATION_PHOTOS_REQUEST_CODE);
@@ -1276,6 +1265,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 intent.putExtra(IdentificationActivity.SUGGEST_ID, true);
                 intent.putExtra(IdentificationActivity.OBSERVATION_ID, mObservation.id);
                 intent.putExtra(IdentificationActivity.OBSERVATION_ID_INTERNAL, mObservation._id);
+                intent.putExtra(IdentificationActivity.OBSERVATION_UUID, mObservation.uuid);
                 intent.putExtra(IdentificationActivity.OBSERVED_ON, mObservation.observed_on);
                 intent.putExtra(IdentificationActivity.LONGITUDE, mObservation.longitude);
                 intent.putExtra(IdentificationActivity.LATITUDE, mObservation.latitude);
@@ -3009,6 +2999,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         cv.put(ObservationPhoto.PHOTO_FILENAME, resizedPhoto);
         cv.put(ObservationPhoto.ORIGINAL_PHOTO_FILENAME, isDuplicated ? null : path);
         cv.put(ObservationPhoto.POSITION, position);
+        cv.put(ObservationPhoto.OBSERVATION_UUID, mObservation.uuid);
 
         return getContentResolver().insert(ObservationPhoto.CONTENT_URI, cv);
     }

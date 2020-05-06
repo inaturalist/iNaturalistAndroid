@@ -41,6 +41,7 @@ public class CompareSuggestionActivity extends AppCompatActivity {
     private static final int TAXON_SEARCH_REQUEST_CODE = 0x1000;
 
     public static final String OBSERVATION_ID_INTERNAL = "observation_id_internal";
+    public static final String OBSERVATION_UUID = "observation_uuid";
     public static final String OBSERVATION_ID = "observation_id";
     public static final String OBSERVATION_JSON = "observation_json";
     public static final String SUGGESTION_INDEX = "suggestion_index";
@@ -53,6 +54,7 @@ public class CompareSuggestionActivity extends AppCompatActivity {
 
     private static List<BetterJSONObject> mTaxonSuggestions;
     @State public int mObsIdInternal;
+    @State public String mObsUUID;
     @State public int mObsId;
     @State(AndroidStateBundlers.BetterJSONObjectBundler.class) public BetterJSONObject mObservation;
     @State public int mSuggestionIndex;
@@ -111,6 +113,7 @@ public class CompareSuggestionActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             mObsIdInternal = intent.getIntExtra(OBSERVATION_ID_INTERNAL, -1);
+            mObsUUID = intent.getStringExtra(OBSERVATION_UUID);
             mObsId = intent.getIntExtra(OBSERVATION_ID, -1);
             String observationJson = intent.getStringExtra(OBSERVATION_JSON);
             if (observationJson != null) {
@@ -193,6 +196,7 @@ public class CompareSuggestionActivity extends AppCompatActivity {
 
                 if (mObsIdInternal > -1) {
                     intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID, mObsId);
+                    intent.putExtra(ObservationPhotosViewer.OBSERVATION_UUID, mObsUUID);
                     intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID_INTERNAL, mObsIdInternal);
                     intent.putExtra(ObservationPhotosViewer.IS_NEW_OBSERVATION, true);
                     intent.putExtra(ObservationPhotosViewer.READ_ONLY, true);
@@ -206,7 +210,7 @@ public class CompareSuggestionActivity extends AppCompatActivity {
 
         if (mObsIdInternal > -1 || mObservation == null) {
             // Internal observation
-            adapter = new ObservationPhotosViewer.IdPicsPagerAdapter(this, mObservationPhotosViewPager, mObsId, mObsIdInternal, onClick);
+            adapter = new ObservationPhotosViewer.IdPicsPagerAdapter(this, mObservationPhotosViewPager, mObsId, mObsIdInternal, mObsUUID, onClick);
         } else {
             // External observation
             adapter = new ObservationPhotosViewer.IdPicsPagerAdapter(this, mObservationPhotosViewPager, mObservation.getJSONObject(), false, onClick);

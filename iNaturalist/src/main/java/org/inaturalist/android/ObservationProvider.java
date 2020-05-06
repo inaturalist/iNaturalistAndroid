@@ -25,7 +25,7 @@ import android.text.TextUtils;
 public class ObservationProvider extends ContentProvider {
     private static final String TAG = "ObservationProvider";
     private static final String DATABASE_NAME = "inaturalist.db";
-    private static final int DATABASE_VERSION = 18;
+    private static final int DATABASE_VERSION = 19;
     private static final SQLiteCursorFactory sFactory;
     public static final UriMatcher URI_MATCHER;
 
@@ -129,6 +129,11 @@ public class ObservationProvider extends ContentProvider {
             if (oldVersion < 18) {
                 // New prefers_community_taxon column for observation
                 addColumnIfNotExists(db, Observation.TABLE_NAME, "prefers_community_taxon", "TEXT DEFAULT NULL");
+            }
+            if (oldVersion < 19) {
+                // New observation_uuid columns for observation photo and observation sound
+                addColumnIfNotExists(db, ObservationPhoto.TABLE_NAME, "observation_uuid", "TEXT DEFAULT NULL");
+                addColumnIfNotExists(db, ObservationSound.TABLE_NAME, "observation_uuid", "TEXT DEFAULT NULL");
             }
         }
 

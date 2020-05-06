@@ -48,6 +48,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
     public static final String OBSERVED_ON = "observed_on";
     public static final String OBSERVATION = "observation";
     public static final String OBSERVATION_ID = "observation_id";
+    public static final String OBSERVATION_UUID = "observation_uuid";
     public static final String OBSERVATION_ID_INTERNAL = "observation_id_internal";
     public static final String FROM_SUGGESTION = "from_suggestion";
 
@@ -75,6 +76,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
     private TextView mCommonAncestorDescription;
     private ListView mCommonAncestorList;
     @State public int mObsId;
+    @State public String mObsUUID;
     @State public int mObsIdInternal;
     @State public String mObservationJson;
     @State public int mLastTaxonPosition;
@@ -155,6 +157,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
             mObservedOn = (Timestamp) intent.getSerializableExtra(OBSERVED_ON);
             mObsId = intent.getIntExtra(OBSERVATION_ID, 0);
             mObsIdInternal = intent.getIntExtra(OBSERVATION_ID_INTERNAL, -1);
+            mObsUUID = intent.getStringExtra(OBSERVATION_UUID);
             mObservationJson = intent.getStringExtra(OBSERVATION);
         }
 
@@ -184,6 +187,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
                 intent.putExtra(TaxonSearchActivity.SHOW_UNKNOWN, true);
                 intent.putExtra(TaxonSearchActivity.OBSERVATION_ID, mObsId);
                 intent.putExtra(TaxonSearchActivity.OBSERVATION_ID_INTERNAL, mObsIdInternal);
+                intent.putExtra(TaxonSearchActivity.OBSERVATION_UUID, mObsUUID);
                 intent.putExtra(TaxonSearchActivity.OBSERVATION_JSON, mObservationJson);
                 startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
             }
@@ -268,6 +272,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
                 intent.putExtra(ObservationPhotosViewer.OBSERVATION, mObservationJson);
                 intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID, mObsId);
                 intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID_INTERNAL, mObsIdInternal);
+                intent.putExtra(ObservationPhotosViewer.OBSERVATION_UUID, mObsUUID);
                 intent.putExtra(ObservationPhotosViewer.READ_ONLY, true);
                 intent.putExtra(ObservationPhotosViewer.IS_NEW_OBSERVATION, mObsIdInternal == -1 ? false : true);
                 startActivity(intent);
@@ -352,6 +357,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
         if (mObservationJson != null) intent.putExtra(CompareSuggestionActivity.OBSERVATION_JSON, mObservationJson);
         if (mObsIdInternal > -1) intent.putExtra(CompareSuggestionActivity.OBSERVATION_ID_INTERNAL, mObsIdInternal);
         if (mObsId > -1) intent.putExtra(CompareSuggestionActivity.OBSERVATION_ID, mObsId);
+        if (mObsUUID != null) intent.putExtra(CompareSuggestionActivity.OBSERVATION_UUID, mObsUUID);
         CompareSuggestionActivity.setTaxonSuggestions(mTaxonSuggestions);
         startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
     }

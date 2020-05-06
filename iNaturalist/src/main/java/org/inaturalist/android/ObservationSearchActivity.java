@@ -255,6 +255,7 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
             opcv.put(ObservationPhoto._OBSERVATION_ID, photo._observation_id);
             opcv.put(ObservationPhoto._PHOTO_ID, photo._photo_id);
             opcv.put(ObservationPhoto._ID, photo.id);
+            opcv.put(ObservationPhoto.OBSERVATION_UUID, jsonObservation.uuid);
             getContentResolver().insert(ObservationPhoto.CONTENT_URI, opcv);
         }
 

@@ -389,6 +389,7 @@ public class INaturalistService extends IntentService {
             android.os.Build.PRODUCT + ")";
     public static String ACTION_GET_HISTOGRAM = "action_get_histogram";
     public static String ACTION_GET_POPULAR_FIELD_VALUES = "action_get_popular_field_values";
+    public static String ACTION_ADD_MISSING_OBS_UUID = "action_add_missing_obs_uuid";
     public static String ACTION_REGISTER_USER = "register_user";
     public static String ACTION_PASSIVE_SYNC = "passive_sync";
     public static String ACTION_GET_ADDITIONAL_OBS = "get_additional_observations";
@@ -733,6 +734,9 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(TAXON_ID, taxonId);
 
                 sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_ADD_MISSING_OBS_UUID)) {
+                addObservationUUIDsToPhotosAndSounds();
 
             } else if (action.equals(ACTION_GET_POPULAR_FIELD_VALUES)) {
                 int taxonId = intent.getIntExtra(TAXON_ID, 0);
@@ -2155,6 +2159,74 @@ public class INaturalistService extends IntentService {
         sendBroadcast(reply);
     }
 
+    // Adds observation UUIDs to photos and sounds that are missing them
+    private void addObservationUUIDsToPhotosAndSounds() {
+        Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                ObservationPhoto.PROJECTION,
+                "observation_uuid is NULL",
+                null,
+                ObservationPhoto.DEFAULT_SORT_ORDER);
+        int count = c.getCount();
+
+        Logger.tag(TAG).debug(String.format("addObservationUUIDsToPhotosAndSounds: Adding UUIDs to %d photos", count));
+
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            ObservationPhoto photo = new ObservationPhoto(c);
+
+            Cursor obsc = getContentResolver().query(Observation.CONTENT_URI,
+                    new String[] { Observation.UUID },
+                    "id = " + photo.observation_id, null, Observation.DEFAULT_SORT_ORDER);
+            if (obsc.getCount() > 0) {
+                obsc.moveToFirst();
+                String uuid = obsc.getString(obsc.getColumnIndexOrThrow(Observation.UUID));
+                photo.observation_uuid = uuid;
+                ContentValues cv = photo.getContentValues();
+                // Update its sync at time so we won't update the remote servers later on (since we won't
+                // accidentally consider this an updated record)
+                cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
+                getContentResolver().update(photo.getUri(), cv, null, null);
+
+                Logger.tag(TAG).debug(String.format("addObservationUUIDsToPhotosAndSounds - Adding observation_uuid %s to photo: %s", uuid, photo));
+            }
+            obsc.close();
+            c.moveToNext();
+        }
+        c.close();
+
+
+        c = getContentResolver().query(ObservationSound.CONTENT_URI,
+                ObservationSound.PROJECTION,
+                "observation_uuid is NULL",
+                null,
+                ObservationSound.DEFAULT_SORT_ORDER);
+        count = c.getCount();
+
+        Logger.tag(TAG).debug(String.format("addObservationUUIDsToPhotosAndSounds: Adding UUIDs to %d sounds", count));
+
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            ObservationSound sound = new ObservationSound(c);
+
+            Cursor obsc = getContentResolver().query(Observation.CONTENT_URI,
+                    new String[] { Observation.UUID },
+                    "id = " + sound.observation_id, null, Observation.DEFAULT_SORT_ORDER);
+            if (obsc.getCount() > 0) {
+                obsc.moveToFirst();
+                String uuid = obsc.getString(obsc.getColumnIndexOrThrow(Observation.UUID));
+                sound.observation_uuid = uuid;
+                ContentValues cv = sound.getContentValues();
+                getContentResolver().update(sound.getUri(), cv, null, null);
+
+                Logger.tag(TAG).debug(String.format("addObservationUUIDsToPhotosAndSounds - Adding observation_uuid %s to sound: %s", uuid, sound));
+            }
+            obsc.close();
+            c.moveToNext();
+        }
+        c.close();
+
+    }
+
     private BetterJSONObject getMinimalIdentificationResults(BetterJSONObject results) {
         if (results == null) return null;
 
@@ -3455,6 +3527,7 @@ public class INaturalistService extends IntentService {
 
         // for each observation DELETE to /observations/:id
         ArrayList<Integer> obsIds = new ArrayList<Integer>();
+        ArrayList<String> obsUUIDs = new ArrayList<String>();
         ArrayList<Integer> internalObsIds = new ArrayList<Integer>();
         c.moveToFirst();
         while (c.isAfterLast() == false) {
@@ -3467,6 +3540,7 @@ public class INaturalistService extends IntentService {
             }
 
             obsIds.add(observation.id);
+            obsUUIDs.add('"' + observation.uuid + '"');
             internalObsIds.add(observation._id);
             c.moveToNext();
         }
@@ -3478,13 +3552,15 @@ public class INaturalistService extends IntentService {
         getContentResolver().delete(Observation.CONTENT_URI, "is_deleted = 1", null);
         // Delete associated project-fields and photos
         int count1 = getContentResolver().delete(ObservationPhoto.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
-        int count2 = getContentResolver().delete(ObservationSound.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
-        int count3 = getContentResolver().delete(ProjectObservation.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
-        int count4 = getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
-        int count5 = getContentResolver().delete(ObservationPhoto.CONTENT_URI, "_observation_id in (" + StringUtils.join(internalObsIds, ",") + ")", null);
-        int count6 = getContentResolver().delete(ObservationSound.CONTENT_URI, "_observation_id in (" + StringUtils.join(internalObsIds, ",") + ")", null);
+        int count2 = getContentResolver().delete(ObservationPhoto.CONTENT_URI, "observation_uuid in (" + StringUtils.join(obsUUIDs, ",") + ")", null);
+        int count3 = getContentResolver().delete(ObservationSound.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
+        int count4 = getContentResolver().delete(ObservationSound.CONTENT_URI, "observation_uuid in (" + StringUtils.join(obsUUIDs, ",") + ")", null);
+        int count5 = getContentResolver().delete(ProjectObservation.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
+        int count6 = getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
+        int count7 = getContentResolver().delete(ObservationPhoto.CONTENT_URI, "_observation_id in (" + StringUtils.join(internalObsIds, ",") + ")", null);
+        int count8 = getContentResolver().delete(ObservationSound.CONTENT_URI, "_observation_id in (" + StringUtils.join(internalObsIds, ",") + ")", null);
 
-        Logger.tag(TAG).debug("deleteObservations: " + count1 + ":" + count2 + ":" + count3 + ":" + count4 + ":" + count5 + ":" + count6);
+        Logger.tag(TAG).debug("deleteObservations: " + count1 + ":" + count2 + ":" + count3 + ":" + count4 + ":" + count5 + ":" + count6 + ":" + count7 + ":" + count8);
 
 
         checkForCancelSync();
@@ -3828,10 +3904,13 @@ public class INaturalistService extends IntentService {
                     getContentResolver().delete(Observation.CONTENT_URI, "id = " + observation.id, null);
                     // Delete associated project-fields and photos
                     int count1 = getContentResolver().delete(ObservationPhoto.CONTENT_URI, "observation_id = " + observation.id, null);
-                    int count2 = getContentResolver().delete(ProjectObservation.CONTENT_URI, "observation_id = " + observation.id, null);
-                    int count3 = getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "observation_id = " + observation.id, null);
+                    int count2 = getContentResolver().delete(ObservationPhoto.CONTENT_URI, "observation_uuid = \"" + observation.uuid + "\"", null);
+                    int count3 = getContentResolver().delete(ObservationSound.CONTENT_URI, "observation_id = " + observation.id, null);
+                    int count4 = getContentResolver().delete(ObservationSound.CONTENT_URI, "observation_uuid = \"" + observation.uuid + "\"", null);
+                    int count5 = getContentResolver().delete(ProjectObservation.CONTENT_URI, "observation_id = " + observation.id, null);
+                    int count6 = getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "observation_id = " + observation.id, null);
 
-                    Logger.tag(TAG).debug("postObservation: After delete: " + count1 + ":" + count2 + ":" + count3);
+                    Logger.tag(TAG).debug("postObservation: After delete: " + count1 + ":" + count2 + ":" + count3 + ":" + count4 + ":" + count5 + ":" + count6);
 
                     return true;
                 }
@@ -5248,7 +5327,6 @@ public class INaturalistService extends IntentService {
         }
 
         Timestamp lastSyncTS = new Timestamp(lastSync);
-        //url += String.format("?since=%s", URLEncoder.encode(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(lastSyncTS)));
         url += String.format("?since=%s", URLEncoder.encode(new SimpleDateFormat("yyyy-MM-dd").format(lastSyncTS)));
 
         JSONArray json = get(url, true);
@@ -5265,18 +5343,37 @@ public class INaturalistService extends IntentService {
             if (results.length() == 0) return true;
 
             ArrayList<String> ids = new ArrayList<>();
+            ArrayList<String> uuids = new ArrayList<>();
             for (int i = 0; i < results.length(); i++) {
-                ids.add(String.valueOf(results.optInt(i)));
+                String id = String.valueOf(results.optInt(i));
+                ids.add(id);
+
+                Cursor obsc = getContentResolver().query(Observation.CONTENT_URI,
+                        Observation.PROJECTION,
+                        "id = " + id, null, Observation.DEFAULT_SORT_ORDER);
+                if (obsc.getCount() > 0) {
+                    obsc.moveToFirst();
+                    Observation obs = new Observation(obsc);
+                    uuids.add('"' + obs.uuid + '"');
+                }
+                obsc.close();
             }
             String deletedIds = StringUtils.join(ids, ",");
+            String deletedUUIDs = uuids.size() > 0 ? StringUtils.join(uuids, ",") : null;
 
             Logger.tag(TAG).debug("syncRemotelyDeletedObs: " + deletedIds);
 
             getContentResolver().delete(Observation.CONTENT_URI, "(id IN (" + deletedIds + "))", null);
             // Delete associated project-fields and photos
             int count1 = getContentResolver().delete(ObservationPhoto.CONTENT_URI, "observation_id in (" + deletedIds + ")", null);
-            int count2 = getContentResolver().delete(ProjectObservation.CONTENT_URI, "observation_id in (" + deletedIds + ")", null);
-            int count3 = getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "observation_id in (" + deletedIds + ")", null);
+            int count2 = getContentResolver().delete(ObservationSound.CONTENT_URI, "observation_id in (" + deletedIds + ")", null);
+            int count3 = getContentResolver().delete(ProjectObservation.CONTENT_URI, "observation_id in (" + deletedIds + ")", null);
+            int count4 = getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "observation_id in (" + deletedIds + ")", null);
+
+            if (deletedUUIDs != null) {
+                int count5 = getContentResolver().delete(ObservationPhoto.CONTENT_URI, "observation_uuid in (" + deletedUUIDs + ")", null);
+                int count6 = getContentResolver().delete(ObservationSound.CONTENT_URI, "observation_uuid in (" + deletedUUIDs + ")", null);
+            }
         }
 
         checkForCancelSync();
@@ -6315,6 +6412,16 @@ public class INaturalistService extends IntentService {
                 opcv.put(ObservationPhoto._OBSERVATION_ID, photo.observation_id);
                 opcv.put(ObservationPhoto._PHOTO_ID, photo._photo_id);
                 opcv.put(ObservationPhoto.ID, photo.id);
+
+                Cursor obsc = getContentResolver().query(Observation.CONTENT_URI,
+                        Observation.PROJECTION,
+                        "id = " + photo.observation_id, null, Observation.DEFAULT_SORT_ORDER);
+                if (obsc.getCount() > 0) {
+                    obsc.moveToFirst();
+                    Observation obs = new Observation(obsc);
+                    opcv.put(ObservationPhoto.OBSERVATION_UUID, obs.uuid);
+                }
+                obsc.close();
                 try {
                     getContentResolver().insert(ObservationPhoto.CONTENT_URI, opcv);
                 } catch (SQLException ex) {
@@ -6379,6 +6486,16 @@ public class INaturalistService extends IntentService {
                 ContentValues oscv = sound.getContentValues();
                 oscv.put(ObservationSound._OBSERVATION_ID, sound.observation_id);
                 oscv.put(ObservationSound.ID, sound.id);
+
+                Cursor obsc = getContentResolver().query(Observation.CONTENT_URI,
+                        Observation.PROJECTION,
+                        "id = " + sound.observation_id, null, Observation.DEFAULT_SORT_ORDER);
+                if (obsc.getCount() > 0) {
+                    obsc.moveToFirst();
+                    Observation obs = new Observation(obsc);
+                    oscv.put(ObservationSound.OBSERVATION_UUID, obs.uuid);
+                }
+                obsc.close();
                 try {
                     getContentResolver().insert(ObservationSound.CONTENT_URI, oscv);
                 } catch (SQLException ex) {
@@ -6477,6 +6594,15 @@ public class INaturalistService extends IntentService {
                     Logger.tag(TAG).debug("syncJson: Setting _SYNCED_AT - " + sound);
                     opcv.put(ObservationSound._OBSERVATION_ID, sound._observation_id);
                     opcv.put(ObservationSound._ID, sound.id);
+                    Cursor obsc = getContentResolver().query(Observation.CONTENT_URI,
+                            Observation.PROJECTION,
+                            "id = " + sound.observation_id, null, Observation.DEFAULT_SORT_ORDER);
+                    if (obsc.getCount() > 0) {
+                        obsc.moveToFirst();
+                        Observation obs = new Observation(obsc);
+                        opcv.put(ObservationSound.OBSERVATION_UUID, obs.uuid);
+                    }
+                    obsc.close();
                     try {
                         getContentResolver().insert(ObservationSound.CONTENT_URI, opcv);
                     } catch (SQLException ex) {
@@ -6518,6 +6644,15 @@ public class INaturalistService extends IntentService {
                     opcv.put(ObservationPhoto._OBSERVATION_ID, photo._observation_id);
                     opcv.put(ObservationPhoto._PHOTO_ID, photo._photo_id);
                     opcv.put(ObservationPhoto._ID, photo.id);
+                    Cursor obsc = getContentResolver().query(Observation.CONTENT_URI,
+                            Observation.PROJECTION,
+                            "id = " + photo.observation_id, null, Observation.DEFAULT_SORT_ORDER);
+                    if (obsc.getCount() > 0) {
+                        obsc.moveToFirst();
+                        Observation obs = new Observation(obsc);
+                        opcv.put(ObservationPhoto.OBSERVATION_UUID, obs.uuid);
+                    }
+                    obsc.close();
                     try {
                         getContentResolver().insert(ObservationPhoto.CONTENT_URI, opcv);
                     } catch (SQLException ex) {

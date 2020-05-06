@@ -67,6 +67,7 @@ public class TaxonSearchActivity extends AppCompatActivity {
 
     public static final String OBSERVATION_ID_INTERNAL = "observation_id_internal";
     public static final String OBSERVATION_ID = "observation_id";
+    public static final String OBSERVATION_UUID = "observation_uuid";
     public static final String OBSERVATION_JSON = "observation_json";
 
     public static final String SPECIES_GUESS = "species_guess";
@@ -87,9 +88,10 @@ public class TaxonSearchActivity extends AppCompatActivity {
     private TextView mNoResults;
     @State public boolean mSuggestId;
 
-    private int mObsIdInternal;
-    private int mObsId;
-    private String mObservationJson;
+    @State public int mObsIdInternal;
+    @State public int mObsId;
+    @State public String mObsUUID;
+    @State public  String mObservationJson;
     private JSONObject mLastTaxon;
 
 @Override
@@ -375,7 +377,7 @@ public class TaxonSearchActivity extends AppCompatActivity {
             if ((mObsId > -1) || (mObsIdInternal > -1)) {
                 Cursor cursor = mContext.getContentResolver().query(ObservationPhoto.CONTENT_URI,
                         new String[]{ ObservationPhoto._OBSERVATION_ID, ObservationPhoto.OBSERVATION_ID },
-                        "(observation_id = " + mObsId + " OR _observation_id = " + mObsIdInternal + ")",
+                        "(observation_uuid = \"" + mObsUUID + "\")",
                         null,
                         ObservationPhoto.DEFAULT_SORT_ORDER);
                 hasPhotos = (cursor.getCount() > 0);
@@ -515,6 +517,7 @@ public class TaxonSearchActivity extends AppCompatActivity {
 
             mObsIdInternal = intent.getIntExtra(OBSERVATION_ID_INTERNAL, -1);
             mObsId = intent.getIntExtra(OBSERVATION_ID, -1);
+            mObsUUID = intent.getStringExtra(OBSERVATION_UUID);
             mObservationJson = intent.getStringExtra(OBSERVATION_JSON);
         }
 
@@ -664,6 +667,7 @@ public class TaxonSearchActivity extends AppCompatActivity {
         if (mObservationJson != null) intent.putExtra(CompareSuggestionActivity.OBSERVATION_JSON, mObservationJson);
         if (mObsIdInternal > -1) intent.putExtra(CompareSuggestionActivity.OBSERVATION_ID_INTERNAL, mObsIdInternal);
         if (mObsId > -1) intent.putExtra(CompareSuggestionActivity.OBSERVATION_ID, mObsId);
+        if (mObsUUID != null) intent.putExtra(CompareSuggestionActivity.OBSERVATION_UUID, mObsUUID);
         JSONObject suggestion = new JSONObject();
         try {
             suggestion.put("taxon", taxon);

@@ -273,6 +273,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         ArrayList<Long> obsIds = new ArrayList<>();
         ArrayList<Long> externalObsIds = new ArrayList<>();
         HashMap<Long, String> obsUUIDs = new HashMap<>();
+        ArrayList<String> obsUUIDsList = new ArrayList<>();
         HashMap<Long, String> externalObsUUIDs = new HashMap<>();
 
         c.moveToFirst();
@@ -284,6 +285,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             obsIds.add(obsId);
             externalObsIds.add(obsExternalId);
             obsUUIDs.put(obsId, obsUUID);
+            obsUUIDsList.add('"' + obsUUID + '"');
             externalObsUUIDs.put(obsExternalId, obsUUID);
 
             c.moveToNext();
@@ -295,7 +297,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         // Add any photos that were added/changed
         Cursor onlinePc = mContext.getContentResolver().query(ObservationPhoto.CONTENT_URI,
                 new String[]{ ObservationPhoto._OBSERVATION_ID, ObservationPhoto.OBSERVATION_ID, ObservationPhoto._PHOTO_ID, ObservationPhoto.PHOTO_URL, ObservationPhoto.PHOTO_FILENAME, ObservationPhoto.ORIGINAL_PHOTO_FILENAME, ObservationPhoto.POSITION },
-                "(_observation_id IN (" + StringUtils.join(obsIds, ",") + ") OR observation_id IN (" + StringUtils.join(externalObsIds, ",") + "))",
+                "(observation_uuid IN (" + StringUtils.join(obsUUIDsList, ",") + "))",
                 null,
                 ObservationPhoto.DEFAULT_SORT_ORDER);
 
