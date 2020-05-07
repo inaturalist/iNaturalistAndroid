@@ -696,7 +696,8 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
                 bundle.putDouble(LATITUDE, mLatitude);
                 bundle.putDouble(LONGITUDE, mLongitude);
                 bundle.putDouble(ACCURACY, mAccuracy);
-                bundle.putString(GEOPRIVACY, (String) values.get(mGeoprivacySpinner.getSelectedItemPosition()));
+                int position = mGeoprivacySpinner.getSelectedItemPosition();
+                bundle.putString(GEOPRIVACY, (String) values.get(position == -1 ? 0 : position));
                 bundle.putString(PLACE_GUESS, mPlaceGuess);
 
                 Intent resultIntent = new Intent();
