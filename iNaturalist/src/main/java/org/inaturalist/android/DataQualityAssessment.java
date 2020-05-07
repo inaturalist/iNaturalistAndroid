@@ -370,13 +370,15 @@ public class DataQualityAssessment extends AppCompatActivity implements DataQual
             metrics.get(1).disagreeCount = 1;
         }
 
-        if (mObservation.getInt("photo_count") > 0) {
+        Integer photoCount = mObservation.getInt("photo_count");
+        if (photoCount != null && photoCount > 0) {
             metrics.get(2).agreeCount = 1;
         } else {
             metrics.get(2).disagreeCount = 1;
         }
 
-        if (mObservation.getInt("identification_count") >= 2) {
+        Integer idCount = mObservation.getInt("identification_count");
+        if (idCount != null && idCount >= 2) {
             metrics.get(3).agreeCount = 1;
         } else {
             metrics.get(3).disagreeCount = 1;
