@@ -853,7 +853,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             }
         }
 
-        if (mCursor == null) {
+        if ((mCursor == null) && (mUri != null)) {
             if (!mReadOnly) mCursor = managedQuery(mUri, Observation.PROJECTION, null, null, null);
         } else {
             mCursor.requery();
