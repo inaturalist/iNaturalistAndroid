@@ -782,7 +782,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         refreshAttributes();
 
         // Mark observation updates as viewed
-        if (mObservation._synced_at != null) {
+        if (mObservation != null && mObservation._synced_at != null) {
             Intent serviceIntent = new Intent(INaturalistService.ACTION_VIEWED_UPDATE, null, this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
             ContextCompat.startForegroundService(this, serviceIntent);
