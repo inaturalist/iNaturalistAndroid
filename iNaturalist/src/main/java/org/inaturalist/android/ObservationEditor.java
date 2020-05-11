@@ -1239,8 +1239,10 @@ public class ObservationEditor extends AppCompatActivity {
             return;
         }
 
-        mFileUri = getOutputMediaFileUri(); // create a file to save the image
-        mFileUri = getPath(ObservationEditor.this, mFileUri);
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            mFileUri = getOutputMediaFileUri(); // create a file to save the image
+            mFileUri = getPath(ObservationEditor.this, mFileUri);
+        }
 
         final Intent galleryIntent = new Intent();
         galleryIntent.setType("image/*");
