@@ -881,6 +881,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
+            serviceIntent.putExtra(INaturalistService.GET_PROJECTS, true);
             ContextCompat.startForegroundService(this, serviceIntent);
         }
 
@@ -1561,6 +1562,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
+            serviceIntent.putExtra(INaturalistService.GET_PROJECTS, false);
             ContextCompat.startForegroundService(this, serviceIntent);
 
             if (mReadOnly) {
@@ -2236,6 +2238,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, ObservationViewerActivity.this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
+            serviceIntent.putExtra(INaturalistService.GET_PROJECTS, false);
             ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
 	    }
 
@@ -2675,6 +2678,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, this);
             Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, this, INaturalistService.class);
             serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
+            serviceIntent2.putExtra(INaturalistService.GET_PROJECTS, false);
             ContextCompat.startForegroundService(this, serviceIntent2);
 
         } else if (requestCode == OBSERVATION_PHOTOS_REQUEST_CODE) {

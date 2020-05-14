@@ -291,6 +291,11 @@ public class INaturalistApp extends MultiDexApplication {
         if (username != null) {
             setShownOnboarding(true);
         }
+
+        // Clear out any old cached photos
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_CLEAR_OLD_PHOTOS_CACHE, null, this, INaturalistService.class);
+        ContextCompat.startForegroundService(this, serviceIntent);
+
     }
 
     private long listFilesRecursively(File root) {

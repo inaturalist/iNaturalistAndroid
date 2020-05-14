@@ -119,6 +119,7 @@ public class INaturalistService extends IntentService {
 
     private static final int JWT_TOKEN_EXPIRATION_MINS = 25; // JWT Tokens expire after 30 mins - consider 25 mins as the max time (safe margin)
     private static final int OLD_PHOTOS_MAX_COUNT = 100; // Number of cached photos to save before removing them and turning them into online photos
+    private static final int MAX_PHOTO_REPLACEMENTS_PER_RUN = 50; // Max number of photo replacements we'll do per run
 
     public static final String IS_SHARED_ON_APP = "is_shared_on_app";
 
@@ -267,6 +268,7 @@ public class INaturalistService extends IntentService {
     public static final String AUTHENTICATION_FAILED = "authentication_failed";
     public static final String IDENTIFICATION_ID = "identification_id";
     public static final String OBSERVATION_ID = "observation_id";
+    public static final String GET_PROJECTS = "get_projects";
     public static final String OBSERVATION_ID_INTERNAL = "observation_id_internal";
     public static final String METRIC = "metric";
     public static final String ATTRIBUTE_ID = "attribute_id";
@@ -751,7 +753,7 @@ public class INaturalistService extends IntentService {
                 addIdentification(observationId, taxonId, null, disagreement, false);
 
                 // Reload the observation at the end (need to refresh comment/ID list)
-                JSONObject observationJson = getObservationJson(observationId, false);
+                JSONObject observationJson = getObservationJson(observationId, false, false);
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
                 if (observationJson != null) {
@@ -768,7 +770,7 @@ public class INaturalistService extends IntentService {
                 restoreIdentification(identificationId);
 
                 // Reload the observation at the end (need to refresh comment/ID list)
-                JSONObject observationJson = getObservationJson(observationId, false);
+                JSONObject observationJson = getObservationJson(observationId, false, false);
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
 
@@ -788,7 +790,7 @@ public class INaturalistService extends IntentService {
                 updateIdentification(observationId, identificationId, taxonId, body);
 
                 // Reload the observation at the end (need to refresh comment/ID list)
-                JSONObject observationJson = getObservationJson(observationId, false);
+                JSONObject observationJson = getObservationJson(observationId, false, false);
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
 
@@ -806,7 +808,7 @@ public class INaturalistService extends IntentService {
                 JSONObject result = removeIdentification(id);
 
                 // Reload the observation at the end (need to refresh comment/ID list)
-                JSONObject observationJson = getObservationJson(observationId, false);
+                JSONObject observationJson = getObservationJson(observationId, false, false);
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
 
@@ -850,7 +852,7 @@ public class INaturalistService extends IntentService {
                 }
 
                 // Reload the observation at the end (need to refresh comment/ID list)
-                JSONObject observationJson = getObservationJson(observationId, false);
+                JSONObject observationJson = getObservationJson(observationId, false, false);
 
                 if (observationJson != null) {
                     Observation observation = new Observation(new BetterJSONObject(observationJson));
@@ -1430,7 +1432,7 @@ public class INaturalistService extends IntentService {
                 }
 
                 // Reload the observation at the end (need to refresh comment/ID list)
-                JSONObject observationJson = getObservationJson(observationId, false);
+                JSONObject observationJson = getObservationJson(observationId, false, false);
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
 
@@ -1452,7 +1454,7 @@ public class INaturalistService extends IntentService {
                 updateComment(commentId, observationId, body);
 
                 // Reload the observation at the end (need to refresh comment/ID list)
-                JSONObject observationJson = getObservationJson(observationId, false);
+                JSONObject observationJson = getObservationJson(observationId, false, false);
 
                 if (observationJson != null) {
                     Observation observation = new Observation(new BetterJSONObject(observationJson));
@@ -1469,7 +1471,7 @@ public class INaturalistService extends IntentService {
                 deleteComment(commentId);
 
                 // Reload the observation at the end (need to refresh comment/ID list)
-                JSONObject observationJson = getObservationJson(observationId, false);
+                JSONObject observationJson = getObservationJson(observationId, false, false);
 
                 if (observationJson != null) {
                     Observation observation = new Observation(new BetterJSONObject(observationJson));
@@ -1737,7 +1739,8 @@ public class INaturalistService extends IntentService {
 
             } else if (action.equals(ACTION_GET_OBSERVATION)) {
                 int id = intent.getExtras().getInt(OBSERVATION_ID);
-                JSONObject observationJson = getObservationJson(id, false);
+                boolean getProjects = intent.getExtras().getBoolean(GET_PROJECTS);
+                JSONObject observationJson = getObservationJson(id, false, getProjects);
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
 
@@ -3864,12 +3867,12 @@ public class INaturalistService extends IntentService {
         return true;
     }
 
-    private JSONObject getObservationJson(int id, boolean authenticated) throws AuthenticationException {
+    private JSONObject getObservationJson(int id, boolean authenticated, boolean includeNewProjects) throws AuthenticationException {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
 
-        String url = String.format("%s/observations/%d?locale=%s&include_new_projects=true", API_HOST, id, deviceLanguage);
+        String url = String.format("%s/observations/%d?locale=%s&%s", API_HOST, id, deviceLanguage, includeNewProjects ? "include_new_projects=true" : "");
 
         JSONArray json = get(url, authenticated);
         if (json == null || json.length() == 0) {
@@ -3888,7 +3891,7 @@ public class INaturalistService extends IntentService {
 
     private Observation getAndDownloadObservation(int id) throws AuthenticationException {
         // Download the observation
-        JSONObject json = getObservationJson(id, true);
+        JSONObject json = getObservationJson(id, true, true);
         if (json == null) return null;
 
         Observation obs = new Observation(new BetterJSONObject(json));
@@ -4274,6 +4277,7 @@ public class INaturalistService extends IntentService {
     // accessible by the user).
     private void clearOldCachedPhotos() {
         if (!isNetworkAvailable()) return;
+        if (!mApp.loggedIn()) return;
 
         Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI, ObservationPhoto.PROJECTION,
                 "_updated_at = _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL AND " +
@@ -4281,14 +4285,14 @@ public class INaturalistService extends IntentService {
                 new String[]{}, ObservationPhoto.DEFAULT_SORT_ORDER);
 
         int totalCount = c.getCount();
-        int photoIndex = 0;
+        int photosReplacedCount = 0;
 
         Logger.tag(TAG).info(String.format("clearOldCachedPhotos - %d available cached photos", totalCount));
 
-        while ((totalCount > OLD_PHOTOS_MAX_COUNT) && (!c.isAfterLast()) && (photoIndex < OLD_PHOTOS_MAX_COUNT)) {
+        while ((totalCount > OLD_PHOTOS_MAX_COUNT) && (!c.isAfterLast()) && (photosReplacedCount < MAX_PHOTO_REPLACEMENTS_PER_RUN)) {
             ObservationPhoto op = new ObservationPhoto(c);
 
-            Logger.tag(TAG).info(String.format("clearOldCachedPhotos - clearing photo %d: %s", photoIndex, op.toString()));
+            Logger.tag(TAG).info(String.format("clearOldCachedPhotos - clearing photo %d: %s", photosReplacedCount, op.toString()));
 
             File obsPhotoFile = new File(op.photo_filename);
 
@@ -4297,13 +4301,13 @@ public class INaturalistService extends IntentService {
                 Logger.tag(TAG).info(String.format("clearOldCachedPhotos - No photo_url found for obs photo: %s", op.toString()));
                 boolean foundPhoto = false;
                 try {
-                    JSONObject json = getObservationJson(op.observation_id, false);
+                    JSONObject json = getObservationJson(op.observation_id, false, false);
 
                     if (json != null) {
                         Observation obs = new Observation(new BetterJSONObject(json));
                         for (int i = 0; i < obs.photos.size(); i++) {
-                            if ((obs.photos.get(0).id != null) && (op.id != null)) {
-                                if (obs.photos.get(0).id.equals(op.id)) {
+                            if ((obs.photos.get(i).id != null) && (op.id != null)) {
+                                if (obs.photos.get(i).id.equals(op.id)) {
                                     // Found the appropriate photo - update the URL
                                     op.photo_url = obs.photos.get(i).photo_url;
                                     Logger.tag(TAG).info(String.format("clearOldCachedPhotos - foundPhoto: %s", op.photo_url));
@@ -4344,7 +4348,7 @@ public class INaturalistService extends IntentService {
             // Warm up the cache for the image
             warmUpImageCache(op.photo_url);
 
-            photoIndex += 1;
+            photosReplacedCount += 1;
             c.moveToNext();
         }
 

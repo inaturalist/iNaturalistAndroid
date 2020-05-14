@@ -1080,15 +1080,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 String[] photoInfo = mPhotoInfo.get(obs.uuid);
 
                 if ((photoInfo == null) || (photoInfo[2] == null)) {
-                    // No remote image - need to download ob
-                    Logger.tag(TAG).debug("Local file deleted - re-downloading: " + position + ":" + name);
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            downloadRemoteObsPhoto(position, imageView);
-                        }
-                    }).start();
-
+                    // No remote image
+                    Logger.tag(TAG).debug("Local file deleted: " + position + ":" + name);
                     return;
                 } else {
                     // Try and load remote image instead
@@ -1194,6 +1187,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                     Logger.tag(TAG).debug("downloadRemoteObsPhoto - Updating DB - " + obs.id + ":" + photo.id + ":" + photoUrl);
                     photo.photo_url = photoUrl;
                     ContentValues cv = photo.getContentValues();
+                    cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
                     mContext.getContentResolver().update(photo.getUri(), cv, null, null);
                 }
 
