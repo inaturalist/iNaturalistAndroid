@@ -77,10 +77,10 @@
 
     <!-- The domain endpoint to use for each network type - used when adding new observations -->
     <string name="inat_host_inaturalist">https://www.inaturalist.org</string>
-    <string name="inat_host_naturalista">http://www.naturalista.mx</string>
-    <string name="inat_host_naturewatchnz">http://inaturalist.nz</string>
-    <string name="inat_host_inaturalistcanada">http://www.inaturalist.ca</string>
-    <string name="inat_host_naturalistacolombia">http://colombia.inaturalist.org</string>
+    <string name="inat_host_naturalista">https://www.naturalista.mx</string>
+    <string name="inat_host_naturewatchnz">https://inaturalist.nz</string>
+    <string name="inat_host_inaturalistcanada">https://www.inaturalist.ca</string>
+    <string name="inat_host_naturalistacolombia">https://colombia.inaturalist.org</string>
     <string name="inat_host_biodiversity4all">https://www.biodiversity4all.org/</string>
     <string name="inat_host_inaturalistpanama">https://panama.inaturalist.org/</string>
     <string name="inat_host_inaturalistecuador">https://ecuador.inaturalist.org</string>

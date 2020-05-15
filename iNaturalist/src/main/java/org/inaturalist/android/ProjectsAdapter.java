@@ -81,9 +81,9 @@ public class ProjectsAdapter extends ArrayAdapter<JSONObject> implements Filtera
             }
 
         } catch (MalformedURLException e) {
-            Logger.tag(TAG).error("Error processing search API URL", e);
+            Logger.tag(TAG).error("Error processing search API URL: {}", e);
         } catch (IOException e) {
-            Logger.tag(TAG).error("Error connecting to search API", e);
+            Logger.tag(TAG).error("Error connecting to search API: {}", e);
         } finally {
             if (conn != null) {
                 conn.disconnect();
