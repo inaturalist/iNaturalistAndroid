@@ -1387,6 +1387,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
     private void setupMap() {
         if (mMap == null) return;
+        if (mObservation == null) return;
 
         mMap.setMyLocationEnabled(false);
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
