@@ -153,6 +153,7 @@ public class ExploreSearchActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(final Editable s) {
                 if (mRefreshingUi) return;
+                if (mSearchFilters == null) return;
 
                 final String query = s.toString();
                 final int searchType;
