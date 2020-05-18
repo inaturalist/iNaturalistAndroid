@@ -388,7 +388,9 @@ public class INaturalistService extends IntentService {
             "SDK " + android.os.Build.VERSION.SDK_INT + "; " +
             android.os.Build.DEVICE + " " +
             android.os.Build.MODEL + " " +
-            android.os.Build.PRODUCT + ")";
+            android.os.Build.PRODUCT + "; OS Version " +
+            android.os.Build.VERSION.RELEASE +
+            ")";
     public static String ACTION_GET_HISTOGRAM = "action_get_histogram";
     public static String ACTION_GET_POPULAR_FIELD_VALUES = "action_get_popular_field_values";
     public static String ACTION_REGISTER_USER = "register_user";
