@@ -672,6 +672,12 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         Long syncedAt = c.getLong(c.getColumnIndexOrThrow(Observation._SYNCED_AT));
         Boolean syncNeeded = (syncedAt == null) || (updatedAt > syncedAt);
 
+        if (syncedAt == null) {
+            Logger.tag(TAG).debug(String.format("getView %d: %s: Sync needed - syncedAt == null", position, speciesGuessValue));
+        } else if (updatedAt > syncedAt) {
+            Logger.tag(TAG).debug(String.format("getView %d: %s: Sync needed - updatedAt (%s) > sycnedAt (%s)", position, speciesGuessValue, updatedAt, syncedAt));
+        }
+
         // if there's a photo and it is local
         if (syncNeeded == false &&
                 photoInfo != null &&
@@ -679,10 +685,12 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 photoInfo[3] != null) {
             if (photoInfo[4] == null) {
                 syncNeeded = true;
+                Logger.tag(TAG).debug(String.format("getView %d: %s: Sync needed - photoInfo == null - %s / %s / %s / %s / %s", position, speciesGuessValue, photoInfo[0], photoInfo[1], photoInfo[2], photoInfo[3], photoInfo[4]));
             } else {
                 Long photoSyncedAt = Long.parseLong(photoInfo[4]);
                 Long photoUpdatedAt = Long.parseLong(photoInfo[3]);
                 if (photoUpdatedAt > photoSyncedAt) {
+                    Logger.tag(TAG).debug(String.format("getView %d: %s: Sync needed - photoUpdatedAt (%d) > photoSyncedAt (%d)", position, speciesGuessValue, photoUpdatedAt, photoSyncedAt));
                     syncNeeded = true;
                 }
             }
@@ -705,6 +713,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                     ObservationPhoto._ID);
             if (opc.getCount() > 0) {
                 syncNeeded = true;
+                Logger.tag(TAG).debug(String.format("getView %d: %s: Sync needed - new/updated photos: %d", position, speciesGuessValue, opc.getCount()));
             }
             opc.close();
         }
