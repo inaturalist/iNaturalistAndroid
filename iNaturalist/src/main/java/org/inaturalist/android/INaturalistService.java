@@ -3815,11 +3815,14 @@ public class INaturalistService extends IntentService {
     }
 
     private boolean postObservation(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException {
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLexicon = deviceLocale.getLanguage();
+
         if (observation.id != null) {
             // Update observation
             Logger.tag(TAG).debug("postObservation: Updating existing " + observation.id + ":" + observation._id);
 
-            JSONArray response = request(API_HOST + "/observations/" + observation.id, "put", null, observationToJsonObject(observation, false), true, true, false);
+            JSONArray response = request(API_HOST + "/observations/" + observation.id + "?locale=" + deviceLexicon, "put", null, observationToJsonObject(observation, false), true, true, false);
 
             if (response == null) {
                 Logger.tag(TAG).debug("postObservation: Error for " + observation.id + ":" + observation._id + ":" + mLastStatusCode);
@@ -3859,7 +3862,7 @@ public class INaturalistService extends IntentService {
 
         boolean success = handleObservationResponse(
                 observation,
-                request(API_HOST + "/observations", "post", null, observationParams, true, true, false)
+                request(API_HOST + "/observations?locale=" + deviceLexicon, "post", null, observationParams, true, true, false)
         );
 
         if (!success) {
