@@ -118,7 +118,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     }
 
     public ObservationCursorAdapter(Context context, Cursor c, boolean isGrid, GridView grid) {
-        super(context, isGrid ? R.layout.observation_grid_item : R.layout.observation_list_item, c, new String[] {}, new int[] {});
+        super(context, isGrid ? R.layout.observation_grid_item : R.layout.observation_list_item_2, c, new String[] {}, new int[] {});
 
         Logger.tag(TAG).debug("initialize");
 
@@ -380,7 +380,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         public ImageView obsIconicImage;
         public TextView speciesGuess;
         public TextView dateObserved;
-        public ViewGroup commentIdContainer;
+        public View commentIdContainer;
         public ViewGroup leftContainer;
         public View progress;
         public View progressInner;
@@ -411,7 +411,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             obsIconicImage = (ImageView) view.findViewById(R.id.observation_iconic_pic);
             speciesGuess = (TextView) view.findViewById(R.id.species_guess);
             dateObserved = (TextView) view.findViewById(R.id.date);
-            commentIdContainer = (ViewGroup) view.findViewById(R.id.comment_id_container);
+            commentIdContainer = view.findViewById(R.id.comment_id_container);
             leftContainer = (ViewGroup) view.findViewById(R.id.left_container);
 
             commentIcon = (ImageView) view.findViewById(R.id.comment_pic);
@@ -468,7 +468,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         ImageView obsIconicImage = holder.obsIconicImage;
         TextView speciesGuess = holder.speciesGuess;
         TextView dateObserved = holder.dateObserved;
-        ViewGroup commentIdContainer = holder.commentIdContainer;
+        View commentIdContainer = holder.commentIdContainer;
         ViewGroup leftContainer = holder.leftContainer;
 
         ImageView commentIcon = holder.commentIcon;
@@ -601,7 +601,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 // There are unread comments/IDs
                 commentIdContainer.setVisibility(View.VISIBLE);
                 if (mIsGrid) {
-                    commentIdContainer.setBackgroundColor(Color.parseColor("#EA118D"));
+                    // TODO broken
+                    // commentIdContainer.setBackgroundColor(Color.parseColor("#EA118D"));
                 } else {
                     commentCount.setTextColor(Color.parseColor("#EA118D"));
                     idCount.setTextColor(Color.parseColor("#EA118D"));
@@ -640,6 +641,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 idIcon.setVisibility(View.GONE);
             }
 
+            // TODO this is broken. Need to get the underlying views
             commentIdContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -658,14 +660,17 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
 
             if (!mIsGrid) {
-                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) leftContainer.getLayoutParams();
-                if (dateObserved.getText().length() > String.format("  %d  %d", idsCount, commentsCount).length()) {
-                    params.addRule(RelativeLayout.LEFT_OF, R.id.date);
-                } else {
-                    params.addRule(RelativeLayout.LEFT_OF, R.id.comment_id_container);
-                }
-
-                leftContainer.setLayoutParams(params);
+                // TODO ensure this was only code fixing this issue, then rip out
+                // This custom stuff is no longer needed. We use constraints to auto-shrink
+                // both the species guess or location guess before they overlap other content
+//                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) leftContainer.getLayoutParams();
+//                if (dateObserved.getText().length() > String.format("  %d  %d", idsCount, commentsCount).length()) {
+//                    params.addRule(RelativeLayout.LEFT_OF, R.id.date);
+//                } else {
+//                    params.addRule(RelativeLayout.LEFT_OF, R.id.comment_id_container);
+//                }
+//
+//                leftContainer.setLayoutParams(params);
             }
         }
 
