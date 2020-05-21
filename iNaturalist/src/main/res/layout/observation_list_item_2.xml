@@ -17,34 +17,27 @@
         android:src="@drawable/baseline_radio_button_unchecked_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-
-        app:layout_constraintRight_toLeftOf="@id/barrier"
+        app:layout_constraintRight_toLeftOf="@id/observation_pic"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="start"
-        app:constraint_referenced_ids="observation_iconic_pic,observation_pic" />
-
-
+    <!-- Size & alignment mirror observation_pic. Views reference observation pic to set constraints -->
     <ImageView
         android:id="@+id/observation_iconic_pic"
-        android:layout_width="1dp"
-        android:layout_height="6dp"
-
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="#DDD"
+
         android:contentDescription="@string/observation_list_item_iconic_pic_description"
         android:padding="5dp"
 
         android:src="@drawable/iconic_taxon_unknown"
         android:tint="#ffffff"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/checkbox"
-        app:layout_constraintTop_toTopOf="parent" />
 
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/observation_pic"
+        app:layout_constraintLeft_toLeftOf="@id/observation_pic"
+        app:layout_constraintRight_toRightOf="@id/observation_pic"
+        app:layout_constraintTop_toTopOf="@id/observation_pic" />
 
     <ImageView
         android:id="@+id/observation_pic"
