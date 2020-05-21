@@ -120,7 +120,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     }
 
     public ObservationCursorAdapter(Context context, Cursor c, boolean isGrid, GridView grid) {
-        super(context, isGrid ? R.layout.observation_grid_item : R.layout.observation_list_item_2, c, new String[] {}, new int[] {});
+        super(context, isGrid ? R.layout.observation_grid_item : R.layout.observation_list_item, c, new String[] {}, new int[] {});
 
         Logger.tag(TAG).debug("initialize");
 

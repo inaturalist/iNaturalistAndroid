@@ -1,163 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp"
-    android:paddingLeft="15dp"
-    android:paddingRight="15dp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingStart="15dp"
+    android:paddingTop="10dp"
+    android:paddingEnd="15dp"
+    android:paddingBottom="10dp">
 
     <ImageView
         android:id="@+id/checkbox"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        android:src="@drawable/baseline_radio_button_unchecked_24"
-        />
+        android:contentDescription="@string/list_observation_checkbox_description"
 
+        android:src="@drawable/baseline_radio_button_unchecked_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Size & alignment mirror observation_pic. Views reference observation pic to set constraints -->
     <ImageView
         android:id="@+id/observation_iconic_pic"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:src="@drawable/iconic_taxon_unknown"
-        android:layout_toRightOf="@id/checkbox"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="9dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="#DDD"
-        android:padding="5dp"
-        android:tint="#ffffff"
-        android:visibility="gone"
-        />
 
+        android:contentDescription="@string/observation_list_item_iconic_pic_description"
+        android:padding="5dp"
+
+        android:src="@drawable/iconic_taxon_unknown"
+        android:tint="#ffffff"
+
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/observation_pic"
+        app:layout_constraintStart_toStartOf="@id/observation_pic"
+        app:layout_constraintEnd_toEndOf="@id/observation_pic"
+        app:layout_constraintTop_toTopOf="@id/observation_pic" />
 
     <ImageView
         android:id="@+id/observation_pic"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:src="@drawable/iconic_taxon_unknown"
-        android:layout_toRightOf="@id/checkbox"
+
         android:layout_centerVertical="true"
-        android:layout_marginRight="9dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="9dp"
+
         android:background="#DDDDDD"
+        android:contentDescription="@string/observation_list_item_obs_pic_description"
         android:scaleType="fitCenter"
-        />
+        android:src="@drawable/iconic_taxon_unknown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/checkbox"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginLeft="0dp" />
 
 
     <TextView
         android:id="@+id/date"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
+
         android:layout_height="wrap_content"
         android:text="3w"
-        android:textColor="#979797" />
+        android:textColor="#979797"
+        app:layout_constraintBaseline_toBaselineOf="@id/species_guess"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="HardcodedText" />
 
-
-    <LinearLayout
-        android:layout_alignParentRight="true"
-        android:id="@+id/comment_id_container"
-        android:paddingLeft="10dp"
-        android:layout_marginTop="28dp"
-        android:orientation="horizontal"
+    <TextView
+        android:id="@+id/id_count"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
 
-        <ImageView
-            android:id="@+id/comment_pic"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:src="@drawable/ic_chat_bubble_black_24dp"
-            android:tint="#707070"
-            android:layout_marginRight="2dp"
-            android:layout_marginTop="2dp"
-            />
+        android:layout_marginTop="28dp"
+        android:text="12"
+        app:layout_constraintBaseline_toBaselineOf="@id/place_guess"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="HardcodedText" />
 
-        <TextView
-            android:id="@+id/comment_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="31"
-            android:layout_marginRight="8dp"
-            />
+    <ImageView
+        android:id="@+id/id_pic"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
 
-        <ImageView
-            android:id="@+id/id_pic"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:src="@drawable/ic_id"
-            android:tint="#707070"
-            android:layout_marginRight="2dp"
-            android:layout_marginTop="2dp"
-            />
+        android:layout_alignTop="@id/id_count"
+        android:layout_alignBottom="@id/id_count"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:src="@drawable/ic_id"
+        android:tint="#707070"
+        app:layout_constraintBottom_toBottomOf="@id/id_count"
+        app:layout_constraintEnd_toStartOf="@id/id_count"
+        app:layout_constraintTop_toTopOf="@id/id_count"
+        tools:ignore="ContentDescription" />
 
-        <TextView
-            android:id="@+id/id_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="12"
-            />
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/comment_count"
+        android:layout_width="wrap_content"
 
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/id_count"
+        android:layout_alignBottom="@id/id_count"
+        android:layout_marginEnd="8dp"
+        android:text="31"
+        app:layout_constraintBaseline_toBaselineOf="@id/place_guess"
+        app:layout_constraintEnd_toStartOf="@id/id_pic"
+        tools:ignore="HardcodedText" />
+
+    <ImageView
+        android:id="@+id/comment_pic"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+
+        android:layout_alignTop="@id/id_count"
+        android:layout_alignBottom="@id/id_count"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:src="@drawable/ic_chat_bubble_black_24dp"
+        android:tint="#707070"
+        app:layout_constraintBottom_toBottomOf="@id/comment_count"
+        app:layout_constraintEnd_toStartOf="@id/comment_count"
+        app:layout_constraintTop_toTopOf="@id/comment_count"
+        tools:ignore="ContentDescription" />
+
+    <!-- Used to prevent species guess from growing too large and overlapping other elements -->
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/species_guess_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="start"
+        app:constraint_referenced_ids="date,progress"
+        tools:layout_editor_absoluteX="397dp"
+        tools:layout_editor_absoluteY="10dp" />
 
     <com.mikhaellopez.circularprogressbar.CircularProgressBar
         android:id="@+id/progress"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:visibility="visible"
-        android:layout_alignParentRight="true"
+
         android:layout_centerVertical="true"
+        android:visibility="visible"
         app:cpb_background_progressbar_color="#88669900"
         app:cpb_background_progressbar_width="7dp"
         app:cpb_progressbar_color="#669900"
-        app:cpb_progressbar_width="7dp" />
+        app:cpb_progressbar_width="7dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
-        android:id="@+id/left_container"
+    <TextView
+        android:id="@+id/species_guess"
+        style="@android:style/TextAppearance.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/observation_pic"
-        android:layout_toLeftOf="@id/comment_id_container"
-        android:layout_centerVertical="true"
-        >
+        android:layout_marginStart="9dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
 
-        <TextView
-            android:id="@+id/species_guess"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:ellipsize="end"
-            style="@android:style/TextAppearance.Medium"
-            android:text="Species Guess" />
+        android:maxLines="1"
+        android:text="Species Guess"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/observation_pic"
+        app:layout_constraintEnd_toStartOf="@id/species_guess_barrier"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
-        <ImageView
-            android:layout_below="@id/species_guess"
-            android:layout_alignParentLeft="true"
+    <ImageView
+        android:id="@+id/location_icon"
+        android:layout_width="16dp"
+        android:layout_height="24dp"
 
-            android:id="@+id/location_icon"
-            android:layout_width="16dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_location_on_black_24dp"
-            android:tint="#6F6F6F"
-            />
+        android:src="@drawable/ic_location_on_black_24dp"
+        android:tint="#6F6F6F"
+        app:layout_constraintStart_toStartOf="@id/species_guess"
+        app:layout_constraintTop_toBottomOf="@id/species_guess"
+        tools:ignore="ContentDescription" />
 
-        <TextView
-            android:layout_below="@id/species_guess"
-            android:layout_toRightOf="@id/location_icon"
-            android:id="@+id/place_guess"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:gravity="center_vertical"
-            android:layout_alignBottom="@id/location_icon"
-            android:text="San Francisco" />
+    <!-- Aligns to location_icon. If it's GONE, apply 24dp top margin.
+    Expands right to comment_pic minus 8dp -->
+    <TextView
+        android:id="@+id/place_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
 
-    </RelativeLayout>
+        android:maxLines="1"
+        android:text="San Francisco"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="@id/location_icon"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/location_icon"
+        app:layout_constraintEnd_toStartOf="@id/comment_pic"
+        app:layout_constraintTop_toTopOf="@id/location_icon"
+        app:layout_goneMarginTop="24dp"
+        tools:ignore="HardcodedText" />
 
-</RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
