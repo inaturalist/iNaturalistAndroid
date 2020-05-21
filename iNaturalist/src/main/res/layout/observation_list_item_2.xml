@@ -66,16 +66,8 @@
         android:text="3w"
         android:textColor="#979797"
         app:layout_constraintBaseline_toBaselineOf="@id/species_guess"
-        app:layout_constraintRight_toRightOf="parent" />
-
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/comment_id_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:constraint_referenced_ids="id_count,id_pic,comment_count,comment_pic" />
-
+        app:layout_constraintRight_toRightOf="parent"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/id_count"
@@ -86,7 +78,8 @@
         android:text="12"
         app:layout_constraintBaseline_toBaselineOf="@id/place_guess"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        tools:ignore="HardcodedText" />
 
     <ImageView
         android:id="@+id/id_pic"
@@ -114,7 +107,8 @@
         android:layout_marginRight="8dp"
         android:text="31"
         app:layout_constraintBaseline_toBaselineOf="@id/place_guess"
-        app:layout_constraintRight_toLeftOf="@id/id_pic" />
+        app:layout_constraintRight_toLeftOf="@id/id_pic"
+        tools:ignore="HardcodedText" />
 
     <ImageView
         android:id="@+id/comment_pic"

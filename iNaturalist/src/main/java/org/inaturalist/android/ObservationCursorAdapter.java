@@ -22,6 +22,8 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+
+import androidx.constraintlayout.widget.Group;
 import androidx.core.content.ContextCompat;
 
 import android.util.TypedValue;
@@ -381,7 +383,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         public TextView speciesGuess;
         public TextView dateObserved;
         public View commentIdContainer;
-        public ViewGroup leftContainer;
         public View progress;
         public View progressInner;
         public View soundsIndicator;
@@ -412,7 +413,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             speciesGuess = (TextView) view.findViewById(R.id.species_guess);
             dateObserved = (TextView) view.findViewById(R.id.date);
             commentIdContainer = view.findViewById(R.id.comment_id_container);
-            leftContainer = (ViewGroup) view.findViewById(R.id.left_container);
 
             commentIcon = (ImageView) view.findViewById(R.id.comment_pic);
             idIcon = (ImageView) view.findViewById(R.id.id_pic);
@@ -436,7 +436,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         Cursor c = this.getCursor();
 
         Logger.tag(TAG).debug("getView " + position);
-
 
         if (c.getCount() == 0) {
             return view;
@@ -468,13 +467,19 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         ImageView obsIconicImage = holder.obsIconicImage;
         TextView speciesGuess = holder.speciesGuess;
         TextView dateObserved = holder.dateObserved;
-        View commentIdContainer = holder.commentIdContainer;
-        ViewGroup leftContainer = holder.leftContainer;
 
         ImageView commentIcon = holder.commentIcon;
         ImageView idIcon = holder.idIcon;
         TextView commentCount = holder.commentCount;
         TextView idCount = holder.idCount;
+
+         View commentIdContainer = holder.commentIdContainer;
+        if (!mIsGrid) {
+            // !isGrid uses a constraintlayout which has no concept of view groups, so we manually
+            // build one. Note: androidx.constraintlayout.widget.Group will not work here
+             commentIdContainer = new DelegatingConstraintViewGroup(mContext,
+                    commentIcon, commentCount, idIcon, idCount);
+        }
 
         TextView placeGuess = holder.placeGuess;
         ImageView locationIcon = holder.locationIcon;
@@ -516,7 +521,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 soundsIndicator.setVisibility(View.GONE);
             }
         }
-
 
         String iconicTaxonName = c.getString(c.getColumnIndexOrThrow(Observation.ICONIC_TAXON_NAME));
 
@@ -601,8 +605,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 // There are unread comments/IDs
                 commentIdContainer.setVisibility(View.VISIBLE);
                 if (mIsGrid) {
-                    // TODO broken
-                    // commentIdContainer.setBackgroundColor(Color.parseColor("#EA118D"));
+                    commentIdContainer.setBackgroundColor(Color.parseColor("#EA118D"));
                 } else {
                     commentCount.setTextColor(Color.parseColor("#EA118D"));
                     idCount.setTextColor(Color.parseColor("#EA118D"));
@@ -641,7 +644,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 idIcon.setVisibility(View.GONE);
             }
 
-            // TODO this is broken. Need to get the underlying views
             commentIdContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -657,21 +659,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                     mContext.startActivity(intent);
                 }
             });
-
-
-            if (!mIsGrid) {
-                // TODO ensure this was only code fixing this issue, then rip out
-                // This custom stuff is no longer needed. We use constraints to auto-shrink
-                // both the species guess or location guess before they overlap other content
-//                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) leftContainer.getLayoutParams();
-//                if (dateObserved.getText().length() > String.format("  %d  %d", idsCount, commentsCount).length()) {
-//                    params.addRule(RelativeLayout.LEFT_OF, R.id.date);
-//                } else {
-//                    params.addRule(RelativeLayout.LEFT_OF, R.id.comment_id_container);
-//                }
-//
-//                leftContainer.setLayoutParams(params);
-            }
         }
 
         Long syncedAt = c.getLong(c.getColumnIndexOrThrow(Observation._SYNCED_AT));
@@ -1323,6 +1310,41 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
     public void updateProgress(int observationId, float progress) {
         if (mCurrentProgressBar != null) mCurrentProgressBar.setProgressWithAnimation(progress);
+    }
+
+    /**
+     * Holds a list of Views and passes some View API calls down to each sub-View. Used for
+     * ConstraintLayout (which does not have ViewGroups) so we can keep the same logic for
+     * commentIdContainer in list and grid versions
+     */
+    private static class DelegatingConstraintViewGroup extends View {
+        private final View[] mDelegateViews;
+
+        public DelegatingConstraintViewGroup(Context context, View... views) {
+            super(context);
+            mDelegateViews = views;
+        }
+
+        @Override
+        public void setOnClickListener(OnClickListener listener) {
+            for (View v : mDelegateViews) {
+                v.setOnClickListener(listener);
+            }
+        }
+
+        @Override
+        public void setVisibility(int visibility) {
+            for (View v : mDelegateViews) {
+                v.setVisibility(visibility);
+            }
+        }
+
+        @Override
+        public void setClickable(boolean state) {
+            for (View v : mDelegateViews) {
+                v.setClickable(state);
+            }
+        }
     }
 }
 
