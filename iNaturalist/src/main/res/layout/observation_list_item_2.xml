@@ -95,6 +95,7 @@
         app:layout_constraintBottom_toBottomOf="@id/id_count"
         app:layout_constraintEnd_toStartOf="@id/id_count"
         app:layout_constraintTop_toTopOf="@id/id_count"
+        tools:ignore="ContentDescription" />
 
 
     <TextView
@@ -124,6 +125,7 @@
         app:layout_constraintBottom_toBottomOf="@id/comment_count"
         app:layout_constraintEnd_toStartOf="@id/comment_count"
         app:layout_constraintTop_toTopOf="@id/comment_count"
+        tools:ignore="ContentDescription" />
 
     <!-- Used to prevent species guess from growing too large and overlapping other elements -->
     <androidx.constraintlayout.widget.Barrier
@@ -166,6 +168,7 @@
         app:layout_constraintStart_toEndOf="@id/observation_pic"
         app:layout_constraintEnd_toStartOf="@id/species_guess_barrier"
         app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
     <ImageView
         android:id="@+id/location_icon"
@@ -176,6 +179,7 @@
         android:tint="#6F6F6F"
         app:layout_constraintStart_toStartOf="@id/species_guess"
         app:layout_constraintTop_toBottomOf="@id/species_guess"
+        tools:ignore="ContentDescription" />
 
     <!-- Aligns to location_icon. If it's GONE, apply 24dp top margin.
     Expands right to comment_pic minus 8dp -->
@@ -196,6 +200,7 @@
         app:layout_constraintEnd_toStartOf="@id/comment_pic"
         app:layout_constraintTop_toTopOf="@id/location_icon"
         app:layout_goneMarginTop="24dp"
+        tools:ignore="HardcodedText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
