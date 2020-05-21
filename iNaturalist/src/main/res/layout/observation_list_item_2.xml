@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="15dp"
@@ -129,6 +130,16 @@
         app:layout_constraintRight_toLeftOf="@id/comment_count"
         app:layout_constraintTop_toTopOf="@id/comment_count" />
 
+    <!-- Used to prevent species guess from growing too large and overlapping other elements -->
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/species_guess_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="left"
+        app:constraint_referenced_ids="date,progress"
+        tools:layout_editor_absoluteX="397dp"
+        tools:layout_editor_absoluteY="10dp" />
+
     <com.mikhaellopez.circularprogressbar.CircularProgressBar
         android:id="@+id/progress"
         android:layout_width="35dp"
@@ -150,6 +161,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="9dp"
+        android:layout_marginRight="8dp"
         android:ellipsize="end"
 
         android:maxLines="1"
@@ -157,7 +169,7 @@
         app:layout_constrainedWidth="true"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintLeft_toRightOf="@id/observation_pic"
-        app:layout_constraintRight_toLeftOf="@id/date"
+        app:layout_constraintRight_toLeftOf="@id/species_guess_barrier"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -174,10 +186,11 @@
         android:id="@+id/place_guess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
         android:ellipsize="end"
         android:gravity="center_vertical"
-        android:maxLines="1"
 
+        android:maxLines="1"
         android:text="San Francisco"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="@id/location_icon"
@@ -185,5 +198,6 @@
         app:layout_constraintLeft_toRightOf="@id/location_icon"
         app:layout_constraintRight_toLeftOf="@id/comment_pic"
         app:layout_constraintTop_toTopOf="@id/location_icon" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
