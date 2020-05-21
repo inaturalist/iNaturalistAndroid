@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="15dp"
+    android:paddingStart="15dp"
     android:paddingTop="10dp"
-    android:paddingRight="15dp"
+    android:paddingEnd="15dp"
     android:paddingBottom="10dp">
 
     <ImageView
@@ -17,7 +17,7 @@
 
         android:src="@drawable/baseline_radio_button_unchecked_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Size & alignment mirror observation_pic. Views reference observation pic to set constraints -->
@@ -35,8 +35,8 @@
 
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/observation_pic"
-        app:layout_constraintLeft_toLeftOf="@id/observation_pic"
-        app:layout_constraintRight_toRightOf="@id/observation_pic"
+        app:layout_constraintStart_toStartOf="@id/observation_pic"
+        app:layout_constraintEnd_toEndOf="@id/observation_pic"
         app:layout_constraintTop_toTopOf="@id/observation_pic" />
 
     <ImageView
@@ -45,15 +45,15 @@
         android:layout_height="45dp"
 
         android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="9dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="9dp"
 
         android:background="#DDDDDD"
         android:contentDescription="@string/observation_list_item_obs_pic_description"
         android:scaleType="fitCenter"
         android:src="@drawable/iconic_taxon_unknown"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/checkbox"
+        app:layout_constraintStart_toEndOf="@id/checkbox"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_goneMarginLeft="0dp" />
 
@@ -66,7 +66,7 @@
         android:text="3w"
         android:textColor="#979797"
         app:layout_constraintBaseline_toBaselineOf="@id/species_guess"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="HardcodedText" />
 
     <TextView
@@ -78,7 +78,7 @@
         android:text="12"
         app:layout_constraintBaseline_toBaselineOf="@id/place_guess"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="HardcodedText" />
 
     <ImageView
@@ -89,12 +89,12 @@
         android:layout_alignTop="@id/id_count"
         android:layout_alignBottom="@id/id_count"
         android:layout_marginTop="2dp"
-        android:layout_marginRight="2dp"
+        android:layout_marginEnd="2dp"
         android:src="@drawable/ic_id"
         android:tint="#707070"
         app:layout_constraintBottom_toBottomOf="@id/id_count"
-        app:layout_constraintRight_toLeftOf="@id/id_count"
-        app:layout_constraintTop_toTopOf="@id/id_count" />
+        app:layout_constraintEnd_toStartOf="@id/id_count"
+        app:layout_constraintTop_toTopOf="@id/id_count"
 
 
     <TextView
@@ -104,10 +104,10 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/id_count"
         android:layout_alignBottom="@id/id_count"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp"
         android:text="31"
         app:layout_constraintBaseline_toBaselineOf="@id/place_guess"
-        app:layout_constraintRight_toLeftOf="@id/id_pic"
+        app:layout_constraintEnd_toStartOf="@id/id_pic"
         tools:ignore="HardcodedText" />
 
     <ImageView
@@ -115,23 +115,22 @@
         android:layout_width="16dp"
         android:layout_height="16dp"
 
-
         android:layout_alignTop="@id/id_count"
         android:layout_alignBottom="@id/id_count"
         android:layout_marginTop="2dp"
-        android:layout_marginRight="2dp"
+        android:layout_marginEnd="2dp"
         android:src="@drawable/ic_chat_bubble_black_24dp"
         android:tint="#707070"
         app:layout_constraintBottom_toBottomOf="@id/comment_count"
-        app:layout_constraintRight_toLeftOf="@id/comment_count"
-        app:layout_constraintTop_toTopOf="@id/comment_count" />
+        app:layout_constraintEnd_toStartOf="@id/comment_count"
+        app:layout_constraintTop_toTopOf="@id/comment_count"
 
     <!-- Used to prevent species guess from growing too large and overlapping other elements -->
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/species_guess_barrier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:barrierDirection="left"
+        app:barrierDirection="start"
         app:constraint_referenced_ids="date,progress"
         tools:layout_editor_absoluteX="397dp"
         tools:layout_editor_absoluteY="10dp" />
@@ -148,7 +147,7 @@
         app:cpb_progressbar_color="#669900"
         app:cpb_progressbar_width="7dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -156,17 +155,17 @@
         style="@android:style/TextAppearance.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="9dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginEnd="8dp"
         android:ellipsize="end"
 
         android:maxLines="1"
         android:text="Species Guess"
         app:layout_constrainedWidth="true"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintLeft_toRightOf="@id/observation_pic"
-        app:layout_constraintRight_toLeftOf="@id/species_guess_barrier"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/observation_pic"
+        app:layout_constraintEnd_toStartOf="@id/species_guess_barrier"
+        app:layout_constraintTop_toTopOf="parent"
 
     <ImageView
         android:id="@+id/location_icon"
@@ -175,8 +174,8 @@
 
         android:src="@drawable/ic_location_on_black_24dp"
         android:tint="#6F6F6F"
-        app:layout_constraintLeft_toLeftOf="@id/species_guess"
-        app:layout_constraintTop_toBottomOf="@id/species_guess" />
+        app:layout_constraintStart_toStartOf="@id/species_guess"
+        app:layout_constraintTop_toBottomOf="@id/species_guess"
 
     <!-- Aligns to location_icon. If it's GONE, apply 24dp top margin.
     Expands right to comment_pic minus 8dp -->
@@ -184,7 +183,7 @@
         android:id="@+id/place_guess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp"
         android:ellipsize="end"
         android:gravity="center_vertical"
 
@@ -193,10 +192,10 @@
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="@id/location_icon"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintLeft_toRightOf="@id/location_icon"
-        app:layout_constraintRight_toLeftOf="@id/comment_pic"
+        app:layout_constraintStart_toEndOf="@id/location_icon"
+        app:layout_constraintEnd_toStartOf="@id/comment_pic"
         app:layout_constraintTop_toTopOf="@id/location_icon"
-        app:layout_goneMarginTop="24dp" />
+        app:layout_goneMarginTop="24dp"
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
