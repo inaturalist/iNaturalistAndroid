@@ -18,7 +18,6 @@
         android:src="@drawable/baseline_radio_button_unchecked_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/observation_pic"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Size & alignment mirror observation_pic. Views reference observation pic to set constraints -->
@@ -114,7 +113,7 @@
         android:layout_alignBottom="@id/id_count"
         android:layout_marginRight="8dp"
         android:text="31"
-        app:layout_constraintBaseline_toBaselineOf="@id/id_count"
+        app:layout_constraintBaseline_toBaselineOf="@id/place_guess"
         app:layout_constraintRight_toLeftOf="@id/id_pic" />
 
     <ImageView
@@ -178,13 +177,15 @@
     <ImageView
         android:id="@+id/location_icon"
         android:layout_width="16dp"
+        android:layout_height="24dp"
 
-        android:layout_height="wrap_content"
         android:src="@drawable/ic_location_on_black_24dp"
         android:tint="#6F6F6F"
         app:layout_constraintLeft_toLeftOf="@id/species_guess"
         app:layout_constraintTop_toBottomOf="@id/species_guess" />
 
+    <!-- Aligns to location_icon. If it's GONE, apply 24dp top margin.
+    Expands right to comment_pic minus 8dp -->
     <TextView
         android:id="@+id/place_guess"
         android:layout_width="wrap_content"
@@ -200,7 +201,8 @@
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintLeft_toRightOf="@id/location_icon"
         app:layout_constraintRight_toLeftOf="@id/comment_pic"
-        app:layout_constraintTop_toTopOf="@id/location_icon" />
+        app:layout_constraintTop_toTopOf="@id/location_icon"
+        app:layout_goneMarginTop="24dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
