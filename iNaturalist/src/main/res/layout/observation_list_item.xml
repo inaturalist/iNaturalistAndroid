@@ -181,8 +181,8 @@
         app:layout_constraintTop_toBottomOf="@id/species_guess"
         tools:ignore="ContentDescription" />
 
-    <!-- Aligns to location_icon. If it's GONE, apply 24dp top margin.
-    Expands right to comment_pic minus 8dp -->
+    <!-- Aligns to location_icon. If it's GONE, apply 24dp top margin (flow left but not up).
+    Expands right to barrier minus 8dp margin -->
     <TextView
         android:id="@+id/place_guess"
         android:layout_width="wrap_content"
@@ -197,10 +197,19 @@
         app:layout_constraintBottom_toBottomOf="@id/location_icon"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@id/location_icon"
-        app:layout_constraintEnd_toStartOf="@id/comment_pic"
+        app:layout_constraintEnd_toStartOf="@id/place_guess_barrier"
         app:layout_constraintTop_toTopOf="@id/location_icon"
         app:layout_goneMarginTop="24dp"
         tools:ignore="HardcodedText" />
+
+    <!-- Used to prevent place guess from growing too large and overlapping other elements -->
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/place_guess_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="start"
+        app:constraint_referenced_ids="progress,id_count,id_pic,comment_count,comment_pic"
+         />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
