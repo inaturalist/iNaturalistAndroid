@@ -1580,7 +1580,7 @@ public class ObservationEditor extends AppCompatActivity {
             mObservation.observed_on_string = null; 
         } else {
             mObservation.observed_on_string = mObservedOnStringTextView.getText().toString();
-            mObservation.observed_on = mDateSetByUser;
+            mObservation.observed_on = mTimeSetByUser;
             mObservation.time_observed_at = mTimeSetByUser;
         }
 
