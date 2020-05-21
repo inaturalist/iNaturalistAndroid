@@ -46,14 +46,17 @@
         android:layout_height="45dp"
 
         android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
         android:layout_marginRight="9dp"
+
         android:background="#DDDDDD"
         android:contentDescription="@string/observation_list_item_obs_pic_description"
         android:scaleType="fitCenter"
         android:src="@drawable/iconic_taxon_unknown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/checkbox"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginLeft="0dp" />
 
 
     <TextView
