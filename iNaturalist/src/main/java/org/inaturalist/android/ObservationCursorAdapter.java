@@ -430,6 +430,10 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
     }
 
+    // TODO This uses INVISIBLE in multiple locations where we should be using GONE
+    // to maximize screen real estate. I've confirmed the current mix works in list mode, but
+    // before we set everything to GONE we need to debug the grid mode and make sure removing
+    // views does not break the layout
     public View getView(int position, View convertView, ViewGroup parent) {
         final View view = super.getView(position, convertView, parent);
         ViewHolder holder;
@@ -579,7 +583,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         if (!mIsGrid) {
             if (observationTimestamp == 0) {
                 // No observation date set - don't show it
-                dateObserved.setVisibility(View.INVISIBLE);
+                dateObserved.setVisibility(View.GONE);
             } else {
                 dateObserved.setVisibility(View.VISIBLE);
                 Timestamp observationDate = new Timestamp(observationTimestamp);
@@ -594,7 +598,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         if (commentsCount + idsCount == 0) {
             // No comments/IDs - don't display the indicator
-            commentIdContainer.setVisibility(View.INVISIBLE);
+            commentIdContainer.setVisibility(View.GONE);
             commentIdContainer.setClickable(false);
         } else {
             commentIdContainer.setClickable(true);
@@ -797,7 +801,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             }
 
             progress.setVisibility(View.VISIBLE);
-            commentIdContainer.setVisibility(View.INVISIBLE);
+            commentIdContainer.setVisibility(View.GONE);
 
         } else if (syncNeeded && (mApp.getObservationIdBeingSynced() != obsId)) {
             // This observation needs to be synced (and waiting to be synced)

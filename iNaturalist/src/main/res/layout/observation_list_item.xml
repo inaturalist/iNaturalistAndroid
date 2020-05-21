@@ -167,6 +167,7 @@
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@id/observation_pic"
         app:layout_constraintEnd_toStartOf="@id/species_guess_barrier"
+        app:layout_goneMarginEnd="0dp"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText" />
 
@@ -200,6 +201,7 @@
         app:layout_constraintEnd_toStartOf="@id/place_guess_barrier"
         app:layout_constraintTop_toTopOf="@id/location_icon"
         app:layout_goneMarginTop="24dp"
+        app:layout_goneMarginEnd="0dp"
         tools:ignore="HardcodedText" />
 
     <!-- Used to prevent place guess from growing too large and overlapping other elements -->
