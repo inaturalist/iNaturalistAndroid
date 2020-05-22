@@ -683,6 +683,11 @@ public class INaturalistService extends IntentService {
 
                 // Get total obs count
                 BetterJSONObject user = getUserDetails();
+
+                if (user == null) {
+                    throw new SyncFailedException();
+                }
+
                 int totalObsCount = user.getInt("observations_count");
                 mPreferences.edit().putInt("observation_count", totalObsCount).commit();
 
