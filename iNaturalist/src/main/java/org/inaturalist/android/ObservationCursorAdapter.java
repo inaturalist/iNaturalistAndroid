@@ -471,6 +471,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         ViewGroup commentIdContainer = holder.commentIdContainer;
         ViewGroup leftContainer = holder.leftContainer;
 
+        if (commentIdContainer == null) return view;
+
         ImageView commentIcon = holder.commentIcon;
         ImageView idIcon = holder.idIcon;
         TextView commentCount = holder.commentCount;
