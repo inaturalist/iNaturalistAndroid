@@ -509,7 +509,7 @@ public class ExploreSearchActivity extends AppCompatActivity {
 
     // Loads the user's recent place search history
     private ArrayList<JSONObject> loadPlaceSearchHistory() {
-        SharedPreferences prefs = mApp.getPrefs();
+        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         String searchHistoryJson = prefs.getString("place_search_history", "[]");
         try {
             JSONArray searchHistoryArray = new JSONArray(searchHistoryJson);
