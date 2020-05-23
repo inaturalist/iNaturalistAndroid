@@ -22,6 +22,8 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+
+import androidx.constraintlayout.widget.Group;
 import androidx.core.content.ContextCompat;
 
 import android.util.TypedValue;
@@ -118,7 +120,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     }
 
     public ObservationCursorAdapter(Context context, Cursor c, boolean isGrid, GridView grid) {
-        super(context, isGrid ? R.layout.observation_grid_item : R.layout.list_item, c, new String[] {}, new int[] {});
+        super(context, isGrid ? R.layout.observation_grid_item : R.layout.observation_list_item, c, new String[] {}, new int[] {});
 
         Logger.tag(TAG).debug("initialize");
 
@@ -380,8 +382,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         public ImageView obsIconicImage;
         public TextView speciesGuess;
         public TextView dateObserved;
-        public ViewGroup commentIdContainer;
-        public ViewGroup leftContainer;
+        public View commentIdContainer;
         public View progress;
         public View progressInner;
         public View soundsIndicator;
@@ -411,8 +412,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             obsIconicImage = (ImageView) view.findViewById(R.id.observation_iconic_pic);
             speciesGuess = (TextView) view.findViewById(R.id.species_guess);
             dateObserved = (TextView) view.findViewById(R.id.date);
-            commentIdContainer = (ViewGroup) view.findViewById(R.id.comment_id_container);
-            leftContainer = (ViewGroup) view.findViewById(R.id.left_container);
+            commentIdContainer = view.findViewById(R.id.comment_id_container);
 
             commentIcon = (ImageView) view.findViewById(R.id.comment_pic);
             idIcon = (ImageView) view.findViewById(R.id.id_pic);
@@ -430,13 +430,16 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
     }
 
+    // TODO This uses INVISIBLE in multiple locations where we should be using GONE
+    // to maximize screen real estate. I've confirmed the current mix works in list mode, but
+    // before we set everything to GONE we need to debug the grid mode and make sure removing
+    // views does not break the layout
     public View getView(int position, View convertView, ViewGroup parent) {
         final View view = super.getView(position, convertView, parent);
         ViewHolder holder;
         Cursor c = this.getCursor();
 
         Logger.tag(TAG).debug("getView " + position);
-
 
         if (c.getCount() == 0) {
             return view;
@@ -468,13 +471,19 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         ImageView obsIconicImage = holder.obsIconicImage;
         TextView speciesGuess = holder.speciesGuess;
         TextView dateObserved = holder.dateObserved;
-        ViewGroup commentIdContainer = holder.commentIdContainer;
-        ViewGroup leftContainer = holder.leftContainer;
 
         ImageView commentIcon = holder.commentIcon;
         ImageView idIcon = holder.idIcon;
         TextView commentCount = holder.commentCount;
         TextView idCount = holder.idCount;
+
+         View commentIdContainer = holder.commentIdContainer;
+        if (!mIsGrid) {
+            // !isGrid uses a constraintlayout which has no concept of view groups, so we manually
+            // build one. Note: androidx.constraintlayout.widget.Group will not work here
+             commentIdContainer = new DelegatingConstraintViewGroup(mContext,
+                    commentIcon, commentCount, idIcon, idCount);
+        }
 
         TextView placeGuess = holder.placeGuess;
         ImageView locationIcon = holder.locationIcon;
@@ -516,7 +525,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 soundsIndicator.setVisibility(View.GONE);
             }
         }
-
 
         String iconicTaxonName = c.getString(c.getColumnIndexOrThrow(Observation.ICONIC_TAXON_NAME));
 
@@ -575,7 +583,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         if (!mIsGrid) {
             if (observationTimestamp == 0) {
                 // No observation date set - don't show it
-                dateObserved.setVisibility(View.INVISIBLE);
+                dateObserved.setVisibility(View.GONE);
             } else {
                 dateObserved.setVisibility(View.VISIBLE);
                 Timestamp observationDate = new Timestamp(observationTimestamp);
@@ -590,7 +598,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         if (commentsCount + idsCount == 0) {
             // No comments/IDs - don't display the indicator
-            commentIdContainer.setVisibility(View.INVISIBLE);
+            commentIdContainer.setVisibility(View.GONE);
             commentIdContainer.setClickable(false);
         } else {
             commentIdContainer.setClickable(true);
@@ -655,18 +663,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                     mContext.startActivity(intent);
                 }
             });
-
-
-            if (!mIsGrid) {
-                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) leftContainer.getLayoutParams();
-                if (dateObserved.getText().length() > String.format("  %d  %d", idsCount, commentsCount).length()) {
-                    params.addRule(RelativeLayout.LEFT_OF, R.id.date);
-                } else {
-                    params.addRule(RelativeLayout.LEFT_OF, R.id.comment_id_container);
-                }
-
-                leftContainer.setLayoutParams(params);
-            }
         }
 
         Long syncedAt = c.getLong(c.getColumnIndexOrThrow(Observation._SYNCED_AT));
@@ -805,7 +801,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             }
 
             progress.setVisibility(View.VISIBLE);
-            commentIdContainer.setVisibility(View.INVISIBLE);
+            commentIdContainer.setVisibility(View.GONE);
 
         } else if (syncNeeded && (mApp.getObservationIdBeingSynced() != obsId)) {
             // This observation needs to be synced (and waiting to be synced)
@@ -1318,6 +1314,41 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
     public void updateProgress(int observationId, float progress) {
         if (mCurrentProgressBar != null) mCurrentProgressBar.setProgressWithAnimation(progress);
+    }
+
+    /**
+     * Holds a list of Views and passes some View API calls down to each sub-View. Used for
+     * ConstraintLayout (which does not have ViewGroups) so we can keep the same logic for
+     * commentIdContainer in list and grid versions
+     */
+    private static class DelegatingConstraintViewGroup extends View {
+        private final View[] mDelegateViews;
+
+        public DelegatingConstraintViewGroup(Context context, View... views) {
+            super(context);
+            mDelegateViews = views;
+        }
+
+        @Override
+        public void setOnClickListener(OnClickListener listener) {
+            for (View v : mDelegateViews) {
+                v.setOnClickListener(listener);
+            }
+        }
+
+        @Override
+        public void setVisibility(int visibility) {
+            for (View v : mDelegateViews) {
+                v.setVisibility(visibility);
+            }
+        }
+
+        @Override
+        public void setClickable(boolean state) {
+            for (View v : mDelegateViews) {
+                v.setClickable(state);
+            }
+        }
     }
 }
 
