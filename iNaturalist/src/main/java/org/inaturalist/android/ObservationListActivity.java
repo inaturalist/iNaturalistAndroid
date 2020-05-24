@@ -641,9 +641,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                 c = getContentResolver().query(ObservationPhoto.CONTENT_URI, ObservationPhoto.PROJECTION,
                         "((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NULL)) OR " +
-                                "((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NOT NULL) AND (_updated_at > _synced_at) AND (id IS NOT NULL)) OR " +
-                                "(is_deleted = 1)"
-                        , null, ObservationPhoto.DEFAULT_SORT_ORDER);
+                                "((_updated_at IS NOT NULL) AND (_synced_at IS NOT NULL) AND (_updated_at > _synced_at)) OR " +
+                                "(is_deleted = 1)",
+                        null, ObservationPhoto.DEFAULT_SORT_ORDER);
 
                 photoSyncCount = c.getCount();
                 c.close();
