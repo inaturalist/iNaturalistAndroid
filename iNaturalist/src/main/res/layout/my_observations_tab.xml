@@ -32,6 +32,7 @@
             android:textSize="19sp"
             android:textColor="@color/inatapptheme_color"
             android:textStyle="bold"
+            android:maxLines="1"
             android:layout_gravity="center_horizontal"
             android:paddingTop="8dp"
             />
@@ -56,6 +57,8 @@
             android:layout_gravity="center_horizontal"
             android:text="OBSERVATIONS"
             android:paddingBottom="5dp"
+            android:maxLines="1"
+            android:textAllCaps="true"
             tools:ignore="HardcodedText" />
     </LinearLayout>
 </RelativeLayout>
