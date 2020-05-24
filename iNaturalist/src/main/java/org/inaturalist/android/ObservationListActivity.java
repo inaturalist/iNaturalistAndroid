@@ -769,6 +769,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
 
         if (!mApp.loggedIn()) {
+            // TODO this looks like a bug
             if ((mTotalIdentifications > 0) || (mTotalIdentifications > 0)) {
                 mTotalSpecies = 0;
                 mTotalIdentifications = 0;

@@ -146,6 +146,7 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
                     }
                 }
 
+                // TODO we could be passing null to Picasso for url. Ok?
                 Picasso.with(mContext)
                         .load(url)
                         .fit()
