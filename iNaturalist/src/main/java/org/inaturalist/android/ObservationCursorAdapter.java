@@ -472,14 +472,14 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         TextView speciesGuess = holder.speciesGuess;
         TextView dateObserved = holder.dateObserved;
 
-        if (commentIdContainer == null) return view;
+        View commentIdContainer = holder.commentIdContainer;
+        if (mIsGrid && (commentIdContainer == null)) return view;
 
         ImageView commentIcon = holder.commentIcon;
         ImageView idIcon = holder.idIcon;
         TextView commentCount = holder.commentCount;
         TextView idCount = holder.idCount;
 
-         View commentIdContainer = holder.commentIdContainer;
         if (!mIsGrid) {
             // !isGrid uses a constraintlayout which has no concept of view groups, so we manually
             // build one. Note: androidx.constraintlayout.widget.Group will not work here
