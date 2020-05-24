@@ -1621,9 +1621,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
             Logger.tag(TAG).debug(String.format("Updating progress for %d / %d: %f", obsId, obsIdInternal, progress));
 
-            mObservationListAdapter.updateProgress(obsId, progress);
+            mObservationListAdapter.updateProgress(progress);
             mObservationListAdapter.notifyDataSetChanged();
-            mObservationGridAdapter.updateProgress(obsId, progress);
+            mObservationGridAdapter.updateProgress(progress);
             mObservationGridAdapter.notifyDataSetChanged();
 
             mObservationListAdapter.refreshCursor();
