@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,14 +33,13 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
     private final INaturalistApp mApp;
     private List<JSONObject> mItems;
     private Context mContext;
-    private ArrayList<JSONObject> mOriginalItems;
     private int mDimension;
 
+    @SuppressWarnings("WeakerAccess")
     public ObservationGridAdapter(Context context, int dimension, List<JSONObject> objects) {
         super(context, R.layout.guide_taxon_item, objects);
 
-        mItems = objects != null ? objects : new ArrayList<JSONObject>();
-        mOriginalItems = new ArrayList<JSONObject>(mItems);
+        mItems = objects != null ? objects : new ArrayList<>();
         mContext = context;
         mApp = (INaturalistApp) mContext.getApplicationContext();
         mDimension = dimension;
@@ -55,22 +55,23 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
         return mItems.get(index);
     }
 
-    @SuppressLint("NewApi")
+    @NotNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NotNull ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View view = inflater.inflate(R.layout.guide_taxon_item, parent, false);
         JSONObject item = mItems.get(position);
 
-        TextView researchGrade = (TextView) view.findViewById(R.id.is_research_grade);
+        TextView researchGrade = view.findViewById(R.id.is_research_grade);
         researchGrade.setVisibility(item.optString("quality_grade", "none").equals("research") ? View.VISIBLE : View.GONE);
 
+        @SuppressWarnings("ConstantConditions")
         boolean hasSounds = (item.has("sounds")) && (!item.isNull("sounds")) && (item.optJSONArray("sounds").length() > 0);
 
-        ImageView hasSoundsImage = (ImageView) view.findViewById(R.id.has_sounds);
+        ImageView hasSoundsImage = view.findViewById(R.id.has_sounds);
         hasSoundsImage.setVisibility(hasSounds ? View.VISIBLE : View.INVISIBLE);
 
-        TextView idName = (TextView) view.findViewById(R.id.id_name);
+        TextView idName = view.findViewById(R.id.id_name);
         final JSONObject taxon = item.optJSONObject("taxon");
 
         if (taxon != null) {
@@ -85,8 +86,8 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
             idName.setText(R.string.unknown_species);
         }
 
-        final ImageView taxonPic = (ImageView) view.findViewById(R.id.taxon_photo);
-        final ImageView taxonIcon = (ImageView) view.findViewById(R.id.taxon_icon);
+        final ImageView taxonPic = view.findViewById(R.id.taxon_photo);
+        final ImageView taxonIcon = view.findViewById(R.id.taxon_icon);
 
         taxonPic.setLayoutParams(new RelativeLayout.LayoutParams(
                 mDimension, mDimension));
@@ -117,16 +118,19 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
             }
         } else {
             JSONObject observationPhoto;
+            //noinspection TryWithIdenticalCatches
             try {
-                String url;
+                String url = null;
                 observationPhoto = observationPhotos.getJSONObject(0);
 
                 if (isNewApi) {
                     url = observationPhoto.optString("url");
                 } else {
                     JSONObject innerPhoto = observationPhoto.optJSONObject("photo");
-                    url = (innerPhoto.isNull("small_url") ? innerPhoto.optString("original_url") : innerPhoto.optString("small_url"));
-                    if ((url == null) || (url.length() == 0)) url = innerPhoto.optString("url");
+                    if (innerPhoto != null) {
+                        url = (innerPhoto.isNull("small_url") ? innerPhoto.optString("original_url") : innerPhoto.optString("small_url"));
+                        if (url.length() == 0) url = innerPhoto.optString("url");
+                    } else Logger.tag(TAG).warn("photo field not present in json");
                 }
 
                 if ((url != null) && (url.length() > 0)) {
@@ -140,7 +144,6 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
                         // "Regular" observation photo
                         url = url.substring(0, url.lastIndexOf("/") + 1) + "medium" + extension;
                     }
-
                 }
 
                 Picasso.with(mContext)
@@ -158,7 +161,7 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
 
                             @Override
                             public void onError() {
-
+                                Logger.tag(TAG).warn("Picasso error downloading obs url");
                             }
                         });
 

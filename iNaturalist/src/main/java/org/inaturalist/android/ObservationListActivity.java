@@ -1,59 +1,29 @@
 package org.inaturalist.android;
 
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import org.apache.commons.lang3.ArrayUtils;
-import org.inaturalist.android.INaturalistApp.INotificationCallback;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.tinylog.Logger;
-
-import com.evernote.android.state.State;
-
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
-import com.livefront.bridge.Bridge;
-
 import android.annotation.SuppressLint;
-import android.content.ContentValues;
-import android.content.DialogInterface;
-import android.graphics.Typeface;
-import android.os.Handler;
 import android.content.BroadcastReceiver;
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import com.google.android.material.tabs.TabLayout;
-
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
-
-import android.util.Log;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -66,7 +36,35 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ObservationListActivity extends BaseFragmentActivity implements INotificationCallback, DialogInterface.OnClickListener, ObservationCursorAdapter.OnLoadingMoreResultsListener {
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.core.content.ContextCompat;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
+import com.evernote.android.state.State;
+import com.google.android.material.tabs.TabLayout;
+import com.livefront.bridge.Bridge;
+
+import org.apache.commons.lang3.ArrayUtils;
+import org.inaturalist.android.INaturalistApp.INotificationCallback;
+import org.jetbrains.annotations.NotNull;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.tinylog.Logger;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
+
+public class ObservationListActivity extends BaseFragmentActivity implements INotificationCallback,
+        DialogInterface.OnClickListener, ObservationCursorAdapter.OnLoadingMoreResultsListener {
     public static String TAG = "INAT:ObservationListActivity";
 
     public final static String PARAM_FROM_OBS_EDITOR = "from_obs_editor";
@@ -133,17 +131,11 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     @State public int mTotalIdentifications = 0;
     @State public int mTotalSpecies = 0;
 
-    private UserSpeciesAdapter mSpeciesListAdapter;
-    private UserSpeciesAdapter mSpeciesGridAdapter;
-    private UserIdentificationsAdapter mIdentificationsListAdapter;
-    private UserIdentificationsAdapter mIdentificationsGridAdapter;
-
     @State(AndroidStateBundlers.BetterJSONObjectBundler.class) public BetterJSONObject mUser;
     private UserDetailsReceiver mUserDetailsReceiver;
     private ObservationSyncProgressReceiver mObservationSyncProgressReceiver;
 
     private ViewGroup mOnboardingSyncing;
-    private View mOnboardingSyncingClose;
 
     private TextView mAddButtonText;
 
@@ -163,6 +155,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
     private boolean isNetworkAvailable() {
 	    ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    if (connectivityManager == null) return false;
 	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
@@ -188,12 +181,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     @Override
     public void onLoadingMoreResultsFailed() {
         mLoadingMoreResults.setVisibility(View.GONE);
-        (new Handler()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(getApplicationContext(), getResources().getString(R.string.not_connected), Toast.LENGTH_LONG).show();
-            }
-        }, 100);
+        (new Handler()).postDelayed(() -> Toast.makeText(getApplicationContext(),
+                getResources().getString(R.string.not_connected),
+                Toast.LENGTH_LONG).show(), 100);
     }
 
     private class SyncCompleteReceiver extends BroadcastReceiver {
@@ -219,7 +209,15 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
             DecimalFormat formatter = new DecimalFormat("#,###,###");
             SharedPreferences settings = mApp.getPrefs();
-            ((TextView) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.count)).setText(formatter.format(settings.getInt("observation_count", mObservationListAdapter.getCount())));
+            TabLayout.Tab obsTab = mTabLayout.getTabAt(0);
+            if (obsTab != null) {
+                View tabView = obsTab.getCustomView();
+                if (tabView != null) {
+                    TextView obsCount = tabView.findViewById(R.id.count);
+                    obsCount.setText(formatter.format(settings.getInt("observation_count",
+                            mObservationListAdapter.getCount())));
+                } else Logger.tag(TAG).warn("Null observation tab view in SyncCompleteReceiver");
+            } else Logger.tag(TAG).warn("Null observation tab in SyncCompleteReceiver");
 
             mSyncRequested = false;
 
@@ -249,19 +247,13 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 // Decide if to show onboarding message
                 SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
                 boolean hasOnboardedSyncing = prefs.getBoolean("onboarded_syncing", false);
-                if (!intent.getBooleanExtra(INaturalistService.FIRST_SYNC, false)) {
+                if (intent != null && !intent.getBooleanExtra(INaturalistService.FIRST_SYNC, false)) {
                     mOnboardingSyncing.setVisibility(hasOnboardedSyncing || !mApp.loggedIn() ? View.GONE : View.VISIBLE);
                 }
             }
         }
     } 	
-  
-    public static Intent createIntent(Context context) {
-        Intent i = new Intent(context, ObservationListActivity.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        return i;
-    } 
-    
+
     /** Shows the sync required bottom bar, if needed */
     private void refreshSyncBar() {
         if (mMultiSelectionMode && mSyncingTopBar != null) {
@@ -286,16 +278,18 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         		"((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL)) AND (_updated_at > _created_at)",
         		null, 
         		Observation.SYNC_ORDER);
-        c.moveToFirst();
-        while (!c.isAfterLast()) {
-            Long obsId = c.getLong(c.getColumnIndex(Observation._ID));
-            obsToSync.put(obsId, true);
-            Logger.tag(TAG).debug("refreshSyncBar - adding updated obs - " + obsId);
-            c.moveToNext();
+        if (c != null) {
+            c.moveToFirst();
+            while (!c.isAfterLast()) {
+                Long obsId = c.getLong(c.getColumnIndex(Observation._ID));
+                obsToSync.put(obsId, true);
+                Logger.tag(TAG).debug("refreshSyncBar - adding updated obs - " + obsId);
+                c.moveToNext();
+            }
+
+            c.close();
         }
 
-        c.close();
-        
         Cursor opc = getContentResolver().query(ObservationPhoto.CONTENT_URI,
         		ObservationPhoto.PROJECTION,
             "((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NULL)) OR " +
@@ -305,17 +299,18 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             ObservationPhoto._ID);
 
         boolean photosChanged = false;
-        opc.moveToFirst();
-        while (!opc.isAfterLast()) {
-            Long obsId = opc.getLong(opc.getColumnIndex(ObservationPhoto._OBSERVATION_ID));
-            obsToSync.put(obsId, true);
-            Logger.tag(TAG).debug("refreshSyncBar - adding photo for obs - " + obsId + ": photo = " + (new ObservationPhoto(opc)).toString());
-            opc.moveToNext();
-            photosChanged = true;
+        if (opc != null) {
+            opc.moveToFirst();
+            while (!opc.isAfterLast()) {
+                Long obsId = opc.getLong(opc.getColumnIndex(ObservationPhoto._OBSERVATION_ID));
+                obsToSync.put(obsId, true);
+                Logger.tag(TAG).debug("refreshSyncBar - adding photo for obs - " + obsId + ": photo = " + (new ObservationPhoto(opc)).toString());
+                opc.moveToNext();
+                photosChanged = true;
+            }
+
+            opc.close();
         }
-
-        opc.close();
-
 
         Cursor osc = getContentResolver().query(ObservationSound.CONTENT_URI,
             ObservationSound.PROJECTION,
@@ -325,16 +320,18 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             ObservationSound._ID);
 
         boolean soundsChanged = false;
-        osc.moveToFirst();
-        while (!osc.isAfterLast()) {
-            Long obsId = osc.getLong(osc.getColumnIndex(ObservationSound._OBSERVATION_ID));
-            obsToSync.put(obsId, true);
-            Logger.tag(TAG).debug("refreshSyncBar - adding sound for obs - " + obsId + ": sound = " + (new ObservationSound(osc)).toString());
-            osc.moveToNext();
-            soundsChanged = true;
-        }
+        if (osc != null) {
+            osc.moveToFirst();
+            while (!osc.isAfterLast()) {
+                Long obsId = osc.getLong(osc.getColumnIndex(ObservationSound._OBSERVATION_ID));
+                obsToSync.put(obsId, true);
+                Logger.tag(TAG).debug("refreshSyncBar - adding sound for obs - " + obsId + ": sound = " + (new ObservationSound(osc)).toString());
+                osc.moveToNext();
+                soundsChanged = true;
+            }
 
-        osc.close();
+            osc.close();
+        }
 
         Logger.tag(TAG).debug("refreshSyncBar - total - " + obsToSync.keySet().size());
 
@@ -371,7 +368,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         setTitle(R.string.observations);
 
-        getSupportActionBar().setElevation(0);
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) ab.setElevation(0);
 
         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_ME);
 
@@ -387,7 +385,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             if (isGridArray != null) {
                 int i = 0;
                 for (String value : isGridArray.split(",")) {
-                    mIsGrid[i] = Boolean.valueOf(value);
+                    mIsGrid[i] = Boolean.parseBoolean(value);
                     i++;
                 }
             }
@@ -462,14 +460,24 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 mObservationsEmpty.setText(R.string.downloading_observations);
                 mObservationsEmptyIcon.setVisibility(View.GONE);
                 mLoadingObservations.setVisibility(View.VISIBLE);
-                ((TextView) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.count)).setVisibility(View.GONE);
-                ((ProgressBar) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.loading)).setVisibility(View.VISIBLE);
+                TabLayout.Tab tab = mTabLayout.getTabAt(0);
+                if (tab == null) {
+                    Logger.tag(TAG).warn("Loading observations with no 0-tab");
+                } else {
+                    View tabView = tab.getCustomView();
+                    if (tabView == null) {
+                        Logger.tag(TAG).warn("Loading observations with no 0-tab view");
+                    } else {
+                        tabView.findViewById(R.id.count).setVisibility(View.GONE);
+                        tabView.findViewById(R.id.loading).setVisibility(View.VISIBLE);
+                    }
+                }
 
                 mObservationsGrid.setVisibility(View.GONE);
                 mObservationsList.setVisibility(View.GONE);
             } else {
-                ((TextView) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.count)).setVisibility(View.VISIBLE);
-                ((ProgressBar) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.loading)).setVisibility(View.GONE);
+                mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.count).setVisibility(View.VISIBLE);
+                mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.loading).setVisibility(View.GONE);
                 SharedPreferences settings = mApp.getPrefs();
                 ((TextView) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.count)).setText(formatter.format(settings.getInt("observation_count", mObservationListAdapter.getCount())));
                 mLoadingObservations.setVisibility(View.GONE);
@@ -499,27 +507,29 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         if (mLoadingSpecies != null) {
             if ((mSpecies == null) && (mApp.loggedIn())) {
-                ((TextView) mTabLayout.getTabAt(1).getCustomView().findViewById(R.id.count)).setVisibility(View.GONE);
-                ((ProgressBar) mTabLayout.getTabAt(1).getCustomView().findViewById(R.id.loading)).setVisibility(View.VISIBLE);
+                mTabLayout.getTabAt(1).getCustomView().findViewById(R.id.count).setVisibility(View.GONE);
+                mTabLayout.getTabAt(1).getCustomView().findViewById(R.id.loading).setVisibility(View.VISIBLE);
                 mLoadingSpecies.setVisibility(View.VISIBLE);
                 mSpeciesEmpty.setVisibility(View.GONE);
                 mSpeciesEmptyIcon.setVisibility(View.GONE);
                 mSpeciesList.setVisibility(View.GONE);
                 mSpeciesGrid.setVisibility(View.GONE);
             } else {
-                ((TextView) mTabLayout.getTabAt(1).getCustomView().findViewById(R.id.count)).setVisibility(View.VISIBLE);
-                ((ProgressBar) mTabLayout.getTabAt(1).getCustomView().findViewById(R.id.loading)).setVisibility(View.GONE);
+                mTabLayout.getTabAt(1).getCustomView().findViewById(R.id.count).setVisibility(View.VISIBLE);
+                mTabLayout.getTabAt(1).getCustomView().findViewById(R.id.loading).setVisibility(View.GONE);
                 ((TextView) mTabLayout.getTabAt(1).getCustomView().findViewById(R.id.count)).setText(formatter.format(mTotalSpecies));
                 mLoadingSpecies.setVisibility(View.GONE);
 
+                UserSpeciesAdapter mSpeciesGridAdapter;
+                UserSpeciesAdapter mSpeciesListAdapter;
                 if ((mSpecies == null) || (mSpecies.size() == 0)) {
                     mSpeciesEmpty.setVisibility(View.VISIBLE);
                     mSpeciesEmptyIcon.setVisibility(View.VISIBLE);
                     mSpeciesList.setVisibility(View.GONE);
                     mSpeciesGrid.setVisibility(View.GONE);
 
-                    mSpeciesListAdapter = new UserSpeciesAdapter(this, new ArrayList<JSONObject>());
-                    mSpeciesGridAdapter = new UserSpeciesAdapter(this, new ArrayList<JSONObject>(), UserSpeciesAdapter.VIEW_TYPE_GRID, mSpeciesGrid);
+                    mSpeciesListAdapter = new UserSpeciesAdapter(this, new ArrayList<>());
+                    mSpeciesGridAdapter = new UserSpeciesAdapter(this, new ArrayList<>(), UserSpeciesAdapter.VIEW_TYPE_GRID, mSpeciesGrid);
                 } else {
                     mSpeciesEmpty.setVisibility(View.GONE);
                     mSpeciesEmptyIcon.setVisibility(View.GONE);
@@ -549,9 +559,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                                 (mSpecies != null) && (mSpecies.size() > 0)) {
                             // The end has been reached - show the more species button
                             mShowMoreSpecies.setVisibility(View.VISIBLE);
-                        } else {
-                            mShowMoreSpecies.setVisibility(View.GONE);
-                        }
+                        } else mShowMoreSpecies.setVisibility(View.GONE);
                     }
 
                     @Override
@@ -567,27 +575,29 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         if (mLoadingIdentifications != null) {
             if ((mIdentifications == null) && (mApp.loggedIn())) {
-                ((TextView) mTabLayout.getTabAt(2).getCustomView().findViewById(R.id.count)).setVisibility(View.GONE);
-                ((ProgressBar) mTabLayout.getTabAt(2).getCustomView().findViewById(R.id.loading)).setVisibility(View.VISIBLE);
+                mTabLayout.getTabAt(2).getCustomView().findViewById(R.id.count).setVisibility(View.GONE);
+                mTabLayout.getTabAt(2).getCustomView().findViewById(R.id.loading).setVisibility(View.VISIBLE);
                 mLoadingIdentifications.setVisibility(View.VISIBLE);
                 mIdentificationsEmpty.setVisibility(View.GONE);
                 mIdentificationsEmptyIcon.setVisibility(View.GONE);
                 mIdentificationsList.setVisibility(View.GONE);
                 mIdentificationsGrid.setVisibility(View.GONE);
             } else {
-                ((TextView) mTabLayout.getTabAt(2).getCustomView().findViewById(R.id.count)).setVisibility(View.VISIBLE);
-                ((ProgressBar) mTabLayout.getTabAt(2).getCustomView().findViewById(R.id.loading)).setVisibility(View.GONE);
+                mTabLayout.getTabAt(2).getCustomView().findViewById(R.id.count).setVisibility(View.VISIBLE);
+                mTabLayout.getTabAt(2).getCustomView().findViewById(R.id.loading).setVisibility(View.GONE);
                 ((TextView) mTabLayout.getTabAt(2).getCustomView().findViewById(R.id.count)).setText(formatter.format(mTotalIdentifications));
                 mLoadingIdentifications.setVisibility(View.GONE);
 
+                UserIdentificationsAdapter mIdentificationsGridAdapter;
+                UserIdentificationsAdapter mIdentificationsListAdapter;
                 if ((mIdentifications == null) || (mIdentifications.size() == 0)) {
                     mIdentificationsEmpty.setVisibility(View.VISIBLE);
                     mIdentificationsEmptyIcon.setVisibility(View.VISIBLE);
                     mIdentificationsList.setVisibility(View.GONE);
                     mIdentificationsGrid.setVisibility(View.GONE);
 
-                    mIdentificationsListAdapter = new UserIdentificationsAdapter(this, new ArrayList<JSONObject>(), mApp.currentUserLogin());
-                    mIdentificationsGridAdapter = new UserIdentificationsAdapter(this, new ArrayList<JSONObject>(), mApp.currentUserLogin(), true, mIdentificationsGrid);
+                    mIdentificationsListAdapter = new UserIdentificationsAdapter(this, new ArrayList<>(), mApp.currentUserLogin());
+                    mIdentificationsGridAdapter = new UserIdentificationsAdapter(this, new ArrayList<>(), mApp.currentUserLogin(), true, mIdentificationsGrid);
                 } else {
                     mIdentificationsEmpty.setVisibility(View.GONE);
                     mIdentificationsEmptyIcon.setVisibility(View.GONE);
@@ -636,17 +646,20 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                         "((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL) OR (is_deleted = 1))",
                         null,
                         Observation.SYNC_ORDER);
-                syncCount = c.getCount();
-                c.close();
+                if (c != null) {
+                    syncCount = c.getCount();
+                    c.close();
+                }
 
                 c = getContentResolver().query(ObservationPhoto.CONTENT_URI, ObservationPhoto.PROJECTION,
                         "((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NULL)) OR " +
                                 "((_updated_at IS NOT NULL) AND (_synced_at IS NOT NULL) AND (_updated_at > _synced_at)) OR " +
                                 "(is_deleted = 1)",
                         null, ObservationPhoto.DEFAULT_SORT_ORDER);
-
-                photoSyncCount = c.getCount();
-                c.close();
+                if (c != null) {
+                    photoSyncCount = c.getCount();
+                    c.close();
+                }
 
                 Cursor osc = getContentResolver().query(ObservationSound.CONTENT_URI,
                         new String[]{
@@ -660,13 +673,14 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                         null,
                         ObservationSound._ID);
 
-                osc.moveToFirst();
-                soundSyncCount = osc.getCount();
-                osc.close();
-
+                if (osc != null) {
+                    osc.moveToFirst();
+                    soundSyncCount = osc.getCount();
+                    osc.close();
+                }
             }
 
-            Logger.tag(TAG).debug(String.format("triggerSyncIfNeeded: hasOldOBs: %b; syncCount: %d; photoSyncCount: %d; mUserCanceledSync: %b",
+            Logger.tag(TAG).debug(String.format(Locale.ENGLISH, "triggerSyncIfNeeded: hasOldOBs: %b; syncCount: %d; photoSyncCount: %d; mUserCanceledSync: %b",
                     hasOldObs, syncCount, photoSyncCount, mUserCanceledSync));
 
 
@@ -693,8 +707,11 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 "(photo_filename IS NULL) AND (photo_url IS NULL)",
                 null,
                 ObservationPhoto.DEFAULT_SORT_ORDER);
-        int count = c.getCount();
-        c.close();
+        int count = 0;
+        if (c != null) {
+            count = c.getCount();
+            c.close();
+        }
 
         return count > 0;
     }
@@ -747,11 +764,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         }
 
         if (mFromObsEdit) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                finishAndRemoveTask();
-            } else {
-                finish();
-            }
+            finishAndRemoveTask();
         }
 
 
@@ -798,9 +811,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         if (mLoadingObservations != null) {
             if (mIsGrid[0]) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    mObservationsGrid.setSelectionFromTop(mLastIndex, mLastTop);
-                }
+                mObservationsGrid.setSelectionFromTop(mLastIndex, mLastTop);
             } else {
                 ListView lv = mObservationsList;
                 lv.setSelectionFromTop(mLastIndex, mLastTop);
@@ -827,12 +838,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 if (!app.getAutoSync()) mCancelSync.setText(R.string.stop);
             }
 
-            (new Handler()).postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if (mApp.loggedIn() && mApp.getIsSyncing() && (mObservationListAdapter.getCount() == 0)) {
-                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.downloading_observations), Toast.LENGTH_LONG).show();
-                    }
+            (new Handler()).postDelayed(() -> {
+                if (mApp.loggedIn() && mApp.getIsSyncing() && (mObservationListAdapter.getCount() == 0)) {
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.downloading_observations), Toast.LENGTH_LONG).show();
                 }
             }, 100);
 
@@ -841,8 +849,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 // Show a "downloading ..." message instead of "no observations yet"
                 mObservationsEmpty.setText(R.string.downloading_observations);
                 mLoadingObservations.setVisibility(View.VISIBLE);
-                ((TextView) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.count)).setVisibility(View.GONE);
-                ((ProgressBar) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.loading)).setVisibility(View.VISIBLE);
+                mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.count).setVisibility(View.GONE);
+                mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.loading).setVisibility(View.VISIBLE);
 
                 refreshViewState();
                 getUserDetails(INaturalistService.ACTION_GET_SPECIFIC_USER_DETAILS);
@@ -872,12 +880,13 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     }
     
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NotNull Bundle outState) {
         super.onSaveInstanceState(outState);
         Bridge.saveInstanceState(this, outState);
     }
  
     
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     private boolean isLoggedIn() {
         SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         return prefs.getString("username", null) != null;
@@ -887,21 +896,18 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 	public void onNotification(String title, final String content) {
 		mLastMessage = content;
 
-		runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (mSyncingStatus != null) {
-                    mSyncingStatus.setText(content);
-                    int visibility;
-                    if (mApp.loggedIn() && mApp.getIsSyncing() && (mObservationListAdapter.getCount() == 0)) {
-                        visibility = View.GONE;
-                    } else {
-                        visibility = mApp.getIsSyncing() ? View.VISIBLE : View.GONE;
-                    }
-                    mSyncingTopBar.setVisibility(visibility);
-                    mObservationListAdapter.refreshCursor();
-                    mObservationGridAdapter.refreshCursor();
+		runOnUiThread(() -> {
+            if (mSyncingStatus != null) {
+                mSyncingStatus.setText(content);
+                int visibility;
+                if (mApp.loggedIn() && mApp.getIsSyncing() && (mObservationListAdapter.getCount() == 0)) {
+                    visibility = View.GONE;
+                } else {
+                    visibility = mApp.getIsSyncing() ? View.VISIBLE : View.GONE;
                 }
+                mSyncingTopBar.setVisibility(visibility);
+                mObservationListAdapter.refreshCursor();
+                mObservationGridAdapter.refreshCursor();
             }
         });
 	}
@@ -915,7 +921,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
 
-            if (!action.equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
+            if (action == null || !action.equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
                 return;
             }
 
@@ -931,21 +937,13 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
     private void onRefreshView(final SwipeRefreshLayout refreshView) {
         if (!isNetworkAvailable() || !isLoggedIn()) {
-            Thread t = (new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        Logger.tag(TAG).error(e);
-                    }
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            refreshView.setRefreshing(false);
-                        }
-                    });
+            Thread t = (new Thread(() -> {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    Logger.tag(TAG).error(e);
                 }
+                runOnUiThread(() -> refreshView.setRefreshing(false));
             }));
             t.start();
             if (!isNetworkAvailable()) {
@@ -1036,6 +1034,11 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         // Find all observations with unread notifications
         Cursor cursor = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "((last_comments_count < comments_count) OR (last_identifications_count < identifications_count)) AND (id IS NOT NULL)", null, Observation.DEFAULT_SORT_ORDER);
 
+        if (cursor == null) {
+            Logger.tag(TAG).warn("Null cursor from markAllObservationsAsRead");
+            return;
+        }
+
         if (cursor.getCount() == 0) {
             return;
         }
@@ -1050,7 +1053,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             // accidentally consider this an updated record)
             cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
 
-            int count = getContentResolver().update(ContentUris.withAppendedId(Observation.CONTENT_URI, bc.getInt(Observation._ID)), cv, null, null);
         } while (cursor.moveToNext());
 
         mObservationListAdapter.refreshCursor();
@@ -1061,7 +1063,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         final int PAGE_COUNT = 3;
         private Context mContext;
 
-        public ObservationsPageAdapter(Context context) {
+        ObservationsPageAdapter(Context context) {
             mContext = context;
         }
 
@@ -1070,79 +1072,73 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             return PAGE_COUNT;
         }
 
+        @NotNull
         @Override
-        public Object instantiateItem(ViewGroup collection, int position) {
+        public Object instantiateItem(@NotNull ViewGroup collection, int position) {
             LayoutInflater inflater = LayoutInflater.from(mContext);
             ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.observations_list_grid, collection, false);
 
             Logger.tag(TAG).debug("instantiateItem - " + position);
 
-            ((ViewGroup) layout.findViewById(R.id.loading_more_results)).setVisibility(View.GONE);
+            layout.findViewById(R.id.loading_more_results).setVisibility(View.GONE);
 
             mApp.setStringResourceForView(layout, R.id.onboarding_syncing_close, "got_it_all_caps", "got_it");
 
+            View.OnClickListener showMore = view -> {
+                // Show explore screen with filtering by on this project, globally (not current user location)
+                ExploreSearchFilters searchFilters = new ExploreSearchFilters();
+                searchFilters.isCurrentLocation = false;
+                searchFilters.mapBounds = null;
+                searchFilters.place = null;
+                searchFilters.qualityGrade = new HashSet<>();
+                searchFilters.user = mUser.getJSONObject();
 
-            View.OnClickListener showMore = new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // Show explore screen with filtering by on this project, globally (not current user location)
-                    ExploreSearchFilters searchFilters = new ExploreSearchFilters();
-                    searchFilters.isCurrentLocation = false;
-                    searchFilters.mapBounds = null;
-                    searchFilters.place = null;
-                    searchFilters.qualityGrade = new HashSet<>();
-                    searchFilters.user = mUser.getJSONObject();
+                Intent intent = new Intent(ObservationListActivity.this, ExploreActivity.class);
+                intent.putExtra(ExploreActivity.SEARCH_FILTERS, searchFilters);
+                int activeTab = ExploreActivity.VIEW_TYPE_OBSERVATIONS;
 
-                    Intent intent = new Intent(ObservationListActivity.this, ExploreActivity.class);
-                    intent.putExtra(ExploreActivity.SEARCH_FILTERS, searchFilters);
-                    int activeTab = ExploreActivity.VIEW_TYPE_OBSERVATIONS;
-
-                    if (view == mShowMoreSpecies) {
-                        activeTab = ExploreActivity.VIEW_TYPE_SPECIES;
-                    } else if (view == mShowMoreIdentifications) {
-                        activeTab = ExploreActivity.VIEW_TYPE_IDENTIFIERS;
-                    }
-
-                    intent.putExtra(ExploreActivity.ACTIVE_TAB, activeTab);
-                    startActivity(intent);
+                if (view == mShowMoreSpecies) {
+                    activeTab = ExploreActivity.VIEW_TYPE_SPECIES;
+                } else if (view == mShowMoreIdentifications) {
+                    activeTab = ExploreActivity.VIEW_TYPE_IDENTIFIERS;
                 }
+
+                intent.putExtra(ExploreActivity.ACTIVE_TAB, activeTab);
+                startActivity(intent);
             };
 
             switch (position) {
                 case 2:
-                    mLoadingIdentifications = (ProgressBar) layout.findViewById(R.id.loading);
-                    mIdentificationsEmpty = (TextView) layout.findViewById(R.id.empty);
+                    mLoadingIdentifications = layout.findViewById(R.id.loading);
+                    mIdentificationsEmpty = layout.findViewById(R.id.empty);
                     mIdentificationsEmpty.setText(R.string.no_identifications_found);
-                    mIdentificationsEmptyIcon = (ImageView) layout.findViewById(R.id.empty_icon);
+                    mIdentificationsEmptyIcon = layout.findViewById(R.id.empty_icon);
                     mIdentificationsEmptyIcon.setImageResource(R.drawable.ic_empty_id);
                     mIdentificationsList = layout.findViewById(R.id.list);
-                    ((SwipeRefreshLayout)layout.findViewById(R.id.list_swipe_container)).setEnabled(false);
+                    layout.findViewById(R.id.list_swipe_container).setEnabled(false);
                     mIdentificationsGrid = layout.findViewById(R.id.grid);
-                    ((SwipeRefreshLayout)layout.findViewById(R.id.grid_swipe_container)).setEnabled(false);
-                    mShowMoreIdentifications = (Button) layout.findViewById(R.id.show_more);
+                    layout.findViewById(R.id.grid_swipe_container).setEnabled(false);
+                    mShowMoreIdentifications = layout.findViewById(R.id.show_more);
                     mShowMoreIdentifications.setText(R.string.see_more_identifications);
 
                     layout.findViewById(R.id.syncing_top_bar).setVisibility(View.GONE);
                     layout.findViewById(R.id.add_observation).setVisibility(View.GONE);
 
-                    OnItemClickListener onIdentificationsClick = new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                            JSONObject item = (JSONObject) view.getTag();
-                            Intent intent = new Intent(ObservationListActivity.this, ObservationViewerActivity.class);
-                            intent.putExtra("observation", item.optJSONObject("observation").toString());
-                            intent.putExtra("read_only", true);
-                            intent.putExtra("reload", true);
-                            startActivity(intent);
+                    OnItemClickListener onIdentificationsClick = (adapterView, view, i, l) -> {
+                        JSONObject item = (JSONObject) view.getTag();
+                        Intent intent = new Intent(ObservationListActivity.this, ObservationViewerActivity.class);
+                        intent.putExtra("observation", item.optJSONObject("observation").toString());
+                        intent.putExtra("read_only", true);
+                        intent.putExtra("reload", true);
+                        startActivity(intent);
 
-                            try {
-                                JSONObject eventParams = new JSONObject();
-                                eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_IDENTIFICATIONS_TAB);
+                        try {
+                            JSONObject eventParams = new JSONObject();
+                            eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_IDENTIFICATIONS_TAB);
 
-                                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
-                            } catch (JSONException e) {
-                                Logger.tag(TAG).error(e);
-                            }
+                            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
+                        } catch (JSONException e) {
+                            Logger.tag(TAG).error(e);
                         }
                     };
 
@@ -1154,32 +1150,29 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     break;
 
                 case 1:
-                    mLoadingSpecies = (ProgressBar) layout.findViewById(R.id.loading);
-                    mSpeciesEmpty = (TextView) layout.findViewById(R.id.empty);
+                    mLoadingSpecies = layout.findViewById(R.id.loading);
+                    mSpeciesEmpty = layout.findViewById(R.id.empty);
                     mSpeciesEmpty.setText(R.string.no_species_found);
-                    mSpeciesEmptyIcon = (ImageView) layout.findViewById(R.id.empty_icon);
+                    mSpeciesEmptyIcon = layout.findViewById(R.id.empty_icon);
                     mSpeciesEmptyIcon.setImageResource(R.drawable.ic_empty_leaf);
                     mSpeciesList = layout.findViewById(R.id.list);
-                    ((SwipeRefreshLayout)layout.findViewById(R.id.list_swipe_container)).setEnabled(false);
+                    layout.findViewById(R.id.list_swipe_container).setEnabled(false);
                     mSpeciesGrid = layout.findViewById(R.id.grid);
-                    ((SwipeRefreshLayout)layout.findViewById(R.id.grid_swipe_container)).setEnabled(false);
-                    mShowMoreSpecies = (Button) layout.findViewById(R.id.show_more);
+                    layout.findViewById(R.id.grid_swipe_container).setEnabled(false);
+                    mShowMoreSpecies = layout.findViewById(R.id.show_more);
                     mShowMoreSpecies.setText(R.string.see_more_species);
 
                     layout.findViewById(R.id.syncing_top_bar).setVisibility(View.GONE);
                     layout.findViewById(R.id.add_observation).setVisibility(View.GONE);
 
-                    OnItemClickListener onSpeciesClick = new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                            JSONObject item = (JSONObject) view.getTag();
-                            if (item == null) return;
-                            Intent intent = new Intent(ObservationListActivity.this, TaxonActivity.class);
-                            intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(item));
-                            intent.putExtra(TaxonActivity.OBSERVATION, new BetterJSONObject(item));
-                            intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
-                            startActivity(intent);
-                        }
+                    OnItemClickListener onSpeciesClick = (adapterView, view, i, l) -> {
+                        JSONObject item = (JSONObject) view.getTag();
+                        if (item == null) return;
+                        Intent intent = new Intent(ObservationListActivity.this, TaxonActivity.class);
+                        intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(item));
+                        intent.putExtra(TaxonActivity.OBSERVATION, new BetterJSONObject(item));
+                        intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
+                        startActivity(intent);
                     };
 
                     mSpeciesList.setOnItemClickListener(onSpeciesClick);
@@ -1190,18 +1183,18 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     break;
 
                 case 0:
-                    mLoadingObservations = (ProgressBar) layout.findViewById(R.id.loading);
-                    mObservationsEmpty = (TextView) layout.findViewById(R.id.empty);
+                    mLoadingObservations = layout.findViewById(R.id.loading);
+                    mObservationsEmpty = layout.findViewById(R.id.empty);
                     mObservationsEmpty.setText(R.string.no_observations_found_new);
-                    mObservationsEmptyIcon = (ImageView) layout.findViewById(R.id.empty_icon);
+                    mObservationsEmptyIcon = layout.findViewById(R.id.empty_icon);
                     mObservationsEmptyIcon.setImageResource(R.drawable.ic_empty_binoculars);
                     mListSwipeContainer = layout.findViewById(R.id.list_swipe_container);
                     mObservationsList = layout.findViewById(R.id.list);
-                    ((SwipeRefreshLayout)layout.findViewById(R.id.list_swipe_container)).setEnabled(true);
+                    layout.findViewById(R.id.list_swipe_container).setEnabled(true);
                     mObservationsGrid = layout.findViewById(R.id.grid);
-                    ((SwipeRefreshLayout)layout.findViewById(R.id.grid_swipe_container)).setEnabled(true);
+                    layout.findViewById(R.id.grid_swipe_container).setEnabled(true);
                     mGridSwipeContainer = layout.findViewById(R.id.grid_swipe_container);
-                    mLoadingMoreResults = (ViewGroup) layout.findViewById(R.id.loading_more_results);
+                    mLoadingMoreResults = layout.findViewById(R.id.loading_more_results);
 
                     if (mIsGrid[0]) {
                         mListSwipeContainer.setEnabled(false);
@@ -1211,77 +1204,71 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                         mGridSwipeContainer.setEnabled(false);
                     }
 
-                    mOnboardingSyncing = (ViewGroup) layout.findViewById(R.id.onboarding_syncing);
-                    mOnboardingSyncingClose = layout.findViewById(R.id.onboarding_syncing_close);
+                    mOnboardingSyncing = layout.findViewById(R.id.onboarding_syncing);
+                    View mOnboardingSyncingClose = layout.findViewById(R.id.onboarding_syncing_close);
 
-                    mOnboardingSyncingClose.setOnClickListener(new OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            mOnboardingSyncing.setVisibility(View.GONE);
-                            SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
-                            prefs.edit().putBoolean("onboarded_syncing", true).commit();
-                        }
+                    mOnboardingSyncingClose.setOnClickListener(view -> {
+                        mOnboardingSyncing.setVisibility(View.GONE);
+                        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+                        prefs.edit().putBoolean("onboarded_syncing", true).commit();
                     });
 
-                    OnItemClickListener onClick = new OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                    OnItemClickListener onClick = (adapterView, view, position1, id) -> {
 
-                            if (mMultiSelectionMode) {
-                                // Multi-selection mode - add/remove the observation
-                                boolean selected = false;
+                        if (mMultiSelectionMode) {
+                            // Multi-selection mode - add/remove the observation
+                            boolean selected = false;
 
-                                if (mObsIdsToSync.contains(id)) {
-                                    mObsIdsToSync.remove(id);
-                                } else {
-                                    mObsIdsToSync.add(id);
-                                    selected = true;
-                                }
-
-                                if (mObsIdsToSync.size() == 0) {
-                                    // Exit multi-selection mode in this case
-                                    setMultiSelectionMode(false);
-                                } else {
-                                    mObservationListAdapter.setSelectedObservations(mObsIdsToSync);
-                                    mObservationGridAdapter.setSelectedObservations(mObsIdsToSync);
-
-                                    // Refresh the view of only the selected item
-                                    if (adapterView instanceof  ListView) {
-                                        mObservationListAdapter.setItemSelected(view, selected);
-                                    } else {
-                                        mObservationGridAdapter.setItemSelected(view, selected);
-                                    }
-
-                                    refreshSyncBar();
-                                }
-
-                                return;
+                            if (mObsIdsToSync.contains(id)) {
+                                mObsIdsToSync.remove(id);
+                            } else {
+                                mObsIdsToSync.add(id);
+                                selected = true;
                             }
 
-                            // Regular mode - open up the observation details screen
-
-                            Uri uri = ContentUris.withAppendedId(getIntent().getData(), id);
-
-                            String action = getIntent().getAction();
-                            if (Intent.ACTION_PICK.equals(action) || Intent.ACTION_GET_CONTENT.equals(action)) {
-                                // The caller is waiting for us to return a note selected by
-                                // the user.  The have clicked on one, so return it now.
-                                setResult(RESULT_OK, new Intent().setData(uri));
+                            if (mObsIdsToSync.size() == 0) {
+                                // Exit multi-selection mode in this case
+                                setMultiSelectionMode(false);
                             } else {
-                                if ((!mObservationListAdapter.isLocked(uri)) || (mObservationListAdapter.isLocked(uri) && !mApp.getIsSyncing())) {
-                                    // Launch activity to view/edit the currently selected item
-                                    startActivityForResult(new Intent(Intent.ACTION_VIEW, uri, ObservationListActivity.this, ObservationViewerActivity.class), REQUEST_CODE_OBSERVATION_VIEWER);
+                                mObservationListAdapter.setSelectedObservations(mObsIdsToSync);
+                                mObservationGridAdapter.setSelectedObservations(mObsIdsToSync);
 
-                                    try {
-                                        JSONObject eventParams = new JSONObject();
-                                        eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_ME_TAB);
-
-                                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
-                                    } catch (JSONException e) {
-                                        Logger.tag(TAG).error(e);
-                                    }
-
+                                // Refresh the view of only the selected item
+                                if (adapterView instanceof  ListView) {
+                                    mObservationListAdapter.setItemSelected(view, selected);
+                                } else {
+                                    mObservationGridAdapter.setItemSelected(view, selected);
                                 }
+
+                                refreshSyncBar();
+                            }
+
+                            return;
+                        }
+
+                        // Regular mode - open up the observation details screen
+
+                        Uri uri = ContentUris.withAppendedId(getIntent().getData(), id);
+
+                        String action = getIntent().getAction();
+                        if (Intent.ACTION_PICK.equals(action) || Intent.ACTION_GET_CONTENT.equals(action)) {
+                            // The caller is waiting for us to return a note selected by
+                            // the user.  The have clicked on one, so return it now.
+                            setResult(RESULT_OK, new Intent().setData(uri));
+                        } else {
+                            if ((!mObservationListAdapter.isLocked(uri)) || (mObservationListAdapter.isLocked(uri) && !mApp.getIsSyncing())) {
+                                // Launch activity to view/edit the currently selected item
+                                startActivityForResult(new Intent(Intent.ACTION_VIEW, uri, ObservationListActivity.this, ObservationViewerActivity.class), REQUEST_CODE_OBSERVATION_VIEWER);
+
+                                try {
+                                    JSONObject eventParams = new JSONObject();
+                                    eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_ME_TAB);
+
+                                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
+                                } catch (JSONException e) {
+                                    Logger.tag(TAG).error(e);
+                                }
+
                             }
                         }
                     };
@@ -1289,25 +1276,22 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mObservationsList.setOnItemClickListener(onClick);
                     mObservationsGrid.setOnItemClickListener(onClick);
 
-                    AdapterView.OnItemLongClickListener onLongClick = new AdapterView.OnItemLongClickListener() {
-                        @Override
-                        public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
-                            // Like in Google Photos - long-clicking only adds, doesn't remove
-                            mObsIdsToSync.add(id);
+                    AdapterView.OnItemLongClickListener onLongClick = (adapterView, view, position12, id) -> {
+                        // Like in Google Photos - long-clicking only adds, doesn't remove
+                        mObsIdsToSync.add(id);
 
-                            // Multiple-selection mode
-                            setMultiSelectionMode(true);
+                        // Multiple-selection mode
+                        setMultiSelectionMode(true);
 
-                            return true;
-                        }
+                        return true;
                     };
                     mObservationsList.setOnItemLongClickListener(onLongClick);
                     mObservationsGrid.setOnItemLongClickListener(onLongClick);
 
-                    mSyncingTopBar = (ViewGroup) layout.findViewById(R.id.syncing_top_bar);
+                    mSyncingTopBar = layout.findViewById(R.id.syncing_top_bar);
                     mSyncingTopBar.setVisibility(View.GONE);
-                    mSyncingStatus = (TextView) layout.findViewById(R.id.syncing_status);
-                    mCancelSync = (TextView) layout.findViewById(R.id.cancel_sync);
+                    mSyncingStatus = layout.findViewById(R.id.syncing_status);
+                    mCancelSync = layout.findViewById(R.id.cancel_sync);
 
                     if (mApp.getAutoSync()) {
                         // Auto sync
@@ -1317,67 +1301,64 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                         mCancelSync.setText(R.string.upload);
                     }
 
-                    mCancelSync.setOnClickListener(new OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if (!mUserCanceledSync) {
-                                // User chose to cancel sync
-                                mUserCanceledSync = true;
-                                mApp.setCancelSync(true);
-                                mCancelSync.setText(R.string.resume);
-                                mSyncingStatus.setText(R.string.syncing_paused);
+                    mCancelSync.setOnClickListener(view -> {
+                        if (!mUserCanceledSync) {
+                            // User chose to cancel sync
+                            mUserCanceledSync = true;
+                            mApp.setCancelSync(true);
+                            mCancelSync.setText(R.string.resume);
+                            mSyncingStatus.setText(R.string.syncing_paused);
+
+                            try {
+                                JSONObject eventParams = new JSONObject();
+                                eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_STOP_UPLOAD_BUTTON);
+
+                                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_SYNC_STOPPED, eventParams);
+                            } catch (JSONException e) {
+                                Logger.tag(TAG).error(e);
+                            }
+
+                        } else {
+                            // User chose to resume sync
+                            if (!isNetworkAvailable()) {
+                                try {
+                                    JSONObject eventParams = new JSONObject();
+                                    eventParams.put(AnalyticsClient.EVENT_PARAM_ALERT, getString(R.string.not_connected));
+
+                                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_SYNC_FAILED, eventParams);
+                                } catch (JSONException e) {
+                                    Logger.tag(TAG).error(e);
+                                }
+
+                                Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
+                                return;
+                            } else if (!isLoggedIn()) {
+                                // User not logged-in - redirect to onboarding screen
+                                startActivity(new Intent(ObservationListActivity.this, OnboardingActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+
 
                                 try {
                                     JSONObject eventParams = new JSONObject();
-                                    eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_STOP_UPLOAD_BUTTON);
+                                    eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_AUTH_REQUIRED);
 
                                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_SYNC_STOPPED, eventParams);
                                 } catch (JSONException e) {
                                     Logger.tag(TAG).error(e);
                                 }
-
-                            } else {
-                                // User chose to resume sync
-                                if (!isNetworkAvailable()) {
-                                    try {
-                                        JSONObject eventParams = new JSONObject();
-                                        eventParams.put(AnalyticsClient.EVENT_PARAM_ALERT, getString(R.string.not_connected));
-
-                                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_SYNC_FAILED, eventParams);
-                                    } catch (JSONException e) {
-                                        Logger.tag(TAG).error(e);
-                                    }
-
-                                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
-                                    return;
-                                } else if (!isLoggedIn()) {
-                                    // User not logged-in - redirect to onboarding screen
-                                    startActivity(new Intent(ObservationListActivity.this, OnboardingActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
-
-
-                                    try {
-                                        JSONObject eventParams = new JSONObject();
-                                        eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_AUTH_REQUIRED);
-
-                                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_SYNC_STOPPED, eventParams);
-                                    } catch (JSONException e) {
-                                        Logger.tag(TAG).error(e);
-                                    }
-                                    return;
-                                }
-
-                                Logger.tag(TAG).debug("Start sync by button");
-
-                                mUserCanceledSync = false;
-                                mApp.setCancelSync(false);
-                                mCancelSync.setText(R.string.stop);
-                                mSyncingStatus.setText(R.string.syncing);
-                                // Re-sync
-                                Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
-                                getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                                ContextCompat.startForegroundService(ObservationListActivity.this, serviceIntent);
-
+                                return;
                             }
+
+                            Logger.tag(TAG).debug("Start sync by button");
+
+                            mUserCanceledSync = false;
+                            mApp.setCancelSync(false);
+                            mCancelSync.setText(R.string.stop);
+                            mSyncingStatus.setText(R.string.syncing);
+                            // Re-sync
+                            Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
+                            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                            ContextCompat.startForegroundService(ObservationListActivity.this, serviceIntent);
+
                         }
                     });
 
@@ -1415,16 +1396,13 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     refreshSyncBar();
 
                     mAddButton = layout.findViewById(R.id.add_observation);
-                    mAddButtonText = (TextView) layout.findViewById(R.id.add_observation_text);
+                    mAddButtonText = layout.findViewById(R.id.add_observation_text);
                     mAddButton.setVisibility(View.VISIBLE);
                     mAddButtonText.setVisibility(mObservationListAdapter.getCount() > 0 ? View.GONE : View.VISIBLE);
 
-                    OnClickListener onAddObs = new OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_START);
-                            showNewObsMenu();
-                        }
+                    OnClickListener onAddObs = v -> {
+                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_START);
+                        showNewObsMenu();
                     };
 
                     mAddButton.setOnClickListener(onAddObs);
@@ -1435,8 +1413,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                         // Show a "downloading ..." message instead of "no observations yet"
                         mObservationsEmpty.setText(R.string.downloading_observations);
                         mLoadingObservations.setVisibility(View.VISIBLE);
-                        ((TextView) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.count)).setVisibility(View.GONE);
-                        ((ProgressBar) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.loading)).setVisibility(View.VISIBLE);
+                        mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.count).setVisibility(View.GONE);
+                        mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.loading).setVisibility(View.VISIBLE);
                     }
 
                     break;
@@ -1450,11 +1428,11 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         }
 
         @Override
-        public void destroyItem(ViewGroup collection, int position, Object view) {
+        public void destroyItem(ViewGroup collection, int position, @NotNull Object view) {
             collection.removeView((View) view);
         }
         @Override
-        public boolean isViewFromObject(View view, Object object) {
+        public boolean isViewFromObject(@NotNull View view, @NotNull Object object) {
             return view == object;
         }
     }
@@ -1508,13 +1486,17 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     // Method to add a TabHost
     private void addTab(int position, View tabContent) {
         TabLayout.Tab tab = mTabLayout.getTabAt(position);
-        tab.setCustomView(tabContent);
+        if (tab != null) {
+            tab.setCustomView(tabContent);
+        } else {
+            Logger.tag(TAG).warn("Cannot set view on null tab at pos " + position);
+        }
     }
 
     private View createTabContent(String tabName, int count) {
         ViewGroup view = (ViewGroup) LayoutInflater.from(this).inflate(R.layout.my_observations_tab, null);
-        TextView countText = (TextView) view.findViewById(R.id.count);
-        TextView tabNameText = (TextView) view.findViewById(R.id.tab_name);
+        TextView countText = view.findViewById(R.id.count);
+        TextView tabNameText = view.findViewById(R.id.tab_name);
 
         DecimalFormat formatter = new DecimalFormat("#,###,###");
         countText.setText(formatter.format(count));
@@ -1525,8 +1507,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
     // Tabs Creation
     private void initializeTabs() {
-        mTabLayout = (TabLayout) findViewById(R.id.tabs);
-        mViewPager = (ViewPager) findViewById(R.id.view_pager);
+        mTabLayout = findViewById(R.id.tabs);
+        mViewPager = findViewById(R.id.view_pager);
 
         mViewPager.setOffscreenPageLimit(3); // So we wouldn't have to recreate the views every time
         ObservationsPageAdapter adapter = new ObservationsPageAdapter(this);
@@ -1540,7 +1522,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         TabLayout.OnTabSelectedListener tabListener = new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                TextView tabNameText = (TextView) tab.getCustomView().findViewById(R.id.tab_name);
+                View tabView = tab.getCustomView();
+                if (tabView == null) return;
+                TextView tabNameText = tabView.findViewById(R.id.tab_name);
+                if (tabNameText == null) return;
 
                 tabNameText.setTextColor(Color.parseColor("#000000"));
 
@@ -1550,7 +1535,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
                 View tabView = tab.getCustomView();
-                TextView tabNameText = (TextView) tabView.findViewById(R.id.tab_name);
+                if (tabView == null) return;
+                TextView tabNameText = tabView.findViewById(R.id.tab_name);
+                if (tabNameText == null) return;
 
                 tabNameText.setTypeface(null, Typeface.NORMAL);
                 tabNameText.setTextColor(Color.parseColor("#ACACAC"));
@@ -1596,12 +1583,16 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             mViewType = VIEW_TYPE_OBSERVATIONS;
         }
 
-        if (mViewType.equals(VIEW_TYPE_OBSERVATIONS)) {
-            tabListener.onTabSelected(mTabLayout.getTabAt(0));
-        } else if (mViewType.equals(VIEW_TYPE_SPECIES)) {
-            tabListener.onTabSelected(mTabLayout.getTabAt(1));
-        } else if (mViewType.equals(VIEW_TYPE_IDENTIFICATIONS)) {
-            tabListener.onTabSelected(mTabLayout.getTabAt(2));
+        switch (mViewType) {
+            case VIEW_TYPE_OBSERVATIONS:
+                tabListener.onTabSelected(mTabLayout.getTabAt(0));
+                break;
+            case VIEW_TYPE_SPECIES:
+                tabListener.onTabSelected(mTabLayout.getTabAt(1));
+                break;
+            case VIEW_TYPE_IDENTIFICATIONS:
+                tabListener.onTabSelected(mTabLayout.getTabAt(2));
+                break;
         }
     }
 
@@ -1611,15 +1602,21 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         public void onReceive(Context context, Intent intent) {
             Bundle extras = intent.getExtras();
 
-            Integer obsId = extras.getInt(INaturalistService.OBSERVATION_ID);
-            Integer obsIdInternal = extras.getInt(INaturalistService.OBSERVATION_ID_INTERNAL);
-            Float progress = extras.getFloat(INaturalistService.PROGRESS);
-
-            if ((obsId == null) || (progress == null) || (mObservationListAdapter == null) || (mObservationGridAdapter == null)) {
+            if (extras == null) {
+                Logger.tag(TAG).warn("Null extras in syncProgressReceiver");
                 return;
             }
 
-            Logger.tag(TAG).debug(String.format("Updating progress for %d / %d: %f", obsId, obsIdInternal, progress));
+            int obsId = extras.getInt(INaturalistService.OBSERVATION_ID);
+            int obsIdInternal = extras.getInt(INaturalistService.OBSERVATION_ID_INTERNAL);
+            float progress = extras.getFloat(INaturalistService.PROGRESS);
+
+            if ((mObservationListAdapter == null) || (mObservationGridAdapter == null)) {
+                return;
+            }
+
+            Logger.tag(TAG).debug(String.format(Locale.ENGLISH,
+                    "Updating progress for %d / %d: %f", obsId, obsIdInternal, progress));
 
             mObservationListAdapter.updateProgress(progress);
             mObservationListAdapter.notifyDataSetChanged();
@@ -1636,7 +1633,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         public void onReceive(Context context, Intent intent) {
             Bundle extras = intent.getExtras();
 
-            String username = extras.getString(INaturalistService.USERNAME);
+            String username = null;
+            if (extras != null) {
+                username = extras.getString(INaturalistService.USERNAME);
+            }
 
             if ((username == null) || (mApp.currentUserLogin() == null) || !username.equals(mApp.currentUserLogin())) {
                 // Results returned for another user
@@ -1650,7 +1650,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             }
 
             boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
-            Object object = null;
+            Object object;
             BetterJSONObject resultsObject;
             JSONArray results = null;
 
@@ -1673,9 +1673,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 }
                 refreshViewState();
                 return;
-            }
-
-            if (object != null) {
+            } else {
                 if (intent.getAction().equals(INaturalistService.USER_DETAILS_RESULT)) {
                     // Extended user details
                     mUser = (BetterJSONObject) object;
@@ -1699,7 +1697,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 }
             }
 
-            ArrayList<JSONObject> resultsArray = new ArrayList<JSONObject>();
+            ArrayList<JSONObject> resultsArray = new ArrayList<>();
 
             if (results == null) {
                 refreshViewState();
@@ -1726,17 +1724,19 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             refreshViewState();
         }
 
+        @Nullable
         private String actionToResultsParam(String action) {
-            if (action.equals(INaturalistService.USER_DETAILS_RESULT)) {
-                return INaturalistService.USER;
-            } else if (action.equals(INaturalistService.SPECIES_COUNT_RESULT)) {
-                return INaturalistService.SPECIES_COUNT_RESULT;
-            } else if (action.equals(INaturalistService.USER_OBSERVATIONS_RESULT)) {
-                return INaturalistService.OBSERVATIONS;
-            } else if (action.equals(INaturalistService.IDENTIFICATIONS_RESULT)) {
-                return INaturalistService.IDENTIFICATIONS;
-            } else {
-                return null;
+            switch (action) {
+                case INaturalistService.USER_DETAILS_RESULT:
+                    return INaturalistService.USER;
+                case INaturalistService.SPECIES_COUNT_RESULT:
+                    return INaturalistService.SPECIES_COUNT_RESULT;
+                case INaturalistService.USER_OBSERVATIONS_RESULT:
+                    return INaturalistService.OBSERVATIONS;
+                case INaturalistService.IDENTIFICATIONS_RESULT:
+                    return INaturalistService.IDENTIFICATIONS;
+                default:
+                    return null;
             }
         }
     }
@@ -1751,13 +1751,13 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (!intent.getAction().equals(INaturalistService.UPDATES_RESULT)) {
+            if (intent.getAction() == null ||
+                    !intent.getAction().equals(INaturalistService.UPDATES_RESULT)) {
                 return;
             }
 
             Bundle extras = intent.getExtras();
-            String error = extras.getString("error");
-            if (error != null) {
+            if (extras == null || extras.getString("error") != null) {
                 return;
             }
 
@@ -1775,7 +1775,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             }
 
             JSONArray results = resultsJSON.getJSONArray();
-            ArrayList<JSONObject> resultsArray = new ArrayList<JSONObject>();
 
             if (results == null) {
                 return;
@@ -1842,69 +1841,55 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         mTabLayout.setVisibility(mode ? View.GONE : View.VISIBLE);
 
         if (mode) {
-            getSupportActionBar().setCustomView(R.layout.multi_selection_action_bar);
-            getSupportActionBar().setDisplayShowCustomEnabled(true);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            ActionBar ab = getSupportActionBar();
+            if (ab == null) Logger.tag(TAG).warn("Null ActionBar when entering multi-select");
+            else {
+                ab.setCustomView(R.layout.multi_selection_action_bar);
+                ab.setDisplayShowCustomEnabled(true);
+                ab.setDisplayHomeAsUpEnabled(false);
+            }
             
-            mMultiSelectionObsCount = (TextView) getSupportActionBar().getCustomView().findViewById(R.id.observation_count);
+            mMultiSelectionObsCount = getSupportActionBar().getCustomView().findViewById(R.id.observation_count);
             View exitMultiObs = getSupportActionBar().getCustomView().findViewById(R.id.exit);
 
-            exitMultiObs.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    setMultiSelectionMode(false);
-                }
-            });
+            exitMultiObs.setOnClickListener(view -> setMultiSelectionMode(false));
 
 
             View uploadMultiObs = getSupportActionBar().getCustomView().findViewById(R.id.sync);
-            uploadMultiObs.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // Sync those selected observations only
-                    Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
-                    Long[] obsIds = new Long[mObsIdsToSync.size()];
-                    mObsIdsToSync.toArray(obsIds);
-                    serviceIntent.putExtra(INaturalistService.OBS_IDS_TO_SYNC, ArrayUtils.toPrimitive(obsIds));
-                    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                    ContextCompat.startForegroundService(ObservationListActivity.this, serviceIntent);
+            uploadMultiObs.setOnClickListener(view -> {
+                // Sync those selected observations only
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
+                Long[] obsIds = new Long[mObsIdsToSync.size()];
+                mObsIdsToSync.toArray(obsIds);
+                serviceIntent.putExtra(INaturalistService.OBS_IDS_TO_SYNC, ArrayUtils.toPrimitive(obsIds));
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                ContextCompat.startForegroundService(ObservationListActivity.this, serviceIntent);
 
-                    // Exit multi-batch mode immediately
-                    setMultiSelectionMode(false);
-                }
+                // Exit multi-batch mode immediately
+                setMultiSelectionMode(false);
             });
 
             View deleteMultiObs = getSupportActionBar().getCustomView().findViewById(R.id.delete);
-            deleteMultiObs.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // User chose to delete specific observations
-                    int numObsToDelete = mObsIdsToSync.size();
-                    mHelper.confirm(
-                            getString(R.string.are_you_sure),
-                            getResources().getQuantityString(R.plurals.are_you_sure_you_want_to_delete_observations, numObsToDelete, numObsToDelete),
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    deleteSelectedObservations();
-                                }
-                            },
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-
-                                }
-                            },
-                            getString(R.string.yes),
-                            getString(R.string.no)
-                    );
-                }
+            deleteMultiObs.setOnClickListener(view -> {
+                // User chose to delete specific observations
+                int numObsToDelete = mObsIdsToSync.size();
+                mHelper.confirm(
+                        getString(R.string.are_you_sure),
+                        getResources().getQuantityString(R.plurals.are_you_sure_you_want_to_delete_observations, numObsToDelete, numObsToDelete),
+                        (dialogInterface, i) -> deleteSelectedObservations(),
+                        (dialogInterface, i) -> {},
+                        getString(R.string.yes),
+                        getString(R.string.no)
+                );
             });
 
             mMenu.clear();
         } else {
-            getSupportActionBar().setDisplayShowCustomEnabled(false);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            ActionBar ab = getSupportActionBar();
+            if (ab != null) {
+                ab.setDisplayShowCustomEnabled(false);
+                ab.setDisplayHomeAsUpEnabled(true);
+            }
 
             MenuInflater inflater = getMenuInflater();
             inflater.inflate(R.menu.my_observations_menu, mMenu);
