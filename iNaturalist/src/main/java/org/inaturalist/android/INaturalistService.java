@@ -1,34 +1,48 @@
 package org.inaturalist.android;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.Charset;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
-import java.util.TimeZone;
+import android.annotation.SuppressLint;
+import android.app.IntentService;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.ContentUris;
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.provider.MediaStore;
+import android.widget.Toast;
+
+import androidx.core.app.NotificationCompat;
+
+import com.crashlytics.android.Crashlytics;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.location.LocationServices;
+import com.google.maps.GeoApiContext;
+import com.google.maps.TimeZoneApi;
+import com.google.maps.model.LatLng;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
@@ -65,57 +79,39 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.tinylog.Logger;
 
-import com.crashlytics.android.Crashlytics;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
-import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.maps.GeoApiContext;
-import com.google.maps.TimeZoneApi;
-import com.google.maps.model.LatLng;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
-
-import android.annotation.SuppressLint;
-import android.app.IntentService;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.content.ContentUris;
-import android.content.ContentValues;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.database.SQLException;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.provider.MediaStore;
-
-import androidx.annotation.WorkerThread;
-import androidx.core.app.NotificationCompat;
-
-import android.util.Log;
-import android.widget.Toast;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.TimeZone;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
-@SuppressWarnings({"ConstantConditions", "PointlessBooleanExpression"})
+@SuppressWarnings("ALL")
 public class INaturalistService extends IntentService {
     // How many observations should we initially download for the user
     private static final int INITIAL_SYNC_OBSERVATION_COUNT = 100;
@@ -616,1213 +612,18 @@ public class INaturalistService extends IntentService {
 
 
 
+
         boolean cancelSyncRequested = false;
         boolean syncFailed = false;
         boolean dontStopSync = false;
-        mPreferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
-        mLogin = mPreferences.getString("username", null);
-        mCredentials = mPreferences.getString("credentials", null);
-        mLoginType = LoginType.valueOf(mPreferences.getString("login_type", LoginType.OAUTH_PASSWORD.toString()));
-        mApp = (INaturalistApp) getApplicationContext();
 
         if (intent == null) return;
-
         String action = intent.getAction();
-
         if (action == null) return;
 
-        Logger.tag(TAG).debug("Service: " + action);
-
         try {
-            if (action.equals(ACTION_NEARBY)) {
+            dontStopSync = handleIntentAction(intent);
 
-                Boolean getLocation = intent.getBooleanExtra("get_location", false);
-                final float locationExpansion = intent.getFloatExtra("location_expansion", 0);
-                if (!getLocation) {
-                    getNearbyObservations(intent);
-                } else {
-                    // Retrieve current place before getting nearby observations
-                    getLocation(new IOnLocation() {
-                        @Override
-                        public void onLocation(Location location) {
-                            final Intent newIntent = new Intent(intent);
-
-                            if (location != null) {
-                                if (locationExpansion == 0) {
-                                    newIntent.putExtra("lat", location.getLatitude());
-                                    newIntent.putExtra("lng", location.getLongitude());
-                                } else {
-                                    // Expand place by requested degrees (to make sure results are returned from this API)
-                                    newIntent.putExtra("minx", location.getLongitude() - locationExpansion);
-                                    newIntent.putExtra("miny", location.getLatitude() - locationExpansion);
-                                    newIntent.putExtra("maxx", location.getLongitude() + locationExpansion);
-                                    newIntent.putExtra("maxy", location.getLatitude() + locationExpansion);
-                                }
-                            }
-                            try {
-                                getNearbyObservations(newIntent);
-                            } catch (AuthenticationException e) {
-                                Logger.tag(TAG).error(e);
-                            }
-                        }
-                    });
-                }
-
-            } else if (action.equals(ACTION_FIRST_SYNC)) {
-                mIsSyncing = true;
-                mApp.setIsSyncing(mIsSyncing);
-
-                saveJoinedProjects();
-                boolean success = getUserObservations(INITIAL_SYNC_OBSERVATION_COUNT);
-
-                // Get total obs count
-                BetterJSONObject user = getUserDetails();
-
-                if (user == null) {
-                    throw new SyncFailedException();
-                }
-
-                int totalObsCount = user.getInt("observations_count");
-                mPreferences.edit().putInt("observation_count", totalObsCount).commit();
-
-                Cursor c = getContentResolver().query(Observation.CONTENT_URI,
-                        Observation.PROJECTION,
-                        "(is_deleted = 0 OR is_deleted is NULL) AND (user_login = '" + mLogin + "')",
-                        null,
-                        Observation.DEFAULT_SORT_ORDER);
-                c.moveToLast();
-
-                if (c.getCount() > 0) {
-                    BetterCursor bc = new BetterCursor(c);
-                    int lastId = bc.getInteger(Observation.ID);
-                    mPreferences.edit().putInt("last_downloaded_id", lastId).commit();
-                } else {
-                    // No observations - probably a new user
-
-                    // Update the user's timezone (in case we registered via FB/G+)
-                    getTimezoneByCurrentLocation(new IOnTimezone() {
-                    @Override
-                    public void onTimezone(String timezoneName) {
-                        Logger.tag(TAG).debug("Detected Timezone: " + timezoneName);
-
-                        if (timezoneName != null) {
-                            try {
-                                updateUserTimezone(timezoneName);
-                            } catch (AuthenticationException e) {
-                                Logger.tag(TAG).error(e);
-                            }
-                        }
-                    }
-                });
-
-                }
-                c.close();
-                if (success) {
-                    long lastSync = System.currentTimeMillis();
-                    mPreferences.edit().putLong("last_sync_time", lastSync).commit();
-                }
-                if (!success) throw new SyncFailedException();
-                syncObservationFields();
-                postProjectObservations();
-
-            } else if (action.equals(ACTION_GET_HISTOGRAM)) {
-                int taxonId = intent.getIntExtra(TAXON_ID, 0);
-                boolean researchGrade = intent.getBooleanExtra(RESEARCH_GRADE, false);
-                BetterJSONObject results = getHistogram(taxonId, researchGrade);
-
-                Intent reply = new Intent(HISTOGRAM_RESULT);
-                reply.putExtra(HISTOGRAM_RESULT, results);
-                reply.putExtra(RESEARCH_GRADE, researchGrade);
-                reply.putExtra(TAXON_ID, taxonId);
-
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_GET_POPULAR_FIELD_VALUES)) {
-                int taxonId = intent.getIntExtra(TAXON_ID, 0);
-                BetterJSONObject results = getPopularFieldValues(taxonId);
-
-                Intent reply = new Intent(POPULAR_FIELD_VALUES_RESULT);
-                reply.putExtra(POPULAR_FIELD_VALUES_RESULT, results);
-                reply.putExtra(TAXON_ID, taxonId);
-
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_AGREE_ID)) {
-                int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
-                int taxonId = intent.getIntExtra(TAXON_ID, 0);
-                boolean disagreement = intent.getBooleanExtra(DISAGREEMENT, false);
-                addIdentification(observationId, taxonId, null, disagreement, false);
-
-                // Reload the observation at the end (need to refresh comment/ID list)
-                JSONObject observationJson = getObservationJson(observationId, false, false);
-
-                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
-                if (observationJson != null) {
-                    Observation observation = new Observation(new BetterJSONObject(observationJson));
-                    reply.putExtra(OBSERVATION_RESULT, observation);
-                    reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
-                    sendBroadcast(reply);
-                }
-
-
-            } else if (action.equals(ACTION_RESTORE_ID)) {
-                int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
-                int identificationId = intent.getIntExtra(IDENTIFICATION_ID, 0);
-                restoreIdentification(identificationId);
-
-                // Reload the observation at the end (need to refresh comment/ID list)
-                JSONObject observationJson = getObservationJson(observationId, false, false);
-
-                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
-
-                if (observationJson != null) {
-                    Observation observation = new Observation(new BetterJSONObject(observationJson));
-                    reply.putExtra(OBSERVATION_RESULT, observation);
-                    reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
-                    sendBroadcast(reply);
-                }
-
-
-            } else if (action.equals(ACTION_UPDATE_ID)) {
-                int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
-                int taxonId = intent.getIntExtra(TAXON_ID, 0);
-                int identificationId = intent.getIntExtra(IDENTIFICATION_ID, 0);
-                String body = intent.getStringExtra(IDENTIFICATION_BODY);
-                updateIdentification(observationId, identificationId, taxonId, body);
-
-                // Reload the observation at the end (need to refresh comment/ID list)
-                JSONObject observationJson = getObservationJson(observationId, false, false);
-
-                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
-
-                if (observationJson != null) {
-                    Observation observation = new Observation(new BetterJSONObject(observationJson));
-                    reply.putExtra(OBSERVATION_RESULT, observation);
-                    reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
-                    sendBroadcast(reply);
-                }
-
-
-            } else if (action.equals(ACTION_REMOVE_ID)) {
-                int id = intent.getIntExtra(IDENTIFICATION_ID, 0);
-                int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
-                JSONObject result = removeIdentification(id);
-
-                // Reload the observation at the end (need to refresh comment/ID list)
-                JSONObject observationJson = getObservationJson(observationId, false, false);
-
-                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
-
-                if (observationJson != null) {
-                    Observation observation = new Observation(new BetterJSONObject(observationJson));
-                    reply.putExtra(OBSERVATION_RESULT, observation);
-                    reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
-                    sendBroadcast(reply);
-                }
-
-            } else if (action.equals(ACTION_ADD_FAVORITE)) {
-                int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
-                addFavorite(observationId);
-
-            } else if (action.equals(ACTION_REMOVE_FAVORITE)) {
-                int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
-                removeFavorite(observationId);
-
-            } else if (action.equals(ACTION_GET_ADDITIONAL_OBS)) {
-                int obsCount = getAdditionalUserObservations(20);
-
-                Intent reply = new Intent(ACTION_GET_ADDITIONAL_OBS_RESULT);
-                reply.putExtra(SUCCESS, obsCount > -1);
-                reply.putExtra(OBSERVATION_COUNT, obsCount);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_ADD_IDENTIFICATION)) {
-                int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
-                int taxonId = intent.getIntExtra(TAXON_ID, 0);
-                String body = intent.getStringExtra(IDENTIFICATION_BODY);
-                boolean disagreement = intent.getBooleanExtra(DISAGREEMENT, false);
-                boolean fromVision = intent.getBooleanExtra(FROM_VISION, false);
-                addIdentification(observationId, taxonId, body, disagreement, fromVision);
-
-                // Wait a little before refreshing the observation details - so we'll let the server update the ID
-                // list (otherwise, it won't return the new ID)
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    Logger.tag(TAG).error(e);
-                }
-
-                // Reload the observation at the end (need to refresh comment/ID list)
-                JSONObject observationJson = getObservationJson(observationId, false, false);
-
-                if (observationJson != null) {
-                    Observation observation = new Observation(new BetterJSONObject(observationJson));
-
-                    Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
-                    reply.putExtra(OBSERVATION_RESULT, observation);
-                    reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
-                    sendBroadcast(reply);
-                }
-
-            } else if (action.equals(ACTION_ADD_PROJECT_FIELD)) {
-                int fieldId = intent.getIntExtra(FIELD_ID, 0);
-                addProjectField(fieldId);
-
-            } else if (action.equals(ACTION_REGISTER_USER)) {
-                String email = intent.getStringExtra(EMAIL);
-                String password = intent.getStringExtra(PASSWORD);
-                String username = intent.getStringExtra(USERNAME);
-                String license = intent.getStringExtra(LICENSE);
-
-                getTimezoneByCurrentLocation(new IOnTimezone() {
-                    @Override
-                    public void onTimezone(String timezoneName) {
-                        Logger.tag(TAG).debug("Detected Timezone: " + timezoneName);
-
-                        String error = null;
-                        try {
-                            error = registerUser(email, password, username, license, timezoneName);
-                        } catch (AuthenticationException e) {
-                            Logger.tag(TAG).error(e);
-                            error = e.toString();
-                        }
-
-                        Intent reply = new Intent(ACTION_REGISTER_USER_RESULT);
-                        reply.putExtra(REGISTER_USER_STATUS, error == null);
-                        reply.putExtra(REGISTER_USER_ERROR, error);
-                        sendBroadcast(reply);
-
-                    }
-                });
-
-
-            } else if (action.equals(ACTION_GET_PROJECT_NEWS)) {
-                int projectId = intent.getIntExtra(PROJECT_ID, 0);
-                SerializableJSONArray results = getProjectNews(projectId);
-
-                Intent reply = new Intent(ACTION_PROJECT_NEWS_RESULT);
-                reply.putExtra(RESULTS, results);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_GET_PROJECT_OBSERVATIONS)) {
-                int projectId = intent.getIntExtra(PROJECT_ID, 0);
-                BetterJSONObject results = getProjectObservations(projectId);
-                results = getMinimalObservationResults(results);
-
-                mApp.setServiceResult(ACTION_PROJECT_OBSERVATIONS_RESULT, results);
-                Intent reply = new Intent(ACTION_PROJECT_OBSERVATIONS_RESULT);
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_GET_PROJECT_IDENTIFIERS)) {
-                int projectId = intent.getIntExtra(PROJECT_ID, 0);
-                BetterJSONObject results = getProjectIdentifiers(projectId);
-                results = getMinimalObserverResults(results);
-
-                Intent reply = new Intent(ACTION_PROJECT_IDENTIFIERS_RESULT);
-                mApp.setServiceResult(ACTION_PROJECT_IDENTIFIERS_RESULT, results);
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_GET_PROJECT_OBSERVERS)) {
-                int projectId = intent.getIntExtra(PROJECT_ID, 0);
-                BetterJSONObject results = getProjectObservers(projectId);
-                results = getMinimalObserverResults(results);
-
-                Intent reply = new Intent(ACTION_PROJECT_OBSERVERS_RESULT);
-                mApp.setServiceResult(ACTION_PROJECT_OBSERVERS_RESULT, results);
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_GET_PROJECT_SPECIES)) {
-                int projectId = intent.getIntExtra(PROJECT_ID, 0);
-                BetterJSONObject results = getProjectSpecies(projectId);
-                results = getMinimalSpeciesResults(results);
-
-                Intent reply = new Intent(ACTION_PROJECT_SPECIES_RESULT);
-                mApp.setServiceResult(ACTION_PROJECT_SPECIES_RESULT, results);
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_DELETE_ANNOTATION)) {
-                String uuid = intent.getStringExtra(UUID);
-                BetterJSONObject results = deleteAnnotation(uuid);
-
-                Intent reply = new Intent(DELETE_ANNOTATION_RESULT);
-                reply.putExtra(SUCCESS, results != null);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_DELETE_ANNOTATION_VOTE)) {
-                String uuid = intent.getStringExtra(UUID);
-                BetterJSONObject results = deleteAnnotationVote(uuid);
-
-                Intent reply = new Intent(DELETE_ANNOTATION_VOTE_RESULT);
-                reply.putExtra(SUCCESS, results != null);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_DELETE_ID_CAN_BE_IMPROVED_VOTE)) {
-                int obsId = intent.getIntExtra(OBSERVATION_ID, 0);
-                BetterJSONObject result = deleteIdCanBeImprovedVote(obsId);
-
-                Intent reply = new Intent(DELETE_ID_CAN_BE_IMPROVED_VOTE_RESULT);
-                reply.putExtra(DELETE_ID_CAN_BE_IMPROVED_VOTE_RESULT, result);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_ID_CAN_BE_IMPROVED_VOTE)) {
-                Integer observationId = intent.getIntExtra(OBSERVATION_ID, 0);
-                BetterJSONObject result = voteIdCanBeImproved(observationId, true);
-
-                Intent reply = new Intent(ID_CAN_BE_IMPROVED_RESULT);
-                reply.putExtra(ID_CAN_BE_IMPROVED_RESULT, result);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_ID_CANNOT_BE_IMPROVED_VOTE)) {
-                Integer observationId = intent.getIntExtra(OBSERVATION_ID, 0);
-                BetterJSONObject result = voteIdCanBeImproved(observationId, false);
-
-                Intent reply = new Intent(ID_CANNOT_BE_IMPROVED_RESULT);
-                reply.putExtra(ID_CANNOT_BE_IMPROVED_RESULT, result);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_SET_ANNOTATION_VALUE)) {
-                int obsId = intent.getIntExtra(OBSERVATION_ID, 0);
-                int attributeId = intent.getIntExtra(ATTRIBUTE_ID, 0);
-                int valueId = intent.getIntExtra(VALUE_ID, 0);
-                BetterJSONObject results = setAnnotationValue(obsId, attributeId, valueId);
-
-                Intent reply = new Intent(SET_ANNOTATION_VALUE_RESULT);
-                reply.putExtra(SUCCESS, results != null);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_GET_DATA_QUALITY_METRICS)) {
-                Integer observationId = intent.getIntExtra(OBSERVATION_ID, 0);
-                BetterJSONObject results = getDataQualityMetrics(observationId);
-
-                Intent reply = new Intent(DATA_QUALITY_METRICS_RESULT);
-                reply.putExtra(DATA_QUALITY_METRICS_RESULT, results);
-                sendBroadcast(reply);
-
-
-             } else if (action.equals(ACTION_DELETE_DATA_QUALITY_VOTE)) {
-                Integer observationId = intent.getIntExtra(OBSERVATION_ID, 0);
-                String metric = intent.getStringExtra(METRIC);
-                BetterJSONObject result = deleteDataQualityMetricVote(observationId, metric);
-
-                Intent reply = new Intent(DELETE_DATA_QUALITY_VOTE_RESULT);
-                reply.putExtra(SUCCESS, result != null);
-                sendBroadcast(reply);
-
-
-            } else if (action.equals(ACTION_AGREE_DATA_QUALITY)) {
-                Integer observationId = intent.getIntExtra(OBSERVATION_ID, 0);
-                String metric = intent.getStringExtra(METRIC);
-                BetterJSONObject results = agreeDataQualityMetric(observationId, metric, true);
-
-                Intent reply = new Intent(AGREE_DATA_QUALITY_RESULT);
-                reply.putExtra(SUCCESS, results != null);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_DISAGREE_DATA_QUALITY)) {
-                Integer observationId = intent.getIntExtra(OBSERVATION_ID, 0);
-                String metric = intent.getStringExtra(METRIC);
-                BetterJSONObject results = agreeDataQualityMetric(observationId, metric, false);
-
-                Intent reply = new Intent(DISAGREE_DATA_QUALITY_RESULT);
-                reply.putExtra(SUCCESS, results != null);
-                sendBroadcast(reply);
-
-
-            } else if (action.equals(ACTION_AGREE_ANNOTATION)) {
-                String uuid = intent.getStringExtra(UUID);
-                BetterJSONObject results = agreeAnnotation(uuid, true);
-
-                Intent reply = new Intent(AGREE_ANNOTATION_RESULT);
-                reply.putExtra(SUCCESS, results != null);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_DISAGREE_ANNOTATION)) {
-                String uuid = intent.getStringExtra(UUID);
-                BetterJSONObject results = agreeAnnotation(uuid, false);
-
-                Intent reply = new Intent(DISAGREE_ANNOTATION_RESULT);
-                reply.putExtra(SUCCESS, results != null);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_GET_ALL_ATTRIBUTES)) {
-                BetterJSONObject results = getAllAttributes();
-
-                Intent reply = new Intent(GET_ALL_ATTRIBUTES_RESULT);
-                mApp.setServiceResult(GET_ALL_ATTRIBUTES_RESULT, results);
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_GET_ATTRIBUTES_FOR_TAXON)) {
-                BetterJSONObject taxon = (BetterJSONObject) intent.getSerializableExtra(TAXON);
-                BetterJSONObject results = getAttributesForTaxon(taxon.getJSONObject());
-
-                Intent reply = new Intent(GET_ATTRIBUTES_FOR_TAXON_RESULT);
-                mApp.setServiceResult(GET_ATTRIBUTES_FOR_TAXON_RESULT, results);
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_GET_TAXON_SUGGESTIONS)) {
-                String obsFilename = intent.getStringExtra(OBS_PHOTO_FILENAME);
-                String obsUrl = intent.getStringExtra(OBS_PHOTO_URL);
-                Double longitude = intent.getDoubleExtra(LONGITUDE, 0);
-                Double latitude = intent.getDoubleExtra(LATITUDE, 0);
-                Timestamp observedOn = (Timestamp) intent.getSerializableExtra(OBSERVED_ON);
-                File tempFile = null;
-
-                if (obsFilename == null) {
-                    // It's an online observation - need to download the image first.
-                    try {
-                        tempFile = File.createTempFile("online_photo", ".jpeg", getCacheDir());
-
-                        if (!downloadToFile(obsUrl, tempFile.getAbsolutePath())) {
-                            Intent reply = new Intent(ACTION_GET_TAXON_SUGGESTIONS_RESULT);
-                            reply.putExtra(TAXON_SUGGESTIONS, (Serializable) null);
-                            sendBroadcast(reply);
-                            return;
-                        }
-
-                        obsFilename = tempFile.getAbsolutePath();
-                    } catch (IOException e) {
-                        Logger.tag(TAG).error(e);
-                    }
-
-                }
-
-                // Resize photo to 299x299 max
-                String resizedPhotoFilename = ImageUtils.resizeImage(this, obsFilename, null, 299);
-
-                if (tempFile != null) {
-                    tempFile.delete();
-                }
-
-                BetterJSONObject taxonSuggestions = getTaxonSuggestions(resizedPhotoFilename, latitude, longitude, observedOn);
-
-                File resizedFile = new File(resizedPhotoFilename);
-                resizedFile.delete();
-
-                Intent reply = new Intent(ACTION_GET_TAXON_SUGGESTIONS_RESULT);
-                reply.putExtra(TAXON_SUGGESTIONS, taxonSuggestions);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_GET_TAXON_NEW)) {
-                int taxonId = intent.getIntExtra(TAXON_ID, 0);
-                BetterJSONObject taxon = getTaxonNew(taxonId);
-
-                Intent reply = new Intent(ACTION_GET_TAXON_NEW_RESULT);
-                mApp.setServiceResult(ACTION_GET_TAXON_NEW_RESULT, taxon);
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_GET_TAXON)) {
-                int taxonId = intent.getIntExtra(TAXON_ID, 0);
-                BetterJSONObject taxon = getTaxon(taxonId);
-
-                Intent reply = new Intent(ACTION_GET_TAXON_RESULT);
-                reply.putExtra(TAXON_RESULT, taxon);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_SEARCH_PLACES)) {
-                String query = intent.getStringExtra(QUERY);
-                int page = intent.getIntExtra(PAGE_NUMBER, 1);
-                BetterJSONObject results = searchAutoComplete("places", query, page);
-
-                Intent reply = new Intent(SEARCH_PLACES_RESULT);
-                mApp.setServiceResult(SEARCH_PLACES_RESULT, results);
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_SEARCH_USERS)) {
-                String query = intent.getStringExtra(QUERY);
-                int page = intent.getIntExtra(PAGE_NUMBER, 1);
-                BetterJSONObject results = searchAutoComplete("users", query, page);
-
-                Intent reply = new Intent(SEARCH_USERS_RESULT);
-                mApp.setServiceResult(SEARCH_USERS_RESULT, results);
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                reply.putExtra(QUERY, query);
-                sendBroadcast(reply);
-
-
-            } else if (action.equals(ACTION_SEARCH_TAXA)) {
-                String query = intent.getStringExtra(QUERY);
-                int page = intent.getIntExtra(PAGE_NUMBER, 1);
-                BetterJSONObject results = searchAutoComplete("taxa", query, page);
-
-                Intent reply = new Intent(SEARCH_TAXA_RESULT);
-                mApp.setServiceResult(SEARCH_TAXA_RESULT, results);
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                sendBroadcast(reply);
-
-             } else if (action.equals(ACTION_UPDATE_CURRENT_USER_DETAILS)) {
-                BetterJSONObject params = (BetterJSONObject) intent.getSerializableExtra(USER);
-                BetterJSONObject user = updateCurrentUserDetails(params.getJSONObject());
-
-                Intent reply = new Intent(UPDATE_CURRENT_USER_DETAILS_RESULT);
-                reply.putExtra(USER, user);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_REFRESH_CURRENT_USER_SETTINGS)) {
-                BetterJSONObject user = getCurrentUserDetails();
-
-                if (user != null) {
-                    // Update settings
-                    mApp.setShowScientificNameFirst(user.getJSONObject().optBoolean("prefers_scientific_name_first", false));
-                    JSONArray arr = user.getJSONObject().optJSONArray("roles");
-                    HashSet roles = new HashSet();
-                    for (int i = 0; i < arr.length(); i++) {
-                        roles.add(arr.optString(i));
-                    }
-                    mApp.setUserRoles(roles);
-
-                    Intent reply = new Intent(REFRESH_CURRENT_USER_SETTINGS_RESULT);
-                    reply.putExtra(USER, user);
-                    sendBroadcast(reply);
-                }
-
-            } else if (action.equals(ACTION_DELETE_PINNED_LOCATION)) {
-                String id = intent.getStringExtra(ID);
-
-                boolean success = deletePinnedLocation(id);
-
-            } else if (action.equals(ACTION_PIN_LOCATION)) {
-                Double latitude = intent.getDoubleExtra(LATITUDE, 0);
-                Double longitude = intent.getDoubleExtra(LONGITUDE, 0);
-                Double accuracy = intent.getDoubleExtra(ACCURACY, 0);
-                String geoprivacy = intent.getStringExtra(GEOPRIVACY);
-                String title = intent.getStringExtra(TITLE);
-
-                boolean success = pinLocation(latitude, longitude, accuracy, geoprivacy, title);
-
-
-            } else if (action.equals(ACTION_GET_PLACE_DETAILS)) {
-                long placeId = intent.getIntExtra(PLACE_ID, 0);
-                BetterJSONObject place = getPlaceDetails(placeId);
-
-                Intent reply = new Intent(PLACE_DETAILS_RESULT);
-                reply.putExtra(PLACE, place);
-                sendBroadcast(reply);
-
-
-            } else if (action.equals(ACTION_GET_SPECIFIC_USER_DETAILS)) {
-                String username = intent.getStringExtra(USERNAME);
-                BetterJSONObject user = getUserDetails(username);
-
-                Intent reply = new Intent(USER_DETAILS_RESULT);
-                reply.putExtra(USER, user);
-                reply.putExtra(USERNAME, username);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_GET_CURRENT_LOCATION)) {
-                getLocation(new IOnLocation() {
-                    @Override
-                    public void onLocation(Location location) {
-                        Intent reply = new Intent(GET_CURRENT_LOCATION_RESULT);
-                        reply.putExtra(LOCATION, location);
-                        sendBroadcast(reply);
-                    }
-                });
-
-            } else if (action.equals(ACTION_GET_MISSIONS_BY_TAXON)) {
-                final String username = intent.getStringExtra(USERNAME);
-                final Integer taxonId = intent.getIntExtra(TAXON_ID, 0);
-                final float expandLocationByDegrees = intent.getFloatExtra(EXPAND_LOCATION_BY_DEGREES, 0);
-
-                getLocation(new IOnLocation() {
-                    @Override
-                    public void onLocation(Location location) {
-                        if (location == null) {
-                            // No place
-                            Intent reply = new Intent(MISSIONS_BY_TAXON_RESULT);
-                            mApp.setServiceResult(MISSIONS_BY_TAXON_RESULT, null);
-                            reply.putExtra(IS_SHARED_ON_APP, true);
-                            reply.putExtra(TAXON_ID, taxonId);
-                            sendBroadcast(reply);
-                            return;
-                        }
-
-                        BetterJSONObject missions = getMissions(location, username, taxonId, expandLocationByDegrees);
-                        missions = getMinimalSpeciesResults(missions);
-
-                        Intent reply = new Intent(MISSIONS_BY_TAXON_RESULT);
-                        mApp.setServiceResult(MISSIONS_BY_TAXON_RESULT, missions);
-                        reply.putExtra(IS_SHARED_ON_APP, true);
-                        reply.putExtra(TAXON_ID, taxonId);
-                        sendBroadcast(reply);
-                    }
-                });
-
-            } else if (action.equals(ACTION_GET_TAXON_OBSERVATION_BOUNDS)) {
-                final Integer taxonId = intent.getIntExtra(TAXON_ID, 0);
-                BetterJSONObject bounds = getTaxonObservationsBounds(taxonId);
-
-                Intent reply = new Intent(TAXON_OBSERVATION_BOUNDS_RESULT);
-                reply.putExtra(TAXON_OBSERVATION_BOUNDS_RESULT, bounds);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_GET_RECOMMENDED_MISSIONS)) {
-                final String username = intent.getStringExtra(USERNAME);
-                final float expandLocationByDegrees = intent.getFloatExtra(EXPAND_LOCATION_BY_DEGREES, 0);
-
-                getLocation(new IOnLocation() {
-                    @Override
-                    public void onLocation(Location location) {
-                        if (location == null) {
-                            // No place
-                            Intent reply = new Intent(RECOMMENDED_MISSIONS_RESULT);
-                            mApp.setServiceResult(RECOMMENDED_MISSIONS_RESULT, null);
-                            reply.putExtra(IS_SHARED_ON_APP, true);
-                            sendBroadcast(reply);
-                            return;
-                        }
-
-                        BetterJSONObject missions = getMissions(location, username, null, expandLocationByDegrees);
-                        missions = getMinimalSpeciesResults(missions);
-
-                        Intent reply = new Intent(RECOMMENDED_MISSIONS_RESULT);
-                        mApp.setServiceResult(RECOMMENDED_MISSIONS_RESULT, missions);
-                        reply.putExtra(IS_SHARED_ON_APP, true);
-                        sendBroadcast(reply);
-                    }
-                });
-
-            } else if (action.equals(ACTION_GET_USER_SPECIES_COUNT)) {
-                String username = intent.getStringExtra(USERNAME);
-                BetterJSONObject speciesCount = getUserSpeciesCount(username);
-                speciesCount = getMinimalSpeciesResults(speciesCount);
-
-                Intent reply = new Intent(SPECIES_COUNT_RESULT);
-                mApp.setServiceResult(SPECIES_COUNT_RESULT, speciesCount);
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                reply.putExtra(USERNAME, username);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_GET_LIFE_LIST)) {
-                int lifeListId = intent.getIntExtra(LIFE_LIST_ID, 0);
-                BetterJSONObject lifeList = getUserLifeList(lifeListId);
-
-                Intent reply = new Intent(LIFE_LIST_RESULT);
-                mApp.setServiceResult(LIFE_LIST_RESULT, lifeList);
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_GET_USER_OBSERVATIONS)) {
-                String username = intent.getStringExtra(USERNAME);
-                JSONObject observations = getUserObservations(username);
-                if (observations != null) {
-                    BetterJSONObject minimalObs = getMinimalObservationResults(new BetterJSONObject(observations));
-                    observations = minimalObs != null ? minimalObs.getJSONObject() : null;
-                }
-
-                Intent reply = new Intent(USER_OBSERVATIONS_RESULT);
-                mApp.setServiceResult(USER_OBSERVATIONS_RESULT, observations != null ? new BetterJSONObject(observations) : null);
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                reply.putExtra(USERNAME, username);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_SEARCH_USER_OBSERVATIONS)) {
-                String query = intent.getStringExtra(QUERY);
-                SerializableJSONArray observations = searchUserObservation(query);
-
-                Intent reply = new Intent(USER_SEARCH_OBSERVATIONS_RESULT);
-                mApp.setServiceResult(USER_SEARCH_OBSERVATIONS_RESULT, observations);
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                reply.putExtra(QUERY, query);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_VIEWED_UPDATE)) {
-                Integer obsId = intent.getIntExtra(OBSERVATION_ID, 0);
-                setUserViewedUpdate(obsId);
-
-            } else if (action.equals(ACTION_GET_USER_UPDATES)) {
-                Boolean following = intent.getBooleanExtra(FOLLOWING, false);
-                SerializableJSONArray updates = getUserUpdates(following);
-
-                Intent reply;
-                if (following) {
-                    reply = new Intent(UPDATES_FOLLOWING_RESULT);
-                    mApp.setServiceResult(UPDATES_FOLLOWING_RESULT, updates);
-                } else {
-                    reply = new Intent(UPDATES_RESULT);
-                    mApp.setServiceResult(UPDATES_RESULT, updates);
-                }
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_GET_USER_IDENTIFICATIONS)) {
-                String username = intent.getStringExtra(USERNAME);
-                BetterJSONObject identifications = getUserIdentifications(username);
-                identifications = getMinimalIdentificationResults(identifications);
-
-                Intent reply = new Intent(IDENTIFICATIONS_RESULT);
-                mApp.setServiceResult(IDENTIFICATIONS_RESULT, identifications);
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                reply.putExtra(USERNAME, username);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_EXPLORE_GET_OBSERVERS)) {
-                ExploreSearchFilters filters = (ExploreSearchFilters) intent.getSerializableExtra(FILTERS);
-                int pageNumber = intent.getIntExtra(PAGE_NUMBER, 1);
-                int pageSize = intent.getIntExtra(PAGE_SIZE, EXPLORE_DEFAULT_RESULTS_PER_PAGE);
-                String uuid = intent.getStringExtra(UUID);
-                BetterJSONObject results = getExploreResults("observers", filters, pageNumber, pageSize, null);
-                results = getMinimalObserverResults(results);
-
-                Intent reply = new Intent(EXPLORE_GET_OBSERVERS_RESULT);
-                mApp.setServiceResult(EXPLORE_GET_OBSERVERS_RESULT, results);
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                reply.putExtra(UUID, uuid);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_EXPLORE_GET_IDENTIFIERS)) {
-                ExploreSearchFilters filters = (ExploreSearchFilters) intent.getSerializableExtra(FILTERS);
-                int pageNumber = intent.getIntExtra(PAGE_NUMBER, 1);
-                int pageSize = intent.getIntExtra(PAGE_SIZE, EXPLORE_DEFAULT_RESULTS_PER_PAGE);
-                String uuid = intent.getStringExtra(UUID);
-                BetterJSONObject results = getExploreResults("identifiers", filters, pageNumber, pageSize, null);
-                results = getMinimalObserverResults(results);
-
-                Intent reply = new Intent(EXPLORE_GET_IDENTIFIERS_RESULT);
-                mApp.setServiceResult(EXPLORE_GET_IDENTIFIERS_RESULT, results);
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                reply.putExtra(UUID, uuid);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_EXPLORE_GET_SPECIES)) {
-                ExploreSearchFilters filters = (ExploreSearchFilters) intent.getSerializableExtra(FILTERS);
-                int pageNumber = intent.getIntExtra(PAGE_NUMBER, 1);
-                int pageSize = intent.getIntExtra(PAGE_SIZE, EXPLORE_DEFAULT_RESULTS_PER_PAGE);
-                String uuid = intent.getStringExtra(UUID);
-                BetterJSONObject results = getExploreResults("species_counts", filters, pageNumber, pageSize, null);
-                results = getMinimalSpeciesResults(results);
-
-                Intent reply = new Intent(EXPLORE_GET_SPECIES_RESULT);
-                mApp.setServiceResult(EXPLORE_GET_SPECIES_RESULT, results);
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                reply.putExtra(UUID, uuid);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_EXPLORE_GET_OBSERVATIONS)) {
-                ExploreSearchFilters filters = (ExploreSearchFilters) intent.getSerializableExtra(FILTERS);
-                int pageNumber = intent.getIntExtra(PAGE_NUMBER, 1);
-                int pageSize = intent.getIntExtra(PAGE_SIZE, EXPLORE_DEFAULT_RESULTS_PER_PAGE);
-                String uuid = intent.getStringExtra(UUID);
-                BetterJSONObject observations = getExploreResults(null, filters, pageNumber, pageSize, "observation.id");
-                observations = getMinimalObservationResults(observations);
-
-                Intent reply = new Intent(EXPLORE_GET_OBSERVATIONS_RESULT);
-                mApp.setServiceResult(EXPLORE_GET_OBSERVATIONS_RESULT, observations);
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                reply.putExtra(UUID, uuid);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_ADD_COMMENT)) {
-                int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
-                String body = intent.getStringExtra(COMMENT_BODY);
-                addComment(observationId, body);
-
-                // Wait a little before refreshing the observation details - so we'll let the server update the comment
-                // list (otherwise, it won't return the new comment)
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    Logger.tag(TAG).error(e);
-                }
-
-                // Reload the observation at the end (need to refresh comment/ID list)
-                JSONObject observationJson = getObservationJson(observationId, false, false);
-
-                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
-
-                if (observationJson == null) {
-                    reply.putExtra(OBSERVATION_RESULT, (Serializable)null);
-                    reply.putExtra(OBSERVATION_JSON_RESULT, (String)null);
-                } else {
-                    Observation observation = new Observation(new BetterJSONObject(observationJson));
-
-                    reply.putExtra(OBSERVATION_RESULT, observation);
-                    reply.putExtra(OBSERVATION_JSON_RESULT, observation != null ? observationJson.toString() : null);
-                }
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_UPDATE_COMMENT)) {
-                int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
-                int commentId = intent.getIntExtra(COMMENT_ID, 0);
-                String body = intent.getStringExtra(COMMENT_BODY);
-                updateComment(commentId, observationId, body);
-
-                // Reload the observation at the end (need to refresh comment/ID list)
-                JSONObject observationJson = getObservationJson(observationId, false, false);
-
-                if (observationJson != null) {
-                    Observation observation = new Observation(new BetterJSONObject(observationJson));
-
-                    Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
-                    reply.putExtra(OBSERVATION_RESULT, observation);
-                    reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
-                    sendBroadcast(reply);
-                }
-
-            } else if (action.equals(ACTION_DELETE_COMMENT)) {
-                int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
-                int commentId = intent.getIntExtra(COMMENT_ID, 0);
-                deleteComment(commentId);
-
-                // Reload the observation at the end (need to refresh comment/ID list)
-                JSONObject observationJson = getObservationJson(observationId, false, false);
-
-                if (observationJson != null) {
-                    Observation observation = new Observation(new BetterJSONObject(observationJson));
-
-                    Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
-                    reply.putExtra(OBSERVATION_RESULT, observation);
-                    reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
-                    sendBroadcast(reply);
-                }
-
-            } else if (action.equals(ACTION_GUIDE_XML)) {
-                int guideId = intent.getIntExtra(ACTION_GUIDE_ID, 0);
-                String guideXMLFilename = getGuideXML(guideId);
-
-                if (guideXMLFilename == null) {
-                    // Failed to get the guide XML - try and find the offline version, if available
-                    GuideXML guideXml = new GuideXML(this, String.valueOf(guideId));
-
-                    if (guideXml.isGuideDownloaded()) {
-                        guideXMLFilename = guideXml.getOfflineGuideXmlFilePath();
-                    }
-                }
-
-                Intent reply = new Intent(ACTION_GUIDE_XML_RESULT);
-                reply.putExtra(GUIDE_XML_RESULT, guideXMLFilename);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_CLEAR_OLD_PHOTOS_CACHE)) {
-                // Clear out the old cached photos
-                if (!mIsClearingOldPhotosCache) {
-                    mIsClearingOldPhotosCache = true;
-                    clearOldCachedPhotos();
-                    mIsClearingOldPhotosCache = false;
-                }
-
-
-            } else if (action.equals(ACTION_UPDATE_USER_NETWORK)) {
-                int siteId = intent.getIntExtra(NETWORK_SITE_ID, 0);
-                updateUserNetwork(siteId);
-
-            } else if (action.equals(ACTION_UPDATE_USER_DETAILS)) {
-                String username = intent.getStringExtra(ACTION_USERNAME);
-                String fullName = intent.getStringExtra(ACTION_FULL_NAME);
-                String bio = intent.getStringExtra(ACTION_USER_BIO);
-                String password = intent.getStringExtra(ACTION_USER_PASSWORD);
-                String email = intent.getStringExtra(ACTION_USER_EMAIL);
-                String userPic = intent.getStringExtra(ACTION_USER_PIC);
-                boolean deletePic = intent.getBooleanExtra(ACTION_USER_DELETE_PIC, false);
-
-                JSONObject newUser = updateUser(username, email, password, fullName, bio, userPic, deletePic);
-
-                if ((newUser != null) && (!newUser.has("errors"))) {
-                    SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = prefs.edit();
-
-                    String prevLogin = mLogin;
-                    mLogin = newUser.optString("login");
-                    editor.putString("username", mLogin);
-                    if (!newUser.has("user_icon_url") || newUser.isNull("user_icon_url")) {
-                        editor.putString("user_icon_url", null);
-                    } else {
-                        editor.putString("user_icon_url", newUser.has("medium_user_icon_url") ? newUser.optString("medium_user_icon_url") : newUser.optString("user_icon_url"));
-                    }
-                    editor.putString("user_bio", newUser.optString("description"));
-                    editor.putString("user_email", newUser.optString("email", email));
-                    editor.putString("user_full_name", newUser.optString("name"));
-                    editor.apply();
-
-
-                    if ((prevLogin != null) && (!prevLogin.equals(mLogin))) {
-                        // Update observations with the new username
-                        ContentValues cv = new ContentValues();
-                        cv.put("user_login", mLogin);
-                        // Update its sync at time so we won't update the remote servers later on (since we won't
-                        // accidentally consider this an updated record)
-                        cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
-                        int count = getContentResolver().update(Observation.CONTENT_URI, cv, "(user_login = ?) AND (id IS NOT NULL)", new String[]{prevLogin});
-                        Logger.tag(TAG).debug(String.format("Updated %d synced observations with new user login %s from %s", count, mLogin, prevLogin));
-
-                        cv = new ContentValues();
-                        cv.put("user_login", mLogin);
-                        count = getContentResolver().update(Observation.CONTENT_URI, cv, "(user_login = ?) AND (id IS NULL)", new String[]{ prevLogin });
-                        Logger.tag(TAG).debug(String.format("Updated %d new observations with new user login %s from %s", count, mLogin, prevLogin));
-                    }
-                }
-
-                Intent reply = new Intent(ACTION_UPDATE_USER_DETAILS_RESULT);
-                reply.putExtra(USER, newUser != null ? new BetterJSONObject(newUser) : null);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_GET_USER_DETAILS)) {
-                BetterJSONObject user = null;
-                boolean authenticationFailed = false;
-
-                try {
-                    user = getUserDetails();
-                } catch (AuthenticationException exc) {
-                    // This means the user has changed his password on the website
-                    Logger.tag(TAG).error(exc);
-                    authenticationFailed = true;
-                }
-
-                Intent reply = new Intent(ACTION_GET_USER_DETAILS_RESULT);
-                reply.putExtra(USER, user);
-                reply.putExtra(AUTHENTICATION_FAILED, authenticationFailed);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_TAXA_FOR_GUIDE)) {
-                int guideId = intent.getIntExtra(ACTION_GUIDE_ID, 0);
-                SerializableJSONArray taxa = getTaxaForGuide(guideId);
-
-                mApp.setServiceResult(ACTION_TAXA_FOR_GUIDES_RESULT, taxa);
-                Intent reply = new Intent(ACTION_TAXA_FOR_GUIDES_RESULT);
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_GET_ALL_GUIDES)) {
-                SerializableJSONArray guides = getAllGuides();
-
-                mApp.setServiceResult(ACTION_ALL_GUIDES_RESULT, guides);
-                Intent reply = new Intent(ACTION_ALL_GUIDES_RESULT);
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_GET_MY_GUIDES)) {
-                SerializableJSONArray guides = null;
-                guides = getMyGuides();
-
-                Intent reply = new Intent(ACTION_MY_GUIDES_RESULT);
-                reply.putExtra(GUIDES_RESULT, guides);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_GET_NEAR_BY_GUIDES)) {
-                getLocation(new IOnLocation() {
-                    @Override
-                    public void onLocation(Location location) {
-                        if (location == null) {
-                            // No place enabled
-                            Intent reply = new Intent(ACTION_NEAR_BY_GUIDES_RESULT);
-                            reply.putExtra(GUIDES_RESULT, new SerializableJSONArray());
-                            sendBroadcast(reply);
-
-                        } else {
-                            SerializableJSONArray guides = null;
-                            try {
-                                guides = getNearByGuides(location);
-                            } catch (AuthenticationException e) {
-                                Logger.tag(TAG).error(e);
-                            }
-
-                            Intent reply = new Intent(ACTION_NEAR_BY_GUIDES_RESULT);
-                            reply.putExtra(GUIDES_RESULT, guides);
-                            sendBroadcast(reply);
-                        }
-                    }
-                });
-
-            } else if (action.equals(ACTION_GET_NEARBY_PROJECTS)) {
-                getLocation(new IOnLocation() {
-                    @Override
-                    public void onLocation(Location location) {
-                        if (location == null) {
-                            // No place enabled
-                            Intent reply = new Intent(ACTION_NEARBY_PROJECTS_RESULT);
-                            mApp.setServiceResult(ACTION_NEARBY_PROJECTS_RESULT, new SerializableJSONArray());
-                            reply.putExtra(IS_SHARED_ON_APP, true);
-                            sendBroadcast(reply);
-
-                        } else {
-                            SerializableJSONArray projects = null;
-                            try {
-                                projects = getNearByProjects(location);
-                            } catch (AuthenticationException e) {
-                                Logger.tag(TAG).error(e);
-                            }
-
-                            Intent reply = new Intent(ACTION_NEARBY_PROJECTS_RESULT);
-                            mApp.setServiceResult(ACTION_NEARBY_PROJECTS_RESULT, projects);
-                            reply.putExtra(IS_SHARED_ON_APP, true);
-                            sendBroadcast(reply);
-                        }
-                    }
-                });
-
-            } else if (action.equals(ACTION_GET_FEATURED_PROJECTS)) {
-                SerializableJSONArray projects = getFeaturedProjects();
-
-                Intent reply = new Intent(ACTION_FEATURED_PROJECTS_RESULT);
-                reply.putExtra(PROJECTS_RESULT, projects);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_GET_JOINED_PROJECTS_ONLINE)) {
-                SerializableJSONArray projects = null;
-                if (mCredentials != null) {
-                    projects = getJoinedProjects();
-                }
-
-                Intent reply = new Intent(ACTION_JOINED_PROJECTS_RESULT);
-                mApp.setServiceResult(ACTION_JOINED_PROJECTS_RESULT, projects);
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_GET_JOINED_PROJECTS)) {
-                SerializableJSONArray projects = null;
-                if (mCredentials != null) {
-                    projects = getJoinedProjectsOffline();
-                }
-
-                Intent reply = new Intent(ACTION_JOINED_PROJECTS_RESULT);
-                reply.putExtra(PROJECTS_RESULT, projects);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_REMOVE_OBSERVATION_FROM_PROJECT)) {
-                int observationId = intent.getExtras().getInt(OBSERVATION_ID);
-                int projectId = intent.getExtras().getInt(PROJECT_ID);
-                BetterJSONObject result = removeObservationFromProject(observationId, projectId);
-
-            } else if (action.equals(ACTION_ADD_OBSERVATION_TO_PROJECT)) {
-                int observationId = intent.getExtras().getInt(OBSERVATION_ID);
-                int projectId = intent.getExtras().getInt(PROJECT_ID);
-                BetterJSONObject result = addObservationToProject(observationId, projectId);
-
-                Intent reply = new Intent(ADD_OBSERVATION_TO_PROJECT_RESULT);
-                reply.putExtra(ADD_OBSERVATION_TO_PROJECT_RESULT, result);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_REDOWNLOAD_OBSERVATIONS_FOR_TAXON)) {
-                redownloadOldObservationsForTaxonNames();
-
-            } else if (action.equals(ACTION_DELETE_ACCOUNT)) {
-                boolean success = deleteAccount();
-                Intent reply = new Intent(DELETE_ACCOUNT_RESULT);
-                reply.putExtra(SUCCESS, success);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_SYNC_JOINED_PROJECTS)) {
-                saveJoinedProjects();
-
-            } else if (action.equals(ACTION_GET_CHECK_LIST)) {
-                int id = intent.getExtras().getInt(CHECK_LIST_ID);
-                SerializableJSONArray checkList = getCheckList(id);
-
-                Intent reply = new Intent(ACTION_CHECK_LIST_RESULT);
-                reply.putExtra(CHECK_LIST_RESULT, checkList);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_FLAG_OBSERVATION_AS_CAPTIVE)) {
-                int id = intent.getExtras().getInt(OBSERVATION_ID);
-                flagObservationAsCaptive(id);
-
-            } else if (action.equals(ACTION_GET_NEWS)) {
-                SerializableJSONArray news = getNews();
-
-                Intent reply = new Intent(ACTION_NEWS_RESULT);
-                reply.putExtra(RESULTS, news);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_GET_AND_SAVE_OBSERVATION)) {
-                int id = intent.getExtras().getInt(OBSERVATION_ID);
-                Observation observation = getAndDownloadObservation(id);
-
-                Intent reply = new Intent(ACTION_GET_AND_SAVE_OBSERVATION_RESULT);
-                reply.putExtra(OBSERVATION_RESULT, observation);
-                sendBroadcast(reply);
-
-            } else if (action.equals(ACTION_GET_OBSERVATION)) {
-                int id = intent.getExtras().getInt(OBSERVATION_ID);
-                boolean getProjects = intent.getExtras().getBoolean(GET_PROJECTS);
-                JSONObject observationJson = getObservationJson(id, false, getProjects);
-
-                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
-
-                synchronized (mObservationLock) {
-                    String jsonString = observationJson != null ? observationJson.toString() : null;
-                    Observation observation = observationJson == null ? null : new Observation(new BetterJSONObject(jsonString));
-
-                    mApp.setServiceResult(ACTION_OBSERVATION_RESULT, observation);
-                    mApp.setServiceResult(OBSERVATION_JSON_RESULT, observationJson != null ? jsonString : null);
-                }
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                sendBroadcast(reply);
-
-
-            } else if (action.equals(ACTION_JOIN_PROJECT)) {
-                int id = intent.getExtras().getInt(PROJECT_ID);
-                joinProject(id);
-
-            } else if (action.equals(ACTION_LEAVE_PROJECT)) {
-                int id = intent.getExtras().getInt(PROJECT_ID);
-                leaveProject(id);
-
-            } else if (action.equals(ACTION_PULL_OBSERVATIONS)) {
-                // Download observations without uploading any new ones
-                if (!mIsSyncing && !mApp.getIsSyncing()) {
-                    mIsSyncing = true;
-                    mApp.setIsSyncing(mIsSyncing);
-
-                    syncRemotelyDeletedObs();
-                    boolean successful = getUserObservations(0);
-
-                    if (successful) {
-                        // Update last sync time
-                        long lastSync = System.currentTimeMillis();
-                        mPreferences.edit().putLong("last_sync_time", lastSync).commit();
-                        mPreferences.edit().putLong("last_user_details_refresh_time", 0); // Force to refresh user details
-                    } else {
-                        mHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(getApplicationContext(), R.string.could_not_download_observations, Toast.LENGTH_LONG).show();
-                            }
-                        });
-
-                    }
-                }
-
-            } else if (action.equals(ACTION_DELETE_OBSERVATIONS)) {
-                if (!mIsSyncing && !mApp.getIsSyncing()) {
-                    long[] idsToDelete = null;
-                    idsToDelete = intent.getExtras().getLongArray(OBS_IDS_TO_DELETE);
-
-                    Logger.tag(TAG).debug("DeleteObservations: Calling delete obs");
-                    mIsSyncing = true;
-                    mApp.setIsSyncing(mIsSyncing);
-                    deleteObservations(idsToDelete);
-                } else {
-                    // Already in middle of syncing
-                    dontStopSync = true;
-                }
-            } else if (action.equals(ACTION_SYNC)) {
-                if (!mIsSyncing && !mApp.getIsSyncing()) {
-                    long[] idsToSync = null;
-
-                    if (intent.hasExtra(OBS_IDS_TO_SYNC)) {
-                        idsToSync = intent.getExtras().getLongArray(OBS_IDS_TO_SYNC);
-                    }
-
-                    mIsSyncing = true;
-                    mApp.setIsSyncing(mIsSyncing);
-                    syncObservations(idsToSync);
-
-                    // Update last sync time
-                    long lastSync = System.currentTimeMillis();
-                    mPreferences.edit().putLong("last_sync_time", lastSync).commit();
-                } else {
-                    // Already in middle of syncing
-                    dontStopSync = true;
-                }
-
-            }
         } catch (IllegalArgumentException e) {
             // Handle weird exception raised when sendBroadcast causes serialization of BetterJSONObject
             // and that causes an IllegalArgumentException (see only once).
@@ -1857,6 +658,1216 @@ public class INaturalistService extends IntentService {
                 sendBroadcast(reply);
             }
         }
+    }
+
+
+    private boolean handleIntentAction(final Intent intent) throws AuthenticationException, SyncFailedException, CancelSyncException {
+        boolean dontStopSync = false;
+
+        mPreferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        mLogin = mPreferences.getString("username", null);
+        mCredentials = mPreferences.getString("credentials", null);
+        mLoginType = LoginType.valueOf(mPreferences.getString("login_type", LoginType.OAUTH_PASSWORD.toString()));
+        mApp = (INaturalistApp) getApplicationContext();
+
+        if (intent == null) return dontStopSync;
+
+        String action = intent.getAction();
+
+        if (action == null) return dontStopSync;
+
+        Logger.tag(TAG).debug("Service: " + action);
+
+        if (action.equals(ACTION_NEARBY)) {
+
+            Boolean getLocation = intent.getBooleanExtra("get_location", false);
+            final float locationExpansion = intent.getFloatExtra("location_expansion", 0);
+            if (!getLocation) {
+                getNearbyObservations(intent);
+            } else {
+                // Retrieve current place before getting nearby observations
+                getLocation(new IOnLocation() {
+                    @Override
+                    public void onLocation(Location location) {
+                        final Intent newIntent = new Intent(intent);
+
+                        if (location != null) {
+                            if (locationExpansion == 0) {
+                                newIntent.putExtra("lat", location.getLatitude());
+                                newIntent.putExtra("lng", location.getLongitude());
+                            } else {
+                                // Expand place by requested degrees (to make sure results are returned from this API)
+                                newIntent.putExtra("minx", location.getLongitude() - locationExpansion);
+                                newIntent.putExtra("miny", location.getLatitude() - locationExpansion);
+                                newIntent.putExtra("maxx", location.getLongitude() + locationExpansion);
+                                newIntent.putExtra("maxy", location.getLatitude() + locationExpansion);
+                            }
+                        }
+                        try {
+                            getNearbyObservations(newIntent);
+                        } catch (AuthenticationException e) {
+                            Logger.tag(TAG).error(e);
+                        }
+                    }
+                });
+            }
+
+        } else if (action.equals(ACTION_FIRST_SYNC)) {
+            mIsSyncing = true;
+            mApp.setIsSyncing(mIsSyncing);
+
+            saveJoinedProjects();
+            boolean success = getUserObservations(INITIAL_SYNC_OBSERVATION_COUNT);
+
+            // Get total obs count
+            BetterJSONObject user = getUserDetails();
+
+            if (user == null) {
+                throw new SyncFailedException();
+            }
+
+            int totalObsCount = user.getInt("observations_count");
+            mPreferences.edit().putInt("observation_count", totalObsCount).commit();
+
+            Cursor c = getContentResolver().query(Observation.CONTENT_URI,
+                    Observation.PROJECTION,
+                    "(is_deleted = 0 OR is_deleted is NULL) AND (user_login = '" + mLogin + "')",
+                    null,
+                    Observation.DEFAULT_SORT_ORDER);
+            c.moveToLast();
+
+            if (c.getCount() > 0) {
+                BetterCursor bc = new BetterCursor(c);
+                int lastId = bc.getInteger(Observation.ID);
+                mPreferences.edit().putInt("last_downloaded_id", lastId).commit();
+            } else {
+                // No observations - probably a new user
+
+                // Update the user's timezone (in case we registered via FB/G+)
+                getTimezoneByCurrentLocation(new IOnTimezone() {
+                    @Override
+                    public void onTimezone(String timezoneName) {
+                        Logger.tag(TAG).debug("Detected Timezone: " + timezoneName);
+
+                        if (timezoneName != null) {
+                            try {
+                                updateUserTimezone(timezoneName);
+                            } catch (AuthenticationException e) {
+                                Logger.tag(TAG).error(e);
+                            }
+                        }
+                    }
+                });
+
+            }
+            c.close();
+            if (success) {
+                long lastSync = System.currentTimeMillis();
+                mPreferences.edit().putLong("last_sync_time", lastSync).commit();
+            }
+            if (!success) throw new SyncFailedException();
+            syncObservationFields();
+            postProjectObservations();
+
+        } else if (action.equals(ACTION_GET_HISTOGRAM)) {
+            int taxonId = intent.getIntExtra(TAXON_ID, 0);
+            boolean researchGrade = intent.getBooleanExtra(RESEARCH_GRADE, false);
+            BetterJSONObject results = getHistogram(taxonId, researchGrade);
+
+            Intent reply = new Intent(HISTOGRAM_RESULT);
+            reply.putExtra(HISTOGRAM_RESULT, results);
+            reply.putExtra(RESEARCH_GRADE, researchGrade);
+            reply.putExtra(TAXON_ID, taxonId);
+
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_GET_POPULAR_FIELD_VALUES)) {
+            int taxonId = intent.getIntExtra(TAXON_ID, 0);
+            BetterJSONObject results = getPopularFieldValues(taxonId);
+
+            Intent reply = new Intent(POPULAR_FIELD_VALUES_RESULT);
+            reply.putExtra(POPULAR_FIELD_VALUES_RESULT, results);
+            reply.putExtra(TAXON_ID, taxonId);
+
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_AGREE_ID)) {
+            int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+            int taxonId = intent.getIntExtra(TAXON_ID, 0);
+            boolean disagreement = intent.getBooleanExtra(DISAGREEMENT, false);
+            addIdentification(observationId, taxonId, null, disagreement, false);
+
+            // Reload the observation at the end (need to refresh comment/ID list)
+            JSONObject observationJson = getObservationJson(observationId, false, false);
+
+            Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+            if (observationJson != null) {
+                Observation observation = new Observation(new BetterJSONObject(observationJson));
+                reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
+                sendBroadcast(reply);
+            }
+
+
+        } else if (action.equals(ACTION_RESTORE_ID)) {
+            int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+            int identificationId = intent.getIntExtra(IDENTIFICATION_ID, 0);
+            restoreIdentification(identificationId);
+
+            // Reload the observation at the end (need to refresh comment/ID list)
+            JSONObject observationJson = getObservationJson(observationId, false, false);
+
+            Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+
+            if (observationJson != null) {
+                Observation observation = new Observation(new BetterJSONObject(observationJson));
+                reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
+                sendBroadcast(reply);
+            }
+
+
+        } else if (action.equals(ACTION_UPDATE_ID)) {
+            int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+            int taxonId = intent.getIntExtra(TAXON_ID, 0);
+            int identificationId = intent.getIntExtra(IDENTIFICATION_ID, 0);
+            String body = intent.getStringExtra(IDENTIFICATION_BODY);
+            updateIdentification(observationId, identificationId, taxonId, body);
+
+            // Reload the observation at the end (need to refresh comment/ID list)
+            JSONObject observationJson = getObservationJson(observationId, false, false);
+
+            Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+
+            if (observationJson != null) {
+                Observation observation = new Observation(new BetterJSONObject(observationJson));
+                reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
+                sendBroadcast(reply);
+            }
+
+
+        } else if (action.equals(ACTION_REMOVE_ID)) {
+            int id = intent.getIntExtra(IDENTIFICATION_ID, 0);
+            int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+            JSONObject result = removeIdentification(id);
+
+            // Reload the observation at the end (need to refresh comment/ID list)
+            JSONObject observationJson = getObservationJson(observationId, false, false);
+
+            Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+
+            if (observationJson != null) {
+                Observation observation = new Observation(new BetterJSONObject(observationJson));
+                reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
+                sendBroadcast(reply);
+            }
+
+        } else if (action.equals(ACTION_ADD_FAVORITE)) {
+            int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+            addFavorite(observationId);
+
+        } else if (action.equals(ACTION_REMOVE_FAVORITE)) {
+            int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+            removeFavorite(observationId);
+
+        } else if (action.equals(ACTION_GET_ADDITIONAL_OBS)) {
+            int obsCount = getAdditionalUserObservations(20);
+
+            Intent reply = new Intent(ACTION_GET_ADDITIONAL_OBS_RESULT);
+            reply.putExtra(SUCCESS, obsCount > -1);
+            reply.putExtra(OBSERVATION_COUNT, obsCount);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_ADD_IDENTIFICATION)) {
+            int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+            int taxonId = intent.getIntExtra(TAXON_ID, 0);
+            String body = intent.getStringExtra(IDENTIFICATION_BODY);
+            boolean disagreement = intent.getBooleanExtra(DISAGREEMENT, false);
+            boolean fromVision = intent.getBooleanExtra(FROM_VISION, false);
+            addIdentification(observationId, taxonId, body, disagreement, fromVision);
+
+            // Wait a little before refreshing the observation details - so we'll let the server update the ID
+            // list (otherwise, it won't return the new ID)
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                Logger.tag(TAG).error(e);
+            }
+
+            // Reload the observation at the end (need to refresh comment/ID list)
+            JSONObject observationJson = getObservationJson(observationId, false, false);
+
+            if (observationJson != null) {
+                Observation observation = new Observation(new BetterJSONObject(observationJson));
+
+                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
+                sendBroadcast(reply);
+            }
+
+        } else if (action.equals(ACTION_ADD_PROJECT_FIELD)) {
+            int fieldId = intent.getIntExtra(FIELD_ID, 0);
+            addProjectField(fieldId);
+
+        } else if (action.equals(ACTION_REGISTER_USER)) {
+            String email = intent.getStringExtra(EMAIL);
+            String password = intent.getStringExtra(PASSWORD);
+            String username = intent.getStringExtra(USERNAME);
+            String license = intent.getStringExtra(LICENSE);
+
+            getTimezoneByCurrentLocation(new IOnTimezone() {
+                @Override
+                public void onTimezone(String timezoneName) {
+                    Logger.tag(TAG).debug("Detected Timezone: " + timezoneName);
+
+                    String error = null;
+                    try {
+                        error = registerUser(email, password, username, license, timezoneName);
+                    } catch (AuthenticationException e) {
+                        Logger.tag(TAG).error(e);
+                        error = e.toString();
+                    }
+
+                    Intent reply = new Intent(ACTION_REGISTER_USER_RESULT);
+                    reply.putExtra(REGISTER_USER_STATUS, error == null);
+                    reply.putExtra(REGISTER_USER_ERROR, error);
+                    sendBroadcast(reply);
+
+                }
+            });
+
+
+        } else if (action.equals(ACTION_GET_PROJECT_NEWS)) {
+            int projectId = intent.getIntExtra(PROJECT_ID, 0);
+            SerializableJSONArray results = getProjectNews(projectId);
+
+            Intent reply = new Intent(ACTION_PROJECT_NEWS_RESULT);
+            reply.putExtra(RESULTS, results);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_GET_PROJECT_OBSERVATIONS)) {
+            int projectId = intent.getIntExtra(PROJECT_ID, 0);
+            BetterJSONObject results = getProjectObservations(projectId);
+            results = getMinimalObservationResults(results);
+
+            mApp.setServiceResult(ACTION_PROJECT_OBSERVATIONS_RESULT, results);
+            Intent reply = new Intent(ACTION_PROJECT_OBSERVATIONS_RESULT);
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_GET_PROJECT_IDENTIFIERS)) {
+            int projectId = intent.getIntExtra(PROJECT_ID, 0);
+            BetterJSONObject results = getProjectIdentifiers(projectId);
+            results = getMinimalObserverResults(results);
+
+            Intent reply = new Intent(ACTION_PROJECT_IDENTIFIERS_RESULT);
+            mApp.setServiceResult(ACTION_PROJECT_IDENTIFIERS_RESULT, results);
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_GET_PROJECT_OBSERVERS)) {
+            int projectId = intent.getIntExtra(PROJECT_ID, 0);
+            BetterJSONObject results = getProjectObservers(projectId);
+            results = getMinimalObserverResults(results);
+
+            Intent reply = new Intent(ACTION_PROJECT_OBSERVERS_RESULT);
+            mApp.setServiceResult(ACTION_PROJECT_OBSERVERS_RESULT, results);
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_GET_PROJECT_SPECIES)) {
+            int projectId = intent.getIntExtra(PROJECT_ID, 0);
+            BetterJSONObject results = getProjectSpecies(projectId);
+            results = getMinimalSpeciesResults(results);
+
+            Intent reply = new Intent(ACTION_PROJECT_SPECIES_RESULT);
+            mApp.setServiceResult(ACTION_PROJECT_SPECIES_RESULT, results);
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_DELETE_ANNOTATION)) {
+            String uuid = intent.getStringExtra(UUID);
+            BetterJSONObject results = deleteAnnotation(uuid);
+
+            Intent reply = new Intent(DELETE_ANNOTATION_RESULT);
+            reply.putExtra(SUCCESS, results != null);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_DELETE_ANNOTATION_VOTE)) {
+            String uuid = intent.getStringExtra(UUID);
+            BetterJSONObject results = deleteAnnotationVote(uuid);
+
+            Intent reply = new Intent(DELETE_ANNOTATION_VOTE_RESULT);
+            reply.putExtra(SUCCESS, results != null);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_DELETE_ID_CAN_BE_IMPROVED_VOTE)) {
+            int obsId = intent.getIntExtra(OBSERVATION_ID, 0);
+            BetterJSONObject result = deleteIdCanBeImprovedVote(obsId);
+
+            Intent reply = new Intent(DELETE_ID_CAN_BE_IMPROVED_VOTE_RESULT);
+            reply.putExtra(DELETE_ID_CAN_BE_IMPROVED_VOTE_RESULT, result);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_ID_CAN_BE_IMPROVED_VOTE)) {
+            Integer observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+            BetterJSONObject result = voteIdCanBeImproved(observationId, true);
+
+            Intent reply = new Intent(ID_CAN_BE_IMPROVED_RESULT);
+            reply.putExtra(ID_CAN_BE_IMPROVED_RESULT, result);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_ID_CANNOT_BE_IMPROVED_VOTE)) {
+            Integer observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+            BetterJSONObject result = voteIdCanBeImproved(observationId, false);
+
+            Intent reply = new Intent(ID_CANNOT_BE_IMPROVED_RESULT);
+            reply.putExtra(ID_CANNOT_BE_IMPROVED_RESULT, result);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_SET_ANNOTATION_VALUE)) {
+            int obsId = intent.getIntExtra(OBSERVATION_ID, 0);
+            int attributeId = intent.getIntExtra(ATTRIBUTE_ID, 0);
+            int valueId = intent.getIntExtra(VALUE_ID, 0);
+            BetterJSONObject results = setAnnotationValue(obsId, attributeId, valueId);
+
+            Intent reply = new Intent(SET_ANNOTATION_VALUE_RESULT);
+            reply.putExtra(SUCCESS, results != null);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_GET_DATA_QUALITY_METRICS)) {
+            Integer observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+            BetterJSONObject results = getDataQualityMetrics(observationId);
+
+            Intent reply = new Intent(DATA_QUALITY_METRICS_RESULT);
+            reply.putExtra(DATA_QUALITY_METRICS_RESULT, results);
+            sendBroadcast(reply);
+
+
+        } else if (action.equals(ACTION_DELETE_DATA_QUALITY_VOTE)) {
+            Integer observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+            String metric = intent.getStringExtra(METRIC);
+            BetterJSONObject result = deleteDataQualityMetricVote(observationId, metric);
+
+            Intent reply = new Intent(DELETE_DATA_QUALITY_VOTE_RESULT);
+            reply.putExtra(SUCCESS, result != null);
+            sendBroadcast(reply);
+
+
+        } else if (action.equals(ACTION_AGREE_DATA_QUALITY)) {
+            Integer observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+            String metric = intent.getStringExtra(METRIC);
+            BetterJSONObject results = agreeDataQualityMetric(observationId, metric, true);
+
+            Intent reply = new Intent(AGREE_DATA_QUALITY_RESULT);
+            reply.putExtra(SUCCESS, results != null);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_DISAGREE_DATA_QUALITY)) {
+            Integer observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+            String metric = intent.getStringExtra(METRIC);
+            BetterJSONObject results = agreeDataQualityMetric(observationId, metric, false);
+
+            Intent reply = new Intent(DISAGREE_DATA_QUALITY_RESULT);
+            reply.putExtra(SUCCESS, results != null);
+            sendBroadcast(reply);
+
+
+        } else if (action.equals(ACTION_AGREE_ANNOTATION)) {
+            String uuid = intent.getStringExtra(UUID);
+            BetterJSONObject results = agreeAnnotation(uuid, true);
+
+            Intent reply = new Intent(AGREE_ANNOTATION_RESULT);
+            reply.putExtra(SUCCESS, results != null);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_DISAGREE_ANNOTATION)) {
+            String uuid = intent.getStringExtra(UUID);
+            BetterJSONObject results = agreeAnnotation(uuid, false);
+
+            Intent reply = new Intent(DISAGREE_ANNOTATION_RESULT);
+            reply.putExtra(SUCCESS, results != null);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_GET_ALL_ATTRIBUTES)) {
+            BetterJSONObject results = getAllAttributes();
+
+            Intent reply = new Intent(GET_ALL_ATTRIBUTES_RESULT);
+            mApp.setServiceResult(GET_ALL_ATTRIBUTES_RESULT, results);
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_GET_ATTRIBUTES_FOR_TAXON)) {
+            BetterJSONObject taxon = (BetterJSONObject) intent.getSerializableExtra(TAXON);
+            BetterJSONObject results = getAttributesForTaxon(taxon.getJSONObject());
+
+            Intent reply = new Intent(GET_ATTRIBUTES_FOR_TAXON_RESULT);
+            mApp.setServiceResult(GET_ATTRIBUTES_FOR_TAXON_RESULT, results);
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_GET_TAXON_SUGGESTIONS)) {
+            String obsFilename = intent.getStringExtra(OBS_PHOTO_FILENAME);
+            String obsUrl = intent.getStringExtra(OBS_PHOTO_URL);
+            Double longitude = intent.getDoubleExtra(LONGITUDE, 0);
+            Double latitude = intent.getDoubleExtra(LATITUDE, 0);
+            Timestamp observedOn = (Timestamp) intent.getSerializableExtra(OBSERVED_ON);
+            File tempFile = null;
+
+            if (obsFilename == null) {
+                // It's an online observation - need to download the image first.
+                try {
+                    tempFile = File.createTempFile("online_photo", ".jpeg", getCacheDir());
+
+                    if (!downloadToFile(obsUrl, tempFile.getAbsolutePath())) {
+                        Intent reply = new Intent(ACTION_GET_TAXON_SUGGESTIONS_RESULT);
+                        reply.putExtra(TAXON_SUGGESTIONS, (Serializable) null);
+                        sendBroadcast(reply);
+                        return dontStopSync;
+                    }
+
+                    obsFilename = tempFile.getAbsolutePath();
+                } catch (IOException e) {
+                    Logger.tag(TAG).error(e);
+                }
+
+            }
+
+            // Resize photo to 299x299 max
+            String resizedPhotoFilename = ImageUtils.resizeImage(this, obsFilename, null, 299);
+
+            if (tempFile != null) {
+                tempFile.delete();
+            }
+
+            BetterJSONObject taxonSuggestions = getTaxonSuggestions(resizedPhotoFilename, latitude, longitude, observedOn);
+
+            File resizedFile = new File(resizedPhotoFilename);
+            resizedFile.delete();
+
+            Intent reply = new Intent(ACTION_GET_TAXON_SUGGESTIONS_RESULT);
+            reply.putExtra(TAXON_SUGGESTIONS, taxonSuggestions);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_GET_TAXON_NEW)) {
+            int taxonId = intent.getIntExtra(TAXON_ID, 0);
+            BetterJSONObject taxon = getTaxonNew(taxonId);
+
+            Intent reply = new Intent(ACTION_GET_TAXON_NEW_RESULT);
+            mApp.setServiceResult(ACTION_GET_TAXON_NEW_RESULT, taxon);
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_GET_TAXON)) {
+            int taxonId = intent.getIntExtra(TAXON_ID, 0);
+            BetterJSONObject taxon = getTaxon(taxonId);
+
+            Intent reply = new Intent(ACTION_GET_TAXON_RESULT);
+            reply.putExtra(TAXON_RESULT, taxon);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_SEARCH_PLACES)) {
+            String query = intent.getStringExtra(QUERY);
+            int page = intent.getIntExtra(PAGE_NUMBER, 1);
+            BetterJSONObject results = searchAutoComplete("places", query, page);
+
+            Intent reply = new Intent(SEARCH_PLACES_RESULT);
+            mApp.setServiceResult(SEARCH_PLACES_RESULT, results);
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_SEARCH_USERS)) {
+            String query = intent.getStringExtra(QUERY);
+            int page = intent.getIntExtra(PAGE_NUMBER, 1);
+            BetterJSONObject results = searchAutoComplete("users", query, page);
+
+            Intent reply = new Intent(SEARCH_USERS_RESULT);
+            mApp.setServiceResult(SEARCH_USERS_RESULT, results);
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            reply.putExtra(QUERY, query);
+            sendBroadcast(reply);
+
+
+        } else if (action.equals(ACTION_SEARCH_TAXA)) {
+            String query = intent.getStringExtra(QUERY);
+            int page = intent.getIntExtra(PAGE_NUMBER, 1);
+            BetterJSONObject results = searchAutoComplete("taxa", query, page);
+
+            Intent reply = new Intent(SEARCH_TAXA_RESULT);
+            mApp.setServiceResult(SEARCH_TAXA_RESULT, results);
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_UPDATE_CURRENT_USER_DETAILS)) {
+            BetterJSONObject params = (BetterJSONObject) intent.getSerializableExtra(USER);
+            BetterJSONObject user = updateCurrentUserDetails(params.getJSONObject());
+
+            Intent reply = new Intent(UPDATE_CURRENT_USER_DETAILS_RESULT);
+            reply.putExtra(USER, user);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_REFRESH_CURRENT_USER_SETTINGS)) {
+            BetterJSONObject user = getCurrentUserDetails();
+
+            if (user != null) {
+                // Update settings
+                mApp.setShowScientificNameFirst(user.getJSONObject().optBoolean("prefers_scientific_name_first", false));
+                JSONArray arr = user.getJSONObject().optJSONArray("roles");
+                HashSet roles = new HashSet();
+                for (int i = 0; i < arr.length(); i++) {
+                    roles.add(arr.optString(i));
+                }
+                mApp.setUserRoles(roles);
+
+                Intent reply = new Intent(REFRESH_CURRENT_USER_SETTINGS_RESULT);
+                reply.putExtra(USER, user);
+                sendBroadcast(reply);
+            }
+
+        } else if (action.equals(ACTION_DELETE_PINNED_LOCATION)) {
+            String id = intent.getStringExtra(ID);
+
+            boolean success = deletePinnedLocation(id);
+
+        } else if (action.equals(ACTION_PIN_LOCATION)) {
+            Double latitude = intent.getDoubleExtra(LATITUDE, 0);
+            Double longitude = intent.getDoubleExtra(LONGITUDE, 0);
+            Double accuracy = intent.getDoubleExtra(ACCURACY, 0);
+            String geoprivacy = intent.getStringExtra(GEOPRIVACY);
+            String title = intent.getStringExtra(TITLE);
+
+            boolean success = pinLocation(latitude, longitude, accuracy, geoprivacy, title);
+
+
+        } else if (action.equals(ACTION_GET_PLACE_DETAILS)) {
+            long placeId = intent.getIntExtra(PLACE_ID, 0);
+            BetterJSONObject place = getPlaceDetails(placeId);
+
+            Intent reply = new Intent(PLACE_DETAILS_RESULT);
+            reply.putExtra(PLACE, place);
+            sendBroadcast(reply);
+
+
+        } else if (action.equals(ACTION_GET_SPECIFIC_USER_DETAILS)) {
+            String username = intent.getStringExtra(USERNAME);
+            BetterJSONObject user = getUserDetails(username);
+
+            Intent reply = new Intent(USER_DETAILS_RESULT);
+            reply.putExtra(USER, user);
+            reply.putExtra(USERNAME, username);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_GET_CURRENT_LOCATION)) {
+            getLocation(new IOnLocation() {
+                @Override
+                public void onLocation(Location location) {
+                    Intent reply = new Intent(GET_CURRENT_LOCATION_RESULT);
+                    reply.putExtra(LOCATION, location);
+                    sendBroadcast(reply);
+                }
+            });
+
+        } else if (action.equals(ACTION_GET_MISSIONS_BY_TAXON)) {
+            final String username = intent.getStringExtra(USERNAME);
+            final Integer taxonId = intent.getIntExtra(TAXON_ID, 0);
+            final float expandLocationByDegrees = intent.getFloatExtra(EXPAND_LOCATION_BY_DEGREES, 0);
+
+            getLocation(new IOnLocation() {
+                @Override
+                public void onLocation(Location location) {
+                    if (location == null) {
+                        // No place
+                        Intent reply = new Intent(MISSIONS_BY_TAXON_RESULT);
+                        mApp.setServiceResult(MISSIONS_BY_TAXON_RESULT, null);
+                        reply.putExtra(IS_SHARED_ON_APP, true);
+                        reply.putExtra(TAXON_ID, taxonId);
+                        sendBroadcast(reply);
+                        return;
+                    }
+
+                    BetterJSONObject missions = getMissions(location, username, taxonId, expandLocationByDegrees);
+                    missions = getMinimalSpeciesResults(missions);
+
+                    Intent reply = new Intent(MISSIONS_BY_TAXON_RESULT);
+                    mApp.setServiceResult(MISSIONS_BY_TAXON_RESULT, missions);
+                    reply.putExtra(IS_SHARED_ON_APP, true);
+                    reply.putExtra(TAXON_ID, taxonId);
+                    sendBroadcast(reply);
+                }
+            });
+
+        } else if (action.equals(ACTION_GET_TAXON_OBSERVATION_BOUNDS)) {
+            final Integer taxonId = intent.getIntExtra(TAXON_ID, 0);
+            BetterJSONObject bounds = getTaxonObservationsBounds(taxonId);
+
+            Intent reply = new Intent(TAXON_OBSERVATION_BOUNDS_RESULT);
+            reply.putExtra(TAXON_OBSERVATION_BOUNDS_RESULT, bounds);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_GET_RECOMMENDED_MISSIONS)) {
+            final String username = intent.getStringExtra(USERNAME);
+            final float expandLocationByDegrees = intent.getFloatExtra(EXPAND_LOCATION_BY_DEGREES, 0);
+
+            getLocation(new IOnLocation() {
+                @Override
+                public void onLocation(Location location) {
+                    if (location == null) {
+                        // No place
+                        Intent reply = new Intent(RECOMMENDED_MISSIONS_RESULT);
+                        mApp.setServiceResult(RECOMMENDED_MISSIONS_RESULT, null);
+                        reply.putExtra(IS_SHARED_ON_APP, true);
+                        sendBroadcast(reply);
+                        return;
+                    }
+
+                    BetterJSONObject missions = getMissions(location, username, null, expandLocationByDegrees);
+                    missions = getMinimalSpeciesResults(missions);
+
+                    Intent reply = new Intent(RECOMMENDED_MISSIONS_RESULT);
+                    mApp.setServiceResult(RECOMMENDED_MISSIONS_RESULT, missions);
+                    reply.putExtra(IS_SHARED_ON_APP, true);
+                    sendBroadcast(reply);
+                }
+            });
+
+        } else if (action.equals(ACTION_GET_USER_SPECIES_COUNT)) {
+            String username = intent.getStringExtra(USERNAME);
+            BetterJSONObject speciesCount = getUserSpeciesCount(username);
+            speciesCount = getMinimalSpeciesResults(speciesCount);
+
+            Intent reply = new Intent(SPECIES_COUNT_RESULT);
+            mApp.setServiceResult(SPECIES_COUNT_RESULT, speciesCount);
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            reply.putExtra(USERNAME, username);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_GET_LIFE_LIST)) {
+            int lifeListId = intent.getIntExtra(LIFE_LIST_ID, 0);
+            BetterJSONObject lifeList = getUserLifeList(lifeListId);
+
+            Intent reply = new Intent(LIFE_LIST_RESULT);
+            mApp.setServiceResult(LIFE_LIST_RESULT, lifeList);
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_GET_USER_OBSERVATIONS)) {
+            String username = intent.getStringExtra(USERNAME);
+            JSONObject observations = getUserObservations(username);
+            if (observations != null) {
+                BetterJSONObject minimalObs = getMinimalObservationResults(new BetterJSONObject(observations));
+                observations = minimalObs != null ? minimalObs.getJSONObject() : null;
+            }
+
+            Intent reply = new Intent(USER_OBSERVATIONS_RESULT);
+            mApp.setServiceResult(USER_OBSERVATIONS_RESULT, observations != null ? new BetterJSONObject(observations) : null);
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            reply.putExtra(USERNAME, username);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_SEARCH_USER_OBSERVATIONS)) {
+            String query = intent.getStringExtra(QUERY);
+            SerializableJSONArray observations = searchUserObservation(query);
+
+            Intent reply = new Intent(USER_SEARCH_OBSERVATIONS_RESULT);
+            mApp.setServiceResult(USER_SEARCH_OBSERVATIONS_RESULT, observations);
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            reply.putExtra(QUERY, query);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_VIEWED_UPDATE)) {
+            Integer obsId = intent.getIntExtra(OBSERVATION_ID, 0);
+            setUserViewedUpdate(obsId);
+
+        } else if (action.equals(ACTION_GET_USER_UPDATES)) {
+            Boolean following = intent.getBooleanExtra(FOLLOWING, false);
+            SerializableJSONArray updates = getUserUpdates(following);
+
+            Intent reply;
+            if (following) {
+                reply = new Intent(UPDATES_FOLLOWING_RESULT);
+                mApp.setServiceResult(UPDATES_FOLLOWING_RESULT, updates);
+            } else {
+                reply = new Intent(UPDATES_RESULT);
+                mApp.setServiceResult(UPDATES_RESULT, updates);
+            }
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_GET_USER_IDENTIFICATIONS)) {
+            String username = intent.getStringExtra(USERNAME);
+            BetterJSONObject identifications = getUserIdentifications(username);
+            identifications = getMinimalIdentificationResults(identifications);
+
+            Intent reply = new Intent(IDENTIFICATIONS_RESULT);
+            mApp.setServiceResult(IDENTIFICATIONS_RESULT, identifications);
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            reply.putExtra(USERNAME, username);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_EXPLORE_GET_OBSERVERS)) {
+            ExploreSearchFilters filters = (ExploreSearchFilters) intent.getSerializableExtra(FILTERS);
+            int pageNumber = intent.getIntExtra(PAGE_NUMBER, 1);
+            int pageSize = intent.getIntExtra(PAGE_SIZE, EXPLORE_DEFAULT_RESULTS_PER_PAGE);
+            String uuid = intent.getStringExtra(UUID);
+            BetterJSONObject results = getExploreResults("observers", filters, pageNumber, pageSize, null);
+            results = getMinimalObserverResults(results);
+
+            Intent reply = new Intent(EXPLORE_GET_OBSERVERS_RESULT);
+            mApp.setServiceResult(EXPLORE_GET_OBSERVERS_RESULT, results);
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            reply.putExtra(UUID, uuid);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_EXPLORE_GET_IDENTIFIERS)) {
+            ExploreSearchFilters filters = (ExploreSearchFilters) intent.getSerializableExtra(FILTERS);
+            int pageNumber = intent.getIntExtra(PAGE_NUMBER, 1);
+            int pageSize = intent.getIntExtra(PAGE_SIZE, EXPLORE_DEFAULT_RESULTS_PER_PAGE);
+            String uuid = intent.getStringExtra(UUID);
+            BetterJSONObject results = getExploreResults("identifiers", filters, pageNumber, pageSize, null);
+            results = getMinimalObserverResults(results);
+
+            Intent reply = new Intent(EXPLORE_GET_IDENTIFIERS_RESULT);
+            mApp.setServiceResult(EXPLORE_GET_IDENTIFIERS_RESULT, results);
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            reply.putExtra(UUID, uuid);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_EXPLORE_GET_SPECIES)) {
+            ExploreSearchFilters filters = (ExploreSearchFilters) intent.getSerializableExtra(FILTERS);
+            int pageNumber = intent.getIntExtra(PAGE_NUMBER, 1);
+            int pageSize = intent.getIntExtra(PAGE_SIZE, EXPLORE_DEFAULT_RESULTS_PER_PAGE);
+            String uuid = intent.getStringExtra(UUID);
+            BetterJSONObject results = getExploreResults("species_counts", filters, pageNumber, pageSize, null);
+            results = getMinimalSpeciesResults(results);
+
+            Intent reply = new Intent(EXPLORE_GET_SPECIES_RESULT);
+            mApp.setServiceResult(EXPLORE_GET_SPECIES_RESULT, results);
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            reply.putExtra(UUID, uuid);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_EXPLORE_GET_OBSERVATIONS)) {
+            ExploreSearchFilters filters = (ExploreSearchFilters) intent.getSerializableExtra(FILTERS);
+            int pageNumber = intent.getIntExtra(PAGE_NUMBER, 1);
+            int pageSize = intent.getIntExtra(PAGE_SIZE, EXPLORE_DEFAULT_RESULTS_PER_PAGE);
+            String uuid = intent.getStringExtra(UUID);
+            BetterJSONObject observations = getExploreResults(null, filters, pageNumber, pageSize, "observation.id");
+            observations = getMinimalObservationResults(observations);
+
+            Intent reply = new Intent(EXPLORE_GET_OBSERVATIONS_RESULT);
+            mApp.setServiceResult(EXPLORE_GET_OBSERVATIONS_RESULT, observations);
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            reply.putExtra(UUID, uuid);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_ADD_COMMENT)) {
+            int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+            String body = intent.getStringExtra(COMMENT_BODY);
+            addComment(observationId, body);
+
+            // Wait a little before refreshing the observation details - so we'll let the server update the comment
+            // list (otherwise, it won't return the new comment)
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                Logger.tag(TAG).error(e);
+            }
+
+            // Reload the observation at the end (need to refresh comment/ID list)
+            JSONObject observationJson = getObservationJson(observationId, false, false);
+
+            Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+
+            if (observationJson == null) {
+                reply.putExtra(OBSERVATION_RESULT, (Serializable)null);
+                reply.putExtra(OBSERVATION_JSON_RESULT, (String)null);
+            } else {
+                Observation observation = new Observation(new BetterJSONObject(observationJson));
+
+                reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observation != null ? observationJson.toString() : null);
+            }
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_UPDATE_COMMENT)) {
+            int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+            int commentId = intent.getIntExtra(COMMENT_ID, 0);
+            String body = intent.getStringExtra(COMMENT_BODY);
+            updateComment(commentId, observationId, body);
+
+            // Reload the observation at the end (need to refresh comment/ID list)
+            JSONObject observationJson = getObservationJson(observationId, false, false);
+
+            if (observationJson != null) {
+                Observation observation = new Observation(new BetterJSONObject(observationJson));
+
+                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
+                sendBroadcast(reply);
+            }
+
+        } else if (action.equals(ACTION_DELETE_COMMENT)) {
+            int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+            int commentId = intent.getIntExtra(COMMENT_ID, 0);
+            deleteComment(commentId);
+
+            // Reload the observation at the end (need to refresh comment/ID list)
+            JSONObject observationJson = getObservationJson(observationId, false, false);
+
+            if (observationJson != null) {
+                Observation observation = new Observation(new BetterJSONObject(observationJson));
+
+                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
+                sendBroadcast(reply);
+            }
+
+        } else if (action.equals(ACTION_GUIDE_XML)) {
+            int guideId = intent.getIntExtra(ACTION_GUIDE_ID, 0);
+            String guideXMLFilename = getGuideXML(guideId);
+
+            if (guideXMLFilename == null) {
+                // Failed to get the guide XML - try and find the offline version, if available
+                GuideXML guideXml = new GuideXML(this, String.valueOf(guideId));
+
+                if (guideXml.isGuideDownloaded()) {
+                    guideXMLFilename = guideXml.getOfflineGuideXmlFilePath();
+                }
+            }
+
+            Intent reply = new Intent(ACTION_GUIDE_XML_RESULT);
+            reply.putExtra(GUIDE_XML_RESULT, guideXMLFilename);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_CLEAR_OLD_PHOTOS_CACHE)) {
+            // Clear out the old cached photos
+            if (!mIsClearingOldPhotosCache) {
+                mIsClearingOldPhotosCache = true;
+                clearOldCachedPhotos();
+                mIsClearingOldPhotosCache = false;
+            }
+
+
+        } else if (action.equals(ACTION_UPDATE_USER_NETWORK)) {
+            int siteId = intent.getIntExtra(NETWORK_SITE_ID, 0);
+            updateUserNetwork(siteId);
+
+        } else if (action.equals(ACTION_UPDATE_USER_DETAILS)) {
+            String username = intent.getStringExtra(ACTION_USERNAME);
+            String fullName = intent.getStringExtra(ACTION_FULL_NAME);
+            String bio = intent.getStringExtra(ACTION_USER_BIO);
+            String password = intent.getStringExtra(ACTION_USER_PASSWORD);
+            String email = intent.getStringExtra(ACTION_USER_EMAIL);
+            String userPic = intent.getStringExtra(ACTION_USER_PIC);
+            boolean deletePic = intent.getBooleanExtra(ACTION_USER_DELETE_PIC, false);
+
+            JSONObject newUser = updateUser(username, email, password, fullName, bio, userPic, deletePic);
+
+            if ((newUser != null) && (!newUser.has("errors"))) {
+                SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+
+                String prevLogin = mLogin;
+                mLogin = newUser.optString("login");
+                editor.putString("username", mLogin);
+                if (!newUser.has("user_icon_url") || newUser.isNull("user_icon_url")) {
+                    editor.putString("user_icon_url", null);
+                } else {
+                    editor.putString("user_icon_url", newUser.has("medium_user_icon_url") ? newUser.optString("medium_user_icon_url") : newUser.optString("user_icon_url"));
+                }
+                editor.putString("user_bio", newUser.optString("description"));
+                editor.putString("user_email", newUser.optString("email", email));
+                editor.putString("user_full_name", newUser.optString("name"));
+                editor.apply();
+
+
+                if ((prevLogin != null) && (!prevLogin.equals(mLogin))) {
+                    // Update observations with the new username
+                    ContentValues cv = new ContentValues();
+                    cv.put("user_login", mLogin);
+                    // Update its sync at time so we won't update the remote servers later on (since we won't
+                    // accidentally consider this an updated record)
+                    cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
+                    int count = getContentResolver().update(Observation.CONTENT_URI, cv, "(user_login = ?) AND (id IS NOT NULL)", new String[]{prevLogin});
+                    Logger.tag(TAG).debug(String.format("Updated %d synced observations with new user login %s from %s", count, mLogin, prevLogin));
+
+                    cv = new ContentValues();
+                    cv.put("user_login", mLogin);
+                    count = getContentResolver().update(Observation.CONTENT_URI, cv, "(user_login = ?) AND (id IS NULL)", new String[]{ prevLogin });
+                    Logger.tag(TAG).debug(String.format("Updated %d new observations with new user login %s from %s", count, mLogin, prevLogin));
+                }
+            }
+
+            Intent reply = new Intent(ACTION_UPDATE_USER_DETAILS_RESULT);
+            reply.putExtra(USER, newUser != null ? new BetterJSONObject(newUser) : null);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_GET_USER_DETAILS)) {
+            BetterJSONObject user = null;
+            boolean authenticationFailed = false;
+
+            try {
+                user = getUserDetails();
+            } catch (AuthenticationException exc) {
+                // This means the user has changed his password on the website
+                Logger.tag(TAG).error(exc);
+                authenticationFailed = true;
+            }
+
+            Intent reply = new Intent(ACTION_GET_USER_DETAILS_RESULT);
+            reply.putExtra(USER, user);
+            reply.putExtra(AUTHENTICATION_FAILED, authenticationFailed);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_TAXA_FOR_GUIDE)) {
+            int guideId = intent.getIntExtra(ACTION_GUIDE_ID, 0);
+            SerializableJSONArray taxa = getTaxaForGuide(guideId);
+
+            mApp.setServiceResult(ACTION_TAXA_FOR_GUIDES_RESULT, taxa);
+            Intent reply = new Intent(ACTION_TAXA_FOR_GUIDES_RESULT);
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_GET_ALL_GUIDES)) {
+            SerializableJSONArray guides = getAllGuides();
+
+            mApp.setServiceResult(ACTION_ALL_GUIDES_RESULT, guides);
+            Intent reply = new Intent(ACTION_ALL_GUIDES_RESULT);
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_GET_MY_GUIDES)) {
+            SerializableJSONArray guides = null;
+            guides = getMyGuides();
+
+            Intent reply = new Intent(ACTION_MY_GUIDES_RESULT);
+            reply.putExtra(GUIDES_RESULT, guides);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_GET_NEAR_BY_GUIDES)) {
+            getLocation(new IOnLocation() {
+                @Override
+                public void onLocation(Location location) {
+                    if (location == null) {
+                        // No place enabled
+                        Intent reply = new Intent(ACTION_NEAR_BY_GUIDES_RESULT);
+                        reply.putExtra(GUIDES_RESULT, new SerializableJSONArray());
+                        sendBroadcast(reply);
+
+                    } else {
+                        SerializableJSONArray guides = null;
+                        try {
+                            guides = getNearByGuides(location);
+                        } catch (AuthenticationException e) {
+                            Logger.tag(TAG).error(e);
+                        }
+
+                        Intent reply = new Intent(ACTION_NEAR_BY_GUIDES_RESULT);
+                        reply.putExtra(GUIDES_RESULT, guides);
+                        sendBroadcast(reply);
+                    }
+                }
+            });
+
+        } else if (action.equals(ACTION_GET_NEARBY_PROJECTS)) {
+            getLocation(new IOnLocation() {
+                @Override
+                public void onLocation(Location location) {
+                    if (location == null) {
+                        // No place enabled
+                        Intent reply = new Intent(ACTION_NEARBY_PROJECTS_RESULT);
+                        mApp.setServiceResult(ACTION_NEARBY_PROJECTS_RESULT, new SerializableJSONArray());
+                        reply.putExtra(IS_SHARED_ON_APP, true);
+                        sendBroadcast(reply);
+
+                    } else {
+                        SerializableJSONArray projects = null;
+                        try {
+                            projects = getNearByProjects(location);
+                        } catch (AuthenticationException e) {
+                            Logger.tag(TAG).error(e);
+                        }
+
+                        Intent reply = new Intent(ACTION_NEARBY_PROJECTS_RESULT);
+                        mApp.setServiceResult(ACTION_NEARBY_PROJECTS_RESULT, projects);
+                        reply.putExtra(IS_SHARED_ON_APP, true);
+                        sendBroadcast(reply);
+                    }
+                }
+            });
+
+        } else if (action.equals(ACTION_GET_FEATURED_PROJECTS)) {
+            SerializableJSONArray projects = getFeaturedProjects();
+
+            Intent reply = new Intent(ACTION_FEATURED_PROJECTS_RESULT);
+            reply.putExtra(PROJECTS_RESULT, projects);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_GET_JOINED_PROJECTS_ONLINE)) {
+            SerializableJSONArray projects = null;
+            if (mCredentials != null) {
+                projects = getJoinedProjects();
+            }
+
+            Intent reply = new Intent(ACTION_JOINED_PROJECTS_RESULT);
+            mApp.setServiceResult(ACTION_JOINED_PROJECTS_RESULT, projects);
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_GET_JOINED_PROJECTS)) {
+            SerializableJSONArray projects = null;
+            if (mCredentials != null) {
+                projects = getJoinedProjectsOffline();
+            }
+
+            Intent reply = new Intent(ACTION_JOINED_PROJECTS_RESULT);
+            reply.putExtra(PROJECTS_RESULT, projects);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_REMOVE_OBSERVATION_FROM_PROJECT)) {
+            int observationId = intent.getExtras().getInt(OBSERVATION_ID);
+            int projectId = intent.getExtras().getInt(PROJECT_ID);
+            BetterJSONObject result = removeObservationFromProject(observationId, projectId);
+
+        } else if (action.equals(ACTION_ADD_OBSERVATION_TO_PROJECT)) {
+            int observationId = intent.getExtras().getInt(OBSERVATION_ID);
+            int projectId = intent.getExtras().getInt(PROJECT_ID);
+            BetterJSONObject result = addObservationToProject(observationId, projectId);
+
+            Intent reply = new Intent(ADD_OBSERVATION_TO_PROJECT_RESULT);
+            reply.putExtra(ADD_OBSERVATION_TO_PROJECT_RESULT, result);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_REDOWNLOAD_OBSERVATIONS_FOR_TAXON)) {
+            redownloadOldObservationsForTaxonNames();
+
+        } else if (action.equals(ACTION_DELETE_ACCOUNT)) {
+            boolean success = deleteAccount();
+            Intent reply = new Intent(DELETE_ACCOUNT_RESULT);
+            reply.putExtra(SUCCESS, success);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_SYNC_JOINED_PROJECTS)) {
+            saveJoinedProjects();
+
+        } else if (action.equals(ACTION_GET_CHECK_LIST)) {
+            int id = intent.getExtras().getInt(CHECK_LIST_ID);
+            SerializableJSONArray checkList = getCheckList(id);
+
+            Intent reply = new Intent(ACTION_CHECK_LIST_RESULT);
+            reply.putExtra(CHECK_LIST_RESULT, checkList);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_FLAG_OBSERVATION_AS_CAPTIVE)) {
+            int id = intent.getExtras().getInt(OBSERVATION_ID);
+            flagObservationAsCaptive(id);
+
+        } else if (action.equals(ACTION_GET_NEWS)) {
+            SerializableJSONArray news = getNews();
+
+            Intent reply = new Intent(ACTION_NEWS_RESULT);
+            reply.putExtra(RESULTS, news);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_GET_AND_SAVE_OBSERVATION)) {
+            int id = intent.getExtras().getInt(OBSERVATION_ID);
+            Observation observation = getAndDownloadObservation(id);
+
+            Intent reply = new Intent(ACTION_GET_AND_SAVE_OBSERVATION_RESULT);
+            reply.putExtra(OBSERVATION_RESULT, observation);
+            sendBroadcast(reply);
+
+        } else if (action.equals(ACTION_GET_OBSERVATION)) {
+            int id = intent.getExtras().getInt(OBSERVATION_ID);
+            boolean getProjects = intent.getExtras().getBoolean(GET_PROJECTS);
+            JSONObject observationJson = getObservationJson(id, false, getProjects);
+
+            Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+
+            synchronized (mObservationLock) {
+                String jsonString = observationJson != null ? observationJson.toString() : null;
+                Observation observation = observationJson == null ? null : new Observation(new BetterJSONObject(jsonString));
+
+                mApp.setServiceResult(ACTION_OBSERVATION_RESULT, observation);
+                mApp.setServiceResult(OBSERVATION_JSON_RESULT, observationJson != null ? jsonString : null);
+            }
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            sendBroadcast(reply);
+
+
+        } else if (action.equals(ACTION_JOIN_PROJECT)) {
+            int id = intent.getExtras().getInt(PROJECT_ID);
+            joinProject(id);
+
+        } else if (action.equals(ACTION_LEAVE_PROJECT)) {
+            int id = intent.getExtras().getInt(PROJECT_ID);
+            leaveProject(id);
+
+        } else if (action.equals(ACTION_PULL_OBSERVATIONS)) {
+            // Download observations without uploading any new ones
+            if (!mIsSyncing && !mApp.getIsSyncing()) {
+                mIsSyncing = true;
+                mApp.setIsSyncing(mIsSyncing);
+
+                syncRemotelyDeletedObs();
+                boolean successful = getUserObservations(0);
+
+                if (successful) {
+                    // Update last sync time
+                    long lastSync = System.currentTimeMillis();
+                    mPreferences.edit().putLong("last_sync_time", lastSync).commit();
+                    mPreferences.edit().putLong("last_user_details_refresh_time", 0); // Force to refresh user details
+                } else {
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), R.string.could_not_download_observations, Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                }
+            }
+
+        } else if (action.equals(ACTION_DELETE_OBSERVATIONS)) {
+            if (!mIsSyncing && !mApp.getIsSyncing()) {
+                long[] idsToDelete = null;
+                idsToDelete = intent.getExtras().getLongArray(OBS_IDS_TO_DELETE);
+
+                Logger.tag(TAG).debug("DeleteObservations: Calling delete obs");
+                mIsSyncing = true;
+                mApp.setIsSyncing(mIsSyncing);
+                deleteObservations(idsToDelete);
+            } else {
+                // Already in middle of syncing
+                dontStopSync = true;
+            }
+        } else if (action.equals(ACTION_SYNC)) {
+            if (!mIsSyncing && !mApp.getIsSyncing()) {
+                long[] idsToSync = null;
+
+                if (intent.hasExtra(OBS_IDS_TO_SYNC)) {
+                    idsToSync = intent.getExtras().getLongArray(OBS_IDS_TO_SYNC);
+                }
+
+                mIsSyncing = true;
+                mApp.setIsSyncing(mIsSyncing);
+                syncObservations(idsToSync);
+
+                // Update last sync time
+                long lastSync = System.currentTimeMillis();
+                mPreferences.edit().putLong("last_sync_time", lastSync).commit();
+            } else {
+                // Already in middle of syncing
+                dontStopSync = true;
+            }
+
+        }
+        return dontStopSync;
     }
 
 
