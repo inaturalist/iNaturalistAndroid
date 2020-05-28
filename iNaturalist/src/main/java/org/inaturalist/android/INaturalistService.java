@@ -60,6 +60,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.inaturalist.android.util.ThreadLogger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -105,6 +106,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
+
+import androidx.annotation.WorkerThread;
 import androidx.core.app.NotificationCompat;
 
 import android.util.Log;
@@ -517,15 +520,15 @@ public class INaturalistService extends IntentService {
     public static Integer SYNC_OBSERVATIONS_NOTIFICATION = 1;
     public static Integer SYNC_PHOTOS_NOTIFICATION = 2;
     public static Integer AUTH_NOTIFICATION = 3;
+
+    // TODO All of these are race conditions if we are running on multiple threads
     private String mLogin;
     private String mCredentials;
     private SharedPreferences mPreferences;
     private boolean mPassive;
     private INaturalistApp mApp;
     private LoginType mLoginType;
-
     private boolean mIsStopped = false;
-
     private boolean mIsSyncing;
     private boolean mIsClearingOldPhotosCache;
 
@@ -611,15 +614,10 @@ public class INaturalistService extends IntentService {
 
     @Override
     protected void onHandleIntent(final Intent intent) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                onHandleIntentWorker(intent);
-            }
-        }).start();
-    }
+        // TODO add handler with executor for parallel operations
 
-    protected void onHandleIntentWorker(final Intent intent) {
+
+
         boolean cancelSyncRequested = false;
         boolean syncFailed = false;
         boolean dontStopSync = false;
