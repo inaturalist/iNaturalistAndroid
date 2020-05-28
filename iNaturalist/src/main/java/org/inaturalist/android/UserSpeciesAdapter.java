@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
 import android.util.TypedValue;
@@ -86,6 +87,7 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
 
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        boolean isLowMemory = mApp.isLowMemory();
 
         if (convertView != null) {
             try {
@@ -183,7 +185,11 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
                     speciesPic.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
                 }
 
-                loadObsImage(position, speciesPic, photoUrl);
+                String extension = photoUrl.substring(photoUrl.lastIndexOf('.'));
+                Uri parsedUri = Uri.parse(photoUrl);
+                boolean isINatHosting = parsedUri.getHost().equals("static.inaturalist.org");
+                String url = isINatHosting ? photoUrl.substring(0, photoUrl.lastIndexOf("/") + 1) + (isLowMemory ? "thumb" : "medium") + extension : photoUrl;
+                loadObsImage(position, speciesPic, url);
             } else {
                 speciesPic.setVisibility(View.INVISIBLE);
             }

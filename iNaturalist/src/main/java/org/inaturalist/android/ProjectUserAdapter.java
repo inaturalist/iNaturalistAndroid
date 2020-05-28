@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 class ProjectUserAdapter extends ArrayAdapter<String> {
     private static final String TAG = "ProjectUserAdapter";
+    private final INaturalistApp mApp;
     private ArrayList<JSONObject> mResultList;
     private Context mContext;
 
@@ -32,6 +33,7 @@ class ProjectUserAdapter extends ArrayAdapter<String> {
 
         mContext = context;
         mResultList = results;
+        mApp = (INaturalistApp) mContext.getApplicationContext();
     }
 
     @Override
@@ -42,6 +44,7 @@ class ProjectUserAdapter extends ArrayAdapter<String> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.project_user_item, parent, false);
+        boolean isLowMemory = mApp.isLowMemory();
         JSONObject item = null;
         int count;
         try {
@@ -69,9 +72,14 @@ class ProjectUserAdapter extends ArrayAdapter<String> {
             username.setText(item.getString("login"));
             countText.setText(formatter.format(count));
 
-            if (item.has("icon_url") && !item.isNull("icon_url")) {
+            if (item.has("icon_url") && !item.isNull("icon_url") && !item.getString("icon_url").equals("null")) {
+                String iconUrl = item.getString("icon_url");
+                if (isLowMemory) {
+                    String extension = iconUrl.substring(iconUrl.lastIndexOf('.'));
+                    iconUrl = iconUrl.substring(0, iconUrl.lastIndexOf("/") + 1) + "thumb" + extension;
+                }
                 Picasso.with(mContext).
-                        load(item.getString("icon_url")).
+                        load(iconUrl).
                         placeholder(R.drawable.ic_account_circle_black_24dp).
                         fit().
                         centerCrop().

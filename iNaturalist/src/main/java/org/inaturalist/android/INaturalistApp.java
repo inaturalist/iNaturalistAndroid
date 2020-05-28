@@ -48,6 +48,7 @@ import org.json.JSONObject;
 import org.tinylog.Logger;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
@@ -1168,6 +1169,31 @@ public class INaturalistApp extends MultiDexApplication {
 
     public boolean isAudioRecordingPermissionGranted() {
         return (PermissionChecker.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PermissionChecker.PERMISSION_GRANTED);
+    }
+
+
+    public boolean isLowMemory() {
+        Runtime runtime = Runtime.getRuntime();
+        long usedMem = (runtime.totalMemory() - runtime.freeMemory());
+        long maxHeapSize = runtime.maxMemory();
+        long availableHeapSize = maxHeapSize - usedMem;
+        float freeHeapPercentage = (float)availableHeapSize / maxHeapSize;
+
+        Logger.tag(TAG).debug(String.format("isLowMemory: Heap: %d / %d (%f)", availableHeapSize, maxHeapSize, freeHeapPercentage));
+
+        ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
+        ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+        activityManager.getMemoryInfo(mi);
+        long nativeHeapSize = mi.totalMem;
+        long nativeHeapFreeSize = mi.availMem;
+        float nativeHeapPercentage = (float)nativeHeapFreeSize / nativeHeapSize;
+
+        Logger.tag(TAG).debug(String.format("isLowMemory: Native Heap: %d / %d (%f)", nativeHeapFreeSize, nativeHeapSize, nativeHeapPercentage));
+
+        boolean isLowMemory = (freeHeapPercentage < 0.10) || (nativeHeapPercentage < 0.10);
+
+        Logger.tag(TAG).debug(String.format("isLowMemory: Result = %s", isLowMemory));
+        return isLowMemory;
     }
 
 }

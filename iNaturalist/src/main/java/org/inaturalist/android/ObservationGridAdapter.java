@@ -60,6 +60,7 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View view = inflater.inflate(R.layout.guide_taxon_item, parent, false);
+        boolean isLowMemory = mApp.isLowMemory();
         JSONObject item = mItems.get(position);
 
         TextView researchGrade = (TextView) view.findViewById(R.id.is_research_grade);
@@ -135,10 +136,10 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
                     // Deduce the original-sized URL
                     if (url.substring(0, url.lastIndexOf('/')).endsWith("assets")) {
                         // It's an assets default URL - e.g. https://www.inaturalist.org/assets/copyright-infringement-square.png
-                        url = url.substring(0, url.lastIndexOf("-") + 1) + "medium" + extension;
+                        url = url.substring(0, url.lastIndexOf("-") + 1) + (isLowMemory ? "thumb" : "medium") + extension;
                     } else {
                         // "Regular" observation photo
-                        url = url.substring(0, url.lastIndexOf("/") + 1) + "medium" + extension;
+                        url = url.substring(0, url.lastIndexOf("/") + 1) + (isLowMemory ? "thumb" : "medium") + extension;
                     }
 
                 }
