@@ -522,7 +522,6 @@ public class INaturalistService extends IntentService {
     private SharedPreferences mPreferences;
     private INaturalistApp mApp;
     private LoginType mLoginType;
-    private boolean mIsStopped = false;
     private boolean mIsSyncing;
     private boolean mIsClearingOldPhotosCache;
 
@@ -610,9 +609,6 @@ public class INaturalistService extends IntentService {
     protected void onHandleIntent(final Intent intent) {
         // TODO add handler with executor for parallel operations
 
-
-
-
         boolean cancelSyncRequested = false;
         boolean syncFailed = false;
         boolean dontStopSync = false;
@@ -623,7 +619,6 @@ public class INaturalistService extends IntentService {
 
         try {
             dontStopSync = handleIntentAction(intent);
-
         } catch (IllegalArgumentException e) {
             // Handle weird exception raised when sendBroadcast causes serialization of BetterJSONObject
             // and that causes an IllegalArgumentException (see only once).
@@ -6751,13 +6746,6 @@ public class INaturalistService extends IntentService {
             }).start();
         }
     }
-
-    @Override
-    public void onDestroy() {
-        mIsStopped = true;
-        super.onDestroy();
-    }
-
 
     public static String getUserAgent(Context context) {
         PackageInfo info = null;
