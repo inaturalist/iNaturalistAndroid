@@ -72,6 +72,7 @@ import android.os.Handler;
 import android.os.LocaleList;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 import androidx.core.app.ActivityCompat;
@@ -895,18 +896,25 @@ public class INaturalistApp extends MultiDexApplication {
     public static Context getAppContext() {
         return INaturalistApp.context;
     }
-    
+
+    // TODO called from multiple threads. Check not called from UI and synchronize
+    @WorkerThread
     public void setIsSyncing(boolean isSyncing) {
     	mIsSyncing  = isSyncing;
     }
+    @WorkerThread
+    // TODO called from multiple threads. Check not called from UI and synchronize
     public boolean getIsSyncing() {
     	return mIsSyncing;
     }
 
-
+    // TODO called from multiple threads. Check not called from UI and synchronize
+    @WorkerThread
     public void setCancelSync(boolean cancel) {
         mCancelSync  = cancel;
     }
+    // TODO called from multiple threads. Check not called from UI and synchronize
+    @WorkerThread
     public boolean getCancelSync() {
         return mCancelSync;
     }
