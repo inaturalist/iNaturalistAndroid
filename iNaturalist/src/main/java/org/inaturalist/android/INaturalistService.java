@@ -60,7 +60,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
-import org.inaturalist.android.util.ThreadLogger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -116,6 +115,7 @@ import android.widget.Toast;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+@SuppressWarnings({"ConstantConditions", "PointlessBooleanExpression"})
 public class INaturalistService extends IntentService {
     // How many observations should we initially download for the user
     private static final int INITIAL_SYNC_OBSERVATION_COUNT = 100;
@@ -397,7 +397,6 @@ public class INaturalistService extends IntentService {
     public static String ACTION_GET_HISTOGRAM = "action_get_histogram";
     public static String ACTION_GET_POPULAR_FIELD_VALUES = "action_get_popular_field_values";
     public static String ACTION_REGISTER_USER = "register_user";
-    public static String ACTION_PASSIVE_SYNC = "passive_sync";
     public static String ACTION_GET_ADDITIONAL_OBS = "get_additional_observations";
     public static String ACTION_ADD_IDENTIFICATION = "add_identification";
     public static String ACTION_ADD_PROJECT_FIELD = "add_project_field";
@@ -525,7 +524,6 @@ public class INaturalistService extends IntentService {
     private String mLogin;
     private String mCredentials;
     private SharedPreferences mPreferences;
-    private boolean mPassive;
     private INaturalistApp mApp;
     private LoginType mLoginType;
     private boolean mIsStopped = false;
@@ -632,8 +630,6 @@ public class INaturalistService extends IntentService {
         String action = intent.getAction();
 
         if (action == null) return;
-
-        mPassive = action.equals(ACTION_PASSIVE_SYNC);
 
         Logger.tag(TAG).debug("Service: " + action);
 
@@ -1842,9 +1838,7 @@ public class INaturalistService extends IntentService {
             mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
 
         } catch (AuthenticationException e) {
-            if (!mPassive) {
-                requestCredentials();
-            }
+            requestCredentials();
             mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
         } finally {
             mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
@@ -6092,18 +6086,16 @@ public class INaturalistService extends IntentService {
             return true;
         }
 
-        // request login unless passive
-        if (!mPassive) {
-            throw new AuthenticationException();
-        }
+        throw new AuthenticationException();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            stopForeground(true);
-        } else {
-            stopSelf();
-        }
+        // TODO what was this supposed to do?
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            stopForeground(true);
+//        } else {
+//            stopSelf();
+//        }
 
-        return false;
+//        return false;
     }
 
     private void requestCredentials() {
