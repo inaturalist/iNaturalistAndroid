@@ -28,6 +28,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.core.app.NotificationCompat;
 
@@ -54,26 +55,17 @@ import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.params.ClientPNames;
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.client.LaxRedirectStrategy;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.CoreProtocolPNames;
-import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.inaturalist.android.api.AuthenticationException;
+import org.inaturalist.android.api.ServerError;
+import org.inaturalist.android.api.iNaturalistApi;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -91,9 +83,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.nio.charset.Charset;
 import java.sql.Timestamp;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -112,7 +102,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 @SuppressWarnings("ALL")
-public class INaturalistService extends IntentService {
+public class INaturalistService extends IntentService implements
+        iNaturalistApi.ApiHelper {
     // How many observations should we initially download for the user
     private static final int INITIAL_SYNC_OBSERVATION_COUNT = 100;
 
@@ -534,7 +525,6 @@ public class INaturalistService extends IntentService {
     private Hashtable<Integer, Hashtable<Integer, ProjectFieldValue>> mProjectFieldValues;
 
     private Header[] mResponseHeaders = null;
-    private Date mRetryAfterDate = null;
     private long mLastServiceUnavailableNotification = 0;
     private boolean mServiceUnavailable = false;
 
@@ -636,6 +626,9 @@ public class INaturalistService extends IntentService {
         } catch (AuthenticationException e) {
             requestCredentials();
             mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
+        } catch (ServerError e) {
+            mServiceUnavailable = true;
+            onServerError(e);
         } finally {
             mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
 
@@ -655,8 +648,46 @@ public class INaturalistService extends IntentService {
         }
     }
 
+    private void onServerError(ServerError e) {
+        String errorMessage;
+        Date mRetryAfterDate = e.retryAfter;
 
-    private boolean handleIntentAction(final Intent intent) throws AuthenticationException, SyncFailedException, CancelSyncException {
+        if (mRetryAfterDate == null) {
+            // No specific retry time
+            errorMessage = getString(R.string.please_try_again_in_a_few_hours);
+        } else {
+            // Specific retry time
+            Date currentTime = Calendar.getInstance().getTime();
+            long differenceSeconds = (mRetryAfterDate.getTime() - currentTime.getTime()) / 1000;
+
+            long delay;
+            String delayType;
+
+            if (differenceSeconds < 60) {
+                delayType = getString(R.string.seconds_value);
+                delay = differenceSeconds;
+            } else if (differenceSeconds < 60 * 60) {
+                delayType = getString(R.string.minutes);
+                delay = (differenceSeconds / 60);
+            } else {
+                delayType = getString(R.string.hours);
+                delay = (differenceSeconds / (60 * 60));
+            }
+            errorMessage = String.format(getString(R.string.please_try_again_in_x), delay, delayType);
+        }
+
+        if (System.currentTimeMillis() - mLastServiceUnavailableNotification > 30000) {
+            // Make sure we won't notify the user about this too often
+            mLastServiceUnavailableNotification = System.currentTimeMillis();
+
+            // Show service not available message to user
+            String message = getString(R.string.service_temporarily_unavailable) + " " + errorMessage;
+            final Toast serverDeadToast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG);
+            mHandler.post(() -> serverDeadToast.show());
+        }
+    }
+
+    private boolean handleIntentAction(final Intent intent) throws AuthenticationException, ServerError, SyncFailedException, CancelSyncException {
         boolean dontStopSync = false;
 
         mPreferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
@@ -5791,7 +5822,11 @@ public class INaturalistService extends IntentService {
         return request(url, method, params, jsonContent, authenticated, false, false);
     }
 
-    private String getAnonymousJWTToken() {
+    public LoginType getLoginType() {
+        return mLoginType;
+    }
+
+    public String getAnonymousJWTToken() {
         String anonymousApiSecret = getString(R.string.jwt_anonymous_api_secret);
 
         if (anonymousApiSecret == null) return null;
@@ -5808,7 +5843,7 @@ public class INaturalistService extends IntentService {
         return compactJwt;
     }
 
-    private String getJWTToken() {
+    public String getJWTToken() {
         if (mPreferences == null)
             mPreferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         String jwtToken = mPreferences.getString("jwt_token", null);
@@ -5840,254 +5875,7 @@ public class INaturalistService extends IntentService {
         }
     }
 
-    private JSONArray request(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated, boolean useJWTToken, boolean allowAnonymousJWTToken) throws AuthenticationException {
-        CloseableHttpClient client = HttpClientBuilder.create()
-                // Faster reading of data
-                .disableContentCompression()
-                // Handle redirects (301/302) for all HTTP methods (including POST)
-                .setRedirectStrategy(new LaxRedirectStrategy())
-                .setUserAgent(getUserAgent(mApp))
-                .build();
-
-//        Logger.tag(TAG).debug(String.format("%s (%b - %s): %s", method, authenticated,
-//                authenticated ? mCredentials : "<null>",
-//                url));
-
-        HttpRequestBase request;
-
-        mRetryAfterDate = null;
-        mServiceUnavailable = false;
-
-        Logger.tag(TAG).debug(String.format("URL: %s - %s (params: %s / %s)", method, url, (params != null ? params.toString() : "null"), (jsonContent != null ? jsonContent.toString() : "null")));
-
-        if (method.equalsIgnoreCase("post")) {
-            request = new HttpPost(url);
-        } else if (method.equalsIgnoreCase("delete")) {
-            request = new HttpDelete(url);
-        } else if (method.equalsIgnoreCase("put")) {
-            request = new HttpPut(url);
-        } else {
-            request = new HttpGet(url);
-        }
-
-        // POST params
-        if (jsonContent != null) {
-            // JSON body content
-            request.setHeader("Content-type", "application/json");
-            StringEntity entity = null;
-            try {
-                entity = new StringEntity(jsonContent.toString(), HTTP.UTF_8);
-            } catch (Exception exc) {
-                Logger.tag(TAG).error(exc);
-            }
-
-            if (method.equalsIgnoreCase("put")) {
-                ((HttpPut) request).setEntity(entity);
-            } else {
-                ((HttpPost) request).setEntity(entity);
-            }
-
-        } else if (params != null) {
-            // "Standard" multipart encoding
-            Charset utf8Charset = Charset.forName("UTF-8");
-            MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
-            for (int i = 0; i < params.size(); i++) {
-                if (params.get(i).getName().equalsIgnoreCase("image") || params.get(i).getName().equalsIgnoreCase("file") || params.get(i).getName().equalsIgnoreCase("user[icon]") || params.get(i).getName().equalsIgnoreCase("audio")) {
-                    // If the key equals to "image", we use FileBody to transfer the data
-                    String value = params.get(i).getValue();
-                    if (value != null) {
-                        if (params.get(i).getName().equalsIgnoreCase("audio")) {
-                            File file = new File(value);
-                            entity.addPart("file", new FileBody(file, ContentType.parse("audio/" + value.substring(value.lastIndexOf(".") + 1)), file.getName()));
-                            request.setHeader("Accept", "application/json");
-                        } else {
-                            entity.addPart(params.get(i).getName(), new FileBody(new File(value)));
-                        }
-                    }
-                } else {
-                    // Normal string data
-                    try {
-                        entity.addPart(params.get(i).getName(), new StringBody(params.get(i).getValue(), utf8Charset));
-                    } catch (UnsupportedEncodingException e) {
-                        Logger.tag(TAG).error("failed to add " + params.get(i).getName() + " to entity for a " + method + " request: " + e);
-                    }
-                }
-            }
-            if (method.equalsIgnoreCase("put")) {
-                ((HttpPut) request).setEntity(entity);
-            } else {
-                ((HttpPost) request).setEntity(entity);
-            }
-        }
-
-        if (url.startsWith(API_HOST) && (mCredentials != null)) {
-            // For the node API, if we're logged in, *always* use JWT authentication
-            authenticated = true;
-            useJWTToken = true;
-        }
-
-        if (authenticated) {
-            if (useJWTToken && allowAnonymousJWTToken && (mCredentials == null)) {
-                // User not logged in, but allow using anonymous JWT
-                request.setHeader("Authorization", getAnonymousJWTToken());
-            } else {
-                ensureCredentials();
-
-                if (useJWTToken) {
-                    // Use JSON Web Token for this request
-                    request.setHeader("Authorization", getJWTToken());
-                } else if (mLoginType == LoginType.PASSWORD) {
-                    // Old-style password authentication
-                    request.setHeader("Authorization", "Basic " + mCredentials);
-                } else {
-                    // OAuth2 token (Facebook/G+/etc)
-                    request.setHeader("Authorization", "Bearer " + mCredentials);
-                }
-            }
-        }
-
-        try {
-            mResponseErrors = null;
-            HttpResponse response = client.execute(request);
-            HttpEntity entity = response.getEntity();
-            String content = entity != null ? EntityUtils.toString(entity) : null;
-
-            Logger.tag(TAG).debug("Response: " + response.getStatusLine().toString());
-            Logger.tag(TAG).debug(String.format("(for URL: %s - %s (params: %s / %s))", method, url, (params != null ? params.toString() : "null"), (jsonContent != null ? jsonContent.toString() : "null")));
-            Logger.tag(TAG).debug(content);
-
-            JSONArray json = null;
-            mLastStatusCode = response.getStatusLine().getStatusCode();
-
-            switch (mLastStatusCode) {
-                //switch (response.getStatusCode()) {
-                case HttpStatus.SC_UNPROCESSABLE_ENTITY:
-                    // Validation error - still need to return response
-                    Logger.tag(TAG).error(response.getStatusLine().toString());
-                case HttpStatus.SC_OK:
-                    try {
-                        json = new JSONArray(content);
-                    } catch (JSONException e) {
-                        try {
-                            JSONObject jo = new JSONObject(content);
-                            json = new JSONArray();
-                            json.put(jo);
-                        } catch (JSONException e2) {
-                        }
-                    }
-
-                    mResponseHeaders = response.getAllHeaders();
-
-                    try {
-                        if ((json != null) && (json.length() > 0)) {
-                            JSONObject result = json.getJSONObject(0);
-                            if (result.has("errors")) {
-                                // Error response
-                                Logger.tag(TAG).error("Got an error response: " + result.get("errors").toString());
-                                mResponseErrors = result.getJSONArray("errors");
-                                return null;
-                            }
-                        }
-                    } catch (JSONException e) {
-                        Logger.tag(TAG).error(e);
-                    }
-
-                    if ((content != null) && (content.length() == 0)) {
-                        // In case it's just non content (but OK HTTP status code) - so there's no error
-                        json = new JSONArray();
-                    }
-
-                    return json;
-
-                case HttpStatus.SC_UNAUTHORIZED:
-                    throw new AuthenticationException();
-                case HttpURLConnection.HTTP_UNAVAILABLE:
-                    Logger.tag(TAG).error("503 server unavailable");
-                    mServiceUnavailable = true;
-
-                    // Find out if there's a "Retry-After" header
-                    Header[] headers = response.getHeaders("Retry-After");
-                    if ((headers != null) && (headers.length > 0)) {
-                        for (Header header : headers) {
-                            String timestampString = header.getValue();
-                            Logger.tag(TAG).error("Retry after raw string: " + timestampString);
-                            SimpleDateFormat format = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz");
-                            try {
-                                mRetryAfterDate = format.parse(timestampString);
-                                Logger.tag(TAG).error("Retry after: " + mRetryAfterDate);
-                                break;
-                            } catch (ParseException e) {
-                                Logger.tag(TAG).error(e);
-                                try {
-                                    // Try parsing it as a seconds-delay value
-                                    int secondsDelay = Integer.valueOf(timestampString);
-                                    Logger.tag(TAG).error("Retry after: " + secondsDelay);
-                                    Calendar calendar = Calendar.getInstance();
-                                    calendar.add(Calendar.SECOND, secondsDelay);
-                                    mRetryAfterDate = calendar.getTime();
-
-                                    break;
-                                } catch (NumberFormatException exc) {
-                                    Logger.tag(TAG).error(exc);
-                                }
-                            }
-                        }
-                    }
-
-                    // Show service not available message to user
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            String errorMessage;
-                            if (mRetryAfterDate == null) {
-                                // No specific retry time
-                                errorMessage = getString(R.string.please_try_again_in_a_few_hours);
-                            } else {
-                                // Specific retry time
-                                Date currentTime = Calendar.getInstance().getTime();
-                                long differenceSeconds = (mRetryAfterDate.getTime() - currentTime.getTime()) / 1000;
-
-                                long delay;
-                                String delayType;
-
-                                if (differenceSeconds < 60) {
-                                    delayType = getString(R.string.seconds_value);
-                                    delay = differenceSeconds;
-                                } else if (differenceSeconds < 60 * 60) {
-                                    delayType = getString(R.string.minutes);
-                                    delay = (differenceSeconds / 60);
-                                } else {
-                                    delayType = getString(R.string.hours);
-                                    delay = (differenceSeconds / (60 * 60));
-                                }
-                                errorMessage = String.format(getString(R.string.please_try_again_in_x), delay, delayType);
-                            }
-
-                            if (System.currentTimeMillis() - mLastServiceUnavailableNotification > 30000) {
-                                // Make sure we won't notify the user about this too often
-                                mLastServiceUnavailableNotification = System.currentTimeMillis();
-                                Toast.makeText(getApplicationContext(), getString(R.string.service_temporarily_unavailable) + " " + errorMessage, Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    });
-
-                    return null;
-                case HttpStatus.SC_GONE:
-                    Logger.tag(TAG).error("GONE: " + response.getStatusLine().toString());
-                    // TODO create notification that informs user some observations have been deleted on the server,
-                    // click should take them to an activity that lets them decide whether to delete them locally
-                    // or post them as new observations
-                default:
-                    Logger.tag(TAG).error(response.getStatusLine().toString());
-            }
-        } catch (IOException e) {
-            Logger.tag(TAG).error("Error for URL " + url + ":" + e);
-            Logger.tag(TAG).error(e);
-        }
-        return null;
-    }
-
-    private boolean ensureCredentials() throws AuthenticationException {
+    public boolean ensureCredentials() throws AuthenticationException {
         if (mCredentials != null) {
             return true;
         }
@@ -6631,10 +6419,6 @@ public class INaturalistService extends IntentService {
         return true;
     }
 
-    private class AuthenticationException extends Exception {
-        private static final long serialVersionUID = 1L;
-    }
-
     public interface IOnLocation {
         void onLocation(Location location);
     }
@@ -6747,7 +6531,8 @@ public class INaturalistService extends IntentService {
         }
     }
 
-    public static String getUserAgent(Context context) {
+    public String getUserAgent() {
+        Context context = mApp;
         PackageInfo info = null;
         try {
             info = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
@@ -6759,6 +6544,11 @@ public class INaturalistService extends IntentService {
         userAgent = userAgent.replace("%VERSION%", info != null ? info.versionName : String.valueOf(INaturalistApp.VERSION));
 
         return userAgent;
+    }
+
+    @Override
+    public String credentials() {
+        return mCredentials;
     }
 
 
