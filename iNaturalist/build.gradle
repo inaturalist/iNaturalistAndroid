@@ -115,7 +115,9 @@ dependencies {
     implementation 'com.google.android.gms:play-services-gcm:17.0.0'
     implementation 'androidx.preference:preference:1.0.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
-    implementation 'com.squareup.okhttp3:okhttp:4.7.2'
+    // Using okhttp3 until okhttp4 is supported by Android Network Profiler
+    //noinspection GradleDependency
+    implementation 'com.squareup.okhttp3:okhttp:3.14.9'
     implementation 'com.mikhaellopez:circularprogressbar:1.1.1'
     implementation 'androidx.exifinterface:exifinterface:1.1.0'
     implementation 'it.sephiroth.android.exif:library:+'

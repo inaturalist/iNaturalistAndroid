@@ -118,7 +118,7 @@ public class iNaturalistApi {
         // POST params
         if (jsonContent != null) {
             request.header("Content-type", "application/json");
-            body = RequestBody.create(jsonContent.toString(), JSON);
+            body = RequestBody.create(JSON, jsonContent.toString());
         } else if (params != null) {
             // "Standard" multipart encoding
 
@@ -158,7 +158,7 @@ public class iNaturalistApi {
 
         if (method.equalsIgnoreCase("post")) {
             if (body == null)
-                body = RequestBody.create("", null);
+                body = RequestBody.create(null, "");
             request.post(body);
         } else if (method.equalsIgnoreCase("delete")) {
             request.delete(body);
