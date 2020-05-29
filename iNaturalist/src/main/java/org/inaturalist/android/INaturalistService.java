@@ -1510,7 +1510,7 @@ public class INaturalistService extends IntentService implements
         } else if (action.equals(ACTION_ADD_COMMENT)) {
             int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
             String body = intent.getStringExtra(COMMENT_BODY);
-            addComment(observationId, body);
+            mApi.addComment(observationId, body);
 
             // Wait a little before refreshing the observation details - so we'll let the server update the comment
             // list (otherwise, it won't return the new comment)
@@ -1557,7 +1557,7 @@ public class INaturalistService extends IntentService implements
         } else if (action.equals(ACTION_DELETE_COMMENT)) {
             int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
             int commentId = intent.getIntExtra(COMMENT_ID, 0);
-            deleteComment(commentId);
+            mApi.deleteComment(commentId);
 
             // Reload the observation at the end (need to refresh comment/ID list)
             JSONObject observationJson = getObservationJson(observationId, false, false);
@@ -4066,19 +4066,6 @@ public class INaturalistService extends IntentService implements
         params.add(new BasicNameValuePair("comment[body]", body));
 
         put(HOST + "/comments/" + commentId + ".json", params);
-    }
-
-    private void deleteComment(int commentId) throws AuthenticationException {
-        delete(HOST + "/comments/" + commentId + ".json", null);
-    }
-
-    private void addComment(int observationId, String body) throws AuthenticationException {
-        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("comment[parent_id]", new Integer(observationId).toString()));
-        params.add(new BasicNameValuePair("comment[parent_type]", "Observation"));
-        params.add(new BasicNameValuePair("comment[body]", body));
-
-        post(HOST + "/comments.json", params);
     }
 
     private boolean postObservation(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException {

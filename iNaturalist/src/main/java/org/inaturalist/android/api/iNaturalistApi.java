@@ -342,32 +342,45 @@ public class iNaturalistApi {
 //        } else {
 //            return null;
 //        }
+    }
 
+    public void addComment(int observationId, String body) throws AuthenticationException, ServerError {
+        // TODO use the JSON API, stop pretending to be a multipart form. This will break if webUI is changed
+        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("comment[parent_id]", new Integer(observationId).toString()));
+        params.add(new BasicNameValuePair("comment[parent_type]", "Observation"));
+        params.add(new BasicNameValuePair("comment[body]", body));
+
+        post(HOST + "/comments.json", params);
+    }
+
+    public void deleteComment(int commentId) throws AuthenticationException, ServerError {
+        delete(HOST + "/comments/" + commentId + ".json", null);
     }
 
     private ApiResponse put(String url, ArrayList<NameValuePair> params) throws AuthenticationException, ServerError {
         params.add(new BasicNameValuePair("_method", "PUT"));
-        return request(url, "put", params, null, true);
+        return requestAllParams(url, "put", params, null, true);
     }
 
     private ApiResponse put(String url, JSONObject jsonContent) throws AuthenticationException, ServerError {
-        return request(url, "put", null, jsonContent, true);
+        return requestAllParams(url, "put", null, jsonContent, true);
     }
 
     private ApiResponse delete(String url, ArrayList<NameValuePair> params) throws AuthenticationException, ServerError {
-        return request(url, "delete", params, null, true);
+        return requestAllParams(url, "delete", params, null, true);
     }
 
     private ApiResponse post(String url, ArrayList<NameValuePair> params, boolean authenticated) throws AuthenticationException, ServerError {
-        return request(url, "post", params, null, authenticated);
+        return requestAllParams(url, "post", params, null, authenticated);
     }
 
     private ApiResponse post(String url, ArrayList<NameValuePair> params) throws AuthenticationException, ServerError {
-        return request(url, "post", params, null, true);
+        return requestAllParams(url, "post", params, null, true);
     }
 
     private ApiResponse post(String url, JSONObject jsonContent) throws AuthenticationException, ServerError {
-        return request(url, "post", null, jsonContent, true);
+        return requestAllParams(url, "post", null, jsonContent, true);
     }
 
 
@@ -376,10 +389,10 @@ public class iNaturalistApi {
     }
 
     private ApiResponse get(String url, boolean authenticated) throws AuthenticationException, ServerError {
-        return request(url, "get", null, null, authenticated);
+        return requestAllParams(url, "get", null, null, authenticated);
     }
 
-    private ApiResponse request(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated) throws AuthenticationException, ServerError {
         return request(url, method, params, jsonContent, authenticated, false, false);
+    private ApiResponse requestAllParams(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated) throws AuthenticationException, ServerError {
     }
 }
