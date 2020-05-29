@@ -28,6 +28,8 @@ import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -620,7 +622,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
 
     protected static void safeUnregisterReceiver(BroadcastReceiver receiver, Context context) {
         try {
-            if (receiver != null) context.unregisterReceiver(receiver);
+            if (receiver != null) LocalBroadcastManager.getInstance(context).unregisterReceiver(receiver);
         } catch (Exception e) {
         }
     }
@@ -633,7 +635,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
     public static void safeRegisterReceiver(BroadcastReceiver receiver, IntentFilter filter, Context context) {
         safeUnregisterReceiver(receiver, context);
         try {
-            context.registerReceiver(receiver, filter);
+            LocalBroadcastManager.getInstance(context).registerReceiver(receiver, filter);
         } catch (Exception e) {
 
         }
