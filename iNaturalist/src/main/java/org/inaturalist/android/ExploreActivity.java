@@ -1531,6 +1531,7 @@ public class ExploreActivity extends BaseFragmentActivity {
         }
     }
 
+    private final OkHttpClient client = new OkHttpClient();
     private void onObservationsMapClick(LatLng latLng) {
         final int zoom = (int)Math.floor(mObservationsMap.getCameraPosition().zoom);
 
@@ -1542,7 +1543,6 @@ public class ExploreActivity extends BaseFragmentActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                OkHttpClient client = new OkHttpClient();
                 Request request = new Request.Builder()
                         .url(gridUrl)
                         .build();
