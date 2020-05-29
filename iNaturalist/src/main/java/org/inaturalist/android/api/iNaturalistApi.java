@@ -24,9 +24,7 @@ import org.apache.http.impl.client.LaxRedirectStrategy;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
-import org.inaturalist.android.BetterJSONObject;
 import org.inaturalist.android.INaturalistService;
-import org.inaturalist.android.Observation;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,6 +40,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+
+import okhttp3.Headers;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class iNaturalistApi {
 
@@ -82,6 +89,222 @@ public class iNaturalistApi {
         @Nullable JSONArray errors;
         /** Response content as JSON (if no errors) */
         @Nullable JSONArray response;
+    }
+
+    private final OkHttpClient mClient = new OkHttpClient();
+    public static final MediaType JSON
+            = MediaType.parse("application/json; charset=utf-8");
+    public static final MediaType FORM
+            = MediaType.parse("application/json; charset=utf-8");
+
+    @Nullable
+    private ApiResponse okHttpRequest(String url, String method, ArrayList<NameValuePair> params,
+                                      JSONObject jsonContent, boolean authenticated, boolean useJWTToken,
+                                      boolean allowAnonymousJWTToken) throws AuthenticationException, ServerError {
+
+        // TODO handle POST redirects (301,302,307,308)
+        // We would need to check the location (same domain) and protocol (still HTTPS) to be secure
+        // Why is this needed anyways? The server should not be doing this...
+        // TODO disable content compression for "Faster reading of data"
+        //   .disableContentCompression()
+        Request.Builder request = new Request.Builder()
+                .url(url)
+                .header("User-Agent", mHelper.getUserAgent());
+
+        Logger.tag(TAG).debug(String.format("OK! URL: %s - %s (params: %s / %s)", method, url, (params != null ? params.toString() : "null"), (jsonContent != null ? jsonContent.toString() : "null")));
+
+        RequestBody body = null;
+
+        // POST params
+        if (jsonContent != null) {
+            request.header("Content-type", "application/json");
+            body = RequestBody.create(jsonContent.toString(), JSON);
+        } else if (params != null) {
+            // "Standard" multipart encoding
+
+            MultipartBody.Builder multipartBody = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM);
+            Charset utf8Charset = Charset.forName("UTF-8");
+            for (int i = 0; i < params.size(); i++) {
+                String paramName = params.get(i).getName();
+
+                // Use FileBody for large data
+                if (paramName.equalsIgnoreCase("image")
+                        || paramName.equalsIgnoreCase("file")
+                        || paramName.equalsIgnoreCase("user[icon]")
+                        || paramName.equalsIgnoreCase("audio")) {
+                    String value = params.get(i).getValue();
+                    if (value != null) {
+                        if (paramName.equalsIgnoreCase("audio")) {
+                            File file = new File(value);
+                            // TODO entity.addPart("file", new FileBody(file, ContentType.parse("audio/" + value.substring(value.lastIndexOf(".") + 1)), file.getName()));
+                            request.header("Accept", "application/json");
+                        } else {
+                            // TODO entity.addPart(params.get(i).getName(), new FileBody(new File(value)));
+                        }
+                    }
+                } else {
+                    // Normal string data
+                    multipartBody.addFormDataPart(paramName, params.get(i).getValue());
+//                    try {
+//                        entity.addPart(params.get(i).getName(), new StringBody(params.get(i).getValue(), utf8Charset));
+//                    } catch (UnsupportedEncodingException e) {
+//                        Logger.tag(TAG).error("failed to add " + params.get(i).getName() + " to entity for a " + method + " request: " + e);
+//                    }
+                }
+            } // End for
+            body = multipartBody.build();
+        }
+
+        if (method.equalsIgnoreCase("post")) {
+            if (body == null)
+                body = RequestBody.create("", null);
+            request.post(body);
+        } else if (method.equalsIgnoreCase("delete")) {
+            request.delete(body);
+        } else if (method.equalsIgnoreCase("put")) {
+            request.put(body);
+        } else {
+            request.get();
+        }
+
+
+        if (url.startsWith(API_HOST) && (mHelper.credentials() != null)) {
+            // For the node API, if we're logged in, *always* use JWT authentication
+            authenticated = true;
+            useJWTToken = true;
+        }
+
+        if (authenticated) {
+            if (useJWTToken && allowAnonymousJWTToken && (mHelper.credentials() == null)) {
+                // User not logged in, but allow using anonymous JWT
+                request.addHeader("Authorization", mHelper.getAnonymousJWTToken());
+            } else {
+                mHelper.ensureCredentials();
+
+                if (useJWTToken) {
+                    // Use JSON Web Token for this request
+                    request.addHeader("Authorization", mHelper.getJWTToken());
+                } else if (mHelper.getLoginType() == INaturalistService.LoginType.PASSWORD) {
+                    // Old-style password authentication
+                    request.addHeader("Authorization", "Basic " + mHelper.credentials());
+                } else {
+                    // OAuth2 token (Facebook/G+/etc)
+                    request.addHeader("Authorization", "Bearer " + mHelper.credentials());
+                }
+            }
+        }
+
+        try {
+            Response response = mClient.newCall(request.build()).execute();
+            String content =  response.body().string();
+
+            Logger.tag(TAG).debug("Response: " + response.message());
+            Logger.tag(TAG).debug(String.format("  (for URL: %s - %s (params: %s / %s))", method, url, (params != null ? params.toString() : "null"), (jsonContent != null ? jsonContent.toString() : "null")));
+            Logger.tag(TAG).debug(content);
+
+            JSONArray json = null;
+            int statusCode = response.code();
+
+            switch (statusCode) {
+                case 422:
+                    // UNPROCESSABLE_ENTITY - server understood request but cannot fulfill it
+                    // Validation error - still need to return response
+                    Logger.tag(TAG).error(response.message());
+                case HttpURLConnection.HTTP_OK:
+                    try {
+                        json = new JSONArray(content);
+                    } catch (JSONException e) {
+                        try {
+                            JSONObject jo = new JSONObject(content);
+                            json = new JSONArray();
+                            json.put(jo);
+                        } catch (JSONException e2) {
+                            // TODO this should error
+                            return null;
+                        }
+                    }
+
+                    try {
+                        if ((json != null) && (json.length() > 0)) {
+                            JSONObject result = json.getJSONObject(0);
+                            if (result.has("errors")) {
+                                // Error response
+                                Logger.tag(TAG).error("Got an error response: " + result.get("errors").toString());
+                                ApiResponse ar = new ApiResponse();
+                                ar.httpResponseCode = statusCode;
+                                ar.errors = result.getJSONArray("errors");
+                                return ar;
+                            }
+                        }
+                    } catch (JSONException e) {
+                        Logger.tag(TAG).error(e);
+                    }
+
+                    if ((content != null) && (content.length() == 0)) {
+                        // In case it's just non content (but OK HTTP status code) - so there's no error
+                        json = new JSONArray();
+                    }
+
+                    ApiResponse ar = new ApiResponse();
+                    ar.httpResponseCode = statusCode;
+                    ar.response = json;
+                    return ar;
+
+                case HttpURLConnection.HTTP_UNAUTHORIZED:
+                    throw new AuthenticationException();
+                case HttpURLConnection.HTTP_UNAVAILABLE:
+                    Logger.tag(TAG).error("503 server unavailable");
+
+                    Date mRetryAfterDate = null;
+
+                    // Find out if there's a "Retry-After" header
+                    List<String> headers = response.headers("Retry-After");
+                    if ((headers != null) && (headers.size() > 0)) {
+                        for (String header : headers) {
+                            String timestampString = header;
+                            Logger.tag(TAG).error("Retry after raw string: " + timestampString);
+                            SimpleDateFormat format = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz");
+                            try {
+                                mRetryAfterDate = format.parse(timestampString);
+                                Logger.tag(TAG).error("Retry after: " + mRetryAfterDate);
+                                break;
+                            } catch (ParseException e) {
+                                Logger.tag(TAG).error(e);
+                                try {
+                                    // Try parsing it as a seconds-delay value
+                                    int secondsDelay = Integer.valueOf(timestampString);
+                                    Logger.tag(TAG).error("Retry after: " + secondsDelay);
+                                    Calendar calendar = Calendar.getInstance();
+                                    calendar.add(Calendar.SECOND, secondsDelay);
+                                    mRetryAfterDate = calendar.getTime();
+
+                                    break;
+                                } catch (NumberFormatException exc) {
+                                    Logger.tag(TAG).error(exc);
+                                }
+                            }
+                        }
+                    }
+                    throw new ServerError(mRetryAfterDate);
+                case HttpURLConnection.HTTP_GONE:
+                    Logger.tag(TAG).error("GONE: " + response.message());
+                    // TODO create notification that informs user some observations have been deleted on the server,
+                    // click should take them to an activity that lets them decide whether to delete them locally
+                    // or post them as new observations
+                default:
+                    Logger.tag(TAG).error(response.message());
+                    // add this back in once we have testing in palce
+//                    ApiResponse ar2 = new ApiResponse();
+//                    ar2.httpResponseCode = statusCode;
+//                    return ar2;
+            }
+        } catch (IOException e) {
+            Logger.tag(TAG).error("Error for URL " + url + ":" + e);
+            Logger.tag(TAG).error(e);
+        }
+
+        return null;
     }
 
     @Nullable
@@ -392,7 +615,7 @@ public class iNaturalistApi {
         return requestAllParams(url, "get", null, null, authenticated);
     }
 
-        return request(url, method, params, jsonContent, authenticated, false, false);
     private ApiResponse requestAllParams(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated) throws AuthenticationException, ServerError {
+        return okHttpRequest(url, method, params, jsonContent, authenticated, false, false);
     }
 }
