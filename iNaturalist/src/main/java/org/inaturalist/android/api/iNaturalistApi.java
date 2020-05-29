@@ -1,6 +1,6 @@
 package org.inaturalist.android.api;
 
-import android.widget.Toast;
+import androidx.annotation.Nullable;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -21,10 +21,12 @@ import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.LaxRedirectStrategy;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.inaturalist.android.BetterJSONObject;
 import org.inaturalist.android.INaturalistService;
-import org.inaturalist.android.R;
+import org.inaturalist.android.Observation;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,9 +48,11 @@ public class iNaturalistApi {
     private static String TAG = "ServerApi";
     private final ApiHelper mHelper;
     private final String API_HOST;
+    private final String HOST;
 
-    public iNaturalistApi(String host, ApiHelper helper) {
-        API_HOST = host;
+    public iNaturalistApi(String hostUrl, String apiHostUrl, ApiHelper helper) {
+        API_HOST = apiHostUrl;
+        HOST = hostUrl;
         mHelper = helper;
     }
 
@@ -56,18 +60,34 @@ public class iNaturalistApi {
      * Temporary interface to allow the API code to call back into the service
      * for stuff that is currently tightly coupled to Android-isms making it hard
      * to extract directly into this non-Android-enabled class
+     *
+     * Marked everything as Nullable b/c we cannot trust the service with it's various race conditions
      */
     public interface ApiHelper {
-        String getUserAgent();
-        String credentials();
-        String getJWTToken();
-        String getAnonymousJWTToken();
-        INaturalistService.LoginType getLoginType();
+        @Nullable String getUserAgent();
+        @Nullable String credentials();
+        @Nullable String getJWTToken();
+        @Nullable String getAnonymousJWTToken();
+        @Nullable INaturalistService.LoginType getLoginType();
         boolean ensureCredentials() throws AuthenticationException;
     }
 
+    /**
+     * Small data class to hold multiple parts of a response from the server
+     * TODO - either refactor other methods to not need this class, or build a small ObjectPool
+     */
+    private static class ApiResponse {
+        int httpResponseCode;
+        /** Got HTTP-200 that contained errors field */
+        @Nullable JSONArray errors;
+        /** Response content as JSON (if no errors) */
+        @Nullable JSONArray response;
+    }
 
-    private JSONArray request(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated, boolean useJWTToken, boolean allowAnonymousJWTToken) throws AuthenticationException, ServerError {
+    @Nullable
+    private ApiResponse request(String url, String method, ArrayList<NameValuePair> params,
+                              JSONObject jsonContent, boolean authenticated, boolean useJWTToken,
+                              boolean allowAnonymousJWTToken) throws AuthenticationException, ServerError {
         CloseableHttpClient client = HttpClientBuilder.create()
                 // Faster reading of data
                 .disableContentCompression()
@@ -77,7 +97,7 @@ public class iNaturalistApi {
                 .build();
 
 //        Logger.tag(TAG).debug(String.format("%s (%b - %s): %s", method, authenticated,
-//                authenticated ? mCredentials : "<null>",
+//                authenticated ? mHelper.credentials() : "<null>",
 //                url));
 
         HttpRequestBase request;
@@ -171,19 +191,18 @@ public class iNaturalistApi {
         }
 
         try {
-            mResponseErrors = null;
             HttpResponse response = client.execute(request);
             HttpEntity entity = response.getEntity();
             String content = entity != null ? EntityUtils.toString(entity) : null;
 
             Logger.tag(TAG).debug("Response: " + response.getStatusLine().toString());
-            Logger.tag(TAG).debug(String.format("(for URL: %s - %s (params: %s / %s))", method, url, (params != null ? params.toString() : "null"), (jsonContent != null ? jsonContent.toString() : "null")));
+            Logger.tag(TAG).debug(String.format("  (for URL: %s - %s (params: %s / %s))", method, url, (params != null ? params.toString() : "null"), (jsonContent != null ? jsonContent.toString() : "null")));
             Logger.tag(TAG).debug(content);
 
             JSONArray json = null;
-            mLastStatusCode = response.getStatusLine().getStatusCode();
+            int statusCode = response.getStatusLine().getStatusCode();
 
-            switch (mLastStatusCode) {
+            switch (statusCode) {
                 //switch (response.getStatusCode()) {
                 case HttpStatus.SC_UNPROCESSABLE_ENTITY:
                     // Validation error - still need to return response
@@ -197,10 +216,10 @@ public class iNaturalistApi {
                             json = new JSONArray();
                             json.put(jo);
                         } catch (JSONException e2) {
+                            // TODO this should error
+                            return null;
                         }
                     }
-
-                    mResponseHeaders = response.getAllHeaders();
 
                     try {
                         if ((json != null) && (json.length() > 0)) {
@@ -208,8 +227,10 @@ public class iNaturalistApi {
                             if (result.has("errors")) {
                                 // Error response
                                 Logger.tag(TAG).error("Got an error response: " + result.get("errors").toString());
-                                mResponseErrors = result.getJSONArray("errors");
-                                return null;
+                                ApiResponse ar = new ApiResponse();
+                                ar.httpResponseCode = statusCode;
+                                ar.errors = result.getJSONArray("errors");
+                                return ar;
                             }
                         }
                     } catch (JSONException e) {
@@ -221,7 +242,10 @@ public class iNaturalistApi {
                         json = new JSONArray();
                     }
 
-                    return json;
+                    ApiResponse ar = new ApiResponse();
+                    ar.httpResponseCode = statusCode;
+                    ar.response = json;
+                    return ar;
 
                 case HttpStatus.SC_UNAUTHORIZED:
                     throw new AuthenticationException();
@@ -259,8 +283,6 @@ public class iNaturalistApi {
                         }
                     }
                     throw new ServerError(mRetryAfterDate);
-
-                    return null;
                 case HttpStatus.SC_GONE:
                     Logger.tag(TAG).error("GONE: " + response.getStatusLine().toString());
                     // TODO create notification that informs user some observations have been deleted on the server,
@@ -268,11 +290,96 @@ public class iNaturalistApi {
                     // or post them as new observations
                 default:
                     Logger.tag(TAG).error(response.getStatusLine().toString());
+                    // add this back in once we have testing in palce
+//                    ApiResponse ar2 = new ApiResponse();
+//                    ar2.httpResponseCode = statusCode;
+//                    return ar2;
             }
         } catch (IOException e) {
             Logger.tag(TAG).error("Error for URL " + url + ":" + e);
             Logger.tag(TAG).error(e);
         }
+
         return null;
+    }
+
+    public void addFavorite(int observationId) throws AuthenticationException, ServerError {
+        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+//        ApiResponse response =
+        // TODO URL does not need to end in .json according to API docs
+
+        post(HOST + "/votes/vote/observation/" + observationId + ".json", (JSONObject) null);
+
+        // TODO add Observation return value and param 'needsReturn'
+        // Actually returning from this method would allow
+//        Observation observation = new Observation(new BetterJSONObject(observationJson));
+
+//        JSONArray result = response.response;
+//        if (result != null) {
+//            try {
+//                return result.getJSONObject(0);
+//            } catch (JSONException e) {
+//                Logger.tag(TAG).error(e);
+//                return null;
+//            }
+//        } else {
+//            return null;
+//        }
+    }
+
+    public void removeFavorite(int observationId) throws AuthenticationException, ServerError {
+        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+//        JSONArray result =
+        delete(HOST + "/votes/unvote/observation/" + observationId + ".json", null);
+
+//        if (result != null) {
+//            try {
+//                return result.getJSONObject(0);
+//            } catch (JSONException e) {
+//                Logger.tag(TAG).error(e);
+//                return null;
+//            }
+//        } else {
+//            return null;
+//        }
+
+    }
+
+    private ApiResponse put(String url, ArrayList<NameValuePair> params) throws AuthenticationException, ServerError {
+        params.add(new BasicNameValuePair("_method", "PUT"));
+        return request(url, "put", params, null, true);
+    }
+
+    private ApiResponse put(String url, JSONObject jsonContent) throws AuthenticationException, ServerError {
+        return request(url, "put", null, jsonContent, true);
+    }
+
+    private ApiResponse delete(String url, ArrayList<NameValuePair> params) throws AuthenticationException, ServerError {
+        return request(url, "delete", params, null, true);
+    }
+
+    private ApiResponse post(String url, ArrayList<NameValuePair> params, boolean authenticated) throws AuthenticationException, ServerError {
+        return request(url, "post", params, null, authenticated);
+    }
+
+    private ApiResponse post(String url, ArrayList<NameValuePair> params) throws AuthenticationException, ServerError {
+        return request(url, "post", params, null, true);
+    }
+
+    private ApiResponse post(String url, JSONObject jsonContent) throws AuthenticationException, ServerError {
+        return request(url, "post", null, jsonContent, true);
+    }
+
+
+    private ApiResponse get(String url) throws AuthenticationException, ServerError {
+        return get(url, false);
+    }
+
+    private ApiResponse get(String url, boolean authenticated) throws AuthenticationException, ServerError {
+        return request(url, "get", null, null, authenticated);
+    }
+
+    private ApiResponse request(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated) throws AuthenticationException, ServerError {
+        return request(url, method, params, jsonContent, authenticated, false, false);
     }
 }

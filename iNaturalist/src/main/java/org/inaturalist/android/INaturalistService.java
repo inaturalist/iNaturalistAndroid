@@ -535,6 +535,7 @@ public class INaturalistService extends IntentService implements
     private Object mObservationLock = new Object();
 
     private Location mLastLocation = null;
+    private final iNaturalistApi mApi;
 
     public enum LoginType {
         PASSWORD,
@@ -546,7 +547,7 @@ public class INaturalistService extends IntentService implements
 
     public INaturalistService() {
         super("INaturalistService");
-
+        mApi = new iNaturalistApi(HOST, API_HOST, this);
         mHandler = new Handler();
     }
 
@@ -891,12 +892,14 @@ public class INaturalistService extends IntentService implements
             }
 
         } else if (action.equals(ACTION_ADD_FAVORITE)) {
+            // TODO check int extra exists
             int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
-            addFavorite(observationId);
+            mApi.addFavorite(observationId);
 
         } else if (action.equals(ACTION_REMOVE_FAVORITE)) {
+            // TODO check int extra exists
             int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
-            removeFavorite(observationId);
+            mApi.removeFavorite(observationId);
 
         } else if (action.equals(ACTION_GET_ADDITIONAL_OBS)) {
             int obsCount = getAdditionalUserObservations(20);
@@ -3533,39 +3536,6 @@ public class INaturalistService extends IntentService implements
 
     private void checkForCancelSync() throws CancelSyncException {
         if (mApp.getCancelSync()) throw new CancelSyncException();
-    }
-
-
-    private JSONObject removeFavorite(int observationId) throws AuthenticationException {
-        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-        JSONArray result = delete(HOST + "/votes/unvote/observation/" + observationId + ".json", null);
-
-        if (result != null) {
-            try {
-                return result.getJSONObject(0);
-            } catch (JSONException e) {
-                Logger.tag(TAG).error(e);
-                return null;
-            }
-        } else {
-            return null;
-        }
-    }
-
-    private JSONObject addFavorite(int observationId) throws AuthenticationException {
-        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-        JSONArray result = post(HOST + "/votes/vote/observation/" + observationId + ".json", (JSONObject) null);
-
-        if (result != null) {
-            try {
-                return result.getJSONObject(0);
-            } catch (JSONException e) {
-                Logger.tag(TAG).error(e);
-                return null;
-            }
-        } else {
-            return null;
-        }
     }
 
     private JSONObject agreeIdentification(int observationId, int taxonId) throws AuthenticationException {
