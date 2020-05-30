@@ -129,26 +129,32 @@ public class iNaturalistApi {
                     .setType(MultipartBody.FORM);
             for (int i = 0; i < params.size(); i++) {
                 String paramName = params.get(i).getName();
+                String paramValue = params.get(i).getValue();
+
+                if (paramValue == null) {
+                    Logger.tag(TAG).warn("Ignoring parameter with null value: " + paramName);
+                    continue;
+                }
 
                 // Use FileBody for large data
                 if (paramName.equalsIgnoreCase("image")
                         || paramName.equalsIgnoreCase("file")
                         || paramName.equalsIgnoreCase("user[icon]")
                         || paramName.equalsIgnoreCase("audio")) {
-                    String value = params.get(i).getValue();
-                    if (value != null) {
-                        if (paramName.equalsIgnoreCase("audio")) {
-                            File file = new File(value);
-                            // TODO entity.addPart("file", new FileBody(file, ContentType.parse("audio/" + value.substring(value.lastIndexOf(".") + 1)), file.getName()));
-                            request.header("Accept", "application/json");
-                        } else {
-                            multipartBody.addFormDataPart(paramName, value,
-                                    RequestBody.create(OCTET, new File(value)));
-                        }
+                    if (paramName.equalsIgnoreCase("audio")) {
+                        File file = new File(paramValue);
+                        String fileExt = paramValue.substring(paramValue.lastIndexOf(".") + 1);
+                        MediaType customAudio = MediaType.parse("audio/" + fileExt);
+                        multipartBody.addFormDataPart(paramName, paramValue,
+                                RequestBody.create(customAudio, new File(paramValue)));
+                        request.header("Accept", "application/json");
+                    } else {
+                        multipartBody.addFormDataPart(paramName, paramValue,
+                                RequestBody.create(OCTET, new File(paramValue)));
                     }
                 } else {
                     // Normal string data
-                    multipartBody.addFormDataPart(paramName, params.get(i).getValue());
+                    multipartBody.addFormDataPart(paramName, paramValue);
                 }
             } // End for
             body = multipartBody.build();

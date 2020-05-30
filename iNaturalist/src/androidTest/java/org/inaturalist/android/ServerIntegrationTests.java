@@ -165,9 +165,7 @@ public class ServerIntegrationTests {
                 new Timestamp((new SimpleDateFormat("yyyy-MM-dd"))
                         .parse("2020-05-28").getTime()));
 
-
         byte[] imageContent = Files.readAllBytes(Paths.get(cachedFile.toURI()));
-
         WireMock.verify(WireMock.postRequestedFor(WireMock.urlEqualTo(testUrl))
                 .withHeader("User-Agent", containing("iNaturalist"))
                 .withHeader("Authorization", new AnythingPattern())
