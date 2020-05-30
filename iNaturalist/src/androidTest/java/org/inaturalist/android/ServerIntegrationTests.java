@@ -16,9 +16,20 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aMultipart;
+import static com.github.tomakehurst.wiremock.client.WireMock.binaryEqualTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.containing;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
@@ -45,7 +56,7 @@ public class ServerIntegrationTests {
                 INaturalistService.getUserAgent(ApplicationProvider.getApplicationContext()));
 
         mApi = new iNaturalistApi(wireMockRule.baseUrl(),
-                wireMockRule.baseUrl(),
+                wireMockRule.baseUrl() + "/v1",
                 mHelper);
     }
 
@@ -138,5 +149,66 @@ public class ServerIntegrationTests {
                 .withHeader("User-Agent", containing("iNaturalist"))
                 .withHeader("Authorization", new AnythingPattern())
         );
+    }
+
+    @Test
+    public void taxonSuggestions() throws AuthenticationException, ServerError, IOException, ParseException {
+
+        File cachedFile = copyAssetIntoExternalCache("taxon_suggestions.jpeg");
+
+        String testUrl = ServerStubber.stubTaxonSuggestions();
+        Double lat = 39.0455500388;
+        Double lng = -78.153687939;
+        BetterJSONObject result = mApi.getTaxonSuggestions(Locale.ENGLISH,
+                cachedFile.getAbsolutePath(),
+                lat, lng,
+                new Timestamp((new SimpleDateFormat("yyyy-MM-dd"))
+                        .parse("2020-05-28").getTime()));
+
+
+        byte[] imageContent = Files.readAllBytes(Paths.get(cachedFile.toURI()));
+
+        WireMock.verify(WireMock.postRequestedFor(WireMock.urlEqualTo(testUrl))
+                .withHeader("User-Agent", containing("iNaturalist"))
+                .withHeader("Authorization", new AnythingPattern())
+                .withHeader("Authorization", new AnythingPattern())
+                .withHeader("Content-Type", containing("multipart/form-data"))
+                .withRequestBodyPart(aMultipart()
+                        .withName("locale").withBody(equalTo("en")).build())
+                .withRequestBodyPart(aMultipart()
+                        .withName("lat").withBody(equalTo(lat.toString())).build())
+                .withRequestBodyPart(aMultipart()
+                        .withName("lng").withBody(equalTo(lng.toString())).build())
+                .withRequestBodyPart(aMultipart()
+                        .withName("observed_on").withBody(equalTo("2020-05-28")).build())
+                .withRequestBodyPart(aMultipart()
+                        .withName("image").withBody(binaryEqualTo(imageContent)).build())
+        );
+    }
+
+
+    /**
+     * Used for tests that need to pass a filename into the class-under-test. Those run in the app
+     * context and cannot access files not hosted in the app's own external storage folder
+     */
+    private static File copyAssetIntoExternalCache(String assetFilename) throws IOException {
+        InputStream is = InstrumentationRegistry.getInstrumentation().getContext().getAssets().open(assetFilename);
+        File out = new File(InstrumentationRegistry.getInstrumentation().getTargetContext().getExternalCacheDir(),
+                assetFilename);
+        OutputStream os = new FileOutputStream(out);
+
+        try {
+            // buffer size 1K
+            byte[] buf = new byte[1024];
+
+            int bytesRead;
+            while ((bytesRead = is.read(buf)) > 0) {
+                os.write(buf, 0, bytesRead);
+            }
+        } finally {
+            is.close();
+            os.close();
+        }
+        return out;
     }
 }

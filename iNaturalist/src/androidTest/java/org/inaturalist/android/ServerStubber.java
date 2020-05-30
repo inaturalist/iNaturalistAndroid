@@ -149,7 +149,7 @@ public class ServerStubber {
         return testUrl;
     }
 
-    static String stubDeleteComment() throws IOException {
+    static String stubDeleteComment() {
         String testUrl = "/comments/4713818.json";
 
         //    DELETE /comments/4713818.json HTTP/1.1
@@ -183,9 +183,69 @@ public class ServerStubber {
         return testUrl;
     }
 
+    static String stubTaxonSuggestions() throws IOException {
+        String testUrl = "/v1/computervision/score_image";
 
+        //    POST /v1/computervision/score_image HTTP/1.1
+        //    Authorization: ----
+        //    Content-Length: 74412
+        //    Content-Type: multipart/form-data; boundary=BZPZ0_--sJdYQj79dPf0WOE23gjWtE
+        //    Host: api.inaturalist.org
+        //    Connection: Keep-Alive
+        //    User-Agent: iNaturalist/1.19.0 (Build 422; Android 3.10.0+ 6352195; SDK 23; generic_x86 Android SDK built for x86 sdk_google_phone_x86; OS Version 6.0)
+        //
+        //    --BZPZ0_--sJdYQj79dPf0WOE23gjWtE
+        //    Content-Disposition: form-data; name="locale"
+        //
+        //    en
+        //            --BZPZ0_--sJdYQj79dPf0WOE23gjWtE
+        //    Content-Disposition: form-data; name="lat"
+        //
+        //    39.0455500388
+        //            --BZPZ0_--sJdYQj79dPf0WOE23gjWtE
+        //    Content-Disposition: form-data; name="lng"
+        //
+        //            -78.153687939
+        //            --BZPZ0_--sJdYQj79dPf0WOE23gjWtE
+        //    Content-Disposition: form-data; name="observed_on"
+        //
+        //    2020-05-28
+        //            --BZPZ0_--sJdYQj79dPf0WOE23gjWtE
+        //    Content-Disposition: form-data; name="image"; filename="7ce53ad2-144e-46ce-b49f-64c50c64dcc8.jpeg"
+        //    Content-Type: application/octet-stream
+        //    <snip file contents>
+        //
 
+        //    HTTP/1.1 200 OK
+        //    Server: nginx
+        //    Date: Fri, 29 May 2020 22:03:22 GMT
+        //    Content-Type: application/json; charset=utf-8
+        //    Content-Length: 192534
+        //    Access-Control-Allow-Origin: *
+        //    Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Methods, X-Via
+        //    Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE
+        //    X-Content-Type-Options: nosniff
+        //    ETag: W/"2f016-8hFCtIpUrLq8qp2AJQWFxCogn10"
+        //    Vary: Accept-Encoding
+        //    Age: 0
+        //    X-Cache: MISS
+        //    Accept-Ranges: bytes
+        //    Connection: keep-alive
+        String result = getAsset("taxon_suggestions.json");
+        WireMock.stubFor(WireMock.post(WireMock.urlEqualTo(testUrl))
+                .withHeader("Authorization", new AnythingPattern())
+                .withHeader("Content-Type", containing("multipart/form-data"))
+                .withMultipartRequestBody(aMultipart().withName("locale"))
+                .withMultipartRequestBody(aMultipart().withName("lat"))
+                .withMultipartRequestBody(aMultipart().withName("lng"))
+                .withMultipartRequestBody(aMultipart().withName("observed_on"))
+                .withMultipartRequestBody(aMultipart().withName("image"))
+                .willReturn(WireMock.aResponse()
+                        .withStatus(200)
+                        .withHeader("Content-Type", "application/json; charset=utf-8")
+                        .withBody(result)
+                ));
 
-
-
+        return testUrl;
+    }
 }

@@ -24,6 +24,7 @@ import org.apache.http.impl.client.LaxRedirectStrategy;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.inaturalist.android.BetterJSONObject;
 import org.inaturalist.android.INaturalistService;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,12 +36,14 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.nio.charset.Charset;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import okhttp3.Headers;
 import okhttp3.MediaType;
@@ -94,8 +97,8 @@ public class iNaturalistApi {
     private final OkHttpClient mClient = new OkHttpClient();
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
-    public static final MediaType FORM
-            = MediaType.parse("application/json; charset=utf-8");
+    public static final MediaType OCTET
+            = MediaType.parse("application/octet-stream");
 
     @Nullable
     private ApiResponse okHttpRequest(String url, String method, ArrayList<NameValuePair> params,
@@ -124,7 +127,6 @@ public class iNaturalistApi {
 
             MultipartBody.Builder multipartBody = new MultipartBody.Builder()
                     .setType(MultipartBody.FORM);
-            Charset utf8Charset = Charset.forName("UTF-8");
             for (int i = 0; i < params.size(); i++) {
                 String paramName = params.get(i).getName();
 
@@ -140,17 +142,13 @@ public class iNaturalistApi {
                             // TODO entity.addPart("file", new FileBody(file, ContentType.parse("audio/" + value.substring(value.lastIndexOf(".") + 1)), file.getName()));
                             request.header("Accept", "application/json");
                         } else {
-                            // TODO entity.addPart(params.get(i).getName(), new FileBody(new File(value)));
+                            multipartBody.addFormDataPart(paramName, value,
+                                    RequestBody.create(OCTET, new File(value)));
                         }
                     }
                 } else {
                     // Normal string data
                     multipartBody.addFormDataPart(paramName, params.get(i).getValue());
-//                    try {
-//                        entity.addPart(params.get(i).getName(), new StringBody(params.get(i).getValue(), utf8Charset));
-//                    } catch (UnsupportedEncodingException e) {
-//                        Logger.tag(TAG).error("failed to add " + params.get(i).getName() + " to entity for a " + method + " request: " + e);
-//                    }
                 }
             } // End for
             body = multipartBody.build();
@@ -167,7 +165,6 @@ public class iNaturalistApi {
         } else {
             request.get();
         }
-
 
         if (url.startsWith(API_HOST) && (mHelper.credentials() != null)) {
             // For the node API, if we're logged in, *always* use JWT authentication
@@ -300,6 +297,7 @@ public class iNaturalistApi {
 //                    return ar2;
             }
         } catch (IOException e) {
+            // TODO stop catching this. Either we return or we throw
             Logger.tag(TAG).error("Error for URL " + url + ":" + e);
             Logger.tag(TAG).error(e);
         }
@@ -308,7 +306,7 @@ public class iNaturalistApi {
     }
 
     @Nullable
-    private ApiResponse request(String url, String method, ArrayList<NameValuePair> params,
+    private ApiResponse requestOriginal(String url, String method, ArrayList<NameValuePair> params,
                               JSONObject jsonContent, boolean authenticated, boolean useJWTToken,
                               boolean allowAnonymousJWTToken) throws AuthenticationException, ServerError {
         CloseableHttpClient client = HttpClientBuilder.create()
@@ -513,12 +511,14 @@ public class iNaturalistApi {
                     // or post them as new observations
                 default:
                     Logger.tag(TAG).error(response.getStatusLine().toString());
-                    // add this back in once we have testing in palce
-//                    ApiResponse ar2 = new ApiResponse();
-//                    ar2.httpResponseCode = statusCode;
-//                    return ar2;
+
+                    ApiResponse ar2 = new ApiResponse();
+                    ar2.httpResponseCode = statusCode;
+                    return ar2;
             }
         } catch (IOException e) {
+            // Often happens if a file we were about to upload has been deleted/moved
+            // TODO this should re-throw?
             Logger.tag(TAG).error("Error for URL " + url + ":" + e);
             Logger.tag(TAG).error(e);
         }
@@ -548,6 +548,37 @@ public class iNaturalistApi {
 //        } else {
 //            return null;
 //        }
+    }
+
+    public BetterJSONObject getTaxonSuggestions(Locale deviceLocale, String photoFilename,
+                                                Double latitude, Double longitude,
+                                                Timestamp observedOn) throws AuthenticationException, ServerError {
+        String deviceLanguage = deviceLocale.getLanguage();
+        String date = observedOn != null ? new SimpleDateFormat("yyyy-MM-dd").format(observedOn) : null;
+        ArrayList<NameValuePair> params = new ArrayList<>();
+        String url = String.format(API_HOST + "/computervision/score_image");
+
+        params.add(new BasicNameValuePair("locale", deviceLanguage));
+        params.add(new BasicNameValuePair("lat", latitude.toString()));
+        params.add(new BasicNameValuePair("lng", longitude.toString()));
+        if (date != null) params.add(new BasicNameValuePair("observed_on", date));
+        params.add(new BasicNameValuePair("image", photoFilename));
+
+        ApiResponse ar = request(url, "post", params, null, true, true, true);
+        JSONArray json = ar.response;
+        if (json == null || json.length() == 0) {
+            return null;
+        }
+
+        JSONObject res;
+
+        try {
+            res = (JSONObject) json.get(0);
+            if (!res.has("results")) return null;
+            return new BetterJSONObject(res);
+        } catch (JSONException e) {
+            return null;
+        }
     }
 
     public void removeFavorite(int observationId) throws AuthenticationException, ServerError {
@@ -616,6 +647,16 @@ public class iNaturalistApi {
     }
 
     private ApiResponse requestAllParams(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated) throws AuthenticationException, ServerError {
-        return okHttpRequest(url, method, params, jsonContent, authenticated, false, false);
+        return request(url, method, params, jsonContent, authenticated, false, false);
+    }
+
+    private ApiResponse request(String url, String method, ArrayList<NameValuePair> params,
+                    JSONObject jsonContent, boolean authenticated, boolean useJWTToken,
+                    boolean allowAnonymousJWTToken) throws AuthenticationException, ServerError {
+        boolean useNewOkApproach = true;
+        if (useNewOkApproach) {
+            return okHttpRequest(url, method, params, jsonContent, authenticated, false, false);
+        }
+        return requestOriginal(url, method, params, jsonContent, authenticated, false, false);
     }
 }

@@ -1187,7 +1187,9 @@ public class INaturalistService extends IntentService implements
                 tempFile.delete();
             }
 
-            BetterJSONObject taxonSuggestions = getTaxonSuggestions(resizedPhotoFilename, latitude, longitude, observedOn);
+            BetterJSONObject taxonSuggestions =
+                    mApi.getTaxonSuggestions(getResources().getConfiguration().locale,
+                            resizedPhotoFilename, latitude, longitude, observedOn);
 
             File resizedFile = new File(resizedPhotoFilename);
             resizedFile.delete();
@@ -2729,35 +2731,6 @@ public class INaturalistService extends IntentService implements
 
         try {
             res = (JSONObject) json.get(0);
-            return new BetterJSONObject(res);
-        } catch (JSONException e) {
-            return null;
-        }
-    }
-
-    private BetterJSONObject getTaxonSuggestions(String photoFilename, Double latitude, Double longitude, Timestamp observedOn) throws AuthenticationException {
-        Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage = deviceLocale.getLanguage();
-        String date = observedOn != null ? new SimpleDateFormat("yyyy-MM-dd").format(observedOn) : null;
-        ArrayList<NameValuePair> params = new ArrayList<>();
-        String url = String.format(API_HOST + "/computervision/score_image");
-
-        params.add(new BasicNameValuePair("locale", deviceLanguage));
-        params.add(new BasicNameValuePair("lat", latitude.toString()));
-        params.add(new BasicNameValuePair("lng", longitude.toString()));
-        if (date != null) params.add(new BasicNameValuePair("observed_on", date));
-        params.add(new BasicNameValuePair("image", photoFilename));
-
-        JSONArray json = request(url, "post", params, null, true, true, true);
-        if (json == null || json.length() == 0) {
-            return null;
-        }
-
-        JSONObject res;
-
-        try {
-            res = (JSONObject) json.get(0);
-            if (!res.has("results")) return null;
             return new BetterJSONObject(res);
         } catch (JSONException e) {
             return null;
