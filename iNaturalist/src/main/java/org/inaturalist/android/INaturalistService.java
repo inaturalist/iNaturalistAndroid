@@ -627,13 +627,11 @@ public class INaturalistService extends IntentService implements
         } catch (SyncFailedException e) {
             syncFailed = true;
             mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
-
-        } catch (AuthenticationException e) {
-            requestCredentials();
-            mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
-        } catch (ServerError e) {
-            mServiceUnavailable = true;
-            onServerError(e);
+        } catch (ApiError apiError) {
+            handleApiError(apiError);
+        } catch (IOException e) {
+            // TODO
+            e.printStackTrace();
         } finally {
             mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
 
@@ -692,7 +690,31 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private boolean handleIntentAction(final Intent intent) throws AuthenticationException, ServerError, SyncFailedException, CancelSyncException {
+    /** Handles errors that can emerge from calls into the network */
+    // TODO this is called from many threads, but it inherits the non-thread-safe code from the
+    // pre-refactor logic. It accesses multiple variables in a thread-unsafe manner. This will need
+    // to be fixed before this can be merged, but fixing this will have to come after we finish
+    // restructuring the rest of the service-to-api interaction
+    @WorkerThread
+    public void handleApiError(ApiError e) {
+        if (e instanceof ServerError) {
+            // Mark service unavailable
+            mServiceUnavailable = true;
+            onServerError((ServerError) e);
+        } else if (e instanceof AuthenticationException) {
+            // Request auth
+            requestCredentials();
+            mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
+        } else if (e instanceof ApiIoException) {
+            // Network unavailable or read/write body failure
+            Logger.tag(TAG).warn("Received IOException from API", e.getCause());
+        } else {
+            // Generic error, cause unknown
+            Logger.tag(TAG).error("Unknown error from API", e);
+        }
+    }
+
+    private boolean handleIntentAction(final Intent intent) throws AuthenticationException, ServerError, SyncFailedException, CancelSyncException, IOException, ApiError {
         boolean dontStopSync = false;
 
         mPreferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
@@ -906,12 +928,47 @@ public class INaturalistService extends IntentService implements
         } else if (action.equals(ACTION_ADD_FAVORITE)) {
             // TODO check int extra exists
             int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
-            mApi.addFavorite(observationId);
+            mApi.addFavorite(observationId, new ServiceApiCallback<JSONArray>(this) {
+                @Override
+                public void onResponse(JSONArray response) {
+                    Logger.tag(TAG).debug("Got back a JSON array, woo!");
+                    Logger.tag(TAG).debug("Contents: " + response);
 
+                    // TODO add Observation return value and param 'needsReturn'
+                    // Actually returning from this method would allow
+                    //        Observation observation = new Observation(new BetterJSONObject(observationJson));
+
+                    //        JSONArray result = response.response;
+                    //        if (result != null) {
+                    //            try {
+                    //                return result.getJSONObject(0);
+                    //            } catch (JSONException e) {
+                    //                Logger.tag(TAG).error(e);
+                    //                return null;
+                    //            }
+                    //        } else {
+                    //            return null;
+                    //        }
+                }
+            });
         } else if (action.equals(ACTION_REMOVE_FAVORITE)) {
             // TODO check int extra exists
             int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
-            mApi.removeFavorite(observationId);
+            mApi.removeFavorite(observationId, new ServiceApiCallback<JSONArray>(this) {
+                @Override
+                public void onResponse(JSONArray response) {
+                    //        if (result != null) {
+                    //            try {
+                    //                return result.getJSONObject(0);
+                    //            } catch (JSONException e) {
+                    //                Logger.tag(TAG).error(e);
+                    //                return null;
+                    //            }
+                    //        } else {
+                    //            return null;
+                    //        }
+                }
+            });
 
         } else if (action.equals(ACTION_GET_ADDITIONAL_OBS)) {
             int obsCount = getAdditionalUserObservations(20);
@@ -967,7 +1024,7 @@ public class INaturalistService extends IntentService implements
                     String error = null;
                     try {
                         error = registerUser(email, password, username, license, timezoneName);
-                    } catch (AuthenticationException e) {
+                    } catch (IOException | ApiError e) {
                         Logger.tag(TAG).error(e);
                         error = e.toString();
                     }
@@ -3319,11 +3376,11 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private JSONArray request(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated, boolean useJWTToken, boolean allowAnonymousJWTToken) throws AuthenticationException, IOException, ApiError {
+    private JSONArray request(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated, boolean useJWTToken, boolean allowAnonymousJWTToken) throws IOException, ApiError {
         iNaturalistApi.ApiResponse resp = null;
         try {
             resp = mApi.syncRequest(url, method, params, jsonContent, authenticated, useJWTToken, allowAnonymousJWTToken);
-        } catch (ServerError serverError) {
+        } catch (ApiError serverError) {
             // TODO handle properly
             serverError.printStackTrace();
         }

@@ -1,5 +1,6 @@
 package org.inaturalist.android.api;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.Date;
@@ -11,10 +12,11 @@ import java.util.Date;
  * downtime to inform the clients how long they need to wait before the server should be
  * back
  */
-public class ServerError extends Exception {
+public class ServerError extends ApiError {
     public Date retryAfter;
 
     ServerError(@Nullable Date retryAfter) {
+        super("server-side issue");
         this.retryAfter = retryAfter;
     }
 }

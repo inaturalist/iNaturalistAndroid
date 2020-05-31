@@ -395,28 +395,16 @@ public class iNaturalistApi {
         }
     }
 
-    public void addFavorite(int observationId) throws AuthenticationException, ServerError {
+    public void addFavorite(int observationId, ApiCallback<JSONArray> cb) {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-//        ApiResponse response =
-        // TODO URL does not need to end in .json according to API docs
+        // TODO switch to new API
+        String url = HOST + "/votes/vote/observation/" + observationId + ".json";
 
-        post(HOST + "/votes/vote/observation/" + observationId + ".json", (JSONObject) null);
-
-        // TODO add Observation return value and param 'needsReturn'
-        // Actually returning from this method would allow
-//        Observation observation = new Observation(new BetterJSONObject(observationJson));
-
-//        JSONArray result = response.response;
-//        if (result != null) {
-//            try {
-//                return result.getJSONObject(0);
-//            } catch (JSONException e) {
-//                Logger.tag(TAG).error(e);
-//                return null;
-//            }
-//        } else {
-//            return null;
-//        }
+        asyncRequest(url,
+                "post",
+                null, null, true,
+                false, false,
+                cb);
     }
 
     public BetterJSONObject getTaxonSuggestions(Locale deviceLocale, String photoFilename,
@@ -450,21 +438,18 @@ public class iNaturalistApi {
         }
     }
 
-    public void removeFavorite(int observationId) throws AuthenticationException, ServerError {
-        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-//        JSONArray result =
-        delete(HOST + "/votes/unvote/observation/" + observationId + ".json", null);
+    public void removeFavorite(int observationId, ApiCallback<JSONArray> cb) {
+        String url = HOST + "/votes/unvote/observation/" + observationId + ".json";
 
-//        if (result != null) {
-//            try {
-//                return result.getJSONObject(0);
-//            } catch (JSONException e) {
-//                Logger.tag(TAG).error(e);
-//                return null;
-//            }
-//        } else {
-//            return null;
-//        }
+        // TODO old API returns a 204 No Content for unvoting
+        //  This is incorrect client-side - we have to update the user interface!
+        asyncRequest(url,
+                "delete",
+                null, null,
+                true,
+                false,
+                false,
+                cb);
     }
 
     public void addComment(int observationId, String body) throws AuthenticationException, ServerError, IOException, ApiError {
@@ -525,6 +510,18 @@ public class iNaturalistApi {
         return okHttpRequest(url, method, params, jsonContent, authenticated, false, false, null);
     }
 
+    public ApiResponse asyncRequest(String url, String method, ArrayList<NameValuePair> params,
+                                   JSONObject jsonContent, boolean authenticated, boolean useJWTToken,
+                                   boolean allowAnonymousJWTToken, @NonNull ApiCallback cb) {
+        if (cb == null)
+            throw new IllegalArgumentException("Callback cannot be null");
+        try {
+            return okHttpRequest(url, method, params, jsonContent, authenticated, false, false, cb);
+        } catch (IOException | ApiError e) {
+            // Should never happen. These errors only come from the method decodeOrThrow, which
+            // is executed on a background thread if we are using a callback
+            Logger.tag(TAG).error("This should never happen", e);
+            return null;
         }
     }
 }

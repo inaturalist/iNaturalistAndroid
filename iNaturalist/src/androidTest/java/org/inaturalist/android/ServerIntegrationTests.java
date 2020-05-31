@@ -2,11 +2,14 @@ package org.inaturalist.android;
 
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import com.github.tomakehurst.wiremock.matching.AnythingPattern;
 
+import org.inaturalist.android.api.ApiCallback;
+import org.inaturalist.android.api.ApiError;
 import org.inaturalist.android.api.AuthenticationException;
 import org.inaturalist.android.api.ServerError;
 import org.inaturalist.android.api.iNaturalistApi;
@@ -42,6 +45,7 @@ public class ServerIntegrationTests {
     public WireMockRule wireMockRule = new WireMockRule(options().dynamicPort());
     private iNaturalistApi.ApiHelper mHelper;
     private iNaturalistApi mApi;
+    private ApiCallback mCallback;
 
 
     @Before
@@ -54,17 +58,18 @@ public class ServerIntegrationTests {
         when(mHelper.getLoginType()).thenReturn(INaturalistService.LoginType.OAUTH_PASSWORD);
         when(mHelper.getUserAgent()).thenReturn(
                 INaturalistService.getUserAgent(ApplicationProvider.getApplicationContext()));
+        mCallback = Mockito.mock(ApiCallback.class);
 
         mApi = new iNaturalistApi(wireMockRule.baseUrl(),
                 wireMockRule.baseUrl() + "/v1",
-                mHelper);
+                mHelper, true);
     }
 
     @Test
-    public void addFavorite() throws AuthenticationException, ServerError, IOException {
+    public void addFavorite() throws IOException {
         String testUrl = ServerStubber.stubAddFavorite();
 
-        mApi.addFavorite(47694022);
+        mApi.addFavorite(47694022, mCallback);
         // TODO get some response and assert it somehow
 
         //        POST /votes/vote/observation/47693827.json HTTP/1.1
@@ -81,9 +86,9 @@ public class ServerIntegrationTests {
     }
 
     @Test
-    public void removeFavorite() throws AuthenticationException, ServerError {
+    public void removeFavorite() {
         String testUrl = ServerStubber.stubRemoveFavorite();
-        mApi.removeFavorite(47693827);
+        mApi.removeFavorite(47693827, mCallback);
         // TODO get some response and assert it somehow
 
         //        DELETE /votes/unvote/observation/47693827.json HTTP/1.1
@@ -99,7 +104,7 @@ public class ServerIntegrationTests {
     }
 
     @Test
-    public void addComment() throws AuthenticationException, ServerError, IOException {
+    public void addComment() throws ApiError, IOException {
         String testUrl = ServerStubber.stubAddComment();
         mApi.addComment(47575188, "Test");
 
@@ -135,7 +140,7 @@ public class ServerIntegrationTests {
     }
 
     @Test
-    public void deleteComment() throws AuthenticationException, ServerError, IOException {
+    public void deleteComment() throws ApiError, IOException {
         String testUrl = ServerStubber.stubDeleteComment();
         mApi.deleteComment(4713818);
 
@@ -152,7 +157,7 @@ public class ServerIntegrationTests {
     }
 
     @Test
-    public void taxonSuggestions() throws AuthenticationException, ServerError, IOException, ParseException {
+    public void taxonSuggestions() throws ApiError, IOException, ParseException {
 
         File cachedFile = copyAssetIntoExternalCache("taxon_suggestions.jpeg");
 
