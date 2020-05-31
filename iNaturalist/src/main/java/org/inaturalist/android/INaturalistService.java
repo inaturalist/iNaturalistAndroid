@@ -29,6 +29,7 @@ import android.os.Looper;
 import android.provider.MediaStore;
 import android.widget.Toast;
 
+import androidx.annotation.WorkerThread;
 import androidx.core.app.NotificationCompat;
 
 import com.crashlytics.android.Crashlytics;
@@ -54,27 +55,20 @@ import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.params.ClientPNames;
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.client.LaxRedirectStrategy;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.CoreProtocolPNames;
-import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.inaturalist.android.api.ApiCallback;
+import org.inaturalist.android.api.ApiError;
+import org.inaturalist.android.api.ApiIoException;
 import org.inaturalist.android.api.AuthenticationException;
 import org.inaturalist.android.api.ServerError;
+import org.inaturalist.android.api.ServiceApiCallback;
 import org.inaturalist.android.api.iNaturalistApi;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -93,9 +87,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.nio.charset.Charset;
 import java.sql.Timestamp;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -112,8 +104,6 @@ import java.util.TimeZone;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-
-import static org.apache.http.entity.mime.HttpMultipartMode.BROWSER_COMPATIBLE;
 
 @SuppressWarnings("ALL")
 public class INaturalistService extends IntentService implements
@@ -559,7 +549,6 @@ public class INaturalistService extends IntentService implements
         OAUTH_PASSWORD
     };
 
-
     public INaturalistService() {
         super("INaturalistService");
         mApi = new iNaturalistApi(HOST, API_HOST, this);
@@ -749,6 +738,10 @@ public class INaturalistService extends IntentService implements
                             getNearbyObservations(newIntent);
                         } catch (AuthenticationException e) {
                             Logger.tag(TAG).error(e);
+                        } catch (ApiError apiError) {
+                            apiError.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
                     }
                 });
@@ -796,6 +789,10 @@ public class INaturalistService extends IntentService implements
                                 updateUserTimezone(timezoneName);
                             } catch (AuthenticationException e) {
                                 Logger.tag(TAG).error(e);
+                            } catch (ApiError apiError) {
+                                apiError.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
                             }
                         }
                     }
@@ -1334,7 +1331,14 @@ public class INaturalistService extends IntentService implements
                         return;
                     }
 
-                    BetterJSONObject missions = getMissions(location, username, taxonId, expandLocationByDegrees);
+                    BetterJSONObject missions = null;
+                    try {
+                        missions = getMissions(location, username, taxonId, expandLocationByDegrees);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (ApiError apiError) {
+                        apiError.printStackTrace();
+                    }
                     missions = getMinimalSpeciesResults(missions);
 
                     Intent reply = new Intent(MISSIONS_BY_TAXON_RESULT);
@@ -1369,7 +1373,14 @@ public class INaturalistService extends IntentService implements
                         return;
                     }
 
-                    BetterJSONObject missions = getMissions(location, username, null, expandLocationByDegrees);
+                    BetterJSONObject missions = null;
+                    try {
+                        missions = getMissions(location, username, null, expandLocationByDegrees);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (ApiError apiError) {
+                        apiError.printStackTrace();
+                    }
                     missions = getMinimalSpeciesResults(missions);
 
                     Intent reply = new Intent(RECOMMENDED_MISSIONS_RESULT);
@@ -1711,6 +1722,10 @@ public class INaturalistService extends IntentService implements
                             guides = getNearByGuides(location);
                         } catch (AuthenticationException e) {
                             Logger.tag(TAG).error(e);
+                        } catch (ApiError apiError) {
+                            apiError.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
 
                         Intent reply = new Intent(ACTION_NEAR_BY_GUIDES_RESULT);
@@ -1737,6 +1752,10 @@ public class INaturalistService extends IntentService implements
                             projects = getNearByProjects(location);
                         } catch (AuthenticationException e) {
                             Logger.tag(TAG).error(e);
+                        } catch (ApiError apiError) {
+                            apiError.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
 
                         Intent reply = new Intent(ACTION_NEARBY_PROJECTS_RESULT);
@@ -1917,7 +1936,7 @@ public class INaturalistService extends IntentService implements
     }
 
 
-    private boolean deletePinnedLocation(String id) throws AuthenticationException {
+    private boolean deletePinnedLocation(String id) throws AuthenticationException, IOException, ApiError {
         JSONArray result = delete(String.format("%s/saved_locations/%s.json", HOST, id), null);
 
         if (result != null) {
@@ -1927,7 +1946,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private boolean pinLocation(Double latitude, Double longitude, Double accuracy, String geoprivacy, String title) throws AuthenticationException {
+    private boolean pinLocation(Double latitude, Double longitude, Double accuracy, String geoprivacy, String title) throws AuthenticationException, IOException, ApiError {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("saved_location[latitude]", latitude.toString()));
         params.add(new BasicNameValuePair("saved_location[longitude]", longitude.toString()));
@@ -1944,7 +1963,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private void syncObservations(long[] idsToSync) throws AuthenticationException, CancelSyncException, SyncFailedException {
+    private void syncObservations(long[] idsToSync) throws AuthenticationException, CancelSyncException, SyncFailedException, IOException, ApiError {
         try {
             Logger.tag(TAG).debug("syncObservations: enter");
 
@@ -2577,7 +2596,7 @@ public class INaturalistService extends IntentService implements
     }
 
     // Re-download old local observations and update their taxon names (preferred common names) - used when user switches language
-    private void redownloadOldObservationsForTaxonNames() throws AuthenticationException {
+    private void redownloadOldObservationsForTaxonNames() throws AuthenticationException, IOException, ApiError {
 
         // Get most recent observation
         Cursor c = getContentResolver().query(Observation.CONTENT_URI,
@@ -2655,7 +2674,7 @@ public class INaturalistService extends IntentService implements
     }
 
     // Re-download any observations that have photos saved in the "old" way
-    private void redownloadOldObservations() throws AuthenticationException {
+    private void redownloadOldObservations() throws AuthenticationException, IOException, ApiError {
 
         // Find all observations that have photos saved in the old way
         Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
@@ -2695,7 +2714,7 @@ public class INaturalistService extends IntentService implements
 
     }
 
-    private BetterJSONObject getHistogram(int taxonId, boolean researchGrade) throws AuthenticationException {
+    private BetterJSONObject getHistogram(int taxonId, boolean researchGrade) throws AuthenticationException, IOException, ApiError {
         String url = String.format("%s/observations/histogram?taxon_id=%d&", API_HOST, taxonId);
 
         if (researchGrade) {
@@ -2719,7 +2738,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private BetterJSONObject getPopularFieldValues(int taxonId) throws AuthenticationException {
+    private BetterJSONObject getPopularFieldValues(int taxonId) throws AuthenticationException, IOException, ApiError {
         String url = String.format("%s/observations/popular_field_values?taxon_id=%d&verifiable=true", API_HOST, taxonId);
 
         JSONArray json = get(url);
@@ -2737,7 +2756,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private BetterJSONObject getTaxonNew(int id) throws AuthenticationException {
+    private BetterJSONObject getTaxonNew(int id) throws AuthenticationException, IOException, ApiError {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
         String url = API_HOST + "/taxa/" + id + "?locale=" + deviceLanguage;
@@ -2761,7 +2780,7 @@ public class INaturalistService extends IntentService implements
     }
 
 
-    private BetterJSONObject setAnnotationValue(int observationId, int attributeId, int valueId) throws AuthenticationException {
+    private BetterJSONObject setAnnotationValue(int observationId, int attributeId, int valueId) throws AuthenticationException, IOException, ApiError {
         String url = API_HOST + "/annotations";
 
 
@@ -2791,7 +2810,7 @@ public class INaturalistService extends IntentService implements
     }
 
 
-    private BetterJSONObject agreeAnnotation(String uuid, boolean agree) throws AuthenticationException {
+    private BetterJSONObject agreeAnnotation(String uuid, boolean agree) throws AuthenticationException, IOException, ApiError {
         String url = API_HOST + "/votes/vote/annotation/" + uuid;
 
         JSONObject params = new JSONObject();
@@ -2817,7 +2836,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private BetterJSONObject deleteAnnotationVote(String uuid) throws AuthenticationException {
+    private BetterJSONObject deleteAnnotationVote(String uuid) throws AuthenticationException, IOException, ApiError {
         String url = API_HOST + "/votes/unvote/annotation/" + uuid;
 
         JSONArray json = delete(url, null);
@@ -2833,7 +2852,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private BetterJSONObject voteIdCanBeImproved(int obsId, boolean yes) throws AuthenticationException {
+    private BetterJSONObject voteIdCanBeImproved(int obsId, boolean yes) throws AuthenticationException, IOException, ApiError {
         String url = API_HOST + "/votes/vote/observation/" + obsId;
 
         JSONObject params = new JSONObject();
@@ -2860,7 +2879,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private BetterJSONObject deleteIdCanBeImprovedVote(int obsId) throws AuthenticationException {
+    private BetterJSONObject deleteIdCanBeImprovedVote(int obsId) throws AuthenticationException, IOException, ApiError {
         String url = String.format("%s/votes/unvote/observation/%d?id=%d&scope=needs_id", API_HOST, obsId, obsId);
 
         JSONArray json = delete(url, null);
@@ -2876,7 +2895,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private BetterJSONObject getDataQualityMetrics(Integer observationId) throws AuthenticationException {
+    private BetterJSONObject getDataQualityMetrics(Integer observationId) throws AuthenticationException, IOException, ApiError {
         String url = String.format("%s/observations/%d/quality_metrics?id=%d", API_HOST, observationId, observationId);
 
         JSONArray json = get(url, true);
@@ -2893,7 +2912,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private BetterJSONObject agreeDataQualityMetric(Integer observationId, String metric, boolean agree) throws AuthenticationException {
+    private BetterJSONObject agreeDataQualityMetric(Integer observationId, String metric, boolean agree) throws AuthenticationException, IOException, ApiError {
         String url = String.format("%s/observations/%d/quality/%s", API_HOST, observationId, metric);
 
         JSONObject params = new JSONObject();
@@ -2920,7 +2939,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private BetterJSONObject deleteDataQualityMetricVote(Integer observationId, String metric) throws AuthenticationException {
+    private BetterJSONObject deleteDataQualityMetricVote(Integer observationId, String metric) throws AuthenticationException, IOException, ApiError {
         String url = String.format("%s/observations/%d/quality/%s?id=%d&metric=%s", API_HOST, observationId, metric, observationId, metric);
 
         JSONArray json = delete(url, null);
@@ -2936,7 +2955,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private BetterJSONObject deleteAnnotation(String uuid) throws AuthenticationException {
+    private BetterJSONObject deleteAnnotation(String uuid) throws AuthenticationException, IOException, ApiError {
         String url = API_HOST + "/annotations/" + uuid;
 
         JSONArray json = delete(url, null);
@@ -2952,7 +2971,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private BetterJSONObject getAllAttributes() throws AuthenticationException {
+    private BetterJSONObject getAllAttributes() throws AuthenticationException, IOException, ApiError {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
 
@@ -2973,7 +2992,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private BetterJSONObject getAttributesForTaxon(JSONObject taxon) throws AuthenticationException {
+    private BetterJSONObject getAttributesForTaxon(JSONObject taxon) throws AuthenticationException, IOException, ApiError {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
         JSONArray ancestors = taxon.optJSONArray("ancestor_ids");
@@ -3003,7 +3022,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private BetterJSONObject getTaxon(int id) throws AuthenticationException {
+    private BetterJSONObject getTaxon(int id) throws AuthenticationException, IOException, ApiError {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
         String url = String.format("%s/taxa/%d.json?locale=%s", HOST, id, deviceLanguage);
@@ -3024,7 +3043,7 @@ public class INaturalistService extends IntentService implements
         return new BetterJSONObject(res);
     }
 
-    private boolean postProjectObservations(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException {
+    private boolean postProjectObservations(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException, IOException, ApiError {
         if (observation.id == null) {
             // Observation not synced yet - cannot sync its project associations yet
             return true;
@@ -3107,7 +3126,7 @@ public class INaturalistService extends IntentService implements
         return true;
     }
 
-    private boolean postProjectObservations() throws AuthenticationException, CancelSyncException, SyncFailedException {
+    private boolean postProjectObservations() throws AuthenticationException, CancelSyncException, SyncFailedException, IOException, ApiError {
         // First, delete any project-observations that were deleted by the user
         Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI,
                 ProjectObservation.PROJECTION,
@@ -3300,255 +3319,20 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private JSONArray request(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated, boolean useJWTToken, boolean allowAnonymousJWTToken) throws AuthenticationException {
-        CloseableHttpClient client = HttpClientBuilder.create()
-                // Faster reading of data
-                .disableContentCompression()
-                // Handle redirects (301/302) for all HTTP methods (including POST)
-                .setRedirectStrategy(new LaxRedirectStrategy())
-                .setUserAgent(getUserAgent(mApp))
-                .build();
-
-//        Logger.tag(TAG).debug(String.format("%s (%b - %s): %s", method, authenticated,
-//                authenticated ? mCredentials : "<null>",
-//                url));
-
-        HttpRequestBase request;
-
-        mRetryAfterDate = null;
-        mServiceUnavailable = false;
-
-        Logger.tag(TAG).debug(String.format("URL: %s - %s (params: %s / %s)", method, url, (params != null ? params.toString() : "null"), (jsonContent != null ? jsonContent.toString() : "null")));
-
-        if (method.equalsIgnoreCase("post")) {
-            request = new HttpPost(url);
-        } else if (method.equalsIgnoreCase("delete")) {
-            request = new HttpDelete(url);
-        } else if (method.equalsIgnoreCase("put")) {
-            request = new HttpPut(url);
-        } else {
-            request = new HttpGet(url);
-        }
-
-        // POST params
-        if (jsonContent != null) {
-            // JSON body content
-            request.setHeader("Content-type", "application/json");
-            StringEntity entity = null;
-            try {
-                entity = new StringEntity(jsonContent.toString(), HTTP.UTF_8);
-            } catch (Exception exc) {
-                Logger.tag(TAG).error(exc);
-            }
-
-            if (method.equalsIgnoreCase("put")) {
-                ((HttpPut) request).setEntity(entity);
-            } else {
-                ((HttpPost) request).setEntity(entity);
-            }
-
-        } else if (params != null) {
-            // "Standard" multipart encoding
-            Charset utf8Charset = Charset.forName("UTF-8");
-            MultipartEntity entity = new MultipartEntity(BROWSER_COMPATIBLE);
-            for (int i = 0; i < params.size(); i++) {
-                if (params.get(i).getName().equalsIgnoreCase("image") || params.get(i).getName().equalsIgnoreCase("file") || params.get(i).getName().equalsIgnoreCase("user[icon]") || params.get(i).getName().equalsIgnoreCase("audio")) {
-                    // If the key equals to "image", we use FileBody to transfer the data
-                    String value = params.get(i).getValue();
-                    if (value != null) {
-                        if (params.get(i).getName().equalsIgnoreCase("audio")) {
-                            File file = new File(value);
-                            entity.addPart("file", new FileBody(file, ContentType.parse("audio/" + value.substring(value.lastIndexOf(".") + 1)), file.getName()));
-                            request.setHeader("Accept", "application/json");
-                        } else {
-                            entity.addPart(params.get(i).getName(), new FileBody(new File(value)));
-                        }
-                    }
-                } else {
-                    // Normal string data
-                    try {
-                        entity.addPart(params.get(i).getName(), new StringBody(params.get(i).getValue(), utf8Charset));
-                    } catch (UnsupportedEncodingException e) {
-                        Logger.tag(TAG).error("failed to add " + params.get(i).getName() + " to entity for a " + method + " request: " + e);
-                    }
-                }
-            }
-            if (method.equalsIgnoreCase("put")) {
-                ((HttpPut) request).setEntity(entity);
-            } else {
-                ((HttpPost) request).setEntity(entity);
-            }
-        }
-
-        if (url.startsWith(API_HOST) && (mCredentials != null)) {
-            // For the node API, if we're logged in, *always* use JWT authentication
-            authenticated = true;
-            useJWTToken = true;
-        }
-
-        if (authenticated) {
-            if (useJWTToken && allowAnonymousJWTToken && (mCredentials == null)) {
-                // User not logged in, but allow using anonymous JWT
-                request.setHeader("Authorization", getAnonymousJWTToken());
-            } else {
-                ensureCredentials();
-
-                if (useJWTToken) {
-                    // Use JSON Web Token for this request
-                    request.setHeader("Authorization", getJWTToken());
-                } else if (mLoginType == LoginType.PASSWORD) {
-                    // Old-style password authentication
-                    request.setHeader("Authorization", "Basic " + mCredentials);
-                } else {
-                    // OAuth2 token (Facebook/G+/etc)
-                    request.setHeader("Authorization", "Bearer " + mCredentials);
-                }
-            }
-        }
-
+    private JSONArray request(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated, boolean useJWTToken, boolean allowAnonymousJWTToken) throws AuthenticationException, IOException, ApiError {
+        iNaturalistApi.ApiResponse resp = null;
         try {
-            mResponseErrors = null;
-            HttpResponse response = client.execute(request);
-            HttpEntity entity = response.getEntity();
-            String content = entity != null ? EntityUtils.toString(entity) : null;
-
-            Logger.tag(TAG).debug("Response: " + response.getStatusLine().toString());
-            Logger.tag(TAG).debug(String.format("  (for URL: %s - %s (params: %s / %s))", method, url, (params != null ? params.toString() : "null"), (jsonContent != null ? jsonContent.toString() : "null")));
-            Logger.tag(TAG).debug(content);
-
-            JSONArray json = null;
-            mLastStatusCode = response.getStatusLine().getStatusCode();
-
-            switch (mLastStatusCode) {
-                //switch (response.getStatusCode()) {
-                case HttpStatus.SC_UNPROCESSABLE_ENTITY:
-                    // Validation error - still need to return response
-                    Logger.tag(TAG).error(response.getStatusLine().toString());
-                case HttpStatus.SC_OK:
-                    try {
-                        json = new JSONArray(content);
-                    } catch (JSONException e) {
-                        try {
-                            JSONObject jo = new JSONObject(content);
-                            json = new JSONArray();
-                            json.put(jo);
-                        } catch (JSONException e2) {
-                        }
-                    }
-
-                    mResponseHeaders = response.getAllHeaders();
-
-                    try {
-                        if ((json != null) && (json.length() > 0)) {
-                            JSONObject result = json.getJSONObject(0);
-                            if (result.has("errors")) {
-                                // Error response
-                                Logger.tag(TAG).error("Got an error response: " + result.get("errors").toString());
-                                mResponseErrors = result.getJSONArray("errors");
-                                return null;
-                            }
-                        }
-                    } catch (JSONException e) {
-                        Logger.tag(TAG).error(e);
-                    }
-
-                    if ((content != null) && (content.length() == 0)) {
-                        // In case it's just non content (but OK HTTP status code) - so there's no error
-                        json = new JSONArray();
-                    }
-
-                    return json;
-
-                case HttpStatus.SC_UNAUTHORIZED:
-                    throw new AuthenticationException();
-                case HttpURLConnection.HTTP_UNAVAILABLE:
-                    Logger.tag(TAG).error("503 server unavailable");
-                    mServiceUnavailable = true;
-
-                    // Find out if there's a "Retry-After" header
-                    Header[] headers = response.getHeaders("Retry-After");
-                    if ((headers != null) && (headers.length > 0)) {
-                        for (Header header : headers) {
-                            String timestampString = header.getValue();
-                            Logger.tag(TAG).error("Retry after raw string: " + timestampString);
-                            SimpleDateFormat format = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz");
-                            try {
-                                mRetryAfterDate = format.parse(timestampString);
-                                Logger.tag(TAG).error("Retry after: " + mRetryAfterDate);
-                                break;
-                            } catch (ParseException e) {
-                                Logger.tag(TAG).error(e);
-                                try {
-                                    // Try parsing it as a seconds-delay value
-                                    int secondsDelay = Integer.valueOf(timestampString);
-                                    Logger.tag(TAG).error("Retry after: " + secondsDelay);
-                                    Calendar calendar = Calendar.getInstance();
-                                    calendar.add(Calendar.SECOND, secondsDelay);
-                                    mRetryAfterDate = calendar.getTime();
-
-                                    break;
-                                } catch (NumberFormatException exc) {
-                                    Logger.tag(TAG).error(exc);
-                                }
-                            }
-                        }
-                    }
-
-                    // Show service not available message to user
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            String errorMessage;
-                            if (mRetryAfterDate == null) {
-                                // No specific retry time
-                                errorMessage = getString(R.string.please_try_again_in_a_few_hours);
-                            } else {
-                                // Specific retry time
-                                Date currentTime = Calendar.getInstance().getTime();
-                                long differenceSeconds = (mRetryAfterDate.getTime() - currentTime.getTime()) / 1000;
-
-                                long delay;
-                                String delayType;
-
-                                if (differenceSeconds < 60) {
-                                    delayType = getString(R.string.seconds_value);
-                                    delay = differenceSeconds;
-                                } else if (differenceSeconds < 60 * 60) {
-                                    delayType = getString(R.string.minutes);
-                                    delay = (differenceSeconds / 60);
-                                } else {
-                                    delayType = getString(R.string.hours);
-                                    delay = (differenceSeconds / (60 * 60));
-                                }
-                                errorMessage = String.format(getString(R.string.please_try_again_in_x), delay, delayType);
-                            }
-
-                            if (System.currentTimeMillis() - mLastServiceUnavailableNotification > 30000) {
-                                // Make sure we won't notify the user about this too often
-                                mLastServiceUnavailableNotification = System.currentTimeMillis();
-                                Toast.makeText(getApplicationContext(), getString(R.string.service_temporarily_unavailable) + " " + errorMessage, Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    });
-
-                    return null;
-                case HttpStatus.SC_GONE:
-                    Logger.tag(TAG).error("GONE: " + response.getStatusLine().toString());
-                    // TODO create notification that informs user some observations have been deleted on the server,
-                    // click should take them to an activity that lets them decide whether to delete them locally
-                    // or post them as new observations
-                default:
-                    Logger.tag(TAG).error(response.getStatusLine().toString());
-            }
-        } catch (IOException e) {
-            Logger.tag(TAG).error("Error for URL " + url + ":" + e);
-            Logger.tag(TAG).error(e);
+            resp = mApi.syncRequest(url, method, params, jsonContent, authenticated, useJWTToken, allowAnonymousJWTToken);
+        } catch (ServerError serverError) {
+            // TODO handle properly
+            serverError.printStackTrace();
         }
+        if (resp != null)
+            return resp.parsedResponse;
         return null;
     }
 
-
-    private boolean deleteAccount() throws AuthenticationException {
+    private boolean deleteAccount() throws AuthenticationException, IOException, ApiError {
         String username = mApp.currentUserLogin();
 
         JSONArray result = delete(
@@ -3562,7 +3346,7 @@ public class INaturalistService extends IntentService implements
         return true;
     }
 
-    private boolean saveJoinedProjects() throws AuthenticationException, CancelSyncException, SyncFailedException {
+    private boolean saveJoinedProjects() throws AuthenticationException, CancelSyncException, SyncFailedException, IOException, ApiError {
         SerializableJSONArray projects = getJoinedProjects();
 
         checkForCancelSync();
@@ -3615,7 +3399,7 @@ public class INaturalistService extends IntentService implements
         return true;
     }
 
-    private boolean deleteObservationSounds(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException {
+    private boolean deleteObservationSounds(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException, IOException, ApiError {
         // Remotely delete any locally-removed observation sounds
         Cursor c = getContentResolver().query(ObservationSound.CONTENT_URI,
                 ObservationSound.PROJECTION,
@@ -3661,7 +3445,7 @@ public class INaturalistService extends IntentService implements
         return true;
     }
 
-    private boolean deleteObservationPhotos(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException {
+    private boolean deleteObservationPhotos(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException, IOException, ApiError {
         // Remotely delete any locally-removed observation photos
         Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                 ObservationPhoto.PROJECTION,
@@ -3706,7 +3490,7 @@ public class INaturalistService extends IntentService implements
         return true;
     }
 
-    private boolean deleteObservations(long[] idsToDelete) throws AuthenticationException, CancelSyncException, SyncFailedException {
+    private boolean deleteObservations(long[] idsToDelete) throws AuthenticationException, CancelSyncException, SyncFailedException, IOException, ApiError {
         Cursor c;
 
         if (idsToDelete != null) {
@@ -3774,7 +3558,7 @@ public class INaturalistService extends IntentService implements
         if (mApp.getCancelSync()) throw new CancelSyncException();
     }
 
-    private JSONObject agreeIdentification(int observationId, int taxonId) throws AuthenticationException {
+    private JSONObject agreeIdentification(int observationId, int taxonId) throws AuthenticationException, IOException, ApiError {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("identification[observation_id]", new Integer(observationId).toString()));
         params.add(new BasicNameValuePair("identification[taxon_id]", new Integer(taxonId).toString()));
@@ -3793,7 +3577,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private JSONObject removeIdentification(int identificationId) throws AuthenticationException {
+    private JSONObject removeIdentification(int identificationId) throws AuthenticationException, IOException, ApiError {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
         JSONArray result = delete(HOST + "/identifications/" + identificationId + ".json", null);
 
@@ -3809,11 +3593,11 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private void setUserViewedUpdate(int obsId) throws AuthenticationException {
+    private void setUserViewedUpdate(int obsId) throws AuthenticationException, IOException, ApiError {
         put(HOST + "/observations/" + obsId + "/viewed_updates.json", (JSONObject) null);
     }
 
-    private void restoreIdentification(int identificationId) throws AuthenticationException {
+    private void restoreIdentification(int identificationId) throws AuthenticationException, IOException, ApiError {
         JSONObject paramsJson = new JSONObject();
         JSONObject paramsJsonIdentification = new JSONObject();
         try {
@@ -3826,7 +3610,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private void updateIdentification(int observationId, int identificationId, int taxonId, String body) throws AuthenticationException {
+    private void updateIdentification(int observationId, int identificationId, int taxonId, String body) throws AuthenticationException, IOException, ApiError {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("identification[observation_id]", new Integer(observationId).toString()));
         params.add(new BasicNameValuePair("identification[taxon_id]", new Integer(taxonId).toString()));
@@ -3835,7 +3619,7 @@ public class INaturalistService extends IntentService implements
         JSONArray arrayResult = put(HOST + "/identifications/" + identificationId + ".json", params);
     }
 
-    private void addIdentification(int observationId, int taxonId, String body, boolean disagreement, boolean fromVision) throws AuthenticationException {
+    private void addIdentification(int observationId, int taxonId, String body, boolean disagreement, boolean fromVision) throws AuthenticationException, IOException, ApiError {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("identification[observation_id]", new Integer(observationId).toString()));
         params.add(new BasicNameValuePair("identification[taxon_id]", new Integer(taxonId).toString()));
@@ -3881,7 +3665,7 @@ public class INaturalistService extends IntentService implements
     }
 
     // Updates a user's inat network settings
-    private JSONObject updateUserTimezone(String timezone) throws AuthenticationException {
+    private JSONObject updateUserTimezone(String timezone) throws AuthenticationException, IOException, ApiError {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("user[time_zone]", timezone));
 
@@ -3904,7 +3688,7 @@ public class INaturalistService extends IntentService implements
     }
 
     // Updates a user's inat network settings
-    private JSONObject updateUserNetwork(int siteId) throws AuthenticationException {
+    private JSONObject updateUserNetwork(int siteId) throws AuthenticationException, IOException, ApiError {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("user[site_id]", String.valueOf(siteId)));
 
@@ -3919,7 +3703,7 @@ public class INaturalistService extends IntentService implements
     }
 
     // Updates a user's profile
-    private JSONObject updateUser(String username, String email, String password, String fullName, String bio, String userPic, boolean deletePic) throws AuthenticationException {
+    private JSONObject updateUser(String username, String email, String password, String fullName, String bio, String userPic, boolean deletePic) throws AuthenticationException, IOException, ApiError {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("user[login]", username));
         params.add(new BasicNameValuePair("user[name]", fullName));
@@ -4000,7 +3784,7 @@ public class INaturalistService extends IntentService implements
 
 
     // Registers a user - returns an error message in case of an error (null if successful)
-    private String registerUser(String email, String password, String username, String license, String timezone) throws AuthenticationException {
+    private String registerUser(String email, String password, String username, String license, String timezone) throws AuthenticationException, IOException, ApiError {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("user[email]", email));
         params.add(new BasicNameValuePair("user[login]", username));
@@ -4032,7 +3816,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private void updateComment(int commentId, int observationId, String body) throws AuthenticationException {
+    private void updateComment(int commentId, int observationId, String body) throws AuthenticationException, IOException, ApiError {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("comment[parent_id]", new Integer(observationId).toString()));
         params.add(new BasicNameValuePair("comment[parent_type]", "Observation"));
@@ -4041,7 +3825,7 @@ public class INaturalistService extends IntentService implements
         put(HOST + "/comments/" + commentId + ".json", params);
     }
 
-    private boolean postObservation(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException {
+    private boolean postObservation(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException, IOException, ApiError {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLexicon = deviceLocale.getLanguage();
 
@@ -4099,7 +3883,7 @@ public class INaturalistService extends IntentService implements
         return true;
     }
 
-    private JSONObject getObservationJson(int id, boolean authenticated, boolean includeNewProjects) throws AuthenticationException {
+    private JSONObject getObservationJson(int id, boolean authenticated, boolean includeNewProjects) throws AuthenticationException, IOException, ApiError {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
@@ -4121,7 +3905,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private Observation getAndDownloadObservation(int id) throws AuthenticationException {
+    private Observation getAndDownloadObservation(int id) throws AuthenticationException, IOException, ApiError {
         // Download the observation
         JSONObject json = getObservationJson(id, true, true);
         if (json == null) return null;
@@ -4141,7 +3925,7 @@ public class INaturalistService extends IntentService implements
         return obs;
     }
 
-    private boolean postSounds(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException {
+    private boolean postSounds(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException, IOException, ApiError {
         Integer observationId = observation.id;
         ObservationSound os;
         int createdCount = 0;
@@ -4250,7 +4034,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private boolean postPhotos(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException {
+    private boolean postPhotos(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException, IOException, ApiError {
         Integer observationId = observation.id;
         ObservationPhoto op;
         int createdCount = 0;
@@ -4507,7 +4291,7 @@ public class INaturalistService extends IntentService implements
     // Goes over cached photos that were uploaded and that are old enough and deletes them
     // to clear out storage space (they're replaced with their online version, so it'll be
     // accessible by the user).
-    private void clearOldCachedPhotos() {
+    private void clearOldCachedPhotos() throws IOException, ApiError {
         if (!isNetworkAvailable()) return;
         if (!mApp.loggedIn()) return;
 
@@ -4629,7 +4413,7 @@ public class INaturalistService extends IntentService implements
     }
 
 
-    private BetterJSONObject getCurrentUserDetails() throws AuthenticationException {
+    private BetterJSONObject getCurrentUserDetails() throws AuthenticationException, IOException, ApiError {
         String url = API_HOST + "/users/me";
         JSONArray json = get(url, true);
         try {
@@ -4643,7 +4427,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private BetterJSONObject updateCurrentUserDetails(JSONObject params) throws AuthenticationException {
+    private BetterJSONObject updateCurrentUserDetails(JSONObject params) throws AuthenticationException, IOException, ApiError {
         JSONObject input = new JSONObject();
         try {
             input.put("user", params);
@@ -4664,7 +4448,7 @@ public class INaturalistService extends IntentService implements
     }
 
 
-    private BetterJSONObject getUserDetails(String username) throws AuthenticationException {
+    private BetterJSONObject getUserDetails(String username) throws AuthenticationException, IOException, ApiError {
         String url = HOST + "/users/" + username + ".json";
         JSONArray json = get(url, false);
         try {
@@ -4677,7 +4461,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private SerializableJSONArray searchUserObservation(String query) throws AuthenticationException {
+    private SerializableJSONArray searchUserObservation(String query) throws AuthenticationException, IOException, ApiError {
         String url = null;
 
         try {
@@ -4706,7 +4490,7 @@ public class INaturalistService extends IntentService implements
         return new SerializableJSONArray(json);
     }
 
-    private BetterJSONObject searchAutoComplete(String type, String query, int page) throws AuthenticationException {
+    private BetterJSONObject searchAutoComplete(String type, String query, int page) throws AuthenticationException, IOException, ApiError {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
         String url = API_HOST + "/" + type + "/autocomplete?geo=true&locale=" + deviceLanguage + "&per_page=50&page=" + page + "&q=" + Uri.encode(query);
@@ -4722,7 +4506,7 @@ public class INaturalistService extends IntentService implements
     }
 
 
-    private JSONObject getUserObservations(String username) throws AuthenticationException {
+    private JSONObject getUserObservations(String username) throws AuthenticationException, IOException, ApiError {
         String url = API_HOST + "/observations?per_page=30&user_id=" + username;
         JSONArray json = get(url, false);
         if (json == null) return null;
@@ -4735,7 +4519,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private SerializableJSONArray getUserUpdates(boolean following) throws AuthenticationException {
+    private SerializableJSONArray getUserUpdates(boolean following) throws AuthenticationException, IOException, ApiError {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
         String url = API_HOST + "/observations/updates?locale=" + deviceLanguage + "&per_page=200&observations_by=" +
@@ -4754,7 +4538,7 @@ public class INaturalistService extends IntentService implements
     }
 
 
-    private BetterJSONObject getUserIdentifications(String username) throws AuthenticationException {
+    private BetterJSONObject getUserIdentifications(String username) throws AuthenticationException, IOException, ApiError {
         String url = API_HOST + "/identifications?user_id=" + username + "&own_observation=false&per_page=30";
         JSONArray json = get(url, false);
 
@@ -4768,7 +4552,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private BetterJSONObject getExploreResults(String command, ExploreSearchFilters filters, int pageNumber, int pageSize, String orderBy) throws AuthenticationException {
+    private BetterJSONObject getExploreResults(String command, ExploreSearchFilters filters, int pageNumber, int pageSize, String orderBy) throws AuthenticationException, IOException, ApiError {
         if (filters == null) return null;
 
         Locale deviceLocale = getResources().getConfiguration().locale;
@@ -4812,7 +4596,7 @@ public class INaturalistService extends IntentService implements
     }
 
 
-    private BetterJSONObject getUserSpeciesCount(String username) throws AuthenticationException {
+    private BetterJSONObject getUserSpeciesCount(String username) throws AuthenticationException, IOException, ApiError {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
         String url = API_HOST + "/observations/species_counts?place_id=any&verifiable=any&user_id=" + username + "&locale=" + deviceLanguage;
@@ -4827,7 +4611,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private BetterJSONObject getUserLifeList(int lifeListId) throws AuthenticationException {
+    private BetterJSONObject getUserLifeList(int lifeListId) throws AuthenticationException, IOException, ApiError {
         String url = HOST + "/life_lists/" + lifeListId + ".json";
         JSONArray json = get(url, false);
         if (json == null) return null;
@@ -4841,7 +4625,7 @@ public class INaturalistService extends IntentService implements
     }
 
 
-    private BetterJSONObject getPlaceDetails(long placeId) throws AuthenticationException {
+    private BetterJSONObject getPlaceDetails(long placeId) throws AuthenticationException, IOException, ApiError {
         String url = API_HOST + "/places/" + placeId;
         JSONArray json = get(url, false);
         try {
@@ -4856,7 +4640,7 @@ public class INaturalistService extends IntentService implements
     }
 
 
-    private BetterJSONObject getUserDetails() throws AuthenticationException {
+    private BetterJSONObject getUserDetails() throws AuthenticationException, IOException, ApiError {
         String url = HOST + "/users/edit.json";
         JSONArray json = get(url, true);
         try {
@@ -4870,7 +4654,7 @@ public class INaturalistService extends IntentService implements
     }
 
 
-    private BetterJSONObject getProjectObservations(int projectId) throws AuthenticationException {
+    private BetterJSONObject getProjectObservations(int projectId) throws AuthenticationException, IOException, ApiError {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
         String url = API_HOST + "/observations?project_id=" + projectId + "&per_page=50&locale=" + deviceLanguage;
@@ -4884,7 +4668,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private BetterJSONObject getTaxonObservationsBounds(Integer taxonId) {
+    private BetterJSONObject getTaxonObservationsBounds(Integer taxonId) throws ApiError, IOException, AuthenticationException {
         String url = API_HOST + "/observations?per_page=1&return_bounds=true&taxon_id=" + taxonId;
 
         JSONArray json = null;
@@ -4905,7 +4689,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private BetterJSONObject getMissions(Location location, String username, Integer taxonId, float expandLocationByDegress) {
+    private BetterJSONObject getMissions(Location location, String username, Integer taxonId, float expandLocationByDegress) throws IOException, ApiError {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
         String url = API_HOST + "/observations/species_counts?locale=" + deviceLanguage +
@@ -4954,7 +4738,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private BetterJSONObject getProjectSpecies(int projectId) throws AuthenticationException {
+    private BetterJSONObject getProjectSpecies(int projectId) throws AuthenticationException, IOException, ApiError {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
         String url = API_HOST + "/observations/species_counts?project_id=" + projectId + "&locale=" + deviceLanguage;
@@ -4968,21 +4752,21 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private SerializableJSONArray getNews() throws AuthenticationException {
+    private SerializableJSONArray getNews() throws AuthenticationException, IOException, ApiError {
         String url = HOST + "/posts/for_user.json";
         JSONArray json = get(url, mCredentials != null); // If user is logged-in, returns his news (using an authenticated endpoint)
         return new SerializableJSONArray(json);
     }
 
 
-    private SerializableJSONArray getProjectNews(int projectId) throws AuthenticationException {
+    private SerializableJSONArray getProjectNews(int projectId) throws AuthenticationException, IOException, ApiError {
         String url = HOST + "/projects/" + projectId + "/journal.json";
         JSONArray json = get(url);
         return new SerializableJSONArray(json);
     }
 
 
-    private BetterJSONObject getProjectObservers(int projectId) throws AuthenticationException {
+    private BetterJSONObject getProjectObservers(int projectId) throws AuthenticationException, IOException, ApiError {
         String url = API_HOST + "/observations/observers?project_id=" + projectId;
         JSONArray json = get(url);
         try {
@@ -4994,7 +4778,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private BetterJSONObject getProjectIdentifiers(int projectId) throws AuthenticationException {
+    private BetterJSONObject getProjectIdentifiers(int projectId) throws AuthenticationException, IOException, ApiError {
         String url = API_HOST + "/observations/identifiers?project_id=" + projectId;
         JSONArray json = get(url);
         try {
@@ -5006,7 +4790,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private SerializableJSONArray getTaxaForGuide(Integer guideId) throws AuthenticationException {
+    private SerializableJSONArray getTaxaForGuide(Integer guideId) throws AuthenticationException, IOException, ApiError {
         String url = HOST + "/guide_taxa.json?guide_id=" + guideId.toString();
         JSONArray json = get(url);
         try {
@@ -5019,7 +4803,7 @@ public class INaturalistService extends IntentService implements
     }
 
 
-    private SerializableJSONArray getAllGuides() throws AuthenticationException {
+    private SerializableJSONArray getAllGuides() throws AuthenticationException, IOException, ApiError {
         String inatNetwork = mApp.getInaturalistNetworkMember();
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
@@ -5088,7 +4872,7 @@ public class INaturalistService extends IntentService implements
         return new SerializableJSONArray(json);
     }
 
-    private SerializableJSONArray getNearByGuides(Location location) throws AuthenticationException {
+    private SerializableJSONArray getNearByGuides(Location location) throws AuthenticationException, IOException, ApiError {
         if (location == null) {
             // No place found - return an empty result
             Logger.tag(TAG).error("Current place is null");
@@ -5110,7 +4894,7 @@ public class INaturalistService extends IntentService implements
     }
 
 
-    private SerializableJSONArray getNearByProjects(Location location) throws AuthenticationException {
+    private SerializableJSONArray getNearByProjects(Location location) throws AuthenticationException, IOException, ApiError {
         if (location == null) {
             // No place found - return an empty result
             Logger.tag(TAG).error("Current place is null");
@@ -5154,7 +4938,7 @@ public class INaturalistService extends IntentService implements
         return new SerializableJSONArray(json);
     }
 
-    private SerializableJSONArray getFeaturedProjects() throws AuthenticationException {
+    private SerializableJSONArray getFeaturedProjects() throws AuthenticationException, IOException, ApiError {
         String inatNetwork = mApp.getInaturalistNetworkMember();
         String siteId = mApp.getStringResourceByName("inat_site_id_" + inatNetwork);
         String url = API_HOST + "/projects?featured=true&site_id=" + siteId;
@@ -5223,11 +5007,11 @@ public class INaturalistService extends IntentService implements
     }
 
 
-    public void flagObservationAsCaptive(int obsId) throws AuthenticationException {
+    public void flagObservationAsCaptive(int obsId) throws AuthenticationException, IOException, ApiError {
         post(String.format("%s/observations/%d/quality/wild.json?agree=false", HOST, obsId), (JSONObject) null);
     }
 
-    public void joinProject(int projectId) throws AuthenticationException {
+    public void joinProject(int projectId) throws AuthenticationException, IOException, ApiError {
         post(String.format("%s/projects/%d/join.json", HOST, projectId), (JSONObject) null);
 
         try {
@@ -5248,7 +5032,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    public void leaveProject(int projectId) throws AuthenticationException {
+    public void leaveProject(int projectId) throws AuthenticationException, IOException, ApiError {
         delete(String.format("%s/projects/%d/leave.json", HOST, projectId), null);
 
         // Remove locally saved project (because we left it)
@@ -5256,7 +5040,7 @@ public class INaturalistService extends IntentService implements
     }
 
 
-    private BetterJSONObject removeObservationFromProject(int observationId, int projectId) throws AuthenticationException {
+    private BetterJSONObject removeObservationFromProject(int observationId, int projectId) throws AuthenticationException, IOException, ApiError {
         if (ensureCredentials() == false) {
             return null;
         }
@@ -5275,7 +5059,7 @@ public class INaturalistService extends IntentService implements
     }
 
 
-    private BetterJSONObject addObservationToProject(int observationId, int projectId) throws AuthenticationException {
+    private BetterJSONObject addObservationToProject(int observationId, int projectId) throws AuthenticationException, IOException, ApiError {
         if (ensureCredentials() == false) {
             return null;
         }
@@ -5300,7 +5084,7 @@ public class INaturalistService extends IntentService implements
     }
 
 
-    private SerializableJSONArray getCheckList(int id) throws AuthenticationException {
+    private SerializableJSONArray getCheckList(int id) throws AuthenticationException, IOException, ApiError {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
@@ -5356,7 +5140,7 @@ public class INaturalistService extends IntentService implements
         return new SerializableJSONArray(projects);
     }
 
-    private SerializableJSONArray getJoinedProjects() throws AuthenticationException {
+    private SerializableJSONArray getJoinedProjects() throws AuthenticationException, IOException, ApiError {
         if (ensureCredentials() == false) {
             return null;
         }
@@ -5389,7 +5173,7 @@ public class INaturalistService extends IntentService implements
 
 
     @SuppressLint("NewApi")
-    private int getAdditionalUserObservations(int maxCount) throws AuthenticationException {
+    private int getAdditionalUserObservations(int maxCount) throws AuthenticationException, IOException, ApiError {
         if (ensureCredentials() == false) {
             return -1;
         }
@@ -5470,7 +5254,7 @@ public class INaturalistService extends IntentService implements
 
 
     @SuppressLint("NewApi")
-    private boolean syncRemotelyDeletedObs() throws AuthenticationException, CancelSyncException {
+    private boolean syncRemotelyDeletedObs() throws AuthenticationException, CancelSyncException, IOException, ApiError {
         if (ensureCredentials() == false) {
             return false;
         }
@@ -5521,7 +5305,7 @@ public class INaturalistService extends IntentService implements
     }
 
     @SuppressLint("NewApi")
-    private boolean getUserObservations(int maxCount) throws AuthenticationException, CancelSyncException {
+    private boolean getUserObservations(int maxCount) throws AuthenticationException, CancelSyncException, IOException, ApiError {
         if (ensureCredentials() == false) {
             return false;
         }
@@ -5566,7 +5350,7 @@ public class INaturalistService extends IntentService implements
         return (json != null);
     }
 
-    private boolean syncObservationFields(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException {
+    private boolean syncObservationFields(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException, IOException, ApiError {
         if ((observation.id == null) || (mProjectFieldValues == null)) {
             // Observation hasn't been synced yet - no way to sync its project fields
             return true;
@@ -5719,7 +5503,7 @@ public class INaturalistService extends IntentService implements
         return true;
     }
 
-    private boolean syncObservationFields() throws AuthenticationException, CancelSyncException, SyncFailedException {
+    private boolean syncObservationFields() throws AuthenticationException, CancelSyncException, SyncFailedException, IOException, ApiError {
 
         // First, remotely update the observation fields which were modified
 
@@ -5888,7 +5672,7 @@ public class INaturalistService extends IntentService implements
         return true;
     }
 
-    private boolean addProjectField(int fieldId) throws AuthenticationException {
+    private boolean addProjectField(int fieldId) throws AuthenticationException, IOException, ApiError {
         try {
             JSONArray result = get(String.format("%s/observation_fields/%d.json", HOST, fieldId));
             if (result == null) return false;
@@ -5907,7 +5691,7 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private void getNearbyObservations(Intent intent) throws AuthenticationException {
+    private void getNearbyObservations(Intent intent) throws AuthenticationException, ApiError, IOException, ServerError {
         Bundle extras = intent.getExtras();
         Double minx = extras.getDouble("minx");
         Double maxx = extras.getDouble("maxx");
@@ -5953,7 +5737,6 @@ public class INaturalistService extends IntentService implements
         String deviceLanguage = deviceLocale.getLanguage();
         url += "&locale=" + deviceLanguage;
 
-
         Logger.tag(TAG).debug("Near by observations URL: " + url);
 
         mNearByObservationsUrl = url;
@@ -5977,41 +5760,41 @@ public class INaturalistService extends IntentService implements
         }
     }
 
-    private JSONArray put(String url, ArrayList<NameValuePair> params) throws AuthenticationException {
+    private JSONArray put(String url, ArrayList<NameValuePair> params) throws AuthenticationException, IOException, ApiError {
         params.add(new BasicNameValuePair("_method", "PUT"));
         return request(url, "put", params, null, true);
     }
 
-    private JSONArray put(String url, JSONObject jsonContent) throws AuthenticationException {
+    private JSONArray put(String url, JSONObject jsonContent) throws AuthenticationException, IOException, ApiError {
         return request(url, "put", null, jsonContent, true);
     }
 
-    private JSONArray delete(String url, ArrayList<NameValuePair> params) throws AuthenticationException {
+    private JSONArray delete(String url, ArrayList<NameValuePair> params) throws AuthenticationException, IOException, ApiError {
         return request(url, "delete", params, null, true);
     }
 
-    private JSONArray post(String url, ArrayList<NameValuePair> params, boolean authenticated) throws AuthenticationException {
+    private JSONArray post(String url, ArrayList<NameValuePair> params, boolean authenticated) throws AuthenticationException, IOException, ApiError {
         return request(url, "post", params, null, authenticated);
     }
 
-    private JSONArray post(String url, ArrayList<NameValuePair> params) throws AuthenticationException {
+    private JSONArray post(String url, ArrayList<NameValuePair> params) throws AuthenticationException, IOException, ApiError {
         return request(url, "post", params, null, true);
     }
 
-    private JSONArray post(String url, JSONObject jsonContent) throws AuthenticationException {
+    private JSONArray post(String url, JSONObject jsonContent) throws AuthenticationException, IOException, ApiError {
         return request(url, "post", null, jsonContent, true);
     }
 
 
-    private JSONArray get(String url) throws AuthenticationException {
+    private JSONArray get(String url) throws AuthenticationException, IOException, ApiError {
         return get(url, false);
     }
 
-    private JSONArray get(String url, boolean authenticated) throws AuthenticationException {
+    private JSONArray get(String url, boolean authenticated) throws AuthenticationException, IOException, ApiError {
         return request(url, "get", null, null, authenticated);
     }
 
-    private JSONArray request(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated) throws AuthenticationException {
+    private JSONArray request(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated) throws AuthenticationException, IOException, ApiError {
         return request(url, method, params, jsonContent, authenticated, false, false);
     }
 
