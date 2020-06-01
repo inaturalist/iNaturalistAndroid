@@ -272,27 +272,64 @@ public class iNaturalistApi {
         Request request = requestBuilder.build();
         Call call = mClient.newCall(request);
 
-        if (cb == null || SYNC_FOR_TESTING) {
+        if (cb == null) {
             Response response = call.execute();
             return decodeOrThrow(response);
-        } else {
-            call.enqueue(new Callback() {
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    cb.onApiError(new ApiIoException(e));
-                }
+        }
 
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    try {
-                        ApiResponse r = decodeOrThrow(response);
-                        cb.onResponse(r.parsedResponse);
-                    } catch (ApiError e) {
-                        cb.onApiError(e);
-                    }
+        // They passed async callback, so check if we are running in testing mode
+        CallbackAdapter scb = new CallbackAdapter(cb);
+        if (SYNC_FOR_TESTING) {
+            // Emulate the normal async operation of callbacks, but use the current thread
+            try {
+                Response response = call.execute();
+                scb.onResponse(call, response);
+            } catch (IOException e) {
+                cb.onApiError(call, new ApiIoException(e));
+            }
+        } else {
+            call.enqueue(scb);
+        }
+
+        return null;
+    }
+
+    /**
+     * OkHttp does not decode contents before returning. We want to, b/c it's awesome. This class
+     * bridges the OkHttp Callback into decoding contents and calling our own ApiCallback with
+     * decoded JSON
+     */
+    private class CallbackAdapter implements Callback {
+
+        private final ApiCallback<JSONArray> mUserCallback;
+
+        CallbackAdapter(ApiCallback<JSONArray> userCallback) {
+            mUserCallback = userCallback;
+        }
+
+        @Override
+        public void onFailure(@NotNull Call call,
+                @NotNull IOException e) {
+            mUserCallback.onApiError(call, new ApiIoException(e));
+        }
+
+        @Override
+        public void onResponse(@NotNull Call call,
+                @NotNull Response response) throws IOException {
+            try {
+                ApiResponse r = decodeOrThrow(response);
+                if (r.successful()) {
+                    mUserCallback.onResponse(call, r.parsedResponse);
+                } else {
+                    // TODO fix this - check if/how external classes depend on seeing the 'errors' key in the JSON body before
+                    // I can write a proper test and 100% switch over to throwing an ApiException from within the decodeOrThrow
+                    ApiDecodingException ade =
+                            new ApiDecodingException("Returned JSON has errors flag set");
+                    mUserCallback.onApiError(call, ade);
                 }
-            });
-            return null;
+            } catch (ApiError e) {
+                mUserCallback.onApiError(call, e);
+            }
         }
     }
 
