@@ -581,7 +581,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
     private class TaxonReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            unregisterReceiver(mTaxonReceiver);
+            BaseFragmentActivity.safeUnregisterReceiver(mTaxonReceiver, TaxonActivity.this);
 
 
             boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
@@ -608,7 +608,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
     private class TaxonBoundsReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            unregisterReceiver(mTaxonBoundsReceiver);
+            BaseFragmentActivity.safeUnregisterReceiver(mTaxonBoundsReceiver, TaxonActivity.this);
 
             BetterJSONObject boundsJson = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.TAXON_OBSERVATION_BOUNDS_RESULT);
 

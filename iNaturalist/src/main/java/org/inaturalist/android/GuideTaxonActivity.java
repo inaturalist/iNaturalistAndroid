@@ -80,7 +80,7 @@ public class GuideTaxonActivity extends AppCompatActivity {
     private class TaxonReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            unregisterReceiver(mTaxonReceiver);
+            BaseFragmentActivity.safeUnregisterReceiver(mTaxonReceiver, GuideTaxonActivity.this);
             findViewById(R.id.loading_taxon).setVisibility(View.GONE);
             findViewById(R.id.taxon_details).setVisibility(View.VISIBLE);
 

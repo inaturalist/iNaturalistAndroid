@@ -100,7 +100,7 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
             List<Integer> projectIds = new ArrayList<Integer>();
             mProjects = new ArrayList<JSONObject>();
 
-            unregisterReceiver(mProjectReceiver);
+            BaseFragmentActivity.safeUnregisterReceiver(mProjectReceiver, ProjectSelectorActivity.this);
 
             for (int i = 0; i < projectList.length(); i++) {
                 try {

@@ -98,7 +98,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
     private class TaxonSuggestionsReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            unregisterReceiver(mTaxonSuggestionsReceiver);
+            BaseFragmentActivity.safeUnregisterReceiver(mTaxonSuggestionsReceiver, TaxonSuggestionsActivity.this);
 
             BetterJSONObject resultsObject = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.TAXON_SUGGESTIONS);
 

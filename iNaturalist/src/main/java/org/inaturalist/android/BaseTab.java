@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import androidx.fragment.app.Fragment;
 import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,11 +52,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
         public void onReceive(Context context, Intent intent) {
             Logger.tag(TAG).info("GOT " + getFilterResultName());
 
-            try {
-                getActivity().unregisterReceiver(mProjectsReceiver);
-            } catch (Exception exc) {
-                Logger.tag(TAG).error(exc);
-            }
+            BaseFragmentActivity.safeUnregisterReceiver(mProjectsReceiver, getActivity());
 
             Boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
             

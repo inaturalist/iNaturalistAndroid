@@ -535,7 +535,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
     private class TaxonReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            unregisterReceiver(mTaxonReceiver);
+            BaseFragmentActivity.safeUnregisterReceiver(mTaxonReceiver, MissionDetails.this);
             BetterJSONObject taxon = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.TAXON_RESULT);
 
             if (taxon == null) {

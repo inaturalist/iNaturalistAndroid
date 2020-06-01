@@ -4163,7 +4163,7 @@ public class ObservationEditor extends AppCompatActivity {
     private class TaxonReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            unregisterReceiver(mTaxonReceiver);
+            BaseFragmentActivity.safeUnregisterReceiver(mTaxonReceiver, ObservationEditor.this);
 
             boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
             BetterJSONObject taxon;

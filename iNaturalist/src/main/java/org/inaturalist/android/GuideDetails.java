@@ -236,7 +236,7 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
 	private class GuideTaxaReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            unregisterReceiver(mTaxaGuideReceiver);
+            BaseFragmentActivity.safeUnregisterReceiver(mTaxaGuideReceiver, context);
 
             mGuideXmlFilename = intent.getStringExtra(INaturalistService.GUIDE_XML_RESULT);
 
