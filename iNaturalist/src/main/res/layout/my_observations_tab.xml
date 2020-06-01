@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_height="match_parent" android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <!-- Tab divider -->
     <View
         android:id="@+id/separator"
         android:layout_width="1dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        android:layout_alignTop="@id/tab_center_content"
+        android:layout_alignBottom="@id/tab_center_content"
         android:background="#E9E9E9" />
 
     <!-- Tab content -->
     <LinearLayout
+        android:id="@+id/tab_center_content"
         android:layout_toLeftOf="@id/separator"
-        android:orientation="vertical" android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:background="#ffffff"
         android:layout_height="wrap_content">
 
@@ -26,9 +32,9 @@
             android:textSize="19sp"
             android:textColor="@color/inatapptheme_color"
             android:textStyle="bold"
+            android:maxLines="1"
             android:layout_gravity="center_horizontal"
             android:paddingTop="8dp"
-            android:visibility="gone"
             />
 
         <ProgressBar
@@ -49,8 +55,10 @@
             android:textSize="11sp"
             android:textColor="#ACACAC"
             android:layout_gravity="center_horizontal"
-            android:text="Observations"
+            android:text="OBSERVATIONS"
             android:paddingBottom="5dp"
-            />
+            android:maxLines="1"
+            android:textAllCaps="true"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 </RelativeLayout>

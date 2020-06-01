@@ -19,6 +19,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
+@SuppressWarnings("WeakerAccess")
 public class Observation implements BaseColumns, Serializable {
     public Integer _id;
     public Timestamp _created_at;

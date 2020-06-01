@@ -5,7 +5,7 @@
     android:gravity="center"
     android:paddingTop="18dp"
     android:paddingBottom="7dp"
-    android:layout_height="263dp">
+    android:layout_height="wrap_content">
     <LinearLayout
         android:orientation="horizontal"
         android:layout_gravity="center"
@@ -18,7 +18,7 @@
             android:orientation="vertical"
             android:layout_gravity="center"
             android:layout_marginRight="12dp"
-            android:layout_height="119dp">
+            android:layout_height="wrap_content">
             <LinearLayout
                 android:id="@+id/no_media"
                 android:clickable="true"
@@ -37,7 +37,7 @@
                 android:ellipsize="end"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:maxLines="2"
+                android:lines="2"
                 android:layout_width="101dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center"
-            android:layout_height="119dp">
+            android:layout_height="wrap_content">
             <LinearLayout
                 android:clickable="true"
                 android:id="@+id/take_photo"
@@ -70,7 +70,7 @@
             </LinearLayout>
             <TextView
                 android:ellipsize="end"
-                android:maxLines="2"
+                android:lines="2"
                 android:textSize="14sp"
                 android:gravity="center"
                 android:layout_width="101dp"
@@ -88,7 +88,7 @@
             android:orientation="vertical"
             android:layout_marginLeft="12dp"
             android:layout_gravity="center"
-            android:layout_height="119dp">
+            android:layout_height="wrap_content">
             <LinearLayout
                 android:clickable="true"
                 android:id="@+id/import_photo"
@@ -105,7 +105,7 @@
             </LinearLayout>
             <TextView
                 android:ellipsize="end"
-                android:maxLines="2"
+                android:lines="2"
                 android:textSize="14sp"
                 android:gravity="center"
                 android:layout_width="101dp"
@@ -130,7 +130,7 @@
             android:layout_width="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center"
-            android:layout_height="119dp">
+            android:layout_height="wrap_content">
             <LinearLayout
                 android:clickable="true"
                 android:id="@+id/choose_sound"
@@ -147,7 +147,7 @@
             </LinearLayout>
             <TextView
                 android:ellipsize="end"
-                android:maxLines="2"
+                android:lines="2"
                 android:textSize="14sp"
                 android:gravity="center"
                 android:layout_width="101dp"
@@ -165,7 +165,7 @@
             android:layout_marginLeft="12dp"
             android:orientation="vertical"
             android:layout_gravity="center"
-            android:layout_height="119dp">
+            android:layout_height="wrap_content">
             <LinearLayout
                 android:clickable="true"
                 android:id="@+id/record_sound"
@@ -182,7 +182,7 @@
             </LinearLayout>
             <TextView
                 android:ellipsize="end"
-                android:maxLines="2"
+                android:lines="2"
                 android:textSize="14sp"
                 android:layout_width="101dp"
                 android:layout_height="wrap_content"
