@@ -37,6 +37,10 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+// TODO in so many places this uses multipart/form b/c the old API recommended it. However it's still doing
+// that for api.inaturalist.org in multiple locations. Needs cleanup
+// TODO switch to new API where reasonable
+@SuppressWarnings("deprecation")
 public class iNaturalistApi {
 
     private static String TAG = "ServerApi";
@@ -132,12 +136,12 @@ public class iNaturalistApi {
 
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
-    public static final MediaType OCTET
+    private static final MediaType OCTET
             = MediaType.parse("application/octet-stream");
 
     /**
      *
-     * @param url
+     * @param url what we're doing
      * @param method get, post, put, or delete
      * @param params If non-null, we will send this as the request body with a multipart/form
      * @param jsonContent If non-null, we will send this as the request body with a JSON mimetype
@@ -148,16 +152,14 @@ public class iNaturalistApi {
      *           If you want an async call you must provide a callback (for now)
      * @return null if a callback was passed. Otherwise, this method will either return a response or
      *          throw an exception
-     * @throws AuthenticationException
-     * @throws ServerError
-     * @throws IOException
-     * @throws ApiError
+     * @throws IOException Problem with network (read/write request body, connect to server, etc)
+     * @throws ApiError Our code caught some error that's not a network-caused issue. See subclass descriptions
      */
     @Nullable
     private ApiResponse okHttpRequest(@NonNull String url, @NonNull String method,
                                       @Nullable ArrayList<NameValuePair> params,
                                       @Nullable JSONObject jsonContent, boolean authenticated, boolean useJWTToken,
-                                      boolean allowAnonymousJWTToken, @Nullable ApiCallback cb)
+                                      boolean allowAnonymousJWTToken, @Nullable ApiCallback<JSONArray> cb)
             throws IOException, ApiError {
 
         // TODO handle POST redirects (301,302,307,308)
@@ -200,7 +202,6 @@ public class iNaturalistApi {
                         || paramName.equalsIgnoreCase("user[icon]")
                         || paramName.equalsIgnoreCase("audio")) {
                     if (paramName.equalsIgnoreCase("audio")) {
-                        File file = new File(paramValue);
                         String fileExt = paramValue.substring(paramValue.lastIndexOf(".") + 1);
                         MediaType customAudio = MediaType.parse("audio/" + fileExt);
                         multipartBody.addFormDataPart(paramName, paramValue,
@@ -264,7 +265,7 @@ public class iNaturalistApi {
     }
 
     @Nullable
-    private ApiResponse runRequest(Request.Builder requestBuilder, @Nullable ApiCallback cb) throws ApiError, IOException {
+    private ApiResponse runRequest(Request.Builder requestBuilder, @Nullable ApiCallback<JSONArray> cb) throws ApiError, IOException {
 
         Request request = requestBuilder.build();
         Call call = mClient.newCall(request);
