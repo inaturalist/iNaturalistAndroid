@@ -1996,6 +1996,7 @@ public class INaturalistService extends IntentService implements
                 dontStopSync = true;
             }
         } else if (action.equals(ACTION_SYNC)) {
+
             if (!mIsSyncing && !mApp.getIsSyncing()) {
                 long[] idsToSync = null;
 
@@ -2014,7 +2015,6 @@ public class INaturalistService extends IntentService implements
                 // Already in middle of syncing
                 dontStopSync = true;
             }
-
         }
         return dontStopSync;
     }
@@ -2160,7 +2160,6 @@ public class INaturalistService extends IntentService implements
             }
 
             c.close();
-
 
             Logger.tag(TAG).debug("syncObservations: observationIdsToSync 2b: " + observationIdsToSync);
 
@@ -4758,12 +4757,12 @@ public class INaturalistService extends IntentService implements
         String url = API_HOST + "/observations?per_page=1&return_bounds=true&taxon_id=" + taxonId;
 
         JSONArray json = null;
-        try {
+//        try {
             json = get(url, false);
-        } catch (AuthenticationException e) {
-            Logger.tag(TAG).error(e);
-            return null;
-        }
+//        } catch (AuthenticationException e) {
+//            Logger.tag(TAG).error(e);
+//            return null;
+//        }
         if (json == null) return null;
         if (json.length() == 0) return null;
         try {
