@@ -107,6 +107,23 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import okhttp3.Call;
 
 @SuppressWarnings("ALL")
+/**
+ * TODO - in order to make the threading work, we have to change this class
+ *
+ * An IntentService kills itself after each call to onHandleIntent. If you
+ * offload the work to another thread, the Service can halt while your other thread
+ * keeps going. This is bad - memory leaks if your other thread still holds the Service,
+ * or crashes if you call back into a service where some of the internal objects have been cleaned
+ * after the call to onDestroy
+ *
+ * IMO we should pull all 'sync' operations onto a single thread for the time being. These would
+ * go perfectly in this class, because we explicitely want one thread for background work. All
+ * cursor/network calls need to happen synchronously b/c of the intentservice killing itself
+ *
+ * However, all other network code and API calls can likely be scheduled using workmanager. All of
+ * this would need to be pulled into a different class, and will likely no longer be a service but
+ * would instead be some type of scheduled work item.
+ */
 public class INaturalistService extends IntentService implements
         iNaturalistApi.ApiHelper {
     // How many observations should we initially download for the user
@@ -5825,41 +5842,41 @@ public class INaturalistService extends IntentService implements
     }
 
 
-    private JSONArray put(String url, ArrayList<NameValuePair> params) throws AuthenticationException, IOException, ApiError {
+    JSONArray put(String url, ArrayList<NameValuePair> params) throws AuthenticationException, IOException, ApiError {
         params.add(new BasicNameValuePair("_method", "PUT"));
         return request(url, "put", params, null, true);
     }
 
-    private JSONArray put(String url, JSONObject jsonContent) throws AuthenticationException, IOException, ApiError {
+    JSONArray put(String url, JSONObject jsonContent) throws AuthenticationException, IOException, ApiError {
         return request(url, "put", null, jsonContent, true);
     }
 
-    private JSONArray delete(String url, ArrayList<NameValuePair> params) throws AuthenticationException, IOException, ApiError {
+    JSONArray delete(String url, ArrayList<NameValuePair> params) throws AuthenticationException, IOException, ApiError {
         return request(url, "delete", params, null, true);
     }
 
-    private JSONArray post(String url, ArrayList<NameValuePair> params, boolean authenticated) throws AuthenticationException, IOException, ApiError {
+    JSONArray post(String url, ArrayList<NameValuePair> params, boolean authenticated) throws AuthenticationException, IOException, ApiError {
         return request(url, "post", params, null, authenticated);
     }
 
-    private JSONArray post(String url, ArrayList<NameValuePair> params) throws AuthenticationException, IOException, ApiError {
+    JSONArray post(String url, ArrayList<NameValuePair> params) throws AuthenticationException, IOException, ApiError {
         return request(url, "post", params, null, true);
     }
 
-    private JSONArray post(String url, JSONObject jsonContent) throws AuthenticationException, IOException, ApiError {
+    JSONArray post(String url, JSONObject jsonContent) throws AuthenticationException, IOException, ApiError {
         return request(url, "post", null, jsonContent, true);
     }
 
 
-    private JSONArray get(String url) throws AuthenticationException, IOException, ApiError {
+    JSONArray get(String url) throws AuthenticationException, IOException, ApiError {
         return get(url, false);
     }
 
-    private JSONArray get(String url, boolean authenticated) throws AuthenticationException, IOException, ApiError {
+    JSONArray get(String url, boolean authenticated) throws AuthenticationException, IOException, ApiError {
         return request(url, "get", null, null, authenticated);
     }
 
-    private JSONArray request(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated) throws AuthenticationException, IOException, ApiError {
+    JSONArray request(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated) throws AuthenticationException, IOException, ApiError {
         return request(url, method, params, jsonContent, authenticated, false, false);
     }
 
