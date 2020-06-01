@@ -396,15 +396,8 @@ public class iNaturalistApi {
     }
 
     public void addFavorite(int observationId, ApiCallback<JSONArray> cb) {
-        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-        // TODO switch to new API
         String url = HOST + "/votes/vote/observation/" + observationId + ".json";
-
-        asyncRequest(url,
-                "post",
-                null, null, true,
-                false, false,
-                cb);
+        postAsync(url, null, null, true, cb);
     }
 
     public BetterJSONObject getTaxonSuggestions(Locale deviceLocale, String photoFilename,
@@ -440,16 +433,7 @@ public class iNaturalistApi {
 
     public void removeFavorite(int observationId, ApiCallback<JSONArray> cb) {
         String url = HOST + "/votes/unvote/observation/" + observationId + ".json";
-
-        // TODO old API returns a 204 No Content for unvoting
-        //  This is incorrect client-side - we have to update the user interface!
-        asyncRequest(url,
-                "delete",
-                null, null,
-                true,
-                false,
-                false,
-                cb);
+        deleteAsync(url, null, cb);
     }
 
     public void addComment(int observationId, String body) throws AuthenticationException, ServerError, IOException, ApiError {
@@ -466,62 +450,61 @@ public class iNaturalistApi {
         delete(HOST + "/comments/" + commentId + ".json", null);
     }
 
-    private ApiResponse put(String url, ArrayList<NameValuePair> params) throws AuthenticationException, ServerError, IOException, ApiError {
-        params.add(new BasicNameValuePair("_method", "PUT"));
-        return requestAllParams(url, "put", params, null, true);
     }
 
-    private ApiResponse put(String url, JSONObject jsonContent) throws AuthenticationException, ServerError, IOException, ApiError {
-        return requestAllParams(url, "put", null, jsonContent, true);
     }
 
-    private ApiResponse delete(String url, ArrayList<NameValuePair> params) throws AuthenticationException, ServerError, IOException, ApiError {
-        return requestAllParams(url, "delete", params, null, true);
     }
 
-    private ApiResponse post(String url, ArrayList<NameValuePair> params, boolean authenticated) throws AuthenticationException, ServerError, IOException, ApiError {
-        return requestAllParams(url, "post", params, null, authenticated);
     }
 
-    private ApiResponse post(String url, ArrayList<NameValuePair> params) throws AuthenticationException, ServerError, IOException, ApiError {
-        return requestAllParams(url, "post", params, null, true);
-    }
-
-    private ApiResponse post(String url, JSONObject jsonContent) throws AuthenticationException, ServerError, IOException, ApiError {
-        return requestAllParams(url, "post", null, jsonContent, true);
-    }
-
-
-    private ApiResponse get(String url) throws AuthenticationException, ServerError, IOException, ApiError {
-        return get(url, false);
-    }
-
-    public ApiResponse get(String url, boolean authenticated) throws AuthenticationException, ServerError, IOException, ApiError {
-        return requestAllParams(url, "get", null, null, authenticated);
-    }
-
-    private ApiResponse requestAllParams(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated) throws AuthenticationException, ServerError, IOException, ApiError {
-        return syncRequest(url, method, params, jsonContent, authenticated, false, false);
     }
 
     public ApiResponse syncRequest(String url, String method, ArrayList<NameValuePair> params,
                                    JSONObject jsonContent, boolean authenticated, boolean useJWTToken,
-                                   boolean allowAnonymousJWTToken) throws AuthenticationException, ServerError, IOException, ApiError {
-        return okHttpRequest(url, method, params, jsonContent, authenticated, false, false, null);
+                                   boolean allowAnonymousJWTToken) throws IOException, ApiError {
+        return okHttpRequest(url, method, params, jsonContent, authenticated, useJWTToken,
+                allowAnonymousJWTToken, null);
     }
 
-    public ApiResponse asyncRequest(String url, String method, ArrayList<NameValuePair> params,
+    private void putAsync(String url, JSONObject jsonContent, ArrayList<NameValuePair> params,
+                          ApiCallback<JSONArray> cb) {
+        if (params != null) params.add(new BasicNameValuePair("_method", "PUT"));
+        requestAsyncAllParams(url, "put", params, jsonContent, true, cb);
+    }
+
+    private void deleteAsync(String url, ArrayList<NameValuePair> params, ApiCallback<JSONArray> cb) {
+        requestAsyncAllParams(url, "delete", params, null, true, cb);
+    }
+
+    private void postAsync(String url, JSONObject jsonContent, ArrayList<NameValuePair> params,
+                           boolean authenticated, ApiCallback<JSONArray> cb) {
+        requestAsyncAllParams(url, "post", params, jsonContent, authenticated, cb);
+    }
+
+    private void getAsync(String url, boolean authenticated, ApiCallback<JSONArray> cb) {
+        requestAsyncAllParams(url, "get", null, null, authenticated, cb);
+    }
+
+    private void requestAsyncAllParams(String url, String method, ArrayList<NameValuePair> params,
+                                       JSONObject jsonContent, boolean authenticated,
+                                       ApiCallback<JSONArray> cb) {
+        asyncRequest(url, method, params, jsonContent, authenticated, false, false, cb);
+    }
+
+    private void asyncRequest(String url, String method, ArrayList<NameValuePair> params,
                                    JSONObject jsonContent, boolean authenticated, boolean useJWTToken,
-                                   boolean allowAnonymousJWTToken, @NonNull ApiCallback cb) {
+                                   boolean allowAnonymousJWTToken, @NonNull ApiCallback<JSONArray> cb) {
         if (cb == null)
             throw new IllegalArgumentException("Callback cannot be null");
+
         try {
-            return okHttpRequest(url, method, params, jsonContent, authenticated, false, false, cb);
+            okHttpRequest(url, method, params, jsonContent, authenticated, useJWTToken,
+                    allowAnonymousJWTToken, cb);
         } catch (IOException | ApiError e) {
             // Should never happen. These errors only come from the method decodeOrThrow, which
             // is executed on a background thread if we are using a callback
             Logger.tag(TAG).error("This should never happen", e);
-            return null;
         }
     }
 }
