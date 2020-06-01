@@ -3091,18 +3091,39 @@ public class ObservationEditor extends AppCompatActivity {
             InputStream is = getContentResolver().openInputStream(photoUri);
             Logger.tag(TAG).info("importPhotoMetadata: IS = " + is);
 
-            it.sephiroth.android.library.exif2.ExifInterface exif = new it.sephiroth.android.library.exif2.ExifInterface();
-            exif.readExif(is, it.sephiroth.android.library.exif2.ExifInterface.Options.OPTION_ALL);
+            double[] latLng = null;
 
-            Logger.tag(TAG).info("importPhotoMetadata: Exif = " + exif);
+            it.sephiroth.android.library.exif2.ExifInterface exif = null;
+
+            try {
+                exif = new it.sephiroth.android.library.exif2.ExifInterface();
+                exif.readExif(is, it.sephiroth.android.library.exif2.ExifInterface.Options.OPTION_ALL);
+                Logger.tag(TAG).info("importPhotoMetadata: Exif = " + exif);
+            } catch (Exception exc) {
+                Logger.tag(TAG).error("Exception while reading EXIF data from file:");
+                Logger.tag(TAG).error(exc);
+                exif = null;
+            }
+
+            ExifInterface orgExif = null;
+
+            if (exif == null) {
+                Logger.tag(TAG).error("Could not read EXIF data from photo using Sephiroth library - trying built-in Android library");
+                is.close();
+                is = getContentResolver().openInputStream(photoUri);
+                orgExif = new ExifInterface(is);
+                Logger.tag(TAG).info("importPhotoMetadata - EXIF 2: " + orgExif);
+            }
+
             uiToObservation();
-            double[] latLng = exif.getLatLongAsDoubles();
+
+            if (exif != null) {
+                latLng = exif.getLatLongAsDoubles();
+            }
 
             if (!areCoordsValid(latLng)) {
                 Logger.tag(TAG).error("importPhotoMetadata: Invalid lat/lng = " + latLng + ": trying regular EXIF library");
-                is.close();
-                is = getContentResolver().openInputStream(photoUri);
-                ExifInterface orgExif = new ExifInterface(is);
+
                 latLng = orgExif.getLatLong();
             }
 
@@ -3153,10 +3174,20 @@ public class ObservationEditor extends AppCompatActivity {
 
 
             String datetime = null;
-            datetime = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_DATE_TIME_ORIGINAL);
 
-            if (datetime == null) {
-                datetime = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_DATE_TIME);
+            if (exif != null) {
+                datetime = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_DATE_TIME_ORIGINAL);
+
+                if (datetime == null) {
+                    datetime = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_DATE_TIME);
+                }
+            } else {
+                // Try using built-in EXIF library
+                datetime = orgExif.getAttribute(ExifInterface.TAG_DATETIME_ORIGINAL);
+
+                if (datetime == null) {
+                    datetime = orgExif.getAttribute(ExifInterface.TAG_DATETIME);
+                }
             }
 
             if (datetime != null) {
