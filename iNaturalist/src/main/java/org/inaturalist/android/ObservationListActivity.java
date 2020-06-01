@@ -769,8 +769,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
 
         if (!mApp.loggedIn()) {
-            // TODO this looks like a bug
-            if ((mTotalIdentifications > 0) || (mTotalIdentifications > 0)) {
+            if ((mTotalIdentifications > 0) || (mTotalSpecies > 0)) {
                 mTotalSpecies = 0;
                 mTotalIdentifications = 0;
 
@@ -1053,6 +1052,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             // Update its sync at time so we won't update the remote servers later on (since we won't
             // accidentally consider this an updated record)
             cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
+            int count = getContentResolver().update(ContentUris.withAppendedId(Observation.CONTENT_URI, bc.getInt(Observation._ID)), cv, null, null);
+            if (count != 1) {
+                Logger.tag(TAG).warn("Failed to update observation when marking all observations read");
+            }
 
         } while (cursor.moveToNext());
 

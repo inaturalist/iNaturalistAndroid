@@ -1,10 +1,7 @@
 package org.inaturalist.android;
 
-import android.annotation.SuppressLint;
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.res.Resources;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +22,6 @@ import org.tinylog.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
 
@@ -146,26 +142,28 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
                     }
                 }
 
-                // TODO we could be passing null to Picasso for url. Ok?
-                Picasso.with(mContext)
-                        .load(url)
-                        .fit()
-                        .centerCrop()
-                        .into(taxonPic, new Callback() {
-                            @Override
-                            public void onSuccess() {
-                                taxonPic.setLayoutParams(new RelativeLayout.LayoutParams(
-                                        mDimension, mDimension));
-                                taxonIcon.setVisibility(View.GONE);
-                                taxonPic.setVisibility(View.VISIBLE);
-                            }
+                if (url != null) {
+                    Picasso.with(mContext)
+                            .load(url)
+                            .fit()
+                            .centerCrop()
+                            .into(taxonPic, new Callback() {
+                                @Override
+                                public void onSuccess() {
+                                    taxonPic.setLayoutParams(new RelativeLayout.LayoutParams(
+                                            mDimension, mDimension));
+                                    taxonIcon.setVisibility(View.GONE);
+                                    taxonPic.setVisibility(View.VISIBLE);
+                                }
 
-                            @Override
-                            public void onError() {
-                                Logger.tag(TAG).warn("Picasso error downloading obs url");
-                            }
-                        });
-
+                                @Override
+                                public void onError() {
+                                    Logger.tag(TAG).warn("Picasso error downloading obs url");
+                                }
+                            });
+                } else {
+                    Logger.tag(TAG).warn("Refusing to pass null URL to Picasso");
+                }
             } catch (JSONException e) {
                 Logger.tag(TAG).error(e);
             } catch (Exception e) {
