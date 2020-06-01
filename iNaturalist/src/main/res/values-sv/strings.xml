@@ -819,4 +819,7 @@
     <string name="forbidden">Förbjudet</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">Appen du delade från skapar bilder som inte är lämpliga för observationer för att de inte fungerar som stöd för din upplevelse av en annan organism, för att de innehåller ett olämpligt varumärke eller kommersiellt innehåll eller för att de bryter mot våra användarvillkor på annat sätt.</string>
+    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
 </resources>

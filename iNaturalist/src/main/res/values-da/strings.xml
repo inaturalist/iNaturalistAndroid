@@ -200,7 +200,7 @@
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australien er medlem af iNaturalist Network i Australien. Lokale institutioner, som støtter Naturalist Australien, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
     <string name="alert_message_use_argentinat">ArgentiNat er medlem af iNaturalist Network i Argentina. Lokale institutioner, som støtter NaturaLista, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Isreal er medlem af iNaturalist Network i Isreal. Lokale institutioner, som støtter Naturalist Australien, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
-    <string name="alert_message_use_inaturalistfi">iNaturalist Finland is a member of the iNaturalist Network in Finland. Local institutions supporting iNaturalist Finland will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland er medlem af iNaturalist Network i Finland. Lokale institutioner, som støtter iNaturalist Finland, har adgang til din e-mailadresse samt til de sande koordinater for observationer, som er offentligt skjult eller private. Skift venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du skifte din tilknytning?</string>
     <string name="editor">Redaktør</string>
     <string name="license">Licens</string>
     <string name="download_for_offline_use">Download til offlinebrug</string>
@@ -709,7 +709,7 @@
     <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia understøtter iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) understøtter iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa understøtter iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Naturalist History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finsk Museum for Naturalist Historik (LUOMUS) understøtter iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="mark_all_as_viewed">Markér alle som set</string>
     <string name="content_hidden">Indhold skjult</string>
     <string name="show_hidden_content">Vis Skjult Indhold</string>
@@ -806,17 +806,20 @@
     <string name="future_observed_on_date_error">Din observation blev oprettet (og indsendt) %1$s, men du prøver at angive en observationsdato, der er senere end: %2$s</string>
     <string name="no_more_photos_allowed">Observationer kan kun have %1$d fotos. For at tilføje flere, skal nogle fjernes.</string>
     <string name="warning_multiple_photos">Føjer du fotos af forskellige slags organismer til denne observation eller den samme art på forskellige steder eller tidspunkter, skal du fjerne disse fotos og tilføje dem som separate observationer. En observation kan kun have %1$d fotos.</string>
-    <string name="choosing_specific_language_warning">Choosing a specific language for your account requires an Internet connection</string>
-    <string name="running_in_background_notfication">Running in the background so we can run without interruption</string>
-    <string name="opt_out_of_community_taxon">Opt out of the Community Taxon</string>
-    <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
-    <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
+    <string name="choosing_specific_language_warning">Valg af et specifikt sprog til din konto kræver Internetforbindelse</string>
+    <string name="running_in_background_notfication">Kører i baggrunden, så afbrydelse undgås</string>
+    <string name="opt_out_of_community_taxon">Fravælg Fællesskabstakson</string>
+    <string name="opt_in_to_community_taxon">Tilvælg Fællesskabstakson</string>
+    <string name="opt_out_message">Fravalg af Fællesskabetstakson tvinger denne observation til at være forbundet med den pågældende takson fra din nuværende identifikation, ikke en takson, der stammer fra alle de identifikationer, som er føjet til denne observation. Hvis nok identifikatorer er uenige med dig, bliver din observation Uformel. Du bør kun fravælge, hvis du er sikker på, at din identifikation er korrekt, og andre identifikationer er forkerte.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
-    <string name="permission_required">Permission Required</string>
+    <string name="permission_required">Tilladelse kræves</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
-    <string name="to_access_your_location">To access your location you must grant location access permission to this app.</string>
+    <string name="to_access_your_location">For at appen kan tilgå din placering, skal du først tildele den adgangstilladelse.</string>
     <!-- Dialog title when displaying a message that an action is not permitted -->
-    <string name="forbidden">Forbidden</string>
+    <string name="forbidden">Ikke tilladt</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
-    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
+    <string name="app_you_shared_blocked">Appen, hvorfra du delte, opretter fotos, som ikke er egnede til observationer, da dísse ikke udgør bevis for din oplevelse med en anden organisme, idet de inkluderer upassende branding eller kommercielt indhold, eller fordi de på anden vis overtræder vores tjenestevilkår.</string>
+    <string name="list_observation_checkbox_description">Afkrydsningsfelt til valg af observation ved valg af flere emner</string>
+    <string name="observation_list_item_iconic_pic_description">Eksempelbillede til observationstaksonomi</string>
+    <string name="observation_list_item_obs_pic_description">Eksempelbillede til observation</string>
 </resources>

@@ -818,5 +818,8 @@
     <!-- Dialog title when displaying a message that an action is not permitted -->
     <string name="forbidden">Action interdite</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
-    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
+    <string name="app_you_shared_blocked">L\'app a partir de laquelle vous avez transmis quelque chose créée des photos qui ne sont pas acceptables pour les observations parce qu\'elle ne prouve pas la rencontre avec un organisme, parce qu\'elle inclut un contenu commercial ou de marque inapproprié, ou alors parce qu\'elle viole nos Termes de Service d\'une autre façon.</string>
+    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
 </resources>

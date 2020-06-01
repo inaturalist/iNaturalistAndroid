@@ -148,8 +148,8 @@
     <string name="release_to_refresh">Solte para atualizar...</string>
     <string name="refreshing">Atualizando...</string>
     <plurals name="sync_x_observations">
-        <item quantity="one">Sync %1$d observation</item>
-        <item quantity="other">Sync %1$d observations</item>
+        <item quantity="one">Sincronizar %1$d observação</item>
+        <item quantity="other">Sincronizar %1$d observações</item>
     </plurals>
     <string name="sync_observations">Sincronizar Observações</string>
     <string name="lets_get_started">Vamos começar!</string>
@@ -283,8 +283,8 @@
     <string name="casual_grade_captive"><![CDATA[ Observação de \'Nível Casual\' porque a espécie é de <b>cativeiro/cultivada</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ Observação precisa de<b>mais identificações</b> da Comunidade para receber o status de "Nível de Pesquisa". ]]></string>
     <plurals name="included_in_projects">
-        <item quantity="one">Included in %1$d project</item>
-        <item quantity="other">Included in %1$d projects</item>
+        <item quantity="one">Incluído em %1$d projeto</item>
+        <item quantity="other">Incluído em %1$d projetos</item>
     </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivacidade é um ajuste que, você mesmo pode configurar em suas observações e, controlar como as coordenadas espaciais (latitude e longitude) são exibidas. Aqui estão as opções: <br/> <b>abra</b> - Por padrão, todos podem ver suas coordenadas, a menos que seja de uma espécie ameaçada. <br/> <b>oculto</b> - Coordenadas públicas são exibidas como pontos aleatórios dentro de uma área de 0,2 por 0,2 grau que contém as coordenadas verdadeiras, o que funciona bem para áreas de 22 x 22 km quadrados de incerteza no Equador, diminuindo conforme se aproxima dos pólos. Coordenadas verdadeiras apenas estão disponíveis para você e administradores de projetos, aos quais você conceda acesso ao adicionar sua observação. <br/> <b>privada</b> - coordenada completamente escondida do público e nos mapas, as verdadeiras coordenadas estarão visíveis apenas para você e administradores de projetos, aos quais você conceda acesso ao adicionar sua observação. <br/> <br/> Lembre-se que, administradores de projetos individuais poderão acessar suas coordenadas independente de suas configurações de geoprivacidade, então se você está preocupado com quem tem acesso as suas coordenadas, se certifique de confiar nos administradores de projetos que você participa. ]]></string>
     <string name="id_title">Identificação de %1$s: %2$s</string>
@@ -412,8 +412,8 @@
     <string name="new_activities">%1s novo</string>
     <string name="no_results_found">Não foram encontrados resultados...</string>
     <plurals name="syncing_x_out_of_y_observations">
-        <item quantity="one">Syncing %1$d of %2$d observation...</item>
-        <item quantity="other">Syncing %1$d of %2$d observations...</item>
+        <item quantity="one">Sincronizando %1$d de %2$d observação...</item>
+        <item quantity="other">Sincronizando %1$d de %2$d observações...</item>
     </plurals>
     <string name="deleting_observations">Excluindo observações...</string>
     <string name="preparing">Preparando...</string>
@@ -440,8 +440,8 @@
     <string name="species_search">Pesquisa de espécies</string>
     <plurals name="were_not_confident">
         <!-- This will probably never happen -->
-        <item quantity="one">We\'re not confident enough to make a recommendation, but here is our number %1$d suggestion:</item>
-        <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+        <item quantity="one">Nós não estamos confiantes o bastante para fazer uma recomendação, mas aqui está a nossa sugestão número %1$d:</item>
+        <item quantity="other">Nós não estamos confiantes o bastante para fazer uma recomendação, mas aqui estão as nossas %1$d melhores sugestões:</item>
     </plurals>
     <plurals name="top_species_suggestions">
         <item quantity="one">Top %1$d suggestion:</item>
@@ -664,8 +664,8 @@
     <string name="description_all_caps">DESCRIÇÃO</string>
     <string name="quantity_all_caps">QUANTIDADE</string>
     <plurals name="observation_count_all_caps">
-        <item quantity="one">%1$s OBSERVATION</item>
-        <item quantity="other">%1$s OBSERVATIONS</item>
+        <item quantity="one">%1$s OBSERVAÇÃO</item>
+        <item quantity="other">%1$s OBSERVAÇÕES</item>
     </plurals>
     <string name="agree_all_caps">CONCORDO</string>
     <string name="observations_all_caps">OBSERVAÇÕES</string>
@@ -734,7 +734,7 @@
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f seg</string>
     <string name="clear_all_debug_logs">Limpar todos os registros de Depuração</string>
-    <string name="clears_up_storage_room_on_your_phone">Clears up storage room on your phone</string>
+    <string name="clears_up_storage_room_on_your_phone">Limpa espaço de armazenamento em seu telefone</string>
     <string name="number_of_days_to_store_logs">Número de dias para armazenar troncos</string>
     <string name="send_debug_logs_from_start_date">Send Debug Logs From Start Date</string>
     <string name="send_debug_logs_by_email">Send debug logs by email (from specified start date)</string>
@@ -788,16 +788,16 @@
     <string name="third_party_data_sharing">Third-party Data Sharing</string>
     <string name="disable_third_party_data_sharing">Disable Third-party Data Sharing</string>
     <string name="do_not_collect_third_party_data">Do not collect stability and usage data using third-party services</string>
-    <string name="enabled">Enabled</string>
-    <string name="disabled">Disabled</string>
+    <string name="enabled">Ativado</string>
+    <string name="disabled">Desativado</string>
     <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third-party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
     <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
     <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third-party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
     <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
     <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
-    <string name="search_places">Search Places</string>
-    <string name="restart_app">Restart App</string>
+    <string name="search_places">Pesquisar lugares</string>
+    <string name="restart_app">Reiniciar App</string>
     <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
         <item quantity="one">Are you sure you want to delete this %1$d observation?</item>
@@ -812,11 +812,14 @@
     <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
     <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
-    <string name="permission_required">Permission Required</string>
+    <string name="permission_required">Permissão Necessária</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
     <string name="to_access_your_location">To access your location you must grant location access permission to this app.</string>
     <!-- Dialog title when displaying a message that an action is not permitted -->
-    <string name="forbidden">Forbidden</string>
+    <string name="forbidden">Proibido</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
+    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
 </resources>

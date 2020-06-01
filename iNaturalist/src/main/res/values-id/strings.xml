@@ -805,11 +805,14 @@
     <string name="opt_in_to_community_taxon">Turut serta Takson Komunitas</string>
     <string name="opt_out_message">Tidak turut serta Takson Komunitas akan memaksakan pengamatan ini untuk diasosiasikan dengan identifikasi Anda sekarang, tidak berdasarkan semua identifikasi-identifikasi yang telah ditambahkan pada pengamatan ini. Jika banyak pengidentifikasi yang tidak setuju dengan anda, maka pengamatan anda akan menjadi Kasual. Anda sebaiknya hanya tidak turut apabila anda sangat yakin identifikasi anda benar dan identifikasi lain salah.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
-    <string name="permission_required">Permission Required</string>
+    <string name="permission_required">Izin Dibutuhkan</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
-    <string name="to_access_your_location">To access your location you must grant location access permission to this app.</string>
+    <string name="to_access_your_location">Anda harus memberi izin akses lokasi untuk mengakses lokasi Anda di aplikasi ini</string>
     <!-- Dialog title when displaying a message that an action is not permitted -->
-    <string name="forbidden">Forbidden</string>
+    <string name="forbidden">Dilarang</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
-    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
+    <string name="app_you_shared_blocked">Aplikasi yang Anda pakai untuk membagi foto ini menciptakan foto yang tidak layak untuk pengamatan karena mereka tidak merepresentasikan bukti dari pengalaman Anda dengan organisme lain, karena aplikasi tersebut berisi merek yang tidak pantas atau konten komersial, atau melanggar Ketentuan Layanan kami dengan cara lainnya.</string>
+    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
 </resources>
