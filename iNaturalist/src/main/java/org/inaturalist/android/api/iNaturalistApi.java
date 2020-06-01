@@ -309,21 +309,29 @@ public class iNaturalistApi {
                 // Validation error - still need to return response
                 Logger.tag(TAG).error(response.message());
             case HttpURLConnection.HTTP_OK:
-                try {
-                    json = new JSONArray(content);
-                } catch (JSONException e) {
+                // Two ways of decoding the JSON response (empty vs non-empty content)
+                if ((content != null) && (content.length() == 0)) {
+                    // In case it's just non content (but OK HTTP status code) - so there's no error
+                    json = new JSONArray();
+                } else {
                     try {
-                        JSONObject jo = new JSONObject(content);
-                        json = new JSONArray();
-                        json.put(jo);
-                    } catch (JSONException e2) {
-                        // TODO this should error
-                        return null;
+                        json = new JSONArray(content);
+                    } catch (JSONException e) {
+                        try {
+                            JSONObject jo = new JSONObject(content);
+                            json = new JSONArray();
+                            json.put(jo);
+                        } catch (JSONException e2) {
+                            ApiDecodingException ade = new ApiDecodingException("Failure decoding response content");
+                            ade.initCause(e2);
+                            throw ade;
+                        }
                     }
                 }
 
-                try {
-                    if ((json != null) && (json.length() > 0)) {
+                // If we've decoded, double-check that we didn't get an 'errors' key in the response
+                if ((json != null) && (json.length() > 0)) {
+                    try {
                         JSONObject result = json.getJSONObject(0);
                         if (result.has("errors")) {
                             // Error response
@@ -333,14 +341,9 @@ public class iNaturalistApi {
                             ar.parsedErrors = result.getJSONArray("errors");
                             return ar;
                         }
+                    } catch (JSONException e) {
+                        Logger.tag(TAG).error(e);
                     }
-                } catch (JSONException e) {
-                    Logger.tag(TAG).error(e);
-                }
-
-                if ((content != null) && (content.length() == 0)) {
-                    // In case it's just non content (but OK HTTP status code) - so there's no error
-                    json = new JSONArray();
                 }
 
                 ApiResponse ar = new ApiResponse();
