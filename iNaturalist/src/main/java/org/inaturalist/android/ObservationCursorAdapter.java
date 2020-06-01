@@ -1,7 +1,7 @@
 package org.inaturalist.android;
 
 import android.animation.ValueAnimator;
-import android.annotation.TargetApi;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.ContentUris;
@@ -19,13 +19,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-
-import androidx.constraintlayout.widget.Group;
-import androidx.core.content.ContextCompat;
-
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +32,8 @@ import android.widget.RelativeLayout;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
 
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 import com.squareup.picasso.Callback;
@@ -60,11 +57,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -74,13 +68,13 @@ import java.util.Set;
 
 import static android.content.Context.MODE_PRIVATE;
 
+@SuppressWarnings("WeakerAccess")
 class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListView.OnScrollListener {
     private static final String TAG = "SimpleCursorAdapter";
-    private final GetAdditionalObsReceiver mGetAdditionalObsReceiver;
     private final ActivityHelper mHelper;
 
     private int mDimension;
-    private HashMap<String, String[]> mPhotoInfo = new HashMap<String, String[]>();
+    private HashMap<String, String[]> mPhotoInfo = new HashMap<>();
     private HashMap<String, Boolean> mHasSounds = new HashMap<>();
     private boolean mIsGrid;
 
@@ -132,11 +126,10 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         getPhotoInfo(true);
 
-        mGetAdditionalObsReceiver = new GetAdditionalObsReceiver();
+        GetAdditionalObsReceiver mGetAdditionalObsReceiver = new GetAdditionalObsReceiver();
         IntentFilter filter = new IntentFilter();
         filter.addAction(INaturalistService.ACTION_GET_ADDITIONAL_OBS_RESULT);
         BaseFragmentActivity.safeRegisterReceiver(mGetAdditionalObsReceiver, filter, mContext);
-
     }
 
     private class GetAdditionalObsReceiver extends BroadcastReceiver {
@@ -144,14 +137,16 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         public void onReceive(Context context, Intent intent) {
             Bundle extras = intent.getExtras();
 
-            Boolean success = extras.getBoolean(INaturalistService.SUCCESS);
-            int obsCount = extras.getInt(INaturalistService.OBSERVATION_COUNT);
-
             refreshCursor();
             refreshPhotoInfo();
 
             mLoadingAdditionalObs = false;
             if (mOnLoadingMoreResultsListener != null) {
+                boolean success = false;
+                if (extras != null) {
+                    success = extras.getBoolean(INaturalistService.SUCCESS);
+                }
+
                 if (success) {
                     mOnLoadingMoreResultsListener.onLoadingMoreResultsFinish();
                 } else {
@@ -159,9 +154,12 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 }
             }
 
-            if (obsCount == 0) {
-                // No more observations left to download
-                mNoMoreObsLeft = true;
+            if (extras != null) {
+                int obsCount = extras.getInt(INaturalistService.OBSERVATION_COUNT);
+                if (obsCount == 0) {
+                    // No more observations left to download
+                    mNoMoreObsLeft = true;
+                }
             }
         }
     }
@@ -177,11 +175,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             mPhotoInfo = (HashMap<String, String[]>) inputStream.readObject();
             mHasSounds = (HashMap<String, Boolean>) inputStream.readObject();
             inputStream.close();
-        } catch (IOException e) {
-            Logger.tag(TAG).error(e);
-        } catch (ClassCastException e) {
-            Logger.tag(TAG).error(e);
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassCastException | ClassNotFoundException e) {
             Logger.tag(TAG).error(e);
         }
     }
@@ -238,12 +232,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         Cursor newCursor = mContext.getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION,
                 conditions, selectionArgs, Observation.DEFAULT_SORT_ORDER);
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB){
-            Cursor oldCursor = swapCursor(newCursor);
-            if ((oldCursor != null) && (!oldCursor.isClosed())) oldCursor.close();
-        } else {
-            changeCursor(newCursor);
-        }
+        Cursor oldCursor = swapCursor(newCursor);
+        if ((oldCursor != null) && (!oldCursor.isClosed())) oldCursor.close();
 
         getPhotoInfo(true);
     }
@@ -253,10 +243,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         String conditions = (String) results.get(0);
         String[] selectionArgs = (String[]) results.get(1);
 
-        Cursor newCursor = mContext.getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION,
+        return mContext.getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION,
                 conditions, selectionArgs, Observation.DEFAULT_SORT_ORDER);
-
-        return newCursor;
     }
 
     /**
@@ -301,36 +289,37 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 null,
                 ObservationPhoto.DEFAULT_SORT_ORDER);
 
-        onlinePc.moveToFirst();
-        while (!onlinePc.isAfterLast()) {
-            String photoUrl = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
-            String photoFilename = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
-            Long obsId = onlinePc.getLong(onlinePc.getColumnIndexOrThrow(ObservationPhoto._OBSERVATION_ID));
-            String obsUUID = obsUUIDs.get(obsId);
+        if (onlinePc != null) {
+            onlinePc.moveToFirst();
+            while (!onlinePc.isAfterLast()) {
+                String photoUrl = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
+                String photoFilename = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
+                Long obsId = onlinePc.getLong(onlinePc.getColumnIndexOrThrow(ObservationPhoto._OBSERVATION_ID));
+                String obsUUID = obsUUIDs.get(obsId);
 
-            if ((photoFilename != null) && (!(new File(photoFilename).exists()))) {
-                // Our local copy file was deleted (probably user deleted cache or similar) - try and use original filename from gallery
-                String originalPhotoFilename = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.ORIGINAL_PHOTO_FILENAME));
-                photoFilename = originalPhotoFilename;
+                if ((photoFilename != null) && (!(new File(photoFilename).exists()))) {
+                    // Our local copy file was deleted (probably user deleted cache or similar) - try and use original filename from gallery
+                    photoFilename = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.ORIGINAL_PHOTO_FILENAME));
+                }
+
+                onlinePc.moveToNext();
+
+                if (mPhotoInfo.containsKey(obsUUID)) {
+                    continue;
+                }
+
+                mPhotoInfo.put(
+                        obsUUID,
+                        new String[]{
+                                photoFilename,
+                                null,
+                                photoUrl,
+                                null,
+                                null
+                        });
             }
-
-            onlinePc.moveToNext();
-
-            if (mPhotoInfo.containsKey(obsUUID)) {
-                continue;
-            }
-
-            mPhotoInfo.put(
-                    obsUUID,
-                    new String[] {
-                            photoFilename,
-                            null,
-                            photoUrl,
-                            null,
-                            null
-                    });
+            onlinePc.close();
         }
-        onlinePc.close();
 
                 // Add any photos that were added/changed
         Cursor soundCursor = mContext.getContentResolver().query(ObservationSound.CONTENT_URI,
@@ -340,32 +329,33 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 null,
                 ObservationSound.DEFAULT_SORT_ORDER);
 
-        soundCursor.moveToFirst();
-        while (!soundCursor.isAfterLast()) {
-            Long obsId = soundCursor.getLong(soundCursor.getColumnIndexOrThrow(ObservationSound._OBSERVATION_ID));
-            Long externalObsId = soundCursor.getLong(soundCursor.getColumnIndexOrThrow(ObservationSound.OBSERVATION_ID));
-            String obsUUID = obsUUIDs.get(obsId);
+        if (soundCursor != null) {
+            soundCursor.moveToFirst();
+            while (!soundCursor.isAfterLast()) {
+                Long obsId = soundCursor.getLong(soundCursor.getColumnIndexOrThrow(ObservationSound._OBSERVATION_ID));
+                Long externalObsId = soundCursor.getLong(soundCursor.getColumnIndexOrThrow(ObservationSound.OBSERVATION_ID));
+                String obsUUID = obsUUIDs.get(obsId);
 
-            if (obsUUID == null) {
-                obsUUID = externalObsUUIDs.get(externalObsId);
+                if (obsUUID == null) {
+                    obsUUID = externalObsUUIDs.get(externalObsId);
+                }
+
+                soundCursor.moveToNext();
+
+                if (mHasSounds.containsKey(obsUUID)) {
+                    continue;
+                }
+
+                mHasSounds.put(obsUUID, true);
             }
-
-            soundCursor.moveToNext();
-
-            if (mHasSounds.containsKey(obsUUID)) {
-                continue;
-            }
-
-            mHasSounds.put(obsUUID, true);
+            soundCursor.close();
         }
-
-        soundCursor.close();
 
         savePhotoInfo();
     }
 
     public void refreshPhotoInfo() {
-        mPhotoInfo = new HashMap<String, String[]>();
+        mPhotoInfo = new HashMap<>();
         mHasSounds = new HashMap<>();
         getPhotoInfo(false);
     }
@@ -404,23 +394,23 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         public ViewHolder(ViewGroup view) {
             obsId = -1;
 
-            checkboxContainer = (ViewGroup) view.findViewById(R.id.checkbox_container);
-            checkboxBackground = (View) view.findViewById(R.id.checkbox_background);
-            checkbox = (ImageView) view.findViewById(R.id.checkbox);
-            container = (ViewGroup) view.findViewById(R.id.container);
-            obsImage = (ImageView) view.findViewById(R.id.observation_pic);
-            obsIconicImage = (ImageView) view.findViewById(R.id.observation_iconic_pic);
-            speciesGuess = (TextView) view.findViewById(R.id.species_guess);
-            dateObserved = (TextView) view.findViewById(R.id.date);
+            checkboxContainer = view.findViewById(R.id.checkbox_container);
+            checkboxBackground = view.findViewById(R.id.checkbox_background);
+            checkbox = view.findViewById(R.id.checkbox);
+            container = view.findViewById(R.id.container);
+            obsImage = view.findViewById(R.id.observation_pic);
+            obsIconicImage = view.findViewById(R.id.observation_iconic_pic);
+            speciesGuess = view.findViewById(R.id.species_guess);
+            dateObserved = view.findViewById(R.id.date);
             commentIdContainer = view.findViewById(R.id.comment_id_container);
 
-            commentIcon = (ImageView) view.findViewById(R.id.comment_pic);
-            idIcon = (ImageView) view.findViewById(R.id.id_pic);
-            commentCount = (TextView) view.findViewById(R.id.comment_count);
-            idCount = (TextView) view.findViewById(R.id.id_count);
+            commentIcon = view.findViewById(R.id.comment_pic);
+            idIcon = view.findViewById(R.id.id_pic);
+            commentCount = view.findViewById(R.id.comment_count);
+            idCount = view.findViewById(R.id.id_count);
 
-            placeGuess = (TextView) view.findViewById(R.id.place_guess);
-            locationIcon = (ImageView) view.findViewById(R.id.location_icon);
+            placeGuess = view.findViewById(R.id.place_guess);
+            locationIcon = view.findViewById(R.id.location_icon);
 
             progress = view.findViewById(R.id.progress);
             progressInner = view.findViewById(R.id.progress_inner);
@@ -446,15 +436,14 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         }
         c.moveToPosition(position);
 
-        final Long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
-        final Long externalObsId = c.getLong(c.getColumnIndexOrThrow(Observation.ID));
-        Long updatedAt = c.getLong(c.getColumnIndexOrThrow(Observation._UPDATED_AT));
+        final long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
+        final long externalObsId = c.getLong(c.getColumnIndexOrThrow(Observation.ID));
+        long updatedAt = c.getLong(c.getColumnIndexOrThrow(Observation._UPDATED_AT));
         final String obsUUID = c.getString(c.getColumnIndexOrThrow(Observation.UUID));
         String speciesGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.SPECIES_GUESS));
         String[] photoInfo = obsUUID != null ? mPhotoInfo.get(obsUUID) : null;
-        Boolean hasSounds = (obsUUID != null && mHasSounds.get(obsUUID) != null);
-        boolean hasErrors = (mApp.getErrorsForObservation(externalObsId.intValue()).length() > 0);
-        boolean isBeingSynced = (mApp.getObservationIdBeingSynced() == obsId);
+        boolean hasSounds = (obsUUID != null && mHasSounds.get(obsUUID) != null);
+        boolean hasErrors = (mApp.getErrorsForObservation((int) externalObsId).length() > 0);
 
         if (convertView == null) {
             holder = new ViewHolder((ViewGroup) view);
@@ -497,19 +486,15 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         String placeGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.PLACE_GUESS));
         String privatePlaceGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.PRIVATE_PLACE_GUESS));
-        Double latitude = c.getDouble(c.getColumnIndexOrThrow(Observation.LATITUDE));
-        Double longitude = c.getDouble(c.getColumnIndexOrThrow(Observation.LONGITUDE));
-        Double privateLatitude = c.getDouble(c.getColumnIndexOrThrow(Observation.PRIVATE_LATITUDE));
-        Double privateLongitude = c.getDouble(c.getColumnIndexOrThrow(Observation.PRIVATE_LONGITUDE));
+        double latitude = c.getDouble(c.getColumnIndexOrThrow(Observation.LATITUDE));
+        double longitude = c.getDouble(c.getColumnIndexOrThrow(Observation.LONGITUDE));
+        double privateLatitude = c.getDouble(c.getColumnIndexOrThrow(Observation.PRIVATE_LATITUDE));
+        double privateLongitude = c.getDouble(c.getColumnIndexOrThrow(Observation.PRIVATE_LONGITUDE));
 
         (mIsGrid ? checkboxContainer : checkbox).setVisibility(mMultiSelectionMode ? View.VISIBLE : View.GONE);
 
         if (mIsGrid) {
             mDimension = mGrid.getColumnWidth();
-            if (mMultiSelectionMode && (mSelectedObservations.contains(obsId))) {
-                // If current grid item is selected (in multi selection mode) - account for inner padding
-                //mDimension -= (int)(2 * mHelper.dpToPx(10));
-            }
             obsImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
             progress.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
 
@@ -545,11 +530,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
                     public void onGlobalLayout() {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                            view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                        } else {
-                            view.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                        }
+                        view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
 
                         mDimension = mGrid.getColumnWidth();
                         obsImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
@@ -570,13 +551,10 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             }
         }
 
-        Long observationTimestamp = 0L;
-
+        long observationTimestamp = 0L;
         if (c.isNull(c.getColumnIndexOrThrow(Observation.TIME_OBSERVED_AT))) {
             if (!c.isNull(c.getColumnIndexOrThrow(Observation.OBSERVED_ON))) {
                 observationTimestamp = c.getLong(c.getColumnIndexOrThrow(Observation.OBSERVED_ON));
-            } else {
-                observationTimestamp = 0L;
             }
         } else {
             observationTimestamp = c.getLong(c.getColumnIndexOrThrow(Observation.TIME_OBSERVED_AT));
@@ -593,10 +571,10 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             }
         }
 
-        Long commentsCount = c.getLong(c.getColumnIndexOrThrow(Observation.COMMENTS_COUNT));
-        Long idsCount = c.getLong(c.getColumnIndexOrThrow(Observation.IDENTIFICATIONS_COUNT));
-        Long lastCommentsCount = c.getLong(c.getColumnIndexOrThrow(Observation.LAST_COMMENTS_COUNT));
-        Long lastIdCount = c.getLong(c.getColumnIndexOrThrow(Observation.LAST_IDENTIFICATIONS_COUNT));
+        long commentsCount = c.getLong(c.getColumnIndexOrThrow(Observation.COMMENTS_COUNT));
+        long idsCount = c.getLong(c.getColumnIndexOrThrow(Observation.IDENTIFICATIONS_COUNT));
+        long lastCommentsCount = c.getLong(c.getColumnIndexOrThrow(Observation.LAST_COMMENTS_COUNT));
+        long lastIdCount = c.getLong(c.getColumnIndexOrThrow(Observation.LAST_IDENTIFICATIONS_COUNT));
 
         if (commentsCount + idsCount == 0) {
             // No comments/IDs - don't display the indicator
@@ -606,8 +584,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             commentIdContainer.setClickable(true);
             commentIdContainer.setVisibility(View.VISIBLE);
 
-            if ((lastCommentsCount == null) || (lastCommentsCount < commentsCount) ||
-                    (lastIdCount == null) || (lastIdCount < idsCount)) {
+            if (lastCommentsCount < commentsCount || lastIdCount < idsCount) {
                 // There are unread comments/IDs
                 commentIdContainer.setVisibility(View.VISIBLE);
                 if (mIsGrid) {
@@ -650,45 +627,46 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 idIcon.setVisibility(View.GONE);
             }
 
-            commentIdContainer.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (!isNetworkAvailable()) {
-                        Toast.makeText(mContext.getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
-                        return;
-                    }
-
-                    // Show the comments/IDs for the observation
-                    Uri uri = ContentUris.withAppendedId(Observation.CONTENT_URI, obsId);
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri, mContext, ObservationViewerActivity.class);
-                    intent.putExtra(ObservationViewerActivity.SHOW_COMMENTS, true);
-                    mContext.startActivity(intent);
+            commentIdContainer.setOnClickListener(v -> {
+                if (!isNetworkAvailable()) {
+                    Toast.makeText(mContext.getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
+                    return;
                 }
+
+                // Show the comments/IDs for the observation
+                Uri uri = ContentUris.withAppendedId(Observation.CONTENT_URI, obsId);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri, mContext, ObservationViewerActivity.class);
+                intent.putExtra(ObservationViewerActivity.SHOW_COMMENTS, true);
+                mContext.startActivity(intent);
             });
         }
 
-        Long syncedAt = c.getLong(c.getColumnIndexOrThrow(Observation._SYNCED_AT));
-        Boolean syncNeeded = (syncedAt == null) || (updatedAt > syncedAt);
+        long syncedAt = c.getLong(c.getColumnIndexOrThrow(Observation._SYNCED_AT));
+        boolean syncNeeded = updatedAt > syncedAt;
 
-        if (syncedAt == null) {
-            Logger.tag(TAG).debug(String.format("getView %d: %s: Sync needed - syncedAt == null", position, speciesGuessValue));
+        if (syncedAt == 0) {
+            Logger.tag(TAG).debug(String.format(Locale.ENGLISH,
+                    "getView %d: %s: Sync needed - syncedAt == null", position, speciesGuessValue));
         } else if (updatedAt > syncedAt) {
-            Logger.tag(TAG).debug(String.format("getView %d: %s: Sync needed - updatedAt (%s) > sycnedAt (%s)", position, speciesGuessValue, updatedAt, syncedAt));
+            Logger.tag(TAG).debug(String.format(Locale.ENGLISH,
+                    "getView %d: %s: Sync needed - updatedAt (%s) > sycnedAt (%s)", position, speciesGuessValue, updatedAt, syncedAt));
         }
 
         // if there's a photo and it is local
-        if (syncNeeded == false &&
+        if (!syncNeeded &&
                 photoInfo != null &&
                 photoInfo[2] == null &&
                 photoInfo[3] != null) {
             if (photoInfo[4] == null) {
                 syncNeeded = true;
-                Logger.tag(TAG).debug(String.format("getView %d: %s: Sync needed - photoInfo == null - %s / %s / %s / %s / %s", position, speciesGuessValue, photoInfo[0], photoInfo[1], photoInfo[2], photoInfo[3], photoInfo[4]));
+                Logger.tag(TAG).debug(String.format(Locale.ENGLISH,
+                        "getView %d: %s: Sync needed - photoInfo == null - %s / %s / %s / %s / %s", position, speciesGuessValue, photoInfo[0], photoInfo[1], photoInfo[2], photoInfo[3], photoInfo[4]));
             } else {
                 Long photoSyncedAt = Long.parseLong(photoInfo[4]);
                 Long photoUpdatedAt = Long.parseLong(photoInfo[3]);
                 if (photoUpdatedAt > photoSyncedAt) {
-                    Logger.tag(TAG).debug(String.format("getView %d: %s: Sync needed - photoUpdatedAt (%d) > photoSyncedAt (%d)", position, speciesGuessValue, photoUpdatedAt, photoSyncedAt));
+                    Logger.tag(TAG).debug(String.format(Locale.ENGLISH,
+                            "getView %d: %s: Sync needed - photoUpdatedAt (%d) > photoSyncedAt (%d)", position, speciesGuessValue, photoUpdatedAt, photoSyncedAt));
                     syncNeeded = true;
                 }
             }
@@ -709,11 +687,12 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                     "(_observation_id = ?) AND ((photo_url IS NULL AND _synced_at IS NULL) OR (_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL))",
                     new String[] { String.valueOf(obsId) },
                     ObservationPhoto._ID);
-            if (opc.getCount() > 0) {
+            if (opc != null && opc.getCount() > 0) {
                 syncNeeded = true;
-                Logger.tag(TAG).debug(String.format("getView %d: %s: Sync needed - new/updated photos: %d", position, speciesGuessValue, opc.getCount()));
+                Logger.tag(TAG).debug(String.format(Locale.ENGLISH,
+                        "getView %d: %s: Sync needed - new/updated photos: %d", position, speciesGuessValue, opc.getCount()));
+                opc.close();
             }
-            opc.close();
         }
 
 
@@ -723,7 +702,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 if ((longitude != 0f) || (latitude != 0f) || (privateLatitude != 0f) || (privateLongitude != 0f)) {
                     // Show coordinates instead
                     placeGuess.setText(String.format(mContext.getString(R.string.location_coords_no_acc),
-                            String.format("%.4f...", latitude != 0f ? latitude : privateLatitude), String.format("%.4f...", longitude != 0f ? longitude : privateLongitude)));
+                            String.format(Locale.getDefault(), "%.4f...", latitude != 0f ? latitude : privateLatitude),
+                            String.format(Locale.getDefault(), "%.4f...", longitude != 0f ? longitude : privateLongitude)));
                 } else {
                     // No place at all
                     placeGuess.setText(R.string.no_location);
@@ -874,10 +854,10 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     public void setItemSelected(View view, boolean selected) {
 
         View checkboxBackground = view.findViewById(R.id.checkbox_background);
-        ViewGroup checkboxContainer = (ViewGroup) view.findViewById(R.id.checkbox_container);
-        ImageView checkbox = (ImageView) view.findViewById(R.id.checkbox);
-        ImageView obsImage = (ImageView) view.findViewById(R.id.observation_pic);
-        ViewGroup container = (ViewGroup) view.findViewById(R.id.container);
+        ViewGroup checkboxContainer = view.findViewById(R.id.checkbox_container);
+        ImageView checkbox = view.findViewById(R.id.checkbox);
+        ImageView obsImage = view.findViewById(R.id.observation_pic);
+        ViewGroup container = view.findViewById(R.id.container);
 
         (mIsGrid ? checkboxContainer : checkbox).setVisibility(mMultiSelectionMode ? View.VISIBLE : View.GONE);
 
@@ -912,13 +892,17 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         }
 
         if (mIsGrid) {
-            animator.addUpdateListener(valueAnimator -> {
-                Integer currentPadding = (Integer) valueAnimator.getAnimatedValue();
-                container.setPadding(currentPadding, currentPadding, currentPadding, currentPadding);
-                obsImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension - currentPadding * 2, mDimension - currentPadding * 2));
-            });
-            animator.setDuration(75);
-            animator.start();
+            if (animator != null) {
+                animator.addUpdateListener(valueAnimator -> {
+                    Integer currentPadding = (Integer) valueAnimator.getAnimatedValue();
+                    container.setPadding(currentPadding, currentPadding, currentPadding, currentPadding);
+                    obsImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension - currentPadding * 2, mDimension - currentPadding * 2));
+                });
+                animator.setDuration(75);
+                animator.start();
+            } else {
+                Logger.tag(TAG).warn("No animator in grid mode");
+            }
         }
 
 
@@ -933,21 +917,18 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         String[] photoInfo = mPhotoInfo.get(obs.uuid);
         Timestamp syncedAt = obs._synced_at;
         Timestamp updatedAt = obs._updated_at;
-        Boolean syncNeeded = (syncedAt == null) || (updatedAt.after(syncedAt));
+        boolean syncNeeded = (syncedAt == null) || (updatedAt.after(syncedAt));
 
         // if there's a photo and it is local
-        if (syncNeeded == false &&
+        if (!syncNeeded &&
                 photoInfo != null &&
                 photoInfo[2] == null &&
                 photoInfo[3] != null) {
-            if (photoInfo[4] == null) {
-                syncNeeded = true;
-            } else {
+            if (photoInfo[4] == null) syncNeeded = true;
+            else {
                 Long photoSyncedAt = Long.parseLong(photoInfo[4]);
                 Long photoUpdatedAt = Long.parseLong(photoInfo[3]);
-                if (photoUpdatedAt > photoSyncedAt) {
-                    syncNeeded = true;
-                }
+                if (photoUpdatedAt > photoSyncedAt) syncNeeded = true;
             }
         }
 
@@ -965,10 +946,10 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                     "_observation_id = ? AND photo_url IS NULL AND _synced_at IS NULL",
                     new String[] { String.valueOf(obsId) },
                     ObservationPhoto._ID);
-            if (opc.getCount() > 0) {
+            if (opc != null && opc.getCount() > 0) {
                 syncNeeded = true;
+                opc.close();
             }
-            opc.close();
         }
 
         if (mApp.getObservationIdBeingSynced() == obsId) {
@@ -980,12 +961,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 return false;
             }
 
-            if (!mApp.getAutoSync() || !isNetworkAvailable()) {
-                // Allow editing if not in auto sync mode or when network is not available
-                return false;
-            } else {
-                return true;
-            }
+            // Allow editing if not in auto sync mode or when network is not available
+            return mApp.getAutoSync() && isNetworkAvailable();
         }
     }
 
@@ -996,18 +973,16 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     class BitmapWorkerTask extends AsyncTask<String, Void, Bitmap> {
         private final WeakReference<ImageView> mImageViewReference;
         private String mFilename = null;
-        private int mPosition;
 
         public BitmapWorkerTask(ImageView imageView) {
             // Use a WeakReference to ensure the ImageView can be garbage collected
-            mImageViewReference = new WeakReference<ImageView>(imageView);
+            mImageViewReference = new WeakReference<>(imageView);
         }
 
         // Decode image in background.
         @Override
         protected Bitmap doInBackground(String... params) {
             mFilename = params[0];
-            mPosition = Integer.valueOf(params[1]);
 
             Bitmap bitmapImage;
             if (mObservationThumbnails.containsKey(mFilename)) {
@@ -1038,7 +1013,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         // Once complete, see if ImageView is still around and set bitmap.
         @Override
         protected void onPostExecute(Bitmap bitmap) {
-            if (mImageViewReference != null && bitmap != null) {
+            if (bitmap != null) {
                 final ImageView imageView = mImageViewReference.get();
                 if (imageView != null) {
                     imageView.setImageBitmap(bitmap);
@@ -1051,6 +1026,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager == null) return false;
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
@@ -1063,6 +1039,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         boolean isLowMemory = mApp.isLowMemory();
         mImageViewToUrlExpected.put(imageView, name);
 
+        //noinspection ConstantConditions
         if (mImageViewToUrlAfterLoading.containsKey(imageView) && mImageViewToUrlAfterLoading.get(imageView).equals(name)){
             imageView.setVisibility(View.VISIBLE);
             return;
@@ -1144,11 +1121,11 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             // Offline image
 
             BitmapWorkerTask task = new BitmapWorkerTask(imageView);
-            task.execute(name, String.valueOf(position));
+            task.execute(name);
         }
     }
 
-    private void downloadRemoteObsPhoto(int position, ImageView imageView) {
+    private void downloadRemoteObsPhoto(int position) {
         Cursor c = this.getCursor();
         int oldPosition = c.getPosition();
         c.moveToPosition(position);
@@ -1168,20 +1145,16 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             Observation remoteObs = new Observation(new BetterJSONObject(json));
             if (remoteObs.photos.size() > 0) {
                 // Get the URL for the first photo of the obs
-                Collections.sort(remoteObs.photos, new Comparator<ObservationPhoto>() {
-                    @Override
-                    public int compare(ObservationPhoto o1, ObservationPhoto o2) {
-                        if ((o1.position == null) || (o2.position == null)) return 0;
+                Collections.sort(remoteObs.photos, (o1, o2) -> {
+                    if ((o1.position == null) || (o2.position == null)) return 0;
 
-                        return o1.position.compareTo(o2.position);
-                    }
+                    return o1.position.compareTo(o2.position);
                 });
 
                 String photoUrl = remoteObs.photos.get(0).photo_url;
                 Logger.tag(TAG).debug("downloadRemoteObsPhoto - Remote obs URL - " + obs.id + ":" + photoUrl);
 
                 // Update the DB
-
                 String[] photoInfo = mPhotoInfo.get(obs.uuid);
                 if (photoInfo != null) photoInfo[2] = photoUrl;
 
@@ -1190,13 +1163,14 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                         "(id = " + remoteObs.photos.get(0).id + ")",
                         null,
                         ObservationPhoto.DEFAULT_SORT_ORDER);
-                if (pc.getCount() > 0) {
+                if (pc != null && pc.getCount() > 0) {
                     ObservationPhoto photo = new ObservationPhoto(pc);
                     Logger.tag(TAG).debug("downloadRemoteObsPhoto - Updating DB - " + obs.id + ":" + photo.id + ":" + photoUrl);
                     photo.photo_url = photoUrl;
                     ContentValues cv = photo.getContentValues();
                     cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
                     mContext.getContentResolver().update(photo.getUri(), cv, null, null);
+                    pc.close();
                 }
 
                 savePhotoInfo();
@@ -1204,6 +1178,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         }
     }
 
+    @SuppressLint("DefaultLocale")
     private JSONObject getObservationJson(int id) {
         Locale deviceLocale = mContext.getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
@@ -1235,9 +1210,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             json = new JSONObject(result.toString());
 
             conn.disconnect();
-        } catch (IOException e) {
-            Logger.tag(TAG).error(e);
-        } catch (JSONException e) {
+        } catch (IOException | JSONException e) {
             Logger.tag(TAG).error(e);
         }
 
@@ -1269,12 +1242,9 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         if (mLoadingAdditionalObs) return;
         if (!mApp.loggedIn()) return;
         if (!mApp.isNetworkAvailable()) {
-            (new Handler()).postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(mContext, mContext.getResources().getString(R.string.must_be_connected_to_load_more_obs), Toast.LENGTH_SHORT).show();
-                }
-            }, 100);
+            (new Handler()).postDelayed(() -> Toast.makeText(mContext,
+                    mContext.getResources().getString(R.string.must_be_connected_to_load_more_obs),
+                    Toast.LENGTH_SHORT).show(), 100);
             return;
         }
 
@@ -1324,7 +1294,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         return iconResource;
     }
 
-    public void updateProgress(int observationId, float progress) {
+    public void updateProgress(float progress) {
         if (mCurrentProgressBar != null) mCurrentProgressBar.setProgressWithAnimation(progress);
     }
 

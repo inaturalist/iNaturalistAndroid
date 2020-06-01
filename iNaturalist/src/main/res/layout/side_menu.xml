@@ -61,7 +61,7 @@
             android:id="@+id/side_menu_username"
             android:layout_toRightOf="@id/side_menu_user_pic_container"
             android:layout_toLeftOf="@id/right_arrow"
-            android:layout_above="@id/right_arrow"
+            android:layout_alignTop="@id/side_menu_user_pic_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
@@ -69,6 +69,8 @@
             android:text="@string/not_logged_in"
             android:paddingBottom="10dp"
             android:visibility="invisible"
+            android:ellipsize="end"
+            android:singleLine="true"
             />
 
          <TextView
