@@ -2,13 +2,15 @@ package org.inaturalist.android.api;
 
 import org.inaturalist.android.INaturalistService;
 
+import okhttp3.Call;
+
 /**
  * Convenience class that handles errors in a generic (but appropriate to the service) manner.
  * Useful if you don't need to special-case error handling
  *
  * @param <T>
  */
-public abstract class ServiceApiCallback<T> extends ApiCallback<T> {
+public abstract class ServiceApiCallback<T> implements ApiCallback<T> {
 
     private final INaturalistService mService;
 
@@ -17,9 +19,9 @@ public abstract class ServiceApiCallback<T> extends ApiCallback<T> {
     }
 
     @Override
-    public void onApiError(ApiError e) {
+    public void onApiError(Call call, ApiError e) {
         mService.handleApiError(e);
     }
 
-    public abstract void onResponse(T response);
+    public abstract void onResponse(Call call, T response);
 }

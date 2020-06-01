@@ -63,12 +63,12 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.util.EntityUtils;
-import org.inaturalist.android.api.ApiCallback;
 import org.inaturalist.android.api.ApiError;
 import org.inaturalist.android.api.ApiIoException;
 import org.inaturalist.android.api.AuthenticationException;
 import org.inaturalist.android.api.ServerError;
 import org.inaturalist.android.api.ServiceApiCallback;
+import org.inaturalist.android.api.Void;
 import org.inaturalist.android.api.iNaturalistApi;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -104,6 +104,7 @@ import java.util.TimeZone;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import okhttp3.Call;
 
 @SuppressWarnings("ALL")
 public class INaturalistService extends IntentService implements
@@ -930,7 +931,7 @@ public class INaturalistService extends IntentService implements
             int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
             mApi.addFavorite(observationId, new ServiceApiCallback<JSONArray>(this) {
                 @Override
-                public void onResponse(JSONArray response) {
+                public void onResponse(Call call, JSONArray response) {
                     Logger.tag(TAG).debug("Got back a JSON array, woo!");
                     Logger.tag(TAG).debug("Contents: " + response);
 
@@ -956,7 +957,10 @@ public class INaturalistService extends IntentService implements
             int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
             mApi.removeFavorite(observationId, new ServiceApiCallback<JSONArray>(this) {
                 @Override
-                public void onResponse(JSONArray response) {
+                public void onResponse(Call call, JSONArray response) {
+                    // TODO old API returns a 204 No Content for unvoting
+                    // This is incorrect client-side - we have to update the user interface!
+
                     //        if (result != null) {
                     //            try {
                     //                return result.getJSONObject(0);

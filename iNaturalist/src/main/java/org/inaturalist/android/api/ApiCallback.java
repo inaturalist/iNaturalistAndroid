@@ -2,7 +2,7 @@ package org.inaturalist.android.api;
 
 import androidx.annotation.WorkerThread;
 
-import java.io.IOException;
+import okhttp3.Call;
 
 /**
  * Callback for Async network requests. Intentionally modeled after Retrofit's API to ease the
@@ -20,11 +20,11 @@ import java.io.IOException;
  *
  * @param <T> Successful response body type
  */
-public abstract class ApiCallback<T> {
+public interface ApiCallback<T> {
 
     @WorkerThread
-    public abstract void onApiError(ApiError e);
+    void onApiError(Call call, ApiError e);
 
     @WorkerThread
-    public abstract void onResponse(T response);
+    void onResponse(Call call, T response);
 }
