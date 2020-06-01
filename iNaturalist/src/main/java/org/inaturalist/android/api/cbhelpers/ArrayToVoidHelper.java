@@ -16,8 +16,8 @@ public class ArrayToVoidHelper implements ApiCallback<JSONArray> {
     }
 
     @Override
-    public void onApiError(ApiError e) {
-        mCallback.onApiError(e);
+    public void onApiError(Call call, ApiError e) {
+        mCallback.onApiError(call, e);
     }
 
     @Override

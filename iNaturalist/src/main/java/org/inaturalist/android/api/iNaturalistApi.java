@@ -9,6 +9,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.inaturalist.android.BetterJSONObject;
 import org.inaturalist.android.BuildConfig;
 import org.inaturalist.android.INaturalistService;
+import org.inaturalist.android.api.cbhelpers.ArrayToVoidHelper;
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -303,12 +305,17 @@ public class iNaturalistApi {
 
         JSONArray json;
         int statusCode = response.code();
+        ApiResponse ar = new ApiResponse();
 
         switch (statusCode) {
             case 422:
                 // UNPROCESSABLE_ENTITY - server understood request but cannot fulfill it
-                // Validation error - still need to return response
+                // May be server-side validation error - still need to process/return response
                 Logger.tag(TAG).error(response.message());
+            case HttpURLConnection.HTTP_NO_CONTENT:
+                ar.httpResponseCode = statusCode;
+                ar.parsedResponse = new JSONArray();
+                return ar;
             case HttpURLConnection.HTTP_OK:
                 // Two ways of decoding the JSON response (empty vs non-empty content)
                 if ((content != null) && (content.length() == 0)) {
@@ -319,10 +326,12 @@ public class iNaturalistApi {
                         json = new JSONArray(content);
                     } catch (JSONException e) {
                         try {
+                            // Wrap single objects in array so we can return one type
                             JSONObject jo = new JSONObject(content);
                             json = new JSONArray();
                             json.put(jo);
                         } catch (JSONException e2) {
+                            // We really cannot parse this as JSON
                             ApiDecodingException ade = new ApiDecodingException("Failure decoding response content");
                             ade.initCause(e2);
                             throw ade;
@@ -337,7 +346,6 @@ public class iNaturalistApi {
                         if (result.has("errors")) {
                             // Error response
                             Logger.tag(TAG).error("Got an error response: " + result.get("errors").toString());
-                            ApiResponse ar = new ApiResponse();
                             ar.httpResponseCode = statusCode;
                             ar.parsedErrors = result.getJSONArray("errors");
                             return ar;
@@ -347,11 +355,9 @@ public class iNaturalistApi {
                     }
                 }
 
-                ApiResponse ar = new ApiResponse();
                 ar.httpResponseCode = statusCode;
                 ar.parsedResponse = json;
                 return ar;
-
             case HttpURLConnection.HTTP_UNAUTHORIZED:
                 throw new AuthenticationException();
             case HttpURLConnection.HTTP_UNAVAILABLE:
@@ -394,6 +400,7 @@ public class iNaturalistApi {
                 // click should take them to an activity that lets them decide whether to delete them locally
                 // or post them as new observations
             default:
+                // TODO should we check the code here and stop treating unexpected 2xx as failures?
                 Logger.tag(TAG).error(response.message());
                 throw new ApiError("Unknown response code: " + statusCode);
         }
@@ -404,13 +411,14 @@ public class iNaturalistApi {
         postAsync(url, null, null, true, cb);
     }
 
-    public BetterJSONObject getTaxonSuggestions(Locale deviceLocale, String photoFilename,
+    public void getTaxonSuggestions(Locale deviceLocale, String photoFilename,
                                                 Double latitude, Double longitude,
-                                                Timestamp observedOn) throws AuthenticationException, ServerError, IOException, ApiError {
+                                                Timestamp observedOn,
+                                                final ApiCallback<BetterJSONObject> callback) {
         String deviceLanguage = deviceLocale.getLanguage();
         String date = observedOn != null ? new SimpleDateFormat("yyyy-MM-dd").format(observedOn) : null;
         ArrayList<NameValuePair> params = new ArrayList<>();
-        String url = String.format(API_HOST + "/computervision/score_image");
+        String url = API_HOST + "/computervision/score_image";
 
         params.add(new BasicNameValuePair("locale", deviceLanguage));
         params.add(new BasicNameValuePair("lat", latitude.toString()));
@@ -418,21 +426,36 @@ public class iNaturalistApi {
         if (date != null) params.add(new BasicNameValuePair("observed_on", date));
         params.add(new BasicNameValuePair("image", photoFilename));
 
-        ApiResponse ar = syncRequest(url, "post", params, null, true, true, true);
-        JSONArray json = ar.parsedResponse;
-        if (json == null || json.length() == 0) {
-            return null;
-        }
+        ApiCallback<JSONArray> bridgeCb = new ApiCallback<JSONArray>() {
+            @Override
+            public void onApiError(Call call, ApiError e) {
+                callback.onApiError(call, e);
+            }
 
-        JSONObject res;
+            @Override
+            public void onResponse(Call call, JSONArray json) {
+                if (json == null || json.length() == 0) {
+                    callback.onApiError(call, new ApiDecodingException("Null or empty json array"));
+                    return;
+                }
 
-        try {
-            res = (JSONObject) json.get(0);
-            if (!res.has("results")) return null;
-            return new BetterJSONObject(res);
-        } catch (JSONException e) {
-            return null;
-        }
+                JSONObject res;
+                try {
+                    res = (JSONObject) json.get(0);
+                    if (!res.has("results")) {
+                        callback.onApiError(call, new ApiDecodingException("JSON object missing required key 'results'"));
+                        return;
+                    }
+                    callback.onResponse(call, new BetterJSONObject(res));
+                } catch (JSONException e) {
+                    ApiDecodingException ade = new ApiDecodingException("Failed to decode json");
+                    ade.initCause(e);
+                    callback.onApiError(call, ade);
+                }
+            }
+        };
+
+        postAsync(url, null, params, true, bridgeCb);
     }
 
     public void removeFavorite(int observationId, ApiCallback<JSONArray> cb) {
@@ -440,28 +463,78 @@ public class iNaturalistApi {
         deleteAsync(url, null, cb);
     }
 
-    public void addComment(int observationId, String body) throws AuthenticationException, ServerError, IOException, ApiError {
-        // TODO use the JSON API, stop pretending to be a multipart form. This will break if webUI is changed
-        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("comment[parent_id]", new Integer(observationId).toString()));
+    // double minx, double maxx, double miny, double maxy,
+
+    public void getNearbyObservations(double lat, double lng,
+                                      double minx, double maxx, double miny, double maxy,
+                                      boolean authenticated,
+                                      int page, int perPage,
+                                       @Nullable String username,
+                                       @Nullable Integer taxonId,
+                                       @Nullable Integer locationId,
+                                       @Nullable Integer projectId,
+                                       @NonNull String deviceLanguage,
+                                      ApiCallback<JSONArray> cb) {
+        String url = HOST;
+        if (username != null) {
+            url += "/observations/" + username + ".json?extra=observation_photos";
+        } else {
+            url += "/observations.json?extra=observation_photos";
+        }
+        url += "&captive=false&page=" + page + "&per_page=" + perPage;
+        url += "&locale=" + deviceLanguage;
+
+        if (taxonId != null) url += "&taxon_id=" + taxonId;
+        // TODO if this is passed as an array, who is concat'ing it?
+        if (projectId != null) url += "&projects[]=" + projectId;
+
+
+        if (locationId != null ) url += "&place_id=" + locationId;
+        else if (lat != 0 && lng != 0){
+            url += "&lat=" + lat;
+            url += "&lng=" + lng;
+        } else {
+            url += "&swlat=" + miny;
+            url += "&nelat=" + maxy;
+            url += "&swlng=" + minx;
+            url += "&nelng=" + maxx;
+        }
+
+        getAsync(url, authenticated, cb);
+    }
+
+    public void pinLocation(double latitude, double longitude, double accuracy,
+                            String geoprivacy,
+                            String title, ApiCallback<JSONArray> cb) {
+        ArrayList<NameValuePair> params = new ArrayList<>();
+        params.add(new BasicNameValuePair("saved_location[latitude]", Double.toString(latitude)));
+        params.add(new BasicNameValuePair("saved_location[longitude]", Double.toString(longitude)));
+        params.add(new BasicNameValuePair("saved_location[positional_accuracy]", Double.toString(accuracy)));
+        params.add(new BasicNameValuePair("saved_location[geoprivacy]", geoprivacy));
+        params.add(new BasicNameValuePair("saved_location[title]", title));
+
+        String url = HOST + "/saved_locations.json";
+        postAsync(url, null, params, true, cb);
+    }
+
+    public void deletePinnedLocation(String pinnedId, ApiCallback<JSONArray> callback) {
+        String url = HOST + "/saved_locations/" + pinnedId + ".json";
+        deleteAsync(url, null, callback);
+    }
+
+    public void addComment(int observationId, String body, final ApiCallback<Void> callback) {
+        ArrayList<NameValuePair> params = new ArrayList<>();
+        params.add(new BasicNameValuePair("comment[parent_id]", Integer.valueOf(observationId).toString()));
         params.add(new BasicNameValuePair("comment[parent_type]", "Observation"));
         params.add(new BasicNameValuePair("comment[body]", body));
 
-        post(HOST + "/comments.json", params);
+        String url = HOST + "/comments.json";
+        postAsync(url, null, params, true, new ArrayToVoidHelper(callback));
     }
 
-    public void deleteComment(int commentId) throws AuthenticationException, ServerError, IOException, ApiError {
-        delete(HOST + "/comments/" + commentId + ".json", null);
-    }
-
-    }
-
-    }
-
-    }
-
-    }
-
+    public void deleteComment(int commentId, final ApiCallback<Void> callback) {
+        String url = HOST + "/comments/" + commentId + ".json";
+        deleteAsync(url, null, new ArrayToVoidHelper(callback));
     }
 
     public ApiResponse syncRequest(String url, String method, ArrayList<NameValuePair> params,

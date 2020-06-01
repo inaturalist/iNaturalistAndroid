@@ -1245,16 +1245,19 @@ public class INaturalistService extends IntentService implements
                 tempFile.delete();
             }
 
-            BetterJSONObject taxonSuggestions =
-                    mApi.getTaxonSuggestions(getResources().getConfiguration().locale,
-                            resizedPhotoFilename, latitude, longitude, observedOn);
+            mApi.getTaxonSuggestions(getResources().getConfiguration().locale,
+                    resizedPhotoFilename, latitude, longitude, observedOn,
+                    new ServiceApiCallback<BetterJSONObject>(this) {
+                        @Override
+                        public void onResponse(Call call, BetterJSONObject taxonSuggestions) {
+                            File resizedFile = new File(resizedPhotoFilename);
+                            resizedFile.delete();
 
-            File resizedFile = new File(resizedPhotoFilename);
-            resizedFile.delete();
-
-            Intent reply = new Intent(ACTION_GET_TAXON_SUGGESTIONS_RESULT);
-            reply.putExtra(TAXON_SUGGESTIONS, taxonSuggestions);
-            sendBroadcast(reply);
+                            Intent reply = new Intent(ACTION_GET_TAXON_SUGGESTIONS_RESULT);
+                            reply.putExtra(TAXON_SUGGESTIONS, taxonSuggestions);
+                            sendBroadcast(reply);
+                        }
+                    });
 
         } else if (action.equals(ACTION_GET_TAXON_NEW)) {
             int taxonId = intent.getIntExtra(TAXON_ID, 0);
@@ -1334,7 +1337,7 @@ public class INaturalistService extends IntentService implements
         } else if (action.equals(ACTION_DELETE_PINNED_LOCATION)) {
             String id = intent.getStringExtra(ID);
 
-            boolean success = deletePinnedLocation(id);
+            deletePinnedLocation(id);
 
         } else if (action.equals(ACTION_PIN_LOCATION)) {
             Double latitude = intent.getDoubleExtra(LATITUDE, 0);
@@ -1343,9 +1346,7 @@ public class INaturalistService extends IntentService implements
             String geoprivacy = intent.getStringExtra(GEOPRIVACY);
             String title = intent.getStringExtra(TITLE);
 
-            boolean success = pinLocation(latitude, longitude, accuracy, geoprivacy, title);
-
-
+            pinLocation(latitude, longitude, accuracy, geoprivacy, title);
         } else if (action.equals(ACTION_GET_PLACE_DETAILS)) {
             long placeId = intent.getIntExtra(PLACE_ID, 0);
             BetterJSONObject place = getPlaceDetails(placeId);
@@ -1584,32 +1585,43 @@ public class INaturalistService extends IntentService implements
         } else if (action.equals(ACTION_ADD_COMMENT)) {
             int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
             String body = intent.getStringExtra(COMMENT_BODY);
-            mApi.addComment(observationId, body);
+            mApi.addComment(observationId, body, new ServiceApiCallback<Void>(this) {
+                @Override
+                public void onResponse(Call call, Void response) {
+                    // Wait a little before refreshing the observation details - so we'll let the server update the comment
+                    // list (otherwise, it won't return the new comment)
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        Logger.tag(TAG).error(e);
+                    }
 
-            // Wait a little before refreshing the observation details - so we'll let the server update the comment
-            // list (otherwise, it won't return the new comment)
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                Logger.tag(TAG).error(e);
-            }
+                    // Reload the observation at the end (need to refresh comment/ID list)
+                    JSONObject observationJson = null;
+                    try {
+                        observationJson = getObservationJson(observationId, false, false);
+                    } catch (IOException e) {
+                        this.onApiError(call, new ApiIoException(e));
+                        return;
+                    } catch (ApiError apiError) {
+                        this.onApiError(call, apiError);
+                        return;
+                    }
 
-            // Reload the observation at the end (need to refresh comment/ID list)
-            JSONObject observationJson = getObservationJson(observationId, false, false);
+                    Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
 
-            Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                    if (observationJson == null) {
+                        reply.putExtra(OBSERVATION_RESULT, (Serializable)null);
+                        reply.putExtra(OBSERVATION_JSON_RESULT, (String)null);
+                    } else {
+                        Observation observation = new Observation(new BetterJSONObject(observationJson));
 
-            if (observationJson == null) {
-                reply.putExtra(OBSERVATION_RESULT, (Serializable)null);
-                reply.putExtra(OBSERVATION_JSON_RESULT, (String)null);
-            } else {
-                Observation observation = new Observation(new BetterJSONObject(observationJson));
-
-                reply.putExtra(OBSERVATION_RESULT, observation);
-                reply.putExtra(OBSERVATION_JSON_RESULT, observation != null ? observationJson.toString() : null);
-            }
-            sendBroadcast(reply);
-
+                        reply.putExtra(OBSERVATION_RESULT, observation);
+                        reply.putExtra(OBSERVATION_JSON_RESULT, observation != null ? observationJson.toString() : null);
+                    }
+                    sendBroadcast(reply);
+                }
+            });
         } else if (action.equals(ACTION_UPDATE_COMMENT)) {
             int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
             int commentId = intent.getIntExtra(COMMENT_ID, 0);
@@ -1631,20 +1643,31 @@ public class INaturalistService extends IntentService implements
         } else if (action.equals(ACTION_DELETE_COMMENT)) {
             int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
             int commentId = intent.getIntExtra(COMMENT_ID, 0);
-            mApi.deleteComment(commentId);
+            mApi.deleteComment(commentId, new ServiceApiCallback<Void>(this) {
+                @Override
+                public void onResponse(Call call, Void response) {
+                    // Reload the observation at the end (need to refresh comment/ID list)
+                    JSONObject observationJson = null;
+                    try {
+                        observationJson = getObservationJson(observationId, false, false);
+                    } catch (IOException e) {
+                        this.onApiError(call, new ApiIoException(e));
+                        return;
+                    } catch (ApiError apiError) {
+                        this.onApiError(call, apiError);
+                        return;
+                    }
 
-            // Reload the observation at the end (need to refresh comment/ID list)
-            JSONObject observationJson = getObservationJson(observationId, false, false);
+                    if (observationJson != null) {
+                        Observation observation = new Observation(new BetterJSONObject(observationJson));
 
-            if (observationJson != null) {
-                Observation observation = new Observation(new BetterJSONObject(observationJson));
-
-                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
-                reply.putExtra(OBSERVATION_RESULT, observation);
-                reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
-                sendBroadcast(reply);
-            }
-
+                        Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                        reply.putExtra(OBSERVATION_RESULT, observation);
+                        reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
+                        sendBroadcast(reply);
+                    }
+                }
+            });
         } else if (action.equals(ACTION_GUIDE_XML)) {
             int guideId = intent.getIntExtra(ACTION_GUIDE_ID, 0);
             String guideXMLFilename = getGuideXML(guideId);
@@ -1996,32 +2019,34 @@ public class INaturalistService extends IntentService implements
         return dontStopSync;
     }
 
-
-    private boolean deletePinnedLocation(String id) throws AuthenticationException, IOException, ApiError {
-        JSONArray result = delete(String.format("%s/saved_locations/%s.json", HOST, id), null);
-
-        if (result != null) {
-            return true;
-        } else {
-            return false;
-        }
+    private void deletePinnedLocation(String id) throws AuthenticationException, IOException, ApiError {
+        mApi.deletePinnedLocation(id, new ServiceApiCallback<JSONArray>(this) {
+            @Override
+            public void onResponse(Call call, JSONArray result) {
+                // no-op
+//                if (result != null) {
+//                    return true;
+//                } else {
+//                    return false;
+//                }
+            }
+        });
     }
 
-    private boolean pinLocation(Double latitude, Double longitude, Double accuracy, String geoprivacy, String title) throws AuthenticationException, IOException, ApiError {
-        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("saved_location[latitude]", latitude.toString()));
-        params.add(new BasicNameValuePair("saved_location[longitude]", longitude.toString()));
-        params.add(new BasicNameValuePair("saved_location[positional_accuracy]", accuracy.toString()));
-        params.add(new BasicNameValuePair("saved_location[geoprivacy]", geoprivacy));
-        params.add(new BasicNameValuePair("saved_location[title]", title));
-
-        JSONArray result = post(HOST + "/saved_locations.json", params);
-
-        if (result != null) {
-            return true;
-        } else {
-            return false;
-        }
+    private void pinLocation(Double latitude, Double longitude, Double accuracy, String geoprivacy, String title) {
+        // TODO these are strings straight from the user interface. They get translated. If we pass the server translated strings, will this API call work? Seems like no...
+        // if (!(geoprivacy.equals("Open") || geoprivacy.equals("Obscured") || geoprivacy.equals("Private")))
+        mApi.pinLocation(latitude, longitude, accuracy, geoprivacy, title, new ServiceApiCallback<JSONArray>(this) {
+            @Override
+            public void onResponse(Call call, JSONArray result) {
+                // no-op
+//                if (result != null) {
+//                    return true;
+//                } else {
+//                    return false;
+//                }
+            }
+        });
     }
 
     private void syncObservations(long[] idsToSync) throws AuthenticationException, CancelSyncException, SyncFailedException, IOException, ApiError {
@@ -5760,66 +5785,46 @@ public class INaturalistService extends IntentService implements
         Double maxy = extras.getDouble("maxy");
         Double lat = extras.getDouble("lat");
         Double lng = extras.getDouble("lng");
-        Boolean clearMapLimit = extras.getBoolean("clear_map_limit", false);
-        Integer page = extras.getInt("page", 0);
-        Integer perPage = extras.getInt("per_page", NEAR_BY_OBSERVATIONS_PER_PAGE);
-
-        String url = HOST;
-        if (extras.containsKey("username")) {
-            url = HOST + "/observations/" + extras.getString("username") + ".json?extra=observation_photos";
-        } else {
-            url = HOST + "/observations.json?extra=observation_photos";
-        }
-
-        url += "&captive=false&page=" + page + "&per_page=" + perPage;
-
-        if (extras.containsKey("taxon_id")) {
-            url += "&taxon_id=" + extras.getInt("taxon_id");
-        }
-        if (extras.containsKey("location_id")) {
-            url += "&place_id=" + extras.getInt("location_id");
-        } else if (!clearMapLimit) {
-            if ((lat != null) && (lng != null) && !((lat == 0) && (lng == 0))) {
-                url += "&lat=" + lat;
-                url += "&lng=" + lng;
-            } else {
-                url += "&swlat=" + miny;
-                url += "&nelat=" + maxy;
-                url += "&swlng=" + minx;
-                url += "&nelng=" + maxx;
-            }
-        }
-
-        if (extras.containsKey("project_id")) {
-            url += "&projects[]=" + extras.getInt("project_id");
-        }
+        // TODO as far as I can tell, this is unused
+        //  Boolean clearMapLimit = extras.getBoolean("clear_map_limit", false);
 
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
-        url += "&locale=" + deviceLanguage;
+        mApi.getNearbyObservations(lat, lng,
+                minx, maxx, miny, maxy,
+                mApp.loggedIn(),
+                extras.getInt("page", 0),
+                extras.getInt("per_page", NEAR_BY_OBSERVATIONS_PER_PAGE),
+                extras.getString("username"),
+                extras.getInt("taxon_id"),
+                extras.getInt("location_id"),
+                extras.getInt("project_id"),
+                deviceLanguage, new ServiceApiCallback<JSONArray>(this) {
+                    @Override
+                    public void onResponse(Call c, JSONArray json) {
+                        String url = c.request().url().toString();
+                        mNearByObservationsUrl = url;
 
-        Logger.tag(TAG).debug("Near by observations URL: " + url);
+                        Intent reply = new Intent(ACTION_NEARBY);
+                        reply.putExtra("minx", minx);
+                        reply.putExtra("maxx", maxx);
+                        reply.putExtra("miny", miny);
+                        reply.putExtra("maxy", maxy);
+                        if (json == null) {
+                            reply.putExtra("error", String.format(getString(R.string.couldnt_load_nearby_observations), ""));
+                        } else {
+                            //syncJson(json, false);
+                        }
 
-        mNearByObservationsUrl = url;
-
-        JSONArray json = get(url, mApp.loggedIn());
-        Intent reply = new Intent(ACTION_NEARBY);
-        reply.putExtra("minx", minx);
-        reply.putExtra("maxx", maxx);
-        reply.putExtra("miny", miny);
-        reply.putExtra("maxy", maxy);
-        if (json == null) {
-            reply.putExtra("error", String.format(getString(R.string.couldnt_load_nearby_observations), ""));
-        } else {
-            //syncJson(json, false);
-        }
-
-        if (url.equalsIgnoreCase(mNearByObservationsUrl)) {
-            // Only send the reply if a new near by observations request hasn't been made yet
-            mApp.setServiceResult(ACTION_NEARBY, new SerializableJSONArray(json));
-            sendBroadcast(reply);
-        }
+                        if (url.equalsIgnoreCase(mNearByObservationsUrl)) {
+                            // Only send the reply if a new near by observations request hasn't been made yet
+                            mApp.setServiceResult(ACTION_NEARBY, new SerializableJSONArray(json));
+                            sendBroadcast(reply);
+                        }
+                    }
+                });
     }
+
 
     private JSONArray put(String url, ArrayList<NameValuePair> params) throws AuthenticationException, IOException, ApiError {
         params.add(new BasicNameValuePair("_method", "PUT"));
@@ -6508,7 +6513,7 @@ public class INaturalistService extends IntentService implements
 
         int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
 
-        Logger.tag(TAG).error("getLocation: resultCode = " + resultCode);
+        Logger.tag(TAG).debug("getLocation: resultCode = " + resultCode);
 
         if (ConnectionResult.SUCCESS == resultCode) {
             // User Google Play services if available

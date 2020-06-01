@@ -248,4 +248,157 @@ public class ServerStubber {
 
         return testUrl;
     }
+
+    private void TODO_stubGetNearbyObservations() {
+        //    GET https://api.inaturalist.org/v1/observations?locale=en&page=1&per_page=30&ordered_by=observation.id&order=desc&return_bounds=true&quality_grade=needs_id,research&swlng=-78.4078574180603&swlat=38.81434382003597&nelng=-77.91347231715918&nelat=39.29104506510731
+        //    User-Agent: iNaturalist/1.19.0 (Build 422; Android 3.18.91+ 5455776; SDK 27; generic_x86 Android SDK built for x86 sdk_gphone_x86; OS Version 8.1.0)
+        //    Authorization: -----
+        //    Host: api.inaturalist.org
+        //    Connection: Keep-Alive
+        //    Accept-Encoding: gzip
+
+        //    Server: nginx
+        //    Date: Sun, 31 May 2020 19:41:09 GMT
+        //    Content-Type: application/json; charset=utf-8
+        //    Transfer-Encoding: chunked
+        //    Connection: keep-alive
+        //    Access-Control-Allow-Origin: *
+        //    Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Methods, X-Via
+        //    Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE
+        //    Cache-Control: public, max-age=300
+        //    X-Content-Type-Options: nosniff
+        //    ETag: W/"9942f-6L6j0bXR5t7naelpezyT5lHOGic"
+        //    Vary: Accept-Encoding
+        //    Content-Encoding: gzip
+        //    Age: 0
+        //    X-Cache: MISS
+        //    Accept-Ranges: bytes
+
+        // {"total_results":21977,"total_bounds":{"swlat":38.81474793422967,"swlng":-78.40783428400755,"nelat":39.290883326902986,"nelng":-77.91358287446201},"page":1,"per_page":30,"results":[{"quality_grade":"needs_id","time_observed_at":"2020-05-31T12:12:18-04:00","taxon_geoprivacy":null,"annotations":[],"uuid":"ea346ce0-9cf0-4684-97aa-d3a5e7f8986c","observed_on_details":{"date":"2020-05-31","week":22,"month":5,"hour":12,"year":2020,"day":31},"id":48027808,"cached_votes_total":0,"identifications_most_agree":false,"created_at_details":{"date":"2020-05-31","week":22,"month":5,"hour":15,"year":2020,"day":31},"species_guess":"Myodochini","identifications_most_disagree":false,"tags":[],"positional_accuracy":null,"comments_count":0,"site_id":1,"created_time_zone":"America/New_York","license_code":null,"observed_time_zone":"America/New_York","quality_metrics":[],"public_positional_accuracy":null,"reviewed_by":[374639],"oauth_application_id":2,"flags":[],"created_at":"2020-05-31T15:35:08-04:00","description":null,"time_zone_offset":"-05:00","project_ids_with_curator_id":[],"observed_on":"2020-05-31","observed_on_string":"2020-05-31 12:12:18 PM EDT","updated_at":"2020-05-31T15:35:20-04:00","sounds":[],"place_ids":[1,7,3033,9853,50853,51894,52250,59613,61551,66741,81418,81457,82256,82257,90834,97394,111970,118683,121076,124637,128746,135019,138222,147737],"captive":false,"taxon":{"is_active":true,"ancestry":"48460/1/47120/372739/47158/184884/47744/61267/372868/466233/141732/318457","min_species_ancestry":"48460,1,47120,372739,47158,184884,47744,61267,372868,466233,141732,318457,362729","endemic":false,"iconic_taxon_id":47158,"min_species_taxon_id":362729,"threatened":false,"rank_level":25,"introduced":false,"native":false,"parent_id":318457,"name":"Myodochini","rank":"tribe","extinct":false,"id":362729,"ancestor_ids":[48460,1,47120,372739,47158,184884,47744,61267,372868,466233,141732,318457,362729],"taxon_schemes_count":1,"wikipedia_url":"http://en.wikipedia.org/wiki/Myodochini","current_synonymous_taxon_ids":null,"created_at":"2014-07-24T08:48:59+00:00","taxon_changes_count":0,"complete_species_count":null,"universal_search_rank":4292,"observations_count":4292,"flag_counts":{"unresolved":0,"resolved":0},"atlas_id":null,"default_photo":{"square_url":"https://static.inaturalist.org/photos/7176702/square.jpg?1492397266","attribution":"(c) Judy Gallagher, some rights reserved (CC BY), uploaded by Judy Gallagher","flags":[],"medium_url":"https://static.inaturalist.org/photos/7176702/medium.jpg?1492397266","id":7176702,"license_code":"cc-by","original_dimensions":{"width":968,"height":1423},"url":"https://static.inaturalist.org/photos/7176702/square.jpg?1492397266"},"iconic_taxon_name":"Insecta"},"ident_taxon_ids":[48460,1,47120,372739,47158,184884,47744,61267,372868,466233,141732,318457,362729],"outlinks":[],"faves_count":0,"ofvs":[],"num_identification_agreements":0,"preferences":{"prefers_community_taxon":null},"comments":[],"map_scale":null,"uri":"https://www.inaturalist.org/observations/48027808","project_ids":[],"community_taxon_id":null,"geojson":{"coordinates":[-78.163554,38.8887789722],"type":"Point"},"owners_identification_from_vision":false,"identifications_count":0,"obscured":false,"num_identification_disagreements":0,"geoprivacy":null,"location":"38.8887789722,-78.163554","votes":[],"spam":false,"user":{"site_id":1,"created_at":"2016-11-25T19:54:05+00:00","id":374639,"login":"mjwcarr","spam":false,"suspended":false,"preferences":{},"login_autocomplete":"mjwcarr","login_exact":"mjwcarr","name":"Michael J. W. Carr","name_autocomplete":"Michael J. W. Carr","orcid":null,"icon":"https://static.inaturalist.org/attachments/users/icons/374639/thumb.jpg?1582507262","observations_count":4234,"identifications_count":2410,"journal_posts_count":1,"activity_count":6645,"universal_search_rank":4234,"roles":[],"icon_url":"https://static.inaturalist.org/attachments/users/icons/374639/medium.jpg?1582507262"},"mappable":true,"identifications_some_agree":false,"project_ids_without_curator_id":[],"place_gues
+
+        }
+
+        public static String stubDeletePinnedLocation() {
+            //    DELETE https://www.inaturalist.org/saved_locations/93992.json (on Connection{www.inaturalist.org:443, proxy=DIRECT hostAddress=www.inaturalist.org/51.143.92.118:443 cipherSuite=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 protocol=http/1.1})
+            //    User-Agent: iNaturalist/1.19.0 (Build 422; Android 3.18.91+ 5455776; SDK 27; generic_x86 Android SDK built for x86 sdk_gphone_x86; OS Version 8.1.0)
+            //    Authorization: Bearer -------
+            //    Content-Length: 0
+            //    Host: www.inaturalist.org
+            //    Connection: Keep-Alive
+            //    Accept-Encoding: gzip
+            //
+            //    Server: nginx
+            //    Date: Sun, 31 May 2020 20:31:37 GMT
+            //    Connection: keep-alive
+            //    Status: 204 No Content
+            //    Cache-Control: no-cache
+            //    X-XSS-Protection: 1; mode=block
+            //    X-Request-Id: fb3c6ae5-1373-43b1-9053-4b58414761ea
+            //    X-Runtime: 0.020967
+            //    X-Frame-Options: SAMEORIGIN
+            //    X-Content-Type-Options: nosniff
+            //    Age: 0
+            //    X-Cache: MISS
+
+            String testUrl = "/saved_locations/93992.json";
+            WireMock.stubFor(WireMock.delete(WireMock.urlEqualTo(testUrl))
+                    .withHeader("Authorization", new AnythingPattern())
+                    .willReturn(WireMock.aResponse()
+                            .withStatus(204)
+                    ));
+            return testUrl;
+        }
+
+        public static String stubError_savePinnedLocation() {
+
+//            POST https://www.inaturalist.org/saved_locations.json (on Connection{www.inaturalist.org:443, proxy=DIRECT hostAddress=www.inaturalist.org/51.143.92.118:443 cipherSuite=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 protocol=http/1.1})
+//            User-Agent: iNaturalist/1.19.0 (Build 422; Android 3.18.91+ 5455776; SDK 27; generic_x86 Android SDK built for x86 sdk_gphone_x86; OS Version 8.1.0)
+//            Authorization: Bearer ------
+//            Content-Type: multipart/form-data; boundary=217e9e58-9f41-4b3f-a5b4-ce186dd5d76f
+//            Content-Length: 779
+//            Host: www.inaturalist.org
+//            Connection: Keep-Alive
+//            Accept-Encoding: gzip
+
+//            Server: nginx
+//            Date: Sun, 31 May 2020 20:32:58 GMT
+//            Content-Type: application/json; charset=utf-8
+//            Content-Length: 36
+//            Connection: keep-alive
+//            Status: 422 Unprocessable Entity
+//            Cache-Control: no-cache
+//            X-XSS-Protection: 1; mode=block
+//            X-Request-Id: 15990869-b680-4056-ab5b-7550a151d99b
+//            X-Runtime: 0.015986
+//            X-Frame-Options: SAMEORIGIN
+//            X-Content-Type-Options: nosniff
+//            Age: 0
+//            X-Cache: MISS
+//            2020-05-31 16:32:58.275 24429-24491/org.inaturalist.android D/iNaturalistApi:
+
+            String testUrl = "/saved_locations.json";
+            String result = "{\"title\":[\"has already been taken\"]}";
+            WireMock.stubFor(WireMock.post(WireMock.urlEqualTo(testUrl))
+                    .withHeader("Authorization", new AnythingPattern())
+                    .withHeader("Content-Type", containing("multipart/form-data"))
+                    .withMultipartRequestBody(aMultipart().withName("saved_location[latitude]"))
+                    .withMultipartRequestBody(aMultipart().withName("saved_location[longitude]"))
+                    .withMultipartRequestBody(aMultipart().withName("saved_location[positional_accuracy]"))
+                    .withMultipartRequestBody(aMultipart().withName("saved_location[geoprivacy]"))
+                    .withMultipartRequestBody(aMultipart().withName("saved_location[title]"))
+                    .willReturn(WireMock.aResponse()
+                            .withStatus(200)
+                            .withHeader("Content-Type", "application/json; charset=utf-8")
+                            .withBody(result)
+                    ));
+
+            return testUrl;
+        }
+
+        public static String pinLocation() throws IOException {
+            //    POST https://www.inaturalist.org/saved_locations.json (on Connection{www.inaturalist.org:443, proxy=DIRECT hostAddress=www.inaturalist.org/51.143.92.118:443 cipherSuite=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 protocol=http/1.1})
+            //    User-Agent: iNaturalist/1.19.0 (Build 422; Android 3.18.91+ 5455776; SDK 27; generic_x86 Android SDK built for x86 sdk_gphone_x86; OS Version 8.1.0)
+            //    Authorization: Bearer -------
+            //    Content-Type: multipart/form-data; boundary=f3906ba5-6fa5-4add-88e6-04bfff76c461
+            //    Content-Length: 761
+            //    Host: www.inaturalist.org
+            //    Connection: Keep-Alive
+            //    Accept-Encoding: gzip
+            //
+            //    Server: nginx
+            //    Date: Sun, 31 May 2020 20:34:56 GMT
+            //    Content-Type: application/json; charset=utf-8
+            //    Transfer-Encoding: chunked
+            //    Connection: keep-alive
+            //    Status: 200 OK
+            //    Cache-Control: max-age=0, private, must-revalidate
+            //    X-XSS-Protection: 1; mode=block
+            //    X-Request-Id: 2244b7b7-ed58-4d66-9603-5c688ed60367
+            //    ETag: W/"2e03f12ca343020d9c3e299d824e3eb0"
+            //    X-Frame-Options: SAMEORIGIN
+            //    X-Runtime: 0.033279
+            //    X-Content-Type-Options: nosniff
+            //    Content-Encoding: gzip
+            //    Vary: Accept-Encoding
+            //    Age: 0
+            //    X-Cache: MISS
+            //    Accept-Ranges: bytes
+            //    2020-05-31 16:34:55.895 24429-24491/org.inaturalist.android D/iNaturalistApi:
+            String testUrl = "/saved_locations.json";
+            String result = getAsset("pinned_location.json");
+            WireMock.stubFor(WireMock.post(WireMock.urlEqualTo(testUrl))
+                    .withHeader("Authorization", new AnythingPattern())
+                    .withHeader("Content-Type", containing("multipart/form-data"))
+                    .withMultipartRequestBody(aMultipart().withName("saved_location[latitude]"))
+                    .withMultipartRequestBody(aMultipart().withName("saved_location[longitude]"))
+                    .withMultipartRequestBody(aMultipart().withName("saved_location[positional_accuracy]"))
+                    .withMultipartRequestBody(aMultipart().withName("saved_location[geoprivacy]"))
+                    .withMultipartRequestBody(aMultipart().withName("saved_location[title]"))
+                    .willReturn(WireMock.aResponse()
+                            .withStatus(200)
+                            .withHeader("Content-Type", "application/json; charset=utf-8")
+                            .withBody(result)
+                    ));
+            return testUrl;
+        }
 }

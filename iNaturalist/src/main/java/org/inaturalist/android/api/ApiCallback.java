@@ -25,6 +25,16 @@ public interface ApiCallback<T> {
     @WorkerThread
     void onApiError(Call call, ApiError e);
 
+    /**
+     * Indicates we have received and decoded a response from the network. Could still
+     * include an application-level failure, such as a '422 Unprocessable'. Clients
+     * should check the contents of the response object.
+     *
+     * TODO Wrap response like retrofit (e.g. ApiResponse<T>) to allow isSuccess and other methods
+     *
+     * @param call
+     * @param response
+     */
     @WorkerThread
     void onResponse(Call call, T response);
 }

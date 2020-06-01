@@ -10,13 +10,13 @@ import com.github.tomakehurst.wiremock.matching.AnythingPattern;
 
 import org.inaturalist.android.api.ApiCallback;
 import org.inaturalist.android.api.ApiError;
-import org.inaturalist.android.api.AuthenticationException;
-import org.inaturalist.android.api.ServerError;
 import org.inaturalist.android.api.iNaturalistApi;
+import org.json.JSONArray;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 import java.io.File;
@@ -36,8 +36,12 @@ import static com.github.tomakehurst.wiremock.client.WireMock.binaryEqualTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.containing;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@SuppressWarnings("unchecked")
 @RunWith(AndroidJUnit4.class)
 public class ServerIntegrationTests {
 
@@ -46,7 +50,6 @@ public class ServerIntegrationTests {
     private iNaturalistApi.ApiHelper mHelper;
     private iNaturalistApi mApi;
     private ApiCallback mCallback;
-
 
     @Before
     public void setupApiWithCredentials() {
@@ -106,7 +109,7 @@ public class ServerIntegrationTests {
     @Test
     public void addComment() throws ApiError, IOException {
         String testUrl = ServerStubber.stubAddComment();
-        mApi.addComment(47575188, "Test");
+        mApi.addComment(47575188, "Test", mCallback);
 
         //    POST /comments.json HTTP/1.1
         //    Authorization: Bearer ----
@@ -137,12 +140,14 @@ public class ServerIntegrationTests {
                 .withHeader("Content-Type", containing("multipart/form-data"))
                 .withHeader("User-Agent", containing("iNaturalist"))
         );
+
+        verify(mCallback).onResponse(any(), any());
     }
 
     @Test
     public void deleteComment() throws ApiError, IOException {
         String testUrl = ServerStubber.stubDeleteComment();
-        mApi.deleteComment(4713818);
+        mApi.deleteComment(4713818, mCallback);
 
         //    DELETE /comments/4713818.json HTTP/1.1
         //    Authorization: Bearer ---
@@ -154,21 +159,26 @@ public class ServerIntegrationTests {
                 .withHeader("User-Agent", containing("iNaturalist"))
                 .withHeader("Authorization", new AnythingPattern())
         );
+
+        verify(mCallback).onResponse(any(), any());
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void taxonSuggestions() throws ApiError, IOException, ParseException {
 
         File cachedFile = copyAssetIntoExternalCache("taxon_suggestions.jpeg");
+        ArgumentCaptor<Object> captor = ArgumentCaptor.forClass(Object.class);
 
         String testUrl = ServerStubber.stubTaxonSuggestions();
         Double lat = 39.0455500388;
         Double lng = -78.153687939;
-        BetterJSONObject result = mApi.getTaxonSuggestions(Locale.ENGLISH,
+        mApi.getTaxonSuggestions(Locale.ENGLISH,
                 cachedFile.getAbsolutePath(),
                 lat, lng,
                 new Timestamp((new SimpleDateFormat("yyyy-MM-dd"))
-                        .parse("2020-05-28").getTime()));
+                        .parse("2020-05-28").getTime()),
+                mCallback);
 
         byte[] imageContent = Files.readAllBytes(Paths.get(cachedFile.toURI()));
         WireMock.verify(WireMock.postRequestedFor(WireMock.urlEqualTo(testUrl))
@@ -187,8 +197,105 @@ public class ServerIntegrationTests {
                 .withRequestBodyPart(aMultipart()
                         .withName("image").withBody(binaryEqualTo(imageContent)).build())
         );
+
+        verify(mCallback).onResponse(any(), captor.capture());
+        Object resultObj = captor.getValue();
+        BetterJSONObject result = ((BetterJSONObject) resultObj);
+        assertTrue(result.has("results"));
     }
 
+    @Test
+    public void deletePinnedLocation() throws ApiError, IOException {
+        String testUrl = ServerStubber.stubDeletePinnedLocation();
+        mApi.deletePinnedLocation("93992", mCallback);
+
+        //    DELETE https://www.inaturalist.org/saved_locations/93992.json (on Connection{www.inaturalist.org:443, proxy=DIRECT hostAddress=www.inaturalist.org/51.143.92.118:443 cipherSuite=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 protocol=http/1.1})
+        //    User-Agent: iNaturalist/1.19.0 (Build 422; Android 3.18.91+ 5455776; SDK 27; generic_x86 Android SDK built for x86 sdk_gphone_x86; OS Version 8.1.0)
+        //    Authorization: Bearer -------
+        //    Content-Length: 0
+        //    Host: www.inaturalist.org
+        //    Connection: Keep-Alive
+        //    Accept-Encoding: gzip
+        WireMock.verify(WireMock.deleteRequestedFor(WireMock.urlEqualTo(testUrl))
+                .withHeader("User-Agent", containing("iNaturalist"))
+                .withHeader("Authorization", new AnythingPattern())
+        );
+
+        verify(mCallback).onResponse(any(), any());
+    }
+
+    @Test
+    public void negative_savePinnedLocation() throws ApiError, IOException {
+        String testUrl = ServerStubber.stubError_savePinnedLocation();
+        mApi.pinLocation(0.1, 0.2,0.3, "Open",
+                "My Location", mCallback);
+
+        //    POST https://www.inaturalist.org/saved_locations.json (on Connection{www.inaturalist.org:443, proxy=DIRECT hostAddress=www.inaturalist.org/51.143.92.118:443 cipherSuite=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 protocol=http/1.1})
+        //    User-Agent: iNaturalist/1.19.0 (Build 422; Android 3.18.91+ 5455776; SDK 27; generic_x86 Android SDK built for x86 sdk_gphone_x86; OS Version 8.1.0)
+        //    Authorization: Bearer ------
+        //    Content-Type: multipart/form-data; boundary=217e9e58-9f41-4b3f-a5b4-ce186dd5d76f
+        //    Content-Length: 779
+        //    Host: www.inaturalist.org
+        //    Connection: Keep-Alive
+        //    Accept-Encoding: gzip
+        WireMock.verify(WireMock.postRequestedFor(WireMock.urlEqualTo(testUrl))
+                .withHeader("User-Agent", containing("iNaturalist"))
+                .withHeader("Authorization", new AnythingPattern())
+                .withHeader("Content-Type", containing("multipart/form-data"))
+                .withRequestBodyPart(aMultipart()
+                        .withName("saved_location[latitude]").withBody(equalTo("0.1")).build())
+                .withRequestBodyPart(aMultipart()
+                        .withName("saved_location[longitude]").withBody(equalTo("0.2")).build())
+                .withRequestBodyPart(aMultipart()
+                        .withName("saved_location[positional_accuracy]").withBody(equalTo("0.3")).build())
+                .withRequestBodyPart(aMultipart()
+                        .withName("saved_location[geoprivacy]").withBody(equalTo("Open")).build())
+                .withRequestBodyPart(aMultipart()
+                        .withName("saved_location[title]").withBody(equalTo("My Location")).build())
+        );
+
+        // Yes, as odd as this is, it's a proper response b/c it came from network and was
+        // decoded OK. onApiError is only if the network or decode fails in some unexpected way
+        verify(mCallback).onResponse(any(), any());
+    }
+
+
+    @Test
+    public void pinLocation() throws ApiError, IOException {
+        String testUrl = ServerStubber.pinLocation();
+        mApi.pinLocation(39.0414391318, -78.1607491896,10,
+                "Open", "Chickens", mCallback);
+        ArgumentCaptor<Object> captor = ArgumentCaptor.forClass(Object.class);
+
+        //    POST https://www.inaturalist.org/saved_locations.json (on Connection{www.inaturalist.org:443, proxy=DIRECT hostAddress=www.inaturalist.org/51.143.92.118:443 cipherSuite=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 protocol=http/1.1})
+        //    User-Agent: iNaturalist/1.19.0 (Build 422; Android 3.18.91+ 5455776; SDK 27; generic_x86 Android SDK built for x86 sdk_gphone_x86; OS Version 8.1.0)
+        //    Authorization: Bearer ------
+        //    Content-Type: multipart/form-data; boundary=217e9e58-9f41-4b3f-a5b4-ce186dd5d76f
+        //    Content-Length: 779
+        //    Host: www.inaturalist.org
+        //    Connection: Keep-Alive
+        //    Accept-Encoding: gzip
+        WireMock.verify(WireMock.postRequestedFor(WireMock.urlEqualTo(testUrl))
+                .withHeader("User-Agent", containing("iNaturalist"))
+                .withHeader("Authorization", new AnythingPattern())
+                .withHeader("Content-Type", containing("multipart/form-data"))
+                .withRequestBodyPart(aMultipart()
+                        .withName("saved_location[latitude]").withBody(equalTo("39.0414391318")).build())
+                .withRequestBodyPart(aMultipart()
+                        .withName("saved_location[longitude]").withBody(equalTo("-78.1607491896")).build())
+                // Note the oddness - 10 turns into 10.0
+                .withRequestBodyPart(aMultipart()
+                        .withName("saved_location[positional_accuracy]").withBody(equalTo("10.0")).build())
+                .withRequestBodyPart(aMultipart()
+                        .withName("saved_location[geoprivacy]").withBody(equalTo("Open")).build())
+                .withRequestBodyPart(aMultipart()
+                        .withName("saved_location[title]").withBody(equalTo("Chickens")).build())
+        );
+
+        // Yes, as odd as this is, it's a proper response b/c it came from network and was
+        // decoded OK. onApiError is only if the network or decode fails in some unexpected way
+        verify(mCallback).onResponse(any(), any());
+    }
 
     /**
      * Used for tests that need to pass a filename into the class-under-test. Those run in the app
