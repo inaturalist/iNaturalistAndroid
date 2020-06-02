@@ -3109,11 +3109,12 @@ public class ObservationEditor extends AppCompatActivity {
 
             if (exif == null) {
                 Logger.tag(TAG).error("Could not read EXIF data from photo using Sephiroth library - trying built-in Android library");
-                is.close();
-                is = getContentResolver().openInputStream(photoUri);
-                orgExif = new ExifInterface(is);
-                Logger.tag(TAG).info("importPhotoMetadata - EXIF 2: " + orgExif);
             }
+
+            is.close();
+            is = getContentResolver().openInputStream(photoUri);
+            orgExif = new ExifInterface(is);
+            Logger.tag(TAG).info("importPhotoMetadata - EXIF 2: " + orgExif);
 
             uiToObservation();
 
