@@ -247,6 +247,7 @@ public class ObservationEditor extends AppCompatActivity {
     @State public boolean mFromSuggestion = false;
     @State public String mObsJson;
     @State public boolean mSharedAudio;
+    @State public boolean mPhotoImported = false;
 
     private BottomSheetDialog mBottomSheetDialog;
     private View mTakePhotoButton;
@@ -1514,7 +1515,7 @@ public class ObservationEditor extends AppCompatActivity {
                 getLocation();
             }
 
-            if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
+            if (Intent.ACTION_INSERT.equals(getIntent().getAction()) && !mPhotoImported) {
                 if (mObservation.observed_on == null) {
                     if (mSharePhotos == null) {
                         mObservation.observed_on = mObservation.observed_on_was = mObservation.created_at;
@@ -2928,6 +2929,7 @@ public class ObservationEditor extends AppCompatActivity {
             public void run() {
                 int position = ((GalleryCursorAdapter)mGallery.getAdapter()).getPhotoCount();
                 boolean errorImporting = false;
+                mPhotoImported = true;
 
                 if (mPhotosAndSoundsAdded != null) {
                     for (final Uri photo : photos) {
