@@ -114,6 +114,7 @@ public class INaturalistApp extends MultiDexApplication {
     private boolean mCancelSync = false;
     private GoogleApiClient mGoogleApiClient;
     private GlobalExceptionHandler mFileLoggingTree;
+    private long mAppStartTime;
 
     // The ID of the observation being currently synced
 
@@ -216,6 +217,8 @@ public class INaturalistApp extends MultiDexApplication {
         LoggingUtils.initializeLogger(this);
 
         Logger.tag(TAG).debug("onCreate");
+
+        mAppStartTime = System.currentTimeMillis();
 
         // Based on official suggestion from Google: https://issuetracker.google.com/issues/154855417#comment398
         try {
@@ -365,8 +368,8 @@ public class INaturalistApp extends MultiDexApplication {
 
         Logger.tag(TAG).debug("isObservationCurrentlyBeingEdited: " + obsId + " => " + lastTime + " < " + currentTime);
 
-        if (currentTime - lastTime > 30 * 60 * 1000) {
-            // Observation marked as being edited too long ago, more than 30 mins ago (could happen
+        if ((currentTime - lastTime > 30 * 60 * 1000) || (lastTime < mAppStartTime))  {
+            // Observation marked as being edited too long ago, more than 30 mins ago or before the app started (could happen
             // if app was abruptly closed while editing an observation)
             return false;
         } else {

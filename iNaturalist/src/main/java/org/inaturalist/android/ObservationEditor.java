@@ -438,8 +438,8 @@ public class ObservationEditor extends AppCompatActivity {
                 mObservation = new Observation(mCursor);
                 mApp.setIsObservationCurrentlyBeingEdited(mObservation._id, true);
                 if (mObservation.uuid == null) {
-                    mObservation.uuid = UUID.randomUUID().toString();
                     Logger.tag(TAG).error("UUID 1 - " + mObservation.uuid);
+                    generateUUIDForObs();
                 }
 
                 updateImageOrientation(mFileUri);
@@ -1109,6 +1109,14 @@ public class ObservationEditor extends AppCompatActivity {
 
     }
 
+    private void generateUUIDForObs() {
+        // Generate a UUID and save it immediately (in case the app gets killed before officially saving the observation)
+        mObservation.uuid = UUID.randomUUID().toString();
+        ContentValues cv = mObservation.getContentValues();
+        Logger.tag(TAG).debug("generateUUIDForObs: Update: " + mUri + ":" + cv);
+        getContentResolver().update(mUri, cv, null, null);
+    }
+
     private void recordSound() {
         if (!mApp.isAudioRecordingPermissionGranted()) {
             mApp.requestAudioRecordingPermission(this, new INaturalistApp.OnRequestPermissionResult() {
@@ -1480,14 +1488,14 @@ public class ObservationEditor extends AppCompatActivity {
                 mApp.setIsObservationCurrentlyBeingEdited(mObservation._id, true);
                 Logger.tag(TAG).debug("initObservation 2 - " + mObservation);
                 if (mObservation.uuid == null) {
-                    mObservation.uuid = UUID.randomUUID().toString();
                     Logger.tag(TAG).error("UUID 2 - " + mObservation.uuid);
+                    generateUUIDForObs();
                 }
             } else {
                 Logger.tag(TAG).debug("initObservation 3");
                 mObservation = new Observation();
-                mObservation.uuid = UUID.randomUUID().toString();
                 Logger.tag(TAG).error("UUID 3 - " + mObservation.uuid);
+                generateUUIDForObs();
                 return;
             }
         }
@@ -2077,7 +2085,7 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
 
-    private void guessLocation() {
+    private void guessLocation(boolean fromPhoto) {
         if ((mObservation.latitude == null) || (mObservation.longitude == null)) {
             return;
         }
@@ -2106,6 +2114,13 @@ public class ObservationEditor extends AppCompatActivity {
                             @Override
                             public void run() {
                                 setPlaceGuess(location.toString());
+
+                                if (fromPhoto) {
+                                    // Save observation immediately (in case the app gets killed before officially saving the observation)
+                                    ContentValues cv = mObservation.getContentValues();
+                                    Logger.tag(TAG).debug("guessLocation: Update: " + mUri + ":" + cv);
+                                    getContentResolver().update(mUri, cv, null, null);
+                                }
                             }
                         });
 
@@ -2190,7 +2205,7 @@ public class ObservationEditor extends AppCompatActivity {
         }
 
         if (isNetworkAvailable()) {
-            guessLocation();
+            guessLocation(false);
         } else {
             setPlaceGuess(null);
         }
@@ -3146,7 +3161,7 @@ public class ObservationEditor extends AppCompatActivity {
 
                 if (mObservation.latitude_changed()) {
                     if (isNetworkAvailable()) {
-                        guessLocation();
+                        guessLocation(true);
                     } else {
                         setPlaceGuess(null);
                     }
@@ -3220,6 +3235,11 @@ public class ObservationEditor extends AppCompatActivity {
 
             is.close();
             observationToUi();
+
+            // Save imported photo metadata (in case app will get killed)
+            ContentValues cv = mObservation.getContentValues();
+            Logger.tag(TAG).debug("importPhotoMetadata: Update: " + mUri + ":" + cv);
+            getContentResolver().update(mUri, cv, null, null);
         } catch (IOException e) {
             Logger.tag(TAG).error("couldn't find " + photoUri);
         }
