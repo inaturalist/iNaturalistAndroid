@@ -433,11 +433,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             // Refresh user settings on app open
             Intent serviceIntent2 = new Intent(INaturalistService.ACTION_REFRESH_CURRENT_USER_SETTINGS, null, this, INaturalistService.class);
             ContextCompat.startForegroundService(this, serviceIntent2);
-
-            // Get latest joined projects
-            Intent serviceIntent3 = new Intent(INaturalistService.ACTION_SYNC_JOINED_PROJECTS, null, ObservationListActivity.this, INaturalistService.class);
-            ContextCompat.startForegroundService(this, serviceIntent3);
-
         }
 
         redownloadObservationsIfLocaleChanged();
