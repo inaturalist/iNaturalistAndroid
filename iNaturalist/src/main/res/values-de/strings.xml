@@ -253,7 +253,7 @@
     <string name="make_first">Erste erstellen</string>
     <string name="notes">Bemerkungen</string>
     <string name="location_is">Standort ist</string>
-    <string name="is_captive">Zeigt die Beobachtung ein Tier in Haltung, eine angepflanzte oder kultivierte Pflanze etc.?</string>
+    <string name="is_captive">Ist die Beobachtung ein Tier in Haltung, eine angepflanzte/kultivierte Pflanze etc.?</string>
     <string name="location_visibility">Standortsichtbarkeit</string>
     <string name="set_location">Standort</string>
     <string name="coordinates_lat">Breite:</string>
@@ -819,4 +819,7 @@
     <string name="forbidden">Verweigert</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">Die Fotos der App, die du mit iNaturalist teilen möchtest, sind nicht für Beobachtungen geeignet, da sie entweder keinen Beweis für eine Begnung mit einem Lebewesen darstellen, weil sie unangemessene Produktmarken oder kommerzielle Inhalte enthalten, oder weil sie auf andere Weise gegen unsere Nutzungsbedingungen verstoßen.</string>
+    <string name="list_observation_checkbox_description">Kontrollkästchen für die Auswahl von Beobachtungen im Mehrfachwahl-Modus</string>
+    <string name="observation_list_item_iconic_pic_description">Vorschaubild für das beobachtete Taxon</string>
+    <string name="observation_list_item_obs_pic_description">Vorschaubild zur Beobachtung</string>
 </resources>

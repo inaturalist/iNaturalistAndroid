@@ -820,4 +820,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="forbidden">Prohibido</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">La aplicación desde la que que compartió las fotos no produce fotos adecuadas para observaciones, porque no representan pruebas de su experiencia con otros organismos, porque incluyen marcas o contenidos comerciales inapropiados, o porque infringen nuestras condiciones de servicio de otras maneras.</string>
+    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
 </resources>

@@ -306,7 +306,7 @@
     <string name="login_in_to_fav">ログインまたは登録して、お気に入りを見たり、この観察記録をお気に入りにしてください...</string>
     <string name="sync_obs_to_see_favs">Sync this observation to see faves...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
-    <string name="sync_obs_to_add_comments_ids">Sync this observation in order to leave a comment or suggest an identification...</string>
+    <string name="sync_obs_to_add_comments_ids">コメントを残したり、同定を提案するために、この観察記録を同期します...</string>
     <string name="no_photo">写真なし</string>
     <string name="about_this_species">この種について</string>
     <string name="view_on_wikipedia">ウィキペディアの記事</string>
@@ -356,9 +356,9 @@
     <string name="stop">停止</string>
     <string name="resume">再開</string>
     <string name="cleaning_up">クリーンアップ中...</string>
-    <string name="syncing">Syncing...</string>
+    <string name="syncing">同期中...</string>
     <string name="syncing_observation_fields">観察記録のフィールドを同期しています...</string>
-    <string name="syncing_observations">Syncing observations...</string>
+    <string name="syncing_observations">観察記録を同期しています...</string>
     <string name="syncing_paused">同期を一時停止しました</string>
     <string name="upload">アップロード</string>
     <string name="search_observations">観察記録を検索...</string>
@@ -485,34 +485,34 @@
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">スーパーネーム</string>
     <string name="point_of_interest">Point of Interest</string>
-    <string name="region">Region</string>
-    <string name="colloquial">Colloquial</string>
+    <string name="region">地域</string>
+    <string name="colloquial">通称</string>
     <string name="zone">Zone</string>
     <string name="historical_state">Historical State</string>
     <string name="historical_county">Historical County</string>
-    <string name="continent">Continent</string>
+    <string name="continent">大陸</string>
     <string name="estate">Estate</string>
     <string name="historical_town">Historical Town</string>
     <string name="aggregate">Aggregate</string>
     <string name="open_space">Open Space</string>
     <string name="territory">Territory</string>
-    <string name="district">District</string>
+    <string name="district">地区</string>
     <string name="province">Province</string>
     <string name="municipality">Municipality</string>
     <string name="parish">Parish</string>
     <string name="department_segment">Department Segment</string>
-    <string name="city_building">City Building</string>
+    <string name="city_building">都会の建物</string>
     <string name="commune">Commune</string>
-    <string name="governorate">Governorate</string>
-    <string name="prefecture">Prefecture</string>
-    <string name="canton">Canton</string>
-    <string name="republic">Republic</string>
+    <string name="governorate">行政区域</string>
+    <string name="prefecture">都道府県</string>
+    <string name="canton">行政区</string>
+    <string name="republic">共和国</string>
     <string name="division">Division</string>
     <string name="subdivision">Subdivision</string>
     <!-- https://gadm.org place type, presumably describing an area larger than an individual property but smaller than a neighborhood -->
     <string name="village_block">Village block</string>
     <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
-    <string name="sum">Sum</string>
+    <string name="sum">合計</string>
     <string name="shire">Shire</string>
     <string name="prefecture_city">Prefecture City</string>
     <!-- Indonesian sub-sub-national place type -->
@@ -524,18 +524,18 @@
     <string name="apply_filters">フィルターを適用</string>
     <string name="reset">リセット</string>
     <string name="show_only_my_observations">私の観察のみを表示します。</string>
-    <string name="project">Project</string>
-    <string name="user">User</string>
-    <string name="search_users">Search Users...</string>
-    <string name="quality_grade">Quality Grade</string>
+    <string name="project">プロジェクト</string>
+    <string name="user">ユーザー</string>
+    <string name="search_users">ユーザーを検索...</string>
+    <string name="quality_grade">データ品質</string>
     <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
-    <string name="date_observed">Date Observed</string>
+    <string name="date_observed">観察日</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
     <string name="any">Any</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
-    <string name="to">to</string>
-    <string name="exact_date">Exact Date</string>
-    <string name="start">Start</string>
+    <string name="to">から</string>
+    <string name="exact_date">正確な日付</string>
+    <string name="start">開始</string>
     <string name="end">End</string>
     <string name="months">Months</string>
     <string name="choose_months">Choose months(s)</string>
@@ -566,10 +566,10 @@
     <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
     <string name="i_dont_know_but"><![CDATA[I don\'t know but I\'m sure this is <b>%1$s</b>.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
-    <string name="submit">Submit</string>
+    <string name="submit">送信</string>
     <string name="change_password">パスワードの変更</string>
-    <string name="search_projects_youve_joined">Search projects you\'ve joined...</string>
-    <string name="must_be_connected_to_load_more_obs">You must be connected to the Internet to load more observations</string>
+    <string name="search_projects_youve_joined">参加したプロジェクトを検索...</string>
+    <string name="must_be_connected_to_load_more_obs">観察記録を読み込むにはインターネットに接続する必要があります</string>
     <string name="inat_about_title">iNaturalist is a joint initiative by the California Academy of Sciences and the National Geographic Society.</string>
     <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="http://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
@@ -579,10 +579,10 @@
     <string name="just_so_you_know">Just So You Know...</string>
     <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
-    <string name="see_more_observations">See more observations</string>
-    <string name="see_more_species">See more species</string>
+    <string name="see_more_observations">観察記録をさらに表示</string>
+    <string name="see_more_species">さらに種を表示</string>
     <string name="see_more_identifications">See more identifications</string>
-    <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+    <string name="collection_and_umbrella_projects">コレクションと親プロジェクト</string>
     <string name="description">説明</string>
     <string name="quantity">数量</string>
     <string name="agree2">賛成</string>
@@ -603,7 +603,7 @@
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
     <string name="annotations">注釈</string>
     <!-- Used when filtering observations with annotations -->
-    <string name="with_annotation">With Annotation</string>
+    <string name="with_annotation">注釈付き</string>
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
     <string name="annotation_name">Annotation Name</string>
     <!-- Annotation value for when no annotation has been chosen -->
@@ -611,48 +611,48 @@
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
     <string name="annotation_name_plant_phenology">Plant Phenology</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
-    <string name="annotation_name_life_stage">Life Stage</string>
+    <string name="annotation_name_life_stage">ライフステージ</string>
     <!-- Noun, describes sex of the organism -->
-    <string name="annotation_name_sex">Sex</string>
+    <string name="annotation_name_sex">性別</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
-    <string name="annotation_name_alive_or_dead">Alive or Dead</string>
+    <string name="annotation_name_alive_or_dead">生死</string>
     <!-- Adjective, having open flowers -->
-    <string name="annotation_value_flowering">Flowering</string>
+    <string name="annotation_value_flowering">開花</string>
     <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">Fruiting</string>
+    <string name="annotation_value_fruiting">結実</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_budding">Budding</string>
+    <string name="annotation_value_budding">出芽</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Flower Budding</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
-    <string name="annotation_value_adult">Adult</string>
+    <string name="annotation_value_adult">成体</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
-    <string name="annotation_value_teneral">Teneral</string>
+    <string name="annotation_value_teneral">脱皮直後</string>
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
-    <string name="annotation_value_pupa">Pupa</string>
+    <string name="annotation_value_pupa">蛹</string>
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
-    <string name="annotation_value_nymph">Nymph</string>
+    <string name="annotation_value_nymph">若虫</string>
     <!-- Noun for the arthropod life stage between egg and adult -->
-    <string name="annotation_value_larva">Larva</string>
-    <string name="annotation_value_egg">Egg</string>
+    <string name="annotation_value_larva">幼虫</string>
+    <string name="annotation_value_egg">卵</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
-    <string name="annotation_value_juvenile">Juvenile</string>
+    <string name="annotation_value_juvenile">幼体</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
-    <string name="annotation_value_subimago">Subimago</string>
+    <string name="annotation_value_subimago">亜成虫</string>
     <string name="annotation_value_female">メス</string>
     <string name="annotation_value_male">オス</string>
     <!-- Adjective, alive and shows no signs of imminent death -->
-    <string name="annotation_value_alive">Alive</string>
+    <string name="annotation_value_alive">生存</string>
     <!-- Adjective, dead or shows signs of imminent death -->
-    <string name="annotation_value_dead">Dead</string>
+    <string name="annotation_value_dead">死亡</string>
     <!-- Value for when the value of the attribute cannot be determined -->
-    <string name="annotation_value_cannot_be_determined">Cannot Be Determined</string>
+    <string name="annotation_value_cannot_be_determined">判断できません</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
-    <string name="joined_projects_all_caps">JOINED</string>
+    <string name="joined_projects_all_caps">登録済み</string>
     <string name="nearby_projects_all_caps">NEARBY</string>
     <string name="featured_projects_all_caps">FEATURED</string>
     <!-- Text for a button or label that allows someone to join a project -->
-    <string name="join_all_caps">JOIN</string>
+    <string name="join_all_caps">参加</string>
     <string name="my_guides_all_caps">YOURS</string>
     <string name="nearby_guides_all_caps">NEARBY</string>
     <string name="all_guides_all_caps">ALL</string>
@@ -661,7 +661,7 @@
     <plurals name="observation_count_all_caps">
         <item quantity="other">%1$s OBSERVATIONS</item>
     </plurals>
-    <string name="agree_all_caps">AGREE</string>
+    <string name="agree_all_caps">同意</string>
     <string name="observations_all_caps">OBSERVATIONS</string>
     <string name="species_all_caps">SPECIES</string>
     <string name="people_all_caps">PEOPLE</string>
@@ -812,4 +812,7 @@
     <string name="forbidden">Forbidden</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
+    <string name="list_observation_checkbox_description">複数選択モードで観察記録を選択するためのチェックボックス</string>
+    <string name="observation_list_item_iconic_pic_description">観察された分類群のサムネイル写真</string>
+    <string name="observation_list_item_obs_pic_description">観察記録用サムネイル写真</string>
 </resources>

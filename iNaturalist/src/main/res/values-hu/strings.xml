@@ -9,7 +9,7 @@
     <string name="cancel">Mégse</string>
     <string name="loading">Betöltés...</string>
     <string name="sync_required">Szinkronizálás szükséges</string>
-    <string name="sync_required_message">%1$d megfigyelés, %2$d szinkronizálandó fotó</string>
+    <string name="sync_required_message">%1$d megfigyelés, %2$d szinkronizálandó fénykép</string>
     <string name="street">Utca</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Műhold</string>
@@ -21,7 +21,7 @@
     <string name="please_sign_in_description">Kérjük, jelentkezz be iNaturalist-fiókodba vagy hozz létre egy újat.</string>
     <string name="please_enable_location_services">A jelenlegi helyzeted meghatározásához kapcsold be a Helyszolgáltatásokat... </string>
     <string name="go_to_settings">Ugrás a Beállításokhoz</string>
-    <string name="photo_not_specified">A fotó nincs megadva</string>
+    <string name="photo_not_specified">Nincs megadva fénykép</string>
     <string name="set_date">Dátum megadása</string>
     <string name="set_time">Idő megadása</string>
     <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
@@ -32,7 +32,7 @@
     <string name="map">Térkép</string>
     <string name="settings">Beállítások</string>
     <string name="projects">Projektek</string>
-    <string name="delete_photo">Fotó törlése</string>
+    <string name="delete_photo">Fénykép törlése</string>
     <string name="menu">Menü</string>
     <string name="my_location">Saját pozíció</string>
     <string name="nearby_observations">Közeli megfigyelések</string>
@@ -41,7 +41,7 @@
     <string name="reload">Újratöltés</string>
     <string name="view_in_browser">Megnyitás böngészőben</string>
     <string name="add_observation">Megfigyelés hozzáadása</string>
-    <string name="take_picture">Fotó készítése</string>
+    <string name="take_picture">Fénykép készítése</string>
     <string name="save">Mentés</string>
     <string name="no_observations_yet">Még nincsenek megfigyelések!</string>
     <string name="or">vagy</string>
@@ -82,7 +82,7 @@
     <string name="no">Nem</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">Elfogadod?</string>
-    <string name="no_comments">Nincs hozzászólás/azonosításod még</string>
+    <string name="no_comments">Nincs még hozzászólás/meghatározás</string>
     <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
     <string name="you">te</string>
     <string name="add_comment">Új hozzászólás</string>
@@ -166,16 +166,16 @@
         <item>Fedezd fel, és csatlakozz a természettel</item>
         <item>Kapsz külsőt! Találsz valami vad, és a világos, teljes méretű fényképet.</item>
         <item>Osszad meg a megfigyelésedet a iNaturalist Közösséggel.</item>
-        <item>Térj vissza a megjegyzésekhez és azonosítókhoz a megfigyeléseddel!</item>
+        <item>Térj vissza később a megjegyzések és meghatározások megtekintéséhez.</item>
         <item><![CDATA[<b>kutatási osztály</b> megfigyelések jobb megértése és a természet védelmében dolgozó tudósok vannak megosztva.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
-        <item>Megnyitás</item>
+        <item>Nyitott</item>
         <item>Kitakart</item>
         <item>Privát</item>
     </string-array>
     <string name="alert_sign_out">Biztos kijelentkezel? Ezzel törlöd megfigyeléseid ezen az eszközön. A már feltöltött megfigyeléseid ez nem érinti.</string>
-    <string name="alert_unsupported_media_type">Jelenleg sajnos nem támogatjuk a fotók feltöltését Google Drive-ból, Dropboxból stb.\nKérjük, töltsd le a fotót készülékedre, majd próbáld újra.</string>
+    <string name="alert_unsupported_media_type">Sajnos a fénykép betöltése sikertelen</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
     <string name="explore">Felfedezés</string>
     <string name="restricted_to_current_map_area">Korlátozott a jelenlegi térkép terület</string>
@@ -186,7 +186,7 @@
     <string name="no_observations_found">Nincsenek megfigyelések</string>
     <string name="license_none">Nincs, minden jog fenntartva.</string>
     <string name="sources_and_attribution">Források és tulajdon</string>
-    <string name="photos"><![CDATA[<b>Fotók:</b> %1$s]]></string>
+    <string name="photos"><![CDATA[<b>Fényképek:</b> %1$s]]></string>
     <string name="text"><![CDATA[<b>Szöveg:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">Az elsődleges iNaturalist Network. Az OK-ra koppintva az alkalmazás a globális iNaturalist hálózat részévé válik.</string>
@@ -200,7 +200,7 @@
     <string name="alert_message_use_inaturalistaustralia">Az iNaturalist Australia az ausztrál iNaturalist Network tagja. Az iNaturalist Australia helyi intézményi támogatói hozzáférhetnek az emailcímedhez és a megfigyeléseid pontos, egyébként fedett vagy privát koordinátáihoz. Kérjük, hogy próbaképpen ne módosíts a partneri beállításokon, ha 1000-nél több megfigyelésed van. Szeretnéd módosítani a partneri beállításaidat?</string>
     <string name="alert_message_use_argentinat">Az ArgentiNat az argentín iNaturalist Network tagja. Az ArgentiNat helyi intézményi támogatói hozzáférhetnek az emailcímedhez és a megfigyeléseid pontos, egyébként fedett vagy privát koordinátáihoz. Kérjük, hogy próbaképpen ne módosíts a partneri beállításokon, ha 1000-nél több megfigyelésed van. Szeretnéd módosítani a partneri beállításaidat?</string>
     <string name="alert_message_use_inaturalistil">Az iNaturlaist Israel az iyraeli iNaturalist Network tagja. Az iNaturalist Israel helyi intézményi támogatói hozzáférhetnek az emailcímedhez és a megfigyeléseid pontos, egyébként fedett vagy privát koordinátáihoz. Kérjük, hogy próbaképpen ne módosíts a partneri beállításokon, ha 1000-nél több megfigyelésed van. Szeretnéd módosítani a partneri beállításaidat?</string>
-    <string name="alert_message_use_inaturalistfi">iNaturalist Finland is a member of the iNaturalist Network in Finland. Local institutions supporting iNaturalist Finland will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistfi">Az iNaturalist Finland a finnországi iNaturalist Network tagja. Az iNaturalist Finland helyi intézményi támogatói hozzáférhetnek az emailcímedhez és a megfigyeléseid pontos, egyébként fedett vagy privát koordinátáihoz. Kérjük, hogy próbaképpen ne módosíts a partneri beállításokon, ha 1000-nél több megfigyelésed van. Szeretnéd módosítani a partneri beállításaidat?</string>
     <string name="editor">Szerkesztő</string>
     <string name="license">Licensz</string>
     <string name="download_for_offline_use">Letöltés kapcsolat nélküli használatra</string>
@@ -249,7 +249,7 @@
     <string name="camera">Fénykép készítése</string>
     <string name="upload_photo">Kép kiválasztása</string>
     <string name="menu_text">Nincs fénykép</string>
-    <string name="first">Első</string>
+    <string name="first">1.</string>
     <string name="make_first">Elejére</string>
     <string name="notes">Megjegyzések</string>
     <string name="location_is">Hely:</string>
@@ -257,7 +257,7 @@
     <string name="location_visibility">A hely láthatósága</string>
     <string name="set_location">Hely</string>
     <string name="coordinates_lat">Szélesség:</string>
-    <string name="coordinates_lon">Hosszúság</string>
+    <string name="coordinates_lon">Hosszúság:</string>
     <string name="coordinates_acc">Fiók</string>
     <string name="required">* Kötelező</string>
     <string name="downloading_observations">Megfigyelések letöltése...</string>
@@ -286,7 +286,7 @@
         <item quantity="one">%1$d projekt része</item>
         <item quantity="other">%1$d projekt része</item>
     </plurals>
-    <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy is a setting you can make on your observations that controls how the spatial coordinates (latitude and longitude) are displayed. Here are the options:<br/><b>open</b> - Everyone can see the coordinates unless the taxon is threatened. <br/><b>obscured</b> - Public coordinates shown as a random point within a 0.2 by 0.2 degree area that contains the true coordinates, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. True coordinates are only visible to you and the curators of projects to which you add the observation. <br/><b>private</b> - Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. <br/><br/>Note that curators of individual projects can always see the coordinates regardless of your geoprivacy setting, so if you are concerned about who has access to the coordinates you should be sure you trust the curators of the projects in which you participate. ]]></string>
+    <string name="geoprivacy_explanation"><![CDATA[A helyre vontakozó adatok védelmi beállításaival megszabhatod, hogy hogy jelenek meg a megfigyeléseid koordinátái (szélességi és hosszúsági). A következők közül választhatsz: <br/>nyitott</b> - Mindenki számára látható, kivéve ha a taxon veszélyeztetett. <br/>kitakart</b> - A megjelenített koordináták egy, az eredeti koordináták körüli 0,2 x 0,2 fokos területen belüli random pontot jelölnek. Ez a pontatlanítás az egyenlítőnél 22 x 22 km nagyságú nyégyzetnek felel meg, amely a sarkok felé haladva csökken. Az eredeti koordináták csak számodra és a megfigyelésedhez tartozó projekt(ek) kurátora számára láthatók. <br/>Privát</b> - A koordináták egyáltalán nem jelennek meg a nyilvános térképen, csak számodra és a megfigyelésedhez tartozó projek(ek) kutrátorai számára láthatók. <br/>Fontos: az egyéni projektek kurátorai e beállításoktól függetlenül mindig láthatják az eredeti koordinátákat. Ha ez gondot okoz, csak olyan projektben vegyél részt, amelynek kurátorában megbízol.]]></string>
     <string name="id_title">%1$s meghatározása • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">Törlés</string>
@@ -309,10 +309,10 @@
     <string name="sync_obs_to_see_favs">Szinkronizáld ezt a megfigyelést a kedvencelésekhez...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Megjegyzés írásához és meghatározáshoz szinkronizáld ezt a megfigyelést...</string>
-    <string name="no_photo">Nincs fotó</string>
+    <string name="no_photo">Nincs fénykép</string>
     <string name="about_this_species">A fajról</string>
     <string name="view_on_wikipedia">Wikipédia-szócikk</string>
-    <string name="photo"><![CDATA[Fotó: <b><a href="%1$s">%2$s</a></b>]]></string>
+    <string name="photo"><![CDATA[Fénykép: <b><a href="%1$s">%2$s</a></b>]]></string>
     <string name="photo_attr"><![CDATA[Fénykép: <b>%1$s</b>]]></string>
     <string name="finding_current_location">Aktuális hely keresése...</string>
     <string name="flag_as_captive">Megjelölés fogságban/kultiváltként</string>
@@ -334,7 +334,7 @@
     <string name="no_location">Nincs helyadat</string>
     <string name="add_to_projects">Hozzáadás projek(ek)hez</string>
     <string name="are_you_sure_you_want_to_save_obs_without_coords">Biztosan elmented a megfigyelést koordináták nélkül?</string>
-    <string name="users_identification">%1$s azonosítója: %2$s</string>
+    <string name="users_identification">%1$s meghatározása: %2$s</string>
     <string name="edit_profile">Profil szerkesztése</string>
     <string name="remove_photo">Fénykép eltávolítása</string>
     <string name="name">Név</string>
@@ -367,7 +367,7 @@
     <string name="withdraw">Visszavonás</string>
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Meghatározás leírásának frissítése</string>
-    <string name="your_identification">Azonosítód: %1$s </string>
+    <string name="your_identification">Meghatározásod: %1$s </string>
     <string name="onboarding_species_name">Ha felismered amit láttál, add meg a nevét (pl. pitypang, rovar), vagy hagyd üresen. Mások segíteni fognak ebben.</string>
     <string name="upload_complete">A feltöltés sikeres</string>
     <string name="onboarding_upload_description">Nézz vissza hamarosan a megfigyelése(i)dre érkezett hozzászólásokra és meghatározásokra.</string>
@@ -389,7 +389,7 @@
     <string name="birds">Madarak</string>
     <string name="arachnids">Pókszabásúak</string>
     <string name="no_connectivity">Nincs kapcsolat</string>
-    <string name="no_recommended_missions">Úgy tűnik, nincs javaslat erre a területre. Próbálozz máshol.</string>
+    <string name="no_recommended_missions">Nincs javaslat erre a területre. Próbálozz máshol.</string>
     <string name="what_to_look_for">Mit keress</string>
     <string name="have_been_seen_here">Látták itt</string>
     <string name="observe">Megfigyel</string>
@@ -434,7 +434,7 @@
     <string name="taxonomy">Rendszertan</string>
     <string name="about_this_section">Tudnivalók</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
-    <string name="taxonomy_info">These are links to ancestors of this particular taxon. They are in order from coarser to more refined. Use these links to move up and down the Tree of Life. For example, if you don\'t know what an organism is, but know what grouping it falls into, tap on a taxon from the list to view more information about it.</string>
+    <string name="taxonomy_info">E taxonnak ezek a magasabb szerveződési szintjei. A sorrendjük a magasabb szintűtől az alacsonyabb szintűig terjed. E linkek használatával le és fel lépkedhetsz az életfán. Például ha nem tudod, milyen élőlényről van szó, de be tudod határolni a besorolását, a listából egy taxonra koppintva többet megtudhatsz az élőlényről.</string>
     <string name="more_info_on_inat">További információ: iNaturlaist.org</string>
     <string name="view_suggestions">Javaslatok megtekintése</string>
     <string name="species_search">Fajok keresése</string>
@@ -450,7 +450,7 @@
     <string name="pretty_sure_rank">Nagy bizonyossággal e %1$s:</string>
     <string name="what_did_you_see">Mit láttál?</string>
     <string name="suggest_species">Javaslat fajra</string>
-    <string name="suggest_species_description">Javasolj fajokat a fényképek hasonlóságai alapján.</string>
+    <string name="suggest_species_description">Fajfelismerés a fényképek hasonlóságai alapján.</string>
     <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Kinézetre hasonló</string>
     <string name="visually_similar_seen_nearby">Kinézetre hasonló / Közelben található</string>
@@ -506,7 +506,7 @@
     <string name="municipality">Község</string>
     <string name="parish">Közösség</string>
     <string name="department_segment">Területrész</string>
-    <string name="city_building">City Building</string>
+    <string name="city_building">Városépület</string>
     <string name="commune">Közösség</string>
     <string name="governorate">Kormányzóság</string>
     <string name="prefecture">Prefektúra</string>
@@ -575,9 +575,9 @@
     <string name="change_password">Jelszó módosítása</string>
     <string name="search_projects_youve_joined">Keresés a követett projektekben</string>
     <string name="must_be_connected_to_load_more_obs">További megfigyelések betöltéséhez internetkapcsolat szükséges.</string>
-    <string name="inat_about_title">iNaturalist is a joint initiative by the California Academy of Sciences and the National Geographic Society.</string>
+    <string name="inat_about_title">Az iNaturalist a California Academy of Sciences és a National Geographic Society közös kezdeményezése.</string>
     <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="http://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
-    <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
+    <string name="inat_credits_networks_pre"><![CDATA[Partnerszervezeteinknek köszönhetően a nemzetközi iNaturalist Network a lokalizált, integrált, iNaturalist-alapú weboldalak támogatója a következő országokban.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Közreműködők</string>
     <string name="password_changed">Az alkalmazás által használt jelszó már hibás. Módosítottad a weboldalon? Add meg az új jelszót itt</string>
@@ -739,7 +739,7 @@
     <string name="send_debug_logs_from_start_date">Műveleti napló küldése a kezdődátumtól</string>
     <string name="send_debug_logs_by_email">Műveleti napló küldése emailben (megadott dátumtól)</string>
     <string name="debug_settings">Hibakeresési beállítások</string>
-    <string name="are_you_sure_you_want_to_delete_logs">Are you sure you want to delete all debug logs? Only press \'Yes\' if you want clear up storage room for your phone</string>
+    <string name="are_you_sure_you_want_to_delete_logs">Biztosan törlöd az összes hibakeresési adatot? Csak akkor tedd ezt, ha fel szeretnél szabadítani a mobiltelefonod tárhelyéből.</string>
     <string name="no_log_files_found">Nem található naplófájl erre az időtartamra. Talán próbáld korábbról.</string>
     <string name="choose_pinned_location">Tárolt helyzetek</string>
     <string name="pin_current_location">Jelenlegi helyzet tárolása</string>
@@ -787,15 +787,15 @@
     <string name="verify_your_password">Jelszó megerősítése</string>
     <string name="third_party_data_sharing">Adatmegosztás harmadik féllel</string>
     <string name="disable_third_party_data_sharing">Harmadik féllel való adatmegosztás kikapcsolása</string>
-    <string name="do_not_collect_third_party_data">Do not collect stability and usage data using third-party services</string>
+    <string name="do_not_collect_third_party_data">Harmadik féltől származó szolgáltatásokkal ne gyűjtsön adatokat az alkalmazás működéséről.</string>
     <string name="enabled">Bekapcsolva</string>
     <string name="disabled">Kikapcsolva</string>
-    <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third-party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[Különféle, harmadik féltől származó szolgáltatásokkal figyeljük a szoftverleállásokat és diagnosztizáljuk a szofterhibákat. Például: <ul>Google )<a href="https://analytics.google.com/">Google Analytics</a>,<a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New relic</a></li></ul>]]></string>
     <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
     <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third-party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
     <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
-    <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
-    <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
+    <string name="common_names_place"><![CDATA[Köznyelvi név forrása: <b>%1$s</b>]]></string>
+    <string name="tap_to_prioritize_common_names">Koppints ide a köznyelvi név regiójának kiválasztásához.</string>
     <string name="search_places">Helyek keresése</string>
     <string name="restart_app">Alkalmazás újraindítása</string>
     <string name="disable_third_party_sharing_restart">Harmadik féllel való adatmegosztás azonnali kikapcsolásához újrindítás szükséges.</string>
@@ -806,17 +806,20 @@
     <string name="future_observed_on_date_error">A megfigyelésed dátuma %1$s, de az új dátum (%2$s) ettől későbbi.</string>
     <string name="no_more_photos_allowed">Egy megfigyelés legfeljebb %1$d fényképet tartalmazhat. Továbbiak hozzáadásához először el kell távolítanod néhányat.</string>
     <string name="warning_multiple_photos">Ne adj fényképet többféle organizmusról, különféle időpontról vagy helyről egy megfigyeléshez, inkább külön megfigyeléshez töltsd fel. Egy megfigyelés legfeljebb %1$d fényképet tartalmazhat.</string>
-    <string name="choosing_specific_language_warning">Choosing a specific language for your account requires an Internet connection</string>
-    <string name="running_in_background_notfication">Running in the background so we can run without interruption</string>
-    <string name="opt_out_of_community_taxon">Opt out of the Community Taxon</string>
-    <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
+    <string name="choosing_specific_language_warning">A fiókod nyelvének megválasztásához internetkapcsolat szükséges.</string>
+    <string name="running_in_background_notfication">A megszakítások megakadályozása érdekében a háttérben fut.</string>
+    <string name="opt_out_of_community_taxon">A Közösségi Taxon engedélyezésének megszüntetése</string>
+    <string name="opt_in_to_community_taxon">A Közösségi Taxon engedélyezése</string>
     <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
-    <string name="permission_required">Permission Required</string>
+    <string name="permission_required">Engedélyezés szükséges</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
-    <string name="to_access_your_location">To access your location you must grant location access permission to this app.</string>
+    <string name="to_access_your_location">A helyzetedhez való hozzáféréshez engedélyezd a helyzetmeghatározást az alkalmazás számára.</string>
     <!-- Dialog title when displaying a message that an action is not permitted -->
-    <string name="forbidden">Forbidden</string>
+    <string name="forbidden">Nem engedélyezett</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
-    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
+    <string name="app_you_shared_blocked">A fényképekhez használt alkalmazás nem felel meg megfigyelések rögzítéséhez, mert nem szolgálnak az organizmusok bizonyítékául, vagy mert nem megengedett márkajelölést vagy marketingüzenetet tartalmaznak, vagy mert más okból sértik a Szolgáltatási Feltételeinket.</string>
+    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
 </resources>

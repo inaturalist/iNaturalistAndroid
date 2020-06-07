@@ -190,17 +190,17 @@
     <string name="text"><![CDATA[<b>Teksti:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">Pää iNaturalist Network -verkko. Napauttamalla OK asetat sovelluksesi osaksi maailmanlaajuista iNaturalist Network -verkkoa.</string>
-    <string name="alert_message_use_naturalista">NaturaLista is a member of the iNaturalist Network in Mexico. Local institutions supporting NaturaLista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturewatchnz">iNaturalist NZ is a member of the iNaturalist Network in New Zealand. Local institutions supporting iNaturalist NZ will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Local institutions supporting iNaturalist Canada will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Local institutions supporting Naturalista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4All is a member of the iNaturalist Network in Portugal. Local institutions supporting Biodiversity4All will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá is a member of the iNaturalist Network in Panama. Local institutions supporting iNaturalist Panamá will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador is a member of the iNaturalist Network in Ecuador. Local institutions supporting iNaturalist Ecuador will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia is a member of the iNaturalist Network in Australia. Local institutions supporting iNaturalist Australia will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_argentinat">ArgentiNat is a member of the iNaturalist Network in Argentina. Local institutions supporting ArgentiNat will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistfi">iNaturalist Suomi on iNaturalist-verkoston jäsen Suomessa. iNaturalist Suomen kanssa yhteistyössä olevat organisaatiot näkevät sähköpostiosoitteesi sekä kaikkien havaintojesi tarkat koordinaatit, myös karkeistettujen ja yksityisten havaintojen. Ole hyvä äläkä vaihda kotiverkostoasi vain testataksesi tätä, jos sinulla on yli 1000 havaintoa. Haluatko vaihtaa kotiverkostoasi? </string>
+    <string name="alert_message_use_naturalista">NaturaLista on iNaturalist-verkoston jäsen Meksikossa. NaturaListan kanssa yhteistyössä olevat organisaatiot näkevät sähköpostiosoitteesi sekä kaikkien havaintojesi tarkat koordinaatit, myös karkeistettujen ja yksityisten havaintojen. Ole hyvä äläkä vaihda kotiverkostoasi vain testataksesi tätä, jos sinulla on yli 1000 havaintoa. Haluatko vaihtaa kotiverkostoasi? </string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZ on iNaturalist-verkoston jäsen Uudessa-Seelanissa. iNaruralist NZ:n kanssa yhteistyössä olevat organisaatiot näkevät sähköpostiosoitteesi sekä kaikkien havaintojesi tarkat koordinaatit, myös karkeistettujen ja yksityisten havaintojen. Ole hyvä äläkä vaihda kotiverkostoasi vain testataksesi tätä, jos sinulla on yli 1000 havaintoa. Haluatko vaihtaa kotiverkostoasi? </string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada on iNaturalist-verkoston jäsen Kanadassa. iNaruralist Canadan kanssa yhteistyössä olevat organisaatiot näkevät sähköpostiosoitteesi sekä kaikkien havaintojesi tarkat koordinaatit, myös karkeistettujen ja yksityisten havaintojen. Ole hyvä äläkä vaihda kotiverkostoasi vain testataksesi tätä, jos sinulla on yli 1000 havaintoa. Haluatko vaihtaa kotiverkostoasi?</string>
+    <string name="alert_message_use_naturalistacolombia">NaturaLista on iNaturalist-verkoston jäsen Kolumbiassa. NaturaListan kanssa yhteistyössä olevat organisaatiot näkevät sähköpostiosoitteesi sekä kaikkien havaintojesi tarkat koordinaatit, myös karkeistettujen ja yksityisten havaintojen. Ole hyvä äläkä vaihda kotiverkostoasi vain testataksesi tätä, jos sinulla on yli 1000 havaintoa. Haluatko vaihtaa kotiverkostoasi?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All on iNaturalist-verkoston jäsen Portugalissa.Biodiversity4All:n kanssa yhteistyössä olevat organisaatiot näkevät sähköpostiosoitteesi sekä kaikkien havaintojesi tarkat koordinaatit, myös karkeistettujen ja yksityisten havaintojen. Ole hyvä äläkä vaihda kotiverkostoasi vain testataksesi tätä, jos sinulla on yli 1000 havaintoa. Haluatko vaihtaa kotiverkostoasi?</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá  on iNaturalist-verkoston jäsen Panamassa. iNaruralist Panamán kanssa yhteistyössä olevat organisaatiot näkevät sähköpostiosoitteesi sekä kaikkien havaintojesi tarkat koordinaatit, myös karkeistettujen ja yksityisten havaintojen. Ole hyvä äläkä vaihda kotiverkostoasi vain testataksesi tätä, jos sinulla on yli 1000 havaintoa. Haluatko vaihtaa kotiverkostoasi?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador on iNaturalist-verkoston jäsen Ecuadorissa. iNaruralist Ecuadorin kanssa yhteistyössä olevat organisaatiot näkevät sähköpostiosoitteesi sekä kaikkien havaintojesi tarkat koordinaatit, myös karkeistettujen ja yksityisten havaintojen. Ole hyvä äläkä vaihda kotiverkostoasi vain testataksesi tätä, jos sinulla on yli 1000 havaintoa. Haluatko vaihtaa kotiverkostoasi?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia on iNaturalist-verkoston jäsen Australiassa. iNaruralist Australian kanssa yhteistyössä olevat organisaatiot näkevät sähköpostiosoitteesi sekä kaikkien havaintojesi tarkat koordinaatit, myös karkeistettujen ja yksityisten havaintojen. Ole hyvä äläkä vaihda kotiverkostoasi vain testataksesi tätä, jos sinulla on yli 1000 havaintoa. Haluatko vaihtaa kotiverkostoasi?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat on iNaturalist-verkoston jäsen Argentiinassa. ArgentiNat:n kanssa yhteistyössä olevat organisaatiot näkevät sähköpostiosoitteesi sekä kaikkien havaintojesi tarkat koordinaatit, myös karkeistettujen ja yksityisten havaintojen. Ole hyvä äläkä vaihda kotiverkostoasi vain testataksesi tätä, jos sinulla on yli 1000 havaintoa. Haluatko vaihtaa kotiverkostoasi?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel on iNaturalist-verkoston jäsen Israelissa. iNaruralist Israel:n kanssa yhteistyössä olevat organisaatiot näkevät sähköpostiosoitteesi sekä kaikkien havaintojesi tarkat koordinaatit, myös karkeistettujen ja yksityisten havaintojen. Ole hyvä äläkä vaihda kotiverkostoasi vain testataksesi tätä, jos sinulla on yli 1000 havaintoa. Haluatko vaihtaa kotiverkostoasi?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Suomi on kansainvälisen iNaturalist-verkoston jäsen. Siitä vastaa Suomen Lajitietokeskus. Haluatko yhdistää tunnuksesi iNaturalist Suomeen (suositeltu)? Tällöin Lajitietokeskus näkee havaintojesi tarkat paikat sekä sähköpostiosoitteesi, joten havaintosi tulevat paremmin hyötykäyttöön Suomessa, ja voit saada suomenkielisiä iNaturalistiin liittyviä tiedotteita.</string>
     <string name="editor">Editori</string>
     <string name="license">Lisenssi</string>
     <string name="download_for_offline_use">Lataa offline-käyttöön</string>
@@ -218,7 +218,7 @@
     <string name="re_download">Lataa uudelleen</string>
     <string name="error">Virhe</string>
     <string name="could_not_retrieve_guide">Oppaan tietoja ei voitu hakea - todennäköisesti yhteysvirheen takia.</string>
-    <string name="inat_support_email_subject">Help with iNaturalist (versio %1$s - %2$s; käyttäjätunniste - %3$s)</string>
+    <string name="inat_support_email_subject">Help with iNaturalist (versio %1$s - %2$s; käyttäjätunnus - %3$s)</string>
     <string name="send_email">Lähetä sähköposti...</string>
     <string name="login_with">Kirjaudu käyttäen</string>
     <string name="facebook">Facebook</string>
@@ -230,7 +230,7 @@
     <string name="log_in">Kirjaudu sisään</string>
     <string name="sign_up">Rekisteröidy</string>
     <string name="min_6_chars">Väh. 6 merkkiä</string>
-    <string name="use_my_license"><![CDATA[Kyllä, lisensoi sisältöni, niin tiedemiehet voivat käyttää tietojani. <b>Lisätietoja</b>]]></string>
+    <string name="use_my_license"><![CDATA[Kyllä, lisensoi sisältöni niin että tutkijat voivat käyttää keräämääni tietoa. <b>Lisätietoja</b>]]></string>
     <string name="content_licensing">Sisällön lisensointi</string>
     <string name="content_licensing_description">Laita rasti tähän ruutuun, jos haluat käyttää Creative Commons Nimeä-EiKaupallinen -lisenssiä kuvillesi. Voit valita eri lisenssin tai poistaa lisenssin myöhemmin, mutta tämä on hyvä lisenssi kuvien jakamiseksi tutkijoille.</string>
     <!-- Try to keep this about the length of the English text -->
@@ -356,9 +356,9 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="language">Kieli</string>
     <string name="version">Versio</string>
     <string name="inat_network">iNaturalist -verkosto</string>
-    <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
+    <string name="inat_network_description">iNaturalist-verkosto on joukko eri maille mukautettuja versioita iNaturalistista. Paikalliset versiot (portaalit) tehdään yhteistyössä kussakin maassa toimivien organisaatioiden kanssa, jotka ovat allekirjoittaneet sopimuksen iNaturalistin kanssa.</string>
     <string name="more_info">Lisätietoja</string>
-    <string name="select_network">Valitse verkkokytkös</string>
+    <string name="select_network">Valitse verkosto, johon tunnuksesi liitetään</string>
     <string name="help">Apua</string>
     <string name="stop">Pysäytä</string>
     <string name="resume">Jatka</string>
@@ -372,7 +372,7 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="withdraw">Peruuta</string>
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Päivitä tunnistuksen kuvaus</string>
-    <string name="your_identification">Tunnisteesi: %1$s</string>
+    <string name="your_identification">Tunnistuksesi: %1$s</string>
     <string name="onboarding_species_name">Nimeä näkemäsi, jos voit, vaikka tietäisit vain, että se on \"hyönteinen\" tai \"lintu\", tai jätä tämä vain tyhjäksi. Muut voivat auttaa sinua tunnistamaan sen!</string>
     <string name="upload_complete">Tallennus onnistui!</string>
     <string name="onboarding_upload_description">Tarkista pian uudelleen tunnistukset ja kommentit havainno(i)ssasi.</string>
@@ -441,7 +441,7 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
     <string name="taxonomy_info">Nämä ovat linkkejä tämän kyseisen taksonin esivanhempiin. Ne ovat järjestyksessä jalostamattomasta enemmän jalostettuun. Käytä näitä linkkejä nostaaksesi elämänpuuta ylös ja alas. Esimerkiksi, jos et tiedä mikä eliö on, mutta tiedät mihin ryhmittelyyn se kuuluu, napauta taksonia listasta nähdäksesi lisätietoja siitä.</string>
     <string name="more_info_on_inat">Lisää tietoja iNaturalist.org:issa</string>
-    <string name="view_suggestions">Näytä ehdotuksia</string>
+    <string name="view_suggestions">Paina tästä niin näet ehdotuksia</string>
     <string name="species_search">Lajihaku</string>
     <plurals name="were_not_confident">
         <!-- This will probably never happen -->
@@ -776,7 +776,7 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
     <string name="ucrop_label_original">Alkuperäinen</string>
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
-    <string name="ucrop_label_free">Ilmainen</string>
+    <string name="ucrop_label_free">Vapaa</string>
     <!-- Verb phrase, button label to edit an observation photo -->
     <string name="ucrop_label_edit_photo">Muokkaa kuvaa</string>
     <string name="service_temporarily_unavailable">Palvelu väliaikaisesti poissa käytöstä.</string>
@@ -822,11 +822,14 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
     <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
-    <string name="permission_required">Permission Required</string>
+    <string name="permission_required">Sovellus tarvitsee oikeudet tätä varten</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
-    <string name="to_access_your_location">To access your location you must grant location access permission to this app.</string>
+    <string name="to_access_your_location">Jotta sovellus voisi tietää sijaintisi, sinun täytyy antaa sille oikeus sijainnin käyttämiseen.</string>
     <!-- Dialog title when displaying a message that an action is not permitted -->
-    <string name="forbidden">Forbidden</string>
+    <string name="forbidden">Estetty</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
-    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
+    <string name="app_you_shared_blocked">Sovellus, josta jaoit kuvan, tuottaa kuvia jotka eivät sovi havaintokuviksi. Ne eivät välttämättä esitä havaittua eliötä, sisältävät sopimatonta kaupallista sisältöä, tai rikkovat iNaturalistin käyttösääntöjä muulla tavalla.  </string>
+    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
 </resources>
