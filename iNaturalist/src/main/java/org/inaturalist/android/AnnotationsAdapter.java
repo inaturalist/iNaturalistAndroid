@@ -367,12 +367,7 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
 
                 String userLogin = user.getString("login").toLowerCase();
 
-                if (mApp.loggedIn() && mApp.currentUserLogin().toLowerCase().equals(userLogin)) {
-                    // Allow the user to delete his annotation value
-                    deleteValue.setVisibility(View.VISIBLE);
-                } else {
-                    deleteValue.setVisibility(View.GONE);
-                }
+                deleteValue.setVisibility(View.VISIBLE);
 
                 String translatedValue = getAnnotationTranslatedValue(mApp, annotationValue.getJSONObject("controlled_value").getString("label"), true) ;
                 attributeValue.setText(translatedValue);
