@@ -273,7 +273,7 @@
     <string name="observation">Waarneming</string>
     <string name="share">Delen via</string>
     <string name="unable_to_acquire_location">Kan locatie niet vaststellen</string>
-    <string name="casual_grade">Casual Grade</string>
+    <string name="casual_grade">Onvolledig</string>
     <string name="needs_id">Determinatie vereist</string>
     <string name="research_grade">Onderzoekskwaliteit</string>
     <string name="data_quality">Gegevenskwaliteit</string>
@@ -812,11 +812,14 @@
     <string name="opt_in_to_community_taxon">het gemeenschapstaxon toestaan</string>
     <string name="opt_out_message">Door het weigeren van het gemeenschapstaxon zal deze waarneming geassocieerd worden met het taxon op basis van je huidige determinatie en dus niet een taxon worden dat is afgeleid van alle determinaties die aan deze waarneming zijn toegevoegd. Als genoeg determinatoren het niet met je eens zijn zal jouw waarneming Casual worden. Je moet je het alleen weigeren als je er zeker van bent dat jouw determinatie correct is en de andere determinaties onjuist zijn.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
-    <string name="permission_required">Permission Required</string>
+    <string name="permission_required">Toestemming vereist</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
-    <string name="to_access_your_location">To access your location you must grant location access permission to this app.</string>
+    <string name="to_access_your_location">Om toegang te krijgen tot je locatie moet je toestemming geven aan deze app om toegang te krijgen tot je locatie.</string>
     <!-- Dialog title when displaying a message that an action is not permitted -->
-    <string name="forbidden">Forbidden</string>
+    <string name="forbidden">Niet toegestaan</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
-    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
+    <string name="app_you_shared_blocked">De app die je hebt gedeeld maakt foto\'s die niet geschikt zijn voor waarnemingen omdat ze geen bewijs van je ervaring met een ander organisme vertegenwoordigen omdat ze ongepaste merktekens of commerciële inhoud bevatten of omdat ze onze gebruiksvoorwaarden op één of andere manier schenden.</string>
+    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
 </resources>

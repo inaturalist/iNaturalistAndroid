@@ -797,29 +797,32 @@ Utover det, denne handlingen kan ikke angres. Hvis du ombestemmer deg senere, f�
     <string name="third_party_data_sharing_notes2"><![CDATA[Informasjon vi deler med tredjeparter inkluderer: <br/><ul><li> IP-adresser (som kan brukes til å finne posisjon på by-nivå, og å spore deg gjennom forskjellige nettsteder; merk at vi har aktivert <a href="https://support.google.com/analytics/answer/2763052">IP-anonymisering</a> i Google Analytics og <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> lagrer ikke IP-adresser såvidt vi vet)</li><li> Nettleserdetaljer, som merke, modell, og versjon</li><li>Krasjdetaljer, som eksakt hvilken linje av kode som forårsaket krasjen</li><li>Enhetsdetaljer, som merke og modell på mobiltelefonen</li></ul>]]></string>
     <string name="third_party_data_sharing_notes3"><![CDATA[<b>Disse tredjepartstjenester har enorm verdi for oss</b> i å vedlikeholde stabiliteten og brukbarheten av iNaturalist med vår relativ liten stab. På mobile enheter finnes det nesten ingen andre måte å ha innsikt i problemene som forekommer, siden programvaren kjører på enheter vi ikke har kontroll over. Noen ganger er vi ikke engang bevisste på slike problemer før vi ser de i dataene disse tjenester gir oss. <b>Ved å dele denne informasjonen, hjelper du oss i å betjene deg og hele iNaturalist-fellesskapet.</b>]]></string>
     <string name="third_party_data_sharing_notes4"><![CDATA[Merk at dette valget kun gjelder analyser og kræsj-data som vi eksplisitt sender til disse bedrifter. Alle servere til iNaturalist leveres og hostes av Microsoft, alle bilder på iNaturalist hostes av Amazon, og nesten alle kart på iNaturalist leveres av Google, noe som betyr at du kobler deg opp mot tjenester av disse bedrifter hver gang du ser på en observasjon, og dermed i hvert fall avslører din IP-adresse til de (på iPhone bruker vi kart fra Apple). iNaturalist ville nok ikke finnes uten tjenestene disse bedrifter tilbyr, og mens vi kan begrense hvor mye og hvilke typer data du deler med de mens du bruker iNaturalist, kan vi ikke stoppe dataflyten helt.]]></string>
-    <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
-    <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
-    <string name="search_places">Search Places</string>
+    <string name="common_names_place"><![CDATA[Sted for populærnavn: <b>%1$s</b>]]></string>
+    <string name="tap_to_prioritize_common_names">Trykk for å prioritere vanlige navn fra et bestemt sted.</string>
+    <string name="search_places">Søk steder</string>
     <string name="restart_app">Start app på nytt</string>
-    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
+    <string name="disable_third_party_sharing_restart">For å deaktivere tredjepartsdeling umiddelbart må appen starte på nytt.</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
         <item quantity="one">Er du sikker på at du vil slette denne (%1$d) observasjonen?</item>
         <item quantity="other">Er du sikker på at du vil slette disse %1$d observasjoner?</item>
     </plurals>
-    <string name="future_observed_on_date_error">Your observation was created (and submitted) on %1$s, but you\'re trying to set an observation date that is later than that: %2$s</string>
-    <string name="no_more_photos_allowed">Observations can only have %1$d photos. To add more you will need to remove some.</string>
-    <string name="warning_multiple_photos">If you\'re adding photos of different kinds of organisms to this observation, or the same kind at different places or times, you should remove those photos and add them as separate observations. An observation can only have %1$d photos.</string>
-    <string name="choosing_specific_language_warning">Choosing a specific language for your account requires an Internet connection</string>
-    <string name="running_in_background_notfication">Running in the background so we can run without interruption</string>
-    <string name="opt_out_of_community_taxon">Opt out of the Community Taxon</string>
-    <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
-    <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
+    <string name="future_observed_on_date_error">Din observasjon ble opprettet (og sendt) på %1$s, men du prøver å sette en observasjonsdato som er senere enn den: %2$s</string>
+    <string name="no_more_photos_allowed">Observasjoner kan bare ha %1$d bilder. For å legge til flere, må du fjerne noen.</string>
+    <string name="warning_multiple_photos">Hvis du driver og legger til bilder av forskjellige slags organismer til denne observasjonen, eller av samme art på forskjellige steder eller tidspunkter, bør du fjerne bildene og legge dem til som separate observasjoner. En observasjon kan bare ha %1$d bilder.</string>
+    <string name="choosing_specific_language_warning">Å velge et spesifikt språk for kontoen din krever en Internett-tilkobling</string>
+    <string name="running_in_background_notfication">Kjører i bakgrunnen slik at vi kan kjøre uten avbrudd</string>
+    <string name="opt_out_of_community_taxon">Velg bort Samfunnstaksonet</string>
+    <string name="opt_in_to_community_taxon">Velg Samfunnstaksonet</string>
+    <string name="opt_out_message">Hvis du velger bort Samfunnstaksonet, vil denne observasjonen bli knyttet til taksonet fra din nåværende identifikasjon, ikke et takson som er avledet fra alle identifikasjonene som er lagt til denne observasjonen. Hvis nok identifikatorer er uenige med deg, vil observasjonen din bli Uformell. Du bør bare velge bort hvis du er sikker på at identifikasjonen din er riktig og andre identifikasjoner er feil.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
-    <string name="permission_required">Permission Required</string>
+    <string name="permission_required">Tillatelse påkrevd</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
-    <string name="to_access_your_location">To access your location you must grant location access permission to this app.</string>
+    <string name="to_access_your_location">For å få tilgang til posisjonen din, må du gi denne appen tillatelse til å hente stedsinformasjon.</string>
     <!-- Dialog title when displaying a message that an action is not permitted -->
-    <string name="forbidden">Forbidden</string>
+    <string name="forbidden">Forbudt</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
-    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
+    <string name="app_you_shared_blocked">Appen du delte fra lager bilder som ikke er egnet for observasjoner fordi de ikke representerer bevis på din opplevelse med en annen organisme, fordi de inkluderer upassende merkevarebygging eller kommersielt innhold, eller fordi de bryter bruksvilkårene våre på andre måter.</string>
+    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
 </resources>
