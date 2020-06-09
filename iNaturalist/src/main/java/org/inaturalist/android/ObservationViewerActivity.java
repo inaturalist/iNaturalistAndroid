@@ -2514,7 +2514,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         }
 
         try {
-            mAnnotationsList.setAdapter(new AnnotationsAdapter(this, this, new JSONObject(mTaxonJson), mAttributes.getJSONArray(), obsAnnotations));
+            mAnnotationsList.setAdapter(new AnnotationsAdapter(this, this, mObservation.toJSONObject(), new JSONObject(mTaxonJson), mAttributes.getJSONArray(), obsAnnotations));
         } catch (JSONException e) {
             Logger.tag(TAG).error(e);
         }

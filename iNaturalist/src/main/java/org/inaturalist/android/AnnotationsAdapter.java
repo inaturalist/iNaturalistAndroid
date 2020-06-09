@@ -40,6 +40,7 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
     private final INaturalistApp mApp;
     private final OnAnnotationActions mOnAnnonationsActions;
     private final ActivityHelper mHelper;
+    private final JSONObject mObservation;
     private Context mContext;
 
     private ArrayList<Pair<JSONObject, JSONObject>> mAttributes;
@@ -110,10 +111,11 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
         return excludeValue;
     }
 
-    public AnnotationsAdapter(Context context, OnAnnotationActions onAnnonationActions, JSONObject taxon, JSONArray attributes, JSONArray observationAnnotations) {
+    public AnnotationsAdapter(Context context, OnAnnotationActions onAnnonationActions, JSONObject observation, JSONObject taxon, JSONArray attributes, JSONArray observationAnnotations) {
         super(context, android.R.layout.simple_list_item_1);
 
         mContext = context;
+        mObservation = observation;
         mOnAnnonationsActions = onAnnonationActions;
         mApp = (INaturalistApp) mContext.getApplicationContext();
         mHelper = new ActivityHelper(mContext);
@@ -237,7 +239,6 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
         Pair<JSONObject, JSONObject> pair = mAttributes.get(position);
         final JSONObject attribute = pair.first;
         JSONObject annotationValue = pair.second;
-
 
         try {
             TextView attributeName = (TextView) view.findViewById(R.id.attribute_name);
@@ -367,7 +368,18 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
 
                 String userLogin = user.getString("login").toLowerCase();
 
-                deleteValue.setVisibility(View.VISIBLE);
+
+                deleteValue.setVisibility(View.GONE);
+
+                // Allow the user to delete the annotation value only if -
+                // A) This is the current user's annotation
+                // B) This is the current user's observation
+                if (mApp.loggedIn()) {
+                    String loggedInUser = mApp.currentUserLogin().toLowerCase();
+                    if (loggedInUser.equals(userLogin) || loggedInUser.equals(mObservation.optString("user_login"))) {
+                        deleteValue.setVisibility(View.VISIBLE);
+                    }
+                }
 
                 String translatedValue = getAnnotationTranslatedValue(mApp, annotationValue.getJSONObject("controlled_value").getString("label"), true) ;
                 attributeValue.setText(translatedValue);
