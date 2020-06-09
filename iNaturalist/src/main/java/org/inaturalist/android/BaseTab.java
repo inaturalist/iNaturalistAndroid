@@ -114,7 +114,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
             mEmptyListLabel.setVisibility(View.VISIBLE);
             mProjectList.setVisibility(View.GONE);
 
-            if (!isNetworkAvailable()) {
+            if (!mApp.isNetworkAvailable()) {
             	// No projects due to no Internet connection
             	mEmptyListLabel.setText(getNoInternetText());
             } else if (requiresLocation() && (!mApp.isLocationPermissionGranted() || !mApp.isLocationEnabled(this))) {
@@ -133,12 +133,6 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
             mSearchText.setEnabled(false);
         }       
     }
-
-    private boolean isNetworkAvailable() {
-    	ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-    	NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-    	return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-    } 
 
     private static final String TAG = "INAT";
 
