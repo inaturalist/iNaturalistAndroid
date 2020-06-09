@@ -2376,7 +2376,20 @@ public class ObservationEditor extends AppCompatActivity {
                         Uri photoUri = replacedPhoto.first;
 
                         // Delete old photo
-                        deletePhoto(index, false);
+                        Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                                ObservationPhoto.PROJECTION,
+                                "(_observation_id=?) and ((is_deleted = 0) OR (is_deleted IS NULL)) and (position = ?)",
+                                new String[]{mObservation._id.toString(), String.valueOf(index)},
+                                ObservationPhoto.DEFAULT_SORT_ORDER);
+                        ObservationPhoto op = new ObservationPhoto(c);
+                        c.close();
+                        mPhotosRemoved.add(op);
+
+                        // Mark photo as deleted
+                        ContentValues cv = new ContentValues();
+                        cv.put(ObservationPhoto.IS_DELETED, 1);
+                        Logger.tag(TAG).debug(String.format("Marking photo for deletion: %s", op.toString()));
+                        getContentResolver().update(op.getUri(), cv, null, null);
 
                         // Add new photo instead
                         Uri createdUri = createObservationPhotoForPhoto(photoUri, index, false);
