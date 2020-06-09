@@ -34,6 +34,7 @@ public class IdentificationActivity extends AppCompatActivity {
     public static final String OBSERVED_ON = "observed_on";
     public static final String OBSERVATION_ID = "observation_id";
     public static final String OBSERVATION_ID_INTERNAL = "observation_id_internal";
+    public static final String OBSERVATION_UUID = "observation_uuid";
     public static final String OBSERVATION = "observation";
     public static final String FROM_SUGGESTION = "from_suggestion";
 
@@ -53,6 +54,7 @@ public class IdentificationActivity extends AppCompatActivity {
     @State public Timestamp mObservedOn;
     @State public int mObsId;
     @State public int mObsIdInternal;
+    @State public String mObsUUID;
 
     private INaturalistApp mApp;
     @State public String mObservationJson;
@@ -91,6 +93,7 @@ public class IdentificationActivity extends AppCompatActivity {
             mObservedOn = (Timestamp) intent.getSerializableExtra(OBSERVED_ON);
             mObsId = intent.getIntExtra(OBSERVATION_ID, 0);
             mObsIdInternal = intent.getIntExtra(OBSERVATION_ID_INTERNAL, -1);
+            mObsUUID = intent.getStringExtra(OBSERVATION_UUID);
             mObservationJson = intent.getStringExtra(OBSERVATION);
         }
 
@@ -154,6 +157,7 @@ public class IdentificationActivity extends AppCompatActivity {
             intent.putExtra(TaxonSearchActivity.OBSERVATION_ID, mObsId);
             intent.putExtra(TaxonSearchActivity.OBSERVATION_ID_INTERNAL, mObsIdInternal);
             intent.putExtra(TaxonSearchActivity.OBSERVATION_JSON, mObservationJson);
+            intent.putExtra(TaxonSearchActivity.OBSERVATION_UUID, mObsUUID);
             startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
         } else {
             Intent intent = new Intent(IdentificationActivity.this, TaxonSuggestionsActivity.class);
@@ -163,6 +167,7 @@ public class IdentificationActivity extends AppCompatActivity {
             intent.putExtra(TaxonSuggestionsActivity.LATITUDE, mLatitude);
             intent.putExtra(TaxonSuggestionsActivity.OBSERVED_ON, mObservedOn);
             intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_ID, mObsId);
+            intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_UUID, mObsUUID);
             if (mObsIdInternal == -1) {
                 intent.putExtra(TaxonSuggestionsActivity.OBSERVATION, mObservationJson);
             } else {

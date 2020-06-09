@@ -1451,11 +1451,13 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                 // Delete any observation photos taken with it
                 int count1 = getContentResolver().delete(ObservationPhoto.CONTENT_URI, "_observation_id=?", new String[]{observation._id.toString()});
+                int count2 = getContentResolver().delete(ObservationPhoto.CONTENT_URI, "observation_uuid=?", new String[]{observation.uuid});
 
                 // Delete any observation sounds taken with it
-                int count2 = getContentResolver().delete(ObservationSound.CONTENT_URI, "_observation_id=?", new String[]{observation._id.toString()});
+                int count3 = getContentResolver().delete(ObservationSound.CONTENT_URI, "_observation_id=?", new String[]{observation._id.toString()});
+                int count4 = getContentResolver().delete(ObservationSound.CONTENT_URI, "observation_uuid=?", new String[]{observation.uuid});
 
-                Logger.tag(TAG).debug("deleteSelectedObservations: " + count1 + ":" + count2);
+                Logger.tag(TAG).debug("deleteSelectedObservations: " + count1 + ":" + count2 + ":" + count3 + ":" + count4);
 
             } else {
                 // Need to remotely delete

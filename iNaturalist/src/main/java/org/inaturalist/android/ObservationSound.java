@@ -23,6 +23,7 @@ public class ObservationSound implements BaseColumns, Serializable {
     public String file_content_type;
     public String subtype;
     public Integer observation_id;
+    public String observation_uuid;
     public Integer _observation_id;
     public Boolean is_deleted;
 
@@ -37,6 +38,7 @@ public class ObservationSound implements BaseColumns, Serializable {
 
     public static final String _OBSERVATION_ID = "_observation_id";
     public static final String OBSERVATION_ID = "observation_id";
+    public static final String OBSERVATION_UUID = "observation_uuid";
     public static final String SUBTYPE = "subtype";
     public static final String FILE_CONTENT_TYPE = "file_content_type";
     public static final String ATTRIBUTION = "attribution";
@@ -51,6 +53,7 @@ public class ObservationSound implements BaseColumns, Serializable {
         ObservationSound._ID,
         ObservationSound.ID,
         ObservationSound.OBSERVATION_ID,
+        ObservationSound.OBSERVATION_UUID,
         ObservationSound._OBSERVATION_ID,
         ObservationSound.SUBTYPE,
         ObservationSound.FILE_CONTENT_TYPE,
@@ -67,6 +70,7 @@ public class ObservationSound implements BaseColumns, Serializable {
         PROJECTION_MAP.put(ObservationSound.ID, ObservationSound.ID);
         PROJECTION_MAP.put(ObservationSound._OBSERVATION_ID, ObservationSound._OBSERVATION_ID);
         PROJECTION_MAP.put(ObservationSound.OBSERVATION_ID, ObservationSound.OBSERVATION_ID);
+        PROJECTION_MAP.put(ObservationSound.OBSERVATION_UUID, ObservationSound.OBSERVATION_UUID);
         PROJECTION_MAP.put(ObservationSound.SUBTYPE, ObservationSound.SUBTYPE);
         PROJECTION_MAP.put(ObservationSound.FILE_CONTENT_TYPE, ObservationSound.FILE_CONTENT_TYPE);
         PROJECTION_MAP.put(ObservationSound.ATTRIBUTION, ObservationSound.ATTRIBUTION);
@@ -76,7 +80,7 @@ public class ObservationSound implements BaseColumns, Serializable {
     }
 
     public String toString() {
-        return String.format("ObservationSound (%d / %d): %d/%d - %s / %s", _id, id != null ? id : -1, observation_id != null ? observation_id : -1, _observation_id != null ? _observation_id : -1, filename, file_url);
+        return String.format("ObservationSound (%d / %d): %d/%d - %s - %s / %s", _id, id != null ? id : -1, observation_id != null ? observation_id : -1, _observation_id != null ? _observation_id : -1, observation_uuid, filename, file_url);
     }
 
     public ObservationSound() {}
@@ -89,6 +93,7 @@ public class ObservationSound implements BaseColumns, Serializable {
         this._observation_id = bc.getInteger(_OBSERVATION_ID);
         this.id = bc.getInteger(ID);
         this.observation_id = bc.getInteger(OBSERVATION_ID);
+        this.observation_uuid = bc.getString(OBSERVATION_UUID);
         this.subtype = bc.getString(SUBTYPE);
         this.file_content_type = bc.getString(FILE_CONTENT_TYPE);
         this.attribution = bc.getString(ATTRIBUTION);
@@ -124,6 +129,7 @@ public class ObservationSound implements BaseColumns, Serializable {
                 + "id INTEGER,"
                 + "_observation_id INTEGER,"
                 + "observation_id INTEGER,"
+                + "observation_uuid TEXT,"
                 + "subtype TEXT,"
                 + "file_content_type TEXT,"
                 + "attribution TEXT,"
@@ -137,6 +143,7 @@ public class ObservationSound implements BaseColumns, Serializable {
         ContentValues cv = new ContentValues();
         cv.put(ID, id);
         cv.put(OBSERVATION_ID, observation_id);
+        cv.put(OBSERVATION_UUID, observation_uuid);
         cv.put(_OBSERVATION_ID, _observation_id);
         cv.put(SUBTYPE, subtype);
         cv.put(FILE_CONTENT_TYPE, file_content_type);

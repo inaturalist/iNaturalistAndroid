@@ -804,6 +804,7 @@ public class ObservationEditor extends AppCompatActivity {
                     intent.putExtra(TaxonSearchActivity.OBSERVATION_ID, mObservation.id);
                     intent.putExtra(TaxonSearchActivity.OBSERVATION_ID_INTERNAL, mObservation._id);
                     intent.putExtra(TaxonSearchActivity.OBSERVATION_JSON, mObservation.toJSONObject().toString());
+                    intent.putExtra(TaxonSearchActivity.OBSERVATION_UUID, mObservation.uuid);
                     startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
                 } else {
                     // At least one photo - show taxon suggestions screen
@@ -820,6 +821,7 @@ public class ObservationEditor extends AppCompatActivity {
                     intent.putExtra(TaxonSuggestionsActivity.OBSERVED_ON, mObservation.observed_on);
                     intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_ID, mObservation.id);
                     intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_ID_INTERNAL, mObservation._id);
+                    intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_UUID, mObservation.uuid);
                     intent.putExtra(TaxonSuggestionsActivity.OBSERVATION, mObservation.toJSONObject().toString());
                     startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
                 }
@@ -1306,9 +1308,6 @@ public class ObservationEditor extends AppCompatActivity {
             finish();
             return false;
         }
-
-        // Restore the old observation (since uiToObservation has overwritten it)
-        mObservation = observationCopy;
 
         // Display a confirmation dialog
         confirm(ObservationEditor.this, R.string.edit_observation, R.string.discard_changes,
@@ -1835,10 +1834,12 @@ public class ObservationEditor extends AppCompatActivity {
                 if (mImageCursor != null && mImageCursor.getCount() > 0) {
                     // Delete any observation photos taken with it
                     getContentResolver().delete(ObservationPhoto.CONTENT_URI, "_observation_id=?", new String[]{mObservation._id.toString()});
+                    getContentResolver().delete(ObservationPhoto.CONTENT_URI, "observation_uuid=\"?\"", new String[]{mObservation.uuid});
                 }
                 if (mSoundCursor != null && mSoundCursor.getCount() > 0) {
                     // Delete any observation sounds taken with it
                     getContentResolver().delete(ObservationSound.CONTENT_URI, "_observation_id=?", new String[]{mObservation._id.toString()});
+                    getContentResolver().delete(ObservationSound.CONTENT_URI, "observation_uuid=\"?\"", new String[]{mObservation.uuid});
                 }
             } catch (NullPointerException e) {
                 Logger.tag(TAG).error("Failed to delete observation: " + e);
@@ -3063,6 +3064,7 @@ public class ObservationEditor extends AppCompatActivity {
         cv.put(ObservationSound._OBSERVATION_ID, mObservation._id);
         cv.put(ObservationSound.OBSERVATION_ID, mObservation.id);
         cv.put(ObservationSound.FILENAME, destFile.getAbsolutePath());
+        cv.put(ObservationSound.OBSERVATION_UUID, mObservation.uuid);
 
         return getContentResolver().insert(ObservationSound.CONTENT_URI, cv);
     }
@@ -3106,6 +3108,7 @@ public class ObservationEditor extends AppCompatActivity {
         cv.put(ObservationPhoto.PHOTO_FILENAME, resizedPhoto);
         cv.put(ObservationPhoto.ORIGINAL_PHOTO_FILENAME, isDuplicated ? null : path);
         cv.put(ObservationPhoto.POSITION, position);
+        cv.put(ObservationPhoto.OBSERVATION_UUID, mObservation.uuid);
 
         return getContentResolver().insert(ObservationPhoto.CONTENT_URI, cv);
     }
@@ -3549,29 +3552,16 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     protected void updateImagesAndSounds() {
-    	if (mObservation.id != null) {
-    		mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
-    				ObservationPhoto.PROJECTION, 
-    				"(_observation_id=? or observation_id=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
-    				new String[]{mObservation._id.toString(), mObservation.id.toString()},
-                    ObservationPhoto.DEFAULT_SORT_ORDER);
-     		mSoundCursor = getContentResolver().query(ObservationSound.CONTENT_URI,
-    				ObservationSound.PROJECTION,
-    				"(_observation_id=? or observation_id=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
-    				new String[]{mObservation._id.toString(), mObservation.id.toString()},
-    				ObservationSound.DEFAULT_SORT_ORDER);
-    	} else {
-     		mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
-    				ObservationPhoto.PROJECTION, 
-    				"_observation_id=? and ((is_deleted = 0) OR (is_deleted IS NULL))",
-    				new String[]{mObservation._id.toString()}, 
-    				ObservationPhoto.DEFAULT_SORT_ORDER);
-            mSoundCursor = getContentResolver().query(ObservationSound.CONTENT_URI,
-                    ObservationSound.PROJECTION,
-                    "_observation_id=? and ((is_deleted = 0) OR (is_deleted IS NULL))",
-                    new String[]{mObservation._id.toString()},
-                    ObservationSound.DEFAULT_SORT_ORDER);
-    	}
+        mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                ObservationPhoto.PROJECTION,
+                "(observation_uuid=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
+                new String[]{mObservation.uuid},
+                ObservationPhoto.DEFAULT_SORT_ORDER);
+        mSoundCursor = getContentResolver().query(ObservationSound.CONTENT_URI,
+                ObservationSound.PROJECTION,
+                "(observation_uuid=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
+                new String[]{mObservation.uuid},
+                ObservationSound.DEFAULT_SORT_ORDER);
         mImageCursor.moveToFirst();
     	mSoundCursor.moveToFirst();
         mGallery.setAdapter(new GalleryCursorAdapter(this, mImageCursor, mSoundCursor));
@@ -3830,6 +3820,7 @@ public class ObservationEditor extends AppCompatActivity {
                     intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID_INTERNAL, mObservation._id);
                     intent.putExtra(ObservationPhotosViewer.IS_NEW_OBSERVATION, true);
                     intent.putExtra(ObservationPhotosViewer.CURRENT_PHOTO_INDEX, position);
+                    intent.putExtra(ObservationPhotosViewer.OBSERVATION_UUID, mObservation.uuid);
                     startActivityForResult(intent, OBSERVATION_PHOTOS_REQUEST_CODE);
 
                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_VIEW_HIRES_PHOTO);

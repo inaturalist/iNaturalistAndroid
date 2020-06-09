@@ -25,6 +25,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
     public Timestamp created_at;
     public Integer id;
     public Integer observation_id;
+    public String observation_uuid;
     public Integer photo_id;
     public Integer position;
     public Timestamp updated_at;
@@ -65,6 +66,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
     public static final String _UPDATED_AT = "_updated_at";
     public static final String CREATED_AT = "created_at";
     public static final String UUID = "uuid";
+    public static final String OBSERVATION_UUID = "observation_uuid";
     public static final String PHOTO_URL = "photo_url";
     public static final String PHOTO_FILENAME = "photo_filename";
     public static final String ID = "id";
@@ -85,6 +87,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         ObservationPhoto._UPDATED_AT,
         ObservationPhoto.CREATED_AT,
         ObservationPhoto.UUID,
+        ObservationPhoto.OBSERVATION_UUID,
         ObservationPhoto.ID,
         ObservationPhoto.OBSERVATION_ID,
         ObservationPhoto.PHOTO_ID,
@@ -106,6 +109,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         PROJECTION_MAP.put(ObservationPhoto._UPDATED_AT, ObservationPhoto._UPDATED_AT);
         PROJECTION_MAP.put(ObservationPhoto.CREATED_AT, ObservationPhoto.CREATED_AT);
         PROJECTION_MAP.put(ObservationPhoto.UUID, ObservationPhoto.UUID);
+        PROJECTION_MAP.put(ObservationPhoto.OBSERVATION_UUID, ObservationPhoto.OBSERVATION_UUID);
         PROJECTION_MAP.put(ObservationPhoto.ID, ObservationPhoto.ID);
         PROJECTION_MAP.put(ObservationPhoto.OBSERVATION_ID, ObservationPhoto.OBSERVATION_ID);
         PROJECTION_MAP.put(ObservationPhoto.PHOTO_ID, ObservationPhoto.PHOTO_ID);
@@ -136,6 +140,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         this.created_at = bc.getTimestamp(CREATED_AT);
         this.created_at_was = this.created_at;
         this.uuid = bc.getString(UUID);
+        this.observation_uuid = bc.getString(OBSERVATION_UUID);
         this.id = bc.getInteger(ID);
         this.id_was = this.id;
         this.observation_id = bc.getInteger(OBSERVATION_ID);
@@ -221,7 +226,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
 
     @Override
     public String toString() {
-        return "ObservationPhoto(id: " + id + ", _id: " + _id + ", photo_url: " + photo_url + ", photo_filename: " + photo_filename + ", photo_id: " + photo_id + ", uuid: " + uuid + ", obs_id: " + observation_id + ", _obs_id: " + _observation_id + ")";
+        return "ObservationPhoto(id: " + id + ", _id: " + _id + ", photo_url: " + photo_url + ", photo_filename: " + photo_filename + ", photo_id: " + photo_id + ", uuid: " + uuid + ", obs_id: " + observation_id + ", _obs_id: " + _observation_id + "; obs_uuid: " + observation_uuid + ")";
     }
 
     public JSONObject toJSONObject() {
@@ -288,6 +293,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         cv.put(IS_DELETED, is_deleted);
         if (updated_at != null) { cv.put(UPDATED_AT, updated_at.getTime()); }
         if (uuid != null) { cv.put(UUID, uuid); }
+        if (observation_uuid != null) { cv.put(OBSERVATION_UUID, observation_uuid); }
 
         return cv;
     }
@@ -312,6 +318,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
                 + "_updated_at INTEGER,"
                 + "created_at INTEGER,"
                 + "uuid TEXT,"
+                + "observation_uuid TEXT,"
                 + "id INTEGER,"
                 + "observation_id INTEGER,"
                 + "photo_id INTEGER,"

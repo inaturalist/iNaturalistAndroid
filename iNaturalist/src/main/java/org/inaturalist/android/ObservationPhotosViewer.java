@@ -69,6 +69,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
     public static final String OBSERVATION = "observation";
     public static final String OBSERVATION_ID = "observation_id";
     public static final String OBSERVATION_ID_INTERNAL = "observation_id_internal";
+    public static final String OBSERVATION_UUID = "observation_uuid";
     public static final String CURRENT_PHOTO_INDEX = "current_photo_index";
     public static final String READ_ONLY = "read_only";
     public static final String IS_TAXON = "is_taxon";
@@ -87,6 +88,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
     private View mActionContainer;
     @State public boolean mReadOnly;
     @State public int mObservationIdInternal;
+    @State public String mObservationUUID;
     @State public boolean mIsTaxon;
     @State(AndroidStateBundlers.ListPairBundler.class) public List<Pair<Uri, Long>> mReplacedPhotos = new ArrayList<>();
 
@@ -121,6 +123,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                 } else {
                     mObservationId = intent.getIntExtra(OBSERVATION_ID, 0);
                     mObservationIdInternal = intent.getIntExtra(OBSERVATION_ID_INTERNAL, 0);
+                    mObservationUUID = intent.getStringExtra(OBSERVATION_UUID);
                 }
 
                 mReadOnly = intent.getBooleanExtra(READ_ONLY, false);
@@ -150,7 +153,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
             mDuplicatePhoto.setVisibility(View.GONE);
             mDeletePhoto.setVisibility(View.GONE);
 		} else if (mIsNewObservation) {
-		    IdPicsPagerAdapter adapter = new IdPicsPagerAdapter(this, mViewPager, mObservationId, mObservationIdInternal);
+		    IdPicsPagerAdapter adapter = new IdPicsPagerAdapter(this, mViewPager, mObservationId, mObservationIdInternal, mObservationUUID);
             mViewPager.setAdapter(adapter);
             if (mReplacedPhotos.size() > 0) {
                 // Update with any modified/cropped photos
@@ -338,9 +341,10 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
         private Integer mObservationId = null;
         private Integer mInternalObservationId = null;
+        private String mObservationUUID = null;
 
-        public IdPicsPagerAdapter(Activity activity, ViewPager viewPager, int observationId, int _observationId, OnClickListener listener) {
-            this(activity, viewPager, observationId, _observationId);
+        public IdPicsPagerAdapter(Activity activity, ViewPager viewPager, int observationId, int _observationId, String uuid, OnClickListener listener) {
+            this(activity, viewPager, observationId, _observationId, uuid);
             mClickListener = listener;
         }
 
@@ -349,7 +353,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
         }
 
         // Load offline photos for a new observation
-        public IdPicsPagerAdapter(Activity activity, ViewPager viewPager, int observationId, int _observationId) {
+        public IdPicsPagerAdapter(Activity activity, ViewPager viewPager, int observationId, int _observationId, String uuid) {
             mActivity = activity;
             mViewPager = viewPager;
             mImages = new ArrayList<String>();
@@ -359,11 +363,12 @@ public class ObservationPhotosViewer extends AppCompatActivity {
             mImageThumbnails = new ArrayList<String>();
             mObservationId = observationId;
             mInternalObservationId = _observationId;
+            mObservationUUID = uuid;
 
             Cursor imageCursor = activity.getContentResolver().query(ObservationPhoto.CONTENT_URI,
                     ObservationPhoto.PROJECTION,
-                    "(_observation_id=? OR observation_id=?) AND ((is_deleted = 0) OR (is_deleted IS NULL))",
-                    new String[]{String.valueOf(_observationId), String.valueOf(observationId)},
+                    "(observation_uuid=?) AND ((is_deleted = 0) OR (is_deleted IS NULL))",
+                    new String[]{mObservationUUID},
                     ObservationPhoto.DEFAULT_SORT_ORDER);
 
             imageCursor.moveToFirst();

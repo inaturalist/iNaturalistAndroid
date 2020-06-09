@@ -300,9 +300,13 @@ public class INaturalistApp extends MultiDexApplication {
         Intent serviceIntent = new Intent(INaturalistService.ACTION_CLEAR_OLD_PHOTOS_CACHE, null, this, INaturalistService.class);
         ContextCompat.startForegroundService(this, serviceIntent);
 
-        // Get latest joined projects
-        Intent serviceIntent2 = new Intent(INaturalistService.ACTION_SYNC_JOINED_PROJECTS, null, this, INaturalistService.class);
+        // Add observation UUIDs to photos/sounds that are missing it
+        Intent serviceIntent2 = new Intent(INaturalistService.ACTION_ADD_MISSING_OBS_UUID, null, this, INaturalistService.class);
         ContextCompat.startForegroundService(this, serviceIntent2);
+
+        // Get latest joined projects
+        Intent serviceIntent3 = new Intent(INaturalistService.ACTION_SYNC_JOINED_PROJECTS, null, this, INaturalistService.class);
+        ContextCompat.startForegroundService(this, serviceIntent3);
     }
 
     private long listFilesRecursively(File root) {
