@@ -46,7 +46,6 @@
     <string name="no_observations_yet">No observations yet!</string>
     <string name="or">or</string>
     <string name="signed_out">Sign out</string>
-    <string name="view">View</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="unknown">Unknown</string>
@@ -83,8 +82,6 @@
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">Agree?</string>
     <string name="no_comments">No comments/identifications yet</string>
-    <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
-    <string name="you">you</string>
     <string name="add_comment">Add comment</string>
     <string name="add_id">Add identification</string>
     <string name="remarks">Remarks...</string>
