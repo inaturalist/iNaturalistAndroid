@@ -21,6 +21,7 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.Predicate;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,7 +46,7 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
 
     private ArrayList<Pair<JSONObject, JSONObject>> mAttributes;
     private ArrayList<Boolean> mIsAttributeExpanded;
-    private HashMap<Integer, Set<String>> mAttributeValuesAdded;
+    private HashMap<Integer, Set<JSONObject>> mAttributeValuesAdded;
     private JSONObject mTaxon;
 
     public interface OnAnnotationActions {
@@ -169,12 +170,11 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
                         mAttributes.add(new Pair<>(attributes.getJSONObject(c), observationAnnotations.getJSONObject(i)));
 
                         if (!mAttributeValuesAdded.containsKey(currentAttributeValueId)) {
-                            mAttributeValuesAdded.put(currentAttributeValueId, new HashSet<String>());
+                            mAttributeValuesAdded.put(currentAttributeValueId, new HashSet<JSONObject>());
                         }
-                        Set<String> values = mAttributeValuesAdded.get(currentAttributeValueId);
+                        Set<JSONObject> values = mAttributeValuesAdded.get(currentAttributeValueId);
 
-                        String translatedValue = getAnnotationTranslatedValue(mApp, observationAnnotations.getJSONObject(i).getJSONObject("controlled_value").getString("label"), true);
-                        values.add(translatedValue);
+                        values.add(observationAnnotations.getJSONObject(i).getJSONObject("controlled_value"));
 
                         break;
                     }
@@ -191,11 +191,27 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
                     if (!mAttributeValuesAdded.containsKey(attributes.getJSONObject(i).getInt("id"))) {
                         mAttributes.add(new Pair<>(attributes.getJSONObject(i), (JSONObject) null));
                     } else if (attributes.getJSONObject(i).getBoolean("multivalued")) {
-                        int possibleValues = attributes.getJSONObject(i).getJSONArray("values").length();
-                        if (mAttributeValuesAdded.get(attributes.getJSONObject(i).getInt("id")).size() < possibleValues) {
-                            // Still at least one value left to chosen by users for this multivalued attribute
-                            mAttributes.add(new Pair<>(attributes.getJSONObject(i), (JSONObject) null));
+                        // If blocking value selected - don't allow adding other values
+                        boolean hasBlocking = CollectionUtils.exists(mAttributeValuesAdded.get(attributes.getJSONObject(i).getInt("id")), v -> v.optBoolean("blocking", false));
+
+                        if (!hasBlocking) {
+                            // Don't count blocking values in this possibleValues count
+                            JSONArray possibleValues = attributes.getJSONObject(i).getJSONArray("values");
+                            int valueCount = 0;
+                            for (int c = 0; c < possibleValues.length(); c++) {
+                                JSONObject value = possibleValues.optJSONObject(c);
+                                if (!value.optBoolean("blocking", false)) {
+                                    valueCount++;
+                                }
+                            }
+
+                            if (mAttributeValuesAdded.get(attributes.getJSONObject(i).getInt("id")).size() < valueCount) {
+                                // Still at least one value left to chosen by users for this multivalued attribute
+                                mAttributes.add(new Pair<>(attributes.getJSONObject(i), (JSONObject) null));
+                            }
                         }
+
+
                     }
                 }
             }
@@ -295,14 +311,18 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
 
                 // See what values can we display for the user choose (any values that were *not*
                 // previously chosen by another user for this annotation)
-                Set<String> valuesAddedAlready = mAttributeValuesAdded.get(attribute.getInt("id"));
+                Set<JSONObject> valuesAddedAlready = mAttributeValuesAdded.get(attribute.getInt("id"));
                 if (valuesAddedAlready == null) valuesAddedAlready = new HashSet<>();
                 final ArrayList<String> valuesToDisplay = new ArrayList<>();
                 final ArrayList<Integer> valuesIdsToDisplay = new ArrayList<>();
 
                 for (int i = 0; i < attribute.getJSONArray("values").length(); i++) {
-                    String translatedValue = getAnnotationTranslatedValue(mApp, attribute.getJSONArray("values").getJSONObject(i).getString("label"), true);
-                    if (!valuesAddedAlready.contains(translatedValue)) {
+                    JSONObject value = attribute.getJSONArray("values").getJSONObject(i);
+
+                    if ((value.optBoolean("blocking", false)) && (valuesAddedAlready.size() > 0)) {
+                        // Don't show blocking items, if at least one value was selected already
+                    } else if (!CollectionUtils.exists(valuesAddedAlready, v -> v.optInt("id") == value.optInt("id"))) {
+                        String translatedValue = getAnnotationTranslatedValue(mApp, attribute.getJSONArray("values").getJSONObject(i).getString("label"), true);
                         valuesToDisplay.add(translatedValue);
                         valuesIdsToDisplay.add(attribute.getJSONArray("values").getJSONObject(i).getInt("id"));
                     }

@@ -43,9 +43,9 @@
                     android:src="@drawable/baseline_arrow_drop_down_black_48"
                     android:tint="#C3C3C3" />
 
-                <LinearLayout
-                    android:orientation="horizontal"
+                <RelativeLayout
                     android:layout_toLeftOf="@id/expand"
+                    android:layout_marginLeft="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <ImageView
@@ -54,28 +54,10 @@
                         android:layout_height="24dp"
                         android:layout_gravity="top"
                         android:layout_marginRight="8dp"
+                        android:layout_alignParentLeft="true"
                         android:src="@drawable/usericon" />
 
-                    <TextView
-                        android:id="@+id/attribute_value"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Larva very very long"
-                        android:textSize="15sp"
-                        android:textColor="#808080"
-                        android:layout_gravity="top"
-                        />
-
-                    <ImageView
-                        android:id="@+id/delete_attribute_value"
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
-                        android:layout_gravity="top"
-                        android:layout_marginLeft="5dp"
-                        android:tint="#C3C3C3"
-                        android:src="@drawable/baseline_cancel_black_24" />
-
-                    <TextView
+                   <TextView
                         android:id="@+id/select_attribute_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -83,9 +65,35 @@
                         android:textSize="15sp"
                         android:textColor="@color/inatapptheme_color"
                         android:layout_gravity="top"
+                        android:layout_alignParentRight="true"
+                        android:visibility="gone"
+                       />
+
+                    <ImageView
+                        android:id="@+id/delete_attribute_value"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="top"
+                        android:layout_marginLeft="5dp"
+                        android:layout_alignParentRight="true"
+                        android:tint="#C3C3C3"
+                        android:src="@drawable/baseline_cancel_black_24" />
+
+
+                    <TextView
+                        android:id="@+id/attribute_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Larva very very very very long"
+                        android:textSize="15sp"
+                        android:textColor="#808080"
+                        android:layout_gravity="top"
+                        android:layout_toRightOf="@id/user_pic"
+                        android:layout_toLeftOf="@id/delete_attribute_value"
                         />
 
-                </LinearLayout>
+
+                </RelativeLayout>
             </RelativeLayout>
 
 
