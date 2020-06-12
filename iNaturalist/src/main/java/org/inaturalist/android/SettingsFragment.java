@@ -498,84 +498,11 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
 
     private void signOut() {
-        Logger.tag(TAG).debug("signOut");
-
-        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_LOGOUT);
-
-        INaturalistService.LoginType loginType = INaturalistService.LoginType.valueOf(mPreferences.getString("login_type", INaturalistService.LoginType.OAUTH_PASSWORD.toString()));
-
-        if (loginType == INaturalistService.LoginType.FACEBOOK) {
-            LoginManager.getInstance().logOut();
-        }
-
-        boolean shouldRestart = false;
-
-		mPrefEditor.remove("username");
-		mPrefEditor.remove("credentials");
-		mPrefEditor.remove("password");
-		mPrefEditor.remove("login_type");
-        mPrefEditor.remove("last_sync_time");
-		mPrefEditor.remove("observation_count");
-        mPrefEditor.remove("last_downloaded_id");
-		mPrefEditor.remove("user_icon_url");
-		mPrefEditor.remove("user_bio");
-        mPrefEditor.remove("user_email");
-		mPrefEditor.remove("user_full_name");
-		mPrefEditor.remove("last_user_details_refresh_time");
-        mPrefEditor.remove("jwt_token");
-        mPrefEditor.remove("jwt_token_expiration");
-        mPrefEditor.remove("pref_observation_errors");
-        mPrefEditor.remove("unread_activities");
-        mPrefEditor.remove("prefers_scientific_name_first");
-        mPrefEditor.remove("last_language");
-        String prevLocale = mPreferences.getString("pref_locale", "");
-        mPrefEditor.remove("pref_locale");
-        mPrefEditor.remove("user_place_display_name");
-        mPrefEditor.remove("user_place_id");
-        mPrefEditor.commit();
-
-		shouldRestart = !prevLocale.equals("");
-
-
-        // Delete all locally-cached photo files
-        Cursor c = mApp.getContentResolver().query(ObservationPhoto.CONTENT_URI,
-                ObservationPhoto.PROJECTION,
-                null, null, ObservationPhoto.DEFAULT_SORT_ORDER);
-
-        while (!c.isAfterLast()) {
-            ObservationPhoto op = new ObservationPhoto(c);
-            String photoFilename = op.photo_filename;
-
-            if (photoFilename != null) {
-                File photoFile = new File(photoFilename);
-                if (photoFile.exists()) {
-                    photoFile.delete();
-                }
-            }
-            c.moveToNext();
-        }
-        c.close();
-
-		int count1 = getActivity().getContentResolver().delete(Observation.CONTENT_URI, null, null);
-		int count2 = getActivity().getContentResolver().delete(ObservationPhoto.CONTENT_URI, null, null);
-        int count3 = getActivity().getContentResolver().delete(ProjectObservation.CONTENT_URI, null, null);
-        int count4 = getActivity().getContentResolver().delete(ProjectFieldValue.CONTENT_URI, null, null);
-        int count5 = getActivity().getContentResolver().delete(ObservationSound.CONTENT_URI, null, null);
-
-        Logger.tag(TAG).debug(String.format("Deleted %d / %d / %d / %d / %d", count1, count2, count3, count4, count5));
-
-        File obsPhotoCache = new File(getActivity().getFilesDir(), "observations_photo_info.dat");
-        obsPhotoCache.delete();
+        BaseFragmentActivity.signOut(getActivity());
 
         refreshSettings();
         ((SettingsActivity)getActivity()).refreshUserDetails();
 
         mDeleteAccount.setVisible(false);
-
-        if (shouldRestart) {
-            mApp.applyLocaleSettings();
-            mApp.restart();
-            getActivity().finish();
-        }
     }
 }

@@ -267,6 +267,7 @@ public class INaturalistService extends IntentService {
 
     public static final String USER = "user";
     public static final String AUTHENTICATION_FAILED = "authentication_failed";
+    public static final String USER_DELETED = "user_deleted";
     public static final String IDENTIFICATION_ID = "identification_id";
     public static final String OBSERVATION_ID = "observation_id";
     public static final String GET_PROJECTS = "get_projects";
@@ -1578,18 +1579,26 @@ public class INaturalistService extends IntentService {
             } else if (action.equals(ACTION_GET_USER_DETAILS)) {
                 BetterJSONObject user = null;
                 boolean authenticationFailed = false;
+                boolean isDeleted = false;
 
                 try {
                     user = getUserDetails();
                 } catch (AuthenticationException exc) {
-                    // This means the user has changed his password on the website
                     Logger.tag(TAG).error(exc);
-                    authenticationFailed = true;
+
+                    // See if user was deleted via the website
+                    isDeleted = isUserDeleted(mLogin);
+
+                    if (!isDeleted) {
+                        // This means the user has changed his password on the website
+                        authenticationFailed = true;
+                    }
                 }
 
                 Intent reply = new Intent(ACTION_GET_USER_DETAILS_RESULT);
                 reply.putExtra(USER, user);
                 reply.putExtra(AUTHENTICATION_FAILED, authenticationFailed);
+                reply.putExtra(USER_DELETED, isDeleted);
                 LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
 
             } else if (action.equals(ACTION_TAXA_FOR_GUIDE)) {
@@ -4714,6 +4723,16 @@ public class INaturalistService extends IntentService {
         }
     }
 
+
+    private boolean isUserDeleted(String username) {
+        try {
+            JSONArray result = get(API_HOST + "/users/" + username, false);
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
+        }
+
+        return mLastStatusCode == HttpStatus.SC_NOT_FOUND;
+    }
 
     private BetterJSONObject getUserDetails() throws AuthenticationException {
         String url = HOST + "/users/edit.json";

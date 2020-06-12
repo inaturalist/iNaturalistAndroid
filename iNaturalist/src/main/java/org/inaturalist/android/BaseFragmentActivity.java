@@ -1,9 +1,11 @@
 package org.inaturalist.android;
 
 import com.crashlytics.android.Crashlytics;
+import com.facebook.login.LoginManager;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.graphics.Point;
@@ -44,6 +46,7 @@ import android.widget.Toast;
 
 import org.tinylog.Logger;
 
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.text.DecimalFormat;
 
@@ -643,6 +646,88 @@ public class BaseFragmentActivity extends AppCompatActivity {
         }
     }
 
+    public static void signOut(Context context) {
+        Logger.tag(TAG).debug("signOut");
+
+        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_LOGOUT);
+
+        INaturalistApp app = (INaturalistApp) context.getApplicationContext();
+        SharedPreferences prefs = app.getPrefs();
+        SharedPreferences.Editor prefEditor = prefs.edit();
+        INaturalistService.LoginType loginType = INaturalistService.LoginType.valueOf(prefs.getString("login_type", INaturalistService.LoginType.OAUTH_PASSWORD.toString()));
+
+        if (loginType == INaturalistService.LoginType.FACEBOOK) {
+            LoginManager.getInstance().logOut();
+        }
+
+        boolean shouldRestart = false;
+
+        prefEditor.remove("username");
+        prefEditor.remove("credentials");
+        prefEditor.remove("password");
+        prefEditor.remove("login_type");
+        prefEditor.remove("last_sync_time");
+        prefEditor.remove("observation_count");
+        prefEditor.remove("last_downloaded_id");
+        prefEditor.remove("user_icon_url");
+        prefEditor.remove("user_bio");
+        prefEditor.remove("user_email");
+        prefEditor.remove("user_full_name");
+        prefEditor.remove("last_user_details_refresh_time");
+        prefEditor.remove("jwt_token");
+        prefEditor.remove("jwt_token_expiration");
+        prefEditor.remove("pref_observation_errors");
+        prefEditor.remove("unread_activities");
+        prefEditor.remove("prefers_scientific_name_first");
+        prefEditor.remove("last_language");
+        String prevLocale = prefs.getString("pref_locale", "");
+        prefEditor.remove("pref_locale");
+        prefEditor.remove("user_place_display_name");
+        prefEditor.remove("user_place_id");
+        prefEditor.commit();
+
+        shouldRestart = !prevLocale.equals("");
+
+
+        // Delete all locally-cached photo files
+        Cursor c = app.getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                ObservationPhoto.PROJECTION,
+                null, null, ObservationPhoto.DEFAULT_SORT_ORDER);
+
+        while (!c.isAfterLast()) {
+            ObservationPhoto op = new ObservationPhoto(c);
+            String photoFilename = op.photo_filename;
+
+            if (photoFilename != null) {
+                File photoFile = new File(photoFilename);
+                if (photoFile.exists()) {
+                    photoFile.delete();
+                }
+            }
+            c.moveToNext();
+        }
+        c.close();
+
+        int count1 = context.getContentResolver().delete(Observation.CONTENT_URI, null, null);
+        int count2 = context.getContentResolver().delete(ObservationPhoto.CONTENT_URI, null, null);
+        int count3 = context.getContentResolver().delete(ProjectObservation.CONTENT_URI, null, null);
+        int count4 = context.getContentResolver().delete(ProjectFieldValue.CONTENT_URI, null, null);
+        int count5 = context.getContentResolver().delete(ObservationSound.CONTENT_URI, null, null);
+
+        Logger.tag(TAG).debug(String.format("Deleted %d / %d / %d / %d / %d", count1, count2, count3, count4, count5));
+
+        File obsPhotoCache = new File(context.getFilesDir(), "observations_photo_info.dat");
+        obsPhotoCache.delete();
+
+        if (shouldRestart) {
+            app.applyLocaleSettings();
+            app.restart();
+            if (context instanceof Activity) {
+                ((Activity)context).finish();
+            }
+        }
+    }
+
     private class PlaceDetailsReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -668,13 +753,31 @@ public class BaseFragmentActivity extends AppCompatActivity {
             Logger.tag(TAG).info("Got GET_USER_DETAILS_RESULT");
             BetterJSONObject user = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.USER);
             boolean authenticationFailed = intent.getBooleanExtra(INaturalistService.AUTHENTICATION_FAILED, false);
+            boolean userDeleted = intent.getBooleanExtra(INaturalistService.USER_DELETED, false);
+
+            if (userDeleted) {
+                // User deleted his account via the website - sign out and go back to the sign-in screen
+                Logger.tag(TAG).info("User deleted account via website");
+
+                signOut(BaseFragmentActivity.this);
+
+                Intent intent2 = new Intent(BaseFragmentActivity.this, LoginSignupActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent2.putExtra(LoginSignupActivity.SIGNUP, true);
+                startActivity(intent2);
+
+                return;
+            }
 
             if (authenticationFailed) {
+                Logger.tag(TAG).info("User changed password via website");
+
                 // This means the user has changed his password on the website
                 Intent intent2 = new Intent(BaseFragmentActivity.this, LoginSignupActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent2.putExtra(LoginSignupActivity.SIGNUP, false);
                 intent2.putExtra(LoginSignupActivity.PASSWORD_CHANGED, true);
                 startActivity(intent2);
+
+                return;
             }
 
             if (user == null) {
