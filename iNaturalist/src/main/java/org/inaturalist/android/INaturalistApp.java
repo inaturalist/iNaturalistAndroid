@@ -93,7 +93,7 @@ public class INaturalistApp extends MultiDexApplication {
 
     private static final int PERMISSIONS_REQUEST = 0x1234;
 
-    private static final int DEFAULT_DEBUG_LOG_DAY_COUNT = 3;
+    private static final int DEFAULT_DEBUG_LOG_DAY_COUNT = 5;
 
     private SharedPreferences mPrefs;
 	private boolean mIsSyncing = false;
