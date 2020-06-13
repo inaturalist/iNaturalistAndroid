@@ -17,7 +17,6 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -108,11 +107,13 @@ import android.provider.MediaStore;
 import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import android.util.Log;
 import android.widget.Toast;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class INaturalistService extends IntentService {
     // How many observations should we initially download for the user
@@ -531,6 +532,8 @@ public class INaturalistService extends IntentService {
 
     private boolean mIsSyncing;
     private boolean mIsClearingOldPhotosCache;
+
+    private long mLastConnectionTest = 0;
 
     private Handler mHandler;
 
@@ -6203,8 +6206,50 @@ public class INaturalistService extends IntentService {
         } catch (IOException e) {
             Logger.tag(TAG).error("Error for URL " + url + ":" + e);
             Logger.tag(TAG).error(e);
+
+            // Test out the Internet connection in multiple ways (helps pin-pointing issue)
+            performConnectivityTest();
         }
         return null;
+    }
+
+    private void performConnectivityTest() {
+        long currentTime = System.currentTimeMillis();
+
+        // Perform connectivity test once every 5 minutes at most
+        if (currentTime - mLastConnectionTest < 5 * 60 * 1000) {
+            return;
+        }
+
+        mLastConnectionTest = currentTime;
+
+        Logger.tag(TAG).info("Performing connectivity test");
+
+        contactUrl("https://api.inaturalist.org/v1/taxa/1");
+        contactUrl("http://api.inaturalist.org/v1/taxa/1");
+        contactUrl("https://www.inaturalist.org/taxa/1.json");
+        contactUrl("http://www.inaturalist.org/taxa/1.json");
+        contactUrl("https://www.naturalista.mx/taxa/1.json");
+        contactUrl("http://www.naturalista.mx/taxa/1.json");
+        contactUrl("https://www.google.com");
+        contactUrl("http://www.example.com");
+    }
+
+    private void contactUrl(String url) {
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+
+        try {
+            Logger.tag(TAG).info("Contacting " + url);
+            Response response = client.newCall(request).execute();
+            Logger.tag(TAG).info("isSuccessful: " + response.isSuccessful() + "; response code = " + response.code());
+            response.close();
+        } catch (IOException e) {
+            Logger.tag(TAG).error("Failed contacting " + url);
+            Logger.tag(TAG).error(e);
+        }
     }
 
     private boolean ensureCredentials() throws AuthenticationException {
