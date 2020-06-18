@@ -621,7 +621,8 @@
                 android:paddingEnd="16dp"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
-                android:layout_height="60dp">
+                android:minHeight="60dp"
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/is_captive_icon"
@@ -646,6 +647,8 @@
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/is_captive_icon"
                     android:layout_toEndOf="@id/is_captive_icon"
+                    android:layout_toLeftOf="@id/is_captive_checkbox"
+                    android:layout_toStartOf="@id/is_captive_checkbox"
                     android:textColor="#000000"
                     />
 
@@ -654,9 +657,9 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:paddingLeft="40dp"
-                    android:paddingStart="40dp"
-                    android:layout_width="60dp"
+                    android:paddingLeft="5dp"
+                    android:paddingStart="5dp"
+                    android:layout_width="25dp"
                     android:layout_height="20dp">
                     <ImageView
                         android:id="@+id/is_captive_on_icon"
