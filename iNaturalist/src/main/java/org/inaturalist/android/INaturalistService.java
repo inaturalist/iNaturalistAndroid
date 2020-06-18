@@ -2186,7 +2186,7 @@ public class INaturalistService extends IntentService {
     // Adds observation UUIDs to photos and sounds that are missing them
     private void addObservationUUIDsToPhotosAndSounds() {
         Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
-                ObservationPhoto.PROJECTION,
+                new String[] { ObservationPhoto._OBSERVATION_ID, ObservationPhoto._ID, ObservationPhoto.ID },
                 "observation_uuid is NULL",
                 null,
                 ObservationPhoto.DEFAULT_SORT_ORDER);
@@ -2196,22 +2196,25 @@ public class INaturalistService extends IntentService {
 
         c.moveToFirst();
         while (!c.isAfterLast()) {
-            ObservationPhoto photo = new ObservationPhoto(c);
+            int obsInternalId = c.getInt(c.getColumnIndexOrThrow(ObservationPhoto._OBSERVATION_ID));
+            int obsPhotoId = c.getInt(c.getColumnIndexOrThrow(ObservationPhoto.ID));
+            int obsPhotoInternalId = c.getInt(c.getColumnIndexOrThrow(ObservationPhoto._ID));
 
             Cursor obsc = getContentResolver().query(Observation.CONTENT_URI,
                     new String[] { Observation.UUID },
-                    "id = " + photo.observation_id, null, Observation.DEFAULT_SORT_ORDER);
+                    "_id = " + obsInternalId, null, Observation.DEFAULT_SORT_ORDER);
             if (obsc.getCount() > 0) {
                 obsc.moveToFirst();
                 String uuid = obsc.getString(obsc.getColumnIndexOrThrow(Observation.UUID));
-                photo.observation_uuid = uuid;
-                ContentValues cv = photo.getContentValues();
+                ContentValues cv = new ContentValues();
+                cv.put(ObservationPhoto.OBSERVATION_UUID, uuid);
                 // Update its sync at time so we won't update the remote servers later on (since we won't
                 // accidentally consider this an updated record)
                 cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
-                getContentResolver().update(photo.getUri(), cv, null, null);
+                Uri photoUri = ContentUris.withAppendedId(ObservationPhoto.CONTENT_URI, obsPhotoInternalId);
+                getContentResolver().update(photoUri, cv, null, null);
 
-                Logger.tag(TAG).debug(String.format("addObservationUUIDsToPhotosAndSounds - Adding observation_uuid %s to photo: %s", uuid, photo));
+                Logger.tag(TAG).debug(String.format("addObservationUUIDsToPhotosAndSounds - Adding observation_uuid %s to photo: id = %d; _id: %d", uuid, obsPhotoId, obsPhotoInternalId));
             }
             obsc.close();
             c.moveToNext();
