@@ -1834,12 +1834,12 @@ public class ObservationEditor extends AppCompatActivity {
                 if (mImageCursor != null && mImageCursor.getCount() > 0) {
                     // Delete any observation photos taken with it
                     getContentResolver().delete(ObservationPhoto.CONTENT_URI, "_observation_id=?", new String[]{mObservation._id.toString()});
-                    getContentResolver().delete(ObservationPhoto.CONTENT_URI, "observation_uuid=\"?\"", new String[]{mObservation.uuid});
+                    getContentResolver().delete(ObservationPhoto.CONTENT_URI, "observation_uuid=?", new String[]{mObservation.uuid});
                 }
                 if (mSoundCursor != null && mSoundCursor.getCount() > 0) {
                     // Delete any observation sounds taken with it
                     getContentResolver().delete(ObservationSound.CONTENT_URI, "_observation_id=?", new String[]{mObservation._id.toString()});
-                    getContentResolver().delete(ObservationSound.CONTENT_URI, "observation_uuid=\"?\"", new String[]{mObservation.uuid});
+                    getContentResolver().delete(ObservationSound.CONTENT_URI, "observation_uuid=?", new String[]{mObservation.uuid});
                 }
             } catch (NullPointerException e) {
                 Logger.tag(TAG).error("Failed to delete observation: " + e);
