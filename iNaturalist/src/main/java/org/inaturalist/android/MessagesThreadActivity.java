@@ -214,7 +214,16 @@ public class MessagesThreadActivity extends AppCompatActivity {
     }
 
     private Integer getOtherUserId() {
-        if (!mMessage.has("from_user") || !mMessage.has("to_user")) return null;
+        if (!mMessage.has("from_user") || !mMessage.has("to_user")) {
+            if (!mMessage.has("from_user_id") || !mMessage.has("to_user_id") || !mMessage.has("user_id")) {
+                return null;
+            }
+
+            int thisUserId = mMessage.getInt("user_id");
+
+            return mMessage.getInt("from_user_id").equals(thisUserId) ?
+                    mMessage.getInt("to_user_id") : mMessage.getInt("from_user_id");
+        }
 
         return mMessage.getJSONObject("from_user").optString("login").equals(mApp.currentUserLogin()) ?
                 mMessage.getJSONObject("to_user").optInt("id") : mMessage.getJSONObject("from_user").optInt("id");

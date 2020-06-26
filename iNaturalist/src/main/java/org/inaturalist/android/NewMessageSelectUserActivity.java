@@ -282,10 +282,16 @@ public class NewMessageSelectUserActivity extends AppCompatActivity implements U
                 return;
             }
 
+            String currentUser = mApp.currentUserLogin();
+
             for (int i = 0; i < results.length(); i++) {
                 try {
                     JSONObject item = results.getJSONObject(i);
-                    resultsArray.add(item);
+
+                    // Don't allow choosing your own user
+                    if (!item.optString("login").equals(currentUser)) {
+                        resultsArray.add(item);
+                    }
                 } catch (JSONException e) {
                     Logger.tag(TAG).error(e);
                 }
