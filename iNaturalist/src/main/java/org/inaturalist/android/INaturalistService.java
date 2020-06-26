@@ -2002,7 +2002,27 @@ public class INaturalistService extends IntentService {
 
             c.moveToFirst();
             while (!c.isAfterLast()) {
-                observationIdsToSync.add(c.getInt(c.getColumnIndexOrThrow(ObservationPhoto._OBSERVATION_ID)));
+                int internalObsId = c.getInt(c.getColumnIndexOrThrow(ObservationPhoto._OBSERVATION_ID));
+
+                Cursor obsc = getContentResolver().query(Observation.CONTENT_URI,
+                        Observation.PROJECTION,
+                        "_id = " + internalObsId,
+                        null,
+                        Observation.DEFAULT_SORT_ORDER);
+                int obsCount = obsc.getCount();
+                obsc.close();
+
+                if (obsCount == 0) {
+                    // Observation photo belongs to an observation that no longer exists - delete it
+                    int obsPhotoId = c.getInt(c.getColumnIndexOrThrow(ObservationPhoto._ID));
+                    Logger.tag(TAG).error("Observation photo " + obsPhotoId + " belongs to an observation that no longer exists: " + internalObsId + " - deleting it");
+                    getContentResolver().delete(
+                            ContentUris.withAppendedId(ObservationPhoto.CONTENT_URI, obsPhotoId),
+                            null, null);
+                } else {
+                    observationIdsToSync.add(internalObsId);
+                }
+
                 c.moveToNext();
             }
 
