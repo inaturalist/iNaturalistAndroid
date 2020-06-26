@@ -279,6 +279,46 @@
                     android:padding="4dp"
                     />
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/menu_messages"
+                android:background="@drawable/side_menu_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <ImageView
+                    android:id="@+id/menu_messages_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="7dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icon_messages_menu_selected"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="30dp"
+                    android:text="@string/messages"/>
+
+                <TextView
+                    android:id="@+id/messages_badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ffffff"
+                    android:background="#73AC08"
+                    android:textSize="9sp"
+                    android:text="32 unread"
+                    android:layout_marginLeft="8dp"
+                    android:padding="4dp"
+                    />
+            </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/menu_missions"
                 android:background="@drawable/side_menu_item_background"

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/is_muted"
+        app:showAsAction="always"
+        android:icon="@drawable/muted"
+        android:title=""
+        android:iconTint="#000000"
+        android:visible="false"
+        android:enabled="false"
+        android:orderInCategory="0" />
+    <item
+        android:id="@+id/mute_user"
+        app:showAsAction="never"
+        android:title="@string/mute_this_user"
+        android:orderInCategory="1" />
+    <item
+        android:id="@+id/flag_conversation"
+        app:showAsAction="never"
+        android:title="@string/flag_this_conversation"
+        android:orderInCategory="2" />
+</menu>

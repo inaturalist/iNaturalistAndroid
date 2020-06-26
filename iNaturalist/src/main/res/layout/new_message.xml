@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingTop="15dp"
+    android:paddingLeft="21dp"
+    android:paddingBottom="15dp"
+    android:paddingRight="21dp"
+    android:background="#edeeef"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/send_message"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:padding="9dp"
+        android:background="@drawable/circular_green_background"
+        android:src="@drawable/ic_send_black_48dp"
+        android:layout_marginLeft="15dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:tint="#ffffff" />
+
+    <LinearLayout
+        android:layout_toLeftOf="@id/send_message"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="@string/subject"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/subject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_white_background"
+            android:inputType="textCapSentences"
+            android:minHeight="40dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            />
+
+        <TextView
+            android:text="@string/body"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/body"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_white_background"
+            android:inputType="textMultiLine|textCapSentences"
+            android:hint="@string/type_your_message_here"
+            android:gravity="top"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

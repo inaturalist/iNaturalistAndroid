@@ -36,11 +36,14 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.Transformer;
 import org.inaturalist.android.INaturalistService.LoginType;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -427,6 +430,43 @@ public class INaturalistApp extends MultiDexApplication {
     	settingsEditor.apply();
 	}
 
+    public Set<Integer> getMutedUsers() {
+        SharedPreferences settings = getPrefs();
+        Set<String> muted = settings.getStringSet("muted_users", new HashSet<>());
+        Set<Integer> results = new HashSet<>();
+
+        for (String userId : muted) {
+            results.add(Integer.valueOf(userId));
+        }
+
+        return results;
+    }
+
+    public void setMutedUsers(Set<Integer> users) {
+        SharedPreferences settings = getPrefs();
+        Editor settingsEditor = settings.edit();
+        Set<String> muted = new HashSet<>();
+
+        for (Integer userId : users) {
+            muted.add(userId.toString());
+        }
+
+        settingsEditor.putStringSet("muted_users", muted);
+        settingsEditor.apply();
+    }
+
+    public Set<String> getUserPrivileges() {
+        SharedPreferences settings = getPrefs();
+        return settings.getStringSet("user_privileges", new HashSet<>());
+    }
+
+    public void setUserPrivileges(Set<String> privileges) {
+        SharedPreferences settings = getPrefs();
+        Editor settingsEditor = settings.edit();
+
+        settingsEditor.putStringSet("user_privileges", privileges);
+        settingsEditor.apply();
+    }
 
     public boolean getPrefersNoTracking() {
         SharedPreferences settings = getPrefs();

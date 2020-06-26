@@ -44,11 +44,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.Predicate;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.tinylog.Logger;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 /**
  * Utility class for implementing the side-menu (navigation drawer) used throughout the app
@@ -70,6 +76,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
 	private INaturalistApp app;
 	private ActivityHelper mHelper;
     private UserDetailsReceiver mUserDetailsReceiver;
+    private NotificationCountsReceiver mNotificationCountsReceiver;
     private boolean mSelectedBottomGrid;
     private INaturalistApp mApp;
 
@@ -141,6 +148,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_MENU);
 
                 refreshUnreadActivities();
+                refreshUnreadMessages();
 
                 super.onDrawerOpened(drawerView);
             }
@@ -156,6 +164,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
             ((ImageView)findViewById(R.id.menu_projects_icon)).setAlpha(0.54f);
             ((ImageView)findViewById(R.id.menu_guides_icon)).setAlpha(0.54f);
             ((ImageView)findViewById(R.id.menu_activity_icon)).setAlpha(0.54f);
+            ((ImageView)findViewById(R.id.menu_messages_icon)).setAlpha(0.54f);
             ((ImageView)findViewById(R.id.menu_settings_icon)).setAlpha(0.54f);
             ((ImageView)findViewById(R.id.menu_edit_profile_icon)).setAlpha(0.54f);
             ((ImageView)findViewById(R.id.menu_missions_icon)).setAlpha(0.54f);
@@ -182,6 +191,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
 
 
         refreshUnreadActivities();
+        refreshUnreadMessages();
         refreshUserDetails();
 
         ((Button)findViewById(R.id.menu_login)).setOnClickListener(new View.OnClickListener() {
@@ -231,6 +241,10 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 // Get fresh user details from the server
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_USER_DETAILS, null, this, INaturalistService.class);
                 ContextCompat.startForegroundService(this, serviceIntent);
+
+                // Get number of unread messages
+                Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_NOTIFICATION_COUNTS, null, this, INaturalistService.class);
+                ContextCompat.startForegroundService(this, serviceIntent2);
             }
         } else {
             findViewById(R.id.menu_login).setVisibility(View.VISIBLE);
@@ -417,6 +431,24 @@ public class BaseFragmentActivity extends AppCompatActivity {
             }
 
         });
+        findViewById(R.id.menu_messages).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!isNetworkAvailable()) {
+                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (!mApp.loggedIn()) {
+                    Toast.makeText(getApplicationContext(), R.string.please_sign_in_for_messages, Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                Intent intent = new Intent(BaseFragmentActivity.this, MessagesActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivityIfNew(intent);
+            }
+
+        });
         findViewById(R.id.menu_missions).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -497,6 +529,12 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 ((ImageView) findViewById(R.id.menu_missions_icon)).setAlpha(1.0f);
             }
         }
+        if (MessagesActivity.class.getName().equals(this.getClass().getName())) {
+            findViewById(R.id.menu_messages).setBackgroundColor(getResources().getColor(R.color.side_menu_item_bg_current));
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+                ((ImageView) findViewById(R.id.menu_messages_icon)).setAlpha(1.0f);
+            }
+        }
     }
 
 
@@ -568,6 +606,11 @@ public class BaseFragmentActivity extends AppCompatActivity {
             IntentFilter filter2 = new IntentFilter(INaturalistService.PLACE_DETAILS_RESULT);
             Logger.tag(TAG).info("Registering PLACE_DETAILS_RESULT");
             safeRegisterReceiver(mPlaceDetailsReceiver, filter2);
+
+            mNotificationCountsReceiver = new NotificationCountsReceiver();
+            IntentFilter filter3 = new IntentFilter(INaturalistService.ACTION_NOTIFICATION_COUNTS_RESULT);
+            Logger.tag(TAG).info("Registering ACTION_NOTIFICATION_COUNTS_RESULT");
+            safeRegisterReceiver(mNotificationCountsReceiver, filter3);
         }
     }
 
@@ -615,6 +658,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
 
         safeUnregisterReceiver(mUserDetailsReceiver);
         safeUnregisterReceiver(mPlaceDetailsReceiver);
+        safeUnregisterReceiver(mNotificationCountsReceiver);
     }
 
     // Need to wrap the unregisterReceiver call in a try/catch, since sometimes the OS iteself
@@ -684,6 +728,9 @@ public class BaseFragmentActivity extends AppCompatActivity {
         prefEditor.remove("pref_locale");
         prefEditor.remove("user_place_display_name");
         prefEditor.remove("user_place_id");
+        prefEditor.remove("user_unread_messages");
+        prefEditor.remove("user_privileges");
+        prefEditor.remove("muted_users");
         prefEditor.commit();
 
         shouldRestart = !prevLocale.equals("");
@@ -878,6 +925,15 @@ public class BaseFragmentActivity extends AppCompatActivity {
         activityBadge.setText(String.format(getString(R.string.new_activities), unreadActivities));
     }
 
+    private void refreshUnreadMessages() {
+        // Show the unread messages badge
+        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        int unreadMessages = prefs.getInt("user_unread_messages", 0);
+        TextView activityBadge = (TextView)findViewById(R.id.messages_badge);
+        activityBadge.setVisibility(unreadMessages > 0 ? View.VISIBLE : View.GONE);
+        activityBadge.setText(String.format(getString(R.string.unread_messages), unreadMessages));
+    }
+
 
     // Taken from: https://stackoverflow.com/a/29609679/1233767
     private static int getNavigationBarHeight(Context context) {
@@ -924,5 +980,31 @@ public class BaseFragmentActivity extends AppCompatActivity {
         }
 
         return size;
+    }
+
+
+    private class NotificationCountsReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Object object = null;
+            BetterJSONObject resultsObject;
+            JSONArray results = null;
+
+            object = intent.getSerializableExtra(INaturalistService.NOTIFICATIONS);
+
+            if (object == null) {
+                // Network error of some kind
+                return;
+            }
+
+            resultsObject = (BetterJSONObject) object;
+            int unreadMessageCount = resultsObject.getInt("messages_count");
+
+            SharedPreferences.Editor editor = mApp.getPrefs().edit();
+            editor.putInt("user_unread_messages", unreadMessageCount);
+            editor.commit();
+
+            refreshUserDetails();
+        }
     }
 }

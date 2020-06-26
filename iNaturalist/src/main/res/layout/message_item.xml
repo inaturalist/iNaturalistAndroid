@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="101dp">
+    
+    <ImageView
+        android:id="@+id/user_pic"
+        android:layout_width="71dp"
+        android:layout_height="71dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="18dp"
+        android:layout_centerVertical="true"
+        />
+
+    <LinearLayout
+        android:id="@+id/indicators_container"
+        android:orientation="horizontal"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/mute_indicator"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:src="@drawable/muted"
+            android:tint="#000000"
+            />
+        <View
+            android:id="@+id/unread_indicator"
+            android:layout_width="11dp"
+            android:layout_height="11dp"
+            android:background="@drawable/circle_green_dot"
+            android:layout_marginLeft="10dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_toRightOf="@id/user_pic"
+        android:layout_toLeftOf="@id/indicators_container"
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/user_name"
+            android:text="username"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/subject"
+            android:text="Some long subject line"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textColor="#393a3b"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/date"
+            android:text="January 2, 2020 6:02pm"
+            android:textColor="#393a3b"
+            android:layout_marginTop="8dp"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</RelativeLayout>
