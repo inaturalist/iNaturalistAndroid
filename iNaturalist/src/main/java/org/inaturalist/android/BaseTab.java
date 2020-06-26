@@ -219,6 +219,13 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
         
         super.onResume();
     }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        BaseFragmentActivity.safeUnregisterReceiver(mProjectsReceiver, getActivity());
+    }
     
     /**
      * Updates an existing project (in memory)
