@@ -4,14 +4,18 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <RadioGroup
-        android:id="@+id/flag_types"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-        <!-- Content will be added dynamically -->
-    </RadioGroup>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioGroup
+            android:id="@+id/flag_types"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <!-- Content will be added dynamically -->
+        </RadioGroup>
+    </ScrollView>
 
     <LinearLayout
         android:id="@+id/flag_explanation_container"
