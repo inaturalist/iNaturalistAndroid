@@ -241,7 +241,9 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 // Get fresh user details from the server
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_USER_DETAILS, null, this, INaturalistService.class);
                 ContextCompat.startForegroundService(this, serviceIntent);
+            }
 
+            if (System.currentTimeMillis() - lastRefreshTime > 1000 * 20) {
                 // Get number of unread messages
                 Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_NOTIFICATION_COUNTS, null, this, INaturalistService.class);
                 ContextCompat.startForegroundService(this, serviceIntent2);
@@ -986,11 +988,10 @@ public class BaseFragmentActivity extends AppCompatActivity {
     private class NotificationCountsReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Object object = null;
             BetterJSONObject resultsObject;
-            JSONArray results = null;
+            Object object = intent.getSerializableExtra(INaturalistService.NOTIFICATIONS);
 
-            object = intent.getSerializableExtra(INaturalistService.NOTIFICATIONS);
+            Logger.tag(TAG).info("Received notification counts");
 
             if (object == null) {
                 // Network error of some kind

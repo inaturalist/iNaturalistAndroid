@@ -45,8 +45,8 @@
             android:paddingRight="15dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:minLines="8"
-            android:maxLines="8"
+            android:minLines="5"
+            android:maxLines="5"
             android:gravity="top"
             />
 

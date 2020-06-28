@@ -160,6 +160,7 @@ public class MessagesActivity extends BaseFragmentActivity implements MessageAda
             serviceIntent.putExtra(INaturalistService.QUERY, mCurrentSearchString);
         }
         ContextCompat.startForegroundService(this, serviceIntent);
+        refreshUserDetails();
 
         refreshViewState();
     }
@@ -186,9 +187,11 @@ public class MessagesActivity extends BaseFragmentActivity implements MessageAda
             LinearLayoutManager layoutManager = new LinearLayoutManager(this);
             mMessageList.setLayoutManager(layoutManager);
 
-            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-            dividerItemDecoration.setDrawable(ContextCompat.getDrawable(this, R.drawable.divider));
-            mMessageList.addItemDecoration(dividerItemDecoration);
+            if (mMessageList.getItemDecorationCount() == 0) {
+                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+                dividerItemDecoration.setDrawable(ContextCompat.getDrawable(this, R.drawable.divider));
+                mMessageList.addItemDecoration(dividerItemDecoration);
+            }
 
             mAdapter = new MessageAdapter(this, mMessages, this);
             mMessageList.setAdapter(mAdapter);

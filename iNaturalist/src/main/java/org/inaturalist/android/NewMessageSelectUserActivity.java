@@ -163,9 +163,11 @@ public class NewMessageSelectUserActivity extends AppCompatActivity implements U
             LinearLayoutManager layoutManager = new LinearLayoutManager(this);
             mUserList.setLayoutManager(layoutManager);
 
-            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-            dividerItemDecoration.setDrawable(ContextCompat.getDrawable(this, R.drawable.divider));
-            mUserList.addItemDecoration(dividerItemDecoration);
+            if (mUserList.getItemDecorationCount() == 0) {
+                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+                dividerItemDecoration.setDrawable(ContextCompat.getDrawable(this, R.drawable.divider));
+                mUserList.addItemDecoration(dividerItemDecoration);
+            }
 
             mAdapter = new UserAdapter(mUsers, this);
             mUserList.setAdapter(mAdapter);

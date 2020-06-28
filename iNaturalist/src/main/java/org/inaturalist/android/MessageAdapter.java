@@ -88,6 +88,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         holder.date.setText(DateFormat.format("MMMM d, yyyy hh:mma", cal));
 
         String readAt = message.getString("read_at");
+
         if (readAt == null) {
             // Unread message
             holder.unreadIndicator.setVisibility(View.VISIBLE);

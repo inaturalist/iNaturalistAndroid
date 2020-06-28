@@ -294,6 +294,7 @@
                     android:id="@+id/menu_messages_icon"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
+                    android:padding="2dp"
                     android:layout_marginLeft="7dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/icon_messages_menu_selected"

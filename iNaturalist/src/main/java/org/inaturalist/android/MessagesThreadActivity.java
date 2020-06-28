@@ -171,9 +171,11 @@ public class MessagesThreadActivity extends AppCompatActivity {
             LinearLayoutManager layoutManager = new LinearLayoutManager(this);
             mMessageList.setLayoutManager(layoutManager);
 
-            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-            dividerItemDecoration.setDrawable(ContextCompat.getDrawable(this, R.drawable.divider));
-            mMessageList.addItemDecoration(dividerItemDecoration);
+            if (mMessageList.getItemDecorationCount() == 0) {
+                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+                dividerItemDecoration.setDrawable(ContextCompat.getDrawable(this, R.drawable.divider));
+                mMessageList.addItemDecoration(dividerItemDecoration);
+            }
 
             mAdapter = new MessageThreadAdapter(this, mMessages);
             mMessageList.setAdapter(mAdapter);
@@ -559,10 +561,8 @@ public class MessagesThreadActivity extends AppCompatActivity {
                 ab.setTitle(mMessage.getString("subject"));
             }
 
-            boolean scrollToBottom = mSendingMessage;
             mSendingMessage = false;
-
-            refreshViewState(true, scrollToBottom);
+            refreshViewState(true, true);
         }
     }
 
