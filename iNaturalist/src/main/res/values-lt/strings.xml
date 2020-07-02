@@ -46,7 +46,6 @@
     <string name="no_observations_yet">Dar nėra stebėjimų!</string>
     <string name="or">arba</string>
     <string name="signed_out">Atsijungti</string>
-    <string name="view">Žiūrėti</string>
     <string name="username">Vartotojo vardas</string>
     <string name="password">Slaptažodis</string>
     <string name="unknown">Nežinomas</string>
@@ -83,8 +82,6 @@
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">Sutinkate?</string>
     <string name="no_comments">Dar nėra komentarų/identifikacijų</string>
-    <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
-    <string name="you">jūs</string>
     <string name="add_comment">Pridėti komentarą</string>
     <string name="add_id">Pridėti identifikaciją</string>
     <string name="remarks">Pastabos...</string>
@@ -495,15 +492,20 @@
     <string name="airport">Oro uostas</string>
     <string name="drainage">Drenažas</string>
     <string name="land_feature">Reljefo ypatybės</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="miscellaneous">Įvairūs</string>
     <string name="nationality">Tautybė</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Šalių grupė</string>
     <string name="point_of_interest">Lankytina vieta</string>
+    <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">Regionas</string>
+    <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
     <string name="colloquial">Šnekamoji kalba</string>
     <string name="zone">Zona</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_state">Istorinė vieta</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_county">Istorinė apygarda</string>
     <string name="continent">Žemynas</string>
     <string name="estate">Nuosavybė</string>
@@ -515,6 +517,7 @@
     <string name="province">Provincija</string>
     <string name="municipality">Savivaldybė</string>
     <string name="parish">Parapija</string>
+    <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
     <string name="department_segment">Skyriaus segmentas</string>
     <string name="city_building">Miesto pastatas</string>
     <string name="commune">Bendruomenė</string>
@@ -534,7 +537,9 @@
     <string name="regency">Regencija</string>
     <string name="constituency">Apygarda</string>
     <string name="local_authority">Vietos Valdžios Institucija</string>
+    <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">Poblacionas</string>
+    <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegacija</string>
     <string name="apply_filters">Uždėti filtrą</string>
     <string name="reset">Atstatyti</string>
@@ -579,6 +584,7 @@
     <string name="select_google_account">Kuri Google paskyra?</string>
     <string name="potential_disagreement">Galimas nesutarimas</string>
     <string name="do_you_think_this_could_be"><![CDATA[Ar yra pateikta pakankamai įrodymų, kad čia yra <b>%1$s</b>?]]></string>
+    <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[Nežinau, bet esu įsitikinęs, kad čia <b>%1$s</b>.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Ne, bet tai yra <b>%1$s</b> atstovas.]]></string>
     <string name="submit">Pateikti</string>

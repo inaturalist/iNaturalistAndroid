@@ -46,7 +46,6 @@
     <string name="no_observations_yet">Ei havaintoja vielä!</string>
     <string name="or">tai</string>
     <string name="signed_out">Kirjaudu ulos</string>
-    <string name="view">Näytä</string>
     <string name="username">Käyttäjätunnus</string>
     <string name="password">Salasana</string>
     <string name="unknown">Tuntematon</string>
@@ -83,8 +82,6 @@
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">Samaa mieltä?</string>
     <string name="no_comments">Ei kommentteja/tunnistuksia vielä</string>
-    <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
-    <string name="you">sinä</string>
     <string name="add_comment">Lisää kommentti</string>
     <string name="add_id">Lisää tunnistus</string>
     <string name="remarks">Huomautukset...</string>
@@ -490,15 +487,20 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="airport">Lentokenttä</string>
     <string name="drainage">Valuma-alue</string>
     <string name="land_feature">Maaominaisuus</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="miscellaneous">Sekalainen</string>
     <string name="nationality">Kansallisuus</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Ylänimi</string>
     <string name="point_of_interest">Mielenkiinnon kohde</string>
+    <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">Alue</string>
+    <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
     <string name="colloquial">Puhekielinen</string>
     <string name="zone">Vyöhyke</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_state">Historiallinen osavaltio</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_county">Historiallinen valtio</string>
     <string name="continent">Manner</string>
     <string name="estate">Tila</string>
@@ -510,6 +512,7 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="province">Provinssi</string>
     <string name="municipality">Kunta</string>
     <string name="parish">Pitäjä</string>
+    <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
     <string name="department_segment">Osastosegmentti</string>
     <string name="city_building">Kaupungin rakennus</string>
     <string name="commune">Kunta</string>
@@ -529,7 +532,9 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="regency">Regency</string>
     <string name="constituency">Vaalipiiri</string>
     <string name="local_authority">Paikallinen viranomainen</string>
+    <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">Poblacion</string>
+    <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegaatio</string>
     <string name="apply_filters">Käytä suodattimia</string>
     <string name="reset">Nollaa</string>
@@ -574,6 +579,7 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="select_google_account">Mikä Google-tili?</string>
     <string name="potential_disagreement">Mahdollinen erimielisyys</string>
     <string name="do_you_think_this_could_be"><![CDATA[Onko todisteet riittäviä vahvistamaan, että tämä on <b>%1$s</b>?]]></string>
+    <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[En tiedä, mutta olen varma että tämä on <b>%1$s</b>.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Ei, mutta se on <b>%1$s</b>:n osa]]></string>
     <string name="submit">Lähetä</string>
@@ -788,7 +794,7 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="seconds_value">sekunnin</string>
     <string name="shop_the_inat_store">Vieraile iNat-kaupassa</string>
     <string name="delete_your_account">Poista tilisi</string>
-    <string name="delete_account_message"><![CDATA[By deleting your account you will remove:<br/><br/><ul><li> All of your observations, including the work of the all the people who have helped you out with identifications.</li><li> All of the identifications you\'ve added to the observations of other people, which will potentially affect the data quality of those observations.</li><li> All of the comments you\'ve added.</li></ul><br/>Furthermore, this action cannot be undone. If you change your mind later, you aren\'t getting any of that content back.<br/><br/>If this service generates too many notifications, consider <a href="https://www.inaturalist.org/users/edit">editing your settings on the website</a> to opt out of certain notifications or stop receiving email from us. If you\'re having trouble with a specific person, consider <a href="https://www.inaturalist.org/users/edit">muting them</a> instead of deleting your account.<br/><br/>If you\'re still sure you want to delete your account, enter <b>\"%1$s\"</b> in the form below and click the button to delete your account and all your data.]]></string>
+    <string name="delete_account_message"><![CDATA[Poistamalla käyttäjätilisi poistat: <br/><br/><ul><li> kaikki havaintosi, mukaan lukien muiden tekemät tunnistukset havainnoillesi. </li><li> Kaikki tunnistukset, jotka olet lisännyt muiden käyttäjien havainnoille, joka todennäköisesti vaikuttaa näiden havaintojen laatuun. </li><li> Kaikki kommentit, jotka olet lisännyt. </li></ul><br/>Huomaathan, että tätä toimintoa ei voi peruuttaa. Jos muutat mielesi myöhemmin, et saa mitään sisältöä takaisin.<br/><br/>Jos iNaturalist tuottaa mielestäsi liikaa ilmoituksia, käy läpi <a href="https://www.inaturalist.org/users/edit">asetuksesi palvelun nettisivuilla</a>, jotta voit poistaa tietyt ilmoitukset käytöstä tai lopettaa sähköposti-ilmoitukset. Jos sinulla on ongelmia tietyn käyttäjän kanssa, harkitse<a href="https://www.inaturalist.org/users/edit">heidän vaimentamistaan</a>, sen sijaan, että poistaisit tilisi. <br/><br/>Jos olet kuitenkin varma, että haluat poistaa käyttäjätilisi, lisää <b>\"%1$s\"</b> alapuolella olevaan lomakkeeseen ja paina nappia poistaaksesi tilisi ja kaikki tietosi sovelluksesta.]]></string>
     <string name="your_account_has_been_deleted">Tilisi on poistettu</string>
     <string name="you_must_enter_username_in_the_form_to_delete_account">Sinun tulee lisätä lomakkeeseen %1$s poistaaksesi tilisi</string>
     <!-- Second person hint text asking the user to enter their username -->
@@ -813,14 +819,14 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
         <item quantity="one">Oletko varma että haluat poistaa tämän %1$d havainnon?</item>
         <item quantity="other">Oletko varma että haluat poistaa nämä %1$d havaintoa?</item>
     </plurals>
-    <string name="future_observed_on_date_error">Your observation was created (and submitted) on %1$s, but you\'re trying to set an observation date that is later than that: %2$s</string>
-    <string name="no_more_photos_allowed">Observations can only have %1$d photos. To add more you will need to remove some.</string>
-    <string name="warning_multiple_photos">If you\'re adding photos of different kinds of organisms to this observation, or the same kind at different places or times, you should remove those photos and add them as separate observations. An observation can only have %1$d photos.</string>
+    <string name="future_observed_on_date_error">Havaintosi luotiin (ja lähetettiin) %1$s, mutta yrität asettaa havaintopäivämäärää, joka on myöhemmin kuin se: %2$s</string>
+    <string name="no_more_photos_allowed">Havainnoilla voi olla vain %1$d kuvaa. Lisätäksesi uusia sinun pitää poistaa joitakin edellisiä.</string>
+    <string name="warning_multiple_photos">Jos lisäät kuvia eri eliöistä tähän havaintoon tai kuvia samasta eliöstä eri paikoista tai eri päivämääriltä, sinun pitäisi poistaa nämä kuvat ja lisätä ne erillisinä havaintoina. Yhdellä havainnolla voi olla vain %1$d kuvaa.</string>
     <string name="choosing_specific_language_warning">Kielen valitseminen tilillesi edellyttää internet-yhteyttä</string>
-    <string name="running_in_background_notfication">Running in the background so we can run without interruption</string>
-    <string name="opt_out_of_community_taxon">Opt out of the Community Taxon</string>
-    <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
-    <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
+    <string name="running_in_background_notfication">Käynnissä taustalla, jotta voimme toimia keskeytyksettä</string>
+    <string name="opt_out_of_community_taxon">Estä iNaturalist-yhteisön tunnistusmahdollisuus.</string>
+    <string name="opt_in_to_community_taxon">Salli iNaturalist-yhteisön tunnistusmahdollisuus.</string>
+    <string name="opt_out_message">Jos estät iNaturalist-yhteisöä tunnistamasta havaintoasi, se pakottaa tämän havainnon valitsemaasi taksoniin, eikä tunnistukseen, jonka muut käyttäjät havainnollesi antaisivat. Jos tarpeeksi moni on kuitenkin eri mieltä kanssasi, havainnostasi tulee epämuodollinen. Sinun tulisi estää yhteisön tunnistusmahdollisuus vain, jos olet täysin varma tunnistuksestasi ja muiden käyttäjien antamat tunnistukset ovat vääriä.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
     <string name="permission_required">Sovellus tarvitsee oikeudet tätä varten</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
@@ -829,7 +835,7 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="forbidden">Estetty</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">Sovellus, josta jaoit kuvan, tuottaa kuvia jotka eivät sovi havaintokuviksi. Ne eivät välttämättä esitä havaittua eliötä, sisältävät sopimatonta kaupallista sisältöä, tai rikkovat iNaturalistin käyttösääntöjä muulla tavalla.  </string>
-    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
-    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
-    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
+    <string name="list_observation_checkbox_description">Valintaruutu havainnolle monivalintatilassa</string>
+    <string name="observation_list_item_iconic_pic_description">Esikatselukuva havainnon taksonille</string>
+    <string name="observation_list_item_obs_pic_description">Esikatselukuva havainnolle</string>
 </resources>

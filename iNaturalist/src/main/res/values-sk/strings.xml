@@ -46,7 +46,6 @@
     <string name="no_observations_yet">Zatiaľ žiadne pozorovania!</string>
     <string name="or">alebo</string>
     <string name="signed_out">Odhlásiť sa</string>
-    <string name="view">Zobraziť</string>
     <string name="username">Meno používateľa</string>
     <string name="password">Heslo</string>
     <string name="unknown">Neurčené</string>
@@ -83,8 +82,6 @@
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">Súhlas?</string>
     <string name="no_comments">Zatiaľ žiadny komentár a identifikácia</string>
-    <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
-    <string name="you">vy</string>
     <string name="add_comment">Pridať komentár</string>
     <string name="add_id">Pridať identifikáciu</string>
     <string name="remarks">Poznámky...</string>
@@ -495,15 +492,20 @@
     <string name="airport">Letisko</string>
     <string name="drainage">Povodie</string>
     <string name="land_feature">Funkcie pozemku</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="miscellaneous">Rôzne</string>
     <string name="nationality">Národnosť</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Supermeno</string>
     <string name="point_of_interest">Bod záujmu</string>
+    <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">Región</string>
+    <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
     <string name="colloquial">Hovorový</string>
     <string name="zone">Zóna</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_state">Historický štát</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_county">Historická krajina</string>
     <string name="continent">Kontinent</string>
     <string name="estate">Majetok</string>
@@ -515,6 +517,7 @@
     <string name="province">Provincia</string>
     <string name="municipality">Municipality</string>
     <string name="parish">Parish</string>
+    <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
     <string name="department_segment">Department Segment</string>
     <string name="city_building">City Building</string>
     <string name="commune">Commune</string>
@@ -534,7 +537,9 @@
     <string name="regency">Regency</string>
     <string name="constituency">Constituency</string>
     <string name="local_authority">Local Authority</string>
+    <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">Poblacion</string>
+    <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegation</string>
     <string name="apply_filters">Aplikovať filtre</string>
     <string name="reset">Reset</string>
@@ -579,6 +584,7 @@
     <string name="select_google_account">Ktorý účet Google?</string>
     <string name="potential_disagreement">Potencionálny nesúhlas</string>
     <string name="do_you_think_this_could_be"><![CDATA[Je predložený dôkaz dostatočný na potvrdenie, že toto je <b>%1$s</b>?]]></string>
+    <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[I don\'t know but I\'m sure this is <b>%1$s</b>.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
     <string name="submit">Odoslať</string>

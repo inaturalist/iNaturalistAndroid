@@ -46,7 +46,6 @@
     <string name="no_observations_yet">Ingen observasjoner enda!</string>
     <string name="or">eller</string>
     <string name="signed_out">Logg ut</string>
-    <string name="view">Vis</string>
     <string name="username">Brukernavn</string>
     <string name="password">Passord</string>
     <string name="unknown">Ukjent</string>
@@ -83,8 +82,6 @@
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">Enig?</string>
     <string name="no_comments">Ingen kommentarer/identifikasjoner enda</string>
-    <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
-    <string name="you">du</string>
     <string name="add_comment">Legg til kommentar</string>
     <string name="add_id">Legg til identifikasjon</string>
     <string name="remarks">Notater...</string>
@@ -199,8 +196,8 @@
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador er et medlem av iNaturalistnettverket i Ecuador. Lokale institusjoner som støtter iNaturalist Ecuador kan se din e-postadresse og de reelle koordinatene for observasjoner som ellers er skjult for offentligheten eller private. Vennligst ikke endre din tilknytning eksperimentelt hvis du har mer enn 1000 observasjoner. Vil du endre din tilknytning?</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia er et medlem av iNaturalistnettverket i Australia. Lokale institusjoner som støtter iNaturalist Australia kan se din e-postadresse og de reelle koordinatene for observasjoner som ellers er skjult for offentligheten eller private. Vennligst ikke endre din tilknytning eksperimentelt hvis du har mer enn 1000 observasjoner. Vil du endre din tilknytning?</string>
     <string name="alert_message_use_argentinat">ArgentiNat er et medlem av iNaturalistnettverket i Argentina. Lokale institusjoner som støtter ArgentiNat kan se din e-postadresse og de reelle koordinatene for observasjoner som ellers er skjult for offentligheten eller private. Vennligst ikke endre din tilknytning eksperimentelt hvis du har over 1000 observasjoner. Vil du endre din tilknytning?</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistfi">iNaturalist Finland is a member of the iNaturalist Network in Finland. Local institutions supporting iNaturalist Finland will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel er et medlem av iNaturalistnettverket i Israel. Lokale institusjoner som støtter iNaturalist Israel kan se din e-postadresse og de reelle koordinatene for observasjoner som ellers er skjult for offentligheten eller private. Vennligst ikke endre din tilknytning eksperimentelt hvis du har mer enn 1000 observasjoner. Vil du endre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland er et medlem av iNaturalistnettverket i Finland. Lokale institusjoner som støtter iNaturalist Finland kan se din e-postadresse og de reelle koordinatene for observasjoner som ellers er skjult for offentligheten eller private. Vennligst ikke endre din tilknytning eksperimentelt hvis du har mer enn 1000 observasjoner. Vil du endre din tilknytning?</string>
     <string name="editor">Redaktør</string>
     <string name="license">Lisens</string>
     <string name="download_for_offline_use">Nedlastning for av nett-bruk</string>
@@ -485,15 +482,20 @@
     <string name="airport">Flyplass</string>
     <string name="drainage">Nedbørfelt</string>
     <string name="land_feature">Landform</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="miscellaneous">Diverse</string>
     <string name="nationality">Nasjonalitet</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Region</string>
     <string name="point_of_interest">Interessepunkt</string>
+    <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">Region</string>
+    <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
     <string name="colloquial">Dagligdagse</string>
     <string name="zone">Sone</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_state">Historisk stat</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_county">Historisk fylke</string>
     <string name="continent">Kontinent</string>
     <string name="estate">Eiendom</string>
@@ -505,6 +507,7 @@
     <string name="province">Provins</string>
     <string name="municipality">Kommune</string>
     <string name="parish">Sogn</string>
+    <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
     <string name="department_segment">Avdelingssegment</string>
     <string name="city_building">Bybyggning</string>
     <string name="commune">Kommune</string>
@@ -524,7 +527,9 @@
     <string name="regency">Regentskap</string>
     <string name="constituency">Valgkrets</string>
     <string name="local_authority">Lokal myndighet</string>
+    <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">Bosetting</string>
+    <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegasjon</string>
     <string name="apply_filters">Bruk filtre</string>
     <string name="reset">Nullstill</string>
@@ -569,6 +574,7 @@
     <string name="select_google_account">Hvilken Google-konto?</string>
     <string name="potential_disagreement">Potensiell uenighet</string>
     <string name="do_you_think_this_could_be"><![CDATA[Er det bevis nok til å bekrefte at dette er <b>%1$s</b>?]]></string>
+    <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[Jeg vet ikke, men jeg er sikker på at det er <b>%1$s</b>.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Nei, men det er et medlem av <b>%1$s</b>.]]></string>
     <string name="submit">Send inn</string>

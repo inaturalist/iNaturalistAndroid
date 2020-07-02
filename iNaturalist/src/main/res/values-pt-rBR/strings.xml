@@ -46,7 +46,6 @@
     <string name="no_observations_yet">Ainda não existem observações!</string>
     <string name="or">ou</string>
     <string name="signed_out">Sair</string>
-    <string name="view">Visualizar</string>
     <string name="username">Nome de usuário</string>
     <string name="password">Senha</string>
     <string name="unknown">Desconhecido</string>
@@ -83,8 +82,6 @@
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">Concorda?</string>
     <string name="no_comments">Ainda não há comentários/identificações</string>
-    <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
-    <string name="you">você</string>
     <string name="add_comment">Adicionar comentário</string>
     <string name="add_id">Adicionar identificação</string>
     <string name="remarks">Remarcações...</string>
@@ -444,8 +441,8 @@
         <item quantity="other">Nós não estamos confiantes o bastante para fazer uma recomendação, mas aqui estão as nossas %1$d melhores sugestões:</item>
     </plurals>
     <plurals name="top_species_suggestions">
-        <item quantity="one">Top %1$d suggestion:</item>
-        <item quantity="other">Top %1$d suggestions:</item>
+        <item quantity="one">Top %1$d sugestões:</item>
+        <item quantity="other">Top %1$d sugestões:</item>
     </plurals>
     <string name="pretty_sure_rank">Nós temos certeza que está neste(a) %1$s:</string>
     <string name="what_did_you_see">O que você viu?</string>
@@ -485,15 +482,20 @@
     <string name="airport">Aeroporto</string>
     <string name="drainage">Drenagem</string>
     <string name="land_feature">Características da terra</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="miscellaneous">Diversos</string>
     <string name="nationality">Nacionalidade</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Identificador</string>
     <string name="point_of_interest">Ponto de interesse</string>
+    <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">Região</string>
+    <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
     <string name="colloquial">Coloquial</string>
     <string name="zone">Zona</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_state">Histórico do estado</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_county">Histórico do estado</string>
     <string name="continent">Continente</string>
     <string name="estate">Estado</string>
@@ -505,6 +507,7 @@
     <string name="province">Província</string>
     <string name="municipality">Município</string>
     <string name="parish">Paróquia</string>
+    <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
     <string name="department_segment">Segmento de departamento</string>
     <string name="city_building">Construção urbana</string>
     <string name="commune">Comuna</string>
@@ -524,7 +527,9 @@
     <string name="regency">Regência</string>
     <string name="constituency">Eleitorado</string>
     <string name="local_authority">Autoridade local</string>
+    <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">População</string>
+    <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegação</string>
     <string name="apply_filters">Aplicar filtros</string>
     <string name="reset">Resetar</string>
@@ -569,6 +574,7 @@
     <string name="select_google_account">Qual conta do Google?</string>
     <string name="potential_disagreement">Possível desacordo</string>
     <string name="do_you_think_this_could_be"><![CDATA[A evidência fornecida é suficiente para confirmar que se trata de <b>%1$s</b>?]]></string>
+    <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[Não sei, mas tenho a certeza que se trata de <b>%1$s</b>.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Não, mas é um membro de <b>%1$s</b>.]]></string>
     <string name="submit">Enviar</string>
@@ -705,7 +711,7 @@
     <string name="network_credit_naturewatchnz"><![CDATA[Nova Zelândia: Nova Zelândia Registro de Biodiversidade Rede operando iNaturalista NZ - Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação biodiversidade para todos com Biodiversidade4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panamá: Ministerio de Ambiente operando iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundação Vida Silvestre Argentina apoiando ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
     <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
@@ -818,8 +824,8 @@
     <!-- Dialog title when displaying a message that an action is not permitted -->
     <string name="forbidden">Proibido</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
-    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
-    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <string name="app_you_shared_blocked">O aplicativo que você compartilhou cria fotos que não são adequadas para observações porque não representam evidência de sua experiência com outro organismo, porque incluem marcas ou conteúdo comercial inadequados, ou porque violam nossos Termos de Serviço de outras formas.</string>
+    <string name="list_observation_checkbox_description">Caixa de seleção para selecionar a observação no modo multi-seleção</string>
     <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
-    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
+    <string name="observation_list_item_obs_pic_description">Miniatura da foto para observação</string>
 </resources>

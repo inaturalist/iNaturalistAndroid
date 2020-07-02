@@ -1,105 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">iNaturalist</string>
-    <string name="email_address">Email Address</string>
+    <string name="email_address">Địa chỉ email</string>
     <string name="delete_observation">Delete observation</string>
     <string name="observation_deleted">Observation deleted</string>
-    <string name="species_guess_hint">Species name</string>
-    <string name="ok">OK</string>
-    <string name="cancel">Cancel</string>
-    <string name="loading">Loading...</string>
-    <string name="sync_required">Sync required</string>
+    <string name="species_guess_hint">Tên các loài</string>
+    <string name="ok">Đồng ý</string>
+    <string name="cancel">Huỷ</string>
+    <string name="loading">Đang tải...</string>
+    <string name="sync_required">Yêu cầu đồng bộ hoá</string>
     <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
-    <string name="street">Street</string>
+    <string name="street">Đường </string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
-    <string name="satellite">Satellite</string>
+    <string name="satellite">Vệ tinh</string>
     <string name="couldnt_load_nearby_observations">Couldn\'t load nearby observations: %1$s</string>
-    <string name="username_invalid">Username or password was invalid, please sign in again.</string>
-    <string name="signing_in">Signing in...</string>
-    <string name="signed_in">Signed in!</string>
-    <string name="please_sign_in">Please sign in</string>
-    <string name="please_sign_in_description">Please sign in to your iNaturalist account or sign up for a new one.</string>
-    <string name="please_enable_location_services">Please enable location services in order to find your current location...</string>
-    <string name="go_to_settings">Go to Settings</string>
-    <string name="photo_not_specified">Photo not specified</string>
-    <string name="set_date">Date</string>
-    <string name="set_time">Time</string>
+    <string name="username_invalid">Tên đăng nhập hoặc mật khẩu không hợp lệ, vui lòng đăng nhập lại.</string>
+    <string name="signing_in">Đang đăng nhập...</string>
+    <string name="signed_in">Đã đăng nhập!</string>
+    <string name="please_sign_in"> Xin hãy đăng nhập.</string>
+    <string name="please_sign_in_description">Xin hãy đăng nhập tài khoản iNaturalist của bạn hoặc lập một cái mới.</string>
+    <string name="please_enable_location_services">Vui lòng kích hoạt định vị để tìm kiếm vị trí hiện tại của bạn ...</string>
+    <string name="go_to_settings">Vào cài đặt</string>
+    <string name="photo_not_specified">Ảnh không được chỉ định</string>
+    <string name="set_date">Ngày</string>
+    <string name="set_time">Thời gian</string>
     <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
-    <string name="something_went_wrong">Blast, something went wrong: %1$s</string>
-    <string name="edit">Edit</string>
+    <string name="something_went_wrong">Ôi không, có gì đó không đúng: %1$s</string>
+    <string name="edit">Chỉnh sửa</string>
     <string name="oh_no">Oh no! %1$s</string>
-    <string name="observations">My Observations</string>
-    <string name="map">Map</string>
-    <string name="settings">Settings</string>
-    <string name="projects">Projects</string>
-    <string name="delete_photo">Delete photo</string>
+    <string name="observations">Các quan sát của tôi</string>
+    <string name="map">Bản đồ</string>
+    <string name="settings">Cài đặt</string>
+    <string name="projects">Các dự án</string>
+    <string name="delete_photo">Xóa ảnh</string>
     <string name="menu">Menu</string>
-    <string name="my_location">My Location</string>
-    <string name="nearby_observations">Nearby Observations</string>
-    <string name="add">Add</string>
-    <string name="view_on_inat">View on iNaturalist.org</string>
-    <string name="reload">Reload</string>
-    <string name="view_in_browser">View in browser</string>
-    <string name="add_observation">Add observation</string>
-    <string name="take_picture">Take picture</string>
-    <string name="save">Save</string>
-    <string name="no_observations_yet">No observations yet!</string>
-    <string name="or">or</string>
-    <string name="signed_out">Sign out</string>
-    <string name="view">View</string>
-    <string name="username">Username</string>
-    <string name="password">Password</string>
-    <string name="unknown">Unknown</string>
-    <string name="unknown_species">Unknown species</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">OK</string>
-    <string name="com_facebook_loginview_log_out_button">Log Out</string>
-    <string name="com_facebook_loginview_log_in_button">Log In</string>
-    <string name="com_facebook_loginview_logged_in_as">Logged in as: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Logged in using Facebook</string>
-    <string name="com_facebook_loginview_log_out_action">Log Out</string>
+    <string name="my_location">Vị trí của tôi</string>
+    <string name="nearby_observations">Quan sát gần đây</string>
+    <string name="add">Thêm</string>
+    <string name="view_on_inat">Xem trên iNaturalist.org</string>
+    <string name="reload">Tải lại</string>
+    <string name="view_in_browser">Xem trong trình duyệt</string>
+    <string name="add_observation">Thêm quan sát</string>
+    <string name="take_picture">Chụp ảnh</string>
+    <string name="save">Lưu</string>
+    <string name="no_observations_yet">Chưa quan sát trước đó!</string>
+    <string name="or">hoặc</string>
+    <string name="signed_out">Đăng xuất</string>
+    <string name="username">Tên người dùng</string>
+    <string name="password">Mật khẩu</string>
+    <string name="unknown">Không rõ</string>
+    <string name="unknown_species">Loài không xác định</string>
+    <string name="com_facebook_dialogloginactivity_ok_button">Đồng ý</string>
+    <string name="com_facebook_loginview_log_out_button">Đăng Xuất</string>
+    <string name="com_facebook_loginview_log_in_button">Đăng nhập</string>
+    <string name="com_facebook_loginview_logged_in_as">Đăng nhập với tên: %1$s</string>
+    <string name="com_facebook_loginview_logged_in_using_facebook">Đăng nhập với Facebook</string>
+    <string name="com_facebook_loginview_log_out_action">Đăng Xuất</string>
     <string name="com_facebook_loginview_cancel_action">Cancel</string>
     <string name="com_facebook_logo_content_description">Facebook Logo</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Log In&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Logged In</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Not Logged In</string>
+    <string name="com_facebook_usersettingsfragment_log_in_button">Đăng nhập...</string>
+    <string name="com_facebook_usersettingsfragment_logged_in">Đã đăng nhập</string>
+    <string name="com_facebook_usersettingsfragment_not_logged_in">Chưa đăng nhập</string>
     <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d were here</string>
     <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
     <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d were here</string>
-    <string name="com_facebook_picker_done_button_text">Done</string>
-    <string name="com_facebook_choose_friends">Choose Friends</string>
-    <string name="com_facebook_nearby">Nearby</string>
-    <string name="com_facebook_loading">Loading...</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifest Error</string>
-    <string name="com_facebook_internet_permission_error_message">WebView login requires INTERNET permission</string>
-    <string name="com_facebook_requesterror_web_login">Your Facebook account is locked. Please log into www.facebook.com to continue.</string>
-    <string name="com_facebook_requesterror_relogin">Please log into this app again to reconnect your Facebook account.</string>
-    <string name="com_facebook_requesterror_password_changed">Your Facebook password has changed. Please log into this app again to reconnect your Facebook account.</string>
-    <string name="com_facebook_requesterror_reconnect">Please log into this app again to reconnect your Facebook account.</string>
-    <string name="com_facebook_requesterror_permissions">This app doesn’t have permission to do this. To change permissions, try logging into the app again.</string>
-    <string name="edit_observation">Edit Observation</string>
-    <string name="discard_changes">Are you sure you want to discard unsaved changes?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
+    <string name="com_facebook_picker_done_button_text">Hoàn thành</string>
+    <string name="com_facebook_choose_friends">Chọn bạn bè</string>
+    <string name="com_facebook_nearby">Gần đây</string>
+    <string name="com_facebook_loading">Đang tải...</string>
+    <string name="com_facebook_internet_permission_error_title">Lỗi AndroidManifest</string>
+    <string name="com_facebook_internet_permission_error_message">Đăng nhập WebView yêu cầu sự cho phép INTERNET</string>
+    <string name="com_facebook_requesterror_web_login">Tài khoản Facebook của bạn đã bị khóa. Bạn hãy đăng nhập vào www.facebook.com để tiếp tục.</string>
+    <string name="com_facebook_requesterror_relogin">Bạn hãy thử đăng nhập vào ứng dụng này một lần nữa để kết nối lại với tài khoản Facebook của bạn.</string>
+    <string name="com_facebook_requesterror_password_changed">Mật khẩu Facebook của bạn đã thay đổi. Bạn vui lòng đăng nhập lại vào ứng dụng này để khôi phục kết nối với tài khoản Facebook của bạn.</string>
+    <string name="com_facebook_requesterror_reconnect">Bạn hãy thử đăng nhập vào ứng dụng này một lần nữa để kết nối lại với tài khoản Facebook của bạn.</string>
+    <string name="com_facebook_requesterror_permissions">Ứng dụng không có quyền thực hiện hành động này. Để thay đổi quyền cho phép, bạn hãy thử đăng nhập vào ứng dụng một lần nữa.</string>
+    <string name="edit_observation">Chỉnh sửa quan sát</string>
+    <string name="discard_changes">Bạn có chắc chắn muốn xóa tất cả các thay đổi chưa lưu không?</string>
+    <string name="yes">Có</string>
+    <string name="no">Không</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
-    <string name="agree">Agree?</string>
-    <string name="no_comments">No comments/identifications yet</string>
-    <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
-    <string name="you">you</string>
-    <string name="add_comment">Add comment</string>
-    <string name="add_id">Add identification</string>
-    <string name="remarks">Remarks...</string>
-    <string name="enter_taxon_name">Species name</string>
-    <string name="no_projects">No projects found!</string>
-    <string name="no_guides">No guides found!</string>
-    <string name="loading_projects">Loading projects...</string>
-    <string name="joined_projects">Joined</string>
-    <string name="nearby_projects">Nearby</string>
+    <string name="agree">Đồng ý?</string>
+    <string name="no_comments">Không có bình luận/nhận dạng nào</string>
+    <string name="add_comment">Thêm bình luận</string>
+    <string name="add_id">Thêm nhận dạng</string>
+    <string name="remarks">Lưu ý...</string>
+    <string name="enter_taxon_name">Tên các loài</string>
+    <string name="no_projects">Không tìm thấy dự án!</string>
+    <string name="no_guides">Không tìm thấy hướng dẫn!</string>
+    <string name="loading_projects">Đang tải dự án ...</string>
+    <string name="joined_projects">Đã tham gia</string>
+    <string name="nearby_projects">Gần đây</string>
     <!-- Tab title for the list of featured projects in the Projects screen -->
-    <string name="featured_projects">Featured</string>
+    <string name="featured_projects">Nổi bật</string>
     <!-- Verb, used as a label for actions like leaving a project -->
-    <string name="leave">Leave</string>
-    <string name="join">Join</string>
-    <string name="no_check_list">No Taxa in Check List!</string>
+    <string name="leave">Rời khỏi</string>
+    <string name="join">Tham gia</string>
+    <string name="no_check_list">Không có đơn vị phân loại nào trong danh sách!</string>
     <string name="failed_to_add_obs_to_project">Failed to add observation \'%1$s\' to project \'%2$s\': %3$s</string>
     <string name="invalid_project_field">Please enter a valid value for field \'%1s\'</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
@@ -152,41 +149,41 @@
     </plurals>
     <string name="sync_observations">Sync Observations</string>
     <string name="lets_get_started">Let\'s get started!</string>
-    <string name="view_nearby_observations">View Nearby Observations</string>
-    <string name="skip_for_now">Skip for Now</string>
+    <string name="view_nearby_observations">Quan sát gần đây</string>
+    <string name="skip_for_now">Bỏ qua Bây giờ</string>
     <string-array name="tutorial_titles">
         <item></item>
-        <item>Observe</item>
-        <item>Share</item>
-        <item>Learn</item>
-        <item>Contribute</item>
+        <item>Quan sát</item>
+        <item>Chia sẻ</item>
+        <item>Học</item>
+        <item>Đóng góp</item>
     </string-array>
     <string-array name="tutorial_descriptions">
-        <item>Explore and Connect with Nature</item>
-        <item>Get outside! Find something wild, and take a clear, full frame photo.</item>
-        <item>Share your observation with the iNaturalist community.</item>
+        <item>Khám phá và Kết nối với Tự nhiên</item>
+        <item>Hãy ra ngoài! Tìm vài thứ hoang dã, và chụp một bức ảnh đầy đủ và rõ ràng.</item>
+        <item>Chia sẻ quan sát của bạn với cộng đồng iNaturalist.</item>
         <item>Check back for comments and identifications on your observation!</item>
-        <item><![CDATA[<b>Research Grade</b> observations are shared with scientists working to better understand and protect nature.]]></item>
+        <item><![CDATA[<b>Lớp nghiên cứu</b> các quan sát đã được chia sẻ với các nhà khoa học đang làm việc để hiểu rõ và bảo vệ thiên nhiên.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
-        <item>Open</item>
+        <item>Mở</item>
         <item>Obscured</item>
-        <item>Private</item>
+        <item>Riêng tư</item>
     </string-array>
-    <string name="alert_sign_out">Are you sure you want to sign out? This will delete all your observations on this device. It will not affect any observations you\'ve uploaded to iNaturalist.</string>
-    <string name="alert_unsupported_media_type">Sorry, but there was a problem loading the photo from this source</string>
+    <string name="alert_sign_out">Bạn chắc chắn muốn đăng xuất? Điều này sẽ xoá toàn bộ các quan sát của bạn trên thiết bị này. Nó sẽ không ảnh hưởng đến các quan sát bạn đã tải lên iNaturalist.</string>
+    <string name="alert_unsupported_media_type">Xin lỗi, có vấn đề khi tải ảnh từ nguồn này</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
-    <string name="explore">Explore</string>
+    <string name="explore">Khám phá</string>
     <string name="restricted_to_current_map_area">Restricted to current map area</string>
-    <string name="search">Search</string>
-    <string name="details">Details</string>
-    <string name="observation_photos">Observation Photos</string>
-    <string name="remove">Remove?</string>
-    <string name="no_observations_found">No observations found</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="details">Thông tin chi tiết</string>
+    <string name="observation_photos">Những bức ảnh quan sát</string>
+    <string name="remove">Loại bỏ?</string>
+    <string name="no_observations_found">Không tìm thấy quan sát nào</string>
     <string name="license_none">None, all rights reserved</string>
-    <string name="sources_and_attribution">Sources and Attribution</string>
-    <string name="photos"><![CDATA[<b>Photos:</b> %1$s]]></string>
-    <string name="text"><![CDATA[<b>Text:</b> %1$s]]></string>
+    <string name="sources_and_attribution">Các nguồn và Quyền hạn</string>
+    <string name="photos"><![CDATA[<b>Các bức ảnh:</b> %1$s]]></string>
+    <string name="text"><![CDATA[<b>Văn bản:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">The main iNaturalist Network. Clicking OK will set your app as part of the global iNaturalist network.</string>
     <string name="alert_message_use_naturalista">NaturaLista is a member of the iNaturalist Network in Mexico. Local institutions supporting NaturaLista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
@@ -480,15 +477,20 @@
     <string name="airport">Airport</string>
     <string name="drainage">Drainage</string>
     <string name="land_feature">Land Feature</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="miscellaneous">Miscellaneous</string>
     <string name="nationality">Nationality</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Supername</string>
     <string name="point_of_interest">Point of Interest</string>
+    <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">Region</string>
+    <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
     <string name="colloquial">Colloquial</string>
     <string name="zone">Zone</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_state">Historical State</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_county">Historical County</string>
     <string name="continent">Continent</string>
     <string name="estate">Estate</string>
@@ -500,6 +502,7 @@
     <string name="province">Province</string>
     <string name="municipality">Municipality</string>
     <string name="parish">Parish</string>
+    <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
     <string name="department_segment">Department Segment</string>
     <string name="city_building">City Building</string>
     <string name="commune">Commune</string>
@@ -519,7 +522,9 @@
     <string name="regency">Regency</string>
     <string name="constituency">Constituency</string>
     <string name="local_authority">Local Authority</string>
+    <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">Poblacion</string>
+    <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegation</string>
     <string name="apply_filters">Apply Filters</string>
     <string name="reset">Reset</string>
@@ -564,6 +569,7 @@
     <string name="select_google_account">Which Google Account?</string>
     <string name="potential_disagreement">Potential Disagreement</string>
     <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
+    <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[I don\'t know but I\'m sure this is <b>%1$s</b>.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
     <string name="submit">Submit</string>

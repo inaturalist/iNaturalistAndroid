@@ -12,7 +12,7 @@
     <string name="sync_required_message">%1$d pozorování, %2$d fotografií k synchronizaci</string>
     <string name="street">Ulice</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
-    <string name="satellite">Satelit</string>
+    <string name="satellite">Satelitní</string>
     <string name="couldnt_load_nearby_observations">Nelze načíst blízká pozorování: %1$s</string>
     <string name="username_invalid">Neplatné uživatelské jméno nebo heslo, přihlaste se znovu.</string>
     <string name="signing_in">Probíhá přihlášení...</string>
@@ -46,7 +46,6 @@
     <string name="no_observations_yet">Žádná pozorování!</string>
     <string name="or">nebo</string>
     <string name="signed_out">Odhlásit se</string>
-    <string name="view">Zobrazit</string>
     <string name="username">Uživatelské jméno</string>
     <string name="password">Heslo</string>
     <string name="unknown">Neznámý</string>
@@ -83,8 +82,6 @@
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">Souhlasíte?</string>
     <string name="no_comments">Zatím žádné komentáře/identifikace</string>
-    <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
-    <string name="you">vy</string>
     <string name="add_comment">Přidat komentář</string>
     <string name="add_id">Přidat identifikaci</string>
     <string name="remarks">Poznámky...</string>
@@ -495,15 +492,20 @@
     <string name="airport">Letiště</string>
     <string name="drainage">Kanalizace</string>
     <string name="land_feature">Znak krajiny</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="miscellaneous">Ostatní</string>
     <string name="nationality">Národnost</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Jméno</string>
     <string name="point_of_interest">Bod zájmu</string>
+    <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">Region</string>
+    <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
     <string name="colloquial">Hovorový</string>
     <string name="zone">Oblast</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_state">Historický stát</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_county">Historický kraj</string>
     <string name="continent">Kontinent</string>
     <string name="estate">Nemovitost</string>
@@ -515,6 +517,7 @@
     <string name="province">Provincie</string>
     <string name="municipality">Obec</string>
     <string name="parish">Farnost</string>
+    <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
     <string name="department_segment">Část oddělení</string>
     <string name="city_building">Městská budova</string>
     <string name="commune">Obec</string>
@@ -534,7 +537,9 @@
     <string name="regency">Regentství</string>
     <string name="constituency">Volební obvod</string>
     <string name="local_authority">Místní úřad</string>
+    <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">Centrum města (Filipíny)</string>
+    <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegace</string>
     <string name="apply_filters">Použít filtry</string>
     <string name="reset">Resetovat</string>
@@ -579,6 +584,7 @@
     <string name="select_google_account">Který Google účet?</string>
     <string name="potential_disagreement">Potenciální neshoda</string>
     <string name="do_you_think_this_could_be"><![CDATA[Jsou důkazy dostatečně potvrzující, že je to <b>%1$s</b>?]]></string>
+    <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[Nevím, ale jsem si jist, že je to <b>%1$s</b>.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Ne, ale je členem <b>%1$s</b>.]]></string>
     <string name="submit">Potvrdit</string>
