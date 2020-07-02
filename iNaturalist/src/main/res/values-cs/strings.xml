@@ -17,8 +17,8 @@
     <string name="username_invalid">Neplatné uživatelské jméno nebo heslo, přihlaste se znovu.</string>
     <string name="signing_in">Probíhá přihlášení...</string>
     <string name="signed_in">Jste přihlášeni!</string>
-    <string name="please_sign_in">Přihlaste se prosím</string>
-    <string name="please_sign_in_description">Přihlaste se k vašemu iNaturalist účtu nebo si vytvořte nový.</string>
+    <string name="please_sign_in">Přihlaste se, prosím</string>
+    <string name="please_sign_in_description">Přihlaste se prosím k vašemu účtu iNaturalist nebo si vytvořte nový.</string>
     <string name="please_enable_location_services">Zapněte si prosím GPS lokalizaci ve vašem telefonu, aby bylo možné určit vaši přesnou polohu...</string>
     <string name="go_to_settings">Přejít do nastavení</string>
     <string name="photo_not_specified">Fotografie není vybrána</string>
@@ -37,7 +37,7 @@
     <string name="my_location">Moje poloha</string>
     <string name="nearby_observations">Blízká pozorování</string>
     <string name="add">Přidat</string>
-    <string name="view_on_inat">Zobrazit na iNat</string>
+    <string name="view_on_inat">Zobrazit na iNaturalist.org</string>
     <string name="reload">Znovu načíst</string>
     <string name="view_in_browser">Zobrazit v prohlížeči</string>
     <string name="add_observation">Přidat pozorování</string>

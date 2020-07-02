@@ -294,7 +294,7 @@
     <string name="comment">Kommentar</string>
     <string name="suggest_id">Foreslå ID</string>
     <string name="update_comment">Oppdatér kommentar</string>
-    <string name="fave_this_observation">Favoriser denne observasjonen</string>
+    <string name="fave_this_observation">Gjør denne observasjonen til favoritt</string>
     <string name="faved">Favorittisert</string>
     <string name="be_the_first_to_fave_this_obs">Vær den første til å favorisere denne observasjonen...</string>
     <string name="leave_a_comment">Etterlat en kommentar eller foreslå en identifikasjon...</string>
