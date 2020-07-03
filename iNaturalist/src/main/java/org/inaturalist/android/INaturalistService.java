@@ -371,6 +371,8 @@ public class INaturalistService extends IntentService {
     public static final String PROGRESS = "progress";
     public static final String EXPAND_LOCATION_BY_DEGREES = "expand_location_by_degrees";
     public static final String QUERY = "query";
+    public static final String BOX = "box";
+    public static final String GROUP_BY_THREADS = "group_by_threads";
     public static final String MESSAGE_ID = "message_id";
     public static final String NOTIFICATIONS = "notifications";
     public static final String TO_USER = "to_user";
@@ -1822,8 +1824,10 @@ public class INaturalistService extends IntentService {
 
             } else if (action.equals(ACTION_GET_MESSAGES)) {
                 String query = intent.getExtras() != null ? intent.getExtras().getString(QUERY) : null;
+                String box = intent.getExtras() != null ? intent.getExtras().getString(BOX) : null;
+                boolean groupByThreads = intent.getExtras() != null ? intent.getExtras().getBoolean(GROUP_BY_THREADS) : false;
                 Integer messageId = (intent.getExtras() != null && intent.getExtras().containsKey(MESSAGE_ID)) ? intent.getExtras().getInt(MESSAGE_ID) : null;
-                BetterJSONObject messages = getMessages(query, messageId);
+                BetterJSONObject messages = getMessages(query, box, groupByThreads, messageId);
 
                 Intent reply = new Intent(ACTION_MESSAGES_RESULT);
                 mApp.setServiceResult(ACTION_MESSAGES_RESULT, messages);
@@ -5363,9 +5367,10 @@ public class INaturalistService extends IntentService {
         }
     }
 
-    private BetterJSONObject getMessages(String searchQuery, Integer messageId) throws AuthenticationException {
+    private BetterJSONObject getMessages(String searchQuery, String box, boolean groupByThreads, Integer messageId) throws AuthenticationException {
         String url = messageId == null ?
-                String.format("%s/messages?q=%s&per_page=200", API_HOST, searchQuery != null ? URLEncoder.encode(searchQuery) : "") :
+                String.format("%s/messages?q=%s&box=%s&threads=%s&per_page=200",
+                        API_HOST, searchQuery != null ? URLEncoder.encode(searchQuery) : "", box != null ? box : "inbox", groupByThreads) :
                 String.format("%s/messages/%d", API_HOST, messageId);
 
         JSONArray json = get(url);

@@ -16,10 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.tinylog.Logger;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -101,9 +103,29 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         boolean isMuted = mMutedUsers.contains(user.optInt("id"));
         holder.muteIndicator.setVisibility(isMuted ? View.VISIBLE : View.GONE);
 
+        boolean unresolvedFlag = hasUnresolvedFlags(message.getJSONObject());
+
+        holder.flagIndicator.setVisibility(unresolvedFlag ? View.VISIBLE : View.GONE);
+
         holder.rootView.setOnClickListener(view -> {
             mClickListener.onClick(message.getJSONObject(), position);
         });
+    }
+
+    public static boolean hasUnresolvedFlags(JSONObject message) {
+        JSONArray threadFlags = message.optJSONArray("thread_flags");
+        if (threadFlags == null) {
+            return false;
+        }
+
+        for (int i = 0; i < threadFlags.length(); i++) {
+            JSONObject flag = threadFlags.optJSONObject(i);
+            if (!flag.optBoolean("resolved")) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override
@@ -118,6 +140,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         public ImageView userPic;
         public View unreadIndicator;
         public View muteIndicator;
+        public View flagIndicator;
         public View rootView;
 
         public ViewHolder(@NonNull View view) {
@@ -129,6 +152,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             userPic = view.findViewById(R.id.user_pic);
             unreadIndicator = view.findViewById(R.id.unread_indicator);
             muteIndicator = view.findViewById(R.id.mute_indicator);
+            flagIndicator = view.findViewById(R.id.flag_indicator);
             rootView = view;
         }
     }

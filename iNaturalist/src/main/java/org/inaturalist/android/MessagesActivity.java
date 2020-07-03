@@ -158,7 +158,12 @@ public class MessagesActivity extends BaseFragmentActivity implements MessageAda
         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_MESSAGES, null, this, INaturalistService.class);
         if (mCurrentSearchString.length() > 0) {
             serviceIntent.putExtra(INaturalistService.QUERY, mCurrentSearchString);
+            serviceIntent.putExtra(INaturalistService.GROUP_BY_THREADS, false);
+        } else {
+            serviceIntent.putExtra(INaturalistService.GROUP_BY_THREADS, true);
         }
+
+        serviceIntent.putExtra(INaturalistService.BOX, "any");
         ContextCompat.startForegroundService(this, serviceIntent);
         refreshUserDetails();
 
@@ -318,7 +323,15 @@ public class MessagesActivity extends BaseFragmentActivity implements MessageAda
 
             // Messages result
             resultsObject = (BetterJSONObject) object;
-            results = resultsObject.getJSONArray("results").getJSONArray();
+            SerializableJSONArray arr = resultsObject.getJSONArray("results");
+
+            if (arr == null) {
+                mMessages = new ArrayList<>();
+                refreshViewState();
+                return;
+            }
+
+            results = arr.getJSONArray();
 
             ArrayList<JSONObject> resultsArray = new ArrayList<JSONObject>();
 

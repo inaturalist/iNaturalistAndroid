@@ -204,8 +204,11 @@ public class MessagesThreadActivity extends AppCompatActivity {
 
         if ((userId != null) && (mMenu != null)) {
             boolean isMuted = isUserMuted();
-            mMenu.getItem(0).setVisible(isMuted);
-            mMenu.getItem(1).setTitle(isMuted ? R.string.unmute_this_user : R.string.mute_this_user);
+            mMenu.getItem(1).setVisible(isMuted);
+            mMenu.getItem(2).setTitle(isMuted ? R.string.unmute_this_user : R.string.mute_this_user);
+
+            boolean unresolvedFlag = MessageAdapter.hasUnresolvedFlags(mMessage.getJSONObject());
+            mMenu.getItem(0).setVisible(unresolvedFlag);
         }
     }
 
