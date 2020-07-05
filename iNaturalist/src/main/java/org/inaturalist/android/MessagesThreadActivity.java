@@ -305,6 +305,17 @@ public class MessagesThreadActivity extends AppCompatActivity {
                 showFlagDialog();
                 return true;
 
+            case R.id.is_flagged:
+                // Open flag URL
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                String inatNetwork = mApp.getInaturalistNetworkMember();
+                String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+                JSONObject flag = MessageAdapter.getUnresolvedFlag(mMessage.getJSONObject());
+                intent.setData(Uri.parse(String.format("%s/flags/%d", inatHost, flag.optInt("id"))));
+                startActivity(intent);
+
+                return true;
+
             case R.id.mute_user:
                 if (!isUserMuted()) {
                     // Mute user - show confirmation dialog

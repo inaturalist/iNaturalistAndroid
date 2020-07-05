@@ -18,10 +18,8 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.tinylog.Logger;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -61,7 +59,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         BetterJSONObject message = new BetterJSONObject(mMessages.get(position));
 
-        JSONObject user = message.getJSONObject("from_user");
+        JSONObject user = getOtherUser(message);
         String userPicUrl = user.optString("icon_url");
 
         if (userPicUrl == null) {
@@ -110,22 +108,40 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         holder.rootView.setOnClickListener(view -> {
             mClickListener.onClick(message.getJSONObject(), position);
         });
+
+        if ((readAt != null) && (!unresolvedFlag) && (!isMuted)) {
+            holder.indicatorContainer.setVisibility(View.GONE);
+        } else {
+            holder.indicatorContainer.setVisibility(View.VISIBLE);
+        }
     }
 
-    public static boolean hasUnresolvedFlags(JSONObject message) {
+    public static JSONObject getUnresolvedFlag(JSONObject message) {
         JSONArray threadFlags = message.optJSONArray("thread_flags");
         if (threadFlags == null) {
-            return false;
+            return null;
         }
 
         for (int i = 0; i < threadFlags.length(); i++) {
             JSONObject flag = threadFlags.optJSONObject(i);
             if (!flag.optBoolean("resolved")) {
-                return true;
+                return flag;
             }
         }
 
-        return false;
+        return null;
+    }
+
+    public static boolean hasUnresolvedFlags(JSONObject message) {
+        JSONObject threadFlag = getUnresolvedFlag(message);
+
+        return threadFlag != null;
+    }
+
+    private JSONObject getOtherUser(BetterJSONObject message) {
+        return (message.getJSONObject("from_user").optString("login").equals(mApp.currentUserLogin()) &&
+                        message.getJSONObject("to_user") != null) ?
+                message.getJSONObject("to_user") : message.getJSONObject("from_user");
     }
 
     @Override
@@ -138,6 +154,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         public TextView subject;
         public TextView date;
         public ImageView userPic;
+        public ViewGroup indicatorContainer;
         public View unreadIndicator;
         public View muteIndicator;
         public View flagIndicator;
@@ -153,6 +170,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             unreadIndicator = view.findViewById(R.id.unread_indicator);
             muteIndicator = view.findViewById(R.id.mute_indicator);
             flagIndicator = view.findViewById(R.id.flag_indicator);
+            indicatorContainer = view.findViewById(R.id.indicators_container);
             rootView = view;
         }
     }

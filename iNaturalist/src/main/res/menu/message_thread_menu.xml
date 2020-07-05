@@ -8,7 +8,7 @@
         android:title=""
         android:iconTint="#000000"
         android:visible="false"
-        android:enabled="false"
+        android:enabled="true"
         android:orderInCategory="0" />
     <item
         android:id="@+id/is_muted"
