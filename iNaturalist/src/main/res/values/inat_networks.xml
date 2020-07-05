@@ -75,19 +75,19 @@
     <string name="inat_country_name_inaturalistil">Israel</string>
     <string name="inat_country_name_inaturalistfi">Finland</string>
 
-    <!-- The domain endpoint to use for each network type - used when adding new observations -->
+    <!-- The domain endpoint to use for each network type - used when adding new observations (NO trailing slash at the end) -->
     <string name="inat_host_inaturalist">https://www.inaturalist.org</string>
     <string name="inat_host_naturalista">https://www.naturalista.mx</string>
     <string name="inat_host_naturewatchnz">https://inaturalist.nz</string>
     <string name="inat_host_inaturalistcanada">https://www.inaturalist.ca</string>
     <string name="inat_host_naturalistacolombia">https://colombia.inaturalist.org</string>
-    <string name="inat_host_biodiversity4all">https://www.biodiversity4all.org/</string>
-    <string name="inat_host_inaturalistpanama">https://panama.inaturalist.org/</string>
+    <string name="inat_host_biodiversity4all">https://www.biodiversity4all.org</string>
+    <string name="inat_host_inaturalistpanama">https://panama.inaturalist.org</string>
     <string name="inat_host_inaturalistecuador">https://ecuador.inaturalist.org</string>
     <string name="inat_host_inaturalistaustralia">https://inaturalist.ala.org.au</string>
     <string name="inat_host_argentinat">https://www.argentinat.org</string>
-    <string name="inat_host_inaturalistil">https://israel.inaturalist.org/</string>
-    <string name="inat_host_inaturalistfi">https://inaturalist.laji.fi/</string>
+    <string name="inat_host_inaturalistil">https://israel.inaturalist.org</string>
+    <string name="inat_host_inaturalistfi">https://inaturalist.laji.fi</string>
 
     <!-- The site id parameter to use for each network type - used when adding new observations -->
     <string name="inat_site_id_inaturalist">1</string>
