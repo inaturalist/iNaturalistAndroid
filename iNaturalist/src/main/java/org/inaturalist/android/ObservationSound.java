@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class ObservationSound implements BaseColumns, Serializable {
     public Integer _id;
@@ -80,7 +81,7 @@ public class ObservationSound implements BaseColumns, Serializable {
     }
 
     public String toString() {
-        return String.format("ObservationSound (%d / %d): %d/%d - %s - %s / %s", _id, id != null ? id : -1, observation_id != null ? observation_id : -1, _observation_id != null ? _observation_id : -1, observation_uuid, filename, file_url);
+        return String.format(Locale.ENGLISH, "ObservationSound (%d / %d): %d/%d - %s - %s / %s", _id, id != null ? id : -1, observation_id != null ? observation_id : -1, _observation_id != null ? _observation_id : -1, observation_uuid, filename, file_url);
     }
 
     public ObservationSound() {}
