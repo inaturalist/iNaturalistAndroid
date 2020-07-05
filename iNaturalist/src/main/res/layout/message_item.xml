@@ -11,6 +11,7 @@
         android:layout_height="71dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
+        android:layout_marginLeft="18dp"
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
