@@ -4,16 +4,16 @@
     <item
         android:id="@+id/is_flagged"
         app:showAsAction="always"
-        android:icon="@drawable/icon_flaggedmessage"
         android:title=""
         android:iconTint="#000000"
+        app:actionLayout="@layout/flag_menu_icon"
         android:visible="false"
         android:enabled="true"
         android:orderInCategory="0" />
     <item
         android:id="@+id/is_muted"
         app:showAsAction="always"
-        android:icon="@drawable/muted"
+        app:actionLayout="@layout/mute_menu_icon"
         android:title=""
         android:iconTint="#000000"
         android:visible="false"

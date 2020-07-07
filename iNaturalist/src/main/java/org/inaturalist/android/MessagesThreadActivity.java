@@ -632,6 +632,12 @@ public class MessagesThreadActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.message_thread_menu, menu);
         mMenu = menu;
+
+        // Can't detect clicks directly (since we use a custom action view)
+        mMenu.getItem(0).getActionView().setOnClickListener(view -> MessagesThreadActivity.this.onOptionsItemSelected(mMenu.getItem(0)));
+
+        refreshViewState(false, true);
+
         return true;
     }
 

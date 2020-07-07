@@ -933,7 +933,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
         int unreadMessages = prefs.getInt("user_unread_messages", 0);
         TextView activityBadge = (TextView)findViewById(R.id.messages_badge);
         activityBadge.setVisibility(unreadMessages > 0 ? View.VISIBLE : View.GONE);
-        activityBadge.setText(String.format(getString(R.string.unread_messages), unreadMessages));
+        activityBadge.setText(String.valueOf(unreadMessages));
     }
 
 

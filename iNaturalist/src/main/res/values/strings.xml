@@ -864,7 +864,6 @@
     <string name="new_message">New Message</string>
     <string name="search_for_inaturalist_users">Search for iNautralist users</string>
     <string name="please_sign_in_for_messages">You must be logged in to view your messages.</string>
-    <string name="unread_messages">%1d unread</string>
     <string name="sorry">Sorry</string>
     <string name="you_must_have_three_observations">You must have three verifiable observations or three identifications for others in order to do that.</string>
     <string name="mute_this_user">Mute this user</string>
