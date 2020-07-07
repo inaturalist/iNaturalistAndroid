@@ -46,7 +46,6 @@
     <string name="no_observations_yet">Ainda não existem observações!</string>
     <string name="or">ou</string>
     <string name="signed_out">Terminar sessão</string>
-    <string name="view">Ver</string>
     <string name="username">Nome de utilizador</string>
     <string name="password">Palavra-passe</string>
     <string name="unknown">Desconhecido</string>
@@ -83,8 +82,6 @@
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">Concorda?</string>
     <string name="no_comments">Ainda sem comentários/identificações</string>
-    <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
-    <string name="you">você</string>
     <string name="add_comment">Adicionar comentário</string>
     <string name="add_id">Adicionar identificação</string>
     <string name="remarks">Comentários...</string>
@@ -485,15 +482,20 @@
     <string name="airport">Aeroporto</string>
     <string name="drainage">Bacia hidrográfica</string>
     <string name="land_feature">Característica do terreno</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="miscellaneous">Diversos</string>
     <string name="nationality">Nacionalidade</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Zona geográfica</string>
     <string name="point_of_interest">Ponto de Interesse</string>
+    <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">Região</string>
+    <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
     <string name="colloquial">Coloquial</string>
     <string name="zone">Zona</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_state">Estado Histórico</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_county">Município histórico</string>
     <string name="continent">Continente</string>
     <string name="estate">Propriedade</string>
@@ -505,6 +507,7 @@
     <string name="province">Província</string>
     <string name="municipality">Município</string>
     <string name="parish">Freguesia</string>
+    <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
     <string name="department_segment">Segmento do Departamento</string>
     <string name="city_building">Edifício de Cidade</string>
     <string name="commune">Comuna</string>
@@ -524,7 +527,9 @@
     <string name="regency">Regência</string>
     <string name="constituency">Círculo eleitoral</string>
     <string name="local_authority">Autoridade Local</string>
+    <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">População</string>
+    <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegação</string>
     <string name="apply_filters">Aplicar Filtros</string>
     <string name="reset">Repor</string>
@@ -569,6 +574,7 @@
     <string name="select_google_account">Qual a Conta Google?</string>
     <string name="potential_disagreement">Desacordo Potencial</string>
     <string name="do_you_think_this_could_be"><![CDATA[A prova fornecida é suficiente para confirmar que se trata de <b>%1$s</b>?]]></string>
+    <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[Não sei, mas tenho a certeza que se trata de <b>%1$s</b>.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Não, mas faz parte de <b>%1$s</b>.]]></string>
     <string name="submit">Submeter</string>

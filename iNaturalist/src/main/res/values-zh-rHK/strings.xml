@@ -46,7 +46,6 @@
     <string name="no_observations_yet">仍未有觀察記錄！</string>
     <string name="or">或者</string>
     <string name="signed_out">登出</string>
-    <string name="view">檢視</string>
     <string name="username">用戶名稱</string>
     <string name="password">密碼</string>
     <string name="unknown">不明</string>
@@ -83,8 +82,6 @@
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">同意嗎？</string>
     <string name="no_comments">沒有評論/尚未能鑑定</string>
-    <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
-    <string name="you">您</string>
     <string name="add_comment">添加評論</string>
     <string name="add_id">添加物種鑑定</string>
     <string name="remarks">備註</string>
@@ -480,15 +477,20 @@
     <string name="airport">機場</string>
     <string name="drainage">排水溝</string>
     <string name="land_feature">土地特色</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="miscellaneous">其他雜項</string>
     <string name="nationality">國籍</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Supername</string>
     <string name="point_of_interest">興趣點</string>
+    <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">區域</string>
+    <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
     <string name="colloquial">口語的</string>
     <string name="zone">時區</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_state">歷史州</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_county">歷史縣市</string>
     <string name="continent">大陸</string>
     <string name="estate">房地產</string>
@@ -500,6 +502,7 @@
     <string name="province">省</string>
     <string name="municipality">市</string>
     <string name="parish">教區</string>
+    <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
     <string name="department_segment">支部</string>
     <string name="city_building">城市建築</string>
     <string name="commune">合作社</string>
@@ -519,7 +522,9 @@
     <string name="regency">攝政區</string>
     <string name="constituency">選區</string>
     <string name="local_authority">地方當局</string>
+    <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">省</string>
+    <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">代表</string>
     <string name="apply_filters">套用篩選器</string>
     <string name="reset">重設</string>
@@ -564,6 +569,7 @@
     <string name="select_google_account">哪個 Google 帳戶？</string>
     <string name="potential_disagreement">可能的歧見</string>
     <string name="do_you_think_this_could_be"><![CDATA[是否提供了足夠的證據來確認這是 <b>%1$s</b>？]]></string>
+    <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[我不知道，但我確信這是 <b>%1$s</b>。]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[不，但它是 <b>%1$s</b> 的成員。]]></string>
     <string name="submit">提交</string>

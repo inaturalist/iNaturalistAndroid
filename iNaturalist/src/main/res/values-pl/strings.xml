@@ -46,7 +46,6 @@
     <string name="no_observations_yet">Jeszcze brak obserwacji!</string>
     <string name="or">lub</string>
     <string name="signed_out">Wyloguj się</string>
-    <string name="view">Widok</string>
     <string name="username">Nazwa użytkownika</string>
     <string name="password">Hasło</string>
     <string name="unknown">Brak informacji</string>
@@ -83,8 +82,6 @@
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">Zgadzasz się?</string>
     <string name="no_comments">Jeszcze nie ma komentarzy/identyfikatorów</string>
-    <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
-    <string name="you">Ty</string>
     <string name="add_comment">Dodaj komentarz</string>
     <string name="add_id">Dodaj identyfikację</string>
     <string name="remarks">Uwagi...</string>
@@ -495,15 +492,20 @@
     <string name="airport">Lotnisko</string>
     <string name="drainage">Kanał</string>
     <string name="land_feature">Charakterystyka ziemi</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="miscellaneous">Różne</string>
     <string name="nationality">Narodowość</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Region</string>
     <string name="point_of_interest">Punkt zainteresowania</string>
+    <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">Region</string>
+    <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
     <string name="colloquial">Potocznie</string>
     <string name="zone">Strefa</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_state">Stan historyczny</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_county">Historyczny okręg</string>
     <string name="continent">Kontynent</string>
     <string name="estate">Działka</string>
@@ -515,6 +517,7 @@
     <string name="province">Prowincja</string>
     <string name="municipality">Gmina</string>
     <string name="parish">Parafia</string>
+    <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
     <string name="department_segment">Część departamentu</string>
     <string name="city_building">Budynek w mieście</string>
     <string name="commune">Gmina</string>
@@ -534,7 +537,9 @@
     <string name="regency">Kabupaten</string>
     <string name="constituency">Okręg wyborczy</string>
     <string name="local_authority">Władze lokalne</string>
+    <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">Populacja</string>
+    <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Dystrykt</string>
     <string name="apply_filters">Zastosuj filtry</string>
     <string name="reset">Reset</string>
@@ -579,6 +584,7 @@
     <string name="select_google_account">Wybierz konto Google</string>
     <string name="potential_disagreement">Potencjalna niezgodność</string>
     <string name="do_you_think_this_could_be"><![CDATA[Czy załączone dowody wystarczają, aby potwierdzić, że to <b>%1$s</b>?]]></string>
+    <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[Nie wiem, ale jestem pewny, że to <b>%1$s</b>.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Nie, ale należy do <b>%1$s</b>.]]></string>
     <string name="submit">Wyślij</string>

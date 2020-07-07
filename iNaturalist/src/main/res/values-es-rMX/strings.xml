@@ -46,7 +46,6 @@
     <string name="no_observations_yet">¡Aún no hay observaciones!</string>
     <string name="or">o</string>
     <string name="signed_out">Cierra sesión</string>
-    <string name="view">Ver</string>
     <string name="username">Nombre de usuario</string>
     <string name="password">Contraseña</string>
     <string name="unknown">Desconocido</string>
@@ -83,8 +82,6 @@
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">¿Estás de acuerdo?</string>
     <string name="no_comments">No hay comentarios todavía</string>
-    <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
-    <string name="you">Tú</string>
     <string name="add_comment">Añade un comentario</string>
     <string name="add_id">Añade una identificación</string>
     <string name="remarks">Notas...</string>
@@ -486,15 +483,20 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="airport">Aeropuerto</string>
     <string name="drainage">Drenaje</string>
     <string name="land_feature">Característica del paisaje</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="miscellaneous">Misceláneos</string>
     <string name="nationality">Nacionalidad</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Super nombre</string>
     <string name="point_of_interest">Punto de Interés</string>
+    <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">Región</string>
+    <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
     <string name="colloquial">Coloquial</string>
     <string name="zone">Zona</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_state">Propiedad histórica</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_county">Municipio histórico</string>
     <string name="continent">Continente</string>
     <string name="estate">Propiedad</string>
@@ -506,6 +508,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="province">Provincia</string>
     <string name="municipality">Municipio</string>
     <string name="parish">Circunscripción</string>
+    <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
     <string name="department_segment">Parte del departamento</string>
     <string name="city_building">Edificio de la ciudad</string>
     <string name="commune">Comuna</string>
@@ -525,7 +528,9 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="regency">Regencia</string>
     <string name="constituency">Circunscripción</string>
     <string name="local_authority">Autoridad local</string>
+    <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">Población</string>
+    <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegación</string>
     <string name="apply_filters">Aplica filtros</string>
     <string name="reset">Restablece</string>
@@ -570,6 +575,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="select_google_account">¿Qué cuenta de Google?</string>
     <string name="potential_disagreement">Desacuerdo potencial</string>
     <string name="do_you_think_this_could_be"><![CDATA[¿La evidencia proporcionada es suficiente para confirmar que esto es <b>%1$s</b>?]]></string>
+    <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[No sé pero estoy seguro que es <b>%1$s</b>.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[No, pero es un miembro de <b>%1$s</b>.]]></string>
     <string name="submit">Envía</string>
@@ -820,7 +826,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="forbidden">Prohibido</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">La aplicación desde la que que compartió las fotos no produce fotos adecuadas para observaciones, porque no representan pruebas de su experiencia con otros organismos, porque incluyen marcas o contenidos comerciales inapropiados, o porque infringen nuestras condiciones de servicio de otras maneras.</string>
-    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
-    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
-    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
+    <string name="list_observation_checkbox_description">Casilla para seleccionar múltiples observaciones</string>
+    <string name="observation_list_item_iconic_pic_description">Foto en miniatura del taxón de la observación</string>
+    <string name="observation_list_item_obs_pic_description">Foto en miniatura de la observación</string>
 </resources>

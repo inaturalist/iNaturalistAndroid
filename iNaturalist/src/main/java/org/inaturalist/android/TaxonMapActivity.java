@@ -28,6 +28,7 @@ import com.livefront.bridge.Bridge;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Locale;
 
 public class TaxonMapActivity extends AppCompatActivity {
     private static String TAG = "TaxonMapActivity";
@@ -109,7 +110,7 @@ public class TaxonMapActivity extends AppCompatActivity {
                     @Override
                     public URL getTileUrl(int x, int y, int zoom) {
 
-                        String s = String.format(INaturalistService.API_HOST + "/grid/%d/%d/%d.png?taxon_id=%d",
+                        String s = String.format(Locale.ENGLISH, INaturalistService.API_HOST + "/grid/%d/%d/%d.png?taxon_id=%d",
                                 zoom, x, y, mTaxonId);
                         try {
                             return new URL(s);

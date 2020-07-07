@@ -689,7 +689,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
                     @Override
                     public URL getTileUrl(int x, int y, int zoom) {
 
-                        String s = String.format(INaturalistService.API_HOST + "/grid/%d/%d/%d.png?taxon_id=%d",
+                        String s = String.format(Locale.ENGLISH, INaturalistService.API_HOST + "/grid/%d/%d/%d.png?taxon_id=%d",
                                 zoom, x, y, mTaxon.getInt("id"));
                         try {
                             return new URL(s);
@@ -771,7 +771,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
 
                 Locale deviceLocale = getResources().getConfiguration().locale;
                 String deviceLanguage =   deviceLocale.getLanguage();
-                String taxonUrl = String.format("%s/taxa/%d?locale=%s", inatHost, mTaxon.getInt("id"), deviceLanguage);
+                String taxonUrl = String.format(Locale.ENGLISH, "%s/taxa/%d?locale=%s", inatHost, mTaxon.getInt("id"), deviceLanguage);
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(taxonUrl));
                 startActivity(i);
@@ -883,7 +883,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
 
                 Locale deviceLocale = getResources().getConfiguration().locale;
                 String deviceLanguage =   deviceLocale.getLanguage();
-                String taxonUrl = String.format("%s/taxon_changes?taxon_id=%d&locale=%s", inatHost, mTaxon.getInt("id"), deviceLanguage);
+                String taxonUrl = String.format(Locale.ENGLISH, "%s/taxon_changes?taxon_id=%d&locale=%s", inatHost, mTaxon.getInt("id"), deviceLanguage);
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(taxonUrl));
                 startActivity(i);

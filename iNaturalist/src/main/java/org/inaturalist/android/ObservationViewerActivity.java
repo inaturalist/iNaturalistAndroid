@@ -800,7 +800,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         mShowComments = false;
                         mScrollToCommentsBottom = false;
                         mReloadObs = true;
-                        mObsJson = String.format("{ \"id\": %d }", obsId);
+                        mObsJson = String.format(Locale.ENGLISH, "{ \"id\": %d }", obsId);
                         mObservation = new Observation(new BetterJSONObject(mObsJson));
                     } else {
                         Logger.tag(TAG).error("Invalid URL");
@@ -1942,7 +1942,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
                 Locale deviceLocale = getResources().getConfiguration().locale;
                 String deviceLanguage =   deviceLocale.getLanguage();
-                String taxonUrl = String.format("%s/taxon_changes?taxon_id=%d&locale=%s", inatHost, mTaxon.optInt("id"), deviceLanguage);
+                String taxonUrl = String.format(Locale.ENGLISH, "%s/taxon_changes?taxon_id=%d&locale=%s", inatHost, mTaxon.optInt("id"), deviceLanguage);
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(taxonUrl));
                 startActivity(i);
@@ -2695,7 +2695,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         Uri photoUri = replacedPhoto.first;
 
                         // Delete old photo
-                        Logger.tag(TAG).debug(String.format("Replacing/deleting previous photo at index: %d: %s", index, photoUri));
+                        Logger.tag(TAG).debug(String.format(Locale.ENGLISH, "Replacing/deleting previous photo at index: %d: %s", index, photoUri));
                         deletePhoto(index, false);
 
                         // Add new photo instead

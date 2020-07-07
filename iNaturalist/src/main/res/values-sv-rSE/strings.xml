@@ -46,7 +46,6 @@
     <string name="no_observations_yet">Inga observationer ännu!</string>
     <string name="or">eller</string>
     <string name="signed_out">Logga ut</string>
-    <string name="view">Visa</string>
     <string name="username">Användarnamn</string>
     <string name="password">Lösenord</string>
     <string name="unknown">Okänd</string>
@@ -83,8 +82,6 @@
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">Håll med?</string>
     <string name="no_comments">Inga kommentarer/bestämningar ännu</string>
-    <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
-    <string name="you">du</string>
     <string name="add_comment">Lägg till kommentar</string>
     <string name="add_id">Lägg till bestämning</string>
     <string name="remarks">Kommentarer...</string>
@@ -485,15 +482,20 @@
     <string name="airport">Flygplats</string>
     <string name="drainage">Avrinningsområde</string>
     <string name="land_feature">Landskapstyp</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="miscellaneous">Diverse</string>
     <string name="nationality">Nationalitet</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Region</string>
     <string name="point_of_interest">Sevärdhet</string>
+    <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">Region</string>
+    <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
     <string name="colloquial">Vardagligt</string>
     <string name="zone">Zon</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_state">Historisk stat</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_county">Historiskt län</string>
     <string name="continent">Kontinent</string>
     <string name="estate">Gods</string>
@@ -505,6 +507,7 @@
     <string name="province">Provins</string>
     <string name="municipality">Kommun</string>
     <string name="parish">Socken</string>
+    <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
     <string name="department_segment">Institutionsavdelning</string>
     <string name="city_building">Stadsbyggnad</string>
     <string name="commune">Kommun</string>
@@ -524,7 +527,9 @@
     <string name="regency">Regenskap</string>
     <string name="constituency">Valkrets</string>
     <string name="local_authority">Lokal myndighet</string>
+    <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">Samhälle</string>
+    <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegation</string>
     <string name="apply_filters">Verkställ filter</string>
     <string name="reset">Återställ</string>
@@ -569,6 +574,7 @@
     <string name="select_google_account">Vilket Google-konto?</string>
     <string name="potential_disagreement">Möjlig oenighet</string>
     <string name="do_you_think_this_could_be"><![CDATA[Finns det tillräckligt med bevis för att bekräfta att detta är <b>%1$s</b>?]]></string>
+    <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[Jag vet inte men jag är säker på att detta är <b>%1$s</b>.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Nej, men den tillhör <b>%1$s</b>.]]></string>
     <string name="submit">Skicka</string>
@@ -819,7 +825,7 @@
     <string name="forbidden">Förbjudet</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">Appen du delade från skapar bilder som inte är lämpliga för observationer för att de inte fungerar som stöd för din upplevelse av en annan organism, för att de innehåller ett olämpligt varumärke eller kommersiellt innehåll eller för att de bryter mot våra användarvillkor på annat sätt.</string>
-    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
-    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
-    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
+    <string name="list_observation_checkbox_description">Kryssruta för att välja observation i flervalsläge</string>
+    <string name="observation_list_item_iconic_pic_description">Miniatyrbild för observationstaxon</string>
+    <string name="observation_list_item_obs_pic_description">Miniatyrbild för observation</string>
 </resources>

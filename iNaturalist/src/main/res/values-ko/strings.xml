@@ -46,7 +46,6 @@
     <string name="no_observations_yet">관찰이 없습니다!</string>
     <string name="or">또는</string>
     <string name="signed_out">로그아웃</string>
-    <string name="view">보기</string>
     <string name="username">아이디</string>
     <string name="password">비밀번호</string>
     <string name="unknown">알 수 없음</string>
@@ -83,8 +82,6 @@
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">동의합니까?</string>
     <string name="no_comments">아직 작성된 댓글/동정이 없습니다</string>
-    <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
-    <string name="you">회원님</string>
     <string name="add_comment">댓글 추가</string>
     <string name="add_id">동정 추가</string>
     <string name="remarks">의견...</string>
@@ -480,15 +477,20 @@
     <string name="airport">공항</string>
     <string name="drainage">유역</string>
     <string name="land_feature">지형 정보</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="miscellaneous">기타</string>
     <string name="nationality">국적</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Supername</string>
     <string name="point_of_interest">관심 지역</string>
+    <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">지역</string>
+    <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
     <string name="colloquial">Colloquial</string>
     <string name="zone">구역</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_state">역사적 시/군/주</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_county">역사적 도시</string>
     <string name="continent">대륙</string>
     <string name="estate">Estate</string>
@@ -500,6 +502,7 @@
     <string name="province">지방</string>
     <string name="municipality">지방 자치체</string>
     <string name="parish">교구</string>
+    <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
     <string name="department_segment">Department Segment</string>
     <string name="city_building">도시 건물</string>
     <string name="commune">Commune</string>
@@ -519,7 +522,9 @@
     <string name="regency">Regency</string>
     <string name="constituency">Constituency</string>
     <string name="local_authority">Local Authority</string>
+    <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">Poblacion</string>
+    <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegation</string>
     <string name="apply_filters">필터 적용</string>
     <string name="reset">재설정</string>
@@ -564,6 +569,7 @@
     <string name="select_google_account">어떤 구글 계정입니까?</string>
     <string name="potential_disagreement">Potential Disagreement</string>
     <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
+    <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[I don\'t know but I\'m sure this is <b>%1$s</b>.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
     <string name="submit">Submit</string>

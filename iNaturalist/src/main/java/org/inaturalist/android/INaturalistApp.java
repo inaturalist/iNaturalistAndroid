@@ -1229,7 +1229,7 @@ public class INaturalistApp extends MultiDexApplication {
         long availableHeapSize = maxHeapSize - usedMem;
         float freeHeapPercentage = (float)availableHeapSize / maxHeapSize;
 
-        Logger.tag(TAG).debug(String.format("isLowMemory: Heap: %d / %d (%f)", availableHeapSize, maxHeapSize, freeHeapPercentage));
+        Logger.tag(TAG).debug(String.format(Locale.ENGLISH, "isLowMemory: Heap: %d / %d (%f)", availableHeapSize, maxHeapSize, freeHeapPercentage));
 
         ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
         ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
@@ -1238,7 +1238,7 @@ public class INaturalistApp extends MultiDexApplication {
         long nativeHeapFreeSize = mi.availMem;
         float nativeHeapPercentage = (float)nativeHeapFreeSize / nativeHeapSize;
 
-        Logger.tag(TAG).debug(String.format("isLowMemory: Native Heap: %d / %d (%f)", nativeHeapFreeSize, nativeHeapSize, nativeHeapPercentage));
+        Logger.tag(TAG).debug(String.format(Locale.ENGLISH, "isLowMemory: Native Heap: %d / %d (%f)", nativeHeapFreeSize, nativeHeapSize, nativeHeapPercentage));
 
         boolean isLowMemory = (freeHeapPercentage < 0.10) || (nativeHeapPercentage < 0.10);
 
