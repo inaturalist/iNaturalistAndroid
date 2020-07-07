@@ -286,6 +286,10 @@ public class INaturalistService extends IntentService {
     public static final String USER_SEARCH_OBSERVATIONS_RESULT = "user_search_observations_result";
     public static final String OBSERVATION_JSON_RESULT = "observation_json_result";
     public static final String SUCCESS = "success";
+    public static final String FLAGGABLE_TYPE = "flaggable_type";
+    public static final String FLAGGABLE_ID = "flaggable_id";
+    public static final String FLAG = "flag";
+    public static final String FLAG_EXPLANATION = "flag_explanation";
     public static final String OBSERVATION_COUNT = "observation_count";
     public static final String PROJECTS_RESULT = "projects_result";
     public static final String IDENTIFICATIONS_RESULT = "identifications_result";
@@ -334,6 +338,12 @@ public class INaturalistService extends IntentService {
     public static final String PROJECT_ID = "project_id";
     public static final String CHECK_LIST_ID = "check_list_id";
     public static final String ACTION_CHECK_LIST_RESULT = "action_check_list_result";
+    public static final String ACTION_MESSAGES_RESULT = "action_messages_result";
+    public static final String ACTION_NOTIFICATION_COUNTS_RESULT = "action_notification_counts_result";
+    public static final String ACTION_POST_MESSAGE_RESULT = "action_post_message_result";
+    public static final String ACTION_MUTE_USER_RESULT = "action_mute_user_result";
+    public static final String ACTION_POST_FLAG_RESULT = "action_post_flag_result";
+    public static final String ACTION_UNMUTE_USER_RESULT = "action_unmute_user_result";
     public static final String CHECK_LIST_RESULT = "check_list_result";
     public static final String ACTION_GET_TAXON_RESULT = "action_get_taxon_result";
     public static final String SEARCH_TAXA_RESULT = "search_taxa_result";
@@ -361,6 +371,14 @@ public class INaturalistService extends IntentService {
     public static final String PROGRESS = "progress";
     public static final String EXPAND_LOCATION_BY_DEGREES = "expand_location_by_degrees";
     public static final String QUERY = "query";
+    public static final String BOX = "box";
+    public static final String GROUP_BY_THREADS = "group_by_threads";
+    public static final String MESSAGE_ID = "message_id";
+    public static final String NOTIFICATIONS = "notifications";
+    public static final String TO_USER = "to_user";
+    public static final String THREAD_ID = "thread_id";
+    public static final String SUBJECT = "subject";
+    public static final String BODY = "body";
     public static final String OBSERVATIONS = "observations";
     public static final String IDENTIFICATIONS = "identifications";
     public static final String LIFE_LIST_ID = "life_list_id";
@@ -417,6 +435,12 @@ public class INaturalistService extends IntentService {
     public static String ACTION_GET_AND_SAVE_OBSERVATION = "get_and_save_observation";
     public static String ACTION_FLAG_OBSERVATION_AS_CAPTIVE = "flag_observation_as_captive";
     public static String ACTION_GET_CHECK_LIST = "get_check_list";
+    public static String ACTION_GET_MESSAGES = "get_messages";
+    public static String ACTION_GET_NOTIFICATION_COUNTS = "get_notification_counts";
+    public static String ACTION_POST_MESSAGE = "post_message";
+    public static String ACTION_MUTE_USER = "mute_user";
+    public static String ACTION_POST_FLAG = "post_flag";
+    public static String ACTION_UNMUTE_USER = "unmute_user";
     public static String ACTION_JOIN_PROJECT = "join_project";
     public static String ACTION_LEAVE_PROJECT = "leave_project";
     public static String ACTION_GET_JOINED_PROJECTS = "get_joined_projects";
@@ -1186,6 +1210,23 @@ public class INaturalistService extends IntentService {
                 if (user != null) {
                     // Update settings
                     mApp.setShowScientificNameFirst(user.getJSONObject().optBoolean("prefers_scientific_name_first", false));
+
+                    // Refresh privileges
+                    JSONArray privileges = user.getJSONArray("privileges").getJSONArray();
+                    Set<String> privilegesSet = new HashSet<>();
+                    for (int i = 0; i < privileges.length(); i++) {
+                        privilegesSet.add(privileges.optString(i));
+                    }
+                    mApp.setUserPrivileges(privilegesSet);
+
+                    // Refresh muted users
+                    JSONArray mutedUsers = user.getJSONArray("muted_user_ids").getJSONArray();
+                    Set<Integer> mutedSet = new HashSet<>();
+                    for (int i = 0; i < mutedUsers.length(); i++) {
+                        mutedSet.add(mutedUsers.optInt(i));
+                    }
+                    mApp.setMutedUsers(mutedSet);
+
                     JSONArray arr = user.getJSONObject().optJSONArray("roles");
                     HashSet roles = new HashSet();
                     for (int i = 0; i < arr.length(); i++) {
@@ -1734,6 +1775,66 @@ public class INaturalistService extends IntentService {
 
             } else if (action.equals(ACTION_SYNC_JOINED_PROJECTS)) {
                 saveJoinedProjects();
+
+            } else if (action.equals(ACTION_GET_NOTIFICATION_COUNTS)) {
+                BetterJSONObject notificationCounts = getNotificationCounts();
+
+                Intent reply = new Intent(ACTION_NOTIFICATION_COUNTS_RESULT);
+                reply.putExtra(NOTIFICATIONS, notificationCounts);
+                LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_POST_FLAG)) {
+                String flaggableType = intent.getExtras().getString(FLAGGABLE_TYPE);
+                Integer flaggableId = intent.getExtras().getInt(FLAGGABLE_ID);
+                String flag = intent.getExtras().getString(FLAG);
+                String flagExplanation = intent.getExtras().getString(FLAG_EXPLANATION);
+                boolean success = postFlag(flaggableType, flaggableId, flag, flagExplanation);
+
+                Intent reply = new Intent(ACTION_POST_FLAG_RESULT);
+                reply.putExtra(SUCCESS, success);
+                LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_UNMUTE_USER)) {
+                Integer userId = intent.getExtras().getInt(USER);
+                boolean success = unmuteUser(userId);
+
+                Intent reply = new Intent(ACTION_UNMUTE_USER_RESULT);
+                reply.putExtra(SUCCESS, success);
+                LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_MUTE_USER)) {
+                Integer userId = intent.getExtras().getInt(USER);
+                boolean success = muteUser(userId);
+
+                Intent reply = new Intent(ACTION_MUTE_USER_RESULT);
+                reply.putExtra(SUCCESS, success);
+                LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_POST_MESSAGE)) {
+                Integer toUser = intent.getExtras().getInt(TO_USER);
+                Integer threadId = intent.getExtras().containsKey(THREAD_ID) ? intent.getExtras().getInt(THREAD_ID) : null;
+                String subject = intent.getExtras().getString(SUBJECT);
+                String body = intent.getExtras().getString(BODY);
+                BetterJSONObject response = postMessage(toUser, threadId, subject, body);
+
+                Intent reply = new Intent(ACTION_POST_MESSAGE_RESULT);
+                mApp.setServiceResult(ACTION_POST_MESSAGE_RESULT, response);
+                reply.putExtra(IS_SHARED_ON_APP, true);
+                LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_GET_MESSAGES)) {
+                String query = intent.getExtras() != null ? intent.getExtras().getString(QUERY) : null;
+                String box = intent.getExtras() != null ? intent.getExtras().getString(BOX) : null;
+                boolean groupByThreads = intent.getExtras() != null ? intent.getExtras().getBoolean(GROUP_BY_THREADS) : false;
+                Integer messageId = (intent.getExtras() != null && intent.getExtras().containsKey(MESSAGE_ID)) ? intent.getExtras().getInt(MESSAGE_ID) : null;
+                BetterJSONObject messages = getMessages(query, box, groupByThreads, messageId);
+
+                Intent reply = new Intent(ACTION_MESSAGES_RESULT);
+                mApp.setServiceResult(ACTION_MESSAGES_RESULT, messages);
+                reply.putExtra(IS_SHARED_ON_APP, true);
+                reply.putExtra(QUERY, query);
+                reply.putExtra(MESSAGE_ID, messageId);
+                LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GET_CHECK_LIST)) {
                 int id = intent.getExtras().getInt(CHECK_LIST_ID);
@@ -5200,6 +5301,112 @@ public class INaturalistService extends IntentService {
         } catch (JSONException e) {
             Logger.tag(TAG).error(e);
             return null;
+        }
+    }
+
+    private boolean postFlag(String flaggableType, Integer flaggableId, String flag, String flagExplanation) throws AuthenticationException {
+        String url = String.format("%s/flags", API_HOST);
+
+        JSONObject content = new JSONObject();
+
+        try {
+            JSONObject flagObject = new JSONObject();
+            flagObject.put("flaggable_type", flaggableType);
+            flagObject.put("flaggable_id", flaggableId);
+            flagObject.put("flag", flag);
+            content.put("flag", flagObject);
+            if (flagExplanation != null) content.put("flag_explanation", flagExplanation);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JSONArray json = post(url, content);
+
+        return mLastStatusCode == HttpStatus.SC_OK;
+    }
+
+    private boolean muteUser(Integer userId) throws AuthenticationException {
+        String url = String.format("%s/users/%d/mute", API_HOST, userId);
+
+        JSONObject content = new JSONObject();
+        JSONArray json = post(url, content);
+
+        return mLastStatusCode == HttpStatus.SC_OK;
+    }
+
+    private boolean unmuteUser(Integer userId) throws AuthenticationException {
+        String url = String.format("%s/users/%d/mute", API_HOST, userId);
+
+        JSONObject content = new JSONObject();
+        JSONArray json = delete(url, null);
+
+        return mLastStatusCode == HttpStatus.SC_OK;
+    }
+
+
+    private BetterJSONObject postMessage(Integer toUser, Integer threadId, String subject, String body) throws AuthenticationException {
+        String url = String.format("%s/messages", API_HOST);
+
+        JSONObject message = new JSONObject();
+        JSONObject content = new JSONObject();
+        try {
+            message.put("to_user_id", toUser);
+            if (threadId != null) message.put("thread_id", threadId);
+            message.put("subject", subject);
+            message.put("body", body);
+
+            content.put("message", message);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JSONArray json = post(url, content);
+
+        if (json == null) {
+            return null;
+        }
+
+        try {
+            return new BetterJSONObject(json.getJSONObject(0));
+        } catch (JSONException e) {
+            Logger.tag(TAG).error(e);
+            return new BetterJSONObject();
+        }
+    }
+
+
+    private BetterJSONObject getNotificationCounts() throws AuthenticationException {
+        String url = String.format("%s/users/notification_counts", API_HOST);
+
+        JSONArray json = get(url);
+
+        if (json == null) {
+            return null;
+        }
+
+        try {
+            return new BetterJSONObject(json.getJSONObject(0));
+        } catch (JSONException e) {
+            Logger.tag(TAG).error(e);
+            return new BetterJSONObject();
+        }
+    }
+
+    private BetterJSONObject getMessages(String searchQuery, String box, boolean groupByThreads, Integer messageId) throws AuthenticationException {
+        String url = messageId == null ?
+                String.format("%s/messages?q=%s&box=%s&threads=%s&per_page=200",
+                        API_HOST, searchQuery != null ? URLEncoder.encode(searchQuery) : "", box != null ? box : "inbox", groupByThreads) :
+                String.format("%s/messages/%d", API_HOST, messageId);
+
+        JSONArray json = get(url);
+
+        if (json == null) {
+            return null;
+        }
+
+        try {
+            return new BetterJSONObject(json.getJSONObject(0));
+        } catch (JSONException e) {
+            Logger.tag(TAG).error(e);
+            return new BetterJSONObject();
         }
     }
 

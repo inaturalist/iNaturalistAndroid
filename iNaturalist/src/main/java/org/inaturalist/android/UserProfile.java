@@ -50,6 +50,7 @@ import org.tinylog.Logger;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -58,6 +59,8 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
 	private final static String VIEW_TYPE_SPECIES = "species";
     private final static String VIEW_TYPE_IDENTIFICATIONS = "identifications";
     private static final String TAG = "UserProfile";
+
+    private static final int NEW_MESSAGE_REQUEST_CODE = 0x1000;
 
     @State public String mViewType;
 
@@ -110,7 +113,7 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
     private Button mShowMoreObservations;
     private Button mShowMoreIdentifications;
     private Button mShowMoreSpecies;
-
+    private ImageView mSendMessage;
 
 
     @Override
@@ -155,6 +158,22 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
         mSpeciesList = (ListView) findViewById(R.id.species_list);
         mSpeciesContainer = (ViewGroup) findViewById(R.id.species_container);
         mShowMoreSpecies = (Button) findViewById(R.id.show_more_species);
+
+        mSendMessage = (ImageView) findViewById(R.id.send_message);
+
+        mSendMessage.setOnClickListener(view -> {
+            Set<String> privileges = mApp.getUserPrivileges();
+
+            if (!privileges.contains("speech")) {
+                mHelper.alert(R.string.sorry, R.string.you_must_have_three_observations);
+                return;
+            }
+
+            Intent intent1 = new Intent(UserProfile.this, NewMessageActivity.class);
+            intent1.putExtra(NewMessageActivity.USER_ID, mUser.getInt("id"));
+            intent1.putExtra(NewMessageActivity.USERNAME, mUser.getString("login"));
+            startActivityForResult(intent1, NEW_MESSAGE_REQUEST_CODE);
+        });
 
         mSpeciesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -320,6 +339,9 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
         mUserBio = (TextView) findViewById(R.id.user_bio);
 
         mUserPicContainer = (ViewGroup) findViewById(R.id.user_pic_container);
+
+        // Don't allow sending messages if not logged in or to your own user
+        mSendMessage.setVisibility(mApp.loggedIn() && !mApp.currentUserLogin().equals(mUser.getString("login")) ? View.VISIBLE : View.GONE);
 
         refreshUserDetails();
     }
@@ -867,5 +889,21 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
             findViewById(R.id.no_user_pic).setVisibility(View.VISIBLE);
         }
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == NEW_MESSAGE_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                // User sent a new message - open the message thread screen
+                String message = data.getStringExtra(NewMessageActivity.MESSAGE);
+
+                Intent intent = new Intent(this, MessagesThreadActivity.class);
+                intent.putExtra(MessagesThreadActivity.MESSAGE, message);
+                startActivity(intent);
+            }
+        }
     }
 }

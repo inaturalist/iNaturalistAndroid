@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:background="#ffffff"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/rounded_gray_background"
+        android:hint="@string/search_messages"
+        android:inputType="text"
+        android:paddingLeft="17dp"
+        android:paddingRight="15dp"
+        android:drawableRight="@drawable/ic_fa_search"
+        android:layout_alignParentTop="true"
+        />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/message_list_swipe"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/search"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/message_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/search"
+            />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/no_messages"
+        android:text="@string/no_messages"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:layout_marginLeft="27dp"
+        android:layout_marginRight="27dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/new_message"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="end"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:padding="14dp"
+        android:src="@drawable/baseline_edit_white_24"
+        android:scaleType="fitCenter"
+        fab:fab_colorNormal="@color/inatapptheme_color"
+        fab:fab_colorPressed="@color/inatapptheme_color_highlighted"
+        fab:fab_colorRipple="@color/inatapptheme_color_highlighted" />
+
+</RelativeLayout>
