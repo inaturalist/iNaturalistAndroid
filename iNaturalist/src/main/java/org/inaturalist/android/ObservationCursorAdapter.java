@@ -689,10 +689,12 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                     "(_observation_id = ?) AND ((photo_url IS NULL AND _synced_at IS NULL) OR (_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL))",
                     new String[] { String.valueOf(obsId) },
                     ObservationPhoto._ID);
-            if (opc != null && opc.getCount() > 0) {
-                syncNeeded = true;
-                Logger.tag(TAG).debug(String.format(Locale.ENGLISH,
-                        "getView %d: %s: Sync needed - new/updated photos: %d", position, speciesGuessValue, opc.getCount()));
+            if (opc != null) {
+                if (opc.getCount() > 0) {
+                    syncNeeded = true;
+                    Logger.tag(TAG).debug(String.format(Locale.ENGLISH,
+                            "getView %d: %s: Sync needed - new/updated photos: %d", position, speciesGuessValue, opc.getCount()));
+                }
                 opc.close();
             }
         }
@@ -914,6 +916,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     public boolean isLocked(Uri uri) {
         Cursor c = mContext.managedQuery(uri, Observation.PROJECTION, null, null, null);
         Observation obs = new Observation(c);
+        c.close();
 
         Integer obsId = obs._id;
         String[] photoInfo = mPhotoInfo.get(obs.uuid);
@@ -948,8 +951,10 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                     "_observation_id = ? AND photo_url IS NULL AND _synced_at IS NULL",
                     new String[] { String.valueOf(obsId) },
                     ObservationPhoto._ID);
-            if (opc != null && opc.getCount() > 0) {
-                syncNeeded = true;
+            if (opc != null) {
+                if (opc.getCount() > 0) {
+                    syncNeeded = true;
+                }
                 opc.close();
             }
         }
@@ -1124,59 +1129,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
             BitmapWorkerTask task = new BitmapWorkerTask(imageView);
             task.execute(name);
-        }
-    }
-
-    private void downloadRemoteObsPhoto(int position) {
-        Cursor c = this.getCursor();
-        int oldPosition = c.getPosition();
-        c.moveToPosition(position);
-        Observation obs = new Observation(c);
-        c.moveToPosition(oldPosition);
-
-        if (obs.id == null) {
-            // Observation hasn't been uploaded yet to server - nothing we can do here
-            Logger.tag(TAG).debug("downloadRemoteObsPhoto - Observation hasn't been synced yet - " + obs._id);
-            return;
-        }
-
-        Logger.tag(TAG).debug("downloadRemoteObsPhoto - Downloading observation JSON - " + obs.id);
-        JSONObject json = getObservationJson(obs.id);
-
-        if (json != null) {
-            Observation remoteObs = new Observation(new BetterJSONObject(json));
-            if (remoteObs.photos.size() > 0) {
-                // Get the URL for the first photo of the obs
-                Collections.sort(remoteObs.photos, (o1, o2) -> {
-                    if ((o1.position == null) || (o2.position == null)) return 0;
-
-                    return o1.position.compareTo(o2.position);
-                });
-
-                String photoUrl = remoteObs.photos.get(0).photo_url;
-                Logger.tag(TAG).debug("downloadRemoteObsPhoto - Remote obs URL - " + obs.id + ":" + photoUrl);
-
-                // Update the DB
-                String[] photoInfo = mPhotoInfo.get(obs.uuid);
-                if (photoInfo != null) photoInfo[2] = photoUrl;
-
-                Cursor pc = mContext.getContentResolver().query(ObservationPhoto.CONTENT_URI,
-                        ObservationPhoto.PROJECTION,
-                        "(id = " + remoteObs.photos.get(0).id + ")",
-                        null,
-                        ObservationPhoto.DEFAULT_SORT_ORDER);
-                if (pc != null && pc.getCount() > 0) {
-                    ObservationPhoto photo = new ObservationPhoto(pc);
-                    Logger.tag(TAG).debug("downloadRemoteObsPhoto - Updating DB - " + obs.id + ":" + photo.id + ":" + photoUrl);
-                    photo.photo_url = photoUrl;
-                    ContentValues cv = photo.getContentValues();
-                    cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
-                    mContext.getContentResolver().update(photo.getUri(), cv, null, null);
-                    pc.close();
-                }
-
-                savePhotoInfo();
-            }
         }
     }
 
