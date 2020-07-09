@@ -46,7 +46,6 @@
     <string name="no_observations_yet">Henüz gözlem yok!</string>
     <string name="or">veya</string>
     <string name="signed_out">Çıkış yap</string>
-    <string name="view">Görüntüle</string>
     <string name="username">Kullanıcı Adı</string>
     <string name="password">Şifre</string>
     <string name="unknown">Bilinmeyen</string>
@@ -83,8 +82,6 @@
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">Onaylansın mı?</string>
     <string name="no_comments">Henüz yorum/tanımlama yok</string>
-    <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
-    <string name="you">sen</string>
     <string name="add_comment">Yorum ekle</string>
     <string name="add_id">Tanımlama ekleme</string>
     <string name="remarks">Açıklamalar...</string>
@@ -485,15 +482,20 @@
     <string name="airport">Hava Alanı</string>
     <string name="drainage">Drenaj</string>
     <string name="land_feature">Arazi Özelliği</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="miscellaneous">Çeşitli</string>
     <string name="nationality">Uyruk</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Genel Ad</string>
     <string name="point_of_interest">İlgi Çekici Nokta</string>
+    <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">Bölge</string>
+    <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
     <string name="colloquial">Günlük dilde</string>
     <string name="zone">Bölge</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_state">Tarihsel Devlet</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_county">Tarihsel Şehir</string>
     <string name="continent">Kıta</string>
     <string name="estate">Emlak</string>
@@ -505,6 +507,7 @@
     <string name="province">İl/Eyalet</string>
     <string name="municipality">Belediye</string>
     <string name="parish">Mahalle</string>
+    <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
     <string name="department_segment">Bölüm Segmenti</string>
     <string name="city_building">Kent Yapısı</string>
     <string name="commune">Toplum</string>
@@ -524,7 +527,9 @@
     <string name="regency">Regency</string>
     <string name="constituency">Seçim bölgesi</string>
     <string name="local_authority">Yerel Yönetim</string>
+    <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">Poblacion</string>
+    <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegasyon</string>
     <string name="apply_filters">Filtreleri Uygula</string>
     <string name="reset">Sıfırla</string>
@@ -569,6 +574,7 @@
     <string name="select_google_account">Hangi Google hesabı?</string>
     <string name="potential_disagreement">Olası Anlaşmazlık</string>
     <string name="do_you_think_this_could_be"><![CDATA[Bunun <b>%1$s</b> olduğunu doğrulamak için yeterli kanıt var mı?]]></string>
+    <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[Bilmiyorum ama bunun <b>%1$s</b> olduğundan eminim.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Hayır ama <b>%1$s</b> üyesidir.]]></string>
     <string name="submit">Gönder</string>
@@ -820,7 +826,7 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="forbidden">İzin Verilmedi</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">Paylaştığınız uygulama, gözlemler için uygun olmayan fotoğraflar oluşturur çünkü başka bir organizma ile olan deneyimlerinizi kanıtlamazlar. Uygunsuz marka ya da ticari içerik barındırıyorlar ya da Hizmet Şartlarımızı başka şekillerde çiğniyorlar.</string>
-    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
-    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
-    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
+    <string name="list_observation_checkbox_description">Çoklu seçim modunda gözlem seçmek için onay kutusu</string>
+    <string name="observation_list_item_iconic_pic_description">Gözlem sınıfı için küçük resim</string>
+    <string name="observation_list_item_obs_pic_description">Gözlem için küçük resim</string>
 </resources>

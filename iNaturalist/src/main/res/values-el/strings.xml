@@ -46,7 +46,6 @@
     <string name="no_observations_yet">Δεν υπάρχουν παρατηρήσεις ακόμα!</string>
     <string name="or">ή</string>
     <string name="signed_out">Αποσύνδεση</string>
-    <string name="view">Προβολή</string>
     <string name="username">Όνομα χρήστη</string>
     <string name="password">Κωδικός πρόσβασης</string>
     <string name="unknown">Άγνωστο</string>
@@ -83,8 +82,6 @@
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">Συμφωνώ</string>
     <string name="no_comments">Δεν υπάρχουν σχόλια/ταυτοποιήσεις ακόμα</string>
-    <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
-    <string name="you">εσένα</string>
     <string name="add_comment">Προσθήκη σχολίου</string>
     <string name="add_id">Προσθήκη προσδιορισμού</string>
     <string name="remarks">Παρατηρήσεις...</string>
@@ -485,15 +482,20 @@
     <string name="airport">Αεροδρόμιο</string>
     <string name="drainage">Απορροή</string>
     <string name="land_feature">Χαρακτηριστικό Γης</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="miscellaneous">Διάφορα</string>
     <string name="nationality">Εθνικότητα</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Supername</string>
     <string name="point_of_interest">Σημείο ενδιαφέροντος</string>
+    <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">Περιοχή</string>
+    <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
     <string name="colloquial">καθομιλουμένη</string>
     <string name="zone">Ζώνη</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_state">Ιστορικό Κράτος</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_county">Ιστορική Κομητεία</string>
     <string name="continent">Ήπειρος</string>
     <string name="estate">Κτήμα</string>
@@ -505,6 +507,7 @@
     <string name="province">Επαρχία</string>
     <string name="municipality">Δήμος</string>
     <string name="parish">Parish</string>
+    <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
     <string name="department_segment">Κομμάτι Τμήματος</string>
     <string name="city_building">Κτίριο Πόλης</string>
     <string name="commune">Κοινότητα</string>
@@ -524,7 +527,9 @@
     <string name="regency">Αντιβασιλεία</string>
     <string name="constituency">Εκλογική περιφέρεια</string>
     <string name="local_authority">Τοπική αρχή</string>
+    <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">Πληθυσμός</string>
+    <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Αντιπρόσωποι</string>
     <string name="apply_filters">Εφαρμογή φίλτρου</string>
     <string name="reset">Επαναφορά</string>
@@ -569,6 +574,7 @@
     <string name="select_google_account">Ποιο λογαριασμό Google;</string>
     <string name="potential_disagreement">Πιθανή διαφωνία</string>
     <string name="do_you_think_this_could_be"><![CDATA[Τα αποδεικτικά στοιχεία είναι επαρκή για να επιβεβαιώσουν ότι αυτό είναι <b>%1$s</b>;]]></string>
+    <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[Δεν ξέρω αλλά είμαι σίγουρος/η ότι αυτό είναι <b>%1$s</b>.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Όχι αλλά ανήκει στα <b>%1$s</b>.]]></string>
     <string name="submit">Υποβολή</string>
@@ -819,7 +825,7 @@
     <string name="forbidden">Απαγορεύεται</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">Η εφαρμογή από την οποία κοινοποιήσατε δημιουργεί φωτογραφίες οι οποίες δεν είναι κατάλληλες για παρατηρήσεις επειδή δεν αντιπροσωπεύουν αποδεικτικά στοιχεία της εμπειρίας σας με άλλον οργανισμό, επειδή περιλαμβάνουν ακατάλληλο εμπορικό σήμα ή εμπορικό περιεχόμενο ή επειδή παραβιάζουν τους Όρους της Υπηρεσίας με άλλους τρόπους.</string>
-    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
-    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
-    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
+    <string name="list_observation_checkbox_description">Πλαίσιο ελέγχου για επιλογή παρατήρησης σε λειτουργία πολλαπλής επιλογής</string>
+    <string name="observation_list_item_iconic_pic_description">Μικρογραφία φωτογραφίας για το taxon παρατήρησης</string>
+    <string name="observation_list_item_obs_pic_description">Μικρογραφία φωτογραφίας για την παρατήρηση</string>
 </resources>

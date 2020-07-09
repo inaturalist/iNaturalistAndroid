@@ -19,6 +19,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -58,11 +59,11 @@ public class LoggingUtils {
         Configuration.set("writer2", "rolling file");
         Configuration.set("writer2.level", "trace");
         Configuration.set("writer2.format", "{date}\t{class-name}.{method}():{line}: {tag}: {message}");
-        String filePath = String.format("%s/%s{date:yyyy-MM-dd}-{count}.%s",
+        String filePath = String.format(Locale.ENGLISH, "%s/%s{date:yyyy-MM-dd}-{count}.%s",
                 getDebugLogsDirectory(context).getAbsolutePath(),
                 LOGS_FILENAME_PREFIX, LOGS_FILENAME_EXTENSION);
         Configuration.set("writer2.file", filePath);
-        Configuration.set("writer2.policies", String.format("daily, size: %dmb", MAX_LOG_FILE_SIZE_MB));
+        Configuration.set("writer2.policies", String.format(Locale.ENGLISH, "daily, size: %dmb", MAX_LOG_FILE_SIZE_MB));
         Configuration.set("writer2.buffered", "true");
         Configuration.set("writingthread", "true");
 

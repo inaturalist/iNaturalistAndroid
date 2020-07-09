@@ -29,6 +29,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class DebugSettingsFragment extends PreferenceFragmentCompat implements DatePickerDialog.OnDateSetListener {
     private static final String TAG = "DebugSettingsFragment";
@@ -206,9 +207,9 @@ public class DebugSettingsFragment extends PreferenceFragmentCompat implements D
         emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
 
         if (info == null) {
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, String.format("iNaturalist Android Logs (user id - %s; Android API = %d)", username == null ? "N/A" : username, Build.VERSION.SDK_INT));
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, String.format(Locale.ENGLISH, "iNaturalist Android Logs (user id - %s; Android API = %d)", username == null ? "N/A" : username, Build.VERSION.SDK_INT));
         } else {
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, String.format("iNaturalist Android Logs (version %s - %s; user id - %s; Android API = %d)", info.versionName, info.versionCode, username == null ? "N/A" : username, Build.VERSION.SDK_INT));
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, String.format(Locale.ENGLISH, "iNaturalist Android Logs (version %s - %s; user id - %s; Android API = %d)", info.versionName, info.versionCode, username == null ? "N/A" : username, Build.VERSION.SDK_INT));
         }
         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.inat_support_email_address)});
 

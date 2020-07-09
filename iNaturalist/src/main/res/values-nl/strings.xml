@@ -41,12 +41,11 @@
     <string name="reload">Opnieuw Laden</string>
     <string name="view_in_browser">Bekijk in browser</string>
     <string name="add_observation">Waarneming toevoegen</string>
-    <string name="take_picture">Maak een foto</string>
+    <string name="take_picture">Foto maken</string>
     <string name="save">Opslaan</string>
     <string name="no_observations_yet">Nog geen observaties!</string>
     <string name="or">of</string>
     <string name="signed_out">Uitloggen</string>
-    <string name="view">Tonen</string>
     <string name="username">Gebruikersnaam</string>
     <string name="password">Wachtwoord</string>
     <string name="unknown">Onbekend</string>
@@ -83,8 +82,6 @@
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">Mee eens?</string>
     <string name="no_comments">Nog geen opmerkingen/identificaties</string>
-    <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
-    <string name="you">jij</string>
     <string name="add_comment">Reactie toevoegen</string>
     <string name="add_id">Waarneming toevoegen</string>
     <string name="remarks">Opmerkingen...</string>
@@ -485,15 +482,20 @@
     <string name="airport">Luchthaven</string>
     <string name="drainage">Drainage</string>
     <string name="land_feature">Land functie</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="miscellaneous">Diversen</string>
     <string name="nationality">Nationaliteit</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Supername</string>
     <string name="point_of_interest">Interessant punt (POI)</string>
+    <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">Regio</string>
+    <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
     <string name="colloquial">Colloquial</string>
     <string name="zone">Zone</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_state">Historische staat</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_county">Historische staat</string>
     <string name="continent">Continent</string>
     <string name="estate">Landgoed</string>
@@ -505,6 +507,7 @@
     <string name="province">Provincie</string>
     <string name="municipality">Gemeente</string>
     <string name="parish">Gemeente</string>
+    <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
     <string name="department_segment">Departement Segment</string>
     <string name="city_building">Stadsgebouw</string>
     <string name="commune">Gemeente</string>
@@ -524,7 +527,9 @@
     <string name="regency">Regentschap</string>
     <string name="constituency">Kieskring</string>
     <string name="local_authority">Lokale overheid</string>
+    <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">Poblacion</string>
+    <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Overdragen</string>
     <string name="apply_filters">Pas filters toe</string>
     <string name="reset">Reset</string>
@@ -569,6 +574,7 @@
     <string name="select_google_account">Kies Google Account?</string>
     <string name="potential_disagreement">Potentiële onenigheid</string>
     <string name="do_you_think_this_could_be"><![CDATA[Is het bewijs genoeg om te bevestigen dit <b>%1$s</b> is?]]></string>
+    <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[Ik weet het niet maar ik ben zeker dit <b>%1$s</b> is.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Nee, maar het is een lid van <b>%1$s</b>.]]></string>
     <string name="submit">Versturen</string>
@@ -766,7 +772,7 @@
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
     <string name="ucrop_label_original">Origineel</string>
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
-    <string name="ucrop_label_free">Gratis</string>
+    <string name="ucrop_label_free">Vrij</string>
     <!-- Verb phrase, button label to edit an observation photo -->
     <string name="ucrop_label_edit_photo">Foto bewerken</string>
     <string name="service_temporarily_unavailable">Dienst tijdelijk niet beschikbaar.</string>
@@ -819,7 +825,7 @@
     <string name="forbidden">Niet toegestaan</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">De app die je hebt gedeeld maakt foto\'s die niet geschikt zijn voor waarnemingen omdat ze geen bewijs van je ervaring met een ander organisme vertegenwoordigen omdat ze ongepaste merktekens of commerciële inhoud bevatten of omdat ze onze gebruiksvoorwaarden op één of andere manier schenden.</string>
-    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
-    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
-    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
+    <string name="list_observation_checkbox_description">Selectievakje voor het selecteren van waarneming in meervoudige selectie modus</string>
+    <string name="observation_list_item_iconic_pic_description">Thumbnail foto voor het waargenomen taxon</string>
+    <string name="observation_list_item_obs_pic_description">Thumbnail foto voor de waarneming</string>
 </resources>

@@ -46,7 +46,6 @@
     <string name="no_observations_yet">אין עדיין תצפיות!</string>
     <string name="or">או</string>
     <string name="signed_out">התנתק</string>
-    <string name="view">תצוגה</string>
     <string name="username">שם משתמש</string>
     <string name="password">סיסמא</string>
     <string name="unknown">לא ידוע</string>
@@ -83,8 +82,6 @@
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">מסכים?</string>
     <string name="no_comments">אין תגובות/זיהויים עדיין</string>
-    <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
-    <string name="you">אתה</string>
     <string name="add_comment">הוסף תגובה</string>
     <string name="add_id">הוסף/יפי זיהוי</string>
     <string name="remarks">הערות...</string>
@@ -495,15 +492,20 @@
     <string name="airport">שדה תעופה</string>
     <string name="drainage">ניקוז</string>
     <string name="land_feature">תצורת קרקע</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="miscellaneous">שונות</string>
     <string name="nationality">אזרחות</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Supername</string>
     <string name="point_of_interest">נקודת ענין</string>
+    <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">איזור</string>
+    <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
     <string name="colloquial">סיגנון דיבור</string>
     <string name="zone">איזור</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_state">תרשים היסטורי</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_county">ארץ היסטורית</string>
     <string name="continent">יבשת</string>
     <string name="estate">אחוזה</string>
@@ -515,6 +517,7 @@
     <string name="province">מחוז</string>
     <string name="municipality">רשות מקומית</string>
     <string name="parish">קהילה</string>
+    <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
     <string name="department_segment">תת מחלקה</string>
     <string name="city_building">בניין עירוני</string>
     <string name="commune">קומונה</string>
@@ -534,7 +537,9 @@
     <string name="regency">שלטון</string>
     <string name="constituency">אזור בחירות</string>
     <string name="local_authority">רשות מקומית</string>
+    <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">אוכלוסייה</string>
+    <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">מאציל סמכויות</string>
     <string name="apply_filters">החל מסננים</string>
     <string name="reset">אפס</string>
@@ -579,6 +584,7 @@
     <string name="select_google_account">איזה חשבון Google?</string>
     <string name="potential_disagreement">מחלוקת אפשרית</string>
     <string name="do_you_think_this_could_be"><![CDATA[האם הראיות מספיקות לקבוע שזה <b>%1$s</b>?]]></string>
+    <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[לא יודע/ת אבל בטוח/ה שזה <b>%1$s</b>.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[לא, אבל זה שייך ל <b>%1$s</b>.]]></string>
     <string name="submit">שלח</string>

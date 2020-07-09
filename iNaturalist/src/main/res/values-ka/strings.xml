@@ -46,7 +46,6 @@
     <string name="no_observations_yet">დაკვირვებები არაა ჯერ!</string>
     <string name="or">ან</string>
     <string name="signed_out">გამოსვლა</string>
-    <string name="view">ნახვა</string>
     <string name="username">მომხმარებელი</string>
     <string name="password">პაროლი</string>
     <string name="unknown">უცნობია</string>
@@ -83,8 +82,6 @@
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">ეთანხმებით?</string>
     <string name="no_comments">No comments/identifications yet</string>
-    <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
-    <string name="you">თქვენ</string>
     <string name="add_comment">კომენტარის დამატება</string>
     <string name="add_id">Add identification</string>
     <string name="remarks">შენიშვნები...</string>
@@ -485,15 +482,20 @@
     <string name="airport">აეროპორტი</string>
     <string name="drainage">Drainage</string>
     <string name="land_feature">Land Feature</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="miscellaneous">Miscellaneous</string>
     <string name="nationality">მოქალაქეობა</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Supername</string>
     <string name="point_of_interest">Point of Interest</string>
+    <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">რეგიონი</string>
+    <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
     <string name="colloquial">Colloquial</string>
     <string name="zone">ზონა</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_state">Historical State</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_county">Historical County</string>
     <string name="continent">Continent</string>
     <string name="estate">Estate</string>
@@ -505,6 +507,7 @@
     <string name="province">პროვინცია</string>
     <string name="municipality">მუნიციპალიტეტი</string>
     <string name="parish">Parish</string>
+    <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
     <string name="department_segment">Department Segment</string>
     <string name="city_building">City Building</string>
     <string name="commune">თემი</string>
@@ -524,7 +527,9 @@
     <string name="regency">Regency</string>
     <string name="constituency">ოლქი</string>
     <string name="local_authority">ადგილობრივი ხელისუფლება</string>
+    <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">Poblacion</string>
+    <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegation</string>
     <string name="apply_filters">Apply Filters</string>
     <string name="reset">ჩამოყრა</string>
@@ -569,6 +574,7 @@
     <string name="select_google_account">Google-ის რომელი ანგარიში?</string>
     <string name="potential_disagreement">Potential Disagreement</string>
     <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
+    <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[არ ვიცი, მაგრამ მგონი ეს არის <b>%1$s</b>.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
     <string name="submit">გაგზავნა</string>

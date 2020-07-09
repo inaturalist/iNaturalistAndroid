@@ -1377,6 +1377,15 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     final Cursor cursor = getContentResolver().query(getIntent().getData(), Observation.PROJECTION,
                             conditions, null, Observation.DEFAULT_SORT_ORDER);
 
+                    if ((mObservationListAdapter != null) && (mObservationListAdapter.getCursor() != null)) {
+                        Cursor oldCursor = mObservationListAdapter.getCursor();
+                        if (!oldCursor.isClosed()) oldCursor.close();
+                    }
+                    if ((mObservationGridAdapter != null) && (mObservationGridAdapter.getCursor() != null)) {
+                        Cursor oldCursor = mObservationGridAdapter.getCursor();
+                        if (!oldCursor.isClosed()) oldCursor.close();
+                    }
+
                     mObservationListAdapter = new ObservationCursorAdapter(ObservationListActivity.this, cursor);
                     mObservationGridAdapter = new ObservationCursorAdapter(ObservationListActivity.this, cursor, true, mObservationsGrid);
                     mObservationsGrid.setAdapter(mObservationGridAdapter);

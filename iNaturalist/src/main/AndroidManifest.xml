@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.inaturalist.android"
     android:installLocation="auto"
-    android:versionCode="430"
-    android:versionName="1.19.8">
+    android:versionCode="431"
+    android:versionName="1.20.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -123,6 +123,10 @@
                     android:host="*.argentinat.org"
                     android:pathPattern="/people/.*"
                     android:scheme="https"/>
+                <data
+                    android:host="inaturalist.laji.fi"
+                    android:pathPattern="/people/.*"
+                    android:scheme="https"/>
             </intent-filter>
 
         </activity>
@@ -202,6 +206,10 @@
                     android:scheme="https"/>
                  <data
                     android:host="*.argentinat.org"
+                    android:pathPattern="/observations/.*"
+                    android:scheme="https"/>
+                <data
+                    android:host="inaturalist.laji.fi"
                     android:pathPattern="/observations/.*"
                     android:scheme="https"/>
             </intent-filter>
@@ -553,6 +561,70 @@
             android:name=".PlaceSearchActivity"
             android:configChanges="orientation"
             android:label=""></activity>
+
+        <activity
+            android:name=".MessagesActivity"
+            android:configChanges="orientation"
+            android:label="@string/all_messages"></activity>
+
+        <activity
+            android:name=".MessagesThreadActivity"
+            android:configChanges="orientation">
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                    android:host="*.inaturalist.org"
+                    android:pathPattern="/messages/.*"
+                    android:scheme="https"/>
+                <data
+                    android:host="*.naturalista.mx"
+                    android:pathPattern="/messages/.*"
+                    android:scheme="https"/>
+                <data
+                    android:host="*.inaturalist.nz"
+                    android:pathPattern="/messages/.*"
+                    android:scheme="https"/>
+                <data
+                    android:host="inaturalist.nz"
+                    android:pathPattern="/messages/.*"
+                    android:scheme="https"/>
+                <data
+                    android:host="*.inaturalist.ca"
+                    android:pathPattern="/messages/.*"
+                    android:scheme="https"/>
+                <data
+                    android:host="*.biodiversity4all.org"
+                    android:pathPattern="/messages/.*"
+                    android:scheme="https"/>
+                <data
+                    android:host="inaturalist.ala.org.au"
+                    android:pathPattern="/messages/.*"
+                    android:scheme="https"/>
+                <data
+                    android:host="*.argentinat.org"
+                    android:pathPattern="/messages/.*"
+                    android:scheme="https"/>
+                <data
+                    android:host="inaturalist.laji.fi"
+                    android:pathPattern="/messages/.*"
+                    android:scheme="https"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".NewMessageActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="orientation"></activity>
+
+        <activity
+            android:name=".NewMessageSelectUserActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="orientation"></activity>
 
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"

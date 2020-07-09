@@ -77,6 +77,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.UUID;
@@ -1170,7 +1171,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                     if ( zoom > 10 ) {
                         return null;
                     }
-                    String s = String.format(INaturalistService.API_HOST + "/grid/%d/%d/%d.png?%s",
+                    String s = String.format(Locale.ENGLISH, INaturalistService.API_HOST + "/grid/%d/%d/%d.png?%s",
                         zoom, x, y, mSearchFilters.toUrlQueryString());
 
                     try {
@@ -1186,7 +1187,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                     if ( zoom <= 10 ) {
                         return null;
                     }
-                    String s = String.format(INaturalistService.API_HOST + "/points/%d/%d/%d.png?%s",
+                    String s = String.format(Locale.ENGLISH, INaturalistService.API_HOST + "/points/%d/%d/%d.png?%s",
                         zoom, x, y, mSearchFilters.toUrlQueryString());
 
                     try {
@@ -1536,7 +1537,7 @@ public class ExploreActivity extends BaseFragmentActivity {
 
         final UTFPosition position = new UTFPosition(zoom, latLng.latitude, latLng.longitude);
 
-        final String gridUrl = String.format(INaturalistService.API_HOST + "/points/%d/%d/%d.grid.json?%s", zoom, position.getTilePositionX(), position.getTilePositionY(), mSearchFilters.toUrlQueryString());
+        final String gridUrl = String.format(Locale.ENGLISH, INaturalistService.API_HOST + "/points/%d/%d/%d.grid.json?%s", zoom, position.getTilePositionX(), position.getTilePositionY(), mSearchFilters.toUrlQueryString());
 
         // Download the UTFGrid JSON for that tile
         new Thread(new Runnable() {

@@ -46,7 +46,6 @@
     <string name="no_observations_yet">Пока нет наблюдений!</string>
     <string name="or">или</string>
     <string name="signed_out">Выйти</string>
-    <string name="view">Вид</string>
     <string name="username">Имя</string>
     <string name="password">Пароль</string>
     <string name="unknown">Неизвестное</string>
@@ -83,8 +82,6 @@
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">Согласен?</string>
     <string name="no_comments">Пока нет комментариев/определений</string>
-    <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
-    <string name="you">Вы</string>
     <string name="add_comment">Добавить комментарий</string>
     <string name="add_id">Добавить идентификацию</string>
     <string name="remarks">Замечания...</string>
@@ -496,15 +493,20 @@
     <string name="airport">Аэропорт</string>
     <string name="drainage">Дренаж</string>
     <string name="land_feature">Особенность земли</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="miscellaneous">Прочее</string>
     <string name="nationality">Гражданство</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Супер-имя</string>
     <string name="point_of_interest">Интересные места</string>
+    <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">Регион</string>
+    <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
     <string name="colloquial">Разговорный</string>
     <string name="zone">Зона</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_state">Исторические государства</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_county">Исторический район</string>
     <string name="continent">Континент</string>
     <string name="estate">Эстейт</string>
@@ -516,6 +518,7 @@
     <string name="province">Район</string>
     <string name="municipality">Муниципалитет</string>
     <string name="parish">Округ</string>
+    <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
     <string name="department_segment">Департамент сегмент</string>
     <string name="city_building">Строительство города</string>
     <string name="commune">Коммуна</string>
@@ -535,7 +538,9 @@
     <string name="regency">Regency</string>
     <string name="constituency">Избирательный округ</string>
     <string name="local_authority">Местный орган власти</string>
+    <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">Население</string>
+    <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Передать полномочия</string>
     <string name="apply_filters">Применить фильтры</string>
     <string name="reset">Сброс</string>
@@ -580,6 +585,7 @@
     <string name="select_google_account">Какая учетная запись Google?</string>
     <string name="potential_disagreement">Потенциальные разногласия</string>
     <string name="do_you_think_this_could_be"><![CDATA[Достаточно ли доказательств, подтверждающих это <b>%1$s</b>?]]></string>
+    <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[Я не знаю, но я уверен, что это <b>%1$s</b>.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Нет, но это член <b>%1$s</b>.]]></string>
     <string name="submit">Отправить</string>
@@ -834,7 +840,7 @@
     <string name="forbidden">Запрещено</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">Приложение, которым вы поделились, создает фотографии, которые не подходят для наблюдений, потому что они не являются доказательством вашего опыта работы с другим организмом, потому что они включают ненадлежащий брендинг или коммерческий контент, или потому что они нарушают наши условия предоставления услуг каким-либо другим способом.</string>
-    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
-    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
-    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
+    <string name="list_observation_checkbox_description">Флажок для выбора наблюдения в режиме множественного выбора</string>
+    <string name="observation_list_item_iconic_pic_description">Эскиз фото наблюдения таксона</string>
+    <string name="observation_list_item_obs_pic_description">Эскиз фото наблюдения</string>
 </resources>
