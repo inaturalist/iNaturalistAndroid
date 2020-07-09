@@ -28,37 +28,14 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.http.Header;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpDelete;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpPut;
-import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.http.client.params.ClientPNames;
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.client.LaxRedirectStrategy;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.CoreProtocolPNames;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -111,9 +88,18 @@ import android.widget.Toast;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import okhttp3.FormBody;
+import okhttp3.Headers;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
+
+import static java.net.HttpURLConnection.HTTP_GONE;
+import static java.net.HttpURLConnection.HTTP_UNAUTHORIZED;
+import static java.net.HttpURLConnection.HTTP_UNAVAILABLE;
 
 public class INaturalistService extends IntentService {
     // How many observations should we initially download for the user
@@ -126,6 +112,10 @@ public class INaturalistService extends IntentService {
     public static final String IS_SHARED_ON_APP = "is_shared_on_app";
 
     private static final Map<String, String> TIMEZONE_ID_TO_INAT_TIMEZONE;
+
+    private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    private static final long HTTP_CONNECTION_TIMEOUT_SECONDS = 10;
+    private static final long HTTP_READ_WRITE_TIMEOUT_SECONDS = 40;
 
     static {
         TIMEZONE_ID_TO_INAT_TIMEZONE = new HashMap();
@@ -543,7 +533,7 @@ public class INaturalistService extends IntentService {
 
     private Hashtable<Integer, Hashtable<Integer, ProjectFieldValue>> mProjectFieldValues;
 
-    private Header[] mResponseHeaders = null;
+    private Headers mResponseHeaders = null;
     private Date mRetryAfterDate = null;
     private long mLastServiceUnavailableNotification = 0;
     private boolean mServiceUnavailable = false;
@@ -4482,20 +4472,30 @@ public class INaturalistService extends IntentService {
     }
 
     private String getGuideXML(Integer guideId) throws AuthenticationException {
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
 
         String url = HOST + "/guides/" + guideId.toString() + ".xml?locale=" + deviceLanguage;
 
         try {
-            HttpClient httpClient = new DefaultHttpClient();
-            httpClient.getParams().setParameter(ClientPNames.ALLOW_CIRCULAR_REDIRECTS, true);
-            HttpGet httpGet = new HttpGet(url);
-            HttpResponse response = null;
-            response = httpClient.execute(httpGet);
+            OkHttpClient client = new OkHttpClient().newBuilder()
+                    .followRedirects(true)
+                    .followSslRedirects(true)
+                    .connectTimeout(HTTP_CONNECTION_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                    .writeTimeout(HTTP_READ_WRITE_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                    .readTimeout(HTTP_READ_WRITE_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                    .build();
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
 
-            InputStream buffer = new BufferedInputStream(response.getEntity().getContent());
+            Response response = client.newCall(request).execute();
+
+            if (!response.isSuccessful()) {
+                return null;
+            }
+
+            InputStream buffer = new BufferedInputStream(response.body().byteStream());
             File outputFile = File.createTempFile(guideId.toString() + ".xml", null, getBaseContext().getCacheDir());
             OutputStream output = new FileOutputStream(outputFile);
 
@@ -4511,6 +4511,8 @@ public class INaturalistService extends IntentService {
             // closing streams
             output.close();
             buffer.close();
+
+            response.close();
 
             // Return the downloaded full file name
             return outputFile.getAbsolutePath();
@@ -5987,83 +5989,62 @@ public class INaturalistService extends IntentService {
     }
 
     private JSONArray request(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated, boolean useJWTToken, boolean allowAnonymousJWTToken) throws AuthenticationException {
-        CloseableHttpClient client = HttpClientBuilder.create()
-                // Faster reading of data
-                .disableContentCompression()
-                // Handle redirects (301/302) for all HTTP methods (including POST)
-                .setRedirectStrategy(new LaxRedirectStrategy())
-                .setUserAgent(getUserAgent(mApp))
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .followRedirects(true)
+                .followSslRedirects(true)
+                .connectTimeout(HTTP_CONNECTION_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                .writeTimeout(HTTP_READ_WRITE_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                .readTimeout(HTTP_READ_WRITE_TIMEOUT_SECONDS, TimeUnit.SECONDS)
                 .build();
-
-//        Logger.tag(TAG).debug(String.format("%s (%b - %s): %s", method, authenticated,
-//                authenticated ? mCredentials : "<null>",
-//                url));
-
-        HttpRequestBase request;
+        Request.Builder requestBuilder = new Request.Builder()
+                .addHeader("User-Agent", getUserAgent(mApp))
+                .url(url);
 
         mRetryAfterDate = null;
         mServiceUnavailable = false;
 
         Logger.tag(TAG).debug(String.format("URL: %s - %s (params: %s / %s)", method, url, (params != null ? params.toString() : "null"), (jsonContent != null ? jsonContent.toString() : "null")));
 
-        if (method.equalsIgnoreCase("post")) {
-            request = new HttpPost(url);
-        } else if (method.equalsIgnoreCase("delete")) {
-            request = new HttpDelete(url);
-        } else if (method.equalsIgnoreCase("put")) {
-            request = new HttpPut(url);
-        } else {
-            request = new HttpGet(url);
-        }
+        method = method.toUpperCase();
+        RequestBody requestBody = null;
 
         // POST params
         if (jsonContent != null) {
             // JSON body content
-            request.setHeader("Content-type", "application/json");
-            StringEntity entity = null;
-            try {
-                entity = new StringEntity(jsonContent.toString(), HTTP.UTF_8);
-            } catch (Exception exc) {
-                Logger.tag(TAG).error(exc);
-            }
-
-            if (method.equalsIgnoreCase("put")) {
-                ((HttpPut) request).setEntity(entity);
-            } else {
-                ((HttpPost) request).setEntity(entity);
-            }
+            requestBuilder.addHeader("Content-type", "application/json");
+            requestBody = RequestBody.create(JSON, jsonContent.toString());
 
         } else if (params != null) {
             // "Standard" multipart encoding
-            Charset utf8Charset = Charset.forName("UTF-8");
-            MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+            MultipartBody.Builder requestBodyBuilder = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM);
+
             for (int i = 0; i < params.size(); i++) {
                 if (params.get(i).getName().equalsIgnoreCase("image") || params.get(i).getName().equalsIgnoreCase("file") || params.get(i).getName().equalsIgnoreCase("user[icon]") || params.get(i).getName().equalsIgnoreCase("audio")) {
                     // If the key equals to "image", we use FileBody to transfer the data
                     String value = params.get(i).getValue();
+                    MediaType mediaType;
                     if (value != null) {
+                        String name;
                         if (params.get(i).getName().equalsIgnoreCase("audio")) {
-                            File file = new File(value);
-                            entity.addPart("file", new FileBody(file, ContentType.parse("audio/" + value.substring(value.lastIndexOf(".") + 1)), file.getName()));
-                            request.setHeader("Accept", "application/json");
+                            name = "file";
+                            requestBuilder.addHeader("Accept", "application/json");
+                            mediaType = MediaType.parse("audio/" + value.substring(value.lastIndexOf(".") + 1));
                         } else {
-                            entity.addPart(params.get(i).getName(), new FileBody(new File(value)));
+                            name = params.get(i).getName();
+                            mediaType = MediaType.parse("image/" + value.substring(value.lastIndexOf(".") + 1));
                         }
+                        File file = new File(value);
+                        requestBodyBuilder.addFormDataPart(name, file.getName(),
+                                RequestBody.create(mediaType, file));
                     }
                 } else {
                     // Normal string data
-                    try {
-                        entity.addPart(params.get(i).getName(), new StringBody(params.get(i).getValue(), utf8Charset));
-                    } catch (UnsupportedEncodingException e) {
-                        Logger.tag(TAG).error("failed to add " + params.get(i).getName() + " to entity for a " + method + " request: " + e);
-                    }
+                    requestBodyBuilder.addFormDataPart(params.get(i).getName(), params.get(i).getValue());
                 }
             }
-            if (method.equalsIgnoreCase("put")) {
-                ((HttpPut) request).setEntity(entity);
-            } else {
-                ((HttpPost) request).setEntity(entity);
-            }
+
+            requestBody = requestBodyBuilder.build();
         }
 
         if (url.startsWith(API_HOST) && (mCredentials != null)) {
@@ -6075,115 +6056,119 @@ public class INaturalistService extends IntentService {
         if (authenticated) {
             if (useJWTToken && allowAnonymousJWTToken && (mCredentials == null)) {
                 // User not logged in, but allow using anonymous JWT
-                request.setHeader("Authorization", getAnonymousJWTToken());
+                requestBuilder.addHeader("Authorization", getAnonymousJWTToken());
             } else {
                 ensureCredentials();
 
                 if (useJWTToken) {
                     // Use JSON Web Token for this request
-                    request.setHeader("Authorization", getJWTToken());
+                    requestBuilder.addHeader("Authorization", getJWTToken());
                 } else if (mLoginType == LoginType.PASSWORD) {
                     // Old-style password authentication
-                    request.setHeader("Authorization", "Basic " + mCredentials);
+                    requestBuilder.addHeader("Authorization", "Basic " + mCredentials);
                 } else {
                     // OAuth2 token (Facebook/G+/etc)
-                    request.setHeader("Authorization", "Bearer " + mCredentials);
+                    requestBuilder.addHeader("Authorization", "Bearer " + mCredentials);
                 }
             }
         }
 
         try {
             mResponseErrors = null;
-            HttpResponse response = client.execute(request);
-            HttpEntity entity = response.getEntity();
-            String content = entity != null ? EntityUtils.toString(entity) : null;
 
-            Logger.tag(TAG).debug("Response: " + response.getStatusLine().toString());
-            Logger.tag(TAG).debug(String.format("(for URL: %s - %s (params: %s / %s))", method, url, (params != null ? params.toString() : "null"), (jsonContent != null ? jsonContent.toString() : "null")));
-            Logger.tag(TAG).debug(content);
+            Request request = requestBuilder.method(method, requestBody).build();
+            Response response = client.newCall(request).execute();
 
-            JSONArray json = null;
-            mLastStatusCode = response.getStatusLine().getStatusCode();
+            Logger.tag(TAG).debug("Response: " + response.code() + ": " + response.message());
 
-            switch (mLastStatusCode) {
-                //switch (response.getStatusCode()) {
-                case HttpStatus.SC_UNPROCESSABLE_ENTITY:
-                    // Validation error - still need to return response
-                    Logger.tag(TAG).error(response.getStatusLine().toString());
-                case HttpStatus.SC_OK:
+            mLastStatusCode = response.code();
+
+            if (response.isSuccessful()) {
+                String content = response.body().string();
+
+                Logger.tag(TAG).debug(String.format("(for URL: %s - %s (params: %s / %s))", method, url, (params != null ? params.toString() : "null"), (jsonContent != null ? jsonContent.toString() : "null")));
+                Logger.tag(TAG).debug(content);
+
+                JSONArray json = null;
+
+                try {
+                    json = new JSONArray(content);
+                } catch (JSONException e) {
                     try {
-                        json = new JSONArray(content);
-                    } catch (JSONException e) {
-                        try {
-                            JSONObject jo = new JSONObject(content);
-                            json = new JSONArray();
-                            json.put(jo);
-                        } catch (JSONException e2) {
-                        }
-                    }
-
-                    mResponseHeaders = response.getAllHeaders();
-
-                    try {
-                        if ((json != null) && (json.length() > 0)) {
-                            JSONObject result = json.getJSONObject(0);
-                            if (result.has("errors")) {
-                                // Error response
-                                Logger.tag(TAG).error("Got an error response: " + result.get("errors").toString());
-                                mResponseErrors = result.getJSONArray("errors");
-                                return null;
-                            }
-                        }
-                    } catch (JSONException e) {
-                        Logger.tag(TAG).error(e);
-                    }
-
-                    if ((content != null) && (content.length() == 0)) {
-                        // In case it's just non content (but OK HTTP status code) - so there's no error
+                        JSONObject jo = new JSONObject(content);
                         json = new JSONArray();
+                        json.put(jo);
+                    } catch (JSONException e2) {
                     }
+                }
 
-                    return json;
+                mResponseHeaders = response.headers();
+                response.close();
 
-                case HttpStatus.SC_UNAUTHORIZED:
-                    throw new AuthenticationException();
-                case HttpURLConnection.HTTP_UNAVAILABLE:
-                    Logger.tag(TAG).error("503 server unavailable");
-                    mServiceUnavailable = true;
+                try {
+                    if ((json != null) && (json.length() > 0)) {
+                        JSONObject result = json.getJSONObject(0);
+                        if (result.has("errors")) {
+                            // Error response
+                            Logger.tag(TAG).error("Got an error response: " + result.get("errors").toString());
+                            mResponseErrors = result.getJSONArray("errors");
+                            return null;
+                        }
+                    }
+                } catch (JSONException e) {
+                    Logger.tag(TAG).error(e);
+                }
 
-                    // Find out if there's a "Retry-After" header
-                    Header[] headers = response.getHeaders("Retry-After");
-                    if ((headers != null) && (headers.length > 0)) {
-                        for (Header header : headers) {
-                            String timestampString = header.getValue();
-                            Logger.tag(TAG).error("Retry after raw string: " + timestampString);
-                            SimpleDateFormat format = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz");
-                            try {
-                                mRetryAfterDate = format.parse(timestampString);
-                                Logger.tag(TAG).error("Retry after: " + mRetryAfterDate);
-                                break;
-                            } catch (ParseException e) {
-                                Logger.tag(TAG).error(e);
+                if ((content != null) && (content.length() == 0)) {
+                    // In case it's just non content (but OK HTTP status code) - so there's no error
+                    json = new JSONArray();
+                }
+
+                return json;
+
+            } else {
+                response.close();
+
+                // HTTP error of some kind - Check for response code
+                switch (mLastStatusCode) {
+                    case HTTP_UNAUTHORIZED:
+                        // Authentication error
+                        throw new AuthenticationException();
+
+                    case HTTP_UNAVAILABLE:
+                        Logger.tag(TAG).error("503 server unavailable");
+                        mServiceUnavailable = true;
+
+                        // Find out if there's a "Retry-After" header
+                        List<String> headers = response.headers("Retry-After");
+                        if (headers.size() > 0) {
+                            for (String timestampString : headers) {
+                                Logger.tag(TAG).error("Retry after raw string: " + timestampString);
+                                SimpleDateFormat format = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz");
                                 try {
-                                    // Try parsing it as a seconds-delay value
-                                    int secondsDelay = Integer.valueOf(timestampString);
-                                    Logger.tag(TAG).error("Retry after: " + secondsDelay);
-                                    Calendar calendar = Calendar.getInstance();
-                                    calendar.add(Calendar.SECOND, secondsDelay);
-                                    mRetryAfterDate = calendar.getTime();
-
+                                    mRetryAfterDate = format.parse(timestampString);
+                                    Logger.tag(TAG).error("Retry after: " + mRetryAfterDate);
                                     break;
-                                } catch (NumberFormatException exc) {
-                                    Logger.tag(TAG).error(exc);
+                                } catch (ParseException e) {
+                                    Logger.tag(TAG).error(e);
+                                    try {
+                                        // Try parsing it as a seconds-delay value
+                                        int secondsDelay = Integer.valueOf(timestampString);
+                                        Logger.tag(TAG).error("Retry after: " + secondsDelay);
+                                        Calendar calendar = Calendar.getInstance();
+                                        calendar.add(Calendar.SECOND, secondsDelay);
+                                        mRetryAfterDate = calendar.getTime();
+
+                                        break;
+                                    } catch (NumberFormatException exc) {
+                                        Logger.tag(TAG).error(exc);
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    // Show service not available message to user
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
+                        // Show service not available message to user
+                        mHandler.post(() -> {
                             String errorMessage;
                             if (mRetryAfterDate == null) {
                                 // No specific retry time
@@ -6214,17 +6199,19 @@ public class INaturalistService extends IntentService {
                                 mLastServiceUnavailableNotification = System.currentTimeMillis();
                                 Toast.makeText(getApplicationContext(), getString(R.string.service_temporarily_unavailable) + " " + errorMessage, Toast.LENGTH_LONG).show();
                             }
-                        }
-                    });
+                        });
 
-                    return null;
-                case HttpStatus.SC_GONE:
-                    Logger.tag(TAG).error("GONE: " + response.getStatusLine().toString());
-                    // TODO create notification that informs user some observations have been deleted on the server,
-                    // click should take them to an activity that lets them decide whether to delete them locally
-                    // or post them as new observations
-                default:
-                    Logger.tag(TAG).error(response.getStatusLine().toString());
+                        break;
+
+                    case HTTP_GONE:
+                        // TODO create notification that informs user some observations have been deleted on the server,
+                        // click should take them to an activity that lets them decide whether to delete them locally
+                        // or post them as new observations
+                        break;
+                    default:
+                }
+
+                return null;
             }
         } catch (IOException e) {
             Logger.tag(TAG).error("Error for URL " + url + ":" + e);
@@ -6233,6 +6220,7 @@ public class INaturalistService extends IntentService {
             // Test out the Internet connection in multiple ways (helps pin-pointing issue)
             performConnectivityTest();
         }
+
         return null;
     }
 
@@ -6308,14 +6296,22 @@ public class INaturalistService extends IntentService {
     // Returns an array of two strings: access token + iNat username
     public static String[] verifyCredentials(Context context, String username, String oauth2Token, LoginType authType, boolean askForScopeDeletion) {
         String grantType = null;
-        DefaultHttpClient client = new DefaultHttpClient();
-        client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, getUserAgent(context));
-        String url = HOST + (authType == LoginType.OAUTH_PASSWORD ? "/oauth/token" : "/oauth/assertion_token");
-        HttpRequestBase request = new HttpPost(url);
-        ArrayList<NameValuePair> postParams = new ArrayList<NameValuePair>();
 
-        postParams.add(new BasicNameValuePair("format", "json"));
-        postParams.add(new BasicNameValuePair("client_id", INaturalistApp.getAppContext().getString(R.string.oauth_client_id)));
+        String url = HOST + (authType == LoginType.OAUTH_PASSWORD ? "/oauth/token" : "/oauth/assertion_token");
+
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .followRedirects(true)
+                .followSslRedirects(true)
+                .connectTimeout(HTTP_CONNECTION_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                .writeTimeout(HTTP_READ_WRITE_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                .readTimeout(HTTP_READ_WRITE_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                .build();
+
+
+        FormBody.Builder requestBodyBuilder = new FormBody.Builder()
+                .add("format", "json")
+                .add("client_id", INaturalistApp.getAppContext().getString(R.string.oauth_client_id));
+
         if (authType == LoginType.FACEBOOK) {
             grantType = "facebook";
         } else if (authType == LoginType.GOOGLE) {
@@ -6324,65 +6320,71 @@ public class INaturalistService extends IntentService {
             grantType = "password";
         }
 
-        postParams.add(new BasicNameValuePair("grant_type", grantType));
+        requestBodyBuilder.add("grant_type", grantType);
+
         if (authType == LoginType.OAUTH_PASSWORD) {
-            postParams.add(new BasicNameValuePair("password", oauth2Token));
-            postParams.add(new BasicNameValuePair("username", username));
-            postParams.add(new BasicNameValuePair("client_secret", INaturalistApp.getAppContext().getString(R.string.oauth_client_secret)));
+            requestBodyBuilder.add("password", oauth2Token);
+            requestBodyBuilder.add("username", username);
+            requestBodyBuilder.add("client_secret", INaturalistApp.getAppContext().getString(R.string.oauth_client_secret));
         } else {
-            postParams.add(new BasicNameValuePair("assertion", oauth2Token));
+            requestBodyBuilder.add("assertion", oauth2Token);
         }
         if (askForScopeDeletion) {
-            postParams.add(new BasicNameValuePair("scope", "login write account_delete"));
+            requestBodyBuilder.add("scope", "login write account_delete");
         }
 
-        try {
-            ((HttpPost) request).setEntity(new UrlEncodedFormEntity(postParams));
-        } catch (UnsupportedEncodingException e1) {
-            Logger.tag(TAG).error(e1);
-            return null;
-        }
+        RequestBody requestBody = requestBodyBuilder.build();
+
+        Request request = new Request.Builder()
+                .addHeader("User-Agent", getUserAgent(context))
+                .url(url)
+                .post(requestBody)
+                .build();
 
         try {
-            HttpResponse response = client.execute(request);
-            HttpEntity entity = response.getEntity();
-            String content = EntityUtils.toString(entity);
+            Response response = client.newCall(request).execute();
 
-            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                // Upgrade to an access token
-//                Logger.tag(TAG).debug("Authorization Response: " + content);
-                JSONObject json = new JSONObject(content);
-                String accessToken = json.getString("access_token");
-
-                // Next, find the iNat username (since we currently only have the FB/Google email)
-                request = new HttpGet(HOST + "/users/edit.json");
-                request.setHeader("Authorization", "Bearer " + accessToken);
-
-                response = client.execute(request);
-                entity = response.getEntity();
-                content = EntityUtils.toString(entity);
-
-                Logger.tag(TAG).debug(String.format("RESP2: %s", content));
-
-                if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
-                    return null;
-                }
-
-                json = new JSONObject(content);
-                if (!json.has("login")) {
-                    return null;
-                }
-
-                String returnedUsername = json.getString("login");
-
-                return new String[]{accessToken, returnedUsername};
-
-            } else {
-                Logger.tag(TAG).error("Authentication failed: " + content);
+            if (!response.isSuccessful()) {
+                Logger.tag(TAG).error("Authentication failed: " + response.code() + ": " + response.message());
                 return null;
             }
+
+            String content = response.body().string();
+            response.close();
+
+            // Upgrade to an access token
+            JSONObject json = new JSONObject(content);
+            String accessToken = json.getString("access_token");
+
+            // Next, find the iNat username (since we currently only have the FB/Google email)
+            request = new Request.Builder()
+                    .addHeader("User-Agent", getUserAgent(context))
+                    .addHeader("Authorization", "Bearer " + accessToken)
+                    .url(HOST + "/users/edit.json")
+                    .build();
+
+            response = client.newCall(request).execute();
+
+            if (!response.isSuccessful()) {
+                Logger.tag(TAG).error("Authentication failed (edit.json): " + response.code() + ": " + response.message());
+                return null;
+            }
+
+            content = response.body().string();
+            response.close();
+
+            Logger.tag(TAG).debug(String.format("RESP2: %s", content));
+
+            json = new JSONObject(content);
+            if (!json.has("login")) {
+                return null;
+            }
+
+            String returnedUsername = json.getString("login");
+
+            return new String[]{accessToken, returnedUsername};
+
         } catch (IOException e) {
-            request.abort();
             Logger.tag(TAG).warn("Error for URL " + url, e);
         } catch (JSONException e) {
             Logger.tag(TAG).error(e);
@@ -6838,7 +6840,7 @@ public class INaturalistService extends IntentService {
                 }
 
                 return false;
-            } else if (mLastStatusCode == 503) {
+            } else if (mLastStatusCode == HTTP_UNAVAILABLE) {
                 // Server not available
                 Logger.tag(TAG).error("503 - server not available");
                 return false;
