@@ -33,15 +33,6 @@
             app:alignContent="stretch"
             >
             <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="@string/coordinates_lat"
-                android:textSize="12sp"
-                android:textColor="#929292"
-                android:layout_marginRight="2dp"
-                android:layout_marginEnd="2dp"
-                />
-            <TextView
                 android:id="@+id/latitude"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
@@ -57,7 +48,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="@string/coordinates_lon"
+                android:text=", "
                 android:textSize="12sp"
                 android:textColor="#929292"
                 android:layout_marginRight="4dp"
