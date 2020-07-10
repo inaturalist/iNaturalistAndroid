@@ -897,5 +897,6 @@
     <string name="thank_you_for_submitting_the_flag">Thank you for submitting the flag!</string>
     <string name="flagging_conversation">Flagging conversation...</string>
     <string name="failed_flagging_conversation">Failed flagging conversation!</string>
+    <string name="no_subject">No Subject</string>
 </resources>
 

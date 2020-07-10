@@ -44,6 +44,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/rounded_white_background"
             android:inputType="textCapSentences"
+            android:hint="@string/no_subject"
             android:minHeight="40dp"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
