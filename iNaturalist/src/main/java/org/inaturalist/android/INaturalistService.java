@@ -6215,14 +6215,17 @@ public class INaturalistService extends IntentService {
         method = method.toUpperCase();
         RequestBody requestBody = null;
 
-        // POST params
-        if (jsonContent != null) {
-            // JSON body content
+        if ((jsonContent == null) && (params == null) && (method.equals("PUT") || method.equals("POST"))) {
+            // PUT/POST with empty body
+            requestBody = RequestBody.create(null, new byte[]{});
+
+        } else if (jsonContent != null) {
+            // PUT/POST with JSON body content
             requestBuilder.addHeader("Content-type", "application/json");
             requestBody = RequestBody.create(JSON, jsonContent.toString());
 
         } else if (params != null) {
-            // "Standard" multipart encoding
+            // PUT/POST with "Standard" multipart encoding
             MultipartBody.Builder requestBodyBuilder = new MultipartBody.Builder()
                     .setType(MultipartBody.FORM);
 
