@@ -573,6 +573,10 @@ public class Observation implements BaseColumns, Serializable {
     }
 
     public JSONObject toJSONObject() {
+        return toJSONObject(false);
+    }
+
+    public JSONObject toJSONObject(boolean partial) {
         BetterJSONObject bo = new BetterJSONObject();
         bo.put("_created_at", _created_at);
         bo.put("_synced_at", _synced_at);
@@ -583,19 +587,19 @@ public class Observation implements BaseColumns, Serializable {
         bo.put("iconic_taxon_id", iconic_taxon_id);
         bo.put("iconic_taxon_name", iconic_taxon_name);
         bo.put("id", id);
-        bo.put("id_please", id_please);
+        if (!partial) bo.put("id_please", id_please);
         bo.put("latitude", latitude == null ? null : latitude.toString().replace(',', '.'));
         bo.put("longitude", longitude == null ? null : longitude.toString().replace(',', '.'));
         bo.put("observed_on", observed_on);
         bo.put("observed_on_string", observed_on_string);
-        bo.put("out_of_range", out_of_range);
+        if (!partial) bo.put("out_of_range", out_of_range);
         bo.put("captive_flag", captive);
         bo.put("place_guess", (private_place_guess != null) && (private_place_guess.length() > 0) ? private_place_guess : place_guess);
         bo.put("uuid", uuid);
-        bo.put("owners_identification_from_vision", owners_identification_from_vision != null ? owners_identification_from_vision : false);
-        bo.put("scientific_name", scientific_name);
-        bo.put("rank_level", rank_level);
-        bo.put("rank", rank);
+        if (!partial) bo.put("owners_identification_from_vision", owners_identification_from_vision != null ? owners_identification_from_vision : false);
+        if (!partial) bo.put("scientific_name", scientific_name);
+        if (!partial) bo.put("rank_level", rank_level);
+        if (!partial) bo.put("rank", rank);
         bo.put("positional_accuracy", positional_accuracy);
         bo.put("positioning_device", positioning_device);
         bo.put("positioning_method", positioning_method);
@@ -610,8 +614,8 @@ public class Observation implements BaseColumns, Serializable {
         bo.put("user_agent", user_agent);
         bo.put("user_id", user_id);
         bo.put("user_login", user_login);
-        bo.put("identifications_count", identifications_count);
-        bo.put("comment_count", comments_count);
+        if (!partial) bo.put("identifications_count", identifications_count);
+        if (!partial) bo.put("comment_count", comments_count);
         bo.put("prefers_community_taxon", prefers_community_taxon);
 
         return bo.getJSONObject();

@@ -744,7 +744,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 taxon.put("rank", rank);
                 taxon.put("rank_level", rankLevel);
 
-                TaxonUtils.setTaxonScientificName(speciesGuess, taxon);
+                TaxonUtils.setTaxonScientificName(mApp, speciesGuess, taxon);
             } catch (JSONException e) {
                 Logger.tag(TAG).error(e);
             }

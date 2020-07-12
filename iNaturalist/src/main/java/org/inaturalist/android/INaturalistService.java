@@ -6979,7 +6979,7 @@ public class INaturalistService extends IntentService {
     }
 
     private JSONObject observationToJsonObject(Observation observation, boolean isPOST) {
-        JSONObject obs = observation.toJSONObject();
+        JSONObject obs = observation.toJSONObject(true);
         try {
 
             if (isPOST) {

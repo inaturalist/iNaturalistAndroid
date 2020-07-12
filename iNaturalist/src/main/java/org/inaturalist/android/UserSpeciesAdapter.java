@@ -155,11 +155,11 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
 
             if (mApp.getShowScientificNameFirst()) {
                 // Show scientific name first, before common name
-                TaxonUtils.setTaxonScientificName(speciesName, item);
+                TaxonUtils.setTaxonScientificName(mApp, speciesName, item);
                 if (mViewType == VIEW_TYPE_LIST) scienceName.setText(commonName);
             } else {
                 // Show common name first
-                if (mViewType == VIEW_TYPE_LIST) TaxonUtils.setTaxonScientificName(scienceName, item);
+                if (mViewType == VIEW_TYPE_LIST) TaxonUtils.setTaxonScientificName(mApp, scienceName, item);
                 speciesName.setText(commonName);
             }
 

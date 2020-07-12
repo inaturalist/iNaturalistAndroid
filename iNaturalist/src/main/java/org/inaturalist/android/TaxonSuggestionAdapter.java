@@ -103,10 +103,10 @@ class TaxonSuggestionAdapter extends ArrayAdapter<String> {
 
         if (mApp.getShowScientificNameFirst()) {
             // Show scientific name first, before common name
-            TaxonUtils.setTaxonScientificName(taxonName, taxon);
+            TaxonUtils.setTaxonScientificName(mApp, taxonName, taxon);
             taxonScientificName.setText(TaxonUtils.getTaxonName(mContext, taxon));
         } else {
-            TaxonUtils.setTaxonScientificName(taxonScientificName, taxon);
+            TaxonUtils.setTaxonScientificName(mApp, taxonScientificName, taxon);
             taxonName.setText(TaxonUtils.getTaxonName(mContext, taxon));
         }
 

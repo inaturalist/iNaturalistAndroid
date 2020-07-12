@@ -53,6 +53,7 @@ public class ProjectFieldViewer {
     private static final String TAG = "ProjectFieldViewer";
     public static final int PROJECT_FIELD_TAXON_SEARCH_REQUEST_CODE = 301;
     private final boolean mIsConfirmation;
+    private final INaturalistApp mApp;
     private AppCompatActivity mContext;
     private ProjectField mField;
     private ProjectFieldValue mFieldValue;
@@ -104,7 +105,7 @@ public class ProjectFieldViewer {
 
             UrlImageViewHelper.setUrlDrawable(mTaxonPic, taxon.getString("image_url"));
             mIdName.setText(taxon.getString("unique_name"));
-            mIdTaxonName.setText(TaxonUtils.getTaxonScientificName(taxon.getJSONObject()));
+            mIdTaxonName.setText(TaxonUtils.getTaxonScientificName(mApp, taxon.getJSONObject()));
             if (taxon.getJSONObject().optInt("rank_level", 0) <= 20) {
                 mIdTaxonName.setTypeface(null, Typeface.ITALIC);
             } else {
@@ -180,6 +181,7 @@ public class ProjectFieldViewer {
         mField = field;
         mFieldValue = fieldValue;
         mContext = context;
+        mApp = (INaturalistApp) mContext.getApplicationContext();
         mIsConfirmation = isConfirmation;
 
         if (mFieldValue == null) {

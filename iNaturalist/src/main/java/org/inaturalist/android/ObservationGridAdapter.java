@@ -74,7 +74,7 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
         if (taxon != null) {
             if (mApp.getShowScientificNameFirst()) {
                 // Show scientific name instead of common name
-                TaxonUtils.setTaxonScientificName(idName, taxon);
+                TaxonUtils.setTaxonScientificName(mApp, idName, taxon);
             } else {
                 String idNameStr = TaxonUtils.getTaxonName(mContext, taxon);
                 idName.setText(idNameStr);

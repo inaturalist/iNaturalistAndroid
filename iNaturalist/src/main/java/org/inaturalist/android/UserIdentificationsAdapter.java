@@ -104,7 +104,7 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
 
             if (mApp.getShowScientificNameFirst()) {
                 // Show scientific name first, before common name
-                TaxonUtils.setTaxonScientificName(idName, taxon);
+                TaxonUtils.setTaxonScientificName(mApp, idName, taxon);
             } else {
                 idName.setText(TaxonUtils.getTaxonName(mContext, taxon));
             }
@@ -112,7 +112,7 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
             if (!mIsGrid) {
                 String taxonName;
                 if (mApp.getShowScientificNameFirst()) {
-                    taxonName = TaxonUtils.getTaxonScientificNameHtml(taxon, false, false);
+                    taxonName = TaxonUtils.getTaxonScientificNameHtml(mApp, taxon, false, false);
                 } else {
                     taxonName = TaxonUtils.getTaxonName(mContext, taxon);
                 }

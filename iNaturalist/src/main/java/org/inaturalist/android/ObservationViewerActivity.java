@@ -1909,10 +1909,10 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
                         if (mApp.getShowScientificNameFirst()) {
                             // Show scientific name first, before common name
-                            TaxonUtils.setTaxonScientificName(mIdName, mTaxonScientificName, mTaxonRankLevel, mTaxonRank);
+                            TaxonUtils.setTaxonScientificName(mApp, mIdName, mTaxonScientificName, mTaxonRankLevel, mTaxonRank);
                             mTaxonicName.setText(mTaxonIdName);
                         } else {
-                            TaxonUtils.setTaxonScientificName(mTaxonicName, mTaxonScientificName, mTaxonRankLevel, mTaxonRank);
+                            TaxonUtils.setTaxonScientificName(mApp, mTaxonicName, mTaxonScientificName, mTaxonRankLevel, mTaxonRank);
                             mIdName.setText(mTaxonIdName);
                         }
 
@@ -1920,10 +1920,10 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 } else {
                     if (mApp.getShowScientificNameFirst()) {
                         // Show scientific name first, before common name
-                        TaxonUtils.setTaxonScientificName(mIdName, mTaxon);
+                        TaxonUtils.setTaxonScientificName(mApp, mIdName, mTaxon);
                         mTaxonicName.setText(TaxonUtils.getTaxonName(this, mTaxon));
                     } else {
-                        TaxonUtils.setTaxonScientificName(mTaxonicName, mTaxon);
+                        TaxonUtils.setTaxonScientificName(mApp, mTaxonicName, mTaxon);
                         mIdName.setText(TaxonUtils.getTaxonName(this, mTaxon));
                     }
 
@@ -2031,17 +2031,17 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                                 UrlImageViewHelper.setUrlDrawable(mIdPic, mTaxonImage);
 
                                 mTaxonIdName = TaxonUtils.getTaxonName(ObservationViewerActivity.this, mTaxon);
-                                mTaxonScientificName = TaxonUtils.getTaxonScientificName(taxon);
+                                mTaxonScientificName = TaxonUtils.getTaxonScientificName(mApp, taxon);
                                 mTaxonRankLevel = taxon.optInt("rank_level", 0);
                                 mTaxonRank = taxon.optString("rank");
 
                                 if (mApp.getShowScientificNameFirst()) {
                                     // Show scientific name first, before common name
                                     mTaxonicName.setText(mTaxonIdName);
-                                    TaxonUtils.setTaxonScientificName(mIdName, taxon);
+                                    TaxonUtils.setTaxonScientificName(mApp, mIdName, taxon);
                                 } else {
                                     mIdName.setText(mTaxonIdName);
-                                    TaxonUtils.setTaxonScientificName(mTaxonicName, taxon);
+                                    TaxonUtils.setTaxonScientificName(mApp, mTaxonicName, taxon);
                                 }
 
                                 mTaxonicName.setVisibility(View.VISIBLE);
@@ -2767,7 +2767,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         final RadioButton noDisagreemenRadioButton = (RadioButton) dialogContent.findViewById(R.id.no_disagreement);
 
         String taxonName = String.format("%s (%s)", name, scientificName);
-        String communityTaxonName = String.format("%s (%s)", TaxonUtils.getTaxonName(this, taxon.getJSONObject()), TaxonUtils.getTaxonScientificName(taxon.getJSONObject()));
+        String communityTaxonName = String.format("%s (%s)", TaxonUtils.getTaxonName(this, taxon.getJSONObject()), TaxonUtils.getTaxonScientificName(mApp, taxon.getJSONObject()));
 
         questionText.setText(Html.fromHtml(String.format(getString(R.string.do_you_think_this_could_be), communityTaxonName)));
         noDisagreemenRadioButton.setText(Html.fromHtml(String.format(getString(R.string.i_dont_know_but), taxonName)));

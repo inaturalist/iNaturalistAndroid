@@ -1671,9 +1671,9 @@ public class ObservationEditor extends AppCompatActivity {
                     if (mApp.getShowScientificNameFirst()) {
                         // Show scientific name first, before common name
                         mSpeciesGuessSub.setText(mSpeciesGuess);
-                        TaxonUtils.setTaxonScientificName(mSpeciesGuessTextView, mScientificName, mTaxonRankLevel, mTaxonRank);
+                        TaxonUtils.setTaxonScientificName(mApp, mSpeciesGuessTextView, mScientificName, mTaxonRankLevel, mTaxonRank);
                     } else {
-                        TaxonUtils.setTaxonScientificName(mSpeciesGuessSub, mScientificName, mTaxonRankLevel, mTaxonRank);
+                        TaxonUtils.setTaxonScientificName(mApp, mSpeciesGuessSub, mScientificName, mTaxonRankLevel, mTaxonRank);
                     }
                 } else {
                     if (mApp.getSuggestSpecies()) {
@@ -2512,9 +2512,9 @@ public class ObservationEditor extends AppCompatActivity {
                     if (mApp.getShowScientificNameFirst()) {
                         // Show scientific name first, before common name
                         mSpeciesGuessSub.setText(mIsTaxonUnknown ? "Unknown" : mObservation.species_guess);
-                        TaxonUtils.setTaxonScientificName(mSpeciesGuessTextView, mScientificName, mTaxonRankLevel, mTaxonRank);
+                        TaxonUtils.setTaxonScientificName(mApp, mSpeciesGuessTextView, mScientificName, mTaxonRankLevel, mTaxonRank);
                     } else {
-                        TaxonUtils.setTaxonScientificName(mSpeciesGuessSub, mScientificName, mTaxonRankLevel, mTaxonRank);
+                        TaxonUtils.setTaxonScientificName(mApp, mSpeciesGuessSub, mScientificName, mTaxonRankLevel, mTaxonRank);
                     }
 
                 }
@@ -4050,10 +4050,10 @@ public class ObservationEditor extends AppCompatActivity {
         if (mApp.getShowScientificNameFirst()) {
             // Show scientific name first, before common name
             mSpeciesGuessSub.setText(mSpeciesGuess);
-            TaxonUtils.setTaxonScientificName(mSpeciesGuessTextView, scientificName, mTaxonRankLevel, mTaxonRank);
+            TaxonUtils.setTaxonScientificName(mApp, mSpeciesGuessTextView, scientificName, mTaxonRankLevel, mTaxonRank);
         } else {
             mSpeciesGuessTextView.setText(mSpeciesGuess);
-            TaxonUtils.setTaxonScientificName(mSpeciesGuessSub, scientificName, mTaxonRankLevel, mTaxonRank);
+            TaxonUtils.setTaxonScientificName(mApp, mSpeciesGuessSub, scientificName, mTaxonRankLevel, mTaxonRank);
         }
 
         mClearSpeciesGuess.setVisibility(View.VISIBLE);

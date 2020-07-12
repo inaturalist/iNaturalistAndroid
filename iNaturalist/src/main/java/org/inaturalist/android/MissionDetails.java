@@ -334,13 +334,13 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
 
         if (mApp.getShowScientificNameFirst()) {
             // Show scientific name first, before common name
-            TaxonUtils.setTaxonScientificName(mTaxonName, taxon.getJSONObject());
-            mCollapsingToolbar.setTitle(TaxonUtils.getTaxonScientificName(taxon.getJSONObject()));
+            TaxonUtils.setTaxonScientificName(mApp, mTaxonName, taxon.getJSONObject());
+            mCollapsingToolbar.setTitle(TaxonUtils.getTaxonScientificName(mApp, taxon.getJSONObject()));
             mTaxonScientificName.setText(taxon.getString("preferred_common_name"));
         } else {
             mTaxonName.setText(taxon.getString("preferred_common_name"));
             mCollapsingToolbar.setTitle(taxon.getString("preferred_common_name"));
-            mTaxonScientificName.setText(TaxonUtils.getTaxonScientificName(taxon.getJSONObject()));
+            mTaxonScientificName.setText(TaxonUtils.getTaxonScientificName(mApp, taxon.getJSONObject()));
         }
 
 

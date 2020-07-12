@@ -339,7 +339,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
             List<BetterJSONObject> commonAncestor = new ArrayList<>();
             commonAncestor.add(mTaxonCommonAncestor);
             mCommonAncestorList.setAdapter(new TaxonSuggestionAdapter(this, commonAncestor, onSuggestion, false));
-            mCommonAncestorDescription.setText(String.format(getString(R.string.pretty_sure_rank), mTaxonCommonAncestor.getJSONObject("taxon").optString("rank")));
+            mCommonAncestorDescription.setText(String.format(getString(R.string.pretty_sure_rank), TaxonUtils.getTranslatedRank(mApp, mTaxonCommonAncestor.getJSONObject("taxon").optString("rank"))));
             mCommonAncestorDescription.setVisibility(View.VISIBLE);
             mCommonAncestorList.setVisibility(View.VISIBLE);
         }

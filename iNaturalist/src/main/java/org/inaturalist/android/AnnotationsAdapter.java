@@ -36,6 +36,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import static org.inaturalist.android.TaxonUtils.toSnakeCase;
+
 class AnnotationsAdapter extends ArrayAdapter<String> {
     private static final String TAG = "AnnotationsAdapter";
     private final INaturalistApp mApp;
@@ -545,23 +547,5 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
         }
 
     }
-
-    // Convert a string into snake case (e.g. "My String!!!" -> "my_string___"). Replaces any invalid character (non letter/digit) with an underscore.
-    private static String toSnakeCase(String string) {
-        StringBuilder builder = new StringBuilder(string);
-        final int len = builder.length();
-
-        for (int i = 0; i < len; i++) {
-            char c = builder.charAt(i);
-            if (!Character.isLetterOrDigit(c)) {
-                builder.setCharAt(i, '_');
-            } else {
-                builder.setCharAt(i, Character.toLowerCase(c));
-            }
-        }
-
-        return builder.toString();
-    }
-
 }
 

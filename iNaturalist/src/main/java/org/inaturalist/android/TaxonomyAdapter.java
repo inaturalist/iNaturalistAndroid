@@ -73,8 +73,8 @@ class TaxonomyAdapter extends ArrayAdapter<String> {
                     Collections.sort(mAncestors, new Comparator<JSONObject>() {
                         @Override
                         public int compare(JSONObject o1, JSONObject o2) {
-                            String sn1 = TaxonUtils.getTaxonScientificName(o1);
-                            String sn2 = TaxonUtils.getTaxonScientificName(o2);
+                            String sn1 = TaxonUtils.getTaxonScientificName(mApp, o1);
+                            String sn2 = TaxonUtils.getTaxonScientificName(mApp, o2);
 
                             return sn1.compareTo(sn2);
                         }
@@ -175,10 +175,10 @@ class TaxonomyAdapter extends ArrayAdapter<String> {
 
         if (mApp.getShowScientificNameFirst()) {
             // Show scientific name first, before common name
-            TaxonUtils.setTaxonScientificNameWithRank(taxonName, taxon);
+            TaxonUtils.setTaxonScientificNameWithRank(mApp, taxonName, taxon);
             taxonScientificName.setText(TaxonUtils.getTaxonName(mContext, taxon));
         } else {
-            TaxonUtils.setTaxonScientificNameWithRank(taxonScientificName, taxon);
+            TaxonUtils.setTaxonScientificNameWithRank(mApp, taxonScientificName, taxon);
             taxonName.setText(TaxonUtils.getTaxonName(mContext, taxon));
         }
 

@@ -120,7 +120,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                 final JSONObject taxon = identification.getJSONObject("taxon");
                 String id;
                 if (mApp.getShowScientificNameFirst()) {
-                    id = TaxonUtils.getTaxonScientificNameHtml(taxon, false, false);
+                    id = TaxonUtils.getTaxonScientificNameHtml(mApp, taxon, false, false);
                 } else {
                     id = TaxonUtils.getTaxonName(mContext, taxon);
                 }

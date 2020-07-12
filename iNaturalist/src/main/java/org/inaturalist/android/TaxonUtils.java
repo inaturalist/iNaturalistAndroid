@@ -67,35 +67,35 @@ public class TaxonUtils {
         RANK_NAME_TO_LEVEL = Collections.unmodifiableMap(rankNameToLevel);
     }
 
-    public static void setTaxonScientificName(TextView textView, String taxonName, int rankLevel, String rank) {
+    public static void setTaxonScientificName(INaturalistApp app, TextView textView, String taxonName, int rankLevel, String rank) {
         JSONObject taxon = new JSONObject();
         try {
             taxon.put("rank", rank);
             taxon.put("rank_level", rankLevel);
             taxon.put("name", taxonName);
 
-            setTaxonScientificName(textView, taxon);
+            setTaxonScientificName(app, textView, taxon);
         } catch (JSONException e) {
             Logger.tag(TAG).error(e);
         }
     }
 
-    public static void setTaxonScientificNameWithRank(TextView textView, JSONObject item) {
-        textView.setText(Html.fromHtml(getTaxonScientificNameHtml(item, false, true)));
+    public static void setTaxonScientificNameWithRank(INaturalistApp app, TextView textView, JSONObject item) {
+        textView.setText(Html.fromHtml(getTaxonScientificNameHtml(app, item, false, true)));
     }
 
 
-    public static void setTaxonScientificName(TextView textView, JSONObject item) {
-        setTaxonScientificName(textView, item, false);
+    public static void setTaxonScientificName(INaturalistApp app, TextView textView, JSONObject item) {
+        setTaxonScientificName(app, textView, item, false);
     }
 
-    public static void setTaxonScientificName(TextView textView, JSONObject item, boolean bold) {
-        textView.setText(Html.fromHtml(getTaxonScientificNameHtml(item, bold, false)));
+    public static void setTaxonScientificName(INaturalistApp app, TextView textView, JSONObject item, boolean bold) {
+        textView.setText(Html.fromHtml(getTaxonScientificNameHtml(app, item, bold, false)));
     }
 
-    public static String getTaxonScientificNameHtml(JSONObject item, boolean bold, boolean alwaysShowRank) {
+    public static String getTaxonScientificNameHtml(INaturalistApp app, JSONObject item, boolean bold, boolean alwaysShowRank) {
         String rankName = item.optString("name", "");
-        String rank = getTaxonRank(item);
+        String rank = getTaxonRank(app, item);
         double rankLevel = getTaxonRankLevel(item);
         String name;
 
@@ -130,19 +130,33 @@ public class TaxonUtils {
     }
 
 
-    public static String getTaxonRank(JSONObject item) {
+    public static String getTaxonRank(INaturalistApp app, JSONObject item) {
         double rankLevel = getTaxonRankLevel(item);
 
         if ((rankLevel < 15) && (rankLevel != 11)) {
             // Lower than subgenus and not complex - don't return anything
             return "";
         } else {
-            return StringUtils.capitalize(item.optString("rank", ""));
+            return getTranslatedRank(app, item.optString("rank", ""));
         }
     }
 
-    public static String getTaxonScientificName(JSONObject item) {
-        String rank = getTaxonRank(item);
+    /** Return the translated rank name (i.e. translated name of species/order/etc.) - if not found
+     * returns the rank as-is */
+    public static String getTranslatedRank(INaturalistApp app, String rank) {
+        String translated = app.getStringResourceByNameOrNull(String.format("rank_%s",  toSnakeCase(rank)));
+        Logger.tag(TAG).error("AAA - getTranslatedRank - " + rank + ":" + toSnakeCase(rank) + " => " + translated);
+
+        if (translated == null) {
+            // No translation found - return as-is
+            return rank;
+        }
+
+        return translated;
+    }
+
+    public static String getTaxonScientificName(INaturalistApp app, JSONObject item) {
+        String rank = getTaxonRank(app, item);
         String scientificName = item.optString("name", "");
 
         if (rank.equals("")) {
@@ -293,6 +307,23 @@ public class TaxonUtils {
             return BitmapDescriptorFactory.fromResource(stemless ? R.drawable.mm_34_stemless_unknown : R.drawable.mm_34_unknown);
         }
 
+    }
+
+    // Convert a string into snake case (e.g. "My String!!!" -> "my_string___"). Replaces any invalid character (non letter/digit) with an underscore.
+    public static String toSnakeCase(String string) {
+        StringBuilder builder = new StringBuilder(string);
+        final int len = builder.length();
+
+        for (int i = 0; i < len; i++) {
+            char c = builder.charAt(i);
+            if (!Character.isLetterOrDigit(c)) {
+                builder.setCharAt(i, '_');
+            } else {
+                builder.setCharAt(i, Character.toLowerCase(c));
+            }
+        }
+
+        return builder.toString();
     }
 
 }

@@ -371,10 +371,10 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 
 				if (mApp.getShowScientificNameFirst()) {
 					// Show scientific name first, before common name
-					TaxonUtils.setTaxonScientificName(idName, item.getJSONObject("taxon"));
+					TaxonUtils.setTaxonScientificName(mApp, idName, item.getJSONObject("taxon"));
 					idScientificName.setText(TaxonUtils.getTaxonName(mContext, item.getJSONObject("taxon")));
 				} else {
-					TaxonUtils.setTaxonScientificName(idScientificName, item.getJSONObject("taxon"));
+					TaxonUtils.setTaxonScientificName(mApp, idScientificName, item.getJSONObject("taxon"));
 					idName.setText(TaxonUtils.getTaxonName(mContext, item.getJSONObject("taxon")));
 				}
 

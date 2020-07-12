@@ -848,11 +848,11 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
 
         if (mApp.getShowScientificNameFirst()) {
             // Show scientific name first, before common name
-            TaxonUtils.setTaxonScientificName(mTaxonName, mTaxon.getJSONObject());
+            TaxonUtils.setTaxonScientificName(mApp, mTaxonName, mTaxon.getJSONObject());
             mTaxonScientificName.setText(TaxonUtils.getTaxonName(this, mTaxon.getJSONObject()));
-            getSupportActionBar().setTitle(TaxonUtils.getTaxonScientificName(mTaxon.getJSONObject()));
+            getSupportActionBar().setTitle(TaxonUtils.getTaxonScientificName(mApp, mTaxon.getJSONObject()));
         } else {
-            TaxonUtils.setTaxonScientificName(mTaxonScientificName, mTaxon.getJSONObject());
+            TaxonUtils.setTaxonScientificName(mApp, mTaxonScientificName, mTaxon.getJSONObject());
             mTaxonName.setText(TaxonUtils.getTaxonName(this, mTaxon.getJSONObject()));
             getSupportActionBar().setTitle(taxonName);
         }
@@ -964,7 +964,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
 
         if (mApp.getShowScientificNameFirst()) {
             // Show scientific name instead of common name
-            taxonName = TaxonUtils.getTaxonScientificName(mTaxon.getJSONObject());
+            taxonName = TaxonUtils.getTaxonScientificName(mApp, mTaxon.getJSONObject());
         } else {
             taxonName = TaxonUtils.getTaxonName(this, mTaxon.getJSONObject());
         }

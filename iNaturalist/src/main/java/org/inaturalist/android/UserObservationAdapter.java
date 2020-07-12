@@ -81,7 +81,7 @@ public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
         if (mApp.getShowScientificNameFirst()) {
             // Show scientific name first, before common name
             if (!item.isNull("taxon")) {
-                TaxonUtils.setTaxonScientificName(idName, item.optJSONObject("taxon"));
+                TaxonUtils.setTaxonScientificName(mApp, idName, item.optJSONObject("taxon"));
             } else {
                 idName.setText(item.isNull("species_guess") ? mContext.getResources().getString(R.string.unknown) : item.optString("species_guess", mContext.getResources().getString(R.string.unknown)));
             }

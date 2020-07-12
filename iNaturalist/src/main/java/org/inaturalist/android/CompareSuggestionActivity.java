@@ -453,7 +453,7 @@ public class CompareSuggestionActivity extends AppCompatActivity {
 
         if (mApp.getShowScientificNameFirst()) {
             // Show scientific name instead of common name
-            TaxonUtils.setTaxonScientificName(mTaxonName, taxon, true);
+            TaxonUtils.setTaxonScientificName(mApp, mTaxonName, taxon, true);
         } else {
             mTaxonName.setText(TaxonUtils.getTaxonName(this, taxon));
             mTaxonName.setTypeface(null, Typeface.BOLD);
