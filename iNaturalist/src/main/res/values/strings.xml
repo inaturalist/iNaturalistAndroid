@@ -871,7 +871,7 @@
     <string name="new_message_to">New Message to %1$s</string>
     <string name="who_would_you_like_to_send_a_message_to">Who would you like to send a message to?</string>
     <string name="new_message">New Message</string>
-    <string name="search_for_inaturalist_users">Search for iNautralist users</string>
+    <string name="search_for_inaturalist_users">Search for iNaturalist users</string>
     <string name="please_sign_in_for_messages">You must be logged in to view your messages.</string>
     <string name="sorry">Sorry</string>
     <string name="you_must_have_three_observations">You must have three verifiable observations or three identifications for others in order to do that.</string>
