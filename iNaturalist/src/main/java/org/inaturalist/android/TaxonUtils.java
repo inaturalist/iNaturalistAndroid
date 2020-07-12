@@ -145,7 +145,6 @@ public class TaxonUtils {
      * returns the rank as-is */
     public static String getTranslatedRank(INaturalistApp app, String rank) {
         String translated = app.getStringResourceByNameOrNull(String.format("rank_%s",  toSnakeCase(rank)));
-        Logger.tag(TAG).error("AAA - getTranslatedRank - " + rank + ":" + toSnakeCase(rank) + " => " + translated);
 
         if (translated == null) {
             // No translation found - return as-is
