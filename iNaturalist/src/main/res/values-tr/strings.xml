@@ -635,6 +635,8 @@
     <string name="annotation_value_budding">Tomurcuklu</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Tomurcuklu Çiçek</string>
+    <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Yetişkin</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -829,4 +831,84 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="list_observation_checkbox_description">Çoklu seçim modunda gözlem seçmek için onay kutusu</string>
     <string name="observation_list_item_iconic_pic_description">Gözlem sınıfı için küçük resim</string>
     <string name="observation_list_item_obs_pic_description">Gözlem için küçük resim</string>
+    <string name="messages">İletiler</string>
+    <string name="all_messages">Tüm İletiler</string>
+    <string name="search_messages">İletileri ara</string>
+    <string name="no_messages">Şu anda iletiniz yok. Yeşil düğmeyle yeni bir ileti gönderebilir ya da profil sayfalarından da gönderebilirsiniz.</string>
+    <string name="no_messages_found">Hiçbir ileti bulunamadı.</string>
+    <string name="send_a_message">Bir ileti gönder</string>
+    <string name="sending_message">İleti gönderiliyor...</string>
+    <string name="could_not_send_message">İleti gönderilemedi: %1$s</string>
+    <string name="subject">Konu</string>
+    <string name="body">Gövde</string>
+    <string name="type_your_message_here">İletinizi buraya yazın</string>
+    <string name="new_message_to">%1$s\'e Yeni İleti</string>
+    <string name="who_would_you_like_to_send_a_message_to">Kime ileti göndermek istersiniz?</string>
+    <string name="new_message">Yeni İleti</string>
+    <string name="search_for_inaturalist_users">iNaturalist kullanıcıları için ara</string>
+    <string name="please_sign_in_for_messages">İletilerinizi görebilmek için giriş yapmalısınız.</string>
+    <string name="sorry">Üzgünüm</string>
+    <string name="you_must_have_three_observations">Bunu yapabilmek için üç tane doğrulanabilir gözleminiz ya da başkaları için üç tanımlamanız olmalıdır.</string>
+    <string name="mute_this_user">Bu kullanıcıyı sustur</string>
+    <string name="unmute_this_user">Bu kullanıcıdan susturmayı kaldır</string>
+    <string name="flag_this_conversation">Bu konuşmayı işaretle</string>
+    <string name="mute_this_user_question">Kullanıcı susturulsun mu?</string>
+    <string name="you_will_no_longer_receive_messages">Artık bu kullanıcıdan gelen iletiler, yorumlar, tanımlamalar ve sözleri de içermek üzere etkinlik bildirimi almayacaksınız.</string>
+    <string name="mute">Sustur</string>
+    <string name="muting_user">Kullanıcı susturuluyor...</string>
+    <string name="unmuting_user">Kullanıcı susturma kaldırılıyor...</string>
+    <string name="failed_muting_user">Kullanıcı susturma başarısız!</string>
+    <string name="failed_unmuting_user">Kullanıcı susturma kaldırması başarısız!</string>
+    <string name="flag_conversation">Konuşmayı işaretle</string>
+    <string name="spam">Gereksiz</string>
+    <string name="commercial_solicitation">Ticari istek, hiçbir yerle bağlı olmayanlar vb.</string>
+    <string name="offensive_inappropriate">Saldırgan/Uygunsuz</string>
+    <string name="misleading_or_illegal_content">Yanıltıcı ya da yasa dışı içerik, ırksal ya da etnik hakaretler vb. \"Uygun\" tanımımızla ilgili daha çok bilgi için SSS bölümüne bakın.</string>
+    <string name="other">Diğer</string>
+    <string name="some_other_reason">Açıklayabileceğiniz başka bir neden</string>
+    <string name="continue_text">Devam et</string>
+    <string name="why_are_you_flagging_this_item">Bunu niçin işaretliyorsunuz?</string>
+    <string name="thank_you_for_submitting_the_flag">İşaretlediğiniz için teşekkür ederiz!</string>
+    <string name="flagging_conversation">Konuşma işaretleniyor...</string>
+    <string name="failed_flagging_conversation">Konuşma işaretleme başarısız!</string>
+    <string name="no_subject">No Subject</string>
+    <string name="rank_state_of_matter">State of matter</string>
+    <string name="rank_kingdom">Kingdom</string>
+    <string name="rank_subkingdom">Subkingdom</string>
+    <string name="rank_phylum">Phylum</string>
+    <string name="rank_subphylum">Subphylum</string>
+    <string name="rank_superclass">Superclass</string>
+    <string name="rank_class">Class</string>
+    <string name="rank_subclass">Subclass</string>
+    <string name="rank_infraclass">Infraclass</string>
+    <string name="rank_superorder">Superorder</string>
+    <string name="rank_order">Order</string>
+    <string name="rank_suborder">Suborder</string>
+    <string name="rank_infraorder">Infraorder</string>
+    <string name="rank_subterclass">Subterclass</string>
+    <string name="rank_parvorder">Parvorder</string>
+    <string name="rank_zoosection">Zoosection</string>
+    <string name="rank_zoosubsection">Zoosubsection</string>
+    <string name="rank_superfamily">Superfamily</string>
+    <string name="rank_epifamily">Epifamily</string>
+    <string name="rank_family">Family</string>
+    <string name="rank_subfamily">Subfamily</string>
+    <string name="rank_supertribe">Supertribe</string>
+    <string name="rank_tribe">Tribe</string>
+    <string name="rank_subtribe">Subtribe</string>
+    <string name="rank_genus">Genus</string>
+    <string name="rank_genushybrid">Genushybrid</string>
+    <string name="rank_subgenus">Subgenus</string>
+    <string name="rank_section">Section</string>
+    <string name="rank_subsection">subsection</string>
+    <string name="rank_complex">Complex</string>
+    <!-- Singular -->
+    <string name="rank_species">Species</string>
+    <string name="rank_hybrid">Hybrid</string>
+    <!-- Singular -->
+    <string name="rank_subspecies">Subspecies</string>
+    <string name="rank_variety">Variety</string>
+    <string name="rank_form">Form</string>
+    <string name="rank_infrahybrid">Infrahybrid</string>
+    <string name="rank_leaves">Leaves</string>
 </resources>

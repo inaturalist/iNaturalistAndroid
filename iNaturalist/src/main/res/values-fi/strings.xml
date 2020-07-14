@@ -645,6 +645,8 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="annotation_value_budding">Orastava</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Kukka aukeamassa</string>
+    <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Aikuinen</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -838,4 +840,84 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="list_observation_checkbox_description">Valintaruutu havainnolle monivalintatilassa</string>
     <string name="observation_list_item_iconic_pic_description">Esikatselukuva havainnon taksonille</string>
     <string name="observation_list_item_obs_pic_description">Esikatselukuva havainnolle</string>
+    <string name="messages">Viestit</string>
+    <string name="all_messages">Kaikki viestit</string>
+    <string name="search_messages">Etsi viesteistä</string>
+    <string name="no_messages">Sinulla ei ole tällä hetkellä viestejä. Voit lähettää uuden viestin vihreästä napista tai käyttäjän profiilisivulla.</string>
+    <string name="no_messages_found">Viestejä ei löytynyt.</string>
+    <string name="send_a_message">Lähetä viesti</string>
+    <string name="sending_message">Viestiä lähetetään...</string>
+    <string name="could_not_send_message">Ei voitu lähettää viestiä: %1$s</string>
+    <string name="subject">Aihe</string>
+    <string name="body">Sisältö</string>
+    <string name="type_your_message_here">Kirjoita viestisi tähän</string>
+    <string name="new_message_to">Uusi viesti käyttäjälle %1$s</string>
+    <string name="who_would_you_like_to_send_a_message_to">Kenelle haluaisit lähettää viestin?</string>
+    <string name="new_message">Uusi viesti</string>
+    <string name="search_for_inaturalist_users">Etsi iNaturalistin käyttäjiä</string>
+    <string name="please_sign_in_for_messages">Sinun tulee olla kirjautuneena sisään katsellaksesi viestejäsi.</string>
+    <string name="sorry">Pahoittelut</string>
+    <string name="you_must_have_three_observations">Sinulla tulee olle vähintään kolme varmistettavissa olevaa havaintoa tai kolme tunnistusta tehdäksesi tämän.</string>
+    <string name="mute_this_user">Mykistä tämä käyttäjä</string>
+    <string name="unmute_this_user">Poista mykistys tältä käyttäjältä</string>
+    <string name="flag_this_conversation">Liputa tämä keskustelu</string>
+    <string name="mute_this_user_question">Mykistä tämä käyttäjä?</string>
+    <string name="you_will_no_longer_receive_messages">Et saa enää ilmoituksia tämän käyttäjän toiminnoista, kuten viesteistä, kommenteista, tunnistuksista ja maininnoista.</string>
+    <string name="mute">Mykistys</string>
+    <string name="muting_user">Mykistetään käyttäjää...</string>
+    <string name="unmuting_user">Poistetaan käyttäjän mykistystä...</string>
+    <string name="failed_muting_user">Käyttäjän mykistys epäonnistui!</string>
+    <string name="failed_unmuting_user">Mykistyksen poisto käyttäjältä epäonnistui!</string>
+    <string name="flag_conversation">Liputa keskustelu</string>
+    <string name="spam">Roskaposti</string>
+    <string name="commercial_solicitation">Kaupallinen tarjous, linkkejä jotka eivät johda mihinkään, yms.</string>
+    <string name="offensive_inappropriate">Loukkaava/epäasiallinen</string>
+    <string name="misleading_or_illegal_content">Harhaanjohtava tai laiton sisältö, rasistinen herja, tms. Lisätietoa \"sopivan\" tai \"asiallisen\" määritelmästämme, katso FAQ (englanniksi).</string>
+    <string name="other">Muu</string>
+    <string name="some_other_reason">Jokin muu syy, jota voit selittää.</string>
+    <string name="continue_text">Jatka</string>
+    <string name="why_are_you_flagging_this_item">Miksi liputat tämän?</string>
+    <string name="thank_you_for_submitting_the_flag">Kiitos kun teit liputuksen!</string>
+    <string name="flagging_conversation">Liputetaan keskustelua...</string>
+    <string name="failed_flagging_conversation">Keskustelun liputtaminen epäonnistui!</string>
+    <string name="no_subject">No Subject</string>
+    <string name="rank_state_of_matter">State of matter</string>
+    <string name="rank_kingdom">Kingdom</string>
+    <string name="rank_subkingdom">Subkingdom</string>
+    <string name="rank_phylum">Phylum</string>
+    <string name="rank_subphylum">Subphylum</string>
+    <string name="rank_superclass">Superclass</string>
+    <string name="rank_class">Class</string>
+    <string name="rank_subclass">Subclass</string>
+    <string name="rank_infraclass">Infraclass</string>
+    <string name="rank_superorder">Superorder</string>
+    <string name="rank_order">Order</string>
+    <string name="rank_suborder">Suborder</string>
+    <string name="rank_infraorder">Infraorder</string>
+    <string name="rank_subterclass">Subterclass</string>
+    <string name="rank_parvorder">Parvorder</string>
+    <string name="rank_zoosection">Zoosection</string>
+    <string name="rank_zoosubsection">Zoosubsection</string>
+    <string name="rank_superfamily">Superfamily</string>
+    <string name="rank_epifamily">Epifamily</string>
+    <string name="rank_family">Family</string>
+    <string name="rank_subfamily">Subfamily</string>
+    <string name="rank_supertribe">Supertribe</string>
+    <string name="rank_tribe">Tribe</string>
+    <string name="rank_subtribe">Subtribe</string>
+    <string name="rank_genus">Genus</string>
+    <string name="rank_genushybrid">Genushybrid</string>
+    <string name="rank_subgenus">Subgenus</string>
+    <string name="rank_section">Section</string>
+    <string name="rank_subsection">subsection</string>
+    <string name="rank_complex">Complex</string>
+    <!-- Singular -->
+    <string name="rank_species">Species</string>
+    <string name="rank_hybrid">Hybrid</string>
+    <!-- Singular -->
+    <string name="rank_subspecies">Subspecies</string>
+    <string name="rank_variety">Variety</string>
+    <string name="rank_form">Form</string>
+    <string name="rank_infrahybrid">Infrahybrid</string>
+    <string name="rank_leaves">Leaves</string>
 </resources>

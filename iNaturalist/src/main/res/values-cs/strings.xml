@@ -645,6 +645,8 @@
     <string name="annotation_value_budding">Pučení</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Květinové pučení</string>
+    <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Dospělý</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -842,4 +844,84 @@
     <string name="list_observation_checkbox_description">Zaškrtávací políčko pro výběr pozorování v režimu vícenásobného výběru</string>
     <string name="observation_list_item_iconic_pic_description">Náhled pozorovaného taxonu</string>
     <string name="observation_list_item_obs_pic_description">Náhled pozorování</string>
+    <string name="messages">Zprávy</string>
+    <string name="all_messages">Všechny zprávy</string>
+    <string name="search_messages">Hledat zprávy</string>
+    <string name="no_messages">You currently have no messages. You can send a new message with the green button, or message them from their profile page.</string>
+    <string name="no_messages_found">Žádné zprávy nenalezeny.</string>
+    <string name="send_a_message">Odeslat zprávu</string>
+    <string name="sending_message">Zpráva se odesílá...</string>
+    <string name="could_not_send_message">Zprávu nelze odeslat: %1$s</string>
+    <string name="subject">Předmět</string>
+    <string name="body">Obsah</string>
+    <string name="type_your_message_here">Sem napište svou zprávu</string>
+    <string name="new_message_to">Nová zpráva pro %1$s</string>
+    <string name="who_would_you_like_to_send_a_message_to">Komu byste chtěli poslat zprávu?</string>
+    <string name="new_message">Nová zpráva</string>
+    <string name="search_for_inaturalist_users">Hledat uživatele iNaturalist</string>
+    <string name="please_sign_in_for_messages">Musíte být přihlášeni k zobrazení vašich zpráv.</string>
+    <string name="sorry">Omlouváme se</string>
+    <string name="you_must_have_three_observations">Musíte mít tři ověřitelná pozorování nebo tři identifikace ostatních, abyste mohli provést tuto akci.</string>
+    <string name="mute_this_user">Umlčet tohoto uživatele</string>
+    <string name="unmute_this_user">Zrušit umlčení tohoto uživatele</string>
+    <string name="flag_this_conversation">Označit tuto konverzaci</string>
+    <string name="mute_this_user_question">Umlčet tohoto uživatele?</string>
+    <string name="you_will_no_longer_receive_messages">Od tohoto uživatele již nebudete dostávat žádná oznámení o aktivitě, včetně zpráv, komentářů, identifikací a zmínek.</string>
+    <string name="mute">Umlčet</string>
+    <string name="muting_user">Probíhá umlčení uživatele...</string>
+    <string name="unmuting_user">Ruší se umlčení uživatele...</string>
+    <string name="failed_muting_user">Umlčení uživatele se nezdařilo!</string>
+    <string name="failed_unmuting_user">Zrušení umlčení uživatele se nezdařilo!</string>
+    <string name="flag_conversation">Označit konverzaci jako nevhodnou</string>
+    <string name="spam">Spam</string>
+    <string name="commercial_solicitation">Komerční žádost, neplatné odkazy atd.</string>
+    <string name="offensive_inappropriate">Útočný / nevhodný</string>
+    <string name="misleading_or_illegal_content">Zavádějící nebo nelegální obsah, rasové nebo etnické napadání atp. Podrobnosti k naší definici toho, co je „vhodné“ najdete ve FAQ.</string>
+    <string name="other">Ostatní</string>
+    <string name="some_other_reason">Jiný důvod, který můžete vysvětlit.</string>
+    <string name="continue_text">Pokračovat</string>
+    <string name="why_are_you_flagging_this_item">Proč označujete tuto položku?</string>
+    <string name="thank_you_for_submitting_the_flag">Děkujeme za odeslání hlášení!</string>
+    <string name="flagging_conversation">Označování nevhodné konverzace...</string>
+    <string name="failed_flagging_conversation">Nepodařilo se označit konverzaci jako nevhodnou!</string>
+    <string name="no_subject">No Subject</string>
+    <string name="rank_state_of_matter">State of matter</string>
+    <string name="rank_kingdom">Kingdom</string>
+    <string name="rank_subkingdom">Subkingdom</string>
+    <string name="rank_phylum">Phylum</string>
+    <string name="rank_subphylum">Subphylum</string>
+    <string name="rank_superclass">Superclass</string>
+    <string name="rank_class">Class</string>
+    <string name="rank_subclass">Subclass</string>
+    <string name="rank_infraclass">Infraclass</string>
+    <string name="rank_superorder">Superorder</string>
+    <string name="rank_order">Order</string>
+    <string name="rank_suborder">Suborder</string>
+    <string name="rank_infraorder">Infraorder</string>
+    <string name="rank_subterclass">Subterclass</string>
+    <string name="rank_parvorder">Parvorder</string>
+    <string name="rank_zoosection">Zoosection</string>
+    <string name="rank_zoosubsection">Zoosubsection</string>
+    <string name="rank_superfamily">Superfamily</string>
+    <string name="rank_epifamily">Epifamily</string>
+    <string name="rank_family">Family</string>
+    <string name="rank_subfamily">Subfamily</string>
+    <string name="rank_supertribe">Supertribe</string>
+    <string name="rank_tribe">Tribe</string>
+    <string name="rank_subtribe">Subtribe</string>
+    <string name="rank_genus">Genus</string>
+    <string name="rank_genushybrid">Genushybrid</string>
+    <string name="rank_subgenus">Subgenus</string>
+    <string name="rank_section">Section</string>
+    <string name="rank_subsection">subsection</string>
+    <string name="rank_complex">Complex</string>
+    <!-- Singular -->
+    <string name="rank_species">Species</string>
+    <string name="rank_hybrid">Hybrid</string>
+    <!-- Singular -->
+    <string name="rank_subspecies">Subspecies</string>
+    <string name="rank_variety">Variety</string>
+    <string name="rank_form">Form</string>
+    <string name="rank_infrahybrid">Infrahybrid</string>
+    <string name="rank_leaves">Leaves</string>
 </resources>

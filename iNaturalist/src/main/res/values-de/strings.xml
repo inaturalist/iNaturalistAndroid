@@ -635,6 +635,8 @@
     <string name="annotation_value_budding">Knospenbildung</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Blütenknospen</string>
+    <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Ausgewachsen</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -828,4 +830,84 @@
     <string name="list_observation_checkbox_description">Kontrollkästchen für die Auswahl von Beobachtungen im Mehrfachwahl-Modus</string>
     <string name="observation_list_item_iconic_pic_description">Vorschaubild für das beobachtete Taxon</string>
     <string name="observation_list_item_obs_pic_description">Vorschaubild zur Beobachtung</string>
+    <string name="messages">Mitteilungen</string>
+    <string name="all_messages">Alle Mitteilungen</string>
+    <string name="search_messages">Mitteilungen durchsuchen</string>
+    <string name="no_messages">Du hast derzeit keine Mitteilungen. Du kannst jemandem eine neue Nachricht mit der grünen Schaltfläche senden oder vom Benutzer-Profil aus anschreiben.</string>
+    <string name="no_messages_found">Keine Mitteilungen gefunden</string>
+    <string name="send_a_message">Mitteilung senden</string>
+    <string name="sending_message">Mitteilung wird gesendet ...</string>
+    <string name="could_not_send_message">Mitteilung konnte nicht gesendet werden: %1$s</string>
+    <string name="subject">Betreff</string>
+    <string name="body">Nachrichtentext</string>
+    <string name="type_your_message_here">Nachricht hier eingeben</string>
+    <string name="new_message_to">Neue Mitteilung an %1$s</string>
+    <string name="who_would_you_like_to_send_a_message_to">Wem möchtest du eine Nachricht schicken?</string>
+    <string name="new_message">Neue Mitteilung</string>
+    <string name="search_for_inaturalist_users">Nach iNaturalist-Benutzern suchen</string>
+    <string name="please_sign_in_for_messages">Du musst eingeloggt sein, um deine Mitteilungen anzusehen.</string>
+    <string name="sorry">Tut uns leid!</string>
+    <string name="you_must_have_three_observations">Um dies zu tun, müsst du über drei verifizierbare Beobachtungen oder drei Bestimmungen für andere verfügen.</string>
+    <string name="mute_this_user">Diesen Benutzer stumm schalten</string>
+    <string name="unmute_this_user">Stummschaltung dieses Benutzers aufheben</string>
+    <string name="flag_this_conversation">Diese Unterhaltung melden</string>
+    <string name="mute_this_user_question">Diesen Benutzer stumm schalten?</string>
+    <string name="you_will_no_longer_receive_messages">Du erhältst keine Benachrichtigungen mehr über Aktivitäten dieses Benutzers, einschließlich Nachrichten, Kommentare, Bestimmungen und Erwähnungen.</string>
+    <string name="mute">Stummschalten</string>
+    <string name="muting_user">Benutzer wird stumm geschalten…</string>
+    <string name="unmuting_user">Stummschaltung des Benutzers wird aufgehoben…</string>
+    <string name="failed_muting_user">Stummschaltung des Benutzers fehlgeschlagen!</string>
+    <string name="failed_unmuting_user">Aufhebung der Stummschaltung des Benutzers fehlgeschlagen!</string>
+    <string name="flag_conversation">Diese Unterhaltung melden</string>
+    <string name="spam">Spam</string>
+    <string name="commercial_solicitation">Kommerzielle Werbung, Verknüpfungen ins Nirgendwo, usw.</string>
+    <string name="offensive_inappropriate">Beleidigend/Unangemessen</string>
+    <string name="misleading_or_illegal_content">Irreführende oder illegale Inhalte, rassistische oder ethnische Verunglimpfungen, usw. Weitere Informationen zu unserer Definition von „angemessen” sind in den „Häufig gestellten Fragen” (FAQ) zu finden.</string>
+    <string name="other">Weitere</string>
+    <string name="some_other_reason">Ein anderer Grund, den du angeben kannst.</string>
+    <string name="continue_text">Weiter</string>
+    <string name="why_are_you_flagging_this_item">Warum meldest du diesen Eintrag?</string>
+    <string name="thank_you_for_submitting_the_flag">Vielen Dank für die Meldung!</string>
+    <string name="flagging_conversation">Unterhaltung wird gemeldet…</string>
+    <string name="failed_flagging_conversation">Meldung der Unterhaltung fehlgeschlagen!</string>
+    <string name="no_subject">No Subject</string>
+    <string name="rank_state_of_matter">State of matter</string>
+    <string name="rank_kingdom">Kingdom</string>
+    <string name="rank_subkingdom">Subkingdom</string>
+    <string name="rank_phylum">Phylum</string>
+    <string name="rank_subphylum">Subphylum</string>
+    <string name="rank_superclass">Superclass</string>
+    <string name="rank_class">Class</string>
+    <string name="rank_subclass">Subclass</string>
+    <string name="rank_infraclass">Infraclass</string>
+    <string name="rank_superorder">Superorder</string>
+    <string name="rank_order">Order</string>
+    <string name="rank_suborder">Suborder</string>
+    <string name="rank_infraorder">Infraorder</string>
+    <string name="rank_subterclass">Subterclass</string>
+    <string name="rank_parvorder">Parvorder</string>
+    <string name="rank_zoosection">Zoosection</string>
+    <string name="rank_zoosubsection">Zoosubsection</string>
+    <string name="rank_superfamily">Superfamily</string>
+    <string name="rank_epifamily">Epifamily</string>
+    <string name="rank_family">Family</string>
+    <string name="rank_subfamily">Subfamily</string>
+    <string name="rank_supertribe">Supertribe</string>
+    <string name="rank_tribe">Tribe</string>
+    <string name="rank_subtribe">Subtribe</string>
+    <string name="rank_genus">Genus</string>
+    <string name="rank_genushybrid">Genushybrid</string>
+    <string name="rank_subgenus">Subgenus</string>
+    <string name="rank_section">Section</string>
+    <string name="rank_subsection">subsection</string>
+    <string name="rank_complex">Complex</string>
+    <!-- Singular -->
+    <string name="rank_species">Species</string>
+    <string name="rank_hybrid">Hybrid</string>
+    <!-- Singular -->
+    <string name="rank_subspecies">Subspecies</string>
+    <string name="rank_variety">Variety</string>
+    <string name="rank_form">Form</string>
+    <string name="rank_infrahybrid">Infrahybrid</string>
+    <string name="rank_leaves">Leaves</string>
 </resources>

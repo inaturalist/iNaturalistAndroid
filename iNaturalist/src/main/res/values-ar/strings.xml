@@ -116,7 +116,7 @@
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">خصوصية الموقع</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
-    <string name="geoprivacy_with_value">Geoprivacy: %1$s</string>
+    <string name="geoprivacy_with_value">الخواص الجغرافية: %1$s</string>
     <string name="delete_confirmation">سيحذف الرصد. متاكد?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">أدلة</string>
@@ -656,6 +656,8 @@
     <string name="annotation_value_budding">Budding</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Flower Budding</string>
+    <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Adult</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -740,7 +742,7 @@
     <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Naturalist History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Natural History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="mark_all_as_viewed">Mark all as viewed</string>
     <string name="content_hidden">Content Hidden</string>
     <string name="show_hidden_content">Show Hidden Content</string>
@@ -857,4 +859,84 @@
     <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
     <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
     <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
+    <string name="messages">الرسائل</string>
+    <string name="all_messages">الرسائل</string>
+    <string name="search_messages">بحث عن رسالة</string>
+    <string name="no_messages">لا يوجد رسائل حالياً. للقيام بإرسال رسالة يمكنك استخدام زر الضغط الآخضر٫ آو إستخدام الصفحة الشخصية للشخص المطلوب.</string>
+    <string name="no_messages_found">لم يتم العثور على أي رسالة.</string>
+    <string name="send_a_message">إرسال.</string>
+    <string name="sending_message">جاري الإرسال...</string>
+    <string name="could_not_send_message">Couldn\'t send message: %1$s</string>
+    <string name="subject">عنوان الرسالة</string>
+    <string name="body">محتوى الرسالة</string>
+    <string name="type_your_message_here">باشر بطباعة رسالتك هنا</string>
+    <string name="new_message_to">إرسال رسالة جديدة%1$s</string>
+    <string name="who_would_you_like_to_send_a_message_to">لمن ترغب بإرسال الرسالة؟</string>
+    <string name="new_message">رسالة جديدة</string>
+    <string name="search_for_inaturalist_users">للبحث عن مستخدمين iNaturalist</string>
+    <string name="please_sign_in_for_messages">قم بتسجيل الدخول لتتمكن من رؤية رسائلك</string>
+    <string name="sorry">نآسف</string>
+    <string name="you_must_have_three_observations">للتمكن من القيام بهذه الحطوة٬ عليك تقديم ثلاث ملاحظات تعريفية آو تآكيد ثلاث هويات. </string>
+    <string name="mute_this_user">حجب المستخدم</string>
+    <string name="unmute_this_user">إلغاء الحجب عن المستخدم</string>
+    <string name="flag_this_conversation">تأشير المحادثة</string>
+    <string name="mute_this_user_question">هل ترغب بحجب المستخدم؟</string>
+    <string name="you_will_no_longer_receive_messages">لن يتم استقبال آي إشعار عن نشاطات هذا المستخدم، بما في ذلك رسائل، وتعليقات، وتعريفات، وذكر في محتويات أخرى.</string>
+    <string name="mute">حجب</string>
+    <string name="muting_user">جاري حجب المستخدم...</string>
+    <string name="unmuting_user">جاري إلغاء الحجب...</string>
+    <string name="failed_muting_user">لم يتم حجب المستخدم!</string>
+    <string name="failed_unmuting_user">لم يتم إلعغاد حجب المستخدم!</string>
+    <string name="flag_conversation">التأشيز على المحادثة</string>
+    <string name="spam">رسائل مجهولة</string>
+    <string name="commercial_solicitation">العروض التجارية٫ وروابط إلكترونية غير معرفة٬ الخ...</string>
+    <string name="offensive_inappropriate">محتوى غير لائق أو مسيء</string>
+    <string name="misleading_or_illegal_content">محتوى مضلل آو غير قانوني، وعبارات عرقية آو إثنية، إلخ... للإطلاع على تعريفاتنا للمحتويات الغير لائقة٬ يمكنكم الاطلاع على صفحة الاسئلة الأكثر تكراراً.</string>
+    <string name="other">رسائل أخرى</string>
+    <string name="some_other_reason">آسباب أخرى مع شرح ممكن.</string>
+    <string name="continue_text">التالي</string>
+    <string name="why_are_you_flagging_this_item">سبب تأشير المادة؟</string>
+    <string name="thank_you_for_submitting_the_flag">شكراً لتقديم تأشير على المحتوى! </string>
+    <string name="flagging_conversation">جاري تأشير المحادثة...</string>
+    <string name="failed_flagging_conversation">لم نتمكن من تآشير المحادثة!</string>
+    <string name="no_subject">No Subject</string>
+    <string name="rank_state_of_matter">State of matter</string>
+    <string name="rank_kingdom">Kingdom</string>
+    <string name="rank_subkingdom">Subkingdom</string>
+    <string name="rank_phylum">Phylum</string>
+    <string name="rank_subphylum">Subphylum</string>
+    <string name="rank_superclass">Superclass</string>
+    <string name="rank_class">Class</string>
+    <string name="rank_subclass">Subclass</string>
+    <string name="rank_infraclass">Infraclass</string>
+    <string name="rank_superorder">Superorder</string>
+    <string name="rank_order">Order</string>
+    <string name="rank_suborder">Suborder</string>
+    <string name="rank_infraorder">Infraorder</string>
+    <string name="rank_subterclass">Subterclass</string>
+    <string name="rank_parvorder">Parvorder</string>
+    <string name="rank_zoosection">Zoosection</string>
+    <string name="rank_zoosubsection">Zoosubsection</string>
+    <string name="rank_superfamily">Superfamily</string>
+    <string name="rank_epifamily">Epifamily</string>
+    <string name="rank_family">Family</string>
+    <string name="rank_subfamily">Subfamily</string>
+    <string name="rank_supertribe">Supertribe</string>
+    <string name="rank_tribe">Tribe</string>
+    <string name="rank_subtribe">Subtribe</string>
+    <string name="rank_genus">Genus</string>
+    <string name="rank_genushybrid">Genushybrid</string>
+    <string name="rank_subgenus">Subgenus</string>
+    <string name="rank_section">Section</string>
+    <string name="rank_subsection">subsection</string>
+    <string name="rank_complex">Complex</string>
+    <!-- Singular -->
+    <string name="rank_species">Species</string>
+    <string name="rank_hybrid">Hybrid</string>
+    <!-- Singular -->
+    <string name="rank_subspecies">Subspecies</string>
+    <string name="rank_variety">Variety</string>
+    <string name="rank_form">Form</string>
+    <string name="rank_infrahybrid">Infrahybrid</string>
+    <string name="rank_leaves">Leaves</string>
 </resources>
