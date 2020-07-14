@@ -262,7 +262,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         ArrayList<Long> obsIds = new ArrayList<>();
         ArrayList<Long> externalObsIds = new ArrayList<>();
-        HashMap<Long, String> obsUUIDs = new HashMap<>();
         ArrayList<String> obsUUIDsList = new ArrayList<>();
         HashMap<Long, String> externalObsUUIDs = new HashMap<>();
 
@@ -274,7 +273,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
             obsIds.add(obsId);
             externalObsIds.add(obsExternalId);
-            obsUUIDs.put(obsId, obsUUID);
             obsUUIDsList.add('"' + obsUUID + '"');
             externalObsUUIDs.put(obsExternalId, obsUUID);
 
@@ -286,7 +284,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         // Add any photos that were added/changed
         Cursor onlinePc = mContext.getContentResolver().query(ObservationPhoto.CONTENT_URI,
-                new String[]{ ObservationPhoto._OBSERVATION_ID, ObservationPhoto.OBSERVATION_ID, ObservationPhoto._PHOTO_ID, ObservationPhoto.PHOTO_URL, ObservationPhoto.PHOTO_FILENAME, ObservationPhoto.ORIGINAL_PHOTO_FILENAME, ObservationPhoto.POSITION },
+                new String[]{ ObservationPhoto._OBSERVATION_ID, ObservationPhoto.OBSERVATION_UUID, ObservationPhoto.OBSERVATION_ID, ObservationPhoto._PHOTO_ID, ObservationPhoto.PHOTO_URL, ObservationPhoto.PHOTO_FILENAME, ObservationPhoto.ORIGINAL_PHOTO_FILENAME, ObservationPhoto.POSITION },
                 "(observation_uuid IN (" + StringUtils.join(obsUUIDsList, ",") + "))",
                 null,
                 ObservationPhoto.DEFAULT_SORT_ORDER);
@@ -296,8 +294,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             while (!onlinePc.isAfterLast()) {
                 String photoUrl = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
                 String photoFilename = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
-                Long obsId = onlinePc.getLong(onlinePc.getColumnIndexOrThrow(ObservationPhoto._OBSERVATION_ID));
-                String obsUUID = obsUUIDs.get(obsId);
+                String obsUUID = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.OBSERVATION_UUID));
 
                 if ((photoFilename != null) && (!(new File(photoFilename).exists()))) {
                     // Our local copy file was deleted (probably user deleted cache or similar) - try and use original filename from gallery
@@ -325,7 +322,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
                 // Add any photos that were added/changed
         Cursor soundCursor = mContext.getContentResolver().query(ObservationSound.CONTENT_URI,
-                new String[]{ ObservationSound._OBSERVATION_ID, ObservationSound.OBSERVATION_ID },
+                new String[]{ ObservationSound._OBSERVATION_ID, ObservationSound.OBSERVATION_ID, ObservationSound.OBSERVATION_UUID },
                 "((_observation_id IN (" + StringUtils.join(obsIds, ",") + ") OR observation_id IN (" + StringUtils.join(externalObsIds, ",") + "))) AND " +
                         "(is_deleted IS NULL OR is_deleted = 0)",
                 null,
@@ -334,9 +331,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         if (soundCursor != null) {
             soundCursor.moveToFirst();
             while (!soundCursor.isAfterLast()) {
-                Long obsId = soundCursor.getLong(soundCursor.getColumnIndexOrThrow(ObservationSound._OBSERVATION_ID));
                 Long externalObsId = soundCursor.getLong(soundCursor.getColumnIndexOrThrow(ObservationSound.OBSERVATION_ID));
-                String obsUUID = obsUUIDs.get(obsId);
+                String obsUUID = soundCursor.getString(soundCursor.getColumnIndexOrThrow(ObservationSound.OBSERVATION_UUID));
 
                 if (obsUUID == null) {
                     obsUUID = externalObsUUIDs.get(externalObsId);

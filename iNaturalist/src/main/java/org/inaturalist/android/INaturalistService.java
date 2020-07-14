@@ -4147,7 +4147,7 @@ public class INaturalistService extends IntentService {
         // query observation sounds where id is null (i.e. new sounds)
         Cursor c = getContentResolver().query(ObservationSound.CONTENT_URI,
                 ObservationSound.PROJECTION,
-                "(id IS NULL) AND (observation_id = ?) AND ((is_deleted == 0) OR (is_deleted IS NULL))", new String[]{String.valueOf(observation.id)}, ObservationSound.DEFAULT_SORT_ORDER);
+                "(id IS NULL) AND (observation_uuid = ?) AND ((is_deleted == 0) OR (is_deleted IS NULL))", new String[]{observation.uuid}, ObservationSound.DEFAULT_SORT_ORDER);
         Logger.tag(TAG).debug("postSounds: New sounds: " + c.getCount());
         if (c.getCount() == 0) {
             c.close();
@@ -4231,7 +4231,7 @@ public class INaturalistService extends IntentService {
 
         c = getContentResolver().query(ObservationSound.CONTENT_URI,
                 ObservationSound.PROJECTION,
-                "(id IS NULL) AND ((_observation_id = ? OR observation_id = ?)) AND ((is_deleted == 0) OR (is_deleted IS NULL))", new String[]{String.valueOf(observation._id), String.valueOf(observation.id)}, ObservationSound.DEFAULT_SORT_ORDER);
+                "(id IS NULL) AND (observation_uuid = ?) AND ((is_deleted == 0) OR (is_deleted IS NULL))", new String[]{observation.uuid}, ObservationSound.DEFAULT_SORT_ORDER);
         int currentCount = c.getCount();
         Logger.tag(TAG).debug("postSounds: currentCount = " + currentCount);
         c.close();
@@ -4293,8 +4293,8 @@ public class INaturalistService extends IntentService {
             // update photos - for each observation PUT to /observation_photos/:id
             c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                     ObservationPhoto.PROJECTION,
-                    "_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL AND observation_id = ? AND ((is_deleted == 0) OR (is_deleted IS NULL))",
-                    new String[]{String.valueOf(observationId)},
+                    "_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL AND observation_uuid = ? AND ((is_deleted == 0) OR (is_deleted IS NULL))",
+                    new String[]{observation.uuid},
                     ObservationPhoto.DEFAULT_SORT_ORDER);
 
             int updatedCount = c.getCount();
@@ -4347,7 +4347,7 @@ public class INaturalistService extends IntentService {
         // query observation photos where _synced_at is null (i.e. new photos)
         Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                 ObservationPhoto.PROJECTION,
-                "(_synced_at IS NULL) AND (id IS NULL) AND (observation_id = ?) AND ((is_deleted == 0) OR (is_deleted IS NULL))", new String[]{String.valueOf(observation.id)}, ObservationPhoto.DEFAULT_SORT_ORDER);
+                "(_synced_at IS NULL) AND (id IS NULL) AND (observation_uuid = ?) AND ((is_deleted == 0) OR (is_deleted IS NULL))", new String[]{observation.uuid}, ObservationPhoto.DEFAULT_SORT_ORDER);
         Logger.tag(TAG).debug("postPhotos: New photos: " + c.getCount());
         if (c.getCount() == 0) {
             c.close();
