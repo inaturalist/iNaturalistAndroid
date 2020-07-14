@@ -434,7 +434,7 @@ public class ObservationEditor extends AppCompatActivity {
                     finish();
                     return;
                 }
-                mCursor = managedQuery(mUri, Observation.PROJECTION, null, null, null);
+                mCursor = getContentResolver().query(mUri, Observation.PROJECTION, null, null, null);
                 mObservation = new Observation(mCursor);
                 mApp.setIsObservationCurrentlyBeingEdited(mObservation._id, true);
                 if (mObservation.uuid == null) {
@@ -1290,7 +1290,6 @@ public class ObservationEditor extends AppCompatActivity {
             return false;
         }
 
-        Observation observationCopy = new Observation(mCursor);
         uiToObservation();
         if (!mObservation.isDirty() && !mPhotosChanged && !mSoundsChanged) {
             // User hasn't changed anything - no need to display confirmation dialog
@@ -1475,11 +1474,12 @@ public class ObservationEditor extends AppCompatActivity {
 
     private void initObservation() {
         Logger.tag(TAG).debug("initObservation 1 - " + mCursor + ":" + mUri + ":" + mObservation);
-        if (mCursor == null) {
-            mCursor = managedQuery(mUri, Observation.PROJECTION, null, null, null);
-        } else {
-            mCursor.requery();
+        if (mCursor != null) {
+            if (!mCursor.isClosed()) mCursor.close();
+            mCursor = null;
         }
+
+        mCursor = getContentResolver().query(mUri, Observation.PROJECTION, null, null, null);
 
         if (mObservation == null) {
             if (mCursor.getCount() > 0) {
@@ -4227,4 +4227,10 @@ public class ObservationEditor extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onDestroy() {
+        if ((mCursor != null) && (!mCursor.isClosed())) mCursor.close();
+
+        super.onDestroy();
+    }
 }

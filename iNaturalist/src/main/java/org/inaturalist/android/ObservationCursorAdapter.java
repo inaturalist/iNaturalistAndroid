@@ -914,7 +914,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
     // Should the specified observation be locked for editing (e.g. it's currently being uploaded)
     public boolean isLocked(Uri uri) {
-        Cursor c = mContext.managedQuery(uri, Observation.PROJECTION, null, null, null);
+        Cursor c = mContext.getContentResolver().query(uri, Observation.PROJECTION, null, null, null);
         Observation obs = new Observation(c);
         c.close();
 

@@ -842,11 +842,12 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             }
         }
 
-        if (mCursor == null) {
-            if ((!mReadOnly) && (mUri != null)) mCursor = managedQuery(mUri, Observation.PROJECTION, null, null, null);
-        } else {
-            mCursor.requery();
+        if (mCursor != null) {
+            if (!mCursor.isClosed()) mCursor.close();
+            mCursor = null;
         }
+
+        if ((!mReadOnly) && (mUri != null)) mCursor = getContentResolver().query(mUri, Observation.PROJECTION, null, null, null);
 
         if ((mObservation == null) || (forceReload)) {
             if (!mReadOnly) {
@@ -875,6 +876,14 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         }
 
     }
+
+    @Override
+    public void onDestroy() {
+        if ((mCursor != null) && (!mCursor.isClosed())) mCursor.close();
+
+        super.onDestroy();
+    }
+
 
     private int getFavoritedByUsername(String username) {
         for (int i = 0; i < mFavorites.size(); i++) {
