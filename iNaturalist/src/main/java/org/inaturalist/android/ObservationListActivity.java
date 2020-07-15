@@ -1450,8 +1450,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         for (Long obsId : mObsIdsToSync) {
             Uri uri = ContentUris.withAppendedId(getIntent().getData(), obsId);
-            Cursor cursor = managedQuery(uri, Observation.PROJECTION, null, null, null);
+            Cursor cursor = getContentResolver().query(uri, Observation.PROJECTION, null, null, null);
             Observation observation = new Observation(cursor);
+            cursor.close();
 
             if (observation.id == null) {
                 // Local observation (not yet synced) - delete locally only
