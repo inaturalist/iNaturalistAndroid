@@ -646,6 +646,8 @@
     <string name="annotation_value_budding">Почкование</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Бутонизация</string>
+    <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_evidence_of_flowering">Нет доказательств цветения</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Взрослый</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -843,4 +845,84 @@
     <string name="list_observation_checkbox_description">Флажок для выбора наблюдения в режиме множественного выбора</string>
     <string name="observation_list_item_iconic_pic_description">Эскиз фото наблюдения таксона</string>
     <string name="observation_list_item_obs_pic_description">Эскиз фото наблюдения</string>
+    <string name="messages">Сообщения</string>
+    <string name="all_messages">Все сообщения</string>
+    <string name="search_messages">Поиск сообщений</string>
+    <string name="no_messages">В настоящее время у вас нет сообщений. Вы можете отправить новое сообщение с помощью зеленой кнопки или отправить кому-либо сообщение со страницы его профиля.</string>
+    <string name="no_messages_found">Сообщения не найдены</string>
+    <string name="send_a_message">Отправить сообщение</string>
+    <string name="sending_message">Сообщение отправляется ...</string>
+    <string name="could_not_send_message">Не удалось отправить сообщение: %1$s</string>
+    <string name="subject">Тема</string>
+    <string name="body">Текст</string>
+    <string name="type_your_message_here">Введите текст сообщения здесь</string>
+    <string name="new_message_to">Новое сообщение %1$s</string>
+    <string name="who_would_you_like_to_send_a_message_to">Кому вы хотите отправить сообщение?</string>
+    <string name="new_message">Новое сообщение</string>
+    <string name="search_for_inaturalist_users">Поиск пользователей iNaturalist</string>
+    <string name="please_sign_in_for_messages">Вы должны войти для просмотра ваших сообщений.</string>
+    <string name="sorry">Сожалеем</string>
+    <string name="you_must_have_three_observations">Чтобы сделать это, вы должны иметь три проверяемых наблюдения или три идентификации для других.</string>
+    <string name="mute_this_user">Игнорировать пользователя</string>
+    <string name="unmute_this_user">Отменить игнорирование пользователя</string>
+    <string name="flag_this_conversation">Пометить это обсуждение</string>
+    <string name="mute_this_user_question">Игнорировать пользователя?</string>
+    <string name="you_will_no_longer_receive_messages">Вы больше не будете получать никаких уведомлений об активности от этого пользователя, включая сообщения, комментарии, идентификации и упоминания.</string>
+    <string name="mute">Игнорировать</string>
+    <string name="muting_user">Пользователь игнорируется ...</string>
+    <string name="unmuting_user">Отмена игнорирования пользователя</string>
+    <string name="failed_muting_user">Не удалось игнорировать пользователя!</string>
+    <string name="failed_unmuting_user">Не удалось отменить игнорирование пользователя!</string>
+    <string name="flag_conversation">Пометить обсуждение</string>
+    <string name="spam">Спам</string>
+    <string name="commercial_solicitation">Коммерческие предложения, ссылки в никуда и т. д.</string>
+    <string name="offensive_inappropriate">Оскорбительное / Неприемлемое</string>
+    <string name="misleading_or_illegal_content">Вводящий в заблуждение или незаконный контент, расовые или этнические оскорбления и т.д. Более подробно о нашем определении «приемлемый» см. FAQ.</string>
+    <string name="other">Другое</string>
+    <string name="some_other_reason">Некоторые другие причины, которые вы можете изложить.</string>
+    <string name="continue_text">Продолжить</string>
+    <string name="why_are_you_flagging_this_item">Почему вы помечаете этот элемент?</string>
+    <string name="thank_you_for_submitting_the_flag">Спасибо за установку этого флажка!</string>
+    <string name="flagging_conversation">Обсуждение помечается...</string>
+    <string name="failed_flagging_conversation">Не удалось пометить обсуждение!</string>
+    <string name="no_subject">Нет темы</string>
+    <string name="rank_state_of_matter">Форма</string>
+    <string name="rank_kingdom">Царство</string>
+    <string name="rank_subkingdom">Подцарство</string>
+    <string name="rank_phylum">Тип</string>
+    <string name="rank_subphylum">Подтип</string>
+    <string name="rank_superclass">Надкласс</string>
+    <string name="rank_class">Класс</string>
+    <string name="rank_subclass">Подкласс</string>
+    <string name="rank_infraclass">Инфракласс</string>
+    <string name="rank_superorder">Надотряд</string>
+    <string name="rank_order">Отряд</string>
+    <string name="rank_suborder">Подотряд</string>
+    <string name="rank_infraorder">Инфраотряд</string>
+    <string name="rank_subterclass">Надкласс</string>
+    <string name="rank_parvorder">Парвотряд</string>
+    <string name="rank_zoosection">Зоосекция</string>
+    <string name="rank_zoosubsection">Зооподсекция</string>
+    <string name="rank_superfamily">Надсемейство</string>
+    <string name="rank_epifamily">Эписемейство</string>
+    <string name="rank_family">Семейство</string>
+    <string name="rank_subfamily">Подсемейство</string>
+    <string name="rank_supertribe">Надтриба</string>
+    <string name="rank_tribe">Триба</string>
+    <string name="rank_subtribe">Подтриба</string>
+    <string name="rank_genus">Род</string>
+    <string name="rank_genushybrid">Genushybrid</string>
+    <string name="rank_subgenus">Подрод</string>
+    <string name="rank_section">Секция</string>
+    <string name="rank_subsection">подсекция</string>
+    <string name="rank_complex">Комплекс</string>
+    <!-- Singular -->
+    <string name="rank_species">Вид</string>
+    <string name="rank_hybrid">Гибрид</string>
+    <!-- Singular -->
+    <string name="rank_subspecies">Подвид</string>
+    <string name="rank_variety">Разновидность</string>
+    <string name="rank_form">Форма</string>
+    <string name="rank_infrahybrid">Инфрагибрид</string>
+    <string name="rank_leaves">Листья</string>
 </resources>

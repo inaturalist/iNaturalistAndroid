@@ -635,6 +635,8 @@
     <string name="annotation_value_budding">Ontluikende</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Bloemknoppen</string>
+    <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_evidence_of_flowering">Geen bewijs voor bloei</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Volwassen</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -828,4 +830,84 @@
     <string name="list_observation_checkbox_description">Selectievakje voor het selecteren van waarneming in meervoudige selectie modus</string>
     <string name="observation_list_item_iconic_pic_description">Thumbnail foto voor het waargenomen taxon</string>
     <string name="observation_list_item_obs_pic_description">Thumbnail foto voor de waarneming</string>
+    <string name="messages">Berichten</string>
+    <string name="all_messages">Alle berichten</string>
+    <string name="search_messages">Zoek berichten</string>
+    <string name="no_messages">Je hebt momenteel geen berichten. Je kunt een nieuw bericht verzenden met de groene knop of ze een bericht sturen vanaf hun profielpagina.</string>
+    <string name="no_messages_found">Geen berichten gevonden</string>
+    <string name="send_a_message">Stuur een bericht</string>
+    <string name="sending_message">Bericht wordt verzonden...</string>
+    <string name="could_not_send_message">Kon bericht niet verzenden: %1$s</string>
+    <string name="subject">Onderwerp</string>
+    <string name="body">Berichttekst</string>
+    <string name="type_your_message_here">Voer hier je bericht in</string>
+    <string name="new_message_to">Nieuw bericht aan %1$s</string>
+    <string name="who_would_you_like_to_send_a_message_to">Naar wie wil je een bericht sturen?</string>
+    <string name="new_message">Nieuw bericht</string>
+    <string name="search_for_inaturalist_users">Zoek naar iNaturalist gebruikers</string>
+    <string name="please_sign_in_for_messages">Je moet ingelogd zijn om je berichten te kunnen bekijken.</string>
+    <string name="sorry">Sorry</string>
+    <string name="you_must_have_three_observations">Om dit te kunnen doen moet je drie verifieerbare waarnemingen of drie determinaties voor anderen hebben.</string>
+    <string name="mute_this_user">Deze gebruiker dempen</string>
+    <string name="unmute_this_user">Dempen van deze gebruiker opheffen</string>
+    <string name="flag_this_conversation">Markeer dit gesprek</string>
+    <string name="mute_this_user_question">Deze gebruiker dempen?</string>
+    <string name="you_will_no_longer_receive_messages">Je ontvangt niet langer meldingen over de activiteit van deze gebruiker, waaronder berichten, opmerkingen, determinaties en vermeldingen.</string>
+    <string name="mute">Dempen</string>
+    <string name="muting_user">Gebruiker dempen...</string>
+    <string name="unmuting_user">Opheffen demping gebruiker...</string>
+    <string name="failed_muting_user">Het dempen van de gebruiker is mislukt!</string>
+    <string name="failed_unmuting_user">Het opheffen van het dempen van de gebruiker is mislukt!</string>
+    <string name="flag_conversation">Markeer dit gesprek</string>
+    <string name="spam">Spam</string>
+    <string name="commercial_solicitation">Commerciële advertenties, koppelingen naar nergens, enzovoort.</string>
+    <string name="offensive_inappropriate">Aanstootgevend/Ongepast</string>
+    <string name="misleading_or_illegal_content">Misleidende of illegale inhoud, raciale of etnische slurs, enz. Zie de FAQ voor meer informatie over onze definitie van \"geschikt\".</string>
+    <string name="other">Overig</string>
+    <string name="some_other_reason">Een andere reden die je hieronder kunt uitleggen.</string>
+    <string name="continue_text">Ga verder</string>
+    <string name="why_are_you_flagging_this_item">Waarom markeer je dit onderwerp?</string>
+    <string name="thank_you_for_submitting_the_flag">Bedankt voor het markeren!</string>
+    <string name="flagging_conversation">Gesprek markeren...</string>
+    <string name="failed_flagging_conversation">Het markeren van gesprek is mislukt!</string>
+    <string name="no_subject">Geen Onderwerp</string>
+    <string name="rank_state_of_matter">Toestand van de materie</string>
+    <string name="rank_kingdom">Rijk</string>
+    <string name="rank_subkingdom">Subrijk</string>
+    <string name="rank_phylum">Stam</string>
+    <string name="rank_subphylum">Onderstam</string>
+    <string name="rank_superclass">Superklasse</string>
+    <string name="rank_class">Klasse</string>
+    <string name="rank_subclass">Onderklasse</string>
+    <string name="rank_infraclass">Infraklasse</string>
+    <string name="rank_superorder">Superorde</string>
+    <string name="rank_order">Orde</string>
+    <string name="rank_suborder">Onderorde</string>
+    <string name="rank_infraorder">Infraorde</string>
+    <string name="rank_subterclass">Subterklasse</string>
+    <string name="rank_parvorder">Parvorde</string>
+    <string name="rank_zoosection">Zoösectie</string>
+    <string name="rank_zoosubsection">Zoö-ondersectie</string>
+    <string name="rank_superfamily">Superfamilie</string>
+    <string name="rank_epifamily">Epifamilie</string>
+    <string name="rank_family">Familie</string>
+    <string name="rank_subfamily">Onderfamilie</string>
+    <string name="rank_supertribe">Supergeslachtengroep</string>
+    <string name="rank_tribe">Geslachtengroep</string>
+    <string name="rank_subtribe">Ondergeslachtengroep</string>
+    <string name="rank_genus">Geslacht</string>
+    <string name="rank_genushybrid">Intragenerische hybride</string>
+    <string name="rank_subgenus">Ondergeslacht</string>
+    <string name="rank_section">Sectie</string>
+    <string name="rank_subsection">Subsectie</string>
+    <string name="rank_complex">Complex</string>
+    <!-- Singular -->
+    <string name="rank_species">Soort</string>
+    <string name="rank_hybrid">Hybride</string>
+    <!-- Singular -->
+    <string name="rank_subspecies">Ondersoort</string>
+    <string name="rank_variety">Variëteit</string>
+    <string name="rank_form">Vorm</string>
+    <string name="rank_infrahybrid">Infrahybride</string>
+    <string name="rank_leaves">Bladeren</string>
 </resources>

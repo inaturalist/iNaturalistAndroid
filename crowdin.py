@@ -95,7 +95,7 @@ def validate_translation(path, key, text, en_string, errors, warnings, options={
       if match.group("argument_index") not in en_indexes:
         if key not in errors[path]:
           errors[path][key] = []
-        errors[path][key].append("Extraneous variable {}".format(tm.group(0)))
+        errors[path][key].append("Extraneous variable {}".format(match.group("argument_index")))
         if options.debug:
           print("\t\t{}".format(errors[path][key][-1]))
   # if unescaped single quotes

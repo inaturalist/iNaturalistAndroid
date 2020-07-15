@@ -48,7 +48,7 @@
     <string name="signed_out">Izrakstīties</string>
     <string name="username">Lietotājvārds</string>
     <string name="password">Parole</string>
-    <string name="unknown">Неизвестно</string>
+    <string name="unknown">Nezināms</string>
     <string name="unknown_species">Nezināma suga</string>
     <string name="com_facebook_dialogloginactivity_ok_button">Apstiprināt</string>
     <string name="com_facebook_loginview_log_out_button">Iziet</string>
@@ -357,7 +357,7 @@ globālā iNaturalist tīkla.</string>
     <string name="help">Palīdzība</string>
     <string name="stop">Apturēt</string>
     <string name="resume">Turpināt</string>
-    <string name="cleaning_up">Cleaning up...</string>
+    <string name="cleaning_up">Tīra kešatmiņu...</string>
     <string name="syncing">Sinhronizējas…</string>
     <string name="syncing_observation_fields">Sinhronizē novērojuma laukus...</string>
     <string name="syncing_observations">Sinhronizē novērojumus...</string>
@@ -402,7 +402,7 @@ globālā iNaturalist tīkla.</string>
     <string name="could_not_download_observations">Neizdevās lejupielādēt jaunākos novērojumus – savienojuma problēmas. Vēlāk mēģini vēlreiz!</string>
     <string name="no_news_yet">Vēl nav ziņu. Pārbaudi vēlāk!</string>
     <string name="my_content">Mans saturs</string>
-    <string name="following">Following</string>
+    <string name="following">Saglabātie</string>
     <string name="no_updates_yet">Vēl nav jaunumu. Pārbaudi vēlāk!</string>
     <string name="you_will_only_receive_updates_when_creating">(Jaunumus saņemsi tikai tad, kad būsi pievienojis kādu novērojumu.)</string>
     <string name="you_will_only_receive_updates_when_following">(Jaunumus saņemsi tikai tad, kad sekosi kādam novērojumam.)</string>
@@ -450,7 +450,7 @@ globālā iNaturalist tīkla.</string>
         <item quantity="one">Labākais %1$d ieteikums:</item>
         <item quantity="other">Labākie %1$d ieteikumi:</item>
     </plurals>
-    <string name="pretty_sure_rank">We\'re pretty sure it\'s in this %1$s:</string>
+    <string name="pretty_sure_rank">Esam diezgan pārliecināti, ka organisms pieder grupai %1$s:</string>
     <string name="what_did_you_see">Ko ieraudzīji?</string>
     <string name="suggest_species">Ieteikt sugu</string>
     <string name="suggest_species_description">Ieteikt sugu, balstoties uz vizuālo līdzību fotogrāfijās.</string>
@@ -498,10 +498,10 @@ saraksta, kas atrodas apakšā meklēšanas laukam vai notīri to.</string>
     <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">Reģions</string>
     <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
-    <string name="colloquial">Colloquial</string>
+    <string name="colloquial">Vietas nosaukums sarunvalodā</string>
     <string name="zone">Apgabals</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
-    <string name="historical_state">Historical State</string>
+    <string name="historical_state">Pavalsts</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_county">Vēsturisks apgabals</string>
     <string name="continent">Kontinents</string>
@@ -537,7 +537,7 @@ saraksta, kas atrodas apakšā meklēšanas laukam vai notīri to.</string>
     <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">Poblacion</string>
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
-    <string name="delegation">Delegation</string>
+    <string name="delegation">Apgabals</string>
     <string name="apply_filters">Aktivizēt filtrus</string>
     <string name="reset">Atjaunot sākotnējos iestatījumus</string>
     <string name="show_only_my_observations">Parādīt tikai manus novērojumus</string>
@@ -582,16 +582,16 @@ saraksta, kas atrodas apakšā meklēšanas laukam vai notīri to.</string>
     <string name="potential_disagreement">Potenciālas domstarpības</string>
     <string name="do_you_think_this_could_be"><![CDATA[Vai ir pietiekami daudz datu, lai apstiprinātu, ka šis ir <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
-    <string name="i_dont_know_but"><![CDATA[I don\'t know but I\'m sure this is <b>%1$s</b>.]]></string>
-    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
+    <string name="i_dont_know_but"><![CDATA[Nespēju noteikt sugu, bet organisms pieder grupai: <b>%1$s</b>.]]></string>
+    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Nē, bet tas pieder <b>%1$s</b> grupai.]]></string>
     <string name="submit">Iesniegt</string>
     <string name="change_password">Mainīt paroli</string>
     <string name="search_projects_youve_joined">Meklēt projektus, kam esi pievienojies.</string>
     <string name="must_be_connected_to_load_more_obs">Lai ielādētu vēl novērojumus, nepieciešams interneta pieslēgums.</string>
     <string name="inat_about_title">iNaturalist.org ir Kalifornijas Zinātņu akadēmijas un National Geographic Society kopdarbs.</string>
-    <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="http://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
+    <string name="inat_credits"><![CDATA[iNaturalist pastāv pateicoties cilvēkiem, kas iesaistās mūsu kopienā. Cilvēki, kas izstrādā programmatūru, interfeisu dizainu, uztur infrastruktūru, atbalsta kopienu un veicina sadarbību: Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard un Ken-ichi Ueda..<br/><br/>CalTech un Cornell Tech palīdzēja izstrādāt datorredzes sistēmu, kas fotogrāfijās identificē organismus. Pateicamies Grant Van Horn, Serge Belongie un Pietro Perona par ieguldījumu datorredzes izpētē. Vairāk informācijas: <a href="http://www.visipedia.org">visipedia.org</a>. Liels paldies NVIDIA par papildu palīdzību.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[Pateicoties iesaistīto partnerorganizāciju atbalstam, starptautiskais iNaturalist tīkls atbalsta vietējās, pilnīgi integrētās, uz iNaturalist balstītās tīmekļa vietnes šādās valstīs.]]></string>
-    <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
+    <string name="inat_credits_post"><![CDATA[iNaturalist izsaka lielu pateicību atvērtā pirmkoda izstrādātājiem, kas nodrošina programmatūru, uz kuru paļaujamies ik dienas. Nopelni par darbu ar atvērto pirmkodu: <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a>.<br/> Pateicamies brīvprātīgajiem no crowdin.com kopienas par palīdzību ar tulkošanu, it īpaši liels paldies lietotājiem: Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie un katunchik. <br/>IUCN II kategorijas vietas nodrošina IUCN un UNEP-WCMC (2015), Pasaules aizsargājamo teritoriju datubāze (WDPA) [On-line], [11/2014], Kembridža, Apvienotā Karaliste: UNEP-WCMC. Pieejams: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Pateicība</string>
     <string name="password_changed">Lietotnē saglabātā parole vairs nav derīga – vai mainīji paroli INaturalist tīmekļa vietnē? Lūdzu, ievadi šeit jauno paroli!</string>
     <string name="just_so_you_know">Informācijai.</string>
@@ -642,6 +642,8 @@ saraksta, kas atrodas apakšā meklēšanas laukam vai notīri to.</string>
     <string name="annotation_value_budding">Pumpurojas</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Ziedpumpuri</string>
+    <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Pieaudzis</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -727,7 +729,7 @@ saraksta, kas atrodas apakšā meklēšanas laukam vai notīri to.</string>
     <string name="mark_all_as_viewed">Atzīmēt visu, kā skatītu</string>
     <string name="content_hidden">Slēpts saturs</string>
     <string name="show_hidden_content">Rādīt slēpto saturu</string>
-    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
+    <string name="content_hidden_because">Saturu noslēpis lietotājs: @%1$s, datums: %2$s, jo: \"%3$s\"</string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Sazināties ar tehniskā atbalsta centru</a>]]></string>
     <string name="content">Pielikumi</string>
     <string name="has_photos">Ar fotogrāfijām</string>
@@ -833,8 +835,88 @@ saraksta, kas atrodas apakšā meklēšanas laukam vai notīri to.</string>
     <!-- Dialog title when displaying a message that an action is not permitted -->
     <string name="forbidden">Aizliegts</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
-    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
-    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
-    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
-    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
+    <string name="app_you_shared_blocked">Šīs lietotnes fotogrāfijas nav piemērotas novērojumiem, jo tās nepierāda tavu klātbūtni pie cita organisma vai ietver nepieņemamu marķējumu vai reklāmu saturu, vai citā veidā pārkāpj iNaturalist lietošanas noteikumus.</string>
+    <string name="list_observation_checkbox_description">Novērojumu atlases izvēles rūtiņa vairāku izvēles rūtiņu režīmā</string>
+    <string name="observation_list_item_iconic_pic_description">Novērojuma taksona sīktēls</string>
+    <string name="observation_list_item_obs_pic_description">Novērojuma sīktēls</string>
+    <string name="messages">Ziņas</string>
+    <string name="all_messages">Visas ziņas</string>
+    <string name="search_messages">Meklēt ziņas</string>
+    <string name="no_messages">Šobrīd nav jaunu ziņu. Jaunu ziņu iespējams nosūtīt, nospiežot uz zaļās pogas vai nosūtot ziņu no lietotāja profila lapas.</string>
+    <string name="no_messages_found">Nav nevienas ziņas.</string>
+    <string name="send_a_message">Nosūtīt ziņu</string>
+    <string name="sending_message">Sūta ziņu...</string>
+    <string name="could_not_send_message">Neizdevās nosūtīt ziņu: %1$s</string>
+    <string name="subject">Temats</string>
+    <string name="body">Teksts</string>
+    <string name="type_your_message_here">Raksti ziņu šeit</string>
+    <string name="new_message_to">Jauna ziņa lietotājam %1$s</string>
+    <string name="who_would_you_like_to_send_a_message_to">Kam vēlies nosūtīt ziņu?</string>
+    <string name="new_message">Jauna ziņa</string>
+    <string name="search_for_inaturalist_users">Meklēt iNaturalist lietotājus</string>
+    <string name="please_sign_in_for_messages">Lai apskatītu ziņas, jāpieslēdzas.</string>
+    <string name="sorry">Atvainojamies</string>
+    <string name="you_must_have_three_observations">Lai to izdarītu, tev jabūt trīs derīgiem novērojumiem vai trīs citu lietotāju novērojumu identifikācijām.</string>
+    <string name="mute_this_user">Apklusināt lietotāju</string>
+    <string name="unmute_this_user">Izslēgt apklusināšanas funkciju šim lietotājam</string>
+    <string name="flag_this_conversation">Atzīmēt sarunu ar karodziņu</string>
+    <string name="mute_this_user_question">Atspējot paziņojumus par lietotāju?</string>
+    <string name="you_will_no_longer_receive_messages">Vairs nesaņemsi paziņojumus par šī lietotāja aktivitāti, tai skaitā ziņas, komentārus, identifikācijas un pieminēšanu.</string>
+    <string name="mute">Atspējot paziņojumus</string>
+    <string name="muting_user">Atspējo paziņojumus par lietotāju...</string>
+    <string name="unmuting_user">Iespējo paziņojumus par lietotāju...</string>
+    <string name="failed_muting_user">Neizdevās atspējot paziņojumus par lietotāju.</string>
+    <string name="failed_unmuting_user">Neizdevās iespējot paziņojumus par lietotāju.</string>
+    <string name="flag_conversation">Atzīmēt sarunu ar karodziņu</string>
+    <string name="spam">Mēstules</string>
+    <string name="commercial_solicitation">Komerciālā aģitācija vai saites bez galamērķa u.t.m.l.</string>
+    <string name="offensive_inappropriate">Aizskarošs/Nepiedienīgs</string>
+    <string name="misleading_or_illegal_content">Maldinošs vai nelikumīgs saturs, rasu un etniskā un naida izraisīšana u.t.m.l. Lai uzzinātu vairāk par to, ko saprotam ar vārdu \"piemērots\", skatīt BUJ.</string>
+    <string name="other">Cits</string>
+    <string name="some_other_reason">Kāds cits iemesls, ko vari paskaidrot.</string>
+    <string name="continue_text">Turpināt</string>
+    <string name="why_are_you_flagging_this_item">Kādēļ atzīmē šo vienību ar karodziņu?</string>
+    <string name="thank_you_for_submitting_the_flag">Paldies par karodziņa pievienošanu!</string>
+    <string name="flagging_conversation">Sarunai tiek pievienots karodziņš...</string>
+    <string name="failed_flagging_conversation">Neizdevās sarunai pievienot karodziņu.</string>
+    <string name="no_subject">No Subject</string>
+    <string name="rank_state_of_matter">State of matter</string>
+    <string name="rank_kingdom">Kingdom</string>
+    <string name="rank_subkingdom">Subkingdom</string>
+    <string name="rank_phylum">Phylum</string>
+    <string name="rank_subphylum">Subphylum</string>
+    <string name="rank_superclass">Superclass</string>
+    <string name="rank_class">Class</string>
+    <string name="rank_subclass">Subclass</string>
+    <string name="rank_infraclass">Infraclass</string>
+    <string name="rank_superorder">Superorder</string>
+    <string name="rank_order">Order</string>
+    <string name="rank_suborder">Suborder</string>
+    <string name="rank_infraorder">Infraorder</string>
+    <string name="rank_subterclass">Subterclass</string>
+    <string name="rank_parvorder">Parvorder</string>
+    <string name="rank_zoosection">Zoosection</string>
+    <string name="rank_zoosubsection">Zoosubsection</string>
+    <string name="rank_superfamily">Superfamily</string>
+    <string name="rank_epifamily">Epifamily</string>
+    <string name="rank_family">Family</string>
+    <string name="rank_subfamily">Subfamily</string>
+    <string name="rank_supertribe">Supertribe</string>
+    <string name="rank_tribe">Tribe</string>
+    <string name="rank_subtribe">Subtribe</string>
+    <string name="rank_genus">Genus</string>
+    <string name="rank_genushybrid">Genushybrid</string>
+    <string name="rank_subgenus">Subgenus</string>
+    <string name="rank_section">Section</string>
+    <string name="rank_subsection">subsection</string>
+    <string name="rank_complex">Complex</string>
+    <!-- Singular -->
+    <string name="rank_species">Species</string>
+    <string name="rank_hybrid">Hybrid</string>
+    <!-- Singular -->
+    <string name="rank_subspecies">Subspecies</string>
+    <string name="rank_variety">Variety</string>
+    <string name="rank_form">Form</string>
+    <string name="rank_infrahybrid">Infrahybrid</string>
+    <string name="rank_leaves">Leaves</string>
 </resources>

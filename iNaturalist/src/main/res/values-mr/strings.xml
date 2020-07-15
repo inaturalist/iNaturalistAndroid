@@ -13,7 +13,7 @@
     <string name="street">रस्ता </string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">उपग्रह</string>
-    <string name="couldnt_load_nearby_observations">Couldn\'t load nearby observations: %1$s</string>
+    <string name="couldnt_load_nearby_observations">जवळपासचे निरीक्षण दाखवता येत नाही: %1$s</string>
     <string name="username_invalid">उप नाम किंवा कळीचा शब्द चुकीचा आहे, परत प्रयत्न करा </string>
     <string name="signing_in">तुमचे खाते उघडत आहे </string>
     <string name="signed_in">तुमचे खाते उघडले आहे </string>
@@ -75,17 +75,17 @@
     <string name="com_facebook_requesterror_password_changed">तुमचा फेसबुक संकेतशब्द बदलला आहे. कृपया आपले फेसबुक खाते पुन्हा जोडण्यासाठी या अ‍ॅपवर पुन्हा लॉग इन करा.</string>
     <string name="com_facebook_requesterror_reconnect">कृपया आपले फेसबुक खाते पुन्हा जोडण्यासाठी या अ‍ॅपमध्ये परत लॉग इन करा</string>
     <string name="com_facebook_requesterror_permissions">या अ‍ॅपला असे करण्याची परवानगी नाही. परवानग्या बदलण्यासाठी पुन्हा अ‍ॅपमध्ये लॉग इन करून पहा.</string>
-    <string name="edit_observation">Edit Observation</string>
+    <string name="edit_observation">निरीक्षण सुधारणा</string>
     <string name="discard_changes">बदल नोंद करायचे नाहीत याबद्दल तुम्ही ठाम आहात काय?</string>
     <string name="yes">होय</string>
     <string name="no">नाही</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">सहमत ?</string>
-    <string name="no_comments">No comments/identifications yet</string>
+    <string name="no_comments">अजुन काही टिप्पण्या/परिचय नाहीयेत</string>
     <string name="add_comment">टिपणी करा </string>
-    <string name="add_id">Add identification</string>
-    <string name="remarks">Remarks...</string>
-    <string name="enter_taxon_name">Species name</string>
+    <string name="add_id">ओळख दाखवा </string>
+    <string name="remarks">शेरा..</string>
+    <string name="enter_taxon_name">जातीचे नाव</string>
     <string name="no_projects">कोणतेही प्रकल्प सापडले नाहीत!</string>
     <string name="no_guides">मार्गदर्शक सापडले नाहीत</string>
     <string name="loading_projects">प्रकल्प माहिती येत आहे ...</string>
@@ -94,7 +94,7 @@
     <!-- Tab title for the list of featured projects in the Projects screen -->
     <string name="featured_projects">वैशिष्ट्यीकृत</string>
     <!-- Verb, used as a label for actions like leaving a project -->
-    <string name="leave">Leave</string>
+    <string name="leave">सोडून जा </string>
     <string name="join">सामील व्हा</string>
     <string name="no_check_list">यादीमध्ये एकही प्रजाती नाही     </string>
     <string name="failed_to_add_obs_to_project">\'%2$s\' प्रकल्पामध्ये \'%1$s\' निरीक्षण जोडता येत नाही : %3$s</string>
@@ -125,20 +125,20 @@
     <string name="all_guides">सर्व</string>
     <string name="no_taxa">मार्गदर्शकात हि प्रजाती सापडत नाही</string>
     <string name="search_taxa">प्रजाती शोधा</string>
-    <string name="no_internet_guides">Guides require an Internet connection</string>
+    <string name="no_internet_guides">या मार्गदर्शीकेसाठी इंटरनेट कनेक्शन आवश्यक  आहे </string>
     <string name="no_internet_projects">या प्रकल्पासाठी  इंटरनेट कनेक्शन आवश्यक  आहे </string>
     <string name="locale_gl">गॅलिशियन</string>
     <string name="locale_eu">बास्कवासी </string>
-    <string name="use_device_language_settings">Use device language settings</string>
+    <string name="use_device_language_settings">उपकरणाची भाषा वापरा</string>
     <string name="choose_location">ठिकाण निवडा</string>
     <string name="done">पूर्ण झाले </string>
-    <string name="please_sign_in_via_settings">You must be logged in to view projects you\'ve joined.</string>
+    <string name="please_sign_in_via_settings">तुम्ही असलेला प्रकल्प पाहण्यासाठी लॉग इन करणे आवश्यक </string>
     <string name="contact_support">मदतीसाठी संपर्क</string>
     <string name="credits">निर्मिती iNaturalist.org सहाय्य California Academy of Sciences</string>
-    <string name="leave_project">Leave Project</string>
+    <string name="leave_project">प्रकल्प सोडा </string>
     <string name="leave_project_confirmation">तुम्हाला नक्की प्रकल्प सोडायचा आहे ?</string>
     <string name="discard_location_changes">बदल नोंद करायचे नाहीत याबद्दल तुम्ही ठाम आहात ?</string>
-    <string name="edit_location">Edit Location</string>
+    <string name="edit_location">ठिकाण बदल</string>
     <string name="edit_locality_notes">स्थळाबद्दल टिपणे </string>
     <string name="get_current_location">सद्य स्थान</string>
     <string name="pull_to_refresh">Pull to refresh...</string>
@@ -154,10 +154,10 @@
     <string name="skip_for_now">नंतर बघू  </string>
     <string-array name="tutorial_titles">
         <item></item>
-        <item>Observe</item>
+        <item>निरीक्षण करा</item>
         <item>Share</item>
         <item>शिका</item>
-        <item>Contribute</item>
+        <item>योगदान द्या</item>
     </string-array>
     <string-array name="tutorial_descriptions">
         <item>Explore and Connect with Nature</item>
@@ -174,8 +174,8 @@
     <string name="alert_sign_out">Are you sure you want to sign out? This will delete all your observations on this device. It will not affect any observations you\'ve uploaded to iNaturalist.</string>
     <string name="alert_unsupported_media_type">Sorry, but there was a problem loading the photo from this source</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
-    <string name="explore">Explore</string>
-    <string name="restricted_to_current_map_area">Restricted to current map area</string>
+    <string name="explore">अन्वेषण(Explore)</string>
+    <string name="restricted_to_current_map_area">सध्याच्या नकाशातील दाखवा</string>
     <string name="search"> शोधा</string>
     <string name="details">तपशील</string>
     <string name="observation_photos">निरीक्षण फोटो</string>
@@ -183,8 +183,8 @@
     <string name="no_observations_found">निरीक्षण सापडत नाही</string>
     <string name="license_none">सर्व हक्क राखीव</string>
     <string name="sources_and_attribution">Sources and Attribution</string>
-    <string name="photos"><![CDATA[<b>Photos:</b> %1$s]]></string>
-    <string name="text"><![CDATA[<b>Text:</b> %1$s]]></string>
+    <string name="photos"><![CDATA[<b>फोटो:</b> %1$s]]></string>
+    <string name="text"><![CDATA[<b>मजकूर:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">The main iNaturalist Network. Clicking OK will set your app as part of the global iNaturalist network.</string>
     <string name="alert_message_use_naturalista">NaturaLista is a member of the iNaturalist Network in Mexico. Local institutions supporting NaturaLista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
@@ -248,16 +248,16 @@
     <string name="menu_text">फोटो नाहीत</string>
     <string name="first">पहिला</string>
     <string name="make_first">पहिला करा</string>
-    <string name="notes">Notes</string>
-    <string name="location_is">Location is</string>
+    <string name="notes">टिपणे</string>
+    <string name="location_is">स्थान</string>
     <string name="is_captive">पाळीव अथवा लागवडीतील </string>
     <string name="location_visibility">स्थान दृश्यता </string>
     <string name="set_location">स्थान</string>
-    <string name="coordinates_lat">Lat:</string>
-    <string name="coordinates_lon">Lon:</string>
-    <string name="coordinates_acc">Acc. </string>
+    <string name="coordinates_lat">अक्षांश</string>
+    <string name="coordinates_lon">रेखांश</string>
+    <string name="coordinates_acc">अचूकता</string>
     <string name="required">आवश्यक</string>
-    <string name="downloading_observations">Downloading observations...</string>
+    <string name="downloading_observations">निरीक्षणे डाउनलोड करत आहे</string>
     <string name="no_thanks">नको. धन्यवाद</string>
     <string name="turn_on">चालू करा</string>
     <string name="introducing_auto_sync">Introducing Auto-Sync!</string>
@@ -269,11 +269,11 @@
     <string name="needs_your_attention">लक्ष द्या </string>
     <string name="observation">निरीक्षण</string>
     <string name="share">Share</string>
-    <string name="unable_to_acquire_location">Unable to acquire location</string>
+    <string name="unable_to_acquire_location">स्थान मिळविण्यात असर्मथ</string>
     <string name="casual_grade">Casual Grade</string>
     <string name="needs_id">ओळख पटवा </string>
     <string name="research_grade">संशोधन दर्जा </string>
-    <string name="data_quality">Data Quality</string>
+    <string name="data_quality">माहिती गुणवत्ता</string>
     <string name="casual_grade_add_location"><![CDATA[ Add a <b>location</b> to advance this observation to “Needs ID” status. ]]></string>
     <string name="casual_grade_add_date"><![CDATA[ Add a <b>date</b> to advance this observation to “Needs ID” status. ]]></string>
     <string name="casual_grade_add_photo"><![CDATA[ Add a <b>photo</b> to advance this observation to “Needs ID” status. ]]></string>
@@ -284,22 +284,22 @@
         <item quantity="other">Included in %1$d projects</item>
     </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy is a setting you can make on your observations that controls how the spatial coordinates (latitude and longitude) are displayed. Here are the options:<br/><b>open</b> - Everyone can see the coordinates unless the taxon is threatened. <br/><b>obscured</b> - Public coordinates shown as a random point within a 0.2 by 0.2 degree area that contains the true coordinates, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. True coordinates are only visible to you and the curators of projects to which you add the observation. <br/><b>private</b> - Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. <br/><br/>Note that curators of individual projects can always see the coordinates regardless of your geoprivacy setting, so if you are concerned about who has access to the coordinates you should be sure you trust the curators of the projects in which you participate. ]]></string>
-    <string name="id_title">%1$s\'s ID • %2$s</string>
+    <string name="id_title">%1$s ने दिलेली ओळख • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">खोडा</string>
-    <string name="delete_id">Withdraw Identification</string>
-    <string name="delete_comment">Delete Comment</string>
-    <string name="delete_id_message">Are you sure you want to withdraw this identification?</string>
-    <string name="delete_comment_message">Are you sure you want to delete this comment?</string>
+    <string name="delete_id">मागे घ्या ओळख</string>
+    <string name="delete_comment">टिप्पणी हटवा</string>
+    <string name="delete_id_message">आपण खरंच ही ओळख मागे घेऊ इच्छिता?</string>
+    <string name="delete_comment_message">आपण खरंच ही टिप्पणी हटवू इच्छिता?</string>
     <string name="comment">प्रतिक्रिया </string>
-    <string name="suggest_id">Suggest ID</string>
-    <string name="update_comment">Update Comment</string>
+    <string name="suggest_id">ओळख सुचवा</string>
+    <string name="update_comment">टिप्पणी बदल</string>
     <string name="fave_this_observation">Fave This Observation</string>
     <string name="faved">Faved</string>
     <string name="be_the_first_to_fave_this_obs">Be the first to fave this observation...</string>
     <string name="leave_a_comment">Leave a comment or suggest an identification...</string>
-    <string name="location_coords">Lat: %1$s Lon: %2$s Acc. %3$s</string>
-    <string name="location_coords_no_acc">Lat: %1$s Lon: %2$s</string>
+    <string name="location_coords">अक्षांश: %1$s रेखांश: %2$s अचूकता. %3$s</string>
+    <string name="location_coords_no_acc">अक्षांश: %1$s रेखांश: %2$s</string>
     <string name="location">ठिकाण </string>
     <string name="login_in_to_add_comments_ids">Log In or Sign Up to leave a comment or suggest an identification...</string>
     <string name="login_in_to_fav">Log In or Sign Up to see faves or fave this observation...</string>
@@ -309,8 +309,8 @@
     <string name="no_photo">No Photo</string>
     <string name="about_this_species">About this Species</string>
     <string name="view_on_wikipedia">Wikipedia Article</string>
-    <string name="photo"><![CDATA[Photo: <b><a href="%1$s">%2$s</a></b>]]></string>
-    <string name="photo_attr"><![CDATA[Photo: <b>%1$s</b>]]></string>
+    <string name="photo"><![CDATA[फोटो: <b><a href="%1$s">%2$s</a></b>]]></string>
+    <string name="photo_attr"><![CDATA[फोटो: <b>%1$s</b>]]></string>
     <string name="finding_current_location">Finding current location...</string>
     <string name="flag_as_captive">Flag as Captive/Cultivated</string>
     <string name="observation_flagged_as_captive">Observation was flagged as captive/cultivated</string>
@@ -334,7 +334,7 @@
     <string name="users_identification">%1$s\'s ID: %2$s</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="remove_photo">Remove Photo</string>
-    <string name="name">Name</string>
+    <string name="name">नाव</string>
     <string name="tell_us_about_yourself">Tell us about yourself...</string>
     <string name="view_profile">View Profile</string>
     <string name="are_you_sure_you_want_to_remove_photo">Are you sure you would like to remove your photo?</string>
@@ -345,20 +345,20 @@
     <string name="log_out">Log out</string>
     <string name="not_logged_in">Not logged in</string>
     <string name="auto_upload_description">Auto-upload new observations and edits to observations</string>
-    <string name="language">Language</string>
+    <string name="language">भाषा</string>
     <string name="version">Version</string>
     <string name="inat_network">iNaturalist Network</string>
     <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
-    <string name="more_info">More Info</string>
+    <string name="more_info">अधिक माहिती</string>
     <string name="select_network">Select Network Affiliation</string>
-    <string name="help">Help</string>
-    <string name="stop">Stop</string>
-    <string name="resume">Resume</string>
+    <string name="help">मदत</string>
+    <string name="stop">थांबवा</string>
+    <string name="resume">पुन्हा करा</string>
     <string name="cleaning_up">Cleaning up...</string>
     <string name="syncing">Syncing...</string>
     <string name="syncing_observation_fields">Syncing observation fields...</string>
     <string name="syncing_observations">Syncing observations...</string>
-    <string name="syncing_paused">Paused</string>
+    <string name="syncing_paused">विराम</string>
     <string name="upload">Upload</string>
     <string name="search_observations">Search Observations...</string>
     <string name="withdraw">Withdraw</string>
@@ -635,6 +635,8 @@
     <string name="annotation_value_budding">Budding</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Flower Budding</string>
+    <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Adult</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -715,7 +717,7 @@
     <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Naturalist History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Natural History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="mark_all_as_viewed">Mark all as viewed</string>
     <string name="content_hidden">Content Hidden</string>
     <string name="show_hidden_content">Show Hidden Content</string>
@@ -828,4 +830,84 @@
     <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
     <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
     <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
+    <string name="messages">संदेश</string>
+    <string name="all_messages">सर्व संदेश</string>
+    <string name="search_messages">संदेश शोधा</string>
+    <string name="no_messages">आपल्याकडे सध्या कोणतेही संदेश नाहीत. आपण हिरवे बटन वापरून नवीन संदेश पाठवू शकता किंवा त्यांच्या प्रोफाइल पृष्ठावरून त्यांना संदेश पाठवू शकता.</string>
+    <string name="no_messages_found">कोणतेही संदेश आढळले नाहीत.</string>
+    <string name="send_a_message">संदेश पाठवा</string>
+    <string name="sending_message">संदेश पाठवत आहे...</string>
+    <string name="could_not_send_message">संदेश पाठवू शकलो नाही: %1$s</string>
+    <string name="subject">विषय</string>
+    <string name="body">गाभा</string>
+    <string name="type_your_message_here">आपला संदेश येथे टाइप करा</string>
+    <string name="new_message_to">%1$s ला नवीन संदेश</string>
+    <string name="who_would_you_like_to_send_a_message_to">आपण कोणाला संदेश पाठवू इच्छिता?</string>
+    <string name="new_message">नवीन संदेश</string>
+    <string name="search_for_inaturalist_users">iNaturalist वापरकर्ते शोधा</string>
+    <string name="please_sign_in_for_messages">आपले संदेश पाहण्यासाठी आपण लॉग इन असलाच पाहिजे.</string>
+    <string name="sorry">क्षमस्व</string>
+    <string name="you_must_have_three_observations">असे करण्यासाठी आपल्याकडे तीन सत्यापित निरीक्षणे किंवा तीन निरीक्षण ओळख केलेली असणे आवश्यक आहे.</string>
+    <string name="mute_this_user">Mute this user</string>
+    <string name="unmute_this_user">Unmute this user</string>
+    <string name="flag_this_conversation">Flag this conversation</string>
+    <string name="mute_this_user_question">Mute this user?</string>
+    <string name="you_will_no_longer_receive_messages">You will no longer receive any notifications about activity from this user, including messages, comments, identifications, and mentions.</string>
+    <string name="mute">Mute</string>
+    <string name="muting_user">Muting user...</string>
+    <string name="unmuting_user">Unmuting user...</string>
+    <string name="failed_muting_user">Failed muting user!</string>
+    <string name="failed_unmuting_user">Failed unmuting user!</string>
+    <string name="flag_conversation">संभाषण निदर्शनात आणा</string>
+    <string name="spam">Spam</string>
+    <string name="commercial_solicitation">Commercial solicitation, links to nowhere, etc.</string>
+    <string name="offensive_inappropriate">आक्षेपार्ह / अनुचित</string>
+    <string name="misleading_or_illegal_content">Misleading or illegal content, racial or ethnic slurs, etc. For more on our definition of \"appropriate,\" see the FAQ.</string>
+    <string name="other">इतर</string>
+    <string name="some_other_reason">अन्य काही कारण जे आपण स्पष्ट करू शकता</string>
+    <string name="continue_text">Continue</string>
+    <string name="why_are_you_flagging_this_item">आपण हि गोष्ट का निदर्शनात आणत आहात?</string>
+    <string name="thank_you_for_submitting_the_flag">संभाषण निदर्शनात आणल्याबद्दल धन्यवाद</string>
+    <string name="flagging_conversation">संभाषण निदर्शनात आणा</string>
+    <string name="failed_flagging_conversation">संभाषण निदर्शनात आणू शकत नाही!</string>
+    <string name="no_subject">No Subject</string>
+    <string name="rank_state_of_matter">State of matter</string>
+    <string name="rank_kingdom">Kingdom</string>
+    <string name="rank_subkingdom">Subkingdom</string>
+    <string name="rank_phylum">Phylum</string>
+    <string name="rank_subphylum">Subphylum</string>
+    <string name="rank_superclass">Superclass</string>
+    <string name="rank_class">Class</string>
+    <string name="rank_subclass">Subclass</string>
+    <string name="rank_infraclass">Infraclass</string>
+    <string name="rank_superorder">Superorder</string>
+    <string name="rank_order">Order</string>
+    <string name="rank_suborder">Suborder</string>
+    <string name="rank_infraorder">Infraorder</string>
+    <string name="rank_subterclass">Subterclass</string>
+    <string name="rank_parvorder">Parvorder</string>
+    <string name="rank_zoosection">Zoosection</string>
+    <string name="rank_zoosubsection">Zoosubsection</string>
+    <string name="rank_superfamily">Superfamily</string>
+    <string name="rank_epifamily">Epifamily</string>
+    <string name="rank_family">Family</string>
+    <string name="rank_subfamily">Subfamily</string>
+    <string name="rank_supertribe">Supertribe</string>
+    <string name="rank_tribe">Tribe</string>
+    <string name="rank_subtribe">Subtribe</string>
+    <string name="rank_genus">Genus</string>
+    <string name="rank_genushybrid">Genushybrid</string>
+    <string name="rank_subgenus">Subgenus</string>
+    <string name="rank_section">Section</string>
+    <string name="rank_subsection">subsection</string>
+    <string name="rank_complex">Complex</string>
+    <!-- Singular -->
+    <string name="rank_species">Species</string>
+    <string name="rank_hybrid">Hybrid</string>
+    <!-- Singular -->
+    <string name="rank_subspecies">Subspecies</string>
+    <string name="rank_variety">Variety</string>
+    <string name="rank_form">Form</string>
+    <string name="rank_infrahybrid">Infrahybrid</string>
+    <string name="rank_leaves">Leaves</string>
 </resources>
