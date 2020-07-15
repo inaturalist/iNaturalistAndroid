@@ -46,6 +46,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
 
     private static final int REQUEST_CODE_LOGIN = 0x1000;
     private ActivityHelper mHelper;
+    private Context mContext;
 
     private class ProjectsReceiver extends BroadcastReceiver {
         @Override
@@ -97,12 +98,18 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
 
         }
     }
-    
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
+
     private void loadProjectsIntoUI() {
-        if (getActivity() != null) {
-            mAdapter = new ProjectsAdapter(getActivity(), null, this, mProjects, getDefaultIcon());
-            mProjectList.setAdapter(mAdapter);
-        }
+        if (mContext ==  null) return;
+
+        mAdapter = new ProjectsAdapter(mContext, null, this, mProjects, getDefaultIcon());
+        mProjectList.setAdapter(mAdapter);
 
         mProjectList.setVisibility(View.VISIBLE);
         mProgressBar.setVisibility(View.GONE);
@@ -224,6 +231,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     public void onDetach() {
         super.onDetach();
 
+        mContext = null;
         BaseFragmentActivity.safeUnregisterReceiver(mProjectsReceiver, getActivity());
     }
     
