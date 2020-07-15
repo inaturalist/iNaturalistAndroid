@@ -647,7 +647,7 @@
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Бутонизация</string>
     <!-- Observation presents no evidence of flowering phenology -->
-    <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
+    <string name="annotation_value_no_evidence_of_flowering">Нет доказательств цветения</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Взрослый</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -885,44 +885,44 @@
     <string name="thank_you_for_submitting_the_flag">Спасибо за установку этого флажка!</string>
     <string name="flagging_conversation">Обсуждение помечается...</string>
     <string name="failed_flagging_conversation">Не удалось пометить обсуждение!</string>
-    <string name="no_subject">No Subject</string>
-    <string name="rank_state_of_matter">State of matter</string>
-    <string name="rank_kingdom">Kingdom</string>
-    <string name="rank_subkingdom">Subkingdom</string>
-    <string name="rank_phylum">Phylum</string>
-    <string name="rank_subphylum">Subphylum</string>
-    <string name="rank_superclass">Superclass</string>
-    <string name="rank_class">Class</string>
-    <string name="rank_subclass">Subclass</string>
-    <string name="rank_infraclass">Infraclass</string>
-    <string name="rank_superorder">Superorder</string>
-    <string name="rank_order">Order</string>
-    <string name="rank_suborder">Suborder</string>
-    <string name="rank_infraorder">Infraorder</string>
-    <string name="rank_subterclass">Subterclass</string>
-    <string name="rank_parvorder">Parvorder</string>
-    <string name="rank_zoosection">Zoosection</string>
-    <string name="rank_zoosubsection">Zoosubsection</string>
-    <string name="rank_superfamily">Superfamily</string>
-    <string name="rank_epifamily">Epifamily</string>
-    <string name="rank_family">Family</string>
-    <string name="rank_subfamily">Subfamily</string>
-    <string name="rank_supertribe">Supertribe</string>
-    <string name="rank_tribe">Tribe</string>
-    <string name="rank_subtribe">Subtribe</string>
-    <string name="rank_genus">Genus</string>
+    <string name="no_subject">Нет темы</string>
+    <string name="rank_state_of_matter">Форма</string>
+    <string name="rank_kingdom">Царство</string>
+    <string name="rank_subkingdom">Подцарство</string>
+    <string name="rank_phylum">Тип</string>
+    <string name="rank_subphylum">Подтип</string>
+    <string name="rank_superclass">Надкласс</string>
+    <string name="rank_class">Класс</string>
+    <string name="rank_subclass">Подкласс</string>
+    <string name="rank_infraclass">Инфракласс</string>
+    <string name="rank_superorder">Надотряд</string>
+    <string name="rank_order">Отряд</string>
+    <string name="rank_suborder">Подотряд</string>
+    <string name="rank_infraorder">Инфраотряд</string>
+    <string name="rank_subterclass">Надкласс</string>
+    <string name="rank_parvorder">Парвотряд</string>
+    <string name="rank_zoosection">Зоосекция</string>
+    <string name="rank_zoosubsection">Зооподсекция</string>
+    <string name="rank_superfamily">Надсемейство</string>
+    <string name="rank_epifamily">Эписемейство</string>
+    <string name="rank_family">Семейство</string>
+    <string name="rank_subfamily">Подсемейство</string>
+    <string name="rank_supertribe">Надтриба</string>
+    <string name="rank_tribe">Триба</string>
+    <string name="rank_subtribe">Подтриба</string>
+    <string name="rank_genus">Род</string>
     <string name="rank_genushybrid">Genushybrid</string>
-    <string name="rank_subgenus">Subgenus</string>
-    <string name="rank_section">Section</string>
-    <string name="rank_subsection">subsection</string>
-    <string name="rank_complex">Complex</string>
+    <string name="rank_subgenus">Подрод</string>
+    <string name="rank_section">Секция</string>
+    <string name="rank_subsection">подсекция</string>
+    <string name="rank_complex">Комплекс</string>
     <!-- Singular -->
-    <string name="rank_species">Species</string>
-    <string name="rank_hybrid">Hybrid</string>
+    <string name="rank_species">Вид</string>
+    <string name="rank_hybrid">Гибрид</string>
     <!-- Singular -->
-    <string name="rank_subspecies">Subspecies</string>
-    <string name="rank_variety">Variety</string>
-    <string name="rank_form">Form</string>
-    <string name="rank_infrahybrid">Infrahybrid</string>
-    <string name="rank_leaves">Leaves</string>
+    <string name="rank_subspecies">Подвид</string>
+    <string name="rank_variety">Разновидность</string>
+    <string name="rank_form">Форма</string>
+    <string name="rank_infrahybrid">Инфрагибрид</string>
+    <string name="rank_leaves">Листья</string>
 </resources>

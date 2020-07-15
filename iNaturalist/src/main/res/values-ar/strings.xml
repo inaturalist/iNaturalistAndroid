@@ -866,7 +866,7 @@
     <string name="no_messages_found">لم يتم العثور على أي رسالة.</string>
     <string name="send_a_message">إرسال.</string>
     <string name="sending_message">جاري الإرسال...</string>
-    <string name="could_not_send_message">Couldn\'t send message: %1$s</string>
+    <string name="could_not_send_message">لم يتم الإرسال%1$s</string>
     <string name="subject">عنوان الرسالة</string>
     <string name="body">محتوى الرسالة</string>
     <string name="type_your_message_here">باشر بطباعة رسالتك هنا</string>

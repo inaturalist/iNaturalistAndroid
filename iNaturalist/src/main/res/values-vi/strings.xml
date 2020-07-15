@@ -129,7 +129,7 @@
     <string name="no_internet_projects">Để dự án hoạt động, bạn cần có kết nối Internet.</string>
     <string name="locale_gl">Tiếng Galician</string>
     <string name="locale_eu">Tiếng Basque</string>
-    <string name="use_device_language_settings">Use device language settings</string>
+    <string name="use_device_language_settings">Dùng ngôn ngữ của thiết bị</string>
     <string name="choose_location">Chọn vị trí</string>
     <string name="done">Hoàn thành</string>
     <string name="please_sign_in_via_settings">Bạn phải đăng nhập để xem các dự án mà bạn đã tham gia</string>
@@ -147,7 +147,7 @@
     <plurals name="sync_x_observations">
         <item quantity="other">Đồng bộ hóa %1$d quan sát</item>
     </plurals>
-    <string name="sync_observations">Sync Observations</string>
+    <string name="sync_observations">Đồng bộ hóa Quan sát</string>
     <string name="lets_get_started">Hãy bắt đầu thôi!</string>
     <string name="view_nearby_observations">Quan sát gần đây</string>
     <string name="skip_for_now">Bỏ qua Bây giờ</string>
@@ -185,7 +185,7 @@
     <string name="photos"><![CDATA[<b>Các bức ảnh:</b> %1$s]]></string>
     <string name="text"><![CDATA[<b>Văn bản:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
-    <string name="alert_message_use_inaturalist">The main iNaturalist Network. Clicking OK will set your app as part of the global iNaturalist network.</string>
+    <string name="alert_message_use_inaturalist">Mạng lưới iNaturalist chính. Chọn OK sẽ thiết lập ứng dụng của bạn thành một phần của mạng lưới iNaturalist toàn cầu.</string>
     <string name="alert_message_use_naturalista">NaturaLista is a member of the iNaturalist Network in Mexico. Local institutions supporting NaturaLista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_naturewatchnz">iNaturalist NZ is a member of the iNaturalist Network in New Zealand. Local institutions supporting iNaturalist NZ will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Local institutions supporting iNaturalist Canada will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
@@ -197,18 +197,18 @@
     <string name="alert_message_use_argentinat">ArgentiNat is a member of the iNaturalist Network in Argentina. Local institutions supporting ArgentiNat will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland is a member of the iNaturalist Network in Finland. Local institutions supporting iNaturalist Finland will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="editor">Editor</string>
+    <string name="editor">Trình biên tập</string>
     <string name="license">Bản quyền</string>
     <string name="download_for_offline_use">Tải xuống để đọc ngoại tuyến</string>
     <string name="download_not_available">Không có link tải xuống nào</string>
-    <string name="guide_editor_must_enable_this_feature">Guide editor must enable this feature.</string>
+    <string name="guide_editor_must_enable_this_feature">Trình biên tập phải kích hoạt chức năng này.</string>
     <string name="are_you_sure">Bạn chắc chứ?</string>
-    <string name="download_guide_alert">This will download %1$s of data so you can use this guide even when you don\'t have Internet access.</string>
+    <string name="download_guide_alert">Cái này sẽ tải xuống %1$s dữ liệu để bạn có thể sử dụng hướng dẫn này ngay cả khi bạn không có Internet.</string>
     <string name="download">Tải về</string>
     <string name="failed_to_download_guide">Không thể tải bản hướng dẫn</string>
     <string name="internet_connection_seems_to_be_offline">Có vẻ như kết nối Internet đang ở chế độ ngoại tuyến.</string>
     <string name="downloading">Đang tải về...</string>
-    <string name="extracting">Extracting...</string>
+    <string name="extracting">Đang trích xuất...</string>
     <string name="downloaded">Đã được tải về</string>
     <string name="delete_download">Xóa bản tải xuống</string>
     <string name="re_download">Tải xuống lại</string>
@@ -260,7 +260,7 @@
     <string name="no_thanks">Không, cảm ơn</string>
     <string name="turn_on">Bật lên</string>
     <string name="introducing_auto_sync">Giới thiệu chức năng đồng bộ hóa tự động!</string>
-    <string name="turn_on_auto_sync">Turn on Auto-Sync in Settings and your observations will be automatically uploaded to iNaturalist.</string>
+    <string name="turn_on_auto_sync">Bật tính năng Tự Động Đồng Bộ Hóa trong Cài Đặt và các quan sát của bạn sẽ được tự động tải lên iNaturalist.</string>
     <string name="automatic_upload">Tải lên tự động (Đồng bộ hóa tự động)</string>
     <string name="waiting_to_upload">Đang chờ tải lên ...</string>
     <string name="uploading">Đang tải lên…</string>
@@ -370,7 +370,7 @@
     <string name="multi_select_description">Nhập nhiều ảnh bằng cách nhấn chặt trên một tấm ảnh</string>
     <string name="preparing_photo">Đang chuẩn bị ảnh...</string>
     <string name="recommended_for_you">Đề xuất dành cho bạn</string>
-    <string name="missions">Missions</string>
+    <string name="missions">Nhiệm vụ</string>
     <string name="browse_by_category">Tìm theo danh mục</string>
     <string name="couldnt_load_recommended_missions">Couldn\'t load recommended missions: %1$s</string>
     <string name="plants">Thực vật</string>
@@ -389,8 +389,8 @@
     <string name="have_been_seen_here">Have Been Seen Here</string>
     <string name="observe">Quan sát</string>
     <string name="nearby_missions">Nearby Missions</string>
-    <string name="searching_your_area">Searching your area...</string>
-    <string name="expanding_your_search_area">Expanding your search area...</string>
+    <string name="searching_your_area">Đang tìm kiếm khu vực của bạn...</string>
+    <string name="expanding_your_search_area">Đang mở rộng khu vực tìm kiếm của bạn ...</string>
     <string name="introducing_missions">Introducing Missions!</string>
     <string name="missions_onboarding_description">Missions are realtime recommendations of what to look for around you. This way you can discover species new to you! (Requires connectivity)</string>
     <string name="ok_got_it">Ok, tôi đã hiểu!</string>
@@ -530,7 +530,7 @@
     <string name="reset">Thiết lập lại</string>
     <string name="show_only_my_observations">Chỉ hiển thị quan sát của tôi</string>
     <string name="project">Dự án</string>
-    <string name="user">User</string>
+    <string name="user">Người dùng</string>
     <string name="search_users">Tìm người dùng...</string>
     <string name="quality_grade">Quality Grade</string>
     <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
@@ -539,11 +539,11 @@
     <string name="any">Bất kỳ</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
     <string name="to">to</string>
-    <string name="exact_date">Exact Date</string>
-    <string name="start">Start</string>
-    <string name="end">End</string>
-    <string name="months">Months</string>
-    <string name="choose_months">Choose months(s)</string>
+    <string name="exact_date">Ngày chính xác</string>
+    <string name="start">Bắt đầu</string>
+    <string name="end">Kết thúc</string>
+    <string name="months">Tháng</string>
+    <string name="choose_months">Chọn tháng</string>
     <string name="map_area">Map Area</string>
     <string name="global">Global</string>
     <!-- As in redo search in the current map area -->
@@ -556,26 +556,26 @@
     <string name="date_day">%dd</string>
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
     <string name="date_week">%dw</string>
-    <string name="new_observation">New Observation</string>
+    <string name="new_observation">Quan sát mới</string>
     <string name="inactive_taxon">Inactive Taxon</string>
     <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
-    <string name="no_species_found">This is a list of the species you have observed the most.\n\nFYI: There\'s an estimated 9 million species on the planet, so get out there and observe them!</string>
+    <string name="no_species_found">Đây là danh sách các loài bạn quan sát nhiều nhất.\n\nCó thể bạn chưa biết: Ước tính có khoảng 9 triệu loài trên hành tinh, vì vậy hãy ra ngoài và quan sát chúng!</string>
     <string name="make_an_observation">Make an observation</string>
-    <string name="no_observations_found_new">Observations are records of your encounters with individual organisms at particular times and locations.</string>
-    <string name="discard_comment">Are you sure you want to discard this comment?</string>
-    <string name="leave_comment">Leave a comment...</string>
-    <string name="swipe">Swipe</string>
+    <string name="no_observations_found_new">Các quan sát là các ghi chép về những cuộc chạm trán giữa bạn với các cá thể sinh vật tại những thời điểm và địa điểm cụ thể.</string>
+    <string name="discard_comment">Bạn có chắc bạn muốn xóa lời bình luận này?</string>
+    <string name="leave_comment">Để lại bình luận...</string>
+    <string name="swipe">Vuốt</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Which Google Account?</string>
+    <string name="select_google_account">Bạn chọn tài khoản Google nào?</string>
     <string name="potential_disagreement">Potential Disagreement</string>
-    <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
+    <string name="do_you_think_this_could_be"><![CDATA[Liệu bằng chứng được cung cấp là đủ để xác nhận đây là <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
-    <string name="i_dont_know_but"><![CDATA[I don\'t know but I\'m sure this is <b>%1$s</b>.]]></string>
-    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
-    <string name="submit">Submit</string>
-    <string name="change_password">Change Password</string>
-    <string name="search_projects_youve_joined">Search projects you\'ve joined...</string>
-    <string name="must_be_connected_to_load_more_obs">You must be connected to the Internet to load more observations</string>
+    <string name="i_dont_know_but"><![CDATA[Tôi không biết nhưng chắc chắn đây là <b>%1$s</b>]]></string>
+    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Không, nhưng đây là một loại thuộc về <b>%1$s</b>]]></string>
+    <string name="submit">Gửi</string>
+    <string name="change_password">Đổi mật khẩu</string>
+    <string name="search_projects_youve_joined">Tìm các dự án bạn đã tham gia...</string>
+    <string name="must_be_connected_to_load_more_obs">Bạn phải kết nối với Internet mới tải thêm được các quan sát</string>
     <string name="inat_about_title">iNaturalist is a joint initiative by the California Academy of Sciences and the National Geographic Society.</string>
     <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="http://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>

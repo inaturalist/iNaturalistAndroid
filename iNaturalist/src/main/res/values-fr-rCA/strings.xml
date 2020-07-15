@@ -636,7 +636,7 @@
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Fleur en bouton</string>
     <!-- Observation presents no evidence of flowering phenology -->
-    <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
+    <string name="annotation_value_no_evidence_of_flowering">Aucune preuve de floraison</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Adulte</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -872,42 +872,42 @@
     <string name="failed_flagging_conversation">Échec du signalement de la conversation!</string>
     <string name="no_subject">No Subject</string>
     <string name="rank_state_of_matter">State of matter</string>
-    <string name="rank_kingdom">Kingdom</string>
-    <string name="rank_subkingdom">Subkingdom</string>
-    <string name="rank_phylum">Phylum</string>
-    <string name="rank_subphylum">Subphylum</string>
-    <string name="rank_superclass">Superclass</string>
-    <string name="rank_class">Class</string>
-    <string name="rank_subclass">Subclass</string>
-    <string name="rank_infraclass">Infraclass</string>
-    <string name="rank_superorder">Superorder</string>
-    <string name="rank_order">Order</string>
-    <string name="rank_suborder">Suborder</string>
-    <string name="rank_infraorder">Infraorder</string>
+    <string name="rank_kingdom">Règne</string>
+    <string name="rank_subkingdom">Sous-règne</string>
+    <string name="rank_phylum">Embranchement</string>
+    <string name="rank_subphylum">Sous-embranchement</string>
+    <string name="rank_superclass">Super-classe</string>
+    <string name="rank_class">Classe</string>
+    <string name="rank_subclass">Sous-classe</string>
+    <string name="rank_infraclass">Infra-classe</string>
+    <string name="rank_superorder">Super-ordre</string>
+    <string name="rank_order">Ordre</string>
+    <string name="rank_suborder">Sous-ordre</string>
+    <string name="rank_infraorder">Infra-ordre</string>
     <string name="rank_subterclass">Subterclass</string>
     <string name="rank_parvorder">Parvorder</string>
     <string name="rank_zoosection">Zoosection</string>
     <string name="rank_zoosubsection">Zoosubsection</string>
-    <string name="rank_superfamily">Superfamily</string>
-    <string name="rank_epifamily">Epifamily</string>
-    <string name="rank_family">Family</string>
-    <string name="rank_subfamily">Subfamily</string>
-    <string name="rank_supertribe">Supertribe</string>
-    <string name="rank_tribe">Tribe</string>
-    <string name="rank_subtribe">Subtribe</string>
-    <string name="rank_genus">Genus</string>
+    <string name="rank_superfamily">Super-famille</string>
+    <string name="rank_epifamily">Épifamille</string>
+    <string name="rank_family">Famille</string>
+    <string name="rank_subfamily">Sous-famille</string>
+    <string name="rank_supertribe">Super-tribu</string>
+    <string name="rank_tribe">Tribu</string>
+    <string name="rank_subtribe">Sous-tribu</string>
+    <string name="rank_genus">Genre</string>
     <string name="rank_genushybrid">Genushybrid</string>
-    <string name="rank_subgenus">Subgenus</string>
+    <string name="rank_subgenus">Sous-genre</string>
     <string name="rank_section">Section</string>
-    <string name="rank_subsection">subsection</string>
+    <string name="rank_subsection">Sous-section</string>
     <string name="rank_complex">Complex</string>
     <!-- Singular -->
-    <string name="rank_species">Species</string>
-    <string name="rank_hybrid">Hybrid</string>
+    <string name="rank_species">Espèce</string>
+    <string name="rank_hybrid">Hybride</string>
     <!-- Singular -->
-    <string name="rank_subspecies">Subspecies</string>
-    <string name="rank_variety">Variety</string>
-    <string name="rank_form">Form</string>
+    <string name="rank_subspecies">Sous-espèce</string>
+    <string name="rank_variety">Variété</string>
+    <string name="rank_form">Forme</string>
     <string name="rank_infrahybrid">Infrahybrid</string>
     <string name="rank_leaves">Leaves</string>
 </resources>

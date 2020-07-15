@@ -646,7 +646,7 @@
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Květinové pučení</string>
     <!-- Observation presents no evidence of flowering phenology -->
-    <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
+    <string name="annotation_value_no_evidence_of_flowering">Žádné známky kvetení</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Dospělý</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -884,44 +884,44 @@
     <string name="thank_you_for_submitting_the_flag">Děkujeme za odeslání hlášení!</string>
     <string name="flagging_conversation">Označování nevhodné konverzace...</string>
     <string name="failed_flagging_conversation">Nepodařilo se označit konverzaci jako nevhodnou!</string>
-    <string name="no_subject">No Subject</string>
-    <string name="rank_state_of_matter">State of matter</string>
-    <string name="rank_kingdom">Kingdom</string>
-    <string name="rank_subkingdom">Subkingdom</string>
-    <string name="rank_phylum">Phylum</string>
-    <string name="rank_subphylum">Subphylum</string>
-    <string name="rank_superclass">Superclass</string>
-    <string name="rank_class">Class</string>
-    <string name="rank_subclass">Subclass</string>
-    <string name="rank_infraclass">Infraclass</string>
-    <string name="rank_superorder">Superorder</string>
-    <string name="rank_order">Order</string>
-    <string name="rank_suborder">Suborder</string>
-    <string name="rank_infraorder">Infraorder</string>
-    <string name="rank_subterclass">Subterclass</string>
-    <string name="rank_parvorder">Parvorder</string>
-    <string name="rank_zoosection">Zoosection</string>
-    <string name="rank_zoosubsection">Zoosubsection</string>
-    <string name="rank_superfamily">Superfamily</string>
-    <string name="rank_epifamily">Epifamily</string>
-    <string name="rank_family">Family</string>
-    <string name="rank_subfamily">Subfamily</string>
-    <string name="rank_supertribe">Supertribe</string>
-    <string name="rank_tribe">Tribe</string>
-    <string name="rank_subtribe">Subtribe</string>
-    <string name="rank_genus">Genus</string>
-    <string name="rank_genushybrid">Genushybrid</string>
-    <string name="rank_subgenus">Subgenus</string>
-    <string name="rank_section">Section</string>
-    <string name="rank_subsection">subsection</string>
-    <string name="rank_complex">Complex</string>
+    <string name="no_subject">Bez předmětu</string>
+    <string name="rank_state_of_matter">skupenství</string>
+    <string name="rank_kingdom">říše</string>
+    <string name="rank_subkingdom">podříše</string>
+    <string name="rank_phylum">kmen</string>
+    <string name="rank_subphylum">podkmen</string>
+    <string name="rank_superclass">nadtřída</string>
+    <string name="rank_class">třída</string>
+    <string name="rank_subclass">podtřída</string>
+    <string name="rank_infraclass">infratřída</string>
+    <string name="rank_superorder">nadřád</string>
+    <string name="rank_order">řád</string>
+    <string name="rank_suborder">podřád</string>
+    <string name="rank_infraorder">infrařád</string>
+    <string name="rank_subterclass">subtertřída</string>
+    <string name="rank_parvorder">parvřád</string>
+    <string name="rank_zoosection">zoosekce</string>
+    <string name="rank_zoosubsection">zoopodsekce</string>
+    <string name="rank_superfamily">nadčeleď</string>
+    <string name="rank_epifamily">epičeleď</string>
+    <string name="rank_family">čeleď</string>
+    <string name="rank_subfamily">podčeleď</string>
+    <string name="rank_supertribe">nadtribus</string>
+    <string name="rank_tribe">tribus</string>
+    <string name="rank_subtribe">podtribus</string>
+    <string name="rank_genus">rod</string>
+    <string name="rank_genushybrid">křížený rod</string>
+    <string name="rank_subgenus">podrod</string>
+    <string name="rank_section">sekce</string>
+    <string name="rank_subsection">podsekce</string>
+    <string name="rank_complex">komplex druhů</string>
     <!-- Singular -->
-    <string name="rank_species">Species</string>
-    <string name="rank_hybrid">Hybrid</string>
+    <string name="rank_species">druh</string>
+    <string name="rank_hybrid">kříženec</string>
     <!-- Singular -->
-    <string name="rank_subspecies">Subspecies</string>
-    <string name="rank_variety">Variety</string>
-    <string name="rank_form">Form</string>
-    <string name="rank_infrahybrid">Infrahybrid</string>
+    <string name="rank_subspecies">poddruh</string>
+    <string name="rank_variety">odrůda</string>
+    <string name="rank_form">forma</string>
+    <string name="rank_infrahybrid">infrakříženec</string>
     <string name="rank_leaves">Leaves</string>
 </resources>

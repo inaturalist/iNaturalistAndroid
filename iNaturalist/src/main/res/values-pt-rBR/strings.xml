@@ -636,7 +636,7 @@
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Goma da flor</string>
     <!-- Observation presents no evidence of flowering phenology -->
-    <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
+    <string name="annotation_value_no_evidence_of_flowering">Nenhuma evidência de floração</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Adulto</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -870,44 +870,44 @@
     <string name="thank_you_for_submitting_the_flag">Obrigado por denunciar!</string>
     <string name="flagging_conversation">Denunciando conversa...</string>
     <string name="failed_flagging_conversation">Falha ao denunciar a conversa!</string>
-    <string name="no_subject">No Subject</string>
-    <string name="rank_state_of_matter">State of matter</string>
-    <string name="rank_kingdom">Kingdom</string>
-    <string name="rank_subkingdom">Subkingdom</string>
-    <string name="rank_phylum">Phylum</string>
-    <string name="rank_subphylum">Subphylum</string>
-    <string name="rank_superclass">Superclass</string>
-    <string name="rank_class">Class</string>
-    <string name="rank_subclass">Subclass</string>
-    <string name="rank_infraclass">Infraclass</string>
-    <string name="rank_superorder">Superorder</string>
-    <string name="rank_order">Order</string>
-    <string name="rank_suborder">Suborder</string>
-    <string name="rank_infraorder">Infraorder</string>
-    <string name="rank_subterclass">Subterclass</string>
+    <string name="no_subject">Sem assunto</string>
+    <string name="rank_state_of_matter">Estado da matéria</string>
+    <string name="rank_kingdom">Reino</string>
+    <string name="rank_subkingdom">Subreino</string>
+    <string name="rank_phylum">Filo</string>
+    <string name="rank_subphylum">Subfilo</string>
+    <string name="rank_superclass">Superclasse</string>
+    <string name="rank_class">Classe</string>
+    <string name="rank_subclass">Subclasse</string>
+    <string name="rank_infraclass">Infraclasse</string>
+    <string name="rank_superorder">Superordem</string>
+    <string name="rank_order">Ordem</string>
+    <string name="rank_suborder">Subordem</string>
+    <string name="rank_infraorder">Infraordem</string>
+    <string name="rank_subterclass">Subclasse</string>
     <string name="rank_parvorder">Parvorder</string>
-    <string name="rank_zoosection">Zoosection</string>
-    <string name="rank_zoosubsection">Zoosubsection</string>
-    <string name="rank_superfamily">Superfamily</string>
-    <string name="rank_epifamily">Epifamily</string>
-    <string name="rank_family">Family</string>
-    <string name="rank_subfamily">Subfamily</string>
-    <string name="rank_supertribe">Supertribe</string>
-    <string name="rank_tribe">Tribe</string>
-    <string name="rank_subtribe">Subtribe</string>
-    <string name="rank_genus">Genus</string>
-    <string name="rank_genushybrid">Genushybrid</string>
-    <string name="rank_subgenus">Subgenus</string>
-    <string name="rank_section">Section</string>
-    <string name="rank_subsection">subsection</string>
-    <string name="rank_complex">Complex</string>
+    <string name="rank_zoosection">Seção de zoológico</string>
+    <string name="rank_zoosubsection">Zoosubseção</string>
+    <string name="rank_superfamily">Superfamília</string>
+    <string name="rank_epifamily">Epifamília</string>
+    <string name="rank_family">Família</string>
+    <string name="rank_subfamily">Subfamília</string>
+    <string name="rank_supertribe">Supertribo</string>
+    <string name="rank_tribe">Tribo</string>
+    <string name="rank_subtribe">Subtribo</string>
+    <string name="rank_genus">Gênero</string>
+    <string name="rank_genushybrid">Gênero híbrido</string>
+    <string name="rank_subgenus">Subgênero</string>
+    <string name="rank_section">Seção</string>
+    <string name="rank_subsection">subseção</string>
+    <string name="rank_complex">Complexo</string>
     <!-- Singular -->
-    <string name="rank_species">Species</string>
-    <string name="rank_hybrid">Hybrid</string>
+    <string name="rank_species">Espécies</string>
+    <string name="rank_hybrid">Híbrido</string>
     <!-- Singular -->
-    <string name="rank_subspecies">Subspecies</string>
-    <string name="rank_variety">Variety</string>
-    <string name="rank_form">Form</string>
-    <string name="rank_infrahybrid">Infrahybrid</string>
-    <string name="rank_leaves">Leaves</string>
+    <string name="rank_subspecies">Subespécies</string>
+    <string name="rank_variety">Variedade</string>
+    <string name="rank_form">Formulário</string>
+    <string name="rank_infrahybrid">Infra-híbrido</string>
+    <string name="rank_leaves">Folhas</string>
 </resources>

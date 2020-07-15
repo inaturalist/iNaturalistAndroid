@@ -636,7 +636,7 @@
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Bloemknoppen</string>
     <!-- Observation presents no evidence of flowering phenology -->
-    <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
+    <string name="annotation_value_no_evidence_of_flowering">Geen bewijs voor bloei</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Volwassen</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -837,7 +837,7 @@
     <string name="no_messages_found">Geen berichten gevonden</string>
     <string name="send_a_message">Stuur een bericht</string>
     <string name="sending_message">Bericht wordt verzonden...</string>
-    <string name="could_not_send_message">Couldn\'t send message: %1$s</string>
+    <string name="could_not_send_message">Kon bericht niet verzenden: %1$s</string>
     <string name="subject">Onderwerp</string>
     <string name="body">Berichttekst</string>
     <string name="type_your_message_here">Voer hier je bericht in</string>
@@ -870,44 +870,44 @@
     <string name="thank_you_for_submitting_the_flag">Bedankt voor het markeren!</string>
     <string name="flagging_conversation">Gesprek markeren...</string>
     <string name="failed_flagging_conversation">Het markeren van gesprek is mislukt!</string>
-    <string name="no_subject">No Subject</string>
-    <string name="rank_state_of_matter">State of matter</string>
-    <string name="rank_kingdom">Kingdom</string>
-    <string name="rank_subkingdom">Subkingdom</string>
-    <string name="rank_phylum">Phylum</string>
-    <string name="rank_subphylum">Subphylum</string>
-    <string name="rank_superclass">Superclass</string>
-    <string name="rank_class">Class</string>
-    <string name="rank_subclass">Subclass</string>
-    <string name="rank_infraclass">Infraclass</string>
-    <string name="rank_superorder">Superorder</string>
-    <string name="rank_order">Order</string>
-    <string name="rank_suborder">Suborder</string>
-    <string name="rank_infraorder">Infraorder</string>
-    <string name="rank_subterclass">Subterclass</string>
-    <string name="rank_parvorder">Parvorder</string>
-    <string name="rank_zoosection">Zoosection</string>
-    <string name="rank_zoosubsection">Zoosubsection</string>
-    <string name="rank_superfamily">Superfamily</string>
-    <string name="rank_epifamily">Epifamily</string>
-    <string name="rank_family">Family</string>
-    <string name="rank_subfamily">Subfamily</string>
-    <string name="rank_supertribe">Supertribe</string>
-    <string name="rank_tribe">Tribe</string>
-    <string name="rank_subtribe">Subtribe</string>
-    <string name="rank_genus">Genus</string>
-    <string name="rank_genushybrid">Genushybrid</string>
-    <string name="rank_subgenus">Subgenus</string>
-    <string name="rank_section">Section</string>
-    <string name="rank_subsection">subsection</string>
+    <string name="no_subject">Geen Onderwerp</string>
+    <string name="rank_state_of_matter">Toestand van de materie</string>
+    <string name="rank_kingdom">Rijk</string>
+    <string name="rank_subkingdom">Subrijk</string>
+    <string name="rank_phylum">Stam</string>
+    <string name="rank_subphylum">Onderstam</string>
+    <string name="rank_superclass">Superklasse</string>
+    <string name="rank_class">Klasse</string>
+    <string name="rank_subclass">Onderklasse</string>
+    <string name="rank_infraclass">Infraklasse</string>
+    <string name="rank_superorder">Superorde</string>
+    <string name="rank_order">Orde</string>
+    <string name="rank_suborder">Onderorde</string>
+    <string name="rank_infraorder">Infraorde</string>
+    <string name="rank_subterclass">Subterklasse</string>
+    <string name="rank_parvorder">Parvorde</string>
+    <string name="rank_zoosection">Zoösectie</string>
+    <string name="rank_zoosubsection">Zoö-ondersectie</string>
+    <string name="rank_superfamily">Superfamilie</string>
+    <string name="rank_epifamily">Epifamilie</string>
+    <string name="rank_family">Familie</string>
+    <string name="rank_subfamily">Onderfamilie</string>
+    <string name="rank_supertribe">Supergeslachtengroep</string>
+    <string name="rank_tribe">Geslachtengroep</string>
+    <string name="rank_subtribe">Ondergeslachtengroep</string>
+    <string name="rank_genus">Geslacht</string>
+    <string name="rank_genushybrid">Intragenerische hybride</string>
+    <string name="rank_subgenus">Ondergeslacht</string>
+    <string name="rank_section">Sectie</string>
+    <string name="rank_subsection">Subsectie</string>
     <string name="rank_complex">Complex</string>
     <!-- Singular -->
-    <string name="rank_species">Species</string>
-    <string name="rank_hybrid">Hybrid</string>
+    <string name="rank_species">Soort</string>
+    <string name="rank_hybrid">Hybride</string>
     <!-- Singular -->
-    <string name="rank_subspecies">Subspecies</string>
-    <string name="rank_variety">Variety</string>
-    <string name="rank_form">Form</string>
-    <string name="rank_infrahybrid">Infrahybrid</string>
-    <string name="rank_leaves">Leaves</string>
+    <string name="rank_subspecies">Ondersoort</string>
+    <string name="rank_variety">Variëteit</string>
+    <string name="rank_form">Vorm</string>
+    <string name="rank_infrahybrid">Infrahybride</string>
+    <string name="rank_leaves">Bladeren</string>
 </resources>

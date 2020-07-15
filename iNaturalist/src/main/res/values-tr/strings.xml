@@ -636,7 +636,7 @@
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Tomurcuklu Çiçek</string>
     <!-- Observation presents no evidence of flowering phenology -->
-    <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
+    <string name="annotation_value_no_evidence_of_flowering">Çiçeklenme Belirtisi Yok</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Yetişkin</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -871,44 +871,44 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="thank_you_for_submitting_the_flag">İşaretlediğiniz için teşekkür ederiz!</string>
     <string name="flagging_conversation">Konuşma işaretleniyor...</string>
     <string name="failed_flagging_conversation">Konuşma işaretleme başarısız!</string>
-    <string name="no_subject">No Subject</string>
-    <string name="rank_state_of_matter">State of matter</string>
-    <string name="rank_kingdom">Kingdom</string>
-    <string name="rank_subkingdom">Subkingdom</string>
-    <string name="rank_phylum">Phylum</string>
-    <string name="rank_subphylum">Subphylum</string>
-    <string name="rank_superclass">Superclass</string>
-    <string name="rank_class">Class</string>
-    <string name="rank_subclass">Subclass</string>
-    <string name="rank_infraclass">Infraclass</string>
-    <string name="rank_superorder">Superorder</string>
-    <string name="rank_order">Order</string>
-    <string name="rank_suborder">Suborder</string>
-    <string name="rank_infraorder">Infraorder</string>
-    <string name="rank_subterclass">Subterclass</string>
-    <string name="rank_parvorder">Parvorder</string>
+    <string name="no_subject">Konu Yok</string>
+    <string name="rank_state_of_matter">İçeriğin durumu</string>
+    <string name="rank_kingdom">Alem</string>
+    <string name="rank_subkingdom">Alt Alem</string>
+    <string name="rank_phylum">Şube</string>
+    <string name="rank_subphylum">Alt Şube</string>
+    <string name="rank_superclass">Üst Sınıf</string>
+    <string name="rank_class">Sınıf</string>
+    <string name="rank_subclass">Alt Sınıf</string>
+    <string name="rank_infraclass">İnfra Sınıf</string>
+    <string name="rank_superorder">Üst Takım</string>
+    <string name="rank_order">Takım</string>
+    <string name="rank_suborder">Alt Takım</string>
+    <string name="rank_infraorder">İnfra Takım</string>
+    <string name="rank_subterclass">Subter Sınıf</string>
+    <string name="rank_parvorder">Geçiş Takımı</string>
     <string name="rank_zoosection">Zoosection</string>
     <string name="rank_zoosubsection">Zoosubsection</string>
-    <string name="rank_superfamily">Superfamily</string>
-    <string name="rank_epifamily">Epifamily</string>
-    <string name="rank_family">Family</string>
-    <string name="rank_subfamily">Subfamily</string>
-    <string name="rank_supertribe">Supertribe</string>
-    <string name="rank_tribe">Tribe</string>
-    <string name="rank_subtribe">Subtribe</string>
-    <string name="rank_genus">Genus</string>
-    <string name="rank_genushybrid">Genushybrid</string>
-    <string name="rank_subgenus">Subgenus</string>
-    <string name="rank_section">Section</string>
-    <string name="rank_subsection">subsection</string>
-    <string name="rank_complex">Complex</string>
+    <string name="rank_superfamily">Üst Aile</string>
+    <string name="rank_epifamily">Epi Aile</string>
+    <string name="rank_family">Aile</string>
+    <string name="rank_subfamily">Alt Aile</string>
+    <string name="rank_supertribe">Üst Oymak</string>
+    <string name="rank_tribe">Oymak</string>
+    <string name="rank_subtribe">Alt Oymak</string>
+    <string name="rank_genus">Cins</string>
+    <string name="rank_genushybrid">Yüzergezer cins</string>
+    <string name="rank_subgenus">Alt Cins</string>
+    <string name="rank_section">Seksiyon</string>
+    <string name="rank_subsection">alt seksiyon</string>
+    <string name="rank_complex">Kompleks</string>
     <!-- Singular -->
-    <string name="rank_species">Species</string>
-    <string name="rank_hybrid">Hybrid</string>
+    <string name="rank_species">Tür</string>
+    <string name="rank_hybrid">Yüzergezer</string>
     <!-- Singular -->
-    <string name="rank_subspecies">Subspecies</string>
-    <string name="rank_variety">Variety</string>
+    <string name="rank_subspecies">Alt Tür</string>
+    <string name="rank_variety">Varyete</string>
     <string name="rank_form">Form</string>
-    <string name="rank_infrahybrid">Infrahybrid</string>
-    <string name="rank_leaves">Leaves</string>
+    <string name="rank_infrahybrid">İnfra yüzergezer</string>
+    <string name="rank_leaves">Yapraklar</string>
 </resources>
