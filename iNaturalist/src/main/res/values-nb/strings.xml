@@ -635,6 +635,8 @@
     <string name="annotation_value_budding">Spirende</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Blomsterknopper</string>
+    <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_evidence_of_flowering">Ingen bevis for blomstring</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Voksen</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -711,11 +713,11 @@
     <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network, som driver iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos, som driver Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente, som driver iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
-    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
-    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Naturalist History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina støtter ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia støtter iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) støtter iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa støtter iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Natural History (LUOMUS) støtter iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="mark_all_as_viewed">Merk alle som lest</string>
     <string name="content_hidden">Innhold skjult</string>
     <string name="show_hidden_content">Vis skjult innhold</string>
@@ -828,7 +830,87 @@ Utover det, denne handlingen kan ikke angres. Hvis du ombestemmer deg senere, f�
     <string name="forbidden">Forbudt</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">Appen du delte fra lager bilder som ikke er egnet for observasjoner fordi de ikke representerer bevis på din opplevelse med en annen organisme, fordi de inkluderer upassende merkevarebygging eller kommersielt innhold, eller fordi de bryter bruksvilkårene våre på andre måter.</string>
-    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
-    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
-    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
+    <string name="list_observation_checkbox_description">Avmerkingsboks for valg av observasjon i flervalgsmodus</string>
+    <string name="observation_list_item_iconic_pic_description">Miniatyrbilde for observasjonstakson</string>
+    <string name="observation_list_item_obs_pic_description">Miniatyrbilde for observasjon</string>
+    <string name="messages">Meldinger</string>
+    <string name="all_messages">Alle meldinger</string>
+    <string name="search_messages">Søk i meldinger</string>
+    <string name="no_messages">You currently have no messages. You can send a new message with the green button, or message them from their profile page.</string>
+    <string name="no_messages_found">Ingen melding funnet.</string>
+    <string name="send_a_message">Send en melding</string>
+    <string name="sending_message">Sender melding...</string>
+    <string name="could_not_send_message">Couldn\'t send message: %1$s</string>
+    <string name="subject">Emne</string>
+    <string name="body">Innhold</string>
+    <string name="type_your_message_here">Type your message here</string>
+    <string name="new_message_to">New Message to %1$s</string>
+    <string name="who_would_you_like_to_send_a_message_to">Who would you like to send a message to?</string>
+    <string name="new_message">Ny melding</string>
+    <string name="search_for_inaturalist_users">Search for iNaturalist users</string>
+    <string name="please_sign_in_for_messages">You must be logged in to view your messages.</string>
+    <string name="sorry">Beklager</string>
+    <string name="you_must_have_three_observations">You must have three verifiable observations or three identifications for others in order to do that.</string>
+    <string name="mute_this_user">Mute this user</string>
+    <string name="unmute_this_user">Unmute this user</string>
+    <string name="flag_this_conversation">Flag this conversation</string>
+    <string name="mute_this_user_question">Mute this user?</string>
+    <string name="you_will_no_longer_receive_messages">You will no longer receive any notifications about activity from this user, including messages, comments, identifications, and mentions.</string>
+    <string name="mute">Mute</string>
+    <string name="muting_user">Muting user...</string>
+    <string name="unmuting_user">Unmuting user...</string>
+    <string name="failed_muting_user">Failed muting user!</string>
+    <string name="failed_unmuting_user">Failed unmuting user!</string>
+    <string name="flag_conversation">Flag conversation</string>
+    <string name="spam">Spam</string>
+    <string name="commercial_solicitation">Commercial solicitation, links to nowhere, etc.</string>
+    <string name="offensive_inappropriate">Offensive/Inappropriate</string>
+    <string name="misleading_or_illegal_content">Misleading or illegal content, racial or ethnic slurs, etc. For more on our definition of \"appropriate,\" see the FAQ.</string>
+    <string name="other">Other</string>
+    <string name="some_other_reason">Some other reason you can explain.</string>
+    <string name="continue_text">Fortsett</string>
+    <string name="why_are_you_flagging_this_item">Why are you flagging this item?</string>
+    <string name="thank_you_for_submitting_the_flag">Thank you for submitting the flag!</string>
+    <string name="flagging_conversation">Flagging conversation...</string>
+    <string name="failed_flagging_conversation">Failed flagging conversation!</string>
+    <string name="no_subject">Uten emne</string>
+    <string name="rank_state_of_matter">Tilstand</string>
+    <string name="rank_kingdom">Rike</string>
+    <string name="rank_subkingdom">Underrike</string>
+    <string name="rank_phylum">Rekke</string>
+    <string name="rank_subphylum">Underrekke</string>
+    <string name="rank_superclass">Superklasse</string>
+    <string name="rank_class">Klasse</string>
+    <string name="rank_subclass">Underklasse</string>
+    <string name="rank_infraclass">Infraklasse</string>
+    <string name="rank_superorder">Superorden</string>
+    <string name="rank_order">Orden</string>
+    <string name="rank_suborder">Underorden</string>
+    <string name="rank_infraorder">Infraorden</string>
+    <string name="rank_subterclass">Subterklasse</string>
+    <string name="rank_parvorder">Parvorden</string>
+    <string name="rank_zoosection">Zooseksjon</string>
+    <string name="rank_zoosubsection">Zoounderseksjon</string>
+    <string name="rank_superfamily">Superfamilie</string>
+    <string name="rank_epifamily">Epifamilie</string>
+    <string name="rank_family">Familie</string>
+    <string name="rank_subfamily">Underfamilie</string>
+    <string name="rank_supertribe">Superstamme</string>
+    <string name="rank_tribe">Stamme</string>
+    <string name="rank_subtribe">Understamme</string>
+    <string name="rank_genus">Slekt</string>
+    <string name="rank_genushybrid">Slektshybrid</string>
+    <string name="rank_subgenus">Underslekt</string>
+    <string name="rank_section">Seksjon</string>
+    <string name="rank_subsection">underseksjon</string>
+    <string name="rank_complex">Kompleks</string>
+    <!-- Singular -->
+    <string name="rank_species">Art</string>
+    <string name="rank_hybrid">Hybrid</string>
+    <!-- Singular -->
+    <string name="rank_subspecies">Underart</string>
+    <string name="rank_variety">Varietet</string>
+    <string name="rank_form">Form</string>
+    <string name="rank_infrahybrid">Infrahybrid</string>
+    <string name="rank_leaves">Blad</string>
 </resources>

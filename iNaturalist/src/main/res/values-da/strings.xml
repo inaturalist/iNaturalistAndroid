@@ -635,6 +635,8 @@
     <string name="annotation_value_budding">Spirende</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Blomstknopbærende</string>
+    <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_evidence_of_flowering">Blomstring kan ikke påvises</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Voksen</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -828,4 +830,84 @@
     <string name="list_observation_checkbox_description">Afkrydsningsfelt til valg af observation ved valg af flere emner</string>
     <string name="observation_list_item_iconic_pic_description">Eksempelbillede til observationstaksonomi</string>
     <string name="observation_list_item_obs_pic_description">Eksempelbillede til observation</string>
+    <string name="messages">Beskeder</string>
+    <string name="all_messages">Alle beskeder</string>
+    <string name="search_messages">Søg i beskeder</string>
+    <string name="no_messages">Du har ingen beskeder. Du kan sende en ny besked med den grønne knap eller sende en besked fra folks profilside.</string>
+    <string name="no_messages_found">Ingen beskeder fundet.</string>
+    <string name="send_a_message">Send en besked</string>
+    <string name="sending_message">Sender besked...</string>
+    <string name="could_not_send_message">Kunne ikke sende besked: %1$s</string>
+    <string name="subject">Emne</string>
+    <string name="body">Brødtekst</string>
+    <string name="type_your_message_here">Skriv din besked her</string>
+    <string name="new_message_to">Ny besked til %1$s</string>
+    <string name="who_would_you_like_to_send_a_message_to">Hvem ønsker du at sende beskeden til?</string>
+    <string name="new_message">Ny besked</string>
+    <string name="search_for_inaturalist_users">Søg efter iNaturalist-brugere</string>
+    <string name="please_sign_in_for_messages">Du skal være logget ind for at kunne se dine beskeder.</string>
+    <string name="sorry">Beklager</string>
+    <string name="you_must_have_three_observations">Du skal have tre verificerbare observationer eller tre identifikationer for at kunne gøre det. </string>
+    <string name="mute_this_user">Gør denne bruger lydløs</string>
+    <string name="unmute_this_user">Sæt lyd på denne bruger igen</string>
+    <string name="flag_this_conversation">Sæt flag ved denne samtale</string>
+    <string name="mute_this_user_question">Gør denne bruger lydløs?</string>
+    <string name="you_will_no_longer_receive_messages">Du vil ikke længere modtage nogen notifikationer om denne brugers aktivitet, hverken beskeder, kommentarer, identifikationer eller omtaler.</string>
+    <string name="mute">Gør lydløs</string>
+    <string name="muting_user">Gør bruger lydløs...</string>
+    <string name="unmuting_user">Sætter lyd på bruger igen...</string>
+    <string name="failed_muting_user">Kunne ikke gøre bruger lydløs!</string>
+    <string name="failed_unmuting_user">Kunne ikke sætte lyd på bruger igen!</string>
+    <string name="flag_conversation">Sæt flag ved samtale</string>
+    <string name="spam">Reklamepost</string>
+    <string name="commercial_solicitation">Kommercielle henvendelser, ugyldige henvisninger osv.</string>
+    <string name="offensive_inappropriate">Stødende/upassende</string>
+    <string name="misleading_or_illegal_content">Vildledende eller ulovligt indhold, racistiske eller på anden måden nedsættende bemærkninger, osv. Vores definition af “passende” indhold finder du i FAQ.</string>
+    <string name="other">Andet</string>
+    <string name="some_other_reason">En anden årsag som du kan forklare.</string>
+    <string name="continue_text">Fortsæt</string>
+    <string name="why_are_you_flagging_this_item">Hvorfor sætter du flag ved dette emne?</string>
+    <string name="thank_you_for_submitting_the_flag">Tak for din indsendelse af flaget!</string>
+    <string name="flagging_conversation">Sætter flag ved samtale...</string>
+    <string name="failed_flagging_conversation">Kunne ikke sætte flag ved samtale!</string>
+    <string name="no_subject">Intet emne</string>
+    <string name="rank_state_of_matter">Materietilstand</string>
+    <string name="rank_kingdom">Rige</string>
+    <string name="rank_subkingdom">Underrige</string>
+    <string name="rank_phylum">Række</string>
+    <string name="rank_subphylum">Underrække</string>
+    <string name="rank_superclass">Superklasse</string>
+    <string name="rank_class">Klasse</string>
+    <string name="rank_subclass">Underklasse</string>
+    <string name="rank_infraclass">Infraklasse</string>
+    <string name="rank_superorder">Superrangering</string>
+    <string name="rank_order">Rangering</string>
+    <string name="rank_suborder">Underrangering</string>
+    <string name="rank_infraorder">Infrarangering</string>
+    <string name="rank_subterclass">Subterklasse</string>
+    <string name="rank_parvorder">Parvrangering</string>
+    <string name="rank_zoosection">Zoosektion</string>
+    <string name="rank_zoosubsection">Zooundersektion</string>
+    <string name="rank_superfamily">Superfamilie</string>
+    <string name="rank_epifamily">Epifamilie</string>
+    <string name="rank_family">Familie</string>
+    <string name="rank_subfamily">Underfamilie</string>
+    <string name="rank_supertribe">Superstamme</string>
+    <string name="rank_tribe">Stamme</string>
+    <string name="rank_subtribe">Understamme</string>
+    <string name="rank_genus">Slægt</string>
+    <string name="rank_genushybrid">Slægtshybrid</string>
+    <string name="rank_subgenus">Underslægt</string>
+    <string name="rank_section">Sektion</string>
+    <string name="rank_subsection">undersektion</string>
+    <string name="rank_complex">Kompleks</string>
+    <!-- Singular -->
+    <string name="rank_species">Art</string>
+    <string name="rank_hybrid">Hybrid</string>
+    <!-- Singular -->
+    <string name="rank_subspecies">Underart</string>
+    <string name="rank_variety">Varietet</string>
+    <string name="rank_form">Form</string>
+    <string name="rank_infrahybrid">Infrahybrid</string>
+    <string name="rank_leaves">Blade</string>
 </resources>

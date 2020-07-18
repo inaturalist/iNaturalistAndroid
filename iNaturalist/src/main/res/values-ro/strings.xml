@@ -116,7 +116,7 @@
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Confidențialitatea locației</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
-    <string name="geoprivacy_with_value">Geoprivacy: %1$s</string>
+    <string name="geoprivacy_with_value">GeoProtecție: %1$s</string>
     <string name="delete_confirmation">Ești sigur că vrei să ștergi această observare?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">Ghiduri</string>
@@ -488,7 +488,7 @@
     <string name="drainage">Drenaj</string>
     <string name="land_feature">Caracteristică teren</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
-    <string name="miscellaneous">Varia</string>
+    <string name="miscellaneous">Diverse</string>
     <string name="nationality">Naţionalitate</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Regiune</string>
@@ -640,6 +640,8 @@
     <string name="annotation_value_budding">Înmugurit</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Aproape înflorit</string>
+    <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_evidence_of_flowering">Fără Dovezi de Înflorire</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Adult</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -835,4 +837,84 @@
     <string name="list_observation_checkbox_description">Casetă de selectare, pentru selectarea observației în modul multi-select</string>
     <string name="observation_list_item_iconic_pic_description">Fotografie miniatură pentru observarea taxonului</string>
     <string name="observation_list_item_obs_pic_description">Fotografie miniatură pentru observare</string>
+    <string name="messages">Mesaje</string>
+    <string name="all_messages">Toate Mesajele</string>
+    <string name="search_messages">Caută mesaje</string>
+    <string name="no_messages">În prezent nu ai mesaje. Poți trimite un mesaj nou cu butonul verde sau le poți transmite din pagina lor de profil.</string>
+    <string name="no_messages_found">Nu au fost găsite mesaje.</string>
+    <string name="send_a_message">Trimite un mesaj</string>
+    <string name="sending_message">Mesajul se trimite...</string>
+    <string name="could_not_send_message">Mesajul nu a putut fi trimis: %1$s</string>
+    <string name="subject">Subiect</string>
+    <string name="body">Text</string>
+    <string name="type_your_message_here">Scrie-ți mesajul aici</string>
+    <string name="new_message_to">Mesaj Nou lui %1$s</string>
+    <string name="who_would_you_like_to_send_a_message_to">Cui dorești să trimiți un mesaj?</string>
+    <string name="new_message">Mesaj Nou</string>
+    <string name="search_for_inaturalist_users">Caută utilizatori iNaturalist</string>
+    <string name="please_sign_in_for_messages">Trebuie să fii conectat pentru a vizualiza mesajele.</string>
+    <string name="sorry">Scuze</string>
+    <string name="you_must_have_three_observations">Pentru a face aceasta trebuie să ai trei observații verificabile sau trei identificări pentru alții.</string>
+    <string name="mute_this_user">Muțește utilizatorul</string>
+    <string name="unmute_this_user">Anulați amuțirea</string>
+    <string name="flag_this_conversation">Semnalează conversația</string>
+    <string name="mute_this_user_question">Muțești utilizatorul?</string>
+    <string name="you_will_no_longer_receive_messages">Nu veți mai primi notificări despre activitatea acestui utilizator, inclusiv mesaje, comentarii, identificări și mențiuni.</string>
+    <string name="mute">Mut</string>
+    <string name="muting_user">Muțire utilizator...</string>
+    <string name="unmuting_user">Anulare muțire...</string>
+    <string name="failed_muting_user">Nu am putut muții utilizatorul!</string>
+    <string name="failed_unmuting_user">Nu am putut anula muțirea!</string>
+    <string name="flag_conversation">Semnalează conversația</string>
+    <string name="spam">Spam</string>
+    <string name="commercial_solicitation">Solicitare comercială, link către nicăieri etc</string>
+    <string name="offensive_inappropriate">Ofensiv/Neadecvat</string>
+    <string name="misleading_or_illegal_content">Conținut înșelător sau ilegal, insulte rasiale sau etnice, etc. Pentru mai multe despre definiția noastră de \"adecvat\", consultă FAQ.</string>
+    <string name="other">Altele</string>
+    <string name="some_other_reason">Un alt motiv pe care-l poți explica.</string>
+    <string name="continue_text">Continuă</string>
+    <string name="why_are_you_flagging_this_item">De ce semnalezi acest articol?</string>
+    <string name="thank_you_for_submitting_the_flag">Îți mulțumim pentru semnalarea trimisă!</string>
+    <string name="flagging_conversation">Semnalăm conversația...</string>
+    <string name="failed_flagging_conversation">Nu am putut semnala conversația!</string>
+    <string name="no_subject">Fără Subiect</string>
+    <string name="rank_state_of_matter">Starea materiei</string>
+    <string name="rank_kingdom">Regn</string>
+    <string name="rank_subkingdom">Subregn</string>
+    <string name="rank_phylum">Ramură</string>
+    <string name="rank_subphylum">Subramură</string>
+    <string name="rank_superclass">Superclasă</string>
+    <string name="rank_class">Clasă</string>
+    <string name="rank_subclass">Subclasă</string>
+    <string name="rank_infraclass">Infraclasă</string>
+    <string name="rank_superorder">Superordin</string>
+    <string name="rank_order">Ordin</string>
+    <string name="rank_suborder">Subordin</string>
+    <string name="rank_infraorder">Infraordin</string>
+    <string name="rank_subterclass">Subterclasă</string>
+    <string name="rank_parvorder">Parvordin</string>
+    <string name="rank_zoosection">Zoosecţiune</string>
+    <string name="rank_zoosubsection">Zoosubsecțiune</string>
+    <string name="rank_superfamily">Superfamilie</string>
+    <string name="rank_epifamily">Epifamilie</string>
+    <string name="rank_family">Familie</string>
+    <string name="rank_subfamily">Subfamilie</string>
+    <string name="rank_supertribe">Supertrib</string>
+    <string name="rank_tribe">Trib</string>
+    <string name="rank_subtribe">Subtrib</string>
+    <string name="rank_genus">Gen</string>
+    <string name="rank_genushybrid">Genhibrid</string>
+    <string name="rank_subgenus">Subgen</string>
+    <string name="rank_section">Secțiunea</string>
+    <string name="rank_subsection">subsecțiune</string>
+    <string name="rank_complex">Complex</string>
+    <!-- Singular -->
+    <string name="rank_species">Specii</string>
+    <string name="rank_hybrid">Hibrid</string>
+    <!-- Singular -->
+    <string name="rank_subspecies">Subspecii</string>
+    <string name="rank_variety">Varietate</string>
+    <string name="rank_form">Formă</string>
+    <string name="rank_infrahybrid">Infrahibrid</string>
+    <string name="rank_leaves">Frunze</string>
 </resources>

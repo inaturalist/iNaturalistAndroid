@@ -635,6 +635,8 @@
     <string name="annotation_value_budding">I knopp</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Blomknoppning</string>
+    <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_evidence_of_flowering">Inga tecken på blomning</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Adult</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -828,4 +830,84 @@
     <string name="list_observation_checkbox_description">Kryssruta för att välja observation i flervalsläge</string>
     <string name="observation_list_item_iconic_pic_description">Miniatyrbild för observationstaxon</string>
     <string name="observation_list_item_obs_pic_description">Miniatyrbild för observation</string>
+    <string name="messages">Meddelanden</string>
+    <string name="all_messages">Alla meddelanden</string>
+    <string name="search_messages">Sök meddelanden</string>
+    <string name="no_messages">Du har för närvarande inga meddelanden. Du kan skicka ett nytt meddelande med den gröna knappen eller direkt från någons profilsida.</string>
+    <string name="no_messages_found">Inga meddelanden hittades.</string>
+    <string name="send_a_message">Skicka ett meddelande</string>
+    <string name="sending_message">Skickar meddelande...</string>
+    <string name="could_not_send_message">Kunde inte skicka meddelande: %1$s</string>
+    <string name="subject">Ämne</string>
+    <string name="body">Innehåll</string>
+    <string name="type_your_message_here">Skriv ditt meddelande här</string>
+    <string name="new_message_to">Nytt meddelande till %1$s</string>
+    <string name="who_would_you_like_to_send_a_message_to">Vem vill du skicka ett meddelande till?</string>
+    <string name="new_message">Nytt meddelande</string>
+    <string name="search_for_inaturalist_users">Sök efter iNautralist-användare</string>
+    <string name="please_sign_in_for_messages">Du måste vara inloggad för att se dina meddelanden.</string>
+    <string name="sorry">Beklagar</string>
+    <string name="you_must_have_three_observations">Du måste ha tre verifierbara observationer eller tre bestämningar för andra för att kunna göra det.</string>
+    <string name="mute_this_user">Tysta denna användare</string>
+    <string name="unmute_this_user">Slå på denna användare igen</string>
+    <string name="flag_this_conversation">Flagga denna konversation</string>
+    <string name="mute_this_user_question">Tysta denna användare?</string>
+    <string name="you_will_no_longer_receive_messages">Du kommer inte längre att få några meddelanden om aktivitet från den här användaren, detta inkluderar meddelanden, kommentarer, bestämningar och omnämnanden.</string>
+    <string name="mute">Tysta</string>
+    <string name="muting_user">Tystar användare...</string>
+    <string name="unmuting_user">Slår på användare igen...</string>
+    <string name="failed_muting_user">Lyckades inte tysta användare!</string>
+    <string name="failed_unmuting_user">Lyckades inte slå på användare igen!</string>
+    <string name="flag_conversation">Flagga konversation</string>
+    <string name="spam">Spam</string>
+    <string name="commercial_solicitation">Uppvaktning av försäljare, länkar som inte leder någonstans, m.m.</string>
+    <string name="offensive_inappropriate">Stötande/Olämpligt</string>
+    <string name="misleading_or_illegal_content">Vilseledande eller olagligt innehåll, rasistiska eller etniska glåpord, etc. För mer information om vår definition av \"lämpligt\", se vår FAQ.</string>
+    <string name="other">Annat</string>
+    <string name="some_other_reason">Någon annan anledning du kan förklara.</string>
+    <string name="continue_text">Fortsätt</string>
+    <string name="why_are_you_flagging_this_item">Varför flaggar du detta objekt?</string>
+    <string name="thank_you_for_submitting_the_flag">Tack för att du skickar in flaggan!</string>
+    <string name="flagging_conversation">Flaggar konversation...</string>
+    <string name="failed_flagging_conversation">Lyckades inte flagga konversationen!</string>
+    <string name="no_subject">Inget ämne</string>
+    <string name="rank_state_of_matter">Aggregationstillstånd</string>
+    <string name="rank_kingdom">Rike</string>
+    <string name="rank_subkingdom">Underrike</string>
+    <string name="rank_phylum">Fylum</string>
+    <string name="rank_subphylum">Underfylum</string>
+    <string name="rank_superclass">Överklass</string>
+    <string name="rank_class">Klass</string>
+    <string name="rank_subclass">Underklass</string>
+    <string name="rank_infraclass">Infraklass</string>
+    <string name="rank_superorder">Överordning</string>
+    <string name="rank_order">Ordning</string>
+    <string name="rank_suborder">Underordning</string>
+    <string name="rank_infraorder">Infraordning</string>
+    <string name="rank_subterclass">Subterklass</string>
+    <string name="rank_parvorder">Parvordning</string>
+    <string name="rank_zoosection">Zoosektion</string>
+    <string name="rank_zoosubsection">Zooundersektion</string>
+    <string name="rank_superfamily">Överfamilj</string>
+    <string name="rank_epifamily">Epifamilj</string>
+    <string name="rank_family">Familj</string>
+    <string name="rank_subfamily">Underfamilj</string>
+    <string name="rank_supertribe">Övertribus</string>
+    <string name="rank_tribe">Tribus</string>
+    <string name="rank_subtribe">Undertribus</string>
+    <string name="rank_genus">Släkte</string>
+    <string name="rank_genushybrid">Släkteshybrid</string>
+    <string name="rank_subgenus">Undersläkte</string>
+    <string name="rank_section">Sektion</string>
+    <string name="rank_subsection">undersektion</string>
+    <string name="rank_complex">Komplex</string>
+    <!-- Singular -->
+    <string name="rank_species">Art</string>
+    <string name="rank_hybrid">Hybrid</string>
+    <!-- Singular -->
+    <string name="rank_subspecies">Underart</string>
+    <string name="rank_variety">Varietet</string>
+    <string name="rank_form">Form</string>
+    <string name="rank_infrahybrid">Infrahybrid</string>
+    <string name="rank_leaves">Löv</string>
 </resources>
