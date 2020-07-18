@@ -148,6 +148,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     public static boolean sActivityCreated = false;
     private SwipeRefreshLayout mListSwipeContainer;
     private SwipeRefreshLayout mGridSwipeContainer;
+    private SwipeRefreshLayout mSpeciesListSwipeContainer;
+    private SwipeRefreshLayout mSpeciesGridSwipeContainer;
+    private SwipeRefreshLayout mIdentificationsListSwipeContainer;
+    private SwipeRefreshLayout mIdentificationsGridSwipeContainer;
     private View mAddButton;
     private boolean mMultiSelectionMode = false;
     private TextView mMultiSelectionObsCount;
@@ -949,9 +953,23 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             return;
         }
 
-        // Start sync
-        Intent serviceIntent = new Intent(INaturalistService.ACTION_PULL_OBSERVATIONS, null, ObservationListActivity.this, INaturalistService.class);
-        ContextCompat.startForegroundService(this, serviceIntent);
+        if ((refreshView == mListSwipeContainer) || (refreshView == mGridSwipeContainer)) {
+            // Pull latest observations
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_PULL_OBSERVATIONS, null, ObservationListActivity.this, INaturalistService.class);
+            ContextCompat.startForegroundService(this, serviceIntent);
+
+            // In this case - also refresh IDs/species
+            getUserDetails(INaturalistService.ACTION_GET_USER_IDENTIFICATIONS);
+            getUserDetails(INaturalistService.ACTION_GET_USER_SPECIES_COUNT);
+
+        } else if ((refreshView == mSpeciesListSwipeContainer) || (refreshView == mSpeciesGridSwipeContainer)) {
+            // Refresh species list
+            getUserDetails(INaturalistService.ACTION_GET_USER_SPECIES_COUNT);
+
+        } else if ((refreshView == mIdentificationsListSwipeContainer) || (refreshView == mIdentificationsGridSwipeContainer)) {
+            // Refresh identifications
+            getUserDetails(INaturalistService.ACTION_GET_USER_IDENTIFICATIONS);
+        }
     }
 
     @Override
@@ -1004,6 +1022,28 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                         mGridSwipeContainer.setEnabled(false);
                     }
                 }
+
+                if (mViewPager.getCurrentItem() == 1) {
+                    if (mIsGrid[1]) {
+                        mSpeciesListSwipeContainer.setEnabled(false);
+                        mSpeciesGridSwipeContainer.setEnabled(true);
+                    } else {
+                        mSpeciesListSwipeContainer.setEnabled(true);
+                        mSpeciesGridSwipeContainer.setEnabled(false);
+                    }
+                }
+
+                if (mViewPager.getCurrentItem() == 2) {
+                    if (mIsGrid[2]) {
+                        mIdentificationsListSwipeContainer.setEnabled(false);
+                        mIdentificationsGridSwipeContainer.setEnabled(true);
+                    } else {
+                        mIdentificationsListSwipeContainer.setEnabled(true);
+                        mIdentificationsGridSwipeContainer.setEnabled(false);
+                    }
+                }
+
+
 
                 mLastIndex = 0;
                 mLastTop = 0;
@@ -1114,11 +1154,14 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mIdentificationsEmptyIcon = layout.findViewById(R.id.empty_icon);
                     mIdentificationsEmptyIcon.setImageResource(R.drawable.ic_empty_id);
                     mIdentificationsList = layout.findViewById(R.id.list);
-                    layout.findViewById(R.id.list_swipe_container).setEnabled(false);
+                    layout.findViewById(R.id.list_swipe_container).setEnabled(true);
                     mIdentificationsGrid = layout.findViewById(R.id.grid);
-                    layout.findViewById(R.id.grid_swipe_container).setEnabled(false);
+                    layout.findViewById(R.id.grid_swipe_container).setEnabled(true);
                     mShowMoreIdentifications = layout.findViewById(R.id.show_more);
                     mShowMoreIdentifications.setText(R.string.see_more_identifications);
+
+                    mIdentificationsGridSwipeContainer = layout.findViewById(R.id.grid_swipe_container);
+                    mIdentificationsListSwipeContainer = layout.findViewById(R.id.list_swipe_container);
 
                     layout.findViewById(R.id.syncing_top_bar).setVisibility(View.GONE);
                     layout.findViewById(R.id.add_observation).setVisibility(View.GONE);
@@ -1146,6 +1189,17 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                     mShowMoreIdentifications.setOnClickListener(showMore);
 
+                    if (mIsGrid[2]) {
+                        mIdentificationsListSwipeContainer.setEnabled(false);
+                        mIdentificationsGridSwipeContainer.setEnabled(true);
+                    } else {
+                        mIdentificationsListSwipeContainer.setEnabled(true);
+                        mIdentificationsGridSwipeContainer.setEnabled(false);
+                    }
+
+                    mIdentificationsListSwipeContainer.setOnRefreshListener(() -> onRefreshView(mIdentificationsListSwipeContainer));
+                    mIdentificationsGridSwipeContainer.setOnRefreshListener(() -> onRefreshView(mIdentificationsGridSwipeContainer));
+
                     break;
 
                 case 1:
@@ -1155,11 +1209,13 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mSpeciesEmptyIcon = layout.findViewById(R.id.empty_icon);
                     mSpeciesEmptyIcon.setImageResource(R.drawable.ic_empty_leaf);
                     mSpeciesList = layout.findViewById(R.id.list);
-                    layout.findViewById(R.id.list_swipe_container).setEnabled(false);
+                    layout.findViewById(R.id.list_swipe_container).setEnabled(true);
                     mSpeciesGrid = layout.findViewById(R.id.grid);
-                    layout.findViewById(R.id.grid_swipe_container).setEnabled(false);
+                    layout.findViewById(R.id.grid_swipe_container).setEnabled(true);
                     mShowMoreSpecies = layout.findViewById(R.id.show_more);
                     mShowMoreSpecies.setText(R.string.see_more_species);
+                    mSpeciesGridSwipeContainer = layout.findViewById(R.id.grid_swipe_container);
+                    mSpeciesListSwipeContainer = layout.findViewById(R.id.list_swipe_container);
 
                     layout.findViewById(R.id.syncing_top_bar).setVisibility(View.GONE);
                     layout.findViewById(R.id.add_observation).setVisibility(View.GONE);
@@ -1178,6 +1234,17 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mSpeciesGrid.setOnItemClickListener(onSpeciesClick);
 
                     mShowMoreSpecies.setOnClickListener(showMore);
+
+                    if (mIsGrid[1]) {
+                        mSpeciesListSwipeContainer.setEnabled(false);
+                        mSpeciesGridSwipeContainer.setEnabled(true);
+                    } else {
+                        mSpeciesListSwipeContainer.setEnabled(true);
+                        mSpeciesGridSwipeContainer.setEnabled(false);
+                    }
+
+                    mSpeciesListSwipeContainer.setOnRefreshListener(() -> onRefreshView(mSpeciesListSwipeContainer));
+                    mSpeciesGridSwipeContainer.setOnRefreshListener(() -> onRefreshView(mSpeciesGridSwipeContainer));
 
                     break;
 
@@ -1727,9 +1794,20 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             if (intent.getAction().equals(INaturalistService.SPECIES_COUNT_RESULT)) {
             	mSpecies = resultsArray;
                 mTotalSpecies = totalResults;
+
+                mSpeciesListSwipeContainer.setRefreshing(false);
+                mSpeciesList.refreshDrawableState();
+                mSpeciesGridSwipeContainer.setRefreshing(false);
+                mSpeciesGrid.refreshDrawableState();
+
             } else if (intent.getAction().equals(INaturalistService.IDENTIFICATIONS_RESULT)) {
                 mIdentifications = resultsArray;
                 mTotalIdentifications = totalResults;
+
+                mIdentificationsListSwipeContainer.setRefreshing(false);
+                mIdentificationsList.refreshDrawableState();
+                mIdentificationsGridSwipeContainer.setRefreshing(false);
+                mIdentificationsGrid.refreshDrawableState();
             }
 
             refreshViewState();

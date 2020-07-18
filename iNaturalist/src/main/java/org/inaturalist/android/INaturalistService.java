@@ -1893,6 +1893,7 @@ public class INaturalistService extends IntentService {
                         long lastSync = System.currentTimeMillis();
                         mPreferences.edit().putLong("last_sync_time", lastSync).commit();
                         mPreferences.edit().putLong("last_user_details_refresh_time", 0); // Force to refresh user details
+                        mPreferences.edit().putLong("last_user_notifications_refresh_time", 0); // Force to refresh user notification counts
                     } else {
                         mHandler.post(new Runnable() {
                             @Override
@@ -2273,6 +2274,7 @@ public class INaturalistService extends IntentService {
 
         Logger.tag(TAG).debug("syncObservations: Done");
         mPreferences.edit().putLong("last_user_details_refresh_time", 0); // Force to refresh user details
+        mPreferences.edit().putLong("last_user_notifications_refresh_time", 0); // Force to refresh user notification counts
     }
 
     private int mTotalProgressForObservation = 0;

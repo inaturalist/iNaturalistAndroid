@@ -44,17 +44,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.collections4.Predicate;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.tinylog.Logger;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 
 /**
  * Utility class for implementing the side-menu (navigation drawer) used throughout the app
@@ -67,7 +61,8 @@ public class BaseFragmentActivity extends AppCompatActivity {
 	private static final String TAG = "BaseFragmentActivity";
 
     // Time in mins to refresh the user details (such as user obs count)
-    private static final int USER_REFRESH_TIME_MINS = 1;
+    private static final int USER_REFRESH_TIME_SECONDS = 60;
+    private static final int USER_NOTIFICATIONS_REFRESH_TIME_SECONDS = 20;
 
     private DrawerLayout mDrawerLayout;
 	private ViewGroup mSideMenu;
@@ -231,19 +226,20 @@ public class BaseFragmentActivity extends AppCompatActivity {
         Integer obsCount = prefs.getInt("observation_count", -1);
         String userIconUrl = prefs.getString("user_icon_url", null);
         Long lastRefreshTime = prefs.getLong("last_user_details_refresh_time", 0);
+        Long lastNotificationCountsTime = prefs.getLong("last_user_notifications_refresh_time", 0);
 
         if (username != null) {
             ((TextView)findViewById(R.id.side_menu_username)).setText(username);
             findViewById(R.id.menu_login).setVisibility(View.INVISIBLE);
             findViewById(R.id.side_menu_username).setVisibility(View.VISIBLE);
 
-            if (System.currentTimeMillis() - lastRefreshTime > 1000 * 60 * USER_REFRESH_TIME_MINS) {
+            if (System.currentTimeMillis() - lastRefreshTime > 1000 * USER_REFRESH_TIME_SECONDS) {
                 // Get fresh user details from the server
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_USER_DETAILS, null, this, INaturalistService.class);
                 ContextCompat.startForegroundService(this, serviceIntent);
             }
 
-            if (System.currentTimeMillis() - lastRefreshTime > 1000 * 20) {
+            if (System.currentTimeMillis() - lastNotificationCountsTime > 1000 * USER_NOTIFICATIONS_REFRESH_TIME_SECONDS) {
                 // Get number of unread messages
                 Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_NOTIFICATION_COUNTS, null, this, INaturalistService.class);
                 ContextCompat.startForegroundService(this, serviceIntent2);
@@ -720,6 +716,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
         prefEditor.remove("user_email");
         prefEditor.remove("user_full_name");
         prefEditor.remove("last_user_details_refresh_time");
+        prefEditor.remove("last_user_notifications_refresh_time");
         prefEditor.remove("jwt_token");
         prefEditor.remove("jwt_token_expiration");
         prefEditor.remove("pref_observation_errors");
@@ -998,10 +995,13 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 return;
             }
 
+            SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putLong("last_user_notifications_refresh_time", System.currentTimeMillis());
+
             resultsObject = (BetterJSONObject) object;
             int unreadMessageCount = resultsObject.getInt("messages_count");
 
-            SharedPreferences.Editor editor = mApp.getPrefs().edit();
             editor.putInt("user_unread_messages", unreadMessageCount);
             editor.commit();
 
