@@ -63,6 +63,8 @@ import com.ablanco.zoomy.TapListener;
 import com.ablanco.zoomy.ZoomListener;
 import com.ablanco.zoomy.Zoomy;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.CustomTarget;
@@ -468,28 +470,42 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
             	String extension = imageUrl.substring(imageUrl.lastIndexOf('.'));
 
+            	String thumbnailUrl, largeSizeUrl;
+
                 // Deduce the original-sized URL
                 if (imageUrl.substring(0, imageUrl.lastIndexOf('/')).endsWith("assets")) {
                     // It's an assets default URL - e.g. https://www.inaturalist.org/assets/copyright-infringement-square.png
-                    imageUrl = imageUrl.substring(0, imageUrl.lastIndexOf('-') + 1) + "original" + extension;
+                    largeSizeUrl = imageUrl.substring(0, imageUrl.lastIndexOf('-') + 1) + "original" + extension;
+                    thumbnailUrl = imageUrl.substring(0, imageUrl.lastIndexOf('-') + 1) + "small" + extension;
                 } else {
                     // "Regular" observation photo
-                    imageUrl = imageUrl.substring(0, imageUrl.lastIndexOf('/') + 1) + "original" + extension;
+                    largeSizeUrl = imageUrl.substring(0, imageUrl.lastIndexOf('/') + 1) + "original" + extension;
+                    thumbnailUrl = imageUrl.substring(0, imageUrl.lastIndexOf('/') + 1) + "small" + extension;
                 }
 
-                Picasso.with(ObservationViewerActivity.this)
-                        .load(imageUrl)
-                        .into(imageView, new Callback() {
-                            @Override
-                            public void onSuccess() {
-                                BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
-                                Bitmap bitmap = drawable.getBitmap();
+                RequestBuilder thumbnailRequest = Glide.with(ObservationViewerActivity.this)
+                        .load(thumbnailUrl);
 
-                                mBitmaps.put(position, bitmap);
+
+                Glide.with(ObservationViewerActivity.this)
+                        .load(largeSizeUrl)
+                        .thumbnail(thumbnailRequest)
+                        .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.AUTOMATIC))
+                        .into(new CustomTarget<BitmapDrawable>() {
+                            @Override
+                            public void onResourceReady(@NonNull BitmapDrawable resource, @Nullable Transition<? super BitmapDrawable> transition) {
+                                // Save downloaded bitmap into local file
+                                imageView.setImageDrawable(resource);
+
+                                mBitmaps.put(position, resource.getBitmap());
                             }
 
                             @Override
-                            public void onError() {
+                            public void onLoadCleared(@Nullable Drawable placeholder) {
+                            }
+
+                            @Override
+                            public void onLoadFailed(@Nullable Drawable errorDrawable) {
                                 // Failed to load observation photo
                                 try {
                                     JSONObject eventParams = new JSONObject();
