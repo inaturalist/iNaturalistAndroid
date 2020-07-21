@@ -49,7 +49,6 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
     private ArrayList<Pair<JSONObject, JSONObject>> mAttributes;
     private ArrayList<Boolean> mIsAttributeExpanded;
     private HashMap<Integer, Set<JSONObject>> mAttributeValuesAdded;
-    private JSONObject mTaxon;
 
     public interface OnAnnotationActions {
         // When the user chooses to delete his annotation value
@@ -122,13 +121,12 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
         mOnAnnonationsActions = onAnnonationActions;
         mApp = (INaturalistApp) mContext.getApplicationContext();
         mHelper = new ActivityHelper(mContext);
-        mTaxon = taxon;
 
         mAttributeValuesAdded = new HashMap<>();
 
         try {
-            JSONArray ancestors = taxon.optJSONArray("ancestor_ids");
-            ancestors.put(taxon.getInt("id")); // Add our own taxon ID well
+            JSONArray ancestors = taxon != null ? taxon.optJSONArray("ancestor_ids") : new JSONArray();
+            if (taxon != null) ancestors.put(taxon.getInt("id")); // Add our own taxon ID well
 
             // First, remove any possible attribute values that are not valid for this observation taxon ID
             for (int i = 0; i < attributes.length(); i++) {

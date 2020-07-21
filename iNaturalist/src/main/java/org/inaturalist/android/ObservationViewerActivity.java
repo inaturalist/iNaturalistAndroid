@@ -2448,27 +2448,18 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         int taxonId = -1;
 
-        if (observation.optJSONArray("identifications").length() == 1) {
-            // Use current taxon
-            if (observation.has("taxon")) {
-                JSONObject taxon = observation.optJSONObject("taxon");
-                if (taxon != null) {
-                    taxonId = taxon.optInt("id");
-                }
+        // Use current taxon
+        if (observation.has("taxon")) {
+            JSONObject taxon = observation.optJSONObject("taxon");
+            if (taxon != null) {
+                taxonId = taxon.optInt("id");
             }
-        } else {
-            // Use community taxon
-            taxonId = observation.optInt("community_taxon_id");
         }
 
         if (taxonId == -1) {
-            mAttributes = new SerializableJSONArray();
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    refreshAttributes();
-                }
-            });
+            // No taxon - get the generic attributes (no taxon)
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_ATTRIBUTES_FOR_TAXON, null, ObservationViewerActivity.this, INaturalistService.class);
+            ContextCompat.startForegroundService(this, serviceIntent);
             return;
         }
 
@@ -2502,13 +2493,18 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     }
 
     private void refreshAttributes() {
+        if ((mObservation != null) && (mObservation.id == null)) {
+            // Don't show attributes for non-synced observations
+            mAnnotationSection.setVisibility(View.GONE);
+            return;
+        }
         if (mAttributes == null) {
             mAnnotationSection.setVisibility(View.VISIBLE);
             mLoadingAnnotations.setVisibility(View.VISIBLE);
             mAnnotationsContent.setVisibility(View.GONE);
             return;
 
-        } else if ((mAttributes.getJSONArray().length() == 0) || (mTaxonJson == null)) {
+        } else if (mAttributes.getJSONArray().length() == 0) {
             mAnnotationSection.setVisibility(View.GONE);
             return;
         }
@@ -2529,7 +2525,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         }
 
         try {
-            mAnnotationsList.setAdapter(new AnnotationsAdapter(this, this, mObservation.toJSONObject(), new JSONObject(mTaxonJson), mAttributes.getJSONArray(), obsAnnotations));
+            mAnnotationsList.setAdapter(new AnnotationsAdapter(this, this, mObservation.toJSONObject(), mTaxonJson != null ? new JSONObject(mTaxonJson) : null, mAttributes.getJSONArray(), obsAnnotations));
         } catch (JSONException e) {
             Logger.tag(TAG).error(e);
         }

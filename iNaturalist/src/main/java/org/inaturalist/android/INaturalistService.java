@@ -1087,7 +1087,7 @@ public class INaturalistService extends IntentService {
 
             } else if (action.equals(ACTION_GET_ATTRIBUTES_FOR_TAXON)) {
                 BetterJSONObject taxon = (BetterJSONObject) intent.getSerializableExtra(TAXON);
-                BetterJSONObject results = getAttributesForTaxon(taxon.getJSONObject());
+                BetterJSONObject results = getAttributesForTaxon(taxon != null ? taxon.getJSONObject() : null);
 
                 Intent reply = new Intent(GET_ATTRIBUTES_FOR_TAXON_RESULT);
                 mApp.setServiceResult(GET_ATTRIBUTES_FOR_TAXON_RESULT, results);
@@ -3158,18 +3158,22 @@ public class INaturalistService extends IntentService {
     private BetterJSONObject getAttributesForTaxon(JSONObject taxon) throws AuthenticationException {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
-        JSONArray ancestors = taxon.optJSONArray("ancestor_ids");
+        JSONArray ancestors = taxon != null ? taxon.optJSONArray("ancestor_ids") : null;
 
-        if (ancestors == null) return null;
+        String url;
+        if (ancestors != null) {
+            String ancestry = "";
 
-        String ancestry = "";
-        for (int i = 0; i < ancestors.length(); i++) {
-            int currentTaxonId = ancestors.optInt(i);
-            ancestry += String.format(Locale.ENGLISH, "%d,", currentTaxonId);
+            for (int i = 0; i < ancestors.length(); i++) {
+                int currentTaxonId = ancestors.optInt(i);
+                ancestry += String.format(Locale.ENGLISH, "%d,", currentTaxonId);
+            }
+            ancestry += String.format(Locale.ENGLISH, "%d", taxon.optInt("id"));
+            url = API_HOST + "/controlled_terms/for_taxon?taxon_id=" + ancestry + "&ttl=-1&locale=" + deviceLanguage;
+
+        } else {
+            url = API_HOST + "/controlled_terms?ttl=-1&locale=" + deviceLanguage;
         }
-        ancestry += String.format(Locale.ENGLISH, "%d", taxon.optInt("id"));
-
-        String url = API_HOST + "/controlled_terms/for_taxon?taxon_id=" + ancestry + "&ttl=-1&locale=" + deviceLanguage;
 
         JSONArray json = get(url);
         if (json == null || json.length() == 0) { return null; }
