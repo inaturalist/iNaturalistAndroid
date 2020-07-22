@@ -6278,7 +6278,13 @@ public class INaturalistService extends IntentService {
 
                 if (useJWTToken) {
                     // Use JSON Web Token for this request
-                    requestBuilder.addHeader("Authorization", getJWTToken());
+                    String jwtToken = getJWTToken();
+                    if (jwtToken == null) {
+                        // Could not renew JWT token for some reason (either connectivity issues or user changed password)
+                        Logger.tag(TAG).error("JWT Token is null");
+                        throw new AuthenticationException();
+                    }
+                    requestBuilder.addHeader("Authorization", jwtToken);
                 } else if (mLoginType == LoginType.PASSWORD) {
                     // Old-style password authentication
                     requestBuilder.addHeader("Authorization", "Basic " + mCredentials);
