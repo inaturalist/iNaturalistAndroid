@@ -54,7 +54,6 @@ public class ProjectDetailsAbout extends AppCompatActivity {
 
         title.setText(mProject.getString("title"));
         String description = mProject.getString("description");
-        description = description.replace("\n", "\n<br>");
         HtmlUtils.fromHtml(projectDescription, description);
 
         String terms = mProject.getString("terms");

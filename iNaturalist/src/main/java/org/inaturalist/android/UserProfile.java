@@ -797,7 +797,6 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
                     title = fullName;
                 }
                 String formattedBio = mUser.getString("description");
-                formattedBio = formattedBio.replace("\n", "<br/>");
                 mHelper.alert(title, formattedBio);
             }
         };

@@ -129,7 +129,7 @@ public class NewsArticle extends AppCompatActivity {
         } else {
             mArticleContentWeb.setVisibility(View.GONE);
             mArticleContent.setVisibility(View.VISIBLE);
-            String article = mArticle.getString("body").replace("\n", "<br/>");
+            String article = mArticle.getString("body");
             HtmlUtils.fromHtml(mArticleContent, article);
         }
 
