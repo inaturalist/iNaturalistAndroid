@@ -160,7 +160,7 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
             // Build the attribute / annotations list - take note of existing values and cases of
             // annotations with multiple values
             mAttributes = new ArrayList<>();
-            for (int i = 0; i < observationAnnotations.length(); i++) {
+            for (int i = 0; i < (observationAnnotations != null ? observationAnnotations.length() : 0); i++) {
                 // Find matching attribute for the current value
                 int currentAttributeValueId = observationAnnotations.getJSONObject(i).getInt("controlled_attribute_id");
                 for (int c = 0; c < attributes.length(); c++) {
