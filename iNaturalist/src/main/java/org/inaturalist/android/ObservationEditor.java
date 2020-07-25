@@ -2829,6 +2829,10 @@ public class ObservationEditor extends AppCompatActivity {
 
         if (mApp.isExternalStoragePermissionGranted()) {
             copyPath = addPhotoToGallery(path);
+            if (copyPath == null) {
+                // Failed adding the photo to gallery - continue normally
+                copyPath = path;
+            }
         } else {
             // User didn't grant permissions - do not copy captured photo into gallery
             copyPath = path;
