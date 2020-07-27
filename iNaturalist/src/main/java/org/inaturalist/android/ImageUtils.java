@@ -348,15 +348,11 @@ public class ImageUtils {
         BitmapFactory.Options options = new BitmapFactory.Options();
 
         try {
-            if (path == null) {
-                is = context.getContentResolver().openInputStream(photoUri);
-            } else {
-                is = new FileInputStream(path);
-            }
+            is = context.getContentResolver().openInputStream(photoUri);
 
             // Just read the input image dimensions
             options.inJustDecodeBounds = true;
-            Bitmap bitmap = BitmapFactory.decodeStream(is,null,options);
+            Bitmap bitmap = BitmapFactory.decodeStream(is, null, options);
             int originalHeight = options.outHeight;
             int originalWidth = options.outWidth;
             int newHeight, newWidth;
@@ -364,12 +360,7 @@ public class ImageUtils {
             // BitmapFactory.decodeStream moves the reading cursor
             is.close();
 
-            if (path == null) {
-                is = context.getContentResolver().openInputStream(photoUri);
-            } else {
-                is = new FileInputStream(path);
-            }
-
+            is = context.getContentResolver().openInputStream(photoUri);
 
             if (Math.max(originalHeight, originalWidth) < maxDimensions) {
                 if (path != null) {
@@ -428,11 +419,7 @@ public class ImageUtils {
             // BitmapFactory.decodeStream moves the reading cursor
             is.close();
 
-            if (path == null) {
-                is = context.getContentResolver().openInputStream(photoUri);
-            } else {
-                is = new FileInputStream(path);
-            }
+            is = context.getContentResolver().openInputStream(photoUri);
 
             // Copy all EXIF data from original image into resized image
             copyExifData(is, new File(imageFile.getAbsolutePath()), null);
