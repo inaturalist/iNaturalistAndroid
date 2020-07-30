@@ -91,6 +91,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
     protected static final String PLACE_GUESS = "place_guess";
 
     protected static final int REQUEST_CODE_CHOOSE_PINNED_LOCATION = 0x1000;
+    private static final String REGEX_LAT_LNG = "-?\\d+(.\\d+)?[ ]*,[ ]*-?\\d+(.\\d+)?";
 
     private GoogleMap mMap;
     private HashMap<String, Observation> mMarkerObservations;
@@ -373,6 +374,40 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
                  bounds = RectangularBounds.newInstance(
                         region.farRight,
                         region.nearLeft);
+            }
+
+            if (query.matches(REGEX_LAT_LNG)) {
+                // Lat/lng search (not a place search)
+                double lat = Double.valueOf(query.split(",")[0].trim());
+                double lng = Double.valueOf(query.split(",")[1].trim());
+                Logger.tag(TAG).info("Location search for lat/lng: " + lat + "/" + lng);
+
+                mWaitForAllResults = new CountDownLatch(1);
+                mPlaces = new ArrayList<>();
+
+                INatPlace inatPlace = new INatPlace();
+                inatPlace.id = null;
+                inatPlace.title = String.format(getString(R.string.location_lat_lng), lat, lng);
+                inatPlace.subtitle = null;
+                inatPlace.latitude = lat;
+                inatPlace.longitude = lng;
+                inatPlace.accuracy = Double.valueOf(0);
+
+                mPlaces.add(inatPlace);
+
+                // Refresh results
+
+                mPlaceAdapter = new LocationChooserPlaceAdapter(this, mPlaces);
+
+                runOnUiThread(() -> {
+                    mLocationList.setAdapter(mPlaceAdapter);
+                    mLoadingSearch.setVisibility(View.GONE);
+                    mLocationList.setVisibility(View.VISIBLE);
+                });
+
+                mWaitForAllResults.countDown();
+
+                return;
             }
 
             FindAutocompletePredictionsRequest request = FindAutocompletePredictionsRequest.builder()
