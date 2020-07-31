@@ -154,6 +154,9 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         mAutoCompleteToken = AutocompleteSessionToken.newInstance();
         mPlacesClient = Places.createClient(this);
 
+        mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.location_chooser);
 
         mGeoprivacySpinner = (Spinner) findViewById(R.id.geoprivacy_selection);
@@ -188,8 +191,6 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         mActionBarGeoprivacy = (TextView) actionBar.getCustomView().findViewById(R.id.geoprivacy);
 
         refreshActionBar();
-
-        mApp = (INaturalistApp) getApplicationContext();
 
         mObservationsMapMyLocation = (ImageView) findViewById(R.id.my_location);
         mMyLocationProgressView = (ProgressBar) findViewById(R.id.my_location_progress);

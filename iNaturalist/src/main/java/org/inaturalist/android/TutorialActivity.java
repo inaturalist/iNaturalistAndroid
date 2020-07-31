@@ -159,6 +159,9 @@ public class TutorialActivity extends BaseFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.tutorial);
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -197,7 +200,6 @@ public class TutorialActivity extends BaseFragmentActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        mApp = (INaturalistApp) getApplicationContext();
         mAdapter = new TutorialAdapter(this);
         mViewPager.setAdapter(mAdapter);
         mViewPager.addOnPageChangeListener(mAdapter);

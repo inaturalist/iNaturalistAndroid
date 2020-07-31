@@ -7,9 +7,14 @@ import android.widget.Button;
 
 public class MissionsOnboardingActivity extends BaseFragmentActivity {
 
-@Override
+    private INaturalistApp mApp;
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
 
         setContentView(R.layout.missions_onboarding);
 	    onDrawerCreate(savedInstanceState);

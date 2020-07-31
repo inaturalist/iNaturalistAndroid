@@ -138,6 +138,9 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
         mHelper = new ActivityHelper(this);
 
         final Intent intent = getIntent();
+        mApp = (INaturalistApp)getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.project_details);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -148,11 +151,6 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
 
         mAppBarLayout = (AppBarLayout) findViewById(R.id.project_top_bar);
         mAppBarLayout.addOnOffsetChangedListener(this);
-
-        if (mApp == null) {
-            mApp = (INaturalistApp)getApplicationContext();
-        }
-
 
         if (savedInstanceState == null) {
             mProject = new BetterJSONObject(intent.getStringExtra("project"));

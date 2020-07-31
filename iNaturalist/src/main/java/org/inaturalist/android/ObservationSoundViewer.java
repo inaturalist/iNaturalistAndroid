@@ -47,6 +47,8 @@ public class ObservationSoundViewer extends AppCompatActivity implements SoundPl
         actionBar.setLogo(R.drawable.ic_arrow_back);
 
         mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.observation_editor_sound_player);
 
         mDeleteSoundButton = findViewById(R.id.delete_sound);

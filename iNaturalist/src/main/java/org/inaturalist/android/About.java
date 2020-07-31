@@ -40,14 +40,14 @@ public class About extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
         setContentView(R.layout.inat_about);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         setTitle(R.string.about_this_app);
         
-        mApp = (INaturalistApp) getApplicationContext();
-
 
         mAboutText = findViewById(R.id.inat_credits);
 

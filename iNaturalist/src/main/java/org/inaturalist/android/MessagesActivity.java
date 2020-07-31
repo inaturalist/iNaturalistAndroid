@@ -69,13 +69,15 @@ public class MessagesActivity extends BaseFragmentActivity implements MessageAda
         super.onCreate(savedInstanceState);
         Bridge.restoreInstanceState(this, savedInstanceState);
 
+        mApp = (INaturalistApp)getApplication();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.messages);
 	    onDrawerCreate(savedInstanceState);
 
         ActionBar ab = getSupportActionBar();
         if (ab != null) ab.setElevation(0);
 
-        mApp = (INaturalistApp)getApplication();
         mHelper = new ActivityHelper(this);
 
         mProgress = findViewById(R.id.progress);

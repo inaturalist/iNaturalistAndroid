@@ -107,6 +107,7 @@ public class GuideTaxonActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
 
         mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
         mHelper = new ActivityHelper(this);
 
         Intent intent = getIntent();

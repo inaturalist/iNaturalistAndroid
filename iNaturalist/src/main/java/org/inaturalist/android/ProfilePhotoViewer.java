@@ -53,7 +53,9 @@ public class ProfilePhotoViewer extends AppCompatActivity {
         actionBar.setLogo(R.drawable.ic_arrow_back);
 
         mApp = (INaturalistApp) getApplicationContext();
-        setContentView(R.layout.profile_photo);
+		mApp.applyLocaleSettings(getBaseContext());
+
+		setContentView(R.layout.profile_photo);
 
         Intent intent = getIntent();
 

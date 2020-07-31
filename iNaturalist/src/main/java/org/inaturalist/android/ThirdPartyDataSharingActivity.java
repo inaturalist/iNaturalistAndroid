@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ThirdPartyDataSharingActivity extends AppCompatActivity {
 
+    private INaturalistApp mApp;
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -29,6 +31,9 @@ public class ThirdPartyDataSharingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
 
         setContentView(R.layout.third_party_data_sharing);
         setTitle(R.string.third_party_data_sharing);

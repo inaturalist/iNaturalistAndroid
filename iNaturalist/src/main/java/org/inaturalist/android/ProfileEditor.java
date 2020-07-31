@@ -208,6 +208,9 @@ public class ProfileEditor extends AppCompatActivity {
         mHelper = new ActivityHelper(this);
 
         final Intent intent = getIntent();
+        mApp = (INaturalistApp)getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.edit_profile);
 
 
@@ -223,9 +226,6 @@ public class ProfileEditor extends AppCompatActivity {
         mUserPic = (ImageView) findViewById(R.id.user_pic);
         mViewProfile = (Button) findViewById(R.id.view_profile);
 
-        if (mApp == null) {
-            mApp = (INaturalistApp)getApplicationContext();
-        }
 
         mViewProfile.setOnClickListener(new View.OnClickListener() {
             @Override

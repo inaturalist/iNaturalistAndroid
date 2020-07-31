@@ -329,13 +329,13 @@ public class ObservationEditor extends AppCompatActivity {
 
         mCameraPhotos = new ArrayList<String>();
 
+        mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.observation_confirmation);
 
         setTitle(R.string.details);
 
-        if (mApp == null) {
-            mApp = (INaturalistApp) getApplicationContext();
-        }
         if (mHelper == null) {
             mHelper = new ActivityHelper(this);
         }

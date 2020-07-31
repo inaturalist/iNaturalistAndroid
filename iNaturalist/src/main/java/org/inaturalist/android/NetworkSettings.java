@@ -68,6 +68,9 @@ public class NetworkSettings extends AppCompatActivity {
         mHelper = new ActivityHelper(this);
 
         final Intent intent = getIntent();
+        mApp = (INaturalistApp)getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.inat_network_settings);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -76,11 +79,6 @@ public class NetworkSettings extends AppCompatActivity {
 
         mNetworks = (RadioGroup) findViewById(R.id.networks);
         mMoreInfo = (ViewGroup) findViewById(R.id.more_info);
-
-        if (mApp == null) {
-            mApp = (INaturalistApp)getApplicationContext();
-        }
-
 
         mMoreInfo.setOnClickListener(new View.OnClickListener() {
             @Override

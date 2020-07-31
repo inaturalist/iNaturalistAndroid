@@ -119,6 +119,8 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
         Bridge.restoreInstanceState(this, savedInstanceState);
 
         mHelper = new ActivityHelper(this);
+        mApp = (INaturalistApp)getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
 
         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_MISSION_DETAILS);
 
@@ -132,10 +134,6 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
         mAppBarLayout = (AppBarLayout) findViewById(R.id.mission_top_bar);
         mAppBarLayout.addOnOffsetChangedListener(this);
 
-        if (mApp == null) {
-            mApp = (INaturalistApp)getApplicationContext();
-        }
-        
         if (savedInstanceState == null) {
             mMission = (BetterJSONObject) intent.getSerializableExtra(MISSION);
             mLocationExpansion = intent.getFloatExtra(LOCATION_EXPANSION, 0);

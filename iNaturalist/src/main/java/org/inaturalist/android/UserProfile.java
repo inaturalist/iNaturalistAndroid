@@ -136,6 +136,10 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
         mHelper = new ActivityHelper(this);
 
         final Intent intent = getIntent();
+
+        mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.user_profile);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -275,10 +279,6 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
         ViewCompat.setNestedScrollingEnabled(mIdentificationsList, true);
         ViewCompat.setNestedScrollingEnabled(mSpeciesList, true);
 
-        if (mApp == null) {
-            mApp = (INaturalistApp)getApplicationContext();
-        }
-        
         if (savedInstanceState == null) {
             Uri uri = intent.getData();
 

@@ -80,6 +80,8 @@ public class MissionsActivity extends BaseFragmentActivity {
         super.onCreate(savedInstanceState);
         Bridge.restoreInstanceState(this, savedInstanceState);
 
+        mApp = (INaturalistApp)getApplication();
+        mApp.applyLocaleSettings(getBaseContext());
         setContentView(R.layout.missions);
 	    onDrawerCreate(savedInstanceState);
 
@@ -120,7 +122,6 @@ public class MissionsActivity extends BaseFragmentActivity {
             }
         });
 
-        mApp = (INaturalistApp)getApplication();
         mHelper = new ActivityHelper(this);
 
         mApp.setStringResourceForView(this, R.id.view_all, "view_all_all_caps", "view_all");

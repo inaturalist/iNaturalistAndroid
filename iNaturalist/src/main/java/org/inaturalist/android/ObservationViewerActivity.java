@@ -654,6 +654,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         actionBar.setTitle(R.string.observation);
 
         mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
         setContentView(R.layout.observation_viewer);
         mHelper = new ActivityHelper(this);
 

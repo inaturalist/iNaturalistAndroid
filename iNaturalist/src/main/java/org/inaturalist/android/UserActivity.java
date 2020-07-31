@@ -79,6 +79,9 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
         super.onCreate(savedInstanceState);
         Bridge.restoreInstanceState(this, savedInstanceState);
 
+        mApp = (INaturalistApp)getApplication();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.user_activity);
 
         setTitle(R.string.activity);
@@ -88,8 +91,6 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_USER_ACTIVITY);
 
         mHelper = new ActivityHelper(this);
-
-        mApp = (INaturalistApp)getApplication();
 
         if (savedInstanceState == null) {
             mViewType = VIEW_TYPE_MY_CONTENT;

@@ -88,6 +88,9 @@ public class PlaceSearchActivity extends AppCompatActivity {
 
         mHelper = new ActivityHelper(this);
 
+        mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.place_search);
 
         Intent intent = getIntent();

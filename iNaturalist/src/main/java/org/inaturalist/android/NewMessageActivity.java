@@ -53,6 +53,8 @@ public class NewMessageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Bridge.restoreInstanceState(this, savedInstanceState);
 
+        mApp = (INaturalistApp)getApplication();
+        mApp.applyLocaleSettings(getBaseContext());
         setContentView(R.layout.new_message);
 
 	    Intent intent = getIntent();
@@ -63,7 +65,6 @@ public class NewMessageActivity extends AppCompatActivity {
         ab.setTitle(String.format(getString(R.string.new_message_to), mUsername));
         ab.setDisplayHomeAsUpEnabled(true);
 
-        mApp = (INaturalistApp)getApplication();
         mHelper = new ActivityHelper(this);
 
         mSendMessage = findViewById(R.id.send_message);

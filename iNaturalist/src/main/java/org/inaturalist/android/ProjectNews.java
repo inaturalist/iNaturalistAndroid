@@ -66,6 +66,10 @@ public class ProjectNews extends BaseFragmentActivity {
         mHelper = new ActivityHelper(this);
 
         final Intent intent = getIntent();
+
+        mApp = (INaturalistApp)getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.project_news);
 
         ActionBar actionBar = getSupportActionBar();
@@ -100,10 +104,6 @@ public class ProjectNews extends BaseFragmentActivity {
             }
         });
 
-        if (mApp == null) {
-            mApp = (INaturalistApp)getApplicationContext();
-        }
-        
         if (savedInstanceState == null) {
             mProject = (BetterJSONObject) intent.getSerializableExtra("project");
             mIsUserFeed = intent.getBooleanExtra("is_user_feed", false);

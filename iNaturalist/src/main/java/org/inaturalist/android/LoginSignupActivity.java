@@ -135,6 +135,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
         mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
         setContentView(R.layout.login_signup);
 
         mHelper = new ActivityHelper(this);

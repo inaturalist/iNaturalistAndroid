@@ -50,6 +50,8 @@ public class WebActivity extends BaseFragmentActivity {
         actionBar.setIcon(android.R.color.transparent);
 
         app = (INaturalistApp) getApplicationContext();
+        app.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.web);
         onDrawerCreate(savedInstanceState);
         helper = new ActivityHelper(this);

@@ -244,12 +244,12 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
         mProjectFieldViewers = new HashMap<Integer, List<ProjectFieldViewer>>();
 
         final Intent intent = getIntent();
+        mApp = (INaturalistApp)getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.project_selector);
         
-        if (mApp == null) {
-            mApp = (INaturalistApp)getApplicationContext();
-        }
-        
+
         if (savedInstanceState == null) {
             mObservationId = (int) intent.getIntExtra(INaturalistService.OBSERVATION_ID, 0);
             mObservationProjects = intent.getIntegerArrayListExtra(INaturalistService.PROJECT_ID);

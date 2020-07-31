@@ -80,6 +80,7 @@ public class DataQualityAssessment extends AppCompatActivity implements DataQual
         actionBar.setTitle(R.string.data_quality_assessment);
 
         mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
         setContentView(R.layout.data_quality_assessment);
         mHelper = new ActivityHelper(this);
 

@@ -52,6 +52,8 @@ public class LocationDetailsActivity extends AppCompatActivity implements Locati
         Bridge.restoreInstanceState(this, savedInstanceState);
 
         mHelper = new ActivityHelper(this);
+        mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
         mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         mObservation = (Observation)getIntent().getSerializableExtra(OBSERVATION);

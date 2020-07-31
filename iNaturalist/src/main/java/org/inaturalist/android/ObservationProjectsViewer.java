@@ -72,11 +72,10 @@ public class ObservationProjectsViewer extends AppCompatActivity {
         mHelper = new ActivityHelper(this);
 
         final Intent intent = getIntent();
+        mApp = (INaturalistApp)getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.project_selector);
-        
-        if (mApp == null) {
-            mApp = (INaturalistApp)getApplicationContext();
-        }
         
         if (savedInstanceState == null) {
             mObservationProjects = (ArrayList<BetterJSONObject>) intent.getSerializableExtra(ObservationProjectsViewer.PROJECTS);

@@ -70,6 +70,8 @@ public class MissionDetailsMapActivity extends AppCompatActivity {
         }
 
 
+        mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
         setContentView(R.layout.mission_details_map);
     }
 

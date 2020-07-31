@@ -74,6 +74,8 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
 
 
         mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.onboarding);
 
         Intent intent = getIntent();

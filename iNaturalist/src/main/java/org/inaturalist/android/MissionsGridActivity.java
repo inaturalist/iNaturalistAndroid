@@ -57,6 +57,9 @@ public class MissionsGridActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
+        mApp = (INaturalistApp)getApplication();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.missions_grid);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -83,7 +86,6 @@ public class MissionsGridActivity extends AppCompatActivity {
         mLoadingDescription = (TextView) findViewById(R.id.loading_description);
         mNoMissionsContainer = (ViewGroup) findViewById(R.id.no_recommended_missions);
 
-        mApp = (INaturalistApp)getApplication();
         mHelper = new ActivityHelper(this);
 
         if (savedInstanceState == null) {

@@ -644,6 +644,8 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
         final ActionBar actionBar = getSupportActionBar();
 
         mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
+
         mHelper = new ActivityHelper(this);
 
         Intent intent = getIntent();

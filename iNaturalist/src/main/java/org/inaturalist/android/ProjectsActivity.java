@@ -38,13 +38,14 @@ public class ProjectsActivity extends BaseFragmentActivity implements OnTabChang
         setTheme(R.style.NoActionBarShadowTheme);
         super.onCreate(savedInstanceState);
 
+        mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.projects);
 	    onDrawerCreate(savedInstanceState);
 
         getSupportActionBar().setElevation(0);
 
-        mApp = (INaturalistApp) getApplicationContext();
-        
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mViewPager.setOffscreenPageLimit(3);
 

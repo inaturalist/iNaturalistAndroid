@@ -246,6 +246,7 @@ public class ExploreActivity extends BaseFragmentActivity {
 
         mHelper = new ActivityHelper(this);
         mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
 
         setContentView(R.layout.explore);
 

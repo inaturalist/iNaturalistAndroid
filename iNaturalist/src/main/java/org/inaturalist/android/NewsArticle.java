@@ -65,6 +65,9 @@ public class NewsArticle extends AppCompatActivity {
         mHelper = new ActivityHelper(this);
 
         final Intent intent = getIntent();
+        mApp = (INaturalistApp)getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.article);
 
         ActionBar actionBar = getSupportActionBar();
@@ -79,10 +82,6 @@ public class NewsArticle extends AppCompatActivity {
         mUsername = (TextView) findViewById(R.id.username);
         mUserPic = (ImageView) findViewById(R.id.user_pic);
 
-        if (mApp == null) {
-            mApp = (INaturalistApp)getApplicationContext();
-        }
-        
         if (savedInstanceState == null) {
             mArticle = (BetterJSONObject) intent.getSerializableExtra(KEY_ARTICLE);
             mIsUserFeed = intent.getBooleanExtra(KEY_IS_USER_FEED, false);

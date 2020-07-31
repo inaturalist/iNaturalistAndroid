@@ -52,10 +52,16 @@ public class ObservationPhotoEditor extends AppCompatActivity implements UCropFr
     private boolean mShowLoader;
 
     private ActivityHelper mHelper;
+    private INaturalistApp mApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
+        
         setContentView(R.layout.observation_photo_editor);
 
         mHelper = new ActivityHelper(this);

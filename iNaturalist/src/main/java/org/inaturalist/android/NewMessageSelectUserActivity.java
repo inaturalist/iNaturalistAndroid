@@ -56,14 +56,15 @@ public class NewMessageSelectUserActivity extends AppCompatActivity implements U
         super.onCreate(savedInstanceState);
         Bridge.restoreInstanceState(this, savedInstanceState);
 
+        mApp = (INaturalistApp)getApplication();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.new_message_select_user);
 
         ActionBar ab = getSupportActionBar();
         if (ab != null) ab.setElevation(0);
         ab.setTitle(R.string.new_message);
         ab.setDisplayHomeAsUpEnabled(true);
-
-        mApp = (INaturalistApp)getApplication();
 
         mProgress = findViewById(R.id.progress);
         mNoUsers = findViewById(R.id.no_users_found);

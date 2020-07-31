@@ -19,8 +19,9 @@ import org.apache.commons.lang3.StringUtils;
 public class ProjectDetailsAbout extends AppCompatActivity {
     public static final String KEY_PROJECT = "project";
     @State(AndroidStateBundlers.BetterJSONObjectBundler.class) public BetterJSONObject mProject;
+    private INaturalistApp mApp;
 
-@Override
+    @Override
 	protected void onStop()
 	{
 		super.onStop();
@@ -31,6 +32,10 @@ public class ProjectDetailsAbout extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bridge.restoreInstanceState(this, savedInstanceState);
+
+
+        mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
 
         setContentView(R.layout.project_details_about);
 

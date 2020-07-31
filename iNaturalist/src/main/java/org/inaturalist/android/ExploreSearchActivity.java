@@ -115,6 +115,9 @@ public class ExploreSearchActivity extends AppCompatActivity {
             Logger.tag(TAG).error(e);
         }
 
+        mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.explore_search);
 
         Intent intent = getIntent();

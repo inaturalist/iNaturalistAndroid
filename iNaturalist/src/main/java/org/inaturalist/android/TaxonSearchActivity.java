@@ -500,7 +500,9 @@ public class TaxonSearchActivity extends AppCompatActivity {
         View customView = li.inflate(R.layout.taxon_search_action_bar, null);
         actionBar.setCustomView(customView);
         actionBar.setLogo(R.drawable.ic_arrow_back);
-       
+
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.taxon_search);
         
         Intent intent = getIntent();

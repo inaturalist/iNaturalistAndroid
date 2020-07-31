@@ -107,6 +107,7 @@ public class CompareSuggestionActivity extends AppCompatActivity {
         actionBar.hide();
 
         mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
         mHelper = new ActivityHelper(this);
 
         Intent intent = getIntent();

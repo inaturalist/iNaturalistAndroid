@@ -90,6 +90,9 @@ public class MessagesThreadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Bridge.restoreInstanceState(this, savedInstanceState);
 
+        mApp = (INaturalistApp)getApplication();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.messages_thread);
 
 	    Intent intent = getIntent();
@@ -129,7 +132,6 @@ public class MessagesThreadActivity extends AppCompatActivity {
         ab.setTitle(mMessage.getString("subject"));
         ab.setDisplayHomeAsUpEnabled(true);
 
-        mApp = (INaturalistApp)getApplication();
         mHelper = new ActivityHelper(this);
 
         mProgress = findViewById(R.id.progress);

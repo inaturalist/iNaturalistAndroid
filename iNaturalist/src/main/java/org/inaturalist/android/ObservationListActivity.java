@@ -368,6 +368,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         Bridge.restoreInstanceState(this, savedInstanceState);
 
+        mApp = (INaturalistApp)getApplication();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.observation_list);
 
         setTitle(R.string.observations);
@@ -378,8 +381,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_ME);
 
         mHelper = new ActivityHelper(this);
-
-        mApp = (INaturalistApp)getApplication();
 
 
         if (savedInstanceState == null) {

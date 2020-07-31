@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class DebugSettingsActivity extends AppCompatActivity {
 
+    private INaturalistApp mApp;
+
     @Override
 	protected void onStop() {
 		super.onStop();
@@ -29,7 +31,8 @@ public class DebugSettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
         setContentView(R.layout.debug_settings);
         setTitle(R.string.debug_settings);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

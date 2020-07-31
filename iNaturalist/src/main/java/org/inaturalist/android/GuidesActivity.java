@@ -44,7 +44,8 @@ public class GuidesActivity extends BaseFragmentActivity implements OnTabChangeL
         super.onCreate(savedInstanceState);
 
         mApp = (INaturalistApp) getApplicationContext();
-        
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.guides);
 	    onDrawerCreate(savedInstanceState);
 

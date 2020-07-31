@@ -54,13 +54,14 @@ public class DeleteAccount extends BaseFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
         setContentView(R.layout.delete_account);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         setTitle(R.string.delete_your_account);
         
-        mApp = (INaturalistApp) getApplicationContext();
         mHelper = new ActivityHelper(this);
 
         mMessage = findViewById(R.id.content);

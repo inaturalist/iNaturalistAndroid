@@ -81,6 +81,9 @@ public class IdentificationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Bridge.restoreInstanceState(this, savedInstanceState);
 
+        mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.new_identification);
 
         if (savedInstanceState == null) {

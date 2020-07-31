@@ -57,6 +57,8 @@ public class TaxonTagPhotosViewer extends AppCompatActivity {
 		actionBar.setLogo(R.drawable.up_icon);
 
 		mApp = (INaturalistApp) getApplicationContext();
+		mApp.applyLocaleSettings(getBaseContext());
+
 		setContentView(R.layout.observation_photos);
 
 		Intent intent = getIntent();

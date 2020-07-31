@@ -151,6 +151,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         actionBar.setTitle(R.string.filters);
 
         mHelper = new ActivityHelper(this);
+        mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
 
         setContentView(R.layout.explore_filters);
 
@@ -239,7 +241,6 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         });
 
 
-        mApp = (INaturalistApp) getApplicationContext();
         SharedPreferences prefs = mApp.getPrefs();
         final String currentUsername = prefs.getString("username", null);
         final String currentUserIconUrl = prefs.getString("user_icon_url", null);

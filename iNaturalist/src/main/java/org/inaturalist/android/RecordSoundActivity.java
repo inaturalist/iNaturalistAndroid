@@ -92,6 +92,7 @@ public class RecordSoundActivity extends AppCompatActivity implements SoundRecor
         setTitle(R.string.record_sound);
 
         mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
 
         setContentView(R.layout.record_sound);
         

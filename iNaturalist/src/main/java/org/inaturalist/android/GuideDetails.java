@@ -792,6 +792,9 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
         super.onCreate(savedInstanceState);
         Bridge.restoreInstanceState(this, savedInstanceState);
 
+        mApp = (INaturalistApp)getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.guide_details);
 
         mHandler = new Handler();

@@ -103,6 +103,8 @@ public class ObservationPhotosViewer extends AppCompatActivity {
         actionBar.setLogo(R.drawable.ic_arrow_back);
 
         mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
+
         setContentView(R.layout.observation_photos);
 
         mDeletePhoto = findViewById(R.id.delete_photo);

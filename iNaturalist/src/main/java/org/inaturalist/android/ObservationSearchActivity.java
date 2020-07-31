@@ -108,7 +108,9 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
         View customView = li.inflate(R.layout.observation_search_action_bar, null);
         actionBar.setCustomView(customView);
         actionBar.setLogo(R.drawable.ic_arrow_back);
-       
+
+        mApp = (INaturalistApp) getApplicationContext();
+        mApp.applyLocaleSettings(getBaseContext());
         setContentView(R.layout.taxon_search);
         
         mProgress = (ProgressBar) findViewById(R.id.progress);
