@@ -939,5 +939,6 @@
     <string name="rank_form">Form</string>
     <string name="rank_infrahybrid">Infrahybrid</string>
     <string name="rank_leaves">Leaves</string>
+    <string name="location_lat_lng">Location: %1$f, %2$f</string>
 </resources>
 
