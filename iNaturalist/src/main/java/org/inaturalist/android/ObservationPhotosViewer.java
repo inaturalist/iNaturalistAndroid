@@ -391,11 +391,12 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                     photoFileName = originalPhotoFilename;
                 }
 
+                /* TODO - file exists, but cannot be read anymore
                 if ((originalPhotoFilename != null) && (new File(originalPhotoFilename).exists())) {
                     // Prefer to show original photo file, if still exists, since it has the original resolution (not
                     // resized down to 2048x2048)
                     photoFileName = originalPhotoFilename;
-                }
+                }*/
 
                 String imageUrl = imageCursor.getString(imageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
                 mImages.add(imageUrl != null ? imageUrl : photoFileName);
