@@ -16,7 +16,7 @@
     <string name="couldnt_load_nearby_observations">Beobachtungen in der Nähe konnten nicht geladen werden: %1$s</string>
     <string name="username_invalid">Der Benutzername oder das Kennwort sind falsch, bitte melde dich erneut an.</string>
     <string name="signing_in">Anmeldung läuft...</string>
-    <string name="signed_in">Sie sind angemeldet!</string>
+    <string name="signed_in">Du bist angemeldet!</string>
     <string name="please_sign_in">Bitte anmelden</string>
     <string name="please_sign_in_description">Bitte melde dich mit deinem iNaturalist Account an oder erstelle einen neuen Account.</string>
     <string name="please_enable_location_services">Bitte aktiviere Ortungsdienste, um deinen aktuellen Standort zu finden...</string>
@@ -24,7 +24,7 @@
     <string name="photo_not_specified">Foto nicht festgelegt</string>
     <string name="set_date">Datum</string>
     <string name="set_time">Zeit</string>
-    <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
+    <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this to add a little personality, but that doesn't always translate very well. -->
     <string name="something_went_wrong">Ups, es ist ein Fehler aufgetreten: %1$s</string>
     <string name="edit">Bearbeiten</string>
     <string name="oh_no">Oh nein! %1$s</string>
@@ -59,8 +59,8 @@
     <string name="com_facebook_loginview_cancel_action">Abbrechen</string>
     <string name="com_facebook_logo_content_description">Facebook Logo</string>
     <string name="com_facebook_usersettingsfragment_log_in_button">Einloggen&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Eingelogged</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Nicht eingelogged</string>
+    <string name="com_facebook_usersettingsfragment_logged_in">Eingeloggt</string>
+    <string name="com_facebook_usersettingsfragment_not_logged_in">Nicht eingeloggt</string>
     <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d waren hier</string>
     <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
     <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d waren hier</string>
@@ -70,10 +70,10 @@
     <string name="com_facebook_loading">Ladevorgang...</string>
     <string name="com_facebook_internet_permission_error_title">AndroidManifest Fehler</string>
     <string name="com_facebook_internet_permission_error_message">WebView Login erfordert INTERNET Berechtigung</string>
-    <string name="com_facebook_requesterror_web_login">Facebook-Konto ist gesperrt. Bitte auf www.facebook.com einloggen um fortzufahren</string>
-    <string name="com_facebook_requesterror_relogin">Bitte erneut in die App einloggen um dein Facebook-Konto zu verbinden.</string>
-    <string name="com_facebook_requesterror_password_changed">Dein Facebook Passwort hat sich geändert. Bitte erneut einloggen in die App um dein Facebook Konto zu verbinden.</string>
-    <string name="com_facebook_requesterror_reconnect">Bitte erneut in die App einloggen um dein Facebook-Konto zu verbinden.</string>
+    <string name="com_facebook_requesterror_web_login">Facebook-Konto ist gesperrt. Bitte auf www.facebook.com einloggen, um fortzufahren</string>
+    <string name="com_facebook_requesterror_relogin">Bitte erneut in die App einloggen, um dein Facebook-Konto zu verbinden.</string>
+    <string name="com_facebook_requesterror_password_changed">Dein Facebook Passwort hat sich geändert. Bitte erneut in die App einloggen, um dein Facebook-Konto zu verbinden.</string>
+    <string name="com_facebook_requesterror_reconnect">Bitte erneut in die App einloggen, um dein Facebook-Konto zu verbinden.</string>
     <string name="com_facebook_requesterror_permissions">Die App ist dazu nicht berechtigt. Um die Berechtigungen zu ändern, melde dich bitte nochmals in der App an.</string>
     <string name="edit_observation">Beobachtung bearbeiten</string>
     <string name="discard_changes">Bist du sicher, dass du die Änderungen verwerfen möchtest?</string>
@@ -105,10 +105,10 @@
     <string name="search_projects">Projekte suchen...</string>
     <string name="search_guides">Guides suchen...</string>
     <string name="save_observation">Beobachtung speichern</string>
-    <!-- Header for a description an individual guide -->
+    <!-- Header for a description of an individual guide -->
     <string name="about_guide">Über</string>
     <string name="about_guide_all_caps">Über</string>
-    <!-- Header for a description an individual project -->
+    <!-- Header for a description of an individual project -->
     <string name="about_project">Über</string>
     <string name="about_project_all_caps">Über</string>
     <string name="about_this_app">Über</string>
@@ -241,7 +241,7 @@
     <string name="login_signup">Einloggen / Anmelden</string>
     <string name="please_sign_in_via_settings_for_guides">Du musst eingeloggt sein, um deine Guides anzusehen.</string>
     <string name="please_sign_in_for_updates">Du musst eingeloggt sein, um deine Updates anzusehen.</string>
-    <string name="by_using_inat_terms"><![CDATA[Mit der Nutzung von iNaturalist erklären Sie sich mit den <b><a href="https://www.inaturalist.org/pages/terms">Geschäftsbedingungen</a></b> und <b><a href="https://www.inaturalist.org/pages/privacy">Datenschutzerklärung</a></b> einverstanden.]]></string>
+    <string name="by_using_inat_terms"><![CDATA[Mit der Nutzung von iNaturalist erklären Sie sich mit den <b><a href="https://www.inaturalist.org/pages/terms">Geschäftsbedingungen</a></b> und der <b><a href="https://www.inaturalist.org/pages/privacy">Datenschutzerklärung</a></b> einverstanden.]]></string>
     <string name="activity">Aktivität</string>
     <string name="camera">Foto machen</string>
     <string name="upload_photo">Bild auswählen</string>
@@ -283,7 +283,7 @@
         <item quantity="one">In %1$d Projekt enthalten</item>
         <item quantity="other">In %1$d Projekten enthalten</item>
     </plurals>
-    <string name="geoprivacy_explanation"><![CDATA[ Geoprivatsphäre ist eine Einstellung für deine Beobachtungen, die bestimmt, wie deren Koordinaten (Längen- und Breitengrad) dargestellt werden. Dies sind die Optionen: <br/><b>offen</b> - Wenn die Art nicht bedroht ist, kann jeder die Koordinaten sehen. <br/><b>versteckt</b> - Öffentliche Koordinaten werden als zufälliger Punkt in einer 0.2*0.2°-Gebiet um die wahren Koordinaten angezeigt. Dies entspricht am Äquator 22 Qaudratkilometer, weniger nahe der Pole. Nur du und Kuratoren von Projekten, denen du deine Beobachtung hinzufügst, können die wahren Koordinaten sehen. <br/><b>privat</b> - Koordinaten werden nicht in den öffentlichen Karten dargestellt. Nur du und Kuratoren von Projekten, denen du deine Beobachtung hinzufügst, können die wahren Koordinaten sehen.<br/><br/>Projektkuratoren beteiligter Projekte können immer die wahren Koordinaten sehen. Solltest du dich um die Privatheit der Koordinaten deiner Beobachtungen sorgen, solltest du also nur an Projekten teilnehmen, deren Kuratoren du vertraust. ]]></string>
+    <string name="geoprivacy_explanation"><![CDATA[ Geoprivatsphäre ist eine Einstellung für deine Beobachtungen, die bestimmt, wie deren Koordinaten (Längen- und Breitengrad) dargestellt werden. Dies sind die Optionen: <br/><b>offen</b> - Wenn die Art nicht bedroht ist, kann jeder die Koordinaten sehen. <br/><b>versteckt</b> - Öffentliche Koordinaten werden als zufälliger Punkt in einem 0.2*0.2°-Gebiet um die wahren Koordinaten angezeigt. Dies entspricht am Äquator 22 Qaudratkilometer, weniger nahe der Pole. Nur du und Kuratoren von Projekten, denen du deine Beobachtung hinzufügst, können die wahren Koordinaten sehen. <br/><b>privat</b> - Koordinaten werden nicht in den öffentlichen Karten dargestellt. Nur du und Kuratoren von Projekten, denen du deine Beobachtung hinzufügst, können die wahren Koordinaten sehen.<br/><br/>Projektkuratoren beteiligter Projekte können immer die wahren Koordinaten sehen. Solltest du dich um die Privatheit der Koordinaten deiner Beobachtungen sorgen, solltest du also nur an Projekten teilnehmen, deren Kuratoren du vertraust. ]]></string>
     <string name="id_title">%1$ss ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">Löschen</string>
@@ -401,11 +401,11 @@
     <string name="my_content">Mein Inhalt</string>
     <string name="following">Folge ich</string>
     <string name="no_updates_yet">Noch keine Updates. Bleib dran!</string>
-    <string name="you_will_only_receive_updates_when_creating">(Du wirst erst Updates erhalten wenn du Beobachtungen erstellt hast)</string>
+    <string name="you_will_only_receive_updates_when_creating">(Du wirst erst Updates erhalten, wenn du Beobachtungen erstellt hast)</string>
     <string name="you_will_only_receive_updates_when_following">(Du wirst erst Updates erhalten, wenn du Beobachtungen folgst)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> hat eine ID vorgeschlagen: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> hat kommentiert: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="deleted_photos_from_cache_error">Es scheint dass du ein Foto durch das Leeren des App-Caches vor dem Upload gelöscht hast. Bitte füge das Foto erneut zu deiner Beobachtung aus der Galerie hinzu. Achte in Zukunft darauf, dass alle Fotos hochgeladen wurden, bevor du den App-Cache leerst.</string>
+    <string name="deleted_photos_from_cache_error">Es scheint, dass du ein Foto durch das Leeren des App-Caches vor dem Upload gelöscht hast. Bitte füge das Foto erneut zu deiner Beobachtung aus der Galerie hinzu. Achte in Zukunft darauf, dass alle Fotos hochgeladen wurden, bevor du den App-Cache leerst.</string>
     <string name="new_activities">%1s neue</string>
     <string name="no_results_found">Keine Ergebnisse gefunden...</string>
     <plurals name="syncing_x_out_of_y_observations">
@@ -431,14 +431,14 @@
     <string name="taxonomy">Taxonomie</string>
     <string name="about_this_section">Über diesen Abschnitt</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
-    <string name="taxonomy_info">Hier finden sich Links zu höheren hierarchischen Ebenen dieses speziellen Taxons, in der Reihenfolge von grob nach fein sortiert. Nutze diese Links um sich durch den Stammbaum zu bewegen. Wenn du z.B. den genauen Namen eines Organismus nicht kennst, aber weißt wo er einzuordnen ist, klicke auf ein Taxon aus der Liste um mehr Informationen anzuzeigen.</string>
+    <string name="taxonomy_info">Hier finden sich Links zu höheren hierarchischen Ebenen dieses speziellen Taxons, in der Reihenfolge von grob nach fein sortiert. Nutze diese Links, um dich durch den Stammbaum zu bewegen. Wenn du z.B. den genauen Namen eines Organismus nicht kennst, aber weißt wo er einzuordnen ist, klicke auf ein Taxon aus der Liste, um mehr Informationen anzuzeigen.</string>
     <string name="more_info_on_inat">Weitere Informationen auf iNaturalist.org</string>
     <string name="view_suggestions">Vorschläge anzeigen</string>
     <string name="species_search">Suche nach Arten</string>
     <plurals name="were_not_confident">
         <!-- This will probably never happen -->
-        <item quantity="one">Wir sind nicht sicher genug, um eine Empfehlung abzugeben, aber hier ist unserer Nummer %1$d Vorschlag:</item>
-        <item quantity="other">Wir sind nicht sicher genug, um eine Empfehlung abzugeben, aber hier sind unserer Top %1$d Vorschläge:</item>
+        <item quantity="one">Wir sind nicht sicher genug, um eine Empfehlung abzugeben, aber hier ist unser Nummer %1$d Vorschlag:</item>
+        <item quantity="other">Wir sind nicht sicher genug, um eine Empfehlung abzugeben, aber hier sind unsere Top %1$d Vorschläge:</item>
     </plurals>
     <plurals name="top_species_suggestions">
         <item quantity="one">Top %1$d Vorschlag:</item>
@@ -467,9 +467,9 @@
     <string name="taxon_search_hint">z.B. Vögel, Spatz</string>
     <string name="location_search_hint">z.B. Stadt, Park, Land...</string>
     <string name="no_taxon">Tut uns leid, kein Taxon gefunden</string>
-    <string name="please_select_taxon">Bitte wählen Sie ein gültiges Taxon aus der Liste (oder löschen sie das Taxon-Feld).</string>
+    <string name="please_select_taxon">Bitte wähle ein gültiges Taxon aus der Liste (oder löschen sie das Taxon-Feld).</string>
     <string name="sorry_no_location">Tut uns leid, keinen Ort gefunden</string>
-    <string name="location_not_found">Der Standort oder Ort, den Sie gesucht haben ist nicht in unserer Datenbank. Bitte wählen Sie einen Ort aus der Vorschlagsliste unter dem Suchfeld oder löschen sie das Suchfeld.</string>
+    <string name="location_not_found">Der Standort oder Ort, den du gesucht hast, ist nicht in unserer Datenbank. Bitte wähle einen Ort aus der Vorschlagsliste unter dem Suchfeld oder lösche das Suchfeld.</string>
     <string name="undefined">Unbestimmt</string>
     <string name="street_segment">Straßensegment</string>
     <string name="intersection">Kreuzung</string>
