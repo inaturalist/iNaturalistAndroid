@@ -4,7 +4,7 @@ iNaturalistAndroid is an Android app for [iNaturalist.org](http://www.inaturalis
 
 ## Setup
 
-1. Make sure you have tha latest Android Studio
+1. Make sure you have the latest [Android Studio](https://developer.android.com/studio)
 1. Download and install [Crashlytics](https://www.crashlytics.com/downloads/android-studio)
 1. Download the iNaturalist source code and extract to a directory of your choosing
 1. Go to the `iNaturalist/src/main/res/values` and rename `config.xml.example` to `config.xml` (and change its values to match your GMaps, FB, etc. keys)
