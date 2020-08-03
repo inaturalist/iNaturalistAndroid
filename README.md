@@ -1,6 +1,6 @@
 # iNaturalistAndroid
 
-iNaturalistAndroid is an Android app for [iNaturalist.org](http://www.inaturalist.org).
+iNaturalistAndroid is an Android app for [iNaturalist.org](http://www.inaturalist.org). If you'd like to contribute code, please check out [Contributing Code to iNaturalist](https://github.com/inaturalist/inaturalist/blob/master/CONTRIBUTING.md) for general guidelines. If you'd like to contribute translations, please provide them through [our Crowdin project](https://crowdin.com/project/inaturalistios) (look for the `strings.xml` file to work on the Android app).
 
 ## Setup
 
