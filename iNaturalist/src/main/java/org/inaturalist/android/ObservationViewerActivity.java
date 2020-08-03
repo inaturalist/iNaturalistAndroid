@@ -1754,7 +1754,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             // Display the errors for the observation, if any
             TextView errorsDescription = (TextView) findViewById(R.id.errors);
             if (mObservation.id != null) {
-                JSONArray errors = mApp.getErrorsForObservation(mObservation.id);
+                JSONArray errors = mApp.getErrorsForObservation(mObservation.id != null ? mObservation.id : mObservation._id);
 
                 if (errors.length() == 0) {
                     errorsDescription.setVisibility(View.GONE);

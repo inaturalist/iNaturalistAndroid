@@ -7058,7 +7058,7 @@ public class INaturalistService extends IntentService {
                 if ((original != null) && (original.has("error")) && (!original.isNull("error"))) {
                     JSONArray errors = new JSONArray();
                     errors.put(original.optString("error").trim());
-                    mApp.setErrorsForObservation(observation.id, 0, errors);
+                    mApp.setErrorsForObservation(observation.id != null ? observation.id : observation._id, 0, errors);
                 }
 
                 return false;

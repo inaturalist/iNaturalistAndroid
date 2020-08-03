@@ -1542,7 +1542,7 @@ public class ObservationEditor extends AppCompatActivity {
         
         if ((mObservation != null) && (mObservation.id != null)) {
             // Display the errors for the observation, if any
-            JSONArray errors = mApp.getErrorsForObservation(mObservation.id);
+            JSONArray errors = mApp.getErrorsForObservation(mObservation.id != null ? mObservation.id : mObservation._id);
             TextView errorsDescription = (TextView) findViewById(R.id.errors);
 
             if (errors.length() == 0) {
@@ -1819,7 +1819,7 @@ public class ObservationEditor extends AppCompatActivity {
         }
 
         // Clear photo-related errors, if any
-        if (mObservation.id != null) mApp.setErrorsForObservation(mObservation.id, 0, new JSONArray());
+        mApp.setErrorsForObservation(mObservation.id != null ? mObservation.id : mObservation._id, 0, new JSONArray());
 
         return true;
     }

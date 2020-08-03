@@ -441,7 +441,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         String speciesGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.SPECIES_GUESS));
         String[] photoInfo = obsUUID != null ? mPhotoInfo.get(obsUUID) : null;
         boolean hasSounds = (obsUUID != null && mHasSounds.get(obsUUID) != null);
-        boolean hasErrors = (mApp.getErrorsForObservation((int) externalObsId).length() > 0);
+        boolean hasErrors = (mApp.getErrorsForObservation(((int)(externalObsId > 0 ? externalObsId : obsId))).length() > 0);
 
         if (convertView == null) {
             holder = new ViewHolder((ViewGroup) view);
