@@ -216,7 +216,7 @@
     <string name="error">Fehler</string>
     <string name="could_not_retrieve_guide">Konnte Details des Guides nicht abrufen - vermutlich ein Netzwerkfehler.</string>
     <string name="inat_support_email_subject">Hilfe für iNaturalist (Version %1$s - %2$s; User ID - %3$s)</string>
-    <string name="send_email">Email senden...</string>
+    <string name="send_email">E-Mail senden...</string>
     <string name="login_with">Anmelden über</string>
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
@@ -584,7 +584,7 @@
     <string name="inat_about_title">iNaturalist ist eine gemeinsame Initiative der California Academy of Sciences und der National Geographic Society.</string>
     <string name="inat_credits"><![CDATA[iNaturalist existiert dank jeder Person, die an unserer Gemeinschaft teilnimmt. Die Leute, die die Software bauen, die Schnittstellen entwerfen, unsere Infrastruktur pflegen, die Community unterstützen und die Zusammenarbeit fördern, sind Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, und Ken-ichi Ueda.<br/><br/>CalTech und Cornell Tech haben dabei geholfen, das Computer-Vision-System zu entwickeln, das Identifizierungen von Fotografien vorschlägt. Wir danken Grant Van Horn, Serge Belongie, und Pietro Perona für die Fortschritte in der Computer-Vision-Forschung. Weitere Informationen findest du unter <a href="http://www.visipedia.org">visipedia.org</a>. Vielen Dank an NVIDIA für zusätzliche Hilfe.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[Das internationale iNaturalist-Netzwerk unterstützt lokalisierte, voll integrierte, iNaturalist-basierte Websites in den folgenden Ländern, dank der Unterstützung durch angeschlossene Partnerorganisationen.]]></string>
-    <string name="inat_credits_post"><![CDATA[iNaturalist ist auch den Open-Source-Entwicklern sehr dankbar, die so viel von der Software bereitgestellt haben, auf die wir uns tagtäglich verlassen. Siehe <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github. om/inaturalist/iNaturalistAndroid</a> für Open-Source-Beiträge.<br/> Wir sind dankbar für die Übersetzungsunterstützung von Freiwilligen der Crowdin.com Community, insbesondere Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie und katunchik. <br/>IUCN Kategorie II Orte von IUCN und UNEP-WCMC (2015), Die World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Verfügbar auf: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
+    <string name="inat_credits_post"><![CDATA[iNaturalist ist auch den Open-Source-Entwicklern sehr dankbar, die so viel von der Software bereitgestellt haben, auf die wir uns tagtäglich verlassen. Siehe <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> für Open-Source-Beiträge.<br/> Wir sind dankbar für die Unterstützung der Übersetzungen durch Freiwillige der Crowdin.com-Community, insbesondere Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie und katunchik. <br/>IUCN Kategorie II-Orte bereitgestellt von IUCN und UNEP-WCMC (2015), Die World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Verfügbar auf: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Danksagungen</string>
     <string name="password_changed">Das von der App verwendete Passwort funktioniert nicht mehr - hast du dein Passwort auf der Website geändert? Bitte gib hier das Aktuelle ein</string>
     <string name="just_so_you_know">Nur damit du es weißt...</string>
@@ -701,8 +701,8 @@
     <string name="community_id_at_species_level_or_lower">Gemeinschafts-ID auf Artenebene oder niedriger</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Kann die Gemeinschaftskennung auf Grundlage der Erkenntnisse noch bestätigt oder verbessert werden?</string>
     <string name="no_as_good_as_it_can_be">Nein, es ist so gut wie es nur sein kann</string>
-    <string name="seasonality">Saisonabhängigkeit</string>
-    <string name="verifiable">Nachweisbar</string>
+    <string name="seasonality">Jahreszeitliche Verteilung</string>
+    <string name="verifiable">Verifizierbar</string>
     <string name="no_annotation">Keine Anmerkungen</string>
     <string name="donate_to_inaturalist">An iNaturalist spenden</string>
     <string name="prefers_scientific_name_first">Wissenschaftliche Namen zuerst</string>
@@ -827,8 +827,11 @@
     <string name="forbidden">Verweigert</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">Die Fotos der App, die du mit iNaturalist teilen möchtest, sind nicht für Beobachtungen geeignet, da sie entweder keinen Beweis für eine Begnung mit einem Lebewesen darstellen, weil sie unangemessene Produktmarken oder kommerzielle Inhalte enthalten, oder weil sie auf andere Weise gegen unsere Nutzungsbedingungen verstoßen.</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">Kontrollkästchen für die Auswahl von Beobachtungen im Mehrfachwahl-Modus</string>
-    <string name="observation_list_item_iconic_pic_description">Vorschaubild für das beobachtete Taxon</string>
+    <!-- Description of a UI element for screen readers -->
+    <string name="observation_list_item_iconic_pic_description">Miniaturansicht des beobachteten Taxons</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_obs_pic_description">Vorschaubild zur Beobachtung</string>
     <string name="messages">Mitteilungen</string>
     <string name="all_messages">Alle Mitteilungen</string>
@@ -910,4 +913,5 @@
     <string name="rank_form">Form</string>
     <string name="rank_infrahybrid">Infrahybrid</string>
     <string name="rank_leaves">Abzweigungen</string>
+    <string name="location_lat_lng">Standort: %1$f, %2$f</string>
 </resources>

@@ -162,12 +162,12 @@
         <item>Khám phá và Kết nối với Tự nhiên</item>
         <item>Hãy ra ngoài! Tìm vài thứ hoang dã, và chụp một bức ảnh đầy đủ và rõ ràng.</item>
         <item>Chia sẻ quan sát của bạn với cộng đồng iNaturalist.</item>
-        <item>Check back for comments and identifications on your observation!</item>
+        <item>Quay lại sau để đọc ý kiến ​​và nhận dạng về quan sát của bạn!</item>
         <item><![CDATA[<b>Lớp nghiên cứu</b> các quan sát đã được chia sẻ với các nhà khoa học đang làm việc để hiểu rõ và bảo vệ thiên nhiên.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
         <item>Mở</item>
-        <item>Obscured</item>
+        <item>Làm mờ</item>
         <item>Riêng tư</item>
     </string-array>
     <string name="alert_sign_out">Bạn chắc chắn muốn đăng xuất? Điều này sẽ xoá toàn bộ các quan sát của bạn trên thiết bị này. Nó sẽ không ảnh hưởng đến các quan sát bạn đã tải lên iNaturalist.</string>
@@ -180,23 +180,23 @@
     <string name="observation_photos">Những bức ảnh quan sát</string>
     <string name="remove">Loại bỏ?</string>
     <string name="no_observations_found">Không tìm thấy quan sát nào</string>
-    <string name="license_none">None, all rights reserved</string>
+    <string name="license_none">Không, bản quyền đã được bảo hộ</string>
     <string name="sources_and_attribution">Các nguồn và Quyền hạn</string>
     <string name="photos"><![CDATA[<b>Các bức ảnh:</b> %1$s]]></string>
     <string name="text"><![CDATA[<b>Văn bản:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">Mạng lưới iNaturalist chính. Chọn OK sẽ thiết lập ứng dụng của bạn thành một phần của mạng lưới iNaturalist toàn cầu.</string>
-    <string name="alert_message_use_naturalista">NaturaLista is a member of the iNaturalist Network in Mexico. Local institutions supporting NaturaLista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturewatchnz">iNaturalist NZ is a member of the iNaturalist Network in New Zealand. Local institutions supporting iNaturalist NZ will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Local institutions supporting iNaturalist Canada will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Local institutions supporting Naturalista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4All is a member of the iNaturalist Network in Portugal. Local institutions supporting Biodiversity4All will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá is a member of the iNaturalist Network in Panama. Local institutions supporting iNaturalist Panamá will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador is a member of the iNaturalist Network in Ecuador. Local institutions supporting iNaturalist Ecuador will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia is a member of the iNaturalist Network in Australia. Local institutions supporting iNaturalist Australia will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_argentinat">ArgentiNat is a member of the iNaturalist Network in Argentina. Local institutions supporting ArgentiNat will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistfi">iNaturalist Finland is a member of the iNaturalist Network in Finland. Local institutions supporting iNaturalist Finland will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalista">NaturaLista là thành viên của Mạng lưới iNaturalist ở Mexico. Các tổ chức địa phương hỗ trợ NaturaLista sẽ có quyền truy cập vào địa chỉ email của bạn và truy cập vào tọa độ xác thực của các quan sát được đặt ở chế độ che khuất hoặc riêng tư. Vui lòng không thử thay đổi liên kết của bạn nếu bạn có hơn 1000 quan sát. Bạn có muốn thay đổi liên kết của bạn?</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZ là thành viên của Mạng lưới iNaturalist ở New Zealand. Các tổ chức địa phương hỗ trợ iNaturalist NZ sẽ có quyền truy cập vào địa chỉ email của bạn và truy cập vào tọa độ xác thực của các quan sát được đặt ở chế độ che khuất hoặc riêng tư. Vui lòng không thử thay đổi liên kết của bạn nếu bạn có hơn 1000 quan sát. Bạn có muốn thay đổi liên kết của bạn?</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada là thành viên của Mạng lưới iNaturalist ở Canada. Các tổ chức địa phương hỗ trợ iNaturalist Canada sẽ có quyền truy cập vào địa chỉ email của bạn và truy cập vào tọa độ xác thực của các quan sát được đặt ở chế độ che khuất hoặc riêng tư. Vui lòng không thử thay đổi liên kết của bạn nếu bạn có hơn 1000 quan sát. Bạn có muốn thay đổi liên kết của bạn?</string>
+    <string name="alert_message_use_naturalistacolombia">Naturalista là thành viên của Mạng lưới iNaturalist ở Colombia. Các tổ chức địa phương hỗ trợ Naturalista sẽ có quyền truy cập vào địa chỉ email của bạn và truy cập vào tọa độ xác thực của các quan sát được đặt ở chế độ che khuất hoặc riêng tư. Vui lòng không thử thay đổi liên kết của bạn nếu bạn có hơn 1000 quan sát. Bạn có muốn thay đổi liên kết của bạn?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All là thành viên của Mạng lưới iNaturalist ở Bồ Đào Nha. Các tổ chức địa phương hỗ trợ Biodiversity4All sẽ có quyền truy cập vào địa chỉ email của bạn và truy cập vào tọa độ xác thực của các quan sát được đặt ở chế độ che khuất hoặc riêng tư. Vui lòng không thử thay đổi liên kết của bạn nếu bạn có hơn 1000 quan sát. Bạn có muốn thay đổi liên kết của bạn?</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá là thành viên của Mạng lưới iNaturalist ở Panama. Các tổ chức địa phương hỗ trợ iNaturalist Panamá sẽ có quyền truy cập vào địa chỉ email của bạn và truy cập vào tọa độ xác thực của các quan sát được đặt ở chế độ che khuất hoặc riêng tư. Vui lòng không thử thay đổi liên kết của bạn nếu bạn có hơn 1000 quan sát. Bạn có muốn thay đổi liên kết của bạn?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador là thành viên của Mạng lưới iNaturalist ở Ecuador. Các tổ chức địa phương hỗ trợ iNaturalist Ecuador sẽ có quyền truy cập vào địa chỉ email của bạn và truy cập vào tọa độ xác thực của các quan sát được đặt ở chế độ che khuất hoặc riêng tư. Vui lòng không thử thay đổi liên kết của bạn nếu bạn có hơn 1000 quan sát. Bạn có muốn thay đổi liên kết của bạn?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia là thành viên của Mạng lưới iNaturalist ở Úc. Các tổ chức địa phương hỗ trợ iNaturalist Australia sẽ có quyền truy cập vào địa chỉ email của bạn và truy cập vào tọa độ xác thực của các quan sát được đặt ở chế độ che khuất hoặc riêng tư. Vui lòng không thử thay đổi liên kết của bạn nếu bạn có hơn 1000 quan sát. Bạn có muốn thay đổi liên kết của bạn?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat là thành viên của Mạng lưới iNaturalist ở Argentina. Các tổ chức địa phương hỗ trợ ArgentiNat sẽ có quyền truy cập vào địa chỉ email của bạn và truy cập vào tọa độ xác thực của các quan sát được đặt ở chế độ che khuất hoặc riêng tư. Vui lòng không thử thay đổi liên kết của bạn nếu bạn có hơn 1000 quan sát. Bạn có muốn thay đổi liên kết của bạn?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel là thành viên của Mạng lưới iNaturalist ở Israel. Các tổ chức địa phương hỗ trợ iNaturalist Israel sẽ có quyền truy cập vào địa chỉ email của bạn và truy cập vào tọa độ xác thực của các quan sát được đặt ở chế độ che khuất hoặc riêng tư. Vui lòng không thử thay đổi liên kết của bạn nếu bạn có hơn 1000 quan sát. Bạn có muốn thay đổi liên kết của bạn?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland là thành viên của Mạng lưới iNaturalist ở Phần Lan. Các tổ chức địa phương hỗ trợ iNaturalist Finland sẽ có quyền truy cập vào địa chỉ email của bạn và truy cập vào tọa độ xác thực của các quan sát được đặt ở chế độ che khuất hoặc riêng tư. Vui lòng không thử thay đổi liên kết của bạn nếu bạn có hơn 1000 quan sát. Bạn có muốn thay đổi liên kết của bạn?</string>
     <string name="editor">Trình biên tập</string>
     <string name="license">Bản quyền</string>
     <string name="download_for_offline_use">Tải xuống để đọc ngoại tuyến</string>
@@ -226,8 +226,8 @@
     <string name="log_in">Đăng nhập</string>
     <string name="sign_up">Đăng ký</string>
     <string name="min_6_chars">Tối thiểu 6 kí tự</string>
-    <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data. <b>Learn More</b>]]></string>
-    <string name="content_licensing">Content Licensing</string>
+    <string name="use_my_license"><![CDATA[Được, cấp phép bản quyền cho nội dung của tôi để các nhà khoa học có thể sử dụng dữ liệu của tôi. <b>Xem thêm thông tin</b>]]></string>
+    <string name="content_licensing">Cấp phép Bản quyền cho nội dung</string>
     <string name="content_licensing_description">Check this box if you want to apply a Creative Commons Attribution-NonCommercial license to your photos. You can choose a different license or remove the license later, but this is the best license for sharing with researchers.</string>
     <!-- Try to keep this about the length of the English text -->
     <string name="username_or_email">Tên đăng nhập hoặc Email</string>
@@ -396,7 +396,7 @@
     <string name="ok_got_it">Ok, tôi đã hiểu!</string>
     <string name="could_not_download_observations">Không thể tải xuống các quan sát mới nhất -  Có sự cố khi kết nối. Vui lòng thử lại sau.</string>
     <string name="no_news_yet">No news yet. Stay tuned!</string>
-    <string name="my_content">My Content</string>
+    <string name="my_content">Nội dung của tôi</string>
     <string name="following">Đang theo dõi</string>
     <string name="no_updates_yet">No updates yet. Stay tuned!</string>
     <string name="you_will_only_receive_updates_when_creating">(Bạn sẽ chỉ nhận được cập nhật sau khi bạn tạo các quan sát)</string>
@@ -426,7 +426,7 @@
     <string name="conservation_status_extinct">Tuyệt chủng</string>
     <string name="map_of_observations">Bản đồ của các quan sát</string>
     <string name="taxonomy">Phân loại</string>
-    <string name="about_this_section">About This Section</string>
+    <string name="about_this_section">Thông tin về phần này</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
     <string name="taxonomy_info">These are links to ancestors of this particular taxon. They are in order from coarser to more refined. Use these links to move up and down the Tree of Life. For example, if you don\'t know what an organism is, but know what grouping it falls into, tap on a taxon from the list to view more information about it.</string>
     <string name="more_info_on_inat">Xem chi tiết trên iNaturalist.org</string>
@@ -439,41 +439,41 @@
     <plurals name="top_species_suggestions">
         <item quantity="other">Top %1$d suggestions:</item>
     </plurals>
-    <string name="pretty_sure_rank">We\'re pretty sure it\'s in this %1$s:</string>
+    <string name="pretty_sure_rank">Chúng tôi chắc chắn là ở đây %1$s:</string>
     <string name="what_did_you_see">Bạn đã thấy gì?</string>
-    <string name="suggest_species">Suggest Species</string>
-    <string name="suggest_species_description">Suggest species based on visual similarity to photos.</string>
+    <string name="suggest_species">Đề xuất loài</string>
+    <string name="suggest_species_description">Đề xuất loài dựa trên sự tương đồng trực quan với hình ảnh.</string>
     <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
-    <string name="visually_similar">Visually Similar</string>
-    <string name="visually_similar_seen_nearby">Visually Similar / Seen Nearby</string>
-    <string name="seen_nearby">Seen Nearby</string>
-    <string name="enlarge">Enlarge</string>
+    <string name="visually_similar">Hình ảnh tương đồng</string>
+    <string name="visually_similar_seen_nearby">Hình ảnh tương đồng / Được nhìn thấy ở gần đây</string>
+    <string name="seen_nearby">Được nhìn thấy ở gần đây</string>
+    <string name="enlarge">Phóng to</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">View Children</string>
     <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG extensions</string>
-    <string name="taxon_has_no_photos">This taxon has no photos.</string>
-    <string name="terrain">Terrain</string>
-    <string name="filters">Filters</string>
-    <string name="exploring_all">Exploring All</string>
-    <string name="nearby">Nearby</string>
-    <string name="couldnt_load_results">Couldn\'t load results: %1$s</string>
+    <string name="taxon_has_no_photos">Không có ảnh cho đơn vị phân loài này</string>
+    <string name="terrain">Địa hình</string>
+    <string name="filters">Bộ lọc</string>
+    <string name="exploring_all">Khám phá tất cả</string>
+    <string name="nearby">Ở gần đây</string>
+    <string name="couldnt_load_results">Không thể tải thành quả: %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">RG</string>
     <string name="taxon_search_hint">e.g. birds, monarch</string>
-    <string name="location_search_hint">e.g. city, state, park, country...</string>
-    <string name="no_taxon">Sorry, taxon not found</string>
-    <string name="please_select_taxon">Please select a valid taxon from the list (or clear the taxon field).</string>
-    <string name="sorry_no_location">Sorry, location not found</string>
-    <string name="location_not_found">The location or place you have searched is not in our database. Please choose a place from the list of options below the location search field or clear the search field.</string>
-    <string name="undefined">Undefined</string>
+    <string name="location_search_hint">ví dụ: thành phố, bang, công viên, quốc gia...</string>
+    <string name="no_taxon">Rất tiếc, không tìm thấy đơn vị phân loài nào</string>
+    <string name="please_select_taxon">Vui lòng chọn một đơn vị phân loài hợp lệ từ danh sách (hoặc xóa trường đơn vị phân loài)</string>
+    <string name="sorry_no_location">Rất tiếc, không tìm thấy vị trí nào</string>
+    <string name="location_not_found">Vị trí hoặc địa điểm bạn đang tìm không có trong dữ liệu của chúng tôi. Vui lòng chọn một địa điểm từ danh sách tùy chọn ở bên dưới trường tìm kiếm hoặc xóa trường tìm kiếm.</string>
+    <string name="undefined">Không xác định</string>
     <string name="street_segment">Street Segment</string>
-    <string name="intersection">Intersection</string>
-    <string name="town">Town</string>
-    <string name="state">State</string>
-    <string name="county">County</string>
-    <string name="local_administrative_area">Local Administrative Area</string>
-    <string name="country">Country</string>
-    <string name="island">Island</string>
+    <string name="intersection">Giao điểm</string>
+    <string name="town">Thị trấn</string>
+    <string name="state">Bang</string>
+    <string name="county">Quận</string>
+    <string name="local_administrative_area">Khu hành chính địa phương</string>
+    <string name="country">Quốc gia</string>
+    <string name="island">Đảo</string>
     <string name="airport">Sân bay</string>
     <string name="drainage">Hệ thống thoát nước</string>
     <string name="land_feature">Land Feature</string>
@@ -538,14 +538,14 @@
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
     <string name="any">Bất kỳ</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
-    <string name="to">to</string>
+    <string name="to">đến</string>
     <string name="exact_date">Ngày chính xác</string>
     <string name="start">Bắt đầu</string>
     <string name="end">Kết thúc</string>
     <string name="months">Tháng</string>
     <string name="choose_months">Chọn tháng</string>
     <string name="map_area">Map Area</string>
-    <string name="global">Global</string>
+    <string name="global">Toàn cầu</string>
     <!-- As in redo search in the current map area -->
     <string name="search_map_area">Search Map Area</string>
     <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
@@ -560,14 +560,14 @@
     <string name="inactive_taxon">Inactive Taxon</string>
     <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
     <string name="no_species_found">Đây là danh sách các loài bạn quan sát nhiều nhất.\n\nCó thể bạn chưa biết: Ước tính có khoảng 9 triệu loài trên hành tinh, vì vậy hãy ra ngoài và quan sát chúng!</string>
-    <string name="make_an_observation">Make an observation</string>
+    <string name="make_an_observation">Thực hiện quan sát</string>
     <string name="no_observations_found_new">Các quan sát là các ghi chép về những cuộc chạm trán giữa bạn với các cá thể sinh vật tại những thời điểm và địa điểm cụ thể.</string>
     <string name="discard_comment">Bạn có chắc bạn muốn xóa lời bình luận này?</string>
     <string name="leave_comment">Để lại bình luận...</string>
     <string name="swipe">Vuốt</string>
     <string name="swipe_indicator">›</string>
     <string name="select_google_account">Bạn chọn tài khoản Google nào?</string>
-    <string name="potential_disagreement">Potential Disagreement</string>
+    <string name="potential_disagreement">Bất đồng quan điểm</string>
     <string name="do_you_think_this_could_be"><![CDATA[Liệu bằng chứng được cung cấp là đủ để xác nhận đây là <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[Tôi không biết nhưng chắc chắn đây là <b>%1$s</b>]]></string>
@@ -576,50 +576,50 @@
     <string name="change_password">Đổi mật khẩu</string>
     <string name="search_projects_youve_joined">Tìm các dự án bạn đã tham gia...</string>
     <string name="must_be_connected_to_load_more_obs">Bạn phải kết nối với Internet mới tải thêm được các quan sát</string>
-    <string name="inat_about_title">iNaturalist is a joint initiative by the California Academy of Sciences and the National Geographic Society.</string>
-    <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="http://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
+    <string name="inat_about_title">iNaturalist là một sáng kiến ​​chung của Viện hàn lâm Khoa học California và Hiệp hội Địa lý Quốc gia.</string>
+    <string name="inat_credits"><![CDATA[iNaturalist được tạo ra là nhờ vào những người tham gia vào cộng đồng của chúng tôi như Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard và Ken-ichi Ueda. Họ là những người xây dựng phần mềm, thiết kế giao diện, duy trì cơ sở hạ tầng, hỗ trợ cộng đồng và thúc đẩy các sự hợp tác cho chúng tôi. <br/><br/>CalTech và Cornell Tech đã giúp đỡ phát triển hệ thống thị giác vi tính, được dùng để gợi ý nhận dạng từ các bức ảnh. Chúng tôi cảm ơn Grant Van Horn, Serge Belongie và Pietro Perona vì đã thúc đẩy nghiên cứu thị giác vi tính. Vui lòng xem thêm chi tiết ở<a href="http://www.visipedia.org">visipedia.org</a>. Lời cảm ơn đặc biệt tới NVIDIA , do đã hỗ trợ thêm cho chúng tôi.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
-    <string name="credits_title">Credits</string>
-    <string name="password_changed">The password the app uses no longer works - did you change your password on the website? Please enter the new one here</string>
+    <string name="credits_title">Những người đóng góp</string>
+    <string name="password_changed">Mật khẩu sử dụng không còn hoạt động - bạn đã thay đổi mật khẩu của mình trên trang web? Vui lòng nhập mật khẩu mới ở đây</string>
     <string name="just_so_you_know">Just So You Know...</string>
-    <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
-    <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
-    <string name="see_more_observations">See more observations</string>
-    <string name="see_more_species">See more species</string>
+    <string name="ask_for_g_plus_permissions">Google yêu cầu chúng tôi xin phép bạn quyền truy cập vào danh bạ để sử dụng Tài khoản Google của bạn, mặc dù chúng tôi không truy cập danh bạ của bạn vì bất kỳ lý do nào. Nếu bạn từ chối quyền này, bạn sẽ cần phải đăng ký hoặc đăng nhập bằng tên người dùng và mật khẩu.</string>
+    <string name="new_to_inat_sign_up_now"><![CDATA[Bạn mới biết đến %1$s? <b>Đăng ký ngay!</b>]]></string>
+    <string name="see_more_observations">Xem thêm các quan sát khác</string>
+    <string name="see_more_species">Xem thêm loài khác</string>
     <string name="see_more_identifications">See more identifications</string>
     <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
-    <string name="description">Description</string>
-    <string name="quantity">Qty</string>
-    <string name="agree2">Agree</string>
-    <string name="project_observations">Observations</string>
-    <string name="project_species">Species</string>
+    <string name="description">Mô tả</string>
+    <string name="quantity">Số lượng</string>
+    <string name="agree2">Đồng ý</string>
+    <string name="project_observations">Các quan sát</string>
+    <string name="project_species">Loài</string>
     <string name="project_people">People</string>
     <string name="project_identifiers">Identifiers</string>
-    <string name="got_it">Got it!</string>
-    <string name="view_all">View All</string>
-    <string name="new_badge">New</string>
-    <string name="observers">Observers</string>
+    <string name="got_it">Hiểu rồi!</string>
+    <string name="view_all">Xem tất cả</string>
+    <string name="new_badge">Mới</string>
+    <string name="observers">Người quan sát</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
     <string name="attribute">Attribute</string>
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
     <string name="value">Value</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
-    <string name="disagree">Disagree</string>
+    <string name="disagree">Không đồng ý</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
-    <string name="annotations">Annotations</string>
+    <string name="annotations">Chú thích</string>
     <!-- Used when filtering observations with annotations -->
-    <string name="with_annotation">With Annotation</string>
+    <string name="with_annotation">Với chú thích</string>
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
-    <string name="annotation_name">Annotation Name</string>
+    <string name="annotation_name">Tựa đề chú thích</string>
     <!-- Annotation value for when no annotation has been chosen -->
-    <string name="none">None</string>
+    <string name="none">Không có</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
     <string name="annotation_name_plant_phenology">Plant Phenology</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Life Stage</string>
     <!-- Noun, describes sex of the organism -->
-    <string name="annotation_name_sex">Sex</string>
+    <string name="annotation_name_sex">Giới tính</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">Alive or Dead</string>
     <!-- Adjective, having open flowers -->
@@ -633,7 +633,7 @@
     <!-- Observation presents no evidence of flowering phenology -->
     <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
-    <string name="annotation_value_adult">Adult</string>
+    <string name="annotation_value_adult">Trưởng thành</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
     <string name="annotation_value_teneral">Teneral</string>
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
@@ -641,86 +641,86 @@
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
     <string name="annotation_value_nymph">Nymph</string>
     <!-- Noun for the arthropod life stage between egg and adult -->
-    <string name="annotation_value_larva">Larva</string>
-    <string name="annotation_value_egg">Egg</string>
+    <string name="annotation_value_larva">Ấu trùng</string>
+    <string name="annotation_value_egg">Trứng</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
     <string name="annotation_value_juvenile">Juvenile</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
     <string name="annotation_value_subimago">Subimago</string>
-    <string name="annotation_value_female">Female</string>
-    <string name="annotation_value_male">Male</string>
+    <string name="annotation_value_female">Giống cái</string>
+    <string name="annotation_value_male">Giống đực</string>
     <!-- Adjective, alive and shows no signs of imminent death -->
-    <string name="annotation_value_alive">Alive</string>
+    <string name="annotation_value_alive">Còn sống</string>
     <!-- Adjective, dead or shows signs of imminent death -->
-    <string name="annotation_value_dead">Dead</string>
+    <string name="annotation_value_dead">Đã chết</string>
     <!-- Value for when the value of the attribute cannot be determined -->
-    <string name="annotation_value_cannot_be_determined">Cannot Be Determined</string>
+    <string name="annotation_value_cannot_be_determined">Không thể xác định</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
-    <string name="joined_projects_all_caps">JOINED</string>
-    <string name="nearby_projects_all_caps">NEARBY</string>
-    <string name="featured_projects_all_caps">FEATURED</string>
+    <string name="joined_projects_all_caps">ĐÃ THAM GIA</string>
+    <string name="nearby_projects_all_caps">Ở GẦN ĐÂY</string>
+    <string name="featured_projects_all_caps">TÍNH NĂNG</string>
     <!-- Text for a button or label that allows someone to join a project -->
-    <string name="join_all_caps">JOIN</string>
-    <string name="my_guides_all_caps">YOURS</string>
-    <string name="nearby_guides_all_caps">NEARBY</string>
-    <string name="all_guides_all_caps">ALL</string>
-    <string name="description_all_caps">DESCRIPTION</string>
-    <string name="quantity_all_caps">QTY</string>
+    <string name="join_all_caps">THAM GIA</string>
+    <string name="my_guides_all_caps">CỦA BẠN</string>
+    <string name="nearby_guides_all_caps">Ở GẦN ĐÂY</string>
+    <string name="all_guides_all_caps">TẤT CẢ</string>
+    <string name="description_all_caps">MÔ TẢ</string>
+    <string name="quantity_all_caps">SỐ LƯỢNG</string>
     <plurals name="observation_count_all_caps">
-        <item quantity="other">%1$s OBSERVATIONS</item>
+        <item quantity="other">%1$s QUAN SÁT</item>
     </plurals>
-    <string name="agree_all_caps">AGREE</string>
-    <string name="observations_all_caps">OBSERVATIONS</string>
-    <string name="species_all_caps">SPECIES</string>
-    <string name="people_all_caps">PEOPLE</string>
+    <string name="agree_all_caps">ĐỒNG Ý</string>
+    <string name="observations_all_caps">CÁC QUAN SÁT</string>
+    <string name="species_all_caps">LOÀI</string>
+    <string name="people_all_caps">NGƯỜI</string>
     <string name="identifiers_all_caps">IDENTIFIERS</string>
     <string name="identifications_all_caps">IDENTIFICATIONS</string>
-    <string name="news_all_caps">NEWS</string>
-    <string name="got_it_all_caps">GOT IT!</string>
-    <string name="view_all_all_caps">VIEW ALL</string>
-    <string name="new_all_caps">NEW</string>
-    <string name="observers_all_caps">OBSERVERS</string>
-    <string name="observations_regular">Observations</string>
-    <string name="data_quality_assessment">Data Quality Assessment</string>
+    <string name="news_all_caps">TIN TỨC</string>
+    <string name="got_it_all_caps">HIỂU RỒI!</string>
+    <string name="view_all_all_caps">XEM TẤT CẢ</string>
+    <string name="new_all_caps">MỚI</string>
+    <string name="observers_all_caps">NHỮNG NGƯỜI QUAN SÁT</string>
+    <string name="observations_regular">Các quan sát</string>
+    <string name="data_quality_assessment">Đánh giá chất lượng dữ liệu</string>
     <string name="research_grade_qualification">Research Grade Qualification</string>
-    <string name="date_specified">Date specified</string>
-    <string name="location_specified">Location specified</string>
-    <string name="has_photos_or_sounds">Has photos or sounds</string>
+    <string name="date_specified">Ngày được chỉ định</string>
+    <string name="location_specified">Vị trí được chỉ định</string>
+    <string name="has_photos_or_sounds">Có chứa ảnh hoặc âm thanh</string>
     <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
     <string name="date_is_accurate">Date is accurate</string>
     <string name="location_is_accurate">Location is accurate</string>
-    <string name="organism_is_wild">Organism is wild</string>
-    <string name="evidence_of_organism">Evidence of organism</string>
-    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
+    <string name="organism_is_wild">Sinh vật hoang dã</string>
+    <string name="evidence_of_organism">Bằng chứng cho sự hiện diện của sinh vật</string>
+    <string name="recent_evidence_of_an_organism">Bằng chứng gần nhất cho sự hiện diện của sinh vật</string>
     <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
     <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
     <string name="seasonality">Seasonality</string>
     <string name="verifiable">Verifiable</string>
     <string name="no_annotation">No Annotation</string>
-    <string name="donate_to_inaturalist">Donate to iNaturalist</string>
-    <string name="prefers_scientific_name_first">Show scientific names first</string>
-    <string name="prefers_scientific_name_first_description">Show scientific names before common names.</string>
-    <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, and Parks Canada operating iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
-    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
-    <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) operating NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
-    <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network operating iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
-    <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
-    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
-    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
-    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Natural History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
-    <string name="mark_all_as_viewed">Mark all as viewed</string>
-    <string name="content_hidden">Content Hidden</string>
-    <string name="show_hidden_content">Show Hidden Content</string>
-    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
-    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
-    <string name="content">Content</string>
-    <string name="has_photos">Has Photos</string>
-    <string name="has_sounds">Has Sounds</string>
-    <string name="could_not_play_sound">Couldn\'t play sound - probably a network issue</string>
+    <string name="donate_to_inaturalist">Đóng góp cho iNaturalist</string>
+    <string name="prefers_scientific_name_first">Hiển thị tên khoa học trước </string>
+    <string name="prefers_scientific_name_first_description">Hiển thị tên khoa học trước tên phổ biến.</string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Liên đoàn động vật hoang dã Canada, Bảo tàng Hoàng gia Ontario, NatureServe Canada và Công viên Canada điều hành iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt điều hành Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) điều hành NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: Mạng lưới Dữ liệu đa dạng sinh học New Zealand điều hành iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
+    <string name="network_credit_biodiversity4all"><![CDATA[Bồ Đào Nha: Associação Biodiversidade Para Todos điều hành Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente điều hành iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina hỗ trợ cho ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Úc: Atlas of Living Australia hỗ trợ cho iNaturalist Úc (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) hỗ trợ cho iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Israel: Trường đại học Haifa hỗ trợ cho iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Phần Lan: Bảo tàng Lịch sử thiên nhiên Phần Lan (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="mark_all_as_viewed">Đánh dấu tất cả là đã đọc</string>
+    <string name="content_hidden">Ẩn nội dung</string>
+    <string name="show_hidden_content">Hiển thị nội dung ẩn</string>
+    <string name="content_hidden_because">Nội dung được ẩn bởi @%1$s vào ngày %2$s là vì: \"%3$s\"</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Liên hệ hỗ trợ</a>]]></string>
+    <string name="content">Nội dung</string>
+    <string name="has_photos">Có ảnh</string>
+    <string name="has_sounds">Có âm thanh</string>
+    <string name="could_not_play_sound">Không thể phát âm thanh - có thể là do sự cố mạng</string>
     <string name="cant_play_soundcloud"><![CDATA[To listen to Soundcloud sounds, view the <a href="%1$s">website</a>.]]></string>
     <string name="soundcloud">Soundcloud</string>
     <string name="record_sound">Record Sound</string>
@@ -748,50 +748,50 @@
     <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
     <string name="delete_this_pinned_location">Delete this pinned location?</string>
     <!-- Verb, as in "Duplicate this photo" -->
-    <string name="duplicate">Duplicate</string>
-    <string name="couldnt_duplicate_photo">Couldn\'t duplicate photo!</string>
-    <string name="couldnt_edit_photo">Couldn\'t edit photo!</string>
+    <string name="duplicate">Tạo bản sao</string>
+    <string name="couldnt_duplicate_photo">Không thể tạo bản sao cho ảnh!</string>
+    <string name="couldnt_edit_photo">Không thể chỉnh sửa ảnh!</string>
     <!-- Verb, as in "Rotate this photo" -->
-    <string name="ucrop_rotate">Rotate</string>
+    <string name="ucrop_rotate">Xoay</string>
     <!-- Verb, as in "Scale (resize) this photo" -->
     <string name="ucrop_scale">Scale</string>
     <!-- Verb, as in "Crop this photo" -->
-    <string name="ucrop_crop">Crop</string>
+    <string name="ucrop_crop">Cắt bớt</string>
     <!-- Label for adjusting the brightness of an image -->
-    <string name="ucrop_brightness">Brightness</string>
+    <string name="ucrop_brightness">Độ sáng</string>
     <!-- Label for adjusting the contrast of an image -->
-    <string name="ucrop_contrast">Contrast</string>
+    <string name="ucrop_contrast">Độ tương phản</string>
     <!-- Label for adjusting the saturation of an image -->
-    <string name="ucrop_saturation">Saturation</string>
+    <string name="ucrop_saturation">Độ bão hòa</string>
     <!-- Label for adjusting the sharpness of an image -->
-    <string name="ucrop_sharpness">Sharpness</string>
+    <string name="ucrop_sharpness">Độ sắc nét</string>
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
-    <string name="ucrop_label_original">Original</string>
+    <string name="ucrop_label_original">Nguyên bản</string>
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
-    <string name="ucrop_label_free">Free</string>
+    <string name="ucrop_label_free">Còn trống</string>
     <!-- Verb phrase, button label to edit an observation photo -->
-    <string name="ucrop_label_edit_photo">Edit Photo</string>
-    <string name="service_temporarily_unavailable">Service temporarily unavailable.</string>
-    <string name="please_try_again_in_a_few_hours">Please try again in a few hours.</string>
+    <string name="ucrop_label_edit_photo">Chỉnh sửa ảnh</string>
+    <string name="service_temporarily_unavailable">Dịch vụ tạm thời không sẵn sàng.</string>
+    <string name="please_try_again_in_a_few_hours">Xin vui lòng thử lại sau vài giờ.</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
-    <string name="please_try_again_in_x">Please try again in %1$d %2$s.</string>
-    <string name="hours">hours</string>
-    <string name="minutes">minutes</string>
-    <string name="seconds_value">seconds</string>
+    <string name="please_try_again_in_x">Xin vui lòng thử lại sau %1$d%2$s</string>
+    <string name="hours">giờ</string>
+    <string name="minutes">phút</string>
+    <string name="seconds_value">giây</string>
     <string name="shop_the_inat_store">Shop the iNat Store</string>
-    <string name="delete_your_account">Delete Your Account</string>
+    <string name="delete_your_account">Xoá tài khoản của bạn</string>
     <string name="delete_account_message"><![CDATA[By deleting your account you will remove:<br/><br/><ul><li> All of your observations, including the work of the all the people who have helped you out with identifications.</li><li> All of the identifications you\'ve added to the observations of other people, which will potentially affect the data quality of those observations.</li><li> All of the comments you\'ve added.</li></ul><br/>Furthermore, this action cannot be undone. If you change your mind later, you aren\'t getting any of that content back.<br/><br/>If this service generates too many notifications, consider <a href="https://www.inaturalist.org/users/edit">editing your settings on the website</a> to opt out of certain notifications or stop receiving email from us. If you\'re having trouble with a specific person, consider <a href="https://www.inaturalist.org/users/edit">muting them</a> instead of deleting your account.<br/><br/>If you\'re still sure you want to delete your account, enter <b>\"%1$s\"</b> in the form below and click the button to delete your account and all your data.]]></string>
-    <string name="your_account_has_been_deleted">Your account has been deleted</string>
-    <string name="you_must_enter_username_in_the_form_to_delete_account">You must enter \'%1$s\' in the form to delete your account</string>
+    <string name="your_account_has_been_deleted">Tài khoản của bạn đã bị xóa</string>
+    <string name="you_must_enter_username_in_the_form_to_delete_account">Bạn phải điền \'%1$s\' vào tờ đơn mới xóa được tài khoản</string>
     <!-- Second person hint text asking the user to enter their username -->
-    <string name="type_your_username">Type your username</string>
-    <string name="error_deleting_account">There was an error deleting your account - please check your Internet connection</string>
-    <string name="verify_your_password">Verify Your Password</string>
-    <string name="third_party_data_sharing">Third-party Data Sharing</string>
-    <string name="disable_third_party_data_sharing">Disable Third-party Data Sharing</string>
+    <string name="type_your_username">Gõ tên người dùng</string>
+    <string name="error_deleting_account">Xảy ra lỗi khi xóa tài khoản của bạn - vui lòng kiểm tra kết nối mạng Internet </string>
+    <string name="verify_your_password">Xác Nhận Mật Khẩu Mới</string>
+    <string name="third_party_data_sharing">Chia sẻ dữ liệu với bên thứ ba</string>
+    <string name="disable_third_party_data_sharing">Tắt Chia sẻ dữ liệu với bên thứ ba</string>
     <string name="do_not_collect_third_party_data">Do not collect stability and usage data using third-party services</string>
-    <string name="enabled">Enabled</string>
-    <string name="disabled">Disabled</string>
+    <string name="enabled">Kích hoạt</string>
+    <string name="disabled">Tắt</string>
     <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third-party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
     <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
     <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third-party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
@@ -799,10 +799,10 @@
     <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
     <string name="search_places">Search Places</string>
-    <string name="restart_app">Restart App</string>
-    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
+    <string name="restart_app">Khởi động lại ứng dụng</string>
+    <string name="disable_third_party_sharing_restart">Bạn phải khởi động lại ứng dụng để tắt ngay Chia sẻ dữ liệu với bên thứ ba </string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
-        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+        <item quantity="other">Bạn có thực sự muốn xóa %1$d sự quan sát này ?</item>
     </plurals>
     <string name="future_observed_on_date_error">Your observation was created (and submitted) on %1$s, but you\'re trying to set an observation date that is later than that: %2$s</string>
     <string name="no_more_photos_allowed">Observations can only have %1$d photos. To add more you will need to remove some.</string>
@@ -820,8 +820,11 @@
     <string name="forbidden">Forbidden</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
     <string name="messages">Messages</string>
     <string name="all_messages">All Messages</string>
@@ -903,4 +906,5 @@
     <string name="rank_form">Form</string>
     <string name="rank_infrahybrid">Infrahybrid</string>
     <string name="rank_leaves">Leaves</string>
+    <string name="location_lat_lng">Location: %1$f, %2$f</string>
 </resources>

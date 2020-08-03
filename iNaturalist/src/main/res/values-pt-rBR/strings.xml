@@ -260,8 +260,8 @@
     <string name="downloading_observations">Transferindo as observações...</string>
     <string name="no_thanks">Não, Obrigado.</string>
     <string name="turn_on">Ativar</string>
-    <string name="introducing_auto_sync">Introduzindo o Auto-upload!</string>
-    <string name="turn_on_auto_sync">Ligue o auto-upload e suas observações serão automaticamente carregadas no iNaturalist.</string>
+    <string name="introducing_auto_sync">Apresentando a sincronização automática!</string>
+    <string name="turn_on_auto_sync">Ligue o upload automático e suas observações serão automaticamente carregadas no iNaturalist.</string>
     <string name="automatic_upload">Upload automático (Auto Sync)</string>
     <string name="waiting_to_upload">Aguardando para enviar...</string>
     <string name="uploading">Enviando...</string>
@@ -344,7 +344,7 @@
     <string name="logged_in_as_html"><![CDATA[Conectado como <b>%1$s</b>]]></string>
     <string name="log_out">Sair</string>
     <string name="not_logged_in">Não está conectado</string>
-    <string name="auto_upload_description">Carregar automaticamente novas observações e, novas edições em observações</string>
+    <string name="auto_upload_description">Sincronizar automaticamente novas observações e novas edições em observações</string>
     <string name="language">Idioma</string>
     <string name="version">Versão</string>
     <string name="inat_network">Rede iNaturalist</string>
@@ -827,8 +827,11 @@
     <string name="forbidden">Proibido</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">O aplicativo que você compartilhou cria fotos que não são adequadas para observações porque não representam evidência de sua experiência com outro organismo, porque incluem marcas ou conteúdo comercial inadequados, ou porque violam nossos Termos de Serviço de outras formas.</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">Caixa de seleção para selecionar a observação no modo multi-seleção</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_iconic_pic_description">Foto miniatura para o táxon de observação</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_obs_pic_description">Miniatura da foto para observação</string>
     <string name="messages">Mensagens</string>
     <string name="all_messages">Todas as mensagens</string>
@@ -910,4 +913,5 @@
     <string name="rank_form">Formulário</string>
     <string name="rank_infrahybrid">Infra-híbrido</string>
     <string name="rank_leaves">Folhas</string>
+    <string name="location_lat_lng">Localização: %1$f, %2$f</string>
 </resources>

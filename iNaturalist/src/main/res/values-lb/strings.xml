@@ -202,7 +202,7 @@
     <string name="license">Lizenz</string>
     <string name="download_for_offline_use">Erofluede fir offline Notzung</string>
     <string name="download_not_available">Download net verfügbar</string>
-    <string name="guide_editor_must_enable_this_feature">Guide editor must enable this feature.</string>
+    <string name="guide_editor_must_enable_this_feature">Guide Editor muss dës Feature aktivéieren.</string>
     <string name="are_you_sure">Sidd Dir sécher?</string>
     <string name="download_guide_alert">This will download %1$s of data so you can use this guide even when you don\'t have Internet access.</string>
     <string name="download">Eroflueden</string>
@@ -235,29 +235,29 @@
     <string name="forgot">Vergiess?</string>
     <string name="or_login_with">Oder aloggen mat:</string>
     <string name="registering">Registering...</string>
-    <string name="recommended_next_step">Recommended Next Step</string>
+    <string name="recommended_next_step">Recommandéierte nächste Schrëtt</string>
     <string name="could_not_register_user">Konnt Benotzer net registréiren</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
     <string name="login_signup">Aloggen / Aschreiwen</string>
-    <string name="please_sign_in_via_settings_for_guides">You must be logged in to view your guides.</string>
-    <string name="please_sign_in_for_updates">You must be logged in to view your updates.</string>
+    <string name="please_sign_in_via_settings_for_guides">Dir musst ageloggt si fir Är Guiden ze gesinn.</string>
+    <string name="please_sign_in_for_updates">Dir musst ageloggt si fir Är Updates ze gesinn.</string>
     <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="https://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
     <string name="activity">Aktivitéit</string>
     <string name="camera">Foto maachen</string>
     <string name="upload_photo">Bild wielen</string>
     <string name="menu_text">Keng Foto</string>
     <string name="first">1.</string>
-    <string name="make_first">Make 1st</string>
+    <string name="make_first">Den éischte maachen</string>
     <string name="notes">Notizen</string>
     <string name="location_is">Site ass</string>
-    <string name="is_captive">It is captive or cultivated</string>
+    <string name="is_captive">Ass et gefaangen oder kultivéiert</string>
     <string name="location_visibility">Site Visibilitéit</string>
     <string name="set_location">Site</string>
     <string name="coordinates_lat">Lat:</string>
     <string name="coordinates_lon">Lon:</string>
     <string name="coordinates_acc">Acc. </string>
     <string name="required">* obligatoresch</string>
-    <string name="downloading_observations">Downloading observations...</string>
+    <string name="downloading_observations">Observatioune ginn erofgelueden...</string>
     <string name="no_thanks">Nee Merci</string>
     <string name="turn_on">Aschalten</string>
     <string name="introducing_auto_sync">Introducing Auto-Sync!</string>
@@ -280,8 +280,8 @@
     <string name="casual_grade_captive"><![CDATA[  Observatioun ass Hobby Qualitéit well se <b>kultivéiert/gefaangen</b> ass. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ Observatioun brauch <b>méi Bestëmmungen</b> vun der Community fir den "Recherche Grad" Staus ze kréien.]]></string>
     <plurals name="included_in_projects">
-        <item quantity="one">Included in %1$d project</item>
-        <item quantity="other">Included in %1$d projects</item>
+        <item quantity="one">Enthalen an %1$d Projet</item>
+        <item quantity="other">Enthalen an %1$d Projeten</item>
     </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy is a setting you can make on your observations that controls how the spatial coordinates (latitude and longitude) are displayed. Here are the options:<br/><b>open</b> - Everyone can see the coordinates unless the taxon is threatened. <br/><b>obscured</b> - Public coordinates shown as a random point within a 0.2 by 0.2 degree area that contains the true coordinates, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. True coordinates are only visible to you and the curators of projects to which you add the observation. <br/><b>private</b> - Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. <br/><br/>Note that curators of individual projects can always see the coordinates regardless of your geoprivacy setting, so if you are concerned about who has access to the coordinates you should be sure you trust the curators of the projects in which you participate. ]]></string>
     <string name="id_title">IDs vum %1$s • %2$s</string>
@@ -322,7 +322,7 @@
     <string name="no_people_found">Keng Léit fonnt</string>
     <string name="rank">Rang</string>
     <string name="identifications">Bestemmungen</string>
-    <string name="no_news_found">No news items found</string>
+    <string name="no_news_found">Keng Noriichte fonnt</string>
     <string name="news">Neiegkeeten</string>
     <string name="article">Artikel</string>
     <string name="couldnt_load_project_news">Konnt Projetsnéidegkeeten net lueden: %1$s</string>
@@ -373,7 +373,7 @@
     <string name="preparing_photo">Foto virbereet...</string>
     <string name="recommended_for_you">recommandéiert vir Iech</string>
     <string name="missions">Missiounen</string>
-    <string name="browse_by_category">Browse By Category</string>
+    <string name="browse_by_category">Bei Kategorië sichen</string>
     <string name="couldnt_load_recommended_missions">Couldn\'t load recommended missions: %1$s</string>
     <string name="plants">Planzen</string>
     <string name="mammals">Mamendéieren</string>
@@ -387,7 +387,7 @@
     <string name="arachnids">Spannendéieren</string>
     <string name="no_connectivity">Keng Verbindung</string>
     <string name="no_recommended_missions">Looks like there’s no recommendations in this area. Try moving to a new location.</string>
-    <string name="what_to_look_for">What To Look For</string>
+    <string name="what_to_look_for">No wat muss ee kucken</string>
     <string name="have_been_seen_here">Have Been Seen Here</string>
     <string name="observe">Observéieren</string>
     <string name="nearby_missions">Nobäi Missiounen</string>
@@ -424,7 +424,7 @@
     <string name="conservation_status_near_threatened">Near threatened</string>
     <string name="conservation_status_vulnerable">Vulnerabel</string>
     <string name="conservation_status_endangered">Bedréit</string>
-    <string name="conservation_status_critically_endangered">Critically endangered</string>
+    <string name="conservation_status_critically_endangered">Kritesch bedroht</string>
     <string name="conservation_status_extinct_in_the_wild">An der Wildnis ausgestuerwen</string>
     <string name="conservation_status_extinct">Ausgestuerwen</string>
     <string name="map_of_observations">Kaart vun den Observatiounen</string>
@@ -661,11 +661,11 @@
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Ka net identifizéiert ginn</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
-    <string name="joined_projects_all_caps">JOINED</string>
+    <string name="joined_projects_all_caps">BÄIGETRUEDEN</string>
     <string name="nearby_projects_all_caps">NOBÄI</string>
     <string name="featured_projects_all_caps">FEATURED</string>
     <!-- Text for a button or label that allows someone to join a project -->
-    <string name="join_all_caps">JOIN</string>
+    <string name="join_all_caps">BÄITRIEDEN</string>
     <string name="my_guides_all_caps">Är</string>
     <string name="nearby_guides_all_caps">NOBÄI</string>
     <string name="all_guides_all_caps">ALL</string>
@@ -691,7 +691,7 @@
     <string name="research_grade_qualification">Recherche Grad Qualifikatiounen</string>
     <string name="date_specified">Date specified</string>
     <string name="location_specified">Site uginn</string>
-    <string name="has_photos_or_sounds">Has photos or sounds</string>
+    <string name="has_photos_or_sounds">Huet Fotoen oder Téin</string>
     <string name="has_id_supported_by_two_or_more">Huet ID Zousproch vun zwee oder mei</string>
     <string name="date_is_accurate">Datum ass akkurat</string>
     <string name="location_is_accurate">Site ass akkurat</string>
@@ -726,23 +726,23 @@
     <string name="content">Contenu</string>
     <string name="has_photos">Huet Fotoen</string>
     <string name="has_sounds">Huet Téin</string>
-    <string name="could_not_play_sound">Couldn\'t play sound - probably a network issue</string>
-    <string name="cant_play_soundcloud"><![CDATA[To listen to Soundcloud sounds, view the <a href="%1$s">website</a>.]]></string>
+    <string name="could_not_play_sound">Den Toun kann net gespillt sinn - méiglecherweis en Netzwierksprobleem</string>
+    <string name="cant_play_soundcloud"><![CDATA[Fir Soundcloud Téin ze lauschteren, kuckt de <a href="%1$s">Website</a>.]]></string>
     <string name="soundcloud">SoundCloud</string>
     <string name="record_sound">Geräisch ophuelen</string>
-    <string name="no_recorder_found">No default sound recorder found!</string>
-    <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
-    <string name="upload_sound">Choose Sound</string>
-    <string name="multi_select_sound_description">Import multiple sounds by long-pressing on a single sound</string>
-    <string name="alert_unsupported_audio_type">Sorry, but there was a problem loading the sound from this source</string>
-    <string name="invalid_audio_extension">Error importing sound(s): Can only import sound files with WAV/MP3/AMR extensions</string>
-    <string name="importing_sounds">Importing sound(s)...</string>
-    <string name="observation_sound">Observation Sound</string>
+    <string name="no_recorder_found">Kee standard Toun-Recorder fonnt!</string>
+    <string name="couldnt_retrieve_sound">Konnt keen Toun vum standard Recorder kreien - probéiert den Toun z\'importéieren</string>
+    <string name="upload_sound">Een Toun wielen</string>
+    <string name="multi_select_sound_description">Importéiert méi Téin andeems Dir laang ob eng eenzel Datei klickt</string>
+    <string name="alert_unsupported_audio_type">Pardon, awer et gouf e Problem beim Luede vum Toun vun dëser Quell</string>
+    <string name="invalid_audio_extension">Feeler beim Import vun Toun/Téin: Kann nëmmen Toundateien mat WAV/MP3/AMR Extensiounen importéieren</string>
+    <string name="importing_sounds">Toun/Téin ginn importéiert...</string>
+    <string name="observation_sound">Observatiouns Toun</string>
     <string name="deleted_sounds_from_cache_error">It looks like you deleted a sound by clearing the app cache before uploading. You will need to add the sound back to your observation from your gallery. In the future, please make sure you have uploaded all your sounds before clearing the app cache.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f Sek.</string>
     <string name="clear_all_debug_logs">Clear All Debug Logs</string>
-    <string name="clears_up_storage_room_on_your_phone">Clears up storage room on your phone</string>
+    <string name="clears_up_storage_room_on_your_phone">Fräi Späicherplaz ob Ärem Telephon</string>
     <string name="number_of_days_to_store_logs">Number of days to store logs</string>
     <string name="send_debug_logs_from_start_date">Send Debug Logs From Start Date</string>
     <string name="send_debug_logs_by_email">Send debug logs by email (from specified start date)</string>
@@ -827,12 +827,15 @@
     <string name="forbidden">Verbueden</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
-    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <!-- Description of a UI element for screen readers -->
+    <string name="observation_list_item_iconic_pic_description">Thumbnail Foto fir Observatioun Taxon</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_obs_pic_description">Thumbnail Foto fir des Observatioun</string>
     <string name="messages">Messagen</string>
     <string name="all_messages">All Messagen</string>
-    <string name="search_messages">Search messages</string>
+    <string name="search_messages">Message sichen</string>
     <string name="no_messages">You currently have no messages. You can send a new message with the green button, or message them from their profile page.</string>
     <string name="no_messages_found">Keen Message fonnt.</string>
     <string name="send_a_message">Message schécken</string>
@@ -845,7 +848,7 @@
     <string name="who_would_you_like_to_send_a_message_to">U wien well Dir ee Message schécken</string>
     <string name="new_message">Neie Message</string>
     <string name="search_for_inaturalist_users">Search for iNaturalist users</string>
-    <string name="please_sign_in_for_messages">You must be logged in to view your messages.</string>
+    <string name="please_sign_in_for_messages">Dir musst ageloggt si fir Äre Message ze gesinn.</string>
     <string name="sorry">Pardon</string>
     <string name="you_must_have_three_observations">You must have three verifiable observations or three identifications for others in order to do that.</string>
     <string name="mute_this_user">Dësen Benotzer stomm stellen</string>
@@ -910,4 +913,5 @@
     <string name="rank_form">Form</string>
     <string name="rank_infrahybrid">Infrahybrid</string>
     <string name="rank_leaves">Blieder</string>
+    <string name="location_lat_lng">Location: %1$f, %2$f</string>
 </resources>

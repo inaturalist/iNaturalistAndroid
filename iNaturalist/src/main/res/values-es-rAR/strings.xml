@@ -68,43 +68,43 @@
     <string name="com_facebook_choose_friends">Elegir amigos</string>
     <string name="com_facebook_nearby">Cercano</string>
     <string name="com_facebook_loading">Cargando...</string>
-    <string name="com_facebook_internet_permission_error_title">Error de Androide </string>
-    <string name="com_facebook_internet_permission_error_message">La conexión con WebView necesita permiso a INTERNET</string>
-    <string name="com_facebook_requesterror_web_login">Tu cuenta de Facebook está bloqueada. Por favor inicia sesión en www.facebook.com para continuar.</string>
-    <string name="com_facebook_requesterror_relogin">Vuelve a iniciar sesión en esta aplicación para volver a conectar con tu cuenta de Facebook.</string>
-    <string name="com_facebook_requesterror_password_changed">Tu contraseña de Facebook ha cambiado. Vuelve a iniciar sesión en la aplicación para volver a conectarte a tu cuenta de Facebook.</string>
-    <string name="com_facebook_requesterror_reconnect">Vuelve a iniciar sesión en esta aplicación para reconectar con tu cuenta de Facebook.</string>
-    <string name="com_facebook_requesterror_permissions">Esta aplicación no tiene permiso para hacer eso. Para cambiar los permisos, intenta volver a iniciar la sesión en la aplicación.</string>
-    <string name="edit_observation">Edita tu observación</string>
-    <string name="discard_changes">¿Estás seguro que deseas descartar los cambios no guardados?</string>
+    <string name="com_facebook_internet_permission_error_title">Hubo un error con Android</string>
+    <string name="com_facebook_internet_permission_error_message">Para ingresar a WebView se necesita permiso a INTERNET</string>
+    <string name="com_facebook_requesterror_web_login">Tu cuenta de Facebook está bloqueada. Por favor, ingrese en www.facebook.com para continuar.</string>
+    <string name="com_facebook_requesterror_relogin">Por favor, vuelva a iniciar sesión en esta aplicación para volver a conectar con su cuenta de Facebook.</string>
+    <string name="com_facebook_requesterror_password_changed">Tu contraseña de Facebook ha cambiado. Por favor, ingresa a esta aplicación nuevamente para volver a conectar tu cuenta de Facebook.</string>
+    <string name="com_facebook_requesterror_reconnect">Por favor, vuelva a iniciar sesión en esta aplicación para volver a conectar con su cuenta de Facebook.</string>
+    <string name="com_facebook_requesterror_permissions">Esta aplicación no tiene permiso para hacer esto. Para cambiar los permisos, intenta volver a iniciar la sesión en la aplicación.</string>
+    <string name="edit_observation">Editar observación</string>
+    <string name="discard_changes">¿Estás seguro de que deseas descartar los cambios no guardados?</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">¿Estás de acuerdo?</string>
-    <string name="no_comments">No hay comentarios todavía</string>
+    <string name="no_comments">Todavía no hay comentarios/identificaciones</string>
     <string name="add_comment">Añadir comentario</string>
     <string name="add_id">Añadir identificación</string>
-    <string name="remarks">Observaciones...</string>
-    <string name="enter_taxon_name">Escribe el nombre del taxón</string>
-    <string name="no_projects">No se han encontrado proyectos</string>
-    <string name="no_guides">¡No se han encontrado guías!</string>
+    <string name="remarks">Comentarios...</string>
+    <string name="enter_taxon_name">Nombre de la especie</string>
+    <string name="no_projects">¡No se encontraron proyectos!</string>
+    <string name="no_guides">¡No se encontraron guías!</string>
     <string name="loading_projects">Cargando proyectos...</string>
-    <string name="joined_projects">Unido</string>
-    <string name="nearby_projects">Cercanas</string>
+    <string name="joined_projects">Te has unido</string>
+    <string name="nearby_projects">Cerca</string>
     <!-- Tab title for the list of featured projects in the Projects screen -->
     <string name="featured_projects">Destacados</string>
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">Salir</string>
     <string name="join">Únete</string>
     <string name="no_check_list">¡No hay taxones en la lista!</string>
-    <string name="failed_to_add_obs_to_project">No se pudo agregar observación \'%1$s\' al proyecto \'%2$s\': %3$s</string>
-    <string name="invalid_project_field">Por favor, introduce un valor válido para el campo \'%1s\'</string>
+    <string name="failed_to_add_obs_to_project">Error al agregar observación \'%1$s\' al proyecto \'%2$s\':%3$s</string>
+    <string name="invalid_project_field">Por favor, inserte un valor válido para el campo \'%1s\'</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
-    <string name="select_projects">Selecciona los proyectos</string>
-    <string name="not_connected">Es necesario estar conectado a Internet para poder hacer eso!</string>
+    <string name="select_projects">Seleccione desde Proyectos Unidos</string>
+    <string name="not_connected">¡Debes estar conectado a Internet para realizar esa acción!</string>
     <string name="search_projects">Buscar proyectos...</string>
     <string name="search_guides">Buscar guías...</string>
-    <string name="save_observation">Guarda tu observación</string>
+    <string name="save_observation">Guardar observación</string>
     <!-- Header for a description an individual guide -->
     <string name="about_guide">Acerca de</string>
     <string name="about_guide_all_caps">ACERCA DE</string>
@@ -129,57 +129,57 @@
     <string name="no_internet_projects">Los proyectos necesitan conexión a Internet</string>
     <string name="locale_gl">Gallego</string>
     <string name="locale_eu">Vasco</string>
-    <string name="use_device_language_settings">Usar las opciones de idioma del móvil</string>
+    <string name="use_device_language_settings">Usar la configuración de idioma del dispositivo</string>
     <string name="choose_location">Elegir ubicación</string>
     <string name="done">Hecho</string>
-    <string name="please_sign_in_via_settings">Debes haber iniciado la sesión para ver tus proyectos.</string>
-    <string name="contact_support">Contactar con el soporte</string>
-    <string name="credits">Diseñado y construido por iNaturalist.org con el apoyo de la Academia de Ciencias de California</string>
-    <string name="leave_project">Deja el proyecto</string>
-    <string name="leave_project_confirmation">¿Estás seguro de que deseas abandonar este proyecto?</string>
+    <string name="please_sign_in_via_settings">Debes haber iniciado sesión para ver los proyectos a los que te has unido.</string>
+    <string name="contact_support">Contactar al servicio técnico</string>
+    <string name="credits">Diseñado y creado por iNaturalist.org junto con el apoyo de la Academia de Ciencias de California (California Academy of Sciences)</string>
+    <string name="leave_project">Abandonar el proyecto</string>
+    <string name="leave_project_confirmation">¿Estás seguro de que quieres abandonar este proyecto?</string>
     <string name="discard_location_changes">¿Estás seguro de que deseas descartar los cambios no guardados?</string>
     <string name="edit_location">Editar ubicación</string>
-    <string name="edit_locality_notes">Editar notas de localización</string>
+    <string name="edit_locality_notes">Editar notas del área</string>
     <string name="get_current_location">Obtener la ubicación actual</string>
-    <string name="pull_to_refresh">Tirar para actualizar...</string>
+    <string name="pull_to_refresh">Desliza para actualizar...</string>
     <string name="release_to_refresh">Suelta para actualizar...</string>
     <string name="refreshing">Actualizando...</string>
     <plurals name="sync_x_observations">
-        <item quantity="one">Sincronizar %1$d observación</item>
-        <item quantity="other">Sincronizar %1$d observaciones</item>
+        <item quantity="one">%1$d observación sincronizada</item>
+        <item quantity="other">%1$d observaciones sincronizadas</item>
     </plurals>
-    <string name="sync_observations">Sincronización de observaciones</string>
+    <string name="sync_observations">Sincronizar observaciones</string>
     <string name="lets_get_started">¡Empecemos!</string>
     <string name="view_nearby_observations">Ver observaciones cercanas</string>
     <string name="skip_for_now">Omitir por ahora</string>
     <string-array name="tutorial_titles">
         <item></item>
         <item>Observar</item>
-        <item>Comparir</item>
+        <item>Compartir</item>
         <item>Aprender</item>
-        <item>Contribuye</item>
+        <item>Contribuir</item>
     </string-array>
     <string-array name="tutorial_descriptions">
-        <item>Explorar y Conectar con la Naturaleza</item>
-        <item>¡Sal! Encuentra algo salvaje y toma una buena foto.</item>
-        <item>Comparte tus observaciones con la comunidad iNaturalist.</item>
+        <item>Explora y conéctate con la naturaleza</item>
+        <item>¡Sal! Encuentra algo silvestre y toma una buena foto.</item>
+        <item>Comparte tus observaciones con la comunidad de iNaturalist.</item>
         <item>¡Revisa los comentarios e identificaciones sobre tu observación!</item>
-        <item><![CDATA[Las observaciones con <b>grado de investigación</b> son compartidas con científicos que trabajan para entender y proteger mejor la naturaleza.]]></item>
+        <item><![CDATA[Las observaciones con <b>grado de investigación</b> son compartidas con científicos que trabajan para entender mejor a la naturaleza y protegerla.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
         <item>Abierta</item>
-        <item>Oscurecida</item>
+        <item>Difusa</item>
         <item>Privada</item>
     </string-array>
-    <string name="alert_sign_out">¿Estás seguro que deseas salir? Esto borrará todas tus observaciones en este dispositivo. No afectará a todas las observaciones que hayas subido a Naturalista.</string>
-    <string name="alert_unsupported_media_type">Lo sentimos, pero por el momento no pueden subirse fotos de Google Drive, Dropbox, etc.\nPor favor descarga las fotos a la memoria local de tu teléfono y vuelve a intentarlo.</string>
+    <string name="alert_sign_out">¿Estás seguro de que quieres salir? Si continuas, todas tus observaciones en este dispositivo se eliminarán. Esta acción no afectará a ninguna de las observaciones que hayas subido a iNaturalist.</string>
+    <string name="alert_unsupported_media_type">Lo sentimos, hubo un problema al cargar la foto desde esta fuente</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
-    <string name="explore">Explora</string>
+    <string name="explore">Explorar</string>
     <string name="restricted_to_current_map_area">Restringido al área actual del mapa</string>
-    <string name="search">Busca</string>
+    <string name="search">Buscar</string>
     <string name="details">Detalles</string>
     <string name="observation_photos">Fotos de la observación</string>
-    <string name="remove">¿Borrar?</string>
+    <string name="remove">¿Eliminar?</string>
     <string name="no_observations_found">No se encontraron observaciones</string>
     <string name="license_none">Ninguno, todos los derechos reservados</string>
     <string name="sources_and_attribution">Fuentes y reconocimiento</string>
@@ -829,8 +829,11 @@ datos que estos servicios proporcionan. <b>Al compartir esta información, nos e
     <string name="forbidden">Prohibido</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">La aplicación desde la que que compartió las fotos no produce fotos adecuadas para observaciones, porque no representan pruebas de su experiencia con otros organismos, porque incluyen marcas o contenidos comerciales inapropiados, o porque infringen nuestras condiciones de servicio de otras maneras.</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">Casilla de verificación para seleccionar observación en modo multi-selección</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_iconic_pic_description">Foto en miniatura para taxón de observación</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_obs_pic_description">Foto en miniatura para observación</string>
     <string name="messages">Mensajes</string>
     <string name="all_messages">Todos los mensajes</string>
@@ -849,18 +852,18 @@ datos que estos servicios proporcionan. <b>Al compartir esta información, nos e
     <string name="search_for_inaturalist_users">Buscar usuarios de iNaturalist</string>
     <string name="please_sign_in_for_messages">Debes iniciar sesión para ver tus mensajes.</string>
     <string name="sorry">Perdón</string>
-    <string name="you_must_have_three_observations">You must have three verifiable observations or three identifications for others in order to do that.</string>
-    <string name="mute_this_user">Mute this user</string>
-    <string name="unmute_this_user">Unmute this user</string>
-    <string name="flag_this_conversation">Flag this conversation</string>
-    <string name="mute_this_user_question">Mute this user?</string>
-    <string name="you_will_no_longer_receive_messages">You will no longer receive any notifications about activity from this user, including messages, comments, identifications, and mentions.</string>
-    <string name="mute">Mute</string>
-    <string name="muting_user">Muting user...</string>
-    <string name="unmuting_user">Unmuting user...</string>
-    <string name="failed_muting_user">Failed muting user!</string>
-    <string name="failed_unmuting_user">Failed unmuting user!</string>
-    <string name="flag_conversation">Flag conversation</string>
+    <string name="you_must_have_three_observations">Para poder hacerlo, debes tener tres observaciones verificables o realizar tres identificaciones de otros.</string>
+    <string name="mute_this_user">Silenciar a este usuario</string>
+    <string name="unmute_this_user">Dejar de silenciar a este usuario</string>
+    <string name="flag_this_conversation">Denunciar esta conversación</string>
+    <string name="mute_this_user_question">¿Silenciar a este usuario?</string>
+    <string name="you_will_no_longer_receive_messages">Ya no recibirás notificaciones sobre la actividad de este usuario, incluyendo mensajes, comentarios, identificaciones y menciones.</string>
+    <string name="mute">Silenciar</string>
+    <string name="muting_user">Silenciando usuario...</string>
+    <string name="unmuting_user">Dejando de silenciar al usuario...</string>
+    <string name="failed_muting_user">¡Error al silenciar al usuario!</string>
+    <string name="failed_unmuting_user">¡Error al dejar de silenciar al usuario!</string>
+    <string name="flag_conversation">Denunciar conversación</string>
     <string name="spam">Spam</string>
     <string name="commercial_solicitation">Publicidad comercial, enlaces que no llevan a ningún lugar, etc.</string>
     <string name="offensive_inappropriate">Ofensivo/inapropiado</string>
@@ -914,4 +917,5 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <string name="rank_form">Forma</string>
     <string name="rank_infrahybrid">Infrahíbrido</string>
     <string name="rank_leaves">Hojas</string>
+    <string name="location_lat_lng">Location: %1$f, %2$f</string>
 </resources>

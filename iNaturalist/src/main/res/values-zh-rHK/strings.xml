@@ -145,7 +145,7 @@
     <string name="release_to_refresh">拉開頁面更新...</string>
     <string name="refreshing">正在更新...</string>
     <plurals name="sync_x_observations">
-        <item quantity="other">同步 %1$d 筆觀察記錄</item>
+        <item quantity="other">Sync %1$d observations</item>
     </plurals>
     <string name="sync_observations">同步觀察記錄</string>
     <string name="lets_get_started">開始吧 ！</string>
@@ -195,8 +195,8 @@
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador 是 iNaturalist 附屬網路在厄瓜多的成員。支援 iNaturalist Ecuador 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia 是 iNaturalist 附屬網路在澳洲的成員。支援 iNaturalist Australia 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
     <string name="alert_message_use_argentinat">ArgentiNat 是 iNaturalist 附屬網路阿根廷的成員。支援 ArgentiNat 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel 是 iNaturalist 附屬網路在以色列的成員。支援 iNaturalist Israel 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
-    <string name="alert_message_use_inaturalistfi">iNaturalist 芬蘭是 iNaturalist 附屬網路在芬蘭的成員。支援 iNaturalist 芬蘭的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland is a member of the iNaturalist Network in Finland. Local institutions supporting iNaturalist Finland will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">編輯器</string>
     <string name="license">許可證</string>
     <string name="download_for_offline_use">下載供離線使用</string>
@@ -279,7 +279,7 @@
     <string name="casual_grade_captive"><![CDATA[ 觀察記錄列為一般等級因為它是圈養/栽培的。 ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ 觀察記錄需要從社群中取得<b>更多次辨認</b>以成為「研究等級」。 ]]></string>
     <plurals name="included_in_projects">
-        <item quantity="other">包含在 %1$d 個專案中</item>
+        <item quantity="other">Included in %1$d projects</item>
     </plurals>
     <string name="geoprivacy_explanation"><![CDATA[地理資訊隱私權(Geoprivacy)的設定控制了您的觀察記錄中如何顯示空間座標 （緯度和經度）。選項為： <br/> <b>開放</b>—每個人都可以看到座標，除非此分類群受到威脅。 <br/><b>遮敝</b>—公開的座標是在 0.2 x 0.2 度範圍內隨機顯示，其中包含了真實座標，這相當於大約在赤道有 22 x 22 公里面積的開放座標，而隨著接近兩極此面積會逐漸減少。真實的座標是僅對您和您向其中新增加的觀察專案策展人可見。<br/> <b>私人</b>—座標在公開地圖上是完全隱藏的，只有您和您加入到觀察專案中的策展人才能看到真實的座標。 <br/> <br/>注意：個別專案策展人不管您的地理資訊隱私權如何設定，他還是可以看到您的座標，所以如果對於誰可以存取座標有疑慮的話，您應該確保您信任您所參與的專案策展人。]]></string>
     <string name="id_title">%1$s 的觀察記錄 • %2$s</string>
@@ -363,7 +363,7 @@
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">更新物種辨認描述</string>
     <string name="your_identification">您的 ID: %1$s</string>
-    <string name="onboarding_species_name">如果能夠的話，請填寫您看到的生物名字，即便只是「昆蟲」或「鳥類」，或乾脆留空。其他人也許會幫您鑑定！</string>
+    <string name="onboarding_species_name">Name what you saw if you can, even if that\'s just \"insect\" or \"bird,\" or just leave this blank. Others may help you identify it!</string>
     <string name="upload_complete">上傳完成！</string>
     <string name="onboarding_upload_description">請稍後回來查看其他人對你的觀察記錄的辨認及評論。</string>
     <string name="importing_photos">正在上載照片中...</string>
@@ -407,7 +407,7 @@
     <string name="new_activities">%1s 新</string>
     <string name="no_results_found">找不到結果...</string>
     <plurals name="syncing_x_out_of_y_observations">
-        <item quantity="other">正在同步 %2$d 筆觀察記錄中的第 %1$d 筆...</item>
+        <item quantity="other">Syncing %1$d of %2$d observations...</item>
     </plurals>
     <string name="deleting_observations">刪除觀察記錄中...</string>
     <string name="preparing">準備中...</string>
@@ -434,10 +434,10 @@
     <string name="species_search">物種搜尋</string>
     <plurals name="were_not_confident">
         <!-- This will probably never happen -->
-        <item quantity="other">我們信心不足以致於無法提出此物種的建議，但這是我們最相近的前 %1$d 筆建議：</item>
+        <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
     </plurals>
     <plurals name="top_species_suggestions">
-        <item quantity="other">最相近的前 %1$d 筆建議：</item>
+        <item quantity="other">Top %1$d suggestions:</item>
     </plurals>
     <string name="pretty_sure_rank">我們很肯定的是在這 %1$s:</string>
     <string name="what_did_you_see">您看到什麼？</string>
@@ -534,7 +534,7 @@
     <string name="search_users">搜尋使用者</string>
     <string name="quality_grade">品質等級</string>
     <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
-    <string name="date_observed">觀察日期</string>
+    <string name="date_observed">Date Observed</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
     <string name="any">任一</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
@@ -667,7 +667,7 @@
     <string name="description_all_caps">描述</string>
     <string name="quantity_all_caps">數量</string>
     <plurals name="observation_count_all_caps">
-        <item quantity="other">%1$s 筆觀察記錄</item>
+        <item quantity="other">%1$s OBSERVATIONS</item>
     </plurals>
     <string name="agree_all_caps">同意</string>
     <string name="observations_all_caps">觀察記錄</string>
@@ -748,81 +748,84 @@
     <string name="location_pinned_successfully">現在的位址已成功釘選</string>
     <string name="delete_this_pinned_location">您要刪除這筆釘選的位置嗎？</string>
     <!-- Verb, as in "Duplicate this photo" -->
-    <string name="duplicate">重複</string>
-    <string name="couldnt_duplicate_photo">無法複製照片！</string>
-    <string name="couldnt_edit_photo">無法編輯照片！</string>
+    <string name="duplicate">Duplicate</string>
+    <string name="couldnt_duplicate_photo">Couldn\'t duplicate photo!</string>
+    <string name="couldnt_edit_photo">Couldn\'t edit photo!</string>
     <!-- Verb, as in "Rotate this photo" -->
-    <string name="ucrop_rotate">旋轉</string>
+    <string name="ucrop_rotate">Rotate</string>
     <!-- Verb, as in "Scale (resize) this photo" -->
-    <string name="ucrop_scale">縮放</string>
+    <string name="ucrop_scale">Scale</string>
     <!-- Verb, as in "Crop this photo" -->
-    <string name="ucrop_crop">裁切</string>
+    <string name="ucrop_crop">Crop</string>
     <!-- Label for adjusting the brightness of an image -->
-    <string name="ucrop_brightness">亮度</string>
+    <string name="ucrop_brightness">Brightness</string>
     <!-- Label for adjusting the contrast of an image -->
-    <string name="ucrop_contrast">對比</string>
+    <string name="ucrop_contrast">Contrast</string>
     <!-- Label for adjusting the saturation of an image -->
-    <string name="ucrop_saturation">飽和度</string>
+    <string name="ucrop_saturation">Saturation</string>
     <!-- Label for adjusting the sharpness of an image -->
-    <string name="ucrop_sharpness">銳利度</string>
+    <string name="ucrop_sharpness">Sharpness</string>
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
-    <string name="ucrop_label_original">原始照片</string>
+    <string name="ucrop_label_original">Original</string>
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
-    <string name="ucrop_label_free">無限制</string>
+    <string name="ucrop_label_free">Free</string>
     <!-- Verb phrase, button label to edit an observation photo -->
-    <string name="ucrop_label_edit_photo">編輯照片</string>
-    <string name="service_temporarily_unavailable">暫時無法使用服務。</string>
-    <string name="please_try_again_in_a_few_hours">請在幾個小時之後再試一次。</string>
+    <string name="ucrop_label_edit_photo">Edit Photo</string>
+    <string name="service_temporarily_unavailable">Service temporarily unavailable.</string>
+    <string name="please_try_again_in_a_few_hours">Please try again in a few hours.</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
-    <string name="please_try_again_in_x">請在 %1$d %2$s 再試一次</string>
-    <string name="hours">小時</string>
-    <string name="minutes">分鐘</string>
-    <string name="seconds_value">秒</string>
-    <string name="shop_the_inat_store">在 iNat 商店購物</string>
-    <string name="delete_your_account">刪除您的帳戶</string>
-    <string name="delete_account_message"><![CDATA[刪除您的帳戶意味著您將移除：<br/><br/><ul><li>您所有的觀察記錄，包含幫您鑑定的所有人之相關內容。</li><li>所有您對其他人觀察記錄的鑑定，這將潛在地影響那些觀察記錄的資料品質。</li><li>所有您添加的評論。</li></ul><br/>此外，此動作無法復原。如果您之後改變心意的話，您無法找回任何過去的內容。<br/><br/>如果本服務跳出太多通知的話，請考慮編輯您在網站上的<a href="https://www.inaturalist.org/users/edit">帳號設定</a>把某些通知選項關閉，或是停止接收電子郵件。如果您對特定人士很感冒的話，可考慮以<a href="https://www.inaturalist.org/users/edit">禁言他們</a>來取代刪除您的帳號<br/><br/>如果您非常確定想要刪除您的帳號，在下面的表單中輸入<b>\"%1$s\"</b>，並且按下按鈕刪除您的帳號及所有資料。]]></string>
-    <string name="your_account_has_been_deleted">您的帳號已經刪除了</string>
-    <string name="you_must_enter_username_in_the_form_to_delete_account">您必須在表單中輸入「%1$s」來刪除您的帳號</string>
+    <string name="please_try_again_in_x">Please try again in %1$d %2$s.</string>
+    <string name="hours">hours</string>
+    <string name="minutes">minutes</string>
+    <string name="seconds_value">seconds</string>
+    <string name="shop_the_inat_store">Shop the iNat Store</string>
+    <string name="delete_your_account">Delete Your Account</string>
+    <string name="delete_account_message"><![CDATA[By deleting your account you will remove:<br/><br/><ul><li> All of your observations, including the work of the all the people who have helped you out with identifications.</li><li> All of the identifications you\'ve added to the observations of other people, which will potentially affect the data quality of those observations.</li><li> All of the comments you\'ve added.</li></ul><br/>Furthermore, this action cannot be undone. If you change your mind later, you aren\'t getting any of that content back.<br/><br/>If this service generates too many notifications, consider <a href="https://www.inaturalist.org/users/edit">editing your settings on the website</a> to opt out of certain notifications or stop receiving email from us. If you\'re having trouble with a specific person, consider <a href="https://www.inaturalist.org/users/edit">muting them</a> instead of deleting your account.<br/><br/>If you\'re still sure you want to delete your account, enter <b>\"%1$s\"</b> in the form below and click the button to delete your account and all your data.]]></string>
+    <string name="your_account_has_been_deleted">Your account has been deleted</string>
+    <string name="you_must_enter_username_in_the_form_to_delete_account">You must enter \'%1$s\' in the form to delete your account</string>
     <!-- Second person hint text asking the user to enter their username -->
-    <string name="type_your_username">輸入您的使用者名稱</string>
-    <string name="error_deleting_account">刪除您的帳號時出現問題-請確認您的網路連線</string>
-    <string name="verify_your_password">請確認您的密碼</string>
-    <string name="third_party_data_sharing">第三方資料共享</string>
-    <string name="disable_third_party_data_sharing">停用第三方資料共享</string>
-    <string name="do_not_collect_third_party_data">不要使用第三方服務來收集穩定性和使用資料分析</string>
-    <string name="enabled">已啟用</string>
-    <string name="disabled">已停用</string>
-    <string name="third_party_data_sharing_notes1"><![CDATA[我們使用不同的第三方服務來監測我們軟體的穩定性與診斷臭蟲和問題。這些第三方服務包含：<br/><ul><li>Google<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="type_your_username">Type your username</string>
+    <string name="error_deleting_account">There was an error deleting your account - please check your Internet connection</string>
+    <string name="verify_your_password">Verify Your Password</string>
+    <string name="third_party_data_sharing">Third-party Data Sharing</string>
+    <string name="disable_third_party_data_sharing">Disable Third-party Data Sharing</string>
+    <string name="do_not_collect_third_party_data">Do not collect stability and usage data using third-party services</string>
+    <string name="enabled">Enabled</string>
+    <string name="disabled">Disabled</string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third-party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
     <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
     <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third-party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
     <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
-    <string name="common_names_place"><![CDATA[俗名的地點：<b>%1$s/b>]]></string>
-    <string name="tap_to_prioritize_common_names">點選以指定從特定地點來顯示優先的俗名</string>
-    <string name="search_places">搜尋地點</string>
-    <string name="restart_app">重新啟動 App</string>
-    <string name="disable_third_party_sharing_restart">為了立刻關閉第三方資料共享，app 必須重新啟動。</string>
+    <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
+    <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
+    <string name="search_places">Search Places</string>
+    <string name="restart_app">Restart App</string>
+    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
-        <item quantity="other">您確定要刪除這 %1$d 筆觀察記錄嗎？</item>
+        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
     </plurals>
     <string name="future_observed_on_date_error">Your observation was created (and submitted) on %1$s, but you\'re trying to set an observation date that is later than that: %2$s</string>
     <string name="no_more_photos_allowed">Observations can only have %1$d photos. To add more you will need to remove some.</string>
-    <string name="warning_multiple_photos">如果您要把不同的生物的照片加到這筆觀察記錄中，或是在不同地點或時間中的同一種生物，您必須需移除這些照片並且新增為分別的觀察記錄。一筆觀察記錄可以只有 %1$d 張照片。</string>
+    <string name="warning_multiple_photos">If you\'re adding photos of different kinds of organisms to this observation, or the same kind at different places or times, you should remove those photos and add them as separate observations. An observation can only have %1$d photos.</string>
     <string name="choosing_specific_language_warning">Choosing a specific language for your account requires an Internet connection</string>
     <string name="running_in_background_notfication">Running in the background so we can run without interruption</string>
-    <string name="opt_out_of_community_taxon">取消加入至社群鑑定出來的分類群</string>
-    <string name="opt_in_to_community_taxon">選擇加入至社群鑑定出來的分類群</string>
+    <string name="opt_out_of_community_taxon">Opt out of the Community Taxon</string>
+    <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
     <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
-    <string name="permission_required">需要權限</string>
+    <string name="permission_required">Permission Required</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
     <string name="to_access_your_location">To access your location you must grant location access permission to this app.</string>
     <!-- Dialog title when displaying a message that an action is not permitted -->
-    <string name="forbidden">禁止</string>
+    <string name="forbidden">Forbidden</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
-    <string name="list_observation_checkbox_description">複選觀察記錄之核選框</string>
-    <string name="observation_list_item_iconic_pic_description">觀察記錄之分類群縮圖</string>
-    <string name="observation_list_item_obs_pic_description">觀察記錄縮圖</string>
+    <!-- Description of a UI element for screen readers -->
+    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <!-- Description of a UI element for screen readers -->
+    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <!-- Description of a UI element for screen readers -->
+    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
     <string name="messages">Messages</string>
     <string name="all_messages">All Messages</string>
     <string name="search_messages">Search messages</string>
@@ -903,4 +906,5 @@
     <string name="rank_form">Form</string>
     <string name="rank_infrahybrid">Infrahybrid</string>
     <string name="rank_leaves">Leaves</string>
+    <string name="location_lat_lng">Location: %1$f, %2$f</string>
 </resources>

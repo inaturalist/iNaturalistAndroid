@@ -1,10 +1,10 @@
 # iNaturalistAndroid
 
-iNaturalistAndroid is an Android app for [iNaturalist.org](http://www.inaturalist.org).
+iNaturalistAndroid is an Android app for [iNaturalist.org](http://www.inaturalist.org). If you'd like to contribute code, please check out [Contributing Code to iNaturalist](https://github.com/inaturalist/inaturalist/blob/master/CONTRIBUTING.md) for general guidelines. If you'd like to contribute translations, please provide them through [our Crowdin project](https://crowdin.com/project/inaturalistios) (look for the `strings.xml` file to work on the Android app).
 
 ## Setup
 
-1. Make sure you have tha latest Android Studio
+1. Make sure you have the latest [Android Studio](https://developer.android.com/studio)
 1. Download and install [Crashlytics](https://www.crashlytics.com/downloads/android-studio)
 1. Download the iNaturalist source code and extract to a directory of your choosing
 1. Go to the `iNaturalist/src/main/res/values` and rename `config.xml.example` to `config.xml` (and change its values to match your GMaps, FB, etc. keys)

@@ -842,8 +842,11 @@
     <string name="forbidden">Запрещено</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">Приложение, которым вы поделились, создает фотографии, которые не подходят для наблюдений, потому что они не являются доказательством вашего опыта работы с другим организмом, потому что они включают ненадлежащий брендинг или коммерческий контент, или потому что они нарушают наши условия предоставления услуг каким-либо другим способом.</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">Флажок для выбора наблюдения в режиме множественного выбора</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_iconic_pic_description">Эскиз фото наблюдения таксона</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_obs_pic_description">Эскиз фото наблюдения</string>
     <string name="messages">Сообщения</string>
     <string name="all_messages">Все сообщения</string>
@@ -925,4 +928,5 @@
     <string name="rank_form">Форма</string>
     <string name="rank_infrahybrid">Инфрагибрид</string>
     <string name="rank_leaves">Листья</string>
+    <string name="location_lat_lng">Location: %1$f, %2$f</string>
 </resources>

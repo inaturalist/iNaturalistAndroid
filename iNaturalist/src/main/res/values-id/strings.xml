@@ -820,8 +820,11 @@
     <string name="forbidden">Dilarang</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">Aplikasi yang Anda pakai untuk membagi foto ini menciptakan foto yang tidak layak untuk pengamatan karena mereka tidak merepresentasikan bukti dari pengalaman Anda dengan organisme lain, karena aplikasi tersebut berisi merek yang tidak pantas atau konten komersial, atau melanggar Ketentuan Layanan kami dengan cara lainnya.</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
     <string name="messages">Messages</string>
     <string name="all_messages">All Messages</string>
@@ -903,4 +906,5 @@
     <string name="rank_form">Form</string>
     <string name="rank_infrahybrid">Infrahybrid</string>
     <string name="rank_leaves">Leaves</string>
+    <string name="location_lat_lng">Location: %1$f, %2$f</string>
 </resources>

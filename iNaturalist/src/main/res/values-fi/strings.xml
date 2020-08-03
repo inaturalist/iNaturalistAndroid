@@ -646,7 +646,7 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Kukka aukeamassa</string>
     <!-- Observation presents no evidence of flowering phenology -->
-    <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
+    <string name="annotation_value_no_evidence_of_flowering">Ei näyttöä kukinnasta</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Aikuinen</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -837,8 +837,11 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="forbidden">Estetty</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">Sovellus, josta jaoit kuvan, tuottaa kuvia jotka eivät sovi havaintokuviksi. Ne eivät välttämättä esitä havaittua eliötä, sisältävät sopimatonta kaupallista sisältöä, tai rikkovat iNaturalistin käyttösääntöjä muulla tavalla.  </string>
+    <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">Valintaruutu havainnolle monivalintatilassa</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_iconic_pic_description">Esikatselukuva havainnon taksonille</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_obs_pic_description">Esikatselukuva havainnolle</string>
     <string name="messages">Viestit</string>
     <string name="all_messages">Kaikki viestit</string>
@@ -880,44 +883,45 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="thank_you_for_submitting_the_flag">Kiitos kun teit liputuksen!</string>
     <string name="flagging_conversation">Liputetaan keskustelua...</string>
     <string name="failed_flagging_conversation">Keskustelun liputtaminen epäonnistui!</string>
-    <string name="no_subject">No Subject</string>
-    <string name="rank_state_of_matter">State of matter</string>
-    <string name="rank_kingdom">Kingdom</string>
-    <string name="rank_subkingdom">Subkingdom</string>
-    <string name="rank_phylum">Phylum</string>
-    <string name="rank_subphylum">Subphylum</string>
-    <string name="rank_superclass">Superclass</string>
-    <string name="rank_class">Class</string>
-    <string name="rank_subclass">Subclass</string>
-    <string name="rank_infraclass">Infraclass</string>
-    <string name="rank_superorder">Superorder</string>
-    <string name="rank_order">Order</string>
-    <string name="rank_suborder">Suborder</string>
-    <string name="rank_infraorder">Infraorder</string>
+    <string name="no_subject">Ei aihetta</string>
+    <string name="rank_state_of_matter">Olomuoto</string>
+    <string name="rank_kingdom">Kunta</string>
+    <string name="rank_subkingdom">Alakunta</string>
+    <string name="rank_phylum">Pääjakso</string>
+    <string name="rank_subphylum">Alajakso</string>
+    <string name="rank_superclass">Yläluokka</string>
+    <string name="rank_class">Luokka</string>
+    <string name="rank_subclass">Alaluokka</string>
+    <string name="rank_infraclass">Osaluokka</string>
+    <string name="rank_superorder">Ylälahko</string>
+    <string name="rank_order">Lahko</string>
+    <string name="rank_suborder">Alalahko</string>
+    <string name="rank_infraorder">Osalahko</string>
     <string name="rank_subterclass">Subterclass</string>
-    <string name="rank_parvorder">Parvorder</string>
+    <string name="rank_parvorder">Parvolahko</string>
     <string name="rank_zoosection">Zoosection</string>
     <string name="rank_zoosubsection">Zoosubsection</string>
-    <string name="rank_superfamily">Superfamily</string>
+    <string name="rank_superfamily">Yläheimo</string>
     <string name="rank_epifamily">Epifamily</string>
-    <string name="rank_family">Family</string>
-    <string name="rank_subfamily">Subfamily</string>
-    <string name="rank_supertribe">Supertribe</string>
-    <string name="rank_tribe">Tribe</string>
-    <string name="rank_subtribe">Subtribe</string>
-    <string name="rank_genus">Genus</string>
-    <string name="rank_genushybrid">Genushybrid</string>
-    <string name="rank_subgenus">Subgenus</string>
-    <string name="rank_section">Section</string>
+    <string name="rank_family">Heimo</string>
+    <string name="rank_subfamily">Alaheimo</string>
+    <string name="rank_supertribe">Ylätribus</string>
+    <string name="rank_tribe">Tribus</string>
+    <string name="rank_subtribe">Alatribus</string>
+    <string name="rank_genus">Suku</string>
+    <string name="rank_genushybrid">Sukuristeymä</string>
+    <string name="rank_subgenus">Alasuku</string>
+    <string name="rank_section">Osa</string>
     <string name="rank_subsection">subsection</string>
-    <string name="rank_complex">Complex</string>
+    <string name="rank_complex">Kompleksi</string>
     <!-- Singular -->
-    <string name="rank_species">Species</string>
-    <string name="rank_hybrid">Hybrid</string>
+    <string name="rank_species">Laji</string>
+    <string name="rank_hybrid">Risteymä</string>
     <!-- Singular -->
-    <string name="rank_subspecies">Subspecies</string>
-    <string name="rank_variety">Variety</string>
-    <string name="rank_form">Form</string>
-    <string name="rank_infrahybrid">Infrahybrid</string>
-    <string name="rank_leaves">Leaves</string>
+    <string name="rank_subspecies">Alalaji</string>
+    <string name="rank_variety">Muunnos</string>
+    <string name="rank_form">Muoto</string>
+    <string name="rank_infrahybrid">Osaristeymä</string>
+    <string name="rank_leaves">Lehdet</string>
+    <string name="location_lat_lng">Location: %1$f, %2$f</string>
 </resources>

@@ -198,7 +198,7 @@
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador הוא הנציג של אקוודור ברשת העולמית של iNaturalist . שותפים מקומיים של iNaturalist Ecuador יקבלו פרטים של המייל שלכם וגישה למיקום המדויק של תצפיות שמוסתרות מהציבור הרחב. בבקשה שלא לשנות את השייכות של חשבון המשתמש שלך אם העלת כבר יותר מ100 תצפיות. האם תרצה לשייך את החשבון שלך ל iNaturalist Ecuador ?</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia הוא הנציג של אוסטרליה ברשת העולמית של iNaturalist . שותפים מקומיים של iNaturalist Australia יקבלו פרטים של המייל שלכם וגישה למיקום המדויק של תצפיות שמוסתרות מהציבור הרחב. בבקשה שלא לשנות את השייכות של חשבון המשתמש שלך אם העלת כבר יותר מ100 תצפיות. האם תרצה לשייך את החשבון שלך ל iNaturalist Australia ?</string>
     <string name="alert_message_use_argentinat">ArgentiNat הוא הנציג של ארגנטינה ברשת העולמית של iNaturalist . שותפים מקומיים של ArgentiNat יקבלו פרטים של המייל שלכם וגישה למיקום המדויק של תצפיות שמוסתרות מהציבור הרחב. בבקשה שלא לשנות את השייכות של חשבון המשתמש שלך אם העלת כבר יותר מ100 תצפיות. האם תרצה לשייך את החשבון שלך ל ArgentiNat ?</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistil">האם תרצה לשייך את החשבון שלך ל iNaturalist Israel, להפוך לחלק מהקהילה המקומית ולתרום להגנת הטבע בישראל? iNaturalist Israel  הוא הנציג של ישראל ברשת העולמית של iNaturalist . שותפים מקומיים של iNaturalist Israel יקבלו פרטים של המייל שלכם וגישה למיקום המדויק של תצפיות שמוסתרות מהציבור הרחב. אם העלת כבר יותר מ100 תצפיות, בבקשה שלא לשנות את השייכות של חשבון המשתמש שלך . האם תרצה לשייך את החשבון שלך ל iNaturalist Israel?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland is a member of the iNaturalist Network in Finland. Local institutions supporting iNaturalist Finland will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">עורך</string>
     <string name="license">רשיון</string>
@@ -841,8 +841,11 @@
     <string name="forbidden">Forbidden</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
     <string name="messages">Messages</string>
     <string name="all_messages">All Messages</string>
@@ -924,4 +927,5 @@
     <string name="rank_form">Form</string>
     <string name="rank_infrahybrid">Infrahybrid</string>
     <string name="rank_leaves">Leaves</string>
+    <string name="location_lat_lng">Location: %1$f, %2$f</string>
 </resources>

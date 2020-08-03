@@ -827,8 +827,11 @@
     <string name="forbidden">Vietato</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">L\'app da cui hai condiviso crea foto che non sono adatte alle osservazioni perché non rappresentano la prova della tua esperienza con un altro organismo, perché includono un marchio inappropriato o contenuti commerciali, o perché violano i nostri Termini di servizio in altri modi.</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">Casella di controllo per selezionare l\'osservazione in modalità multi-selezione</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_iconic_pic_description">Foto miniatura per il taxon dell\'osservazione</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_obs_pic_description">Foto miniatura per l\'osservazione</string>
     <string name="messages">Messaggi</string>
     <string name="all_messages">Tutti i messaggi</string>
@@ -910,4 +913,5 @@
     <string name="rank_form">Forma</string>
     <string name="rank_infrahybrid">Infraibrido</string>
     <string name="rank_leaves">Foglie</string>
+    <string name="location_lat_lng">Posizione: %1$f, %2$f</string>
 </resources>

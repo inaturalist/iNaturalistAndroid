@@ -827,8 +827,11 @@
     <string name="forbidden">Ikke tilladt</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">Appen, hvorfra du delte, opretter fotos, som ikke er egnede til observationer, da dísse ikke udgør bevis for din oplevelse med en anden organisme, idet de inkluderer upassende branding eller kommercielt indhold, eller fordi de på anden vis overtræder vores tjenestevilkår.</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">Afkrydsningsfelt til valg af observation ved valg af flere emner</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_iconic_pic_description">Eksempelbillede til observationstaksonomi</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_obs_pic_description">Eksempelbillede til observation</string>
     <string name="messages">Beskeder</string>
     <string name="all_messages">Alle beskeder</string>
@@ -910,4 +913,5 @@
     <string name="rank_form">Form</string>
     <string name="rank_infrahybrid">Infrahybrid</string>
     <string name="rank_leaves">Blade</string>
+    <string name="location_lat_lng">Placering: %1$f, %2$f</string>
 </resources>
