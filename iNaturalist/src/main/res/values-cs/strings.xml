@@ -841,13 +841,16 @@
     <string name="forbidden">zakázano</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">Aplikace, ze které jste sdíleli, sdílí fotografie nevhodné pro pozorování, protože nepředstavují důkaz o Vašem setkání se s dalším organismem, protože obsahují nevhodný obchodní nebo komerční obsah, nebo proto, že jiným způsobem porušují naše Podmínky.</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">Zaškrtávací políčko pro výběr pozorování v režimu vícenásobného výběru</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_iconic_pic_description">Náhled pozorovaného taxonu</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_obs_pic_description">Náhled pozorování</string>
     <string name="messages">Zprávy</string>
     <string name="all_messages">Všechny zprávy</string>
     <string name="search_messages">Hledat zprávy</string>
-    <string name="no_messages">You currently have no messages. You can send a new message with the green button, or message them from their profile page.</string>
+    <string name="no_messages">Momentálně nemáte žádné zprávy. Můžete odeslat novou zprávu zeleným tlačítkem nebo poslat zprávu konkrétním lidem z jejich profilové stránky.</string>
     <string name="no_messages_found">Žádné zprávy nenalezeny.</string>
     <string name="send_a_message">Odeslat zprávu</string>
     <string name="sending_message">Zpráva se odesílá...</string>
@@ -924,4 +927,5 @@
     <string name="rank_form">forma</string>
     <string name="rank_infrahybrid">infrakříženec</string>
     <string name="rank_leaves">Leaves</string>
+    <string name="location_lat_lng">Location: %1$f, %2$f</string>
 </resources>

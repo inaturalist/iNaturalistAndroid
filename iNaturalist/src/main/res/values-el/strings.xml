@@ -827,8 +827,11 @@
     <string name="forbidden">Απαγορεύεται</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">Η εφαρμογή από την οποία κοινοποιήσατε δημιουργεί φωτογραφίες οι οποίες δεν είναι κατάλληλες για παρατηρήσεις επειδή δεν αντιπροσωπεύουν αποδεικτικά στοιχεία της εμπειρίας σας με άλλον οργανισμό, επειδή περιλαμβάνουν ακατάλληλο εμπορικό σήμα ή εμπορικό περιεχόμενο ή επειδή παραβιάζουν τους Όρους της Υπηρεσίας με άλλους τρόπους.</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">Πλαίσιο ελέγχου για επιλογή παρατήρησης σε λειτουργία πολλαπλής επιλογής</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_iconic_pic_description">Μικρογραφία φωτογραφίας για το taxon παρατήρησης</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_obs_pic_description">Μικρογραφία φωτογραφίας για την παρατήρηση</string>
     <string name="messages">Messages</string>
     <string name="all_messages">All Messages</string>
@@ -910,4 +913,5 @@
     <string name="rank_form">Form</string>
     <string name="rank_infrahybrid">Infrahybrid</string>
     <string name="rank_leaves">Leaves</string>
+    <string name="location_lat_lng">Location: %1$f, %2$f</string>
 </resources>

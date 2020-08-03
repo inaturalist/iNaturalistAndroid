@@ -81,11 +81,11 @@
     <string name="no">नाही</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">सहमत ?</string>
-    <string name="no_comments">अजुन काही टिप्पण्या/परिचय नाहीयेत</string>
+    <string name="no_comments">No comments/identifications yet</string>
     <string name="add_comment">टिपणी करा </string>
-    <string name="add_id">ओळख दाखवा </string>
-    <string name="remarks">शेरा..</string>
-    <string name="enter_taxon_name">जातीचे नाव</string>
+    <string name="add_id">Add identification</string>
+    <string name="remarks">Remarks...</string>
+    <string name="enter_taxon_name">Species name</string>
     <string name="no_projects">कोणतेही प्रकल्प सापडले नाहीत!</string>
     <string name="no_guides">मार्गदर्शक सापडले नाहीत</string>
     <string name="loading_projects">प्रकल्प माहिती येत आहे ...</string>
@@ -827,8 +827,11 @@
     <string name="forbidden">Forbidden</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
     <string name="messages">संदेश</string>
     <string name="all_messages">सर्व संदेश</string>
@@ -910,4 +913,5 @@
     <string name="rank_form">Form</string>
     <string name="rank_infrahybrid">Infrahybrid</string>
     <string name="rank_leaves">Leaves</string>
+    <string name="location_lat_lng">Location: %1$f, %2$f</string>
 </resources>

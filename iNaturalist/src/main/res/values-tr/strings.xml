@@ -828,8 +828,11 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="forbidden">İzin Verilmedi</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">Paylaştığınız uygulama, gözlemler için uygun olmayan fotoğraflar oluşturur çünkü başka bir organizma ile olan deneyimlerinizi kanıtlamazlar. Uygunsuz marka ya da ticari içerik barındırıyorlar ya da Hizmet Şartlarımızı başka şekillerde çiğniyorlar.</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">Çoklu seçim modunda gözlem seçmek için onay kutusu</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_iconic_pic_description">Gözlem sınıfı için küçük resim</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_obs_pic_description">Gözlem için küçük resim</string>
     <string name="messages">İletiler</string>
     <string name="all_messages">Tüm İletiler</string>
@@ -911,4 +914,5 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="rank_form">Form</string>
     <string name="rank_infrahybrid">İnfra yüzergezer</string>
     <string name="rank_leaves">Yapraklar</string>
+    <string name="location_lat_lng">Location: %1$f, %2$f</string>
 </resources>

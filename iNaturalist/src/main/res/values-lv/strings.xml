@@ -162,8 +162,8 @@
     </string-array>
     <string-array name="tutorial_descriptions">
         <item>Izzini dabu un pietuvojies tai</item>
-        <item>Dodieties dabā! Atrodiet kādu zvēru vai augu un uzņemiet skaidru pilnizmēra attēlu!</item>
-        <item>Dalieties ar saviem novērojumiem iNaturalist kopienā!</item>
+        <item>Dodies dabā! Atrodi kādu zvēru vai augu un uzņem skaidru pilnizmēra attēlu!</item>
+        <item>Dalies ar saviem novērojumiem iNaturalist kopienā!</item>
         <item>Pārbaudi, vai tavam novērojumam nav pievienoti jauni komentāri vai identifikācijas!</item>
         <item><![CDATA[<b>Research Grade</b> jeb pētniecības līmeņa novērojumus izmanto zinātnieki, lai labāk izprastu un pasargātu dabu.]]></item>
     </string-array>
@@ -176,7 +176,7 @@
     <string name="alert_unsupported_media_type">Atvaino, ielādējot attēlu no šī avota, radās kļūda.</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
     <string name="explore">Izzini</string>
-    <string name="restricted_to_current_map_area">Tiek rādīti novērojumi tikai pašreiz aktivizētajā kartes apgabalā</string>
+    <string name="restricted_to_current_map_area">Tiek rādīti novērojumi tikai pašreiz aktivizētajā kartes nogabalā</string>
     <string name="search">Meklēt</string>
     <string name="details">Dati</string>
     <string name="observation_photos">Novērojuma fotogrāfijas</string>
@@ -213,7 +213,7 @@ globālā iNaturalist tīkla.</string>
     <string name="downloading">Lejupielādē...</string>
     <string name="extracting">Notiek ekstrakcija...</string>
     <string name="downloaded">Lejupielādēts</string>
-    <string name="delete_download">Dzēst lejupielādi</string>
+    <string name="delete_download">Dzēst lejupielādēto</string>
     <string name="re_download">Lejupielādēt no jauna</string>
     <string name="error">Kļūda</string>
     <string name="could_not_retrieve_guide">Neizdevās lejupielādēt padomu datus – iespējama savienojuma kļūda.</string>
@@ -262,8 +262,8 @@ globālā iNaturalist tīkla.</string>
     <string name="downloading_observations">Lejupielādē novērojumus...</string>
     <string name="no_thanks">Nē, paldies!</string>
     <string name="turn_on">Ieslēgt</string>
-    <string name="introducing_auto_sync">Iepazīstinām ar \"Auto-Sync\"</string>
-    <string name="turn_on_auto_sync">Ieslēdz Auto-Sync iestatījumos, lai novērojumus automātiski augšupielādētu iNaturalist datubāzē. </string>
+    <string name="introducing_auto_sync">Iepazīstinām ar automātiskās sinhronizācijas funkciju.</string>
+    <string name="turn_on_auto_sync">Ieslēdz iestatījumos automātisko sinhronizāciju, lai novērojumus automātiski augšupielādētu iNaturalist datubāzē. </string>
     <string name="automatic_upload">Automātiskā augšupielāde (Auto Sync)</string>
     <string name="waiting_to_upload">Gaida, lai augšupielādētu...</string>
     <string name="uploading">Augšupielādē...</string>
@@ -389,13 +389,13 @@ globālā iNaturalist tīkla.</string>
     <string name="birds">Putni</string>
     <string name="arachnids">Zirnekļveidīgie</string>
     <string name="no_connectivity">Nav savienojuma</string>
-    <string name="no_recommended_missions">Izskatās, ka šajā apgabalā nav ieteikumu. Pamēģini pārvietoties uz jaunu atrašanās vietu.</string>
+    <string name="no_recommended_missions">Izskatās, ka šajā nogabalā nav ieteikumu. Pamēģini nomainīt atrašanās vietu.</string>
     <string name="what_to_look_for">Ko meklēt?</string>
     <string name="have_been_seen_here">Šeit ir redzēti</string>
     <string name="observe">Novēro</string>
     <string name="nearby_missions">Tuvējās misijas</string>
-    <string name="searching_your_area">Meklē tavā apgabalā...</string>
-    <string name="expanding_your_search_area">Paplašina meklēšanas apgabalu...</string>
+    <string name="searching_your_area">Meklē tavā kartes nogabalā...</string>
+    <string name="expanding_your_search_area">Palielina meklēšanas nogabala izmēru...</string>
     <string name="introducing_missions">Iepazīstinām ar misijām!</string>
     <string name="missions_onboarding_description">Misijās atrodami aktualizēti ieteikumi savas apkārtnes izzināšanai. Šādi iespējams iepazīt jaunas sugas. (Nepieciešams interneta pieslēgums)</string>
     <string name="ok_got_it">Skaidrs!</string>
@@ -436,8 +436,8 @@ globālā iNaturalist tīkla.</string>
     <string name="about_this_section">Informācija par šo sadaļu</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
     <string name="taxonomy_info">Šeit norādīta taksona piederība pie sugas apakšgrupām. Apakšgrupas ir sakārtotas šādā secībā – sākot ar aptuvenāko un beidzot ar precīzāko. Izmanto šo sarakstu, lai virzītos augšup un lejup pa dzīvības koku. Ja nespēj noteikt organisma sugu, bet zini, kurai grupai tas pieder, nospied uz kāda no sarakstā atrodamajiem taksoniem, lai iegūtu par to informāciju.</string>
-    <string name="more_info_on_inat">Vairāk informācijas iekš iNaturalist.org</string>
-    <string name="view_suggestions">Skatīt ieteikumus</string>
+    <string name="more_info_on_inat">Vairāk informācijas iNaturalist.org tīmekļa vietnē</string>
+    <string name="view_suggestions">Skatīt minējumus</string>
     <string name="species_search">Meklēt sugu</string>
     <plurals name="were_not_confident">
         <item quantity="zero">Neesam pietiekami pārliecināti, lai ieteiktu sugu, bet šis ir mūsu %1$d minējums:</item>
@@ -446,18 +446,18 @@ globālā iNaturalist tīkla.</string>
         <item quantity="other">Neesam pietiekami pārliecināti, lai ieteiktu sugu, bet šis ir mūsu %1$d minējumi:</item>
     </plurals>
     <plurals name="top_species_suggestions">
-        <item quantity="zero">Labākais %1$d ieteikums:</item>
-        <item quantity="one">Labākais %1$d ieteikums:</item>
-        <item quantity="other">Labākie %1$d ieteikumi:</item>
+        <item quantity="zero">Labākais %1$d minējums:</item>
+        <item quantity="one">Labākais %1$d minējums:</item>
+        <item quantity="other">Labākie %1$d minējumi:</item>
     </plurals>
-    <string name="pretty_sure_rank">Esam diezgan pārliecināti, ka organisms pieder grupai %1$s:</string>
+    <string name="pretty_sure_rank">Esam diezgan pārliecināti, ka organisms pieder grupai ar nosaukumu %1$s:</string>
     <string name="what_did_you_see">Ko ieraudzīji?</string>
     <string name="suggest_species">Ieteikt sugu</string>
     <string name="suggest_species_description">Ieteikt sugu, balstoties uz vizuālo līdzību fotogrāfijās.</string>
     <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Vizuāli līdzīgs</string>
-    <string name="visually_similar_seen_nearby">Vizuāli līdzīgs / Netālu redzēts</string>
-    <string name="seen_nearby">Netālu redzēts</string>
+    <string name="visually_similar_seen_nearby">Vizuāli līdzīgs / Redzēts netālu</string>
+    <string name="seen_nearby">Redzēts netālu</string>
     <string name="enlarge">Palielināt</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Skatīt apakšgrupas</string>
@@ -556,10 +556,10 @@ saraksta, kas atrodas apakšā meklēšanas laukam vai notīri to.</string>
     <string name="end">Beigas</string>
     <string name="months">Mēneši</string>
     <string name="choose_months">Izvēlēties mēnesi</string>
-    <string name="map_area">Apgabala karte</string>
+    <string name="map_area">Kartes nogabals</string>
     <string name="global">Globāli</string>
     <!-- As in redo search in the current map area -->
-    <string name="search_map_area">Meklēt kartes apgabalā</string>
+    <string name="search_map_area">Meklēt kartes nogabalā</string>
     <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
     <string name="date_minute">%dmēn.</string>
     <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
@@ -600,13 +600,13 @@ saraksta, kas atrodas apakšā meklēšanas laukam vai notīri to.</string>
     <string name="see_more_observations">Skatīt vairāk novērojumu</string>
     <string name="see_more_species">Skatīt vairāk sugu</string>
     <string name="see_more_identifications">Skatīt vairāk identifikāciju</string>
-    <string name="collection_and_umbrella_projects">Kolekcija un \"Umbrella\" projekti</string>
+    <string name="collection_and_umbrella_projects">Kolekcija un jumta projekti</string>
     <string name="description">Apraksts</string>
     <string name="quantity">Skaits</string>
     <string name="agree2">Piekrist</string>
     <string name="project_observations">Novērojumi</string>
     <string name="project_species">Suga</string>
-    <string name="project_people">Cilvēki</string>
+    <string name="project_people">Lietotāji</string>
     <string name="project_identifiers">Identificētāji</string>
     <string name="got_it">Skaidrs!</string>
     <string name="view_all">Apskatīt visu</string>
@@ -643,11 +643,11 @@ saraksta, kas atrodas apakšā meklēšanas laukam vai notīri to.</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Ziedpumpuri</string>
     <!-- Observation presents no evidence of flowering phenology -->
-    <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
+    <string name="annotation_value_no_evidence_of_flowering">Nekas neliecina par ziedēšanu</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Pieaudzis</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
-    <string name="annotation_value_teneral">Pēdējā kāpura stadija</string>
+    <string name="annotation_value_teneral">Tenerāls īpatnis</string>
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
     <string name="annotation_value_pupa">Kūniņa</string>
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
@@ -658,7 +658,7 @@ saraksta, kas atrodas apakšā meklēšanas laukam vai notīri to.</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
     <string name="annotation_value_juvenile">Nepieaudzis</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
-    <string name="annotation_value_subimago">Kāpurs</string>
+    <string name="annotation_value_subimago">Subimago</string>
     <string name="annotation_value_female">Mātīte</string>
     <string name="annotation_value_male">Tēviņš</string>
     <!-- Adjective, alive and shows no signs of imminent death -->
@@ -686,7 +686,7 @@ saraksta, kas atrodas apakšā meklēšanas laukam vai notīri to.</string>
     <string name="agree_all_caps">PIEKRIST</string>
     <string name="observations_all_caps">NOVĒROJUMI</string>
     <string name="species_all_caps">SUGAS</string>
-    <string name="people_all_caps">CILVĒKI</string>
+    <string name="people_all_caps">LIETOTĀJI</string>
     <string name="identifiers_all_caps">IDENTIFICĒTĀJI</string>
     <string name="identifications_all_caps">IDENTIFIKĀCIJAS</string>
     <string name="news_all_caps">ZIŅAS</string>
@@ -710,11 +710,11 @@ saraksta, kas atrodas apakšā meklēšanas laukam vai notīri to.</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Vai kopienas noteiktā identifikācija var tikt apstiprināta vai uzlabota, ņemot vērā pierādījumus?</string>
     <string name="no_as_good_as_it_can_be">To vairs nevar uzlabot</string>
     <string name="seasonality">Sezonalitāte</string>
-    <string name="verifiable">Trūkst identifikāciju</string>
+    <string name="verifiable">Pierādāms</string>
     <string name="no_annotation">Bez piezīmēm</string>
     <string name="donate_to_inaturalist">Ziedot iNaturalist kopienai</string>
     <string name="prefers_scientific_name_first">Vispirms rādīt zinātnisko nosaukumu</string>
-    <string name="prefers_scientific_name_first_description">Vispirms rādīt zinātniskos, nevis parastos nosaukumus.</string>
+    <string name="prefers_scientific_name_first_description">Vispirms rādīt zinātniskos, nevis tautā pieņemtos nosaukumus.</string>
     <string name="network_credit_inaturalistcanada"><![CDATA[Kanāda: Canadian Wildlife Federation, Royal Ontario Museum, Naturserve Canada un Parks Canada, kas uztur iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
     <string name="network_credit_naturalistacolombia"><![CDATA[Kolumbija: Instituto Humboldt, kas uztur Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
     <string name="network_credit_naturalista"><![CDATA[Meksika: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO), kas uztur NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
@@ -810,8 +810,8 @@ saraksta, kas atrodas apakšā meklēšanas laukam vai notīri to.</string>
     <string name="third_party_data_sharing_notes2"><![CDATA[Trešajām pusēm sniegtā informācija:<br/><ul><li> IP adreses (lai noteiktu atrašanās vietu pilsētām pieejamajā izšķirtspējā un izsekotu lietotājus, kas izmanto dažādas tīmekļa vietnes un pakalpojumus. Jāņem vērā, ka esam iespējojuši <a href="https://support.google.com/analytics/answer/2763052">IP anonimizāciju</a> iekš Google Analytics un <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a>, cik mums zināms, neievāc informāciju par IP adresēm)</li><li>Informācija par pārlūkprogrammu, piemēram, izstrādātājs, modelis, versija.</li><li>Informācija par avāriju, lai noteiktu, piemēram, precīzu koda rindu, kas izraisīja avāriju. </li><li>Informācija par ierīci, piemēram, mobilā telefona ražotājs un modelis.</li></ul>]]></string>
     <string name="third_party_data_sharing_notes3"><![CDATA[<b>Trešo pušu pakalpojumi mums ir nepieciešami, lai</b> ar mūsu salīdzinoši mazo darbinieku skaitu nodrošinātu lietotnes darbības stabilitāti un lietojamību. Ar citām metodēm mobilo ierīču programmatūras nepilnības gandrīz nav iespējams pamanīt, jo šīs ierīces mēs nekontrolējam. Zināmos gadījumos šādas problēmas nav iespējams pamanīt kamēr neesam saņēmuši trešo pušu pakalpojumu datus par nepilnībām programmatūrā. <b> Daloties ar šo informāciju, lietotāji palīdz mums strādāt lietotāju un visas iNaturalist kopienas labā.</b>]]></string>
     <string name="third_party_data_sharing_notes4"><![CDATA[Jāņem vērā, ka šī funkcija ietver tikai šiem pakalpojumu sniedzējiem nosūtītos datus par analīzēm un avārijām. Visus iNaturalist serverus nodrošina un uztur Microsoft, visas iNaturalist fotogrāfijas uzglabā Amazon un gandrīz visas iNaturalist kartes nodrošina Google – lietotājam apskatot iNaturalist novērojumus, ierīce ik reizi pieslēgsies šo uzņēmumu pakalpojumiem un atklās viņiem vismaz lietotāja IP adresi un, iespējams, arī citus datus (iPhone ierīcēs izmantojas Apple maps kartes). Visticamāk, iNaturalist nepastāvētu bez šo uzņēmumu pakalpojumiem. Mēs cenšamies ierobežot šiem uzņēmumiem pieejamo iNat lietotāju datu dažādību un daudzumu, bet nevaram pilnīgi apturēt datu plūsmu.]]></string>
-    <string name="common_names_place"><![CDATA[Parasts vietvārds: <b>%1$s</b>]]></string>
-    <string name="tap_to_prioritize_common_names">Nospied, lai izvēlētos vietvārdus no kādas noteiktas vietas.</string>
+    <string name="common_names_place"><![CDATA[Tautā pieņemtais vietvārds: <b>%1$s</b>]]></string>
+    <string name="tap_to_prioritize_common_names">Nospied, lai izvēlētos tautā pieņemtos vietvārdus no kādas noteiktas vietas.</string>
     <string name="search_places">Meklēt vietas</string>
     <string name="restart_app">Restartēt lietotni</string>
     <string name="disable_third_party_sharing_restart">Lietotne jārestartē, lai nekavējoties atspējotu datu koplietošanu ar trešajām pusēm.</string>
@@ -836,8 +836,11 @@ saraksta, kas atrodas apakšā meklēšanas laukam vai notīri to.</string>
     <string name="forbidden">Aizliegts</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">Šīs lietotnes fotogrāfijas nav piemērotas novērojumiem, jo tās nepierāda tavu klātbūtni pie cita organisma vai ietver nepieņemamu marķējumu vai reklāmu saturu, vai citā veidā pārkāpj iNaturalist lietošanas noteikumus.</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">Novērojumu atlases izvēles rūtiņa vairāku izvēles rūtiņu režīmā</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_iconic_pic_description">Novērojuma taksona sīktēls</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_obs_pic_description">Novērojuma sīktēls</string>
     <string name="messages">Ziņas</string>
     <string name="all_messages">Visas ziņas</string>
@@ -856,7 +859,7 @@ saraksta, kas atrodas apakšā meklēšanas laukam vai notīri to.</string>
     <string name="search_for_inaturalist_users">Meklēt iNaturalist lietotājus</string>
     <string name="please_sign_in_for_messages">Lai apskatītu ziņas, jāpieslēdzas.</string>
     <string name="sorry">Atvainojamies</string>
-    <string name="you_must_have_three_observations">Lai to izdarītu, tev jabūt trīs derīgiem novērojumiem vai trīs citu lietotāju novērojumu identifikācijām.</string>
+    <string name="you_must_have_three_observations">Lai to izdarītu, tev jabūt trīs pierādāmiem novērojumiem vai trīs citu lietotāju novērojumu identifikācijām.</string>
     <string name="mute_this_user">Apklusināt lietotāju</string>
     <string name="unmute_this_user">Izslēgt apklusināšanas funkciju šim lietotājam</string>
     <string name="flag_this_conversation">Atzīmēt sarunu ar karodziņu</string>
@@ -879,44 +882,45 @@ saraksta, kas atrodas apakšā meklēšanas laukam vai notīri to.</string>
     <string name="thank_you_for_submitting_the_flag">Paldies par karodziņa pievienošanu!</string>
     <string name="flagging_conversation">Sarunai tiek pievienots karodziņš...</string>
     <string name="failed_flagging_conversation">Neizdevās sarunai pievienot karodziņu.</string>
-    <string name="no_subject">No Subject</string>
-    <string name="rank_state_of_matter">State of matter</string>
-    <string name="rank_kingdom">Kingdom</string>
-    <string name="rank_subkingdom">Subkingdom</string>
-    <string name="rank_phylum">Phylum</string>
-    <string name="rank_subphylum">Subphylum</string>
-    <string name="rank_superclass">Superclass</string>
-    <string name="rank_class">Class</string>
-    <string name="rank_subclass">Subclass</string>
-    <string name="rank_infraclass">Infraclass</string>
-    <string name="rank_superorder">Superorder</string>
-    <string name="rank_order">Order</string>
-    <string name="rank_suborder">Suborder</string>
-    <string name="rank_infraorder">Infraorder</string>
-    <string name="rank_subterclass">Subterclass</string>
-    <string name="rank_parvorder">Parvorder</string>
-    <string name="rank_zoosection">Zoosection</string>
-    <string name="rank_zoosubsection">Zoosubsection</string>
-    <string name="rank_superfamily">Superfamily</string>
-    <string name="rank_epifamily">Epifamily</string>
-    <string name="rank_family">Family</string>
-    <string name="rank_subfamily">Subfamily</string>
-    <string name="rank_supertribe">Supertribe</string>
-    <string name="rank_tribe">Tribe</string>
-    <string name="rank_subtribe">Subtribe</string>
-    <string name="rank_genus">Genus</string>
-    <string name="rank_genushybrid">Genushybrid</string>
-    <string name="rank_subgenus">Subgenus</string>
-    <string name="rank_section">Section</string>
-    <string name="rank_subsection">subsection</string>
-    <string name="rank_complex">Complex</string>
+    <string name="no_subject">Nav subjekta</string>
+    <string name="rank_state_of_matter">Agregātstāvoklis</string>
+    <string name="rank_kingdom">Valsts</string>
+    <string name="rank_subkingdom">Apakšvalsts</string>
+    <string name="rank_phylum">Tips</string>
+    <string name="rank_subphylum">Apakštips</string>
+    <string name="rank_superclass">Virsklase</string>
+    <string name="rank_class">Klase</string>
+    <string name="rank_subclass">Apakšklase</string>
+    <string name="rank_infraclass">Infraklase</string>
+    <string name="rank_superorder">Augstākā kārta</string>
+    <string name="rank_order">Kārta</string>
+    <string name="rank_suborder">Apakškārta</string>
+    <string name="rank_infraorder">Infrakārta</string>
+    <string name="rank_subterclass">Sīkkārta</string>
+    <string name="rank_parvorder">Sīkkārta</string>
+    <string name="rank_zoosection">Sekcija</string>
+    <string name="rank_zoosubsection">Apakšsekcija</string>
+    <string name="rank_superfamily">Virsdzimta</string>
+    <string name="rank_epifamily">\"Epifamily\" dzimta</string>
+    <string name="rank_family">Dzimta</string>
+    <string name="rank_subfamily">Apakšdzimta</string>
+    <string name="rank_supertribe">Virscilts</string>
+    <string name="rank_tribe">Cilts</string>
+    <string name="rank_subtribe">Apakšcilts</string>
+    <string name="rank_genus">Ģints</string>
+    <string name="rank_genushybrid">Hibrīds</string>
+    <string name="rank_subgenus">Apakšģints</string>
+    <string name="rank_section">Sekcija</string>
+    <string name="rank_subsection">Apakšsekcija</string>
+    <string name="rank_complex">Sīksugas</string>
     <!-- Singular -->
-    <string name="rank_species">Species</string>
-    <string name="rank_hybrid">Hybrid</string>
+    <string name="rank_species">Suga</string>
+    <string name="rank_hybrid">Hibrīds</string>
     <!-- Singular -->
-    <string name="rank_subspecies">Subspecies</string>
-    <string name="rank_variety">Variety</string>
-    <string name="rank_form">Form</string>
-    <string name="rank_infrahybrid">Infrahybrid</string>
-    <string name="rank_leaves">Leaves</string>
+    <string name="rank_subspecies">Apakšsuga</string>
+    <string name="rank_variety">Šķirne</string>
+    <string name="rank_form">Kultūrforma</string>
+    <string name="rank_infrahybrid">Infrahibrīds</string>
+    <string name="rank_leaves">Lapas</string>
+    <string name="location_lat_lng">Location: %1$f, %2$f</string>
 </resources>
