@@ -216,11 +216,11 @@
     <string name="error">Erreur</string>
     <string name="could_not_retrieve_guide">Impossible de récupérer les détails du guide - probablement dû à une erreur de réseau.</string>
     <string name="inat_support_email_subject">Aider iNaturalist (version %1$s - %2$s ; id utilisateur - %3$s)</string>
-    <string name="send_email">Envoyer un e-mail...</string>
+    <string name="send_email">Envoyer un courriel...</string>
     <string name="login_with">Connexion avec</string>
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
-    <string name="email">E-mail</string>
+    <string name="email">Courriel</string>
     <string name="sign_up_with">S\'inscrire avec</string>
     <string name="skip">Ignorer</string>
     <string name="already_have_account">Vous avez déjà un compte?</string>
@@ -231,7 +231,7 @@
     <string name="content_licensing">Contenu de la licence</string>
     <string name="content_licensing_description">Cochez cette case si vous voulez appliquer une licence d\'attribution non commerciale Creative Commons à vos photos. Vous pouvez choisir une licence différente ou supprimer la licence plus tard, mais il s\'agit de la meilleure licence pour échanger avec les chercheurs.</string>
     <!-- Try to keep this about the length of the English text -->
-    <string name="username_or_email">Nom d\'utilisateur ou e-mail</string>
+    <string name="username_or_email">Nom d\'utilisateur ou courriel</string>
     <string name="forgot">Mot de passe oublié?</string>
     <string name="or_login_with">Ou connectez-vous avec:</string>
     <string name="registering">Inscription...</string>
@@ -262,8 +262,8 @@
     <string name="turn_on">Activer</string>
     <string name="introducing_auto_sync">Lancement de l\'Auto-Sync!</string>
     <string name="turn_on_auto_sync">Activez l\'Auto-Sync dans paramètres et vos observations seront automatiquement téléchargées sur iNaturalist.</string>
-    <string name="automatic_upload">Téléchargement automatique (Auto Sync)</string>
-    <string name="waiting_to_upload">En attente du chargement...</string>
+    <string name="automatic_upload">Téléversement automatique (Synchro auto)</string>
+    <string name="waiting_to_upload">En attente du téléversement...</string>
     <string name="uploading">En cours...</string>
     <string name="failed_to_add_to_project">Impossible d’ajouter au projet \'%1$s\': %2$s</string>
     <string name="needs_your_attention">Attention...</string>
@@ -344,7 +344,7 @@
     <string name="logged_in_as_html"><![CDATA[Connecté en tant que <b>%1$s</b>]]></string>
     <string name="log_out">Se déconnecter</string>
     <string name="not_logged_in">Vous n\'êtes pas connecté(e)</string>
-    <string name="auto_upload_description">Téléchargement automatique de nouvelles observations et modifications aux observations</string>
+    <string name="auto_upload_description">Téléversement automatique de nouvelles observations et modifications aux observations</string>
     <string name="language">Langage</string>
     <string name="version">Version</string>
     <string name="inat_network">Réseau iNaturalist</string>
@@ -359,14 +359,14 @@
     <string name="syncing_observation_fields">Synchronisation des champs d’observation...</string>
     <string name="syncing_observations">Synchronisation des observations...</string>
     <string name="syncing_paused">En pause</string>
-    <string name="upload">Télécharger</string>
+    <string name="upload">Téléverser</string>
     <string name="search_observations">Rechercher des observations...</string>
     <string name="withdraw">Retirer</string>
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Mise à jour la description d’Identification</string>
     <string name="your_identification">Votre ID : %1$s</string>
     <string name="onboarding_species_name">Identifiez ce que vous avez vu si possible, même si c\'est juste « insecte » ou « oiseau », ou laissez-le champ vide. D\'autres pourront vous aider à l\'identifier!</string>
-    <string name="upload_complete">Téléchargement complet !</string>
+    <string name="upload_complete">Téléversement terminé!</string>
     <string name="onboarding_upload_description">Revenez jeter un coup d’œil bientôt pour voir l’activité de la communauté au sujet de votre observation</string>
     <string name="importing_photos">Téléchargement de photos...</string>
     <string name="multi_select_description">Importez plusieurs photos en appuyant plus longtemps sur une seule photo</string>
@@ -827,8 +827,11 @@
     <string name="forbidden">Action interdite</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">L\'appli a partir de laquelle vous avez transmis ce fichier génère des photos qui ne sont pas acceptables pour des observations parce qu\'elle ne représentent pas des preuves d\'interaction avec un organisme, parce qu\'elles incluent un nom de marque ou un contenu à caractère commercial, ou bien parce qu\'elles enfreignent nos conditions générales d\'utilisation.</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">Case à cocher pour sélectionner les observations lors d\'une sélection multiple</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_iconic_pic_description">Vignette pour l\'observation d\'un taxon</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_obs_pic_description">Vignette de l\'observation</string>
     <string name="messages">Messages</string>
     <string name="all_messages">Tous les messages</string>
@@ -870,7 +873,7 @@
     <string name="thank_you_for_submitting_the_flag">Merci d\'avoir envoyé le signalement!</string>
     <string name="flagging_conversation">Signalement de la conversation...</string>
     <string name="failed_flagging_conversation">Échec du signalement de la conversation!</string>
-    <string name="no_subject">No Subject</string>
+    <string name="no_subject">Aucun objet</string>
     <string name="rank_state_of_matter">State of matter</string>
     <string name="rank_kingdom">Règne</string>
     <string name="rank_subkingdom">Sous-règne</string>
@@ -900,7 +903,7 @@
     <string name="rank_subgenus">Sous-genre</string>
     <string name="rank_section">Section</string>
     <string name="rank_subsection">Sous-section</string>
-    <string name="rank_complex">Complex</string>
+    <string name="rank_complex">Complexe</string>
     <!-- Singular -->
     <string name="rank_species">Espèce</string>
     <string name="rank_hybrid">Hybride</string>
@@ -910,4 +913,5 @@
     <string name="rank_form">Forme</string>
     <string name="rank_infrahybrid">Infrahybrid</string>
     <string name="rank_leaves">Leaves</string>
+    <string name="location_lat_lng">Location: %1$f, %2$f</string>
 </resources>

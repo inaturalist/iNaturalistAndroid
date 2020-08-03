@@ -2,18 +2,18 @@
 <resources>
     <string name="app_name">iNaturalist</string>
     <string name="email_address">E-mailadres</string>
-    <string name="delete_observation">Verwijder observatie</string>
+    <string name="delete_observation">Waarneming verwijderen</string>
     <string name="observation_deleted">Waarneming verwijderd</string>
     <string name="species_guess_hint">Soort naam...</string>
     <string name="ok">OK</string>
     <string name="cancel">Annuleer</string>
     <string name="loading">Laden...</string>
     <string name="sync_required">Synchronisatie vereist</string>
-    <string name="sync_required_message">%1$d observaties, %2$d foto\'s moeten gesynchroniseerd worden</string>
+    <string name="sync_required_message">%1$d waanemingen, %2$d foto\'s moeten worden gesynchroniseerd</string>
     <string name="street">Straat</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satelliet</string>
-    <string name="couldnt_load_nearby_observations">Kon nabije observaties niet laden:%1$s</string>
+    <string name="couldnt_load_nearby_observations">Kon nabije waarnemingen niet laden: %1$s</string>
     <string name="username_invalid">Gebruikersnaam of wachtwoord is verkeerd, probeer het opnieuw.</string>
     <string name="signing_in">Inloggen...</string>
     <string name="signed_in">Ingelogd!</string>
@@ -35,7 +35,7 @@
     <string name="delete_photo">Foto verwijderen</string>
     <string name="menu">Menu</string>
     <string name="my_location">Mijn locatie</string>
-    <string name="nearby_observations">Nabijgelegen observaties</string>
+    <string name="nearby_observations">Waarnemingen in de buurt</string>
     <string name="add">Toevoegen</string>
     <string name="view_on_inat">Kijk op iNaturalist.org</string>
     <string name="reload">Opnieuw Laden</string>
@@ -43,7 +43,7 @@
     <string name="add_observation">Waarneming toevoegen</string>
     <string name="take_picture">Foto maken</string>
     <string name="save">Opslaan</string>
-    <string name="no_observations_yet">Nog geen observaties!</string>
+    <string name="no_observations_yet">Nog geen waarnemingen!</string>
     <string name="or">of</string>
     <string name="signed_out">Uitloggen</string>
     <string name="username">Gebruikersnaam</string>
@@ -150,7 +150,7 @@
     </plurals>
     <string name="sync_observations">Waarnemingen opslaan</string>
     <string name="lets_get_started">Aan de slag!</string>
-    <string name="view_nearby_observations">Nabijgelegen observaties bekijken</string>
+    <string name="view_nearby_observations">Waarnemingen in de buurt bekijken</string>
     <string name="skip_for_now">Sla voorlopig over</string>
     <string-array name="tutorial_titles">
         <item></item>
@@ -164,7 +164,7 @@
         <item>Trek erop uit! Zoek iets wild en neem een duidelijke beeldvullende foto.</item>
         <item>Deel je waarneming met de iNaturalist community.</item>
         <item>Controleer uw waarnemingen op opmerkingen en determinaties!</item>
-        <item><![CDATA[<b>Research Grade</b> observaties worden gedeeld met wetenschappers die werken om de natuur beter te begrijpen en te beschermen.]]></item>
+        <item><![CDATA[<b>Onderzoekskwaliteit</b> waarnemingen worden gedeeld met wetenschappers om zo de natuur beter te begrijpen en te beschermen.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
         <item>Open</item>
@@ -314,10 +314,10 @@
     <string name="finding_current_location">Huidige locatie zoeken...</string>
     <string name="flag_as_captive">Markeren als in gevangenschap/gekweekt</string>
     <string name="observation_flagged_as_captive">Waarneming werd gemarkeerd als in gevangenschap/gekweekt</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Weet u zeker dat u dit observatierecord wilt markeren als gevangen of gecultiveerd? (Als u op Ja drukt, wordt ook het observatievenster gesloten)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive">Weet je zeker dat je deze waarneming wilt markeren als gevangen/gecultiveerd? (Als je op Ja drukt, wordt ook het waarnemingsvenster gesloten)</string>
     <string name="do_you_agree_to_the_following">Bent u het eens met volgende?</string>
     <string name="terms">Voorwaarden</string>
-    <string name="observation_rules">Observatieregels</string>
+    <string name="observation_rules">Waarnemingsregels</string>
     <string name="couldnt_load_project_details">Kon projectdetails niet laden: %1$s</string>
     <string name="no_people_found">Geen personen gevonden</string>
     <string name="rank">Rang</string>
@@ -827,8 +827,11 @@
     <string name="forbidden">Niet toegestaan</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">De app die je hebt gedeeld maakt foto\'s die niet geschikt zijn voor waarnemingen omdat ze geen bewijs van je ervaring met een ander organisme vertegenwoordigen omdat ze ongepaste merktekens of commerciële inhoud bevatten of omdat ze onze gebruiksvoorwaarden op één of andere manier schenden.</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">Selectievakje voor het selecteren van waarneming in meervoudige selectie modus</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_iconic_pic_description">Thumbnail foto voor het waargenomen taxon</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_obs_pic_description">Thumbnail foto voor de waarneming</string>
     <string name="messages">Berichten</string>
     <string name="all_messages">Alle berichten</string>
@@ -910,4 +913,5 @@
     <string name="rank_form">Vorm</string>
     <string name="rank_infrahybrid">Infrahybride</string>
     <string name="rank_leaves">Bladeren</string>
+    <string name="location_lat_lng">Locatie: %1$f, %2$f</string>
 </resources>

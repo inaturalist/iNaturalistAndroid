@@ -114,7 +114,7 @@
     <string name="about_this_app">Despre</string>
     <string name="about_taxon_short">Despre</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
-    <string name="geoprivacy">Confidențialitatea locației</string>
+    <string name="geoprivacy">GeoProtecție</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
     <string name="geoprivacy_with_value">GeoProtecție: %1$s</string>
     <string name="delete_confirmation">Ești sigur că vrei să ștergi această observare?</string>
@@ -271,14 +271,14 @@
     <string name="observation">Observații</string>
     <string name="share">Distribuie</string>
     <string name="unable_to_acquire_location">Nu s-a putut găsi locația</string>
-    <string name="casual_grade">Grad casual</string>
+    <string name="casual_grade">Grad cazual</string>
     <string name="needs_id">Necesită ID</string>
     <string name="research_grade">Grad de cercetare</string>
     <string name="data_quality">Calitatea datelor</string>
     <string name="casual_grade_add_location"><![CDATA[ Adaugă o <b>locație</b> pentru a avansa această observație la starea “Necesită ID”. ]]></string>
     <string name="casual_grade_add_date"><![CDATA[ Adaugă o <b>dată</b> pentru a avansa această observație la starea “Necesită ID”. ]]></string>
     <string name="casual_grade_add_photo"><![CDATA[ Adaugă o <b>imagine</b> pentru a avansa această observație la starea “Necesită ID”. ]]></string>
-    <string name="casual_grade_captive"><![CDATA[ Observația are un grad casual deoarece este <b>captivă/cultivatp</b>. ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ Observația are un grad cazual deoarece este <b>captivă/cultivată</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ Observația are nevoie de <b>mai multe identificări</b>de la comunitate pentru a avea status "Grad de Cercetare". ]]></string>
     <plurals name="included_in_projects">
         <item quantity="one">Inclus în %1$d proiect </item>
@@ -834,8 +834,11 @@
     <string name="forbidden">Interzis</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">Aplicația din care partajați, crează fotografii care nu sunt compatibile pentru observații, deoarece acestea nu reprezintă dovada experienței cu un alt organism, întrucât includ mărci necorespunzătoare sau conținut comercial, sau pentru că ne încalcă Termenii și Condițiile în alte moduri.</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">Casetă de selectare, pentru selectarea observației în modul multi-select</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_iconic_pic_description">Fotografie miniatură pentru observarea taxonului</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_obs_pic_description">Fotografie miniatură pentru observare</string>
     <string name="messages">Mesaje</string>
     <string name="all_messages">Toate Mesajele</string>
@@ -917,4 +920,5 @@
     <string name="rank_form">Formă</string>
     <string name="rank_infrahybrid">Infrahibrid</string>
     <string name="rank_leaves">Frunze</string>
+    <string name="location_lat_lng">Location: %1$f, %2$f</string>
 </resources>

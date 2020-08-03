@@ -820,8 +820,11 @@
     <string name="forbidden">Forbidden</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">複数選択モードで観察記録を選択するためのチェックボックス</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_iconic_pic_description">観察された分類群のサムネイル写真</string>
+    <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_obs_pic_description">観察記録用サムネイル写真</string>
     <string name="messages">Messages</string>
     <string name="all_messages">All Messages</string>
@@ -903,4 +906,5 @@
     <string name="rank_form">Form</string>
     <string name="rank_infrahybrid">Infrahybrid</string>
     <string name="rank_leaves">Leaves</string>
+    <string name="location_lat_lng">Location: %1$f, %2$f</string>
 </resources>
