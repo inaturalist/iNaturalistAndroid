@@ -567,6 +567,8 @@ public class INaturalistService extends IntentService {
     private String mNearByObservationsUrl;
     private int mLastStatusCode = 0;
     private Object mObservationLock = new Object();
+    private Object mSyncJsonLock = new Object();
+    private List<String> mSyncedJSONs = new ArrayList<>();
 
     private Location mLastLocation = null;
 
@@ -6628,349 +6630,127 @@ public class INaturalistService extends IntentService {
 
 
     public void syncJson(JSONArray json, boolean isUser) {
-        ArrayList<Integer> ids = new ArrayList<Integer>();
-        ArrayList<Integer> existingIds = new ArrayList<Integer>();
-        ArrayList<Integer> newIds = new ArrayList<Integer>();
-        HashMap<Integer, Observation> jsonObservationsById = new HashMap<Integer, Observation>();
-        Observation observation;
-        Observation jsonObservation;
+        synchronized (mSyncJsonLock) {
+            ArrayList<Integer> ids = new ArrayList<Integer>();
+            ArrayList<Integer> existingIds = new ArrayList<Integer>();
+            ArrayList<Integer> newIds = new ArrayList<Integer>();
+            HashMap<Integer, Observation> jsonObservationsById = new HashMap<Integer, Observation>();
+            Observation observation;
+            Observation jsonObservation;
 
-        BetterJSONObject o;
+            if (mSyncedJSONs.contains(json.toString())) {
+                // Already synced this exact JSON recently
+                Logger.tag(TAG).info("Skipping syncJSON - already synced same JSON");
+                return;
+            }
 
-        Logger.tag(TAG).debug("syncJson: " + isUser);
-        Logger.tag(TAG).debug(json.toString());
+            mSyncedJSONs.add(json.toString());
 
-        for (int i = 0; i < json.length(); i++) {
-            try {
-                o = new BetterJSONObject(json.getJSONObject(i));
-                ids.add(o.getInt("id"));
+            BetterJSONObject o;
 
-                Observation obs = new Observation(o);
-                jsonObservationsById.put(o.getInt("id"), obs);
+            Logger.tag(TAG).debug("syncJson: " + isUser);
+            Logger.tag(TAG).debug(json.toString());
 
-                if (isUser) {
-                    // Save the project observations aside (will be later used in the syncing of project observations)
-                    mProjectObservations.add(o.getJSONArray("project_observations"));
+            for (int i = 0; i < json.length(); i++) {
+                try {
+                    o = new BetterJSONObject(json.getJSONObject(i));
+                    ids.add(o.getInt("id"));
 
-                    // Save project field values
-                    Hashtable<Integer, ProjectFieldValue> fields = new Hashtable<Integer, ProjectFieldValue>();
-                    JSONArray jsonFields = o.getJSONArray(o.has("ofvs") ? "ofvs" : "observation_field_values").getJSONArray();
+                    Observation obs = new Observation(o);
+                    jsonObservationsById.put(o.getInt("id"), obs);
 
-                    for (int j = 0; j < jsonFields.length(); j++) {
-                        BetterJSONObject field = new BetterJSONObject(jsonFields.getJSONObject(j));
-                        int fieldId;
-                        if (field.has("observation_field")) {
-                            fieldId = field.getJSONObject("observation_field").getInt("id");
-                        } else {
-                            fieldId = field.getInt("field_id");
+                    if (isUser) {
+                        // Save the project observations aside (will be later used in the syncing of project observations)
+                        mProjectObservations.add(o.getJSONArray("project_observations"));
+
+                        // Save project field values
+                        Hashtable<Integer, ProjectFieldValue> fields = new Hashtable<Integer, ProjectFieldValue>();
+                        JSONArray jsonFields = o.getJSONArray(o.has("ofvs") ? "ofvs" : "observation_field_values").getJSONArray();
+
+                        for (int j = 0; j < jsonFields.length(); j++) {
+                            BetterJSONObject field = new BetterJSONObject(jsonFields.getJSONObject(j));
+                            int fieldId;
+                            if (field.has("observation_field")) {
+                                fieldId = field.getJSONObject("observation_field").getInt("id");
+                            } else {
+                                fieldId = field.getInt("field_id");
+                            }
+                            fields.put(fieldId, new ProjectFieldValue(field));
                         }
-                        fields.put(fieldId, new ProjectFieldValue(field));
+
+                        mProjectFieldValues.put(o.getInt("id"), fields);
                     }
-
-                    mProjectFieldValues.put(o.getInt("id"), fields);
-                }
-            } catch (JSONException e) {
-                Logger.tag(TAG).error("syncJson: JSONException: " + e.toString());
-            }
-        }
-        // find obs with existing ids
-        String joinedIds = StringUtils.join(ids, ",");
-        // TODO why doesn't selectionArgs work for id IN (?)
-        Cursor c = getContentResolver().query(Observation.CONTENT_URI,
-                Observation.PROJECTION,
-                "id IN (" + joinedIds + ")", null, Observation.DEFAULT_SORT_ORDER);
-
-        // update existing
-        c.moveToFirst();
-        ContentValues cv;
-        while (c.isAfterLast() == false) {
-            observation = new Observation(c);
-            jsonObservation = jsonObservationsById.get(observation.id);
-            boolean isModified = observation.merge(jsonObservation);
-
-            Logger.tag(TAG).debug("syncJson - updating existing: " + observation.id + ":" + observation._id + ":" + observation.preferred_common_name + ":" + observation.taxon_id);
-            Logger.tag(TAG).debug("syncJson - remote obs: " + jsonObservation.id + ":" + jsonObservation.preferred_common_name + ":" + jsonObservation.taxon_id);
-
-            cv = observation.getContentValues();
-            if (observation._updated_at.before(jsonObservation.updated_at)) {
-                // Remote observation is newer (and thus has overwritten the local one) - update its
-                // sync at time so we won't update the remote servers later on (since we won't
-                // accidentally consider this an updated record)
-                cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
-            }
-
-            // Add any new photos that were added remotely
-            ArrayList<Integer> observationPhotoIds = new ArrayList<Integer>();
-            ArrayList<Integer> existingObservationPhotoIds = new ArrayList<Integer>();
-            Cursor pc = getContentResolver().query(
-                    ObservationPhoto.CONTENT_URI,
-                    ObservationPhoto.PROJECTION,
-                    "(observation_id = " + observation.id + ")",
-                    null, null);
-            pc.moveToFirst();
-            while (pc.isAfterLast() == false) {
-                int photoId = pc.getInt(pc.getColumnIndexOrThrow(ObservationPhoto.ID));
-                if (photoId != 0) {
-                    existingObservationPhotoIds.add(photoId);
-                }
-                pc.moveToNext();
-            }
-            pc.close();
-            Logger.tag(TAG).debug("syncJson: Adding photos for obs " + observation.id + ":" + existingObservationPhotoIds.toString());
-            Logger.tag(TAG).debug("syncJson: JsonObservation: " + jsonObservation + ":" + jsonObservation.photos);
-            for (int j = 0; j < jsonObservation.photos.size(); j++) {
-                ObservationPhoto photo = jsonObservation.photos.get(j);
-                photo._observation_id = jsonObservation._id;
-
-                if (photo.id == null) {
-                    Logger.tag(TAG).warn("syncJson: Null photo ID! " + photo);
-                    continue;
-                }
-
-                observationPhotoIds.add(photo.id);
-                if (existingObservationPhotoIds.contains(photo.id)) {
-                    Logger.tag(TAG).debug("syncJson: photo " + photo.id + " has already been added, skipping...");
-                    continue;
-                }
-                ContentValues opcv = photo.getContentValues();
-                // So we won't re-add this photo as though it was a local photo
-                Logger.tag(TAG).debug("syncJson: Setting _SYNCED_AT - " + photo.id + ":" + photo._id + ":" + photo._observation_id + ":" + photo.observation_id);
-                opcv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
-                opcv.put(ObservationPhoto._OBSERVATION_ID, photo.observation_id);
-                opcv.put(ObservationPhoto._PHOTO_ID, photo._photo_id);
-                opcv.put(ObservationPhoto.ID, photo.id);
-
-                Cursor obsc = getContentResolver().query(Observation.CONTENT_URI,
-                        Observation.PROJECTION,
-                        "id = " + photo.observation_id, null, Observation.DEFAULT_SORT_ORDER);
-                if (obsc.getCount() > 0) {
-                    obsc.moveToFirst();
-                    Observation obs = new Observation(obsc);
-                    opcv.put(ObservationPhoto.OBSERVATION_UUID, obs.uuid);
-                }
-                obsc.close();
-                try {
-                    getContentResolver().insert(ObservationPhoto.CONTENT_URI, opcv);
-                } catch (SQLException ex) {
-                    // Happens when the photo already exists - ignore
-                    Logger.tag(TAG).error(ex);
+                } catch (JSONException e) {
+                    Logger.tag(TAG).error("syncJson: JSONException: " + e.toString());
                 }
             }
-
-            // Delete photos that were synced but weren't present in the remote response,
-            // indicating they were deleted elsewhere
-            String joinedPhotoIds = StringUtils.join(observationPhotoIds, ",");
-            String where = "observation_id = " + observation.id + " AND id IS NOT NULL";
-            if (observationPhotoIds.size() > 0) {
-                where += " AND id NOT in (" + joinedPhotoIds + ")";
-            }
-            Logger.tag(TAG).debug("syncJson: Deleting local photos: " + where);
-            Logger.tag(TAG).debug("syncJson: Deleting local photos, IDs: " + observationPhotoIds);
-            int deleteCount = getContentResolver().delete(
-                    ObservationPhoto.CONTENT_URI,
-                    where,
-                    null);
-            Logger.tag(TAG).debug("syncJson: Deleting local photos: " + deleteCount);
-
-            if (deleteCount > 0) {
-                Crashlytics.log(1, TAG, String.format(Locale.ENGLISH, "Warning: Deleted %d photos locally after sever did not contain those IDs - observation id: %s, photo ids: %s",
-                        deleteCount, observation.id, joinedPhotoIds));
-            }
-
-            // Add any new sounds that were added remotely
-            ArrayList<Integer> observationSoundIds = new ArrayList<Integer>();
-            ArrayList<Integer> existingObservationSoundIds = new ArrayList<Integer>();
-            Cursor sc = getContentResolver().query(
-                    ObservationSound.CONTENT_URI,
-                    ObservationSound.PROJECTION,
-                    "(observation_id = " + observation.id + ")",
-                    null, null);
-            sc.moveToFirst();
-            while (sc.isAfterLast() == false) {
-                int soundId = sc.getInt(sc.getColumnIndexOrThrow(ObservationSound.ID));
-                if (soundId != 0) {
-                    existingObservationSoundIds.add(soundId);
-                }
-                sc.moveToNext();
-            }
-            sc.close();
-            Logger.tag(TAG).debug("syncJson: Adding sounds for obs " + observation.id + ":" + existingObservationSoundIds.toString());
-            Logger.tag(TAG).debug("syncJson: JsonObservation: " + jsonObservation + ":" + jsonObservation.sounds);
-            for (int j = 0; j < jsonObservation.sounds.size(); j++) {
-                ObservationSound sound = jsonObservation.sounds.get(j);
-                sound._observation_id = jsonObservation._id;
-
-                if (sound.id == null) {
-                    Logger.tag(TAG).warn("syncJson: Null sound ID! " + sound);
-                    continue;
-                }
-
-                observationSoundIds.add(sound.id);
-                if (existingObservationSoundIds.contains(sound.id)) {
-                    Logger.tag(TAG).debug("syncJson: sound " + sound.id + " has already been added, skipping...");
-                    continue;
-                }
-                ContentValues oscv = sound.getContentValues();
-                oscv.put(ObservationSound._OBSERVATION_ID, sound.observation_id);
-                oscv.put(ObservationSound.ID, sound.id);
-
-                Cursor obsc = getContentResolver().query(Observation.CONTENT_URI,
-                        Observation.PROJECTION,
-                        "id = " + sound.observation_id, null, Observation.DEFAULT_SORT_ORDER);
-                if (obsc.getCount() > 0) {
-                    obsc.moveToFirst();
-                    Observation obs = new Observation(obsc);
-                    oscv.put(ObservationSound.OBSERVATION_UUID, obs.uuid);
-                }
-                obsc.close();
-                try {
-                    getContentResolver().insert(ObservationSound.CONTENT_URI, oscv);
-                } catch (SQLException ex) {
-                    // Happens when the sound already exists - ignore
-                    Logger.tag(TAG).error(ex);
-                }
-            }
-
-            // Delete sounds that were synced but weren't present in the remote response,
-            // indicating they were deleted elsewhere
-            String joinedSoundIds = StringUtils.join(observationSoundIds, ",");
-            where = "observation_id = " + observation.id + " AND id IS NOT NULL";
-            if (observationSoundIds.size() > 0) {
-                where += " AND id NOT in (" + joinedSoundIds + ")";
-            }
-            Logger.tag(TAG).debug("syncJson: Deleting local sounds: " + where);
-            Logger.tag(TAG).debug("syncJson: Deleting local sounds, IDs: " + observationSoundIds);
-            deleteCount = getContentResolver().delete(
-                    ObservationSound.CONTENT_URI,
-                    where,
-                    null);
-            Logger.tag(TAG).debug("syncJson: Deleting local sounds: " + deleteCount);
-
-            if (deleteCount > 0) {
-                Crashlytics.log(1, TAG, String.format(Locale.ENGLISH, "Warning: Deleted %d sounds locally after server did not contain those IDs - observation id: %s, sound ids: %s",
-                        deleteCount, observation.id, joinedSoundIds));
-            }
-
-
-            if (isModified) {
-                // Only update the DB if needed
-                Logger.tag(TAG).debug("syncJson: Updating observation: " + observation.id + ":" + observation._id);
-                getContentResolver().update(observation.getUri(), cv, null, null);
-            }
-            existingIds.add(observation.id);
-            c.moveToNext();
-        }
-        c.close();
-
-        // insert new
-        List<Observation> newObservations = new ArrayList<Observation>();
-        newIds = (ArrayList<Integer>) CollectionUtils.subtract(ids, existingIds);
-        Collections.sort(newIds);
-        Logger.tag(TAG).debug("syncJson: Adding new observations: " + newIds);
-        for (int i = 0; i < newIds.size(); i++) {
-            jsonObservation = jsonObservationsById.get(newIds.get(i));
-
-            Cursor c2 = getContentResolver().query(Observation.CONTENT_URI,
+            // find obs with existing ids
+            String joinedIds = StringUtils.join(ids, ",");
+            // TODO why doesn't selectionArgs work for id IN (?)
+            Cursor c = getContentResolver().query(Observation.CONTENT_URI,
                     Observation.PROJECTION,
-                    "id = ?", new String[]{String.valueOf(jsonObservation.id)}, Observation.DEFAULT_SORT_ORDER);
-            int count = c2.getCount();
-            c2.close();
+                    "id IN (" + joinedIds + ")", null, Observation.DEFAULT_SORT_ORDER);
 
-            if (count > 0) {
-                Logger.tag(TAG).debug("syncJson: Observation " + jsonObservation.id + " already exists locally - not adding");
-                continue;
-            }
+            // update existing
+            c.moveToFirst();
+            ContentValues cv;
+            while (c.isAfterLast() == false) {
+                observation = new Observation(c);
+                jsonObservation = jsonObservationsById.get(observation.id);
+                boolean isModified = observation.merge(jsonObservation);
 
-            cv = jsonObservation.getContentValues();
-            cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
-            cv.put(Observation.LAST_COMMENTS_COUNT, jsonObservation.comments_count);
-            cv.put(Observation.LAST_IDENTIFICATIONS_COUNT, jsonObservation.identifications_count);
-            Uri newObs = getContentResolver().insert(Observation.CONTENT_URI, cv);
-            Long newObsId = ContentUris.parseId(newObs);
-            jsonObservation._id = Integer.valueOf(newObsId.toString());
-            Logger.tag(TAG).debug("syncJson: Adding new obs: " + jsonObservation);
-            newObservations.add(jsonObservation);
-        }
+                Logger.tag(TAG).debug("syncJson - updating existing: " + observation.id + ":" + observation._id + ":" + observation.preferred_common_name + ":" + observation.taxon_id);
+                Logger.tag(TAG).debug("syncJson - remote obs: " + jsonObservation.id + ":" + jsonObservation.preferred_common_name + ":" + jsonObservation.taxon_id);
 
-        if (isUser) {
-            for (int i = 0; i < newObservations.size(); i++) {
-                jsonObservation = newObservations.get(i);
-
-                // Save new observation's sounds
-                Logger.tag(TAG).debug("syncJson: Saving new obs' sounds: " + jsonObservation + ":" + jsonObservation.sounds);
-                for (int j = 0; j < jsonObservation.sounds.size(); j++) {
-                    ObservationSound sound = jsonObservation.sounds.get(j);
-
-                    c = getContentResolver().query(ObservationSound.CONTENT_URI,
-                            ObservationSound.PROJECTION,
-                            "id = ?", new String[]{String.valueOf(sound.id)}, ObservationSound.DEFAULT_SORT_ORDER);
-
-                    if (c.getCount() > 0) {
-                        // Sound already exists - don't save
-                        Logger.tag(TAG).debug("syncJson: Sound already exists - skipping: " + sound.id);
-                        c.close();
-                        continue;
-                    }
-
-                    c.close();
-
-                    sound._observation_id = jsonObservation._id;
-
-                    ContentValues opcv = sound.getContentValues();
-                    Logger.tag(TAG).debug("syncJson: Setting _SYNCED_AT - " + sound.id + ":" + sound._id + ":" + sound._observation_id + ":" + sound.observation_id);
-                    Logger.tag(TAG).debug("syncJson: Setting _SYNCED_AT - " + sound);
-                    opcv.put(ObservationSound._OBSERVATION_ID, sound._observation_id);
-                    opcv.put(ObservationSound._ID, sound.id);
-                    Cursor obsc = getContentResolver().query(Observation.CONTENT_URI,
-                            Observation.PROJECTION,
-                            "id = " + sound.observation_id, null, Observation.DEFAULT_SORT_ORDER);
-                    if (obsc.getCount() > 0) {
-                        obsc.moveToFirst();
-                        Observation obs = new Observation(obsc);
-                        opcv.put(ObservationSound.OBSERVATION_UUID, obs.uuid);
-                    }
-                    obsc.close();
-                    try {
-                        getContentResolver().insert(ObservationSound.CONTENT_URI, opcv);
-                    } catch (SQLException ex) {
-                        // Happens when the sound already exists - ignore
-                        Logger.tag(TAG).error(ex);
-                    }
+                cv = observation.getContentValues();
+                if (observation._updated_at.before(jsonObservation.updated_at)) {
+                    // Remote observation is newer (and thus has overwritten the local one) - update its
+                    // sync at time so we won't update the remote servers later on (since we won't
+                    // accidentally consider this an updated record)
+                    cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
                 }
 
-                // Save the new observation's photos
-                Logger.tag(TAG).debug("syncJson: Saving new obs' photos: " + jsonObservation + ":" + jsonObservation.photos);
+                // Add any new photos that were added remotely
+                ArrayList<Integer> observationPhotoIds = new ArrayList<Integer>();
+                ArrayList<Integer> existingObservationPhotoIds = new ArrayList<Integer>();
+                Cursor pc = getContentResolver().query(
+                        ObservationPhoto.CONTENT_URI,
+                        ObservationPhoto.PROJECTION,
+                        "(observation_id = " + observation.id + ")",
+                        null, null);
+                pc.moveToFirst();
+                while (pc.isAfterLast() == false) {
+                    int photoId = pc.getInt(pc.getColumnIndexOrThrow(ObservationPhoto.ID));
+                    if (photoId != 0) {
+                        existingObservationPhotoIds.add(photoId);
+                    }
+                    pc.moveToNext();
+                }
+                pc.close();
+                Logger.tag(TAG).debug("syncJson: Adding photos for obs " + observation.id + ":" + existingObservationPhotoIds.toString());
+                Logger.tag(TAG).debug("syncJson: JsonObservation: " + jsonObservation + ":" + jsonObservation.photos);
                 for (int j = 0; j < jsonObservation.photos.size(); j++) {
                     ObservationPhoto photo = jsonObservation.photos.get(j);
+                    photo._observation_id = jsonObservation._id;
 
-                    if (photo.uuid == null) {
-                        c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
-                                ObservationPhoto.PROJECTION,
-                                "_id = ?", new String[]{String.valueOf(photo.id)}, ObservationPhoto.DEFAULT_SORT_ORDER);
-                    } else {
-                        c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
-                                ObservationPhoto.PROJECTION,
-                                "uuid = ?", new String[]{String.valueOf(photo.uuid)}, ObservationPhoto.DEFAULT_SORT_ORDER);
-                    }
-
-                    if (c.getCount() > 0) {
-                        // Photo already exists - don't save
-                        Logger.tag(TAG).debug("syncJson: Photo already exists - skipping: " + photo.id);
-                        c.close();
+                    if (photo.id == null) {
+                        Logger.tag(TAG).warn("syncJson: Null photo ID! " + photo);
                         continue;
                     }
 
-                    c.close();
-
-                    photo._observation_id = jsonObservation._id;
-
+                    observationPhotoIds.add(photo.id);
+                    if (existingObservationPhotoIds.contains(photo.id)) {
+                        Logger.tag(TAG).debug("syncJson: photo " + photo.id + " has already been added, skipping...");
+                        continue;
+                    }
                     ContentValues opcv = photo.getContentValues();
+                    // So we won't re-add this photo as though it was a local photo
                     Logger.tag(TAG).debug("syncJson: Setting _SYNCED_AT - " + photo.id + ":" + photo._id + ":" + photo._observation_id + ":" + photo.observation_id);
-                    Logger.tag(TAG).debug("syncJson: Setting _SYNCED_AT - " + photo);
-                    opcv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis()); // So we won't re-add this photo as though it was a local photo
-                    opcv.put(ObservationPhoto._OBSERVATION_ID, photo._observation_id);
+                    opcv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
+                    opcv.put(ObservationPhoto._OBSERVATION_ID, photo.observation_id);
                     opcv.put(ObservationPhoto._PHOTO_ID, photo._photo_id);
-                    opcv.put(ObservationPhoto._ID, photo.id);
+                    opcv.put(ObservationPhoto.ID, photo.id);
+
                     Cursor obsc = getContentResolver().query(Observation.CONTENT_URI,
                             Observation.PROJECTION,
                             "id = " + photo.observation_id, null, Observation.DEFAULT_SORT_ORDER);
@@ -6987,11 +6767,247 @@ public class INaturalistService extends IntentService {
                         Logger.tag(TAG).error(ex);
                     }
                 }
-            }
-        }
 
-        if (isUser) {
-            storeProjectObservations();
+                // Delete photos that were synced but weren't present in the remote response,
+                // indicating they were deleted elsewhere
+                String joinedPhotoIds = StringUtils.join(observationPhotoIds, ",");
+                String where = "observation_id = " + observation.id + " AND id IS NOT NULL";
+                if (observationPhotoIds.size() > 0) {
+                    where += " AND id NOT in (" + joinedPhotoIds + ")";
+                }
+                Logger.tag(TAG).debug("syncJson: Deleting local photos: " + where);
+                Logger.tag(TAG).debug("syncJson: Deleting local photos, IDs: " + observationPhotoIds);
+                int deleteCount = getContentResolver().delete(
+                        ObservationPhoto.CONTENT_URI,
+                        where,
+                        null);
+                Logger.tag(TAG).debug("syncJson: Deleting local photos: " + deleteCount);
+
+                if (deleteCount > 0) {
+                    Crashlytics.log(1, TAG, String.format(Locale.ENGLISH, "Warning: Deleted %d photos locally after sever did not contain those IDs - observation id: %s, photo ids: %s",
+                            deleteCount, observation.id, joinedPhotoIds));
+                }
+
+                // Add any new sounds that were added remotely
+                ArrayList<Integer> observationSoundIds = new ArrayList<Integer>();
+                ArrayList<Integer> existingObservationSoundIds = new ArrayList<Integer>();
+                Cursor sc = getContentResolver().query(
+                        ObservationSound.CONTENT_URI,
+                        ObservationSound.PROJECTION,
+                        "(observation_id = " + observation.id + ")",
+                        null, null);
+                sc.moveToFirst();
+                while (sc.isAfterLast() == false) {
+                    int soundId = sc.getInt(sc.getColumnIndexOrThrow(ObservationSound.ID));
+                    if (soundId != 0) {
+                        existingObservationSoundIds.add(soundId);
+                    }
+                    sc.moveToNext();
+                }
+                sc.close();
+                Logger.tag(TAG).debug("syncJson: Adding sounds for obs " + observation.id + ":" + existingObservationSoundIds.toString());
+                Logger.tag(TAG).debug("syncJson: JsonObservation: " + jsonObservation + ":" + jsonObservation.sounds);
+                for (int j = 0; j < jsonObservation.sounds.size(); j++) {
+                    ObservationSound sound = jsonObservation.sounds.get(j);
+                    sound._observation_id = jsonObservation._id;
+
+                    if (sound.id == null) {
+                        Logger.tag(TAG).warn("syncJson: Null sound ID! " + sound);
+                        continue;
+                    }
+
+                    observationSoundIds.add(sound.id);
+                    if (existingObservationSoundIds.contains(sound.id)) {
+                        Logger.tag(TAG).debug("syncJson: sound " + sound.id + " has already been added, skipping...");
+                        continue;
+                    }
+                    ContentValues oscv = sound.getContentValues();
+                    oscv.put(ObservationSound._OBSERVATION_ID, sound.observation_id);
+                    oscv.put(ObservationSound.ID, sound.id);
+
+                    Cursor obsc = getContentResolver().query(Observation.CONTENT_URI,
+                            Observation.PROJECTION,
+                            "id = " + sound.observation_id, null, Observation.DEFAULT_SORT_ORDER);
+                    if (obsc.getCount() > 0) {
+                        obsc.moveToFirst();
+                        Observation obs = new Observation(obsc);
+                        oscv.put(ObservationSound.OBSERVATION_UUID, obs.uuid);
+                    }
+                    obsc.close();
+                    try {
+                        getContentResolver().insert(ObservationSound.CONTENT_URI, oscv);
+                    } catch (SQLException ex) {
+                        // Happens when the sound already exists - ignore
+                        Logger.tag(TAG).error(ex);
+                    }
+                }
+
+                // Delete sounds that were synced but weren't present in the remote response,
+                // indicating they were deleted elsewhere
+                String joinedSoundIds = StringUtils.join(observationSoundIds, ",");
+                where = "observation_id = " + observation.id + " AND id IS NOT NULL";
+                if (observationSoundIds.size() > 0) {
+                    where += " AND id NOT in (" + joinedSoundIds + ")";
+                }
+                Logger.tag(TAG).debug("syncJson: Deleting local sounds: " + where);
+                Logger.tag(TAG).debug("syncJson: Deleting local sounds, IDs: " + observationSoundIds);
+                deleteCount = getContentResolver().delete(
+                        ObservationSound.CONTENT_URI,
+                        where,
+                        null);
+                Logger.tag(TAG).debug("syncJson: Deleting local sounds: " + deleteCount);
+
+                if (deleteCount > 0) {
+                    Crashlytics.log(1, TAG, String.format(Locale.ENGLISH, "Warning: Deleted %d sounds locally after server did not contain those IDs - observation id: %s, sound ids: %s",
+                            deleteCount, observation.id, joinedSoundIds));
+                }
+
+
+                if (isModified) {
+                    // Only update the DB if needed
+                    Logger.tag(TAG).debug("syncJson: Updating observation: " + observation.id + ":" + observation._id);
+                    getContentResolver().update(observation.getUri(), cv, null, null);
+                }
+                existingIds.add(observation.id);
+                c.moveToNext();
+            }
+            c.close();
+
+            // insert new
+            List<Observation> newObservations = new ArrayList<Observation>();
+            newIds = (ArrayList<Integer>) CollectionUtils.subtract(ids, existingIds);
+            Collections.sort(newIds);
+            Logger.tag(TAG).debug("syncJson: Adding new observations: " + newIds);
+            for (int i = 0; i < newIds.size(); i++) {
+                jsonObservation = jsonObservationsById.get(newIds.get(i));
+
+                Cursor c2 = getContentResolver().query(Observation.CONTENT_URI,
+                        Observation.PROJECTION,
+                        "id = ?", new String[]{String.valueOf(jsonObservation.id)}, Observation.DEFAULT_SORT_ORDER);
+                int count = c2.getCount();
+                c2.close();
+
+                if (count > 0) {
+                    Logger.tag(TAG).debug("syncJson: Observation " + jsonObservation.id + " already exists locally - not adding");
+                    continue;
+                }
+
+                cv = jsonObservation.getContentValues();
+                cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
+                cv.put(Observation.LAST_COMMENTS_COUNT, jsonObservation.comments_count);
+                cv.put(Observation.LAST_IDENTIFICATIONS_COUNT, jsonObservation.identifications_count);
+                Uri newObs = getContentResolver().insert(Observation.CONTENT_URI, cv);
+                Long newObsId = ContentUris.parseId(newObs);
+                jsonObservation._id = Integer.valueOf(newObsId.toString());
+                Logger.tag(TAG).debug("syncJson: Adding new obs: " + jsonObservation);
+                newObservations.add(jsonObservation);
+            }
+
+            if (isUser) {
+                for (int i = 0; i < newObservations.size(); i++) {
+                    jsonObservation = newObservations.get(i);
+
+                    // Save new observation's sounds
+                    Logger.tag(TAG).debug("syncJson: Saving new obs' sounds: " + jsonObservation + ":" + jsonObservation.sounds);
+                    for (int j = 0; j < jsonObservation.sounds.size(); j++) {
+                        ObservationSound sound = jsonObservation.sounds.get(j);
+
+                        c = getContentResolver().query(ObservationSound.CONTENT_URI,
+                                ObservationSound.PROJECTION,
+                                "id = ?", new String[]{String.valueOf(sound.id)}, ObservationSound.DEFAULT_SORT_ORDER);
+
+                        if (c.getCount() > 0) {
+                            // Sound already exists - don't save
+                            Logger.tag(TAG).debug("syncJson: Sound already exists - skipping: " + sound.id);
+                            c.close();
+                            continue;
+                        }
+
+                        c.close();
+
+                        sound._observation_id = jsonObservation._id;
+
+                        ContentValues opcv = sound.getContentValues();
+                        Logger.tag(TAG).debug("syncJson: Setting _SYNCED_AT - " + sound.id + ":" + sound._id + ":" + sound._observation_id + ":" + sound.observation_id);
+                        Logger.tag(TAG).debug("syncJson: Setting _SYNCED_AT - " + sound);
+                        opcv.put(ObservationSound._OBSERVATION_ID, sound._observation_id);
+                        opcv.put(ObservationSound._ID, sound.id);
+                        Cursor obsc = getContentResolver().query(Observation.CONTENT_URI,
+                                Observation.PROJECTION,
+                                "id = " + sound.observation_id, null, Observation.DEFAULT_SORT_ORDER);
+                        if (obsc.getCount() > 0) {
+                            obsc.moveToFirst();
+                            Observation obs = new Observation(obsc);
+                            opcv.put(ObservationSound.OBSERVATION_UUID, obs.uuid);
+                        }
+                        obsc.close();
+                        try {
+                            getContentResolver().insert(ObservationSound.CONTENT_URI, opcv);
+                        } catch (SQLException ex) {
+                            // Happens when the sound already exists - ignore
+                            Logger.tag(TAG).error(ex);
+                        }
+                    }
+
+                    // Save the new observation's photos
+                    Logger.tag(TAG).debug("syncJson: Saving new obs' photos: " + jsonObservation + ":" + jsonObservation.photos);
+                    for (int j = 0; j < jsonObservation.photos.size(); j++) {
+                        ObservationPhoto photo = jsonObservation.photos.get(j);
+
+                        if (photo.uuid == null) {
+                            c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                                    ObservationPhoto.PROJECTION,
+                                    "_id = ?", new String[]{String.valueOf(photo.id)}, ObservationPhoto.DEFAULT_SORT_ORDER);
+                        } else {
+                            c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                                    ObservationPhoto.PROJECTION,
+                                    "uuid = ?", new String[]{String.valueOf(photo.uuid)}, ObservationPhoto.DEFAULT_SORT_ORDER);
+                        }
+
+                        if (c.getCount() > 0) {
+                            // Photo already exists - don't save
+                            Logger.tag(TAG).debug("syncJson: Photo already exists - skipping: " + photo.id);
+                            c.close();
+                            continue;
+                        }
+
+                        c.close();
+
+                        photo._observation_id = jsonObservation._id;
+
+                        ContentValues opcv = photo.getContentValues();
+                        Logger.tag(TAG).debug("syncJson: Setting _SYNCED_AT - " + photo.id + ":" + photo._id + ":" + photo._observation_id + ":" + photo.observation_id);
+                        Logger.tag(TAG).debug("syncJson: Setting _SYNCED_AT - " + photo);
+                        opcv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis()); // So we won't re-add this photo as though it was a local photo
+                        opcv.put(ObservationPhoto._OBSERVATION_ID, photo._observation_id);
+                        opcv.put(ObservationPhoto._PHOTO_ID, photo._photo_id);
+                        opcv.put(ObservationPhoto._ID, photo.id);
+                        Cursor obsc = getContentResolver().query(Observation.CONTENT_URI,
+                                Observation.PROJECTION,
+                                "id = " + photo.observation_id, null, Observation.DEFAULT_SORT_ORDER);
+                        if (obsc.getCount() > 0) {
+                            obsc.moveToFirst();
+                            Observation obs = new Observation(obsc);
+                            opcv.put(ObservationPhoto.OBSERVATION_UUID, obs.uuid);
+                        }
+                        obsc.close();
+                        try {
+                            getContentResolver().insert(ObservationPhoto.CONTENT_URI, opcv);
+                        } catch (SQLException ex) {
+                            // Happens when the photo already exists - ignore
+                            Logger.tag(TAG).error(ex);
+                        }
+                    }
+                }
+            }
+
+            if (isUser) {
+                storeProjectObservations();
+            }
+
+            if (mSyncedJSONs.size() > 5) {
+                mSyncedJSONs.remove(0);
+            }
         }
     }
 
