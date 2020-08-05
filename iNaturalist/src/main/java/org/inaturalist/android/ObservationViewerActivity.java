@@ -434,14 +434,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     // Photo
                     mImageCursor.moveToPosition(position);
 
-                    imageId = mImageCursor.getInt(mImageCursor.getColumnIndexOrThrow(ObservationPhoto._ID));
                     imageUrl = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
                     photoFilename = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
-                    if ((photoFilename != null) && (!(new File(photoFilename).exists()))) {
-                        // Our local copy file was deleted (probably user deleted cache or similar) - try and use original filename from gallery
-                        String originalPhotoFilename = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.ORIGINAL_PHOTO_FILENAME));
-                        photoFilename = originalPhotoFilename;
-                    }
                 }
 
             } else {
@@ -3024,7 +3018,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         cv.put(ObservationPhoto._OBSERVATION_ID, mObservation._id);
         cv.put(ObservationPhoto.OBSERVATION_ID, mObservation.id);
         cv.put(ObservationPhoto.PHOTO_FILENAME, resizedPhoto);
-        cv.put(ObservationPhoto.ORIGINAL_PHOTO_FILENAME, isDuplicated ? null : path);
+        cv.put(ObservationPhoto.ORIGINAL_PHOTO_FILENAME, (String)null);
         cv.put(ObservationPhoto.POSITION, position);
         cv.put(ObservationPhoto.OBSERVATION_UUID, mObservation.uuid);
 

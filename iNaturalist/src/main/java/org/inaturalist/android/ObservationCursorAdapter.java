@@ -296,11 +296,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 String photoFilename = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
                 String obsUUID = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.OBSERVATION_UUID));
 
-                if ((photoFilename != null) && (!(new File(photoFilename).exists()))) {
-                    // Our local copy file was deleted (probably user deleted cache or similar) - try and use original filename from gallery
-                    photoFilename = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.ORIGINAL_PHOTO_FILENAME));
-                }
-
                 onlinePc.moveToNext();
 
                 if (mPhotoInfo.containsKey(obsUUID)) {

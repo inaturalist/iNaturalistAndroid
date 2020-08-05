@@ -2828,7 +2828,7 @@ public class ObservationEditor extends AppCompatActivity {
         String copyPath = null;
 
         if (mApp.isExternalStoragePermissionGranted()) {
-            copyPath = addPhotoToGallery(path);
+            copyPath = ImageUtils.addPhotoToGallery(this, path);
             if (copyPath == null) {
                 // Failed adding the photo to gallery - continue normally
                 copyPath = path;
@@ -3110,7 +3110,7 @@ public class ObservationEditor extends AppCompatActivity {
         cv.put(ObservationPhoto._OBSERVATION_ID, mObservation._id);
         cv.put(ObservationPhoto.OBSERVATION_ID, mObservation.id);
         cv.put(ObservationPhoto.PHOTO_FILENAME, resizedPhoto);
-        cv.put(ObservationPhoto.ORIGINAL_PHOTO_FILENAME, isDuplicated ? null : path);
+        cv.put(ObservationPhoto.ORIGINAL_PHOTO_FILENAME, (String)null);
         cv.put(ObservationPhoto.POSITION, position);
         cv.put(ObservationPhoto.OBSERVATION_UUID, mObservation.uuid);
 
@@ -3990,49 +3990,6 @@ public class ObservationEditor extends AppCompatActivity {
             sheetView.findViewById(R.id.choose_image_container).setVisibility(View.GONE);
         }
     }
-
-
-    private String addPhotoToGallery(String path) {
-        // Copy the file into the camera folder
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(System.currentTimeMillis());
-        File storageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/Camera/");
-        if (!storageDir.exists()) storageDir.mkdirs();
-        String outputPath;
-        File image = null;
-        try {
-            image = File.createTempFile(
-                    timeStamp,                   /* prefix */
-                    ".jpeg",                     /* suffix */
-                    storageDir                   /* directory */
-            );
-            outputPath = image.getPath();
-            FileInputStream inStream = null;
-            inStream = new FileInputStream(path);
-            FileOutputStream outStream = new FileOutputStream(outputPath);
-            FileChannel inChannel = inStream.getChannel();
-            FileChannel outChannel = outStream.getChannel();
-            inChannel.transferTo(0, inChannel.size(), outChannel);
-            inStream.close();
-            outStream.close();
-            // Tell the OS to scan the file (will add it to the gallery and create a thumbnail for it)
-            sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(image)));
-        } catch (IOException e) {
-            Logger.tag(TAG).error("Failed to create gallery photo");
-            Logger.tag(TAG).error(e);
-            return null;
-        } catch (Exception exc) {
-            Logger.tag(TAG).error("Failed to write gallery photo");
-            if (image != null) {
-                // Don't leave around an empty file if we failed to write to it.
-                image.delete();
-            }
-            Logger.tag(TAG).error(exc);
-            return null;
-        }
-
-        return outputPath;
-    }
-
 
     private void setTaxon(String idName, String scientificName, int rankLevel, String rank, boolean isCustomTaxon, int taxonId, String idPicUrl, String iconicTaxonName, boolean setSpeciesGuess) {
         mObservation.preferred_common_name = isCustomTaxon ? null : idName;

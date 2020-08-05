@@ -1,7 +1,9 @@
 package org.inaturalist.android;
 
 import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -14,6 +16,10 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.media.ExifInterface;
 import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
+
+import androidx.annotation.NonNull;
 import androidx.renderscript.Allocation;
 import androidx.renderscript.Element;
 import androidx.renderscript.RenderScript;
@@ -44,6 +50,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.channels.FileChannel;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.UUID;
 
@@ -608,4 +616,104 @@ public class ImageUtils {
         return outputSet;
     }
 
+    /** Adds a photo to the phone's camera gallery */
+    public static String addPhotoToGallery(Context context, String path) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+            // Android 10+ - cannot directly access DCIM directory
+            return addPhotoToGalleryAndroid10(context, path);
+        }
+
+        // Copy the file into the camera folder
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(System.currentTimeMillis());
+        File storageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/Camera/");
+        if (!storageDir.exists()) storageDir.mkdirs();
+        String outputPath;
+        File image = null;
+        try {
+            image = File.createTempFile(
+                    timeStamp,                   /* prefix */
+                    ".jpeg",                     /* suffix */
+                    storageDir                   /* directory */
+            );
+            outputPath = image.getPath();
+            FileInputStream inStream = null;
+            inStream = new FileInputStream(path);
+            FileOutputStream outStream = new FileOutputStream(outputPath);
+            FileChannel inChannel = inStream.getChannel();
+            FileChannel outChannel = outStream.getChannel();
+            inChannel.transferTo(0, inChannel.size(), outChannel);
+            inStream.close();
+            outStream.close();
+            // Tell the OS to scan the file (will add it to the gallery and create a thumbnail for it)
+            context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(image)));
+        } catch (IOException e) {
+            Logger.tag(TAG).error("Failed to create gallery photo");
+            Logger.tag(TAG).error(e);
+            return null;
+        } catch (Exception exc) {
+            Logger.tag(TAG).error("Failed to write gallery photo");
+            if (image != null) {
+                // Don't leave around an empty file if we failed to write to it.
+                image.delete();
+            }
+            Logger.tag(TAG).error(exc);
+            return null;
+        }
+
+        return outputPath;
+    }
+
+    /** Adds a photo to the phone's camera gallery (the Android10+ way - without directly accessing DCIM folder -
+     * based on https://github.com/yasirkula/UnityNativeGallery/blob/670d9e2b8328f7796dd95d29dd80fadd8935b804/JAR%20Source/NativeGallery.java#L73-L96) */
+    public static String addPhotoToGalleryAndroid10(@NonNull final Context context, @NonNull final String path) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(MediaStore.MediaColumns.DATE_TAKEN, System.currentTimeMillis());
+        contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DCIM);
+        contentValues.put(MediaStore.MediaColumns.IS_PENDING, true);
+
+        final ContentResolver resolver = context.getContentResolver();
+
+        OutputStream os = null;
+        Uri uri = null;
+
+        try {
+            final Uri contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+            uri = resolver.insert(contentUri, contentValues);
+
+            if (uri == null) {
+                Logger.tag(TAG).error("addPhotoToGalleryAndroid10: Failed to create new MediaStore record.");
+                return null;
+            }
+
+            os = resolver.openOutputStream(uri);
+
+            if (os == null) {
+                Logger.tag(TAG).error("addPhotoToGalleryAndroid10: Failed to get output stream.");
+                resolver.delete(uri, null, null);
+                return null;
+            }
+
+            InputStream is = resolver.openInputStream(Uri.fromFile(new File(path)));
+            FileUtils.copyStreamToStream(is, os);
+            is.close();
+            os.close();
+
+            contentValues = new ContentValues();
+            contentValues.put(MediaStore.MediaColumns.IS_PENDING, false);
+            resolver.update(uri, contentValues, null, null);
+
+        } catch (IOException e) {
+            Logger.tag(TAG).error("addPhotoToGalleryAndroid10: " + e);
+            Logger.tag(TAG).error(e);
+            if (uri != null) {
+                // Don't leave an orphan entry in the MediaStore
+                resolver.delete(uri, null, null);
+            }
+
+            return null;
+        }
+
+        // Since there is no meaning to path anymore (no direct DCIM access)
+        return null;
+    }
 }

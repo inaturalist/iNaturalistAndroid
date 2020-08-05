@@ -320,6 +320,14 @@ public class FileUtils {
         copyInputStream(in, dst);
     }
 
+    public static void copyStreamToStream(InputStream in, OutputStream os) throws IOException {
+        // Transfer bytes from in to out
+        byte[] buf = new byte[1024];
+        int len;
+        while ((len = in.read(buf)) > 0) {
+            os.write(buf, 0, len);
+        }
+    }
     public static void copyInputStream(InputStream in, File dst) throws IOException {
         try {
             OutputStream out = new FileOutputStream(dst);

@@ -1,6 +1,8 @@
 package org.inaturalist.android;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -384,19 +386,11 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
             do {
                 String photoFileName = imageCursor.getString(imageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
-                String originalPhotoFilename = imageCursor.getString(imageCursor.getColumnIndexOrThrow(ObservationPhoto.ORIGINAL_PHOTO_FILENAME));
 
                 if ((photoFileName != null) && (!(new File(photoFileName).exists()))) {
-                    // Our local copy file was deleted (probably user deleted cache or similar) - try and use original filename from gallery
-                    photoFileName = originalPhotoFilename;
+                    // Our local copy file was deleted
+                    photoFileName = null;
                 }
-
-                /* TODO - file exists, but cannot be read anymore
-                if ((originalPhotoFilename != null) && (new File(originalPhotoFilename).exists())) {
-                    // Prefer to show original photo file, if still exists, since it has the original resolution (not
-                    // resized down to 2048x2048)
-                    photoFileName = originalPhotoFilename;
-                }*/
 
                 String imageUrl = imageCursor.getString(imageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
                 mImages.add(imageUrl != null ? imageUrl : photoFileName);
