@@ -185,27 +185,79 @@
 
         <LinearLayout
             android:id="@+id/checkbox_container"
-            android:orientation="horizontal"
             android:layout_marginTop="10dp"
-            android:layout_width="fill_parent"
-            android:layout_gravity="center_horizontal"
-            android:layout_height="40dp">
-            <ImageView
-                android:layout_width="45dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/checkbox"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_check_box_white_24dp"
-                />
-            <TextView
-                android:id="@+id/checkbox_description"
-                android:layout_gravity="center_vertical"
-                android:text="@string/use_my_license"
-                android:lines="2"
-                android:textColor="#aaffffff"
-                android:textSize="13dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
+                android:layout_gravity="center_horizontal"
+                android:layout_height="40dp">
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/checkbox"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_check_box_white_24dp"
+                    />
+                <TextView
+                    android:id="@+id/checkbox_description"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/use_my_license"
+                    android:textColor="#aaffffff"
+                    android:textSize="13dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_width="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/checkbox2"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_check_box_outline_blank_white_24dp"
+                    />
+                <TextView
+                    android:id="@+id/checkbox_description2"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/i_consent_process_personal_info"
+                    android:textColor="#aaffffff"
+                    android:textSize="13dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_width="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/checkbox3"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_check_box_outline_blank_white_24dp"
+                    />
+                <TextView
+                    android:clickable="true"
+                    android:id="@+id/checkbox_description3"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/i_agree_to_tos_and_privacy"
+                    android:textColor="#aaffffff"
+                    android:textSize="13dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <TextView
@@ -227,7 +279,7 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/sign_up"
             android:textColor="@drawable/circular_button_text"
-            android:layout_marginTop="13dp"
+            android:layout_marginTop="20dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:textSize="16sp"

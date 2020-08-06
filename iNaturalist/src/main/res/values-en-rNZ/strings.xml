@@ -227,7 +227,7 @@
     <string name="log_in">Log In</string>
     <string name="sign_up">Sign Up</string>
     <string name="min_6_chars">Min. 6 characters</string>
-    <string name="use_my_license"><![CDATA[Yes, licence my content so scientists can use my data. <b>Learn More</b>]]></string>
+    <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data (recommended). <b>Learn More</b>]]></string>
     <string name="content_licensing">Content Licensing</string>
     <string name="content_licensing_description">Check this box if you want to apply a Creative Commons Attribution-NonCommercial licence to your photos. You can choose a different licence or remove the licence later, but this is the best licence for sharing with researchers.</string>
     <!-- Try to keep this about the length of the English text -->

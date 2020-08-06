@@ -62,8 +62,14 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
     private TextView mPasswordWarning;
     private TextView mForgotPassword;
     private TextView mCheckboxDescription;
+    private TextView mCheckboxDescription2;
+    private TextView mCheckboxDescription3;
     private ImageView mCheckbox;
+    private ImageView mCheckbox2;
+    private ImageView mCheckbox3;
     private boolean mUseCCLicense;
+    private boolean mUsePersonalInfo;
+    private boolean mAgreeTOS;
     private Button mSignup;
     private boolean mIsSignup;
     private SignInTask mSignInTask;
@@ -288,7 +294,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
         mUseCCLicense = true;
 
         mCheckboxDescription = (TextView) findViewById(R.id.checkbox_description);
-        mCheckboxDescription.setText(Html.fromHtml(mCheckboxDescription.getText().toString()));
+        HtmlUtils.fromHtml(mCheckboxDescription, getString(R.string.use_my_license));
         mCheckboxDescription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -296,9 +302,20 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
             }
         });
 
+        mCheckboxDescription2 = (TextView) findViewById(R.id.checkbox_description2);
+        mCheckboxDescription2.setText(Html.fromHtml(mCheckboxDescription2.getText().toString()));
+        mCheckboxDescription2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mHelper.alert(R.string.about_personal_information, R.string.personal_information_notes);
+            }
+        });
+
+        mCheckboxDescription3 = (TextView) findViewById(R.id.checkbox_description3);
+        HtmlUtils.fromHtml(mCheckboxDescription3, mCheckboxDescription3.getText().toString());
+
         mTerms = (TextView) findViewById(R.id.terms);
-        mTerms.setText(Html.fromHtml(mTerms.getText().toString()));
-        mTerms.setMovementMethod(LinkMovementMethod.getInstance());
+        HtmlUtils.fromHtml(mTerms, mTerms.getText().toString());
 
         mCheckbox = (ImageView) findViewById(R.id.checkbox);
         mCheckbox.setOnClickListener(new View.OnClickListener() {
@@ -310,6 +327,36 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
                 } else {
                     mCheckbox.setImageResource(R.drawable.ic_check_box_outline_blank_white_24dp);
                 }
+            }
+        });
+
+        mCheckbox2 = (ImageView) findViewById(R.id.checkbox2);
+        mCheckbox2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mUsePersonalInfo = !mUsePersonalInfo;
+                if (mUsePersonalInfo) {
+                    mCheckbox2.setImageResource(R.drawable.ic_check_box_white_24dp);
+                } else {
+                    mCheckbox2.setImageResource(R.drawable.ic_check_box_outline_blank_white_24dp);
+                }
+
+                mSignup.setEnabled(mAgreeTOS && mUsePersonalInfo);
+            }
+        });
+
+        mCheckbox3 = (ImageView) findViewById(R.id.checkbox3);
+        mCheckbox3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAgreeTOS = !mAgreeTOS;
+                if (mAgreeTOS) {
+                    mCheckbox3.setImageResource(R.drawable.ic_check_box_white_24dp);
+                } else {
+                    mCheckbox3.setImageResource(R.drawable.ic_check_box_outline_blank_white_24dp);
+                }
+
+                mSignup.setEnabled(mAgreeTOS && mUsePersonalInfo);
             }
         });
 
