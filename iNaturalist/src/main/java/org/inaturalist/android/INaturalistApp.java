@@ -1135,7 +1135,7 @@ public class INaturalistApp extends MultiDexApplication {
     }
 
     public void requestLocationPermission(Activity activity, OnRequestPermissionResult cb) {
-        requestPermissions(activity, new String[] { Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION }, cb);
+        requestPermissions(activity, new String[] { Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_MEDIA_LOCATION }, cb);
     }
 
     public void requestExternalStoragePermission(Activity activity, OnRequestPermissionResult cb) {
@@ -1201,7 +1201,8 @@ public class INaturalistApp extends MultiDexApplication {
     public boolean isLocationPermissionGranted() {
         return (
                 (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PermissionChecker.PERMISSION_GRANTED) &&
-                        (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PermissionChecker.PERMISSION_GRANTED)
+                    (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PermissionChecker.PERMISSION_GRANTED) &&
+                    (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_MEDIA_LOCATION) == PermissionChecker.PERMISSION_GRANTED)
         );
     }
 
