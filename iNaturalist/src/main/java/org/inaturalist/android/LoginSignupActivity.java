@@ -341,7 +341,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
                     mCheckbox2.setImageResource(R.drawable.ic_check_box_outline_blank_white_24dp);
                 }
 
-                mSignup.setEnabled(mAgreeTOS && mUsePersonalInfo);
+                checkFields();
             }
         });
 
@@ -356,7 +356,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
                     mCheckbox3.setImageResource(R.drawable.ic_check_box_outline_blank_white_24dp);
                 }
 
-                mSignup.setEnabled(mAgreeTOS && mUsePersonalInfo);
+                checkFields();
             }
         });
 
@@ -514,7 +514,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
         if (((mEmail.getText().length() == 0) && (mIsSignup)) || (mPassword.getText().length() < (mIsSignup ? 6 : 1)) || (mUsername.getText().length() == 0)) {
             mSignup.setEnabled(false);
         } else {
-            mSignup.setEnabled(true);
+            mSignup.setEnabled(!mIsSignup || (mAgreeTOS && mUsePersonalInfo));
         }
     }
 
