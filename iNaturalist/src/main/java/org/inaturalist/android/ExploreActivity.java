@@ -541,7 +541,7 @@ public class ExploreActivity extends BaseFragmentActivity {
     }
 
     private View createTabContent(String tabName, int count) {
-        ViewGroup view = (ViewGroup) LayoutInflater.from(this).inflate(R.layout.explore_tab, null);
+        ViewGroup view = (ViewGroup) LayoutInflater.from(this).inflate(R.layout.my_observations_tab, null);
         TextView countText = (TextView) view.findViewById(R.id.count);
         TextView tabNameText = (TextView) view.findViewById(R.id.tab_name);
 
