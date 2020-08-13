@@ -86,7 +86,7 @@ public class FavoritesAdapter extends ArrayAdapter<BetterJSONObject> {
 			favDate.setText(CommentsIdsAdapter.formatIdDate(mContext, postDate));
 
             final ImageView userPic = (ImageView) view.findViewById(R.id.user_pic);
-            boolean hasUserIcon = item.getJSONObject("user").getString("user_icon_url") != null;
+            boolean hasUserIcon = item.getJSONObject("user").has("user_icon_url") && !item.getJSONObject("user").isNull("user_icon_url");
 
             if (hasUserIcon) {
                 UrlImageViewHelper.setUrlDrawable(userPic, item.getJSONObject("user").getString("user_icon_url"), R.drawable.ic_account_circle_black_24dp, new UrlImageViewCallback() {

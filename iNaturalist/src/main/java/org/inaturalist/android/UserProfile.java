@@ -805,8 +805,7 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
             mUserBio.setVisibility(View.GONE);
         } else {
             mUserBio.setVisibility(View.VISIBLE);
-            String bioNoHtml = Html.fromHtml(bio, null, null).toString();
-            mUserBio.setText(bioNoHtml);
+            HtmlUtils.fromHtml(mUserBio, bio);
 
             ViewTreeObserver vto = mUserBio.getViewTreeObserver();
             vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -824,14 +823,21 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
                         if (lines > 0) {
                             if ((l.getEllipsisCount(lines - 1) > 0) || (l.getLineCount() > 2)) {
                                 // Bio is ellipsized - Trim the bio text to show the more link
-                                String newBio = bioNoHtml.substring(0, l.getLineEnd(1) - 10) + "... " + getString(R.string.more_bio);
-                                HtmlUtils.fromHtml(mUserBio, newBio);
+                                String newBio;
+                                if (l.getLineEnd(1) > 10) {
+                                    newBio = bio.substring(0, l.getLineEnd(1) - 10) + "... " + getString(R.string.more_bio);
+                                } else {
+                                    newBio = bio.substring(0, l.getLineEnd(1)) + getString(R.string.more_bio);
+                                }
 
-                                // Show the full bio when the shortened bio is clicked
-                                mUserBio.setOnClickListener(onBio);
+                                HtmlUtils.fromHtml(mUserBio, newBio);
                             }
                         }
                     }
+
+
+                    // Show the full bio when the shortened bio is clicked
+                    mUserBio.setOnClickListener(onBio);
                 }
             });
 
