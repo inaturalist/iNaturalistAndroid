@@ -66,6 +66,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
@@ -485,13 +486,17 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         .load(largeSizeUrl)
                         .thumbnail(thumbnailRequest)
                         .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.AUTOMATIC))
-                        .into(new CustomTarget<BitmapDrawable>() {
+                        .into(new CustomTarget<Drawable>() {
                             @Override
-                            public void onResourceReady(@NonNull BitmapDrawable resource, @Nullable Transition<? super BitmapDrawable> transition) {
+                            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
                                 // Save downloaded bitmap into local file
                                 imageView.setImageDrawable(resource);
 
-                                mBitmaps.put(position, resource.getBitmap());
+                                if (resource instanceof BitmapDrawable) {
+                                    mBitmaps.put(position, ((BitmapDrawable)resource).getBitmap());
+                                } else if (resource instanceof GifDrawable) {
+                                    mBitmaps.put(position, ((GifDrawable) resource).getFirstFrame());
+                                }
                             }
 
                             @Override
