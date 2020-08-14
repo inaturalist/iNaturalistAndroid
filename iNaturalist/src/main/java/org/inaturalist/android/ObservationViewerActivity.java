@@ -867,8 +867,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         if ((mObservation == null) || (forceReload)) {
             if (!mReadOnly) {
-                if (mCursor.getCount() == 0) {
-                    Logger.tag(TAG).error("Cursor count is zero - finishing activity");
+                if (mCursor == null || mCursor.getCount() == 0) {
+                    Logger.tag(TAG).error("Cursor count is zero - finishing activity: " + mCursor);
                     finish();
                     return;
                 }
