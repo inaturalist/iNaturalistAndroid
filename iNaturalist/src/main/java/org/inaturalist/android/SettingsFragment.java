@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -21,14 +20,10 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import android.text.Html;
 import android.view.View;
-import com.facebook.login.LoginManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.tinylog.Logger;
-
-import java.io.File;
-import java.util.Arrays;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
     private static final int REQUEST_CODE_LOGIN = 0x1000;
@@ -37,8 +32,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private static final int REQUEST_CODE_VERIFY_PASSWORD = 0x1003;
     private static final int REQUEST_CODE_CHANGE_NAME_PLACE = 0x1004;
 
-    private static final String DONATION_URL = "http://www.inaturalist.org/donate?utm_source=Android&utm_medium=mobile";
-    private static final String SHOP_URL = "https://store.inaturalist.org/?utm_source=android&utm_medium=mobile&utm_campaign=store";
     private static final String TAG = "SettingsFragment";
 
     private Preference mUsernamePreference;
@@ -47,11 +40,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private CheckBoxPreference mShowScientificNameFirstPreference;
     private ListPreference mLanguagePreference;
     private Preference mNetworkPreference;
-    private Preference mContactSupport;
-    private Preference mVersion;
-    private Preference mAbout;
-    private Preference mDonate;
-    private Preference mShop;
     private Preference mDeleteAccount;
     private Preference mThirdPartyDataSharing;
     private Preference mNamePlacePreference;
@@ -60,8 +48,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private ActivityHelper mHelper;
     private SharedPreferences.Editor mPrefEditor;
     private INaturalistApp mApp;
-
-    private int mDebugLogsClickCount = 0;
 
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
@@ -82,13 +68,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         mShowScientificNameFirstPreference = (CheckBoxPreference) getPreferenceManager().findPreference("prefers_scientific_name_first");
         mLanguagePreference = (ListPreference) getPreferenceManager().findPreference("language");
         mNetworkPreference = (Preference) getPreferenceManager().findPreference("inat_network");
-        mContactSupport = (Preference) getPreferenceManager().findPreference("contact_support");
-        mAbout = (Preference) getPreferenceManager().findPreference("about");
-        mDonate = (Preference) getPreferenceManager().findPreference("donate");
-        mShop = (Preference) getPreferenceManager().findPreference("shop");
         mDeleteAccount = (Preference) getPreferenceManager().findPreference("delete_account");
         mThirdPartyDataSharing = (Preference) getPreferenceManager().findPreference("third_party_data_sharing");
-        mVersion = (Preference) getPreferenceManager().findPreference("version");
         mNamePlacePreference = (Preference) getPreferenceManager().findPreference("name_place");
 
         mHelper = new ActivityHelper(getActivity());
@@ -260,73 +241,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         });
 
-        mVersion.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                mDebugLogsClickCount++;
-
-                if (mDebugLogsClickCount >= 3) {
-                    // Open secret debug menu
-                    mDebugLogsClickCount = 0;
-                    Intent intent = new Intent(getActivity(), DebugSettingsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    startActivity(intent);
-                }
-
-                return false;
-            }
-        });
-
-        mContactSupport.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                // Get app version
-                try {
-                    PackageManager manager = getActivity().getPackageManager();
-                    PackageInfo info = manager.getPackageInfo(getActivity().getPackageName(), 0);
-
-                    // Open the email client
-                    Intent mailer = new Intent(Intent.ACTION_SEND);
-                    mailer.setType("message/rfc822");
-                    mailer.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.inat_support_email_address)});
-                    String username = mPreferences.getString("username", null);
-                    mailer.putExtra(Intent.EXTRA_SUBJECT, String.format(getString(R.string.inat_support_email_subject), info.versionName, info.versionCode, username == null ? "N/A" : username));
-                    startActivity(Intent.createChooser(mailer, getString(R.string.send_email)));
-                } catch (PackageManager.NameNotFoundException e) {
-                    Logger.tag(TAG).error(e);
-                }
-                return false;
-            }
-        });
-
-        mAbout.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                Intent intent = new Intent(getActivity(), About.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
-                return false;
-            }
-        });
-
-        mDonate.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                // Open donation page
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(DONATION_URL));
-                startActivity(browserIntent);
-                return false;
-            }
-        });
-
-        mShop.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                // Open donation page
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(SHOP_URL));
-                startActivity(browserIntent);
-                return false;
-            }
-        });
-
         mDeleteAccount.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -339,16 +253,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         });
 
-
-        // Show app version
-        try {
-            PackageManager manager = getActivity().getPackageManager();
-            PackageInfo info = manager.getPackageInfo(getActivity().getPackageName(), 0);
-
-            mVersion.setSummary(String.format("%s (%d)", info.versionName, info.versionCode));
-        } catch (PackageManager.NameNotFoundException e) {
-            Logger.tag(TAG).error(e);
-        }
 
         String network = mApp.getInaturalistNetworkMember();
         mNetworkPreference.setSummary(mApp.getStringResourceByName("network_" + network));
@@ -417,39 +321,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     }
 
 
-    private class DividerItemDecorationPreferences extends RecyclerView.ItemDecoration {
 
-        private Drawable mDivider;
-        private int paddingLeft = 0;
-        private int paddingRight = 0;
-
-        public DividerItemDecorationPreferences(Context context, int paddingLeft, int paddingRight) {
-            mDivider = ContextCompat.getDrawable(context, R.drawable.divider_recycler_view);
-            this.paddingLeft = paddingLeft;
-            this.paddingRight = paddingRight;
-        }
-
-        @Override
-        public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
-            int left = paddingLeft;
-            int right = parent.getWidth() - paddingRight;
-            int childCount = parent.getChildCount();
-            boolean lastIteration = false;
-            for (int i = 0; i < childCount; i++) {
-                if (i == childCount - 1)
-                    lastIteration = true;
-                View child = parent.getChildAt(i);
-                if (!lastIteration) {
-                    RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
-                    int top = child.getBottom() + params.bottomMargin;
-                    int bottom = top + mDivider.getIntrinsicHeight();
-                    mDivider.setBounds(left, top, right, bottom);
-                    mDivider.draw(c);
-                }
-            }
-        }
-
-    }
 
 
     @Override

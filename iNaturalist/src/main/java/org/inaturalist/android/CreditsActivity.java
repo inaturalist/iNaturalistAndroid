@@ -2,20 +2,15 @@ package org.inaturalist.android;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatRadioButton;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
+
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class About extends AppCompatActivity {
-    private static final String TAG = "About";
+public class CreditsActivity extends AppCompatActivity {
+    private static final String TAG = "Credits";
 
     private TextView mAboutText;
     private INaturalistApp mApp;
-
-
-
 
 	@Override
 	protected void onStop()
@@ -42,12 +37,11 @@ public class About extends AppCompatActivity {
 
         mApp = (INaturalistApp) getApplicationContext();
         mApp.applyLocaleSettings(getBaseContext());
-        setContentView(R.layout.inat_about);
+        setContentView(R.layout.credits);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        setTitle(R.string.about_this_app);
-        
+        setTitle(R.string.credits_title);
 
         mAboutText = findViewById(R.id.inat_credits);
 

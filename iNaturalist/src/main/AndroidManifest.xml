@@ -3,8 +3,8 @@
     package="org.inaturalist.android"
     android:installLocation="auto"
     android:requestLegacyExternalStorage="true"
-    android:versionCode="440"
-    android:versionName="1.20.9">
+    android:versionCode="441"
+    android:versionName="1.20.10">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -466,6 +466,9 @@
             android:name=".SettingsActivity"
             android:configChanges="orientation"></activity>
         <activity
+            android:name=".AboutActivity"
+            android:configChanges="orientation"></activity>
+        <activity
             android:name=".DebugSettingsActivity"
             android:configChanges="orientation"></activity>
 
@@ -480,7 +483,7 @@
             android:name=".NetworkSettings"
             android:configChanges="orientation"></activity>
         <activity
-            android:name=".About"
+            android:name=".CreditsActivity"
             android:configChanges="orientation"></activity>
         <activity
             android:name=".ObservationSearchActivity"
