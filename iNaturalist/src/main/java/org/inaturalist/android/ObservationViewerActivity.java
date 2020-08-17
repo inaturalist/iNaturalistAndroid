@@ -2315,6 +2315,11 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 	            return;
 	        }
 
+            if (!observation.id.equals(mObservation.id)) {
+                Logger.tag(TAG).error(String.format("ObservationReceiver: Got old observation result for id %d, while current observation is %d", observation.id, mObservation.id));
+                return;
+            }
+
             JSONArray projects = observation.projects.getJSONArray();
 	        JSONArray comments = observation.comments.getJSONArray();
 	        JSONArray ids = observation.identifications.getJSONArray();
