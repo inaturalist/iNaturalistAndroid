@@ -36,7 +36,7 @@
 
 
 	<!-- Package names of apps that we do not allow sharing their photos/sounds into iNaturalist (see https://github.com/inaturalist/iNaturalistAndroid/issues/811) -->
-	<string-array name="blacklisted_sharing_apps">
+	<string-array name="blocklisted_sharing_apps">
 		<item>com.labs.merlinbirdid.app</item>
 	</string-array>
 

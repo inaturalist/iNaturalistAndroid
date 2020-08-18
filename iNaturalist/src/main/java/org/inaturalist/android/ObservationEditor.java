@@ -350,7 +350,7 @@ public class ObservationEditor extends AppCompatActivity {
             String sendingPackageName = this.getReferrer().getHost();
             Logger.tag(TAG).debug("Shared from: " + sendingPackageName);
 
-            List<String> blacklistedApps = Arrays.asList(getResources().getStringArray(R.array.blacklisted_sharing_apps));
+            List<String> blacklistedApps = Arrays.asList(getResources().getStringArray(R.array.blocklisted_sharing_apps));
 
             if (blacklistedApps.contains(sendingPackageName)) {
                 Logger.tag(TAG).error("App photo/sound was shared from is blocked : " + blacklistedApps.toString());
