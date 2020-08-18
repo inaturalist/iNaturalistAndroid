@@ -280,7 +280,7 @@ public class MessagesActivity extends BaseFragmentActivity implements MessageAda
                     e.printStackTrace();
                 }
 
-                mAdapter.notifyDataSetChanged();
+                if (mAdapter != null) mAdapter.notifyDataSetChanged();
             }
         } else if (requestCode == NEW_MESSAGE_THREAD_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
