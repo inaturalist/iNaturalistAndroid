@@ -1710,8 +1710,10 @@ public class ExploreActivity extends BaseFragmentActivity {
         } else if (location != null) {
 
             String[] parts = location.split(",");
-            LatLng latlng = new LatLng(Double.valueOf(parts[0]), Double.valueOf(parts[1]));
-            cameraUpdate = CameraUpdateFactory.newLatLngZoom(latlng, MY_LOCATION_ZOOM_LEVEL);
+            if ((parts.length >= 2) && (parts[0].length() > 0) && (parts[1].length() > 0)) {
+                LatLng latlng = new LatLng(Double.valueOf(parts[0]), Double.valueOf(parts[1]));
+                cameraUpdate = CameraUpdateFactory.newLatLngZoom(latlng, MY_LOCATION_ZOOM_LEVEL);
+            }
         }
 
         if (cameraUpdate != null) {
