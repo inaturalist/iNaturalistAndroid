@@ -175,7 +175,7 @@ public class ObservationPhotoEditor extends AppCompatActivity implements UCropFr
 
     @Override
     public void onBackPressed() {
-        Logger.tag(TAG).info("Dirty:" + mFragment.isDirty());
+        if (mFragment != null) Logger.tag(TAG).info("Dirty:" + mFragment.isDirty());
         closeActivity();
     }
 
