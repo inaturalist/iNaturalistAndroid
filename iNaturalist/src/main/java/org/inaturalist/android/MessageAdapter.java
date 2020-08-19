@@ -60,7 +60,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         BetterJSONObject message = new BetterJSONObject(mMessages.get(position));
 
         JSONObject user = getOtherUser(message);
-        String userPicUrl = user.optString("icon_url");
+        String userPicUrl = user != null ? user.optString("icon_url") : null;
 
         if (userPicUrl == null) {
             holder.userPic.setImageResource(R.drawable.ic_account_circle_black_24dp);
@@ -79,7 +79,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             });
         }
 
-        holder.username.setText(user.optString("login"));
+        holder.username.setText(user != null ? user.optString("login"): mContext.getString(R.string.deleted_user));
         holder.subject.setText(message.getString("subject"));
 
         Timestamp ts = message.getTimestamp("updated_at");
@@ -98,7 +98,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             holder.rootView.setBackgroundColor(Color.parseColor("#FFFFFF"));
         }
 
-        boolean isMuted = mMutedUsers.contains(user.optInt("id"));
+        boolean isMuted = user != null ? mMutedUsers.contains(user.optInt("id")) : false;
         holder.muteIndicator.setVisibility(isMuted ? View.VISIBLE : View.GONE);
 
         boolean unresolvedFlag = hasUnresolvedFlags(message.getJSONObject());
@@ -139,6 +139,11 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     }
 
     private JSONObject getOtherUser(BetterJSONObject message) {
+        if (message.getJSONObject("from_user") == null) {
+            // Happens when other user was deleted
+            return null;
+        }
+
         return (message.getJSONObject("from_user").optString("login").equals(mApp.currentUserLogin()) &&
                         message.getJSONObject("to_user") != null) ?
                 message.getJSONObject("to_user") : message.getJSONObject("from_user");
