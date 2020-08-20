@@ -379,14 +379,10 @@ public class ImageUtils {
             }
 
             if (Math.max(originalHeight, originalWidth) < maxDimensions) {
-                if (path != null) {
-                    // Original file is smaller than max - no need to resize
-                    return path;
-                } else {
-                    // Don't resize because image is smaller than max - however, make a local copy of it
-                    newHeight = originalHeight;
-                    newWidth = originalWidth;
-                }
+                // Original file is smaller than max
+                // Don't resize because image is smaller than max - however, make a local copy of it
+                newHeight = originalHeight;
+                newWidth = originalWidth;
             } else {
                 // Resize but make sure we have the same width/height aspect ratio
                 if (originalHeight > originalWidth) {
@@ -456,7 +452,8 @@ public class ImageUtils {
             Logger.tag(TAG).error(e);
         }
 
-        return path;
+        // Failed copying the image
+        return null;
     }
 
 
