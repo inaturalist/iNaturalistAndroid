@@ -6171,7 +6171,7 @@ public class INaturalistService extends IntentService {
         return compactJwt;
     }
 
-    private String getJWTToken() {
+    private String getJWTToken() throws AuthenticationException {
         if (mPreferences == null)
             mPreferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         String jwtToken = mPreferences.getString("jwt_token", null);
@@ -6182,9 +6182,10 @@ public class INaturalistService extends IntentService {
             try {
                 JSONArray result = get(HOST + "/users/api_token.json", true);
                 if ((result == null) || (result.length() == 0)) return null;
+                if (result.optJSONObject(0) == null) return null;
 
                 // Get newest JWT Token
-                jwtToken = result.getJSONObject(0).getString("api_token");
+                jwtToken = result.optJSONObject(0).optString("api_token");
                 jwtTokenExpiration = System.currentTimeMillis();
 
                 SharedPreferences.Editor editor = mPreferences.edit();
@@ -6193,9 +6194,9 @@ public class INaturalistService extends IntentService {
                 editor.commit();
 
                 return jwtToken;
-            } catch (Exception e) {
+            } catch (AuthenticationException e) {
                 Logger.tag(TAG).error(e);
-                return null;
+                throw e;
             }
         } else {
             // Current JWT token is still fresh/valid - return it as-is
@@ -6282,9 +6283,9 @@ public class INaturalistService extends IntentService {
                     // Use JSON Web Token for this request
                     String jwtToken = getJWTToken();
                     if (jwtToken == null) {
-                        // Could not renew JWT token for some reason (either connectivity issues or user changed password)
+                        // Could not renew JWT token due to connectivity issues
                         Logger.tag(TAG).error("JWT Token is null");
-                        throw new AuthenticationException();
+                        return null;
                     }
                     requestBuilder.addHeader("Authorization", jwtToken);
                 } else if (mLoginType == LoginType.PASSWORD) {
