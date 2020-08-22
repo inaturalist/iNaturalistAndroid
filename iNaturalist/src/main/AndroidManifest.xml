@@ -255,7 +255,7 @@
             android:targetActivity=".ObservationListActivity"
             android:configChanges="orientation"
             android:enabled="false"
-            android:label="@string/network_naturalistacolombia">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -266,7 +266,7 @@
             android:targetActivity=".ObservationListActivity"
             android:configChanges="orientation"
             android:enabled="false"
-            android:label="@string/network_naturalista">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
