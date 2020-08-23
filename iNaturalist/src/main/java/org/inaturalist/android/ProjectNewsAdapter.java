@@ -79,6 +79,8 @@ class ProjectNewsAdapter extends ArrayAdapter<String> {
             String firstPhotoUrl = findFirstPhotoUrl(html);
             html = html.replaceAll("<img .+?>", ""); // Image tags do not get removed cleanly by toString
             HtmlUtils.fromHtml(newsContent, html, false);
+            String noHTMLDescription = newsContent.getText().toString();
+            newsContent.setText(noHTMLDescription.replaceAll("[\\xa0]+", "").trim()); // Strip all HTML/Markdown formatting in the preview text
             BetterJSONObject newsItem = new BetterJSONObject(item);
             newsDate.setText(CommentsIdsAdapter.formatIdDate(mContext, newsItem.getTimestamp("updated_at")));
 
