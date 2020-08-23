@@ -825,9 +825,9 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
                                 // Bio is ellipsized - Trim the bio text to show the more link
                                 String newBio;
                                 if (l.getLineEnd(1) > 10) {
-                                    newBio = bio.substring(0, l.getLineEnd(1) - 10) + "... " + getString(R.string.more_bio);
+                                    newBio = mUserBio.getText().toString().substring(0, l.getLineEnd(1) - 10) + "... " + getString(R.string.more_bio);
                                 } else {
-                                    newBio = bio.substring(0, l.getLineEnd(1)) + getString(R.string.more_bio);
+                                    newBio = mUserBio.getText().toString().substring(0, l.getLineEnd(1)) + getString(R.string.more_bio);
                                 }
 
                                 HtmlUtils.fromHtml(mUserBio, newBio);
