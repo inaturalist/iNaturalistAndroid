@@ -569,10 +569,10 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
             String dateFormatString;
             if (today.get(Calendar.YEAR) > calDate.get(Calendar.YEAR)) {
                 // Previous year(s)
-                dateFormatString = "MM/dd/yy";
+                dateFormatString = context.getString(R.string.date_short);
             } else {
                 // Current year
-                dateFormatString = "MMM d";
+                dateFormatString = context.getString(R.string.date_short_this_year);
             }
 
             SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatString);
