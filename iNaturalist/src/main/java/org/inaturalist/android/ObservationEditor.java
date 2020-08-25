@@ -43,6 +43,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 import java.util.UUID;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -3212,16 +3213,41 @@ public class ObservationEditor extends AppCompatActivity {
 
 
             String datetime = null;
+            boolean useLocalTimezone = false;
 
             if (exif != null) {
-                datetime = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_DATE_TIME_ORIGINAL);
+                // TAG_GPS_DATE_STAMP is defined as UTC / GMT+0
+                String date = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_GPS_DATE_STAMP);
+                String time = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_GPS_TIME_STAMP);
+
+                if ((date == null) || (time == null)) {
+                    // Try getting GPS datetime from other EXIF library
+                    date = orgExif.getAttribute(ExifInterface.TAG_GPS_DATESTAMP);
+                    time = orgExif.getAttribute(ExifInterface.TAG_GPS_TIMESTAMP);
+                }
+
+                if ((date == null) || (time == null)) {
+                    // No timezone defined - assume user's local timezone
+                    useLocalTimezone = true;
+                    datetime = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_DATE_TIME_ORIGINAL);
+                } else {
+                    datetime = date.trim() + " " + time.trim();
+                }
 
                 if (datetime == null) {
                     datetime = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_DATE_TIME);
                 }
             } else {
-                // Try using built-in EXIF library
-                datetime = orgExif.getAttribute(ExifInterface.TAG_DATETIME_ORIGINAL);
+                // Try using built-in EXIF library instead
+                String date = orgExif.getAttribute(ExifInterface.TAG_GPS_DATESTAMP);
+                String time = orgExif.getAttribute(ExifInterface.TAG_GPS_TIMESTAMP);
+
+                if ((date == null) || (time == null)) {
+                    useLocalTimezone = true;
+                    datetime = orgExif.getAttribute(ExifInterface.TAG_DATETIME_ORIGINAL);
+                } else {
+                    datetime = date.trim() + " " + time.trim();
+                }
 
                 if (datetime == null) {
                     datetime = orgExif.getAttribute(ExifInterface.TAG_DATETIME);
@@ -3230,8 +3256,11 @@ public class ObservationEditor extends AppCompatActivity {
 
             if (datetime != null) {
                 SimpleDateFormat exifDateFormat = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
+                if (!useLocalTimezone) exifDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+
                 try {
                     Date date = exifDateFormat.parse(datetime);
+                    Logger.tag(TAG).info(String.format("importPhotoMetadata: %s - %s", datetime, date));
                     Timestamp timestamp = new Timestamp(date.getTime());
                     mObservation.observed_on = timestamp;
                     mObservation.time_observed_at = timestamp;
