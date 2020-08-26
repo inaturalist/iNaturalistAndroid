@@ -523,6 +523,10 @@ public class CompareSuggestionActivity extends AppCompatActivity {
                 taxon = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.TAXON_RESULT);
             }
 
+            if (taxon == null) {
+                return;
+            }
+
             JSONObject taxonContainer = new JSONObject();
             try {
                 taxonContainer.put("taxon", taxon.getJSONObject());
