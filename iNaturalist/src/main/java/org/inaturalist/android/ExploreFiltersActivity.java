@@ -203,6 +203,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         mClearUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (mSearchFilters == null) return;
+
                 mSearchFilters.user = null;
                 refreshViewState();
             }
@@ -224,6 +226,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         mClearProject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (mSearchFilters == null) return;
+
                 mSearchFilters.project = null;
                 refreshViewState();
             }
@@ -248,6 +252,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         mShowMyObservationsCheckbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (mSearchFilters == null) return;
+
                 view.setSelected(!view.isSelected());
 
                 if (view.isSelected()) {
@@ -281,6 +287,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         View.OnClickListener onDataQualityCheckbox = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (mSearchFilters == null) return;
+
                 String qualityGrade;
 
                 if (view == mResearchGradeCheckbox) {
@@ -310,6 +318,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         mHasPhotosCheckbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (mSearchFilters == null) return;
+
                 view.setSelected(!view.isSelected());
 
                 mSearchFilters.hasPhotos = view.isSelected();
@@ -320,6 +330,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         mHasSoundsCheckbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (mSearchFilters == null) return;
+
                 view.setSelected(!view.isSelected());
 
                 mSearchFilters.hasSounds = view.isSelected();
@@ -334,6 +346,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
                 if (event.getAction() != MotionEvent.ACTION_UP) {
                     return false;
                 }
+                if (mSearchFilters == null) return false;
 
                 Bundle args = new Bundle();
                 Date initialDate = null, minDate = null, maxDate = new Date();
@@ -359,6 +372,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
                 newFragment.setOnDateSetListener(new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker dp, int year, int month, int dayOfMonth) {
+                        if (mSearchFilters == null) return;
+
                         Calendar calendar = Calendar.getInstance();
                         calendar.set(year, month, dayOfMonth);
                         Date date = calendar.getTime();
@@ -393,6 +408,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
                 if (event.getAction() != MotionEvent.ACTION_UP) {
                     return false;
                 }
+                if (mSearchFilters == null) return false;
 
                 List<String> monthsNames = new ArrayList<>();
                 for (int i = 1; i <= 12; i++) {
@@ -423,6 +439,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         mApplyFilters.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (mSearchFilters == null) return;
+
                 // Return the search filters
                 if (!mSearchFilters.iconicTaxa.isEmpty()) {
                     // Iconic taxa have been chosen - clear out the taxon filter
@@ -443,6 +461,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
                 if (event.getAction() != MotionEvent.ACTION_UP) {
                     return false;
                 }
+                if (mSearchFilters == null) return false;
                 if (mAllAnnotations == null) return false;
 
                 String[] items = new String[mAllAnnotations.getJSONArray().length() + 1];
@@ -486,6 +505,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
                 if (event.getAction() != MotionEvent.ACTION_UP) {
                     return false;
                 }
+                if (mSearchFilters == null) return false;
                 if (mAllAnnotations == null) return false;
                 if (mSearchFilters.annotationNameId == null) return false;
 
@@ -517,6 +537,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
                 mHelper.selection(translatedName, items, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        if (mSearchFilters == null) return;
+
                         if (i == 0) {
                             // None
                             mSearchFilters.annotationValueId = null;
@@ -561,6 +583,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
 
     private void refreshViewState() {
         List<Pair<String, Boolean>> iconicTaxa = new ArrayList<>();
+
+        if (mSearchFilters == null) return;
 
         for (int i = 0; i < ICONIC_TAXA.length; i++) {
             iconicTaxa.add(new Pair<>(ICONIC_TAXA[i], mSearchFilters.iconicTaxa.contains(ICONIC_TAXA[i])));
@@ -721,6 +745,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
     }
 
     private void refreshResetFiltersButton() {
+        if (mSearchFilters == null) return;
+
         if (mResetFilters != null) {
             mResetFilters.setEnabled(mSearchFilters.isDirty());
         }
@@ -735,6 +761,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
     }
 
     private void setSpinnerDate(Spinner spinner, Date date, int defaultValue) {
+        if (mSearchFilters == null) return;
+
         setSpinnerText(spinner, date != null ? mSearchFilters.formatDate(date) : getString(defaultValue));
     }
 
@@ -745,6 +773,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
 
 
     private void resetFilters() {
+        if (mSearchFilters == null) return;
+
         mSearchFilters.resetToDefault();
         refreshViewState();
     }
@@ -817,6 +847,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
+
+        if (mSearchFilters == null) return;
 
         if (requestCode == REQUEST_CODE_SEARCH_PROJECTS) {
             if (resultCode == RESULT_OK) {
