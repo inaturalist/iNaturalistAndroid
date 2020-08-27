@@ -1006,7 +1006,6 @@ public class ObservationEditor extends AppCompatActivity {
             }
         });
 
-
         if (mSharePhotos != null) {
             stopGetLocation();
 
@@ -1108,6 +1107,8 @@ public class ObservationEditor extends AppCompatActivity {
                 setResult(RESULT_RETURN_TO_OBSERVATION_LIST);
                 finish();
             }
+        } else {
+            cursor.close();
         }
 
     }
@@ -1589,7 +1590,7 @@ public class ObservationEditor extends AppCompatActivity {
             mObservation.observed_on_string = null; 
         } else {
             mObservation.observed_on_string = mObservedOnStringTextView.getText().toString();
-            mObservation.observed_on = mTimeSetByUser;
+            mObservation.observed_on = mDateSetByUser;
             mObservation.time_observed_at = mTimeSetByUser;
         }
 
