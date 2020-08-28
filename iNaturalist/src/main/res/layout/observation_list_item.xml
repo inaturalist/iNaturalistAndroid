@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
@@ -9,16 +9,31 @@
     android:paddingEnd="15dp"
     android:paddingBottom="10dp">
 
+    <RelativeLayout
+        android:id="@+id/checkbox_container"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp">
     <ImageView
         android:id="@+id/checkbox"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:contentDescription="@string/list_observation_checkbox_description"
-
         android:src="@drawable/baseline_radio_button_unchecked_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        />
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/checkbox_container"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        >
 
     <!-- Size & alignment mirror observation_pic. Views reference observation pic to set constraints -->
     <ImageView
@@ -43,20 +58,16 @@
         android:id="@+id/observation_pic"
         android:layout_width="45dp"
         android:layout_height="45dp"
-
         android:layout_centerVertical="true"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="9dp"
-
         android:background="#DDDDDD"
         android:contentDescription="@string/observation_list_item_obs_pic_description"
         android:scaleType="fitCenter"
         android:src="@drawable/iconic_taxon_unknown"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/checkbox"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_goneMarginLeft="0dp" />
-
+        />
 
     <TextView
         android:id="@+id/date"
@@ -211,5 +222,5 @@
         app:constraint_referenced_ids="progress,id_count,id_pic,comment_count,comment_pic"
          />
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

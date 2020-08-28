@@ -484,7 +484,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         double privateLatitude = c.getDouble(c.getColumnIndexOrThrow(Observation.PRIVATE_LATITUDE));
         double privateLongitude = c.getDouble(c.getColumnIndexOrThrow(Observation.PRIVATE_LONGITUDE));
 
-        (mIsGrid ? checkboxContainer : checkbox).setVisibility(mMultiSelectionMode ? View.VISIBLE : View.GONE);
+        Logger.tag(TAG).info("getView " + position + ": " + mMultiSelectionMode);
 
         if (mIsGrid) {
             mDimension = mGrid.getColumnWidth();
@@ -837,6 +837,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             }
         }
 
+        checkboxContainer.setVisibility(mMultiSelectionMode ? View.VISIBLE : View.GONE);
+
         holder.obsId = obsId;
         holder.updatedAt = updatedAt;
         holder.observation = new Observation(c);
@@ -854,7 +856,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         ImageView obsImage = view.findViewById(R.id.observation_pic);
         ViewGroup container = view.findViewById(R.id.container);
 
-        (mIsGrid ? checkboxContainer : checkbox).setVisibility(mMultiSelectionMode ? View.VISIBLE : View.GONE);
+        checkboxContainer.setVisibility(mMultiSelectionMode ? View.VISIBLE : View.GONE);
 
         ValueAnimator animator = null;
         int padding = (int)mHelper.dpToPx(10);
