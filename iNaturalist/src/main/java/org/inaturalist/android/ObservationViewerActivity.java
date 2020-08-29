@@ -2130,10 +2130,10 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             String dateFormatString;
             if (today.get(Calendar.YEAR) > calDate.get(Calendar.YEAR)) {
                 // Previous year(s)
-                dateFormatString = "MM/dd/yy";
+                dateFormatString = getString(R.string.date_short);
             } else {
                 // Current year
-                dateFormatString = "MMM d";
+                dateFormatString = getString(R.string.date_short_this_year);
             }
 
             SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatString);
@@ -2145,7 +2145,12 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 format.append(" • ");
             }
 
-            String timeFormatString = DateFormat.is24HourFormat(getApplicationContext()) ? "HH:mm" : "hh:mma";
+            String timeFormatString;
+            if (DateFormat.is24HourFormat(getApplicationContext())) {
+                timeFormatString = getString(R.string.time_short_24_hour);
+            } else {
+                timeFormatString = getString(R.string.time_short_12_hour);
+            }
             SimpleDateFormat timeFormat = new SimpleDateFormat(timeFormatString);
 
             format.append(timeFormat.format(time));
