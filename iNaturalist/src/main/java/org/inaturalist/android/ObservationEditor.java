@@ -3124,8 +3124,31 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private void importPhotoMetadata(Uri photoUri) {
+        importPhotoMetadata(photoUri, false);
+    }
+
+    private void importPhotoMetadata(Uri photoUri, boolean dontAskForPermissions) {
 
         Logger.tag(TAG).info("importPhotoMetadata: " + photoUri);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            //  So we'll be able to retrieve EXIF metadata
+            if (!mApp.isAccessMediaLocationPermissionGranted()) {
+                mApp.requestAccessMediaLocationPermission(this, new INaturalistApp.OnRequestPermissionResult() {
+                    @Override
+                    public void onPermissionGranted() {
+                        importPhotoMetadata(photoUri, false);
+                    }
+
+                    @Override
+                    public void onPermissionDenied() {
+                        importPhotoMetadata(photoUri, true);
+                    }
+                });
+                return;
+            }
+        }
+
         try {
             InputStream is = getContentResolver().openInputStream(photoUri);
             Logger.tag(TAG).info("importPhotoMetadata: IS = " + is);

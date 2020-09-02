@@ -1141,6 +1141,10 @@ public class INaturalistApp extends MultiDexApplication {
             requestPermissions(activity, permissions, cb);
     }
 
+    public void requestAccessMediaLocationPermission(Activity activity, OnRequestPermissionResult cb) {
+        requestPermissions(activity, new String[] { Manifest.permission.ACCESS_MEDIA_LOCATION }, cb);
+    }
+
     public void requestExternalStoragePermission(Activity activity, OnRequestPermissionResult cb) {
         requestPermissions(activity, new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE }, cb);
     }
@@ -1225,6 +1229,10 @@ public class INaturalistApp extends MultiDexApplication {
 
     public boolean isAudioRecordingPermissionGranted() {
         return (PermissionChecker.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PermissionChecker.PERMISSION_GRANTED);
+    }
+
+    public boolean isAccessMediaLocationPermissionGranted() {
+        return (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_MEDIA_LOCATION) == PermissionChecker.PERMISSION_GRANTED);
     }
 
 
