@@ -78,7 +78,7 @@
     <string name="edit_observation">Waarneming wijzigen</string>
     <string name="discard_changes">Weet je zeker dat je deze wijzigingen niet wilt opslaan?</string>
     <string name="yes">Ja</string>
-    <string name="no">No</string>
+    <string name="no">Nee</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">Mee eens?</string>
     <string name="no_comments">Nog geen opmerkingen/identificaties</string>
@@ -227,7 +227,7 @@
     <string name="log_in">Inloggen</string>
     <string name="sign_up">Registreren</string>
     <string name="min_6_chars">Minimum 6 tekens</string>
-    <string name="use_my_license"><![CDATA[Ja, kies een licentie zodat onderzoekers mijn data kunnen gebruiken. <b>Meer info</b>]]></string>
+    <string name="use_my_license"><![CDATA[Ja, kies een licentie zodat onderzoekers mijn data kunnen gebruiken (aanbevolen). <b>Lees verder</b>]]></string>
     <string name="content_licensing">Licenties</string>
     <string name="content_licensing_description">Schakel dit selectievakje in als u een Creative Commons Attribution-NonCommercial-licentie wilt toevoegen aan uw foto\'s. U kunt een andere licentie kiezen of de licentie later verwijderen, maar dit is de meest geschikte licentie om foto\'s met onderzoekers te delen.</string>
     <!-- Try to keep this about the length of the English text -->
@@ -914,4 +914,23 @@
     <string name="rank_infrahybrid">Infrahybride</string>
     <string name="rank_leaves">Bladeren</string>
     <string name="location_lat_lng">Locatie: %1$f, %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[Ik stem ermee in dat iNaturalist persoonlijke informatie over mij kan opslaan en verwerken om mijn account te beheren. <b>Lees verder</b>]]></string>
+    <string name="about_personal_information">Persoonlijke gegevens</string>
+    <string name="personal_information_notes"><![CDATA[Persoonlijke gegevens zoals gebruikersnamen en e-mailadressen worden bewaard om accounts op deze site te beheren en om te voldoen aan privacywetten moet je dit vakje aanvinken om aan te geven dat je akkoord gaat met het gebruik van deze persoonlijke informatie. Voor meer informatie over de informatie die wordt verzamelt en hoe we het gebruiken, zie onze
+<a href="https://www.inaturalist.org/privacy">Privacybeleid</a>
+en onze <a href="https://www.inaturalist.org/terms">Servicevoorwaarden</a>.]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[Ik ga akkoord met de <a href="https://www.inaturalist.org/terms">gebruiksvoorwaarden</a> en het
+<a href="https://www.inaturalist.org/privacy">privacybeleid</a> en ik heb
+de <a href="https://www.inaturalist.org/pages/community+guidelines">gemeenschapsrichtlijnen</a> doorgenomen.]]></string>
+    <string name="privacy_policy">Privacybeleid</string>
+    <string name="terms_of_service">Gebruiksvoorwaarden</string>
+    <string name="deleted_user">Verwijderde gebruiker</string>
+    <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short_this_year">d MMM</string>
+    <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short">dd-MM-yy</string>
+    <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_24_hour">HH:mm</string>
+    <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_12_hour">hh:mma</string>
 </resources>
