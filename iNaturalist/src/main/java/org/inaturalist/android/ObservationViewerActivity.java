@@ -88,7 +88,6 @@ import com.viewpagerindicator.CirclePageIndicator;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.lucasr.twowayview.TwoWayView;
 import org.tinylog.Logger;
 
 import java.io.File;
@@ -461,7 +460,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
             if (imageUrl != null) {
                 // Online photo
-            	imageView.setLayoutParams(new TwoWayView.LayoutParams(TwoWayView.LayoutParams.MATCH_PARENT, TwoWayView.LayoutParams.WRAP_CONTENT));
+                imageView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
             	String extension = imageUrl.substring(imageUrl.lastIndexOf('.'));
 
