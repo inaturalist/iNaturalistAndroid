@@ -226,7 +226,7 @@
     <string name="log_in">登入</string>
     <string name="sign_up">注册</string>
     <string name="min_6_chars">最少 6 个字元以上</string>
-    <string name="use_my_license"><![CDATA[好的，授权我的内容以让科学家使用我的资料！ <b>了解更多资讯</b>]]></string>
+    <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data (recommended). <b>Learn More</b>]]></string>
     <string name="content_licensing">内容授权</string>
     <string name="content_licensing_description">如果您想在您的照片套用创意公用授权－非商业使用条款的话，请勾选此方框。你之后可以选择不同的授权或移除它，但这个授权对于分享资料给研究者是最好的授权。</string>
     <!-- Try to keep this about the length of the English text -->
@@ -631,7 +631,7 @@
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">花芽</string>
     <!-- Observation presents no evidence of flowering phenology -->
-    <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
+    <string name="annotation_value_no_evidence_of_flowering">没有开花迹象</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">成体</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -712,199 +712,216 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Natural History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
-    <string name="mark_all_as_viewed">Mark all as viewed</string>
-    <string name="content_hidden">Content Hidden</string>
-    <string name="show_hidden_content">Show Hidden Content</string>
-    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
-    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
-    <string name="content">Content</string>
-    <string name="has_photos">Has Photos</string>
-    <string name="has_sounds">Has Sounds</string>
-    <string name="could_not_play_sound">Couldn\'t play sound - probably a network issue</string>
-    <string name="cant_play_soundcloud"><![CDATA[To listen to Soundcloud sounds, view the <a href="%1$s">website</a>.]]></string>
+    <string name="mark_all_as_viewed">全部标记为已读</string>
+    <string name="content_hidden">内容已隐藏</string>
+    <string name="show_hidden_content">显示隐藏内容</string>
+    <string name="content_hidden_because">因为%3$s，所以在%2$s的内容被@%1$s隐藏。</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">联系客服</a>]]></string>
+    <string name="content">内容</string>
+    <string name="has_photos">拥有照片</string>
+    <string name="has_sounds">拥有声音</string>
+    <string name="could_not_play_sound">无法播放声音 - 可能是网络问题</string>
+    <string name="cant_play_soundcloud"><![CDATA[若要要听Soundcloud声音，请查看 <a href="%1$s">网站</a>。]]></string>
     <string name="soundcloud">Soundcloud</string>
-    <string name="record_sound">Record Sound</string>
-    <string name="no_recorder_found">No default sound recorder found!</string>
-    <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
-    <string name="upload_sound">Choose Sound</string>
-    <string name="multi_select_sound_description">Import multiple sounds by long-pressing on a single sound</string>
-    <string name="alert_unsupported_audio_type">Sorry, but there was a problem loading the sound from this source</string>
-    <string name="invalid_audio_extension">Error importing sound(s): Can only import sound files with WAV/MP3/AMR extensions</string>
-    <string name="importing_sounds">Importing sound(s)...</string>
-    <string name="observation_sound">Observation Sound</string>
-    <string name="deleted_sounds_from_cache_error">It looks like you deleted a sound by clearing the app cache before uploading. You will need to add the sound back to your observation from your gallery. In the future, please make sure you have uploaded all your sounds before clearing the app cache.</string>
+    <string name="record_sound">录音</string>
+    <string name="no_recorder_found">找不到预设的录音装置！</string>
+    <string name="couldnt_retrieve_sound">无法从默认录音设备取得声音，请尝试导入声音</string>
+    <string name="upload_sound">选择音频</string>
+    <string name="multi_select_sound_description">在单一音频上长按以导入多个音频</string>
+    <string name="alert_unsupported_audio_type">对不起，从此来源加载音频时出现问题</string>
+    <string name="invalid_audio_extension">导入声音时出错：只能导入WAV/MP3/AMR格式的声音文件</string>
+    <string name="importing_sounds">正在导入音频(s)...</string>
+    <string name="observation_sound">声音观察记录</string>
+    <string name="deleted_sounds_from_cache_error">看起来您在上传前清除了 App 的缓存而删除了一张照片。您需要从您的照片库中重新加回此照片至您的观察记录。之后当您清理 App 缓存时请确定您已经上传了所有照片。</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
-    <string name="seconds">%1$.1f sec</string>
-    <string name="clear_all_debug_logs">Clear All Debug Logs</string>
-    <string name="clears_up_storage_room_on_your_phone">Clears up storage room on your phone</string>
-    <string name="number_of_days_to_store_logs">Number of days to store logs</string>
-    <string name="send_debug_logs_from_start_date">Send Debug Logs From Start Date</string>
-    <string name="send_debug_logs_by_email">Send debug logs by email (from specified start date)</string>
-    <string name="debug_settings">Debug Settings</string>
-    <string name="are_you_sure_you_want_to_delete_logs">Are you sure you want to delete all debug logs? Only press \'Yes\' if you want clear up storage room for your phone</string>
-    <string name="no_log_files_found">No log files found for that date range - try earlier date?</string>
-    <string name="choose_pinned_location">Choose Pinned Location</string>
+    <string name="seconds">%1$.1f 秒</string>
+    <string name="clear_all_debug_logs">清除所有除错记录</string>
+    <string name="clears_up_storage_room_on_your_phone">清理您手机上的存储空间</string>
+    <string name="number_of_days_to_store_logs">存储记录的天数</string>
+    <string name="send_debug_logs_from_start_date">从起始日期发送除错记录</string>
+    <string name="send_debug_logs_by_email">通过电子邮件发送除错记录 (从指定日期开始)</string>
+    <string name="debug_settings">除错设置</string>
+    <string name="are_you_sure_you_want_to_delete_logs">您确定要删除所有纠错记录吗？只有当您想要清理手机的存储空间时再按“是”</string>
+    <string name="no_log_files_found">没有找到指定日期范围内的日志文件 - 请尝试更早的日期？</string>
+    <string name="choose_pinned_location">选择钉选位置</string>
     <string name="pin_current_location">釘选当前位置</string>
-    <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
+    <string name="location_pinned_successfully">当前位置钉选成功</string>
     <string name="delete_this_pinned_location">删除这个釘选的位置？</string>
     <!-- Verb, as in "Duplicate this photo" -->
-    <string name="duplicate">Duplicate</string>
-    <string name="couldnt_duplicate_photo">Couldn\'t duplicate photo!</string>
-    <string name="couldnt_edit_photo">Couldn\'t edit photo!</string>
+    <string name="duplicate">复制</string>
+    <string name="couldnt_duplicate_photo">无法复制照片！</string>
+    <string name="couldnt_edit_photo">无法编辑照片！</string>
     <!-- Verb, as in "Rotate this photo" -->
-    <string name="ucrop_rotate">Rotate</string>
+    <string name="ucrop_rotate">旋转</string>
     <!-- Verb, as in "Scale (resize) this photo" -->
-    <string name="ucrop_scale">Scale</string>
+    <string name="ucrop_scale">缩放比例</string>
     <!-- Verb, as in "Crop this photo" -->
-    <string name="ucrop_crop">Crop</string>
+    <string name="ucrop_crop">裁剪：</string>
     <!-- Label for adjusting the brightness of an image -->
-    <string name="ucrop_brightness">Brightness</string>
+    <string name="ucrop_brightness">亮度</string>
     <!-- Label for adjusting the contrast of an image -->
-    <string name="ucrop_contrast">Contrast</string>
+    <string name="ucrop_contrast">对比度</string>
     <!-- Label for adjusting the saturation of an image -->
-    <string name="ucrop_saturation">Saturation</string>
+    <string name="ucrop_saturation">饱和度</string>
     <!-- Label for adjusting the sharpness of an image -->
-    <string name="ucrop_sharpness">Sharpness</string>
+    <string name="ucrop_sharpness">锐度</string>
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
-    <string name="ucrop_label_original">Original</string>
+    <string name="ucrop_label_original">原始照片</string>
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
-    <string name="ucrop_label_free">Free</string>
+    <string name="ucrop_label_free">无限制</string>
     <!-- Verb phrase, button label to edit an observation photo -->
-    <string name="ucrop_label_edit_photo">Edit Photo</string>
-    <string name="service_temporarily_unavailable">Service temporarily unavailable.</string>
-    <string name="please_try_again_in_a_few_hours">Please try again in a few hours.</string>
+    <string name="ucrop_label_edit_photo">编辑照片</string>
+    <string name="service_temporarily_unavailable">服务暂时不可用。</string>
+    <string name="please_try_again_in_a_few_hours">请几小时后再试。</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
-    <string name="please_try_again_in_x">Please try again in %1$d %2$s.</string>
-    <string name="hours">hours</string>
-    <string name="minutes">minutes</string>
-    <string name="seconds_value">seconds</string>
-    <string name="shop_the_inat_store">Shop the iNat Store</string>
-    <string name="delete_your_account">Delete Your Account</string>
-    <string name="delete_account_message"><![CDATA[By deleting your account you will remove:<br/><br/><ul><li> All of your observations, including the work of the all the people who have helped you out with identifications.</li><li> All of the identifications you\'ve added to the observations of other people, which will potentially affect the data quality of those observations.</li><li> All of the comments you\'ve added.</li></ul><br/>Furthermore, this action cannot be undone. If you change your mind later, you aren\'t getting any of that content back.<br/><br/>If this service generates too many notifications, consider <a href="https://www.inaturalist.org/users/edit">editing your settings on the website</a> to opt out of certain notifications or stop receiving email from us. If you\'re having trouble with a specific person, consider <a href="https://www.inaturalist.org/users/edit">muting them</a> instead of deleting your account.<br/><br/>If you\'re still sure you want to delete your account, enter <b>\"%1$s\"</b> in the form below and click the button to delete your account and all your data.]]></string>
-    <string name="your_account_has_been_deleted">Your account has been deleted</string>
-    <string name="you_must_enter_username_in_the_form_to_delete_account">You must enter \'%1$s\' in the form to delete your account</string>
+    <string name="please_try_again_in_x">请在 %1$d %2$s 后再试。</string>
+    <string name="hours">小时</string>
+    <string name="minutes">分钟</string>
+    <string name="seconds_value">秒</string>
+    <string name="shop_the_inat_store">在 iNat 商店购物</string>
+    <string name="delete_your_account">删除您的帐户</string>
+    <string name="delete_account_message"><![CDATA[删除您的帐户将会删除：<br/><br/><ul><li> 您的所有观察记录，包括以鉴定帮助你们的所有人的努力。</li><li> 您已添加到其他人观察的所有身份验证。 这将可能影响这些观测结果的数据质量。</li><li> 您已添加的所有评论。</li></ul><br/>此外，此操作不能撤消。 如果您稍后更改主意，您将\n无法回复任何内容。<br/><br/>如果此服务生成的通知太多， 考虑在 <a href="https://www.inaturalist.org/users/edit">编辑网站上的设置</a> 选择不接受某些通知或停止接收来自我们的邮件。 如果您在特定的人遇到问题，请考虑 <a href="https://www.inaturalist.org/users/edit">禁用他们</a> 而不是删除您的帐户。<br/><br/>如果您仍然确定要删除您的帐户。 在下面的表单中输入 <b>\"%1$s\"</b> 然后点击按钮删除您的帐户和所有数据。]]></string>
+    <string name="your_account_has_been_deleted">您的帐号已经被删除</string>
+    <string name="you_must_enter_username_in_the_form_to_delete_account">您必须在表单中输入\'%1$s\'才能删除您的帐户</string>
     <!-- Second person hint text asking the user to enter their username -->
-    <string name="type_your_username">Type your username</string>
-    <string name="error_deleting_account">There was an error deleting your account - please check your Internet connection</string>
-    <string name="verify_your_password">Verify Your Password</string>
-    <string name="third_party_data_sharing">Third-party Data Sharing</string>
-    <string name="disable_third_party_data_sharing">Disable Third-party Data Sharing</string>
-    <string name="do_not_collect_third_party_data">Do not collect stability and usage data using third-party services</string>
-    <string name="enabled">Enabled</string>
-    <string name="disabled">Disabled</string>
-    <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third-party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="type_your_username">输入您的用户名</string>
+    <string name="error_deleting_account">删除您的帐户时发生错误 - 请检查您的网络连接</string>
+    <string name="verify_your_password">请确认您的密码</string>
+    <string name="third_party_data_sharing">第三方数据共享</string>
+    <string name="disable_third_party_data_sharing">禁用第三方数据共享</string>
+    <string name="do_not_collect_third_party_data">不要使用第三方服务来收集稳定性和使用数据</string>
+    <string name="enabled">已启用</string>
+    <string name="disabled">已禁用</string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[我们使用各种第三方服务来监测稳定性并诊断我们软件中的缺陷和问题。 这些第三方包括：<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a> <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a></li><li><a href="https://newrelic.com/">New Relic</a></li></ul><a href="https://newrelic.com/">]]></string>
     <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
     <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third-party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
     <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
-    <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
-    <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
-    <string name="search_places">Search Places</string>
-    <string name="restart_app">Restart App</string>
-    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
+    <string name="common_names_place"><![CDATA[常用名称的使用位置： <b>%1$s</b>]]></string>
+    <string name="tap_to_prioritize_common_names">点击以指定从特定地点来显示优先的常用名</string>
+    <string name="search_places">搜索地点</string>
+    <string name="restart_app">重启应用</string>
+    <string name="disable_third_party_sharing_restart">为了立即禁用第三方数据共享，应用程序必须重启。</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
-        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+        <item quantity="other">您确定要删除这 %1$d 笔观察记录吗？</item>
     </plurals>
-    <string name="future_observed_on_date_error">Your observation was created (and submitted) on %1$s, but you\'re trying to set an observation date that is later than that: %2$s</string>
-    <string name="no_more_photos_allowed">Observations can only have %1$d photos. To add more you will need to remove some.</string>
-    <string name="warning_multiple_photos">If you\'re adding photos of different kinds of organisms to this observation, or the same kind at different places or times, you should remove those photos and add them as separate observations. An observation can only have %1$d photos.</string>
-    <string name="choosing_specific_language_warning">Choosing a specific language for your account requires an Internet connection</string>
-    <string name="running_in_background_notfication">Running in the background so we can run without interruption</string>
-    <string name="opt_out_of_community_taxon">Opt out of the Community Taxon</string>
-    <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
+    <string name="future_observed_on_date_error">您的观察记录是在 %1$s创建的(并提交) 的，但您正在尝试设置一个晚于: %2$s的观察日期</string>
+    <string name="no_more_photos_allowed">观察记录只能有 %1$d 张照片。您需要删除一些照片以添加更多照片。</string>
+    <string name="warning_multiple_photos">如果您在此观察中添加了不同生物的照片， 或在不同地点或时间的同一种类，您应该删除这些照片并将其作为单独的观察添加。一个观察只能有 %1$d 张照片。</string>
+    <string name="choosing_specific_language_warning">为您的帐户选择特定语言需要与互联网连接</string>
+    <string name="running_in_background_notfication">在后台运行，以便我们可以不间断地运行程序</string>
+    <string name="opt_out_of_community_taxon">取消加入至社群鉴定出来的分类群</string>
+    <string name="opt_in_to_community_taxon">选择加入至社群鉴定出来的分类群</string>
     <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
-    <string name="permission_required">Permission Required</string>
+    <string name="permission_required">需要权限</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
-    <string name="to_access_your_location">To access your location you must grant location access permission to this app.</string>
+    <string name="to_access_your_location">要访问您的位置，您必须授予此应用访问位置的权限。</string>
     <!-- Dialog title when displaying a message that an action is not permitted -->
-    <string name="forbidden">Forbidden</string>
+    <string name="forbidden">禁止</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <string name="list_observation_checkbox_description">复选观察记录的复选框</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <string name="observation_list_item_iconic_pic_description">用于观察分类群的缩略图</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
-    <string name="messages">Messages</string>
-    <string name="all_messages">All Messages</string>
-    <string name="search_messages">Search messages</string>
-    <string name="no_messages">You currently have no messages. You can send a new message with the green button, or message them from their profile page.</string>
-    <string name="no_messages_found">No messages found.</string>
-    <string name="send_a_message">Send a message</string>
-    <string name="sending_message">Sending message...</string>
-    <string name="could_not_send_message">Couldn\'t send message: %1$s</string>
-    <string name="subject">Subject</string>
-    <string name="body">Body</string>
-    <string name="type_your_message_here">Type your message here</string>
-    <string name="new_message_to">New Message to %1$s</string>
-    <string name="who_would_you_like_to_send_a_message_to">Who would you like to send a message to?</string>
-    <string name="new_message">New Message</string>
-    <string name="search_for_inaturalist_users">Search for iNaturalist users</string>
-    <string name="please_sign_in_for_messages">You must be logged in to view your messages.</string>
-    <string name="sorry">Sorry</string>
-    <string name="you_must_have_three_observations">You must have three verifiable observations or three identifications for others in order to do that.</string>
-    <string name="mute_this_user">Mute this user</string>
-    <string name="unmute_this_user">Unmute this user</string>
-    <string name="flag_this_conversation">Flag this conversation</string>
-    <string name="mute_this_user_question">Mute this user?</string>
-    <string name="you_will_no_longer_receive_messages">You will no longer receive any notifications about activity from this user, including messages, comments, identifications, and mentions.</string>
-    <string name="mute">Mute</string>
-    <string name="muting_user">Muting user...</string>
-    <string name="unmuting_user">Unmuting user...</string>
-    <string name="failed_muting_user">Failed muting user!</string>
-    <string name="failed_unmuting_user">Failed unmuting user!</string>
-    <string name="flag_conversation">Flag conversation</string>
-    <string name="spam">Spam</string>
-    <string name="commercial_solicitation">Commercial solicitation, links to nowhere, etc.</string>
-    <string name="offensive_inappropriate">Offensive/Inappropriate</string>
-    <string name="misleading_or_illegal_content">Misleading or illegal content, racial or ethnic slurs, etc. For more on our definition of \"appropriate,\" see the FAQ.</string>
-    <string name="other">Other</string>
-    <string name="some_other_reason">Some other reason you can explain.</string>
-    <string name="continue_text">Continue</string>
-    <string name="why_are_you_flagging_this_item">Why are you flagging this item?</string>
-    <string name="thank_you_for_submitting_the_flag">Thank you for submitting the flag!</string>
-    <string name="flagging_conversation">Flagging conversation...</string>
-    <string name="failed_flagging_conversation">Failed flagging conversation!</string>
-    <string name="no_subject">No Subject</string>
-    <string name="rank_state_of_matter">State of matter</string>
-    <string name="rank_kingdom">Kingdom</string>
-    <string name="rank_subkingdom">Subkingdom</string>
-    <string name="rank_phylum">Phylum</string>
-    <string name="rank_subphylum">Subphylum</string>
-    <string name="rank_superclass">Superclass</string>
-    <string name="rank_class">Class</string>
-    <string name="rank_subclass">Subclass</string>
-    <string name="rank_infraclass">Infraclass</string>
-    <string name="rank_superorder">Superorder</string>
-    <string name="rank_order">Order</string>
-    <string name="rank_suborder">Suborder</string>
-    <string name="rank_infraorder">Infraorder</string>
-    <string name="rank_subterclass">Subterclass</string>
-    <string name="rank_parvorder">Parvorder</string>
+    <string name="observation_list_item_obs_pic_description">观察记录的缩略图</string>
+    <string name="messages">消息</string>
+    <string name="all_messages">所有消息</string>
+    <string name="search_messages">搜索消息</string>
+    <string name="no_messages">您目前没有消息。您可以通过点击绿色按钮发送新消息，或者从别人的个人资料页面发送消息。</string>
+    <string name="no_messages_found">未找到消息。</string>
+    <string name="send_a_message">发送私信</string>
+    <string name="sending_message">正在发送信息...</string>
+    <string name="could_not_send_message">无法发送消息： %1$s</string>
+    <string name="subject">主题</string>
+    <string name="body">正文</string>
+    <string name="type_your_message_here">在此处输入您的消息</string>
+    <string name="new_message_to">发送消息给 %1$s</string>
+    <string name="who_would_you_like_to_send_a_message_to">您想给谁发送消息？</string>
+    <string name="new_message">新消息</string>
+    <string name="search_for_inaturalist_users">搜索 iNaturalist 用户</string>
+    <string name="please_sign_in_for_messages">您必须登录才能查看您的消息。</string>
+    <string name="sorry">对不起</string>
+    <string name="you_must_have_three_observations">必须有三次可验证的观察或三次替别人做出的身份验证才能做到这一点。</string>
+    <string name="mute_this_user">静言此用户</string>
+    <string name="unmute_this_user">取消静言此用户</string>
+    <string name="flag_this_conversation">标记此对话</string>
+    <string name="mute_this_user_question">静言此用户？</string>
+    <string name="you_will_no_longer_receive_messages">您将不再收到此用户关于活动的任何通知，包括消息、评论、鉴定和提及。</string>
+    <string name="mute">禁言</string>
+    <string name="muting_user">静言用户...</string>
+    <string name="unmuting_user">正在取消静言用户...</string>
+    <string name="failed_muting_user">静言用户失败！</string>
+    <string name="failed_unmuting_user">取消静言用户失败！</string>
+    <string name="flag_conversation">标记对话</string>
+    <string name="spam">垃圾邮件</string>
+    <string name="commercial_solicitation">商业邀請、链接到无处等</string>
+    <string name="offensive_inappropriate">冒犯性的/不恰当的</string>
+    <string name="misleading_or_illegal_content">误导性或非法内容，种族歧视或民族蔑称等。有关我们对“适当”的更多定义，详见FAQ常见问题解答</string>
+    <string name="other">其它</string>
+    <string name="some_other_reason">您可以说明其他一些原因。</string>
+    <string name="continue_text">继续</string>
+    <string name="why_are_you_flagging_this_item">你为什么要标记这个项目？</string>
+    <string name="thank_you_for_submitting_the_flag">感谢您提交标记！</string>
+    <string name="flagging_conversation">标记对话...</string>
+    <string name="failed_flagging_conversation">标记对话失败！</string>
+    <string name="no_subject">无主题</string>
+    <string name="rank_state_of_matter">物态</string>
+    <string name="rank_kingdom">界</string>
+    <string name="rank_subkingdom">亚界</string>
+    <string name="rank_phylum">门</string>
+    <string name="rank_subphylum">亚门</string>
+    <string name="rank_superclass">总纲</string>
+    <string name="rank_class">纲</string>
+    <string name="rank_subclass">亚纲</string>
+    <string name="rank_infraclass">下纲</string>
+    <string name="rank_superorder">总目</string>
+    <string name="rank_order">目</string>
+    <string name="rank_suborder">亚目</string>
+    <string name="rank_infraorder">下目</string>
+    <string name="rank_subterclass">下纲</string>
+    <string name="rank_parvorder">小目</string>
     <string name="rank_zoosection">Zoosection</string>
-    <string name="rank_zoosubsection">Zoosubsection</string>
-    <string name="rank_superfamily">Superfamily</string>
-    <string name="rank_epifamily">Epifamily</string>
-    <string name="rank_family">Family</string>
-    <string name="rank_subfamily">Subfamily</string>
-    <string name="rank_supertribe">Supertribe</string>
-    <string name="rank_tribe">Tribe</string>
-    <string name="rank_subtribe">Subtribe</string>
-    <string name="rank_genus">Genus</string>
-    <string name="rank_genushybrid">Genushybrid</string>
-    <string name="rank_subgenus">Subgenus</string>
-    <string name="rank_section">Section</string>
-    <string name="rank_subsection">subsection</string>
-    <string name="rank_complex">Complex</string>
+    <string name="rank_zoosubsection">动物群落</string>
+    <string name="rank_superfamily">总科</string>
+    <string name="rank_epifamily">领科</string>
+    <string name="rank_family">科</string>
+    <string name="rank_subfamily">亚科</string>
+    <string name="rank_supertribe">总族</string>
+    <string name="rank_tribe">族</string>
+    <string name="rank_subtribe">亚族</string>
+    <string name="rank_genus">属</string>
+    <string name="rank_genushybrid">属间杂种</string>
+    <string name="rank_subgenus">亚属</string>
+    <string name="rank_section">节</string>
+    <string name="rank_subsection">亚节</string>
+    <string name="rank_complex">复合群</string>
     <!-- Singular -->
-    <string name="rank_species">Species</string>
-    <string name="rank_hybrid">Hybrid</string>
+    <string name="rank_species">物种</string>
+    <string name="rank_hybrid">杂交种</string>
     <!-- Singular -->
-    <string name="rank_subspecies">Subspecies</string>
-    <string name="rank_variety">Variety</string>
-    <string name="rank_form">Form</string>
-    <string name="rank_infrahybrid">Infrahybrid</string>
-    <string name="rank_leaves">Leaves</string>
-    <string name="location_lat_lng">Location: %1$f, %2$f</string>
+    <string name="rank_subspecies">亚种</string>
+    <string name="rank_variety">变种</string>
+    <string name="rank_form">型</string>
+    <string name="rank_infrahybrid">种内杂种</string>
+    <string name="rank_leaves">叶片</string>
+    <string name="location_lat_lng">位置： %1$f， %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[我同意允许iNaturalist 存储和处理有关我的有限的个人信息，以便管理我的帐户。 <b>了解更多</b>]]></string>
+    <string name="about_personal_information">关于个人信息</string>
+    <string name="personal_information_notes"><![CDATA[我们需要储存用户名称以及电子邮箱地址之类的个人信息来管理在网站上的账号，因要符合隐私法规的要求，需要您勾选此方框來表明您同意上述的个人信息使用。要了解更多关于我们如何收集以及使用信息，请查看我们的 <a href="https://www.inaturalist.org/privacy">隐私政策</a>和 <a href="https://www.inaturalist.org/terms">服务条款</a>。]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[我同意 <a href="https://www.inaturalist.org/terms">服务条款</a> 和
+ <a href="https://www.inaturalist.org/privacy">隐私政策</a>, 我已经审阅了
+<a href="https://www.inaturalist.org/pages/community+guidelines">社区准则</a>。]]></string>
+    <string name="privacy_policy">隐私政策</string>
+    <string name="terms_of_service">服务条款</string>
+    <string name="deleted_user">Deleted User</string>
+    <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short_this_year">MMM d</string>
+    <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short">MM/dd/yy</string>
+    <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_24_hour">HH:mm</string>
+    <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_12_hour">hh:mma</string>
 </resources>

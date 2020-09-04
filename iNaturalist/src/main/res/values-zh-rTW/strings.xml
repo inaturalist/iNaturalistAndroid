@@ -226,7 +226,7 @@
     <string name="log_in">登入</string>
     <string name="sign_up">註冊</string>
     <string name="min_6_chars">最少 6 個字元以上</string>
-    <string name="use_my_license"><![CDATA[好的，授權我的內容以讓科學家使用我的資料！ <b>了解更多資訊</b>]]></string>
+    <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data (recommended). <b>Learn More</b>]]></string>
     <string name="content_licensing">內容授權</string>
     <string name="content_licensing_description">如果您想在您的照片套用創意公用授權－非商業使用條款的話，請勾選此方框。你之後可以選擇不同的授權或移除它，但這個授權對於分享資料給研究者是最好的授權。</string>
     <!-- Try to keep this about the length of the English text -->
@@ -907,4 +907,19 @@
     <string name="rank_infrahybrid">Infrahybrid</string>
     <string name="rank_leaves">Leaves</string>
     <string name="location_lat_lng">Location: %1$f, %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[I consent to allow iNaturalist to store and process limited kinds of personal information about me in order to manage my account. <b>Learn More</b>]]></string>
+    <string name="about_personal_information">About Personal Information</string>
+    <string name="personal_information_notes"><![CDATA[We store personal information like usernames and email addresses in order to manage accounts on this site, and to comply with privacy laws, we need you to check this box to indicate that you consent to this use of personal information. To learn more about what information we collect and how we use it, please see our <a href="https://www.inaturalist.org/privacy">Privacy Policy</a> and our <a href="https://www.inaturalist.org/terms">Terms of Service</a>.]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[I agree to the <a href="https://www.inaturalist.org/terms">Terms of Service</a> and <a href="https://www.inaturalist.org/privacy">Privacy Policy</a>, and I have reviewed the <a href="https://www.inaturalist.org/pages/community+guidelines">Community Guidelines</a>.]]></string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="terms_of_service">Terms of Service</string>
+    <string name="deleted_user">Deleted User</string>
+    <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short_this_year">MMM d</string>
+    <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short">MM/dd/yy</string>
+    <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_24_hour">HH:mm</string>
+    <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_12_hour">hh:mma</string>
 </resources>

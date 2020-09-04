@@ -228,7 +228,7 @@
     <string name="log_in">Autentificare</string>
     <string name="sign_up">Înregistrare</string>
     <string name="min_6_chars">Min. 6 caractere</string>
-    <string name="use_my_license"><![CDATA[Da, licențiază conținutul meu pentru ca oamenii de știință să poată folosi datele mele. <b>Află mai multe</b>]]></string>
+    <string name="use_my_license"><![CDATA[Da, licențiați-mi conținutul încât savanții să-mi poată utiliza datele (recomandat) <b>Află mai multe</b>]]></string>
     <string name="content_licensing">Conținut de licențiere</string>
     <string name="content_licensing_description">Bifează această căsuță dacă vrei să aplici o licență de atribuire creativ non comercială forografiilor tale. Poți să alegi o licență diferită sau să alegi o altă licență mai târziu, dar aceasta este cea mai bună licență pentru partajarea cu cercetătorii.</string>
     <!-- Try to keep this about the length of the English text -->
@@ -920,5 +920,20 @@
     <string name="rank_form">Formă</string>
     <string name="rank_infrahybrid">Infrahibrid</string>
     <string name="rank_leaves">Frunze</string>
-    <string name="location_lat_lng">Location: %1$f, %2$f</string>
+    <string name="location_lat_lng">Locație: %1$f, %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[Sunt de acord să permit iNaturalist să stocheze și să prelucreze informații personale limitate despre mine pentru a-mi gestiona contul. <b>Află mai multe</b>]]></string>
+    <string name="about_personal_information">Despre Informații Personale</string>
+    <string name="personal_information_notes"><![CDATA[Stocăm informații personale precum nume de utilizator și adrese de e-mail pentru a gestiona conturile de pe acest site, și pentru a respecta legile de confidențialitate, trebuie să bifați această casetă pentru a indica faptul că dați acordul acestei utilizări a informațiilor personale. Ca să aflați mai multe despre ce informații colectăm și cum le folosim, consultați vă rog <a href="https://www.inaturalist.org/privacy">Politica Intimității</a> și <a href="https://www.inaturalist.org/terms">Termenii Serviciului</a> nostru.]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[Sunt de acord cu <a href="https://www.inaturalist.org/terms">Termenii Serviciului</a> și <a href="https://www.inaturalist.org/privacy">Politica Intimității</a>, și am revizuit <a href="https://www.inaturalist.org/pages/community+guidelines">Liniile Directoare Comunitare</a>.]]></string>
+    <string name="privacy_policy">Politica Intimității</string>
+    <string name="terms_of_service">Termenii Serviciului</string>
+    <string name="deleted_user">Utilizator Șters</string>
+    <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short_this_year">d MMM</string>
+    <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short">dd/MM/yy</string>
+    <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_24_hour">HH:mm</string>
+    <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_12_hour">hh:mma</string>
 </resources>

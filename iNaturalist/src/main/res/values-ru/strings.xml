@@ -35,10 +35,10 @@
     <string name="delete_photo">Удалить фото</string>
     <string name="menu">Меню</string>
     <string name="my_location">Мое местоположение</string>
-    <string name="nearby_observations">Ближайшие наблюдения</string>
+    <string name="nearby_observations">Наблюдения рядом</string>
     <string name="add">Добавить</string>
     <string name="view_on_inat">Посмотреть на iNAT</string>
-    <string name="reload">Перезагрузить</string>
+    <string name="reload">Обновить</string>
     <string name="view_in_browser">Просмотр в браузере</string>
     <string name="add_observation">Добавить наблюдение</string>
     <string name="take_picture">Сделать снимок</string>
@@ -48,8 +48,8 @@
     <string name="signed_out">Выйти</string>
     <string name="username">Имя</string>
     <string name="password">Пароль</string>
-    <string name="unknown">Неизвестное</string>
-    <string name="unknown_species">Неизвестные виды</string>
+    <string name="unknown">Неизвестные</string>
+    <string name="unknown_species">Неизвестный вид</string>
     <string name="com_facebook_dialogloginactivity_ok_button">ОК</string>
     <string name="com_facebook_loginview_log_out_button">Выйти</string>
     <string name="com_facebook_loginview_log_in_button">Войти</string>
@@ -229,7 +229,7 @@
     <string name="log_in">Войти</string>
     <string name="sign_up">Регистрация</string>
     <string name="min_6_chars">Минимум 6 символов</string>
-    <string name="use_my_license"><![CDATA[Да, лицензия моего контента такова, что ученые могут использовать мои данные. <b>Подробнее</b>]]></string>
+    <string name="use_my_license"><![CDATA[Да, лицензия моего контента позволяет ученым использовать мои данные (рекомендуется). <b>Подробнее</b>]]></string>
     <string name="content_licensing">Лицензирование контента</string>
     <string name="content_licensing_description">Установите этот флажок, если вы хотите применять лицензию Creative Commons Attribution-NonCommercial для ваших фотографий. Вы можете выбрать другую лицензии или удалить эту лицензию позже, но это оптимальная лицензия для совместного использования с исследователями.</string>
     <!-- Try to keep this about the length of the English text -->
@@ -465,7 +465,7 @@
     <string name="seen_nearby">Встречен поблизости</string>
     <string name="enlarge">Увеличить</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
-    <string name="view_children">Мнение детей</string>
+    <string name="view_children">Дочерние таксоны</string>
     <string name="invalid_photo_extension">Ошибка импорта фотографии(й): можно импортировать файлы только с расширениями JPG/JPEG/PNG</string>
     <string name="taxon_has_no_photos">Для этого таксона фотографии нет</string>
     <string name="terrain">Ландшафт</string>
@@ -928,5 +928,20 @@
     <string name="rank_form">Форма</string>
     <string name="rank_infrahybrid">Инфрагибрид</string>
     <string name="rank_leaves">Листья</string>
-    <string name="location_lat_lng">Location: %1$f, %2$f</string>
+    <string name="location_lat_lng">Местоположение: %1$f, %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[Я даю разрешение iNaturalist хранить и обрабатывать ограниченные виды моих персональных данных для управления моей учетной записью. <b>Подробнее</b>]]></string>
+    <string name="about_personal_information">О персональных данных</string>
+    <string name="personal_information_notes"><![CDATA[Мы храним персональные данные, такие как имена пользователей и адреса электронной почты, чтобы управлять учётными записями на этом сайте, и, в соответствии с законами о неприкосновенности частной жизни, вы должны отметить этот флажок, чтобы указать, что вы согласны на использование персональных данных. Чтобы узнать больше о том, какую информацию мы собираем и как мы ее используем, ознакомьтесь с нашей <a href="https://www.inaturalist.org/privacy">Политикой конфиденциальности</a> и нашими <a href="https://www.inaturalist.org/terms">Условиями предоставления услуг</a>.]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[Я согласен с <a href="https://www.inaturalist.org/terms">Условиями предоставления услуг</a> и <a href="https://www.inaturalist.org/privacy">Политикой конфиденциальности</a>, и я ознакомился с <a href="https://www.inaturalist.org/pages/community+guidelines">Правилами сообщества</a>.]]></string>
+    <string name="privacy_policy">Политика конфиденциальности</string>
+    <string name="terms_of_service">Условия предоставления услуг</string>
+    <string name="deleted_user">Удалённый пользователь</string>
+    <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short_this_year">d MMM</string>
+    <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short">dd/MM/yy</string>
+    <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_24_hour">HH:mm</string>
+    <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_12_hour">hh:mma</string>
 </resources>

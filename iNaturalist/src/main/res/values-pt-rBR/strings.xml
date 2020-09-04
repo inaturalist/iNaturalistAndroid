@@ -227,7 +227,7 @@
     <string name="log_in">Entrar</string>
     <string name="sign_up">Inscrever-se</string>
     <string name="min_6_chars">Mínimo de 6 caracteres</string>
-    <string name="use_my_license"><![CDATA[Sim, licensiar meu conteúdo para que cientistas possam usar meus dados. <b>Saiba Mais</b>]]></string>
+    <string name="use_my_license"><![CDATA[Sim, licencie meu conteúdo para que outros cientistas possam usar meus dados (recomendado). <b>Saiba mais</b>]]></string>
     <string name="content_licensing">Licenciamento de conteúdo</string>
     <string name="content_licensing_description">Marque esta caixa se você quer aplicar uma licença Creative Commons Attribution-NonCommercial a suas fotos. Você pode escolher uma licença diferente ou remover a licença depois, mas esta é a melhor licença para compartilhar fotos com pesquisadores.</string>
     <!-- Try to keep this about the length of the English text -->
@@ -914,4 +914,19 @@
     <string name="rank_infrahybrid">Infra-híbrido</string>
     <string name="rank_leaves">Folhas</string>
     <string name="location_lat_lng">Localização: %1$f, %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[Eu, conscientemente, permito que a iNaturalist armazene e processe algumas informações pessoais sobre mim com a finalidade de gerenciar minha conta. <b>Saiba mais</b>]]></string>
+    <string name="about_personal_information">Sobre informações pessoais</string>
+    <string name="personal_information_notes"><![CDATA[Nós armazenamos informações pessoais, como nomes de usuários e endereço de email, com finalidade de gerenciar as contas neste site. E para cumprir com as leis de privacidade, nós indicamos que marque esta caixa para indicar que você tem consciência e concorda com este uso de informação pessoal. Para saber mais sobre que tipo de informação coletamos e como as usamos, por favor veja nossa <a href="https://www.inaturalist.org/privacy">Política de Privacidade</a>e nosos<a href="https://www.inaturalist.org/terms">Termos de Serviço</a>]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[Eu concordo com os <a href="https://www.inaturalist.org/terms">Termos de Serviço</a> e com a <a href="https://www.inaturalist.org/privacy">Políica de Privacidade</a>, e revisei as <a href="https://www.inaturalist.org/pages/community+guidelines">Diretrizes da Comnunidade</a>.]]></string>
+    <string name="privacy_policy">Política de Privacidade</string>
+    <string name="terms_of_service">Termos de Serviço</string>
+    <string name="deleted_user">Deleted User</string>
+    <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short_this_year">MMM d</string>
+    <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short">MM/dd/yy</string>
+    <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_24_hour">HH:mm</string>
+    <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_12_hour">hh:mma</string>
 </resources>

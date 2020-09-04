@@ -229,7 +229,7 @@
     <string name="log_in">Přihlásit se</string>
     <string name="sign_up">Registrovat se</string>
     <string name="min_6_chars">Min. 6 znaků</string>
-    <string name="use_my_license"><![CDATA[Ano, povolte můj obsah, ať vědci mohou používat moje data. <b>Dozvědět se více</b>]]></string>
+    <string name="use_my_license"><![CDATA[Ano, povolte můj obsah, ať vědci mohou používat moje data (doporučeno). <b>Dozvědět se více</b>]]></string>
     <string name="content_licensing">Udělení licence obsahu</string>
     <string name="content_licensing_description">Zaškrtněte toto políčko, pokud se chcete přihlásit k Create Commons Attribution-NonCommercial licenci pro vaše fotografie. Můžete si vybrat jinou licenci nebo později odebrat licenci, ale toto je nejlepší licence pro sdílení s výzkumnými pracovníky.</string>
     <!-- Try to keep this about the length of the English text -->
@@ -927,5 +927,26 @@
     <string name="rank_form">forma</string>
     <string name="rank_infrahybrid">infrakříženec</string>
     <string name="rank_leaves">Leaves</string>
-    <string name="location_lat_lng">Location: %1$f, %2$f</string>
+    <string name="location_lat_lng">Umístění: %1$f, %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[Souhlasím s tím, že za účelem správy mého účtu umožním iNaturalist ukládat a zpracovávat v omezené míře mé osobní údaje. <b>Dozvědět se více</b>]]></string>
+    <string name="about_personal_information">O osobní údajích</string>
+    <string name="personal_information_notes"><![CDATA[Osobní údaje, jako jsou uživatelská jména a e-mailové adresy, ukládáme kvůli spravování účtů na tomto webu. V souladu se zákony na ochranu soukromí
+musíte zaškrtnout toto políčko, abyste potvrdili, že souhlasíte s použitím těchto
+osobních údajů. Chcete-li se dozvědět více o tom, jaké informace shromažďujeme a
+jak to používáme, podívejte se na naše
+<a href="https://www.inaturalist.org/privacy">Zásady ochrany osobních údajů</a>
+a naše <a href="https://www.inaturalist.org/terms">Smluvní podmínky</a>.]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[Souhlasím s <a href="https://www.inaturalist.org/terms">Podmínkami služby</a> a
+<a href="https://www.inaturalist.org/privacy">Zásadami ochrany osobních údajů</a>, a seznámil/a jsem se s <a href="https://www.inaturalist.org/pages/community+guidelines">Pravidly komunity</a>.]]></string>
+    <string name="privacy_policy">Zásady ochrany osobních údajů</string>
+    <string name="terms_of_service">Podmínky služby</string>
+    <string name="deleted_user">Smazaný uživatel</string>
+    <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short_this_year">d. MMM</string>
+    <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short">dd.MM.yy</string>
+    <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_24_hour">HH:mm</string>
+    <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_12_hour">hh:mm a</string>
 </resources>
