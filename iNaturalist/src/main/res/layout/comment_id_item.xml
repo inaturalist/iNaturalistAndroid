@@ -107,6 +107,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:alpha="0.5"
+        android:textIsSelectable="true"
         android:text="Published on ..." />
 
 </LinearLayout>

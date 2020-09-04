@@ -3787,7 +3787,7 @@ public class INaturalistService extends IntentService {
     }
 
     private void setUserViewedUpdate(int obsId) throws AuthenticationException {
-        put(HOST + "/observations/" + obsId + "/viewed_updates", (JSONObject) null);
+        put(HOST + "/observations/" + obsId + "/viewed_updates.json", (JSONObject) null);
     }
 
     private void restoreIdentification(int identificationId) throws AuthenticationException {

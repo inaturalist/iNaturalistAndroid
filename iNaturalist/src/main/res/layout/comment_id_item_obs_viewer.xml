@@ -30,6 +30,7 @@
             android:text="bob's id"
             android:textSize="15sp"
             android:textColor="#7f7f7f"
+            android:textIsSelectable="true"
             />
     </LinearLayout>
 

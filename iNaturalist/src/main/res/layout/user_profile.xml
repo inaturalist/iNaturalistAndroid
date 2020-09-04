@@ -83,6 +83,7 @@
                     android:layout_gravity="center_horizontal"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
+                    android:textIsSelectable="true"
                     />
 
                 <RelativeLayout
@@ -124,6 +125,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Some bio text"
+                        android:textIsSelectable="true"
                         android:maxLines="2"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
