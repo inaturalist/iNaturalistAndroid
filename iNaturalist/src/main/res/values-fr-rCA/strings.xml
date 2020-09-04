@@ -227,7 +227,7 @@
     <string name="log_in">Se connecter</string>
     <string name="sign_up">Inscrivez-vous</string>
     <string name="min_6_chars">Min. 6 caractères</string>
-    <string name="use_my_license"><![CDATA[Oui, accordez une licence à mon contenu pour que les scientifiques puissent l\'utiliser. <b>Apprenez-en davantage</b>]]></string>
+    <string name="use_my_license"><![CDATA[Oui, accorder une licence sur mes contenus pour que les scientifiques puissent les utiliser. <b>En savoir plus</b>]]></string>
     <string name="content_licensing">Contenu de la licence</string>
     <string name="content_licensing_description">Cochez cette case si vous voulez appliquer une licence d\'attribution non commerciale Creative Commons à vos photos. Vous pouvez choisir une licence différente ou supprimer la licence plus tard, mais il s\'agit de la meilleure licence pour échanger avec les chercheurs.</string>
     <!-- Try to keep this about the length of the English text -->
@@ -913,5 +913,29 @@
     <string name="rank_form">Forme</string>
     <string name="rank_infrahybrid">Infrahybrid</string>
     <string name="rank_leaves">Leaves</string>
-    <string name="location_lat_lng">Location: %1$f, %2$f</string>
+    <string name="location_lat_lng">Géolocalisation: %1$f, %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[J’accepte d’autoriser iNaturalist à stocker et traiter des un nombre limité d\'informations
+personnelles me concernant, afin de gérer mon compte. <b>En savoir plus</b>]]></string>
+    <string name="about_personal_information">A propos des données personnelles</string>
+    <string name="personal_information_notes"><![CDATA[Nous stockons les informations personnelles telles que le nom des utilisateurs et les adresses de messagerie afin de
+gérer les compter sur ce site, et pour être en accord avec les lois sur la vie privée, nous
+avons besoin que vous cochiez cette case pour indiquer que vous acceptez cette utilisation
+d’informations personnelles. Pour en savoir plus sur les informations que nous collectons et
+comment nous les utilisons, veuillez voir notre
+<a href=\'%{privacy_url}\' target=\'_blank\'>Politique de confidentialité</a>
+et nos <a href=\'%{terms_url}\' target=\'_blank\'>Conditions d\'utilisation</a>.]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[J\'accepte les <a href="/terms" target="_blank">conditions d\'utilisation</a> et
+<a href="/privacy" target="_blank">la politique de confidentialité</a>, et j\'ai passé en revue
+les <a href="/pages/community+guidelines" target="_blank">Règles de la Communauté</a>.]]></string>
+    <string name="privacy_policy">Politique de confidentialité</string>
+    <string name="terms_of_service">Conditions d’utilisation</string>
+    <string name="deleted_user">Utilisateur supprimé</string>
+    <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short_this_year">j mmm</string>
+    <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short">jj/mm/aa</string>
+    <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_24_hour">HH:mm</string>
+    <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_12_hour">hh:mma</string>
 </resources>

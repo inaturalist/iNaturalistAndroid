@@ -202,11 +202,11 @@
     <string name="license">Licencia</string>
     <string name="download_for_offline_use">Descargar para uso fuera de línea</string>
     <string name="download_not_available">Descarga no disponible</string>
-    <string name="guide_editor_must_enable_this_feature">El editor de la guía debe activar esta función.</string>
+    <string name="guide_editor_must_enable_this_feature">El editor de la guía debe habilitar esta función</string>
     <string name="are_you_sure">¿Estás seguro?</string>
     <string name="download_guide_alert">Esto descargará %1$s de datos, así que podrás utilizar esta guía incluso cuando no tengas acceso a Internet.</string>
     <string name="download">Descargar</string>
-    <string name="failed_to_download_guide">Error descargando la guía</string>
+    <string name="failed_to_download_guide">Error al descargar la guía</string>
     <string name="internet_connection_seems_to_be_offline">La conexión a Internet parece estar desconectada.</string>
     <string name="downloading">Descargando...</string>
     <string name="extracting">Extrayendo...</string>
@@ -227,7 +227,7 @@
     <string name="log_in">Iniciar sesión</string>
     <string name="sign_up">Regístrate</string>
     <string name="min_6_chars">Mín. 6 caracteres</string>
-    <string name="use_my_license"><![CDATA[Si, licencia mis contenidos para que la comunidad científica pueda usar mis datos. <b>Aprende más</b>]]></string>
+    <string name="use_my_license"><![CDATA[Sí, licencia mis contenidos para que la comunidad científica pueda usar mis datos (recomendado). <b>Saber Más</b>]]></string>
     <string name="content_licensing">Licenciar Contenido</string>
     <string name="content_licensing_description">Selecciona esta casilla si deseas aplicar una licencia Creative Commons de Reconocimiento- No Comercial a tus fotografías. Puedes elegir diferentes licencias o quitar las licencias más tarde, pero ésta es la mejor licencia para compartir con los investigadores.</string>
     <!-- Try to keep this about the length of the English text -->
@@ -243,10 +243,10 @@
     <string name="please_sign_in_for_updates">Debes haber iniciado la sesión para ver tus actualizaciones.</string>
     <string name="by_using_inat_terms"><![CDATA[Al usar iNaturalist aceptas las <b><a href="https://www.inaturalist.org/pages/terms"> Condiciones del Servicio</a></b> y la<b><a href="https://www.inaturalist.org/pages/privacy"> Política de privacidad</a></b>]]></string>
     <string name="activity">Actividad</string>
-    <string name="camera">Hacer foto</string>
+    <string name="camera">Tomar foto</string>
     <string name="upload_photo">Elegir imagen</string>
     <string name="menu_text">Descartar foto</string>
-    <string name="first">1º</string>
+    <string name="first">1ro</string>
     <string name="make_first">Hacer 1º</string>
     <string name="notes">Notas</string>
     <string name="location_is">La ubicación és</string>
@@ -526,7 +526,7 @@
     <!-- Indonesian sub-sub-national place type -->
     <string name="regency">Regencia</string>
     <string name="constituency">Circunscripción</string>
-    <string name="local_authority">Autoridad Local</string>
+    <string name="local_authority">Autoridad local</string>
     <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">Población</string>
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
@@ -853,11 +853,11 @@ datos que estos servicios proporcionan. <b>Al compartir esta información, nos e
     <string name="please_sign_in_for_messages">Debes iniciar sesión para ver tus mensajes.</string>
     <string name="sorry">Perdón</string>
     <string name="you_must_have_three_observations">Para poder hacerlo, debes tener tres observaciones verificables o realizar tres identificaciones de otros.</string>
-    <string name="mute_this_user">Silenciar a este usuario</string>
+    <string name="mute_this_user">Silenciar usuario</string>
     <string name="unmute_this_user">Dejar de silenciar a este usuario</string>
-    <string name="flag_this_conversation">Denunciar esta conversación</string>
+    <string name="flag_this_conversation">Marcar esta conversación</string>
     <string name="mute_this_user_question">¿Silenciar a este usuario?</string>
-    <string name="you_will_no_longer_receive_messages">Ya no recibirás notificaciones sobre la actividad de este usuario, incluyendo mensajes, comentarios, identificaciones y menciones.</string>
+    <string name="you_will_no_longer_receive_messages">No vas a recibir más notificaciones acerca de las actividades de este usuario, incluyendo mensajes, comentarios, identificaciones y menciones.</string>
     <string name="mute">Silenciar</string>
     <string name="muting_user">Silenciando usuario...</string>
     <string name="unmuting_user">Dejando de silenciar al usuario...</string>
@@ -912,10 +912,25 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <string name="rank_species">Especie</string>
     <string name="rank_hybrid">Híbrido</string>
     <!-- Singular -->
-    <string name="rank_subspecies">Subespecie</string>
+    <string name="rank_subspecies">Subespecies</string>
     <string name="rank_variety">Variedad</string>
     <string name="rank_form">Forma</string>
     <string name="rank_infrahybrid">Infrahíbrido</string>
     <string name="rank_leaves">Hojas</string>
-    <string name="location_lat_lng">Location: %1$f, %2$f</string>
+    <string name="location_lat_lng">Localización: %1$f %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[Autorizo a iNaturalist a almacenar y procesar determinado tipo de información personal para administrar mi cuenta.<b>Saber Más</b>]]></string>
+    <string name="about_personal_information">Sobre la información personal</string>
+    <string name="personal_information_notes"><![CDATA[Almacenamos información personal como el nombre de usuario y dirección de correo electrónico para administrar las cuentas en este sitio y cumplir con las leyes de privacidad, necesitamos que marque esta casilla para indicar que acepta este uso de información personal. Para obtener más información sobre qué información recopilamos y cómo la usamos, consulte nuestra <a href="https://www.inaturalist.org/privacy">Política de Privacidad</a> y nuestras <a href="https://www.inaturalist.org/terms">Condiciones del servicio</a>.]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[Acepto las <a href="https://www.inaturalist.org/terms">Condiciones del servicio</a> y la <a href="https://www.inaturalist.org/privacy">Política de privacidad</a>, y he revisado la <a href="https://www.inaturalist.org/pages/community+guidelines">Guía de la comunidad</a>.]]></string>
+    <string name="privacy_policy">Política de privacidad</string>
+    <string name="terms_of_service">Condiciones del servicio</string>
+    <string name="deleted_user">Usuario eliminado</string>
+    <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short_this_year">d MMM</string>
+    <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short">dd/MM/yy</string>
+    <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_24_hour">HH:mm</string>
+    <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_12_hour">hh:mma</string>
 </resources>

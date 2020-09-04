@@ -76,11 +76,11 @@
     <string name="com_facebook_requesterror_reconnect">Veuillez ouvrir une nouvelle session sur cette application pour reconnecter votre compte Facebook.</string>
     <string name="com_facebook_requesterror_permissions">L\'application n\'est pas autorisée à exécuter cette tâche. Pour changer les permissions, veuillez vous reconnecter à l\'application.</string>
     <string name="edit_observation">Modifier l\'observation</string>
-    <string name="discard_changes">Voulez-vous vraiment effacer les modifications non enregistrées?</string>
+    <string name="discard_changes">Voulez-vous vraiment effacer les modifications non enregistrées ?</string>
     <string name="yes">Oui</string>
     <string name="no">Non</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
-    <string name="agree">Accepter?</string>
+    <string name="agree">Accepter ?</string>
     <string name="no_comments">Aucun commentaire/aucune identification pour l\'instant</string>
     <string name="add_comment">Ajouter un commentaire</string>
     <string name="add_id">Ajouter une identification</string>
@@ -117,7 +117,7 @@
     <string name="geoprivacy">Géoconfidentialité</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
     <string name="geoprivacy_with_value">Géoconfidentialité: %1$s</string>
-    <string name="delete_confirmation">Désirez-vous vraiment supprimer cette observation?</string>
+    <string name="delete_confirmation">Désirez-vous vraiment supprimer cette observation ?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">Guides</string>
     <string name="my_guides">Les Vôtres</string>
@@ -136,7 +136,7 @@
     <string name="contact_support">Contacter notre équipe d\'assistance</string>
     <string name="credits">Conçu et développé par iNaturalist.org avec le soutien de l\'Académie des Sciences de Californie</string>
     <string name="leave_project">Quitter le projet</string>
-    <string name="leave_project_confirmation">Désirez-vous vraiment quitter ce projet?</string>
+    <string name="leave_project_confirmation">Désirez-vous vraiment quitter ce projet ?</string>
     <string name="discard_location_changes">Désirez-vous vraiment effacer les modifications non enregistrées?</string>
     <string name="edit_location">Modifier l\'emplacement</string>
     <string name="edit_locality_notes">Modifier les notes de géolocalisation</string>
@@ -179,7 +179,7 @@
     <string name="search">Rechercher</string>
     <string name="details">Détails</string>
     <string name="observation_photos">Photos de l\'observation</string>
-    <string name="remove">Supprimer?</string>
+    <string name="remove">Supprimer ?</string>
     <string name="no_observations_found">Aucune observation trouvée</string>
     <string name="license_none">Aucun, tous droits réservés</string>
     <string name="sources_and_attribution">Sources et attribution</string>
@@ -203,7 +203,7 @@
     <string name="download_for_offline_use">Télécharger pour utilisation en mode hors connexion</string>
     <string name="download_not_available">Téléchargement non disponible</string>
     <string name="guide_editor_must_enable_this_feature">L\'éditeur du guide doit activer cette fonctionnalité.</string>
-    <string name="are_you_sure">Êtes-vous sûr?</string>
+    <string name="are_you_sure">Êtes-vous sûr ?</string>
     <string name="download_guide_alert">%1$s de données seront téléchargées pour vous permettre d\'utiliser ce guide même lorsque vous n\'avez pas accès à Internet.</string>
     <string name="download">Télécharger</string>
     <string name="failed_to_download_guide">Échec du téléchargement du guide</string>
@@ -223,7 +223,7 @@
     <string name="email">Mail</string>
     <string name="sign_up_with">S\'inscrire avec</string>
     <string name="skip">Ignorer  ›</string>
-    <string name="already_have_account">Avez-vous déjà un compte?</string>
+    <string name="already_have_account">Avez-vous déjà un compte ?</string>
     <string name="log_in">Se connecter</string>
     <string name="sign_up">S\'inscrire</string>
     <string name="min_6_chars">Min. 6 caractères</string>
@@ -232,7 +232,7 @@
     <string name="content_licensing_description">Cochez cette case si vous voulez appliquer une licence d\'attribution non commerciale Creative Commons à vos photos. Vous pouvez choisir une licence différente ou supprimer la licence plus tard, mais il s\'agit de la meilleure licence pour partager avec des chercheurs.</string>
     <!-- Try to keep this about the length of the English text -->
     <string name="username_or_email">Nom d\'utilisateur ou mail</string>
-    <string name="forgot">Oublié?</string>
+    <string name="forgot">Oublié ?</string>
     <string name="or_login_with">Ou connectez-vous avec:</string>
     <string name="registering">Inscription...</string>
     <string name="recommended_next_step">Étape suivante recommandée</string>
@@ -290,7 +290,7 @@
     <string name="delete_id">Annuler l’identification</string>
     <string name="delete_comment">Supprimer le commentaire</string>
     <string name="delete_id_message">Êtes-vous sûr de vouloir retirer cette identification?</string>
-    <string name="delete_comment_message">Êtes-vous sûr de vouloir supprimer ce commentaire?</string>
+    <string name="delete_comment_message">Êtes-vous sûr de vouloir supprimer ce commentaire ?</string>
     <string name="comment">Commenter</string>
     <string name="suggest_id">Suggérer ident.</string>
     <string name="update_comment">Mettre le commentaire à jour</string>
@@ -581,7 +581,7 @@
     <string name="change_password">Modifier le mot de passe</string>
     <string name="search_projects_youve_joined">Rechercher parmi les projets auquels vous participez...</string>
     <string name="must_be_connected_to_load_more_obs">Vous devez être connecté à Internet pour charger plus d\'observations</string>
-    <string name="inat_about_title">iNaturalist est une initiative conjointe de la California Academy and the National Geographic Society.</string>
+    <string name="inat_about_title">iNaturalist est une initiative conjointe de l\'Académie des Sciences de Californie et de la National Geographic Society.</string>
     <string name="inat_credits"><![CDATA[iNaturalist existe grâce à chaque personne qui participe à notre communauté. Les personnes qui développent le logiciel, définissent les interfaces, entretiennent notre infrastructure, soutiennent la communauté et encouragent la collaboration sont Yaron Budowski, Amanda Burlington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard et Ken-Ichi Ueda. <br/><br/>CalTech et Cornell Tech ont participé au développement du système informatique de vision qui propose des identifications d\'espèces à partir de photographies. Nous remercions Grant Van Horn, Serge Belongie et Pietro Perona pour avoir fait progresser la recherche sur la reconnaissance visuelle automatique par ordinateur. Vous pouvez trouver plus d’informations sur <a href="http://www.visipedia.org">visipedia.org</a>. Merci en particulier à NVIDIA pour leur soutien. ]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[Le réseau international iNaturalist supporte les sites iNat locaux, entièrement intégrés et basés sur iNaturalist dans les pays suivants, grâce au soutien d\'organisations partenaires associées.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist est également très reconnaissant envers les développeurs open source qui ont fourni une grosse partie du logiciel sur lequel nous nous appuyons aujourd\'hui. Voir <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> pour les contributions open source.<br/> Nous sommes reconnaissants pour l\'assistance en traduction des bénévoles sur la communauté crowdin.com, particulièrement Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie et katunchik. <br/>Aires protégées de l\'UICN de catégorie II fournies par l\'UICN et le UNEP-WCMC (2015), La World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Disponible sur: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
@@ -745,7 +745,7 @@
     <string name="clears_up_storage_room_on_your_phone">Libère de l\'espace de stockage sur votre téléphone</string>
     <string name="number_of_days_to_store_logs">Nombre de jours de stockage des logs</string>
     <string name="send_debug_logs_from_start_date">Envoyer les logs de débogage à partir de la date de départ</string>
-    <string name="send_debug_logs_by_email">Envoyer les logs par e-mail (à partir de la date de départ spécifiée)</string>
+    <string name="send_debug_logs_by_email">Envoyer les logs par mail (à partir de la date de départ spécifiée)</string>
     <string name="debug_settings">Paramètres de débogage</string>
     <string name="are_you_sure_you_want_to_delete_logs">Êtes-vous sûr de vouloir supprimer tous les logs de débogage ? N\'appuyez sur \"Oui\" que si vous voulez libérer de l\'espace de stockage sur votre téléphone</string>
     <string name="no_log_files_found">Aucun fichier de log trouvé pour cette plage de dates - essayer une date antérieure?</string>
@@ -802,7 +802,7 @@
     <string name="third_party_data_sharing_notes2"><![CDATA[Les informations que nous partageons avec ces tiers incluent :<br/><ul><li> adresses IP (qui peuvent être utilisées pour déduire votre emplacement à l\'échelle d\'une ville, et pour vous suivre sur différents sites Web et services ; Notez que nous avons activé <a href="https://support.google.com/analytics/answer/2763052">l\'anonymisation IP</a> dans Google Analytics et <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> n\'enregistre pas l\'adresse IP à notre connaissance)</li><li>les détails du navigateur, comme sa marque, son modèle et sa version</li><li>les détails liés à un plantage comme par exemple quelle ligne de code l\'a déclenché</li><li>détails de l\'appareil, par exemple la marque et le modèle d\'un téléphone portable</li></ul>]]></string>
     <string name="third_party_data_sharing_notes3"><![CDATA[<b>Ces services tiers nous fournissent une valeur ajoutée énorme</b> en maintenant la stabilité et la facilité d\'utilisation d\'iNaturalist, tout ça avec une équipe réduite. Sur les appareils mobiles, il n\'y a quasiment pas d\'autre façon pour nous d\'obtenir un aperçu des problèmes qui se produisent puisque le logiciel fonctionne sur des appareils que nous ne contrôlons pas. Parfois, nous ne sommes même pas conscients que de tels problèmes se produisent jusqu\'à ce qu\'ils apparaissent dans les données que ces services nous fournissent. <b>En partageant ces informations, vous nous aidez à vous aider vous, ainsi que toute la communauté iNaturalist.</b>]]></string>
     <string name="third_party_data_sharing_notes4"><![CDATA[Notez que cette option ne s\'applique qu\'aux données d\'analyse et de plantage que nous envoyons explicitement à ces entreprises. Tous les serveurs d\'iNaturalist sont fournis et hébergés par Microsoft, toutes les images d\'iNaturalist sont hébergées par Amazon, et presque toutes les cartes d\'iNaturalist sont fournies par Google, ce qui signifie que chaque fois que vous regardez une observation sur iNaturalist, vous vous connectez aux services fournis par ces entreprises et leur exposez au minimum votre adresse IP (dans l’application pour iPhone nous utilisons les cartes d’Apple). iNaturalist n\'existerait probablement pas sans les services fournis par ces sociétés, et bien que nous puissions limiter la quantité et les types de données que vous partagez avec eux en utilisant iNat, nous ne pouvons pas arrêter complètement le flux de données.]]></string>
-    <string name="common_names_place"><![CDATA[Noms d\'endroits communs : <b>%1$s</b>]]></string>
+    <string name="common_names_place"><![CDATA[Lieu pour les noms communs : <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Cliquer pour prioriser les noms courants d\'un endroit spécifique.</string>
     <string name="search_places">Recherche par lieu géographique</string>
     <string name="restart_app">Redémarrer l\'application</string>
@@ -913,5 +913,29 @@
     <string name="rank_form">Forme</string>
     <string name="rank_infrahybrid">Infrahybrid</string>
     <string name="rank_leaves">Leaves</string>
-    <string name="location_lat_lng">Location: %1$f, %2$f</string>
+    <string name="location_lat_lng">Géolocalisation: %1$f, %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[J’accepte d’autoriser iNaturalist à stocker et traiter des un nombre limité d\'informations
+personnelles me concernant, afin de gérer mon compte. <b>En savoir plus</b>]]></string>
+    <string name="about_personal_information">A propos des données personnelles</string>
+    <string name="personal_information_notes"><![CDATA[Nous stockons les informations personnelles telles que le nom des utilisateurs et les adresses de messagerie afin de
+gérer les compter sur ce site, et pour être en accord avec les lois sur la vie privée, nous
+avons besoin que vous cochiez cette case pour indiquer que vous acceptez cette utilisation
+d’informations personnelles. Pour en savoir plus sur les informations que nous collectons et
+comment nous les utilisons, veuillez voir notre
+<a href=\'%{privacy_url}\' target=\'_blank\'>Politique de confidentialité</a>
+et nos <a href=\'%{terms_url}\' target=\'_blank\'>Conditions d\'utilisation</a>.]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[J\'accepte les <a href="/terms" target="_blank">conditions d\'utilisation</a> et
+<a href="/privacy" target="_blank">la politique de confidentialité</a>, et j\'ai passé en revue
+les <a href="/pages/community+guidelines" target="_blank">Règles de la Communauté</a>.]]></string>
+    <string name="privacy_policy">Politique de confidentialité</string>
+    <string name="terms_of_service">Conditions d’utilisation</string>
+    <string name="deleted_user">Utilisateur supprimé</string>
+    <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short_this_year">MMM d</string>
+    <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short">MM/dd/yy</string>
+    <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_24_hour">HH:mm</string>
+    <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_12_hour">hh:mma</string>
 </resources>

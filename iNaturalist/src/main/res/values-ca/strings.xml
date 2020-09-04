@@ -227,7 +227,7 @@
     <string name="log_in">Iniciar sessió</string>
     <string name="sign_up">Registra\'t</string>
     <string name="min_6_chars">Mín. 6 caràcters</string>
-    <string name="use_my_license"><![CDATA[Sí, llicencia els meus continguts per què la comunitat científica pugui emprar les meves dades. <b>Après més</b>]]></string>
+    <string name="use_my_license"><![CDATA[Sí, llicencia els meus continguts per què els científics puguin emprar les meves dades (recomanat). <b>Saber-ne més</b>]]></string>
     <string name="content_licensing">Llicenciar el Contingut</string>
     <string name="content_licensing_description">Seleccioneu aquesta casella si voleu aplicar una llicència Creative Commons de Reconeixement No Comercial per a les vostres fotos. Podeu triar una llicència diferent o treure la llicència més tard, però aquesta és la millor llicència per compartir amb investigadors.</string>
     <!-- Try to keep this about the length of the English text -->
@@ -913,5 +913,20 @@
     <string name="rank_form">Forma</string>
     <string name="rank_infrahybrid">Infrahíbrid</string>
     <string name="rank_leaves">Fulles</string>
-    <string name="location_lat_lng">Location: %1$f, %2$f</string>
+    <string name="location_lat_lng">Localització: %1$f, %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[Autoritzo a iNaturalist a guardar i processar determinades informacions de caràcter personal sobre mi per gestionar el meu compte. <b>Saber-ne Més</b>]]></string>
+    <string name="about_personal_information">Quant a la informació personal</string>
+    <string name="personal_information_notes"><![CDATA[Emmagatzem informació personal com el nom d\'usuari i l\'adreça de correu electrònic per gestionar els comptes d\'aquest lloc i per complir amb la legislació sobre privacitat, necessitem que confirmeu el vostre consentiment per utilitzar aquesta informació personal. Per conèixer més sobre la informació que guardem i com la utilitzem, si us plau, llegiu la nostra <a href="https://www.inaturalist.org/privacy">Política de Privacitat</a> i les nostres <a href="https://www.inaturalist.org/terms">Condicions del Servei</a>.]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[Accepto les <a href="https://www.inaturalist.org/terms">Condicions del Servei</a> i la <a href="https://www.inaturalist.org/privacy">Política de Privacitat</a>, i he revisat les <a href="https://www.inaturalist.org/pages/community+guidelines">Normes de la Comunitat</a>.]]></string>
+    <string name="privacy_policy">Política de Privacitat</string>
+    <string name="terms_of_service">Condicions del Servei</string>
+    <string name="deleted_user">Usuari eliminat</string>
+    <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short_this_year">d MMM</string>
+    <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short">dd/MM/yy</string>
+    <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_24_hour">HH:mm</string>
+    <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_12_hour">hh:mma</string>
 </resources>
