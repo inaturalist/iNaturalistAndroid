@@ -414,7 +414,19 @@
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> suggested an ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> commented: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">It looks like you deleted a photo by clearing the app cache before uploading. You will need to add the photo back to your observation from your gallery. In the future, please make sure you have uploaded all your photos before clearing the app cache.</string>
-    <string name="new_activities">%1s new</string>
+    <!--
+        Label for the number of new notifications you might have. This specific string is used in
+        the side drawer next to the Activity menu item when you have new activity on your own
+        content.
+    -->
+    <plurals name="new_activities">
+        <item quantity="zero">%1s new</item>
+        <item quantity="one">%1s new</item>
+        <item quantity="two">%1s new</item>
+        <item quantity="few">%1s new</item>
+        <item quantity="many">%1s new</item>
+        <item quantity="other">%1s new</item>
+    </plurals>
     <string name="no_results_found">No Results Found...</string>
     <plurals name="syncing_x_out_of_y_observations">
         <item quantity="zero">Syncing %1$d of %2$d observations...</item>
