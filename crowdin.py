@@ -15,6 +15,7 @@ from optparse import OptionParser
 
 # https://developer.android.com/reference/java/util/Formatter#syntax
 ANDROID_FORMAT_PATTERN = re.compile(r"%((?P<argument_index>\d+)\$)?(?P<flags>[\-\#\+\s0\,\(])?(?P<width>\d+)?(?P<precision>\.\d+)?(?P<conversion>[bhscdoxefgat%n])")
+DATE_FORMAT_KEYS = ['date_short_this_year', 'date_short', 'time_short_24_hour', 'time_short_12_hour']
 
 def call_cmd(*args, **kwargs):
   run(args, **kwargs)
@@ -105,6 +106,16 @@ def validate_translation(path, key, text, en_string, errors, warnings, options={
     errors[path][key].append("Unescaped single quote")
     if options.debug:
       print("\t\t{}".format(errors[path][key][-1]))
+  if text and key in DATE_FORMAT_KEYS:
+    without_escaped_text = re.sub(r"'.+?'", "", text)
+    potentially_formatted = re.sub(r"[^A-z]", "", without_escaped_text)
+    bad_characters = set(re.findall(r"[^GyYMLwWDdFEuaHkKhmsSzZX]", potentially_formatted))
+    if bad_characters and len(bad_characters) > 0:
+      if key not in errors[path]:
+        errors[path][key] = []
+      errors[path][key].append("Invalid date format characters: {}".format(bad_characters))
+      if options.debug:
+        print("\t\t{}".format(errors[path][key][-1]))
 
 def validate_android_translations(options={}):
   # Build the English reference dicts
