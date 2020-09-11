@@ -1,15 +1,9 @@
 package org.inaturalist.android;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.BaseTarget;
 import com.bumptech.glide.request.target.CustomTarget;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
@@ -31,7 +25,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.channels.FileChannel;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -51,7 +44,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.lucasr.twowayview.TwoWayView;
 import org.tinylog.Logger;
 
 import android.annotation.SuppressLint;
@@ -77,6 +69,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
@@ -99,18 +92,18 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.exifinterface.media.ExifInterface;
-import it.sephiroth.android.library.exif2.*;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.text.Editable;
 import android.text.Html;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.Pair;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -120,8 +113,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.webkit.MimeTypeMap;
-import android.widget.BaseAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -159,7 +150,7 @@ public class ObservationEditor extends AppCompatActivity {
     private TextView mObservedOnStringTextView;
     private TextView mObservedOnButton;
     private TextView mTimeObservedAtButton;
-    private TwoWayView mGallery;
+    private RecyclerView mGallery;
     private TextView mLatitudeView;
     private TextView mLongitudeView;
     private TextView mAccuracyView;
@@ -580,9 +571,10 @@ public class ObservationEditor extends AppCompatActivity {
         mObservedOnButton = (TextView) findViewById(R.id.observed_on);
         mObservedOnStringTextView = (TextView) findViewById(R.id.observed_on_string);
         mTimeObservedAtButton = (TextView) findViewById(R.id.time_observed_at);
-        mGallery = (TwoWayView) findViewById(R.id.gallery);
-        float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics());
-        mGallery.setItemMargin((int)px);
+        mGallery = findViewById(R.id.gallery);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false);
+        mGallery.setLayoutManager(layoutManager);
+        mGallery.addItemDecoration(new MarginItemDecoration((int) mHelper.dpToPx(5)));
         mLatitudeView = (TextView) findViewById(R.id.latitude);
         mLongitudeView = (TextView) findViewById(R.id.longitude);
         mAccuracyView = (TextView) findViewById(R.id.accuracy);
@@ -3124,8 +3116,31 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private void importPhotoMetadata(Uri photoUri) {
+        importPhotoMetadata(photoUri, false);
+    }
+
+    private void importPhotoMetadata(Uri photoUri, boolean dontAskForPermissions) {
 
         Logger.tag(TAG).info("importPhotoMetadata: " + photoUri);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            //  So we'll be able to retrieve EXIF metadata
+            if (!mApp.isAccessMediaLocationPermissionGranted()) {
+                mApp.requestAccessMediaLocationPermission(this, new INaturalistApp.OnRequestPermissionResult() {
+                    @Override
+                    public void onPermissionGranted() {
+                        importPhotoMetadata(photoUri, false);
+                    }
+
+                    @Override
+                    public void onPermissionDenied() {
+                        importPhotoMetadata(photoUri, true);
+                    }
+                });
+                return;
+            }
+        }
+
         try {
             InputStream is = getContentResolver().openInputStream(photoUri);
             Logger.tag(TAG).info("importPhotoMetadata: IS = " + is);
@@ -3615,14 +3630,50 @@ public class ObservationEditor extends AppCompatActivity {
         }
     }
 
-    public class GalleryCursorAdapter extends BaseAdapter {
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public ViewGroup rootView;
+        public View isFirst;
+        public View isFirstOn;
+        public View isFirstOff;
+        public View isFirstText;
+        public ImageView imageView;
+
+        public ViewHolder(@NonNull View view, int viewType) {
+            super(view);
+
+            imageView = view.findViewById(viewType == GalleryCursorAdapter.VIEW_TYPE_SOUND ? R.id.observation_sound : R.id.observation_photo);
+            isFirst = view.findViewById(R.id.observation_is_first);
+            isFirstOn = view.findViewById(R.id.is_first_on);
+            isFirstOff = view.findViewById(R.id.is_first_off);
+            isFirstText = view.findViewById(R.id.is_first_text);
+
+            rootView = (ViewGroup) view;
+        }
+    }
+
+    public class MarginItemDecoration extends RecyclerView.ItemDecoration {
+        private int mMargin;
+
+        public MarginItemDecoration(int space) {
+            this.mMargin = space;
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+            outRect.right = mMargin;
+        }
+    }
+
+    public class GalleryCursorAdapter extends RecyclerView.Adapter<ViewHolder> {
         private static final int MIN_SAMPLE_SIZE_COMPRESSION = 8;
         private static final int PHOTO_DIMENSIONS = 200;
 
         private Context mContext;
         private Cursor mGalleryCursor;
         private Cursor mSoundCursor;
-        private HashMap<Integer, View> mViews;
+
+        public static final int VIEW_TYPE_PHOTO = 0x01;
+        public static final int VIEW_TYPE_SOUND = 0x02;
 
         public Cursor getCursor() {
             return mGalleryCursor;
@@ -3632,10 +3683,154 @@ public class ObservationEditor extends AppCompatActivity {
             mContext = c;
             mGalleryCursor = cur;
             mSoundCursor = soundCur;
-            mViews = new HashMap<Integer, View>();
         }
 
-        public int getCount() {
+        @Override
+        public int getItemViewType(int position) {
+            if (position < mGalleryCursor.getCount()) {
+                return VIEW_TYPE_PHOTO;
+            } else {
+                return VIEW_TYPE_SOUND;
+            }
+        }
+
+
+        @NonNull
+        @Override
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(
+                    viewType == VIEW_TYPE_SOUND ?
+                            R.layout.observation_sound_gallery_item :
+                            R.layout.observation_photo_gallery_item, parent, false);
+
+            ViewHolder vh = new ViewHolder(v, viewType);
+            return vh;
+        }
+
+
+        @Override
+        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+            ImageView imageView;
+
+            if (getItemViewType(position) == VIEW_TYPE_SOUND) {
+                // Show observation sound
+
+                mSoundCursor.moveToPosition(position - mGalleryCursor.getCount());
+
+                final ObservationSound sound = new ObservationSound(mSoundCursor);
+
+                imageView = holder.imageView;
+                imageView.setOnClickListener(view -> {
+                    // Open up sound player
+                    Intent intent = new Intent(ObservationEditor.this, ObservationSoundViewer.class);
+                    intent.putExtra(ObservationSoundViewer.SOUND_ID, sound._id);
+                    startActivityForResult(intent, OBSERVATION_SOUNDS_REQUEST_CODE);
+                });
+
+                return;
+            }
+
+            mGalleryCursor.moveToPosition(position);
+
+            imageView = holder.imageView;
+            String imageUrl = mGalleryCursor.getString(mGalleryCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
+            String photoFileName = mGalleryCursor.getString(mGalleryCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
+
+            if (imageUrl != null) {
+                // Online photo
+                imageView.setLayoutParams(new LinearLayout.LayoutParams(getResources().getDimensionPixelOffset(R.dimen.obs_viewer_photo_thumb_size), getResources().getDimensionPixelOffset(R.dimen.obs_viewer_photo_thumb_size)));
+                UrlImageViewHelper.setUrlDrawable(imageView, imageUrl, new UrlImageViewCallback() {
+                    @Override
+                    public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                    }
+
+                    @Override
+                    public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                        return ImageUtils.centerCropBitmap(loadedBitmap);
+                    }
+                });
+            } else {
+                // Offline photo
+                int orientation = ImageUtils.getImageOrientation(photoFileName);
+                Bitmap bitmapImage = null;
+
+                try {
+
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    FileInputStream is = new FileInputStream(photoFileName);
+
+                    options.inJustDecodeBounds = true;
+                    BitmapFactory.decodeStream(is, null, options);
+                    is.close();
+
+                    // Decode into a thumbnail / smaller image (make sure we resize at least by a factor of 8)
+                    options.inSampleSize = Math.max(MIN_SAMPLE_SIZE_COMPRESSION, ImageUtils.calculateInSampleSize(options, PHOTO_DIMENSIONS, PHOTO_DIMENSIONS));
+
+                    // Decode bitmap with inSampleSize set
+                    options.inJustDecodeBounds = false;
+                    // This decreases in-memory byte-storage per pixel
+                    options.inPreferredConfig = Bitmap.Config.ALPHA_8;
+                    bitmapImage = BitmapFactory.decodeFile(photoFileName, options);
+
+                    if (bitmapImage != null) {
+                        if (orientation != 0) {
+                            // Rotate the image
+                            Matrix matrix = new Matrix();
+                            matrix.setRotate((float) orientation, bitmapImage.getWidth() / 2, bitmapImage.getHeight() / 2);
+                            bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
+                        }
+
+                        if (bitmapImage != null) {
+                            imageView.setImageBitmap(ImageUtils.centerCropBitmap(bitmapImage));
+                            bitmapImage.recycle();
+                        }
+                    }
+                } catch (FileNotFoundException exc) {
+                    Logger.tag(TAG).error(exc);
+                } catch (IOException exc) {
+                    Logger.tag(TAG).error(exc);
+                }
+            }
+
+            View isFirst = holder.isFirst;
+
+            if (position == 0) {
+                holder.isFirstOn.setVisibility(View.VISIBLE);
+                holder.isFirstOff.setVisibility(View.GONE);
+                holder.isFirstText.setVisibility(View.VISIBLE);
+            } else {
+                holder.isFirstOn.setVisibility(View.GONE);
+                holder.isFirstOff.setVisibility(View.VISIBLE);
+                holder.isFirstText.setVisibility(View.GONE);
+            }
+
+            imageView.setOnClickListener(view -> {
+                Intent intent = new Intent(ObservationEditor.this, ObservationPhotosViewer.class);
+                intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID, mObservation.id);
+                intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID_INTERNAL, mObservation._id);
+                intent.putExtra(ObservationPhotosViewer.IS_NEW_OBSERVATION, true);
+                intent.putExtra(ObservationPhotosViewer.CURRENT_PHOTO_INDEX, position);
+                intent.putExtra(ObservationPhotosViewer.OBSERVATION_UUID, mObservation.uuid);
+                startActivityForResult(intent, OBSERVATION_PHOTOS_REQUEST_CODE);
+
+                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_VIEW_HIRES_PHOTO);
+            });
+
+            isFirst.setTag(new Integer(position));
+            isFirst.setOnClickListener(view -> {
+                Integer position1 = (Integer) view.getTag();
+                String photoId = getItemIdString(position1);
+
+                if ((mFirstPositionPhotoId == null) || (!mFirstPositionPhotoId.equals(photoId))) {
+                    setAsFirstPhoto(position1);
+
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_NEW_DEFAULT_PHOTO);
+                }
+            });
+        }
+
+        @Override
+        public int getItemCount() {
             return mGalleryCursor.getCount() + mSoundCursor.getCount();
         }
 
@@ -3731,153 +3926,6 @@ public class ObservationEditor extends AppCompatActivity {
                     currentPosition++;
                 }
             } while (mGalleryCursor.moveToNext());
-        }
-
-        public View getView(final int position, View convertView, ViewGroup parent) {
-            if (mViews.containsKey(position)) {
-                return mViews.get(position);
-            }
-
-            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            ViewGroup container = null;
-            ImageView imageView;
-
-            if (position >= mGalleryCursor.getCount()) {
-                // Show observation sound
-
-                mSoundCursor.moveToPosition(position - mGalleryCursor.getCount());
-
-                final ObservationSound sound = new ObservationSound(mSoundCursor);
-
-                inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                container = (ViewGroup) inflater.inflate(R.layout.observation_sound_gallery_item, null, false);
-                imageView = (ImageView) container.findViewById(R.id.observation_sound);
-
-                imageView.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        // Open up sound player
-                        Intent intent = new Intent(ObservationEditor.this, ObservationSoundViewer.class);
-                        intent.putExtra(ObservationSoundViewer.SOUND_ID, sound._id);
-                        startActivityForResult(intent, OBSERVATION_SOUNDS_REQUEST_CODE);
-                    }
-                });
-
-                mViews.put(position, container);
-                return container;
-            }
-
-            mGalleryCursor.moveToPosition(position);
-
-
-            container = (ViewGroup) inflater.inflate(R.layout.observation_photo_gallery_item, null, false);
-            imageView = (ImageView) container.findViewById(R.id.observation_photo);
-
-            int imageId = mGalleryCursor.getInt(mGalleryCursor.getColumnIndexOrThrow(ObservationPhoto._ID));
-            String imageUrl = mGalleryCursor.getString(mGalleryCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
-            String photoFileName = mGalleryCursor.getString(mGalleryCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
-
-            if (imageUrl != null) {
-                // Online photo
-            	imageView.setLayoutParams(new LinearLayout.LayoutParams(getResources().getDimensionPixelOffset(R.dimen.obs_viewer_photo_thumb_size), getResources().getDimensionPixelOffset(R.dimen.obs_viewer_photo_thumb_size)));
-                UrlImageViewHelper.setUrlDrawable(imageView, imageUrl, new UrlImageViewCallback() {
-                    @Override
-                    public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                    }
-
-                    @Override
-                    public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                        return ImageUtils.centerCropBitmap(loadedBitmap);
-                    }
-                });
-            } else {
-                // Offline photo
-                int orientation = ImageUtils.getImageOrientation(photoFileName);
-                Bitmap bitmapImage = null;
-
-                try {
-
-                    BitmapFactory.Options options = new BitmapFactory.Options();
-                    FileInputStream is = new FileInputStream(photoFileName);
-
-                    options.inJustDecodeBounds = true;
-                    BitmapFactory.decodeStream(is, null, options);
-                    is.close();
-
-                    // Decode into a thumbnail / smaller image (make sure we resize at least by a factor of 8)
-                    options.inSampleSize = Math.max(MIN_SAMPLE_SIZE_COMPRESSION, ImageUtils.calculateInSampleSize(options, PHOTO_DIMENSIONS, PHOTO_DIMENSIONS));
-
-                    // Decode bitmap with inSampleSize set
-                    options.inJustDecodeBounds = false;
-                    // This decreases in-memory byte-storage per pixel
-                    options.inPreferredConfig = Bitmap.Config.ALPHA_8;
-                    bitmapImage = BitmapFactory.decodeFile(photoFileName, options);
-
-                    if (bitmapImage != null) {
-                        if (orientation != 0) {
-                            // Rotate the image
-                            Matrix matrix = new Matrix();
-                            matrix.setRotate((float) orientation, bitmapImage.getWidth() / 2, bitmapImage.getHeight() / 2);
-                            bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
-                        }
-
-                        if (bitmapImage != null) {
-                            imageView.setImageBitmap(ImageUtils.centerCropBitmap(bitmapImage));
-                            bitmapImage.recycle();
-                        }
-                    }
-                } catch (FileNotFoundException exc) {
-                    Logger.tag(TAG).error(exc);
-                } catch (IOException exc) {
-                    Logger.tag(TAG).error(exc);
-                }
-            }
-
-            View isFirst = container.findViewById(R.id.observation_is_first);
-            Integer obsPhotoPosition = mGalleryCursor.getInt(mGalleryCursor.getColumnIndexOrThrow(ObservationPhoto.POSITION));
-
-            if (position == 0) {
-                container.findViewById(R.id.is_first_on).setVisibility(View.VISIBLE);
-                container.findViewById(R.id.is_first_off).setVisibility(View.GONE);
-                container.findViewById(R.id.is_first_text).setVisibility(View.VISIBLE);
-            } else {
-                container.findViewById(R.id.is_first_on).setVisibility(View.GONE);
-                container.findViewById(R.id.is_first_off).setVisibility(View.VISIBLE);
-                container.findViewById(R.id.is_first_text).setVisibility(View.GONE);
-            }
-
-            imageView.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(ObservationEditor.this, ObservationPhotosViewer.class);
-                    intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID, mObservation.id);
-                    intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID_INTERNAL, mObservation._id);
-                    intent.putExtra(ObservationPhotosViewer.IS_NEW_OBSERVATION, true);
-                    intent.putExtra(ObservationPhotosViewer.CURRENT_PHOTO_INDEX, position);
-                    intent.putExtra(ObservationPhotosViewer.OBSERVATION_UUID, mObservation.uuid);
-                    startActivityForResult(intent, OBSERVATION_PHOTOS_REQUEST_CODE);
-
-                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_VIEW_HIRES_PHOTO);
-                }
-            });
-
-            isFirst.setTag(new Integer(position));
-            isFirst.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Integer position = (Integer) view.getTag();
-                    String photoId = getItemIdString(position);
-
-                    if ((mFirstPositionPhotoId == null) || (!mFirstPositionPhotoId.equals(photoId))) {
-                        setAsFirstPhoto(position);
-
-                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_NEW_DEFAULT_PHOTO);
-                    }
-                }
-            });
-
-            mViews.put(position, container);
-            return container;
         }
     }
 

@@ -257,6 +257,8 @@ public class MessagesActivity extends BaseFragmentActivity implements MessageAda
 
         if (requestCode == VIEW_MESSAGE_THREAD_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
+                if (mMessages == null) return;
+
                 // Viewed a message thread - mark as read locally (without needing to refresh from server)
                 // Mark as unread all messages in the same thread
                 try {
