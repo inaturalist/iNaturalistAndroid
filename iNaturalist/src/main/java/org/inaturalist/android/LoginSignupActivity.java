@@ -25,6 +25,7 @@ import android.text.Html;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -38,6 +39,8 @@ import android.widget.Toast;
 
 import com.facebook.login.widget.LoginButton;
 
+import java.util.regex.Pattern;
+
 
 public class LoginSignupActivity extends AppCompatActivity implements SignInTask.SignInTaskStatus {
 
@@ -47,6 +50,8 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
     private ImageView mBackgroundImage;
+
+    private static final Pattern USERNAME_REGEX = Pattern.compile("[a-zA-Z][a-zA-Z0-9_\\-]*");
 
     public static final String BACKGROUND_ID = "background_id";
     public static final String SIGNUP = "signup";
@@ -466,6 +471,21 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
                     mSignInTask.signIn(INaturalistService.LoginType.OAUTH_PASSWORD, mUsername.getText().toString().trim(), mPassword.getText().toString());
                 } else {
                     // Sign up
+                    String username = mUsername.getText().toString();
+                    String email = mEmail.getText().toString();
+                    String password = mPassword.getText().toString();
+
+                    if (password.length() < 6) {
+                        mHelper.alert(R.string.could_not_register_user, R.string.password_too_short);
+                        return;
+                    } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                        mHelper.alert(R.string.could_not_register_user, R.string.email_must_look_like_email_address);
+                        return;
+                    } else if (!USERNAME_REGEX.matcher(username).matches()) {
+                        mHelper.alert(R.string.could_not_register_user, R.string.username_must_begin_with);
+                        return;
+                    }
+
                     mUserRegisterReceiver = new UserRegisterReceiver();
                     IntentFilter filter = new IntentFilter(INaturalistService.ACTION_REGISTER_USER_RESULT);
                     BaseFragmentActivity.safeRegisterReceiver(mUserRegisterReceiver, filter, LoginSignupActivity.this);
@@ -511,7 +531,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
 
 
     private void checkFields() {
-        if (((mEmail.getText().length() == 0) && (mIsSignup)) || (mPassword.getText().length() < (mIsSignup ? 6 : 1)) || (mUsername.getText().length() == 0)) {
+        if (((mEmail.getText().length() == 0) && (mIsSignup)) || (mPassword.getText().length() < 1) || (mUsername.getText().length() == 0)) {
             mSignup.setEnabled(false);
         } else {
             mSignup.setEnabled(!mIsSignup || (mAgreeTOS && mUsePersonalInfo));

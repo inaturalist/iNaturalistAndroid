@@ -961,5 +961,8 @@
     <string name="time_short_12_hour">hh:mma</string>
     <string name="show_common_names">Show common names</string>
     <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
+    <string name="email_must_look_like_email_address">Email must look like an email address</string>
+    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
+    <string name="password_too_short">Password must be at least six characters long</string>
 </resources>
 
