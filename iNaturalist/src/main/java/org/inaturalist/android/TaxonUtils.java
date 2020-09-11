@@ -168,6 +168,12 @@ public class TaxonUtils {
     public static String getTaxonName(Context context, JSONObject item) {
         JSONObject defaultName;
         String displayName = null;
+        INaturalistApp app = (INaturalistApp) context.getApplicationContext();
+
+        if (!app.getPrefersCommonNames()) {
+            // Show only scientific name
+            return item.optString("name");
+        }
 
         // Get the taxon display name according to device locale
         Locale deviceLocale = context.getResources().getConfiguration().locale;

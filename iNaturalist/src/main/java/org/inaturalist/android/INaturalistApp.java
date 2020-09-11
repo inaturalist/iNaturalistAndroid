@@ -417,6 +417,19 @@ public class INaturalistApp extends MultiDexApplication {
         settingsEditor.apply();
     }
 
+    public boolean getPrefersCommonNames() {
+        SharedPreferences settings = getPrefs();
+        return settings.getBoolean("prefers_common_names", true);
+    }
+
+    public void setPrefersCommonNames(boolean value) {
+        SharedPreferences settings = getPrefs();
+        Editor settingsEditor = settings.edit();
+
+        settingsEditor.putBoolean("prefers_common_names", value);
+        settingsEditor.apply();
+    }
+
     public boolean getShowScientificNameFirst() {
     	SharedPreferences settings = getPrefs();
         return settings.getBoolean("prefers_scientific_name_first", false);

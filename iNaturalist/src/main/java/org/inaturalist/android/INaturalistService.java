@@ -1202,6 +1202,7 @@ public class INaturalistService extends IntentService {
                 if (user != null) {
                     // Update settings
                     mApp.setShowScientificNameFirst(user.getJSONObject().optBoolean("prefers_scientific_name_first", false));
+                    mApp.setPrefersCommonNames(user.getJSONObject().optBoolean("prefers_common_names", true));
 
                     // Refresh privileges
                     JSONArray privileges = user.getJSONArray("privileges").getJSONArray();
