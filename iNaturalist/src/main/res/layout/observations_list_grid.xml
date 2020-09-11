@@ -23,7 +23,7 @@
         <LinearLayout
             android:id="@+id/button_container"
             android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             >
@@ -41,10 +41,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:text="Posting 1 of 5 observation(s)..."
             android:textColor="#fff"
-            android:layout_toLeftOf="@id/button_container"
+            android:layout_toStartOf="@id/button_container"
             />
 
     </RelativeLayout>
@@ -81,7 +81,7 @@
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             />
 
 
@@ -101,7 +101,6 @@
         android:layout_height="fill_parent">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/grid_swipe_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -121,7 +120,6 @@
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/list_swipe_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -163,11 +161,11 @@
             android:id="@+id/add_observation"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_gravity="end"
             android:layout_marginBottom="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
             android:padding="14dp"
             android:src="@drawable/ic_add_white_24dp"
             android:scaleType="fitCenter"
@@ -182,14 +180,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/make_an_observation"
-            android:layout_toLeftOf="@id/add_observation"
+            android:layout_toStartOf="@id/add_observation"
             android:textSize="18sp"
             android:textColor="@color/inatapptheme_color"
             android:visibility="gone"
             android:layout_alignTop="@id/add_observation"
             android:layout_alignBottom="@id/add_observation"
             android:gravity="center_vertical"
-            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
             />
 
 
@@ -230,9 +228,9 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:src="@drawable/ic_done_black_24dp"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
             android:tint="#ffffff"
             />
 
@@ -241,8 +239,8 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="@string/upload_complete"
-            android:layout_toRightOf="@id/complete_icon"
-            android:layout_alignParentRight="true"
+            android:layout_toEndOf="@id/complete_icon"
+            android:layout_alignParentEnd="true"
             android:layout_alignTop="@id/complete_icon"
             android:layout_marginTop="4dp"
             android:textSize="20sp"
@@ -254,8 +252,8 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="@string/onboarding_upload_description"
-            android:layout_toRightOf="@id/complete_icon"
-            android:layout_alignParentRight="true"
+            android:layout_toEndOf="@id/complete_icon"
+            android:layout_alignParentEnd="true"
             android:layout_below="@id/onboarding_syncing_title"
             android:layout_marginTop="10dp"
             android:textSize="14sp"
@@ -268,7 +266,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="@string/got_it_all_caps"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_below="@id/onboarding_syncing_description"
             android:paddingTop="10dp"
             android:textColor="#ffffff"
