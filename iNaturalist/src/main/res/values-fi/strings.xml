@@ -449,7 +449,7 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
         <item quantity="one">Paras %1$d suositus:</item>
         <item quantity="other">Parhaat %1$d suositusta:</item>
     </plurals>
-    <string name="pretty_sure_rank">Olemme melko varmoja, että se on tässä %1$s:</string>
+    <string name="pretty_sure_rank">Olemme melko varmoja, että %1$s on tämä:</string>
     <string name="what_did_you_see">Mitä näit?</string>
     <string name="suggest_species">Ehdota lajia</string>
     <string name="suggest_species_description">Ehdota lajia perustuen visuaaliseen samankaltaisuuteen valokuvissa.</string>
