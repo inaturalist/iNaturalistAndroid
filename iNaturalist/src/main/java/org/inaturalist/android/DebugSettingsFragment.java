@@ -195,7 +195,7 @@ public class DebugSettingsFragment extends PreferenceFragmentCompat implements D
         }
 
         // Send the file using email
-        Intent emailIntent = new Intent(Intent.ACTION_SEND_MULTIPLE);
+        Intent emailIntent = new Intent(Intent.ACTION_SEND, Uri.fromParts("mailto", getString(R.string.inat_support_email_address), null));
         emailIntent.setType("vnd.android.cursor.dir/email");
 
         // Add the attachments
