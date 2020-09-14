@@ -736,6 +736,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
         prefEditor.remove("pref_observation_errors");
         prefEditor.remove("unread_activities");
         prefEditor.remove("prefers_scientific_name_first");
+        prefEditor.remove("prefers_common_names");
         prefEditor.remove("last_language");
         String prevLocale = prefs.getString("pref_locale", "");
         prefEditor.remove("pref_locale");
