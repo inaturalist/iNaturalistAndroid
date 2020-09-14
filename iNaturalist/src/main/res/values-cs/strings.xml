@@ -407,7 +407,7 @@
     <string name="no_updates_yet">Zatím žádné aktualizace. Sledujte novinky!</string>
     <string name="you_will_only_receive_updates_when_creating">(Aktualizace obdržíte až poté, co vytvoříte pozorování)</string>
     <string name="you_will_only_receive_updates_when_following">(Aktualizace obdržíte až poté, jakmile budete sledovat pozorování)</string>
-    <string name="user_activity_id"><![CDATA[<b>%1$s</b> navrhnout identifikaci: %2$s <font barva="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_id"><![CDATA[<b>%1$s</b> navrhuje identifikaci: %2$s <font barva="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> komentováno: &ldquo;%2$s&rdquo; <font barva="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Zdá se, že čištěním mezipaměti před náhráváním, se vám podařilo vymazat fotku. Budete muset přidat fotku z pozorování z vaší galerie. V budoucnu se ujistěte, že jste nahráli všechny své fotky před čištěním mezipaměti aplikace.</string>
     <string name="new_activities">%1s nové</string>
@@ -457,7 +457,7 @@
     <string name="pretty_sure_rank">Jsme si jisti, že je to v tomto %1$s:</string>
     <string name="what_did_you_see">Co jste viděli?</string>
     <string name="suggest_species">Navrhnout druhy</string>
-    <string name="suggest_species_description">Navrhněte druhy podle vizuální podobnosti s fotkami.</string>
+    <string name="suggest_species_description">Navrhovat druhy podle vizuální podobnosti s fotkami.</string>
     <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Vizuálně podobné</string>
     <string name="visually_similar_seen_nearby">Vizuálně podobné / viděno v okolí</string>
@@ -592,7 +592,7 @@
     <string name="search_projects_youve_joined">Vyhledat projekty, ke kterým jste se připojili...</string>
     <string name="must_be_connected_to_load_more_obs">Pro nahrání více pozorování musíte být připojen/a k internetu</string>
     <string name="inat_about_title">iNaturalist je společná iniciativa California Academy of Sciences a National Geographic Society.</string>
-    <string name="inat_credits"><![CDATA[iNaturalist existuje díky každé osobě, která se posílí na naší komunitě. Lidé, kteří vytvářejí software, navrhují rozhraní, udržují naši infrastrukturu, podporují komunitu a udžují spolupráci, jsou Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard a Ken- ichi Ueda. <br/> <br/> CalTech a Cornell Tech pomohly vyvinout systém počítačového vidění, které navrhuje identifikace z fotografií. Děkujeme Grantovi Van Hornovi, Sergeovi Belongieovi a Pietrovi Peronovi za pokrok v oblasti výzkumu počítačového vidění. Více informací najdete na <a href="http://www.visipedia.org"> visipedia.org </a>. Zvláštní poděkování NVIDIA za další pomoc.]]></string>
+    <string name="inat_credits"><![CDATA[iNaturalist existuje díky každé osobě, která se podílí na naší komunitě. Lidé, kteří vytvářejí software, navrhují rozhraní, udržují naši infrastrukturu, podporují komunitu a udžují spolupráci, jsou Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard a Ken-ichi Ueda.<br/><br/> CalTech a Cornell Tech pomohly vyvinout systém počítačového vidění, který navrhuje identifikace z fotografií. Děkujeme Grantovi Van Hornovi, Sergeovi Belongieovi a Pietrovi Peronovi za pokrok v oblasti výzkumu počítačového vidění. Více informací najdete na <a href="http://www.visipedia.org">visipedia.org</a>. Zvláštní poděkování NVIDIA za další pomoc.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[Mezinárodní síť iNaturalist podporuje vymezené, plně integrované webové stránky založené na iNaturalist v následujících zemích díky podpoře přidružených partnerských organizací.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist je také velmi vděčný vývojářům s otevřeným zdrojovým kódem, kteří poskytli software, na který se každý den spoléháme. Příspěvky s otevřeným zdrojovým kódem naleznete na stránce <a href="https://github.com/inaturalist/iNaturalistAndroid"> https://github.com/inaturalist/iNaturalistAndroid </a>. <br/> Děkujeme za pomoc s překladem poskytovaným dobrovolníky v komunitě crowdin.com, zejména Eduardo Martínezovi, Lin Cheng-Taovi, KestrelLam, cgalindo, vilseskog, NCAA, ldacostě, radaně, Mykola Pukhalskyi, danieleseglie a katunchik. <br/> Místa IUCN kategorie II poskytovaná IUCN a UNEP-WCMC (2015), Světová databáze chráněných území (WDPA) [On-line], [11/2014], Cambridge, Velká Británie: UNEP-WCMC. K dispozici na adrese: <a href="http://www.protectedplanet.net"> www.protectedplanet.net </a>]]></string>
     <string name="credits_title">Autoři</string>
@@ -610,7 +610,7 @@
     <string name="project_observations">Pozorování</string>
     <string name="project_species">Druhy</string>
     <string name="project_people">Lidé</string>
-    <string name="project_identifiers">Identifikátory</string>
+    <string name="project_identifiers">Identifikátoři</string>
     <string name="got_it">Mám to!</string>
     <string name="view_all">Zobrazit vše</string>
     <string name="new_badge">Nový</string>
@@ -671,9 +671,9 @@
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Nelze určit</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
-    <string name="joined_projects_all_caps">PŘIDAL SE</string>
+    <string name="joined_projects_all_caps">ČLENEM</string>
     <string name="nearby_projects_all_caps">NEDALEKÉ</string>
-    <string name="featured_projects_all_caps">ZTVÁRNĚNÝ</string>
+    <string name="featured_projects_all_caps">VYBRANÉ</string>
     <!-- Text for a button or label that allows someone to join a project -->
     <string name="join_all_caps">PŘIPOJIT SE</string>
     <string name="my_guides_all_caps">VAŠE</string>
@@ -691,7 +691,7 @@
     <string name="observations_all_caps">POZOROVÁNÍ</string>
     <string name="species_all_caps">DRUH</string>
     <string name="people_all_caps">LIDÉ</string>
-    <string name="identifiers_all_caps">IDENTIFIKÁTORY</string>
+    <string name="identifiers_all_caps">IDENTIFIKÁTOŘI</string>
     <string name="identifications_all_caps">IDENTIFIKACE</string>
     <string name="news_all_caps">NOVÉ</string>
     <string name="got_it_all_caps">ROZUMÍM</string>
@@ -716,7 +716,7 @@
     <string name="seasonality">Sezónnost</string>
     <string name="verifiable">Ověřitelné</string>
     <string name="no_annotation">Bez anotace</string>
-    <string name="donate_to_inaturalist">Přispět k iNaturalistu</string>
+    <string name="donate_to_inaturalist">Přispět iNaturalistu</string>
     <string name="prefers_scientific_name_first">Nejprve zobrazte vědecká jména</string>
     <string name="prefers_scientific_name_first_description">Zobrazovat vědecké názvy před běžnými názvy.</string>
     <string name="network_credit_inaturalistcanada"><![CDATA[Kanada: Kanadská federace volně žijících živočichů, Královské muzeum Ontario, NatureServe Canada a Parks Canada provozující iNaturalist Canada (<a href="https://inaturalist.ca"> inaturalist.ca </a>)]]></string>

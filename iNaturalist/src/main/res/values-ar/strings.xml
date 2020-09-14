@@ -307,7 +307,7 @@
     <string name="faved">المفضل لديك</string>
     <string name="be_the_first_to_fave_this_obs">كن أول من ينقل هذه الملاحظة إلي قائمة المفضل لديك...</string>
     <string name="leave_a_comment">اترك تعليقاً أو اقترح محدد...</string>
-    <string name="location_coords">Lat: %1$s Lon: %2$s Acc. %3$s</string>
+    <string name="location_coords">العرض: %1$s  الطول: %2$s الدقة: %3$s</string>
     <string name="location_coords_no_acc">العرض: %1$s الطول: %2$s</string>
     <string name="location">الموقع</string>
     <string name="login_in_to_add_comments_ids">قم بتسجيل الدخول أو التسجيل لترك تعليق أو اقتراح تعريف...</string>
@@ -583,79 +583,79 @@
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
     <string name="date_week">%dw</string>
     <string name="new_observation">ملحوظة جديدة</string>
-    <string name="inactive_taxon">Inactive Taxon</string>
-    <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
-    <string name="no_species_found">This is a list of the species you have observed the most.\n\nFYI: There\'s an estimated 9 million species on the planet, so get out there and observe them!</string>
-    <string name="make_an_observation">Make an observation</string>
-    <string name="no_observations_found_new">Observations are records of your encounters with individual organisms at particular times and locations.</string>
-    <string name="discard_comment">Are you sure you want to discard this comment?</string>
-    <string name="leave_comment">Leave a comment...</string>
-    <string name="swipe">Swipe</string>
+    <string name="inactive_taxon">أصنوفة غير نشطة</string>
+    <string name="no_identifications_found">قم بتتبع المحددات التي تقترحها لملحوظات الآخرين هنا.</string>
+    <string name="no_species_found">هذه قائمة بالأنواع التي لاحظتها أكثر من غيرها.\n\nا ليكن بعلمك بآن هنالك ما يقدر بـ 9 ملايين نوع على الكوكب، لذا اخرج لها وتابع ملحوظاتك!</string>
+    <string name="make_an_observation">أضف ملحوظة</string>
+    <string name="no_observations_found_new">الملحوظات هي سجلات لتصادفاتك وتجاربك مع كائنات فردية في أوقات ومواقع معينة.</string>
+    <string name="discard_comment">هل أنت متأكد من رغبتك في إلغاء كتابة التعليق؟</string>
+    <string name="leave_comment">اترك تعليقا...</string>
+    <string name="swipe">الانتقال الى التالي</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Which Google Account?</string>
-    <string name="potential_disagreement">Potential Disagreement</string>
-    <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
+    <string name="select_google_account">حدد حساب جوجل الذي ترغب باستخدامه؟</string>
+    <string name="potential_disagreement">إختلاف محنمل</string>
+    <string name="do_you_think_this_could_be"><![CDATA[هل الأدلة المقدمة كافية لتأكيد أن هذا هو <b>%1$s</b>؟]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
-    <string name="i_dont_know_but"><![CDATA[I don\'t know but I\'m sure this is <b>%1$s</b>.]]></string>
-    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
-    <string name="submit">Submit</string>
-    <string name="change_password">Change Password</string>
-    <string name="search_projects_youve_joined">Search projects you\'ve joined...</string>
-    <string name="must_be_connected_to_load_more_obs">You must be connected to the Internet to load more observations</string>
-    <string name="inat_about_title">iNaturalist is a joint initiative by the California Academy of Sciences and the National Geographic Society.</string>
-    <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="http://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
-    <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
-    <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
-    <string name="credits_title">Credits</string>
-    <string name="password_changed">The password the app uses no longer works - did you change your password on the website? Please enter the new one here</string>
-    <string name="just_so_you_know">Just So You Know...</string>
-    <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
-    <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
-    <string name="see_more_observations">See more observations</string>
-    <string name="see_more_species">See more species</string>
-    <string name="see_more_identifications">See more identifications</string>
+    <string name="i_dont_know_but"><![CDATA[أنا لا أعرف، لكنني متأكد من أن هذا هو <b>%1$s</b>.]]></string>
+    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[لا، ولكنه عضو في <b>%1$s</b>.]]></string>
+    <string name="submit">إرسال</string>
+    <string name="change_password">تغيير كلمة السر</string>
+    <string name="search_projects_youve_joined">البحث عن المشاريع التي انضممت إليها...</string>
+    <string name="must_be_connected_to_load_more_obs">يجب أن تكون متصلاً بالانترنت لتحديث المزيد من الملحوظات</string>
+    <string name="inat_about_title">و iNaturalist هي مبادرة مشتركة بين أكاديمية كاليفورنيا للعلوم والجمعية الجغرافية الوطنية.</string>
+    <string name="inat_credits"><![CDATA[إيناتوراليست موجود بفضل مشاركة كل شخص في مجتمعنا. هم الأفراد الذين يبنون البرمجيات، ويصممون الواجهات البينية، ويعملون عل على صيانة بنيتنا التحتية، ويدعمون المجتمع، ويعززون التعاون هم يارون بودوفسكي،و أماندا بولينغتون، تووني إيواني، ،باتريك ليري، وسكوت لاري، وأباس ميسراجي، وكاري سلتزر، وألكس شيبارد، وكن - تشي أويدا.<br/><br/> كما قامت كل من كالتيك وكارنيل تيك بتقديم المساعدة في تطوير نظام الرؤية الحاسوبية الذي يقترح تحديد الهويات من الصور الفوتوغرافية. ونشكر غرانت فان هورن، وسيرج بيلونغي، وبيترو بيرونا على النهوض ببحوث الرؤية الحاسوبية. ويمكن الاطلاع على مزيد من المعلومات على العنوان التالي: <a href="http://www.visipedia.org">visipedia.org</a>.]]></string>
+    <string name="inat_credits_networks_pre"><![CDATA[الشبكة العالمية iNaturalist تقوم بدعم المواقع المحلية والملتزمة مع عملنا في هذه البلدان، وذلك بفضل دعم المنظمات الشركاء.]]></string>
+    <string name="inat_credits_post"><![CDATA[كما أن iNaturalist ممتن للغاية لمطوري المصادر المفتوحة الذين قدموا الكثير من البرمجيات التي نعتمد عليها كل يوم. انظر <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github. om/inaturalist/iNaturalistAndroid</a> للمساهمات المفتوحة المصدر.<br/> ونحن ممتنون للمساعدة في الترجمة المقدمة من المتطوعين في المجتمع المحلي الخاص بموقع Crowdin.com ، now ونخص بالشكر كل من إدواردو مارتيينز، ولين تشينغ - تاو، وكيستريلام، والكغاليندو، وفيليسوكوغ، ووكالة الأمن الوطنية، لداكوستا، ورادانا، وميكولا بخالسكي، ودانييليسيغلي، وكاتونشيك. <br/>الأماكن من الفئة الثانية للاتحاد الدولي لحفظ الطبيعة والموارد الطبيعية والاتحاد الدولي لحفظ الطبيعة والموارد الطبيعية التابع لبرنامج الأمم المتحدة للبيئة (2015)، وقاعدة البيانات العالمية المتعلقة بالمناطق المحمية [On-line]، [11/2014]، وكامبريدج، المملكة المتحدة: برنامج الأمم المتحدة للبيئة/المركز العالمي لرصد الحفظ. متاح على: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
+    <string name="credits_title">شكر وتقدير</string>
+    <string name="password_changed">كلمة المرور التي يستخدمها التطبيق لم تعد تعمل - هل قمت بتغيير كلمة المرور الخاصة بك على الموقع؟ الرجاء إدخال كلمة المرور الجديدة هنا</string>
+    <string name="just_so_you_know">لتكن على دراية...</string>
+    <string name="ask_for_g_plus_permissions">يتطلب منا إعداد جوجل أن نطلب الإذن للوصول إلى قائمة المعرفين الخاصة بك من أجل استخدام حساب جوجل، على الرغم من أننا لا نصل إلى قائمة المعرفين الخاصة بك لأي سبب٫ إلا آنه إذا رفضت هذا الإذن، سوف تحتاج إلى التسجيل أو تسجيل الدخول باستخدام اسم المستخدم وكلمة المرور.</string>
+    <string name="new_to_inat_sign_up_now"><![CDATA[أول مرة لك في %1$s<b>؟ قم بتسجيل حسابك الآن!</b>]]></string>
+    <string name="see_more_observations">عرض المزيد من الملحوظات</string>
+    <string name="see_more_species">عرض المزيد من الأنواع</string>
+    <string name="see_more_identifications">عرض المزيد من المحددات</string>
     <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
     <string name="description">وصف</string>
     <string name="quantity">الكميه</string>
-    <string name="agree2">Agree</string>
-    <string name="project_observations">Observations</string>
-    <string name="project_species">Species</string>
-    <string name="project_people">People</string>
-    <string name="project_identifiers">Identifiers</string>
-    <string name="got_it">Got it!</string>
-    <string name="view_all">View All</string>
-    <string name="new_badge">New</string>
-    <string name="observers">Observers</string>
+    <string name="agree2">أوافق</string>
+    <string name="project_observations">ملحوظات</string>
+    <string name="project_species">أنواع</string>
+    <string name="project_people">أشخاص</string>
+    <string name="project_identifiers">مُحدِدات</string>
+    <string name="got_it">حسنا!</string>
+    <string name="view_all">عرض الكل</string>
+    <string name="new_badge">جديد</string>
+    <string name="observers">الملاحظون</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
-    <string name="attribute">Attribute</string>
+    <string name="attribute">سمة</string>
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
-    <string name="value">Value</string>
+    <string name="value">قيمة</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
-    <string name="disagree">Disagree</string>
+    <string name="disagree">غير موافق</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
-    <string name="annotations">Annotations</string>
+    <string name="annotations">الشروح</string>
     <!-- Used when filtering observations with annotations -->
-    <string name="with_annotation">With Annotation</string>
+    <string name="with_annotation">مع الشرح</string>
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
-    <string name="annotation_name">Annotation Name</string>
+    <string name="annotation_name">اسم الشرح</string>
     <!-- Annotation value for when no annotation has been chosen -->
-    <string name="none">None</string>
+    <string name="none">لا شيء</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
-    <string name="annotation_name_plant_phenology">Plant Phenology</string>
+    <string name="annotation_name_plant_phenology">فينولوجيا النبات</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
-    <string name="annotation_name_life_stage">Life Stage</string>
+    <string name="annotation_name_life_stage">مرحلة الحياة</string>
     <!-- Noun, describes sex of the organism -->
-    <string name="annotation_name_sex">Sex</string>
+    <string name="annotation_name_sex">الجنس</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
-    <string name="annotation_name_alive_or_dead">Alive or Dead</string>
+    <string name="annotation_name_alive_or_dead">الحياة أو الموتى</string>
     <!-- Adjective, having open flowers -->
-    <string name="annotation_value_flowering">Flowering</string>
+    <string name="annotation_value_flowering">إزهار</string>
     <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">Fruiting</string>
+    <string name="annotation_value_fruiting">إثمار</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_budding">Budding</string>
+    <string name="annotation_value_budding">تبرعم</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_flower_budding">Flower Budding</string>
+    <string name="annotation_value_flower_budding">براعم الزهور</string>
     <!-- Observation presents no evidence of flowering phenology -->
     <string name="annotation_value_no_evidence_of_flowering">لا يوجد مؤشر على تفتح النباتات</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
@@ -951,11 +951,11 @@
     <string name="terms_of_service">Terms of Service</string>
     <string name="deleted_user">المستخدمين المحذوفين</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short_this_year">ادخل التاريخ بصيغة (اسم الشهر واليوم)</string>
+    <string name="date_short_this_year">MMM d</string>
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_short">ادخل التاريخ بصيغة (رقم الشهر/رقم اليوم/رقم السنة)</string>
     <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="time_short_24_hour">ادخل الوقت بصيغة (عدد الساعة:عدد الدقائق)</string>
+    <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="time_short_12_hour">ادخل الوقت بصيغة (عدد الساعة:عدد الدقائق) ص/م</string>
+    <string name="time_short_12_hour">hh:mma</string>
 </resources>
