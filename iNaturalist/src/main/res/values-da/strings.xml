@@ -928,7 +928,7 @@ og <a href="https://www.inaturalist.org/terms">Tjenestevilkår</a>.]]></string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_short_this_year">d MMM</string>
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short">dd/MMM/åå</string>
+    <string name="date_short">dd/MMM/yy</string>
     <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
