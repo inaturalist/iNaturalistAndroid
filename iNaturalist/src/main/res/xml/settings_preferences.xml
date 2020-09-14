@@ -32,6 +32,14 @@
         android:summary="@string/prefers_scientific_name_first_description"
         android:title="@string/prefers_scientific_name_first" />
 
+    <CheckBoxPreference
+        android:layout="@layout/custom_preference"
+        android:defaultValue="true"
+        android:widgetLayout="@layout/custom_checkbox_preference"
+        android:key="prefers_common_names"
+        android:summary="@string/show_common_names_description"
+        android:title="@string/show_common_names" />
+
     <Preference
         android:layout="@layout/custom_preference"
         android:key="name_place"

@@ -53,7 +53,7 @@ public class MentionsAutoComplete implements TextWatcher, AdapterView.OnItemClic
     // The character used to trigger the mentions popup list
     private static final char MENTION_CHAR = '@';
     // What characters are valid for a username mention
-    private static final String VALID_MENTION_CHARS = "[\\-a-zA-Z0-9]";
+    private static final String VALID_MENTION_CHARS = "[\\-a-zA-Z0-9_]";
 
     private ArrayList<JSONObject> mResults = null;
 

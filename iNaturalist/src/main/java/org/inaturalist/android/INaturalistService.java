@@ -1202,6 +1202,7 @@ public class INaturalistService extends IntentService {
                 if (user != null) {
                     // Update settings
                     mApp.setShowScientificNameFirst(user.getJSONObject().optBoolean("prefers_scientific_name_first", false));
+                    mApp.setPrefersCommonNames(user.getJSONObject().optBoolean("prefers_common_names", true));
 
                     // Refresh privileges
                     JSONArray privileges = user.getJSONArray("privileges").getJSONArray();
@@ -3995,7 +3996,7 @@ public class INaturalistService extends IntentService {
             params.add(new BasicNameValuePair("user[time_zone]", timezone));
         }
 
-        post(HOST + "/users.json", params, false);
+        JSONArray response = post(HOST + "/users.json", params, false);
         if (mResponseErrors != null) {
             // Couldn't create user
             try {
@@ -6308,13 +6309,19 @@ public class INaturalistService extends IntentService {
 
             mLastStatusCode = response.code();
 
-            if (response.isSuccessful()) {
-                String content = response.body().string();
+            Logger.tag(TAG).debug(String.format(Locale.ENGLISH, "(for URL: %s - %s (params: %s / %s))", method, url, (params != null ? params.toString() : "null"), (jsonContent != null ? jsonContent.toString() : "null")));
 
-                Logger.tag(TAG).debug(String.format(Locale.ENGLISH, "(for URL: %s - %s (params: %s / %s))", method, url, (params != null ? params.toString() : "null"), (jsonContent != null ? jsonContent.toString() : "null")));
+            String content = null;
+            try {
+                content = response.body().string();
+            } catch (Exception exc) {
+                Logger.tag(TAG).error(exc);
+            }
+
+            JSONArray json = null;
+
+            if (content != null) {
                 Logger.tag(TAG).debug(content);
-
-                JSONArray json = null;
 
                 try {
                     json = new JSONArray(content);
@@ -6326,34 +6333,33 @@ public class INaturalistService extends IntentService {
                     } catch (JSONException e2) {
                     }
                 }
+            }
 
-                mResponseHeaders = response.headers();
-                response.close();
+            mResponseHeaders = response.headers();
+            response.close();
 
-                try {
-                    if ((json != null) && (json.length() > 0)) {
-                        JSONObject result = json.getJSONObject(0);
-                        if (result.has("errors")) {
-                            // Error response
-                            Logger.tag(TAG).error("Got an error response: " + result.get("errors").toString());
-                            mResponseErrors = result.getJSONArray("errors");
-                            return null;
-                        }
+            try {
+                if ((json != null) && (json.length() > 0)) {
+                    JSONObject result = json.getJSONObject(0);
+                    if (result.has("errors")) {
+                        // Error response
+                        Logger.tag(TAG).error("Got an error response: " + result.get("errors").toString());
+                        mResponseErrors = result.getJSONArray("errors");
+                        return null;
                     }
-                } catch (JSONException e) {
-                    Logger.tag(TAG).error(e);
                 }
+            } catch (JSONException e) {
+                Logger.tag(TAG).error(e);
+            }
 
-                if ((content != null) && (content.length() == 0)) {
-                    // In case it's just non content (but OK HTTP status code) - so there's no error
-                    json = new JSONArray();
-                }
+            if ((content != null) && (content.length() == 0)) {
+                // In case it's just non content (but OK HTTP status code) - so there's no error
+                json = new JSONArray();
+            }
 
+            if (response.isSuccessful()) {
                 return json;
-
             } else {
-                response.close();
-
                 // HTTP error of some kind - Check for response code
                 switch (mLastStatusCode) {
                     case HTTP_UNAUTHORIZED:

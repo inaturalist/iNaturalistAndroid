@@ -38,6 +38,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private CheckBoxPreference mAutoSyncPreference;
     private CheckBoxPreference mSuggestSpeciesPreference;
     private CheckBoxPreference mShowScientificNameFirstPreference;
+    private CheckBoxPreference mPrefersCommonNames;
     private ListPreference mLanguagePreference;
     private Preference mNetworkPreference;
     private Preference mDeleteAccount;
@@ -66,6 +67,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         mAutoSyncPreference = (CheckBoxPreference) getPreferenceManager().findPreference("auto_sync");
         mSuggestSpeciesPreference = (CheckBoxPreference) getPreferenceManager().findPreference("suggest_species");
         mShowScientificNameFirstPreference = (CheckBoxPreference) getPreferenceManager().findPreference("prefers_scientific_name_first");
+        mPrefersCommonNames = (CheckBoxPreference) getPreferenceManager().findPreference("prefers_common_names");
         mLanguagePreference = (ListPreference) getPreferenceManager().findPreference("language");
         mNetworkPreference = (Preference) getPreferenceManager().findPreference("inat_network");
         mDeleteAccount = (Preference) getPreferenceManager().findPreference("delete_account");
@@ -210,6 +212,27 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
                 return false;
             }
+        });
+
+        mPrefersCommonNames.setChecked(mApp.getPrefersCommonNames());
+        mPrefersCommonNames.setOnPreferenceClickListener(preference -> {
+            boolean newValue = mPrefersCommonNames.isChecked();
+            mPrefersCommonNames.setChecked(newValue);
+            mApp.setPrefersCommonNames(newValue);
+
+            if (mApp.loggedIn()) {
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_CURRENT_USER_DETAILS, null, getActivity(), INaturalistService.class);
+                JSONObject userDetails = new JSONObject();
+                try {
+                    userDetails.put("prefers_common_names", newValue);
+                } catch (JSONException e) {
+                    Logger.tag(TAG).error(e);
+                }
+                serviceIntent.putExtra(INaturalistService.USER, new BetterJSONObject(userDetails));
+                ContextCompat.startForegroundService(getActivity(), serviceIntent);
+            }
+
+            return false;
         });
 
         refreshLanguageSettings();
