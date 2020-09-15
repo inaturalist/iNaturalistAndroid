@@ -108,7 +108,7 @@ def validate_translation(path, key, text, en_string, errors, warnings, options={
       print("\t\t{}".format(errors[path][key][-1]))
   if text and key in DATE_FORMAT_KEYS:
     without_escaped_text = re.sub(r"'.+?'", "", text)
-    potentially_formatted = re.sub(r"[^A-z]", "", without_escaped_text)
+    potentially_formatted = re.sub(r"[^\w]", "", without_escaped_text)
     bad_characters = set(re.findall(r"[^GyYMLwWDdFEuaHkKhmsSzZX]", potentially_formatted))
     if bad_characters and len(bad_characters) > 0:
       if key not in errors[path]:

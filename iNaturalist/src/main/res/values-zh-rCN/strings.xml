@@ -226,7 +226,7 @@
     <string name="log_in">登入</string>
     <string name="sign_up">注册</string>
     <string name="min_6_chars">最少 6 个字元以上</string>
-    <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data (recommended). <b>Learn More</b>]]></string>
+    <string name="use_my_license"><![CDATA[是的，授权我的内容，这样科学家就可以使用我的数据了（推荐）。<b>了解更多资讯</b>]]></string>
     <string name="content_licensing">内容授权</string>
     <string name="content_licensing_description">如果您想在您的照片套用创意公用授权－非商业使用条款的话，请勾选此方框。你之后可以选择不同的授权或移除它，但这个授权对于分享资料给研究者是最好的授权。</string>
     <!-- Try to keep this about the length of the English text -->
