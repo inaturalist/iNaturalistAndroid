@@ -2,19 +2,23 @@ package org.inaturalist.android;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.os.StrictMode;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SeekBarPreference;
@@ -195,16 +199,27 @@ public class DebugSettingsFragment extends PreferenceFragmentCompat implements D
         }
 
         // Send the file using email
-        Intent emailIntent = new Intent(Intent.ACTION_SEND, Uri.fromParts("mailto", getString(R.string.inat_support_email_address), null));
+        Intent emailIntent = new Intent(Intent.ACTION_SEND_MULTIPLE, Uri.fromParts("mailto", getString(R.string.inat_support_email_address), null));
         emailIntent.setType("vnd.android.cursor.dir/email");
+
+        List<ResolveInfo> resInfoList = mApp.getPackageManager().queryIntentActivities(emailIntent, PackageManager.MATCH_DEFAULT_ONLY);
+        List<String> emailPackageNames = new ArrayList<>();
+        for (ResolveInfo resolveInfo : resInfoList) {
+            emailPackageNames.add(resolveInfo.activityInfo.packageName);
+        }
 
         // Add the attachments
         ArrayList<Uri> uris = new ArrayList<Uri>();
         for (File file : debugFiles) {
-            Uri u = Uri.fromFile(file);
+            Uri u = FileProvider.getUriForFile(mApp, BuildConfig.APPLICATION_ID + ".fileProvider", file);
             uris.add(u);
+
+            for (String packageName : emailPackageNames) {
+                mApp.grantUriPermission(packageName, u, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            }
         }
-        emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
+        emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        emailIntent.putExtra(Intent.EXTRA_STREAM, uris);
 
         if (info == null) {
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, String.format(Locale.ENGLISH, "iNaturalist Android Logs (user id - %s; Android API = %d)", username == null ? "N/A" : username, Build.VERSION.SDK_INT));
@@ -213,7 +228,47 @@ public class DebugSettingsFragment extends PreferenceFragmentCompat implements D
         }
         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.inat_support_email_address)});
 
-        startActivity(Intent.createChooser(emailIntent , getString(R.string.send_email)));
+        Intent queryIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"));
+        Intent targetIntent = getSelectiveIntentChooser(mApp, queryIntent, emailIntent);
+        startActivity(Intent.createChooser(targetIntent , getString(R.string.send_email)));
+    }
+
+    private Intent getSelectiveIntentChooser(Context context, Intent queryIntent, Intent dataIntent) {
+        List<ResolveInfo> appList = context.getPackageManager().queryIntentActivities(queryIntent, PackageManager.MATCH_DEFAULT_ONLY);
+
+        Intent finalIntent = null;
+
+        if (!appList.isEmpty()) {
+            List<android.content.Intent> targetedIntents = new ArrayList<android.content.Intent>();
+
+            for (ResolveInfo resolveInfo : appList) {
+                String packageName = resolveInfo.activityInfo != null ? resolveInfo.activityInfo.packageName : null;
+
+                Intent allowedIntent = new Intent(dataIntent);
+                allowedIntent.setComponent(new ComponentName(packageName, resolveInfo.activityInfo.name));
+                allowedIntent.setPackage(packageName);
+
+                targetedIntents.add(allowedIntent);
+            }
+
+            if (!targetedIntents.isEmpty()) {
+                // Share Intent
+                Intent startIntent = targetedIntents.remove(0);
+
+                Intent chooserIntent = android.content.Intent.createChooser(startIntent, "");
+                chooserIntent.putExtra(android.content.Intent.EXTRA_INITIAL_INTENTS, targetedIntents.toArray(new Parcelable[]{}));
+                chooserIntent.addFlags(android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+                finalIntent = chooserIntent;
+            }
+
+        }
+
+        if (finalIntent == null) { // As a fallback, we are using the sent data intent
+            finalIntent = dataIntent;
+        }
+
+        return finalIntent;
     }
 
 }
