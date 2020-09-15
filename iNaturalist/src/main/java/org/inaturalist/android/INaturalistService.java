@@ -5252,9 +5252,14 @@ public class INaturalistService extends IntentService {
             BetterJSONObject jsonProject = new BetterJSONObject(result.getJSONObject(0));
             Project project = new Project(jsonProject);
 
-            // Add joined project locally
-            ContentValues cv = project.getContentValues();
-            getContentResolver().insert(Project.CONTENT_URI, cv);
+            Cursor c = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = ?", new String[]{String.valueOf(project.id)}, null);
+
+            if (c.getCount() == 0) {
+                // Add joined project locally
+                ContentValues cv = project.getContentValues();
+                getContentResolver().insert(Project.CONTENT_URI, cv);
+            }
+            c.close();
 
             // Save project fields
             addProjectFields(jsonProject.getJSONArray("project_observation_fields").getJSONArray());
