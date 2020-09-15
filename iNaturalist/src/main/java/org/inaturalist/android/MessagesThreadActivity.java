@@ -128,6 +128,11 @@ public class MessagesThreadActivity extends AppCompatActivity {
             }
         }
 
+        if (mMessage == null) {
+            finish();
+            return;
+        }
+
         ActionBar ab = getSupportActionBar();
         ab.setTitle(mMessage.getString("subject"));
         ab.setDisplayHomeAsUpEnabled(true);
@@ -221,7 +226,7 @@ public class MessagesThreadActivity extends AppCompatActivity {
     }
 
     private Integer getOtherUserId() {
-        if (!mMessage.has("from_user") || !mMessage.has("to_user")) {
+        if (!mMessage.has("from_user") || !mMessage.has("to_user") || mMessage.isNull("from_user") || mMessage.isNull("to_user")) {
             if (!mMessage.has("from_user_id") || !mMessage.has("to_user_id") || !mMessage.has("user_id")) {
                 return null;
             }
