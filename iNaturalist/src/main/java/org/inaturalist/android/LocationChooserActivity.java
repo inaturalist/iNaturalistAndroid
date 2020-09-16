@@ -18,6 +18,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -92,6 +93,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
 
     protected static final int REQUEST_CODE_CHOOSE_PINNED_LOCATION = 0x1000;
     private static final String REGEX_LAT_LNG = "-?\\d+(.\\d+)?[ ]*,[ ]*-?\\d+(.\\d+)?";
+    private static final double EARTH_RADIUS = 6371009;
 
     private GoogleMap mMap;
     private HashMap<String, Observation> mMarkerObservations;
@@ -609,17 +611,29 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         mNoMapRefresh = true;
         
         if ((longitude != 0) && (latitude != 0)) {
-        	LatLng location = new LatLng(latitude, longitude);
+            DisplayMetrics metrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+            int screenWidth = metrics.widthPixels;
 
-        	int zoom = 15;
+            // Make enough room for the accuracy circle
+            LatLngBounds.Builder builder = new LatLngBounds.Builder();
+            LatLng center = new LatLng(mLatitude, mLongitude);
+            LatLng rightPoint = computeOffset(center, mAccuracy, 90);
+            LatLng leftPoint = computeOffset(center, mAccuracy, 270);
+            builder.include(center);
+            builder.include(leftPoint);
+            builder.include(rightPoint);
+            LatLngBounds bounds = builder.build();
 
-        	zoom = accuracyToZoomLevel(mAccuracy);
-
-        	if (mZoomToLocation) {
-        		if (mMap != null) mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, zoom));
+            if (mZoomToLocation) {
+                if (mMap != null) {
+                    new Handler().postDelayed(() -> mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, (int) (screenWidth * 0.3))), 100);
+                }
         		mZoomToLocation = false;
         	} else {
-        		if (mMap != null) mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, zoom), 1, null);
+                if (mMap != null) {
+                    new Handler().postDelayed(() -> mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, (int) (screenWidth * 0.3)), 1, null), 100);
+                }
         	}
         }
         
@@ -693,17 +707,24 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
     }
 
     private void updateLocationBasedOnMap() {
-        float currentZoom = mMap.getCameraPosition().zoom;
-
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int screenWidth = metrics.widthPixels;
+        int screenHeight = metrics.heightPixels;
 
-        int screenWidth = (int) (metrics.widthPixels * 0.4 * 0.2);
+        // First point - where the accuracy circle starts on screen
+        Point p1 = new Point();
+        p1.x = (int) (screenWidth * 0.3); p1.y = (int) (screenHeight * 0.5);
+        LatLng leftSide = mMap.getProjection().fromScreenLocation(p1);
 
-        double equatorLength = 40075004; // in meters
-        double metersPerPixel = equatorLength / 256;
-        metersPerPixel = metersPerPixel / (Math.pow(2, currentZoom - 1));
-        mAccuracy = (double) ((screenWidth * 0.4 * 0.8) * metersPerPixel);
+        // Second point - the middle of the accuracy circle (to get its radius)
+        Point p2 = new Point();
+        p2.x = (int) (screenWidth * 0.5); p2.y = (int) (screenHeight * 0.5);
+        LatLng rightSide = mMap.getProjection().fromScreenLocation(p2);
+
+        float[] results = new float[3];
+        Location.distanceBetween(leftSide.latitude, leftSide.longitude, rightSide.latitude, rightSide.longitude, results);
+        mAccuracy = results[0];
         Logger.tag(TAG).error("Meters per radius = " + mAccuracy);
 
         mLatitude = mMap.getCameraPosition().target.latitude;
@@ -971,25 +992,6 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
 	}
 
 
-    int accuracyToZoomLevel(double accuracy) {
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-        int screenWidth = (int) (metrics.widthPixels * 0.4 * 0.2);
-
-        double equatorLength = 40075004; // in meters
-        double widthInPixels = screenWidth * 0.4 * 0.40;
-        double metersPerPixel = equatorLength / 256;
-        int zoomLevel = 1;
-        while ((metersPerPixel * widthInPixels) > accuracy) {
-            metersPerPixel /= 2;
-            ++zoomLevel;
-            // Logger.tag(TAG).error("\t** Zoom = " + zoomLevel + "; CurrentAcc = " + (metersPerPixel * widthInPixels) +  "; Accuracy = " + accuracy);
-        }
-        // Logger.tag(TAG).error("Zoom = " + zoomLevel + "; Accuracy = " + accuracy);
-        return zoomLevel;
-    }
-
     // Haversine distance calc, adapted from http://www.movable-type.co.uk/scripts/latlong.html
     double distanceInMeters(double lat1, double lon1, double lat2, double lon2) {
         int earthRadius = 6370997; // m
@@ -1099,14 +1101,23 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
 
         // Calculate zoom level based on accuracy
 
-        int zoom = 15;
         mAccuracy = location.getAccuracy();
 
-        if (mAccuracy > 0) {
-            zoom = accuracyToZoomLevel(mAccuracy);
-        }
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int screenWidth = metrics.widthPixels;
 
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), zoom),
+        // Make enough room for the accuracy circle
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        LatLng center = new LatLng(location.getLatitude(), location.getLongitude());
+        LatLng rightPoint = computeOffset(center, mAccuracy, 90);
+        LatLng leftPoint = computeOffset(center, mAccuracy, 270);
+        builder.include(center);
+        builder.include(leftPoint);
+        builder.include(rightPoint);
+        LatLngBounds bounds = builder.build();
+
+        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, (int) (screenWidth * 0.3)),
                 1000,
                 new GoogleMap.CancelableCallback() {
                     @Override
@@ -1181,5 +1192,27 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         return newLocation.getAccuracy() < currentLocation.getAccuracy();
     }
 
-
+    /**
+     * Returns the LatLng resulting from moving a distance from an origin
+     * in the specified heading (expressed in degrees clockwise from north).
+     *
+     * @param from     The LatLng from which to start.
+     * @param distance The distance to travel.
+     * @param heading  The heading in degrees clockwise from north.
+     */
+    public static LatLng computeOffset(LatLng from, double distance, double heading) {
+        distance /= EARTH_RADIUS;
+        heading = Math.toRadians(heading);
+        double fromLat = Math.toRadians(from.latitude);
+        double fromLng = Math.toRadians(from.longitude);
+        double cosDistance = Math.cos(distance);
+        double sinDistance = Math.sin(distance);
+        double sinFromLat = Math.sin(fromLat);
+        double cosFromLat = Math.cos(fromLat);
+        double sinLat = cosDistance * sinFromLat + sinDistance * cosFromLat * Math.cos(heading);
+        double dLng = Math.atan2(
+                sinDistance * cosFromLat * Math.sin(heading),
+                cosDistance - sinFromLat * sinLat);
+        return new LatLng(Math.toDegrees(Math.asin(sinLat)), Math.toDegrees(fromLng + dLng));
+    }
 }

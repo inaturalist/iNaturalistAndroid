@@ -2438,7 +2438,7 @@ public class ObservationEditor extends AppCompatActivity {
 
                 mObservation.latitude = latitude;
                 mObservation.longitude = longitude;
-                mObservation.positional_accuracy = (int) Math.ceil(accuracy);
+                mObservation.positional_accuracy = (int) Math.floor(accuracy);
 
                 mObservation.geoprivacy = geoprivacy;
                 updateObservationVisibilityDescription();
