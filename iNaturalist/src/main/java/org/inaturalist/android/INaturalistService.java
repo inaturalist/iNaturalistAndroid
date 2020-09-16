@@ -41,7 +41,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.tinylog.Logger;
 
-import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
@@ -6796,7 +6795,7 @@ public class INaturalistService extends IntentService {
                 Logger.tag(TAG).debug("syncJson: Deleting local photos: " + deleteCount);
 
                 if (deleteCount > 0) {
-                    Crashlytics.log(1, TAG, String.format(Locale.ENGLISH, "Warning: Deleted %d photos locally after sever did not contain those IDs - observation id: %s, photo ids: %s",
+                    Logger.tag(TAG).error(String.format(Locale.ENGLISH, "Warning: Deleted %d photos locally after sever did not contain those IDs - observation id: %s, photo ids: %s",
                             deleteCount, observation.id, joinedPhotoIds));
                 }
 
@@ -6870,7 +6869,7 @@ public class INaturalistService extends IntentService {
                 Logger.tag(TAG).debug("syncJson: Deleting local sounds: " + deleteCount);
 
                 if (deleteCount > 0) {
-                    Crashlytics.log(1, TAG, String.format(Locale.ENGLISH, "Warning: Deleted %d sounds locally after server did not contain those IDs - observation id: %s, sound ids: %s",
+                    Logger.tag(TAG).error(String.format(Locale.ENGLISH, "Warning: Deleted %d sounds locally after server did not contain those IDs - observation id: %s, sound ids: %s",
                             deleteCount, observation.id, joinedSoundIds));
                 }
 

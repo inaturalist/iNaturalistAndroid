@@ -1,6 +1,5 @@
 package org.inaturalist.android;
 
-import com.crashlytics.android.Crashlytics;
 import com.evernote.android.state.StateSaver;
 import com.facebook.FacebookSdk;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -8,6 +7,7 @@ import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationRequest;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
@@ -18,9 +18,6 @@ import com.livefront.bridge.SavedStateHandler;
 import com.squareup.picasso.LruCache;
 import com.squareup.picasso.Picasso;
 import android.Manifest;
-
-import io.fabric.sdk.android.Fabric;
-
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -196,9 +193,7 @@ public class INaturalistApp extends MultiDexApplication {
 
         FacebookSdk.sdkInitialize(getApplicationContext());
 
-        if (!getPrefersNoTracking()) {
-            Fabric.with(this, new Crashlytics());
-        }
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(!getPrefersNoTracking());
 
         AnalyticsClient.initAnalyticsClient(this, getPrefersNoTracking());
 
