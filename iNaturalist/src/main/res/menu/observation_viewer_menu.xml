@@ -2,6 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/flag_captive"
+        android:icon="@drawable/wild"
+        app:showAsAction="always"
+        android:iconTint="#848484"
+        android:title="@string/flag_as_captive"
+        android:orderInCategory="0"/>
+
+    <item
         android:id="@+id/edit_observation"
         android:icon="@drawable/ic_mode_edit_gray_24dp"
         app:showAsAction="always"

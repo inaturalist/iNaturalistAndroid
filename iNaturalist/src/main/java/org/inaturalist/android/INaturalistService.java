@@ -83,6 +83,7 @@ import android.provider.MediaStore;
 import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import android.util.Pair;
 import android.widget.Toast;
 
 import io.jsonwebtoken.Jwts;
@@ -1849,10 +1850,20 @@ public class INaturalistService extends IntentService {
 
             } else if (action.equals(ACTION_GET_AND_SAVE_OBSERVATION)) {
                 int id = intent.getExtras().getInt(OBSERVATION_ID);
-                Observation observation = getAndDownloadObservation(id);
+                Pair<Observation, JSONObject> result = getAndDownloadObservation(id);
+                Observation observation = result.first;
+                JSONObject json = result.second;
+
+                Cursor c = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = ?", new String[] { String.valueOf(observation.id) }, Observation.DEFAULT_SORT_ORDER);
+                if (c.getCount() > 0) {
+                    Observation innerObs = new Observation(c);
+                    observation._id = innerObs._id;
+                }
+                c.close();
 
                 Intent reply = new Intent(ACTION_GET_AND_SAVE_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, json.toString());
                 LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GET_OBSERVATION)) {
@@ -4114,7 +4125,7 @@ public class INaturalistService extends IntentService {
         }
     }
 
-    private Observation getAndDownloadObservation(int id) throws AuthenticationException {
+    private Pair<Observation, JSONObject> getAndDownloadObservation(int id) throws AuthenticationException {
         // Download the observation
         JSONObject json = getObservationJson(id, true, true);
         if (json == null) return null;
@@ -4131,7 +4142,7 @@ public class INaturalistService extends IntentService {
         arr.put(json);
         syncJson(arr, true);
 
-        return obs;
+        return new Pair<>(obs, json);
     }
 
     private boolean postSounds(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException {
