@@ -853,7 +853,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
                     mObservation = new Observation(new BetterJSONObject(obsJson));
 
-                    if (mReadOnly && mObservation.id != null && mApp.loggedIn()) {
+                    if (mReadOnly && mObservation.id != null && mObservation.user_login != null && mApp.loggedIn()) {
                         // See if this read-only observation is in fact our own observation (e.g. viewed from explore screen)
                         if (mObservation.user_login.toLowerCase().equals(mApp.currentUserLogin().toLowerCase())) {
                             // Our own observation
