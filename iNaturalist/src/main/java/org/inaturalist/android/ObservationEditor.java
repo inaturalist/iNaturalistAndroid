@@ -248,6 +248,7 @@ public class ObservationEditor extends AppCompatActivity {
     private Menu mMenu;
     private ImageView mBottomTakePhoto;
     private File mCapturedPhotoFile;
+    @State public String mCapturedPhotoFilePath;
 
     @Override
 	protected void onStop()
@@ -1178,6 +1179,7 @@ public class ObservationEditor extends AppCompatActivity {
 
         // Temp file for the photo
         mCapturedPhotoFile = new File(getExternalCacheDir(), UUID.randomUUID().toString() + ".jpeg");
+        mCapturedPhotoFilePath = mCapturedPhotoFile.getAbsolutePath();
         mFileUri = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".fileProvider", mCapturedPhotoFile);
 
         final Intent galleryIntent = new Intent();
@@ -2821,7 +2823,7 @@ public class ObservationEditor extends AppCompatActivity {
 
     private void prepareCapturedPhoto(Uri selectedImageUri) {
         // Make a copy of the image into the phone's camera folder
-        String path = mCapturedPhotoFile.getAbsolutePath();
+        String path = mCapturedPhotoFilePath;
         String copyPath = null;
 
         if (mApp.isExternalStoragePermissionGranted()) {
