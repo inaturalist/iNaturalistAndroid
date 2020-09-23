@@ -603,7 +603,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             }
 
             if (commentsCount > 0) {
-                commentCount.setText(String.valueOf(commentsCount));
+                commentCount.setText(String.format("%d", commentsCount));
                 commentCount.setVisibility(View.VISIBLE);
                 commentIcon.setVisibility(View.VISIBLE);
             } else {
@@ -612,7 +612,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             }
 
             if (idsCount > 0) {
-                idCount.setText(String.valueOf(idsCount));
+                idCount.setText(String.format("%d", idsCount));
                 idCount.setVisibility(View.VISIBLE);
                 idIcon.setVisibility(View.VISIBLE);
             } else {
