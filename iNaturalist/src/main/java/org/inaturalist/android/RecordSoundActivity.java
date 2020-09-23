@@ -153,6 +153,10 @@ public class RecordSoundActivity extends AppCompatActivity implements SoundRecor
 
     private void drawCurrentSoundWave() {
         Canvas canvas = mVisualizerTexture.lockCanvas();
+
+        // Canvas not ready yet
+        if (canvas == null) return;
+
         Paint paint = new Paint();
         paint.setColor(Color.parseColor("#cb0000"));
         paint.setStrokeWidth(SOUND_LINE_WIDTH);
