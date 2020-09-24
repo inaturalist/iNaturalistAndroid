@@ -1,6 +1,7 @@
 *.DS_Store
 bin
 iNaturalist/src/main/res/values/config.xml
+iNaturalist/google-services.json
 gen
 res/values/com_crashlytics_export_strings.xml
 build
