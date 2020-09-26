@@ -2208,17 +2208,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             startActivityForResult(intent, REQUEST_CODE_EDIT_OBSERVATION);
             return true;
         case R.id.flag_captive:
-            PopupMenu popup = new PopupMenu(ObservationViewerActivity.this, findViewById(R.id.flag_captive));
-            popup.getMenuInflater().inflate(R.menu.flag_captive_menu, popup.getMenu());
-            MenuItem flagCaptive = popup.getMenu().findItem(R.id.flag_captive);
-            flagCaptive.setChecked(mFlagAsCaptive);
-            popup.setOnMenuItemClickListener(menuItem -> {
-                mFlagAsCaptive = !mFlagAsCaptive;
-                refreshDataQuality();
-                return true;
-            });
-
-            popup.show();
+            mFlagAsCaptive = !mFlagAsCaptive;
+            refreshDataQuality();
+            refreshMenu();
             return true;
         default:
             return super.onOptionsItemSelected(item);
@@ -2236,7 +2228,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     }
 
     private void prepareToExit() {
-        if (!mReadOnly || !mFlagAsCaptive) {
+        if (!mFlagAsCaptive) {
             finish();
             return;
         }
@@ -2246,6 +2238,15 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        if (!mReadOnly) {
+                            // Local observation - just update the local DB instance
+                            ContentValues cv = mObservation.getContentValues();
+                            cv.put(Observation.CAPTIVE, true);
+                            int count = getContentResolver().update(mObservation.getUri(), cv, null, null);
+                            finish();
+                            return;
+                        }
+
                         // Flag as captive
                         Intent serviceIntent = new Intent(INaturalistService.ACTION_FLAG_OBSERVATION_AS_CAPTIVE, null, ObservationViewerActivity.this, INaturalistService.class);
                         serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
@@ -2279,15 +2280,12 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         MenuItem edit = mMenu.findItem(R.id.edit_observation);
 
         if (mReadOnly) {
-            flagCaptive.setVisible(true);
             edit.setVisible(false);
-            Drawable icon = flagCaptive.getIcon();
-            icon.setColorFilter(new PorterDuffColorFilter(Color.parseColor("#848484"), PorterDuff.Mode.SRC_IN));
-            flagCaptive.setIcon(icon);
         } else {
-            flagCaptive.setVisible(false);
             edit.setVisible(true);
-        }       
+        }
+
+        flagCaptive.setChecked(mFlagAsCaptive);
     }
 
     @Override
