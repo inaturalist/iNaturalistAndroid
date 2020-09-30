@@ -11,9 +11,9 @@
 
     <RelativeLayout
         android:id="@+id/checkbox_container"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_width="24dp"
         android:layout_height="24dp">
     <ImageView
@@ -29,9 +29,9 @@
         android:id="@+id/content"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/checkbox_container"
+        android:layout_toEndOf="@id/checkbox_container"
         android:layout_alignWithParentIfMissing="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         >
 
@@ -41,13 +41,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#DDD"
-
         android:contentDescription="@string/observation_list_item_iconic_pic_description"
         android:padding="5dp"
-
         android:src="@drawable/iconic_taxon_unknown"
         android:tint="#ffffff"
-
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/observation_pic"
         app:layout_constraintStart_toStartOf="@id/observation_pic"
@@ -59,12 +56,12 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_centerVertical="true"
-        android:layout_marginStart="10dp"
         android:layout_marginEnd="9dp"
         android:background="#DDDDDD"
         android:contentDescription="@string/observation_list_item_obs_pic_description"
         android:scaleType="fitCenter"
         android:src="@drawable/iconic_taxon_unknown"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
@@ -72,7 +69,6 @@
     <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
         android:text="3w"
         android:textColor="#979797"
@@ -84,7 +80,6 @@
         android:id="@+id/id_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_marginTop="28dp"
         android:text="12"
         app:layout_constraintBaseline_toBaselineOf="@id/place_guess"
@@ -96,7 +91,6 @@
         android:id="@+id/id_pic"
         android:layout_width="16dp"
         android:layout_height="16dp"
-
         android:layout_alignTop="@id/id_count"
         android:layout_alignBottom="@id/id_count"
         android:layout_marginTop="2dp"
@@ -112,7 +106,6 @@
     <TextView
         android:id="@+id/comment_count"
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/id_count"
         android:layout_alignBottom="@id/id_count"
@@ -126,7 +119,6 @@
         android:id="@+id/comment_pic"
         android:layout_width="16dp"
         android:layout_height="16dp"
-
         android:layout_alignTop="@id/id_count"
         android:layout_alignBottom="@id/id_count"
         android:layout_marginTop="2dp"
@@ -152,7 +144,6 @@
         android:id="@+id/progress"
         android:layout_width="35dp"
         android:layout_height="35dp"
-
         android:layout_centerVertical="true"
         android:visibility="visible"
         app:cpb_background_progressbar_color="#88669900"
@@ -171,21 +162,19 @@
         android:layout_marginStart="9dp"
         android:layout_marginEnd="8dp"
         android:ellipsize="end"
-
         android:maxLines="1"
-        android:text="Species Guess"
+        android:text="@string/unknown_species"
         app:layout_constrainedWidth="true"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@id/observation_pic"
         app:layout_constraintEnd_toStartOf="@id/species_guess_barrier"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText" />
+        />
 
     <ImageView
         android:id="@+id/location_icon"
         android:layout_width="16dp"
         android:layout_height="24dp"
-
         android:src="@drawable/ic_location_on_black_24dp"
         android:tint="#6F6F6F"
         app:layout_constraintStart_toStartOf="@id/species_guess"
@@ -201,9 +190,8 @@
         android:layout_marginEnd="8dp"
         android:ellipsize="end"
         android:gravity="center_vertical"
-
         android:maxLines="1"
-        android:text="San Francisco"
+        android:text="@string/unknown"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="@id/location_icon"
         app:layout_constraintHorizontal_bias="0"
@@ -211,7 +199,7 @@
         app:layout_constraintEnd_toStartOf="@id/place_guess_barrier"
         app:layout_constraintTop_toTopOf="@id/location_icon"
         app:layout_goneMarginTop="24dp"
-        tools:ignore="HardcodedText" />
+        />
 
     <!-- Used to prevent place guess from growing too large and overlapping other elements -->
     <androidx.constraintlayout.widget.Barrier

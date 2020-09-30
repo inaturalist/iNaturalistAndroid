@@ -222,6 +222,7 @@
         android:layout_marginBottom="20dp"
         android:clipToPadding="false"
         android:padding="3dp"
+        android:layoutDirection="ltr"
         >
         <ImageView
             android:id="@+id/observations_map_view_button"
