@@ -2841,7 +2841,7 @@ public class ObservationEditor extends AppCompatActivity {
 
         if (copyPath != null) {
             createdUri = createObservationPhotoForPhoto(Uri.fromFile(new File(copyPath)));
-            if (mPhotosAndSoundsAdded != null) {
+            if ((mPhotosAndSoundsAdded != null) && (createdUri != null)) {
                 mPhotosAndSoundsAdded.add(createdUri.toString());
             }
             mCameraPhotos.add(copyPath);
