@@ -17,6 +17,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.location.Address;
@@ -614,6 +615,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
             DisplayMetrics metrics = new DisplayMetrics();
             getWindowManager().getDefaultDisplay().getMetrics(metrics);
             int screenWidth = metrics.widthPixels;
+            int screenHeight = metrics.heightPixels;
 
             // Make enough room for the accuracy circle
             LatLngBounds.Builder builder = new LatLngBounds.Builder();
@@ -624,6 +626,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
             builder.include(leftPoint);
             builder.include(rightPoint);
             LatLngBounds bounds = builder.build();
+            boolean isPortrait = (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT);
 
             if (mZoomToLocation) {
                 if (mMap != null) {
@@ -632,7 +635,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         		mZoomToLocation = false;
         	} else {
                 if (mMap != null) {
-                    new Handler().postDelayed(() -> mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, (int) (screenWidth * 0.3)), 1, null), 100);
+                    new Handler().postDelayed(() -> mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, screenWidth, screenHeight, (int) ((isPortrait ? screenWidth : screenHeight) * 0.3)), 1, null), 100);
                 }
         	}
         }
