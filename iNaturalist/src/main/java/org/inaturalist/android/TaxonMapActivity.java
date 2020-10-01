@@ -112,7 +112,7 @@ public class TaxonMapActivity extends AppCompatActivity {
                     @Override
                     public URL getTileUrl(int x, int y, int zoom) {
 
-                        String s = String.format(Locale.ENGLISH, INaturalistService.API_HOST + "/grid/%d/%d/%d.png?taxon_id=%d",
+                        String s = String.format(Locale.ENGLISH, INaturalistService.API_HOST + "/grid/%d/%d/%d.png?taxon_id=%d&quality_grade=research",
                                 zoom, x, y, mTaxonId);
                         try {
                             return new URL(s);
@@ -131,6 +131,8 @@ public class TaxonMapActivity extends AppCompatActivity {
                     mHelper.addMapPosition(mMap, obs, mObservation, markerOnly, updateCamera);
                     mHelper.centerObservationImmediate(mMap, obs);
                 }
+
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mMapLatitude, mMapLongitude), mMapZoom));
             }
         });
 

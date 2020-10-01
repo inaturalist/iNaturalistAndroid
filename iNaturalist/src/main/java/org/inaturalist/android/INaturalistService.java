@@ -4911,7 +4911,7 @@ public class INaturalistService extends IntentService {
     }
 
     private BetterJSONObject getTaxonObservationsBounds(Integer taxonId) {
-        String url = API_HOST + "/observations?per_page=1&return_bounds=true&taxon_id=" + taxonId;
+        String url = API_HOST + "/observations?per_page=1&return_bounds=true&quality_grade=research&taxon_id=" + taxonId;
 
         JSONArray json = null;
         try {
