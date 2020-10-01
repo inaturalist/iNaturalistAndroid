@@ -28,6 +28,7 @@ public class Observation implements BaseColumns, Serializable {
     public Timestamp created_at;
     public String description;
     public String geoprivacy;
+    public String taxon_geoprivacy;
     public Integer iconic_taxon_id;
     public String iconic_taxon_name;
     public Integer id;
@@ -131,6 +132,7 @@ public class Observation implements BaseColumns, Serializable {
     public static final String CREATED_AT = "created_at";
     public static final String DESCRIPTION = "description";
     public static final String GEOPRIVACY = "geoprivacy";
+    public static final String TAXON_GEOPRIVACY = "taxon_geoprivacy";
     public static final String ICONIC_TAXON_ID = "iconic_taxon_id";
     public static final String ICONIC_TAXON_NAME = "iconic_taxon_name";
     public static final String ID = "id";
@@ -179,6 +181,7 @@ public class Observation implements BaseColumns, Serializable {
         Observation.CREATED_AT,
         Observation.DESCRIPTION,
         Observation.GEOPRIVACY,
+        Observation.TAXON_GEOPRIVACY,
         Observation.ICONIC_TAXON_ID,
         Observation.ICONIC_TAXON_NAME,
         Observation.ID,
@@ -228,6 +231,7 @@ public class Observation implements BaseColumns, Serializable {
         PROJECTION_MAP.put(Observation.CREATED_AT, Observation.CREATED_AT);
         PROJECTION_MAP.put(Observation.DESCRIPTION, Observation.DESCRIPTION);
         PROJECTION_MAP.put(Observation.GEOPRIVACY, Observation.GEOPRIVACY);
+        PROJECTION_MAP.put(Observation.TAXON_GEOPRIVACY, Observation.TAXON_GEOPRIVACY);
         PROJECTION_MAP.put(Observation.ICONIC_TAXON_ID, Observation.ICONIC_TAXON_ID);
         PROJECTION_MAP.put(Observation.ICONIC_TAXON_NAME, Observation.ICONIC_TAXON_NAME);
         PROJECTION_MAP.put(Observation.ID, Observation.ID);
@@ -286,6 +290,7 @@ public class Observation implements BaseColumns, Serializable {
         this.description_was = this.description;
         this.geoprivacy = bc.getString(GEOPRIVACY);
         this.geoprivacy_was = this.geoprivacy;
+        this.taxon_geoprivacy = bc.getString(TAXON_GEOPRIVACY);
         this.iconic_taxon_id = bc.getInteger(ICONIC_TAXON_ID);
         this.iconic_taxon_id_was = this.iconic_taxon_id;
         this.iconic_taxon_name = bc.getString(ICONIC_TAXON_NAME);
@@ -370,6 +375,7 @@ public class Observation implements BaseColumns, Serializable {
         this.description_was = this.description;
         this.geoprivacy = o.getString("geoprivacy");
         this.geoprivacy_was = this.geoprivacy;
+        this.taxon_geoprivacy = o.getString("taxon_geoprivacy");
         this.iconic_taxon_id = o.getInteger("iconic_taxon_id");
         this.iconic_taxon_id_was = this.iconic_taxon_id;
         this.iconic_taxon_name = o.getString("iconic_taxon_name");
@@ -584,6 +590,7 @@ public class Observation implements BaseColumns, Serializable {
         bo.put("created_at", created_at);
         bo.put("description", description);
         bo.put("geoprivacy", geoprivacy);
+        bo.put("taxon_geoprivacy", taxon_geoprivacy);
         bo.put("iconic_taxon_id", iconic_taxon_id);
         bo.put("iconic_taxon_name", iconic_taxon_name);
         bo.put("id", id);
@@ -686,6 +693,7 @@ public class Observation implements BaseColumns, Serializable {
             this.created_at = observation.created_at;
             this.description = observation.description;
             this.geoprivacy = observation.geoprivacy;
+            this.taxon_geoprivacy = observation.taxon_geoprivacy;
             this.iconic_taxon_id = observation.iconic_taxon_id;
             this.iconic_taxon_name = observation.iconic_taxon_name;
             if (observation.preferred_common_name != null) this.preferred_common_name = observation.preferred_common_name;
@@ -729,6 +737,7 @@ public class Observation implements BaseColumns, Serializable {
             if ((this.created_at == null) && (observation.created_at != null)) { this.created_at = observation.created_at; isModified = true; }
             if ((this.description == null) && (observation.description != null)) { this.description = observation.description; isModified = true; }
             if ((this.geoprivacy == null) && (observation.geoprivacy != null)) { this.geoprivacy = observation.geoprivacy; isModified = true; }
+            if ((this.taxon_geoprivacy == null) && (observation.taxon_geoprivacy != null)) { this.taxon_geoprivacy = observation.taxon_geoprivacy; isModified = true; }
             if ((this.iconic_taxon_id == null) && (observation.iconic_taxon_id != null)) { this.iconic_taxon_id = observation.iconic_taxon_id; isModified = true; }
             if ((this.iconic_taxon_name == null) && (observation.iconic_taxon_name != null)) { this.iconic_taxon_name = observation.iconic_taxon_name; isModified = true; }
             if ((this.id == null) && (observation.id != null)) { this.id = observation.id; isModified = true; }
@@ -773,6 +782,7 @@ public class Observation implements BaseColumns, Serializable {
         if (created_at != null) { cv.put(CREATED_AT, created_at.getTime()); }
         cv.put(DESCRIPTION, description);
         cv.put(GEOPRIVACY, geoprivacy);
+        cv.put(TAXON_GEOPRIVACY, taxon_geoprivacy);
         cv.put(ICONIC_TAXON_ID, iconic_taxon_id);
         cv.put(ICONIC_TAXON_NAME, iconic_taxon_name);
         cv.put(ID, id);
@@ -852,6 +862,7 @@ public class Observation implements BaseColumns, Serializable {
                 + "created_at INTEGER,"
                 + "description TEXT,"
                 + "geoprivacy TEXT,"
+                + "taxon_geoprivacy TEXT,"
                 + "iconic_taxon_id INTEGER,"
                 + "iconic_taxon_name TEXT,"
                 + "id INTEGER,"

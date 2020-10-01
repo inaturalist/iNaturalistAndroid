@@ -1493,12 +1493,14 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
             mLocationText.setGravity(View.TEXT_ALIGNMENT_TEXT_END);
 
-            if ((mObservation.geoprivacy == null) || (mObservation.geoprivacy.equals("open"))) {
+            String geoprivacyField = mObservation.geoprivacy == null ? mObservation.taxon_geoprivacy : mObservation.geoprivacy;
+
+            if ((geoprivacyField == null) || (geoprivacyField.equals("open"))) {
                 mLocationPrivate.setVisibility(View.GONE);
-            } else if (mObservation.geoprivacy.equals("private")) {
+            } else if (geoprivacyField.equals("private")) {
                 mLocationPrivate.setVisibility(View.VISIBLE);
                 mLocationPrivate.setImageResource(R.drawable.ic_visibility_off_black_24dp);
-            } else if (mObservation.geoprivacy.equals("obscured")) {
+            } else if (geoprivacyField.equals("obscured")) {
                 mLocationPrivate.setVisibility(View.VISIBLE);
                 mLocationPrivate.setImageResource(R.drawable.ic_filter_tilt_shift_black_24dp);
             }
