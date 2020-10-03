@@ -1,7 +1,7 @@
 package org.inaturalist.android;
 
-import com.crashlytics.android.Crashlytics;
 import com.facebook.login.LoginManager;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
@@ -11,8 +11,6 @@ import android.content.DialogInterface;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Build;
-
-import io.fabric.sdk.android.Fabric;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -116,10 +114,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
     }
 
     public void onDrawerCreate(Bundle savedInstanceState) {
-        if (!mApp.getPrefersNoTracking()) {
-            Fabric.with(this, new Crashlytics());
-        }
-
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(!mApp.getPrefersNoTracking());
 
         moveDrawerToTop();
 

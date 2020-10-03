@@ -91,6 +91,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.FileProvider;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.ActionBar;
@@ -246,6 +247,8 @@ public class ObservationEditor extends AppCompatActivity {
     private View mPhotoWarningContainer;
     private Menu mMenu;
     private ImageView mBottomTakePhoto;
+    private File mCapturedPhotoFile;
+    @State public String mCapturedPhotoFilePath;
 
     @Override
 	protected void onStop()
@@ -1175,7 +1178,9 @@ public class ObservationEditor extends AppCompatActivity {
         }
 
         // Temp file for the photo
-        mFileUri = Uri.fromFile(new File(getExternalCacheDir(), UUID.randomUUID().toString() + ".jpeg"));
+        mCapturedPhotoFile = new File(getExternalCacheDir(), UUID.randomUUID().toString() + ".jpeg");
+        mCapturedPhotoFilePath = mCapturedPhotoFile.getAbsolutePath();
+        mFileUri = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".fileProvider", mCapturedPhotoFile);
 
         final Intent galleryIntent = new Intent();
 
@@ -2435,7 +2440,7 @@ public class ObservationEditor extends AppCompatActivity {
 
                 mObservation.latitude = latitude;
                 mObservation.longitude = longitude;
-                mObservation.positional_accuracy = (int) Math.ceil(accuracy);
+                mObservation.positional_accuracy = (int) Math.floor(accuracy);
 
                 mObservation.geoprivacy = geoprivacy;
                 updateObservationVisibilityDescription();
@@ -2818,7 +2823,7 @@ public class ObservationEditor extends AppCompatActivity {
 
     private void prepareCapturedPhoto(Uri selectedImageUri) {
         // Make a copy of the image into the phone's camera folder
-        String path = FileUtils.getPath(ObservationEditor.this, selectedImageUri);
+        String path = mCapturedPhotoFilePath;
         String copyPath = null;
 
         if (mApp.isExternalStoragePermissionGranted()) {

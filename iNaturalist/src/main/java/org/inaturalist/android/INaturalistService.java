@@ -41,7 +41,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.tinylog.Logger;
 
-import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
@@ -84,6 +83,7 @@ import android.provider.MediaStore;
 import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import android.util.Pair;
 import android.widget.Toast;
 
 import io.jsonwebtoken.Jwts;
@@ -1850,10 +1850,20 @@ public class INaturalistService extends IntentService {
 
             } else if (action.equals(ACTION_GET_AND_SAVE_OBSERVATION)) {
                 int id = intent.getExtras().getInt(OBSERVATION_ID);
-                Observation observation = getAndDownloadObservation(id);
+                Pair<Observation, JSONObject> result = getAndDownloadObservation(id);
+                Observation observation = result.first;
+                JSONObject json = result.second;
+
+                Cursor c = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = ?", new String[] { String.valueOf(observation.id) }, Observation.DEFAULT_SORT_ORDER);
+                if (c.getCount() > 0) {
+                    Observation innerObs = new Observation(c);
+                    observation._id = innerObs._id;
+                }
+                c.close();
 
                 Intent reply = new Intent(ACTION_GET_AND_SAVE_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, json.toString());
                 LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GET_OBSERVATION)) {
@@ -4115,7 +4125,7 @@ public class INaturalistService extends IntentService {
         }
     }
 
-    private Observation getAndDownloadObservation(int id) throws AuthenticationException {
+    private Pair<Observation, JSONObject> getAndDownloadObservation(int id) throws AuthenticationException {
         // Download the observation
         JSONObject json = getObservationJson(id, true, true);
         if (json == null) return null;
@@ -4132,7 +4142,7 @@ public class INaturalistService extends IntentService {
         arr.put(json);
         syncJson(arr, true);
 
-        return obs;
+        return new Pair<>(obs, json);
     }
 
     private boolean postSounds(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException {
@@ -5252,9 +5262,14 @@ public class INaturalistService extends IntentService {
             BetterJSONObject jsonProject = new BetterJSONObject(result.getJSONObject(0));
             Project project = new Project(jsonProject);
 
-            // Add joined project locally
-            ContentValues cv = project.getContentValues();
-            getContentResolver().insert(Project.CONTENT_URI, cv);
+            Cursor c = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = ?", new String[]{String.valueOf(project.id)}, null);
+
+            if (c.getCount() == 0) {
+                // Add joined project locally
+                ContentValues cv = project.getContentValues();
+                getContentResolver().insert(Project.CONTENT_URI, cv);
+            }
+            c.close();
 
             // Save project fields
             addProjectFields(jsonProject.getJSONArray("project_observation_fields").getJSONArray());
@@ -6791,7 +6806,7 @@ public class INaturalistService extends IntentService {
                 Logger.tag(TAG).debug("syncJson: Deleting local photos: " + deleteCount);
 
                 if (deleteCount > 0) {
-                    Crashlytics.log(1, TAG, String.format(Locale.ENGLISH, "Warning: Deleted %d photos locally after sever did not contain those IDs - observation id: %s, photo ids: %s",
+                    Logger.tag(TAG).error(String.format(Locale.ENGLISH, "Warning: Deleted %d photos locally after sever did not contain those IDs - observation id: %s, photo ids: %s",
                             deleteCount, observation.id, joinedPhotoIds));
                 }
 
@@ -6865,7 +6880,7 @@ public class INaturalistService extends IntentService {
                 Logger.tag(TAG).debug("syncJson: Deleting local sounds: " + deleteCount);
 
                 if (deleteCount > 0) {
-                    Crashlytics.log(1, TAG, String.format(Locale.ENGLISH, "Warning: Deleted %d sounds locally after server did not contain those IDs - observation id: %s, sound ids: %s",
+                    Logger.tag(TAG).error(String.format(Locale.ENGLISH, "Warning: Deleted %d sounds locally after server did not contain those IDs - observation id: %s, sound ids: %s",
                             deleteCount, observation.id, joinedSoundIds));
                 }
 

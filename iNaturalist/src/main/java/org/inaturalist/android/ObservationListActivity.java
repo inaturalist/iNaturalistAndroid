@@ -1013,6 +1013,11 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             case R.id.observation_view_type:
                 mIsGrid[mViewPager.getCurrentItem()] = !mIsGrid[mViewPager.getCurrentItem()];
                 saveGridState();
+                if (mIsGrid[mViewPager.getCurrentItem()]) {
+                    item.setTitle(R.string.switch_to_list_view);
+                } else {
+                    item.setTitle(R.string.switch_to_grid_view);
+                }
 
                 if (mViewPager.getCurrentItem() == 0) {
                     if (mIsGrid[0]) {

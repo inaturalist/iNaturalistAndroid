@@ -2,6 +2,7 @@ package org.inaturalist.android;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,6 +13,8 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
@@ -255,6 +258,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     private ListView mAnnotationsList;
     private ProgressBar mLoadingAnnotations;
     private ViewGroup mAnnotationsContent;
+    private DownloadObservationReceiver mDownloadObservationReceiver;
+    private Menu mMenu;
 
     @Override
 	protected void onStart() {
@@ -638,6 +643,10 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         filter2.addAction(INaturalistService.DELETE_ANNOTATION_VOTE_RESULT);
         filter2.addAction(INaturalistService.SET_ANNOTATION_VALUE_RESULT);
         BaseFragmentActivity.safeRegisterReceiver(mChangeAttributesReceiver, filter2, ObservationViewerActivity.this);
+
+        mDownloadObservationReceiver = new DownloadObservationReceiver();
+        IntentFilter filter3 = new IntentFilter(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION_RESULT);
+        BaseFragmentActivity.safeRegisterReceiver(mDownloadObservationReceiver, filter3, this);
     }
 
     @Override
@@ -843,6 +852,33 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     }
 
                     mObservation = new Observation(new BetterJSONObject(obsJson));
+
+                    if (mReadOnly && mObservation.id != null && mObservation.user_login != null && mApp.loggedIn()) {
+                        // See if this read-only observation is in fact our own observation (e.g. viewed from explore screen)
+                        if (mObservation.user_login.toLowerCase().equals(mApp.currentUserLogin().toLowerCase())) {
+                            // Our own observation
+                            Cursor c = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = ?", new String[]{String.valueOf(mObservation.id)}, Observation.DEFAULT_SORT_ORDER);
+                            if (c.getCount() > 0) {
+                                // Observation available locally in the DB - just show/edit it
+                                mReadOnly = false;
+                                c.moveToFirst();
+                                mObservation = new Observation(c);
+                                mReloadObs = false;
+                                uri = mObservation.getUri();
+                                intent.setData(uri);
+                            } else {
+                                // Observation not downloaded yet - download and save it
+                                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION, null, this, INaturalistService.class);
+                                serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
+                                ContextCompat.startForegroundService(this, serviceIntent);
+
+                                mReadOnly = false;
+                                mReloadObs = true;
+                                uri = ContentUris.withAppendedId(Observation.CONTENT_URI, mObservation.id);
+                            }
+                            c.close();
+                        }
+                    }
                 }
 
                 mUri = uri;
@@ -2174,6 +2210,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         case R.id.flag_captive:
             mFlagAsCaptive = !mFlagAsCaptive;
             refreshDataQuality();
+            refreshMenu();
             return true;
         default:
             return super.onOptionsItemSelected(item);
@@ -2191,7 +2228,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     }
 
     private void prepareToExit() {
-        if (!mReadOnly || !mFlagAsCaptive) {
+        if (!mFlagAsCaptive) {
             finish();
             return;
         }
@@ -2201,6 +2238,15 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        if (!mReadOnly) {
+                            // Local observation - just update the local DB instance
+                            ContentValues cv = mObservation.getContentValues();
+                            cv.put(Observation.CAPTIVE, true);
+                            int count = getContentResolver().update(mObservation.getUri(), cv, null, null);
+                            finish();
+                            return;
+                        }
+
                         // Flag as captive
                         Intent serviceIntent = new Intent(INaturalistService.ACTION_FLAG_OBSERVATION_AS_CAPTIVE, null, ObservationViewerActivity.this, INaturalistService.class);
                         serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
@@ -2222,16 +2268,29 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(mReadOnly ? R.menu.observation_viewer_read_only_menu : R.menu.observation_viewer_menu, menu);
+        getMenuInflater().inflate(R.menu.observation_viewer_menu, menu);
+        mMenu = menu;
+        refreshMenu();
+        
         return true;
+    }
+    
+    private void refreshMenu() {
+        MenuItem flagCaptive = mMenu.findItem(R.id.flag_captive);
+        MenuItem edit = mMenu.findItem(R.id.edit_observation);
+
+        if (mReadOnly) {
+            edit.setVisible(false);
+        } else {
+            edit.setVisible(true);
+        }
+
+        flagCaptive.setChecked(mFlagAsCaptive);
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        if (mReadOnly) {
-            menu.findItem(R.id.flag_captive).setChecked(mFlagAsCaptive);
-        }
         return true;
     }
 
@@ -2286,6 +2345,167 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 	    }
 
 	}
+
+    private class DownloadObservationReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Logger.tag(TAG).error("DownloadObservationReceiver - OBSERVATION_RESULT");
+
+            BaseFragmentActivity.safeUnregisterReceiver(mDownloadObservationReceiver, ObservationViewerActivity.this);
+
+            boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
+            Observation observation;
+            if (isSharedOnApp) {
+                observation = (Observation) mApp.getServiceResult(INaturalistService.ACTION_OBSERVATION_RESULT);
+            } else {
+                observation = (Observation) intent.getSerializableExtra(INaturalistService.OBSERVATION_RESULT);
+            }
+
+            if (mObservation == null) {
+                reloadObservation(null, false);
+                mObsJson = null;
+            }
+
+            if (observation == null) {
+                // Couldn't retrieve observation details (probably deleted)
+                mCommentsIds = new ArrayList<BetterJSONObject>();
+                mFavorites = new ArrayList<BetterJSONObject>();
+                refreshActivity();
+                refreshFavorites();
+                return;
+            }
+
+            if (!observation.id.equals(mObservation.id)) {
+                Logger.tag(TAG).error(String.format("DownloadObservationReceiver: Got old observation result for id %d, while current observation is %d", observation.id, mObservation.id));
+                return;
+            }
+
+            JSONArray projects = observation.projects.getJSONArray();
+            JSONArray comments = observation.comments.getJSONArray();
+            JSONArray ids = observation.identifications.getJSONArray();
+            JSONArray favs = observation.favorites.getJSONArray();
+            ArrayList<BetterJSONObject> results = new ArrayList<BetterJSONObject>();
+            ArrayList<BetterJSONObject> favResults = new ArrayList<BetterJSONObject>();
+            ArrayList<BetterJSONObject> projectResults = new ArrayList<BetterJSONObject>();
+
+            // #560 - refresh data quality grade
+            mObservation.captive = observation.captive;
+            mObservation.quality_grade = observation.quality_grade;
+
+            mIdCount = 0;
+            mCommentCount = 0;
+
+            try {
+                for (int i = 0; i < projects.length(); i++) {
+                    BetterJSONObject project = new BetterJSONObject(projects.getJSONObject(i));
+                    projectResults.add(project);
+                }
+                for (int i = 0; i < comments.length(); i++) {
+                    BetterJSONObject comment = new BetterJSONObject(comments.getJSONObject(i));
+                    comment.put("type", "comment");
+                    results.add(comment);
+                    mCommentCount++;
+                }
+                for (int i = 0; i < ids.length(); i++) {
+                    BetterJSONObject id = new BetterJSONObject(ids.getJSONObject(i));
+                    id.put("type", "identification");
+                    results.add(id);
+                    mIdCount++;
+                }
+                for (int i = 0; i < favs.length(); i++) {
+                    BetterJSONObject fav = new BetterJSONObject(favs.getJSONObject(i));
+                    favResults.add(fav);
+                }
+            } catch (JSONException e) {
+                Logger.tag(TAG).error(e);
+            }
+
+            Comparator<BetterJSONObject> comp = new Comparator<BetterJSONObject>() {
+                @Override
+                public int compare(BetterJSONObject lhs, BetterJSONObject rhs) {
+                    Timestamp date1 = lhs.getTimestamp("created_at");
+                    Timestamp date2 = rhs.getTimestamp("created_at");
+                    return date1.compareTo(date2);
+                }
+            };
+            Collections.sort(results, comp);
+            Collections.sort(favResults, comp);
+
+            mCommentsIds = results;
+            mFavorites = favResults;
+            mProjects = projectResults;
+
+            if (mReloadObs) {
+                // Reload entire observation details (not just the comments/favs)
+                mObservation = observation;
+                if (!mReadOnly) {
+                    mUri = mObservation.getUri();
+                    getIntent().setData(mUri);
+                }
+            }
+
+            if (mReloadObs || mLoadObsJson) {
+                if (isSharedOnApp) {
+                    mObsJson = (String) mApp.getServiceResult(INaturalistService.OBSERVATION_JSON_RESULT);
+                } else {
+                    mObsJson = intent.getStringExtra(INaturalistService.OBSERVATION_JSON_RESULT);
+                }
+
+                if (mTaxonJson == null) {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            downloadCommunityTaxon();
+                        }
+                    }).start();
+                }
+            }
+
+            mLoadObsJson = false;
+
+            if (mReloadTaxon) {
+                // Reload just the taxon part, if changed
+                if (((mObservation.taxon_id == null) && (observation.taxon_id != null)) ||
+                        ((mObservation.taxon_id != null) && (observation.taxon_id == null)) ||
+                        (mObservation.taxon_id != observation.taxon_id)) {
+
+                    Logger.tag(TAG).debug("ObservationViewerActivity - ObservationReceiver: Updated taxon: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
+                    Logger.tag(TAG).debug("ObservationViewerActivity - ObservationReceiver: Updated taxon (new): " + observation.id + ":" + observation.preferred_common_name + ":" + observation.taxon_id);
+
+                    mObservation.species_guess = observation.species_guess;
+                    mObservation.taxon_id = observation.taxon_id;
+                    mObservation.preferred_common_name = observation.preferred_common_name;
+                    mObservation.iconic_taxon_name = observation.iconic_taxon_name;
+
+                    mTaxonScientificName = null;
+                    mTaxonIdName = null;
+                    mTaxonImage = null;
+                }
+
+                mReloadTaxon = false;
+
+                if (!mReadOnly) {
+                    // Update observation's taxon in DB
+                    ContentValues cv = mObservation.getContentValues();
+                    getContentResolver().update(mUri, cv, null, null);
+                    Logger.tag(TAG).debug("ObservationViewerActivity - ObservationReceiver - update obs: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
+                }
+            }
+
+            reloadPhotos();
+            loadObservationIntoUI();
+            setupMap();
+            refreshActivity();
+            refreshFavorites();
+            resizeActivityList();
+            resizeFavList();
+            refreshProjectList();
+            refreshDataQuality();
+            refreshAttributes();
+        }
+
+    }
 
     private class ObservationReceiver extends BroadcastReceiver {
 
@@ -2429,6 +2649,34 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     ContentValues cv = mObservation.getContentValues();
                     getContentResolver().update(mUri, cv, null, null);
                     Logger.tag(TAG).debug("ObservationViewerActivity - ObservationReceiver - update obs: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
+                }
+            }
+
+            if (mReloadObs && mReadOnly && mObservation.id != null && mApp.loggedIn()) {
+                // See if this read-only observation is in fact our own observation (e.g. viewed from explore screen)
+                if (mObservation.user_login.toLowerCase().equals(mApp.currentUserLogin().toLowerCase())) {
+                    // Our own observation
+                    Cursor c = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = ?", new String[]{String.valueOf(mObservation.id)}, Observation.DEFAULT_SORT_ORDER);
+                    if (c.getCount() > 0) {
+                        // Observation available locally in the DB - just show/edit it
+                        mReadOnly = false;
+                        c.moveToFirst();
+                        mObservation = new Observation(c);
+                        mReloadObs = false;
+                        mUri = mObservation.getUri();
+                        getIntent().setData(mUri);
+                    } else {
+                        // Observation not downloaded yet - download and save it
+                        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION, null, ObservationViewerActivity.this, INaturalistService.class);
+                        serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
+                        ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
+
+                        mReadOnly = false;
+                        mReloadObs = true;
+                    }
+                    c.close();
+
+                    refreshMenu();
                 }
             }
 
@@ -2876,6 +3124,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, this);
         BaseFragmentActivity.safeUnregisterReceiver(mAttributesReceiver, this);
         BaseFragmentActivity.safeUnregisterReceiver(mChangeAttributesReceiver, this);
+        BaseFragmentActivity.safeUnregisterReceiver(mDownloadObservationReceiver, this);
+
         if (mPhotosAdapter != null) {
             mPhotosAdapter.pause();
         }

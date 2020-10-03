@@ -269,6 +269,12 @@ public class ExploreSearchActivity extends AppCompatActivity {
                     return;
                 }
 
+                if (mSearchFilters == null) {
+                    setResult(RESULT_CANCELED);
+                    finish();
+                    return;
+                }
+
                 // All checked out - return the search filters
                 if (mSearchFilters.taxon != null) {
                     // A Taxon has been chosen - clear out the iconic taxa

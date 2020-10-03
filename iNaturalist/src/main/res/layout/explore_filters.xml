@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#F2F2F2"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-
 
     <LinearLayout
         android:id="@+id/apply_filters_container"
@@ -13,8 +12,8 @@
         android:layout_alignParentBottom="true"
         android:background="#ffffff"
         android:gravity="center"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:layout_height="58dp">
         <Button
             android:id="@+id/apply_filters"
@@ -24,8 +23,8 @@
             android:textColor="#ffffff"
             android:background="@drawable/circular_button"
             android:text="@string/apply_filters"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp" />
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp" />
     </LinearLayout>
 
 
@@ -43,22 +42,23 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:background="#E7E7E7"
                 android:id="@+id/taxonic_icons"
-                android:paddingLeft="6dp"
+                android:paddingStart="6dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:ignore="RtlSymmetry" />
 
             <RelativeLayout
                 android:id="@+id/show_my_observations"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 
                 <View
                     android:id="@+id/show_my_observations_checkbox"
                     android:background="@drawable/inat_checkbox"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_width="20dp"
                     android:layout_height="20dp" />
@@ -67,18 +67,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/show_my_observations_checkbox"
+                    android:layout_toStartOf="@id/show_my_observations_checkbox"
                     android:text="@string/show_only_my_observations"
-                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:textSize="16sp"
                     android:textColor="#000000"
+                    android:labelFor="@id/show_my_observations_checkbox"
                     />
 
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -86,10 +87,12 @@
                 <ImageView
                     android:id="@+id/project_pic"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:src="@drawable/ic_work_black_24dp"
                     android:layout_width="20dp"
-                    android:layout_height="20dp" />
+                    android:layout_height="20dp"
+                    android:importantForAccessibility="no"
+                    />
 
                 <ImageView
                     android:id="@+id/clear_project"
@@ -98,7 +101,8 @@
                     android:src="@drawable/ic_clear_white_48dp"
                     android:tint="#61000000"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:contentDescription="@string/remove_project_filter"
                     />
                 <TextView
                     android:id="@+id/project_name"
@@ -107,13 +111,14 @@
                     android:lines="1"
                     android:ellipsize="end"
                     android:textColor="#000000"
-                    android:layout_toRightOf="@id/project_pic"
-                    android:layout_toLeftOf="@id/clear_project"
-                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@id/project_pic"
+                    android:layout_toStartOf="@id/clear_project"
+                    android:layout_marginStart="10dp"
                     android:layout_centerVertical="true"
                     android:layout_marginBottom="20dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    />
 
                 <View
                     android:background="#61000000"
@@ -124,8 +129,8 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -133,10 +138,12 @@
                 <ImageView
                     android:id="@+id/user_pic"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:src="@drawable/ic_person_black_24dp"
                     android:layout_width="20dp"
-                    android:layout_height="20dp" />
+                    android:layout_height="20dp"
+                    android:importantForAccessibility="no"
+                    />
 
                 <ImageView
                     android:id="@+id/clear_user"
@@ -145,7 +152,8 @@
                     android:src="@drawable/ic_clear_white_48dp"
                     android:tint="#61000000"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:contentDescription="@string/remove_observer_filter"
                     />
                 <TextView
                     android:id="@+id/user_name"
@@ -153,14 +161,15 @@
                     android:textSize="16sp"
                     android:lines="1"
                     android:ellipsize="end"
-                    android:layout_toRightOf="@id/user_pic"
-                    android:layout_toLeftOf="@id/clear_user"
-                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@id/user_pic"
+                    android:layout_toStartOf="@id/clear_user"
+                    android:layout_marginStart="10dp"
                     android:textColor="#000000"
                     android:layout_centerVertical="true"
                     android:layout_marginBottom="20dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    />
 
                 <View
                     android:background="#61000000"
@@ -184,20 +193,20 @@
                 android:textSize="14sp"
                 android:textColor="#61000000"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 />
 
             <RelativeLayout
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <View
                     android:id="@+id/research_grade_checkbox"
                     android:background="@drawable/inat_checkbox"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_width="20dp"
                     android:layout_height="20dp" />
@@ -206,26 +215,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/research_grade_checkbox"
+                    android:layout_toStartOf="@id/research_grade_checkbox"
                     android:text="@string/research_grade"
-                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:textSize="16sp"
                     android:textColor="#000000"
+                    android:labelFor="@id/research_grade_checkbox"
                     />
 
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <View
                     android:id="@+id/needs_id_checkbox"
                     android:background="@drawable/inat_checkbox"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_width="20dp"
                     android:layout_height="20dp" />
@@ -234,26 +244,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/needs_id_checkbox"
+                    android:layout_toStartOf="@id/needs_id_checkbox"
                     android:text="@string/needs_id"
-                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:textSize="16sp"
                     android:textColor="#000000"
+                    android:labelFor="@id/needs_id_checkbox"
                     />
 
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <View
                     android:id="@+id/casual_grade_checkbox"
                     android:background="@drawable/inat_checkbox"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_width="20dp"
                     android:layout_height="20dp" />
@@ -262,11 +273,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/casual_grade_checkbox"
+                    android:layout_toStartOf="@id/casual_grade_checkbox"
                     android:text="@string/casual_grade"
-                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:textSize="16sp"
                     android:textColor="#000000"
+                    android:labelFor="@id/casual_grade_checkbox"
                     />
 
             </RelativeLayout>
@@ -285,21 +297,21 @@
                 android:textSize="14sp"
                 android:textColor="#61000000"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 />
 
 
             <RelativeLayout
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <View
                     android:id="@+id/has_photos_checkbox"
                     android:background="@drawable/inat_checkbox"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_width="20dp"
                     android:layout_height="20dp" />
@@ -307,27 +319,27 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/has_photos_checkbox"
+                    android:layout_toStartOf="@id/has_photos_checkbox"
+                    android:labelFor="@id/has_photos_checkbox"
                     android:text="@string/has_photos"
-                    android:layout_alignParentLeft="true"
-                    android:textSize="16sp"
                     android:textColor="#000000"
-                    />
+                    android:textSize="16sp" />
 
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <View
                     android:id="@+id/has_sounds_checkbox"
                     android:background="@drawable/inat_checkbox"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_width="20dp"
                     android:layout_height="20dp" />
@@ -336,11 +348,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/has_sounds_checkbox"
+                    android:layout_toStartOf="@id/has_sounds_checkbox"
                     android:text="@string/has_sounds"
-                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:textSize="16sp"
                     android:textColor="#000000"
+                    android:labelFor="@id/has_sounds_checkbox"
                     />
 
             </RelativeLayout>
@@ -360,13 +373,13 @@
                 android:textSize="14sp"
                 android:textColor="#61000000"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 />
 
             <RadioGroup
                 android:id="@+id/dates"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
 
@@ -388,7 +401,8 @@
                         android:textColor="#000000"
                         android:textSize="16sp"
                         android:text="@string/any"
-                        android:layout_marginLeft="12dp"
+                        android:layout_marginStart="12dp"
+                        android:labelFor="@id/option_date_any"
                         />
                 </LinearLayout>
 
@@ -400,6 +414,7 @@
                         android:id="@+id/option_date_exact"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/filter_observations_by_an_exact_date"
                         />
 
                      <Spinner
@@ -417,6 +432,7 @@
                         android:id="@+id/option_date_min_max"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/filter_observations_by_a_date_range"
                         />
 
                      <Spinner
@@ -429,8 +445,8 @@
                         android:textSize="16sp"
                         android:textColor="#8A000000"
                         android:text="@string/to"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -450,6 +466,7 @@
                         android:id="@+id/option_date_months"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/filter_observations_by_months"
                         />
 
                      <Spinner
@@ -477,15 +494,15 @@
                 android:textSize="14sp"
                 android:textColor="#61000000"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="15dp"
                 >
                 <Spinner
@@ -497,11 +514,11 @@
                     android:id="@+id/annotation_equal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="="
+                    android:text="@string/equals_sign"
                     android:textSize="16sp"
                     android:textColor="#000000"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_gravity="center_vertical"
                     />
 

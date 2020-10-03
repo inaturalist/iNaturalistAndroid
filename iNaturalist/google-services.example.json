@@ -1,0 +1,22 @@
+{
+  "project_info": {
+    "project_number": "1234",
+    "project_id": "your-project"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "abcde",
+        "android_client_info": {
+          "package_name": "org.inaturalist.android"
+        }
+      },
+      "api_key": [
+        {
+          "current_key": "abcde"
+        }
+      ]
+    }
+  ],
+  "configuration_version": "1"
+}

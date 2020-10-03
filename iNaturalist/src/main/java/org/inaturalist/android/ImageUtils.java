@@ -417,6 +417,11 @@ public class ImageUtils {
                 }
             }
 
+            if (resizedBitmap == null) {
+                Logger.tag(TAG).error("resizeImage: resizedBitmap is null");
+                return null;
+            }
+
             // Save resized image
             File imageFile = new File(context.getFilesDir(), UUID.randomUUID().toString() + ".jpeg");
             OutputStream os = new FileOutputStream(imageFile);
