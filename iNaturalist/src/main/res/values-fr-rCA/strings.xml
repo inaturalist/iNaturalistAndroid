@@ -164,7 +164,7 @@
         <item>Sortez dehors! Trouvez quelque chose de sauvage et prenez une photo claire.</item>
         <item>Partagez votre point de vue avec la communauté iNaturalist.</item>
         <item>Revenez jeter un coup d’œil plus tard pour voir l’activité de la communauté au sujet de votre observation!</item>
-        <item><![CDATA[Observations de <b>niveau recherche</b> sont partagées avec les scientifiques qui travaillent à mieux comprendre et protéger la nature.]]></item>
+        <item><![CDATA[Les observations de <b>calibre Recherche</b> sont partagées avec les scientifiques qui travaillent à mieux comprendre et protéger la nature.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
         <item>Ouvrir</item>
@@ -272,13 +272,13 @@
     <string name="unable_to_acquire_location">Impossible de localiser l\'emplacement</string>
     <string name="casual_grade">Classement occasionnel</string>
     <string name="needs_id">Identification nécessaire</string>
-    <string name="research_grade">Recherche d\'évaluation</string>
+    <string name="research_grade">Calibre Recherche</string>
     <string name="data_quality">Qualité des données</string>
     <string name="casual_grade_add_location"><![CDATA[ Ajouter un <b>emplacement</b> pour passer cette observation au statut "Besoin d\'identifier". ]]></string>
     <string name="casual_grade_add_date"><![CDATA[ Ajouter une <b>date</b> pour passer cette observation au statut "Besoin d\'identifier". ]]></string>
     <string name="casual_grade_add_photo"><![CDATA[ Ajouter une <b>photo</b> pour passer cette observation au statut "Besoin d\'identifier". ]]></string>
     <string name="casual_grade_captive"><![CDATA[ L\'observation a un classement occasionnel car elle est <b>en captivité/cultivé</b>. ]]></string>
-    <string name="needs_id_more_ids"><![CDATA[ L\'observation doit avoir <b>d\'autres identifications</b> de la part de la communauté pour passer au statut "Classement Recherche". ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ L\'observation doit avoir <b>d\'autres identifications</b> de la part de la communauté pour passer au statut "Calibre Recherche". ]]></string>
     <plurals name="included_in_projects">
         <item quantity="one">Inclus dans %1$d projet</item>
         <item quantity="other">Inclus dans %1$d projets</item>
@@ -406,7 +406,15 @@
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> a suggéré une identification : %2$s<font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> a commenté : &ldquo;%2$s&rdquo;<font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Il semblerait que vous ayez supprimé une photo en effaçant le cache d’application avant le téléversement. Vous devrez rajouter la photo à votre observation depuis votre galerie. À l’avenir, assurez-vous que vous avez téléversé toutes vos photos avant de vider la mémoire cache de l’application.</string>
-    <string name="new_activities">%1s nouvelles</string>
+    <!--
+        Label for the number of new notifications you might have. This specific string is used in
+        the side drawer next to the Activity menu item when you have new activity on your own
+        content.
+    -->
+    <plurals name="new_activities">
+        <item quantity="one">%1s new</item>
+        <item quantity="other">%1s new</item>
+    </plurals>
     <string name="no_results_found">Aucun résultat trouvé...</string>
     <plurals name="syncing_x_out_of_y_observations">
         <item quantity="one">%1$d observation sur %2$d en cours de synchronisation...</item>
@@ -463,7 +471,7 @@
     <string name="nearby">À proximité</string>
     <string name="couldnt_load_results">Impossible de charger les résultats : %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
-    <string name="research_grade_initials">NR</string>
+    <string name="research_grade_initials">CR</string>
     <string name="taxon_search_hint">par ex. les oiseaux, monarque</string>
     <string name="location_search_hint">par ex. ville, état, parc, pays...</string>
     <string name="no_taxon">Désolé, taxon introuvable</string>
@@ -688,7 +696,7 @@
     <string name="observers_all_caps">OBSERVATEURS</string>
     <string name="observations_regular">Observations</string>
     <string name="data_quality_assessment">Évaluation de la qualité des données</string>
-    <string name="research_grade_qualification">Qualification de niveau recherche</string>
+    <string name="research_grade_qualification">Qualification de calibre Recherche</string>
     <string name="date_specified">Date indiquée</string>
     <string name="location_specified">Lieu indiqué</string>
     <string name="has_photos_or_sounds">A des photos ou des sons</string>
@@ -874,7 +882,7 @@
     <string name="flagging_conversation">Signalement de la conversation...</string>
     <string name="failed_flagging_conversation">Échec du signalement de la conversation!</string>
     <string name="no_subject">Aucun objet</string>
-    <string name="rank_state_of_matter">State of matter</string>
+    <string name="rank_state_of_matter">État des choses</string>
     <string name="rank_kingdom">Règne</string>
     <string name="rank_subkingdom">Sous-règne</string>
     <string name="rank_phylum">Embranchement</string>
@@ -887,10 +895,10 @@
     <string name="rank_order">Ordre</string>
     <string name="rank_suborder">Sous-ordre</string>
     <string name="rank_infraorder">Infra-ordre</string>
-    <string name="rank_subterclass">Subterclass</string>
-    <string name="rank_parvorder">Parvorder</string>
-    <string name="rank_zoosection">Zoosection</string>
-    <string name="rank_zoosubsection">Zoosubsection</string>
+    <string name="rank_subterclass">Sous-classe</string>
+    <string name="rank_parvorder">Clade</string>
+    <string name="rank_zoosection">Section animale</string>
+    <string name="rank_zoosubsection">Sous-section animale</string>
     <string name="rank_superfamily">Super-famille</string>
     <string name="rank_epifamily">Épifamille</string>
     <string name="rank_family">Famille</string>
@@ -899,7 +907,7 @@
     <string name="rank_tribe">Tribu</string>
     <string name="rank_subtribe">Sous-tribu</string>
     <string name="rank_genus">Genre</string>
-    <string name="rank_genushybrid">Genushybrid</string>
+    <string name="rank_genushybrid">Genre hybride</string>
     <string name="rank_subgenus">Sous-genre</string>
     <string name="rank_section">Section</string>
     <string name="rank_subsection">Sous-section</string>
@@ -911,17 +919,13 @@
     <string name="rank_subspecies">Sous-espèce</string>
     <string name="rank_variety">Variété</string>
     <string name="rank_form">Forme</string>
-    <string name="rank_infrahybrid">Infrahybrid</string>
-    <string name="rank_leaves">Leaves</string>
-    <string name="location_lat_lng">Géolocalisation: %1$f, %2$f</string>
-    <string name="i_consent_process_personal_info"><![CDATA[J’accepte d’autoriser iNaturalist à stocker et traiter des un nombre limité d\'informations
-personnelles me concernant, afin de gérer mon compte. <b>En savoir plus</b>]]></string>
-    <string name="about_personal_information">A propos des données personnelles</string>
-    <string name="personal_information_notes"><![CDATA[Nous stockons les informations personnelles telles que le nom des utilisateurs et les adresses de messagerie afin de
-gérer les compter sur ce site, et pour être en accord avec les lois sur la vie privée, nous
-avons besoin que vous cochiez cette case pour indiquer que vous acceptez cette utilisation
-d’informations personnelles. Pour en savoir plus sur les informations que nous collectons et
-comment nous les utilisons, veuillez voir notre
+    <string name="rank_infrahybrid">Sous-hybride</string>
+    <string name="rank_leaves">Feuilles</string>
+    <string name="location_lat_lng">Géolocalisation : %1$f, %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[J’accepte d’autoriser iNaturalist à stocker et traiter un nombre limité de mes informations
+personnelles, afin de gérer mon compte. <b>En savoir plus</b>]]></string>
+    <string name="about_personal_information">À propos des données personnelles</string>
+    <string name="personal_information_notes"><![CDATA[Nous stockons les informations personnelles telles que le nom des utilisateurs et les adresses courriel afin de gérer les comptes sur ce site, et pour être conforme avec les lois sur la vie privée, nous avons besoin que vous cochiez cette case pour indiquer que vous acceptez cette utilisation d’informations personnelles. Pour en savoir plus sur les informations que nous collectons et comment nous les utilisons, veuillez voir notre
 <a href=\'%{privacy_url}\' target=\'_blank\'>Politique de confidentialité</a>
 et nos <a href=\'%{terms_url}\' target=\'_blank\'>Conditions d\'utilisation</a>.]]></string>
     <string name="i_agree_to_tos_and_privacy"><![CDATA[J\'accepte les <a href="/terms" target="_blank">conditions d\'utilisation</a> et
@@ -929,6 +933,7 @@ et nos <a href=\'%{terms_url}\' target=\'_blank\'>Conditions d\'utilisation</a>.
 les <a href="/pages/community+guidelines" target="_blank">Règles de la Communauté</a>.]]></string>
     <string name="privacy_policy">Politique de confidentialité</string>
     <string name="terms_of_service">Conditions d’utilisation</string>
+    <!-- Placeholder text shown in place of a username when the user has been deleted -->
     <string name="deleted_user">Utilisateur supprimé</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_short_this_year">d MMM</string>
@@ -938,4 +943,18 @@ les <a href="/pages/community+guidelines" target="_blank">Règles de la Communau
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <string name="show_common_names">Show common names</string>
+    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
+    <string name="email_must_look_like_email_address">Email must look like an email address</string>
+    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
+    <string name="password_too_short">Password must be at least six characters long</string>
+    <string name="switch_to_grid_view">Switch to grid view</string>
+    <string name="switch_to_list_view">Switch to list view</string>
+    <string name="remove_project_filter">Remove project filter</string>
+    <string name="remove_observer_filter">Remove observer filter</string>
+    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
+    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
+    <string name="filter_observations_by_months">Filter observations by months</string>
+    <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
+    <string name="equals_sign">=</string>
 </resources>

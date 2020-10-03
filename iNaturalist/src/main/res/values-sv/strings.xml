@@ -227,7 +227,7 @@
     <string name="log_in">Logga in</string>
     <string name="sign_up">Gå med</string>
     <string name="min_6_chars">Minst 6 tecken</string>
-    <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data (recommended). <b>Learn More</b>]]></string>
+    <string name="use_my_license"><![CDATA[Ja, licensiera mitt innehåll så att vetenskapsmän kan använda mina data (rekommenderas). <b>Läs mer</b>]]></string>
     <string name="content_licensing">Upphovsrätt</string>
     <string name="content_licensing_description">Markera denna ruta om du vill tillämpa en Creative Commons Erkännande Icke Kommersiell-licens för dina bilder. Du kan välja en annan licens eller ta bort licensen senare, men detta är den bästa licensen för att dela dina bilder med forskare.</string>
     <!-- Try to keep this about the length of the English text -->
@@ -406,7 +406,15 @@
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> föreslog en bestämning: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> kommenterade: &ldquo;%2$ss&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Det ser ut som du raderade en bild genom att du rensade cacheminnet i appen innan du laddade upp observationen. Du måste lägga till bilden igen till din observation från ditt bildgalleri. I framtiden, kontrollera att du har laddat upp alla dina bilder innan du rensar cacheminnet i appen.</string>
-    <string name="new_activities">%1s ny(a)</string>
+    <!--
+        Label for the number of new notifications you might have. This specific string is used in
+        the side drawer next to the Activity menu item when you have new activity on your own
+        content.
+    -->
+    <plurals name="new_activities">
+        <item quantity="one">%1s new</item>
+        <item quantity="other">%1s new</item>
+    </plurals>
     <string name="no_results_found">Inga resultat hittades...</string>
     <plurals name="syncing_x_out_of_y_observations">
         <item quantity="one">Synkar %1$d av %2$d observation...</item>
@@ -913,20 +921,35 @@
     <string name="rank_form">Form</string>
     <string name="rank_infrahybrid">Infrahybrid</string>
     <string name="rank_leaves">Löv</string>
-    <string name="location_lat_lng">Location: %1$f, %2$f</string>
-    <string name="i_consent_process_personal_info"><![CDATA[I consent to allow iNaturalist to store and process limited kinds of personal information about me in order to manage my account. <b>Learn More</b>]]></string>
-    <string name="about_personal_information">About Personal Information</string>
-    <string name="personal_information_notes"><![CDATA[We store personal information like usernames and email addresses in order to manage accounts on this site, and to comply with privacy laws, we need you to check this box to indicate that you consent to this use of personal information. To learn more about what information we collect and how we use it, please see our <a href="https://www.inaturalist.org/privacy">Privacy Policy</a> and our <a href="https://www.inaturalist.org/terms">Terms of Service</a>.]]></string>
-    <string name="i_agree_to_tos_and_privacy"><![CDATA[I agree to the <a href="https://www.inaturalist.org/terms">Terms of Service</a> and <a href="https://www.inaturalist.org/privacy">Privacy Policy</a>, and I have reviewed the <a href="https://www.inaturalist.org/pages/community+guidelines">Community Guidelines</a>.]]></string>
-    <string name="privacy_policy">Privacy Policy</string>
-    <string name="terms_of_service">Terms of Service</string>
-    <string name="deleted_user">Deleted User</string>
+    <string name="location_lat_lng">Position: %1$f, %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[Jag samtycker till att iNaturalist får lagra och bearbeta begränsade typer av personuppgifter om mig för att hantera mitt konto. <b>Lär dig mer</b>]]></string>
+    <string name="about_personal_information">Om personuppgifter</string>
+    <string name="personal_information_notes"><![CDATA[Vi lagrar personlig information som användarnamn och e-postadresser för att hantera konton på denna webbplats, och för att vi ska kunna följa sekretesslagstiftningen behöver du markera denna ruta för att ange att du samtycker till denna användning av personuppgifter. För att läsa mer om vilken information vi samlar in och hur vi använder den, vänligen se vår <a href="https://www.inaturalist.org/privacy">Integritetspolicy</a> och våra <a href="https://www.inaturalist.org/terms">Användarvillkor</a>.]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[Jag godkänner <a href="https://www.inaturalist.org/terms">användarvillkoren</a> och <a href="https://www.inaturalist.org/privacy">sekretesspolicyn</a>, och jag har granskat <a href="https://www.inaturalist.org/pages/community+guidelines">gemenskapens riktlinjer</a>.]]></string>
+    <string name="privacy_policy">Integritetspolicy</string>
+    <string name="terms_of_service">Användarvillkor</string>
+    <!-- Placeholder text shown in place of a username when the user has been deleted -->
+    <string name="deleted_user">Raderad användare</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short_this_year">MMM d</string>
+    <string name="date_short_this_year">d MMM</string>
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short">MM/dd/yy</string>
+    <string name="date_short">dd-MM-yy</string>
     <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <string name="show_common_names">Show common names</string>
+    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
+    <string name="email_must_look_like_email_address">Email must look like an email address</string>
+    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
+    <string name="password_too_short">Password must be at least six characters long</string>
+    <string name="switch_to_grid_view">Switch to grid view</string>
+    <string name="switch_to_list_view">Switch to list view</string>
+    <string name="remove_project_filter">Remove project filter</string>
+    <string name="remove_observer_filter">Remove observer filter</string>
+    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
+    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
+    <string name="filter_observations_by_months">Filter observations by months</string>
+    <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
+    <string name="equals_sign">=</string>
 </resources>
