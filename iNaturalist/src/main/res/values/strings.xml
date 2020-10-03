@@ -229,7 +229,10 @@
     <string name="skip">Skip  ›</string>
     <string name="already_have_account">Already have an account?</string>
     <string name="log_in">Log In</string>
+    <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Sign Up</string>
+    <!-- Title of the view used to sign up for a new account -->
+    <string name="sign_up_title">Sign Up</string>
     <string name="min_6_chars">Min. 6 characters</string>
     <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data (recommended). <b>Learn More</b>]]></string>
     <string name="content_licensing">Content Licensing</string>
