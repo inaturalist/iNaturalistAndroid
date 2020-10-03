@@ -112,7 +112,7 @@ public class TaxonMapActivity extends AppCompatActivity {
                     @Override
                     public URL getTileUrl(int x, int y, int zoom) {
 
-                        String s = String.format(Locale.ENGLISH, INaturalistService.API_HOST + "/grid/%d/%d/%d.png?taxon_id=%d&quality_grade=research",
+                        String s = String.format(Locale.ENGLISH, INaturalistService.API_HOST + "/grid/%d/%d/%d.png?taxon_id=%d&verifiable=true",
                                 zoom, x, y, mTaxonId);
                         try {
                             return new URL(s);
