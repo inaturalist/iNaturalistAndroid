@@ -162,7 +162,7 @@
         <item>Wspomóż</item>
     </string-array>
     <string-array name="tutorial_descriptions">
-        <item>Eksporuj i połącz się z Naturą</item>
+        <item>Eksploruj i połącz się z Naturą</item>
         <item>Wyjdź na zewnątrz! Znajdź coś dzikiego i wykonaj wyraźne zdjęcie.</item>
         <item>Udostępnij swoje obserwację za pomocą społeczności iNaturalist.</item>
         <item>Sprawdź komentarze i identyfikacje swojej obserwacji!</item>
@@ -184,7 +184,7 @@
     <string name="remove">Usunąć?</string>
     <string name="no_observations_found">Nie znaleziono żadnych obserwacji</string>
     <string name="license_none">Brak, Wszystkie prawa zastrzeżone</string>
-    <string name="sources_and_attribution">Źródła i Uzanie Autorstwa</string>
+    <string name="sources_and_attribution">Źródła i Uznanie Autorstwa</string>
     <string name="photos"><![CDATA[<b>Zdjęcia:</b> %1$s]]></string>
     <string name="text"><![CDATA[<b>Tekst:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
@@ -206,7 +206,7 @@
     <string name="download_not_available">Pobieranie nie dostępne</string>
     <string name="guide_editor_must_enable_this_feature">Redaktor Przewodnika musi włączyć tą funkcję.</string>
     <string name="are_you_sure">Jesteś pewien?</string>
-    <string name="download_guide_alert">Zostanie pobrane %1$s danych, abyś mogł używać tego przewodnika nawet gdy nie będziesz miał dostępu do Internetu.</string>
+    <string name="download_guide_alert">Zostanie pobrane %1$s danych, abyś mógł używać tego przewodnika nawet gdy nie będziesz miał dostępu do Internetu.</string>
     <string name="download">Pobierz</string>
     <string name="failed_to_download_guide">Nie udało się pobrać Przewodnika</string>
     <string name="internet_connection_seems_to_be_offline">Wygląda na to, że nie działa połączenie z internetem.</string>
@@ -238,7 +238,7 @@
     <string name="or_login_with">Lub zaloguj się przez:</string>
     <string name="registering">Rejestracja...</string>
     <string name="recommended_next_step">Polecane następne kroki</string>
-    <string name="could_not_register_user">Nie udało się zarejestorować urzytkownika</string>
+    <string name="could_not_register_user">Nie udało się zarejestrować użytkownika</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
     <string name="login_signup">Zaloguj się / Zarejestruj się</string>
     <string name="please_sign_in_via_settings_for_guides">Musisz być zalogowany, aby zobaczyć Przewodniki.</string>
@@ -390,18 +390,18 @@
     <string name="birds">Ptaki</string>
     <string name="arachnids">Pajęczaki</string>
     <string name="no_connectivity">Brak połączenia</string>
-    <string name="no_recommended_missions">Wygląda na to, że nie mamy rekomandacji w tym obszarze. Spróbuj w innej lokalizacji.</string>
+    <string name="no_recommended_missions">Wygląda na to, że nie mamy rekomendacji w tym obszarze. Spróbuj w innej lokalizacji.</string>
     <string name="what_to_look_for">Czego szukać</string>
     <string name="have_been_seen_here">Byłem Widziałem</string>
     <string name="observe">Obserwuj</string>
     <string name="nearby_missions">Misje w pobliżu</string>
     <string name="searching_your_area">Szukanie w pobliżu...</string>
-    <string name="expanding_your_search_area">Rozszeżanie obszaru poszukiwań...</string>
+    <string name="expanding_your_search_area">Rozszerzanie obszaru poszukiwań...</string>
     <string name="introducing_missions">Przedstawiamy Misje!</string>
     <string name="missions_onboarding_description">Misje sugerują czego możesz poszukać w pobliżu. W ten sposób możesz odkrywać nowe gatunki! (Wymagane połączenie z Internetem)</string>
     <string name="ok_got_it">Ok, rozumiem!</string>
     <string name="could_not_download_observations">Nie udało się pobrać najnowszych obserwacji - problem z połączeniem. Spróbuj ponownie później.</string>
-    <string name="no_news_yet">Na razie brak nowości. Sprawdaj na bieżąco!</string>
+    <string name="no_news_yet">Na razie brak nowości. Sprawdzaj na bieżąco!</string>
     <string name="my_content">Moje treści</string>
     <string name="following">Śledzone</string>
     <string name="no_updates_yet">Na razie brak uaktualnień. Sprawdaj na bieżąco!</string>
@@ -410,7 +410,17 @@
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> zasugeruje Identyfikację: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> skomentował: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Wygląda na to, że usunąłeś zdjęcie przez wyczyszczenie pamięci podręcznej aplikacji zanim to zostało wysłane. Musisz ponownie dodać zdjęcie z galerii. W przyszłości, postaraj się wysłać wszystkie dodane zdjęcia przed wyczyszczeniem pamięci podręcznej aplikacji.</string>
-    <string name="new_activities">Nowe: %1s</string>
+    <!--
+        Label for the number of new notifications you might have. This specific string is used in
+        the side drawer next to the Activity menu item when you have new activity on your own
+        content.
+    -->
+    <plurals name="new_activities">
+        <item quantity="one">%1s new</item>
+        <item quantity="few">%1s new</item>
+        <item quantity="many">%1s new</item>
+        <item quantity="other">%1s new</item>
+    </plurals>
     <string name="no_results_found">Nie znaleziono wyników...</string>
     <plurals name="syncing_x_out_of_y_observations">
         <item quantity="one">Syncing %1$d of %2$d observation...</item>
@@ -457,7 +467,7 @@
     <string name="pretty_sure_rank">Jesteśmy dość pewni, że to %1$s:</string>
     <string name="what_did_you_see">Co zaobserwowałeś?</string>
     <string name="suggest_species">Zasugeruj gatunek</string>
-    <string name="suggest_species_description">Podpowiada gatunki na podstawnie wizualnego podobieństwa do zdjęć.</string>
+    <string name="suggest_species_description">Podpowiada gatunki na podstawie wizualnego podobieństwa do zdjęć.</string>
     <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Wizualnie podobne</string>
     <string name="visually_similar_seen_nearby">Wizualnie podobne / Widziane w pobliżu</string>
@@ -465,11 +475,11 @@
     <string name="enlarge">Powiększ</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Zobacz taksony podrzędne</string>
-    <string name="invalid_photo_extension">Błąd importu zdjęcia: Można importować tylko pliki z rozszeżeniami JPG/JPEG/PNG</string>
+    <string name="invalid_photo_extension">Błąd podczas importowania zdjęcia: Można importować tylko pliki zdjęć z rozszerzeniami JPG/JPEG/PNG</string>
     <string name="taxon_has_no_photos">Ten takson nie posiada zdjęć.</string>
     <string name="terrain">Teren</string>
     <string name="filters">Filtry</string>
-    <string name="exploring_all">Eksporuj wszystko</string>
+    <string name="exploring_all">Eksploruj wszystko</string>
     <string name="nearby">W pobliżu</string>
     <string name="couldnt_load_results">Nie udało się pobrać wyników: %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
@@ -477,7 +487,7 @@
     <string name="taxon_search_hint">np. ptaki, wróbel</string>
     <string name="location_search_hint">np. miasto, województwo, park, kraj...</string>
     <string name="no_taxon">Przepraszamy, nie znaleziono taksonu</string>
-    <string name="please_select_taxon">Wybierz proszę poprawny takson z listy (lub wyczyć pole taksonu).</string>
+    <string name="please_select_taxon">Wybierz proszę poprawny takson z listy (lub wyczyść pole taksonu).</string>
     <string name="sorry_no_location">Przepraszamy, nie znaleziono lokalizacji</string>
     <string name="location_not_found">Lokacji lub miejsca, którego szukasz nie ma w naszej bazie. Wybierz proszę jedno z miejsc podanych poniżej pola wyszukiwania lub wyczyść pole wyszukiwania.</string>
     <string name="undefined">Niezdefiniowane</string>
@@ -574,7 +584,7 @@
     <string name="new_observation">Nowa obserwacja</string>
     <string name="inactive_taxon">Nieaktywny takson</string>
     <string name="no_identifications_found">Śledź sugerowane przez siebie identyfikacje dla obserwacji innych użytkowników.</string>
-    <string name="no_species_found">To jest lista gatunków najczęściej obserwowanych przez Ciebie.\n\nUWAGA: Szacuje się, że na Ziemi istnieje 9 milionów gatunków. Wyjdź na zewnątrz i zaobseruj je!</string>
+    <string name="no_species_found">To jest lista gatunków najczęściej obserwowanych przez Ciebie.\n\nUWAGA: Szacuje się, że na Ziemi istnieje 9 milionów gatunków. Wyjdź na zewnątrz i zaobserwuj je!</string>
     <string name="make_an_observation">Dodaj obserwację</string>
     <string name="no_observations_found_new">Obserwacje są zapisami Twoich spotkań z poszczególnymi organizmami w określonych czasie i miejscu.</string>
     <string name="discard_comment">Czy na pewno chcesz odrzucić ten komentarz?</string>
@@ -703,7 +713,7 @@
     <string name="research_grade_qualification">Kwalifikacja do Poziomu Badawczego</string>
     <string name="date_specified">Określona data</string>
     <string name="location_specified">Określona lokalizacja</string>
-    <string name="has_photos_or_sounds">Posiada zdjęcia lub nagrania dzwiękowe</string>
+    <string name="has_photos_or_sounds">Posiada zdjęcia lub nagrania dźwiękowe</string>
     <string name="has_id_supported_by_two_or_more">Posiada Identyfikację od dwóch lub więcej użytkowników</string>
     <string name="date_is_accurate">Data jest dokładna</string>
     <string name="location_is_accurate">Lokalizacja jest dokładna</string>
@@ -733,7 +743,7 @@
     <string name="mark_all_as_viewed">Oznacz wszystkie jako przejrzane</string>
     <string name="content_hidden">Zawartość Ukryta</string>
     <string name="show_hidden_content">Pokaż Ukrytą Zawartość</string>
-    <string name="content_hidden_because">Zawartość ukryta przez @%1$s w dniu %2$s z podowu: \"%3$s\"</string>
+    <string name="content_hidden_because">Zawartość ukryta przez @%1$s w dniu %2$s z powodu: \"%3$s\"</string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Kontakt z Obsługą</a>]]></string>
     <string name="content">Zawartość</string>
     <string name="has_photos">Posiada zdjęcia</string>
@@ -745,12 +755,12 @@
     <string name="no_recorder_found">Nie znaleziono domyślnego rejestratora dźwięku!</string>
     <string name="couldnt_retrieve_sound">Nie można było uzyskać dźwięku z domyślnego rejestratora - spróbuj zamiast tego importować dźwięk</string>
     <string name="upload_sound">Wybierz dźwięk</string>
-    <string name="multi_select_sound_description">Importuj wiele dzwięków poprzez długie naciśnięcie pojedynczego dzięku</string>
-    <string name="alert_unsupported_audio_type">Przepraszamy, ale wystąpił problem przy pobieraniu dzwięku z tego źródła</string>
-    <string name="invalid_audio_extension">Błąd importu zdjęcia: Można importować tylko pliki z rozszeżeniami WAV/MP3/AMR</string>
+    <string name="multi_select_sound_description">Importuj wiele dźwięków poprzez długie naciśnięcie pojedynczego dźwięku</string>
+    <string name="alert_unsupported_audio_type">Przepraszamy, ale wystąpił problem przy pobieraniu dźwięku z tego źródła</string>
+    <string name="invalid_audio_extension">Błąd importu nagrania: Można importować tylko pliki z rozszerzeniami WAV/MP3/AMR</string>
     <string name="importing_sounds">Importowanie dźwięku...</string>
     <string name="observation_sound">Dzwięk z obserwacji</string>
-    <string name="deleted_sounds_from_cache_error">Wygląda na to, że usunąłeś dzwięk przez wyczyszczenie pamięci podręcznej aplikacji zanim został on wysłane. Musisz ponownie dodać dzwięk z galerii. W przyszłości, postaraj się wysłać wszystkie dodane dzwięki przed wyczyszczeniem pamięci podręcznej aplikacji.</string>
+    <string name="deleted_sounds_from_cache_error">Wygląda na to, że usunąłeś dźwięk przez wyczyszczenie pamięci podręcznej aplikacji zanim został on wysłany. Musisz ponownie dodać dźwięk z galerii. W przyszłości, postaraj się wysłać wszystkie dodane dźwięki przed wyczyszczeniem pamięci podręcznej aplikacji.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f sek.</string>
     <string name="clear_all_debug_logs">Wyczyść wszystkie dzienniki debugowania</string>
@@ -778,7 +788,7 @@
     <!-- Label for adjusting the brightness of an image -->
     <string name="ucrop_brightness">Jasność</string>
     <!-- Label for adjusting the contrast of an image -->
-    <string name="ucrop_contrast">Contrast</string>
+    <string name="ucrop_contrast">Kontrast</string>
     <!-- Label for adjusting the saturation of an image -->
     <string name="ucrop_saturation">Nasycenie</string>
     <!-- Label for adjusting the sharpness of an image -->
@@ -934,6 +944,7 @@
     <string name="i_agree_to_tos_and_privacy"><![CDATA[I agree to the <a href="https://www.inaturalist.org/terms">Terms of Service</a> and <a href="https://www.inaturalist.org/privacy">Privacy Policy</a>, and I have reviewed the <a href="https://www.inaturalist.org/pages/community+guidelines">Community Guidelines</a>.]]></string>
     <string name="privacy_policy">Privacy Policy</string>
     <string name="terms_of_service">Terms of Service</string>
+    <!-- Placeholder text shown in place of a username when the user has been deleted -->
     <string name="deleted_user">Deleted User</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_short_this_year">MMM d</string>
@@ -943,4 +954,18 @@
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <string name="show_common_names">Show common names</string>
+    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
+    <string name="email_must_look_like_email_address">Email must look like an email address</string>
+    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
+    <string name="password_too_short">Password must be at least six characters long</string>
+    <string name="switch_to_grid_view">Switch to grid view</string>
+    <string name="switch_to_list_view">Switch to list view</string>
+    <string name="remove_project_filter">Remove project filter</string>
+    <string name="remove_observer_filter">Remove observer filter</string>
+    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
+    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
+    <string name="filter_observations_by_months">Filter observations by months</string>
+    <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
+    <string name="equals_sign">=</string>
 </resources>

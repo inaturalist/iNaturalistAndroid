@@ -407,7 +407,15 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> sugirió un ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> comentó: "%2$s" <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Parece que has eliminado una foto al limpiar la caché de la aplicación antes de subirla. Necesitarás volver a agregar la foto a tu observación de la galería. En el futuro, por favor, asegúrate que han subido todas tus fotos antes de eliminar la caché de la aplicación.</string>
-    <string name="new_activities">%1s nuevo</string>
+    <!--
+        Label for the number of new notifications you might have. This specific string is used in
+        the side drawer next to the Activity menu item when you have new activity on your own
+        content.
+    -->
+    <plurals name="new_activities">
+        <item quantity="one">%1s new</item>
+        <item quantity="other">%1s new</item>
+    </plurals>
     <string name="no_results_found">No se encontraron resultados...</string>
     <plurals name="syncing_x_out_of_y_observations">
         <item quantity="one">Sincronizando %1$d de %2$d observación</item>
@@ -923,6 +931,7 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <string name="i_agree_to_tos_and_privacy"><![CDATA[Acepto las <a href="https://www.inaturalist.org/terms">Condiciones del servicio</a> y la <a href="https://www.inaturalist.org/privacy">Política de privacidad</a>, y he revisado la <a href="https://www.inaturalist.org/pages/community+guidelines">Guía de la comunidad</a>.]]></string>
     <string name="privacy_policy">Política de privacidad</string>
     <string name="terms_of_service">Condiciones del servicio</string>
+    <!-- Placeholder text shown in place of a username when the user has been deleted -->
     <string name="deleted_user">Usuario eliminado</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_short_this_year">d MMM</string>
@@ -932,4 +941,18 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <string name="show_common_names">Show common names</string>
+    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
+    <string name="email_must_look_like_email_address">Email must look like an email address</string>
+    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
+    <string name="password_too_short">Password must be at least six characters long</string>
+    <string name="switch_to_grid_view">Switch to grid view</string>
+    <string name="switch_to_list_view">Switch to list view</string>
+    <string name="remove_project_filter">Remove project filter</string>
+    <string name="remove_observer_filter">Remove observer filter</string>
+    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
+    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
+    <string name="filter_observations_by_months">Filter observations by months</string>
+    <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
+    <string name="equals_sign">=</string>
 </resources>

@@ -5,7 +5,7 @@
     <string name="delete_observation">Dzēst novērojumu</string>
     <string name="observation_deleted">Novērojums izdzēsts</string>
     <string name="species_guess_hint">Sugas nosaukums</string>
-    <string name="ok">Apstiprināt</string>
+    <string name="ok">Labi</string>
     <string name="cancel">Atcelt</string>
     <string name="loading">Ielādē...</string>
     <string name="sync_required">Nepieciešama datu sinhronizācija</string>
@@ -50,7 +50,7 @@
     <string name="password">Parole</string>
     <string name="unknown">Nezināms</string>
     <string name="unknown_species">Nezināma suga</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">Apstiprināt</string>
+    <string name="com_facebook_dialogloginactivity_ok_button">Labi</string>
     <string name="com_facebook_loginview_log_out_button">Iziet</string>
     <string name="com_facebook_loginview_log_in_button">Pieslēgties</string>
     <string name="com_facebook_loginview_logged_in_as">Pieslēdzies ar lietotājvārdu: %1$s</string>
@@ -409,7 +409,16 @@ globālā iNaturalist tīkla.</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> ieteica ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> komentēja: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Fotogrāfija izdzēsās, jo iztīrīji lietotnes kešatmiņu pirms augšupielādes. Pievieno novērojumam fotogrāfiju no jauna, izvēloties to no galerijas! Turpmāk, lūdzu, pārliecinies, vai visas fotogrāfijas ir augšupielādētas pirms lietotnes kešatmiņas iztīrīšanas!</string>
-    <string name="new_activities">%1s jaunumi</string>
+    <!--
+        Label for the number of new notifications you might have. This specific string is used in
+        the side drawer next to the Activity menu item when you have new activity on your own
+        content.
+    -->
+    <plurals name="new_activities">
+        <item quantity="zero">%1s new</item>
+        <item quantity="one">%1s new</item>
+        <item quantity="other">%1s new</item>
+    </plurals>
     <string name="no_results_found">Nekas netika atrasts.</string>
     <plurals name="syncing_x_out_of_y_observations">
         <item quantity="zero">Sinhronizē %1$d no %2$d novērojumiem...</item>
@@ -592,7 +601,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="inat_credits"><![CDATA[iNaturalist pastāv pateicoties cilvēkiem, kas iesaistās mūsu kopienā. Cilvēki, kas izstrādā programmatūru, interfeisu dizainu, uztur infrastruktūru, atbalsta kopienu un veicina sadarbību: Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard un Ken-ichi Ueda.<br/><br/>CalTech un Cornell Tech palīdzēja izstrādāt datorredzes sistēmu, kas fotogrāfijās identificē organismus. Pateicamies Grant Van Horn, Serge Belongie un Pietro Perona par ieguldījumu datorredzes izpētē. Vairāk informācijas: <a href="http://www.visipedia.org">visipedia.org</a>. Liels paldies NVIDIA par papildu palīdzību!]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[Pateicoties iesaistīto partnerorganizāciju atbalstam, starptautiskais iNaturalist tīkls atbalsta vietējās, pilnīgi integrētās, uz iNaturalist balstītās tīmekļa vietnes šādās valstīs:]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist izsaka lielu pateicību atvērtā pirmkoda izstrādātājiem, kas nodrošina programmatūru, uz kuru paļaujamies ik dienas. Nopelni par darbu ar atvērto pirmkodu: <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a>.<br/> Pateicamies brīvprātīgajiem no crowdin.com kopienas par palīdzību ar tulkošanu, it īpaši liels paldies lietotājiem: Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie un katunchik. <br/>IUCN II kategorijas vietas nodrošina IUCN un UNEP-WCMC (2015), Pasaules aizsargājamo teritoriju datubāze (WDPA) [On-line], [11/2014], Kembridža, Apvienotā Karaliste: UNEP-WCMC. Pieejams: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
-    <string name="credits_title">Pateicība</string>
+    <string name="credits_title">Nopelni</string>
     <string name="password_changed">Lietotnē saglabātā parole vairs nav derīga – vai mainīji paroli INaturalist tīmekļa vietnē? Lūdzu, ievadi šeit jauno paroli!</string>
     <string name="just_so_you_know">Informācijai.</string>
     <string name="ask_for_g_plus_permissions">Lai izmantotu Google kontu, Google mums pieprasa lūgt atļauju piekļuvei pie lietotāja kontaktiem, kaut arī mēs nevēlamies piekļūt taviem kontaktiem. Ja aizliegsi piekļuvi, būs jāreģistrējas vai jāpieslēdzas ar lietotājvārdu un paroli.</string>
@@ -929,6 +938,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="i_agree_to_tos_and_privacy"><![CDATA[Piekrītu <a href="https://www.inaturalist.org/terms">lietošanas noteikumiem</a> un <a href="https://www.inaturalist.org/privacy">privātuma politikai</a> un esmu iepazinies ar <a href="https://www.inaturalist.org/pages/community+guidelines">kopienas vadlīnijām</a>.]]></string>
     <string name="privacy_policy">Privātuma politika</string>
     <string name="terms_of_service">Lietošanas noteikumi</string>
+    <!-- Placeholder text shown in place of a username when the user has been deleted -->
     <string name="deleted_user">Dzēsts lietotājs</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_short_this_year">d MMM</string>
@@ -938,4 +948,18 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <string name="show_common_names">Show common names</string>
+    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
+    <string name="email_must_look_like_email_address">Email must look like an email address</string>
+    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
+    <string name="password_too_short">Password must be at least six characters long</string>
+    <string name="switch_to_grid_view">Switch to grid view</string>
+    <string name="switch_to_list_view">Switch to list view</string>
+    <string name="remove_project_filter">Remove project filter</string>
+    <string name="remove_observer_filter">Remove observer filter</string>
+    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
+    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
+    <string name="filter_observations_by_months">Filter observations by months</string>
+    <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
+    <string name="equals_sign">=</string>
 </resources>

@@ -226,7 +226,7 @@
     <string name="log_in">Đăng nhập</string>
     <string name="sign_up">Đăng ký</string>
     <string name="min_6_chars">Tối thiểu 6 kí tự</string>
-    <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data (recommended). <b>Learn More</b>]]></string>
+    <string name="use_my_license"><![CDATA[Được, cấp phép bản quyền cho nội dung của tôi để các nhà khoa học có thể sử dụng dữ liệu của tôi (được khuyến nghị). <b>Xem thêm thông tin</b>]]></string>
     <string name="content_licensing">Cấp phép Bản quyền cho nội dung</string>
     <string name="content_licensing_description">Check this box if you want to apply a Creative Commons Attribution-NonCommercial license to your photos. You can choose a different license or remove the license later, but this is the best license for sharing with researchers.</string>
     <!-- Try to keep this about the length of the English text -->
@@ -249,7 +249,7 @@
     <string name="make_first">Chọn làm thứ nhất</string>
     <string name="notes">Ghi chú</string>
     <string name="location_is">Vị trí là</string>
-    <string name="is_captive">It is captive or cultivated</string>
+    <string name="is_captive">Được nuôi hay được trồng</string>
     <string name="location_visibility">Hiển thị vị trí</string>
     <string name="set_location">Vị trí</string>
     <string name="coordinates_lat">Vĩ độ:</string>
@@ -404,7 +404,14 @@
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> suggested an ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> commented: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Có vẻ như bạn đã xóa bức ảnh khi xóa bộ nhớ cache của ứng dụng trước khi tải lên. Bạn cần phải lấy ảnh từ bộ sưu tập của bạn và nhập ảnh lại vào trong quan sát. Trong tương lai, vui lòng tải lên tất cả ảnh của mình trước khi xóa bộ nhớ cache của ứng dụng.</string>
-    <string name="new_activities">%1s cái mới</string>
+    <!--
+        Label for the number of new notifications you might have. This specific string is used in
+        the side drawer next to the Activity menu item when you have new activity on your own
+        content.
+    -->
+    <plurals name="new_activities">
+        <item quantity="other">%1s new</item>
+    </plurals>
     <string name="no_results_found">Không tìm thấy gì...</string>
     <plurals name="syncing_x_out_of_y_observations">
         <item quantity="other">Đang đồng bộ hóa %1$d of %2$d quan sát...</item>
@@ -437,7 +444,7 @@
         <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
     </plurals>
     <plurals name="top_species_suggestions">
-        <item quantity="other">Top %1$d suggestions:</item>
+        <item quantity="other">Top %1$d gợi ý:</item>
     </plurals>
     <string name="pretty_sure_rank">Chúng tôi chắc chắn là ở đây %1$s:</string>
     <string name="what_did_you_see">Bạn đã thấy gì?</string>
@@ -450,7 +457,7 @@
     <string name="enlarge">Phóng to</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">View Children</string>
-    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG extensions</string>
+    <string name="invalid_photo_extension">Lỗi nhập ảnh: Chỉ có thể nhập các tệp ảnh có phần mở rộng JPG/JPEG/PNG</string>
     <string name="taxon_has_no_photos">Không có ảnh cho đơn vị phân loài này</string>
     <string name="terrain">Địa hình</string>
     <string name="filters">Bộ lọc</string>
@@ -466,7 +473,7 @@
     <string name="sorry_no_location">Rất tiếc, không tìm thấy vị trí nào</string>
     <string name="location_not_found">Vị trí hoặc địa điểm bạn đang tìm không có trong dữ liệu của chúng tôi. Vui lòng chọn một địa điểm từ danh sách tùy chọn ở bên dưới trường tìm kiếm hoặc xóa trường tìm kiếm.</string>
     <string name="undefined">Không xác định</string>
-    <string name="street_segment">Street Segment</string>
+    <string name="street_segment">Phân đoạn đường</string>
     <string name="intersection">Giao điểm</string>
     <string name="town">Thị trấn</string>
     <string name="state">Bang</string>
@@ -476,9 +483,9 @@
     <string name="island">Đảo</string>
     <string name="airport">Sân bay</string>
     <string name="drainage">Hệ thống thoát nước</string>
-    <string name="land_feature">Land Feature</string>
+    <string name="land_feature">Đặc điểm đất đai</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
-    <string name="miscellaneous">Miscellaneous</string>
+    <string name="miscellaneous">Linh tinh</string>
     <string name="nationality">Quốc tịch</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Supername</string>
@@ -486,7 +493,7 @@
     <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">Miền</string>
     <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
-    <string name="colloquial">Colloquial</string>
+    <string name="colloquial">Tên thông thường</string>
     <string name="zone">Khu vực</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_state">Historical State</string>
@@ -509,8 +516,8 @@
     <string name="governorate">Governorate</string>
     <string name="prefecture">Prefecture</string>
     <string name="canton">Canton</string>
-    <string name="republic">Republic</string>
-    <string name="division">Division</string>
+    <string name="republic">Cộng hòa</string>
+    <string name="division">Bộ phận</string>
     <string name="subdivision">Subdivision</string>
     <!-- https://gadm.org place type, presumably describing an area larger than an individual property but smaller than a neighborhood -->
     <string name="village_block">Village block</string>
@@ -913,6 +920,7 @@
     <string name="i_agree_to_tos_and_privacy"><![CDATA[I agree to the <a href="https://www.inaturalist.org/terms">Terms of Service</a> and <a href="https://www.inaturalist.org/privacy">Privacy Policy</a>, and I have reviewed the <a href="https://www.inaturalist.org/pages/community+guidelines">Community Guidelines</a>.]]></string>
     <string name="privacy_policy">Privacy Policy</string>
     <string name="terms_of_service">Terms of Service</string>
+    <!-- Placeholder text shown in place of a username when the user has been deleted -->
     <string name="deleted_user">Deleted User</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_short_this_year">MMM d</string>
@@ -922,4 +930,18 @@
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <string name="show_common_names">Show common names</string>
+    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
+    <string name="email_must_look_like_email_address">Email must look like an email address</string>
+    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
+    <string name="password_too_short">Password must be at least six characters long</string>
+    <string name="switch_to_grid_view">Switch to grid view</string>
+    <string name="switch_to_list_view">Switch to list view</string>
+    <string name="remove_project_filter">Remove project filter</string>
+    <string name="remove_observer_filter">Remove observer filter</string>
+    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
+    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
+    <string name="filter_observations_by_months">Filter observations by months</string>
+    <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
+    <string name="equals_sign">=</string>
 </resources>

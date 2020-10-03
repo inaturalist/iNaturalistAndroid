@@ -411,7 +411,15 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> ehdotti tunnistusta: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> kommentoi: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Näyttää siltä, että poistit valokuvan tyhjentämällä sovelluksen välimuistin ennen tallentamista. Sinun on lisättävä kuva takaisin havaintoosi galleristasi. Tulevaisuudessa, varmista, että olet tallentanut kaikki valokuvasi ennen sovelluksen välimuistin tyhjentämistä.</string>
-    <string name="new_activities">%1s uutta</string>
+    <!--
+        Label for the number of new notifications you might have. This specific string is used in
+        the side drawer next to the Activity menu item when you have new activity on your own
+        content.
+    -->
+    <plurals name="new_activities">
+        <item quantity="one">%1s new</item>
+        <item quantity="other">%1s new</item>
+    </plurals>
     <string name="no_results_found">Tuloksia ei löytynyt...</string>
     <plurals name="syncing_x_out_of_y_observations">
         <item quantity="one">Synkronoidaan %1$d/%2$d havainnosta...</item>
@@ -717,16 +725,16 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="donate_to_inaturalist">Lahjoita iNaturalistille</string>
     <string name="prefers_scientific_name_first">Näytä tieteelliset nimet ensin</string>
     <string name="prefers_scientific_name_first_description">Näytä tieteelliset nimet ennen yleisnimiä.</string>
-    <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, and Parks Canada operating iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
-    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
-    <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) operating NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
-    <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network operating iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
-    <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
-    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
-    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
-    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[Kanada: Canadian Wildlife Federation, Royal Ontario Museum, NatureServe Canada ja Parks Canada ylläpitävät portaalia iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[Kolumbia: Instituto Humboldt ylläpitää portaalia Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalista"><![CDATA[Meksiko: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) ylläpitää portaalia NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>).]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[Uusi-Seelanti: New Zealand Biodiversity Recording Network ylläpitää portaalia iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>).]]></string>
+    <string name="network_credit_biodiversity4all"><![CDATA[Portugali: Associação Biodiversidade Para Todos ylläpitää portaalia Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente ylläpitää portaalia iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina ylläpitää portaalia ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia ylläpitää portaalia iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) ylläpitää portaalia iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa ylläpitää portaalia iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Suomi: Luonnontieteellinen keskusmuseo Luomus ylläpitää iNaturalist Suomea (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="mark_all_as_viewed">Merkitse kaikki katsotuksi</string>
     <string name="content_hidden">Sisältö piilotettu</string>
@@ -902,7 +910,7 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="rank_zoosection">Zoosection</string>
     <string name="rank_zoosubsection">Zoosubsection</string>
     <string name="rank_superfamily">Yläheimo</string>
-    <string name="rank_epifamily">Epifamily</string>
+    <string name="rank_epifamily">Epiheimo</string>
     <string name="rank_family">Heimo</string>
     <string name="rank_subfamily">Alaheimo</string>
     <string name="rank_supertribe">Ylätribus</string>
@@ -930,13 +938,28 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="i_agree_to_tos_and_privacy"><![CDATA[Hyväksyn <a href="/terms" target="_blank">käyttöehdot</a> ja <a href="/privacy" target="_blank">tietosuojakäytännöt</a>, ja olen tutustunut <a href="/pages/community+guidelines" target="_blank">yhteisön pelisääntöihin</a> (englanniksi).]]></string>
     <string name="privacy_policy">Tietosuojakäytäntö</string>
     <string name="terms_of_service">Käyttöehdot</string>
+    <!-- Placeholder text shown in place of a username when the user has been deleted -->
     <string name="deleted_user">Poistettu käyttäjä</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_short_this_year">MMM d</string>
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_short">MM/dd/yy</string>
     <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="time_short_24_hour">HH: mm</string>
+    <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <string name="show_common_names">Show common names</string>
+    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
+    <string name="email_must_look_like_email_address">Email must look like an email address</string>
+    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
+    <string name="password_too_short">Password must be at least six characters long</string>
+    <string name="switch_to_grid_view">Switch to grid view</string>
+    <string name="switch_to_list_view">Switch to list view</string>
+    <string name="remove_project_filter">Remove project filter</string>
+    <string name="remove_observer_filter">Remove observer filter</string>
+    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
+    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
+    <string name="filter_observations_by_months">Filter observations by months</string>
+    <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
+    <string name="equals_sign">=</string>
 </resources>

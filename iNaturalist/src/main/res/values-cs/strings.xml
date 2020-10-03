@@ -410,7 +410,17 @@
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> navrhuje identifikaci: %2$s <font barva="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> komentováno: &ldquo;%2$s&rdquo; <font barva="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Zdá se, že čištěním mezipaměti před náhráváním, se vám podařilo vymazat fotku. Budete muset přidat fotku z pozorování z vaší galerie. V budoucnu se ujistěte, že jste nahráli všechny své fotky před čištěním mezipaměti aplikace.</string>
-    <string name="new_activities">%1s nové</string>
+    <!--
+        Label for the number of new notifications you might have. This specific string is used in
+        the side drawer next to the Activity menu item when you have new activity on your own
+        content.
+    -->
+    <plurals name="new_activities">
+        <item quantity="one">%1s new</item>
+        <item quantity="few">%1s new</item>
+        <item quantity="many">%1s new</item>
+        <item quantity="other">%1s new</item>
+    </plurals>
     <string name="no_results_found">Nebyly nalezeny žádné výsledky...</string>
     <plurals name="syncing_x_out_of_y_observations">
         <item quantity="one">Synchronizace %1$d z %2$d pozorování</item>
@@ -926,7 +936,7 @@
     <string name="rank_variety">odrůda</string>
     <string name="rank_form">forma</string>
     <string name="rank_infrahybrid">infrakříženec</string>
-    <string name="rank_leaves">Leaves</string>
+    <string name="rank_leaves">Listy</string>
     <string name="location_lat_lng">Umístění: %1$f, %2$f</string>
     <string name="i_consent_process_personal_info"><![CDATA[Souhlasím s tím, že za účelem správy mého účtu umožním iNaturalist ukládat a zpracovávat v omezené míře mé osobní údaje. <b>Dozvědět se více</b>]]></string>
     <string name="about_personal_information">O osobní údajích</string>
@@ -940,6 +950,7 @@ a naše <a href="https://www.inaturalist.org/terms">Smluvní podmínky</a>.]]></
 <a href="https://www.inaturalist.org/privacy">Zásadami ochrany osobních údajů</a>, a seznámil/a jsem se s <a href="https://www.inaturalist.org/pages/community+guidelines">Pravidly komunity</a>.]]></string>
     <string name="privacy_policy">Zásady ochrany osobních údajů</string>
     <string name="terms_of_service">Podmínky služby</string>
+    <!-- Placeholder text shown in place of a username when the user has been deleted -->
     <string name="deleted_user">Smazaný uživatel</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_short_this_year">d. MMM</string>
@@ -949,4 +960,18 @@ a naše <a href="https://www.inaturalist.org/terms">Smluvní podmínky</a>.]]></
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mm a</string>
+    <string name="show_common_names">Show common names</string>
+    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
+    <string name="email_must_look_like_email_address">Email must look like an email address</string>
+    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
+    <string name="password_too_short">Password must be at least six characters long</string>
+    <string name="switch_to_grid_view">Switch to grid view</string>
+    <string name="switch_to_list_view">Switch to list view</string>
+    <string name="remove_project_filter">Remove project filter</string>
+    <string name="remove_observer_filter">Remove observer filter</string>
+    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
+    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
+    <string name="filter_observations_by_months">Filter observations by months</string>
+    <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
+    <string name="equals_sign">=</string>
 </resources>

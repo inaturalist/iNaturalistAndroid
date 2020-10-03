@@ -226,7 +226,7 @@
     <string name="log_in">登入</string>
     <string name="sign_up">註冊</string>
     <string name="min_6_chars">最少 6 個字元以上</string>
-    <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data (recommended). <b>Learn More</b>]]></string>
+    <string name="use_my_license"><![CDATA[好的，授權我的內容讓科學家可以使用我的資料(建議). <b>了解更多資訊</b>]]></string>
     <string name="content_licensing">內容授權</string>
     <string name="content_licensing_description">如果您想在您的照片套用創意公用授權－非商業使用條款的話，請勾選此方框。你之後可以選擇不同的授權或移除它，但這個授權對於分享資料給研究者是最好的授權。</string>
     <!-- Try to keep this about the length of the English text -->
@@ -404,7 +404,14 @@
     <string name="user_activity_id"><![CDATA[<b>%1$s</b>建議了物種辨認：%2$s<font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b>作出了回應：&ldquo;%2$s&rdquo;<font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">看起來您在上傳前清除了 App 的快取而刪除了一張照片。您需要從您的照片庫中重新加回此照片至您的觀察記錄。之後當您清理 App 快取時請確定您已經上傳了所有照片。</string>
-    <string name="new_activities">%1s 新</string>
+    <!--
+        Label for the number of new notifications you might have. This specific string is used in
+        the side drawer next to the Activity menu item when you have new activity on your own
+        content.
+    -->
+    <plurals name="new_activities">
+        <item quantity="other">%1s new</item>
+    </plurals>
     <string name="no_results_found">找不到結果...</string>
     <plurals name="syncing_x_out_of_y_observations">
         <item quantity="other">正在同步 %2$d 筆觀察記錄中的第 %1$d 筆...</item>
@@ -631,7 +638,7 @@
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">花芽</string>
     <!-- Observation presents no evidence of flowering phenology -->
-    <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
+    <string name="annotation_value_no_evidence_of_flowering">沒有開花的跡象</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">成體</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -707,11 +714,11 @@
     <string name="network_credit_naturewatchnz"><![CDATA[紐西蘭：營運 iNaturalist NZ  的紐西蘭生物多樣性紀錄網路— Mātaki Taiao (New Zealand Biodiversity Recording Network; inaturalist.nz)。]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[葡萄牙: 營運 Biodisy4all 的全民生物多樣性協會 (Associação Biodiversidade Para Todos; <a href="https://biodiversity4all.org">biodistiny4al. org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[巴拿馬: 營運 iNaturalistPa 的環境部 (Ministerio de Ambiente; <a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
-    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
-    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Natural History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[阿根廷： Fundación Vida Silvestre Argentina 支持 ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[澳洲: Atlas of Living Australia 支持 iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[厄瓜多: Instituto Nacional de Biodiversidad (INABIO) 支持 iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[以色列:  海法大學(University of Haifa)支持 iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[芬蘭: 芬蘭自然史博物館(Finnish Museum of Natural History; LUOMUS) 支持 iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="mark_all_as_viewed">標記為已讀</string>
     <string name="content_hidden">內容已隱藏</string>
     <string name="show_hidden_content">顯示隱藏內容</string>
@@ -793,9 +800,9 @@
     <string name="enabled">已啟用</string>
     <string name="disabled">已停用</string>
     <string name="third_party_data_sharing_notes1"><![CDATA[我們使用不同的第三方服務來監測我們軟體的穩定性與診斷臭蟲和問題。這些第三方服務包含：<br/><ul><li>Google<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
-    <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
-    <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third-party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
-    <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
+    <string name="third_party_data_sharing_notes2"><![CDATA[我們分享給這些第三方服務的資訊包含：<br/><ul><li>IP 位址 (可使用位置解析至城市等級。而且追蹤您在不同網站與服務間；注意：我們在 Google Analytics 中使用<a href="https://support.google.com/analytics/answer/2763052">IP 匿名化</a>與<a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a>，就我們的認知而言不會記錄 IP 位址)</li><li>瀏覽器細節，像是製造商、型號和版本</li><li>當機資訊，像是哪一行的程式碼導致當掉</li><li>裝置細節，像是手機的製造商和型號</li></ul>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b>這些第三方服務提供給我們龐大的價值</b>讓相對小型的工作團隊能維持 iNaturalist 的穩定性和可用性。在行動裝置上，由於該軟體在我們無法控制的裝置上運行，因此幾乎沒有其他方法可深入了解所發生的問題。有時候我們甚至沒有察覺到這類的問題發生，直到我們在這些服務中所提供的資料中看到問題。<b>透過分享此資訊，您正在協助我們為您還有整個 iNaturalist 社群服務。</b>]]></string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[請注意，此選項僅適用於我們明確傳送給這些公司的分析和當機資訊。 所有 iNaturalist 伺服器均由微軟公司提供和託管，iNaturalist 上全部的照片均由 Amazon 託管，而幾乎所有iNaturalist 的地圖均由 Google 提供，這意味著，每次查看 iNaturalist 的觀察紀錄時，您都將連接到這些公司所提供的服務， 至少要向他們公開您的 IP 位址 (在iPhone app 中，我們使用 Apple 的地圖)。 若沒有這些公司提供的服務，iNaturalist 可能不會存在，儘管我們可以限制使用 iNat 時與他們共享的資料量和種類，但我們無法完全停止相關的資料流。]]></string>
     <string name="common_names_place"><![CDATA[俗名的地點：<b>%1$s/b>]]></string>
     <string name="tap_to_prioritize_common_names">點選以指定從特定地點來顯示優先的俗名</string>
     <string name="search_places">搜尋地點</string>
@@ -804,122 +811,137 @@
     <plurals name="are_you_sure_you_want_to_delete_observations">
         <item quantity="other">您確定要刪除這 %1$d 筆觀察記錄嗎？</item>
     </plurals>
-    <string name="future_observed_on_date_error">Your observation was created (and submitted) on %1$s, but you\'re trying to set an observation date that is later than that: %2$s</string>
-    <string name="no_more_photos_allowed">Observations can only have %1$d photos. To add more you will need to remove some.</string>
+    <string name="future_observed_on_date_error">您的觀察紀錄在%1$s已建立(而且已上傳)，但您正嘗試設定一筆晚於 %2$s 的觀察紀錄日期</string>
+    <string name="no_more_photos_allowed">觀察紀錄只能有 %1$d 張照片。若要新增更多的其他照片，您需要刪掉一些。</string>
     <string name="warning_multiple_photos">如果您要把不同的生物的照片加到這筆觀察記錄中，或是在不同地點或時間中的同一種生物，您必須需移除這些照片並且新增為分別的觀察記錄。一筆觀察記錄可以只有 %1$d 張照片。</string>
-    <string name="choosing_specific_language_warning">Choosing a specific language for your account requires an Internet connection</string>
-    <string name="running_in_background_notfication">Running in the background so we can run without interruption</string>
+    <string name="choosing_specific_language_warning">為您的帳號選擇一種特定語言需要網路連線</string>
+    <string name="running_in_background_notfication">在背景執行中，以便我們可以執行而不受打斷</string>
     <string name="opt_out_of_community_taxon">取消加入至社群鑑定出來的分類群</string>
     <string name="opt_in_to_community_taxon">選擇加入至社群鑑定出來的分類群</string>
-    <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
+    <string name="opt_out_message">取消選擇「社群鑑定出來的分類群」會強制連結這筆觀察紀錄到您現在的鑑定，而不是從已增加到此觀察紀錄中的鑑定之分類群。如果夠多的鑑定者不同意您的鑑定，您的觀察紀錄會變成粗略等級。若您很確定您的鑑定是正確的，而其他鑑定是不正確的，您才應取消選擇此選項。</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
     <string name="permission_required">需要權限</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
-    <string name="to_access_your_location">To access your location you must grant location access permission to this app.</string>
+    <string name="to_access_your_location">要存取您的地點的話，您必須授權存取地點的權限給這個 app。</string>
     <!-- Dialog title when displaying a message that an action is not permitted -->
     <string name="forbidden">禁止</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
-    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
+    <string name="app_you_shared_blocked">您所分享建立的照片不適合觀察紀錄，因為它們無法代表您看到實際生物的存在證據，因為它們包含不適當的品牌或商業內容，或者以其他方式違反我們的服務條款。</string>
     <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">複選觀察記錄之核選框</string>
     <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_iconic_pic_description">觀察記錄之分類群縮圖</string>
     <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_obs_pic_description">觀察記錄縮圖</string>
-    <string name="messages">Messages</string>
-    <string name="all_messages">All Messages</string>
-    <string name="search_messages">Search messages</string>
-    <string name="no_messages">You currently have no messages. You can send a new message with the green button, or message them from their profile page.</string>
-    <string name="no_messages_found">No messages found.</string>
-    <string name="send_a_message">Send a message</string>
-    <string name="sending_message">Sending message...</string>
-    <string name="could_not_send_message">Couldn\'t send message: %1$s</string>
-    <string name="subject">Subject</string>
-    <string name="body">Body</string>
-    <string name="type_your_message_here">Type your message here</string>
-    <string name="new_message_to">New Message to %1$s</string>
-    <string name="who_would_you_like_to_send_a_message_to">Who would you like to send a message to?</string>
-    <string name="new_message">New Message</string>
-    <string name="search_for_inaturalist_users">Search for iNaturalist users</string>
-    <string name="please_sign_in_for_messages">You must be logged in to view your messages.</string>
-    <string name="sorry">Sorry</string>
-    <string name="you_must_have_three_observations">You must have three verifiable observations or three identifications for others in order to do that.</string>
-    <string name="mute_this_user">Mute this user</string>
-    <string name="unmute_this_user">Unmute this user</string>
-    <string name="flag_this_conversation">Flag this conversation</string>
-    <string name="mute_this_user_question">Mute this user?</string>
-    <string name="you_will_no_longer_receive_messages">You will no longer receive any notifications about activity from this user, including messages, comments, identifications, and mentions.</string>
-    <string name="mute">Mute</string>
-    <string name="muting_user">Muting user...</string>
-    <string name="unmuting_user">Unmuting user...</string>
-    <string name="failed_muting_user">Failed muting user!</string>
-    <string name="failed_unmuting_user">Failed unmuting user!</string>
-    <string name="flag_conversation">Flag conversation</string>
-    <string name="spam">Spam</string>
-    <string name="commercial_solicitation">Commercial solicitation, links to nowhere, etc.</string>
-    <string name="offensive_inappropriate">Offensive/Inappropriate</string>
-    <string name="misleading_or_illegal_content">Misleading or illegal content, racial or ethnic slurs, etc. For more on our definition of \"appropriate,\" see the FAQ.</string>
-    <string name="other">Other</string>
-    <string name="some_other_reason">Some other reason you can explain.</string>
-    <string name="continue_text">Continue</string>
-    <string name="why_are_you_flagging_this_item">Why are you flagging this item?</string>
-    <string name="thank_you_for_submitting_the_flag">Thank you for submitting the flag!</string>
-    <string name="flagging_conversation">Flagging conversation...</string>
-    <string name="failed_flagging_conversation">Failed flagging conversation!</string>
-    <string name="no_subject">No Subject</string>
-    <string name="rank_state_of_matter">State of matter</string>
-    <string name="rank_kingdom">Kingdom</string>
-    <string name="rank_subkingdom">Subkingdom</string>
-    <string name="rank_phylum">Phylum</string>
-    <string name="rank_subphylum">Subphylum</string>
-    <string name="rank_superclass">Superclass</string>
-    <string name="rank_class">Class</string>
-    <string name="rank_subclass">Subclass</string>
-    <string name="rank_infraclass">Infraclass</string>
-    <string name="rank_superorder">Superorder</string>
-    <string name="rank_order">Order</string>
-    <string name="rank_suborder">Suborder</string>
-    <string name="rank_infraorder">Infraorder</string>
+    <string name="messages">訊息</string>
+    <string name="all_messages">所有訊息</string>
+    <string name="search_messages">搜尋訊息</string>
+    <string name="no_messages">您現在沒有訊息。您可以使用綠色按鈕來送出一個新訊息，或是從他們的個人資訊頁面中傳送訊息。</string>
+    <string name="no_messages_found">找不到訊息。</string>
+    <string name="send_a_message">傳送訊息</string>
+    <string name="sending_message">傳送訊息中...</string>
+    <string name="could_not_send_message">無法傳送訊息：%1$s</string>
+    <string name="subject">主旨</string>
+    <string name="body">內文</string>
+    <string name="type_your_message_here">在這裡輸入您的訊息</string>
+    <string name="new_message_to">給 %1$s 的新訊息</string>
+    <string name="who_would_you_like_to_send_a_message_to">您想要傳訊息給誰？</string>
+    <string name="new_message">新訊息</string>
+    <string name="search_for_inaturalist_users">搜尋 iNaturalist 的使用者</string>
+    <string name="please_sign_in_for_messages">您必須登入以查看您的訊息。</string>
+    <string name="sorry">抱歉</string>
+    <string name="you_must_have_three_observations">您必須有至少三個可證實的觀察紀錄，或是三筆幫別人的鑑定才能那樣做。</string>
+    <string name="mute_this_user">禁言這個使用者</string>
+    <string name="unmute_this_user">取消禁言此使用者</string>
+    <string name="flag_this_conversation">建立旗號標記於此對話</string>
+    <string name="mute_this_user_question">禁言這個使用者？</string>
+    <string name="you_will_no_longer_receive_messages">您將不會再收到這個使用者有關活動的任何通知，包含訊息、評論、鑑定和提及。</string>
+    <string name="mute">禁言</string>
+    <string name="muting_user">禁言使用者...</string>
+    <string name="unmuting_user">取消禁言使用者...</string>
+    <string name="failed_muting_user">禁言使用者失敗！</string>
+    <string name="failed_unmuting_user">取消禁言使用者失敗！</string>
+    <string name="flag_conversation">建立旗號標記於此對話</string>
+    <string name="spam">垃圾訊息</string>
+    <string name="commercial_solicitation">商業招攬，無效連結等等。</string>
+    <string name="offensive_inappropriate">冒犯/不適當</string>
+    <string name="misleading_or_illegal_content">誤導、不合法內容、種族歧視等等其它。更多有關我們對於「適當」內容的定義，請查看 FAQ。</string>
+    <string name="other">其他</string>
+    <string name="some_other_reason">您可以說明的一些其他原因。</string>
+    <string name="continue_text">繼續</string>
+    <string name="why_are_you_flagging_this_item">為什麼您標註旗號的原因？</string>
+    <string name="thank_you_for_submitting_the_flag">感謝您提出旗號標記！</string>
+    <string name="flagging_conversation">建立旗號標記於此對話中...</string>
+    <string name="failed_flagging_conversation">建立旗號標記於此對話中失敗！</string>
+    <string name="no_subject">無主旨</string>
+    <string name="rank_state_of_matter">事件狀態</string>
+    <string name="rank_kingdom">界</string>
+    <string name="rank_subkingdom">亞界</string>
+    <string name="rank_phylum">門</string>
+    <string name="rank_subphylum">亞門</string>
+    <string name="rank_superclass">總綱</string>
+    <string name="rank_class">綱</string>
+    <string name="rank_subclass">亞綱</string>
+    <string name="rank_infraclass">下綱</string>
+    <string name="rank_superorder">超目</string>
+    <string name="rank_order">目</string>
+    <string name="rank_suborder">亞目</string>
+    <string name="rank_infraorder">下目</string>
     <string name="rank_subterclass">Subterclass</string>
     <string name="rank_parvorder">Parvorder</string>
-    <string name="rank_zoosection">Zoosection</string>
-    <string name="rank_zoosubsection">Zoosubsection</string>
-    <string name="rank_superfamily">Superfamily</string>
+    <string name="rank_zoosection">派</string>
+    <string name="rank_zoosubsection">亞派</string>
+    <string name="rank_superfamily">總科</string>
     <string name="rank_epifamily">Epifamily</string>
-    <string name="rank_family">Family</string>
-    <string name="rank_subfamily">Subfamily</string>
-    <string name="rank_supertribe">Supertribe</string>
-    <string name="rank_tribe">Tribe</string>
-    <string name="rank_subtribe">Subtribe</string>
-    <string name="rank_genus">Genus</string>
-    <string name="rank_genushybrid">Genushybrid</string>
-    <string name="rank_subgenus">Subgenus</string>
-    <string name="rank_section">Section</string>
-    <string name="rank_subsection">subsection</string>
-    <string name="rank_complex">Complex</string>
+    <string name="rank_family">科</string>
+    <string name="rank_subfamily">亞科</string>
+    <string name="rank_supertribe">總族</string>
+    <string name="rank_tribe">族</string>
+    <string name="rank_subtribe">亞族</string>
+    <string name="rank_genus">屬</string>
+    <string name="rank_genushybrid">雜交屬</string>
+    <string name="rank_subgenus">亞屬</string>
+    <string name="rank_section">組(節)</string>
+    <string name="rank_subsection">亞組(亞節)</string>
+    <string name="rank_complex">複合群</string>
     <!-- Singular -->
-    <string name="rank_species">Species</string>
-    <string name="rank_hybrid">Hybrid</string>
+    <string name="rank_species">種</string>
+    <string name="rank_hybrid">雜交</string>
     <!-- Singular -->
-    <string name="rank_subspecies">Subspecies</string>
-    <string name="rank_variety">Variety</string>
+    <string name="rank_subspecies">亞種</string>
+    <string name="rank_variety">變種</string>
     <string name="rank_form">Form</string>
     <string name="rank_infrahybrid">Infrahybrid</string>
-    <string name="rank_leaves">Leaves</string>
-    <string name="location_lat_lng">Location: %1$f, %2$f</string>
-    <string name="i_consent_process_personal_info"><![CDATA[I consent to allow iNaturalist to store and process limited kinds of personal information about me in order to manage my account. <b>Learn More</b>]]></string>
-    <string name="about_personal_information">About Personal Information</string>
-    <string name="personal_information_notes"><![CDATA[We store personal information like usernames and email addresses in order to manage accounts on this site, and to comply with privacy laws, we need you to check this box to indicate that you consent to this use of personal information. To learn more about what information we collect and how we use it, please see our <a href="https://www.inaturalist.org/privacy">Privacy Policy</a> and our <a href="https://www.inaturalist.org/terms">Terms of Service</a>.]]></string>
-    <string name="i_agree_to_tos_and_privacy"><![CDATA[I agree to the <a href="https://www.inaturalist.org/terms">Terms of Service</a> and <a href="https://www.inaturalist.org/privacy">Privacy Policy</a>, and I have reviewed the <a href="https://www.inaturalist.org/pages/community+guidelines">Community Guidelines</a>.]]></string>
-    <string name="privacy_policy">Privacy Policy</string>
-    <string name="terms_of_service">Terms of Service</string>
-    <string name="deleted_user">Deleted User</string>
+    <string name="rank_leaves">葉子</string>
+    <string name="location_lat_lng">地點：%1$f，%2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[我同意允許讓 iNaturalist 儲存、處理關於我的有限個人資訊，以便管理我的帳號。<b>閱讀詳細資訊</b>]]></string>
+    <string name="about_personal_information">關於個人資訊</string>
+    <string name="personal_information_notes"><![CDATA[我們會遵守隱私權法規，來儲存像是使用者名稱以及電子郵件地址這類的個人資訊，以便管理在網站上的帳號，因此會需要您勾選此方框來表明您同意上述的個人資訊使用。要了解更多關於我們如何收集以及使用資訊，請查看我們的<a href="https://www.inaturalist.org/privacy">隱私政策</a>和<a href="https://www.inaturalist.org/terms">服務條款</a>。]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[我同意<a href="https://www.inaturalist.org/terms">服務條款</a>和<a href="https://www.inaturalist.org/privacy">隱私權政策</a>，而且我已經審閱過<a href="https://www.inaturalist.org/pages/community+guidelines">社群守則</a>。]]></string>
+    <string name="privacy_policy">隱私權政策</string>
+    <string name="terms_of_service">服務條款</string>
+    <!-- Placeholder text shown in place of a username when the user has been deleted -->
+    <string name="deleted_user">已刪除的使用者</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_short_this_year">MMM d</string>
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short">MM/dd/yy</string>
+    <string name="date_short">yyyy/MM/dd</string>
     <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <string name="show_common_names">Show common names</string>
+    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
+    <string name="email_must_look_like_email_address">Email must look like an email address</string>
+    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
+    <string name="password_too_short">Password must be at least six characters long</string>
+    <string name="switch_to_grid_view">Switch to grid view</string>
+    <string name="switch_to_list_view">Switch to list view</string>
+    <string name="remove_project_filter">Remove project filter</string>
+    <string name="remove_observer_filter">Remove observer filter</string>
+    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
+    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
+    <string name="filter_observations_by_months">Filter observations by months</string>
+    <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
+    <string name="equals_sign">=</string>
 </resources>
