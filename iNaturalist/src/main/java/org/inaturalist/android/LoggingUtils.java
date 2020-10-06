@@ -60,7 +60,7 @@ public class LoggingUtils {
         Configuration.set("writer2.level", "trace");
         Configuration.set("writer2.format", "{date}\t{class-name}.{method}():{line}: {tag}: {message}");
         String filePath = String.format(Locale.ENGLISH, "%s/%s{date:yyyy-MM-dd}-{count}.%s",
-                getDebugLogsDirectory(context).getAbsolutePath(),
+                getDebugLogsDirectory(context).getAbsoluteFile(),
                 LOGS_FILENAME_PREFIX, LOGS_FILENAME_EXTENSION);
         Configuration.set("writer2.file", filePath);
         Configuration.set("writer2.policies", String.format(Locale.ENGLISH, "daily, size: %dmb", MAX_LOG_FILE_SIZE_MB));
@@ -72,7 +72,12 @@ public class LoggingUtils {
     }
 
     private static File getDebugLogsDirectory(Context context) {
-        return context.getExternalCacheDir();
+        File dir = context.getExternalCacheDir();
+        if (dir == null) {
+            dir = context.getCacheDir();
+        }
+
+        return dir;
     }
 
     public static void compressDebugLogs(Context context) {
