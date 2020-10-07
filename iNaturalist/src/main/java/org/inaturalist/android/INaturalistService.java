@@ -2111,8 +2111,8 @@ public class INaturalistService extends IntentService {
 
                 Cursor obsc = getContentResolver().query(Observation.CONTENT_URI,
                         Observation.PROJECTION,
-                        "_id = " + internalObsId,
-                        null,
+                        "_id = ?",
+                        new String[] { String.valueOf(internalObsId) },
                         Observation.DEFAULT_SORT_ORDER);
                 int obsCount = obsc.getCount();
                 obsc.close();
@@ -6769,7 +6769,7 @@ public class INaturalistService extends IntentService {
                     // So we won't re-add this photo as though it was a local photo
                     Logger.tag(TAG).debug("syncJson: Setting _SYNCED_AT - " + photo.id + ":" + photo._id + ":" + photo._observation_id + ":" + photo.observation_id);
                     opcv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
-                    opcv.put(ObservationPhoto._OBSERVATION_ID, photo.observation_id);
+                    opcv.put(ObservationPhoto._OBSERVATION_ID, observation._id);
                     opcv.put(ObservationPhoto._PHOTO_ID, photo._photo_id);
                     opcv.put(ObservationPhoto.ID, photo.id);
 
