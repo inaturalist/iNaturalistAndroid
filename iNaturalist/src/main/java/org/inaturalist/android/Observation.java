@@ -388,7 +388,8 @@ public class Observation implements BaseColumns, Serializable {
         this.latitude_was = this.latitude;
         this.longitude = o.getDouble("longitude");
         this.longitude_was = this.longitude;
-        this.observed_on = o.getTimestamp("observed_on");
+        this.observed_on = o.getTimestamp(o.has("time_observed_at") && !o.isNull("time_observed_at") ?
+                "time_observed_at" : "observed_on");
         this.observed_on_was = this.observed_on;
         this.observed_on_string = o.getString("observed_on_string");
         this.observed_on_string_was = this.observed_on_string;
