@@ -574,8 +574,13 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                                 intent.putExtra(ObservationPhotosViewer.READ_ONLY, false);
                                 startActivityForResult(intent, OBSERVATION_PHOTOS_REQUEST_CODE);
                             } else {
-                                intent.putExtra(ObservationPhotosViewer.OBSERVATION, mObsJson);
-                                startActivity(intent);
+                                try {
+                                    JSONObject obs = ObservationUtils.getMinimalObservation(new JSONObject(mObsJson));
+                                    intent.putExtra(ObservationPhotosViewer.OBSERVATION, obs.toString());
+                                    startActivity(intent);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
                     })
