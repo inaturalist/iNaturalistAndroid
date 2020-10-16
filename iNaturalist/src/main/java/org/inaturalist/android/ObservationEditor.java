@@ -1178,9 +1178,12 @@ public class ObservationEditor extends AppCompatActivity {
         }
 
         // Temp file for the photo
-        mCapturedPhotoFile = new File(getExternalCacheDir(), UUID.randomUUID().toString() + ".jpeg");
+        // Huawei phones don't work with getExternalCacheDir (getUriForFile crashes)
+        mCapturedPhotoFile = new File(getCacheDir(), UUID.randomUUID().toString() + ".jpeg");
         mCapturedPhotoFilePath = mCapturedPhotoFile.getAbsolutePath();
+        Logger.tag(TAG).debug("mCapturedPhotoFile = " + mCapturedPhotoFilePath);
         mFileUri = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".fileProvider", mCapturedPhotoFile);
+        Logger.tag(TAG).debug("mCapturedPhotoFile URI = " + mFileUri);
 
         final Intent galleryIntent = new Intent();
 

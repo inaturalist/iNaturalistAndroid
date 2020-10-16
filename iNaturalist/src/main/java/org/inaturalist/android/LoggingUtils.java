@@ -72,12 +72,7 @@ public class LoggingUtils {
     }
 
     private static File getDebugLogsDirectory(Context context) {
-        File dir = context.getExternalCacheDir();
-        if (dir == null) {
-            dir = context.getCacheDir();
-        }
-
-        return dir;
+        return context.getCacheDir();
     }
 
     public static void compressDebugLogs(Context context) {
