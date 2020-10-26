@@ -1742,7 +1742,7 @@ public class ObservationEditor extends AppCompatActivity {
             findViewById(R.id.accuracy).setVisibility(View.VISIBLE);
         }
 
-        mIsCaptive = mObservation.captive;
+        mIsCaptive = mObservation.captive != null && mObservation.captive;
         if (mIsCaptive) {
             findViewById(R.id.is_captive_on_icon).setVisibility(View.VISIBLE);
             findViewById(R.id.is_captive_off_icon).setVisibility(View.GONE);
