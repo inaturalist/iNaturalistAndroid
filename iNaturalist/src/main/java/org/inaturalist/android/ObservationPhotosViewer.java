@@ -443,7 +443,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                                 mImageThumbnails.add(innerPhoto.has("thumb_url") ? innerPhoto.optString("thumb_url") : innerPhoto.optString("small_url"));
  							} else {
  							    String url = innerPhoto.optString("url");
- 							    if (url != null) {
+ 							    if ((url != null) && (url.length() > 0)) {
                                     String extension = url.substring(url.lastIndexOf("."));
 
                                     // Deduce the original-sized URL
