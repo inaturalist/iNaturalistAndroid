@@ -1036,11 +1036,21 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     private Map<ImageView, String> mImageViewToUrlExpected = new HashMap<>();
 
     private void loadObsImage(final int position, final ImageView imageView, final String name, boolean isOnline, final boolean largeVersion) {
+        Logger.tag(TAG).debug("loadObsImage: " + position + ":" + isOnline + ":" + imageView + ":" + name);
+
         boolean isLowMemory = mApp.isLowMemory();
+
+        String prevUrl = mImageViewToUrlExpected.get(imageView);
+
+        if ((prevUrl != null) && (prevUrl.equals(name)) && (!largeVersion)) {
+            imageView.setVisibility(View.VISIBLE);
+            return;
+        }
+
         mImageViewToUrlExpected.put(imageView, name);
 
         //noinspection ConstantConditions
-        if (mImageViewToUrlAfterLoading.containsKey(imageView) && mImageViewToUrlAfterLoading.get(imageView).equals(name)){
+        if (mImageViewToUrlAfterLoading.containsKey(imageView) && mImageViewToUrlAfterLoading.get(imageView).equals(name)) {
             imageView.setVisibility(View.VISIBLE);
             return;
         }
