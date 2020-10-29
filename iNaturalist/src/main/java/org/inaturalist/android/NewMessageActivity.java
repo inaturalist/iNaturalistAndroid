@@ -48,6 +48,9 @@ public class NewMessageActivity extends AppCompatActivity {
     private ImageView mSendMessage;
     private ActivityHelper mHelper;
 
+    @State public String mSubject = "";
+    @State public String mMessage = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +73,9 @@ public class NewMessageActivity extends AppCompatActivity {
         mSendMessage = findViewById(R.id.send_message);
         mMessageBody = findViewById(R.id.body);
         mMessageSubject = findViewById(R.id.subject);
+
+        mMessageSubject.setText(mSubject);
+        mMessageBody.setText(mMessage);
 
         mSendMessage.setOnClickListener(view -> {
             if (mMessageBody.getText().length() == 0) return;
@@ -115,6 +121,9 @@ public class NewMessageActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        mSubject = mMessageSubject.getText().toString();
+        mMessage = mMessageBody.getText().toString();
+
         Bridge.saveInstanceState(this, outState);
     }
 
