@@ -3244,16 +3244,16 @@ public class ObservationEditor extends AppCompatActivity {
                 String date = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_GPS_DATE_STAMP);
                 String time = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_GPS_TIME_STAMP);
 
-                if ((date == null) || (time == null)) {
+                if ((date == null) || (date.length() == 0) || (time == null) || (time.length() == 0)) {
                     // Try getting GPS datetime from other EXIF library
                     date = orgExif.getAttribute(ExifInterface.TAG_GPS_DATESTAMP);
                     time = orgExif.getAttribute(ExifInterface.TAG_GPS_TIMESTAMP);
                 }
 
-                if ((date == null) || (time == null)) {
+                if ((date == null) || (date.length() == 0) || (time == null) || (time.length() == 0)) {
                     // No timezone defined - assume user's local timezone
                     useLocalTimezone = true;
-                    datetime = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_DATE_TIME_ORIGINAL);
+                    datetime = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_DATE_TIME_ORIGINAL).trim();
                 } else {
                     datetime = date.trim() + " " + time.trim();
                 }
