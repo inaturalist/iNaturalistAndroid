@@ -1851,19 +1851,27 @@ public class INaturalistService extends IntentService {
             } else if (action.equals(ACTION_GET_AND_SAVE_OBSERVATION)) {
                 int id = intent.getExtras().getInt(OBSERVATION_ID);
                 Pair<Observation, JSONObject> result = getAndDownloadObservation(id);
-                Observation observation = result.first;
-                JSONObject json = result.second;
-
-                Cursor c = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = ?", new String[] { String.valueOf(observation.id) }, Observation.DEFAULT_SORT_ORDER);
-                if (c.getCount() > 0) {
-                    Observation innerObs = new Observation(c);
-                    observation._id = innerObs._id;
-                }
-                c.close();
 
                 Intent reply = new Intent(ACTION_GET_AND_SAVE_OBSERVATION_RESULT);
-                reply.putExtra(OBSERVATION_RESULT, observation);
-                reply.putExtra(OBSERVATION_JSON_RESULT, json.toString());
+
+                if (result != null) {
+                    Observation observation = result.first;
+                    JSONObject json = result.second;
+
+                    Cursor c = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = ?", new String[]{String.valueOf(observation.id)}, Observation.DEFAULT_SORT_ORDER);
+                    if (c.getCount() > 0) {
+                        Observation innerObs = new Observation(c);
+                        observation._id = innerObs._id;
+                    }
+                    c.close();
+
+                    reply.putExtra(OBSERVATION_RESULT, observation);
+                    reply.putExtra(OBSERVATION_JSON_RESULT, json.toString());
+                } else {
+                    reply.putExtra(OBSERVATION_RESULT, null);
+                    reply.putExtra(OBSERVATION_JSON_RESULT, null);
+                }
+
                 LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GET_OBSERVATION)) {
