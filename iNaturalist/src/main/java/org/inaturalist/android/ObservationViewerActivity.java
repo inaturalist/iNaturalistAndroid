@@ -1390,6 +1390,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         serviceIntent.putExtra(INaturalistService.COMMENT_BODY, comment);
                         ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
 
+                        mCommentMentions.dismiss();
+
                         mCommentsIds = null;
                         refreshActivity();
 
