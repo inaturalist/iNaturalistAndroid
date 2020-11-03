@@ -590,7 +590,7 @@
     <string name="swipe_indicator">›</string>
     <string name="select_google_account">Кой акаунт на Гугъл?</string>
     <string name="potential_disagreement">Потенциално несъгласие</string>
-    <string name="do_you_think_this_could_be"><![CDATA[Наличните свидетелства достатъчни ли са за да се потвърди, че това е %{taxon}?]]></string>
+    <string name="do_you_think_this_could_be"><![CDATA[Наличните свидетелства достатъчни ли са за да се потвърди, че това е <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[Не знам, но съм сигурен че това е <b>%1$s</b>.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Не, но е представител на <b>%1$s</b>.]]></string>
