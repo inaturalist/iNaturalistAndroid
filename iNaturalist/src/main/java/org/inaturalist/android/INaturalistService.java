@@ -1868,8 +1868,8 @@ public class INaturalistService extends IntentService {
                     reply.putExtra(OBSERVATION_RESULT, observation);
                     reply.putExtra(OBSERVATION_JSON_RESULT, json.toString());
                 } else {
-                    reply.putExtra(OBSERVATION_RESULT, null);
-                    reply.putExtra(OBSERVATION_JSON_RESULT, null);
+                    reply.putExtra(OBSERVATION_RESULT, (Serializable)null);
+                    reply.putExtra(OBSERVATION_JSON_RESULT, (String)null);
                 }
 
                 LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
