@@ -308,6 +308,8 @@ public class INaturalistApp extends MultiDexApplication {
     }
 
     private long listFilesRecursively(File root) {
+        if (root == null) return -1;
+
         File[] list = root.listFiles();
         long total = 0;
 
