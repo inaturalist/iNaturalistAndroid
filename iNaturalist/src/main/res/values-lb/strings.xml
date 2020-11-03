@@ -171,7 +171,7 @@
         <item>Verschleiert</item>
         <item>Privat</item>
     </string-array>
-    <string name="alert_sign_out">Are you sure you want to sign out? This will delete all your observations on this device. It will not affect any observations you\'ve uploaded to iNaturalist.</string>
+    <string name="alert_sign_out">Sidd Dir sécher datt Dir Iech ofmelle wëllt? Dëst wäert all Är Observatiounen op dësem Apparat läschen. Et beaflosst keng Observatiounen déi Dir op iNaturalist eropgelueden hutt.</string>
     <string name="alert_unsupported_media_type">Sorry, but there was a problem loading the photo from this source</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
     <string name="explore">Entdecken</string>
@@ -206,7 +206,7 @@
     <string name="are_you_sure">Sidd Dir sécher?</string>
     <string name="download_guide_alert">This will download %1$s of data so you can use this guide even when you don\'t have Internet access.</string>
     <string name="download">Eroflueden</string>
-    <string name="failed_to_download_guide">Failed to download guide</string>
+    <string name="failed_to_download_guide">Guide konnt net erofgeluede ginn</string>
     <string name="internet_connection_seems_to_be_offline">D\'Internetverbindung schéngt offline ze sinn.</string>
     <string name="downloading">Gëtt erofgelueden...</string>
     <string name="extracting">Extracting...</string>
@@ -225,7 +225,10 @@
     <string name="skip">Iwwersprangen  ›</string>
     <string name="already_have_account">Dir hutt schon een Konto?</string>
     <string name="log_in">Aloggen</string>
+    <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Sech umellen</string>
+    <!-- Title of the view used to sign up for a new account -->
+    <string name="sign_up_title">Mellt Iech un</string>
     <string name="min_6_chars">Min. 6 Zeechen</string>
     <string name="use_my_license"><![CDATA[Jo lizenzéiert mäin Contenu esou dass Wëssenschaftler meng Date kenne benotzen (recommandéiert). <b>Méi gewuer ginn</b>]]></string>
     <string name="content_licensing">Lizens vum Contenu</string>
@@ -269,7 +272,7 @@
     <string name="needs_your_attention">Brauch Är Opmierksamkeet</string>
     <string name="observation">Observatioun</string>
     <string name="share">Deelen</string>
-    <string name="unable_to_acquire_location">Unable to acquire location</string>
+    <string name="unable_to_acquire_location">Standuert konnt net bestemmt ginn</string>
     <string name="casual_grade">Hobby Grade</string>
     <string name="needs_id">Brauch ID</string>
     <string name="research_grade">Recherche Grade</string>
@@ -388,7 +391,7 @@
     <string name="no_connectivity">Keng Verbindung</string>
     <string name="no_recommended_missions">Looks like there’s no recommendations in this area. Try moving to a new location.</string>
     <string name="what_to_look_for">No wat muss ee kucken</string>
-    <string name="have_been_seen_here">Have Been Seen Here</string>
+    <string name="have_been_seen_here">Goufen Hei Gesinn</string>
     <string name="observe">Observéieren</string>
     <string name="nearby_missions">Nobäi Missiounen</string>
     <string name="searching_your_area">Är Géigend duerchsichen...</string>
@@ -397,7 +400,7 @@
     <string name="missions_onboarding_description">Missions are realtime recommendations of what to look for around you. This way you can discover species new to you! (Requires connectivity)</string>
     <string name="ok_got_it">OK, verstanen!</string>
     <string name="could_not_download_observations">Could not download latest observations - Connection problems. Try again later.</string>
-    <string name="no_news_yet">No news yet. Stay tuned!</string>
+    <string name="no_news_yet">Nach keng Neiegkeet. Bleift drun!</string>
     <string name="my_content">Mäi Contenu</string>
     <string name="following">Following</string>
     <string name="no_updates_yet">No updates yet. Stay tuned!</string>
@@ -412,7 +415,7 @@
         content.
     -->
     <plurals name="new_activities">
-        <item quantity="one">%1s new</item>
+        <item quantity="one">%1s nei</item>
         <item quantity="other">%1s new</item>
     </plurals>
     <string name="no_results_found">Keen Resultat fonnt...</string>
@@ -464,7 +467,7 @@
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Kanner uweisen</string>
     <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG extensions</string>
-    <string name="taxon_has_no_photos">This taxon has no photos.</string>
+    <string name="taxon_has_no_photos">Dësen Taxon huet keng Fotoen.</string>
     <string name="terrain">Terrain</string>
     <string name="filters">Filteren</string>
     <string name="exploring_all">All erfuerschen</string>
@@ -477,11 +480,12 @@
     <string name="no_taxon">Pardon, Taxon net fonnt</string>
     <string name="please_select_taxon">Please select a valid taxon from the list (or clear the taxon field).</string>
     <string name="sorry_no_location">Pardon, Site net fonnt</string>
-    <string name="location_not_found">The location or place you have searched is not in our database. Please choose a place from the list of options below the location search field or clear the search field.</string>
+    <string name="location_not_found">De Standort oder d\'Plaz, déi Dir gesicht hutt, ass net an eiser Datebank. Wielt w.e.g. eng Plaz aus der Lëscht vun Optiounen ënner dem Standuert Sichfeld aus oder läscht d\'Sichfeld.</string>
     <string name="undefined">Ondefinéiert</string>
     <string name="street_segment">Street Segment</string>
     <string name="intersection">Kräizung</string>
     <string name="town">Uert</string>
+    <!-- As in a political administrative area, e.g. Hawaii in the United States -->
     <string name="state">Staat</string>
     <string name="county">Landkrees</string>
     <string name="local_administrative_area">Local Administrative Area</string>
@@ -590,6 +594,14 @@
     <string name="search_projects_youve_joined">Search projects you\'ve joined...</string>
     <string name="must_be_connected_to_load_more_obs">You must be connected to the Internet to load more observations</string>
     <string name="inat_about_title">iNaturalist is a joint initiative by the California Academy of Sciences and the National Geographic Society.</string>
+    <!--
+        Prunciation of people's names (as approved by the people in question):
+
+        Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
+        Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
+        Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
+        Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
+    -->
     <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="http://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
@@ -897,7 +909,7 @@
     <string name="rank_infraorder">Infrauerdnung</string>
     <string name="rank_subterclass">Subterclass</string>
     <string name="rank_parvorder">Parvorder</string>
-    <string name="rank_zoosection">Zoosection</string>
+    <string name="rank_zoosection">Zoosektioun</string>
     <string name="rank_zoosubsection">Zoosubsection</string>
     <string name="rank_superfamily">Superfamill</string>
     <string name="rank_epifamily">Epifamill</string>
@@ -917,7 +929,7 @@
     <string name="rank_hybrid">Hybrid</string>
     <!-- Singular -->
     <string name="rank_subspecies">Ënneraart</string>
-    <string name="rank_variety">Variety</string>
+    <string name="rank_variety">Varietéit</string>
     <string name="rank_form">Form</string>
     <string name="rank_infrahybrid">Infrahybrid</string>
     <string name="rank_leaves">Blieder</string>
@@ -938,7 +950,7 @@
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
-    <string name="show_common_names">Show common names</string>
+    <string name="show_common_names">Populär Nimm weisen</string>
     <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
     <string name="email_must_look_like_email_address">Email must look like an email address</string>
     <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
@@ -946,7 +958,7 @@
     <string name="switch_to_grid_view">Switch to grid view</string>
     <string name="switch_to_list_view">Switch to list view</string>
     <string name="remove_project_filter">Remove project filter</string>
-    <string name="remove_observer_filter">Remove observer filter</string>
+    <string name="remove_observer_filter">Observatiounsfilter ewechhuelen</string>
     <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
     <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
     <string name="filter_observations_by_months">Filter observations by months</string>

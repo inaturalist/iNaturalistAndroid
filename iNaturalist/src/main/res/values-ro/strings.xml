@@ -226,7 +226,10 @@
     <string name="skip">Sari ›</string>
     <string name="already_have_account">Deja ai un cont?</string>
     <string name="log_in">Autentificare</string>
+    <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Înregistrare</string>
+    <!-- Title of the view used to sign up for a new account -->
+    <string name="sign_up_title">Înregistrare</string>
     <string name="min_6_chars">Min. 6 caractere</string>
     <string name="use_my_license"><![CDATA[Da, licențiați-mi conținutul încât savanții să-mi poată utiliza datele (recomandat) <b>Află mai multe</b>]]></string>
     <string name="content_licensing">Conținut de licențiere</string>
@@ -414,9 +417,9 @@
         content.
     -->
     <plurals name="new_activities">
-        <item quantity="one">%1s new</item>
-        <item quantity="few">%1s new</item>
-        <item quantity="other">%1s new</item>
+        <item quantity="one">%1s nouă</item>
+        <item quantity="few">%1s noi</item>
+        <item quantity="other">%1s noi</item>
     </plurals>
     <string name="no_results_found">Nici un rezultat găsit...</string>
     <plurals name="syncing_x_out_of_y_observations">
@@ -488,6 +491,7 @@
     <string name="street_segment">Segment de stradă</string>
     <string name="intersection">Intersecție</string>
     <string name="town">Oraş</string>
+    <!-- As in a political administrative area, e.g. Hawaii in the United States -->
     <string name="state">Stat</string>
     <string name="county">Județ</string>
     <string name="local_administrative_area">Unitate administrativă locală</string>
@@ -596,6 +600,14 @@
     <string name="search_projects_youve_joined">Căutați proiecte la care v-ați alăturat...</string>
     <string name="must_be_connected_to_load_more_obs">Trebuie să fiți conectat la internet pentru a încărca mai multe observații</string>
     <string name="inat_about_title">iNaturalist este o inițiativă comună a Academiei de Științe din California și a Societății Naționale Geografice.</string>
+    <!--
+        Prunciation of people's names (as approved by the people in question):
+
+        Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
+        Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
+        Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
+        Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
+    -->
     <string name="inat_credits"><![CDATA[iNaturalist există datorită fiecărei persoane care participă în comunitatea noastră. Oamenii care construiesc software-ul, proiectează interfeţele, întreţin infrastructura, sprijină comunitatea şi sprijină colaborarea sunt Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard și Ken-ichi Ueda.<br/><br/>CalTech și Cornell Tech au ajutat la dezvoltarea sistemului de vedere computerizat care sugerează identificări din fotografii. Mulţumim Grant Van Horn, Serge Belongie, şi Pietro Perona pentru progresul cercetării privind viziunea informatică. Mai multe informații pot fi găsite la <a href="http://www.visipedia.org">visipedia.org</a>. Mulțumiri speciale NVIDIA pentru asistență suplimentară.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[Rețeaua internațională iNaturalist sprijină site-urile internet locale, complet integrate ale iNaturalist în următoarele țări, datorită sprijinului organizațiilor partenere asociate.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist este, de asemenea, profund recunoscător dezvoltatorilor open source care au furnizat atât de multe dintre programele pe care ne bazăm în fiecare zi. Vezi <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github. om/inaturalist/iNaturalistAndroid</a> pentru contribuții open source.<br/> Suntem recunoscători pentru asistența de traducere oferită de voluntari în crowdin.com, comunitatea română, în special Eduardo Martiànez, AlberTJ, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, și katunchik. <br/>Locuri IUCN categoria II furnizate de IUCN și UNEP-WCMC (2015), Baza de date mondială privind zonele protejate (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Disponibil la: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
@@ -946,18 +958,18 @@
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
-    <string name="show_common_names">Show common names</string>
-    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
-    <string name="email_must_look_like_email_address">Email must look like an email address</string>
-    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
-    <string name="password_too_short">Password must be at least six characters long</string>
-    <string name="switch_to_grid_view">Switch to grid view</string>
-    <string name="switch_to_list_view">Switch to list view</string>
-    <string name="remove_project_filter">Remove project filter</string>
-    <string name="remove_observer_filter">Remove observer filter</string>
-    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
-    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
-    <string name="filter_observations_by_months">Filter observations by months</string>
+    <string name="show_common_names">Afișează numele comune</string>
+    <string name="show_common_names_description">Dezactivează ca să vezi numai numele științifice.</string>
+    <string name="email_must_look_like_email_address">E-mailul trebuie să arate ca o adresă de e-mail</string>
+    <string name="username_must_begin_with">Numele de utilizator trebuie să înceapă cu o literă, să nu conțină spații și să utilizeze numai litere, cifre, liniuțe de separare și subliniere</string>
+    <string name="password_too_short">Parola trebuie să aibă minimum șase caractere</string>
+    <string name="switch_to_grid_view">Comută la vizualizare grilă</string>
+    <string name="switch_to_list_view">Comută la vizualizare listă</string>
+    <string name="remove_project_filter">Elimină filtrul proiectului</string>
+    <string name="remove_observer_filter">Elimină filtrul observatorului</string>
+    <string name="filter_observations_by_an_exact_date">Filtrează observațiile după o dată exactă</string>
+    <string name="filter_observations_by_a_date_range">Filtrează observațiile după un interval de date</string>
+    <string name="filter_observations_by_months">Filtrează observațiile după luni</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
 </resources>

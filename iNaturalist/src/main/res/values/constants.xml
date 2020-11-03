@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Resources that should not be translated / renamed -->
-
-    <string-array name="tutorial_images">
-	    <item>slide_logo</item>
-	    <item>slide_observe</item>
-	    <item>slide_share</item>
-	    <item>slide_learn</item>
-	    <item>slide_contribute</item>
-    </string-array>
-
-    <string-array name="secondary_tutorial_images">
-	    <item>slide_branding</item>
-	    <item></item>
-	    <item></item>
-	    <item></item>
-	    <item></item>
-    </string-array>
-
+	<!-- Resources that should not be translated / renamed -->
+	<string-array name="tutorial_images">
+		<item>slide_logo</item>
+		<item>slide_observe</item>
+		<item>slide_share</item>
+		<item>slide_learn</item>
+		<item>slide_contribute</item>
+	</string-array>
+	<string-array name="secondary_tutorial_images">
+		<item>slide_branding</item>
+		<item/>
+		<item/>
+		<item/>
+		<item/>
+	</string-array>
 	<string-array name="tutorial_layouts">
 		<item>tutorial_page_first</item>
 		<item>tutorial_page</item>
@@ -26,22 +23,18 @@
 		<item>tutorial_page</item>
 		<item>tutorial_page_get_started</item>
 	</string-array>
-
-
 	<string-array name="geoprivacy_values">
-	    <item>open</item>
-	    <item>obscured</item>
-	    <item>private</item>
-    </string-array>
-
-
+		<item>open</item>
+		<item>obscured</item>
+		<item>private</item>
+	</string-array>
 	<!-- Package names of apps that we do not allow sharing their photos/sounds into iNaturalist (see https://github.com/inaturalist/iNaturalistAndroid/issues/811) -->
 	<string-array name="blocklisted_sharing_apps">
 		<item>com.labs.merlinbirdid.app</item>
 	</string-array>
-
-    <string-array name="language_values">
-	    <item></item>
+	<!-- Language codes. Note that order must match up with language_names below -->
+	<string-array name="language_values">
+		<item/>
 		<item>ar</item>
 		<item>bg</item>
 		<item>ca</item>
@@ -76,6 +69,7 @@
 		<item>ja</item>
 		<item>ka</item>
 		<item>ko</item>
+		<item>lb</item>
 		<item>lt</item>
 		<item>lv</item>
 		<item>mi</item>
@@ -92,6 +86,7 @@
 		<item>ro</item>
 		<item>ru</item>
 		<item>sk</item>
+		<item>si-rLK</item>
 		<item>sq</item>
 		<item>sv</item>
 		<item>sv-rSE</item>
@@ -103,9 +98,10 @@
 		<item>zh-rCN</item>
 		<item>zh-rHK</item>
 		<item>zh-rTW</item>
-    </string-array>
-    <string-array name="language_names">
-	    <item>@string/use_device_language_settings</item>
+	</string-array>
+	<!-- Language names in those language. Note that order must match up with language_values above -->
+	<string-array name="language_names">
+		<item>@string/use_device_language_settings</item>
 		<item>عربى</item>
 		<item>Български</item>
 		<item>Català</item>
@@ -140,6 +136,7 @@
 		<item>日本語</item>
 		<item>ქართული ენა</item>
 		<item>한국어</item>
+		<item>Lëtzebuergesch</item>
 		<item>Lietuvių Kalba</item>
 		<item>latviešu valoda</item>
 		<item>Māori</item>
@@ -156,6 +153,7 @@
 		<item>Română</item>
 		<item>Русский</item>
 		<item>Slovenčina</item>
+		<item>සිංහල</item>
 		<item>Shqipe</item>
 		<item>Svenska</item>
 		<item>Svenska (Sverige)</item>
@@ -168,5 +166,4 @@
 		<item>中文 (香港)</item>
 		<item>中文 (台湾)</item>
 	</string-array>
-
 </resources>

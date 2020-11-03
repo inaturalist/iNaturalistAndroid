@@ -224,7 +224,10 @@
     <string name="skip">건너뛰기 ></string>
     <string name="already_have_account">이미 계정이 있으십니까? </string>
     <string name="log_in">로그인</string>
+    <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">가입하기</string>
+    <!-- Title of the view used to sign up for a new account -->
+    <string name="sign_up_title">Sign Up</string>
     <string name="min_6_chars">암호는 6자리 이상이어야 합니다.</string>
     <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data (recommended). <b>Learn More</b>]]></string>
     <string name="content_licensing">게시물 사용 권한</string>
@@ -476,6 +479,7 @@
     <string name="street_segment">Street Segment</string>
     <string name="intersection">Intersection</string>
     <string name="town">마을</string>
+    <!-- As in a political administrative area, e.g. Hawaii in the United States -->
     <string name="state">시/도/주</string>
     <string name="county">군</string>
     <string name="local_administrative_area">Local Administrative Area</string>
@@ -584,6 +588,14 @@
     <string name="search_projects_youve_joined">내가 가입한 프로젝트 검색...</string>
     <string name="must_be_connected_to_load_more_obs">더 많은 관찰을 로딩하려면 인터넷에 연결되어 있어야 합니다</string>
     <string name="inat_about_title">iNaturalist는 캘리포니아 과학 아카데미와 내셔널 지오그래픽과 공동으로 진행하는 프로젝트입니다. </string>
+    <!--
+        Prunciation of people's names (as approved by the people in question):
+
+        Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
+        Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
+        Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
+        Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
+    -->
     <string name="inat_credits"><![CDATA[iNaturalist는 우리 공동체에 참여하는 많은 사람들의 노력으로 유지됩니다. 소프트웨어를 개발하고, 인터페이스를 디자인하고, 공동체를 지원하고, 협력 사업을 진행하는 사람들은 Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda 입니다.<br/><br/>캘리포니아 공과대학교(Caltech)과 코넬대학교 Tech campus에서, 사진을 바탕으로 컴퓨터가 인식하여 이름을 제안하는 시스템을 개발하는 데 도움을 주었습니다. 특히 컴퓨터 인식 연구를 발전시킨 Grant Van Horn, Serge Belongie, and Pietro Perona에게 감사드립니다. 더 많은 정보는 <a href="http://www.visipedia.org">visipedia.org</a> 에서 확인할 수 있습니다. 추가적인 도움을 준 NVIDIA에도 감사드립니다.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>

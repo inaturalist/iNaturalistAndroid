@@ -238,9 +238,12 @@
     <string name="skip">Пропустити  ›</string>
     <string name="already_have_account">Вже маєте обліковий запис?</string>
     <string name="log_in">Увійти</string>
+    <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Зареєструватися</string>
+    <!-- Title of the view used to sign up for a new account -->
+    <string name="sign_up_title">Реєстрація</string>
     <string name="min_6_chars">Мін. 6 символів</string>
-    <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data (recommended). <b>Learn More</b>]]></string>
+    <string name="use_my_license"><![CDATA[Так, ліцензувати мій контент та дати змогу науковцям використовувати мої дані (рекомендується). <b>Дізнатися більше</b>]]></string>
     <string name="content_licensing">Ліцензування контенту</string>
     <string name="content_licensing_description">Встановіть цей прапорець, якщо ви хочете використовувати ліцензію Creative Commons Attribution-NonCommercial для ваших фотографій. Ви зможете вибрати іншу ліцензію або видалити її, але це оптимальна ліцензія для спільного використання з дослідниками.</string>
     <!-- Try to keep this about the length of the English text -->
@@ -427,10 +430,10 @@
         content.
     -->
     <plurals name="new_activities">
-        <item quantity="one">%1s new</item>
-        <item quantity="few">%1s new</item>
-        <item quantity="many">%1s new</item>
-        <item quantity="other">%1s new</item>
+        <item quantity="one">%1s нове</item>
+        <item quantity="few">%1s нових</item>
+        <item quantity="many">%1s нових</item>
+        <item quantity="other">%1s нових</item>
     </plurals>
     <string name="no_results_found">Нічого не знайдено...</string>
     <plurals name="syncing_x_out_of_y_observations">
@@ -505,6 +508,7 @@
     <string name="street_segment">Вуличний сектор</string>
     <string name="intersection">Перетин</string>
     <string name="town">Місто</string>
+    <!-- As in a political administrative area, e.g. Hawaii in the United States -->
     <string name="state">Стан</string>
     <string name="county">Округ</string>
     <string name="local_administrative_area">Місцева адміністративна область</string>
@@ -613,6 +617,14 @@
     <string name="search_projects_youve_joined">Пошук проектів, до яких ви приєдналися...</string>
     <string name="must_be_connected_to_load_more_obs">Щоб завантажити більше спостережень ви повинні підключитися до інтернету</string>
     <string name="inat_about_title">iNaturalist це спільна ініціатива Каліфорнійської академії наук та Національного географічного товариства.</string>
+    <!--
+        Prunciation of people's names (as approved by the people in question):
+
+        Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
+        Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
+        Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
+        Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
+    -->
     <string name="inat_credits"><![CDATA[iNaturalist створюється кожною людиною, яка бере участь в нашій спільноті. Люди, які створюють програмне забезпечення, проектують інтерфейс, обслуговують нашу інфраструктуру, надають підтримку спільноті і сприяють співробітництву, - це Ярон Будовський, Аманда Буллінгтон, Тоні Айвен, Патрік Лірі, Скотт Лорі, Абхас Місрарадж, Керрі Зельцер, Алекс Шепард і Кен-ічі Уеда. <br/><br/> Фірми Caltech і Cornell Tech допомогли розробити систему комп\'ютерного зору, яка пропонує ідентифікації по фотографіях. Ми дякуємо Гранту Ван Хорну, Сержу Белонгу і П\'єтро Перону за цю роботу. Більш детальну інформацію можна знайти за адресою <a href="http://www.visipedia.org"> visipedia.org </a>. Особлива подяка NVIDIA за додаткову допомогу.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[Міжнародна мережа iNaturalist підтримує локалізовані, повністю інтегровані, засновані на iNaturalist веб-сайти в наступних країнах, завдяки підтримці асоційованих організацій-партнерів.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist також глибоко вдячний розробникам програмного забезпечення з відкритим вихідним кодом, які надали так багато програмного забезпечення, на яке ми покладаємося кожен день. Див. Тут <a href="https://github.com/inaturalist/iNaturalistAndroid"> https://github.com/inaturalist/iNaturalistAndroid </a> внесок в програмне забезпечення. <br/> Ми вдячні за допомогу в перекладі, надану добровольцями із товариства crowdin.com, зокрема Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, і katunchik. <br/> Місця IUCN категорії II взяті з IUCN з UNEP-WCMC (2015), Всесвітня база даних по охоронюваним регіонах (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Доступно за адресою: <a href="http://www.protectedplanet.net"> www.protectedplanet.net </a>]]></string>
@@ -863,67 +875,67 @@
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <string name="list_observation_checkbox_description">Прапорець для вибору спостереження в режимі множинного вибору</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <string name="observation_list_item_iconic_pic_description">Ескіз фото для спостереження таксону</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
-    <string name="messages">Messages</string>
-    <string name="all_messages">All Messages</string>
-    <string name="search_messages">Search messages</string>
+    <string name="observation_list_item_obs_pic_description">Ескіз фото для спостереження</string>
+    <string name="messages">Повідомлення</string>
+    <string name="all_messages">Усі повідомлення</string>
+    <string name="search_messages">Пошук повідомлень</string>
     <string name="no_messages">You currently have no messages. You can send a new message with the green button, or message them from their profile page.</string>
-    <string name="no_messages_found">No messages found.</string>
-    <string name="send_a_message">Send a message</string>
-    <string name="sending_message">Sending message...</string>
-    <string name="could_not_send_message">Couldn\'t send message: %1$s</string>
-    <string name="subject">Subject</string>
-    <string name="body">Body</string>
-    <string name="type_your_message_here">Type your message here</string>
-    <string name="new_message_to">New Message to %1$s</string>
-    <string name="who_would_you_like_to_send_a_message_to">Who would you like to send a message to?</string>
-    <string name="new_message">New Message</string>
-    <string name="search_for_inaturalist_users">Search for iNaturalist users</string>
-    <string name="please_sign_in_for_messages">You must be logged in to view your messages.</string>
-    <string name="sorry">Sorry</string>
-    <string name="you_must_have_three_observations">You must have three verifiable observations or three identifications for others in order to do that.</string>
-    <string name="mute_this_user">Mute this user</string>
-    <string name="unmute_this_user">Unmute this user</string>
-    <string name="flag_this_conversation">Flag this conversation</string>
-    <string name="mute_this_user_question">Mute this user?</string>
-    <string name="you_will_no_longer_receive_messages">You will no longer receive any notifications about activity from this user, including messages, comments, identifications, and mentions.</string>
-    <string name="mute">Mute</string>
-    <string name="muting_user">Muting user...</string>
-    <string name="unmuting_user">Unmuting user...</string>
-    <string name="failed_muting_user">Failed muting user!</string>
-    <string name="failed_unmuting_user">Failed unmuting user!</string>
-    <string name="flag_conversation">Flag conversation</string>
-    <string name="spam">Spam</string>
-    <string name="commercial_solicitation">Commercial solicitation, links to nowhere, etc.</string>
-    <string name="offensive_inappropriate">Offensive/Inappropriate</string>
-    <string name="misleading_or_illegal_content">Misleading or illegal content, racial or ethnic slurs, etc. For more on our definition of \"appropriate,\" see the FAQ.</string>
-    <string name="other">Other</string>
-    <string name="some_other_reason">Some other reason you can explain.</string>
-    <string name="continue_text">Continue</string>
-    <string name="why_are_you_flagging_this_item">Why are you flagging this item?</string>
-    <string name="thank_you_for_submitting_the_flag">Thank you for submitting the flag!</string>
-    <string name="flagging_conversation">Flagging conversation...</string>
-    <string name="failed_flagging_conversation">Failed flagging conversation!</string>
-    <string name="no_subject">No Subject</string>
-    <string name="rank_state_of_matter">State of matter</string>
-    <string name="rank_kingdom">Kingdom</string>
-    <string name="rank_subkingdom">Subkingdom</string>
-    <string name="rank_phylum">Phylum</string>
-    <string name="rank_subphylum">Subphylum</string>
-    <string name="rank_superclass">Superclass</string>
-    <string name="rank_class">Class</string>
-    <string name="rank_subclass">Subclass</string>
-    <string name="rank_infraclass">Infraclass</string>
-    <string name="rank_superorder">Superorder</string>
-    <string name="rank_order">Order</string>
-    <string name="rank_suborder">Suborder</string>
-    <string name="rank_infraorder">Infraorder</string>
-    <string name="rank_subterclass">Subterclass</string>
-    <string name="rank_parvorder">Parvorder</string>
+    <string name="no_messages_found">Повідомлень не знайдено</string>
+    <string name="send_a_message">Надіслати повідомлення</string>
+    <string name="sending_message">Повідомлення надсилається...</string>
+    <string name="could_not_send_message">Не вдалося надіслати повідомлення: %1$s</string>
+    <string name="subject">Тема</string>
+    <string name="body">Повідомлення</string>
+    <string name="type_your_message_here">Введіть повідомлення</string>
+    <string name="new_message_to">Повідомлення для %1$s</string>
+    <string name="who_would_you_like_to_send_a_message_to">Кому б ви хотіли надіслати повідомлення?</string>
+    <string name="new_message">Нове повідомлення</string>
+    <string name="search_for_inaturalist_users">Пошук користувачів iNaturalist</string>
+    <string name="please_sign_in_for_messages">Ви повинні увійти в систему для перегляду ваших оновлень.</string>
+    <string name="sorry">Вибачте</string>
+    <string name="you_must_have_three_observations">Для цього у вас має бути три перевірені спостереження або три ідентифікації для інших.</string>
+    <string name="mute_this_user">Приглушити користувача</string>
+    <string name="unmute_this_user">Усунути приглушення</string>
+    <string name="flag_this_conversation">Позначити цю розмову</string>
+    <string name="mute_this_user_question">Приглушити користувача?</string>
+    <string name="you_will_no_longer_receive_messages">Ви більше не будете отримувати сповіщення про активність цього користувача, включаючи повідомлення, коментарі, ідентифікації та згадки.</string>
+    <string name="mute">Приглушити</string>
+    <string name="muting_user">Приглушення користувача...</string>
+    <string name="unmuting_user">Усунення приглушення...</string>
+    <string name="failed_muting_user">Помилка приглушення користувача!</string>
+    <string name="failed_unmuting_user">Помилка усунення приглушення користувача!</string>
+    <string name="flag_conversation">Позначити розмову</string>
+    <string name="spam">Спам</string>
+    <string name="commercial_solicitation">Комерційні пропозиції, посилання в нікуди, і т.д.</string>
+    <string name="offensive_inappropriate">Образливе / Неприйнятне</string>
+    <string name="misleading_or_illegal_content">Оманливий або незаконний вміст, приниження за расою чи етнічною приналежністю тощо. Докладніше про наше визначення поняття \"прийнятне\" дивіться ЧаПи.</string>
+    <string name="other">Інше</string>
+    <string name="some_other_reason">Інша причина, яку ви можете пояснити.</string>
+    <string name="continue_text">Продовжити</string>
+    <string name="why_are_you_flagging_this_item">Чому ви позначаєте цей елемент?</string>
+    <string name="thank_you_for_submitting_the_flag">Дякуємо за встановлення прапорця!</string>
+    <string name="flagging_conversation">Розмова позначається...</string>
+    <string name="failed_flagging_conversation">Не вдалося позначити розмову!</string>
+    <string name="no_subject">Без теми</string>
+    <string name="rank_state_of_matter">Форма</string>
+    <string name="rank_kingdom">Царство</string>
+    <string name="rank_subkingdom">Підцарство</string>
+    <string name="rank_phylum">Тип</string>
+    <string name="rank_subphylum">Підтип</string>
+    <string name="rank_superclass">Надклас</string>
+    <string name="rank_class">Клас</string>
+    <string name="rank_subclass">Підклас</string>
+    <string name="rank_infraclass">Інфраклас</string>
+    <string name="rank_superorder">Надряд</string>
+    <string name="rank_order">Ряд</string>
+    <string name="rank_suborder">Підряд</string>
+    <string name="rank_infraorder">Інфраряд</string>
+    <string name="rank_subterclass">Під-підклас</string>
+    <string name="rank_parvorder">Парворяд</string>
     <string name="rank_zoosection">Zoosection</string>
     <string name="rank_zoosubsection">Zoosubsection</string>
     <string name="rank_superfamily">Superfamily</string>

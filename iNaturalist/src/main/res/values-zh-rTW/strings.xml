@@ -224,7 +224,10 @@
     <string name="skip">略過 ></string>
     <string name="already_have_account">已經有帳號了嗎？</string>
     <string name="log_in">登入</string>
+    <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">註冊</string>
+    <!-- Title of the view used to sign up for a new account -->
+    <string name="sign_up_title">註冊</string>
     <string name="min_6_chars">最少 6 個字元以上</string>
     <string name="use_my_license"><![CDATA[好的，授權我的內容讓科學家可以使用我的資料(建議). <b>了解更多資訊</b>]]></string>
     <string name="content_licensing">內容授權</string>
@@ -410,7 +413,7 @@
         content.
     -->
     <plurals name="new_activities">
-        <item quantity="other">%1s new</item>
+        <item quantity="other">%1s 則新通知</item>
     </plurals>
     <string name="no_results_found">找不到結果...</string>
     <plurals name="syncing_x_out_of_y_observations">
@@ -476,6 +479,7 @@
     <string name="street_segment">街道區段</string>
     <string name="intersection">交叉路口</string>
     <string name="town">鄉鎮</string>
+    <!-- As in a political administrative area, e.g. Hawaii in the United States -->
     <string name="state">州/省</string>
     <string name="county">縣市</string>
     <string name="local_administrative_area">地方行政區</string>
@@ -584,6 +588,14 @@
     <string name="search_projects_youve_joined">搜尋您已加入的專案...</string>
     <string name="must_be_connected_to_load_more_obs">您必須連接到網路才能載入更多的觀察記錄</string>
     <string name="inat_about_title">iNaturalist 是加州科學院(California Academy of Science)和國家地理學會(National Geographic Society)的共同計畫。</string>
+    <!--
+        Prunciation of people's names (as approved by the people in question):
+
+        Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
+        Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
+        Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
+        Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
+    -->
     <string name="inat_credits"><![CDATA[iNaturalist 是由每個參與我們社群的人們共同建立的。Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard 以及 Ken-Ichi Ueda 等人開發軟體、維護基礎設施並促成合作。<br/><br/>加州理工大學 (Caltech) 和康乃爾理工學院 (Cornell Tech) 協助開發自照片中學習，並提供物種鑑定上建議的電腦視覺系統。我們感謝 Grant Van Horn, Serge Belongie 和 Pietro Perona 協助這項工作。更多資訊請拜訪 <a href="http://www.visipedia.org">visipedia.org</a>。特別感謝 NVIDIA 提供協助。]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[感謝相關夥伴組織的協助下，以下國家支援在地語系化、全面整合並建構於原有 iNaturalist 網站基礎上之 iNaturalist 附屬網路。]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist 也深深感謝開源開發者, 他們提供了我們每天所依賴的大量軟體。有關開源貢獻, 請參閱 <a href="https://github.com/inaturalist/iNaturalistAndroid">HTTPs://github.com/inaturalist/iNaturalistAndroid</a> 。<br/> 我們感謝 crowdin.com. com 社區的志願者提供的翻譯協助, 特別是Eduardo Martínez、林政道(Lin, Cheng-Tao)、KestrelLam、cgalindo、vilseskog、NCAA、ldacosta、radana、Mykola Pukhalskyi、danieseseglie 和 katunchik。<br/>由國際自然保護聯盟(IUCN)和聯合國環境署-世界保護監測中心 (UNEP-WCMC, 2015年) 所提供 IUCN 第二類地點、世界保護區資料庫(The World Database on Protected Areas; WDPA) [On-line], [11/2014], 英國劍橋: 聯合國環境署-世界保護監測中心提供。可在: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
@@ -887,12 +899,12 @@
     <string name="rank_order">目</string>
     <string name="rank_suborder">亞目</string>
     <string name="rank_infraorder">下目</string>
-    <string name="rank_subterclass">Subterclass</string>
-    <string name="rank_parvorder">Parvorder</string>
+    <string name="rank_subterclass">準綱</string>
+    <string name="rank_parvorder">小目</string>
     <string name="rank_zoosection">派</string>
     <string name="rank_zoosubsection">亞派</string>
     <string name="rank_superfamily">總科</string>
-    <string name="rank_epifamily">Epifamily</string>
+    <string name="rank_epifamily">領科</string>
     <string name="rank_family">科</string>
     <string name="rank_subfamily">亞科</string>
     <string name="rank_supertribe">總族</string>
@@ -910,7 +922,7 @@
     <!-- Singular -->
     <string name="rank_subspecies">亞種</string>
     <string name="rank_variety">變種</string>
-    <string name="rank_form">Form</string>
+    <string name="rank_form">型</string>
     <string name="rank_infrahybrid">Infrahybrid</string>
     <string name="rank_leaves">葉子</string>
     <string name="location_lat_lng">地點：%1$f，%2$f</string>
@@ -930,18 +942,18 @@
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
-    <string name="show_common_names">Show common names</string>
-    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
-    <string name="email_must_look_like_email_address">Email must look like an email address</string>
-    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
-    <string name="password_too_short">Password must be at least six characters long</string>
-    <string name="switch_to_grid_view">Switch to grid view</string>
-    <string name="switch_to_list_view">Switch to list view</string>
-    <string name="remove_project_filter">Remove project filter</string>
-    <string name="remove_observer_filter">Remove observer filter</string>
-    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
-    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
-    <string name="filter_observations_by_months">Filter observations by months</string>
+    <string name="show_common_names">顯示俗名</string>
+    <string name="show_common_names_description">如果您只想檢視學名，請取消此選項</string>
+    <string name="email_must_look_like_email_address">必須要看起來像電子郵件地址</string>
+    <string name="username_must_begin_with">使用者名稱必須以字母為開頭，內容不可包含空格，開頭以外部份僅能使用字母、數字、連接號和底線</string>
+    <string name="password_too_short">密碼長度必須至少為 6 個字元</string>
+    <string name="switch_to_grid_view">切換至網格檢視</string>
+    <string name="switch_to_list_view">切換至列表檢視</string>
+    <string name="remove_project_filter">移除專案篩選條件</string>
+    <string name="remove_observer_filter">移除觀察者篩選條件</string>
+    <string name="filter_observations_by_an_exact_date">按照特定日期來篩選觀察紀錄</string>
+    <string name="filter_observations_by_a_date_range">按照日期範圍來篩選觀察紀錄</string>
+    <string name="filter_observations_by_months">按照月份來篩選觀察紀錄</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
 </resources>
