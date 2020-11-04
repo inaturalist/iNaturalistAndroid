@@ -604,7 +604,7 @@ public class Observation implements BaseColumns, Serializable {
         bo.put("captive_flag", captive);
         bo.put("place_guess", (private_place_guess != null) && (private_place_guess.length() > 0) ? private_place_guess : place_guess);
         bo.put("uuid", uuid);
-        if (!partial) bo.put("owners_identification_from_vision", owners_identification_from_vision != null ? owners_identification_from_vision : false);
+        bo.put("owners_identification_from_vision", owners_identification_from_vision != null ? owners_identification_from_vision : false);
         if (!partial) bo.put("scientific_name", scientific_name);
         if (!partial) bo.put("rank_level", rank_level);
         if (!partial) bo.put("rank", rank);
