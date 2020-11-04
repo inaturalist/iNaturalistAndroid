@@ -76,6 +76,7 @@ public class MessagesThreadActivity extends AppCompatActivity {
     private MessageThreadAdapter mAdapter;
     private ActivityHelper mHelper;
 
+    @State public String mMessageBody = "";
     @State public boolean mOpenedFromUrl;
     @State public boolean mMutingUser;
     @State public boolean mFlaggingConversation;
@@ -143,6 +144,8 @@ public class MessagesThreadActivity extends AppCompatActivity {
         mMessageList = findViewById(R.id.message_list);
         mSendMessage = findViewById(R.id.send_message);
         mMessageText = findViewById(R.id.message);
+        mMessageText.setText(mMessageBody);
+        mMessageText.post(() -> mMessageText.setSelection(mMessageText.getText().length()));
 
         mSendMessage.setOnClickListener(view -> {
             if (mMessageText.getText().length() == 0) return;
@@ -198,13 +201,15 @@ public class MessagesThreadActivity extends AppCompatActivity {
 
         if (mSendingMessage) {
             mHelper.loading(getString(R.string.sending_message));
+            mMessageBody = "";
         } else if (mMutingUser) {
             mHelper.loading(isUserMuted() ? getString(R.string.unmuting_user) : getString(R.string.muting_user));
         } else if (mFlaggingConversation) {
             mHelper.loading(getString(R.string.flagging_conversation));
         } else {
             mHelper.stopLoading();
-            mMessageText.setText("");
+            mMessageText.setText(mMessageBody);
+            mMessageText.post(() -> mMessageText.setSelection(mMessageText.getText().length()));
         }
 
         Integer userId = getOtherUserId();
@@ -291,6 +296,7 @@ public class MessagesThreadActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        mMessageBody = mMessageText.getText().toString();
         Bridge.saveInstanceState(this, outState);
     }
 
