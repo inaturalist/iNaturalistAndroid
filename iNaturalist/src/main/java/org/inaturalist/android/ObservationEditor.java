@@ -3253,7 +3253,8 @@ public class ObservationEditor extends AppCompatActivity {
                 if ((date == null) || (date.length() == 0) || (time == null) || (time.length() == 0)) {
                     // No timezone defined - assume user's local timezone
                     useLocalTimezone = true;
-                    datetime = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_DATE_TIME_ORIGINAL).trim();
+                    String dateTimeValue = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_DATE_TIME_ORIGINAL);
+                    datetime = dateTimeValue != null ? dateTimeValue.trim() : null;
                 } else {
                     datetime = date.trim() + " " + time.trim();
                 }
