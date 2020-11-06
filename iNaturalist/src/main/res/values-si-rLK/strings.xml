@@ -1,955 +1,967 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">iNaturalist</string>
-    <string name="email_address">Email Address</string>
-    <string name="delete_observation">Delete observation</string>
-    <string name="observation_deleted">Observation deleted</string>
-    <string name="species_guess_hint">Species name</string>
-    <string name="ok">OK</string>
-    <string name="cancel">Cancel</string>
+    <string name="email_address">විද්‍යුත් තැපැල් ලිපිනය</string>
+    <string name="delete_observation">නිරීක්ෂණය මකන්න</string>
+    <string name="observation_deleted">නිරීක්ෂණය මකා දමන ලදි</string>
+    <string name="species_guess_hint">විශේෂයේ නම</string>
+    <string name="ok">හරි</string>
+    <string name="cancel">අවලංගු කරන්න</string>
     <string name="loading">පූරණය වෙමින් පවතී...</string>
-    <string name="sync_required">Sync required</string>
-    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
-    <string name="street">Street</string>
+    <string name="sync_required">සමමුහුර්ත කිරීම අවශ්‍යයි</string>
+    <string name="sync_required_message">සමමුහුර්ත කිරීමට නිරීක්ෂණ %1$d ක්, ඡායාරූප %2$d ක්</string>
+    <string name="street">වීදිය</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
-    <string name="satellite">Satellite</string>
-    <string name="couldnt_load_nearby_observations">Couldn\'t load nearby observations: %1$s</string>
-    <string name="username_invalid">Username or password was invalid, please sign in again.</string>
-    <string name="signing_in">Signing in...</string>
-    <string name="signed_in">Signed in!</string>
-    <string name="please_sign_in">Please sign in</string>
-    <string name="please_sign_in_description">Please sign in to your iNaturalist account or sign up for a new one.</string>
-    <string name="please_enable_location_services">Please enable location services in order to find your current location...</string>
-    <string name="go_to_settings">Go to Settings</string>
-    <string name="photo_not_specified">Photo not specified</string>
-    <string name="set_date">Date</string>
-    <string name="set_time">Time</string>
+    <string name="satellite">චන්ද්‍රිකා</string>
+    <string name="couldnt_load_nearby_observations">අසල ඇති නිරීක්ෂණ පූරණය කළ නොහැකි විය: %1$s</string>
+    <string name="username_invalid">පරිශීලක නාමය හෝ මුරපදය වලංගු නැත, කරුණාකර නැවත පුරනය වන්න.</string>
+    <string name="signing_in">පුරනය වෙමින්...</string>
+    <string name="signed_in">පුරනය වී ඇත!</string>
+    <string name="please_sign_in">කරුණාකර පුරනය වන්න</string>
+    <string name="please_sign_in_description">කරුණාකර ඔබගේ iNaturalist ගිණුමට පුරනය වන්න හෝ නව එකක් සඳහා ලියාපදිංචි වන්න.</string>
+    <string name="please_enable_location_services">ඔබගේ වර්තමාන ස්ථානය සොයා ගැනීමට කරුණාකර ස්ථාන සේවා සක්‍රීය කරන්න...</string>
+    <string name="go_to_settings">සැකසුම් වෙත යන්න</string>
+    <string name="photo_not_specified">ඡායාරූපය නිශ්චිතව දක්වා නැත</string>
+    <string name="set_date">දිනය</string>
+    <string name="set_time">වේලාව</string>
     <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
-    <string name="something_went_wrong">Blast, something went wrong: %1$s</string>
-    <string name="edit">Edit</string>
-    <string name="oh_no">Oh no! %1$s</string>
-    <string name="observations">My Observations</string>
-    <string name="map">Map</string>
-    <string name="settings">Settings</string>
-    <string name="projects">Projects</string>
-    <string name="delete_photo">Delete photo</string>
-    <string name="menu">Menu</string>
-    <string name="my_location">My Location</string>
-    <string name="nearby_observations">Nearby Observations</string>
-    <string name="add">Add</string>
-    <string name="view_on_inat">View on iNaturalist.org</string>
-    <string name="reload">Reload</string>
-    <string name="view_in_browser">View in browser</string>
-    <string name="add_observation">Add observation</string>
-    <string name="take_picture">Take picture</string>
-    <string name="save">Save</string>
-    <string name="no_observations_yet">No observations yet!</string>
-    <string name="or">or</string>
-    <string name="signed_out">Sign out</string>
-    <string name="username">Username</string>
-    <string name="password">Password</string>
-    <string name="unknown">Unknown</string>
-    <string name="unknown_species">Unknown species</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">OK</string>
-    <string name="com_facebook_loginview_log_out_button">Log Out</string>
-    <string name="com_facebook_loginview_log_in_button">Log In</string>
-    <string name="com_facebook_loginview_logged_in_as">Logged in as: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Logged in using Facebook</string>
-    <string name="com_facebook_loginview_log_out_action">Log Out</string>
-    <string name="com_facebook_loginview_cancel_action">Cancel</string>
-    <string name="com_facebook_logo_content_description">Facebook Logo</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Log In&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Logged In</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Not Logged In</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d were here</string>
+    <string name="something_went_wrong">අපොයි, යමක් වැරදී ඇත: %1$s</string>
+    <string name="edit">සංස්කරණය කරන්න</string>
+    <string name="oh_no">අපොයි! %1$s</string>
+    <string name="observations">මගේ නිරීක්ෂණ</string>
+    <string name="map">සිතියම</string>
+    <string name="settings">සැකසුම්</string>
+    <string name="projects">ව්‍යාපෘති</string>
+    <string name="delete_photo">ඡායාරූපය මකන්න</string>
+    <string name="menu">මෙනුව</string>
+    <string name="my_location">මගේ ස්ථානය</string>
+    <string name="nearby_observations">අසල ඇති නිරීක්ෂණ</string>
+    <string name="add">එකතු කරන්න</string>
+    <string name="view_on_inat">iNaturalist.org වෙබ් අඩවියෙන් බලන්න</string>
+    <string name="reload">නැවත පූරණය කරන්න</string>
+    <string name="view_in_browser">බ්‍රව්සරයේ බලන්න</string>
+    <string name="add_observation">නිරීක්ෂණය එකතු කරන්න</string>
+    <string name="take_picture">පින්තූරයක් ගන්න</string>
+    <string name="save">සුරකින්න</string>
+    <string name="no_observations_yet">තවමත් නිරීක්ෂණ නොමැත!</string>
+    <string name="or">හෝ</string>
+    <string name="signed_out">වරන්න</string>
+    <string name="username">පරිශීලක නාමය</string>
+    <string name="password">මුරපදය</string>
+    <string name="unknown">නොදන්නා</string>
+    <string name="unknown_species">නොදන්නා විශේෂයක්</string>
+    <string name="com_facebook_dialogloginactivity_ok_button">හරි</string>
+    <string name="com_facebook_loginview_log_out_button">ඉවත් වෙන්න</string>
+    <string name="com_facebook_loginview_log_in_button">ඇතුල් වන්න</string>
+    <string name="com_facebook_loginview_logged_in_as">ඇතුල් වී ඇත්තේ මෙලෙසිනි: %1$s</string>
+    <string name="com_facebook_loginview_logged_in_using_facebook">Facebook භාවිතයෙන් ඇතුල් වී ඇත</string>
+    <string name="com_facebook_loginview_log_out_action">ඉවත් වෙන්න</string>
+    <string name="com_facebook_loginview_cancel_action">අවලංගු කරන්න</string>
+    <string name="com_facebook_logo_content_description">Facebook ලාංඡනය</string>
+    <string name="com_facebook_usersettingsfragment_log_in_button">ඇතුල් වෙන්න&#8230;</string>
+    <string name="com_facebook_usersettingsfragment_logged_in">ඇතුල් වී ඇත</string>
+    <string name="com_facebook_usersettingsfragment_not_logged_in">ඇතුල් වී නොමැත</string>
+    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d මෙතන හිටියා</string>
     <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d were here</string>
-    <string name="com_facebook_picker_done_button_text">Done</string>
-    <string name="com_facebook_choose_friends">Choose Friends</string>
-    <string name="com_facebook_nearby">Nearby</string>
-    <string name="com_facebook_loading">Loading...</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifest Error</string>
-    <string name="com_facebook_internet_permission_error_message">WebView login requires INTERNET permission</string>
-    <string name="com_facebook_requesterror_web_login">Your Facebook account is locked. Please log into www.facebook.com to continue.</string>
-    <string name="com_facebook_requesterror_relogin">Please log into this app again to reconnect your Facebook account.</string>
-    <string name="com_facebook_requesterror_password_changed">Your Facebook password has changed. Please log into this app again to reconnect your Facebook account.</string>
-    <string name="com_facebook_requesterror_reconnect">Please log into this app again to reconnect your Facebook account.</string>
-    <string name="com_facebook_requesterror_permissions">This app doesn’t have permission to do this. To change permissions, try logging into the app again.</string>
-    <string name="edit_observation">Edit Observation</string>
-    <string name="discard_changes">Are you sure you want to discard unsaved changes?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
+    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d මෙතන හිටියා</string>
+    <string name="com_facebook_picker_done_button_text">සිදු කළා</string>
+    <string name="com_facebook_choose_friends">මිතුරන් තෝරන්න</string>
+    <string name="com_facebook_nearby">අසල ඇති</string>
+    <string name="com_facebook_loading">පූරණය වෙමින්...</string>
+    <string name="com_facebook_internet_permission_error_title">AndroidManifest දෝෂයකි</string>
+    <string name="com_facebook_internet_permission_error_message">WebView ඇතුල් වීමට \"අන්තර්ජාල\" අවසරය අවශ්‍ය වේ</string>
+    <string name="com_facebook_requesterror_web_login">ඔබගේ Facebook ගිණුම අගුළු දමා ඇත. ඉදිරියට යාමට කරුණාකර www.facebook.com වෙත පිවිසෙන්න.</string>
+    <string name="com_facebook_requesterror_relogin">ඔබගේ Facebook ගිණුම නැවත සම්බන්ධ කිරීමට කරුණාකර මෙම යෙදුමට නැවත ඇතුල් වෙන්න.</string>
+    <string name="com_facebook_requesterror_password_changed">ඔබගේ Facebook මුරපදය වෙනස් වී ඇත. ඔබගේ Facebook ගිණුම නැවත සම්බන්ධ කිරීමට කරුණාකර මෙම යෙදුමට නැවත පිවිසෙන්න.</string>
+    <string name="com_facebook_requesterror_reconnect">ඔබගේ Facebook ගිණුම නැවත සම්බන්ධ කිරීමට කරුණාකර මෙම යෙදුමට නැවත ඇතුල් වෙන්න.</string>
+    <string name="com_facebook_requesterror_permissions">මෙය කිරීමට මෙම යෙදුමට අවසර නැත. අවසර වෙනස් කිරීමට, යෙදුමට නැවත ඇතුල් වීමට උත්සාහ කරන්න.</string>
+    <string name="edit_observation">නිරීක්ෂණ සංස්කරණය කරන්න</string>
+    <string name="discard_changes">සුරකින නොලද වෙනස්කම් ඉවත දැමීමට ඔබට අවශ්‍ය යැයි ඔබට විශ්වාසද?</string>
+    <string name="yes">ඔව්</string>
+    <string name="no">නැහැ</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
-    <string name="agree">Agree?</string>
-    <string name="no_comments">No comments/identifications yet</string>
-    <string name="add_comment">Add comment</string>
-    <string name="add_id">Add identification</string>
-    <string name="remarks">Remarks...</string>
-    <string name="enter_taxon_name">Species name</string>
-    <string name="no_projects">No projects found!</string>
-    <string name="no_guides">No guides found!</string>
-    <string name="loading_projects">Loading projects...</string>
-    <string name="joined_projects">Joined</string>
-    <string name="nearby_projects">Nearby</string>
+    <string name="agree">එකඟ වෙනවාද?</string>
+    <string name="no_comments">තවමත් අදහස් දැක්වීම්/හඳුනාගැනීම් නොමැත</string>
+    <string name="add_comment">අදහස් එක් කරන්න</string>
+    <string name="add_id">හඳුනාගැනීම එක් කරන්න</string>
+    <string name="remarks">කිවයුතු කරුණු...</string>
+    <string name="enter_taxon_name">විශේෂයේ නම</string>
+    <string name="no_projects">ව්‍යාපෘති කිසිවක් සොයා ගත්තේ නැත!</string>
+    <string name="no_guides">මාර්ගෝපදේශ කිසිවක් හමු නොවීය!</string>
+    <string name="loading_projects">ව්‍යාපෘති සැකසෙමින්...</string>
+    <string name="joined_projects">සම්බන්ධ වූ</string>
+    <string name="nearby_projects">අසල ඇති</string>
     <!-- Tab title for the list of featured projects in the Projects screen -->
-    <string name="featured_projects">Featured</string>
+    <string name="featured_projects">විශේෂාංග ගත</string>
     <!-- Verb, used as a label for actions like leaving a project -->
-    <string name="leave">Leave</string>
-    <string name="join">Join</string>
-    <string name="no_check_list">No Taxa in Check List!</string>
-    <string name="failed_to_add_obs_to_project">Failed to add observation \'%1$s\' to project \'%2$s\': %3$s</string>
-    <string name="invalid_project_field">Please enter a valid value for field \'%1s\'</string>
+    <string name="leave">ඉවත් වන්න</string>
+    <string name="join">එක්වන්න</string>
+    <string name="no_check_list">සෝදිසි ලැයිස්තුවේ තක්සෝන නොමැත!</string>
+    <string name="failed_to_add_obs_to_project">\'%2$s\' ව්‍යාපෘතිය සඳහා \'%1$s\' නිරීක්ෂණය එකතු කිරීමට අපොහොසත් විය: %3$s</string>
+    <string name="invalid_project_field">කරුණාකර \'%1s\' ක්ෂේත්‍රය සඳහා වලංගු අගයක් ඇතුළත් කරන්න</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
-    <string name="select_projects">Select from Joined Projects</string>
-    <string name="not_connected">You must be connected to the Internet in order to do that!</string>
-    <string name="search_projects">Search projects...</string>
-    <string name="search_guides">Search guides...</string>
-    <string name="save_observation">Save observation</string>
+    <string name="select_projects">සම්බන්ධ වූ ව්‍යාපෘති වලින් තෝරන්න</string>
+    <string name="not_connected">එය සිදු කිරීම සඳහා ඔබ අන්තර්ජාලයට සම්බන්ධ වී සිටිය යුතුය!</string>
+    <string name="search_projects">ව්‍යාපෘති සොයන්න...</string>
+    <string name="search_guides">මාර්ගෝපදේශ සොයන්න...</string>
+    <string name="save_observation">නිරීක්ෂණ සුරකින්න</string>
     <!-- Header for a description an individual guide -->
-    <string name="about_guide">About</string>
-    <string name="about_guide_all_caps">ABOUT</string>
+    <string name="about_guide">පිළිබඳව</string>
+    <string name="about_guide_all_caps">පිළිබඳව</string>
     <!-- Header for a description an individual project -->
-    <string name="about_project">About</string>
-    <string name="about_project_all_caps">ABOUT</string>
-    <string name="about_this_app">About</string>
-    <string name="about_taxon_short">About</string>
+    <string name="about_project">පිළිබඳව</string>
+    <string name="about_project_all_caps">පිළිබඳව</string>
+    <string name="about_this_app">පිළිබඳව</string>
+    <string name="about_taxon_short">පිළිබඳව</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
-    <string name="geoprivacy">Geoprivacy</string>
+    <string name="geoprivacy">භූ-රහස්‍යතාව</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
-    <string name="geoprivacy_with_value">Geoprivacy: %1$s</string>
-    <string name="delete_confirmation">Are you sure you want to delete this observation?</string>
+    <string name="geoprivacy_with_value">භූරහස්‍යතාවය: %1$s</string>
+    <string name="delete_confirmation">ඔබට මෙම නිරීක්ෂණය මකා දැමීමට අවශ්‍ය බව ඔබට විශ්වාසද?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
-    <string name="guides">Guides</string>
-    <string name="my_guides">Yours</string>
-    <string name="nearby_guides">Nearby</string>
-    <string name="all_guides">All</string>
-    <string name="no_taxa">No taxa found for this guide!</string>
-    <string name="search_taxa">Search taxa...</string>
-    <string name="no_internet_guides">Guides require an Internet connection</string>
-    <string name="no_internet_projects">Projects require an Internet connection</string>
+    <string name="guides">මාර්ගෝපදේශ</string>
+    <string name="my_guides">ඔබේම</string>
+    <string name="nearby_guides">අසල ඇති</string>
+    <string name="all_guides">සියල්ල</string>
+    <string name="no_taxa">මෙම මාර්ගෝපදේශය සඳහා තක්සෝන හමු නොවීය!</string>
+    <string name="search_taxa">තක්සෝන සොයන්න...</string>
+    <string name="no_internet_guides">මාර්ගෝපදේශ සඳහා අන්තර්ජාල සම්බන්ධතාවයක් අවශ්‍ය වේ</string>
+    <string name="no_internet_projects">ව්‍යාපෘති සඳහා අන්තර්ජාල සම්බන්ධතාවයක් අවශ්‍ය වේ</string>
     <string name="locale_gl">Galician</string>
     <string name="locale_eu">Basque</string>
-    <string name="use_device_language_settings">Use device language settings</string>
-    <string name="choose_location">Choose Location</string>
-    <string name="done">Done</string>
-    <string name="please_sign_in_via_settings">You must be logged in to view projects you\'ve joined.</string>
-    <string name="contact_support">Contact Support</string>
-    <string name="credits">Designed and built by iNaturalist.org with support from the California Academy of Sciences</string>
-    <string name="leave_project">Leave Project</string>
-    <string name="leave_project_confirmation">Are you sure you want to leave this project?</string>
-    <string name="discard_location_changes">Are you sure you want to discard unsaved changes?</string>
-    <string name="edit_location">Edit Location</string>
-    <string name="edit_locality_notes">Edit Locality Notes</string>
-    <string name="get_current_location">Get current location</string>
-    <string name="pull_to_refresh">Pull to refresh...</string>
-    <string name="release_to_refresh">Release to refresh...</string>
-    <string name="refreshing">Refreshing...</string>
+    <string name="use_device_language_settings">උපාංගයේ භාෂා සැකසුම් භාවිතා කරන්න</string>
+    <string name="choose_location">ස්ථානය තෝරන්න</string>
+    <string name="done">සිදු කළා</string>
+    <string name="please_sign_in_via_settings">ඔබ සම්බන්ධ වූ ව්‍යාපෘති බැලීමට ඔබ ඇතුල් වී සිටිය යුතුය.</string>
+    <string name="contact_support">උදවු සදහා සම්බන්ධ වෙන්න</string>
+    <string name="credits">California Academy of Sciences හි සහාය ඇතිව iNaturalist.org විසින් නිර්මාණය කර ගොඩනඟන ලදි</string>
+    <string name="leave_project">ව්‍යාපෘතියෙන් ඉවත් වන්න</string>
+    <string name="leave_project_confirmation">ඔබට මෙම ව්‍යාපෘතියෙන් ඉවත් වීමට අවශ්‍ය බව ඔබට විශ්වාසද?</string>
+    <string name="discard_location_changes">සුරකින නොලද වෙනස්කම් ඉවත දැමීමට ඔබට අවශ්‍ය යැයි ඔබට විශ්වාසද?</string>
+    <string name="edit_location">ස්ථානය සංස්කරණය කරන්න</string>
+    <string name="edit_locality_notes">ස්ථානීය සටහන් සංස්කරණය කරන්න</string>
+    <string name="get_current_location">වත්මන් ස්ථානය ලබා ගන්න</string>
+    <string name="pull_to_refresh">නැවුම් කිරීමට අදින්න...</string>
+    <string name="release_to_refresh">නැවුම් කිරීමට නිදහස් කරන්න...</string>
+    <string name="refreshing">නැවුම් කරමින්...</string>
     <plurals name="sync_x_observations">
-        <item quantity="one">Sync %1$d observation</item>
-        <item quantity="other">Sync %1$d observations</item>
+        <item quantity="one">%1$d නිරීක්ෂණයක් සමමුහුර්ත කරන්න</item>
+        <item quantity="other">නිරීක්ෂණ %1$d ක් සමමුහුර්ත කරන්න</item>
     </plurals>
-    <string name="sync_observations">Sync Observations</string>
-    <string name="lets_get_started">Let\'s get started!</string>
-    <string name="view_nearby_observations">View Nearby Observations</string>
-    <string name="skip_for_now">Skip for Now</string>
+    <string name="sync_observations">නිරීක්ෂණ සමමුහුර්ත කරන්න</string>
+    <string name="lets_get_started">ආරම්භ කරමු!</string>
+    <string name="view_nearby_observations">අසල ඇති නිරීක්ෂණ බලන්න</string>
+    <string name="skip_for_now">දැනට මඟ හරින්න</string>
     <string-array name="tutorial_titles">
         <item></item>
-        <item>Observe</item>
-        <item>Share</item>
-        <item>Learn</item>
-        <item>Contribute</item>
+        <item>නිරීක්ෂණය කරන්න</item>
+        <item>බෙදාගන්න</item>
+        <item>ඉගෙන ගන්න</item>
+        <item>දායක වන්න</item>
     </string-array>
     <string-array name="tutorial_descriptions">
-        <item>Explore and Connect with Nature</item>
-        <item>Get outside! Find something wild, and take a clear, full frame photo.</item>
-        <item>Share your observation with the iNaturalist community.</item>
-        <item>Check back for comments and identifications on your observation!</item>
-        <item><![CDATA[<b>Research Grade</b> observations are shared with scientists working to better understand and protect nature.]]></item>
+        <item>ගවේෂණය කර ස්වභාව ධර්මය සමඟ සම්බන්ධ වන්න</item>
+        <item>පිටතට යන්න! වන දෙයක් තෝරාගෙන පැහැදිලි, පූර්ණ රාමු ඡායාරූපයක් ගන්න.</item>
+        <item>ඔබගේ නිරීක්ෂණය iNaturalist ප්‍රජාව සමඟ බෙදා ගන්න.</item>
+        <item>ඔබගේ නිරීක්ෂණය මත අදහස් දැක්වීම් සහ හඳුනාගැනීම් සඳහා නැවත පරීක්ෂා කරන්න!</item>
+        <item><![CDATA[<b>පර්යේෂණ ශ්‍රේණියේ</b> නිරීක්ෂණ සොබාදහම වඩා හොඳින් අවබෝධ කර ගැනීමට සහ ආරක්ෂා කිරීමට කටයුතු කරන විද්‍යාඥයින් සමඟ බෙදා ගනී.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
-        <item>Open</item>
-        <item>Obscured</item>
-        <item>Private</item>
+        <item>විවෘත</item>
+        <item>අපැහැදිලි කළ</item>
+        <item>පුද්ගලික</item>
     </string-array>
-    <string name="alert_sign_out">Are you sure you want to sign out? This will delete all your observations on this device. It will not affect any observations you\'ve uploaded to iNaturalist.</string>
-    <string name="alert_unsupported_media_type">Sorry, but there was a problem loading the photo from this source</string>
+    <string name="alert_sign_out">ඔබට ඉවත් වීමට අවශ්‍ය බව ඔබට විශ්වාසද? මෙය මෙම උපාංගයේ ඇති ඔබගේ සියලුම නිරීක්ෂණ මකා දමනු ඇත. ඔබ iNaturalist වෙත උඩුගත කරන ලද කිසිදු නිරීක්‍ෂණයකට එය බලපාන්නේ නැත.</string>
+    <string name="alert_unsupported_media_type">කණගාටුයි, නමුත් මෙම ප්‍රභවයෙන් ඡායාරූපය පූරණය කිරීමේ ගැටලුවක් විය</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
-    <string name="explore">Explore</string>
-    <string name="restricted_to_current_map_area">Restricted to current map area</string>
-    <string name="search">Search</string>
-    <string name="details">Details</string>
-    <string name="observation_photos">Observation Photos</string>
-    <string name="remove">Remove?</string>
-    <string name="no_observations_found">No observations found</string>
-    <string name="license_none">None, all rights reserved</string>
-    <string name="sources_and_attribution">Sources and Attribution</string>
-    <string name="photos"><![CDATA[<b>Photos:</b> %1$s]]></string>
-    <string name="text"><![CDATA[<b>Text:</b> %1$s]]></string>
+    <string name="explore">ගවේෂණය කරන්න</string>
+    <string name="restricted_to_current_map_area">වත්මන් සිතියම් ප්‍රදේශයට සීමා කර ඇත</string>
+    <string name="search">සොයන්න</string>
+    <string name="details">සවිස්තර</string>
+    <string name="observation_photos">නිරීක්ෂණ ඡායාරූප</string>
+    <string name="remove">ඉවත් කරන්නද?</string>
+    <string name="no_observations_found">නිරීක්ෂණ කිසිවක් හමු නොවීය</string>
+    <string name="license_none">කිසිවක් නැත, සියලුම හිමිකම් ඇවිරිණි</string>
+    <string name="sources_and_attribution">ප්‍රභවයන් සහ ආරෝපණය</string>
+    <string name="photos"><![CDATA[<b>ඡායාරූප:</b> %1$s]]></string>
+    <string name="text"><![CDATA[<b>පාඨය:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
-    <string name="alert_message_use_inaturalist">The main iNaturalist Network. Clicking OK will set your app as part of the global iNaturalist network.</string>
-    <string name="alert_message_use_naturalista">NaturaLista is a member of the iNaturalist Network in Mexico. Local institutions supporting NaturaLista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturewatchnz">iNaturalist NZ is a member of the iNaturalist Network in New Zealand. Local institutions supporting iNaturalist NZ will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Local institutions supporting iNaturalist Canada will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Local institutions supporting Naturalista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4All is a member of the iNaturalist Network in Portugal. Local institutions supporting Biodiversity4All will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá is a member of the iNaturalist Network in Panama. Local institutions supporting iNaturalist Panamá will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador is a member of the iNaturalist Network in Ecuador. Local institutions supporting iNaturalist Ecuador will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia is a member of the iNaturalist Network in Australia. Local institutions supporting iNaturalist Australia will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_argentinat">ArgentiNat is a member of the iNaturalist Network in Argentina. Local institutions supporting ArgentiNat will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistfi">iNaturalist Finland is a member of the iNaturalist Network in Finland. Local institutions supporting iNaturalist Finland will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="editor">Editor</string>
-    <string name="license">License</string>
-    <string name="download_for_offline_use">Download for offline use</string>
-    <string name="download_not_available">Download not available</string>
-    <string name="guide_editor_must_enable_this_feature">Guide editor must enable this feature.</string>
-    <string name="are_you_sure">Are you sure?</string>
-    <string name="download_guide_alert">This will download %1$s of data so you can use this guide even when you don\'t have Internet access.</string>
-    <string name="download">Download</string>
-    <string name="failed_to_download_guide">Failed to download guide</string>
-    <string name="internet_connection_seems_to_be_offline">The Internet connection appears to be offline.</string>
-    <string name="downloading">Downloading...</string>
-    <string name="extracting">Extracting...</string>
-    <string name="downloaded">Downloaded</string>
-    <string name="delete_download">Delete download</string>
-    <string name="re_download">Re-download</string>
-    <string name="error">Error</string>
-    <string name="could_not_retrieve_guide">Could not retrieve the guide details - probably a network error.</string>
-    <string name="inat_support_email_subject">Help with iNaturalist (version %1$s - %2$s; user id - %3$s)</string>
-    <string name="send_email">Send email...</string>
-    <string name="login_with">Log In with</string>
+    <string name="alert_message_use_inaturalist">ප්‍රධාන iNaturalist ජාලය. හරි ක්ලික් කිරීමෙන් ඔබගේ යෙදුම ගෝලීය iNaturalist ජාලයේ කොටසක් ලෙස සැකසෙනු ඇත.</string>
+    <string name="alert_message_use_naturalista">NaturaLista යනු මෙක්සිකෝවේ iNaturalist ජාලයේ සාමාජිකයෙකි. NaturaLista සඳහා සහය දක්වන දේශීය ආයතනවලට ඔබේ විද්‍යුත් තැපැල් ලිපිනයට ප්‍රවේශය සහ ප්‍රසිද්ධියේ අපැහැදිලි කළ හෝ පෞද්ගලික නිරීක්ෂණ සඳහා සත්‍ය ඛණ්ඩාංක වෙත ප්‍රවේශය ඇත. ඔබට නිරීක්ෂණ 1000 කට වඩා තිබේ නම් කරුණාකර ඔබේ අනුබද්ධතාවය පර්යේෂණාත්මකව වෙනස් නොකරන්න. ඔබේ අනුබද්ධතාවය වෙනස් කිරීමට ඔබ කැමතිද?</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZ යනු නවසීලන්තයේ iNaturalist ජාලයේ සාමාජිකයෙකි. iNaturalist NZ සඳහා සහය දක්වන දේශීය ආයතනවලට ඔබේ විද්‍යුත් තැපැල් ලිපිනයට ප්‍රවේශය සහ ප්‍රසිද්ධියේ අපැහැදිලි කළ හෝ පෞද්ගලික නිරීක්ෂණ සඳහා සත්‍ය ඛණ්ඩාංක වෙත ප්‍රවේශය ඇත. ඔබට නිරීක්ෂණ 1000 කට වඩා තිබේ නම් කරුණාකර ඔබේ අනුබද්ධතාවය පර්යේෂණාත්මකව වෙනස් නොකරන්න. ඔබේ අනුබද්ධතාවය වෙනස් කිරීමට ඔබ කැමතිද?</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada යනු කැනඩාවේ iNaturalist ජාලයේ සාමාජිකයෙකි. iNaturalist Canada සඳහා සහය දක්වන දේශීය ආයතනවලට ඔබේ විද්‍යුත් තැපැල් ලිපිනයට ප්‍රවේශය සහ ප්‍රසිද්ධියේ අපැහැදිලි කළ හෝ පෞද්ගලික නිරීක්ෂණ සඳහා සත්‍ය ඛණ්ඩාංක වෙත ප්‍රවේශය ඇත. ඔබට නිරීක්ෂණ 1000 කට වඩා තිබේ නම් කරුණාකර ඔබේ අනුබද්ධතාවය පර්යේෂණාත්මකව වෙනස් නොකරන්න. ඔබේ අනුබද්ධතාවය වෙනස් කිරීමට ඔබ කැමතිද?</string>
+    <string name="alert_message_use_naturalistacolombia">Naturalista යනු කොලොම්බියාවේ iNaturalist ජාලයේ සාමාජිකයෙකි. Naturalista සඳහා සහය දක්වන දේශීය ආයතනවලට ඔබේ විද්‍යුත් තැපැල් ලිපිනයට ප්‍රවේශය සහ ප්‍රසිද්ධියේ අපැහැදිලි කළ හෝ පෞද්ගලික නිරීක්ෂණ සඳහා සත්‍ය ඛණ්ඩාංක වෙත ප්‍රවේශය ඇත. ඔබට නිරීක්ෂණ 1000 කට වඩා තිබේ නම් කරුණාකර ඔබේ අනුබද්ධතාවය පර්යේෂණාත්මකව වෙනස් නොකරන්න. ඔබේ අනුබද්ධතාවය වෙනස් කිරීමට ඔබ කැමතිද?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All යනු පෘතුගාලයේ iNaturalist ජාලයේ සාමාජිකයෙකි. Biodiversity4All සඳහා සහය දක්වන දේශීය ආයතනවලට ඔබේ විද්‍යුත් තැපැල් ලිපිනයට ප්‍රවේශය සහ ප්‍රසිද්ධියේ අපැහැදිලි කළ හෝ පෞද්ගලික නිරීක්ෂණ සඳහා සත්‍ය ඛණ්ඩාංක වෙත ප්‍රවේශය ඇත. ඔබට නිරීක්ෂණ 1000 කට වඩා තිබේ නම් කරුණාකර ඔබේ අනුබද්ධතාවය පර්යේෂණාත්මකව වෙනස් නොකරන්න. ඔබේ අනුබද්ධතාවය වෙනස් කිරීමට ඔබ කැමතිද?</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá යනු පැනමාවේ iNaturalist ජාලයේ සාමාජිකයෙකි. iNaturalist Panamá සඳහා සහය දක්වන දේශීය ආයතනවලට ඔබේ විද්‍යුත් තැපැල් ලිපිනයට ප්‍රවේශය සහ ප්‍රසිද්ධියේ අපැහැදිලි කළ හෝ පෞද්ගලික නිරීක්ෂණ සඳහා සත්‍ය ඛණ්ඩාංක වෙත ප්‍රවේශය ඇත. ඔබට නිරීක්ෂණ 1000 කට වඩා තිබේ නම් කරුණාකර ඔබේ අනුබද්ධතාවය පර්යේෂණාත්මකව වෙනස් නොකරන්න. ඔබේ අනුබද්ධතාවය වෙනස් කිරීමට ඔබ කැමතිද?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador යනු ඉක්වදෝරයේ iNaturalist ජාලයේ සාමාජිකයෙකි. iNaturalist Ecuador සඳහා සහය දක්වන දේශීය ආයතනවලට ඔබේ විද්‍යුත් තැපැල් ලිපිනයට ප්‍රවේශය සහ ප්‍රසිද්ධියේ අපැහැදිලි කළ හෝ පෞද්ගලික නිරීක්ෂණ සඳහා සත්‍ය ඛණ්ඩාංක වෙත ප්‍රවේශය ඇත. ඔබට නිරීක්ෂණ 1000 කට වඩා තිබේ නම් කරුණාකර ඔබේ අනුබද්ධතාවය පර්යේෂණාත්මකව වෙනස් නොකරන්න. ඔබේ අනුබද්ධතාවය වෙනස් කිරීමට ඔබ කැමතිද?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia යනු ඕස්ට්‍රේලියාවේ iNaturalist ජාලයේ සාමාජිකයෙකි. iNaturalist Australia සඳහා සහය දක්වන දේශීය ආයතනවලට ඔබේ විද්‍යුත් තැපැල් ලිපිනයට ප්‍රවේශය සහ ප්‍රසිද්ධියේ අපැහැදිලි කළ හෝ පෞද්ගලික නිරීක්ෂණ සඳහා සත්‍ය ඛණ්ඩාංක වෙත ප්‍රවේශය ඇත. ඔබට නිරීක්ෂණ 1000 කට වඩා තිබේ නම් කරුණාකර ඔබේ අනුබද්ධතාවය පර්යේෂණාත්මකව වෙනස් නොකරන්න. ඔබේ අනුබද්ධතාවය වෙනස් කිරීමට ඔබ කැමතිද?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat යනු ආර්ජන්ටිනාවේ iNaturalist ජාලයේ සාමාජිකයෙකි. ArgentiNat සඳහා සහය දක්වන දේශීය ආයතනවලට ඔබේ විද්‍යුත් තැපැල් ලිපිනයට ප්‍රවේශය සහ ප්‍රසිද්ධියේ අපැහැදිලි කළ හෝ පෞද්ගලික නිරීක්ෂණ සඳහා සත්‍ය ඛණ්ඩාංක වෙත ප්‍රවේශය ඇත. ඔබට නිරීක්ෂණ 1000 කට වඩා තිබේ නම් කරුණාකර ඔබේ අනුබද්ධතාවය පර්යේෂණාත්මකව වෙනස් නොකරන්න. ඔබේ අනුබද්ධතාවය වෙනස් කිරීමට ඔබ කැමතිද?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel යනු ඊශ්‍රායලයේ iNaturalist ජාලයේ සාමාජිකයෙකි. iNaturalist Israel සඳහා සහය දක්වන දේශීය ආයතනවලට ඔබේ විද්‍යුත් තැපැල් ලිපිනයට ප්‍රවේශය සහ ප්‍රසිද්ධියේ අපැහැදිලි කළ හෝ පෞද්ගලික නිරීක්ෂණ සඳහා සත්‍ය ඛණ්ඩාංක වෙත ප්‍රවේශය ඇත. ඔබට නිරීක්ෂණ 1000 කට වඩා තිබේ නම් කරුණාකර ඔබේ අනුබද්ධතාවය පර්යේෂණාත්මකව වෙනස් නොකරන්න. ඔබේ අනුබද්ධතාවය වෙනස් කිරීමට ඔබ කැමතිද?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland යනු ෆින්ලන්තයේ iNaturalist ජාලයේ සාමාජිකයෙකි. iNaturalist Finland සඳහා සහය දක්වන දේශීය ආයතනවලට ඔබේ විද්‍යුත් තැපැල් ලිපිනයට ප්‍රවේශය සහ ප්‍රසිද්ධියේ අපැහැදිලි කළ හෝ පෞද්ගලික නිරීක්ෂණ සඳහා සත්‍ය ඛණ්ඩාංක වෙත ප්‍රවේශය ඇත. ඔබට නිරීක්ෂණ 1000 කට වඩා තිබේ නම් කරුණාකර ඔබේ අනුබද්ධතාවය පර්යේෂණාත්මකව වෙනස් නොකරන්න. ඔබේ අනුබද්ධතාවය වෙනස් කිරීමට ඔබ කැමතිද?</string>
+    <string name="editor">සංස්කාරක</string>
+    <string name="license">බලපත්‍රය</string>
+    <string name="download_for_offline_use">මාර්ගගත නොවී භාවිතය සඳහා බාගත කරගන්න</string>
+    <string name="download_not_available">බාගත කිරීම ලබා ගැනීමට නොතිබේ</string>
+    <string name="guide_editor_must_enable_this_feature">මාර්ගෝපදේශයේ සංස්කාරක මෙම අංගය සක්‍රීය කළ යුතුය.</string>
+    <string name="are_you_sure">ඔබට විශ්වාසද?</string>
+    <string name="download_guide_alert">මෙය %1$s ක දත්ත බාගත කරනු ඇත, එවිට ඔබට අන්තර්ජාල ප්‍රවේශය නොමැති විටදී පවා මෙම මාර්ගෝපදේශය භාවිතා කළ හැකිය.</string>
+    <string name="download">බාගත කරන්න</string>
+    <string name="failed_to_download_guide">මාර්ගෝපදේශය බාගත කිරීමට අපොහොසත් විය</string>
+    <string name="internet_connection_seems_to_be_offline">අන්තර්ජාල සම්බන්ධතාවය මාර්ගගත නොමැති බව පෙනේ.</string>
+    <string name="downloading">බාගත කරමින්...</string>
+    <string name="extracting">උපුටා ගනිමින්...</string>
+    <string name="downloaded">බාගත කළ</string>
+    <string name="delete_download">බාගැනීම මකන්න</string>
+    <string name="re_download">නැවත බාගත කරන්න</string>
+    <string name="error">දෝෂය</string>
+    <string name="could_not_retrieve_guide">මාර්ගෝපදේශ විස්තර ලබා ගැනීමට නොහැකි විය - බොහෝ විට ජාල දෝෂයකි.</string>
+    <string name="inat_support_email_subject">iNaturalist සඳහා උදව් (අනුවාදය %1$s - %2$s; පරිශීලක අනන්‍යතාව - %3$s)</string>
+    <string name="send_email">විද්‍යුත් තැපෑල යවන්න...</string>
+    <string name="login_with">මෙය සමඟ ඇතුල් වන්න</string>
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
-    <string name="email">Email</string>
-    <string name="sign_up_with">Sign Up with</string>
-    <string name="skip">Skip  ›</string>
-    <string name="already_have_account">Already have an account?</string>
-    <string name="log_in">Log In</string>
-    <string name="sign_up">Sign Up</string>
-    <string name="min_6_chars">Min. 6 characters</string>
-    <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data (recommended). <b>Learn More</b>]]></string>
-    <string name="content_licensing">Content Licensing</string>
-    <string name="content_licensing_description">Check this box if you want to apply a Creative Commons Attribution-NonCommercial license to your photos. You can choose a different license or remove the license later, but this is the best license for sharing with researchers.</string>
+    <string name="email">විද්‍යුත් තැපෑල</string>
+    <string name="sign_up_with">මෙය සමඟ ලියාපදිංචි වන්න</string>
+    <string name="skip">මඟහරින්න  ›</string>
+    <string name="already_have_account">දැනටමත් ගිණුමක් තිබේද?</string>
+    <string name="log_in">ඇතුල් වන්න</string>
+    <!-- Second person imperative, usually a label on a button to sign up for a new account -->
+    <string name="sign_up">ලියාපදිංචි වන්න</string>
+    <!-- Title of the view used to sign up for a new account -->
+    <string name="sign_up_title">ලියාපදිංචි වන්න</string>
+    <string name="min_6_chars">අවමය අක්ෂර 6 ක්</string>
+    <string name="use_my_license"><![CDATA[ඔව්, විද්‍යාඥයින්ට මගේ දත්ත භාවිතා කළ හැකි වෙන ලෙස මගේ අන්තර්ගතයට බලපත්‍ර ලබා දෙන්න (නිර්දේශිතයි). <b>වැඩිදුර ඉගෙන ගන්න</b>]]></string>
+    <string name="content_licensing">අන්තර්ගත බලපත්‍ර ලබා දීම</string>
+    <string name="content_licensing_description">ඔබේ ඡායාරූප සඳහා Creative Commons Attribution-NonCommercial (නිර්මාණශීලී පොදු ආරෝපණ-වාණිජ නොවන) බලපත්‍රයක් යෙදීමට අවශ්‍ය නම් මෙම කොටුව සලකුණු කරන්න. ඔබට පසුව වෙනත් බලපත්‍රයක් තෝරා ගැනීමට හෝ බලපත්‍රය ඉවත් කිරීමට හැකිය, නමුත් පර්යේෂකයන් සමඟ බෙදා ගැනීම සඳහා හොඳම බලපත්‍රය මෙයයි.</string>
     <!-- Try to keep this about the length of the English text -->
-    <string name="username_or_email">Username or Email</string>
-    <string name="forgot">Forgot?</string>
-    <string name="or_login_with">Or Log In With:</string>
-    <string name="registering">Registering...</string>
-    <string name="recommended_next_step">Recommended Next Step</string>
-    <string name="could_not_register_user">Couldn\'t register user</string>
+    <string name="username_or_email">පරිශීලක නාමය හෝ විද්‍යුත් තැපෑල</string>
+    <string name="forgot">අමතක වුනාද?</string>
+    <string name="or_login_with">හෝ සමඟ ඇතුල් වන්න:</string>
+    <string name="registering">ලියාපදිංචි කරමින්...</string>
+    <string name="recommended_next_step">නිර්දේශිත ඊළඟ පියවර</string>
+    <string name="could_not_register_user">පරිශීලකයා ලියාපදිංචි කිරීමට නොහැකි විය</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
-    <string name="login_signup">Log In / Sign Up</string>
-    <string name="please_sign_in_via_settings_for_guides">You must be logged in to view your guides.</string>
-    <string name="please_sign_in_for_updates">You must be logged in to view your updates.</string>
-    <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="https://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
-    <string name="activity">Activity</string>
-    <string name="camera">Take Photo</string>
-    <string name="upload_photo">Choose Image</string>
-    <string name="menu_text">No Photo</string>
-    <string name="first">1st</string>
-    <string name="make_first">Make 1st</string>
-    <string name="notes">Notes</string>
-    <string name="location_is">Location is</string>
-    <string name="is_captive">It is captive or cultivated</string>
-    <string name="location_visibility">Location Visibility</string>
-    <string name="set_location">Location</string>
-    <string name="coordinates_lat">Lat:</string>
-    <string name="coordinates_lon">Lon:</string>
-    <string name="coordinates_acc">Acc. </string>
-    <string name="required">* Required</string>
-    <string name="downloading_observations">Downloading observations...</string>
-    <string name="no_thanks">No Thanks</string>
-    <string name="turn_on">Turn On</string>
-    <string name="introducing_auto_sync">Introducing Auto-Sync!</string>
-    <string name="turn_on_auto_sync">Turn on Auto-Sync in Settings and your observations will be automatically uploaded to iNaturalist.</string>
-    <string name="automatic_upload">Automatic Upload (Auto Sync)</string>
-    <string name="waiting_to_upload">Waiting to upload...</string>
-    <string name="uploading">Uploading...</string>
-    <string name="failed_to_add_to_project">Failed to add to project \'%1$s\': %2$s</string>
-    <string name="needs_your_attention">Needs your attention...</string>
-    <string name="observation">Observation</string>
-    <string name="share">Share</string>
-    <string name="unable_to_acquire_location">Unable to acquire location</string>
-    <string name="casual_grade">Casual Grade</string>
-    <string name="needs_id">Needs ID</string>
-    <string name="research_grade">Research Grade</string>
-    <string name="data_quality">Data Quality</string>
-    <string name="casual_grade_add_location"><![CDATA[ Add a <b>location</b> to advance this observation to “Needs ID” status. ]]></string>
-    <string name="casual_grade_add_date"><![CDATA[ Add a <b>date</b> to advance this observation to “Needs ID” status. ]]></string>
-    <string name="casual_grade_add_photo"><![CDATA[ Add a <b>photo</b> to advance this observation to “Needs ID” status. ]]></string>
-    <string name="casual_grade_captive"><![CDATA[ Observation is casual grade because it is <b>captive/cultivated</b>. ]]></string>
-    <string name="needs_id_more_ids"><![CDATA[ Observation needs <b>more identifications</b> from the community to become "Research Grade" status. ]]></string>
+    <string name="login_signup">ඇතුල් වන්න / ලියාපදිංචි වන්න</string>
+    <string name="please_sign_in_via_settings_for_guides">ඔබගේ මාර්ගෝපදේශ බැලීමට ඔබ ඇතුල් වී සිටිය යුතුය.</string>
+    <string name="please_sign_in_for_updates">ඔබගේ යාවත්කාලීනයන් බැලීමට ඔබ ඇතුල් වී සිටිය යුතුය.</string>
+    <string name="by_using_inat_terms"><![CDATA[iNaturalist භාවිතා කිරීමෙන් ඔබ <b><a href="https://www.inaturalist.org/pages/terms">සේවා කොන්දේසි</a></b> සහ <b><a href="https://www.inaturalist.org/pages/privacy">රහස්‍යතා ප්‍රතිපත්තියට</a></b> එකඟ වේ]]></string>
+    <string name="activity">ක්‍රියාකාරකම්</string>
+    <string name="camera">ඡායාරූපයක් ගන්න</string>
+    <string name="upload_photo">පින්තූරය තෝරන්න</string>
+    <string name="menu_text">ඡායාරූපයක් නොමැත</string>
+    <string name="first">ප්‍රථම</string>
+    <string name="make_first">ප්‍රථමය කරන්න</string>
+    <string name="notes">සටහන්</string>
+    <string name="location_is">ස්ථානය</string>
+    <string name="is_captive">එය අල්ලාගත් හෝ වගා කළ වේ</string>
+    <string name="location_visibility">ස්ථාන දෘශ්‍යතාවය</string>
+    <string name="set_location">ස්ථානය</string>
+    <string name="coordinates_lat">අක්ෂාංශ:</string>
+    <string name="coordinates_lon">දේශාංශ:</string>
+    <string name="coordinates_acc">නිරවද්‍යතාවය </string>
+    <string name="required">* අවශ්‍යයි</string>
+    <string name="downloading_observations">නිරීක්ෂණ බාගත කරමින්...</string>
+    <string name="no_thanks">එපා ස්තුතියි</string>
+    <string name="turn_on">ක්‍රියාත්මක කරන්න</string>
+    <string name="introducing_auto_sync">ස්වයං සමමුහුර්ත කිරීම හඳුන්වා දීම!</string>
+    <string name="turn_on_auto_sync">සැකසුම් තුළ ස්වයංක්‍රීය සමමුහුර්ත කිරීම සක්‍රිය කරන්න, එවිට ඔබගේ නිරීක්ෂණ ස්වයංක්‍රීයව iNaturalist වෙත උඩුගත වේවි.</string>
+    <string name="automatic_upload">ස්වයංක්‍රීය උඩුගත කිරීම (ස්වයං සමමුහුර්තකරණය)</string>
+    <string name="waiting_to_upload">උඩුගත කිරීමට බලා සිටී...</string>
+    <string name="uploading">උඩුගත කරමින්...</string>
+    <string name="failed_to_add_to_project">\'%1$s\' ව්‍යාපෘතියට එක් කිරීමට අපොහොසත් විය: %2$s</string>
+    <string name="needs_your_attention">ඔබේ අවධානය අවශ්‍යයි...</string>
+    <string name="observation">නිරීක්ෂණය</string>
+    <string name="share">බෙදාගන්න</string>
+    <string name="unable_to_acquire_location">ස්ථානය ලබා ගත නොහැක</string>
+    <string name="casual_grade">අවිධිමත් ශ්‍රේණියේ</string>
+    <string name="needs_id">හඳුනාගැනීම අවශ්‍යයි</string>
+    <string name="research_grade">පර්යේෂණ ශ්‍රේණියේ</string>
+    <string name="data_quality">දත්තවල ගුණාත්මකභාවය</string>
+    <string name="casual_grade_add_location"><![CDATA[ මෙම නිරීක්‍ෂණය “හඳුනාගැනීම අවශ්‍යයි” තත්වයට ගෙන ඒමට <b>ස්ථානයක්</b> එක් කරන්න. ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ මෙම නිරීක්‍ෂණය “හඳුනාගැනීම අවශ්‍යයි” තත්වයට ගෙන ඒමට <b>දිනයක්</b> එක් කරන්න. ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[ මෙම නිරීක්‍ෂණය “හඳුනාගැනීම අවශ්‍යයි” තත්වයට ගෙන ඒමට <b>ඡායාරූපයක්</b> එක් කරන්න. ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ එය <b>අල්ලාගත්/වගා කළ</b> නිසා නිරීක්ෂණය අවිධිමත් ශ්‍රේණියේ. ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ "පර්යේෂණ ශ්‍රේණියේ" තත්ත්වය බවට පත්වීම සඳහා මෙම නිරීක්ෂණයට ප්‍රජාවෙන් <b>තවත් හඳුනාගැනීම්</b> අවශ්‍ය වේ. ]]></string>
     <plurals name="included_in_projects">
-        <item quantity="one">Included in %1$d project</item>
-        <item quantity="other">Included in %1$d projects</item>
+        <item quantity="one">%1$d ව්‍යාපෘතියකට ඇතුළත් කර ඇත</item>
+        <item quantity="other">ව්‍යාපෘති %1$d කට ඇතුළත් කර ඇත</item>
     </plurals>
-    <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy is a setting you can make on your observations that controls how the spatial coordinates (latitude and longitude) are displayed. Here are the options:<br/><b>open</b> - Everyone can see the coordinates unless the taxon is threatened. <br/><b>obscured</b> - Public coordinates shown as a random point within a 0.2 by 0.2 degree area that contains the true coordinates, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. True coordinates are only visible to you and the curators of projects to which you add the observation. <br/><b>private</b> - Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. <br/><br/>Note that curators of individual projects can always see the coordinates regardless of your geoprivacy setting, so if you are concerned about who has access to the coordinates you should be sure you trust the curators of the projects in which you participate. ]]></string>
-    <string name="id_title">%1$s\'s ID • %2$s</string>
+    <string name="geoprivacy_explanation"><![CDATA[ භූ-පෞද්ගලිකත්වය යනු අවකාශීය ඛණ්ඩාංක (අක්ෂාංශ හා දේශාංශ) පෙන්වන ආකාරය පාලනය කරන ඔබේ නිරීක්ෂණ මත ඔබට කළ හැකි සැකසුමකි. මෙන්න විකල්ප:<br/><b>විවෘත</b> - තක්සෝනයට තර්ජනයක් නොවන්නේ නම් සෑම කෙනෙකුම ඛණ්ඩාංක දෘශ්‍ය වේ.<br/><b>අපැහැදිලි කළ</b> - සමකයට ආසන්නයේදී වර්ග කිලෝමීටර් 22x22 ක ප්‍රදේශයක් පමණ වූ, ඔබ ධ්‍රැව කරා ළඟා වන විට අඩු වන, අවිනිශ්චිතතාවයකින් යුත් සත්‍ය ඛණ්ඩාංක අඩංගු අංශක 0.2 යි 0.2 කේ ප්‍රදේශයක අහඹු ලක්ෂ්‍යයක් ලෙස පෙන්වන පොදු ඛණ්ඩාංක. සත්‍ය ඛණ්ඩාංක දෘශ්‍ය වන්නේ ඔබට සහ ඔබ නිරීක්‍ෂණය එකතු කරන ව්‍යාපෘතිවල භාරකරුවන්ට පමණි.<br/><b>පුද්ගලික</b> - පොදු සිතියම් වලින් සම්පූර්ණයෙන්ම ඛණ්ඩාංක සැඟවී ඇත, සත්‍ය ඛණ්ඩාංක දෘශ්‍ය වන්නේ ඔබට සහ ඔබ නිරීක්‍ෂණය එකතු කරන ව්‍යාපෘතිවල භාරකරුවන්ට පමණි.<br/><br/>ඔබේ භූගෝලීය සැකසුම නොසලකා තනි ව්‍යාපෘතිවල භාරකරුවන්ට සෑම විටම ඛණ්ඩාංක දැකිය හැකි බව සලකන්න, එබැවින් ඛණ්ඩාංක වලට ප්‍රවේශය ඇත්තේ කාටද යන්න ගැන ඔබ සැලකිලිමත් වන්නේ නම්, ඔබ සහභාගී වන ව්‍යාපෘතිවල භාරකරුවන්ව ඔබ විශ්වාස කරන බවට ඔබ සහතික විය යුතුය. ]]></string>
+    <string name="id_title">%1$s ගේ හඳුනාගැනීම • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
-    <string name="delete">Delete</string>
-    <string name="delete_id">Withdraw Identification</string>
-    <string name="delete_comment">Delete Comment</string>
-    <string name="delete_id_message">Are you sure you want to withdraw this identification?</string>
-    <string name="delete_comment_message">Are you sure you want to delete this comment?</string>
-    <string name="comment">Comment</string>
-    <string name="suggest_id">Suggest ID</string>
-    <string name="update_comment">Update Comment</string>
-    <string name="fave_this_observation">Fave This Observation</string>
-    <string name="faved">Faved</string>
-    <string name="be_the_first_to_fave_this_obs">Be the first to fave this observation...</string>
-    <string name="leave_a_comment">Leave a comment or suggest an identification...</string>
-    <string name="location_coords">Lat: %1$s Lon: %2$s Acc. %3$s</string>
-    <string name="location_coords_no_acc">Lat: %1$s Lon: %2$s</string>
-    <string name="location">Location</string>
-    <string name="login_in_to_add_comments_ids">Log In or Sign Up to leave a comment or suggest an identification...</string>
-    <string name="login_in_to_fav">Log In or Sign Up to see faves or fave this observation...</string>
-    <string name="sync_obs_to_see_favs">Sync this observation to see faves...</string>
+    <string name="delete">මකන්න</string>
+    <string name="delete_id">හඳුනාගැනීම ඉල්ලා අස්කර ගන්න</string>
+    <string name="delete_comment">අදහස් දැක්වීම මකන්න</string>
+    <string name="delete_id_message">ඔබට මෙම හඳුනාගැනීම ඉල්ලා අස්කර ගැනීමට අවශ්‍ය බව ඔබට විශ්වාසද?</string>
+    <string name="delete_comment_message">ඔබට මෙම අදහස් දැක්වීම මකා දැමීමට අවශ්‍ය බව ඔබට විශ්වාසද?</string>
+    <string name="comment">අදහස් දක්වන්න</string>
+    <string name="suggest_id">හඳුනාගැනීම යෝජනා කරන්න</string>
+    <string name="update_comment">අදහස් දැක්වීම යාවත්කාලීන කරන්න</string>
+    <string name="fave_this_observation">මෙම නිරීක්ෂණය ප්‍රියතමයක් කරන්න</string>
+    <string name="faved">ප්‍රියතමයක් කළා</string>
+    <string name="be_the_first_to_fave_this_obs">මෙම නිරීක්‍ෂණය ප්‍රියතමයක් කළ පළමු පුද්ගලයා වන්න...</string>
+    <string name="leave_a_comment">අදහස් දැක්වීමක් තබන්න හෝ හඳුනා ගැනීමක් යෝජනා කරන්න...</string>
+    <string name="location_coords">අක්ෂාංශ: %1$s දේශාංශ: %2$s නිරවද්‍යතාවය: %3$s</string>
+    <string name="location_coords_no_acc">අක්ෂාංශ: %1$s දේශාංශ: %2$s</string>
+    <string name="location">ස්ථානය</string>
+    <string name="login_in_to_add_comments_ids">අදහස් දැක්වීමක් තැබීමට හෝ හඳුනාගැනීමක් යෝජනා කිරීමට ඇතුල් වන්න හෝ ලියාපදිංචි වන්න...</string>
+    <string name="login_in_to_fav">ප්‍රියතමයන් බැලීමට හෝ මෙම නිරීක්‍ෂණය ප්‍රියතමයක් කිරීමට ඇතුල් වන්න හෝ ලියාපදිංචි වන්න...</string>
+    <string name="sync_obs_to_see_favs">ප්‍රියතමයන් බැලීමට මෙම නිරීක්ෂණය සමමුහුර්ත කරන්න...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
-    <string name="sync_obs_to_add_comments_ids">Sync this observation in order to leave a comment or suggest an identification...</string>
-    <string name="no_photo">No Photo</string>
-    <string name="about_this_species">About this Species</string>
-    <string name="view_on_wikipedia">Wikipedia Article</string>
-    <string name="photo"><![CDATA[Photo: <b><a href="%1$s">%2$s</a></b>]]></string>
-    <string name="photo_attr"><![CDATA[Photo: <b>%1$s</b>]]></string>
-    <string name="finding_current_location">Finding current location...</string>
-    <string name="flag_as_captive">Flag as Captive/Cultivated</string>
-    <string name="observation_flagged_as_captive">Observation was flagged as captive/cultivated</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Are you sure you want to flag this observation as captive/cultivated? (Pressing yes will also close the observation viewer window)</string>
-    <string name="do_you_agree_to_the_following">Do you agree to the following?</string>
-    <string name="terms">Terms</string>
-    <string name="observation_rules">Observation Rules</string>
-    <string name="couldnt_load_project_details">Couldn\'t load project details: %1$s</string>
-    <string name="no_people_found">No people found</string>
-    <string name="rank">Rank</string>
-    <string name="identifications">Identifications</string>
-    <string name="no_news_found">No news items found</string>
-    <string name="news">News</string>
-    <string name="article">Article</string>
-    <string name="couldnt_load_project_news">Couldn\'t load project news: %1$s</string>
-    <string name="couldnt_load_user_details">Couldn\'t load user details: %1$s</string>
-    <string name="more_bio"><![CDATA[<b><font color="#ffffff">More »</font></b>]]></string>
-    <string name="no_location">No Location</string>
-    <string name="add_to_projects">Add to project(s)</string>
-    <string name="are_you_sure_you_want_to_save_obs_without_coords">Are you sure you want to save the observation without any coordinates?</string>
-    <string name="users_identification">%1$s\'s ID: %2$s</string>
-    <string name="edit_profile">Edit Profile</string>
-    <string name="remove_photo">Remove Photo</string>
-    <string name="name">Name</string>
-    <string name="tell_us_about_yourself">Tell us about yourself...</string>
-    <string name="view_profile">View Profile</string>
-    <string name="are_you_sure_you_want_to_remove_photo">Are you sure you would like to remove your photo?</string>
-    <string name="updating_profile">Updating Profile...</string>
-    <string name="there_was_a_problem_updating_profile">There was a problem while updating your profile!</string>
-    <string name="there_was_a_problem_updating_profile_params">There was a problem while updating your profile: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
-    <string name="log_out">Log out</string>
-    <string name="not_logged_in">Not logged in</string>
-    <string name="auto_upload_description">Auto-upload new observations and edits to observations</string>
-    <string name="language">Language</string>
-    <string name="version">Version</string>
-    <string name="inat_network">iNaturalist Network</string>
-    <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
-    <string name="more_info">More Info</string>
-    <string name="select_network">Select Network Affiliation</string>
-    <string name="help">Help</string>
-    <string name="stop">Stop</string>
-    <string name="resume">Resume</string>
-    <string name="cleaning_up">Cleaning up...</string>
-    <string name="syncing">Syncing...</string>
-    <string name="syncing_observation_fields">Syncing observation fields...</string>
-    <string name="syncing_observations">Syncing observations...</string>
-    <string name="syncing_paused">Paused</string>
-    <string name="upload">Upload</string>
-    <string name="search_observations">Search Observations...</string>
-    <string name="withdraw">Withdraw</string>
+    <string name="sync_obs_to_add_comments_ids">අදහස් දැක්වීමක් තැබීමට හෝ හඳුනා ගැනීමක් යෝජනා කිරීම සඳහා මෙම නිරීක්ෂණය සමමුහුර්ත කරන්න...</string>
+    <string name="no_photo">ඡායාරූපයක් නොමැත</string>
+    <string name="about_this_species">මෙම විශේෂය පිළිබඳව</string>
+    <string name="view_on_wikipedia">විකිපීඩියා ලිපිය</string>
+    <string name="photo"><![CDATA[ඡායාරූපය: <b><a href="%1$s">%2$s</a></b>]]></string>
+    <string name="photo_attr"><![CDATA[ඡායාරූපය: <b>%1$s</b>]]></string>
+    <string name="finding_current_location">වත්මන් ස්ථානය සොයා ගනිමින්...</string>
+    <string name="flag_as_captive">අල්ලාගත්/වගා කළ ලෙස සලකුණු කරන්න</string>
+    <string name="observation_flagged_as_captive">නිරීක්‍ෂණය අල්ලාගත්/වගා කළ ලෙස සලකුණු කර ඇත</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive">මෙම නිරීක්‍ෂණය අල්ලාගත්/වගා කළ බවට සලකුණු කිරීමට ඔබට අවශ්‍ය බව ඔබට විශ්වාසද? (ඔව් එබීමෙන් නිරීක්ෂණ නරඹන්නාගේ කවුළුව ද වැසෙනු ඇත)</string>
+    <string name="do_you_agree_to_the_following">ඔබ පහත සඳහන් දේට එකඟද?</string>
+    <string name="terms">කොන්දේසි</string>
+    <string name="observation_rules">නිරීක්ෂණ නීති</string>
+    <string name="couldnt_load_project_details">ව්‍යාපෘති විස්තර පූරණය කළ නොහැකි විය: %1$s</string>
+    <string name="no_people_found">පුද්ගලයන් කිසිවෙක් හමු නොවීය</string>
+    <string name="rank">තරාව</string>
+    <string name="identifications">හඳුනාගැනීම්</string>
+    <string name="no_news_found">පුවත් අයිතම කිසිවක් හමු නොවීය</string>
+    <string name="news">පුවත්</string>
+    <string name="article">ලිපිය</string>
+    <string name="couldnt_load_project_news">ව්‍යාපෘති පුවත් පූරණය කළ නොහැකි විය: %1$s</string>
+    <string name="couldnt_load_user_details">පරිශීලක තොරතුරු පූරණය කළ නොහැකි විය: %1$s</string>
+    <string name="more_bio"><![CDATA[<b><font color="#ffffff">වැඩිදුරටත් »</font></b>]]></string>
+    <string name="no_location">ස්ථානයක් නොමැත</string>
+    <string name="add_to_projects">ව්‍යාපෘති(ය) වෙත එක් කරන්න</string>
+    <string name="are_you_sure_you_want_to_save_obs_without_coords">ඛණ්ඩාංක කිසිවක් නොමැතිව නිරීක්‍ෂණය සුරැකීමට ඔබට අවශ්‍ය බව ඔබට විශ්වාසද?</string>
+    <string name="users_identification">%1$s ගේ හඳුනාගැනීම: %2$s</string>
+    <string name="edit_profile">පැතිකඩ සංස්කරණය කරන්න</string>
+    <string name="remove_photo">ඡායාරූපය ඉවත් කරන්න</string>
+    <string name="name">නම</string>
+    <string name="tell_us_about_yourself">ඔබ පිළිබඳව අපට කියන්න...</string>
+    <string name="view_profile">පැතිකඩ බලන්න</string>
+    <string name="are_you_sure_you_want_to_remove_photo">ඔබගේ ඡායාරූපය ඉවත් කිරීමට ඔබ කැමති බව ඔබට විශ්වාසද?</string>
+    <string name="updating_profile">පැතිකඩ යාවත්කාලීන කරමින්...</string>
+    <string name="there_was_a_problem_updating_profile">ඔබගේ පැතිකඩ යාවත්කාලීන කිරීමේදී ගැටළුවක් ඇති විය!</string>
+    <string name="there_was_a_problem_updating_profile_params">ඔබගේ පැතිකඩ යාවත්කාලීන කිරීමේදී ගැටළුවක් ඇති විය: %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[ඇතුල් වී ඇත්තේ මෙලෙසිනි <b>%1$s</b>]]></string>
+    <string name="log_out">ඉවත් වෙන්න</string>
+    <string name="not_logged_in">ඇතුල් වී නොමැත</string>
+    <string name="auto_upload_description">නව නිරීක්ෂණයන් සහ නිරීක්ෂණ සඳහා සංස්කරණයන් ස්වයංක්‍රීයව උඩුගත කරන්න</string>
+    <string name="language">භාෂාව</string>
+    <string name="version">අනුවාදය</string>
+    <string name="inat_network">iNaturalist ජාලය</string>
+    <string name="inat_network_description">iNaturalist ජාලය යනු iNaturalist ප්‍රජාව දේශීයකරණය කිරීමේ රාමුවකි. දේශීය භාවිතය දිරිගැන්වීම සහ දේශීය ජෛව විවිධත්වයට ප්‍රතිලාභ ලබා දීම සඳහා iNaturalist සමඟ ගිවිසුමක් අත්සන් කර ඇති දේශීය ආයතන ජාල වෙබ් අඩවි සඳහා සහාය වේ.</string>
+    <string name="more_info">වැඩි විස්තර</string>
+    <string name="select_network">ජාල අනුබද්ධතාවය තෝරන්න</string>
+    <string name="help">උදව්</string>
+    <string name="stop">නවත්වන්න</string>
+    <string name="resume">යලි අරඹන්න</string>
+    <string name="cleaning_up">පිරිසිඳු කරමින්...</string>
+    <string name="syncing">සමමුහුර්ත වෙමින්...</string>
+    <string name="syncing_observation_fields">හඳුනාගැනීමේ ක්ෂේත්‍ර සමමුහුර්ත කරමින්...</string>
+    <string name="syncing_observations">නිරීක්ෂණ සමමුහුර්ත කරමින්...</string>
+    <string name="syncing_paused">විරාමයක ඇත</string>
+    <string name="upload">උඩුගත කරන්න</string>
+    <string name="search_observations">නිරීක්ෂණ සොයන්න...</string>
+    <string name="withdraw">ඉල්ලා අස්කර ගන්න</string>
     <!-- Dialog title for when you are updating the description of an identification -->
-    <string name="update_id_description">Update Identification Description</string>
-    <string name="your_identification">Your ID: %1$s</string>
-    <string name="onboarding_species_name">Name what you saw if you can, even if that\'s just \"insect\" or \"bird,\" or just leave this blank. Others may help you identify it!</string>
-    <string name="upload_complete">Upload Complete!</string>
-    <string name="onboarding_upload_description">Check back soon for identifications and comments on your observation(s).</string>
-    <string name="importing_photos">Importing photo(s)...</string>
-    <string name="multi_select_description">Import multiple photos by long-pressing on a single photo</string>
-    <string name="preparing_photo">Preparing photo...</string>
-    <string name="recommended_for_you">Recommended for You</string>
-    <string name="missions">Missions</string>
-    <string name="browse_by_category">Browse By Category</string>
-    <string name="couldnt_load_recommended_missions">Couldn\'t load recommended missions: %1$s</string>
-    <string name="plants">Plants</string>
-    <string name="mammals">Mammals</string>
-    <string name="insects">Insects</string>
-    <string name="reptiles">Reptiles</string>
-    <string name="fish">Fish</string>
-    <string name="mollusks">Mollusks</string>
-    <string name="amphibians">Amphibians</string>
-    <string name="fungi">Fungi</string>
-    <string name="birds">Birds</string>
-    <string name="arachnids">Arachnids</string>
-    <string name="no_connectivity">No Connectivity</string>
-    <string name="no_recommended_missions">Looks like there’s no recommendations in this area. Try moving to a new location.</string>
-    <string name="what_to_look_for">What To Look For</string>
-    <string name="have_been_seen_here">Have Been Seen Here</string>
-    <string name="observe">Observe</string>
-    <string name="nearby_missions">Nearby Missions</string>
-    <string name="searching_your_area">Searching your area...</string>
-    <string name="expanding_your_search_area">Expanding your search area...</string>
-    <string name="introducing_missions">Introducing Missions!</string>
-    <string name="missions_onboarding_description">Missions are realtime recommendations of what to look for around you. This way you can discover species new to you! (Requires connectivity)</string>
-    <string name="ok_got_it">Ok, got it!</string>
-    <string name="could_not_download_observations">Could not download latest observations - Connection problems. Try again later.</string>
-    <string name="no_news_yet">No news yet. Stay tuned!</string>
-    <string name="my_content">My Content</string>
-    <string name="following">Following</string>
-    <string name="no_updates_yet">No updates yet. Stay tuned!</string>
-    <string name="you_will_only_receive_updates_when_creating">(You will only receive updates once you\'ve created observations)</string>
-    <string name="you_will_only_receive_updates_when_following">(You will only receive updates once you\'re following observations)</string>
-    <string name="user_activity_id"><![CDATA[<b>%1$s</b> suggested an ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="user_activity_comment"><![CDATA[<b>%1$s</b> commented: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="deleted_photos_from_cache_error">It looks like you deleted a photo by clearing the app cache before uploading. You will need to add the photo back to your observation from your gallery. In the future, please make sure you have uploaded all your photos before clearing the app cache.</string>
+    <string name="update_id_description">හඳුනාගැනීමේ විස්තරය යාවත්කාලීන කරන්න</string>
+    <string name="your_identification">ඔබේ හඳුනාගැනීම: %1$s</string>
+    <string name="onboarding_species_name">ඔබට හැකි නම් ඔබ දුටු දේ නම් කරන්න, එය \"කෘමියෙක්\" හෝ \"පක්ෂියෙක්\" ලෙස වුවද, හෝ මෙය හිස්ව තබන්න. එය හඳුනා ගැනීමට අනෙක් අය ඔබට උදව් කළ හැකිය!</string>
+    <string name="upload_complete">යාවත්කාලීන කිරීම සාර්ථකයි!</string>
+    <string name="onboarding_upload_description">ඔබගේ නිරීක්ෂණ(ය) පිළිබඳ හඳුනාගැනීම් සහ අදහස් දැක්වීම් සඳහා ළඟදීම නැවත පිරික්සන්න.</string>
+    <string name="importing_photos">ඡායාරූප(ය) ආනයනය කරමින්...</string>
+    <string name="multi_select_description">තනි ඡායාරූපයක් මත දිගු එබීමෙන් බහු ඡායාරූප ආයාත කරන්න</string>
+    <string name="preparing_photo">ඡායාරූපය සූදානම් කරමින්...</string>
+    <string name="recommended_for_you">ඔබ සඳහා නිර්දේශ කර ඇත</string>
+    <string name="missions">මෙහෙවරයන්</string>
+    <string name="browse_by_category">ප්‍රවර්ගය අනුව පිරික්සන්න</string>
+    <string name="couldnt_load_recommended_missions">නිර්දේශිත මෙහෙවරයන් පූරණය කිරීමට නොහැකි විය: %1$s</string>
+    <string name="plants">ශාකයන්</string>
+    <string name="mammals">ක්ෂීරපායින්</string>
+    <string name="insects">කෘමීන්</string>
+    <string name="reptiles">උරගයින්</string>
+    <string name="fish">මත්ස්‍ය</string>
+    <string name="mollusks">මෘද්වංගීන්</string>
+    <string name="amphibians">උභයජීවීන්</string>
+    <string name="fungi">දිලීරයන්</string>
+    <string name="birds">පක්ෂීන්</string>
+    <string name="arachnids">අරක්නිඩාවන්</string>
+    <string name="no_connectivity">සම්බන්ධතාවයක් නොමැත</string>
+    <string name="no_recommended_missions">මෙම ප්‍රදේශයේ නිර්දේශ කිසිවක් නොමැති බව පෙනේ. නව ස්ථානයකට යාමට උත්සාහ කරන්න.</string>
+    <string name="what_to_look_for">සොයා බැලිය යුතු දේ</string>
+    <string name="have_been_seen_here">මෙහි දැක ඇත</string>
+    <string name="observe">නිරීක්ෂණය කරන්න</string>
+    <string name="nearby_missions">අසල ඇති මෙහෙවරයන්</string>
+    <string name="searching_your_area">ඔබේ ප්‍රදේශය සොයමින්...</string>
+    <string name="expanding_your_search_area">ඔබගේ සෙවුම් ප්‍රදේශය පුළුල් කරමින්...</string>
+    <string name="introducing_missions">මෙහෙවරයන් හඳුන්වා දීම!</string>
+    <string name="missions_onboarding_description">මෙහෙවරයන් යනු ඔබ වටා සොයා බැලිය යුතු දේ පිළිබඳ තත්‍ය කාලීන නිර්දේශයන් ය. ඔබට මේ ආකාරයෙන් ඔබට අළුත් විශේෂයන් සොයා ගත හැකිය! (සම්බන්ධතාවය අවශ්‍යයි)</string>
+    <string name="ok_got_it">හරි, මම තේරුම් ගත්තා!</string>
+    <string name="could_not_download_observations">නවතම නිරීක්ෂණ බාගත කිරීමට නොහැකි විය - සම්බන්ධතා ගැටළු. පසුව නැවත උත්සාහ කරන්න.</string>
+    <string name="no_news_yet">තවම පුවත් නොමැත. සුසරව සිටින්න!</string>
+    <string name="my_content">මගේ අන්තර්ගතය</string>
+    <string name="following">අනුගමනය කරන</string>
+    <string name="no_updates_yet">තවම යාවත්කාලීන කිරීම් නොමැත. සුසරව සිටින්න!</string>
+    <string name="you_will_only_receive_updates_when_creating">(ඔබට යාවත්කාලීනයන් ලැබෙන්නේ ඔබ නිරීක්ෂණ නිර්මාණය කිරීමෙන් පසුව පමණි)</string>
+    <string name="you_will_only_receive_updates_when_following">(ඔබට යාවත්කාලීනයන් ලැබෙන්නේ ඔබ නිරීක්ෂණ අනුගමනය කිරීමෙන් පසුව පමණි)</string>
+    <string name="user_activity_id"><![CDATA[<b>%1$s</b> හඳුනාගැනීමක් යෝජනා කළේය: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_comment"><![CDATA[<b>%1$s</b> අදහස් දැක්වීය: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="deleted_photos_from_cache_error">උඩුගත කිරීමට පෙර යෙදුම් නිහිතය ඉවත් කිරීමෙන් ඔබ ඡායාරූපයක් මකා දැමූ බවක් පෙනේ. ඔබගේ ගැලරියේ සිට ඔබේ නිරීක්‍ෂණයට ඡායාරූපය නැවත එක් කිරීමට ඔබට අවශ්‍ය වනු ඇත. අනාගතයේදී, කරුණාකර යෙදුම් නිහිතය ඉවත් කිරීමට පෙර ඔබගේ සියලු ඡායාරූප උඩුගත කර ඇති බවට වග බලා ගන්න.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
         the side drawer next to the Activity menu item when you have new activity on your own
         content.
     -->
     <plurals name="new_activities">
-        <item quantity="one">%1s new</item>
-        <item quantity="other">%1s new</item>
+        <item quantity="one">නව %1s ක්</item>
+        <item quantity="other">නව %1s ක්</item>
     </plurals>
-    <string name="no_results_found">No Results Found...</string>
+    <string name="no_results_found">ප්‍රතිඵල කිසිවක් හමු නොවීය...</string>
     <plurals name="syncing_x_out_of_y_observations">
-        <item quantity="one">Syncing %1$d of %2$d observation...</item>
-        <item quantity="other">Syncing %1$d of %2$d observations...</item>
+        <item quantity="one">%2$d නිරීක්ෂණයෙන් %1$d සමමුහුර්ත කරමින්...</item>
+        <item quantity="other">නිරීක්ෂණ %2$d න් %1$d සමමුහුර්ත කරමින්...</item>
     </plurals>
-    <string name="deleting_observations">Deleting observations...</string>
-    <string name="preparing">Preparing...</string>
-    <string name="add_edit_remark">Add/Edit Remark</string>
-    <string name="restore">Restore</string>
-    <string name="compare">Compare</string>
-    <string name="select">Select</string>
-    <string name="source_wikipedia">(Source: Wikipedia)</string>
-    <string name="conservation_source"><![CDATA[<b>Source:</b> <i>%1$s</i>]]></string>
-    <string name="conservation_status_least_concern">Of least concern</string>
-    <string name="conservation_status_near_threatened">Near threatened</string>
-    <string name="conservation_status_vulnerable">Vulnerable</string>
-    <string name="conservation_status_endangered">Endangered</string>
-    <string name="conservation_status_critically_endangered">Critically endangered</string>
-    <string name="conservation_status_extinct_in_the_wild">Extinct in the wild</string>
-    <string name="conservation_status_extinct">Extinct</string>
-    <string name="map_of_observations">Map of Observations</string>
-    <string name="taxonomy">Taxonomy</string>
-    <string name="about_this_section">About This Section</string>
+    <string name="deleting_observations">නිරීක්ෂණ මකමින්...</string>
+    <string name="preparing">සූදානම් කරමින්...</string>
+    <string name="add_edit_remark">මත ප්‍රකාශය එක් කරන්න/සංස්කරණය කරන්න</string>
+    <string name="restore">ප්‍රතිෂ්ඨාපනය කරන්න</string>
+    <string name="compare">සසඳන්න</string>
+    <string name="select">තෝරන්න </string>
+    <string name="source_wikipedia">(මුලාශ්‍රය: විකිපීඩියා)</string>
+    <string name="conservation_source"><![CDATA[<b>මූලාශ්‍රය:</b> <i>%1$s</i>]]></string>
+    <string name="conservation_status_least_concern">අවම වශයෙන් සැලකිලිමත් විය යුතුය</string>
+    <string name="conservation_status_near_threatened">තර්ජනයට ලක්වීමට ආසන්නයේ</string>
+    <string name="conservation_status_vulnerable">අන්තරායකට ලක්වීමට ඉඩ ඇති</string>
+    <string name="conservation_status_endangered">වඳවීමේ අන්තරායකට ලක් වූ</string>
+    <string name="conservation_status_critically_endangered">බරපතල වඳවීමේ අන්තරායකට ලක්ව ඇත</string>
+    <string name="conservation_status_extinct_in_the_wild">වනයේ වඳ වී ගොස් ඇත</string>
+    <string name="conservation_status_extinct">වඳ වී ගොස් ඇත</string>
+    <string name="map_of_observations">නිරීක්ෂණ සිතියම</string>
+    <string name="taxonomy">වර්ගීකරණය</string>
+    <string name="about_this_section">මෙම කොටස පිළිබඳව</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
-    <string name="taxonomy_info">These are links to ancestors of this particular taxon. They are in order from coarser to more refined. Use these links to move up and down the Tree of Life. For example, if you don\'t know what an organism is, but know what grouping it falls into, tap on a taxon from the list to view more information about it.</string>
-    <string name="more_info_on_inat">More Info on iNaturalist.org</string>
-    <string name="view_suggestions">View Suggestions</string>
-    <string name="species_search">Species Search</string>
+    <string name="taxonomy_info">මේවා මෙම සුවිශේෂ තක්සෝනයේ මුතුන් මිත්තන්ට ඇති සබැඳියන් වේ. ඒවා දළ මට්ටමේ සිට වඩාත් පිරිපහදු දක්වා අනුපිළිවෙලට තිබේ. ජීවන වෘක්ෂයේ ඉහළට හා පහළට ගමන් කිරීමට මෙම සබැඳි භාවිතා කරන්න. නිදසුනක් ලෙස, ඔබ ජීවියෙකු කුමක්දැයි නොදන්නේ නම්, නමුත් එය කුමන කාණ්ඩයකට වැටේ දැයි දන්නේ නම්, ඒ පිළිබඳ වැඩි විස්තර බැලීමට ලැයිස්තුවෙන් තක්සෝනයක් උඩ තට්ටු කරන්න.</string>
+    <string name="more_info_on_inat">iNaturalist.org හි වැඩි විස්තර</string>
+    <string name="view_suggestions">යෝජනා බලන්න</string>
+    <string name="species_search">විශේෂයන් සෙවීම</string>
     <plurals name="were_not_confident">
         <!-- This will probably never happen -->
-        <item quantity="one">We\'re not confident enough to make a recommendation, but here is our number %1$d suggestion:</item>
-        <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
+        <item quantity="one">නිර්දේශයක් කිරීමට තරම් අපට ප්‍රමාණවත් විශ්වාසයක් නැත, නමුත් මෙන්න අපගේ අංක %1$d යෝජනාව:</item>
+        <item quantity="other">නිර්දේශයක් කිරීමට තරම් අපට ප්‍රමාණවත් විශ්වාසයක් නැත, නමුත් මෙන්න අපගේ ප්‍රමුඛතම යෝජනා %1$d:</item>
     </plurals>
     <plurals name="top_species_suggestions">
-        <item quantity="one">Top %1$d suggestion:</item>
-        <item quantity="other">Top %1$d suggestions:</item>
+        <item quantity="one">ප්‍රමුඛතම %1$d යෝජනාව:</item>
+        <item quantity="other">ප්‍රමුඛතම යෝජනා %1$d:</item>
     </plurals>
-    <string name="pretty_sure_rank">We\'re pretty sure it\'s in this %1$s:</string>
-    <string name="what_did_you_see">What did you see?</string>
-    <string name="suggest_species">Suggest Species</string>
-    <string name="suggest_species_description">Suggest species based on visual similarity to photos.</string>
+    <string name="pretty_sure_rank">අපට විශ්වාසයි එය මෙම %1$s ට අයත් බව:</string>
+    <string name="what_did_you_see">ඔබ මොනවද දුටුවේ?</string>
+    <string name="suggest_species">විශේෂයන් යෝජනා කරන්න</string>
+    <string name="suggest_species_description">ඡායාරූප වලට දෘශ්‍ය සමානතාවය මත පදනම්ව විශේෂයන් යෝජනා කරන්න.</string>
     <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
-    <string name="visually_similar">Visually Similar</string>
-    <string name="visually_similar_seen_nearby">Visually Similar / Seen Nearby</string>
-    <string name="seen_nearby">Seen Nearby</string>
-    <string name="enlarge">Enlarge</string>
+    <string name="visually_similar">දෘශ්‍යමය වශයෙන් සමාන</string>
+    <string name="visually_similar_seen_nearby">දෘශ්‍යමය වශයෙන් සමාන / අසල දැක ඇති</string>
+    <string name="seen_nearby">අසල දැක ඇති</string>
+    <string name="enlarge">විශාල කරන්න</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
-    <string name="view_children">View Children</string>
-    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG extensions</string>
-    <string name="taxon_has_no_photos">This taxon has no photos.</string>
-    <string name="terrain">Terrain</string>
-    <string name="filters">Filters</string>
-    <string name="exploring_all">Exploring All</string>
-    <string name="nearby">Nearby</string>
-    <string name="couldnt_load_results">Couldn\'t load results: %1$s</string>
+    <string name="view_children">දාරකයන් බලන්න</string>
+    <string name="invalid_photo_extension">ඡායාරූප(ය) ආයාත කිරීමේදී ඇති වූ දෝෂයකි: ඡායාරූප ගොනු ආයාත කළ හැක්කේ JPG/JPEG/PNG දිගු සමඟ පමණි</string>
+    <string name="taxon_has_no_photos">මෙම තක්සෝනයට ඡායාරූප නොමැත.</string>
+    <string name="terrain">බිම් පෙදෙස</string>
+    <string name="filters">පෙරහන්</string>
+    <string name="exploring_all">සියල්ල ගවේෂණය කරමින්</string>
+    <string name="nearby">අසල ඇති</string>
+    <string name="couldnt_load_results">ප්‍රතිඵල පූරණය කළ නොහැකි විය: %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
-    <string name="research_grade_initials">RG</string>
-    <string name="taxon_search_hint">e.g. birds, monarch</string>
-    <string name="location_search_hint">e.g. city, state, park, country...</string>
-    <string name="no_taxon">Sorry, taxon not found</string>
-    <string name="please_select_taxon">Please select a valid taxon from the list (or clear the taxon field).</string>
-    <string name="sorry_no_location">Sorry, location not found</string>
-    <string name="location_not_found">The location or place you have searched is not in our database. Please choose a place from the list of options below the location search field or clear the search field.</string>
-    <string name="undefined">Undefined</string>
-    <string name="street_segment">Street Segment</string>
-    <string name="intersection">Intersection</string>
-    <string name="town">Town</string>
-    <string name="state">State</string>
-    <string name="county">County</string>
-    <string name="local_administrative_area">Local Administrative Area</string>
-    <string name="country">Country</string>
-    <string name="island">Island</string>
-    <string name="airport">Airport</string>
-    <string name="drainage">Drainage</string>
-    <string name="land_feature">Land Feature</string>
+    <string name="research_grade_initials">පශ්‍රේ</string>
+    <string name="taxon_search_hint">උදා. පක්ෂීන්, ඇසතු</string>
+    <string name="location_search_hint">උදා. පුරවරය, ප්‍රාන්තය, උද්‍යානය, රට...</string>
+    <string name="no_taxon">කණගාටුයි, තක්සෝනය හමු නොවීය</string>
+    <string name="please_select_taxon">කරුණාකර ලැයිස්තුවෙන් වලංගු තක්සෝනයක් තෝරන්න (හෝ තක්සෝන ක්ෂේත්‍රය හිස් කරන්න).</string>
+    <string name="sorry_no_location">කණගාටුයි, ස්ථානය හමු නොවීය</string>
+    <string name="location_not_found">ඔබ සෙවූ ස්ථානය හෝ තැන අපගේ දත්ත ගබඩාවේ නොමැත. කරුණාකර ස්ථාන සෙවුම් ක්ෂේත්‍රයට පහළින් ඇති විකල්ප ලැයිස්තුවෙන් ස්ථානයක් තෝරන්න හෝ සෙවුම් ක්ෂේත්‍රය හිස් කරන්න.</string>
+    <string name="undefined">අර්ථ දක්වා නැති</string>
+    <string name="street_segment">වීදි කොටස</string>
+    <string name="intersection">හරස් පාර</string>
+    <string name="town">නගරය</string>
+    <!-- As in a political administrative area, e.g. Hawaii in the United States -->
+    <string name="state">ප්‍රාන්තය</string>
+    <string name="county">ජනපදය</string>
+    <string name="local_administrative_area">ප්‍රාදේශීය පරිපාලන ප්‍රදේශය</string>
+    <string name="country">රට</string>
+    <string name="island">දිවයින</string>
+    <string name="airport">ගුවන්තොටුපල</string>
+    <string name="drainage">ජලාපවහනය</string>
+    <string name="land_feature">ඉඩම් විශේෂාංගය</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
-    <string name="miscellaneous">Miscellaneous</string>
-    <string name="nationality">Nationality</string>
+    <string name="miscellaneous">විවිධ</string>
+    <string name="nationality">ජාතිකත්වය</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
-    <string name="supername">Supername</string>
-    <string name="point_of_interest">Point of Interest</string>
+    <string name="supername">උපරි නම</string>
+    <string name="point_of_interest">උනන්දුවක් දක්වන තැන</string>
     <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
-    <string name="region">Region</string>
+    <string name="region">කලාපය</string>
     <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
-    <string name="colloquial">Colloquial</string>
-    <string name="zone">Zone</string>
+    <string name="colloquial">ව්‍යවහාරික</string>
+    <string name="zone">කලාපය</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
-    <string name="historical_state">Historical State</string>
+    <string name="historical_state">ඓතිහාසික රාජ්‍යය</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
-    <string name="historical_county">Historical County</string>
-    <string name="continent">Continent</string>
-    <string name="estate">Estate</string>
-    <string name="historical_town">Historical Town</string>
-    <string name="aggregate">Aggregate</string>
-    <string name="open_space">Open Space</string>
-    <string name="territory">Territory</string>
-    <string name="district">District</string>
-    <string name="province">Province</string>
-    <string name="municipality">Municipality</string>
-    <string name="parish">Parish</string>
+    <string name="historical_county">ඓතිහාසික කෝරළය</string>
+    <string name="continent">මහාද්වීපය</string>
+    <string name="estate">වතුයාය</string>
+    <string name="historical_town">ඓතිහාසික නගරය</string>
+    <string name="aggregate">සමූහය</string>
+    <string name="open_space">විවෘත අවකාශය</string>
+    <string name="territory">වසම</string>
+    <string name="district">දිස්ත්‍රික්කය</string>
+    <string name="province">පළාත</string>
+    <string name="municipality">මහ නගර සභා ප්‍රදේශය</string>
+    <string name="parish">වසම</string>
     <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
-    <string name="department_segment">Department Segment</string>
-    <string name="city_building">City Building</string>
-    <string name="commune">Commune</string>
-    <string name="governorate">Governorate</string>
-    <string name="prefecture">Prefecture</string>
-    <string name="canton">Canton</string>
-    <string name="republic">Republic</string>
-    <string name="division">Division</string>
-    <string name="subdivision">Subdivision</string>
+    <string name="department_segment">දෙපාර්තමේන්තු අංශය</string>
+    <string name="city_building">නගර ගොඩනැගිල්ල</string>
+    <string name="commune">ප්‍රජා කොට්ඨාසය</string>
+    <string name="governorate">ආණ්ඩුකාර ප්‍රදේශය</string>
+    <string name="prefecture">අධිපති දිස්ත්‍රික්කය</string>
+    <string name="canton">කෝරළය</string>
+    <string name="republic">ජනරජය</string>
+    <string name="division">බෙදුම</string>
+    <string name="subdivision">අනුබෙදුම</string>
     <!-- https://gadm.org place type, presumably describing an area larger than an individual property but smaller than a neighborhood -->
-    <string name="village_block">Village block</string>
+    <string name="village_block">ගමේ කොටස</string>
     <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
     <string name="sum">Sum</string>
-    <string name="shire">Shire</string>
-    <string name="prefecture_city">Prefecture City</string>
+    <string name="shire">කෝරළය</string>
+    <string name="prefecture_city">අධිපති දිස්ත්‍රික් පුරවරය</string>
     <!-- Indonesian sub-sub-national place type -->
     <string name="regency">Regency</string>
-    <string name="constituency">Constituency</string>
-    <string name="local_authority">Local Authority</string>
+    <string name="constituency">ඡන්ද කොට්‌ඨාසය</string>
+    <string name="local_authority">ප්‍රාදේශීය අධිකාරිය</string>
     <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">Poblacion</string>
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegation</string>
-    <string name="apply_filters">Apply Filters</string>
-    <string name="reset">Reset</string>
-    <string name="show_only_my_observations">Show Only My Observations</string>
-    <string name="project">Project</string>
-    <string name="user">User</string>
-    <string name="search_users">Search Users...</string>
-    <string name="quality_grade">Quality Grade</string>
+    <string name="apply_filters">පෙරහන් යොදන්න</string>
+    <string name="reset">නැවත සකසන්න</string>
+    <string name="show_only_my_observations">මගේ නිරීක්ෂණ පමණක් පෙන්වන්න</string>
+    <string name="project">ව්‍යාපෘතිය</string>
+    <string name="user">පරිශිලකයා</string>
+    <string name="search_users">පරිශීලකයින් සොයන්න...</string>
+    <string name="quality_grade">ගුණාත්මකභාවයේ ශ්‍රේණිය</string>
     <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
-    <string name="date_observed">Date Observed</string>
+    <string name="date_observed">නිරීක්ෂණය කළ දිනය</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
-    <string name="any">Any</string>
+    <string name="any">ඕනෑම</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
-    <string name="to">to</string>
-    <string name="exact_date">Exact Date</string>
-    <string name="start">Start</string>
-    <string name="end">End</string>
-    <string name="months">Months</string>
-    <string name="choose_months">Choose months(s)</string>
-    <string name="map_area">Map Area</string>
-    <string name="global">Global</string>
+    <string name="to">සිට</string>
+    <string name="exact_date">නිශ්චිත දිනය</string>
+    <string name="start">ආරම්භය</string>
+    <string name="end">අවසානය</string>
+    <string name="months">මාස</string>
+    <string name="choose_months">මාස(ය) තෝරන්න</string>
+    <string name="map_area">සිතියම් ප්‍රදේශය</string>
+    <string name="global">ගෝලීය</string>
     <!-- As in redo search in the current map area -->
-    <string name="search_map_area">Search Map Area</string>
+    <string name="search_map_area">සිතියම් ප්‍රදේශය තුළ සොයන්න</string>
     <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
-    <string name="date_minute">%dm</string>
+    <string name="date_minute">මි%d</string>
     <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
-    <string name="date_hour">%dh</string>
+    <string name="date_hour">පැ%d</string>
     <!-- Compact form of "X days ago", so "3 days ago" would be "3d" -->
-    <string name="date_day">%dd</string>
+    <string name="date_day">දි%d</string>
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
-    <string name="date_week">%dw</string>
-    <string name="new_observation">New Observation</string>
-    <string name="inactive_taxon">Inactive Taxon</string>
-    <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
-    <string name="no_species_found">This is a list of the species you have observed the most.\n\nFYI: There\'s an estimated 9 million species on the planet, so get out there and observe them!</string>
-    <string name="make_an_observation">Make an observation</string>
-    <string name="no_observations_found_new">Observations are records of your encounters with individual organisms at particular times and locations.</string>
-    <string name="discard_comment">Are you sure you want to discard this comment?</string>
-    <string name="leave_comment">Leave a comment...</string>
-    <string name="swipe">Swipe</string>
+    <string name="date_week">ස%d</string>
+    <string name="new_observation">නව නිරීක්ෂණයක්</string>
+    <string name="inactive_taxon">අක්‍රිය තක්සෝනය</string>
+    <string name="no_identifications_found">මෙහි සිටින වෙනත් පුද්ගලයින්ගේ නිරීක්ෂණ සඳහා ඔබ යෝජනා කරන හඳුනාගැනීම් හඹායන්න.</string>
+    <string name="no_species_found">මෙය ඔබ වැඩිපුරම නිරීක්ෂණය කළ විශේෂයන්ගේ ලැයිස්තුවකි.\n\nඔබගේ දැනගැනීම පිණිස: පෘථිවියේ විශේෂයන් මිලියන 9 ක් ඇති බවට ඇස්තමේන්තු කර ඇති නිසා පිටතට ගොස් ඒවා නිරීක්ෂණය කරන්න!</string>
+    <string name="make_an_observation">නිරීක්ෂණයක් කරන්න</string>
+    <string name="no_observations_found_new">නිරීක්ෂණ යනු එක් එක් ජීවීන් සමඟ නිශ්චිත වේලාවන් හා ස්ථාන වලදී ඔබේ හමු වීම් වල වාර්තා ය.</string>
+    <string name="discard_comment">ඔබට මෙම අදහස් දැක්වීම ඉවත දැමීමට අවශ්‍ය බව ඔබට විශ්වාසද?</string>
+    <string name="leave_comment">අදහස් දැක්වීමක් තබන්න...</string>
+    <string name="swipe">ස්වයිප් කරන්න</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Which Google Account?</string>
-    <string name="potential_disagreement">Potential Disagreement</string>
-    <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
+    <string name="select_google_account">කුමන Google ගිණුමද?</string>
+    <string name="potential_disagreement">භව්‍ය එකඟ නොවීමක්</string>
+    <string name="do_you_think_this_could_be"><![CDATA[මෙය <b>%1$s</b> බව සනාථ කිරීමට සපයා ඇති සාක්ෂි ප්‍රමාණවත්ද?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
-    <string name="i_dont_know_but"><![CDATA[I don\'t know but I\'m sure this is <b>%1$s</b>.]]></string>
-    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
-    <string name="submit">Submit</string>
-    <string name="change_password">Change Password</string>
-    <string name="search_projects_youve_joined">Search projects you\'ve joined...</string>
-    <string name="must_be_connected_to_load_more_obs">You must be connected to the Internet to load more observations</string>
-    <string name="inat_about_title">iNaturalist is a joint initiative by the California Academy of Sciences and the National Geographic Society.</string>
-    <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="http://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
-    <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
-    <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
-    <string name="credits_title">Credits</string>
-    <string name="password_changed">The password the app uses no longer works - did you change your password on the website? Please enter the new one here</string>
-    <string name="just_so_you_know">Just So You Know...</string>
-    <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
-    <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
-    <string name="see_more_observations">See more observations</string>
-    <string name="see_more_species">See more species</string>
-    <string name="see_more_identifications">See more identifications</string>
-    <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
-    <string name="description">Description</string>
-    <string name="quantity">Qty</string>
-    <string name="agree2">Agree</string>
-    <string name="project_observations">Observations</string>
-    <string name="project_species">Species</string>
-    <string name="project_people">People</string>
-    <string name="project_identifiers">Identifiers</string>
-    <string name="got_it">Got it!</string>
-    <string name="view_all">View All</string>
-    <string name="new_badge">New</string>
-    <string name="observers">Observers</string>
+    <string name="i_dont_know_but"><![CDATA[මම දන්නේ නැහැ නමුත් මට විශ්වාසයි මේක <b>%1$s</b> කියලා.]]></string>
+    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[නැත, නමුත් එය <b>%1$s</b> හි සාමාජිකයෙකි.]]></string>
+    <string name="submit">ඉදිරිපත් කරන්න</string>
+    <string name="change_password">මුරපදය වෙනස් කරන්න</string>
+    <string name="search_projects_youve_joined">ඔබ සම්බන්ධ වූ ව්‍යාපෘති සොයන්න...</string>
+    <string name="must_be_connected_to_load_more_obs">තවත් නිරීක්ෂණ පූරණය කිරීම සඳහා ඔබ අන්තර්ජාලයට සම්බන්ධ වී සිටිය යුතුය</string>
+    <string name="inat_about_title">iNaturalist යනු California Academy of Sciences සහ National Geographic Society හි ඒකාබද්ධ මුලපිරීමකි.</string>
+    <!--
+        Prunciation of people's names (as approved by the people in question):
+
+        Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
+        Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
+        Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
+        Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
+    -->
+    <string name="inat_credits"><![CDATA[iNaturalist පවතින්නේ අපගේ ප්‍රජාව තුළ සහභාගී වන එක් එක් සෑම පුද්ගලයෙකුටම ස්තූතිවන්ත වන්නයි. මෘදුකාංගය ගොඩනඟන, අතුරුමුහුණත් සැලසුම් කරන, අපගේ යටිතල පහසුකම් නඩත්තු කරන, ප්‍රජාවට සහයෝගය දක්වන සහ සහයෝගීතාව වර්ධනය කරන පුද්ගලයින් වන්නේ Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, සහ Ken-ichi Ueda.<br/><br/>CalTech සහ Cornell Tech ඡායාරූප වලින් හඳුනාගැනීම් යෝජනා කරන පරිගණක දෘෂ්ටි පද්ධතිය සංවර්ධනය කිරීමට උපකාරී විය. පරිගණක දෘෂ්ටි පර්යේෂණ ඉදිරියට ගෙනයාම ගැන අපි Van Horn, Serge Belongie, සහ Pietro Perona ස්තූතිවන්ත වෙමු. වැඩි විස්තර <a href="http://www.visipedia.org">visipedia.org</a> වෙබ් අඩවියෙන් සොයා ගත හැකිය. අමතර සහාය සඳහා NVIDIA වෙත විශේෂ ස්තූතිය.]]></string>
+    <string name="inat_credits_networks_pre"><![CDATA[ආශ්‍රිත හවුල්කාර සංවිධානවල සහයෝගයට ස්තූතිවන්ත වෙන්න අන්තර්ජාතික iNaturalist ජාලය පහත සඳහන් රටවල දේශීයකරණය වූ, පූර්ණ ලෙස ඒකාබද්ධ වූ, iNaturalist පදනම් කරගත් වෙබ් අඩවි සඳහා සහාය වේ.]]></string>
+    <string name="inat_credits_post"><![CDATA[අප දිනපතා විශ්වාසය තබන මෘදුකාංග බොහොමයක් ලබා දී ඇති විවෘත කේත සංවර්ධකයින්ට iNaturalist ද කෘතඥ වෙනවා. විවෘත මූලාශ්‍ර දායකත්වය සඳහා <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> බලන්න.<br/>crowdin.com ප්‍රජාවේ ස්වේච්ඡා සේවකයන් විසින් සපයනු ලබන පරිවර්තන සහාය පිළිබඳව අපි කෘතඥ වෙමු, විශේෂයෙන්ම: Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, සහ katunchik.<br/>II කාණ්ඩයේ IUCN ස්ථාන IUCN සහ UNEP-WCMC (2015) විසින් සපයනු ලැබේ, ආරක්ෂිත ප්‍රදේශ පිළිබඳ ලෝක දත්ත සමුදාය (The World Database on Protected Areas (WDPA)) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. මෙතැනින් ලබා ගත හැකියි: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
+    <string name="credits_title">ගෞරව සම්මාන</string>
+    <string name="password_changed">යෙදුම භාවිතා කරන මුරපදය තවදුරටත් ක්‍රියාත්මක නොවේ - ඔබ වෙබ් අඩවියේ ඔබගේ මුරපදය වෙනස් කළාද? කරුණාකර මෙහි නව එක ඇතුළත් කරන්න</string>
+    <string name="just_so_you_know">ඔබගේ දැනගැනීම සඳහා...</string>
+    <string name="ask_for_g_plus_permissions">කිසිදු හේතුවක් නිසා අපි ඔබගේ සම්බන්ධතා වෙත පිවිසෙන්නේ නැතත්, ඔබගේ Google ගිණුම භාවිතා කිරීම සඳහා ඔබගේ සම්බන්ධතා වෙත ප්‍රවේශ වීමට අවසර ඉල්ලා සිටීම Google අපට අවශ්‍යතාවයක් කර ඇත. ඔබ මෙම අවසරය ප්‍රතික්ෂේප කරන්නේ නම්, ඔබට පරිශීලක නාමයක් සහ මුරපදයක් සමඟ ලියාපදිංචි වීම හෝ ප්‍රවේශ වීම අවශ්‍ය වේ.</string>
+    <string name="new_to_inat_sign_up_now"><![CDATA[%1$s වෙත අලුත්ද? <b>දැන්ම ලියාපදිංචි වන්න!</b>]]></string>
+    <string name="see_more_observations">තවත් නිරීක්ෂණ බලන්න</string>
+    <string name="see_more_species">තවත් විශේෂයන් බලන්න</string>
+    <string name="see_more_identifications">තවත් හඳුනාගැනීම් බලන්න</string>
+    <string name="collection_and_umbrella_projects">එකතු කිරීමේ සහ බහුවිස්තීර්ණ ව්‍යාපෘති</string>
+    <string name="description">විස්තරය</string>
+    <string name="quantity">ප්‍රමාණය</string>
+    <string name="agree2">එකඟ වන්න</string>
+    <string name="project_observations">නිරීක්ෂණ</string>
+    <string name="project_species">විශේෂය</string>
+    <string name="project_people">පුද්ගලයන්</string>
+    <string name="project_identifiers">හඳුන්වනයන්</string>
+    <string name="got_it">තේරුම් ගත්තා!</string>
+    <string name="view_all">සියල්ල බලන්න</string>
+    <string name="new_badge">නව</string>
+    <string name="observers">නිරීක්ෂකයෝ</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
-    <string name="attribute">Attribute</string>
+    <string name="attribute">ගතිලක්ෂණය</string>
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
-    <string name="value">Value</string>
+    <string name="value">අගය</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
-    <string name="disagree">Disagree</string>
+    <string name="disagree">එකඟ නොවන්න</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
-    <string name="annotations">Annotations</string>
+    <string name="annotations">අනුසටහන්</string>
     <!-- Used when filtering observations with annotations -->
-    <string name="with_annotation">With Annotation</string>
+    <string name="with_annotation">අනුසටහන සමඟ</string>
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
-    <string name="annotation_name">Annotation Name</string>
+    <string name="annotation_name">අනුසටහන් නාමය</string>
     <!-- Annotation value for when no annotation has been chosen -->
-    <string name="none">None</string>
+    <string name="none">කිසිවක් නැත</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
-    <string name="annotation_name_plant_phenology">Plant Phenology</string>
+    <string name="annotation_name_plant_phenology">ශාක සෘතුඵල විද්‍යාව</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
-    <string name="annotation_name_life_stage">Life Stage</string>
+    <string name="annotation_name_life_stage">ජීවන අවධිය</string>
     <!-- Noun, describes sex of the organism -->
-    <string name="annotation_name_sex">Sex</string>
+    <string name="annotation_name_sex">ලිංගය</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
-    <string name="annotation_name_alive_or_dead">Alive or Dead</string>
+    <string name="annotation_name_alive_or_dead">පණ ඇති හෝ මියගිය</string>
     <!-- Adjective, having open flowers -->
-    <string name="annotation_value_flowering">Flowering</string>
+    <string name="annotation_value_flowering">මල් පිපී ඇති</string>
     <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">Fruiting</string>
+    <string name="annotation_value_fruiting">ඵල ඇති</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_budding">Budding</string>
+    <string name="annotation_value_budding">පොහොට්ටු ඇති</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_flower_budding">Flower Budding</string>
+    <string name="annotation_value_flower_budding">මල් පොහොට්ටු ඇති</string>
     <!-- Observation presents no evidence of flowering phenology -->
-    <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
+    <string name="annotation_value_no_evidence_of_flowering">මල් පිපෙන බවට සාක්ෂි නැත</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
-    <string name="annotation_value_adult">Adult</string>
+    <string name="annotation_value_adult">සුහුඹුලා</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
-    <string name="annotation_value_teneral">Teneral</string>
+    <string name="annotation_value_teneral">ශිශුවා සහ සුහුඹුලා අතර</string>
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
-    <string name="annotation_value_pupa">Pupa</string>
+    <string name="annotation_value_pupa">පිලවා</string>
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
-    <string name="annotation_value_nymph">Nymph</string>
+    <string name="annotation_value_nymph">ශිශුවා</string>
     <!-- Noun for the arthropod life stage between egg and adult -->
-    <string name="annotation_value_larva">Larva</string>
-    <string name="annotation_value_egg">Egg</string>
+    <string name="annotation_value_larva">කීටයා</string>
+    <string name="annotation_value_egg">බිත්තරය</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
-    <string name="annotation_value_juvenile">Juvenile</string>
+    <string name="annotation_value_juvenile">යෞවන</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
-    <string name="annotation_value_subimago">Subimago</string>
-    <string name="annotation_value_female">Female</string>
-    <string name="annotation_value_male">Male</string>
+    <string name="annotation_value_subimago">පිලවා සහ සුහුඹුලා අතර</string>
+    <string name="annotation_value_female">ගැහැණු</string>
+    <string name="annotation_value_male">පුරුෂ</string>
     <!-- Adjective, alive and shows no signs of imminent death -->
-    <string name="annotation_value_alive">Alive</string>
+    <string name="annotation_value_alive">පණ ඇති</string>
     <!-- Adjective, dead or shows signs of imminent death -->
-    <string name="annotation_value_dead">Dead</string>
+    <string name="annotation_value_dead">මියගිය</string>
     <!-- Value for when the value of the attribute cannot be determined -->
-    <string name="annotation_value_cannot_be_determined">Cannot Be Determined</string>
+    <string name="annotation_value_cannot_be_determined">නිර්ණය කළ නොහැක</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
-    <string name="joined_projects_all_caps">JOINED</string>
-    <string name="nearby_projects_all_caps">NEARBY</string>
-    <string name="featured_projects_all_caps">FEATURED</string>
+    <string name="joined_projects_all_caps">සම්බන්ධ වූ</string>
+    <string name="nearby_projects_all_caps">අසල ඇති</string>
+    <string name="featured_projects_all_caps">විශේෂාංග ගත</string>
     <!-- Text for a button or label that allows someone to join a project -->
-    <string name="join_all_caps">JOIN</string>
-    <string name="my_guides_all_caps">YOURS</string>
-    <string name="nearby_guides_all_caps">NEARBY</string>
-    <string name="all_guides_all_caps">ALL</string>
-    <string name="description_all_caps">DESCRIPTION</string>
-    <string name="quantity_all_caps">QTY</string>
+    <string name="join_all_caps">එක්වන්න</string>
+    <string name="my_guides_all_caps">ඔබේම</string>
+    <string name="nearby_guides_all_caps">අසල ඇති</string>
+    <string name="all_guides_all_caps">සියල්ල</string>
+    <string name="description_all_caps">විස්තරය</string>
+    <string name="quantity_all_caps">ප්‍රමාණය</string>
     <plurals name="observation_count_all_caps">
-        <item quantity="one">%1$s OBSERVATION</item>
-        <item quantity="other">%1$s OBSERVATIONS</item>
+        <item quantity="one">%1$s නිරීක්ෂණයක්</item>
+        <item quantity="other">නිරීක්ෂණ %1$s ක්</item>
     </plurals>
-    <string name="agree_all_caps">AGREE</string>
-    <string name="observations_all_caps">OBSERVATIONS</string>
-    <string name="species_all_caps">SPECIES</string>
-    <string name="people_all_caps">PEOPLE</string>
-    <string name="identifiers_all_caps">IDENTIFIERS</string>
-    <string name="identifications_all_caps">IDENTIFICATIONS</string>
-    <string name="news_all_caps">NEWS</string>
-    <string name="got_it_all_caps">GOT IT!</string>
-    <string name="view_all_all_caps">VIEW ALL</string>
-    <string name="new_all_caps">NEW</string>
-    <string name="observers_all_caps">OBSERVERS</string>
-    <string name="observations_regular">Observations</string>
-    <string name="data_quality_assessment">Data Quality Assessment</string>
-    <string name="research_grade_qualification">Research Grade Qualification</string>
-    <string name="date_specified">Date specified</string>
-    <string name="location_specified">Location specified</string>
-    <string name="has_photos_or_sounds">Has photos or sounds</string>
-    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
-    <string name="date_is_accurate">Date is accurate</string>
-    <string name="location_is_accurate">Location is accurate</string>
-    <string name="organism_is_wild">Organism is wild</string>
-    <string name="evidence_of_organism">Evidence of organism</string>
-    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
-    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
-    <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
-    <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
-    <string name="seasonality">Seasonality</string>
-    <string name="verifiable">Verifiable</string>
-    <string name="no_annotation">No Annotation</string>
-    <string name="donate_to_inaturalist">Donate to iNaturalist</string>
-    <string name="prefers_scientific_name_first">Show scientific names first</string>
-    <string name="prefers_scientific_name_first_description">Show scientific names before common names.</string>
-    <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, and Parks Canada operating iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
-    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
-    <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) operating NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
-    <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network operating iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
-    <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
-    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
-    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
-    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Natural History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
-    <string name="mark_all_as_viewed">Mark all as viewed</string>
-    <string name="content_hidden">Content Hidden</string>
-    <string name="show_hidden_content">Show Hidden Content</string>
-    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
-    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
-    <string name="content">Content</string>
-    <string name="has_photos">Has Photos</string>
-    <string name="has_sounds">Has Sounds</string>
-    <string name="could_not_play_sound">Couldn\'t play sound - probably a network issue</string>
-    <string name="cant_play_soundcloud"><![CDATA[To listen to Soundcloud sounds, view the <a href="%1$s">website</a>.]]></string>
+    <string name="agree_all_caps">එකඟ වන්න</string>
+    <string name="observations_all_caps">නිරීක්ෂණ</string>
+    <string name="species_all_caps">විශේෂයන්</string>
+    <string name="people_all_caps">පුද්ගලයන්</string>
+    <string name="identifiers_all_caps">හඳුන්වනයන්</string>
+    <string name="identifications_all_caps">හඳුනාගැනීම්</string>
+    <string name="news_all_caps">පුවත්</string>
+    <string name="got_it_all_caps">තේරුම් ගත්තා!</string>
+    <string name="view_all_all_caps">සියල්ල බලන්න</string>
+    <string name="new_all_caps">නව</string>
+    <string name="observers_all_caps">නිරීක්ෂකයෝ</string>
+    <string name="observations_regular">නිරීක්ෂණ</string>
+    <string name="data_quality_assessment">දත්තවල ගුණාත්මකභාවයේ තක්සේරුව</string>
+    <string name="research_grade_qualification">පර්යේෂණ ශ්‍රේණියේ සුදුසුකම</string>
+    <string name="date_specified">දිනය නියම වශයෙන් සඳහන් කර ඇත</string>
+    <string name="location_specified">ස්ථානය නියම වශයෙන් සඳහන් කර ඇත</string>
+    <string name="has_photos_or_sounds">ඡායාරූප හෝ ශබ්ද ඇත</string>
+    <string name="has_id_supported_by_two_or_more">දෙදෙනෙකු හෝ වැඩි ගණනක් සහාය දැක්වූ හඳුනාගැනීමක් ඇත</string>
+    <string name="date_is_accurate">දිනය නිවැරදිය</string>
+    <string name="location_is_accurate">ස්ථානය නිවැරදිය</string>
+    <string name="organism_is_wild">ජීවියා වනජීවීය</string>
+    <string name="evidence_of_organism">ජීවියාගේ සාක්ෂි</string>
+    <string name="recent_evidence_of_an_organism">ජීවියෙකු පිළිබඳ මෑත සාක්ෂි</string>
+    <string name="community_id_at_species_level_or_lower">විශේෂය මට්ටමේ හෝ පහළ ප්‍රජා හඳුනාගැනීමක්</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">සාක්ෂි මත පදනම්ව, ප්‍රජා හඳුනාගැනීම තවමත් තහවුරු කිරීමට හෝ වැඩිදියුණු කිරීමට හැකිද?</string>
+    <string name="no_as_good_as_it_can_be">නැත, එය එයට විය හැකි තරමට හොඳයි</string>
+    <string name="seasonality">සෘතුමයභාවය</string>
+    <string name="verifiable">සත්‍යාපනය කළ හැකි</string>
+    <string name="no_annotation">අනුසටහනක් නොමැත</string>
+    <string name="donate_to_inaturalist">iNaturalist වෙත පරිත්‍යාග කරන්න</string>
+    <string name="prefers_scientific_name_first">පළමුව විද්‍යාත්මක නම් පෙන්වන්න</string>
+    <string name="prefers_scientific_name_first_description">ව්‍යවහාරයෙහි පවතින නම් වලට පෙර විද්‍යාත්මක නම් පෙන්වන්න.</string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[කැනඩාව: iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>) මෙහෙයවනු ලබන්නේ Canadian Wildlife Federation, Royal Ontario Museum, NatureServe Canada, සහ Parks Canada]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[කොලොම්බියාව: Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>) මෙහෙයවනු ලබන්නේ Instituto Humboldt]]></string>
+    <string name="network_credit_naturalista"><![CDATA[මෙක්සිකෝව: NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>) මෙහෙයවනු ලබන්නේ Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO)]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[නවසීලන්තය: iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>) මෙහෙයවනු ලබන්නේ New Zealand Biodiversity Recording Network]]></string>
+    <string name="network_credit_biodiversity4all"><![CDATA[පෘතුගාලය: Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>) මෙහෙයවනු ලබන්නේ Associação Biodiversidade Para Todos]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[පැනමාව: iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>) මෙහෙයවනු ලබන්නේ Ministerio de Ambiente]]></string>
+    <string name="network_credit_argentinat"><![CDATA[ආර්ජන්ටිනාව: ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>) ට සහාය දක්වන්නේ Fundación Vida Silvestre Argentina]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[ඕස්ට්‍රේලියාව: iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>) ට සහාය දක්වන්නේ Atlas of Living Australia]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[ඉක්වදෝරය: iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>) ට සහාය දක්වන්නේ Instituto Nacional de Biodiversidad (INABIO)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[ඊශ්‍රායලය: iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>) ට සහාය දක්වන්නේ University of Haifa]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[ෆින්ලන්තය: iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>) ට සහාය දක්වන්නේ Finnish Museum of Natural History (LUOMUS)]]></string>
+    <string name="mark_all_as_viewed">සියල්ල බලා ඇති ලෙස ලකුණු කරන්න</string>
+    <string name="content_hidden">අන්තර්ගතය සඟවා ඇත</string>
+    <string name="show_hidden_content">සැඟවුණු අන්තර්ගතය පෙන්වන්න</string>
+    <string name="content_hidden_because">\@%1$s විසින් %2$s දින අන්තර්ගතය සඟවා ඇත, මක් නිසාද යත්: \"%3$s\"</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">උදවු සඳහා සම්බන්ධ වෙන්න</a>]]></string>
+    <string name="content">අන්තර්ගතය</string>
+    <string name="has_photos">ඡායාරූප ඇති</string>
+    <string name="has_sounds">ශබ්ද ඇති</string>
+    <string name="could_not_play_sound">ශබ්දය වාදනය කිරීමට නොහැකි විය - බොහෝ විට ජාල ගැටලුවක් විය හැකිය</string>
+    <string name="cant_play_soundcloud"><![CDATA[Soundcloud ශබ්දවලට සවන් දීමට, <a href="%1$s">වෙබ් අඩවිය</a> බලන්න.]]></string>
     <string name="soundcloud">Soundcloud</string>
-    <string name="record_sound">Record Sound</string>
-    <string name="no_recorder_found">No default sound recorder found!</string>
-    <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
-    <string name="upload_sound">Choose Sound</string>
-    <string name="multi_select_sound_description">Import multiple sounds by long-pressing on a single sound</string>
-    <string name="alert_unsupported_audio_type">Sorry, but there was a problem loading the sound from this source</string>
-    <string name="invalid_audio_extension">Error importing sound(s): Can only import sound files with WAV/MP3/AMR extensions</string>
-    <string name="importing_sounds">Importing sound(s)...</string>
-    <string name="observation_sound">Observation Sound</string>
-    <string name="deleted_sounds_from_cache_error">It looks like you deleted a sound by clearing the app cache before uploading. You will need to add the sound back to your observation from your gallery. In the future, please make sure you have uploaded all your sounds before clearing the app cache.</string>
+    <string name="record_sound">ශබ්දය පටිගත කරන්න</string>
+    <string name="no_recorder_found">පෙරනිමි ශබ්ද පටිගත කිරීමේ යන්ත්‍රයක් හමු නොවීය!</string>
+    <string name="couldnt_retrieve_sound">පෙරනිමි රෙකෝඩරයෙන් ශබ්දය ලබා ගත නොහැකි විය - ඒ වෙනුවට ශබ්දය ආයාත කිරීමට උත්සාහ කරන්න</string>
+    <string name="upload_sound">ශබ්දය තෝරන්න</string>
+    <string name="multi_select_sound_description">තනි ශබ්දයක් මත දිගු එබීමෙන් බහු ශබ්ද ආයාත කරන්න</string>
+    <string name="alert_unsupported_audio_type">කණගාටුයි, නමුත් මෙම ප්‍රභවයෙන් ශබ්දය පූරණය කිරීමේ ගැටලුවක් විය</string>
+    <string name="invalid_audio_extension">ශබ්ද(ය) ආයාත කිරීමේදී ඇති වූ දෝෂයකි: ශබ්ද ගොනු ආයාත කළ හැක්කේ WAV/MP3/AMR දිගු සමඟ පමණි</string>
+    <string name="importing_sounds">ශබ්ද(ය) ආනයනය කරමින්...</string>
+    <string name="observation_sound">නිරීක්ෂණ ශබ්දය</string>
+    <string name="deleted_sounds_from_cache_error">උඩුගත කිරීමට පෙර යෙදුම් නිහිතය ඉවත් කිරීමෙන් ඔබ ශබ්දයක් මකා දැමූ බවක් පෙනේ. ඔබගේ ගැලරියේ සිට ඔබේ නිරීක්‍ෂණයට ශබ්දය නැවත එක් කිරීමට ඔබට අවශ්‍ය වනු ඇත. අනාගතයේදී, කරුණාකර යෙදුම් නිහිතය ඉවත් කිරීමට පෙර ඔබගේ සියලු ශබ්ද උඩුගත කර ඇති බවට වග බලා ගන්න.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
-    <string name="seconds">%1$.1f sec</string>
-    <string name="clear_all_debug_logs">Clear All Debug Logs</string>
-    <string name="clears_up_storage_room_on_your_phone">Clears up storage room on your phone</string>
-    <string name="number_of_days_to_store_logs">Number of days to store logs</string>
-    <string name="send_debug_logs_from_start_date">Send Debug Logs From Start Date</string>
-    <string name="send_debug_logs_by_email">Send debug logs by email (from specified start date)</string>
-    <string name="debug_settings">Debug Settings</string>
-    <string name="are_you_sure_you_want_to_delete_logs">Are you sure you want to delete all debug logs? Only press \'Yes\' if you want clear up storage room for your phone</string>
-    <string name="no_log_files_found">No log files found for that date range - try earlier date?</string>
-    <string name="choose_pinned_location">Choose Pinned Location</string>
-    <string name="pin_current_location">Pin Current Location</string>
-    <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
-    <string name="delete_this_pinned_location">Delete this pinned location?</string>
+    <string name="seconds">තප්පර %1$.1f</string>
+    <string name="clear_all_debug_logs">සියලුම දෝශ නිරාකරණ සිදුවීම් සටහන් ඉවත් කරන්න</string>
+    <string name="clears_up_storage_room_on_your_phone">ඔබගේ දුරකථනයේ ගබඩා අවකාශය පිරිසිඳු කරයි</string>
+    <string name="number_of_days_to_store_logs">සිදුවීම් සටහන් ගබඩා කිරීමට දින ගණන</string>
+    <string name="send_debug_logs_from_start_date">ආරම්භක දිනයේ සිට දෝශ නිරාකරණ සිදුවීම් සටහන් යවන්න</string>
+    <string name="send_debug_logs_by_email">දෝශ නිරාකරණ සිදුවීම් සටහන් විද්‍යුත් තැපෑලෙන් යවන්න (නිශ්චිත ආරම්භක දිනයක සිට)</string>
+    <string name="debug_settings">දෝෂහරණයේ සැකසුම්</string>
+    <string name="are_you_sure_you_want_to_delete_logs">සියලුම දෝශ නිරාකරණ සිදුවීම් සටහන් මකා දැමීමට ඔබට අවශ්‍ය බව ඔබට විශ්වාසද? ඔබගේ දුරකථනය සඳහා ගබඩා අවකාශය පිරිසිඳු කිරීමට ඔබට අවශ්‍ය නම් පමණක් \'ඔව්\' ඔබන්න.</string>
+    <string name="no_log_files_found">එම දින පරාසය සඳහා සිදුවීම් සටහන් ලිපිගොනු හමු නොවීය - පෙර දිනයක් උත්සාහ කරන්නද?</string>
+    <string name="choose_pinned_location">අමුණා ඇති ස්ථානය තෝරන්න</string>
+    <string name="pin_current_location">වත්මන් ස්ථානය අමුණන්න</string>
+    <string name="location_pinned_successfully">වත්මන් ස්ථානය සාර්ථකව අමුණා ඇත</string>
+    <string name="delete_this_pinned_location">මෙම අමුණා ඇති ස්ථානය මකන්නද?</string>
     <!-- Verb, as in "Duplicate this photo" -->
-    <string name="duplicate">Duplicate</string>
-    <string name="couldnt_duplicate_photo">Couldn\'t duplicate photo!</string>
-    <string name="couldnt_edit_photo">Couldn\'t edit photo!</string>
+    <string name="duplicate">අනුපිටපත් කරන්න</string>
+    <string name="couldnt_duplicate_photo">ඡායාරූපය අනුපිටපත් කිරීමට නොහැකි විය!</string>
+    <string name="couldnt_edit_photo">ඡායාරූපය සංස්කරණය කිරීමට නොහැකි විය!</string>
     <!-- Verb, as in "Rotate this photo" -->
-    <string name="ucrop_rotate">Rotate</string>
+    <string name="ucrop_rotate">කරකවන්න</string>
     <!-- Verb, as in "Scale (resize) this photo" -->
-    <string name="ucrop_scale">Scale</string>
+    <string name="ucrop_scale">පරිමාණය වෙනස් කරන්න</string>
     <!-- Verb, as in "Crop this photo" -->
-    <string name="ucrop_crop">Crop</string>
+    <string name="ucrop_crop">කප්පාදු කරන්න</string>
     <!-- Label for adjusting the brightness of an image -->
-    <string name="ucrop_brightness">Brightness</string>
+    <string name="ucrop_brightness">දීප්තිය</string>
     <!-- Label for adjusting the contrast of an image -->
-    <string name="ucrop_contrast">Contrast</string>
+    <string name="ucrop_contrast">අසමතාව</string>
     <!-- Label for adjusting the saturation of an image -->
-    <string name="ucrop_saturation">Saturation</string>
+    <string name="ucrop_saturation">සන්තෘප්තිය</string>
     <!-- Label for adjusting the sharpness of an image -->
-    <string name="ucrop_sharpness">Sharpness</string>
+    <string name="ucrop_sharpness">තියුණු බව</string>
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
-    <string name="ucrop_label_original">Original</string>
+    <string name="ucrop_label_original">මුල්</string>
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
-    <string name="ucrop_label_free">Free</string>
+    <string name="ucrop_label_free">නිදහස්</string>
     <!-- Verb phrase, button label to edit an observation photo -->
-    <string name="ucrop_label_edit_photo">Edit Photo</string>
-    <string name="service_temporarily_unavailable">Service temporarily unavailable.</string>
-    <string name="please_try_again_in_a_few_hours">Please try again in a few hours.</string>
+    <string name="ucrop_label_edit_photo">ඡායාරූපය සංස්කරණය කරන්න</string>
+    <string name="service_temporarily_unavailable">සේවාව තාවකාලිකව ලබා ගත නොහැක.</string>
+    <string name="please_try_again_in_a_few_hours">කරුණාකර පැය කිහිපයකින් නැවත උත්සාහ කරන්න.</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
-    <string name="please_try_again_in_x">Please try again in %1$d %2$s.</string>
-    <string name="hours">hours</string>
-    <string name="minutes">minutes</string>
-    <string name="seconds_value">seconds</string>
-    <string name="shop_the_inat_store">Shop the iNat Store</string>
-    <string name="delete_your_account">Delete Your Account</string>
-    <string name="delete_account_message"><![CDATA[By deleting your account you will remove:<br/><br/><ul><li> All of your observations, including the work of the all the people who have helped you out with identifications.</li><li> All of the identifications you\'ve added to the observations of other people, which will potentially affect the data quality of those observations.</li><li> All of the comments you\'ve added.</li></ul><br/>Furthermore, this action cannot be undone. If you change your mind later, you aren\'t getting any of that content back.<br/><br/>If this service generates too many notifications, consider <a href="https://www.inaturalist.org/users/edit">editing your settings on the website</a> to opt out of certain notifications or stop receiving email from us. If you\'re having trouble with a specific person, consider <a href="https://www.inaturalist.org/users/edit">muting them</a> instead of deleting your account.<br/><br/>If you\'re still sure you want to delete your account, enter <b>\"%1$s\"</b> in the form below and click the button to delete your account and all your data.]]></string>
-    <string name="your_account_has_been_deleted">Your account has been deleted</string>
-    <string name="you_must_enter_username_in_the_form_to_delete_account">You must enter \'%1$s\' in the form to delete your account</string>
+    <string name="please_try_again_in_x">කරුණාකර නැවත %2$s %1$d කින් උත්සාහ කරන්න.</string>
+    <string name="hours">පැය</string>
+    <string name="minutes">මිනිත්තු</string>
+    <string name="seconds_value">තත්පර</string>
+    <string name="shop_the_inat_store">iNat වෙළඳසැලෙන් මිලදී ගන්න</string>
+    <string name="delete_your_account">ඔබගේ ගිණුම මකන්න</string>
+    <string name="delete_account_message"><![CDATA[ඔබගේ ගිණුම මකා දැමීමෙන් ඔබ මේවා ඉවත් කරනු ඇත:<br/><br/><ul><li> හඳුනාගැනීම් සඳහා ඔබට උදව් කළ සියලු පුද්ගලයින්ගේ වැඩ ඇතුළුව ඔබගේ සියලු නිරීක්ෂණ.</li><li> අනෙක් පුද්ගලයින්ගේ නිරීක්ෂණ සඳහා ඔබ එකතු කළ සියලුම හඳුනාගැනීම්, මෙය එම නිරීක්ෂණවල දත්තවල ගුණාත්මක භාවයට බලපානු ඇත.</li><li> ඔබ එකතු කළ සියලුම අදහස්.</li></ul><br/>තවද, මෙම ක්‍රියාව අහෝසි කළ නොහැක. ඔබ පසුව ඔබේ අදහස වෙනස් කරන්නේ නම්, ඔබට එම අන්තර්ගතය කිසිවක් ආපසු නොලැබේ.<br/><br/>මෙම සේවාව බොහෝ දැනුම්දීම් ජනනය කරන්නේ නම්, සමහර දැනුම්දීම් වලින් ඉවත් වීමට හෝ අපෙන් විද්‍යුත් තැපැල් ලැබීම නැවැත්වීමට <a href="https://www.inaturalist.org/users/edit">වෙබ් අඩවියේ ඔබගේ සැකසුම් සංස්කරණය කිරීම</a> සලකා බලන්න. ඔබට නිශ්චිත පුද්ගලයෙකු සමඟ ගැටළුවක් ඇත්නම්, ඔබගේ ගිණුම මකා දැමීම වෙනුවට <a href="https://www.inaturalist.org/users/edit">ඔවුන් නිහඬ කිරීම</a> ගැන සලකා බලන්න.<br/><br/>ඔබේ ගිණුම මකා දැමීමට ඔබට තවමත් විශ්වාස නම්, පහත පෝරමයේ <b>\"%1$s\"</b> ඇතුලත් කර ඔබගේ ගිණුම සහ ඔබගේ සියලු දත්ත මකා දැමීමට බොත්තම ක්ලික් කරන්න.]]></string>
+    <string name="your_account_has_been_deleted">ඔබගේ ගිණුම මකා දමා ඇත</string>
+    <string name="you_must_enter_username_in_the_form_to_delete_account">ඔබගේ ගිණුම මකා දැමීමට ඔබ පෝරමයේ \'%1$s\' ඇතුළත් කළ යුතුය</string>
     <!-- Second person hint text asking the user to enter their username -->
-    <string name="type_your_username">Type your username</string>
-    <string name="error_deleting_account">There was an error deleting your account - please check your Internet connection</string>
-    <string name="verify_your_password">Verify Your Password</string>
-    <string name="third_party_data_sharing">Third-party Data Sharing</string>
-    <string name="disable_third_party_data_sharing">Disable Third-party Data Sharing</string>
-    <string name="do_not_collect_third_party_data">Do not collect stability and usage data using third-party services</string>
-    <string name="enabled">Enabled</string>
-    <string name="disabled">Disabled</string>
-    <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third-party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
-    <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
-    <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third-party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
-    <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
-    <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
-    <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
-    <string name="search_places">Search Places</string>
-    <string name="restart_app">Restart App</string>
-    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
+    <string name="type_your_username">ඔබගේ පරිශීලක නාමය ටයිප් කරන්න</string>
+    <string name="error_deleting_account">ඔබගේ ගිණුම මකාදැමීමේ දෝෂයක් තිබුණි - කරුණාකර ඔබේ අන්තර්ජාල සම්බන්ධතාවය පරීක්ෂා කරන්න</string>
+    <string name="verify_your_password">ඔබගේ මුරපදය සත්‍යාපනය කරන්න</string>
+    <string name="third_party_data_sharing">තෙවන පාර්ශවීය දත්ත බෙදාගැනීම</string>
+    <string name="disable_third_party_data_sharing">තෙවන පාර්ශවීය දත්ත බෙදාගැනීම අක්‍රිය කරන්න</string>
+    <string name="do_not_collect_third_party_data">තෙවන පාර්ශවීය සේවාවන් භාවිතා කරමින් ස්ථායිතා සහ භාවිත දත්ත රැස් නොකරන්න</string>
+    <string name="enabled">සක්‍රීය කර ඇත</string>
+    <string name="disabled">අක්‍රියයි</string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[අපගේ මෘදුකාංගයේ ස්ථායිතාව නිරීක්ෂණය කිරීමට සහ දෝෂ සහ ගැටළු හඳුනා ගැනීමට අපි විවිධ තෙවන පාර්ශවීය සේවාවන් භාවිතා කරමු. මෙම තෙවන පාර්ශවයන්ට මේවා ඇතුළත් වේ:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="third_party_data_sharing_notes2"><![CDATA[මෙම තෙවන පාර්ශවයන් සමඟ අප බෙදාගන්නා තොරතුරු වලට ඇතුළත් වන්නේ:<br/><ul><li>IP ලිපින (නගර මට්ටමේ විභේදනයක ස්ථානය ව්‍යුත්පන්න කරගැනීමට, සහ විවිධ වෙබ් අඩවි සහ සේවාවන් හරහා ඔබව නිරීක්ෂණය කිරීමට භාවිතා කළ හැකිය; අපි සක්‍රීය කර ඇති Google Analytics වල <a href="https://support.google.com/analytics/answer/2763052">IP නිර්නාමිකකරණය</a> සහ <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> අපගේ දැනුමට IP ලිපිනය සටහන් කර නොගනියි)</li><li>වර්ගය, මාදිලිය, සහ අනුවාදය වැනි බ්‍රව්සරයේ විස්තර</li><li>බිඳවැටීමට හේතු වූයේ හරියටම කුමන කේත රේඛාවද වැනි බිඳ වැටීම් විස්තර</li><li>ජංගම දුරකථනයක වර්ගය සහ මාදිලිය වැනි උපාංග විස්තර</li></ul>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[අපගේ සාපේක්ෂව කුඩා කාර්ය මණ්ඩලය සමඟ iNaturalist හි ස්ථායිතාව සහ උපයෝගීතාව පවත්වා ගැනීමේදී <b>මෙම තෙවන පාර්ශවීය සේවාවන් අපට ඉමහත් වටිනාකමක් ලබා දෙයි</b>. ජංගම උපාංගවල, අප පාලනය නොකරන උපාංග මත මෘදුකාංග ක්‍රියාත්මක වන බැවින් සිදුවන ගැටළු පිළිබඳව අපට අවබෝධයක් ලබා ගත හැකි වෙනත් ක්‍රමයක් නොමැත. මෙම සේවාවන් සපයන දත්ත තුළ ඒවා දකින තුරු සමහර විට එවැනි ගැටළු සිදුවන බව අපි නොදනිමු. <b>මෙම තොරතුරු බෙදාගැනීමෙන්, ඔබට සහ සමස්ත iNaturalist ප්‍රජාවට සේවය කිරීමට ඔබ අපට උදව් කරයි.</b>]]></string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[මෙම විකල්පය අදාළ වන්නේ අප මෙම සමාගම් වෙත පැහැදිලිවම යවන විශ්ලේෂණ සහ බිඳ වැටීම් දත්ත වලට පමණක් බව සලකන්න. සියලුම iNaturalist සේවාදායකයන් සැපයීම සහ සත්කාරකත්වය Microsoft විසින් සිදුකරනු ලැබේ, සියලුම iNaturalist පින්තූර සඳහා Amazon විසින් සත්කාරකත්වය සපයනු ලබන අතර, iNaturalist සිතියම් සියල්ලම පාහේ Google විසින් සපයනු ලැබේ, එයින් අදහස් වන්නේ ඔබ iNaturalist හි නිරීක්ෂණයක් දෙස බලන සෑම අවස්ථාවකම ඔබ මෙම සමාගම් විසින් සපයනු ලබන සේවාවන් හා සම්බන්ධ වන බවත්, අවම වශයෙන් ඔබගේ IP ලිපිනය ඔවුන්ට නිරාවරණය කරනු ලබන බවත්ය (iPhone යෙදුමේ අපි Apple හි සිතියම් භාවිතා කරමු). මෙම සමාගම් සපයන සේවාවන් නොමැතිව iNaturalist බොහෝ විට නොපවතින අතර, iNat භාවිතා කරන අතරතුර ඔබ ඔවුන් සමඟ බෙදා ගන්නා දත්ත ප්‍රමාණය සහ වර්ගයන් අපට සීමා කළ හැකි වුවද, දත්ත ගලායාම අපට සම්පූර්ණයෙන්ම නතර කළ නොහැක.]]></string>
+    <string name="common_names_place"><![CDATA[ව්‍යවහාරයෙහි පවතින නම් ඇති ස්ථානය: <b>%1$s</b>]]></string>
+    <string name="tap_to_prioritize_common_names">නිශ්චිත ස්ථානයකින් එන ව්‍යවහාරයෙහි පවතින නම් වලට ප්‍රමුඛතාවය දීමට තට්ටු කරන්න.</string>
+    <string name="search_places">ස්ථාන සොයන්න</string>
+    <string name="restart_app">යෙදුම නැවත ආරම්භ කරන්න</string>
+    <string name="disable_third_party_sharing_restart">තෙවන පාර්ශවීය දත්ත හුවමාරුව වහාම අක්‍රිය කිරීමට, යෙදුම නැවත ආරම්භ කළ යුතුය.</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
-        <item quantity="one">Are you sure you want to delete this %1$d observation?</item>
-        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+        <item quantity="one">ඔබට මෙම %1$d නිරීක්ෂණය මකා දැමීමට අවශ්‍ය බව ඔබට විශ්වාසද?</item>
+        <item quantity="other">මෙම නිරීක්ෂණ %1$d මකා දැමීමට ඔබට අවශ්‍ය බව ඔබට විශ්වාසද?</item>
     </plurals>
-    <string name="future_observed_on_date_error">Your observation was created (and submitted) on %1$s, but you\'re trying to set an observation date that is later than that: %2$s</string>
-    <string name="no_more_photos_allowed">Observations can only have %1$d photos. To add more you will need to remove some.</string>
-    <string name="warning_multiple_photos">If you\'re adding photos of different kinds of organisms to this observation, or the same kind at different places or times, you should remove those photos and add them as separate observations. An observation can only have %1$d photos.</string>
-    <string name="choosing_specific_language_warning">Choosing a specific language for your account requires an Internet connection</string>
-    <string name="running_in_background_notfication">Running in the background so we can run without interruption</string>
-    <string name="opt_out_of_community_taxon">Opt out of the Community Taxon</string>
-    <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
-    <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
+    <string name="future_observed_on_date_error">ඔබගේ නිරීක්‍ෂණය %1$s දින නිර්මාණය කරන ලදි (සහ ඉදිරිපත් කරන ලදි), නමුත් ඔබ ඊට වඩා පසු නිරීක්ෂණ දිනයක් සැකසීමට උත්සාහ කරයි: %2$s</string>
+    <string name="no_more_photos_allowed">නිරීක්ෂණවලට තිබිය හැක්කේ ඡායාරූප %1$d ක් පමණි. තවත් එකතු කිරීමට ඔබට සමහරක් ඉවත් කිරීමට අවශ්‍ය වනු ඇත.</string>
+    <string name="warning_multiple_photos">ඔබ මෙම නිරීක්‍ෂණයට විවිධ වර්ගයේ ජීවීන්ගේ ඡායාරූප එක් කරන්නේ නම්, හෝ එකම වර්ගය විවිධ ස්ථානවල හෝ වේලාවන්හිදී, ඔබ එම ඡායාරූප ඉවත් කර ඒවා වෙනම නිරීක්ෂණ ලෙස එකතු කළ යුතුය. නිරීක්‍ෂණයකට තිබිය හැක්කේ ඡායාරූප %1$d ක් පමණි.</string>
+    <string name="choosing_specific_language_warning">ඔබගේ ගිණුම සඳහා නිශ්චිත භාෂාවක් තෝරා ගැනීමට අන්තර්ජාල සම්බන්ධතාවයක් අවශ්‍ය වේ</string>
+    <string name="running_in_background_notfication">අපට බාධාවකින් තොරව ධාවනය කළ හැකි වන පරිදි පසුබිමේ ධාවනය වේ</string>
+    <string name="opt_out_of_community_taxon">ප්‍රජා තක්සෝනයෙන් ඉවත් වෙන්න</string>
+    <string name="opt_in_to_community_taxon">ප්‍රජා තක්සෝනයට ඇතුල් වෙන්න</string>
+    <string name="opt_out_message">ප්‍රජා තක්සෝනයෙන් ඉවත් වීමෙන් මෙම නිරීක්‍ෂණය ඔබගේ වර්තමාන හඳුනාගැනීමේ තක්සෝනය සමඟ සම්බන්ධ වීමට බල කරයි, මෙම නිරීක්‍ෂණයට එකතු කර ඇති සියලුම හඳුනාගැනීම් වලින් ව්‍යුත්පන්න කර ගත් තක්සෝනයක් සමඟ නොවේ. ප්‍රමාණවත් හඳුනාගන්නන් පිරිසක් ඔබ සමඟ එකඟ නොවන්නේ නම්, ඔබේ නිරීක්ෂණය අවිධිමත් බවට පත්වේ. ඔබ ඉවත් විය යුත්තේ ඔබේ හඳුනාගැනීම නිවැරදි බවත් අනෙකුත් හඳුනාගැනීම් වැරදි බවත් ඔබට විශ්වාස නම් පමණි.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
-    <string name="permission_required">Permission Required</string>
+    <string name="permission_required">අවසරය අවශ්‍යයි</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
-    <string name="to_access_your_location">To access your location you must grant location access permission to this app.</string>
+    <string name="to_access_your_location">ඔබගේ ස්ථානයට ප්‍රවේශ වීමට ඔබ මෙම යෙදුමට ස්ථාන ප්‍රවේශවීමේ අවසරය ලබා දිය යුතුය.</string>
     <!-- Dialog title when displaying a message that an action is not permitted -->
-    <string name="forbidden">Forbidden</string>
+    <string name="forbidden">තහනම් කර ඇත</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
-    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
+    <string name="app_you_shared_blocked">ඔබ මෙය බෙදාගත් යෙදුම නිරීක්ෂණ සඳහා නුසුදුසු ඡායාරූප නිර්මාණය කරයි, මක්නිසාද යත් ඒවා වෙනත් ජීවියෙකු සමඟ ඇති ඔබේ අත්දැකීම් පිළිබඳ සාක්ෂි නිරූපණය නොකරන නිසාත්, ඒවාට නුසුදුසු වෙළඳ නාම හෝ වාණිජ අන්තර්ගතයන් ඇතුළත් වන නිසාත් හෝ ඒවා වෙනත් ආකාරයකින් අපගේ සේවා කොන්දේසි උල්ලංඝනය කරන බැවිනි.</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <string name="list_observation_checkbox_description">බහු තේරීම් ආකාරයෙන් නිරීක්ෂණ තේරීම සඳහා පිරික්සුම් කොටුව</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <string name="observation_list_item_iconic_pic_description">නිරීක්ෂණ තක්සෝනය සඳහා සිඟිති ඡායාරූපය</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
-    <string name="messages">Messages</string>
-    <string name="all_messages">All Messages</string>
-    <string name="search_messages">Search messages</string>
-    <string name="no_messages">You currently have no messages. You can send a new message with the green button, or message them from their profile page.</string>
-    <string name="no_messages_found">No messages found.</string>
-    <string name="send_a_message">Send a message</string>
-    <string name="sending_message">Sending message...</string>
-    <string name="could_not_send_message">Couldn\'t send message: %1$s</string>
-    <string name="subject">Subject</string>
-    <string name="body">Body</string>
-    <string name="type_your_message_here">Type your message here</string>
-    <string name="new_message_to">New Message to %1$s</string>
-    <string name="who_would_you_like_to_send_a_message_to">Who would you like to send a message to?</string>
-    <string name="new_message">New Message</string>
-    <string name="search_for_inaturalist_users">Search for iNaturalist users</string>
-    <string name="please_sign_in_for_messages">You must be logged in to view your messages.</string>
-    <string name="sorry">Sorry</string>
-    <string name="you_must_have_three_observations">You must have three verifiable observations or three identifications for others in order to do that.</string>
-    <string name="mute_this_user">Mute this user</string>
-    <string name="unmute_this_user">Unmute this user</string>
-    <string name="flag_this_conversation">Flag this conversation</string>
-    <string name="mute_this_user_question">Mute this user?</string>
-    <string name="you_will_no_longer_receive_messages">You will no longer receive any notifications about activity from this user, including messages, comments, identifications, and mentions.</string>
-    <string name="mute">Mute</string>
-    <string name="muting_user">Muting user...</string>
-    <string name="unmuting_user">Unmuting user...</string>
-    <string name="failed_muting_user">Failed muting user!</string>
-    <string name="failed_unmuting_user">Failed unmuting user!</string>
-    <string name="flag_conversation">Flag conversation</string>
-    <string name="spam">Spam</string>
-    <string name="commercial_solicitation">Commercial solicitation, links to nowhere, etc.</string>
-    <string name="offensive_inappropriate">Offensive/Inappropriate</string>
-    <string name="misleading_or_illegal_content">Misleading or illegal content, racial or ethnic slurs, etc. For more on our definition of \"appropriate,\" see the FAQ.</string>
-    <string name="other">Other</string>
-    <string name="some_other_reason">Some other reason you can explain.</string>
-    <string name="continue_text">Continue</string>
-    <string name="why_are_you_flagging_this_item">Why are you flagging this item?</string>
-    <string name="thank_you_for_submitting_the_flag">Thank you for submitting the flag!</string>
-    <string name="flagging_conversation">Flagging conversation...</string>
-    <string name="failed_flagging_conversation">Failed flagging conversation!</string>
-    <string name="no_subject">No Subject</string>
-    <string name="rank_state_of_matter">State of matter</string>
-    <string name="rank_kingdom">Kingdom</string>
-    <string name="rank_subkingdom">Subkingdom</string>
-    <string name="rank_phylum">Phylum</string>
-    <string name="rank_subphylum">Subphylum</string>
-    <string name="rank_superclass">Superclass</string>
-    <string name="rank_class">Class</string>
-    <string name="rank_subclass">Subclass</string>
-    <string name="rank_infraclass">Infraclass</string>
-    <string name="rank_superorder">Superorder</string>
-    <string name="rank_order">Order</string>
-    <string name="rank_suborder">Suborder</string>
-    <string name="rank_infraorder">Infraorder</string>
-    <string name="rank_subterclass">Subterclass</string>
-    <string name="rank_parvorder">Parvorder</string>
-    <string name="rank_zoosection">Zoosection</string>
-    <string name="rank_zoosubsection">Zoosubsection</string>
-    <string name="rank_superfamily">Superfamily</string>
-    <string name="rank_epifamily">Epifamily</string>
-    <string name="rank_family">Family</string>
-    <string name="rank_subfamily">Subfamily</string>
-    <string name="rank_supertribe">Supertribe</string>
-    <string name="rank_tribe">Tribe</string>
-    <string name="rank_subtribe">Subtribe</string>
-    <string name="rank_genus">Genus</string>
-    <string name="rank_genushybrid">Genushybrid</string>
-    <string name="rank_subgenus">Subgenus</string>
-    <string name="rank_section">Section</string>
-    <string name="rank_subsection">subsection</string>
-    <string name="rank_complex">Complex</string>
+    <string name="observation_list_item_obs_pic_description">නිරීක්ෂණය සඳහා සිඟිති ඡායාරූපය</string>
+    <string name="messages">පණිවිඩ</string>
+    <string name="all_messages">සියලුම පණිවිඩ</string>
+    <string name="search_messages">පණිවිඩ සොයන්න</string>
+    <string name="no_messages">ඔබට දැනට පණිවිඩ කිසිවක් නොමැත. ඔබට කොළ පැහැති බොත්තම සමඟ නව පණිවිඩයක් යැවිය හැකිය, නැතහොත් ඔවුන්ගේ පැතිකඩ පිටුවෙන් ඔවුන්ට පණිවිඩයක් යැවිය හැකිය.</string>
+    <string name="no_messages_found">පණිවිඩ කිසිවක් හමු නොවීය.</string>
+    <string name="send_a_message">පණිවිඩයක් යවන්න</string>
+    <string name="sending_message">පණිවිඩය යවමින්...</string>
+    <string name="could_not_send_message">පණිවිඩය යැවීමට නොහැකි විය: %1$s</string>
+    <string name="subject">විෂය</string>
+    <string name="body">ශරීරය</string>
+    <string name="type_your_message_here">ඔබේ පණිවිඩය මෙහි ටයිප් කරන්න</string>
+    <string name="new_message_to">%1$s වෙත නව පණිවිඩයක්</string>
+    <string name="who_would_you_like_to_send_a_message_to">ඔබ පණිවිඩයක් යැවීමට කැමති කාටද?</string>
+    <string name="new_message">නව පණිවිඩය</string>
+    <string name="search_for_inaturalist_users">iNaturalist පරිශීලකයන් සඳහා සොයන්න</string>
+    <string name="please_sign_in_for_messages">ඔබගේ පණිවිඩ බැලීමට ඔබ ඇතුල් වී සිටිය යුතුය.</string>
+    <string name="sorry">සමාවන්න</string>
+    <string name="you_must_have_three_observations">එය සිදු කිරීම සඳහා ඔබට සත්‍යාපනය කළ හැකි නිරීක්ෂණ තුනක් හෝ වෙනත් අය සඳහා කළ හඳුනාගැනීම් තුනක් තිබිය යුතුය.</string>
+    <string name="mute_this_user">මෙම පරිශීලකයා නිහඬ කරන්න</string>
+    <string name="unmute_this_user">මෙම පරිශීලකයා නිහඬ කිරීම ඉවත් කරන්න</string>
+    <string name="flag_this_conversation">මෙම සංවාදය සලකුණු කරන්න</string>
+    <string name="mute_this_user_question">මෙම පරිශීලකයා නිහඬ කරන්නද?</string>
+    <string name="you_will_no_longer_receive_messages">පණිවිඩ, අදහස්, හඳුනාගැනීම් සහ සඳහන් කිරීම් ඇතුළුව මෙම පරිශීලකයාගේ ක්‍රියාකාරකම් පිළිබඳ කිසිදු දැනුම්දීමක් ඔබට තවදුරටත් නොලැබෙනු ඇත.</string>
+    <string name="mute">නිහඬ කරන්න</string>
+    <string name="muting_user">පරිශීලකයා නිහඬ කරමින්...</string>
+    <string name="unmuting_user">පරිශීලකයා නිහඬ කිරීම ඉවත් කරමින්...</string>
+    <string name="failed_muting_user">පරිශීලකයා නිහඬ කිරීම අසාර්ථක විය!</string>
+    <string name="failed_unmuting_user">පරිශීලකයා නිහඬ කිරීම ඉවත් කිරීම අසාර්ථක විය!</string>
+    <string name="flag_conversation">සංවාදය සලකුණු කරන්න</string>
+    <string name="spam">ආයාචිත</string>
+    <string name="commercial_solicitation">වාණිජ ආයාචන, කොතැනකටවත් සම්බන්ධ නොවන සබැඳි, ආදිය.</string>
+    <string name="offensive_inappropriate">ප්‍රහාරාත්මක/අයෝග්‍ය</string>
+    <string name="misleading_or_illegal_content">නොමඟ යවන සුළු හෝ නීති විරෝධී අන්තර්ගතයන්, වාර්ගික හෝ ජනවාර්ගික අපවාද ආදිය. “සුදුසු” යන්න පිළිබඳ අපගේ අර්ථ දැක්වීම පිළිබඳ වැඩි විස්තර සඳහා නිතර අසනු ලබන ප්‍රශ්න (FAQ) බලන්න.</string>
+    <string name="other">වෙනත්</string>
+    <string name="some_other_reason">ඔබට පැහැදිලි කළ හැකි වෙනත් හේතුවක්.</string>
+    <string name="continue_text">ඉදිරියට කරගෙන යන්න</string>
+    <string name="why_are_you_flagging_this_item">ඔබ මෙම අයිතමය සලකුණු කරන්නේ ඇයි?</string>
+    <string name="thank_you_for_submitting_the_flag">සළකුණ ඉදිරිපත් කිරීමට ස්තූතියි!</string>
+    <string name="flagging_conversation">සංවාදය සළකුණු කරමින්...</string>
+    <string name="failed_flagging_conversation">සංවාදය සලකුණු කිරීම අසාර්ථක විය!</string>
+    <string name="no_subject">විෂයක් නොමැත</string>
+    <string name="rank_state_of_matter">කාරණයේ තත්ත්වය</string>
+    <string name="rank_kingdom">රාජධානිය</string>
+    <string name="rank_subkingdom">උපරාජධානිය</string>
+    <string name="rank_phylum">වංශය</string>
+    <string name="rank_subphylum">උපවංශය</string>
+    <string name="rank_superclass">උපරිවර්ගය</string>
+    <string name="rank_class">වර්ගය</string>
+    <string name="rank_subclass">උපවර්ගය</string>
+    <string name="rank_infraclass">අවවර්ගය</string>
+    <string name="rank_superorder">උපරිගෝත්‍රය</string>
+    <string name="rank_order">ගෝත්‍රය</string>
+    <string name="rank_suborder">උපගෝත්‍රය</string>
+    <string name="rank_infraorder">අවගෝත්‍රය</string>
+    <string name="rank_subterclass">යටිවර්ගය</string>
+    <string name="rank_parvorder">අල්ප ගෝත්‍රය</string>
+    <string name="rank_zoosection">සත්ත්ව කොට්ඨාසය</string>
+    <string name="rank_zoosubsection">සත්ත්ව උප කොට්ඨාසය</string>
+    <string name="rank_superfamily">උපරිකුලය</string>
+    <string name="rank_epifamily">අපිකුලය</string>
+    <string name="rank_family">කුලය</string>
+    <string name="rank_subfamily">උපකුලය</string>
+    <string name="rank_supertribe">උපරිවරිගය</string>
+    <string name="rank_tribe">වරිගය</string>
+    <string name="rank_subtribe">උපවරිගය</string>
+    <string name="rank_genus">ගණය</string>
+    <string name="rank_genushybrid">දෙමුහුම් ගණය</string>
+    <string name="rank_subgenus">උපගණය</string>
+    <string name="rank_section">කොට්ඨාසය</string>
+    <string name="rank_subsection">උපකොට්ඨාසය</string>
+    <string name="rank_complex">සංකීර්ණය</string>
     <!-- Singular -->
-    <string name="rank_species">Species</string>
-    <string name="rank_hybrid">Hybrid</string>
+    <string name="rank_species">විශේෂය</string>
+    <string name="rank_hybrid">දෙමුහුම්</string>
     <!-- Singular -->
-    <string name="rank_subspecies">Subspecies</string>
-    <string name="rank_variety">Variety</string>
-    <string name="rank_form">Form</string>
-    <string name="rank_infrahybrid">Infrahybrid</string>
-    <string name="rank_leaves">Leaves</string>
-    <string name="location_lat_lng">Location: %1$f, %2$f</string>
-    <string name="i_consent_process_personal_info"><![CDATA[I consent to allow iNaturalist to store and process limited kinds of personal information about me in order to manage my account. <b>Learn More</b>]]></string>
-    <string name="about_personal_information">About Personal Information</string>
-    <string name="personal_information_notes"><![CDATA[We store personal information like usernames and email addresses in order to manage accounts on this site, and to comply with privacy laws, we need you to check this box to indicate that you consent to this use of personal information. To learn more about what information we collect and how we use it, please see our <a href="https://www.inaturalist.org/privacy">Privacy Policy</a> and our <a href="https://www.inaturalist.org/terms">Terms of Service</a>.]]></string>
-    <string name="i_agree_to_tos_and_privacy"><![CDATA[I agree to the <a href="https://www.inaturalist.org/terms">Terms of Service</a> and <a href="https://www.inaturalist.org/privacy">Privacy Policy</a>, and I have reviewed the <a href="https://www.inaturalist.org/pages/community+guidelines">Community Guidelines</a>.]]></string>
-    <string name="privacy_policy">Privacy Policy</string>
-    <string name="terms_of_service">Terms of Service</string>
+    <string name="rank_subspecies">උපවිශේෂය</string>
+    <string name="rank_variety">ප්‍රභේදය</string>
+    <string name="rank_form">සිට</string>
+    <string name="rank_infrahybrid">අවදෙමුහුම්</string>
+    <string name="rank_leaves">පත්‍ර</string>
+    <string name="location_lat_lng">ස්ථානය: %1$f, %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[මගේ ගිණුම කළමනාකරණය කිරීම සඳහා මා පිළිබඳ සීමිත පුද්ගලික තොරතුරු ගබඩා කිරීමට හා සැකසීමට iNaturalist හට ඉඩ දීමට මම එකඟ වෙමි. <b>වැඩිදුර ඉගෙන ගන්න</b>]]></string>
+    <string name="about_personal_information">පුද්ගලික තොරතුරු පිළිබඳව</string>
+    <string name="personal_information_notes"><![CDATA[මෙම වෙබ් අඩවියේ ගිණුම් කළමනාකරණය කිරීම සඳහා සහ රහස්‍යතා නීතිවලට අනුකූල වීම සඳහා අපි පරිශීලක නාම සහ විද්‍යුත් තැපැල් ලිපින වැනි පුද්ගලික තොරතුරු ගබඩා කරමු, මෙම පුද්ගලික තොරතුරු භාවිතා කිරීමට ඔබ එකඟ වන බව දැක්වීමට ඔබ මෙම කොටුව සළකුණු කිරීම අපට අවශ්‍ය වේ. අප රැස් කරන්නේ කුමන තොරතුරුද සහ එය භාවිතා කරන්නේ කෙසේද යන්න පිළිබඳ වැඩිදුර ඉගෙන ගැනීමට කරුණාකර අපගේ <a href="https://www.inaturalist.org/privacy">රහස්‍යතා ප්‍රතිපත්තිය</a> සහ අපගේ <a href="https://www.inaturalist.org/terms">සේවා කොන්දේසි</a> බලන්න.]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[<a href="https://www.inaturalist.org/terms">සේවා කොන්දේසි</a> සහ <a href="https://www.inaturalist.org/privacy">රහස්‍යතා ප්‍රතිපත්තියට</a> මම එකඟ වන අතර මම <a href="https://www.inaturalist.org/pages/community+guidelines">ප්‍රජා මාර්ගෝපදේශ</a> සමාලෝචනය කර ඇත්තෙමි.]]></string>
+    <string name="privacy_policy">රහස්‍යතා ප්‍රතිපත්තිය</string>
+    <string name="terms_of_service">සේවා කොන්දේසි</string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
-    <string name="deleted_user">Deleted User</string>
+    <string name="deleted_user">මකා දැමූ පරිශීලකයා</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_short_this_year">MMM d</string>
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short">MM/dd/yy</string>
+    <string name="date_short">dd/MM/yy</string>
     <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
-    <string name="show_common_names">Show common names</string>
-    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
-    <string name="email_must_look_like_email_address">Email must look like an email address</string>
-    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
-    <string name="password_too_short">Password must be at least six characters long</string>
-    <string name="switch_to_grid_view">Switch to grid view</string>
-    <string name="switch_to_list_view">Switch to list view</string>
-    <string name="remove_project_filter">Remove project filter</string>
-    <string name="remove_observer_filter">Remove observer filter</string>
-    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
-    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
-    <string name="filter_observations_by_months">Filter observations by months</string>
+    <string name="show_common_names">ව්‍යවහාරයෙහි පවතින නම් පෙන්වන්න</string>
+    <string name="show_common_names_description">ඔබට විද්‍යාත්මක නම් පමණක් බැලීමට අවශ්‍ය නම් අක්‍රිය කරන්න.</string>
+    <string name="email_must_look_like_email_address">විද්‍යුත් තැපෑල විද්‍යුත් තැපැල් ලිපිනයක් මෙන් විය යුතුය</string>
+    <string name="username_must_begin_with">පරිශීලක නාමය අකුරකින් ආරම්භ විය යුතුය, හිස් ඉඩක් නොතිබිය යුතු අතර අකුරු, අංක, ඉරි සහ යටි ඉරි පමණක් භාවිතා කළ යුතුය</string>
+    <string name="password_too_short">මුරපදය අවම වශයෙන් අක්ෂර හයක්වත් විය යුතුය</string>
+    <string name="switch_to_grid_view">කොටුදැල් දර්ශනයට මාරුවන්න</string>
+    <string name="switch_to_list_view">ලැයිස්තු දර්ශනයට මාරුවන්න</string>
+    <string name="remove_project_filter">ව්‍යාපෘති පෙරණය ඉවත් කරන්න</string>
+    <string name="remove_observer_filter">නිරීක්ෂක පෙරණය ඉවත් කරන්න</string>
+    <string name="filter_observations_by_an_exact_date">නිරීක්ෂණ නිශ්චිත දිනයකින් පෙරහන් කරන්න</string>
+    <string name="filter_observations_by_a_date_range">නිරීක්ෂණ දින පරාසයකින් පෙරහන් කරන්න</string>
+    <string name="filter_observations_by_months">නිරීක්ෂණ මාස අනුව පෙරහන් කරන්න</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
 </resources>

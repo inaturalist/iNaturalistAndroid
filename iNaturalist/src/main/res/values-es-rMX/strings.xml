@@ -226,9 +226,12 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="skip">Omite</string>
     <string name="already_have_account">¿Ya tienes una cuenta?</string>
     <string name="log_in">Inicia sesión</string>
+    <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Regístrate</string>
+    <!-- Title of the view used to sign up for a new account -->
+    <string name="sign_up_title">Crea una cuenta</string>
     <string name="min_6_chars">Mín. 6 caracteres</string>
-    <string name="use_my_license"><![CDATA[Sí, licencia mis contenidos para que la comunidad científica pueda usar mis datos (recomendado). <b>Saber Más</b>]]></string>
+    <string name="use_my_license"><![CDATA[Sí, licencia mis contenidos para que la comunidad científica pueda usar mis datos (recomendado). <b>Saber más</b>]]></string>
     <string name="content_licensing">Licencia de contenidos</string>
     <string name="content_licensing_description">Selecciona esta casilla si deseas aplicar una licencia Creative Commons de Reconocimiento- No Comercial a tus fotografías. Puedes elegir diferentes licencias o quitar las licencias más tarde, pero ésta es la mejor licencia para compartir con los investigadores.</string>
     <!-- Try to keep this about the length of the English text -->
@@ -413,8 +416,8 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
         content.
     -->
     <plurals name="new_activities">
-        <item quantity="one">%1s new</item>
-        <item quantity="other">%1s new</item>
+        <item quantity="one">%1s nuevas</item>
+        <item quantity="other">%1s nuevas</item>
     </plurals>
     <string name="no_results_found">No se encontraron resultados...</string>
     <plurals name="syncing_x_out_of_y_observations">
@@ -447,10 +450,10 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <plurals name="were_not_confident">
         <!-- This will probably never happen -->
         <item quantity="one">No estamos suficientemente seguros para hacer una recomendación, pero esta es nuestra sugerencia número %1$d:</item>
-        <item quantity="other">No estamos suficientemente seguros para hacer una recomendación, pero estas nuestras primeras %1$d sugerencias:</item>
+        <item quantity="other">No estamos suficientemente seguros para hacer una recomendación, pero estas son nuestras %1$d sugerencias:</item>
     </plurals>
     <plurals name="top_species_suggestions">
-        <item quantity="one">La sugerencia número %1$d:</item>
+        <item quantity="one">La sugerencia principal es %1$d:</item>
         <item quantity="other">Las %1$d principales sugerencias:</item>
     </plurals>
     <string name="pretty_sure_rank">Estamos bastante seguros de que está entre estos %1$s:</string>
@@ -483,6 +486,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="street_segment">Segmento de calle</string>
     <string name="intersection">Intersección</string>
     <string name="town">Poblado</string>
+    <!-- As in a political administrative area, e.g. Hawaii in the United States -->
     <string name="state">Estado</string>
     <string name="county">Municipio</string>
     <string name="local_administrative_area">Área administrativa local</string>
@@ -591,6 +595,14 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="search_projects_youve_joined">Busca los proyectos a los que te has unido...</string>
     <string name="must_be_connected_to_load_more_obs">Debes estar conectado a internet para cargar más observaciones</string>
     <string name="inat_about_title">iNaturalist es una iniciativa conjunta de la Academia de Ciencias de California y la National Geographic Society.</string>
+    <!--
+        Prunciation of people's names (as approved by the people in question):
+
+        Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
+        Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
+        Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
+        Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
+    -->
     <string name="inat_credits"><![CDATA[iNaturalist existe gracias a todas las personas que participan en nuestra comunidad. Las personas que desarrollan el software, mantienen nuestra infraestructura, ayudan a la comunidad y fomentan las colaboraciones son Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard y Ken-Ichi Ueda.<br/><br/>Caltech y Cornell Tech ayudaron a desarrollar el sistema de visión artificial que reconoce especies a partir de fotografías. Agradecemos a Grant Van Horn, Serge Belongie y Pietro Perona por su investigación avanzada en visión artificial. Pueden obtener más información en <a href="http://www.visipedia.org">visipedia.org</a>. Agradecemos especialmente su ayuda adicional a NVIDIA.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[La Red Internacional iNaturalist apoya sitios web localizados totalmente integrados y basados en iNaturalist en los siguientes países, gracias al apoyo de las organizaciones asociadas a los mismos.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist también está profundamente agradecido con los desarrolladores de código abierto que han proporcionado gran parte del software en el que confiamos todos los días. Ver <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github. om/inaturalist/iNaturalistAndroid</a> por contribuciones de código abierto.<br/> Agradecemos la ayuda de traducción proporcionada por los voluntarios en la crowdin de la comunidad, especialmente Eduardo Martínez, Lin Cheng-Tao, KestrelLam, Carlos Galindo Leal, vilseskog, NCAA, ldö a, radana, Mykola Pukhalskyi, danieleseglie, y katunchik. <br/>Lugares de categoría II áreas protegidas <a href="http://www.protectedplanet.net">e UICN proporcionados por UICN y UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Disponible en: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
@@ -724,9 +736,9 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panamá: el Ministerio de Ambiente gestiona iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
     <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina apoya a ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
     <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia apoya iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
-    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) apoya iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa apoya iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistfi"><![CDATA[Finlandia: Museo Finlandés de Historia Natural (LUOMUS) apoya iNaturalist Finlandia (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) apoya a iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa apoya a iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Finlandia: Museo Finlandés de Historia Natural (LUOMUS) apoya a iNaturalist Finlandia (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="mark_all_as_viewed">Marca todas como revisadas</string>
     <string name="content_hidden">Contenido oculto</string>
     <string name="show_hidden_content">Muestra contenido oculto</string>
@@ -815,7 +827,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="tap_to_prioritize_common_names">Pulsa para priorizar los nombres comunes de un lugar específico.</string>
     <string name="search_places">Busca lugares</string>
     <string name="restart_app">Reiniciar la aplicación</string>
-    <string name="disable_third_party_sharing_restart">Para deshabilitar la compartición de datos con terceros inmediatamente, es necesario reiniciar la aplicación.</string>
+    <string name="disable_third_party_sharing_restart">Para desactivar inmediatamente el uso compartido de datos de terceros, debes reiniciar la aplicación.</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
         <item quantity="one">¿Estás seguro de que deseas borrar esta %1$d observación?</item>
         <item quantity="other">¿Estás seguro de que deseas borrar estas %1$d observaciones?</item>
@@ -823,19 +835,19 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="future_observed_on_date_error">Tu observación fue creada (y enviada) el %1$s, pero estás intentando establecer una fecha de observación posterior a esa: %2$s</string>
     <string name="no_more_photos_allowed">Las observaciones solo pueden tener %1$d fotos. Para añadir más tendrás que eliminar algunas.</string>
     <string name="warning_multiple_photos">Si estás añadiendo fotos de diferentes tipos de organismos a esta observación, o el mismo tipo pero de diferentes lugares o fechas, deberías eliminar esas fotos y añadirlas como observaciones separadas. Una observación solo puede tener %1$d fotos.</string>
-    <string name="choosing_specific_language_warning">Elegir un idioma específico para tu cuenta requiere una conexión a Internet</string>
+    <string name="choosing_specific_language_warning">Para elegir un idioma específico para tu cuenta requieres una conexión a Internet</string>
     <string name="running_in_background_notfication">Ejecutándose en segundo plano para que podamos funcionar sin interrupciones</string>
     <string name="opt_out_of_community_taxon">Excluirse del taxón de la comunidad</string>
     <string name="opt_in_to_community_taxon">Unirse al taxón de la comunidad</string>
-    <string name="opt_out_message">Excluirse del taxón de la comunidad obliga a esta observación a estar asociada con el taxón de tu identificación actual, no a un taxón derivado de todas las identificaciones que se han añadido a esta observación. Si hay suficientes identificaciones que no están de acuerdo contigo, tu observación se convertirá en Casual. Sólo debes optar por excluirte si estás seguro de que tu identificación es correcta y las demás son incorrectas.</string>
+    <string name="opt_out_message">Excluirse del taxón de la comunidad hace que esta observación este asociada con el taxón de tu identificación actual, no a un taxón derivado de todas las identificaciones que se han añadido a esta observación. Si hay suficientes identificaciones que no están de acuerdo contigo, tu observación se convertirá en Casual. Sólo debes optar por excluirte si estás seguro de que tu identificación es correcta y las demás son incorrectas.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
     <string name="permission_required">Se requiere autorización</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
-    <string name="to_access_your_location">Para acceder a tu ubicación debes conceder permiso de acceso a la ubicación a esta aplicación.</string>
+    <string name="to_access_your_location">Para acceder a tu ubicación debes conceder permiso de acceso da la ubicación a esta aplicación.</string>
     <!-- Dialog title when displaying a message that an action is not permitted -->
     <string name="forbidden">Prohibido</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
-    <string name="app_you_shared_blocked">La aplicación desde la que que compartió las fotos no produce fotos adecuadas para observaciones, porque no representan pruebas de su experiencia con otros organismos, porque incluyen marcas o contenidos comerciales inapropiados, o porque infringen nuestras condiciones de servicio de otras maneras.</string>
+    <string name="app_you_shared_blocked">La aplicación desde la que compartiste las fotos no produce fotos adecuadas para observaciones, porque no representan pruebas de tu experiencia con otro organismo, porque incluyen marcas o contenidos comerciales inapropiados, o porque infringen nuestras Condiciones de Servicio de otras maneras.</string>
     <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">Casilla para seleccionar múltiples observaciones</string>
     <!-- Description of a UI element for screen readers -->
@@ -844,10 +856,10 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="observation_list_item_obs_pic_description">Foto en miniatura de la observación</string>
     <string name="messages">Mensajes</string>
     <string name="all_messages">Todos los mensajes</string>
-    <string name="search_messages">Buscar mensajes</string>
+    <string name="search_messages">Busca mensajes</string>
     <string name="no_messages">Actualmente no tienes mensajes. Puedes enviar un nuevo mensaje con el botón verde, o desde el perfil del destinatario.</string>
     <string name="no_messages_found">No se han encontrado mensajes.</string>
-    <string name="send_a_message">Enviar mensaje</string>
+    <string name="send_a_message">Envía mensaje</string>
     <string name="sending_message">Enviando mensaje...</string>
     <string name="could_not_send_message">No se pudo enviar el mensaje: %1$s</string>
     <string name="subject">Asunto</string>
@@ -927,9 +939,9 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <string name="location_lat_lng">Localización: %1$f %2$f</string>
     <string name="i_consent_process_personal_info"><![CDATA[Autorizo a iNaturalist a almacenar y procesar determinado tipo de información personal para administrar mi cuenta.<b>Saber Más</b>]]></string>
     <string name="about_personal_information">Sobre la información personal</string>
-    <string name="personal_information_notes"><![CDATA[Almacenamos información personal como el nombre de usuario y dirección de correo electrónico para administrar las cuentas en este sitio y cumplir con las leyes de privacidad, necesitamos que marque esta casilla para indicar que acepta este uso de información personal. Para obtener más información sobre qué información recopilamos y cómo la usamos, consulte nuestra <a href="https://www.inaturalist.org/privacy">Política de Privacidad</a> y nuestras <a href="https://www.inaturalist.org/terms">Condiciones del servicio</a>.]]></string>
+    <string name="personal_information_notes"><![CDATA[Almacenamos información personal como el nombre de usuario y dirección de correo electrónico para administrar las cuentas en este sitio y cumplir con las leyes de privacidad. Necesitamos que marque esta casilla para indicar que acepta este uso de información personal. Para obtener más información sobre qué información recopilamos y cómo la usamos, consulta nuestra <a href="https://www.inaturalist.org/privacy">Política de Privacidad</a> y nuestras <a href="https://www.inaturalist.org/terms">Condiciones del servicio</a>.]]></string>
     <string name="i_agree_to_tos_and_privacy"><![CDATA[Acepto las <a href="https://www.inaturalist.org/terms">Condiciones del servicio</a> y la <a href="https://www.inaturalist.org/privacy">Política de privacidad</a>, y he revisado la <a href="https://www.inaturalist.org/pages/community+guidelines">Guía de la comunidad</a>.]]></string>
-    <string name="privacy_policy">Política de privacidad</string>
+    <string name="privacy_policy">Normativa de privacidad</string>
     <string name="terms_of_service">Condiciones del servicio</string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
     <string name="deleted_user">Usuario eliminado</string>
@@ -941,18 +953,18 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
-    <string name="show_common_names">Show common names</string>
-    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
-    <string name="email_must_look_like_email_address">Email must look like an email address</string>
-    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
-    <string name="password_too_short">Password must be at least six characters long</string>
-    <string name="switch_to_grid_view">Switch to grid view</string>
-    <string name="switch_to_list_view">Switch to list view</string>
-    <string name="remove_project_filter">Remove project filter</string>
-    <string name="remove_observer_filter">Remove observer filter</string>
-    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
-    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
-    <string name="filter_observations_by_months">Filter observations by months</string>
+    <string name="show_common_names">Muestra nombres comunes</string>
+    <string name="show_common_names_description">Desactiva si solo deseas ver nombres científicos.</string>
+    <string name="email_must_look_like_email_address">El correo electrónico debe ser una dirección de correo válida</string>
+    <string name="username_must_begin_with">El nombre de usuario debe comenzar con una letra, no contener espacios, y usar sólo letras, números, guiones y guiones bajos</string>
+    <string name="password_too_short">La contraseña debe tener al menos seis caracteres</string>
+    <string name="switch_to_grid_view">Cambia a vista de cuadrícula</string>
+    <string name="switch_to_list_view">Cambia a vista de lista</string>
+    <string name="remove_project_filter">Elimina filtro de proyecto</string>
+    <string name="remove_observer_filter">Elimina filtro de observador</string>
+    <string name="filter_observations_by_an_exact_date">Filtra observaciones por fecha exacta</string>
+    <string name="filter_observations_by_a_date_range">Filtra observaciones por un rango de fechas</string>
+    <string name="filter_observations_by_months">Filtra observaciones por meses</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
 </resources>

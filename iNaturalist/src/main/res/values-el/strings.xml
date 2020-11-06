@@ -225,7 +225,10 @@
     <string name="skip">Παράλειψη  ›</string>
     <string name="already_have_account">Έχεις ήδη λογαριασμό;</string>
     <string name="log_in">Είσοδος</string>
+    <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Εγγραφή</string>
+    <!-- Title of the view used to sign up for a new account -->
+    <string name="sign_up_title">Sign Up</string>
     <string name="min_6_chars">Τουλάχιστον 6 χαρακτήρες</string>
     <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data (recommended). <b>Learn More</b>]]></string>
     <string name="content_licensing">Άδεια χρήσης περιεχομένου</string>
@@ -482,6 +485,7 @@
     <string name="street_segment">Τμήμα Oδού</string>
     <string name="intersection">Διασταύρωση</string>
     <string name="town">Πόλη</string>
+    <!-- As in a political administrative area, e.g. Hawaii in the United States -->
     <string name="state">Κράτος</string>
     <string name="county">Νομός</string>
     <string name="local_administrative_area">Τοπική Διοικητική Περιοχή</string>
@@ -590,6 +594,14 @@
     <string name="search_projects_youve_joined">Αναζήτηση στα πρότζεκτ στα οποία έχετε εγγραφεί...</string>
     <string name="must_be_connected_to_load_more_obs">Πρέπει να είσαι συνδεδεμένος/η στο διαδίκτυο για τη φόρτωση περισσότερων παρατηρήσεων</string>
     <string name="inat_about_title">Το iNaturalist είναι μια κοινή πρωτοβουλία από την Ακαδημία Επιστημών της Καλιφόρνια και του National Geographic Society.</string>
+    <!--
+        Prunciation of people's names (as approved by the people in question):
+
+        Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
+        Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
+        Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
+        Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
+    -->
     <string name="inat_credits"><![CDATA[Το iNaturalist υπάρχει χάρη σε κάθε άτομο που συμμετέχει στην κοινότητά μας. Οι άνθρωποι που κατασκευάζουν το λογισμικό, σχεδιάζουν το περιβάλλον, διατηρούν την υποδομή μας, υποστηρίζουν την κοινότητα και ενθαρρύνουν τις συνεργασίες είναι οι Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard και ο Ken-ichi Ueda.<br/><br/>H CalTech και η Cornell Tech βοήθησαν στην ανάπτυξη του συστήματος μηχανικής όρασης που προτείνει αναγνωρίσεις από φωτογραφίες. Ευχαριστούμε τους Grant Van Horn, Serge Belongie και τον Pietro Perona για την προώθηση της έρευνας στον τομέα της μηχανικής όρασης.  Περισσότερες πληροφορίες μπορείτε να βρείτε στο <a href="http://www.visipedia.org">visipedia.org</a>. Ιδιαίτερες ευχαριστίες στην NVIDIA για την πρόσθετη βοήθεια.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[Το διεθνές Δίκτυο iNaturalist υποστηρίζει τοπικούς, πλήρως ενοποιημένους ιστότοπους βασισμένους στο iNaturalist στις ακόλουθες χώρες, χάρη στην υποστήριξη των συνδεδεμένων συνεργαζόμενων οργανισμών.]]></string>
     <string name="inat_credits_post"><![CDATA[Το iNaturalist είναι βαθύτατα ευγνώμων στους προγραμματιστές ανοιχτού κώδικα οι οποίοι έχουν δώσει τόσα πολλά στο λογισμικό που εμείς βασιζόμαστε κάθε μέρα. Δείτε <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> για συνεισφορές ανοιχτού κώδικα .<br/> Είμαστε ευγνώμονες για τη βοήθεια μετάφρασης που παρέχεται από εθελοντές στην κοινότητα του crowdin.com, ειδικά οι Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>Τοποθεσίες της κατηγορίας II του IUCN και του UNEP-WCMC (2015), Η Παγκόσμια Βάση Δεδομένων για τις Προστατευόμενες Περιοχές (WDPA) [On-line], [11/2014], το Cambridge, UK: UNEP-WCMC. Διαθέσιμο στο: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>

@@ -225,7 +225,10 @@
     <string name="skip">Atla ›</string>
     <string name="already_have_account">Zaten bir hesabınız mı var?</string>
     <string name="log_in">Oturum Aç</string>
+    <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">ÜYE OL</string>
+    <!-- Title of the view used to sign up for a new account -->
+    <string name="sign_up_title">Sign Up</string>
     <string name="min_6_chars">En az 6 karakter</string>
     <string name="use_my_license"><![CDATA[Evet, bilim insanlarının verilerimi kullanabilmesi için içeriğimi lisansla (önerilir). <b>Daha çok bilgi</b>]]></string>
     <string name="content_licensing">İçerik Lisanslama</string>
@@ -482,6 +485,7 @@
     <string name="street_segment">Sokak Bölümü</string>
     <string name="intersection">Kesişme Noktası</string>
     <string name="town">Kasaba</string>
+    <!-- As in a political administrative area, e.g. Hawaii in the United States -->
     <string name="state">Eyalet</string>
     <string name="county">İlçe</string>
     <string name="local_administrative_area">Yerel Yönetim Alanı</string>
@@ -590,6 +594,14 @@
     <string name="search_projects_youve_joined">Katıldığın projeleri ara...</string>
     <string name="must_be_connected_to_load_more_obs">Daha çok gözlem yüklemek için internete bağlı olmalısınız</string>
     <string name="inat_about_title">iNaturalist, California Bilimler Akademisi ve National Geographic Society tarafından ortak bir girişimdir.</string>
+    <!--
+        Prunciation of people's names (as approved by the people in question):
+
+        Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
+        Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
+        Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
+        Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
+    -->
     <string name="inat_credits"><![CDATA[iNaturalist topluluğumuza katılan her bir kişiye teşekkür eder. Yazılımı oluşturan, arayüzleri tasarlayan, altyapımızı koruyan, toplumu destekleyen ve işbirliğini geliştiren insanlar Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard ve Ken; ichi Ueda. <br/><br/> CalTech ve Cornell Tech, fotoğraflardaki kimlikleri öneren bilgisayarlı görü sisteminin geliştirilmesine yardımcı oldu. Bilgisayarla görme araştırmasını ilerlettiği için Grant Van Horn, Serge Belongie ve Pietro Perona\'ya teşekkür ediyoruz. Daha fazla bilgiyi <a href="http://www.visipedia.org">visipedia.org</a> adresinde bulabilirsiniz. Ek yardım için NVIDIA\'ya özel teşekkür ederiz.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[Uluslararası iNaturalist Ağı, ilişkili ortak kuruluşların desteğiyle aşağıdaki ülkelerde yerelleştirilmiş, tam entegre, iNaturalist tabanlı web sitelerini destekler.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist, her gün güvendiğimiz yazılımın çoğunu sağlayan açık kaynaklı geliştiricilere de minnettar. Açık kaynak katkıları için<a href="https://github.com/inaturalist/iNaturalistAndroid"> https://github.com/inaturalist/iNaturalistAndroid</a> adresine bakın. Açık kaynak katkıları için minnettarız. <br/>Crowdin.com topluluğunda gönüllüler tarafından sağlanan çeviri yardımları için teşekkür ediyoruz, özellikle Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie ve katunchik. <br/> IUCN ve UNEP-WCMC (2015), Korunan Alanlar Dünya Veri Tabanı (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC tarafından sağlanan IUCN kategori II yerleri. Aşağıdaki adreste bulunabilir: <a href="http://www.protectedplanet.net"> www.protectedplanet.net </a>]]></string>

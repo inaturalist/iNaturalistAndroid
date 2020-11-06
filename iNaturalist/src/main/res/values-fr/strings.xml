@@ -225,7 +225,10 @@
     <string name="skip">Ignorer  ›</string>
     <string name="already_have_account">Avez-vous déjà un compte ?</string>
     <string name="log_in">Se connecter</string>
+    <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">S\'inscrire</string>
+    <!-- Title of the view used to sign up for a new account -->
+    <string name="sign_up_title">S\'inscrire</string>
     <string name="min_6_chars">Min. 6 caractères</string>
     <string name="use_my_license"><![CDATA[Oui, accorder une licence sur mes contenus pour que les scientifiques puissent les utiliser. <b>En savoir plus</b>]]></string>
     <string name="content_licensing">License des contenus</string>
@@ -412,8 +415,8 @@
         content.
     -->
     <plurals name="new_activities">
-        <item quantity="one">%1s new</item>
-        <item quantity="other">%1s new</item>
+        <item quantity="one">%1s nouveau</item>
+        <item quantity="other">%1s nouveaux</item>
     </plurals>
     <string name="no_results_found">Aucun résultat trouvé...</string>
     <plurals name="syncing_x_out_of_y_observations">
@@ -482,6 +485,7 @@
     <string name="street_segment">Segment de rue</string>
     <string name="intersection">Intersection</string>
     <string name="town">Ville</string>
+    <!-- As in a political administrative area, e.g. Hawaii in the United States -->
     <string name="state">État</string>
     <string name="county">Département</string>
     <string name="local_administrative_area">Zone administrative locale</string>
@@ -590,6 +594,14 @@
     <string name="search_projects_youve_joined">Rechercher parmi les projets auquels vous participez...</string>
     <string name="must_be_connected_to_load_more_obs">Vous devez être connecté à Internet pour charger plus d\'observations</string>
     <string name="inat_about_title">iNaturalist est une initiative conjointe de l\'Académie des Sciences de Californie et de la National Geographic Society.</string>
+    <!--
+        Prunciation of people's names (as approved by the people in question):
+
+        Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
+        Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
+        Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
+        Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
+    -->
     <string name="inat_credits"><![CDATA[iNaturalist existe grâce à chaque personne qui participe à notre communauté. Les personnes qui développent le logiciel, définissent les interfaces, entretiennent notre infrastructure, soutiennent la communauté et encouragent la collaboration sont Yaron Budowski, Amanda Burlington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard et Ken-Ichi Ueda. <br/><br/>CalTech et Cornell Tech ont participé au développement du système informatique de vision qui propose des identifications d\'espèces à partir de photographies. Nous remercions Grant Van Horn, Serge Belongie et Pietro Perona pour avoir fait progresser la recherche sur la reconnaissance visuelle automatique par ordinateur. Vous pouvez trouver plus d’informations sur <a href="http://www.visipedia.org">visipedia.org</a>. Merci en particulier à NVIDIA pour leur soutien. ]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[Le réseau international iNaturalist supporte les sites iNat locaux, entièrement intégrés et basés sur iNaturalist dans les pays suivants, grâce au soutien d\'organisations partenaires associées.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist est également très reconnaissant envers les développeurs open source qui ont fourni une grosse partie du logiciel sur lequel nous nous appuyons aujourd\'hui. Voir <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> pour les contributions open source.<br/> Nous sommes reconnaissants pour l\'assistance en traduction des bénévoles sur la communauté crowdin.com, particulièrement Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie et katunchik. <br/>Aires protégées de l\'UICN de catégorie II fournies par l\'UICN et le UNEP-WCMC (2015), La World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Disponible sur: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
@@ -947,18 +959,18 @@ les <a href="/pages/community+guidelines" target="_blank">Règles de la Communau
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
-    <string name="show_common_names">Show common names</string>
-    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
-    <string name="email_must_look_like_email_address">Email must look like an email address</string>
-    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
-    <string name="password_too_short">Password must be at least six characters long</string>
-    <string name="switch_to_grid_view">Switch to grid view</string>
-    <string name="switch_to_list_view">Switch to list view</string>
-    <string name="remove_project_filter">Remove project filter</string>
-    <string name="remove_observer_filter">Remove observer filter</string>
-    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
-    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
-    <string name="filter_observations_by_months">Filter observations by months</string>
+    <string name="show_common_names">Afficher les noms communs</string>
+    <string name="show_common_names_description">Désactivez si vous voulez uniquement voir les noms latins.</string>
+    <string name="email_must_look_like_email_address">L\'adresse doit ressembler à une adresse électronique</string>
+    <string name="username_must_begin_with">Le nom d\'utilisateur doit commencer par une lettre, ne pas contenir d\'espaces, et utiliser uniquement des lettres, nombres, points et des underscores.</string>
+    <string name="password_too_short">Le mot de passe doit faire six caractères minimum</string>
+    <string name="switch_to_grid_view">Passer à la vue en grille</string>
+    <string name="switch_to_list_view">Passer à la vue en liste</string>
+    <string name="remove_project_filter">Supprimer le filtre Projet</string>
+    <string name="remove_observer_filter">Supprimer le filtre Observation</string>
+    <string name="filter_observations_by_an_exact_date">Filtrer les observations pour une date spécifique</string>
+    <string name="filter_observations_by_a_date_range">Filtrer les observations pour une durée déterminée</string>
+    <string name="filter_observations_by_months">Filtrer les observations en fonction du mois</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
 </resources>
