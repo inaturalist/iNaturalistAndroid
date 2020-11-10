@@ -355,6 +355,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
     private void refreshPlaceQuery() {
         mHandler.removeCallbacksAndMessages(null);
         mHandler.postDelayed(() -> {
+            if (mMap == null) return;
             String query = mLocationSearch.getText().toString();
 
             if (query.length() == 0) {
