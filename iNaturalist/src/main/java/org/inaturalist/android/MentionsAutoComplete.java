@@ -41,7 +41,7 @@ import java.util.List;
 public class MentionsAutoComplete implements TextWatcher, AdapterView.OnItemClickListener {
     private static final String TAG = "MentionsAutoComplete";
     private final Handler mHandler;
-    private final Context mContext;
+    private final Activity mContext;
     private final INaturalistApp mApp;
     private final UserSearchReceiver mUserResultsReceiver;
     private final PopupWindow mPopupWindow;
@@ -57,7 +57,7 @@ public class MentionsAutoComplete implements TextWatcher, AdapterView.OnItemClic
 
     private ArrayList<JSONObject> mResults = null;
 
-    public MentionsAutoComplete(Context context, EditText editText) {
+    public MentionsAutoComplete(Activity context, EditText editText) {
         mEditText = editText;
         mContext = context;
         mApp = (INaturalistApp) mContext.getApplicationContext();
@@ -309,7 +309,16 @@ public class MentionsAutoComplete implements TextWatcher, AdapterView.OnItemClic
 
         mPopupWindow.setClippingEnabled(false);
 
-        mPopupWindow.showAsDropDown(mEditText, 0, (int)y - mEditText.getScrollY());
+        mContext.runOnUiThread(() -> {
+            if(!mContext.isFinishing()) {
+                new Handler().postAtTime(new Runnable() {
+                    @Override
+                    public void run() {
+                        mPopupWindow.showAsDropDown(mEditText, 0, (int)y - mEditText.getScrollY());
+                    }
+                }, 10);
+            }
+        });
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -317,7 +326,7 @@ public class MentionsAutoComplete implements TextWatcher, AdapterView.OnItemClic
                 mEditText.setFocusableInTouchMode(true);
                 mEditText.requestFocus();
             }
-        }, 10);
+        }, 30);
 
         ActivityHelper.willListScroll(mMentionsList, new ActivityHelper.isListScrollable() {
             @Override
