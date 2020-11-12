@@ -3091,7 +3091,9 @@ public class ObservationEditor extends AppCompatActivity {
         if ((extension == null) || (
                 (!extension.toLowerCase().equals("jpg")) &&
                 (!extension.toLowerCase().equals("jpeg")) &&
-                (!extension.toLowerCase().equals("png"))
+                (!extension.toLowerCase().equals("png")) &&
+                (!extension.toLowerCase().equals("heic")) &&
+                (!extension.toLowerCase().equals("heif"))
             )) {
             return null;
         }
