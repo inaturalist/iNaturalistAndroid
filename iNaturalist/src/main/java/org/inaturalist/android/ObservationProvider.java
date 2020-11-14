@@ -385,8 +385,8 @@ public class ObservationProvider extends ContentProvider {
 
         SQLiteDatabase db = mOpenHelper.getWritableDatabase();
         Logger.tag(TAG).debug("Insert: " + tableName + "; values: " + values.toString());
-        long rowId = db.insert(tableName, BaseColumns._ID, values);
-        if (rowId > 0) {
+        long rowId = db.insertOrThrow(tableName, BaseColumns._ID, values);
+        if (rowId >= 0) {
             Uri newUri = ContentUris.withAppendedId(contentUri, rowId);
             getContext().getContentResolver().notifyChange(newUri, null);
             return newUri;
