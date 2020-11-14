@@ -1801,19 +1801,23 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             	mSpecies = resultsArray;
                 mTotalSpecies = totalResults;
 
-                mSpeciesListSwipeContainer.setRefreshing(false);
-                mSpeciesList.refreshDrawableState();
-                mSpeciesGridSwipeContainer.setRefreshing(false);
-                mSpeciesGrid.refreshDrawableState();
+                if (mSpeciesListSwipeContainer != null) {
+                    mSpeciesListSwipeContainer.setRefreshing(false);
+                    mSpeciesList.refreshDrawableState();
+                    mSpeciesGridSwipeContainer.setRefreshing(false);
+                    mSpeciesGrid.refreshDrawableState();
+                }
 
             } else if (intent.getAction().equals(INaturalistService.IDENTIFICATIONS_RESULT)) {
                 mIdentifications = resultsArray;
                 mTotalIdentifications = totalResults;
 
-                mIdentificationsListSwipeContainer.setRefreshing(false);
-                mIdentificationsList.refreshDrawableState();
-                mIdentificationsGridSwipeContainer.setRefreshing(false);
-                mIdentificationsGrid.refreshDrawableState();
+                if (mIdentificationsListSwipeContainer != null) {
+                    mIdentificationsListSwipeContainer.setRefreshing(false);
+                    mIdentificationsList.refreshDrawableState();
+                    mIdentificationsGridSwipeContainer.setRefreshing(false);
+                    mIdentificationsGrid.refreshDrawableState();
+                }
             }
 
             refreshViewState();
