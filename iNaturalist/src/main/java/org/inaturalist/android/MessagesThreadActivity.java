@@ -589,6 +589,8 @@ public class MessagesThreadActivity extends AppCompatActivity {
             }
 
             mSendingMessage = false;
+            mMessageBody = "";
+            mMessageText.setText("");
             refreshViewState(true, true);
         }
     }
