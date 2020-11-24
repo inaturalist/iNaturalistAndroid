@@ -1137,12 +1137,9 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
     @SuppressLint("DefaultLocale")
     private JSONObject getObservationJson(int id) {
-        Locale deviceLocale = mContext.getResources().getConfiguration().locale;
-        String deviceLanguage = deviceLocale.getLanguage();
-
         URL url;
         try {
-            url = new URL(String.format("%s/observations/%d.json?locale=%s", INaturalistService.HOST, id, deviceLanguage));
+            url = new URL(String.format("%s/observations/%d.json?locale=%s", INaturalistService.HOST, id, mApp.getLanguageCodeForAPI()));
         } catch (MalformedURLException e) {
             Logger.tag(TAG).error(e);
             return null;

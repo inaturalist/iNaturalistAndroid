@@ -2470,9 +2470,7 @@ public class INaturalistService extends IntentService {
         do {
             Logger.tag(TAG).debug("redownloadOldObservationsForTaxonNames: " + currentObsId);
             String url = API_HOST + "/observations?user_id=" + Uri.encode(mLogin) + "&per_page=100&id_below=" + currentObsId;
-            Locale deviceLocale = getResources().getConfiguration().locale;
-            String deviceLanguage = deviceLocale.getLanguage();
-            url += "&locale=" + deviceLanguage;
+            url += "&locale=" + mApp.getLanguageCodeForAPI();
 
             JSONArray json = get(url, true);
             Logger.tag(TAG).debug("redownloadOldObservationsForTaxonNames - downloaded");
@@ -2548,9 +2546,7 @@ public class INaturalistService extends IntentService {
             // Re-download this observation
 
             String url = HOST + "/observations/" + Uri.encode(mLogin) + ".json?extra=observation_photos,projects,fields";
-            Locale deviceLocale = getResources().getConfiguration().locale;
-            String deviceLanguage = deviceLocale.getLanguage();
-            url += "&locale=" + deviceLanguage;
+            url += "&locale=" + mApp.getLanguageCodeForAPI();
             JSONArray json = get(url, true);
             if (json != null && json.length() > 0) {
                 syncJson(json, true);
@@ -2635,9 +2631,7 @@ public class INaturalistService extends IntentService {
     }
 
     private BetterJSONObject getTaxonNew(int id) throws AuthenticationException {
-        Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage = deviceLocale.getLanguage();
-        String url = API_HOST + "/taxa/" + id + "?locale=" + deviceLanguage;
+        String url = API_HOST + "/taxa/" + id + "?locale=" + mApp.getLanguageCodeForAPI();
 
         JSONArray json = get(url);
         if (json == null || json.length() == 0) {
@@ -2850,11 +2844,7 @@ public class INaturalistService extends IntentService {
     }
 
     private BetterJSONObject getAllAttributes() throws AuthenticationException {
-        Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage = deviceLocale.getLanguage();
-
-
-        String url = API_HOST + "/controlled_terms?locale=" + deviceLanguage;
+        String url = API_HOST + "/controlled_terms?locale=" + mApp.getLanguageCodeForAPI();
 
         JSONArray json = get(url);
         if (json == null || json.length() == 0) { return null; }
@@ -2871,8 +2861,6 @@ public class INaturalistService extends IntentService {
     }
 
     private BetterJSONObject getAttributesForTaxon(JSONObject taxon) throws AuthenticationException {
-        Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage = deviceLocale.getLanguage();
         JSONArray ancestors = taxon != null ? taxon.optJSONArray("ancestor_ids") : null;
 
         String url;
@@ -2884,10 +2872,10 @@ public class INaturalistService extends IntentService {
                 ancestry += String.format(Locale.ENGLISH, "%d,", currentTaxonId);
             }
             ancestry += String.format(Locale.ENGLISH, "%d", taxon.optInt("id"));
-            url = API_HOST + "/controlled_terms/for_taxon?taxon_id=" + ancestry + "&ttl=-1&locale=" + deviceLanguage;
+            url = API_HOST + "/controlled_terms/for_taxon?taxon_id=" + ancestry + "&ttl=-1&locale=" + mApp.getLanguageCodeForAPI();
 
         } else {
-            url = API_HOST + "/controlled_terms?ttl=-1&locale=" + deviceLanguage;
+            url = API_HOST + "/controlled_terms?ttl=-1&locale=" + mApp.getLanguageCodeForAPI();
         }
 
         JSONArray json = get(url);
@@ -2905,9 +2893,7 @@ public class INaturalistService extends IntentService {
     }
 
     private BetterJSONObject getTaxon(int id) throws AuthenticationException {
-        Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage = deviceLocale.getLanguage();
-        String url = String.format(Locale.ENGLISH, "%s/taxa/%d.json?locale=%s", HOST, id, deviceLanguage);
+        String url = String.format(Locale.ENGLISH, "%s/taxa/%d.json?locale=%s", HOST, id, mApp.getLanguageCodeForAPI());
 
         JSONArray json = get(url);
         if (json == null || json.length() == 0) {
@@ -3745,14 +3731,11 @@ public class INaturalistService extends IntentService {
     }
 
     private boolean postObservation(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException {
-        Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLexicon = deviceLocale.getLanguage();
-
         if (observation.id != null) {
             // Update observation
             Logger.tag(TAG).debug("postObservation: Updating existing " + observation.id + ":" + observation._id);
 
-            JSONArray response = request(API_HOST + "/observations/" + observation.id + "?locale=" + deviceLexicon, "put", null, observationToJsonObject(observation, false), true, true, false);
+            JSONArray response = request(API_HOST + "/observations/" + observation.id + "?locale=" + mApp.getLanguageCodeForAPI(), "put", null, observationToJsonObject(observation, false), true, true, false);
 
             if (response == null) {
                 Logger.tag(TAG).debug("postObservation: Error for " + observation.id + ":" + observation._id + ":" + mLastStatusCode);
@@ -3795,7 +3778,7 @@ public class INaturalistService extends IntentService {
 
         boolean success = handleObservationResponse(
                 observation,
-                request(API_HOST + "/observations?locale=" + deviceLexicon, "post", null, observationParams, true, true, false)
+                request(API_HOST + "/observations?locale=" + mApp.getLanguageCodeForAPI(), "post", null, observationParams, true, true, false)
         );
 
         if (!success) {
@@ -3806,11 +3789,7 @@ public class INaturalistService extends IntentService {
     }
 
     private JSONObject getObservationJson(int id, boolean authenticated, boolean includeNewProjects) throws AuthenticationException {
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage = deviceLocale.getLanguage();
-
-        String url = String.format(Locale.ENGLISH, "%s/observations/%d?locale=%s&%s", API_HOST, id, deviceLanguage, includeNewProjects ? "include_new_projects=true" : "");
+        String url = String.format(Locale.ENGLISH, "%s/observations/%d?locale=%s&%s", API_HOST, id, mApp.getLanguageCodeForAPI(), includeNewProjects ? "include_new_projects=true" : "");
 
         JSONArray json = get(url, authenticated);
         if (json == null || json.length() == 0) {
@@ -4294,10 +4273,7 @@ public class INaturalistService extends IntentService {
     }
 
     private String getGuideXML(Integer guideId) throws AuthenticationException {
-        Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage = deviceLocale.getLanguage();
-
-        String url = HOST + "/guides/" + guideId.toString() + ".xml?locale=" + deviceLanguage;
+        String url = HOST + "/guides/" + guideId.toString() + ".xml?locale=" + mApp.getLanguageCodeForAPI();
 
         try {
             OkHttpClient client = new OkHttpClient().newBuilder()
@@ -4406,10 +4382,8 @@ public class INaturalistService extends IntentService {
 
             sb.append("&extra=observation_photos,projects,fields");
 
-            Locale deviceLocale = getResources().getConfiguration().locale;
-            String deviceLexicon = deviceLocale.getLanguage();
             sb.append("&locale=");
-            sb.append(deviceLexicon);
+            sb.append(mApp.getLanguageCodeForAPI());
 
             url = sb.toString();
         } catch (UnsupportedEncodingException e) {
@@ -4425,9 +4399,7 @@ public class INaturalistService extends IntentService {
     }
 
     private BetterJSONObject searchAutoComplete(String type, String query, int page) throws AuthenticationException {
-        Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage = deviceLocale.getLanguage();
-        String url = API_HOST + "/" + type + "/autocomplete?geo=true&locale=" + deviceLanguage + "&per_page=50&page=" + page + "&q=" + Uri.encode(query);
+        String url = API_HOST + "/" + type + "/autocomplete?geo=true&locale=" + mApp.getLanguageCodeForAPI() + "&per_page=50&page=" + page + "&q=" + Uri.encode(query);
         JSONArray json = get(url, false);
         if (json == null) return null;
         if (json.length() == 0) return null;
@@ -4454,9 +4426,7 @@ public class INaturalistService extends IntentService {
     }
 
     private SerializableJSONArray getUserUpdates(boolean following) throws AuthenticationException {
-        Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage = deviceLocale.getLanguage();
-        String url = API_HOST + "/observations/updates?locale=" + deviceLanguage + "&per_page=200&observations_by=" +
+        String url = API_HOST + "/observations/updates?locale=" + mApp.getLanguageCodeForAPI() + "&per_page=200&observations_by=" +
                 (following ? "following" : "owner");
         JSONArray json = request(url, "get", null, null, true, true, false); // Use JWT Token authentication
         if (json == null) return null;
@@ -4489,14 +4459,12 @@ public class INaturalistService extends IntentService {
     private BetterJSONObject getExploreResults(String command, ExploreSearchFilters filters, int pageNumber, int pageSize, String orderBy) throws AuthenticationException {
         if (filters == null) return null;
 
-        Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage = deviceLocale.getLanguage();
         String url;
         if (command == null) {
             url = String.format(Locale.ENGLISH, "%s/observations%s?locale=%s&page=%d&per_page=%d&ordered_by=%s&order=desc&return_bounds=true&%s",
                     API_HOST,
                     command == null ? "" : "/" + command,
-                    deviceLanguage,
+                    mApp.getLanguageCodeForAPI(),
                     pageNumber,
                     pageSize,
                     orderBy == null ? "" : orderBy,
@@ -4505,7 +4473,7 @@ public class INaturalistService extends IntentService {
             url = String.format(Locale.ENGLISH, "%s/observations/%s?locale=%s&page=%d&per_page=%d&%s",
                     API_HOST,
                     command,
-                    deviceLanguage,
+                    mApp.getLanguageCodeForAPI(),
                     pageNumber,
                     pageSize,
                     filters.toUrlQueryString());
@@ -4531,9 +4499,7 @@ public class INaturalistService extends IntentService {
 
 
     private BetterJSONObject getUserSpeciesCount(String username) throws AuthenticationException {
-        Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage = deviceLocale.getLanguage();
-        String url = API_HOST + "/observations/species_counts?place_id=any&verifiable=any&user_id=" + username + "&locale=" + deviceLanguage;
+        String url = API_HOST + "/observations/species_counts?place_id=any&verifiable=any&user_id=" + username + "&locale=" + mApp.getLanguageCodeForAPI();
         JSONArray json = get(url, false);
         if (json == null) return null;
         if (json.length() == 0) return null;
@@ -4599,9 +4565,7 @@ public class INaturalistService extends IntentService {
 
 
     private BetterJSONObject getProjectObservations(int projectId) throws AuthenticationException {
-        Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage = deviceLocale.getLanguage();
-        String url = API_HOST + "/observations?project_id=" + projectId + "&per_page=50&locale=" + deviceLanguage;
+        String url = API_HOST + "/observations?project_id=" + projectId + "&per_page=50&locale=" + mApp.getLanguageCodeForAPI();
         JSONArray json = get(url);
         if (json == null) return new BetterJSONObject();
         try {
@@ -4634,9 +4598,7 @@ public class INaturalistService extends IntentService {
     }
 
     private BetterJSONObject getMissions(Location location, String username, Integer taxonId, float expandLocationByDegress) {
-        Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage = deviceLocale.getLanguage();
-        String url = API_HOST + "/observations/species_counts?locale=" + deviceLanguage +
+        String url = API_HOST + "/observations/species_counts?locale=" + mApp.getLanguageCodeForAPI() +
                 "&verifiable=true&hrank=species&oauth_application_id=2,3";
 
         if (expandLocationByDegress == 0) {
@@ -4683,9 +4645,7 @@ public class INaturalistService extends IntentService {
     }
 
     private BetterJSONObject getProjectSpecies(int projectId) throws AuthenticationException {
-        Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage = deviceLocale.getLanguage();
-        String url = API_HOST + "/observations/species_counts?project_id=" + projectId + "&locale=" + deviceLanguage;
+        String url = API_HOST + "/observations/species_counts?project_id=" + projectId + "&locale=" + mApp.getLanguageCodeForAPI();
         JSONArray json = get(url);
         try {
             if (json == null) return new BetterJSONObject();
@@ -5140,11 +5100,7 @@ public class INaturalistService extends IntentService {
 
 
     private SerializableJSONArray getCheckList(int id) throws AuthenticationException {
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage = deviceLocale.getLanguage();
-
-        String url = String.format(Locale.ENGLISH, "%s/lists/%d.json?per_page=50&locale=%s", HOST, id, deviceLanguage);
+        String url = String.format(Locale.ENGLISH, "%s/lists/%d.json?per_page=50&locale=%s", HOST, id, mApp.getLanguageCodeForAPI());
 
         JSONArray json = get(url);
 
@@ -5255,10 +5211,7 @@ public class INaturalistService extends IntentService {
 
 
         String url = API_HOST + "/observations?user_id=" + Uri.encode(mLogin) + "&per_page=" + maxCount + "&id_below=" + lastId;
-
-        Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage = deviceLocale.getLanguage();
-        url += "&locale=" + deviceLanguage;
+        url += "&locale=" + mApp.getLanguageCodeForAPI();
 
         mProjectObservations = new ArrayList<SerializableJSONArray>();
         mProjectFieldValues = new Hashtable<Integer, Hashtable<Integer, ProjectFieldValue>>();
@@ -5397,9 +5350,7 @@ public class INaturalistService extends IntentService {
             url += String.format(Locale.ENGLISH, "&per_page=%d&page=1", maxCount);
         }
 
-        Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage = deviceLocale.getLanguage();
-        url += "&locale=" + deviceLanguage;
+        url += "&locale=" + mApp.getLanguageCodeForAPI();
 
         mProjectObservations = new ArrayList<SerializableJSONArray>();
         mProjectFieldValues = new Hashtable<Integer, Hashtable<Integer, ProjectFieldValue>>();
@@ -5806,10 +5757,7 @@ public class INaturalistService extends IntentService {
             url += "&projects[]=" + extras.getInt("project_id");
         }
 
-        Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage = deviceLocale.getLanguage();
-        url += "&locale=" + deviceLanguage;
-
+        url += "&locale=" + mApp.getLanguageCodeForAPI();
 
         Logger.tag(TAG).debug("Near by observations URL: " + url);
 

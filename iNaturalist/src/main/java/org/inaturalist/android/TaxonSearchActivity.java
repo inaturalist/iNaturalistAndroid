@@ -117,11 +117,8 @@ public class TaxonSearchActivity extends AppCompatActivity {
             sb.append("?q=");
             sb.append(URLEncoder.encode(input, "utf8"));
 
-            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            Locale deviceLocale = getResources().getConfiguration().locale;
-            String deviceLexicon = deviceLocale.getLanguage();
             sb.append("&locale=");
-            sb.append(deviceLexicon);
+            sb.append(mApp.getLanguageCodeForAPI());
 
             URL url = new URL(sb.toString());
             conn = (HttpURLConnection) url.openConnection();

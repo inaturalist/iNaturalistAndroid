@@ -771,9 +771,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
                 String inatNetwork = mApp.getInaturalistNetworkMember();
                 String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
-                Locale deviceLocale = getResources().getConfiguration().locale;
-                String deviceLanguage =   deviceLocale.getLanguage();
-                String taxonUrl = String.format(Locale.ENGLISH, "%s/taxa/%d?locale=%s", inatHost, mTaxon.getInt("id"), deviceLanguage);
+                String taxonUrl = String.format(Locale.ENGLISH, "%s/taxa/%d?locale=%s", inatHost, mTaxon.getInt("id"), mApp.getLanguageCodeForAPI());
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(taxonUrl));
                 startActivity(i);
@@ -883,9 +881,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
                 String inatNetwork = mApp.getInaturalistNetworkMember();
                 String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
-                Locale deviceLocale = getResources().getConfiguration().locale;
-                String deviceLanguage =   deviceLocale.getLanguage();
-                String taxonUrl = String.format(Locale.ENGLISH, "%s/taxon_changes?taxon_id=%d&locale=%s", inatHost, mTaxon.getInt("id"), deviceLanguage);
+                String taxonUrl = String.format(Locale.ENGLISH, "%s/taxon_changes?taxon_id=%d&locale=%s", inatHost, mTaxon.getInt("id"), mApp.getLanguageCodeForAPI());
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(taxonUrl));
                 startActivity(i);

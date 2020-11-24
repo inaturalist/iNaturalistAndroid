@@ -2009,9 +2009,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 String inatNetwork = mApp.getInaturalistNetworkMember();
                 String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
-                Locale deviceLocale = getResources().getConfiguration().locale;
-                String deviceLanguage =   deviceLocale.getLanguage();
-                String taxonUrl = String.format(Locale.ENGLISH, "%s/taxon_changes?taxon_id=%d&locale=%s", inatHost, mTaxon.optInt("id"), deviceLanguage);
+                String taxonUrl = String.format(Locale.ENGLISH, "%s/taxon_changes?taxon_id=%d&locale=%s", inatHost, mTaxon.optInt("id"), mApp.getLanguageCodeForAPI());
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(taxonUrl));
                 startActivity(i);
@@ -2067,9 +2065,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
 
     private JSONObject downloadTaxon(int taxonId) {
-        Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage =   deviceLocale.getLanguage();
-        final String idUrl = INaturalistService.API_HOST + "/taxa/" + taxonId + "?locale=" + deviceLanguage;
+        final String idUrl = INaturalistService.API_HOST + "/taxa/" + taxonId + "?locale=" + mApp.getLanguageCodeForAPI();
 
         JSONObject results = downloadJson(idUrl);
 

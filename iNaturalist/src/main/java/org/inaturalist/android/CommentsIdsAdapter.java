@@ -503,9 +503,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 						String inatNetwork = app.getInaturalistNetworkMember();
 						String inatHost = app.getStringResourceByName("inat_host_" + inatNetwork);
 
-						Locale deviceLocale = mContext.getResources().getConfiguration().locale;
-						String deviceLanguage =   deviceLocale.getLanguage();
-						String taxonUrl = String.format(Locale.ENGLISH, "%s/taxon_changes?taxon_id=%d&locale=%s", inatHost, item.getInt("taxon_id"), deviceLanguage);
+						String taxonUrl = String.format(Locale.ENGLISH, "%s/taxon_changes?taxon_id=%d&locale=%s", inatHost, item.getInt("taxon_id"), mApp.getLanguageCodeForAPI());
 						Intent i = new Intent(Intent.ACTION_VIEW);
 						i.setData(Uri.parse(taxonUrl));
 						mContext.startActivity(i);

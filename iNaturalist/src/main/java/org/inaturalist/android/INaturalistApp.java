@@ -307,6 +307,13 @@ public class INaturalistApp extends MultiDexApplication {
         ContextCompat.startForegroundService(this, serviceIntent3);
     }
 
+    /** Returns language code string, to be used in API calls (locale param) */
+    public String getLanguageCodeForAPI() {
+        // This returns language code + region (e.g. es-mx or zh-tw)
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        return deviceLocale.toLanguageTag().toLowerCase();
+    }
+
     private long listFilesRecursively(File root) {
         if (root == null) return -1;
 
