@@ -3,24 +3,38 @@ package org.inaturalist.android;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+
+import androidx.annotation.StringRes;
+import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
+import android.text.Html;
+import android.util.Pair;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.evernote.android.state.State;
@@ -29,24 +43,31 @@ import com.livefront.bridge.Bridge;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
+import com.viewpagerindicator.CirclePageIndicator;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.io.File;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class TaxonSuggestionsActivity extends AppCompatActivity {
     private static String TAG = "TaxonSuggestionsActivity";
 
+    private static final int FILTERS_REQUEST_CODE = 0x1000;
     public static final String OBS_PHOTO_FILENAME = "obs_photo_filename";
     public static final String OBS_PHOTO_URL = "obs_photo_url";
     public static final String LONGITUDE = "longitude";
     public static final String LATITUDE = "latitude";
     public static final String OBSERVED_ON = "observed_on";
     public static final String OBSERVATION = "observation";
+    public static final String OBSERVATION_JSON = "observation_json";
     public static final String OBSERVATION_ID = "observation_id";
     public static final String OBSERVATION_UUID = "observation_uuid";
     public static final String OBSERVATION_ID_INTERNAL = "observation_id_internal";
@@ -65,7 +86,6 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
     @State public double mLongitude;
     @State public Timestamp mObservedOn;
 
-    private ImageView mObsPhoto;
     private View mBackButton;
     private ViewGroup mSpeciesSearch;
     private TextView mSuggestionsDescription;
@@ -75,11 +95,31 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
     private TextView mNoNetwork;
     private TextView mCommonAncestorDescription;
     private ListView mCommonAncestorList;
+    private ViewPager mPhotosViewPager;
+    private CirclePageIndicator mIndicator;
+
     @State public int mObsId;
     @State public String mObsUUID;
     @State public int mObsIdInternal;
     @State public String mObservationJson;
     @State public int mLastTaxonPosition;
+    @State public boolean mShowSuggestionsNotNearBy = false;
+    private Button mViewSuggestionsNotNearByButton;
+    private PhotosViewPagerAdapter mPhotosAdapter;
+    @State public Observation mObservation;
+    @State public int mPhotoPosition;
+    @State public String mSuggestionSource = INaturalistService.SUGGESTION_SOURCE_VISUAL;
+    private ImageView mSuggestionSourceButton;
+    private RadioGroup mSuggestionSources;
+    private ViewGroup mFiltersButton;
+    private List<RadioButton> mSuggestionSourceRadioButtons;
+    @State public ExploreSearchFilters mSearchFilters;
+    private ViewGroup mActiveFilters;
+    private TextView mFilterTaxonName;
+    private TextView mFilterPlaceName;
+    private ViewGroup mFilterPlaceContainer;
+    private View mClearFilters;
+    private ViewGroup mFilterTaxonContainer;
 
     @Override
     protected void onStart()
@@ -101,6 +141,13 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             BaseFragmentActivity.safeUnregisterReceiver(mTaxonSuggestionsReceiver, TaxonSuggestionsActivity.this);
+
+            String obsUrl = intent.getStringExtra(INaturalistService.OBS_PHOTO_URL);
+            String obsFilename = intent.getStringExtra(INaturalistService.OBS_PHOTO_FILENAME);
+
+            if ((obsUrl != null && mObsPhotoUrl != null && !obsUrl.equals(mObsPhotoUrl)) || (obsFilename != null && mObsPhotoFilename != null && !obsFilename.equals(mObsPhotoFilename))) {
+                return;
+            }
 
             BetterJSONObject resultsObject = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.TAXON_SUGGESTIONS);
 
@@ -160,12 +207,16 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
             mObsId = intent.getIntExtra(OBSERVATION_ID, 0);
             mObsIdInternal = intent.getIntExtra(OBSERVATION_ID_INTERNAL, -1);
             mObsUUID = intent.getStringExtra(OBSERVATION_UUID);
-            mObservationJson = intent.getStringExtra(OBSERVATION);
+            mObservationJson = intent.getStringExtra(OBSERVATION_JSON);
+            mObservation = (Observation) intent.getSerializableExtra(OBSERVATION);
+            mSearchFilters = new ExploreSearchFilters();
+            mSearchFilters.isCurrentLocation = true;
         }
 
         setContentView(R.layout.taxon_suggestions);
 
-        mObsPhoto = (ImageView) findViewById(R.id.observation_photo);
+        mPhotosViewPager = (ViewPager) findViewById(R.id.photos);
+        mIndicator = (CirclePageIndicator)findViewById(R.id.photos_indicator);
         mBackButton = findViewById(R.id.back);
         mSpeciesSearch = (ViewGroup) findViewById(R.id.species_search);
         mSuggestionsDescription = (TextView) findViewById(R.id.suggestions_description);
@@ -175,6 +226,45 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
         mLoadingSuggestions = (ProgressBar) findViewById(R.id.loading_suggestions);
         mSuggestionsContainer = (ViewGroup) findViewById(R.id.suggestions_container);
         mNoNetwork = (TextView) findViewById(R.id.no_network);
+        mViewSuggestionsNotNearByButton = (Button) findViewById(R.id.view_suggestions_not_near_by);
+        mSuggestionSourceButton = (ImageView) findViewById(R.id.suggestion_source);
+        mFiltersButton = findViewById(R.id.filters);
+        mActiveFilters = (ViewGroup) findViewById(R.id.active_filters);
+        mFilterTaxonName = (TextView) findViewById(R.id.filter_taxon_name);
+        mFilterTaxonContainer = (ViewGroup) findViewById(R.id.filters_taxon_container);
+        mFilterPlaceName = (TextView) findViewById(R.id.filter_place_name);
+        mFilterPlaceContainer = (ViewGroup) findViewById(R.id.filters_place_container);
+        mClearFilters = (View) findViewById(R.id.clear_filters);
+
+        mClearFilters.setOnClickListener(v -> {
+            // Clear the filters
+            mSearchFilters.place = null;
+            mSearchFilters.taxon = null;
+
+            mTaxonSuggestions = null;
+            refreshFilters();
+            getTaxonSuggestions();
+        });
+
+        View.OnClickListener showFilters = v -> {
+            Intent intent2 = new Intent(TaxonSuggestionsActivity.this, ExploreSearchActivity.class);
+            intent2.putExtra(ExploreSearchActivity.SEARCH_FILTERS, mSearchFilters);
+            intent2.putExtra(ExploreSearchActivity.TAXON_SUGGESTIONS, true);
+            intent2.putExtra(ExploreSearchActivity.DISABLE_PLACE, mSuggestionSource.equals(INaturalistService.SUGGESTION_SOURCE_VISUAL));
+            startActivityForResult(intent2, FILTERS_REQUEST_CODE);
+        };
+
+        mActiveFilters.setOnClickListener(showFilters);
+        mFiltersButton.setOnClickListener(showFilters);
+
+        mSuggestionSourceButton.setOnClickListener(v -> {
+            showSuggestionSourceDialog();
+        });
+
+        mViewSuggestionsNotNearByButton.setOnClickListener(v -> {
+            mShowSuggestionsNotNearBy = !mShowSuggestionsNotNearBy;
+            loadSuggestions();
+        });
 
         mNoNetwork.setVisibility(View.GONE);
 
@@ -204,6 +294,70 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
         });
     }
 
+    private void showSuggestionSourceDialog() {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        ViewGroup dialogContent = (ViewGroup) inflater.inflate(R.layout.suggestion_source, null, false);
+
+        mSuggestionSources = (RadioGroup) dialogContent.findViewById(R.id.suggestion_sources);
+
+        mSuggestionSourceRadioButtons = new ArrayList<>();
+
+        Pair<RadioButton, ViewGroup> res = createDialogRadioButton(0, R.string.visually_similar, R.string.visually_similar_description);
+        mSuggestionSourceRadioButtons.add(res.first);
+        mSuggestionSources.addView(res.second);
+
+        res = createDialogRadioButton(1, R.string.research_grade_observations, R.string.research_grade_observations_description);
+        mSuggestionSourceRadioButtons.add(res.first);
+        mSuggestionSources.addView(res.second);
+
+        mSuggestionSourceRadioButtons.get(mSuggestionSource.equals(INaturalistService.SUGGESTION_SOURCE_VISUAL) ? 0 : 1).setChecked(true);
+
+        mHelper.confirm(getString(R.string.suggestions_source), dialogContent, (dialog, which) -> {
+            mSuggestionSource = mSuggestionSourceRadioButtons.get(0).isChecked() ?
+                    INaturalistService.SUGGESTION_SOURCE_VISUAL : INaturalistService.SUGGESTION_SOURCE_RESEARCH_GRADE_OBS;
+            refreshSuggestionSource();
+            getTaxonSuggestions();
+        }, (dialog, which) -> { }, R.string.continue_text, R.string.cancel);
+    }
+
+    private Pair<RadioButton, ViewGroup> createDialogRadioButton(int index, @StringRes int titleText, @StringRes int subtitleText) {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final ViewGroup customNetworkOption = (ViewGroup) inflater.inflate(R.layout.network_option, null, false);
+
+        TextView name = (TextView) customNetworkOption.findViewById(R.id.title);
+        TextView subtitle = (TextView) customNetworkOption.findViewById(R.id.sub_title);
+        final AppCompatRadioButton radioButton = (AppCompatRadioButton) customNetworkOption.findViewById(R.id.radio_button);
+
+        name.setText(titleText);
+        subtitle.setText(subtitleText);
+
+        // Set radio button color
+        ColorStateList colorStateList = new ColorStateList(
+                new int[][]{
+                        new int[]{-android.R.attr.state_checked},
+                        new int[]{android.R.attr.state_checked}
+                },
+                new int[]{
+                        Color.DKGRAY, getResources().getColor(R.color.inatapptheme_color)
+                }
+        );
+        radioButton.setSupportButtonTintList(colorStateList);
+
+        customNetworkOption.setOnClickListener(v -> {
+            // Uncheck all other radio buttons
+            for (int c = 0; c <  mSuggestionSourceRadioButtons.size(); c++) {
+                if (c == index) {
+                    radioButton.setChecked(true);
+                    continue;
+                }
+                RadioButton r = mSuggestionSourceRadioButtons.get(c);
+                r.setChecked(false);
+            }
+        });
+
+        return new Pair<>(radioButton, customNetworkOption);
+    }
+
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -218,69 +372,115 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
         BaseFragmentActivity.safeUnregisterReceiver(mTaxonSuggestionsReceiver, this);
     }
 
+    private void getTaxonSuggestions() {
+        // Get taxon suggestions
+        mTaxonSuggestionsReceiver = new TaxonSuggestionsReceiver();
+        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_TAXON_SUGGESTIONS_RESULT);
+        BaseFragmentActivity.safeRegisterReceiver(mTaxonSuggestionsReceiver, filter, this);
+
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON_SUGGESTIONS, null, this, INaturalistService.class);
+        serviceIntent.putExtra(INaturalistService.OBS_PHOTO_FILENAME, mObsPhotoFilename);
+        serviceIntent.putExtra(INaturalistService.OBS_PHOTO_URL, mObsPhotoUrl);
+        serviceIntent.putExtra(INaturalistService.LONGITUDE, mLongitude);
+        serviceIntent.putExtra(INaturalistService.LATITUDE, mLatitude);
+        serviceIntent.putExtra(INaturalistService.OBSERVED_ON, mObservedOn);
+        serviceIntent.putExtra(INaturalistService.SUGGESTION_SOURCE, mSuggestionSource);
+        if (mSearchFilters.taxon != null) {
+            serviceIntent.putExtra(INaturalistService.TAXON_ID, mSearchFilters.taxon.optInt("id"));
+        }
+
+        if ((mSearchFilters.place != null) && (!mSuggestionSource.equals(INaturalistService.SUGGESTION_SOURCE_VISUAL))) {
+            serviceIntent.putExtra(INaturalistService.PLACE_ID, mSearchFilters.place.optInt("id"));
+        }
+
+        ContextCompat.startForegroundService(this, serviceIntent);
+
+        mLoadingSuggestions.setVisibility(View.VISIBLE);
+        mSuggestionsContainer.setVisibility(View.GONE);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
 
         if (mTaxonSuggestions == null) {
-            // Get taxon suggestions
-            mTaxonSuggestionsReceiver = new TaxonSuggestionsReceiver();
-            IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_TAXON_SUGGESTIONS_RESULT);
-            BaseFragmentActivity.safeRegisterReceiver(mTaxonSuggestionsReceiver, filter, this);
-
-            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON_SUGGESTIONS, null, this, INaturalistService.class);
-            serviceIntent.putExtra(INaturalistService.OBS_PHOTO_FILENAME, mObsPhotoFilename);
-            serviceIntent.putExtra(INaturalistService.OBS_PHOTO_URL, mObsPhotoUrl);
-            serviceIntent.putExtra(INaturalistService.LONGITUDE, mLongitude);
-            serviceIntent.putExtra(INaturalistService.LATITUDE, mLatitude);
-            serviceIntent.putExtra(INaturalistService.OBSERVED_ON, mObservedOn);
-            ContextCompat.startForegroundService(this, serviceIntent);
-
-            mLoadingSuggestions.setVisibility(View.VISIBLE);
-            mSuggestionsContainer.setVisibility(View.GONE);
+            getTaxonSuggestions();
         } else {
             loadSuggestions();
         }
 
-
-        RequestCreator request;
-
-        if (mObsPhotoFilename == null) {
-            // Load online photo
-            request = Picasso.with(this).load(mObsPhotoUrl);
-        } else {
-            // Load offline (local) photo
-            request = Picasso.with(this).load(new File(mObsPhotoFilename));
-        }
-
-        request
-                .fit()
-                .centerCrop()
-                .into(mObsPhoto, new Callback() {
-                    @Override
-                    public void onSuccess() {
-                    }
-                    @Override
-                    public void onError() {
-                    }
-                });
-
-
-        mObsPhoto.setOnClickListener(new View.OnClickListener() {
+        mPhotosAdapter = new PhotosViewPagerAdapter(this, new Observation(new BetterJSONObject(mObservationJson)), mObservationJson);
+        mPhotosViewPager.setAdapter(mPhotosAdapter);
+        mIndicator.setViewPager(mPhotosViewPager);
+        mPhotosViewPager.setCurrentItem(mPhotoPosition);
+        mPhotosViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(TaxonSuggestionsActivity.this, ObservationPhotosViewer.class);
-                intent.putExtra(ObservationPhotosViewer.CURRENT_PHOTO_INDEX, 0);
-                intent.putExtra(ObservationPhotosViewer.OBSERVATION, mObservationJson);
-                intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID, mObsId);
-                intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID_INTERNAL, mObsIdInternal);
-                intent.putExtra(ObservationPhotosViewer.OBSERVATION_UUID, mObsUUID);
-                intent.putExtra(ObservationPhotosViewer.READ_ONLY, true);
-                intent.putExtra(ObservationPhotosViewer.IS_NEW_OBSERVATION, mObsIdInternal == -1 ? false : true);
-                startActivity(intent);
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == mPhotoPosition) return;
+
+                // Get taxon suggestions for new photo
+                mPhotoPosition = position;
+
+                if (mObservation != null) {
+                    Cursor cursor = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                            ObservationPhoto.PROJECTION,
+                            "(observation_uuid=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
+                            new String[]{mObservation.uuid},
+                            ObservationPhoto.DEFAULT_SORT_ORDER);
+
+                    cursor.moveToPosition(position);
+                    mObsPhotoFilename = cursor.getString(cursor.getColumnIndex(ObservationPhoto.PHOTO_FILENAME));
+                    mObsPhotoUrl = cursor.getString(cursor.getColumnIndex(ObservationPhoto.PHOTO_URL));
+                    cursor.close();
+                } else {
+                    // External (not our own) observation
+                    Observation obs = new Observation(new BetterJSONObject(mObservationJson));
+                    mObsPhotoFilename = null;
+                    mObsPhotoUrl = obs.photos.get(position).photo_url;
+                }
+
+                mTaxonSuggestions = null;
+                getTaxonSuggestions();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
             }
         });
 
+        if (mPhotosAdapter.getCount() <= 1) {
+            mIndicator.setVisibility(View.GONE);
+        } else {
+            mIndicator.setVisibility(View.VISIBLE);
+        }
+
+        refreshSuggestionSource();
+        refreshFilters();
+    }
+
+    private void refreshFilters() {
+        boolean filtersOn = mSearchFilters.place != null || mSearchFilters.taxon != null;
+
+        mActiveFilters.setVisibility(filtersOn ? View.VISIBLE : View.GONE);
+        mFiltersButton.setVisibility(filtersOn ? View.GONE : View.VISIBLE);
+
+        if (mSearchFilters.place != null) {
+            mFilterPlaceContainer.setVisibility(View.VISIBLE);
+            mFilterPlaceName.setText(mSearchFilters.place.optString("name"));
+        } else {
+            mFilterPlaceContainer.setVisibility(View.GONE);
+        }
+
+        if (mSearchFilters.taxon != null) {
+            mFilterTaxonContainer.setVisibility(View.VISIBLE);
+            mFilterTaxonName.setText(TaxonUtils.getTaxonName(this, mSearchFilters.taxon));
+        } else {
+            mFilterTaxonContainer.setVisibility(View.GONE);
+        }
     }
 
     private void loadSuggestions() {
@@ -346,9 +546,51 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
             mCommonAncestorList.setVisibility(View.VISIBLE);
         }
 
-        mSuggestionsList.setAdapter(new TaxonSuggestionAdapter(this, mTaxonSuggestions, onSuggestion, true));
+        List<BetterJSONObject> sortedSuggestions = new ArrayList<>(mTaxonSuggestions);
+        Logger.tag(TAG).error("Before: ");
+        for (BetterJSONObject s : sortedSuggestions) {
+            Logger.tag(TAG).error(String.format("%s: vision: %f; frequency: %f; combined: %f", s.getJSONObject("taxon").optString("name"), s.getFloat("vision_score"), s.getFloat("frequency_score"), s.getFloat("combined_score")));
+        }
+
+        mViewSuggestionsNotNearByButton.setVisibility(View.VISIBLE);
+
+        if (mShowSuggestionsNotNearBy) {
+            // Sort by vision_score
+            CollectionUtils.filter(sortedSuggestions, suggestion -> suggestion.getFloat("vision_score") > 0);
+            Collections.sort(sortedSuggestions, (s1, s2) -> Float.compare(s2.getFloat("vision_score"), s1.getFloat("vision_score")));
+
+            mViewSuggestionsNotNearByButton.setText(R.string.only_view_nearby_suggestions);
+        } else {
+            // Show only results both vision_score and frequency_score, then sort by combined_score
+            CollectionUtils.filter(sortedSuggestions, suggestion -> (suggestion.getFloat("frequency_score") > 0) && (suggestion.getFloat("vision_score") > 0.3) );
+            if (sortedSuggestions.size() == 0) {
+                // Special case - no nearby results
+                sortedSuggestions = new ArrayList<>(mTaxonSuggestions);
+                Collections.sort(sortedSuggestions, (s1, s2) -> Float.compare(s2.getFloat("vision_score"), s1.getFloat("vision_score")));
+                mViewSuggestionsNotNearByButton.setVisibility(View.GONE);
+            } else {
+                Collections.sort(sortedSuggestions, (s1, s2) -> Float.compare(s2.getFloat("combined_score"), s1.getFloat("combined_score")));
+            }
+
+            mViewSuggestionsNotNearByButton.setText(R.string.view_suggestions_not_seen_nearby);
+        }
+
+        Logger.tag(TAG).error("After: ");
+        for (BetterJSONObject s : sortedSuggestions) {
+            Logger.tag(TAG).error(String.format("%s: vision: %f; frequency: %f; combined: %f", s.getJSONObject("taxon").optString("name"), s.getFloat("vision_score"), s.getFloat("frequency_score"), s.getFloat("combined_score")));
+        }
+
+        mSuggestionsList.setAdapter(new TaxonSuggestionAdapter(this, sortedSuggestions, onSuggestion, true));
 
         resizeSuggestionsList();
+    }
+
+    private void refreshSuggestionSource() {
+        if (mSuggestionSource.equals(INaturalistService.SUGGESTION_SOURCE_VISUAL)) {
+            mSuggestionSourceButton.setImageResource(R.drawable.ic_empty_binoculars);
+        } else if (mSuggestionSource.equals(INaturalistService.SUGGESTION_SOURCE_RESEARCH_GRADE_OBS)) {
+            mSuggestionSourceButton.setImageResource(R.drawable.ic_empty_id);
+        }
     }
 
     private void showTaxonComparison(int position) {
@@ -382,6 +624,15 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
             } else if (resultCode == TaxonActivity.RESULT_COMPARE_TAXON) {
                 // User chose to compare this specific taxon
                 showTaxonComparison(mLastTaxonPosition);
+            }
+        } else if (requestCode == FILTERS_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                // Update search filters and refresh results
+                mSearchFilters = (ExploreSearchFilters) data.getSerializableExtra(ExploreSearchActivity.SEARCH_FILTERS);
+
+                mTaxonSuggestions = null;
+                refreshFilters();
+                getTaxonSuggestions();
             }
         }
     }

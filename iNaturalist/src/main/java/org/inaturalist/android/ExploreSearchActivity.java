@@ -16,6 +16,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -42,6 +43,8 @@ import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 public class ExploreSearchActivity extends AppCompatActivity {
     public static final String SEARCH_FILTERS = "search_filters";
+    public static final String TAXON_SUGGESTIONS = "taxon_suggestions";
+    public static final String DISABLE_PLACE = "disable_place";
 
     private static final int SEARCH_TYPE_TAXON = 0;
     private static final int SEARCH_TYPE_LOCATION = 1;
@@ -78,11 +81,11 @@ public class ExploreSearchActivity extends AppCompatActivity {
     private ListView mResultsList;
     private ProgressBar mLoadingResults;
     private TextView mNoResultsFound;
+    @State public boolean mFromTaxonSuggestions;
+    @State public boolean mDisablePlace;
 
 
-
-
-	@Override
+    @Override
 	protected void onStop()
 	{
 		super.onStop();		
@@ -125,6 +128,8 @@ public class ExploreSearchActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             mResults = null;
             mSearchFilters = (ExploreSearchFilters) intent.getSerializableExtra(SEARCH_FILTERS);
+            mFromTaxonSuggestions = intent.getBooleanExtra(TAXON_SUGGESTIONS, false);
+            mDisablePlace = intent.getBooleanExtra(DISABLE_PLACE, false);
             mActiveSearchType = SEARCH_TYPE_TAXON;
         }
 
@@ -142,6 +147,16 @@ public class ExploreSearchActivity extends AppCompatActivity {
         mResultsList = (ListView) findViewById(R.id.search_results);
         mLoadingResults = (ProgressBar) findViewById(R.id.loading_results);
         mNoResultsFound = (TextView) findViewById(R.id.no_results_found);
+
+        if (mDisablePlace) {
+            ViewGroup locationContainer = findViewById(R.id.location_container);
+            locationContainer.setVisibility(View.INVISIBLE);
+        }
+
+        mSearchButton.setImageDrawable(getDrawable(
+                mFromTaxonSuggestions ?
+                        R.drawable.ic_check_black_24dp
+                        : R.drawable.ic_search_black_24dp));
 
 
         TextWatcher textWatcher = new TextWatcher() {
@@ -490,7 +505,7 @@ public class ExploreSearchActivity extends AppCompatActivity {
 
                     if (mActiveSearchType == SEARCH_TYPE_TAXON) {
                         mSearchFilters.taxon = result;
-                        mActiveSearchType = SEARCH_TYPE_LOCATION;
+                        mActiveSearchType = mDisablePlace ? SEARCH_TYPE_NONE : SEARCH_TYPE_LOCATION;
                     } else {
                         if (result.optBoolean("is_my_location")) {
                             // My location

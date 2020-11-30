@@ -172,9 +172,11 @@ public class IdentificationActivity extends AppCompatActivity {
             intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_ID, mObsId);
             intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_UUID, mObsUUID);
             if (mObsIdInternal == -1) {
-                intent.putExtra(TaxonSuggestionsActivity.OBSERVATION, mObservationJson);
+                intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_JSON, mObservationJson);
             } else {
                 intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_ID_INTERNAL, mObsIdInternal);
+                intent.putExtra(TaxonSuggestionsActivity.OBSERVATION, new Observation(new BetterJSONObject(mObservationJson)));
+                intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_JSON, mObservationJson);
             }
             startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
         }

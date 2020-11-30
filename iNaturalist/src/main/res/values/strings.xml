@@ -999,5 +999,13 @@
     <string name="filter_observations_by_months">Filter observations by months</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="view_suggestions_not_seen_nearby">View suggestions not seen nearby</string>
+    <string name="only_view_nearby_suggestions">Only view nearby suggestions</string>
+    <string name="suggestions_source">Suggestions Source</string>
+    <string name="research_grade_observations">Research Grade Observations</string>
+    <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are those of species observed near this location at this time of year.</string>
+    <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will only provide suggestions observed nearby at this time of year.</string>
+    <string name="taxon">Taxon:</string>
+    <string name="place">Place:</string>
 </resources>
 
