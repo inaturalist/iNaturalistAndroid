@@ -3078,6 +3078,10 @@ public class ObservationEditor extends AppCompatActivity {
     private Uri createObservationPhotoForPhoto(Uri photoUri, int position, boolean isDuplicated) {
         mPhotosChanged = true;
 
+        if (photoUri == null) {
+            return null;
+        }
+
         String path = FileUtils.getPath(this, photoUri);
         String extension = FileUtils.getExtension(this, photoUri);
 

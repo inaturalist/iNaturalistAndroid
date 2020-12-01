@@ -235,8 +235,16 @@ public class FileUtils {
 
         final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
 
+        boolean isDocumentUri = false;
+
+        try {
+            isDocumentUri = DocumentsContract.isDocumentUri(context, uri);
+        } catch (NullPointerException exc) {
+            // Happens in weird edge cases
+        }
+
         // DocumentProvider
-        if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
+        if (isKitKat && isDocumentUri) {
             // ExternalStorageProvider
             if (isExternalStorageDocument(uri)) {
                 final String docId = DocumentsContract.getDocumentId(uri);
