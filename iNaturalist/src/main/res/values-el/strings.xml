@@ -198,6 +198,7 @@
     <string name="alert_message_use_argentinat">Το ArgentiNat είναι μέλος του Δικτύου iNaturalist στην Αργεντινή. Τα τοπικά ιδρύματα που υποστηρίζουν το ArgentiNat θα έχουν πρόσβαση στη διεύθυνση ηλεκτρονικού ταχυδρομείου σας και πρόσβαση στις αληθινές συντεταγμένες για παρατηρήσεις που είναι δημοσίως δυσδιάκριτες ή απόρρητες. Μην αλλάζεται πειραματικά το δίκτυό σας εάν έχετε περισσότερες από 1000 παρατηρήσεις. Θέλετε να αλλάξετε το δίκτυό σας;</string>
     <string name="alert_message_use_inaturalistil">Το iNaturalist Israel είναι μέλος του Δικτύου iNaturalist στο Ισραήλ. Τα τοπικά ιδρύματα που υποστηρίζουν το iNaturalist Ισραήλ θα έχουν πρόσβαση στη διεύθυνση ηλεκτρονικού ταχυδρομείου σας και πρόσβαση στις αληθινές συντεταγμένες για παρατηρήσεις που είναι δημοσίως δυσδιάκριτες ή ιδιωτικές. Μην αλλάζεται πειραματικά το δίκτυό σας εάν έχετε περισσότερες από 1000 παρατηρήσεις. Θέλετε να αλλάξετε το δίκτυό σας;</string>
     <string name="alert_message_use_inaturalistfi">Το iNaturalist Finland είναι μέλος του Δικτύου iNaturalist στη Φινλανδία. Τα τοπικά ιδρύματα που υποστηρίζουν το iNaturalist Finland θα έχουν πρόσβαση στη διεύθυνση email σας και πρόσβαση στις πραγματικές συντεταγμένες για παρατηρήσεις που είναι δημοσίως δυσδιάκριτες ή απόρρητες. Μην αλλάξετε πειραματικά το δίκτυό σας εάν έχετε περισσότερες από 1000 παρατηρήσεις. Θέλετε να αλλάξετε το δίκτυό σας;</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Συντάκτης</string>
     <string name="license">Άδεια</string>
     <string name="download_for_offline_use">Λήψη για χρήση χωρίς σύνδεση</string>
@@ -738,6 +739,7 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Εκουαδόρ: Το Instituto Nacional de Biodiversidad (INABIO) υποστηρίζει το iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Ισραήλ: Το Πανεπιστήμιο της Χάιφα υποστηρίζει το iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Φινλανδία: Το Μουσείο της Φυσικής Ιστορίας της Φινλανδίας (LUOMUS) υποστηρίζει το iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">Σήμανση όλων ως προβεβλημένα</string>
     <string name="content_hidden">Κρυμμένο Περιεχόμενο</string>
     <string name="show_hidden_content">Eμφάνιση Kρυμμένου Περιεχομένου</string>

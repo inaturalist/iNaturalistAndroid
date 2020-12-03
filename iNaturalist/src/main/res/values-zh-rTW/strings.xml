@@ -197,6 +197,7 @@
     <string name="alert_message_use_argentinat">ArgentiNat 是 iNaturalist 附屬網路阿根廷的成員。支援 ArgentiNat 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel 是 iNaturalist 附屬網路在以色列的成員。支援 iNaturalist Israel 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist 芬蘭是 iNaturalist 附屬網路在芬蘭的成員。支援 iNaturalist 芬蘭的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">編輯</string>
     <string name="license">授權</string>
     <string name="download_for_offline_use">下載供離線使用</string>
@@ -731,6 +732,7 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[厄瓜多: Instituto Nacional de Biodiversidad (INABIO) 支持 iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[以色列:  海法大學(University of Haifa)支持 iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[芬蘭: 芬蘭自然史博物館(Finnish Museum of Natural History; LUOMUS) 支持 iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">標記為已讀</string>
     <string name="content_hidden">內容已隱藏</string>
     <string name="show_hidden_content">顯示隱藏內容</string>

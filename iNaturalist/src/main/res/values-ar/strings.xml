@@ -203,6 +203,7 @@
     <string name="alert_message_use_argentinat">ArgentiNat هو عضو شبكة ايناتشويريلست في أرجنتينا. وعليه يحق للمؤسسات الداعمة للشبكة الوصول للعناوين الالكترونية وإحداثيات مواقع الملحوظات العامة والخاصة منها. لذلك نرجو منك عدم القيام بتجارب تغيير جهة الاشتراك اذا كان لديك أكثر من ١٠٠ ملحوظة. هل ترغب في تغيير جهة الاشتراك؟</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel هو عضو شبكة ايناتشويريلست في إسرائيل. وعليه يحق للمؤسسات الداعمة للشبكة الوصول للعناوين الالكترونية وإحداثيات مواقع الملحوظات العامة والخاصة منها. لذلك نرجو منك عدم القيام بتجارب تغيير جهة الاشتراك اذا كان لديك أكثر من ١٠٠ ملحوظة. هل ترغب في تغيير جهة الاشتراك؟</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland هو عضو شبكة ايناتشويريلست في فينلندا. وعليه يحق للمؤسسات الداعمة للشبكة الوصول للعناوين الالكترونية وإحداثيات مواقع الملحوظات العامة والخاصة منها. لذلك نرجو منك عدم القيام بتجارب تغيير جهة الاشتراك اذا كان لديك أكثر من ١٠٠ ملحوظة. هل ترغب في تغيير جهة الاشتراك؟</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">محرر</string>
     <string name="license">ترخيص</string>
     <string name="download_for_offline_use">تحميل,للاستخدام بدون التواصل مع شبكة الانترنت</string>
@@ -288,7 +289,7 @@
     <string name="casual_grade_captive"><![CDATA[ الملحوظة هي درجة غير رسمية لأنها <b> مأسورة/مهجنة</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ الملاحظة بحاجة <b>للمزيد من التحديدات</b> من  قبل المجموعة لتصبح في حالة "البحث التأكيدي". ]]></string>
     <plurals name="included_in_projects">
-        <item quantity="zero">مشمولة ضمن عمل %1$d</item>
+        <item quantity="zero">Included in %1$d projects</item>
         <item quantity="one">Included in %1$d project</item>
         <item quantity="two">Included in %1$d projects</item>
         <item quantity="few">Included in %1$d projects</item>
@@ -464,7 +465,7 @@
     <string name="view_suggestions">عرض الإقتراحات</string>
     <string name="species_search">بحث عن الأنواع</string>
     <plurals name="were_not_confident">
-        <item quantity="zero">لسنا على قدر كاف من الثقة لتقديم توصية، ولكن نقدم لك آهم%1$d اقتراحاتنا:</item>
+        <item quantity="zero">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
         <!-- This will probably never happen -->
         <item quantity="one">We\'re not confident enough to make a recommendation, but here is our number %1$d suggestion:</item>
         <item quantity="two">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
@@ -473,7 +474,7 @@
         <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
     </plurals>
     <plurals name="top_species_suggestions">
-        <item quantity="zero">أفضل %1$d اقتراح:</item>
+        <item quantity="zero">Top %1$d suggestions:</item>
         <item quantity="one">Top %1$d suggestion:</item>
         <item quantity="two">Top %1$d suggestions:</item>
         <item quantity="few">Top %1$d suggestions:</item>
@@ -685,7 +686,7 @@
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">بالغ</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
-    <string name="annotation_value_teneral">Teneral</string>
+    <string name="annotation_value_teneral">غير بالغ</string>
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
     <string name="annotation_value_pupa">شرنقة</string>
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
@@ -728,8 +729,8 @@
     <string name="observations_all_caps">ملاحظات</string>
     <string name="species_all_caps">أنواع</string>
     <string name="people_all_caps">الأشخاص</string>
-    <string name="identifiers_all_caps">IDENTIFIERS</string>
-    <string name="identifications_all_caps">IDENTIFICATIONS</string>
+    <string name="identifiers_all_caps">المعرفات</string>
+    <string name="identifications_all_caps">الهويات</string>
     <string name="news_all_caps">أخبار</string>
     <string name="got_it_all_caps">حسنًا</string>
     <string name="view_all_all_caps">عرض الجميع</string>
@@ -737,25 +738,25 @@
     <string name="observers_all_caps">ملاحظين</string>
     <string name="observations_regular">الملاحظات</string>
     <string name="data_quality_assessment">تقييم جودة البيانات</string>
-    <string name="research_grade_qualification">Research Grade Qualification</string>
-    <string name="date_specified">Date specified</string>
-    <string name="location_specified">Location specified</string>
-    <string name="has_photos_or_sounds">Has photos or sounds</string>
-    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
-    <string name="date_is_accurate">Date is accurate</string>
-    <string name="location_is_accurate">Location is accurate</string>
+    <string name="research_grade_qualification">مؤهل درجة البحث</string>
+    <string name="date_specified">التاريخ المحدد</string>
+    <string name="location_specified">الموقع المحدد</string>
+    <string name="has_photos_or_sounds">لديك صور أو أصوات</string>
+    <string name="has_id_supported_by_two_or_more">هوية مدعومة من قبل اثنين أو أكثر</string>
+    <string name="date_is_accurate">التاريخ صحيح</string>
+    <string name="location_is_accurate">الموقع صحيح</string>
     <string name="organism_is_wild">Organism is wild</string>
     <string name="evidence_of_organism">Evidence of organism</string>
     <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
     <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
-    <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
-    <string name="seasonality">Seasonality</string>
+    <string name="no_as_good_as_it_can_be">لا، إنها جيدة بقدر ما يمكن أن تكون</string>
+    <string name="seasonality">موسمية</string>
     <string name="verifiable">Verifiable</string>
     <string name="no_annotation">No Annotation</string>
-    <string name="donate_to_inaturalist">Donate to iNaturalist</string>
-    <string name="prefers_scientific_name_first">Show scientific names first</string>
-    <string name="prefers_scientific_name_first_description">Show scientific names before common names.</string>
+    <string name="donate_to_inaturalist">تبرع إلى iNaturalist</string>
+    <string name="prefers_scientific_name_first">عرض الأسماء العلمية أولا</string>
+    <string name="prefers_scientific_name_first_description">عرض الأسماء العلمية قبل الأسماء الشائعة.</string>
     <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, and Parks Canada operating iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
     <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
     <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) operating NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
@@ -767,6 +768,7 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Natural History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">Mark all as viewed</string>
     <string name="content_hidden">Content Hidden</string>
     <string name="show_hidden_content">Show Hidden Content</string>

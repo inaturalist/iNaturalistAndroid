@@ -200,6 +200,7 @@
     <string name="alert_message_use_argentinat">ArgentiNat הוא הנציג של ארגנטינה ברשת העולמית של iNaturalist . שותפים מקומיים של ArgentiNat יקבלו פרטים של המייל שלכם וגישה למיקום המדויק של תצפיות שמוסתרות מהציבור הרחב. בבקשה שלא לשנות את השייכות של חשבון המשתמש שלך אם העלת כבר יותר מ100 תצפיות. האם תרצה לשייך את החשבון שלך ל ArgentiNat ?</string>
     <string name="alert_message_use_inaturalistil">האם תרצה לשייך את החשבון שלך ל iNaturalist Israel, להפוך לחלק מהקהילה המקומית ולתרום להגנת הטבע בישראל? iNaturalist Israel  הוא הנציג של ישראל ברשת העולמית של iNaturalist . שותפים מקומיים של iNaturalist Israel יקבלו פרטים של המייל שלכם וגישה למיקום המדויק של תצפיות שמוסתרות מהציבור הרחב. אם העלת כבר יותר מ100 תצפיות, בבקשה שלא לשנות את השייכות של חשבון המשתמש שלך . האם תרצה לשייך את החשבון שלך ל iNaturalist Israel?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland is a member of the iNaturalist Network in Finland. Local institutions supporting iNaturalist Finland will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">עורך</string>
     <string name="license">רשיון</string>
     <string name="download_for_offline_use">הורדה לשימוש ללא אינטרנט</string>
@@ -303,7 +304,7 @@
     <string name="update_comment">עדכן/ני תגובה</string>
     <string name="fave_this_observation">בחר/בחרי בתצפית זו כמועדפת</string>
     <string name="faved">מועדף</string>
-    <string name="be_the_first_to_fave_this_obs">להיות הראשון המעדיף/פה התבוננות זו...</string>
+    <string name="be_the_first_to_fave_this_obs">תהיו הראשונים להעדיף תצפית זו!</string>
     <string name="leave_a_comment">השאירו תגובה או הצעה לזיהוי...</string>
     <string name="location_coords">קו רוחב: %1$s קו אורך: %2$s Acc. %3$s</string>
     <string name="location_coords_no_acc">קו רוחב: %1$s קו אורך: %2$s</string>
@@ -752,6 +753,7 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Natural History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">סימון הכל כנסקרו</string>
     <string name="content_hidden">תוכן מוסתר</string>
     <string name="show_hidden_content">הציג תוכן מוסתר</string>

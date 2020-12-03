@@ -43,10 +43,6 @@
 		<item>de</item>
 		<item>el</item>
 		<item>en</item>
-		<item>en-rAU</item>
-		<item>en-rGB</item>
-		<item>en-rNZ</item>
-		<item>en-rUS</item>
 		<item>es</item>
 		<item>es-rAR</item>
 		<item>es-rCO</item>
@@ -55,14 +51,12 @@
 		<item>et</item>
 		<item>eu</item>
 		<item>fi</item>
-		<item>fil</item>
 		<item>fr</item>
 		<item>fr-rCA</item>
 		<item>gl</item>
 		<item>he</item>
 		<item>he-rIL</item>
 		<item>hi</item>
-		<item>hr</item>
 		<item>hu</item>
 		<item>id</item>
 		<item>it</item>
@@ -72,13 +66,11 @@
 		<item>lb</item>
 		<item>lt</item>
 		<item>lv</item>
-		<item>mi</item>
+		<item>mk</item>
 		<item>mr</item>
 		<item>nb</item>
 		<item>nl</item>
-		<item>nn-rNO</item>
 		<item>no</item>
-		<item>pa-rIN</item>
 		<item>pl</item>
 		<item>pt</item>
 		<item>pt-rBR</item>
@@ -90,8 +82,6 @@
 		<item>sq</item>
 		<item>sv</item>
 		<item>sv-rSE</item>
-		<item>sw</item>
-		<item>tl</item>
 		<item>tr</item>
 		<item>uk</item>
 		<item>vi</item>
@@ -110,10 +100,6 @@
 		<item>Deutsch</item>
 		<item>Ελληνικά</item>
 		<item>English</item>
-		<item>English (Australia)</item>
-		<item>English (United Kingdom)</item>
-		<item>English (New Zealand)</item>
-		<item>English (United States)</item>
 		<item>Español</item>
 		<item>Español (Argentina)</item>
 		<item>Español (Colombia)</item>
@@ -122,14 +108,12 @@
 		<item>Eesti Keel</item>
 		<item>Euskara</item>
 		<item>Suomi</item>
-		<item>Pilipino</item>
 		<item>Français</item>
 		<item>Français (Canada)</item>
 		<item>Galego</item>
 		<item>עברית</item>
 		<item>עברית (ישראל)</item>
 		<item>हिन्दी</item>
-		<item>Hravtski</item>
 		<item>Magyar</item>
 		<item>Bahasa Indonesia</item>
 		<item>Italiano</item>
@@ -139,13 +123,11 @@
 		<item>Lëtzebuergesch</item>
 		<item>Lietuvių Kalba</item>
 		<item>latviešu valoda</item>
-		<item>Māori</item>
+		<item>Македонски</item>
 		<item>मराठी</item>
 		<item>Norsk Bokmål</item>
 		<item>Nederlands</item>
-		<item>Norsk Nynorsk (Norway)</item>
 		<item>Norsk</item>
-		<item>ਪੰਜਾਬੀ (ਭਾਰਤ)</item>
 		<item>Polski</item>
 		<item>Português</item>
 		<item>Português (Brazil)</item>
@@ -157,8 +139,6 @@
 		<item>Shqipe</item>
 		<item>Svenska</item>
 		<item>Svenska (Sverige)</item>
-		<item>KiSwahili</item>
-		<item>Tagalog</item>
 		<item>Türkçe</item>
 		<item>Українська</item>
 		<item>Tiếng Việt</item>

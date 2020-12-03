@@ -199,6 +199,7 @@
     <string name="alert_message_use_argentinat">ArgentiNat este membru al Reţelei iNaturaliste din Argentina. Instituţiile locale care sprijină ArgentiNat vor avea acces la adresa dvs. de e-mail şi acces la coordonatele adevărate pentru observaţiile care sunt ascunse public sau privat. Vă rugăm să nu schimbați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
     <string name="alert_message_use_inaturalistil">INaturalist Israel este membru al rețelei iNaturalist din Israel. Instituțiile locale care sprijină iNaturalist Israel vor avea acces la adresa dvs. de e-mail și acces la coordonatele adevărate pentru observațiile care sunt ascunse public sau privat. Vă rugăm să nu schimbați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finlanda este membru al Rețelei iNaturalist din Finlanda. Instituțiile locale care sprijină iNaturalist Finlanda vor avea acces la adresa dvs. de e-mail și acces la coordonatele reale pentru observațiile care sunt ascunse public sau privat. Vă rugăm să nu schimbați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile este membru al Rețelei iNaturalist din Chile. Instituțiile locale care sprijină iNaturalist Chile vor avea acces la adresa dvs. de e-mail și acces la coordonatele reale pentru observațiile care sunt ascunse public sau private. Vă rugăm să nu schimbați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
     <string name="editor">Editor</string>
     <string name="license">Licență</string>
     <string name="download_for_offline_use">Descarcă pentru utilizare offline</string>
@@ -745,6 +746,7 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Institutul Național al Biodiversității (INABIO) care operează iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: Universitatea din Haifa care sprijină iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finlanda: Muzeul finlandez de Istorie Naturalistă (LUOMUS) care operează iNaturalist Finlanda (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerul Mediului Ambiant care operează iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">Bifează tot ca vizionat</string>
     <string name="content_hidden">Conținut ascuns</string>
     <string name="show_hidden_content">Arată conținut ascuns</string>

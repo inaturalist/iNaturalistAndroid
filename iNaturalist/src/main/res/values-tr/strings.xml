@@ -198,6 +198,7 @@
     <string name="alert_message_use_argentinat">ArgentiNat, Arjantin’deki iNaturalist Ağı\'nın bir üyesidir. ArgentiNat\'ı destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamusal olarak gizlenmiş ya da özel gözlemleriniz için gerçek koordinatlarınıza erişebilecek. 1000\'den çok gözleminiz varsa lütfen deneyerek üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist İsrail, İsrail\'deki iNaturalist Ağı\'nın üyesidir. İNaturalist İsrail\'i destekleyen yerel kurumlar, e-posta adresinize ve genel olarak gizlenmiş ya da özel gözlemler için gerçek koordinatlara erişebilir. 1000\'den çok gözleminiz varsa, lütfen üyeliğinizi deneysel olarak değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finlandiya, Finlandiya\'daki iNaturalist Ağı üyesidir. iNaturalist Finlandiya’yı destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamu tarafından gizlenmiş ya da özel gözlemler için gerçek koordinatlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Düzenleyici</string>
     <string name="license">Lisans</string>
     <string name="download_for_offline_use">Çevrimdışı kullanım için indir</string>
@@ -228,7 +229,7 @@
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">ÜYE OL</string>
     <!-- Title of the view used to sign up for a new account -->
-    <string name="sign_up_title">Sign Up</string>
+    <string name="sign_up_title">Üye Ol</string>
     <string name="min_6_chars">En az 6 karakter</string>
     <string name="use_my_license"><![CDATA[Evet, bilim insanlarının verilerimi kullanabilmesi için içeriğimi lisansla (önerilir). <b>Daha çok bilgi</b>]]></string>
     <string name="content_licensing">İçerik Lisanslama</string>
@@ -738,6 +739,7 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Ekvador: Instituto Nacional de Biodiversidad (INABIO), iNaturalist Ecuador\'u destekliyor (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[İsrail: Hayfa Üniversitesi, iNaturalist Israel\'i destekliyor (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finlandiya: Finnish Museum of Naturalist History (LUOMUS), iNaturalist Finlandiya\'yı destekliyor (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">Tümünü görüntülendi olarak işaretle</string>
     <string name="content_hidden">İçerik Gizlendi</string>
     <string name="show_hidden_content">Gizli İçeriği Göster</string>
@@ -951,18 +953,18 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
-    <string name="show_common_names">Show common names</string>
-    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
-    <string name="email_must_look_like_email_address">Email must look like an email address</string>
-    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
-    <string name="password_too_short">Password must be at least six characters long</string>
-    <string name="switch_to_grid_view">Switch to grid view</string>
-    <string name="switch_to_list_view">Switch to list view</string>
-    <string name="remove_project_filter">Remove project filter</string>
-    <string name="remove_observer_filter">Remove observer filter</string>
-    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
-    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
-    <string name="filter_observations_by_months">Filter observations by months</string>
+    <string name="show_common_names">Yaygın adları göster</string>
+    <string name="show_common_names_description">Sadece bilimsel isimleri görmek için devre dışı bırakın.</string>
+    <string name="email_must_look_like_email_address">E-mailiniz, e-mail adresi gibi olmalı</string>
+    <string name="username_must_begin_with">Kullanıcı adı bir harfle başlamalı, boşluk bırakılmamalı, sadece harfler, numaralar, kısa çizgi ve alt çizgi kullanılmalı.</string>
+    <string name="password_too_short">Şifre en az 6 karakter uzunluğunda olmalıdır</string>
+    <string name="switch_to_grid_view">Paralel görünüme geçin</string>
+    <string name="switch_to_list_view">Liste görünümüne geçin</string>
+    <string name="remove_project_filter">Proje filtresini kaldırın</string>
+    <string name="remove_observer_filter">Gözlemci filtresini kaldırın</string>
+    <string name="filter_observations_by_an_exact_date">Gözlemleri kesin bir tarihe göre filtreleyin</string>
+    <string name="filter_observations_by_a_date_range">Gözlemleri belli tarih için filtreleyin</string>
+    <string name="filter_observations_by_months">Gözlemleri aylık olarak filtreleyin</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
 </resources>

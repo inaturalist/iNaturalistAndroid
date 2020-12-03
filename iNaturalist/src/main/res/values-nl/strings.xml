@@ -198,6 +198,7 @@
     <string name="alert_message_use_argentinat">ArgentiNat is lid van het iNaturalist Netwerk in Argentinië. Lokale instellingen die ArgentiNat ondersteunen zullen toegang hebben tot uw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel is lid van het iNaturalist Network in Israel. Lokale instellingen die iNaturalist Israel ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland is lid van het iNaturalist Network in Finland. Lokale instellingen die iNaturalist Finland ondersteunen hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chili is lid van het iNaturalist Network in Chili. Lokale instellingen die iNaturalist Chili ondersteunen hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw lidmaatschap wijzigen?</string>
     <string name="editor">Redacteur</string>
     <string name="license">Licentie</string>
     <string name="download_for_offline_use">Downloaden voor offline gebruik</string>
@@ -415,8 +416,8 @@
         content.
     -->
     <plurals name="new_activities">
-        <item quantity="one">%1s new</item>
-        <item quantity="other">%1s new</item>
+        <item quantity="one">%1s nieuw</item>
+        <item quantity="other">nieuwe %1s</item>
     </plurals>
     <string name="no_results_found">Niets gevonden...</string>
     <plurals name="syncing_x_out_of_y_observations">
@@ -442,7 +443,7 @@
     <string name="taxonomy">Taxonomie</string>
     <string name="about_this_section">Over deze sectie</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
-    <string name="taxonomy_info">Hier zijn de links naar de voorouders van dit specifieke taxon. Ze zijn in de volgorde van de meest lompe tot de meest precieze. Gebruik deze links om op en neer te gaan in de Tree of Life. Als u bijvoorbeeld niet weet welk organisme het is, maar u weet uit welke groep het afhankelijk is, tikt u op een taxon in de lijst om meer informatie erover weer te geven.</string>
+    <string name="taxonomy_info">Hier staan links naar de hogere taxonomische rangen van dit specifieke taxon. Ze staan in de volgorde van de meest omvattende tot het meest nauwkeurige taxon. Gebruik deze links om op en neer te gaan in de Boom van het Leven. Als je niet weet welk organisme het is maar je weet in welke groep het valt tikt je op dat taxon in de lijst om de informatie erover te tonen</string>
     <string name="more_info_on_inat">Meer Info op iNaturalist.org</string>
     <string name="view_suggestions">Suggesties bekijken</string>
     <string name="species_search">Soort zoeken</string>
@@ -738,6 +739,7 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) steunt iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa steunt iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Naturalist History (LUOMUS) dat iNaturalist Finland ondersteunt (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chili: Ministerio del Medio Ambiente ondersteunt iNaturalist Chili (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">Markeer alle berichten als gelezen</string>
     <string name="content_hidden">Inhoud verborgen</string>
     <string name="show_hidden_content">Toon verborgen inhoud</string>

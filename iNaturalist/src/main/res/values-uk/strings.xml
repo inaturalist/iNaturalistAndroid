@@ -189,27 +189,29 @@
     <string name="text"><![CDATA[<b>Текст:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">Основна мережа iNaturalist. Натискання \"ОК\" встановить вашу програму як частину глобальної мережі iNaturalist.</string>
-    <string name="alert_message_use_naturalista">NaturaLista є частиною мережі iNuturalist у Мексиці. Місцеві організації, що підтримують NaturaLista, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є більше 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
+    <string name="alert_message_use_naturalista">NaturaLista є частиною мережі iNuturalist у Мексиці. Місцеві організації, що підтримують NaturaLista, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
 Чи хочете ви змінити вашу мережеву приналежність?</string>
-    <string name="alert_message_use_naturewatchnz">iNaturalist NZ є частиною мережі iNuturalist у Новій Зеландії. Місцеві організації, що підтримують iNaturalist NZ, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є більше 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZ є частиною мережі iNuturalist у Новій Зеландії. Місцеві організації, що підтримують iNaturalist NZ, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
 Чи хочете ви змінити вашу мережеву приналежність?</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist Canada є частиною мережі iNuturalist у Канаді. Місцеві організації, що підтримують iNaturalist Canada, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є більше 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
 Чи хочете ви змінити вашу мережеву приналежність?</string>
-    <string name="alert_message_use_naturalistacolombia">Naturalista є частиною мережі iNuturalist у Колумбії. Місцеві організації, що підтримують Naturalista, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є більше 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
+    <string name="alert_message_use_naturalistacolombia">Naturalista є частиною мережі iNuturalist у Колумбії. Місцеві організації, що підтримують Naturalista, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
 Чи хочете ви змінити вашу мережеву приналежність?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4all є частиною мережі iNuturalist у Португалії. Місцеві організації, що підтримують Biodiversity4All, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є більше 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
+    <string name="alert_message_use_biodiversity4all">Biodiversity4all є частиною мережі iNuturalist у Португалії. Місцеві організації, що підтримують Biodiversity4All, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
 Чи хочете ви змінити вашу мережеву приналежність?</string>
-    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá є частиною мережі iNuturalist у Панамі. Місцеві організації, що підтримують iNaturalist Panamá, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є більше 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá є частиною мережі iNuturalist у Панамі. Місцеві організації, що підтримують iNaturalist Panamá, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
 Чи хочете ви змінити вашу мережеву приналежність?</string>
-    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador є частиною мережі iNuturalist у Еквадорі. Місцеві організації, що підтримують iNaturalist Ecuador, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є більше 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador є частиною мережі iNuturalist у Еквадорі. Місцеві організації, що підтримують iNaturalist Ecuador, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
 Чи хочете ви змінити вашу мережеву приналежність?</string>
-    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia є частиною мережі iNuturalist у Австралії. Місцеві організації, що підтримують iNaturalist Australia, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є більше 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia є частиною мережі iNuturalist у Австралії. Місцеві організації, що підтримують iNaturalist Australia, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
 Чи хочете ви змінити вашу мережеву приналежність?</string>
-    <string name="alert_message_use_argentinat">ArgentiNat є частиною мережі iNuturalist в Аргентині. Місцеві організації, що підтримують ArgentiNat, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є більше 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
+    <string name="alert_message_use_argentinat">ArgentiNat є частиною мережі iNuturalist в Аргентині. Місцеві організації, що підтримують ArgentiNat, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
 Чи хочете ви змінити вашу мережеву приналежність?</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel є частиною мережі iNuturalist в Ізраїлі. Місцеві організації, що підтримують iNaturalist Israel, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є більше 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel є частиною мережі iNuturalist в Ізраїлі. Місцеві організації, що підтримують iNaturalist Israel, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
 Чи хочете ви змінити вашу мережеву приналежність?</string>
-    <string name="alert_message_use_inaturalistfi">iNaturalist Panamá є частиною мережі iNuturalist у Фінляндії. Місцеві організації, що підтримують iNaturalist Panamá, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є більше 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
+    <string name="alert_message_use_inaturalistfi">iNaturalist Panamá є частиною мережі iNuturalist у Фінляндії. Місцеві організації, що підтримують iNaturalist Panamá, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
+Чи хочете ви змінити вашу мережеву приналежність?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile є частиною мережі iNuturalist у Чилі. Місцеві організації, що підтримують iNaturalist Chile, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
 Чи хочете ви змінити вашу мережеву приналежність?</string>
     <string name="editor">Редактор</string>
     <string name="license">Ліцензія</string>
@@ -763,6 +765,7 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Еквадор: Національний інститут біорізноманіття (INABIO) підтримує iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Ізраїль: Хайфський університет підтримує iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Фінляндія: Фінський природознавчий музей (LUOMUS) підтримує iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Чилі: Міністерство навколишнього середовища підтримує iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">Помітити всі як переглянуті</string>
     <string name="content_hidden">Прихований вміст</string>
     <string name="show_hidden_content">Показувати прихований вміст</string>
@@ -950,14 +953,14 @@
     <string name="rank_subgenus">Subgenus</string>
     <string name="rank_section">Section</string>
     <string name="rank_subsection">subsection</string>
-    <string name="rank_complex">Complex</string>
+    <string name="rank_complex">Комплекс</string>
     <!-- Singular -->
     <string name="rank_species">Species</string>
-    <string name="rank_hybrid">Hybrid</string>
+    <string name="rank_hybrid">Гібрид</string>
     <!-- Singular -->
-    <string name="rank_subspecies">Subspecies</string>
-    <string name="rank_variety">Variety</string>
-    <string name="rank_form">Form</string>
+    <string name="rank_subspecies">Підвид</string>
+    <string name="rank_variety">Різновид</string>
+    <string name="rank_form">Форма</string>
     <string name="rank_infrahybrid">Infrahybrid</string>
     <string name="rank_leaves">Leaves</string>
     <string name="location_lat_lng">Location: %1$f, %2$f</string>
@@ -985,10 +988,10 @@
     <string name="switch_to_grid_view">Switch to grid view</string>
     <string name="switch_to_list_view">Switch to list view</string>
     <string name="remove_project_filter">Remove project filter</string>
-    <string name="remove_observer_filter">Remove observer filter</string>
-    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
-    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
-    <string name="filter_observations_by_months">Filter observations by months</string>
+    <string name="remove_observer_filter">Видалити фільтр за спостереженнями</string>
+    <string name="filter_observations_by_an_exact_date">Фільтрувати спостереження за точною датою</string>
+    <string name="filter_observations_by_a_date_range">Фільтрувати спостереження за датою</string>
+    <string name="filter_observations_by_months">Фільтрувати спостереження за місяцями</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
 </resources>

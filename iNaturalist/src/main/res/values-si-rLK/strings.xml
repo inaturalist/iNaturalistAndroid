@@ -198,6 +198,7 @@
     <string name="alert_message_use_argentinat">ArgentiNat යනු ආර්ජන්ටිනාවේ iNaturalist ජාලයේ සාමාජිකයෙකි. ArgentiNat සඳහා සහය දක්වන දේශීය ආයතනවලට ඔබේ විද්‍යුත් තැපැල් ලිපිනයට ප්‍රවේශය සහ ප්‍රසිද්ධියේ අපැහැදිලි කළ හෝ පෞද්ගලික නිරීක්ෂණ සඳහා සත්‍ය ඛණ්ඩාංක වෙත ප්‍රවේශය ඇත. ඔබට නිරීක්ෂණ 1000 කට වඩා තිබේ නම් කරුණාකර ඔබේ අනුබද්ධතාවය පර්යේෂණාත්මකව වෙනස් නොකරන්න. ඔබේ අනුබද්ධතාවය වෙනස් කිරීමට ඔබ කැමතිද?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel යනු ඊශ්‍රායලයේ iNaturalist ජාලයේ සාමාජිකයෙකි. iNaturalist Israel සඳහා සහය දක්වන දේශීය ආයතනවලට ඔබේ විද්‍යුත් තැපැල් ලිපිනයට ප්‍රවේශය සහ ප්‍රසිද්ධියේ අපැහැදිලි කළ හෝ පෞද්ගලික නිරීක්ෂණ සඳහා සත්‍ය ඛණ්ඩාංක වෙත ප්‍රවේශය ඇත. ඔබට නිරීක්ෂණ 1000 කට වඩා තිබේ නම් කරුණාකර ඔබේ අනුබද්ධතාවය පර්යේෂණාත්මකව වෙනස් නොකරන්න. ඔබේ අනුබද්ධතාවය වෙනස් කිරීමට ඔබ කැමතිද?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland යනු ෆින්ලන්තයේ iNaturalist ජාලයේ සාමාජිකයෙකි. iNaturalist Finland සඳහා සහය දක්වන දේශීය ආයතනවලට ඔබේ විද්‍යුත් තැපැල් ලිපිනයට ප්‍රවේශය සහ ප්‍රසිද්ධියේ අපැහැදිලි කළ හෝ පෞද්ගලික නිරීක්ෂණ සඳහා සත්‍ය ඛණ්ඩාංක වෙත ප්‍රවේශය ඇත. ඔබට නිරීක්ෂණ 1000 කට වඩා තිබේ නම් කරුණාකර ඔබේ අනුබද්ධතාවය පර්යේෂණාත්මකව වෙනස් නොකරන්න. ඔබේ අනුබද්ධතාවය වෙනස් කිරීමට ඔබ කැමතිද?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile යනු චීලේ හි iNaturalist ජාලයේ සාමාජිකයෙකි. iNaturalist Chile සඳහා සහය දක්වන දේශීය ආයතනවලට ඔබේ විද්‍යුත් තැපැල් ලිපිනයට ප්‍රවේශය සහ ප්‍රසිද්ධියේ අපැහැදිලි කළ හෝ පෞද්ගලික නිරීක්ෂණ සඳහා සත්‍ය ඛණ්ඩාංක වෙත ප්‍රවේශය ඇත. ඔබට නිරීක්ෂණ 1000 කට වඩා තිබේ නම් කරුණාකර ඔබේ අනුබද්ධතාවය පර්යේෂණාත්මකව වෙනස් නොකරන්න. ඔබේ අනුබද්ධතාවය වෙනස් කිරීමට ඔබ කැමතිද?</string>
     <string name="editor">සංස්කාරක</string>
     <string name="license">බලපත්‍රය</string>
     <string name="download_for_offline_use">මාර්ගගත නොවී භාවිතය සඳහා බාගත කරගන්න</string>
@@ -620,7 +621,7 @@
     <string name="project_observations">නිරීක්ෂණ</string>
     <string name="project_species">විශේෂය</string>
     <string name="project_people">පුද්ගලයන්</string>
-    <string name="project_identifiers">හඳුන්වනයන්</string>
+    <string name="project_identifiers">හඳුනාගත්තන්</string>
     <string name="got_it">තේරුම් ගත්තා!</string>
     <string name="view_all">සියල්ල බලන්න</string>
     <string name="new_badge">නව</string>
@@ -699,7 +700,7 @@
     <string name="observations_all_caps">නිරීක්ෂණ</string>
     <string name="species_all_caps">විශේෂයන්</string>
     <string name="people_all_caps">පුද්ගලයන්</string>
-    <string name="identifiers_all_caps">හඳුන්වනයන්</string>
+    <string name="identifiers_all_caps">හඳුනාගත්තන්</string>
     <string name="identifications_all_caps">හඳුනාගැනීම්</string>
     <string name="news_all_caps">පුවත්</string>
     <string name="got_it_all_caps">තේරුම් ගත්තා!</string>
@@ -738,6 +739,7 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[ඉක්වදෝරය: iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>) ට සහාය දක්වන්නේ Instituto Nacional de Biodiversidad (INABIO)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[ඊශ්‍රායලය: iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>) ට සහාය දක්වන්නේ University of Haifa]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[ෆින්ලන්තය: iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>) ට සහාය දක්වන්නේ Finnish Museum of Natural History (LUOMUS)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[චීලේ: iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>) ට සහාය දක්වන්නේ Ministerio del Medio Ambiente]]></string>
     <string name="mark_all_as_viewed">සියල්ල බලා ඇති ලෙස ලකුණු කරන්න</string>
     <string name="content_hidden">අන්තර්ගතය සඟවා ඇත</string>
     <string name="show_hidden_content">සැඟවුණු අන්තර්ගතය පෙන්වන්න</string>
@@ -838,7 +840,7 @@
     <string name="running_in_background_notfication">අපට බාධාවකින් තොරව ධාවනය කළ හැකි වන පරිදි පසුබිමේ ධාවනය වේ</string>
     <string name="opt_out_of_community_taxon">ප්‍රජා තක්සෝනයෙන් ඉවත් වෙන්න</string>
     <string name="opt_in_to_community_taxon">ප්‍රජා තක්සෝනයට ඇතුල් වෙන්න</string>
-    <string name="opt_out_message">ප්‍රජා තක්සෝනයෙන් ඉවත් වීමෙන් මෙම නිරීක්‍ෂණය ඔබගේ වර්තමාන හඳුනාගැනීමේ තක්සෝනය සමඟ සම්බන්ධ වීමට බල කරයි, මෙම නිරීක්‍ෂණයට එකතු කර ඇති සියලුම හඳුනාගැනීම් වලින් ව්‍යුත්පන්න කර ගත් තක්සෝනයක් සමඟ නොවේ. ප්‍රමාණවත් හඳුනාගන්නන් පිරිසක් ඔබ සමඟ එකඟ නොවන්නේ නම්, ඔබේ නිරීක්ෂණය අවිධිමත් බවට පත්වේ. ඔබ ඉවත් විය යුත්තේ ඔබේ හඳුනාගැනීම නිවැරදි බවත් අනෙකුත් හඳුනාගැනීම් වැරදි බවත් ඔබට විශ්වාස නම් පමණි.</string>
+    <string name="opt_out_message">ප්‍රජා තක්සෝනයෙන් ඉවත් වීමෙන් මෙම නිරීක්‍ෂණය ඔබගේ වර්තමාන හඳුනාගැනීමේ තක්සෝනය සමඟ සම්බන්ධ වීමට බල කරයි, මෙම නිරීක්‍ෂණයට එකතු කර ඇති සියලුම හඳුනාගැනීම් වලින් ව්‍යුත්පන්න කර ගත් තක්සෝනයක් සමඟ නොවේ. ප්‍රමාණවත් හඳුනාගත්තන් පිරිසක් ඔබ සමඟ එකඟ නොවන්නේ නම්, ඔබේ නිරීක්ෂණය අවිධිමත් බවට පත්වේ. ඔබ ඉවත් විය යුත්තේ ඔබේ හඳුනාගැනීම නිවැරදි බවත් අනෙකුත් හඳුනාගැනීම් වැරදි බවත් ඔබට විශ්වාස නම් පමණි.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
     <string name="permission_required">අවසරය අවශ්‍යයි</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
