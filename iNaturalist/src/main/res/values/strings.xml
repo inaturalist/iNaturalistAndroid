@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">iNaturalist</string>
     <string name="email_address">Email Address</string>
     <string name="delete_observation">Delete observation</string>
     <string name="observation_deleted">Observation deleted</string>
