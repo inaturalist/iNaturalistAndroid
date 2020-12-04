@@ -9,7 +9,7 @@
     <string name="cancel">Abbrechen</string>
     <string name="loading">Ladevorgang...</string>
     <string name="sync_required">Synchronisierung erforderlich</string>
-    <string name="sync_required_message">%1$d Beobachtungen, %2$d Fotos synchronisieren</string>
+    <string name="sync_required_message">%1$d Beobachtungen, %2$d Fotos zu synchronisieren</string>
     <string name="street">Straße</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satellit</string>
@@ -97,8 +97,8 @@
     <string name="leave">Beenden</string>
     <string name="join">Beitreten</string>
     <string name="no_check_list">Keine Taxa in der Checkliste!</string>
-    <string name="failed_to_add_obs_to_project">Hinzufügen der Beobachtung \'%1$s\' zum Projekt \'%2$s\' gescheitert: %3$s</string>
-    <string name="invalid_project_field">Bitte gib einen passenden Wert in Feld \'%1s\' ein</string>
+    <string name="failed_to_add_obs_to_project">Fehler beim Hinzufügen von Beobachtung \'%1$s\' zum Projekt \'%2$s\': %3$s</string>
+    <string name="invalid_project_field">Bitte gib einen passenden Wert für das Feld \'%1s\' ein</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
     <string name="select_projects">Aus beigetretenen Projekten auswählen</string>
     <string name="not_connected">Dazu musst du online sein!</string>
@@ -198,6 +198,7 @@
     <string name="alert_message_use_argentinat">ArgentiNat ist Mitglied des iNaturalist Network in Argentinien. Lokale Institutionen, die ArgentiNat unterstützen, haben Zugang zu Ihrer E-Mail-Adresse und zu den wahren Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1000 Beobachtungen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel ist Mitglied des iNaturalist Network in Israel. Lokale Institutionen, die iNaturalist Israel unterstützen, haben Zugriff auf Ihre E-Mail-Adresse und Zugriff auf die wahren Koordinaten für Beobachtungen, die öffentlich verdeckt oder privat sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1000 Beobachtungen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland ist Mitglied des iNaturalist-Netzwerks in Finnland. Lokale Institutionen, die iNaturalist Finland unterstützen, haben Zugang zu deiner E-Mail-Adresse und zu den echten Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändere deine Zugehörigkeit nicht experimentell, wenn du mehr als 1000 Beobachtungen hast. Möchtest du deine Zugehörigkeit ändern?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile ist Mitglied des iNaturalist Netzwerks in Chile. Lokale Institutionen, die iNaturalist Chile unterstützen, werden Zugriff auf deine E-Mail-Adresse und Zugriff auf die wahren Koordinaten für öffentliche oder private Beobachtungen haben. Bitte änder deine Zugehörigkeit nicht experimentell, wenn du mehr als 1000 Beobachtungen hast. Möchtest du deine Zugehörigkeit ändern?</string>
     <string name="editor">Editor</string>
     <string name="license">Lizenz</string>
     <string name="download_for_offline_use">Herunterladen für Offline Verwendung</string>
@@ -708,18 +709,18 @@
     <string name="observers_all_caps">Beobachter</string>
     <string name="observations_regular">Beobachtungen</string>
     <string name="data_quality_assessment">Bewertung der Datenqualität</string>
-    <string name="research_grade_qualification">Forschungsgrad Qualifikation</string>
-    <string name="date_specified">Angegebenes Datum</string>
-    <string name="location_specified">Angegebener Ort</string>
+    <string name="research_grade_qualification">Kriterien für Forschungsqualität</string>
+    <string name="date_specified">Datum angegeben</string>
+    <string name="location_specified">Standort festgelegt</string>
     <string name="has_photos_or_sounds">Enthält Fotos oder Tonaufnahmen</string>
     <string name="has_id_supported_by_two_or_more">Hat zwei oder mehr übereinstimmende Bestimmungen (IDs)</string>
     <string name="date_is_accurate">Datum stimmt</string>
     <string name="location_is_accurate">Standort ist korrekt</string>
-    <string name="organism_is_wild">Frei lebender Organismus</string>
-    <string name="evidence_of_organism">Nachweis des Organismus</string>
-    <string name="recent_evidence_of_an_organism">Neueste Beweise für einen Organismus</string>
-    <string name="community_id_at_species_level_or_lower">Gemeinschafts-ID auf Artenebene oder niedriger</string>
-    <string name="based_on_evidence_can_community_id_be_confirmed">Kann die Gemeinschaftskennung auf Grundlage der Erkenntnisse noch bestätigt oder verbessert werden?</string>
+    <string name="organism_is_wild">Organismus ist wild</string>
+    <string name="evidence_of_organism">Hinweis auf einen Organismus</string>
+    <string name="recent_evidence_of_an_organism">Rezenter Nachweis (&lt;100 Jahre) eines lebenden Organismus</string>
+    <string name="community_id_at_species_level_or_lower">Community-Taxon auf Art-Ebene oder darunter</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Kann die Community-ID anhand der vorhandenen Belege noch weiter verbessert werden?</string>
     <string name="no_as_good_as_it_can_be">Nein, es ist so gut wie es nur sein kann</string>
     <string name="seasonality">Jahreszeitliche Verteilung</string>
     <string name="verifiable">Verifizierbar</string>
@@ -738,6 +739,7 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) unterstützt iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: Universität Haifa unterstützt iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finnland: Das Finnische Museum für Naturgeschichte (LUOMUS) unterstützt iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente unterstützt iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">Alle als „angesehen” kennzeichnen</string>
     <string name="content_hidden">Inhalt ausgeblendet</string>
     <string name="show_hidden_content">Ausgeblendeten Inhalt anzeigen</string>
@@ -913,7 +915,7 @@
     <string name="rank_zoosubsection">Zoountersektion</string>
     <string name="rank_superfamily">Überfamilie</string>
     <string name="rank_epifamily">Epifamilie</string>
-    <string name="rank_family">Überfamilie</string>
+    <string name="rank_family">Familie</string>
     <string name="rank_subfamily">Unterfamilie</string>
     <string name="rank_supertribe">Übertribus</string>
     <string name="rank_tribe">Tribus</string>
@@ -944,9 +946,9 @@ und unsere <a href="https://www.inaturalist.org/terms">Geschäftsbedingungen</a>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
     <string name="deleted_user">Gelöschter Benutzer</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short_this_year">MMM d</string>
+    <string name="date_short_this_year">d. MMM</string>
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short">dd/MM/yy</string>
+    <string name="date_short">dd.MMM \'\'yy</string>
     <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->

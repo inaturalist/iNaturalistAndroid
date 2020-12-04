@@ -200,6 +200,7 @@
     <string name="alert_message_use_argentinat">ArgentiNat je členem sítě iNaturalist v Argentině. Místní instituce podporující ArgentiNat budou mít přístup k vaší e-mailové adrese a přístup ke skutečným souřadnicím pozorování, která jsou veřejně skrytá nebo soukromá. Pokud máte více než 1 000 pozorování, neměňte svou příslušnost. Chtěli byste změnit své příslušnost?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel je členem sítě iNaturalist v Izraeli. Místní instituce podporující iNaturalist v Izraeli budou mít přístup k vaší e-mailové adrese a ke skutečným souřadnicím pro pozorování, která jsou veřejně skrytá nebo soukromá. Pokud máte více než 1 000 pozorování, prosím neměňte své přičlěnění. Chtěli byste změnit své přičlěnění?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland je členem sítě iNaturalist ve Finsku. Místní instituce podporující iNaturalist Finsko budou mít přístup k vaší e-mailové adrese a ke skutečným souřadnicím pro pozorování, která jsou veřejně skrytá nebo soukromá. Pokud máte více než 1000 pozorování, neměňte své přičlenění experimentálně. Chcete změnit své přičlenění?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile je členem sítě iNaturalist v Chile. Místní instituce podporující iNaturalist Chile budou mít přístup k vaší e-mailové adrese a ke skutečným souřadnicím pozorování, která jsou veřejně skrytá nebo soukromá. Prosíme, pokud máte více než 1000 pozorování, neměňte své přičlenění jen za účelem experimentování. Chcete změnit své přičlenění?</string>
     <string name="editor">Editor</string>
     <string name="license">Licence</string>
     <string name="download_for_offline_use">Stáhnout pro offline použití</string>
@@ -419,10 +420,10 @@
         content.
     -->
     <plurals name="new_activities">
-        <item quantity="one">%1s new</item>
-        <item quantity="few">%1s new</item>
-        <item quantity="many">%1s new</item>
-        <item quantity="other">%1s new</item>
+        <item quantity="one">%1s nová</item>
+        <item quantity="few">%1s nové</item>
+        <item quantity="many">%1s nových</item>
+        <item quantity="other">%1s nové</item>
     </plurals>
     <string name="no_results_found">Nebyly nalezeny žádné výsledky...</string>
     <plurals name="syncing_x_out_of_y_observations">
@@ -752,6 +753,7 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Ekvádor: Instituto Nacional de Biodiversidad (INABIO) podporující iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Izrael: University of Haifa podporující iNaturalist Izraele (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finsko: Finské muzeum přírodní historie (LUOMUS) na podporu iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente podporuje iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">Označit vše za prohlédnuté</string>
     <string name="content_hidden">Skrytý obsah</string>
     <string name="show_hidden_content">Zobrazit skrytý obsah</string>

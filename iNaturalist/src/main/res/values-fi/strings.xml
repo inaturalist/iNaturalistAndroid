@@ -198,6 +198,7 @@
     <string name="alert_message_use_argentinat">ArgentiNat on iNaturalist-verkoston jäsen Argentiinassa. ArgentiNat:n kanssa yhteistyössä olevat organisaatiot näkevät sähköpostiosoitteesi sekä kaikkien havaintojesi tarkat koordinaatit, myös karkeistettujen ja yksityisten havaintojen. Ole hyvä äläkä vaihda kotiverkostoasi vain testataksesi tätä, jos sinulla on yli 1000 havaintoa. Haluatko vaihtaa kotiverkostoasi?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel on iNaturalist-verkoston jäsen Israelissa. iNaruralist Israel:n kanssa yhteistyössä olevat organisaatiot näkevät sähköpostiosoitteesi sekä kaikkien havaintojesi tarkat koordinaatit, myös karkeistettujen ja yksityisten havaintojen. Ole hyvä äläkä vaihda kotiverkostoasi vain testataksesi tätä, jos sinulla on yli 1000 havaintoa. Haluatko vaihtaa kotiverkostoasi?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Suomi on kansainvälisen iNaturalist-verkoston jäsen. Siitä vastaa Suomen Lajitietokeskus. Haluatko yhdistää tunnuksesi iNaturalist Suomeen (suositeltu)? Tällöin Lajitietokeskus näkee havaintojesi tarkat paikat sekä sähköpostiosoitteesi, joten havaintosi tulevat paremmin hyötykäyttöön Suomessa, ja voit saada suomenkielisiä iNaturalistiin liittyviä tiedotteita.</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editori</string>
     <string name="license">Lisenssi</string>
     <string name="download_for_offline_use">Lataa offline-käyttöön</string>
@@ -748,6 +749,7 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) ylläpitää portaalia iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa ylläpitää portaalia iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Suomi: Luonnontieteellinen keskusmuseo Luomus ylläpitää iNaturalist Suomea (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">Merkitse kaikki katsotuksi</string>
     <string name="content_hidden">Sisältö piilotettu</string>
     <string name="show_hidden_content">Näytä piilotettu sisältö</string>

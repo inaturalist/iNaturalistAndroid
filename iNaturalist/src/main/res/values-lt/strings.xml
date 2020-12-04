@@ -200,6 +200,7 @@
     <string name="alert_message_use_argentinat">ArgentiNat yra Argentinos iNaturalist tinklo narys. Vietinės institucijos, remiančios ArgentiNat, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel yra Izraelio iNaturalist tinklo narys. Vietinės institucijos, remiančios iNaturalist Israel, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland yra Suomijos iNaturalist tinklo narys. Vietinės institucijos, remiančios iNaturalist Finland, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Redaktorius</string>
     <string name="license">Licencija</string>
     <string name="download_for_offline_use">Atsisiųsti naudojimui atsijungus nuo tinklo</string>
@@ -230,7 +231,7 @@
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Registruotis</string>
     <!-- Title of the view used to sign up for a new account -->
-    <string name="sign_up_title">Sign Up</string>
+    <string name="sign_up_title">Registruotis</string>
     <string name="min_6_chars">Min. 6 ženklai</string>
     <string name="use_my_license"><![CDATA[Taip, suteikite licenciją mano turiniui, kad mokslininkai galėtų naudoti mano duomenis. <b>Sužinokite daugiau</b>]]></string>
     <string name="content_licensing">Turinio licencijos suteikimas</string>
@@ -752,6 +753,7 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) remia iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa remia iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Naturalist History (LUOMUS) remia iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">Pažymėti visus kaip peržiūrėtus</string>
     <string name="content_hidden">Turinys paslėptas</string>
     <string name="show_hidden_content">Rodyti paslėptą turinį</string>
@@ -967,18 +969,18 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
-    <string name="show_common_names">Show common names</string>
-    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
-    <string name="email_must_look_like_email_address">Email must look like an email address</string>
-    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
-    <string name="password_too_short">Password must be at least six characters long</string>
-    <string name="switch_to_grid_view">Switch to grid view</string>
-    <string name="switch_to_list_view">Switch to list view</string>
-    <string name="remove_project_filter">Remove project filter</string>
-    <string name="remove_observer_filter">Remove observer filter</string>
-    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
-    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
-    <string name="filter_observations_by_months">Filter observations by months</string>
+    <string name="show_common_names">Rodyti lietuviškus pavadinimus</string>
+    <string name="show_common_names_description">Išjunkite, jeigu norite matyti tik mokslinius pavadinimus.</string>
+    <string name="email_must_look_like_email_address">El. paštas turi atrodyti kaip el. pašto adresas</string>
+    <string name="username_must_begin_with">Vartotojo vardas turi prasidėti raide, negali turėti tarpų ir turi būti sudarytas tik iš raidžių, skaičių ir brūkšnelių.</string>
+    <string name="password_too_short">Slaptažodis turi būti bent iš šešių simbolių</string>
+    <string name="switch_to_grid_view">Įjungti tinklelio rodymą</string>
+    <string name="switch_to_list_view">Įjungti sąrašo rodymą</string>
+    <string name="remove_project_filter">Panaikinti projekto filtrą</string>
+    <string name="remove_observer_filter">Panaikinti stebėtojo filtrą</string>
+    <string name="filter_observations_by_an_exact_date">Filtruoti stebėjimus pagal tikslią datą</string>
+    <string name="filter_observations_by_a_date_range">Filtruoti stebėjimus pagal datos intervalą</string>
+    <string name="filter_observations_by_months">Filtruoti stebėjimus pagal mėnesius</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
 </resources>

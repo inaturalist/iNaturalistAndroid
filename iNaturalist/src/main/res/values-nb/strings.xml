@@ -198,6 +198,7 @@
     <string name="alert_message_use_argentinat">ArgentiNat er et medlem av iNaturalistnettverket i Argentina. Lokale institusjoner som støtter ArgentiNat kan se din e-postadresse og de reelle koordinatene for observasjoner som ellers er skjult for offentligheten eller private. Vennligst ikke endre din tilknytning eksperimentelt hvis du har over 1000 observasjoner. Vil du endre din tilknytning?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel er et medlem av iNaturalistnettverket i Israel. Lokale institusjoner som støtter iNaturalist Israel kan se din e-postadresse og de reelle koordinatene for observasjoner som ellers er skjult for offentligheten eller private. Vennligst ikke endre din tilknytning eksperimentelt hvis du har mer enn 1000 observasjoner. Vil du endre din tilknytning?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland er et medlem av iNaturalistnettverket i Finland. Lokale institusjoner som støtter iNaturalist Finland kan se din e-postadresse og de reelle koordinatene for observasjoner som ellers er skjult for offentligheten eller private. Vennligst ikke endre din tilknytning eksperimentelt hvis du har mer enn 1000 observasjoner. Vil du endre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Redaktør</string>
     <string name="license">Lisens</string>
     <string name="download_for_offline_use">Nedlastning for av nett-bruk</string>
@@ -738,6 +739,7 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) støtter iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa støtter iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Natural History (LUOMUS) støtter iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">Merk alle som lest</string>
     <string name="content_hidden">Innhold skjult</string>
     <string name="show_hidden_content">Vis skjult innhold</string>

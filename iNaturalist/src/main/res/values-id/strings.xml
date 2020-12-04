@@ -197,6 +197,7 @@
     <string name="alert_message_use_argentinat">ArgentiNat adalah anggota Jaringan iNaturalist di Argentina. Institusi lokal yang mendukung ArgentiNat akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel adalah anggota iNaturalist Network di Israel. Institusi lokal yang mendukung iNaturalist Israel akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland adalah anggota iNaturalist Network di Finlandia. Institusi lokal yang mendukung iNaturalist Finland akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Penyunting</string>
     <string name="license">Lisensi</string>
     <string name="download_for_offline_use">Download untuk penggunaan offline</string>
@@ -227,9 +228,9 @@
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Mendaftar</string>
     <!-- Title of the view used to sign up for a new account -->
-    <string name="sign_up_title">Sign Up</string>
+    <string name="sign_up_title">Daftar</string>
     <string name="min_6_chars">Minimal 6 karakter</string>
-    <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data (recommended). <b>Learn More</b>]]></string>
+    <string name="use_my_license"><![CDATA[Ya, lisensikan konten saya sehingga para ilmuwan dapat menggunakan data saya. <b>Pelajari lebih lanjut</b>]]></string>
     <string name="content_licensing">Perizinan konten</string>
     <string name="content_licensing_description">Centang kotak ini jika Anda ingin membuat lisensi Commons Attribution-NonCommercial untuk foto Anda. Anda dapat memilih sebuah lisensi yang berbeda atau menghapus lisensi nantinya, tapi ini adalah lisensi terbaik untuk berbagi dengan para peneliti.</string>
     <!-- Try to keep this about the length of the English text -->
@@ -413,7 +414,7 @@
         content.
     -->
     <plurals name="new_activities">
-        <item quantity="other">%1s new</item>
+        <item quantity="other">%1s baru</item>
     </plurals>
     <string name="no_results_found">Tidak Ada Hasil Ditemukan...</string>
     <plurals name="syncing_x_out_of_y_observations">
@@ -650,7 +651,7 @@
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Tunas Bunga</string>
     <!-- Observation presents no evidence of flowering phenology -->
-    <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
+    <string name="annotation_value_no_evidence_of_flowering">Tidak Ada Indikasi Berbunga</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Dewasa</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -731,6 +732,7 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Ekuador: Instituto Nacional de Biodiversidad (INABIO) mendukung iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa mendukung iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finlandia: Finnish Museum of Naturalist History (LUOMUS) mendukung iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">Tandai semua sebagai dilihat</string>
     <string name="content_hidden">Konten Tersembunyi</string>
     <string name="show_hidden_content">Tampilkan Konten Tersembunyi</string>
@@ -799,7 +801,7 @@
     <string name="seconds_value">detik</string>
     <string name="shop_the_inat_store">Belanja di iNat Store</string>
     <string name="delete_your_account">Hapus Akun Anda</string>
-    <string name="delete_account_message"><![CDATA[Dengan menghapus akun anda, Anda akan menghapus: <br/><br/><ul><li> Semua pengamatan anda, termasuk pekerjaan semua orang yang telah membantu anda mengidentifikasi diri.</li><li> Semua identifikasi yang anda tambahkan ke pengamatan orang lain, yang berpotensi akan mempengaruhi kualitas data dari pengamatan tersebut.</li><li> Semua komentar yang anda tambahkan.</li></ ul><br/>Selanjutnya, tindakan ini tidak dapat diurungkan. Jika anda berubah pikiran nanti, anda tidak akan mendapatkan konten itu kembali.<br/><br/>Jika layanan ini menghasilkan terlalu banyak pemberitahuan, pertimbangkan <a href ="https://www.inaturalist.org/pengguna/edit"> edit pengaturan anda di situs web</a> untuk menyisih dari pemberitahuan tertentu atau berhenti menerima email dari kami. Jika anda mengalami masalah dengan orang tertentu, pertimbangkan <a href="https://www.inaturalist.org/pengguna/edit"> membisukan mereka</a>daripada menghapus akun anda.<br/>< br/>Jika anda masih yakin ingin menghapus akun anda, masukkan <b>\"%1$s\"</b> dalam formulir di bawah ini dan klik tombol untuk menghapus akun anda dan semua data anda.]]></string>
+    <string name="delete_account_message"><![CDATA[Dengan menghapus akun anda, Anda akan menghapus: <br/><br/><ul><li> Semua pengamatan anda, termasuk pekerjaan semua orang yang telah membantu anda mengidentifikasi diri.</li><li> Semua identifikasi yang anda tambahkan ke pengamatan orang lain, yang berpotensi akan mempengaruhi kualitas data dari pengamatan tersebut.</li><li> Semua komentar yang anda tambahkan.</li></ ul><br/>Selanjutnya, tindakan ini tidak dapat diurungkan. Jika anda berubah pikiran nanti, anda tidak akan mendapatkan konten itu kembali.<br/><br/>Jika layanan ini menghasilkan terlalu banyak pemberitahuan, pertimbangkan <a href ="https://www.inaturalist.org/pengguna/edit"> edit pengaturan anda di situs web</a> untuk menyisih dari pemberitahuan tertentu atau berhenti menerima email dari kami. Jika anda mengalami masalah dengan orang tertentu, pertimbangkan untuk<a href="https://www.inaturalist.org/pengguna/edit"> menyenyapkan mereka</a>daripada menghapus akun anda.<br/>< br/>Jika anda masih yakin ingin menghapus akun anda, masukkan <b>\"%1$s\"</b> dalam formulir di bawah ini dan klik tombol untuk menghapus akun anda dan semua data anda.]]></string>
     <string name="your_account_has_been_deleted">Akun anda telah dihapus</string>
     <string name="you_must_enter_username_in_the_form_to_delete_account">Anda harus memasukkan \'%1$s\' di formulir untuk menghapus akun anda</string>
     <!-- Second person hint text asking the user to enter their username -->
@@ -840,53 +842,53 @@
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">Aplikasi yang Anda pakai untuk membagi foto ini menciptakan foto yang tidak layak untuk pengamatan karena mereka tidak merepresentasikan bukti dari pengalaman Anda dengan organisme lain, karena aplikasi tersebut berisi merek yang tidak pantas atau konten komersial, atau melanggar Ketentuan Layanan kami dengan cara lainnya.</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <string name="list_observation_checkbox_description">Kotak centang untuk menyeleksi observasi di mode multi-pilih</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <string name="observation_list_item_iconic_pic_description">Foto thumbnail untuk takson observasi</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
-    <string name="messages">Messages</string>
-    <string name="all_messages">All Messages</string>
-    <string name="search_messages">Search messages</string>
-    <string name="no_messages">You currently have no messages. You can send a new message with the green button, or message them from their profile page.</string>
-    <string name="no_messages_found">No messages found.</string>
-    <string name="send_a_message">Send a message</string>
-    <string name="sending_message">Sending message...</string>
-    <string name="could_not_send_message">Couldn\'t send message: %1$s</string>
-    <string name="subject">Subject</string>
-    <string name="body">Body</string>
-    <string name="type_your_message_here">Type your message here</string>
-    <string name="new_message_to">New Message to %1$s</string>
-    <string name="who_would_you_like_to_send_a_message_to">Who would you like to send a message to?</string>
-    <string name="new_message">New Message</string>
-    <string name="search_for_inaturalist_users">Search for iNaturalist users</string>
-    <string name="please_sign_in_for_messages">You must be logged in to view your messages.</string>
-    <string name="sorry">Sorry</string>
-    <string name="you_must_have_three_observations">You must have three verifiable observations or three identifications for others in order to do that.</string>
-    <string name="mute_this_user">Mute this user</string>
-    <string name="unmute_this_user">Unmute this user</string>
-    <string name="flag_this_conversation">Flag this conversation</string>
-    <string name="mute_this_user_question">Mute this user?</string>
-    <string name="you_will_no_longer_receive_messages">You will no longer receive any notifications about activity from this user, including messages, comments, identifications, and mentions.</string>
-    <string name="mute">Mute</string>
-    <string name="muting_user">Muting user...</string>
-    <string name="unmuting_user">Unmuting user...</string>
-    <string name="failed_muting_user">Failed muting user!</string>
-    <string name="failed_unmuting_user">Failed unmuting user!</string>
-    <string name="flag_conversation">Flag conversation</string>
+    <string name="observation_list_item_obs_pic_description">Foto thumbnail untuk takson</string>
+    <string name="messages">Pesan</string>
+    <string name="all_messages">Semua Pesan</string>
+    <string name="search_messages">Cari Pesan</string>
+    <string name="no_messages">Anda sedang tidak memiliki pesan. Anda dapat mengirim pesan baru dengan tombol hijau, atau mengirim pesan kepada mereka dari halaman profil mereka.</string>
+    <string name="no_messages_found">Pesan tidak ditemukan</string>
+    <string name="send_a_message">Kirim sebuah pesan</string>
+    <string name="sending_message">Mengirim pesan ...</string>
+    <string name="could_not_send_message">Tidak dapat mengirim pesan: %1$s</string>
+    <string name="subject">Subjek</string>
+    <string name="body">Isi</string>
+    <string name="type_your_message_here">Ketik pesan Anda di sini</string>
+    <string name="new_message_to">Pesan baru kepada %1$s</string>
+    <string name="who_would_you_like_to_send_a_message_to">Kepada siapa Anda ingin mengirim pesan?</string>
+    <string name="new_message">Pesan Baru</string>
+    <string name="search_for_inaturalist_users">Cari pengguna iNaturalist</string>
+    <string name="please_sign_in_for_messages">Anda harus login untuk melihat pesan Anda.</string>
+    <string name="sorry">Maaf</string>
+    <string name="you_must_have_three_observations">Anda harus sudah memiliki tiga observasi yang dapat diverifikasi atau tiga identifikasi terhadap pengguna lain untuk dapat melakukan hal tersebut.</string>
+    <string name="mute_this_user">Senyapkan pengguna ini</string>
+    <string name="unmute_this_user">Suarakan pengguna ini</string>
+    <string name="flag_this_conversation">Tandai percakapan ini</string>
+    <string name="mute_this_user_question">Senyapkan pengguna ini?</string>
+    <string name="you_will_no_longer_receive_messages">Anda tidak akan lagi mendapat notifikasi apapun tentang aktivitas dari pengguna ini, termasuk pesan, komentar, identifikasi, dan sebutan.</string>
+    <string name="mute">Senyapkan</string>
+    <string name="muting_user">Menyenyapkan pengguna...</string>
+    <string name="unmuting_user">Menyuarakan pengguna...</string>
+    <string name="failed_muting_user">Gagal menyenyapkan pengguna!</string>
+    <string name="failed_unmuting_user">Gagal menyuarakan pengguna!</string>
+    <string name="flag_conversation">Tandai percakapan</string>
     <string name="spam">Spam</string>
-    <string name="commercial_solicitation">Commercial solicitation, links to nowhere, etc.</string>
-    <string name="offensive_inappropriate">Offensive/Inappropriate</string>
-    <string name="misleading_or_illegal_content">Misleading or illegal content, racial or ethnic slurs, etc. For more on our definition of \"appropriate,\" see the FAQ.</string>
-    <string name="other">Other</string>
-    <string name="some_other_reason">Some other reason you can explain.</string>
-    <string name="continue_text">Continue</string>
-    <string name="why_are_you_flagging_this_item">Why are you flagging this item?</string>
-    <string name="thank_you_for_submitting_the_flag">Thank you for submitting the flag!</string>
-    <string name="flagging_conversation">Flagging conversation...</string>
-    <string name="failed_flagging_conversation">Failed flagging conversation!</string>
-    <string name="no_subject">No Subject</string>
-    <string name="rank_state_of_matter">State of matter</string>
+    <string name="commercial_solicitation">Iklan, link ke mana-mana, dll</string>
+    <string name="offensive_inappropriate">Ofensif/Tidak pantas</string>
+    <string name="misleading_or_illegal_content">Kontent menyesatkan atau ilegal, ejekan rasial atau etnis, dsb. Untuk definisi lebih jelas tentang hal \"tidak pantas\" mohon untuk melihat FAQ</string>
+    <string name="other">Lain</string>
+    <string name="some_other_reason">Beberapa alasan lain yang Anda dapat jelaskan dibawah.</string>
+    <string name="continue_text">Lanjutkan</string>
+    <string name="why_are_you_flagging_this_item">Mengapa Anda menandai item ini?</string>
+    <string name="thank_you_for_submitting_the_flag">Terima kasih telah mengirim tanda!</string>
+    <string name="flagging_conversation">Menandai percakapan...</string>
+    <string name="failed_flagging_conversation">Gagal menandai percakapan!</string>
+    <string name="no_subject">Tidak ada Subjek</string>
+    <string name="rank_state_of_matter">Wujud materi</string>
     <string name="rank_kingdom">Kingdom</string>
     <string name="rank_subkingdom">Subkingdom</string>
     <string name="rank_phylum">Phylum</string>
@@ -914,7 +916,7 @@
     <string name="rank_genushybrid">Genushybrid</string>
     <string name="rank_subgenus">Subgenus</string>
     <string name="rank_section">Section</string>
-    <string name="rank_subsection">subsection</string>
+    <string name="rank_subsection">Subsection</string>
     <string name="rank_complex">Complex</string>
     <!-- Singular -->
     <string name="rank_species">Species</string>
@@ -924,16 +926,16 @@
     <string name="rank_variety">Variety</string>
     <string name="rank_form">Form</string>
     <string name="rank_infrahybrid">Infrahybrid</string>
-    <string name="rank_leaves">Leaves</string>
-    <string name="location_lat_lng">Location: %1$f, %2$f</string>
-    <string name="i_consent_process_personal_info"><![CDATA[I consent to allow iNaturalist to store and process limited kinds of personal information about me in order to manage my account. <b>Learn More</b>]]></string>
-    <string name="about_personal_information">About Personal Information</string>
-    <string name="personal_information_notes"><![CDATA[We store personal information like usernames and email addresses in order to manage accounts on this site, and to comply with privacy laws, we need you to check this box to indicate that you consent to this use of personal information. To learn more about what information we collect and how we use it, please see our <a href="https://www.inaturalist.org/privacy">Privacy Policy</a> and our <a href="https://www.inaturalist.org/terms">Terms of Service</a>.]]></string>
-    <string name="i_agree_to_tos_and_privacy"><![CDATA[I agree to the <a href="https://www.inaturalist.org/terms">Terms of Service</a> and <a href="https://www.inaturalist.org/privacy">Privacy Policy</a>, and I have reviewed the <a href="https://www.inaturalist.org/pages/community+guidelines">Community Guidelines</a>.]]></string>
-    <string name="privacy_policy">Privacy Policy</string>
-    <string name="terms_of_service">Terms of Service</string>
+    <string name="rank_leaves">Daun</string>
+    <string name="location_lat_lng">Lokasi: %1$f, %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[Saya mengijinkan iNaturalist untuk menyimpan dan memproses sebagian informasi pribadi Saya demi pengelolaan akun Saya. <b>Pelajari lebih lanjut</b>]]></string>
+    <string name="about_personal_information">Tentang Informasi Pribadi</string>
+    <string name="personal_information_notes"><![CDATA[Kami menyimpan informasi pribadi seperti nama pengguna dan alamat email untuk mengelola akun-akun di situs ini, dan untuk mematuhi undang-undang privasi, kami meminta Anda untuk mencentang kotak ini untuk menunjukkan bahwa Anda menyetujui penggunaan informasi pribadi ini. Untuk mempelajari lebih lanjut tentang informasi apa yang kami kumpulkan dan bagaimana kami menggunakannya, silakan lihat <a href="https://www.inaturalist.org/privacy"> Kebijakan Privasi </a> dan  <a href="https://www.inaturalist.org/terms">Persyaratan Layanan </a>.]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[Saya menyetujui <a href="https://www.inaturalist.org/terms">Persyaratan Layanan</a> dan <a href="https://www.inaturalist.org/privacy">Kebijakan Privasi</a>, dan Saya telah membaca <a href="https://www.inaturalist.org/pages/community+guidelines">Pedoman Komunitas</a>.]]></string>
+    <string name="privacy_policy">Kebijakan Privasi</string>
+    <string name="terms_of_service">Persyaratan Layanan</string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
-    <string name="deleted_user">Deleted User</string>
+    <string name="deleted_user">Pengguna telah Dihapus</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_short_this_year">MMM d</string>
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
@@ -942,18 +944,18 @@
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
-    <string name="show_common_names">Show common names</string>
-    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
-    <string name="email_must_look_like_email_address">Email must look like an email address</string>
-    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
-    <string name="password_too_short">Password must be at least six characters long</string>
-    <string name="switch_to_grid_view">Switch to grid view</string>
-    <string name="switch_to_list_view">Switch to list view</string>
-    <string name="remove_project_filter">Remove project filter</string>
-    <string name="remove_observer_filter">Remove observer filter</string>
-    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
-    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
-    <string name="filter_observations_by_months">Filter observations by months</string>
+    <string name="show_common_names">Perlihatkan nama umum</string>
+    <string name="show_common_names_description">Matikan jika Anda hanya ingin melihat nama ilmiah.</string>
+    <string name="email_must_look_like_email_address">Email harus terlihat seperti alamat email</string>
+    <string name="username_must_begin_with">Username harus dimulai dengan huruf, tanpa spasi, dan hanya diperbolehkan menggunakan huruf, angka, tanda hubung,  dan garis bawah</string>
+    <string name="password_too_short">Panjang sandi minimal 6 karakter</string>
+    <string name="switch_to_grid_view">Beralih ke tampilan grid</string>
+    <string name="switch_to_list_view">Beralih ke tampilan daftar</string>
+    <string name="remove_project_filter">Hapus filter proyek</string>
+    <string name="remove_observer_filter">Hapus filter pengamat</string>
+    <string name="filter_observations_by_an_exact_date">Filter observasi berdasarkan tanggal tepat</string>
+    <string name="filter_observations_by_a_date_range">Filter observasi berdasarkan rentang tanggal</string>
+    <string name="filter_observations_by_months">Filter observasi berdasarkan bulan</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
 </resources>
