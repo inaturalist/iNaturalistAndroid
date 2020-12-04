@@ -64,7 +64,7 @@
         <activity
             android:name=".TutorialActivity"
             android:configChanges="orientation"
-            android:label="@string/app_name">
+            android:label="iNaturalist">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ObservationListActivity" />
@@ -87,11 +87,11 @@
         <activity
             android:name=".UserActivity"
             android:configChanges="orientation"
-            android:label="@string/app_name"></activity>
+            android:label="iNaturalist"></activity>
         <activity
             android:name=".GuideTaxonActivity"
             android:configChanges="orientation"
-            android:label="@string/app_name">
+            android:label="iNaturalist">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".GuideDetails" />
@@ -167,7 +167,7 @@
         <activity
             android:name=".ProjectSelectorActivity"
             android:configChanges="orientation"
-            android:label="@string/app_name"
+            android:label="iNaturalist"
             android:theme="@style/iNatAppThemeCustomActionBar"
             android:windowSoftInputMode="adjustResize"></activity>
         <activity
@@ -177,7 +177,7 @@
         <activity
             android:name=".TaxonSearchActivity"
             android:configChanges="orientation"
-            android:label="@string/app_name"></activity>
+            android:label="iNaturalist"></activity>
         <activity
             android:name=".LoginSignupActivity"
             android:configChanges="orientation"
@@ -237,7 +237,7 @@
         <activity
             android:name=".ObservationListActivity"
             android:configChanges="orientation"
-            android:label="@string/app_name">
+            android:label="iNaturalist">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -247,7 +247,7 @@
             android:targetActivity=".ObservationListActivity"
             android:enabled="true"
             android:configChanges="orientation"
-            android:label="@string/app_name">
+            android:label="iNaturalist">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -269,7 +269,7 @@
             android:targetActivity=".ObservationListActivity"
             android:configChanges="orientation"
             android:enabled="false"
-            android:label="@string/app_name">
+            android:label="iNaturalist">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -280,7 +280,7 @@
             android:targetActivity=".ObservationListActivity"
             android:configChanges="orientation"
             android:enabled="false"
-            android:label="@string/app_name">
+            android:label="iNaturalist">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -388,7 +388,7 @@
         <activity
             android:name=".ObservationEditor"
             android:configChanges="orientation"
-            android:label="@string/app_name"
+            android:label="iNaturalist"
             android:theme="@style/iNatAppThemeCustomActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -445,7 +445,7 @@
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name" />
+            android:label="iNaturalist" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

@@ -13,6 +13,17 @@ import tempfile
 import xml.etree.ElementTree as ET
 from optparse import OptionParser
 
+class bcolors:
+  HEADER = '\033[95m'
+  OKBLUE = '\033[94m'
+  OKCYAN = '\033[96m'
+  OKGREEN = '\033[92m'
+  WARNING = '\033[93m'
+  FAIL = '\033[91m'
+  ENDC = '\033[0m'
+  BOLD = '\033[1m'
+  UNDERLINE = '\033[4m'
+
 # https://developer.android.com/reference/java/util/Formatter#syntax
 ANDROID_FORMAT_PATTERN = re.compile(r"%((?P<argument_index>\d+)\$)?(?P<flags>[\-\#\+\s0\,\(])?(?P<width>\d+)?(?P<precision>\.\d+)?(?P<conversion>[bhscdoxefgat%n])")
 DATE_FORMAT_KEYS = ['date_short_this_year', 'date_short', 'time_short_24_hour', 'time_short_12_hour']
@@ -117,7 +128,7 @@ def validate_translation(path, key, text, en_string, errors, warnings, options={
       if options.debug:
         print("\t\t{}".format(errors[path][key][-1]))
 
-def validate_android_translations(options={}):
+def en_translations():
   # Build the English reference dicts
   en_tree = ET.parse("iNaturalist/src/main/res/values/strings.xml")
   en_strings = {}
@@ -129,9 +140,25 @@ def validate_android_translations(options={}):
     en_string_arrays[node.get("name")] = [child.text for child in node]
   for node in en_tree.findall("plurals"):
     en_string_plurals[node.get("name")] = {child.get("quantity"): child.text for child in node}
+  return (en_strings, en_string_arrays, en_string_plurals)
+
+def validate_android_translations(options={}):
+  # Build the English reference dicts
+  # en_tree = ET.parse("iNaturalist/src/main/res/values/strings.xml")
+  # en_strings = {}
+  # en_string_arrays = {}
+  # en_string_plurals = {}
+  # for node in en_tree.findall("string"):
+  #   en_strings[node.get("name")] = node.text
+  # for node in en_tree.findall("string-array"):
+  #   en_string_arrays[node.get("name")] = [child.text for child in node]
+  # for node in en_tree.findall("plurals"):
+  #   en_string_plurals[node.get("name")] = {child.get("quantity"): child.text for child in node}
+  en_strings, en_string_arrays, en_string_plurals = en_translations()
   # Compile validation errors
   errors = {}
   warnings = {}
+  progress_counts = {}
   for path in glob("iNaturalist/src/main/res/values-*/strings.xml"):
     if options.locale and options.locale not in path:
       continue
@@ -149,6 +176,8 @@ def validate_android_translations(options={}):
         continue
       en_string = en_strings[key]
       validate_translation(path, key, text, en_string, errors, warnings, options)
+      if text != en_strings[key]:
+        progress_counts[path] = progress_counts[path] + 1 if path in progress_counts else 0
     for string_array in tree.findall("string-array"):
       key = string_array.get("name")
       if options.key and options.key not in key:
@@ -157,8 +186,11 @@ def validate_android_translations(options={}):
         continue
       for idx, item in enumerate(string_array):
         en_string = en_string_arrays[key][idx]
-        if item.text:
-          validate_translation(path, "{}.{}".format(key, idx), item.text, en_string, errors, warnings, options)
+        text = item.text
+        if text:
+          validate_translation(path, "{}.{}".format(key, idx), text, en_string, errors, warnings, options)
+          if text != en_string:
+            progress_counts[path] = progress_counts[path] + 1 if path in progress_counts else 0
     for plural in tree.findall("plurals"):
       key = plural.get("name")
       if options.key and options.key not in key:
@@ -168,27 +200,47 @@ def validate_android_translations(options={}):
       for item in plural:
         item_key = item.get("quantity")
         en_string = en_string_plurals[key][item_key]
-        validate_translation(path, "{}.{}".format(key, item_key), item.text, en_string, errors, warnings, options)
+        text = item.text
+        validate_translation(path, "{}.{}".format(key, item_key), text, en_string, errors, warnings, options)
+        if text != en_string:
+          progress_counts[path] = progress_counts[path] + 1 if path in progress_counts else 0
 
-  # Print validation errors
+  # Print validation errors & progress
+  num_keys = len(en_strings) + sum([len(a) for a in en_string_arrays]) + sum([len(a) for a in en_string_plurals])
+  untranslated = []
   for path in glob("iNaturalist/src/main/res/values-*/strings.xml"):
     if options.locale and options.locale not in path:
       continue
     keys = list(errors[path].keys()) + list(warnings[path].keys())
     keys = [k for k in keys if k != None]
     keys = set(keys)
-    print(path)
+    print(f"{bcolors.BOLD}{path}{bcolors.ENDC}")
+    if path in progress_counts:
+      percent = round(progress_counts[path] / num_keys * 100)
+    else:
+      percent = 0
+    if percent == 0:
+      print(f"\t{bcolors.FAIL}{percent}% translated{bcolors.ENDC}")
+      untranslated.append(path)
+    elif percent < 66:
+      print(f"\t{bcolors.WARNING}{percent}% translated{bcolors.ENDC}")
+    else:
+      print(f"\t{bcolors.OKGREEN}{percent}% translated{bcolors.ENDC}")
     if len(keys) == 0:
-      print("\tNo problems")
+      print(f"\t{bcolors.OKGREEN}No problems{bcolors.ENDC}")
       continue
     for key in keys:
       print("\t{}".format(key))
       if key in errors[path]:
         for error in errors[path][key]:
-          print("\t\tERROR: {}".format(error))
+          print(f"\t\t{bcolors.FAIL}ERROR: {error}{bcolors.ENDC}")
       if key in warnings[path]:
         for warning in warnings[path][key]:
-          print("\t\tWarning: {}".format(warning))
+          print(f"\t\t{bcolors.WARNING}Warning: {warning}{bcolors.ENDC}")
+  if len(untranslated) > 0:
+    print("\nIf you want to delete untranslated files...\n")
+    for path in untranslated:
+      print(f"rm {path}")
 
 def find_unused_keys(options={}):
   en_tree = ET.parse("iNaturalist/src/main/res/values/strings.xml")
@@ -196,6 +248,8 @@ def find_unused_keys(options={}):
   for node in en_tree.findall("string"):
     keys.add(node.get("name"))
   for node in en_tree.findall("string-array"):
+    keys.add(node.get("name"))
+  for node in en_tree.findall("plurals"):
     keys.add(node.get("name"))
   print("Looking for unused keys...")
   unused = []
