@@ -1110,6 +1110,9 @@ public class INaturalistService extends IntentService {
                 if (placeId == -1) placeId = null;
                 Integer taxonId = intent.getIntExtra(TAXON_ID, -1);
                 if (taxonId == -1) taxonId = null;
+                Integer limit = 50;
+                Integer page = intent.getIntExtra(PAGE_NUMBER, -1);
+                if (page == -1) page = 0;
 
                 File tempFile = null;
 
@@ -1139,7 +1142,7 @@ public class INaturalistService extends IntentService {
                     tempFile.delete();
                 }
 
-                BetterJSONObject taxonSuggestions = getTaxonSuggestions(resizedPhotoFilename, latitude, longitude, observedOn, suggestionSource, placeId, taxonId);
+                BetterJSONObject taxonSuggestions = getTaxonSuggestions(resizedPhotoFilename, latitude, longitude, observedOn, suggestionSource, placeId, taxonId, limit, page);
 
                 File resizedFile = new File(resizedPhotoFilename);
                 resizedFile.delete();
@@ -2616,13 +2619,15 @@ public class INaturalistService extends IntentService {
         }
     }
 
-    private BetterJSONObject getTaxonSuggestions(String photoFilename, Double latitude, Double longitude, Timestamp observedOn, String suggestionSource, Integer placeId, Integer taxonId) throws AuthenticationException {
+    private BetterJSONObject getTaxonSuggestions(String photoFilename, Double latitude, Double longitude, Timestamp observedOn, String suggestionSource, Integer placeId, Integer taxonId, Integer limit, Integer page) throws AuthenticationException {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
         String date = observedOn != null ? new SimpleDateFormat("yyyy-MM-dd").format(observedOn) : null;
         ArrayList<NameValuePair> params = new ArrayList<>();
-        String url = String.format(Locale.ENGLISH, API_HOST + "/computervision/score_image");
+        String url = String.format(Locale.ENGLISH, API_HOST + "/taxa/suggest");
 
+        if (limit != null) params.add(new BasicNameValuePair("limit", limit.toString()));
+        if (page != null) params.add(new BasicNameValuePair("page", page.toString()));
         params.add(new BasicNameValuePair("locale", deviceLanguage));
         params.add(new BasicNameValuePair("lat", latitude.toString()));
         params.add(new BasicNameValuePair("lng", longitude.toString()));

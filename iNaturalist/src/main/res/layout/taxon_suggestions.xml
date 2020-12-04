@@ -147,52 +147,59 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     >
-                    <LinearLayout
-                        android:id="@+id/filters"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentRight="true"
-                        android:background="@drawable/rounded_green_button"
-                        android:gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="23dp">
-                        <ImageView
-                            android:layout_width="12dp"
-                            android:layout_height="13dp"
-                            android:src="@drawable/filters_gray"
-                            android:tint="#ffffff"
-                            />
-                        <TextView
+
+                    <RelativeLayout
+                        android:id="@+id/results_top_part"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_centerVertical="true"
+                            android:id="@+id/filters"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/rounded_green_button"
+                            android:gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="8dp"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/filters"
-                            android:textColor="#ffffff"
-                            android:textSize="13sp"
-                            android:layout_marginLeft="6dp"
-                            />
+                            android:layout_height="23dp">
+                            <ImageView
+                                android:layout_width="12dp"
+                                android:layout_height="13dp"
+                                android:src="@drawable/filters_gray"
+                                android:tint="#ffffff"
+                                />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/filters"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:layout_marginLeft="6dp"
+                                />
                         </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/suggestions_description"
-                        android:textSize="14sp"
-                        android:textColor="#8B000000"
-                        android:text="@plurals/were_not_confident"
-                        android:layout_marginLeft="17dp"
-                        android:layout_marginRight="17dp"
-                        android:layout_marginTop="23dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_toLeftOf="@id/filters"
-                        android:layout_alignParentLeft="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
+                        <TextView
+                            android:id="@+id/suggestions_description"
+                            android:layout_centerVertical="true"
+                            android:textSize="14sp"
+                            android:textColor="#8B000000"
+                            android:text="@plurals/were_not_confident"
+                            android:layout_marginLeft="17dp"
+                            android:layout_marginRight="17dp"
+                            android:layout_marginTop="23dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_toLeftOf="@id/filters"
+                            android:layout_alignParentLeft="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/active_filters"
-                        android:layout_below="@id/suggestions_description"
+                        android:layout_below="@id/results_top_part"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
@@ -319,6 +326,7 @@
                     android:layout_marginBottom="20dp"
                     android:layout_gravity="center"
                     android:textColor="#ffffff"
+                    android:textSize="14sp"
                     android:background="@drawable/circular_button"
                     android:text="@string/view_suggestions_not_seen_nearby" />
 

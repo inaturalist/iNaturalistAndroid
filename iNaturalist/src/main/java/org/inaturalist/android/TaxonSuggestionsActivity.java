@@ -547,37 +547,37 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
         }
 
         List<BetterJSONObject> sortedSuggestions = new ArrayList<>(mTaxonSuggestions);
-        Logger.tag(TAG).error("Before: ");
+        Logger.tag(TAG).info("Before: ");
         for (BetterJSONObject s : sortedSuggestions) {
-            Logger.tag(TAG).error(String.format("%s: vision: %f; frequency: %f; combined: %f", s.getJSONObject("taxon").optString("name"), s.getFloat("vision_score"), s.getFloat("frequency_score"), s.getFloat("combined_score")));
+            Logger.tag(TAG).info(String.format("%s: vision: %f; frequency: %f; combined: %f", s.getJSONObject("taxon").optString("name"), s.getJSONObject("source_details").optDouble("vision_score"), s.getJSONObject("source_details").optDouble("frequency_score"), s.getJSONObject("source_details").optDouble("combined_score")));
         }
 
         mViewSuggestionsNotNearByButton.setVisibility(View.VISIBLE);
 
         if (mShowSuggestionsNotNearBy) {
             // Sort by vision_score
-            CollectionUtils.filter(sortedSuggestions, suggestion -> suggestion.getFloat("vision_score") > 0);
-            Collections.sort(sortedSuggestions, (s1, s2) -> Float.compare(s2.getFloat("vision_score"), s1.getFloat("vision_score")));
+            CollectionUtils.filter(sortedSuggestions, suggestion -> suggestion.getJSONObject("source_details").optDouble("vision_score") > 0);
+            Collections.sort(sortedSuggestions, (s1, s2) -> Double.compare(s2.getJSONObject("source_details").optDouble("vision_score"), s1.getJSONObject("source_details").optDouble("vision_score")));
 
             mViewSuggestionsNotNearByButton.setText(R.string.only_view_nearby_suggestions);
         } else {
             // Show only results both vision_score and frequency_score, then sort by combined_score
-            CollectionUtils.filter(sortedSuggestions, suggestion -> (suggestion.getFloat("frequency_score") > 0) && (suggestion.getFloat("vision_score") > 0.3) );
+            CollectionUtils.filter(sortedSuggestions, suggestion -> (suggestion.getJSONObject("source_details").optDouble("frequency_score") > 0) && (suggestion.getJSONObject("source_details").optDouble("vision_score") > 0.3) );
             if (sortedSuggestions.size() == 0) {
                 // Special case - no nearby results
                 sortedSuggestions = new ArrayList<>(mTaxonSuggestions);
-                Collections.sort(sortedSuggestions, (s1, s2) -> Float.compare(s2.getFloat("vision_score"), s1.getFloat("vision_score")));
+                Collections.sort(sortedSuggestions, (s1, s2) -> Double.compare(s2.getJSONObject("source_details").optDouble("vision_score"), s1.getJSONObject("source_details").optDouble("vision_score")));
                 mViewSuggestionsNotNearByButton.setVisibility(View.GONE);
             } else {
-                Collections.sort(sortedSuggestions, (s1, s2) -> Float.compare(s2.getFloat("combined_score"), s1.getFloat("combined_score")));
+                Collections.sort(sortedSuggestions, (s1, s2) -> Double.compare(s2.getJSONObject("source_details").optDouble("combined_score"), s1.getJSONObject("source_details").optDouble("combined_score")));
             }
 
             mViewSuggestionsNotNearByButton.setText(R.string.view_suggestions_not_seen_nearby);
         }
 
-        Logger.tag(TAG).error("After: ");
+        Logger.tag(TAG).info("After: ");
         for (BetterJSONObject s : sortedSuggestions) {
-            Logger.tag(TAG).error(String.format("%s: vision: %f; frequency: %f; combined: %f", s.getJSONObject("taxon").optString("name"), s.getFloat("vision_score"), s.getFloat("frequency_score"), s.getFloat("combined_score")));
+            Logger.tag(TAG).info(String.format("%s: vision: %f; frequency: %f; combined: %f", s.getJSONObject("taxon").optString("name"), s.getJSONObject("source_details").optDouble("vision_score"), s.getJSONObject("source_details").optDouble("frequency_score"), s.getJSONObject("source_details").optDouble("combined_score")));
         }
 
         mSuggestionsList.setAdapter(new TaxonSuggestionAdapter(this, sortedSuggestions, onSuggestion, true));
@@ -589,7 +589,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
         if (mSuggestionSource.equals(INaturalistService.SUGGESTION_SOURCE_VISUAL)) {
             mSuggestionSourceButton.setImageResource(R.drawable.ic_empty_binoculars);
         } else if (mSuggestionSource.equals(INaturalistService.SUGGESTION_SOURCE_RESEARCH_GRADE_OBS)) {
-            mSuggestionSourceButton.setImageResource(R.drawable.ic_empty_id);
+            mSuggestionSourceButton.setImageResource(R.drawable.id_rg);
         }
     }
 
