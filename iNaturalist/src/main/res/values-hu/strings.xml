@@ -198,6 +198,7 @@
     <string name="alert_message_use_argentinat">Az ArgentiNat az argentín iNaturalist Network tagja. Az ArgentiNat helyi intézményi támogatói hozzáférhetnek az emailcímedhez és a megfigyeléseid pontos, egyébként fedett vagy privát koordinátáihoz. Kérjük, hogy próbaképpen ne módosíts a partneri beállításokon, ha 1000-nél több megfigyelésed van. Szeretnéd módosítani a partneri beállításaidat?</string>
     <string name="alert_message_use_inaturalistil">Az iNaturlaist Israel az iyraeli iNaturalist Network tagja. Az iNaturalist Israel helyi intézményi támogatói hozzáférhetnek az emailcímedhez és a megfigyeléseid pontos, egyébként fedett vagy privát koordinátáihoz. Kérjük, hogy próbaképpen ne módosíts a partneri beállításokon, ha 1000-nél több megfigyelésed van. Szeretnéd módosítani a partneri beállításaidat?</string>
     <string name="alert_message_use_inaturalistfi">Az iNaturalist Finland a finnországi iNaturalist Network tagja. Az iNaturalist Finland helyi intézményi támogatói hozzáférhetnek az emailcímedhez és a megfigyeléseid pontos, egyébként fedett vagy privát koordinátáihoz. Kérjük, hogy próbaképpen ne módosíts a partneri beállításokon, ha 1000-nél több megfigyelésed van. Szeretnéd módosítani a partneri beállításaidat?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Szerkesztő</string>
     <string name="license">Licensz</string>
     <string name="download_for_offline_use">Letöltés kapcsolat nélküli használatra</string>
@@ -738,6 +739,7 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Equádor: az iNaturalist Ecuador támógatója az Instituto Nacional de Biodiversidad (INABIO)(<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Izrael: iNaturalist Israel támogatója: University of Haifa (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Natural History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">Mind megjelölése megtekintettként</string>
     <string name="content_hidden">Rejtett tartalom</string>
     <string name="show_hidden_content">Rejtett tartalom megjelenítése</string>

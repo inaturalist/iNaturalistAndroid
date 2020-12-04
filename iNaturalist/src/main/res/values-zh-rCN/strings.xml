@@ -197,6 +197,7 @@
     <string name="alert_message_use_argentinat">ArgentiNat 是 iNaturalist 附属网络位于阿根廷的成员。此操作会让支援 ArgentiNat 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel 是 iNaturalist 附属网络位于以色列的成员。此操作会让支援 iNaturalist Israel 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland is a member of the iNaturalist Network in Finland. Local institutions supporting iNaturalist Finland will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">编辑</string>
     <string name="license">授权</string>
     <string name="download_for_offline_use">下载供离线使用</string>
@@ -731,6 +732,7 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Natural History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">全部标记为已读</string>
     <string name="content_hidden">内容已隐藏</string>
     <string name="show_hidden_content">显示隐藏内容</string>

@@ -123,7 +123,7 @@
     <string name="my_guides">Вашите</string>
     <string name="nearby_guides">Наблизо</string>
     <string name="all_guides">Всички</string>
-    <string name="no_taxa">No taxa found for this guide!</string>
+    <string name="no_taxa">Не бяха открити таксони за това ръководство!</string>
     <string name="search_taxa">Търси таксони...</string>
     <string name="no_internet_guides">Ръководствата изискват връзка с Интернет</string>
     <string name="no_internet_projects">Проектите изискват връзка с Интернет</string>
@@ -198,6 +198,7 @@
     <string name="alert_message_use_argentinat">ArgentiNat е член на Мрежата на iNaturalist в Аржентина. Местните институции, поддържащи ArgentiNat, ще получат достъп до Вашия имейл адрес и до истинските координати на наблюдения, които са маскирани или поверителни. Моля, не променяйте експериментално членството си ако имате повече от 1000 наблюдения. Искате ли да промените членството си?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel е член на Мрежата на iNaturalist в Израел. Местните институции, поддържащи iNaturalist Israel, ще получат достъп до Вашия имейл адрес и до истинските координати на наблюдения, които са маскирани или поверителни. Моля, не променяйте експериментално членството си ако имате повече от 1000 наблюдения. Искате ли да промените членството си?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland е член на Мрежата на iNaturalist във Финландия. Местните институции, поддържащи iNaturalist Finland, ще получат достъп до Вашия имейл адрес и до истинските координати на наблюдения, които са маскирани или поверителни. Моля, не променяйте експериментално членството си ако имате повече от 1000 наблюдения. Искате ли да промените членството си?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Редактор</string>
     <string name="license">Лиценз</string>
     <string name="download_for_offline_use">Изтегли за извънмрежов достъп</string>
@@ -263,8 +264,8 @@
     <string name="downloading_observations">Изтегляне на наблюдения...</string>
     <string name="no_thanks">Не, благодаря</string>
     <string name="turn_on">Включи</string>
-    <string name="introducing_auto_sync">Introducing Auto-Sync!</string>
-    <string name="turn_on_auto_sync">Turn on Auto-Sync in Settings and your observations will be automatically uploaded to iNaturalist.</string>
+    <string name="introducing_auto_sync">Представяме ви Автоматична синхронизация!</string>
+    <string name="turn_on_auto_sync">Включете Автоматичната синхронизация в настройките и наблюденията Ви ще се качват автоматично на iNaturalist.</string>
     <string name="automatic_upload">Автоматично качване (Автосинхронизация)</string>
     <string name="waiting_to_upload">Изчакване за качване...</string>
     <string name="uploading">Качване...</string>
@@ -395,7 +396,7 @@
     <string name="no_connectivity">Няма връзка</string>
     <string name="no_recommended_missions">Изглежда няма препоръки за този район. Пробвайте на друго място.</string>
     <string name="what_to_look_for">За какво да се оглеждате</string>
-    <string name="have_been_seen_here">Have Been Seen Here</string>
+    <string name="have_been_seen_here">Видени тук</string>
     <string name="observe">Наблюдавай</string>
     <string name="nearby_missions">Мисии наблизо</string>
     <string name="searching_your_area">Търсене във Вашия район...</string>
@@ -465,7 +466,7 @@
     <string name="suggest_species_description">Предлагай видове въз основа на визуалното им сходство със снимките.</string>
     <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Визуално подобен</string>
-    <string name="visually_similar_seen_nearby">Визуално подобни / Видени наблизо</string>
+    <string name="visually_similar_seen_nearby">Визуално подобен / Видян наблизо</string>
     <string name="seen_nearby">Видяно наоколо</string>
     <string name="enlarge">Увеличи</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
@@ -474,7 +475,7 @@
     <string name="taxon_has_no_photos">Този таксон няма снимки.</string>
     <string name="terrain">Терен</string>
     <string name="filters">Филтри</string>
-    <string name="exploring_all">Exploring All</string>
+    <string name="exploring_all">Изследване на всичко</string>
     <string name="nearby">Наоколо</string>
     <string name="couldnt_load_results">Неуспешно зареждане на резултати: %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
@@ -607,7 +608,7 @@
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
-    <string name="inat_credits"><![CDATA[iNaturalist съществува благодарение на всеки един участник в общността ни. Хората които създават софтуера, проектират интерфейсите, поддържат инфраструктурата и общността и съдействат за сътрудничества са Ярон Будовски (Yaron Budowski), Аманда Булингтън (Amanda Bullington), Тони Ъуейн (Tony Iwane), Патрик Лери (Patrick Leary), Скот Лори (Scott Loarie), Абхас Мисрарадж (Abhas Misraraj), Кари Селцер (Carrie Seltzer), Алекс Шепърд (Alex Shepard) и Кеничи Уейда (Ken-ichi Ueda).<br/><br/>
+    <string name="inat_credits"><![CDATA[iNaturalist съществува благодарение на всеки един участник в общността ни. Хората които създават софтуера, проектират интерфейсите, поддържат инфраструктурата и общността и съдействат за сътрудничества са Ярон Будовски (Yaron Budowski), Аманда Булингтън (Amanda Bullington), Тони Иуане (Tony Iwane), Патрик Лери (Patrick Leary), Скот Лори (Scott Loarie), Абхас Мишрарадж (Abhas Misraraj), Кари Селцер (Carrie Seltzer), Алекс Шепърд (Alex Shepard) и Кеничи Уейда (Ken-ichi Ueda).<br/><br/>
 CalTech и Cornell Tech помогнаха при разработката на компютърното зрение, което предлага разпознавания по снимки. Благодарим на Грант Ван Хорн (Grant Van Horn), Сърдж Билонги (Serge Belongie) и Пиетро Перона (Pietro Perona) за изследванията им в областта на компютърното зрение. Повече информация можете да намерите на <a href="http://www.visipedia.org">visipedia.org</a>. Специални благодарности на NVIDIA за допълнителното съдействие.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[Международната Мрежа на iNaturalist поддържа локализирани, напълно интегрирани и базирани на iNaturalist уебсайтове в следните държави, благодарение на подкрепата на партньорски организации.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist изразява дълбока признателност и към разработчиците на софтуер с отворен код, създали толкова голяма част от софтуера, на който разчитаме ежедневно. Вижте <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> за подробности относно техните приноси.<br/>
@@ -746,6 +747,7 @@ CalTech и Cornell Tech помогнаха при разработката на 
     <string name="network_credit_inaturalistecuador"><![CDATA[Еквадор: Instituto Nacional de Biodiversidad (INABIO) поддържа iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Израел: University of Haifa поддържа iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Финландия: Finnish Museum of Natural History (LUOMUS) поддържа iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">Маркирай всичко като прегледано</string>
     <string name="content_hidden">Скрито съдържание</string>
     <string name="show_hidden_content">Покажи скритото съдържание</string>
@@ -772,8 +774,8 @@ CalTech и Cornell Tech помогнаха при разработката на 
     <string name="clear_all_debug_logs">Изчисти всички архиви за дебъгване</string>
     <string name="clears_up_storage_room_on_your_phone">Освобождава място на телефона Ви</string>
     <string name="number_of_days_to_store_logs">Колко дни да се съхраняват архивите</string>
-    <string name="send_debug_logs_from_start_date">Send Debug Logs From Start Date</string>
-    <string name="send_debug_logs_by_email">Send debug logs by email (from specified start date)</string>
+    <string name="send_debug_logs_from_start_date">Изпрати отчет за дебъгване от начална дата</string>
+    <string name="send_debug_logs_by_email">Изпрати отчета за дебъгване по имейл (от посочената начална дата)</string>
     <string name="debug_settings">Настройки за дебъгване</string>
     <string name="are_you_sure_you_want_to_delete_logs">Сигурни ли сте, че искате да изтриете всички архиви за дебъгване? Изберете „Да“, само ако искате да освободите място на телефона си.</string>
     <string name="no_log_files_found">Не бяха открити архиви за този период от време – пробвайте по-ранна дата?</string>
@@ -855,24 +857,24 @@ CalTech и Cornell Tech помогнаха при разработката на 
     <string name="no_more_photos_allowed">Наблюденията могат да имат до %1$d снимки. За да добавите друга, трябва да премахнете някоя.</string>
     <string name="warning_multiple_photos">Ако сте добавили снимки на различни видове организми или на един и същи вид, но от различно място или време – трябва да ги премахнете от тук и да ги добавите в отделни наблюдения. Едно наблюдение може да съдържа до %1$d снимки.</string>
     <string name="choosing_specific_language_warning">Нужна е връзка с Интернет за да изберете конкретен език за своя акаунт</string>
-    <string name="running_in_background_notfication">Running in the background so we can run without interruption</string>
-    <string name="opt_out_of_community_taxon">Opt out of the Community Taxon</string>
-    <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
-    <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
+    <string name="running_in_background_notfication">Изпълнява се във фонов режим, така че да може да работи без прекъсване</string>
+    <string name="opt_out_of_community_taxon">Отказване на Консенсусно разпознаване</string>
+    <string name="opt_in_to_community_taxon">Приемане на Консенсусно разпознаване</string>
+    <string name="opt_out_message">Отказвайки Консенсусното разпознаване, ще принудите наблюдението да приеме таксона от последното Ви разпознаване, вместо консенсусния таксон получен от всичките разпознавания добавени към наблюдението. Ако достатъчно разпознавачи не са съгласни с Вас, наблюдението Ви ще придобие Тривиално качество. Не бива да го отказвате, ако не сте сигурни, че Вашето разпознаване е правилно.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
-    <string name="permission_required">Permission Required</string>
+    <string name="permission_required">Изисква се разрешение</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
-    <string name="to_access_your_location">To access your location you must grant location access permission to this app.</string>
+    <string name="to_access_your_location">За достъп до местоположението Ви, трябва да разрешите съответния достъп на това приложение.</string>
     <!-- Dialog title when displaying a message that an action is not permitted -->
-    <string name="forbidden">Forbidden</string>
+    <string name="forbidden">Забранено</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
-    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
+    <string name="app_you_shared_blocked">Приложението, от което споделихте, създава изображения които не са подходящи за наблюдения – защото не представляват свидетелства за срещата Ви с друг организъм, защото включват неуместно брандиране или комерсиално съдържание, или защото нарушават нашите Условия за ползване по друг начин.</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <string name="list_observation_checkbox_description">Поле за отметка за избиране на наблюдение в режим на множествено избиране</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <string name="observation_list_item_iconic_pic_description">Миниатюра на наблюдаван таксон</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
+    <string name="observation_list_item_obs_pic_description">Миниатюра на наблюдение</string>
     <string name="messages">Съобщения</string>
     <string name="all_messages">Всички съобщения</string>
     <string name="search_messages">Търсене на съобщения</string>
@@ -906,8 +908,8 @@ CalTech и Cornell Tech помогнаха при разработката на 
     <string name="commercial_solicitation">Комерсиални предложения, препратки до никъде и т.н.</string>
     <string name="offensive_inappropriate">Обидно/неуместно</string>
     <string name="misleading_or_illegal_content">Подвеждащо или нелегално съдържание, расистки или етнически нападки и т.н. За по-подробна дефиниция на „неуместно“, вижте ЧЗВ.</string>
-    <string name="other">Other</string>
-    <string name="some_other_reason">Some other reason you can explain.</string>
+    <string name="other">Друго</string>
+    <string name="some_other_reason">Друга причина, която можете да поясните.</string>
     <string name="continue_text">Продължи</string>
     <string name="why_are_you_flagging_this_item">Защо маркирате този елемент?</string>
     <string name="thank_you_for_submitting_the_flag">Благодарим за маркирането!</string>

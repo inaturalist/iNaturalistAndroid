@@ -197,6 +197,7 @@
     <string name="alert_message_use_argentinat">ArgentiNat là thành viên của Mạng lưới iNaturalist ở Argentina. Các tổ chức địa phương hỗ trợ ArgentiNat sẽ có quyền truy cập vào địa chỉ email của bạn và truy cập vào tọa độ xác thực của các quan sát được đặt ở chế độ che khuất hoặc riêng tư. Vui lòng không thử thay đổi liên kết của bạn nếu bạn có hơn 1000 quan sát. Bạn có muốn thay đổi liên kết của bạn?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel là thành viên của Mạng lưới iNaturalist ở Israel. Các tổ chức địa phương hỗ trợ iNaturalist Israel sẽ có quyền truy cập vào địa chỉ email của bạn và truy cập vào tọa độ xác thực của các quan sát được đặt ở chế độ che khuất hoặc riêng tư. Vui lòng không thử thay đổi liên kết của bạn nếu bạn có hơn 1000 quan sát. Bạn có muốn thay đổi liên kết của bạn?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland là thành viên của Mạng lưới iNaturalist ở Phần Lan. Các tổ chức địa phương hỗ trợ iNaturalist Finland sẽ có quyền truy cập vào địa chỉ email của bạn và truy cập vào tọa độ xác thực của các quan sát được đặt ở chế độ che khuất hoặc riêng tư. Vui lòng không thử thay đổi liên kết của bạn nếu bạn có hơn 1000 quan sát. Bạn có muốn thay đổi liên kết của bạn?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Trình biên tập</string>
     <string name="license">Bản quyền</string>
     <string name="download_for_offline_use">Tải xuống để đọc ngoại tuyến</string>
@@ -731,6 +732,7 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) hỗ trợ cho iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: Trường đại học Haifa hỗ trợ cho iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Phần Lan: Bảo tàng Lịch sử thiên nhiên Phần Lan (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">Đánh dấu tất cả là đã đọc</string>
     <string name="content_hidden">Ẩn nội dung</string>
     <string name="show_hidden_content">Hiển thị nội dung ẩn</string>

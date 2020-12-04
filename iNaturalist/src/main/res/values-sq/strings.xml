@@ -1,70 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">iNaturalist</string>
-    <string name="email_address">Email Address</string>
-    <string name="delete_observation">Delete observation</string>
-    <string name="observation_deleted">Observation deleted</string>
-    <string name="species_guess_hint">Species name</string>
-    <string name="ok">OK</string>
-    <string name="cancel">Cancel</string>
-    <string name="loading">Loading...</string>
-    <string name="sync_required">Sync required</string>
-    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
-    <string name="street">Street</string>
+    <string name="email_address">Adresa e Emailit</string>
+    <string name="delete_observation">Fshi vëzhgimin</string>
+    <string name="observation_deleted">Vëzhgimi u fshi</string>
+    <string name="species_guess_hint">Emri i specieve</string>
+    <string name="ok">Në Rregull</string>
+    <string name="cancel">Anullo</string>
+    <string name="loading">Po ngarkohet...</string>
+    <string name="sync_required">Kërkohet sinkronizimi</string>
+    <string name="sync_required_message">%1$d vëzhgime,%2$d fotografi për të sinkronizuar</string>
+    <string name="street">Rruga</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
-    <string name="satellite">Satellite</string>
-    <string name="couldnt_load_nearby_observations">Couldn\'t load nearby observations: %1$s</string>
-    <string name="username_invalid">Username or password was invalid, please sign in again.</string>
-    <string name="signing_in">Signing in...</string>
-    <string name="signed_in">Signed in!</string>
-    <string name="please_sign_in">Please sign in</string>
-    <string name="please_sign_in_description">Please sign in to your iNaturalist account or sign up for a new one.</string>
-    <string name="please_enable_location_services">Please enable location services in order to find your current location...</string>
-    <string name="go_to_settings">Go to Settings</string>
-    <string name="photo_not_specified">Photo not specified</string>
-    <string name="set_date">Date</string>
-    <string name="set_time">Time</string>
+    <string name="satellite">Sateliti</string>
+    <string name="couldnt_load_nearby_observations"> Vëzhgimet në afërsi nuk mund të ngarkohen:%1$s</string>
+    <string name="username_invalid">Emri i përdoruesit ose fjalëkalimi ishin të pavlefshëm, ju lutem identifikohuni përsëri.</string>
+    <string name="signing_in">Po identifikohet...</string>
+    <string name="signed_in">Identifikuar!</string>
+    <string name="please_sign_in">Ju lutem hyni</string>
+    <string name="please_sign_in_description">Ju lutemi identifikohuni në llogarinë tuaj iNaturalist ose regjistrohuni për një të re.</string>
+    <string name="please_enable_location_services">Ju lutemi aktivizoni shërbimet e vendndodhjes në mënyrë që të gjeni vendndodhjen tuaj aktuale...</string>
+    <string name="go_to_settings">Shko te Cilësimet</string>
+    <string name="photo_not_specified">Foto nuk është specifikuar</string>
+    <string name="set_date">Data</string>
+    <string name="set_time">Ora</string>
     <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
-    <string name="something_went_wrong">Blast, something went wrong: %1$s</string>
-    <string name="edit">Edit</string>
-    <string name="oh_no">Oh no! %1$s</string>
-    <string name="observations">My Observations</string>
-    <string name="map">Map</string>
-    <string name="settings">Settings</string>
-    <string name="projects">Projects</string>
-    <string name="delete_photo">Delete photo</string>
-    <string name="menu">Menu</string>
-    <string name="my_location">My Location</string>
-    <string name="nearby_observations">Nearby Observations</string>
-    <string name="add">Add</string>
-    <string name="view_on_inat">View on iNaturalist.org</string>
-    <string name="reload">Reload</string>
-    <string name="view_in_browser">View in browser</string>
-    <string name="add_observation">Add observation</string>
-    <string name="take_picture">Take picture</string>
-    <string name="save">Save</string>
-    <string name="no_observations_yet">No observations yet!</string>
-    <string name="or">or</string>
-    <string name="signed_out">Sign out</string>
-    <string name="username">Username</string>
-    <string name="password">Password</string>
-    <string name="unknown">Unknown</string>
-    <string name="unknown_species">Unknown species</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">OK</string>
-    <string name="com_facebook_loginview_log_out_button">Log Out</string>
-    <string name="com_facebook_loginview_log_in_button">Log In</string>
-    <string name="com_facebook_loginview_logged_in_as">Logged in as: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Logged in using Facebook</string>
-    <string name="com_facebook_loginview_log_out_action">Log Out</string>
-    <string name="com_facebook_loginview_cancel_action">Cancel</string>
-    <string name="com_facebook_logo_content_description">Facebook Logo</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Log In&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Logged In</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Not Logged In</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d were here</string>
+    <string name="something_went_wrong">Shpërthim, diçka shkoi keq:%1$s</string>
+    <string name="edit">Redakto</string>
+    <string name="oh_no">Oh jo!%1$s</string>
+    <string name="observations">Vëzhgimet e mia</string>
+    <string name="map">Harta</string>
+    <string name="settings">Cilësimet</string>
+    <string name="projects">Projektet</string>
+    <string name="delete_photo">Fshi Foton</string>
+    <string name="menu">Menuja</string>
+    <string name="my_location">Vendndodhja ime</string>
+    <string name="nearby_observations">Vëzhgimet në Afërsi</string>
+    <string name="add">Shto</string>
+    <string name="view_on_inat">Shiko në iNaturalist.org</string>
+    <string name="reload">Ringarko</string>
+    <string name="view_in_browser">Shiko në shfletues</string>
+    <string name="add_observation">Shto vëzhgimin</string>
+    <string name="take_picture">Bej foto</string>
+    <string name="save">Ruaj</string>
+    <string name="no_observations_yet">Asnjë vëzhgim akoma!</string>
+    <string name="or">Ose</string>
+    <string name="signed_out">Dilni</string>
+    <string name="username">Emri i përdoruesit</string>
+    <string name="password">Fjalëkalimi</string>
+    <string name="unknown">I Panjohur</string>
+    <string name="unknown_species">Specie të pa njohura</string>
+    <string name="com_facebook_dialogloginactivity_ok_button">Në Rregull</string>
+    <string name="com_facebook_loginview_log_out_button">Shkyçu</string>
+    <string name="com_facebook_loginview_log_in_button">Hyni</string>
+    <string name="com_facebook_loginview_logged_in_as">Identifikuar si:%1$s</string>
+    <string name="com_facebook_loginview_logged_in_using_facebook">Identifikuar duke përdorur Facebook</string>
+    <string name="com_facebook_loginview_log_out_action">Shkyçu</string>
+    <string name="com_facebook_loginview_cancel_action">Anullo</string>
+    <string name="com_facebook_logo_content_description">Logoja e Facebook</string>
+    <string name="com_facebook_usersettingsfragment_log_in_button">Hyni&#8230;</string>
+    <string name="com_facebook_usersettingsfragment_logged_in">Identifikuar</string>
+    <string name="com_facebook_usersettingsfragment_not_logged_in">Nuk jeni i identifikuar</string>
+    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d ishin këtu</string>
     <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d were here</string>
-    <string name="com_facebook_picker_done_button_text">Done</string>
+    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d ishin këtu</string>
+    <string name="com_facebook_picker_done_button_text">U Krye</string>
     <string name="com_facebook_choose_friends">Choose Friends</string>
     <string name="com_facebook_nearby">Nearby</string>
     <string name="com_facebook_loading">Loading...</string>
@@ -124,67 +124,67 @@
     <string name="nearby_guides">Nearby</string>
     <string name="all_guides">All</string>
     <string name="no_taxa">No taxa found for this guide!</string>
-    <string name="search_taxa">Search taxa...</string>
-    <string name="no_internet_guides">Guides require an Internet connection</string>
-    <string name="no_internet_projects">Projects require an Internet connection</string>
-    <string name="locale_gl">Galician</string>
-    <string name="locale_eu">Basque</string>
-    <string name="use_device_language_settings">Use device language settings</string>
-    <string name="choose_location">Choose Location</string>
-    <string name="done">Done</string>
-    <string name="please_sign_in_via_settings">You must be logged in to view projects you\'ve joined.</string>
-    <string name="contact_support">Contact Support</string>
-    <string name="credits">Designed and built by iNaturalist.org with support from the California Academy of Sciences</string>
-    <string name="leave_project">Leave Project</string>
-    <string name="leave_project_confirmation">Are you sure you want to leave this project?</string>
-    <string name="discard_location_changes">Are you sure you want to discard unsaved changes?</string>
-    <string name="edit_location">Edit Location</string>
-    <string name="edit_locality_notes">Edit Locality Notes</string>
-    <string name="get_current_location">Get current location</string>
-    <string name="pull_to_refresh">Pull to refresh...</string>
-    <string name="release_to_refresh">Release to refresh...</string>
-    <string name="refreshing">Refreshing...</string>
+    <string name="search_taxa">Kërko taksat...</string>
+    <string name="no_internet_guides">Udhëzuesit kërkojnë një lidhje interneti</string>
+    <string name="no_internet_projects">Projektet kërkojnë një lidhje në Internet</string>
+    <string name="locale_gl">Galike</string>
+    <string name="locale_eu">Baskisht</string>
+    <string name="use_device_language_settings">Përdorni cilësimet e gjuhës së pajisjes</string>
+    <string name="choose_location">Zgjidhni Vendndodhjen</string>
+    <string name="done">U krye</string>
+    <string name="please_sign_in_via_settings">Duhet të jeni të regjistruar për të parë projektet në të cilat jeni bashkuar.</string>
+    <string name="contact_support">Kontaktoni me Ndihmën</string>
+    <string name="credits">Projektuar dhe ndërtuar nga iNaturalist.org me mbështetje nga Akademia e Shkencave e Kalifornisë</string>
+    <string name="leave_project">Lini Projektin</string>
+    <string name="leave_project_confirmation">A jeni i sigurt që doni të largoheni nga ky projekt?</string>
+    <string name="discard_location_changes">A jeni i sigurt që doni të fshini ndryshimet e pa ruajtura?</string>
+    <string name="edit_location">Redakto Vendndodhjen</string>
+    <string name="edit_locality_notes">Redaktoni Shënimet e Lokalitetit</string>
+    <string name="get_current_location">Merrni vendndodhjen aktuale</string>
+    <string name="pull_to_refresh">Tërhiqeni për të rifreskuar...</string>
+    <string name="release_to_refresh">Lëshojeni për të rifreskuar ...</string>
+    <string name="refreshing">Duke Rifreskuar...</string>
     <plurals name="sync_x_observations">
-        <item quantity="one">Sync %1$d observation</item>
-        <item quantity="other">Sync %1$d observations</item>
+        <item quantity="one">Sinkronizoni%1$d vëzhgimin</item>
+        <item quantity="other">Sinkronizoni%1$d vëzhgim</item>
     </plurals>
-    <string name="sync_observations">Sync Observations</string>
-    <string name="lets_get_started">Let\'s get started!</string>
-    <string name="view_nearby_observations">View Nearby Observations</string>
-    <string name="skip_for_now">Skip for Now</string>
+    <string name="sync_observations">Sinkronizo Vezhgimet</string>
+    <string name="lets_get_started">Le të fillojmë!</string>
+    <string name="view_nearby_observations">Shikoni Vëzhgimet në afërsi</string>
+    <string name="skip_for_now">Kalo për tani</string>
     <string-array name="tutorial_titles">
         <item></item>
-        <item>Observe</item>
-        <item>Share</item>
-        <item>Learn</item>
-        <item>Contribute</item>
+        <item>Vrojtim</item>
+        <item>Shpërndaje</item>
+        <item>Mëso</item>
+        <item>Kontribuoni</item>
     </string-array>
     <string-array name="tutorial_descriptions">
-        <item>Explore and Connect with Nature</item>
-        <item>Get outside! Find something wild, and take a clear, full frame photo.</item>
-        <item>Share your observation with the iNaturalist community.</item>
-        <item>Check back for comments and identifications on your observation!</item>
-        <item><![CDATA[<b>Research Grade</b> observations are shared with scientists working to better understand and protect nature.]]></item>
+        <item>Eksploroni dhe Lidhuni me Natyrën</item>
+        <item>Dil jashtë!  Gjeni diçka të egër dhe bëni një fotografi të qartë, të plotë.</item>
+        <item>Ndani vëzhgimin tuaj me komunitetin iNaturalist.</item>
+        <item>Kontrolloni përsëri për komente dhe identifikime mbi vëzhgimin tuaj</item>
+        <item><![CDATA[Vëzhgimet e <b> Shkallës së Kërkimit </b> ndahen me shkencëtarët që punojnë për të kuptuar dhe mbrojtur më mirë natyrën.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
-        <item>Open</item>
-        <item>Obscured</item>
-        <item>Private</item>
+        <item>Hape</item>
+        <item>E fshehur</item>
+        <item>Privat</item>
     </string-array>
-    <string name="alert_sign_out">Are you sure you want to sign out? This will delete all your observations on this device. It will not affect any observations you\'ve uploaded to iNaturalist.</string>
-    <string name="alert_unsupported_media_type">Sorry, but there was a problem loading the photo from this source</string>
+    <string name="alert_sign_out">Je i sigurt që dëshiron të dalësh?  Kjo do të fshijë të gjitha vëzhgimet tuaja në këtë pajisje.  Kjo nuk do të ndikojë në asnjë vëzhgim që keni ngarkuar në iNaturalist.</string>
+    <string name="alert_unsupported_media_type">Na vjen keq, por pati një problem në ngarkimin e fotografisë nga ky burim</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
-    <string name="explore">Explore</string>
-    <string name="restricted_to_current_map_area">Restricted to current map area</string>
-    <string name="search">Search</string>
-    <string name="details">Details</string>
-    <string name="observation_photos">Observation Photos</string>
-    <string name="remove">Remove?</string>
-    <string name="no_observations_found">No observations found</string>
-    <string name="license_none">None, all rights reserved</string>
-    <string name="sources_and_attribution">Sources and Attribution</string>
-    <string name="photos"><![CDATA[<b>Photos:</b> %1$s]]></string>
-    <string name="text"><![CDATA[<b>Text:</b> %1$s]]></string>
+    <string name="explore">Eksploro</string>
+    <string name="restricted_to_current_map_area">E kufizuar në zonën aktuale të hartës</string>
+    <string name="search">Kërko</string>
+    <string name="details">Detajet</string>
+    <string name="observation_photos">Fotografitë e vëzhgimit</string>
+    <string name="remove">Hiqni?</string>
+    <string name="no_observations_found">Nuk u gjet asnjë vëzhgim</string>
+    <string name="license_none">Asnjë, të gjitha të drejtat e rezervuara</string>
+    <string name="sources_and_attribution">Burimet dhe atribuimi</string>
+    <string name="photos"><![CDATA[<b>Fotografitë:</b> %1$s]]></string>
+    <string name="text"><![CDATA[<b>Teksti:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">The main iNaturalist Network. Clicking OK will set your app as part of the global iNaturalist network.</string>
     <string name="alert_message_use_naturalista">NaturaLista is a member of the iNaturalist Network in Mexico. Local institutions supporting NaturaLista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
@@ -198,6 +198,7 @@
     <string name="alert_message_use_argentinat">ArgentiNat is a member of the iNaturalist Network in Argentina. Local institutions supporting ArgentiNat will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland is a member of the iNaturalist Network in Finland. Local institutions supporting iNaturalist Finland will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editor</string>
     <string name="license">License</string>
     <string name="download_for_offline_use">Download for offline use</string>
@@ -241,28 +242,28 @@
     <string name="recommended_next_step">Recommended Next Step</string>
     <string name="could_not_register_user">Couldn\'t register user</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
-    <string name="login_signup">Log In / Sign Up</string>
-    <string name="please_sign_in_via_settings_for_guides">You must be logged in to view your guides.</string>
-    <string name="please_sign_in_for_updates">You must be logged in to view your updates.</string>
-    <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="https://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
-    <string name="activity">Activity</string>
-    <string name="camera">Take Photo</string>
-    <string name="upload_photo">Choose Image</string>
-    <string name="menu_text">No Photo</string>
-    <string name="first">1st</string>
-    <string name="make_first">Make 1st</string>
-    <string name="notes">Notes</string>
-    <string name="location_is">Location is</string>
-    <string name="is_captive">It is captive or cultivated</string>
-    <string name="location_visibility">Location Visibility</string>
-    <string name="set_location">Location</string>
-    <string name="coordinates_lat">Lat:</string>
-    <string name="coordinates_lon">Lon:</string>
-    <string name="coordinates_acc">Acc. </string>
-    <string name="required">* Required</string>
-    <string name="downloading_observations">Downloading observations...</string>
-    <string name="no_thanks">No Thanks</string>
-    <string name="turn_on">Turn On</string>
+    <string name="login_signup">Identifikohuni/Regjistrohu</string>
+    <string name="please_sign_in_via_settings_for_guides">Duhet të jeni të regjistruar për të parë udhëzuesit tuaj</string>
+    <string name="please_sign_in_for_updates">Duhet të jeni të kyçur për të parë azhonimet tuaja.</string>
+    <string name="by_using_inat_terms"><![CDATA[Duke përdorur iNaturalist ju pranoni <b> <a href="https://www.inaturalist.org/pages/terms"> Kushtet e Shërbimit </a> </b> dhe <b> <a href="https://www.inaturalist.org/pages/privacy"> Politikat e Privatësisë </a> </b>]]></string>
+    <string name="activity">Aktiviteti</string>
+    <string name="camera">Bëj foto</string>
+    <string name="upload_photo">Zgjidhni Imazhin</string>
+    <string name="menu_text">Asnjë Foto</string>
+    <string name="first">1-shi</string>
+    <string name="make_first">Bëje të parën</string>
+    <string name="notes">Shënimet</string>
+    <string name="location_is">Vendndodhja është</string>
+    <string name="is_captive">Ështëbe rritur vetë apo e mbjellë</string>
+    <string name="location_visibility">Dukshmëria e vendndodhjes</string>
+    <string name="set_location">Vendndodhja</string>
+    <string name="coordinates_lat">Gjër:</string>
+    <string name="coordinates_lon">Gjat:</string>
+    <string name="coordinates_acc">Sak. </string>
+    <string name="required">* Kërkohet</string>
+    <string name="downloading_observations">Po shkarkon vëzhgimet ...</string>
+    <string name="no_thanks">Jo Faleminderit</string>
+    <string name="turn_on">Ndize</string>
     <string name="introducing_auto_sync">Introducing Auto-Sync!</string>
     <string name="turn_on_auto_sync">Turn on Auto-Sync in Settings and your observations will be automatically uploaded to iNaturalist.</string>
     <string name="automatic_upload">Automatic Upload (Auto Sync)</string>
@@ -466,7 +467,7 @@
     <string name="enlarge">Enlarge</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">View Children</string>
-    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG extensions</string>
+    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
     <string name="taxon_has_no_photos">This taxon has no photos.</string>
     <string name="terrain">Terrain</string>
     <string name="filters">Filters</string>
@@ -738,6 +739,7 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Natural History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">Mark all as viewed</string>
     <string name="content_hidden">Content Hidden</string>
     <string name="show_hidden_content">Show Hidden Content</string>

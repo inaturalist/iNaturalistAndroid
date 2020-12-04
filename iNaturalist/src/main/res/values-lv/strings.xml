@@ -200,6 +200,7 @@ globālā iNaturalist tīkla.</string>
     <string name="alert_message_use_argentinat">ArgentiNat ir daļa no iNaturalist tīkla Argentīnā. Vietējām organizācijām, kas atbalsta NaturaLista būs pieeja tavai e-pasta adresei un novērojumu faktiskajām koordinātām – tas ietver gan publikai apslēptās, gan privātās koordinātas. Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu. Vai vēlies pievienoties citam iNaturalist partnerim?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel ir daļa no iNaturalist tīkla Izraēlā. Vietējām organizācijām, kas atbalsta NaturaLista būs pieeja tavai e-pasta adresei un novērojumu faktiskajām koordinātām – tas ietver gan publikai apslēptās, gan privātās koordinātas. Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu. Vai vēlies pievienoties citam iNaturalist partnerim?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland ir daļa no iNaturalist tīkla Somijā. Vietējām organizācijām, kas atbalsta NaturaLista būs pieeja tavai e-pasta adresei un novērojumu faktiskajām koordinātām – tas ietver gan publikai apslēptās, gan privātās koordinātas. Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu. Vai vēlies pievienoties citam iNaturalist partnerim?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Redaktors</string>
     <string name="license">Licence</string>
     <string name="download_for_offline_use">Lejupielādēt bezsaistes lietošanai</string>
@@ -228,9 +229,9 @@ globālā iNaturalist tīkla.</string>
     <string name="already_have_account">Tev jau ir konts?</string>
     <string name="log_in">Pieslēgšanās</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
-    <string name="sign_up">Reģistrācija</string>
+    <string name="sign_up">Reģistrēties</string>
     <!-- Title of the view used to sign up for a new account -->
-    <string name="sign_up_title">Sign Up</string>
+    <string name="sign_up_title">Reģistrācija</string>
     <string name="min_6_chars">Vismaz seši simboli</string>
     <string name="use_my_license"><![CDATA[Jā, licencējiet manu saturu, lai zinātnieki varētu izmantot manus datus (ieteicams). <b>Uzzināt vairāk.</b>]]></string>
     <string name="content_licensing">Satura licencēšana</string>
@@ -439,7 +440,7 @@ globālā iNaturalist tīkla.</string>
     <string name="conservation_status_least_concern">Zems risks</string>
     <string name="conservation_status_near_threatened">Gandrīz apdraudēts</string>
     <string name="conservation_status_vulnerable">Saudzējams</string>
-    <string name="conservation_status_endangered">Izmirstošs</string>
+    <string name="conservation_status_endangered">Apdraudēts</string>
     <string name="conservation_status_critically_endangered">Kritiski apdraudēts</string>
     <string name="conservation_status_extinct_in_the_wild">Izmiris savvaļā</string>
     <string name="conservation_status_extinct">Izmiris</string>
@@ -546,7 +547,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <!-- Indonesian sub-sub-national place type -->
     <string name="regency">Pavaldonība</string>
     <string name="constituency">Vēlēšanu apgabals</string>
-    <string name="local_authority">Vietējā pašvaldība</string>
+    <string name="local_authority">Vietējā organizācija</string>
     <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">\"Poblacion\" administratīvā teritorija</string>
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
@@ -747,6 +748,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="network_credit_inaturalistecuador"><![CDATA[Ekvadora: Instituto Nacional de Biodiversidad (INABIO), kas uztur iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Izraēla: University of Haifa, kas uztur iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Somija: Finnish Museum of Naturalist History (LUOMUS), kas uztur iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">Atzīmēt visu kā skatītu</string>
     <string name="content_hidden">Slēpts saturs</string>
     <string name="show_hidden_content">Rādīt slēpto saturu</string>
