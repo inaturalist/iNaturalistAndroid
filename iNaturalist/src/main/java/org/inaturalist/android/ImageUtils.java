@@ -357,7 +357,16 @@ public class ImageUtils {
 
         try {
             if (photoUri != null) {
-                is = context.getContentResolver().openInputStream(photoUri);
+                try {
+                    is = context.getContentResolver().openInputStream(photoUri);
+                } catch (SecurityException exc) {
+                    // This could happen when if the app that exposes this URI is still active (not in background).
+                    // Could happen if it's been a while between importing the photo and actually triggering the import itself (e.g.
+                    // share from Google Photos app to iNat -> first time asking for media permissions -> taking some time to approve this permission ->
+                    // Google Photos is in the background for a while during this time)
+                    Logger.tag(TAG).error(exc);
+                    return null;
+                }
             } else {
                 is = new FileInputStream(new File(path));
             }
