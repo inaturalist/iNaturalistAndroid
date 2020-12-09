@@ -1063,7 +1063,7 @@
         android:visibility="gone"
         android:paddingTop="8dp"
         android:paddingLeft="17dp"
-        android:paddingRight="17dp"
+        android:paddingRight="0dp"
         android:paddingBottom="8dp"
         android:background="#ffffff"
         android:layout_alignParentBottom="true"
@@ -1083,10 +1083,11 @@
 
         <ImageView
             android:id="@+id/add_comment_done"
-            android:layout_width="22dp"
+            android:layout_width="60dp"
             android:layout_height="22dp"
-            android:layout_marginBottom="3dp"
-            android:layout_alignBottom="@id/add_comment_text"
+            android:scaleType="fitEnd"
+            android:paddingRight="17dp"
+            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:src="@drawable/ic_send_black_48dp"
             android:tint="@color/inatapptheme_color" />
