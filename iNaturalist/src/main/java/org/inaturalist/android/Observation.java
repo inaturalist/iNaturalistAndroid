@@ -777,10 +777,13 @@ public class Observation implements BaseColumns, Serializable {
             return isModified;
         }
     }
-
     public ContentValues getContentValues() {
+        return getContentValues(false);
+    }
+
+    public ContentValues getContentValues(boolean forceNullValues) {
         ContentValues cv = new ContentValues();
-        if (created_at != null) { cv.put(CREATED_AT, created_at.getTime()); }
+        if (created_at != null) cv.put(CREATED_AT, created_at.getTime());
         cv.put(DESCRIPTION, description);
         cv.put(GEOPRIVACY, geoprivacy);
         cv.put(TAXON_GEOPRIVACY, taxon_geoprivacy);
@@ -790,7 +793,13 @@ public class Observation implements BaseColumns, Serializable {
         cv.put(ID_PLEASE, id_please);
         cv.put(LATITUDE, latitude);
         cv.put(LONGITUDE, longitude);
-        if (observed_on != null) { cv.put(OBSERVED_ON, observed_on.getTime()); }
+        if (observed_on != null || forceNullValues) {
+            if (observed_on == null) {
+                cv.putNull(OBSERVED_ON);
+            } else {
+                cv.put(OBSERVED_ON, observed_on.getTime());
+            }
+        }
         cv.put(OBSERVED_ON_STRING, observed_on_string);
         cv.put(OUT_OF_RANGE, out_of_range);
         cv.put(CAPTIVE, captive);
@@ -811,8 +820,14 @@ public class Observation implements BaseColumns, Serializable {
         cv.put(SPECIES_GUESS, species_guess);
         cv.put(PREFERRED_COMMON_NAME, preferred_common_name);
         cv.put(TAXON_ID, taxon_id);
-        if (time_observed_at != null) { cv.put(TIME_OBSERVED_AT, time_observed_at.getTime()); }
-        if (updated_at != null) { cv.put(UPDATED_AT, updated_at.getTime()); }
+        if (time_observed_at != null || forceNullValues) {
+            if (time_observed_at == null) {
+                cv.putNull(TIME_OBSERVED_AT);
+            } else {
+                cv.put(TIME_OBSERVED_AT, time_observed_at.getTime());
+            }
+        }
+        if (updated_at != null) cv.put(UPDATED_AT, updated_at.getTime());
         cv.put(USER_AGENT, user_agent);
         cv.put(USER_ID, user_id);
         cv.put(USER_LOGIN, user_login);
@@ -821,7 +836,11 @@ public class Observation implements BaseColumns, Serializable {
         cv.put(LAST_COMMENTS_COUNT, last_comments_count);
         cv.put(LAST_IDENTIFICATIONS_COUNT, last_identifications_count);
         cv.put(IS_DELETED, is_deleted);
-        cv.put(PREFERS_COMMUNITY_TAXON, (String)(prefers_community_taxon == null ? null : prefers_community_taxon.toString()));
+        if (prefers_community_taxon == null) {
+            cv.putNull(PREFERS_COMMUNITY_TAXON);
+        } else {
+            cv.put(PREFERS_COMMUNITY_TAXON, prefers_community_taxon.toString());
+        }
 
         return cv;
     }

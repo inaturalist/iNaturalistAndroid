@@ -286,10 +286,20 @@ public class ObservationEditor extends AppCompatActivity {
             }
 
             mMenu.getItem(0).setEnabled(mApp.isNetworkAvailable());
+
+            refreshMenuItems();
         }
 
-
         return true;
+    }
+
+    private void refreshMenuItems() {
+        mMenu.getItem(1).setVisible(mDateSetByUser != null);
+        mMenu.getItem(2).setVisible(mTimeSetByUser != null);
+        mMenu.getItem(3).setVisible(
+                (mLatitudeView.getText().length() > 0) ||
+                (mLongitudeView.getText().length() > 0) ||
+                (mAccuracyView.getText().length() > 0));
     }
 
     /**
@@ -1389,6 +1399,86 @@ public class ObservationEditor extends AppCompatActivity {
             case android.R.id.home:
                 return onBack();
 
+            case R.id.remove_location:
+                mHelper.confirm(getString(R.string.remove_location), getString(R.string.are_you_sure_you_want_to_remove_location),
+                        (DialogInterface.OnClickListener) (dialogInterface, i) -> {
+                            mLatitudeView.setText("");
+                            mLongitudeView.setText("");
+                            mAccuracyView.setText("");
+                            findViewById(R.id.coordinates).setVisibility(View.GONE);
+                            mObservation.latitude = null;
+                            mObservation.longitude = null;
+                            mObservation.positional_accuracy = null;
+                            setPlaceGuess(null);
+                            refreshMenuItems();
+                        },
+                        (dialogInterface, i) -> {
+                        },
+                        R.string.yes,
+                        R.string.no
+                );
+
+                return true;
+
+            case R.id.remove_date:
+                mHelper.confirm(getString(R.string.remove_date_observed), getString(R.string.are_you_sure_you_want_to_remove_date),
+                        (DialogInterface.OnClickListener) (dialogInterface, i) -> {
+                            mDateSetByUser = null;
+                            mObservation.observed_on = null;
+                            mObservedOnButton.setText(R.string.set_date);
+                            mObservedOnButton.setTextColor(Color.parseColor("#757575"));
+
+                            if (mTimeSetByUser != null) {
+                                // Just time set now
+                                Timestamp refDate = new Timestamp(System.currentTimeMillis());
+                                Timestamp datetime = new Timestamp(refDate.getYear(), refDate.getMonth(), refDate.getDate(), mTimeSetByUser.getHours(), mTimeSetByUser.getMinutes(), 0, 0);
+                                if (datetime.getTime() > System.currentTimeMillis()) {
+                                    datetime = new Timestamp(System.currentTimeMillis());
+                                }
+                                mObservedOnStringTextView.setText(mApp.formatDatetime(datetime));
+                            } else {
+                                // No time nor date
+                                mObservedOnStringTextView.setText("");
+                            }
+
+                            refreshMenuItems();
+                        },
+                        (dialogInterface, i) -> {
+                        },
+                        R.string.yes,
+                        R.string.no
+                );
+
+                return true;
+
+            case R.id.remove_time:
+                mHelper.confirm(getString(R.string.remove_time_observed), getString(R.string.are_you_sure_you_want_to_remove_time),
+                        (DialogInterface.OnClickListener) (dialogInterface, i) -> {
+                            mTimeSetByUser = null;
+                            mObservation.time_observed_at = null;
+                            mTimeObservedAtButton.setText(R.string.set_time);
+                            mTimeObservedAtButton.setTextColor(Color.parseColor("#757575"));
+
+                            if (mDateSetByUser != null) {
+                                // Just date set now
+                                Timestamp refDate = mDateSetByUser;
+                                Timestamp datetime = new Timestamp(refDate.getYear(), refDate.getMonth(), refDate.getDate(), 0, 0, 0, 0);
+                                mObservedOnStringTextView.setText(mApp.formatDatetime(datetime));
+                            } else {
+                                // No time nor date
+                                mObservedOnStringTextView.setText("");
+                            }
+
+                            refreshMenuItems();
+                        },
+                        (dialogInterface, i) -> {
+                        },
+                        R.string.yes,
+                        R.string.no
+                );
+
+                return true;
+
             case R.id.prefers_community_taxon:
                 if ((mObservation.prefers_community_taxon == null) || (mObservation.prefers_community_taxon == true)) {
                     confirm(ObservationEditor.this, R.string.opt_out_of_community_taxon, R.string.opt_out_message,
@@ -1587,7 +1677,9 @@ public class ObservationEditor extends AppCompatActivity {
         }
         if (((mObservation.description == null) && (mDescriptionTextView.getText().length() > 0)) || (mObservation.description != null)) mObservation.description = mDescriptionTextView.getText().toString();
         if (mObservedOnStringTextView.getText() == null || mObservedOnStringTextView.getText().length() == 0) {
-            mObservation.observed_on_string = null; 
+            mObservation.observed_on_string = null;
+            mObservation.observed_on = null;
+            mObservation.time_observed_at = null;
         } else {
             mObservation.observed_on_string = mObservedOnStringTextView.getText().toString();
             mObservation.observed_on = mDateSetByUser;
@@ -1808,7 +1900,7 @@ public class ObservationEditor extends AppCompatActivity {
 
             try {
                 mObservation.owners_identification_from_vision = mFromSuggestion;
-                ContentValues cv = mObservation.getContentValues();
+                ContentValues cv = mObservation.getContentValues(true);
                 if (mObservation.latitude_changed()) {
                     cv.put(Observation.POSITIONING_METHOD, "gps");
                     cv.put(Observation.POSITIONING_DEVICE, "gps");
@@ -1901,6 +1993,7 @@ public class ObservationEditor extends AppCompatActivity {
             mDateSetByUser = date;
             mObservedOnButton.setTextColor(Color.parseColor("#000000"));
 
+            refreshMenuItems();
             AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_DATE_CHANGED);
         }
     };
@@ -1939,6 +2032,7 @@ public class ObservationEditor extends AppCompatActivity {
             mTimeObservedAtButton.setTextColor(Color.parseColor("#000000"));
             mTimeSetByUser = datetime;
 
+            refreshMenuItems();
             AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_DATE_CHANGED);
         }
     };
@@ -2188,6 +2282,7 @@ public class ObservationEditor extends AppCompatActivity {
 
         mLatitudeView.setText(Double.toString(location.getLatitude()));
         mLongitudeView.setText(Double.toString(location.getLongitude()));
+        refreshMenuItems();
 
         findViewById(R.id.coordinates).setVisibility(View.VISIBLE);
 
@@ -2462,6 +2557,7 @@ public class ObservationEditor extends AppCompatActivity {
                 findViewById(R.id.coordinates).setVisibility(View.VISIBLE);
                 findViewById(R.id.accuracy_prefix).setVisibility(View.VISIBLE);
                 findViewById(R.id.accuracy).setVisibility(View.VISIBLE);
+                refreshMenuItems();
             }
          } else if (requestCode == TAXON_SEARCH_REQUEST_CODE) {
             mTaxonSearchStarted = false;

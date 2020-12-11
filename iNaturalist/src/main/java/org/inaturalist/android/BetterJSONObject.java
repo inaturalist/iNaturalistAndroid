@@ -157,7 +157,7 @@ public class BetterJSONObject implements Serializable {
 	
 	public void put(String name, Object value) {
 	    try {
-	        mJSONObject.put(name, value);
+	        mJSONObject.put(name, value != null ? value : JSONObject.NULL);
 	    } catch (JSONException e1) {
 	        try {
 	            mJSONObject.put(name, value.toString());
