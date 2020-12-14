@@ -151,9 +151,9 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
 
             BetterJSONObject resultsObject = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.TAXON_SUGGESTIONS);
 
-            Logger.tag(TAG).error("AAA: Query: " + resultsObject.getJSONObject("query"));
-            Logger.tag(TAG).error("AAA: Taxon: " + resultsObject.getJSONObject("queryTaxon"));
-            Logger.tag(TAG).error("AAA: Place: " + resultsObject.getJSONObject("queryPlace"));
+            Logger.tag(TAG).debug("Query: " + resultsObject.getJSONObject("query"));
+            Logger.tag(TAG).debug("queryTaxon: " + resultsObject.getJSONObject("queryTaxon"));
+            Logger.tag(TAG).debug("queryPlace: " + resultsObject.getJSONObject("queryPlace"));
 
             if ((resultsObject == null) || (!resultsObject.has("results"))) {
                 // Connection error
