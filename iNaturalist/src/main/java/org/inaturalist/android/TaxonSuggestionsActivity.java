@@ -151,11 +151,35 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
 
             BetterJSONObject resultsObject = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.TAXON_SUGGESTIONS);
 
+            Logger.tag(TAG).error("AAA: Query: " + resultsObject.getJSONObject("query"));
+            Logger.tag(TAG).error("AAA: Taxon: " + resultsObject.getJSONObject("queryTaxon"));
+            Logger.tag(TAG).error("AAA: Place: " + resultsObject.getJSONObject("queryPlace"));
+
             if ((resultsObject == null) || (!resultsObject.has("results"))) {
                 // Connection error
                 mNoNetwork.setVisibility(View.VISIBLE);
                 mLoadingSuggestions.setVisibility(View.GONE);
                 return;
+            }
+
+            boolean shouldRefreshFilters = false;
+            if (mSearchFilters.taxon == null) {
+                JSONObject taxon = resultsObject.getJSONObject("queryTaxon");
+                if (taxon != null) {
+                    mSearchFilters.taxon = taxon;
+                    shouldRefreshFilters = true;
+                }
+            }
+            if (mSearchFilters.place == null) {
+                JSONObject place = resultsObject.getJSONObject("queryPlace");
+                if (place != null) {
+                    mSearchFilters.place = place;
+                    shouldRefreshFilters = true;
+                }
+            }
+
+            if (shouldRefreshFilters) {
+                refreshFilters();
             }
 
             mTaxonSuggestions = new ArrayList<>();
@@ -391,6 +415,15 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
 
         if ((mSearchFilters.place != null) && (!mSuggestionSource.equals(INaturalistService.SUGGESTION_SOURCE_VISUAL))) {
             serviceIntent.putExtra(INaturalistService.PLACE_ID, mSearchFilters.place.optInt("id"));
+        }
+
+        if (mSuggestionSource.equals(INaturalistService.SUGGESTION_SOURCE_RESEARCH_GRADE_OBS)) {
+            if ((mSearchFilters.taxon == null) && (mSearchFilters.place == null)) {
+                // No filter set by user - use current observation details, if available
+                serviceIntent.putExtra(INaturalistService.PLACE_LAT, mObservation.latitude);
+                serviceIntent.putExtra(INaturalistService.PLACE_LNG, mObservation.longitude);
+                serviceIntent.putExtra(INaturalistService.TAXON_ID, mObservation.taxon_id);
+            }
         }
 
         ContextCompat.startForegroundService(this, serviceIntent);

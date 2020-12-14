@@ -320,6 +320,8 @@ public class INaturalistService extends IntentService {
     public static final String ADD_OBSERVATION_TO_PROJECT_RESULT = "add_observation_to_project_result";
     public static final String DELETE_ACCOUNT_RESULT = "delete_account_result";
     public static final String TAXON_ID = "taxon_id";
+    public static final String PLACE_LAT = "place_lat";
+    public static final String PLACE_LNG = "place_lng";
     public static final String RESEARCH_GRADE = "research_grade";
     public static final String TAXON = "taxon";
     public static final String UUID = "uuid";
@@ -1113,6 +1115,10 @@ public class INaturalistService extends IntentService {
                 Integer limit = 50;
                 Integer page = intent.getIntExtra(PAGE_NUMBER, -1);
                 if (page == -1) page = 0;
+                Double placeLat = intent.getDoubleExtra(PLACE_LAT, -1);
+                if (placeLat == -1) placeLat = null;
+                Double placeLng = intent.getDoubleExtra(PLACE_LNG, -1);
+                if (placeLng == -1) placeLng = null;
 
                 File tempFile = null;
 
@@ -1142,7 +1148,7 @@ public class INaturalistService extends IntentService {
                     tempFile.delete();
                 }
 
-                BetterJSONObject taxonSuggestions = getTaxonSuggestions(resizedPhotoFilename, latitude, longitude, observedOn, suggestionSource, placeId, taxonId, limit, page);
+                BetterJSONObject taxonSuggestions = getTaxonSuggestions(resizedPhotoFilename, latitude, longitude, observedOn, suggestionSource, placeId, taxonId, placeLat, placeLng, limit, page);
 
                 File resizedFile = new File(resizedPhotoFilename);
                 resizedFile.delete();
@@ -2619,7 +2625,7 @@ public class INaturalistService extends IntentService {
         }
     }
 
-    private BetterJSONObject getTaxonSuggestions(String photoFilename, Double latitude, Double longitude, Timestamp observedOn, String suggestionSource, Integer placeId, Integer taxonId, Integer limit, Integer page) throws AuthenticationException {
+    private BetterJSONObject getTaxonSuggestions(String photoFilename, Double latitude, Double longitude, Timestamp observedOn, String suggestionSource, Integer placeId, Integer taxonId, Double placeLat, Double placeLng, Integer limit, Integer page) throws AuthenticationException {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
         String date = observedOn != null ? new SimpleDateFormat("yyyy-MM-dd").format(observedOn) : null;
@@ -2640,6 +2646,13 @@ public class INaturalistService extends IntentService {
         if (taxonId != null) {
             params.add(new BasicNameValuePair("taxon_id", taxonId.toString()));
         }
+        if (placeLat != null) {
+            params.add(new BasicNameValuePair("place_lat", placeLat.toString()));
+        }
+        if (placeLng != null) {
+            params.add(new BasicNameValuePair("place_lng", placeLng.toString()));
+        }
+
 
         JSONArray json = request(url, "post", params, null, true, true, true);
         if (json == null || json.length() == 0) {
