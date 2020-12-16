@@ -408,7 +408,7 @@ public class ImageUtils {
 
             Bitmap resizedBitmap = BitmapFactory.decodeStream(is);
 
-            if ((newHeight != originalHeight) || (newWidth != originalWidth)) {
+            if ((resizedBitmap != null) && ((newHeight != originalHeight) || (newWidth != originalWidth))) {
                 if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
                     // Resize bitmap using Lanczos algorithm (provides smoother/better results than the
                     // built-in Android resize methods)
