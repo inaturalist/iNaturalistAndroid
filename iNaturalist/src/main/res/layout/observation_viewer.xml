@@ -1081,16 +1081,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <ImageView
-            android:id="@+id/add_comment_done"
-            android:layout_width="60dp"
-            android:layout_height="22dp"
-            android:scaleType="fitEnd"
-            android:paddingRight="17dp"
+        <RelativeLayout
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:src="@drawable/ic_send_black_48dp"
-            android:tint="@color/inatapptheme_color" />
+            android:id="@+id/add_comment_done"
+            android:paddingRight="17dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp">
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_send_black_48dp"
+                android:tint="@color/inatapptheme_color" />
+        </RelativeLayout>
 
     </RelativeLayout>
 

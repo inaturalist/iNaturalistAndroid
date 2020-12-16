@@ -248,7 +248,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     private View mAddCommentBackground;
     private ViewGroup mAddCommentContainer;
     private EditText mAddCommentText;
-    private ImageView mAddCommentDone;
+    private View mAddCommentDone;
     private MentionsAutoComplete mCommentMentions;
     private AttributesReceiver mAttributesReceiver;
     private ChangeAttributesReceiver mChangeAttributesReceiver;
@@ -679,7 +679,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         mAddCommentBackground = (View) findViewById(R.id.add_comment_background);
         mAddCommentContainer = (ViewGroup) findViewById(R.id.add_comment_container);
-        mAddCommentDone = (ImageView) findViewById(R.id.add_comment_done);
+        mAddCommentDone = findViewById(R.id.add_comment_done);
         mAddCommentText = (EditText) findViewById(R.id.add_comment_text);
         mCommentMentions = new MentionsAutoComplete(ObservationViewerActivity.this, mAddCommentText);
 
