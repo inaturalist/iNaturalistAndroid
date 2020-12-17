@@ -1902,6 +1902,23 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                             case R.id.view_on_inat:
                                 mHelper.openUrlInBrowser(obsUrl);
                                 break;
+
+                            case R.id.share_location:
+                                String locationLabel;
+                                if (mTaxon == null) {
+                                    // No taxon set - don't display the label
+                                    locationLabel = "";
+                                } else if (mApp.getShowScientificNameFirst()) {
+                                    // Show scientific name
+                                    locationLabel = mTaxon.optString("name", "");;
+                                } else {
+                                    locationLabel = TaxonUtils.getTaxonName(ObservationViewerActivity.this, mTaxon);
+                                }
+
+                                String uri = String.format("geo:0,0?q=%f,%f(%s)", mObservation.latitude, mObservation.longitude, locationLabel);
+                                Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                                startActivity(mapIntent);
+                                break;
                         }
                     }
                 };
@@ -1909,6 +1926,11 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
                     PopupMenu popup = new PopupMenu(ObservationViewerActivity.this, mSharePhoto);
                     popup.getMenuInflater().inflate(R.menu.share_photo_menu, popup.getMenu());
+                    if ((mObservation.latitude == null) || (mObservation.longitude == null)) {
+                        // No latitude/longitude - Hide "Share Location" menu option
+                        popup.getMenu().getItem(1).setVisible(false);
+                    }
+
                     popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(android.view.MenuItem menuItem) {

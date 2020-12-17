@@ -1004,5 +1004,6 @@
     <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date observed?</string>
     <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
     <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
+    <string name="share_location">Share Location</string>
 </resources>
 

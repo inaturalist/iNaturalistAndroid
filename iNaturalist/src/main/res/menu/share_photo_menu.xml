@@ -5,6 +5,10 @@
         android:title="@string/share"/>
 
     <item
+        android:id="@+id/share_location"
+        android:title="@string/share_location"/>
+
+    <item
         android:id="@+id/view_on_inat"
         android:title="@string/view_on_inat"/>
 
