@@ -1407,8 +1407,11 @@ public class ObservationEditor extends AppCompatActivity {
                             mAccuracyView.setText("");
                             findViewById(R.id.coordinates).setVisibility(View.GONE);
                             mObservation.latitude = null;
+                            mObservation.private_latitude = null;
                             mObservation.longitude = null;
+                            mObservation.private_longitude = null;
                             mObservation.positional_accuracy = null;
+                            mObservation.private_positional_accuracy = null;
                             setPlaceGuess(null);
                             refreshMenuItems();
                         },
@@ -1424,22 +1427,14 @@ public class ObservationEditor extends AppCompatActivity {
                 mHelper.confirm(getString(R.string.remove_date_observed), getString(R.string.are_you_sure_you_want_to_remove_date),
                         (DialogInterface.OnClickListener) (dialogInterface, i) -> {
                             mDateSetByUser = null;
+                            mTimeSetByUser = null;
                             mObservation.observed_on = null;
+                            mObservation.time_observed_at = null;
                             mObservedOnButton.setText(R.string.set_date);
                             mObservedOnButton.setTextColor(Color.parseColor("#757575"));
-
-                            if (mTimeSetByUser != null) {
-                                // Just time set now
-                                Timestamp refDate = new Timestamp(System.currentTimeMillis());
-                                Timestamp datetime = new Timestamp(refDate.getYear(), refDate.getMonth(), refDate.getDate(), mTimeSetByUser.getHours(), mTimeSetByUser.getMinutes(), 0, 0);
-                                if (datetime.getTime() > System.currentTimeMillis()) {
-                                    datetime = new Timestamp(System.currentTimeMillis());
-                                }
-                                mObservedOnStringTextView.setText(mApp.formatDatetime(datetime));
-                            } else {
-                                // No time nor date
-                                mObservedOnStringTextView.setText("");
-                            }
+                            mTimeObservedAtButton.setText(R.string.set_time);
+                            mTimeObservedAtButton.setTextColor(Color.parseColor("#757575"));
+                            mObservedOnStringTextView.setText("");
 
                             refreshMenuItems();
                         },
@@ -1463,7 +1458,7 @@ public class ObservationEditor extends AppCompatActivity {
                                 // Just date set now
                                 Timestamp refDate = mDateSetByUser;
                                 Timestamp datetime = new Timestamp(refDate.getYear(), refDate.getMonth(), refDate.getDate(), 0, 0, 0, 0);
-                                mObservedOnStringTextView.setText(mApp.formatDatetime(datetime));
+                                mObservedOnStringTextView.setText(mApp.formatDate(datetime));
                             } else {
                                 // No time nor date
                                 mObservedOnStringTextView.setText("");
@@ -2247,6 +2242,7 @@ public class ObservationEditor extends AppCompatActivity {
             mLocationGuess.setText(R.string.set_location);
             mLocationGuess.setTextColor(Color.parseColor("#757575"));
             mObservation.place_guess = null;
+            mObservation.private_place_guess = null;
         }
     }
 

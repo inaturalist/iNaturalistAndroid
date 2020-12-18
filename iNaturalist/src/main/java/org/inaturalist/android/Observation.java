@@ -598,11 +598,13 @@ public class Observation implements BaseColumns, Serializable {
         if (!partial) bo.put("id_please", id_please);
         bo.put("latitude", latitude == null ? null : latitude.toString().replace(',', '.'));
         bo.put("longitude", longitude == null ? null : longitude.toString().replace(',', '.'));
+        if ((latitude == null) && (longitude == null)) bo.put("location", null);
         bo.put("observed_on", observed_on);
         bo.put("observed_on_string", observed_on_string);
         if (!partial) bo.put("out_of_range", out_of_range);
         bo.put("captive_flag", captive);
         bo.put("place_guess", (private_place_guess != null) && (private_place_guess.length() > 0) ? private_place_guess : place_guess);
+        bo.put("private_place_guess", private_place_guess);
         bo.put("uuid", uuid);
         bo.put("owners_identification_from_vision", owners_identification_from_vision != null ? owners_identification_from_vision : false);
         if (!partial) bo.put("scientific_name", scientific_name);
@@ -613,6 +615,7 @@ public class Observation implements BaseColumns, Serializable {
         bo.put("positioning_method", positioning_method);
         bo.put("private_latitude", private_latitude == null ? null : private_latitude.toString().replace(',', '.'));
         bo.put("private_longitude", private_longitude == null ? null : private_longitude.toString().replace(',', '.'));
+        if ((private_latitude == null) && (private_longitude == null)) bo.put("private_location", null);
         bo.put("private_positional_accuracy", private_positional_accuracy);
         bo.put("quality_grade", quality_grade);
         bo.put("species_guess", species_guess);

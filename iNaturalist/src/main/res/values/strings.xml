@@ -998,10 +998,10 @@
     <string name="filter_observations_by_months">Filter observations by months</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="remove_date_observed">Remove date observed</string>
+    <string name="remove_date_observed">Remove date &amp; time observed</string>
     <string name="remove_time_observed">Remove time observed</string>
     <string name="remove_location">Remove location</string>
-    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date observed?</string>
+    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; observed?</string>
     <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
     <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
     <string name="share_location">Share Location</string>

@@ -6704,6 +6704,19 @@ public class INaturalistService extends IntentService {
                     obs.remove("latitude");
                 }
             }
+            if (!isPOST) {
+                // It's an observation update (PUT request) - instead of null values for location/place_guess - write empty strings
+                if (obs.isNull("latitude")) obs.put("latitude", "");
+                if (obs.isNull("longitude")) obs.put("longitude", "");
+                if (obs.isNull("private_latitude")) obs.put("private_latitude", "");
+                if (obs.isNull("private_longitude")) obs.put("private_longitude", "");
+                if (obs.isNull("location")) obs.put("location", "");
+                if (obs.isNull("private_location")) obs.put("private_location", "");
+                if (obs.isNull("place_guess")) obs.put("place_guess", "");
+                if (obs.isNull("private_place_guess")) obs.put("private_place_guess", "");
+                if (obs.isNull("location")) obs.put("location", "");
+                if (obs.isNull("private_location")) obs.put("private_location", "");
+            }
 
             JSONObject obsContainer = new JSONObject();
             obsContainer.put("observation", obs);
