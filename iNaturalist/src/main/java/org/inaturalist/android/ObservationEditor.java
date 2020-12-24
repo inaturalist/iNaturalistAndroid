@@ -25,6 +25,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -126,6 +129,10 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 
 public class ObservationEditor extends AppCompatActivity {
     private final static String TAG = "INAT: ObservationEditor";
@@ -203,6 +210,7 @@ public class ObservationEditor extends AppCompatActivity {
 	public static final String OBSERVATION_PROJECT = "observation_project";
     public static final String TAXON = "taxon";
     public static final String OBSERVATION_JSON = "observation_json";
+    public static final String DUPLICATE = "duplicate";
 
     private List<ProjectFieldViewer> mProjectFieldViewers;
     private Spinner mGeoprivacy;
@@ -249,6 +257,8 @@ public class ObservationEditor extends AppCompatActivity {
     private ImageView mBottomTakePhoto;
     private File mCapturedPhotoFile;
     @State public String mCapturedPhotoFilePath;
+    @State public boolean mDuplicate;
+    @State public int mOnlineDuplicatedPhotosAndSounds;
 
     @Override
 	protected void onStop()
@@ -408,10 +418,105 @@ public class ObservationEditor extends AppCompatActivity {
                 finish();
                 return;
             }
+            mDuplicate = intent.getBooleanExtra(DUPLICATE, false);
+
             switch (ObservationProvider.URI_MATCHER.match(uri)) {
             case Observation.OBSERVATION_ID_URI_CODE:
-                getIntent().setAction(Intent.ACTION_EDIT);
-                mUri = uri;
+
+                if (!mDuplicate) {
+                    getIntent().setAction(Intent.ACTION_EDIT);
+                    mUri = uri;
+                } else {
+                    // Duplicate existing observation
+                    Logger.tag(TAG).info("Duplicate (insert): " + uri);
+
+                    mUri = getContentResolver().insert(Observation.CONTENT_URI, null);
+                    if (mUri == null) {
+                        Logger.tag(TAG).error("Failed to insert new observation from " + uri);
+                        finish();
+                        return;
+                    }
+
+                    setResult(RESULT_OK, (new Intent()).setAction(mUri.toString()));
+                    getIntent().setAction(Intent.ACTION_INSERT);
+
+                    // Duplicate only certain properties of the observation
+                    Cursor newObsCursor = getContentResolver().query(mUri, Observation.PROJECTION, null, null, null);
+                    Cursor originalObsCursor = getContentResolver().query(uri, Observation.PROJECTION, null, null, null);
+                    Observation originalObs = new Observation(originalObsCursor);
+                    Observation newObs = new Observation(newObsCursor);
+
+                    mHelper.loading();
+
+                    newObsCursor.close();
+                    originalObsCursor.close();
+
+                    newObs.observed_on_string = originalObs.observed_on_string;
+                    newObs.place_guess = originalObs.place_guess;
+                    newObs.private_place_guess = originalObs.private_place_guess;
+                    newObs.latitude = originalObs.latitude;
+                    newObs.longitude = originalObs.longitude;
+                    newObs.private_longitude = originalObs.private_longitude;
+                    newObs.private_latitude = originalObs.private_latitude;
+                    newObs.positional_accuracy = originalObs.positional_accuracy;
+                    newObs.private_positional_accuracy = originalObs.private_positional_accuracy;
+                    newObs.geoprivacy = originalObs.geoprivacy;
+
+                    ContentValues cv = newObs.getContentValues();
+                    Logger.tag(TAG).debug("onCreate: Duplicate: " + mUri + ":" + cv);
+                    getContentResolver().update(mUri, cv, null, null);
+
+                    mCursor = getContentResolver().query(mUri, Observation.PROJECTION, null, null, null);
+                    mObservation = new Observation(mCursor);
+                    mApp.setIsObservationCurrentlyBeingEdited(mObservation._id, true);
+                    Logger.tag(TAG).error("UUID duplicate - " + mObservation.uuid);
+                    generateUUIDForObs();
+
+                    // Copy all photos and sounds as well (in order)
+
+                    mPhotosAndSoundsAdded = new ArrayList<>();
+                    Cursor imageCursor  = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                            ObservationPhoto.PROJECTION,
+                            "(observation_uuid=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
+                            new String[]{originalObs.uuid},
+                            ObservationPhoto.DEFAULT_SORT_ORDER);
+
+
+                    mOnlineDuplicatedPhotosAndSounds = 0;
+
+                    Cursor soundCursor = getContentResolver().query(ObservationSound.CONTENT_URI,
+                            ObservationSound.PROJECTION,
+                            "(observation_uuid=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
+                            new String[]{originalObs.uuid},
+                            ObservationSound.DEFAULT_SORT_ORDER);
+
+                    while (!soundCursor.isAfterLast()) {
+                        boolean isOnline = duplicateSoundByCursor(soundCursor, false);
+                        if (isOnline) {
+                            mOnlineDuplicatedPhotosAndSounds++;
+                        }
+                        soundCursor.moveToNext();
+                    }
+                    soundCursor.close();
+
+                    while (!imageCursor.isAfterLast()) {
+                        boolean isOnline = duplicatePhotoByCursor(imageCursor, false);
+                        if (isOnline) {
+                            mOnlineDuplicatedPhotosAndSounds++;
+                        }
+                        imageCursor.moveToNext();
+                    }
+
+                    if (mOnlineDuplicatedPhotosAndSounds == 0) {
+                        mHelper.stopLoading();
+                    }
+
+                    imageCursor.close();
+                    mCursor.close();
+                    mCursor = null;
+                    mObservation = null;
+
+                }
                 break;
             case Observation.OBSERVATIONS_URI_CODE:
                 Logger.tag(TAG).error("Insert 2: " + uri);
@@ -459,7 +564,9 @@ public class ObservationEditor extends AppCompatActivity {
                 return;
             }
 
-            mPhotosAndSoundsAdded = new ArrayList<>();
+            if (!mDuplicate) {
+                mPhotosAndSoundsAdded = new ArrayList<>();
+            }
             mPhotosRemoved = new ArrayList<>();
             mSoundsRemoved = new ArrayList<>();
         } else {
@@ -3195,7 +3302,7 @@ public class ObservationEditor extends AppCompatActivity {
         }
 
         // Resize photo to 2048x2048 max
-        String resizedPhoto = ImageUtils.resizeImage(this, path, photoUri, 2048);
+        String resizedPhoto = ImageUtils.resizeImage(this, path, isDuplicated ? null : photoUri, 2048);
 
         if (resizedPhoto == null) {
             return null;
@@ -3444,17 +3551,94 @@ public class ObservationEditor extends AppCompatActivity {
     	updateImagesAndSounds();
     }
 
-    private void duplicatePhoto(int position) {
-        GalleryCursorAdapter adapter = (GalleryCursorAdapter) mGallery.getAdapter();
-        if (position >= adapter.getPhotoCount()) {
-            return;
+    private boolean duplicateSoundByCursor(Cursor cursor, boolean refreshPositions) {
+        ObservationSound os = new ObservationSound(cursor);
+
+        // Add a duplicate of this sound
+
+        // Copy file
+        String soundUrl = os.file_url;
+        String soundFileName = os.filename;
+        String extension = FileUtils.getExtension(this, Uri.parse(soundFileName != null ? soundFileName : soundUrl));
+        final File destFile = new File(getFilesDir(), UUID.randomUUID().toString() + "." + extension);
+
+        Logger.tag(TAG).info("Duplicate: " + os + ":" + soundFileName + ":" + soundUrl);
+
+        if (soundFileName != null) {
+            // Local file - copy it
+            try {
+                FileUtils.copyFile(new File(soundFileName), destFile);
+                addDuplicatedSound(destFile, refreshPositions);
+            } catch (IOException e) {
+                Logger.tag(TAG).error(e);
+                Toast.makeText(getApplicationContext(), getString(R.string.couldnt_duplicate_sound), Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+        } else {
+            // Online only - need to download it and then copy
+            new Thread(() -> {
+                try {
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url(soundUrl)
+                            .addHeader("Accept", "*/*")
+                            .build();
+
+                    Response response = client.newCall(request).execute();
+
+                    FileOutputStream fileOutput = new FileOutputStream(destFile);
+                    InputStream inputStream = response.body().byteStream();
+
+                    byte[] buffer = new byte[1024];
+                    int bufferLength = 0;
+
+                    while ( (bufferLength = inputStream.read(buffer)) > 0 ) {
+                        fileOutput.write(buffer, 0, bufferLength);
+                    }
+                    fileOutput.close();
+
+                    addDuplicatedSound(destFile, refreshPositions);
+
+                    if (!refreshPositions) {
+                        mOnlineDuplicatedPhotosAndSounds--;
+                        if (mOnlineDuplicatedPhotosAndSounds == 0) {
+                            mHelper.stopLoading();
+                            // Refresh all photos
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    updateImagesAndSounds();
+                                }
+                            });
+                        }
+                    }
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), getString(R.string.couldnt_duplicate_sound), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), getString(R.string.couldnt_duplicate_sound), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }).start();
+
         }
 
-        mPhotosChanged = true;
+        return soundFileName == null;
+    }
 
-        Cursor cursor = adapter.getCursor();
-        cursor.moveToPosition(position);
-
+    private boolean duplicatePhotoByCursor(Cursor cursor, boolean refreshPositions) {
         ObservationPhoto op = new ObservationPhoto(cursor);
 
         // Add a duplicate of this photo (in a position ahead of this one)
@@ -3470,11 +3654,11 @@ public class ObservationEditor extends AppCompatActivity {
             // Local file - copy it
             try {
                 FileUtils.copyFile(new File(photoFileName), destFile);
-                addDuplicatedPhoto(op, destFile);
+                addDuplicatedPhoto(op, destFile, refreshPositions);
             } catch (IOException e) {
                 Logger.tag(TAG).error(e);
                 Toast.makeText(getApplicationContext(), getString(R.string.couldnt_duplicate_photo), Toast.LENGTH_SHORT).show();
-                return;
+                return false;
             }
 
         } else {
@@ -3491,11 +3675,21 @@ public class ObservationEditor extends AppCompatActivity {
                                 OutputStream outStream = new FileOutputStream(destFile);
                                 resource.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
                                 outStream.close();
-                                addDuplicatedPhoto(op, destFile);
+                                addDuplicatedPhoto(op, destFile, refreshPositions);
                             } catch (Exception e) {
                                 Logger.tag(TAG).error(e);
                                 Toast.makeText(getApplicationContext(), getString(R.string.couldnt_duplicate_photo), Toast.LENGTH_SHORT).show();
                             }
+
+                            if (!refreshPositions) {
+                                mOnlineDuplicatedPhotosAndSounds--;
+                                if (mOnlineDuplicatedPhotosAndSounds == 0) {
+                                    mHelper.stopLoading();
+                                    // Refresh all photos
+                                    updateImagesAndSounds();
+                                }
+                            }
+
                         }
 
                         @Override
@@ -3509,12 +3703,46 @@ public class ObservationEditor extends AppCompatActivity {
                         }
                     });
         }
+
+        return photoFileName == null;
     }
 
-    private void addDuplicatedPhoto(ObservationPhoto originalPhoto, File duplicatedPhotoFile) {
+    private void duplicatePhoto(int position) {
+        GalleryCursorAdapter adapter = (GalleryCursorAdapter) mGallery.getAdapter();
+        if (position >= adapter.getPhotoCount()) {
+            return;
+        }
+
+        mPhotosChanged = true;
+
+        Cursor cursor = adapter.getCursor();
+        cursor.moveToPosition(position);
+
+        duplicatePhotoByCursor(cursor, true);
+    }
+
+    private void addDuplicatedSound(File duplicatedSoundFile, boolean refreshPositions) {
+        // Create new sound observation with the duplicated sound file
+
+        Uri createdUri = createObservationSoundForSound(Uri.fromFile(duplicatedSoundFile));
+
+        if (createdUri == null) {
+            Logger.tag(TAG).error("addDuplicatedSound - couldn't create duplicate OS");
+            Toast.makeText(getApplicationContext(), getString(R.string.couldnt_duplicate_sound), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        mPhotosAndSoundsAdded.add(createdUri.toString());
+
+        if (refreshPositions) {
+            updateImagesAndSounds();
+        }
+    }
+
+    private void addDuplicatedPhoto(ObservationPhoto originalPhoto, File duplicatedPhotoFile, boolean refreshPositions) {
         // Create new photo observation with the duplicated photo file
 
-        Uri createdUri = createObservationPhotoForPhoto(Uri.fromFile(duplicatedPhotoFile), originalPhoto.position, true);
+        Uri createdUri = createObservationPhotoForPhoto(Uri.fromFile(duplicatedPhotoFile), originalPhoto.position, false);
 
         if (createdUri == null) {
             Logger.tag(TAG).error("addDuplicatedPhoto - couldn't create duplicate OP");
@@ -3524,11 +3752,13 @@ public class ObservationEditor extends AppCompatActivity {
 
         mPhotosAndSoundsAdded.add(createdUri.toString());
 
-        updateImagesAndSounds();
+        if (refreshPositions) {
+            updateImagesAndSounds();
 
-        // Refresh the positions of all other photos
-        GalleryCursorAdapter adapter = (GalleryCursorAdapter) mGallery.getAdapter();
-        adapter.refreshPhotoPositions(originalPhoto.position, false);
+            // Refresh the positions of all other photos
+            GalleryCursorAdapter adapter = (GalleryCursorAdapter) mGallery.getAdapter();
+            adapter.refreshPhotoPositions(originalPhoto.position, false);
+        }
     }
     
     private void deletePhoto(int position, boolean refreshPositions) {

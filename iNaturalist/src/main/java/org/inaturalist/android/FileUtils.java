@@ -314,6 +314,9 @@ public class FileUtils {
         else if ("file".equalsIgnoreCase(uri.getScheme())) {
             return uri.getPath();
         }
+        else if (uri.toString().startsWith("/")) {
+            return uri.toString();
+        }
 
         return null;
     }
@@ -358,7 +361,7 @@ public class FileUtils {
         String extension;
 
         //Check uri format to avoid null
-        if (uri.getScheme().equals(ContentResolver.SCHEME_CONTENT)) {
+        if (uri.getScheme() != null && uri.getScheme().equals(ContentResolver.SCHEME_CONTENT)) {
             //If scheme is a content
             final MimeTypeMap mime = MimeTypeMap.getSingleton();
             extension = mime.getExtensionFromMimeType(context.getContentResolver().getType(uri));

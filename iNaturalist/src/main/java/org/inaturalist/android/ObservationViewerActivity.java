@@ -2224,23 +2224,30 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
         switch (item.getItemId()) {
-        case android.R.id.home:
-            prepareToExit();
-            return true;
-        case R.id.edit_observation:
-            Intent intent = new Intent(Intent.ACTION_EDIT, mUri, this, ObservationEditor.class);
-            if (mTaxon != null) mApp.setServiceResult(ObservationEditor.TAXON, mTaxon.toString());
-            if (mObsJson != null) intent.putExtra(ObservationEditor.OBSERVATION_JSON, mObsJson);
-            startActivityForResult(intent, REQUEST_CODE_EDIT_OBSERVATION);
-            return true;
-        case R.id.flag_captive:
-            mFlagAsCaptive = !mFlagAsCaptive;
-            refreshDataQuality();
-            refreshMenu();
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
+            case android.R.id.home:
+                prepareToExit();
+                return true;
+            case R.id.edit_observation:
+                intent = new Intent(Intent.ACTION_EDIT, mUri, this, ObservationEditor.class);
+                if (mTaxon != null) mApp.setServiceResult(ObservationEditor.TAXON, mTaxon.toString());
+                if (mObsJson != null) intent.putExtra(ObservationEditor.OBSERVATION_JSON, mObsJson);
+                startActivityForResult(intent, REQUEST_CODE_EDIT_OBSERVATION);
+                return true;
+            case R.id.flag_captive:
+                mFlagAsCaptive = !mFlagAsCaptive;
+                refreshDataQuality();
+                refreshMenu();
+                return true;
+            case R.id.duplicate:
+                intent = new Intent(Intent.ACTION_EDIT, mUri, this, ObservationEditor.class);
+                if (mObsJson != null) intent.putExtra(ObservationEditor.OBSERVATION_JSON, mObsJson);
+                intent.putExtra(ObservationEditor.DUPLICATE, true);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
@@ -2304,12 +2311,15 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     
     private void refreshMenu() {
         MenuItem flagCaptive = mMenu.findItem(R.id.flag_captive);
+        MenuItem duplicate = mMenu.findItem(R.id.duplicate);
         MenuItem edit = mMenu.findItem(R.id.edit_observation);
 
         if (mReadOnly) {
             edit.setVisible(false);
+            duplicate.setVisible(false);
         } else {
             edit.setVisible(true);
+            duplicate.setVisible(true);
         }
 
         flagCaptive.setChecked(mFlagAsCaptive);
