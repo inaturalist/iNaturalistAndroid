@@ -432,12 +432,14 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         ViewHolder holder;
         Cursor c = this.getCursor();
 
-        Logger.tag(TAG).debug("getView " + position);
+        Logger.tag(TAG).debug("getView {}", position);
 
         if (c.getCount() == 0) {
             return view;
         }
-        c.moveToPosition(position);
+        if (!c.moveToPosition(position)) {
+            Logger.tag(TAG).warn("moveToPosition failed. Reason unclear");
+        }
 
         Trace.beginSection("get_basics");
         final long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
@@ -501,7 +503,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         double privateLongitude = c.getDouble(c.getColumnIndexOrThrow(Observation.PRIVATE_LONGITUDE));
         Trace.endSection();
 
-        Logger.tag(TAG).info("getView " + position + ": " + mMultiSelectionMode);
+        Logger.tag(TAG).info("getView {}: {}",  position, mMultiSelectionMode);
 
         if (mIsGrid) {
             mDimension = mGrid.getColumnWidth();
@@ -564,16 +566,18 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         Trace.endSection();
 
         Trace.beginSection("timestamp");
-        long observationTimestamp = 0L;
-        if (c.isNull(c.getColumnIndexOrThrow(Observation.TIME_OBSERVED_AT))) {
-            if (!c.isNull(c.getColumnIndexOrThrow(Observation.OBSERVED_ON))) {
-                observationTimestamp = c.getLong(c.getColumnIndexOrThrow(Observation.OBSERVED_ON));
-            }
-        } else {
-            observationTimestamp = c.getLong(c.getColumnIndexOrThrow(Observation.TIME_OBSERVED_AT));
-        }
-
         if (!mIsGrid) {
+            long observationTimestamp = 0L;
+            int obsAtIndex = c.getColumnIndexOrThrow(Observation.TIME_OBSERVED_AT);
+            if (!c.isNull(obsAtIndex)) {
+                observationTimestamp = c.getLong(obsAtIndex);
+            } else {
+                int obsOnIndex = c.getColumnIndexOrThrow(Observation.OBSERVED_ON);
+                if (!c.isNull(obsOnIndex)) {
+                    observationTimestamp = c.getLong(obsOnIndex);
+                }
+            }
+
             if (observationTimestamp == 0) {
                 // No observation date set - don't show it
                 dateObserved.setVisibility(View.GONE);
@@ -662,11 +666,10 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         boolean syncNeeded = updatedAt > syncedAt;
 
         if (syncedAt == 0) {
-            Logger.tag(TAG).debug(String.format(Locale.ENGLISH,
-                    "getView %d: %s: Sync needed - syncedAt == null", position, speciesGuessValue));
+            Logger.tag(TAG).debug("getView %d: %s: Sync needed - syncedAt == null", position, speciesGuessValue);
         } else if (updatedAt > syncedAt) {
-            Logger.tag(TAG).debug(String.format(Locale.ENGLISH,
-                    "getView %d: %s: Sync needed - updatedAt (%s) > sycnedAt (%s)", position, speciesGuessValue, updatedAt, syncedAt));
+            Logger.tag(TAG).debug("getView %d: %s: Sync needed - updatedAt (%s) > sycnedAt (%s)",
+                    position, speciesGuessValue, updatedAt, syncedAt);
         }
 
         // if there's a photo and it is local
@@ -676,14 +679,14 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 photoInfo[3] != null) {
             if (photoInfo[4] == null) {
                 syncNeeded = true;
-                Logger.tag(TAG).debug(String.format(Locale.ENGLISH,
-                        "getView %d: %s: Sync needed - photoInfo == null - %s / %s / %s / %s / %s", position, speciesGuessValue, photoInfo[0], photoInfo[1], photoInfo[2], photoInfo[3], photoInfo[4]));
+                Logger.tag(TAG).debug("getView %d: %s: Sync needed - photoInfo == null - %s / %s / %s / %s / %s",
+                        position, speciesGuessValue, photoInfo[0], photoInfo[1], photoInfo[2], photoInfo[3], photoInfo[4]);
             } else {
                 Long photoSyncedAt = Long.parseLong(photoInfo[4]);
                 Long photoUpdatedAt = Long.parseLong(photoInfo[3]);
                 if (photoUpdatedAt > photoSyncedAt) {
-                    Logger.tag(TAG).debug(String.format(Locale.ENGLISH,
-                            "getView %d: %s: Sync needed - photoUpdatedAt (%d) > photoSyncedAt (%d)", position, speciesGuessValue, photoUpdatedAt, photoSyncedAt));
+                    Logger.tag(TAG).debug("getView %d: %s: Sync needed - photoUpdatedAt (%d) > photoSyncedAt (%d)",
+                            position, speciesGuessValue, photoUpdatedAt, photoSyncedAt);
                     syncNeeded = true;
                 }
             }
@@ -707,8 +710,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             if (opc != null) {
                 if (opc.getCount() > 0) {
                     syncNeeded = true;
-                    Logger.tag(TAG).debug(String.format(Locale.ENGLISH,
-                            "getView %d: %s: Sync needed - new/updated photos: %d", position, speciesGuessValue, opc.getCount()));
+                    Logger.tag(TAG).debug("getView %d: %s: Sync needed - new/updated photos: %d",
+                            position, speciesGuessValue, opc.getCount());
                 }
                 opc.close();
             }

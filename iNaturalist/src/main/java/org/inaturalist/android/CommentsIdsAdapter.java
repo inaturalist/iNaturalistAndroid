@@ -1,7 +1,6 @@
 package org.inaturalist.android;
 
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -10,6 +9,7 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.time.FastDateFormat;
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 import org.json.JSONArray;
@@ -542,13 +542,13 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
     public static String formatIdDate(Context context, Timestamp postDate) {
         Duration difference = new Duration(postDate.getTime(), (new Date()).getTime());
         long days = difference.getStandardDays();
-        long hours = difference.getStandardHours();
-        long minutes = difference.getStandardMinutes();
 
         if (days <= 30) {
             // Less than 30 days ago - display as 3m (mins), 3h (hours), 3d (days) or 3w (weeks)
             if (days < 1) {
+				long hours = difference.getStandardHours();
                 if (hours < 1) {
+					long minutes = difference.getStandardMinutes();
                     return String.format(context.getString(R.string.date_minute), minutes);
                 } else {
                     return String.format(context.getString(R.string.date_hour), hours);
@@ -565,7 +565,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
             calDate.setTimeInMillis(postDate.getTime());
 
             String dateFormatString;
-            if (today.get(Calendar.YEAR) > calDate.get(Calendar.YEAR)) {
+            if (today.get(Calendar.YEAR) != calDate.get(Calendar.YEAR)) {
                 // Previous year(s)
                 dateFormatString = context.getString(R.string.date_short);
             } else {
@@ -573,7 +573,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
                 dateFormatString = context.getString(R.string.date_short_this_year);
             }
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatString);
+			FastDateFormat dateFormat = FastDateFormat.getInstance(dateFormatString);
             return dateFormat.format(new Date(postDate.getTime()));
         }
     }
