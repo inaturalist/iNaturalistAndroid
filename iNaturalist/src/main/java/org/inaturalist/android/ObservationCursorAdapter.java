@@ -21,6 +21,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Trace;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -413,11 +414,20 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
     }
 
+    public View getView(int position, View convertView, ViewGroup parent) {
+        Trace.beginSection("getView");
+        try {
+            return getViewInternal(position, convertView, parent);
+        } finally {
+            Trace.endSection();
+        }
+    }
+
     // TODO This uses INVISIBLE in multiple locations where we should be using GONE
     // to maximize screen real estate. I've confirmed the current mix works in list mode, but
     // before we set everything to GONE we need to debug the grid mode and make sure removing
     // views does not break the layout
-    public View getView(int position, View convertView, ViewGroup parent) {
+    private View getViewInternal(int position, View convertView, ViewGroup parent) {
         final View view = super.getView(position, convertView, parent);
         ViewHolder holder;
         Cursor c = this.getCursor();
@@ -429,6 +439,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         }
         c.moveToPosition(position);
 
+        Trace.beginSection("get_basics");
         final long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
         final long externalObsId = c.getLong(c.getColumnIndexOrThrow(Observation.ID));
         long updatedAt = c.getLong(c.getColumnIndexOrThrow(Observation._UPDATED_AT));
@@ -437,7 +448,9 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         String[] photoInfo = obsUUID != null ? mPhotoInfo.get(obsUUID) : null;
         boolean hasSounds = (obsUUID != null && mHasSounds.get(obsUUID) != null);
         boolean hasErrors = (mApp.getErrorsForObservation(((int)(externalObsId > 0 ? externalObsId : obsId))).length() > 0);
+        Trace.endSection();
 
+        Trace.beginSection("setup_VH");
         if (convertView == null) {
             holder = new ViewHolder((ViewGroup) view);
             view.setTag(holder);
@@ -462,13 +475,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         TextView commentCount = holder.commentCount;
         TextView idCount = holder.idCount;
 
-        if (!mIsGrid) {
-            // !isGrid uses a constraintlayout which has no concept of view groups, so we manually
-            // build one. Note: androidx.constraintlayout.widget.Group will not work here
-             commentIdContainer = new DelegatingConstraintViewGroup(mContext,
-                    commentIcon, commentCount, idIcon, idCount);
-        }
-
         TextView placeGuess = holder.placeGuess;
         ImageView locationIcon = holder.locationIcon;
 
@@ -477,12 +483,23 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         View soundsIndicator = holder.soundsIndicator;
 
+        Trace.endSection();
+
+        if (!mIsGrid) {
+            // !isGrid uses a constraintlayout which has no concept of view groups, so we manually
+            // build one. Note: androidx.constraintlayout.widget.Group will not work here
+             commentIdContainer = new DelegatingConstraintViewGroup(mContext,
+                    commentIcon, commentCount, idIcon, idCount);
+        }
+
+        Trace.beginSection("query_loc");
         String placeGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.PLACE_GUESS));
         String privatePlaceGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.PRIVATE_PLACE_GUESS));
         double latitude = c.getDouble(c.getColumnIndexOrThrow(Observation.LATITUDE));
         double longitude = c.getDouble(c.getColumnIndexOrThrow(Observation.LONGITUDE));
         double privateLatitude = c.getDouble(c.getColumnIndexOrThrow(Observation.PRIVATE_LATITUDE));
         double privateLongitude = c.getDouble(c.getColumnIndexOrThrow(Observation.PRIVATE_LONGITUDE));
+        Trace.endSection();
 
         Logger.tag(TAG).info("getView " + position + ": " + mMultiSelectionMode);
 
@@ -506,6 +523,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             }
         }
 
+        Trace.beginSection("photo");
         String iconicTaxonName = c.getString(c.getColumnIndexOrThrow(Observation.ICONIC_TAXON_NAME));
 
         int iconResource = getIconicTaxonDrawable(iconicTaxonName);
@@ -543,7 +561,9 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 obsIconicImage.setImageResource(R.drawable.sound);
             }
         }
+        Trace.endSection();
 
+        Trace.beginSection("timestamp");
         long observationTimestamp = 0L;
         if (c.isNull(c.getColumnIndexOrThrow(Observation.TIME_OBSERVED_AT))) {
             if (!c.isNull(c.getColumnIndexOrThrow(Observation.OBSERVED_ON))) {
@@ -563,7 +583,9 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 dateObserved.setText(CommentsIdsAdapter.formatIdDate(mContext, observationDate));
             }
         }
+        Trace.endSection();
 
+        Trace.beginSection("comments");
         long commentsCount = c.getLong(c.getColumnIndexOrThrow(Observation.COMMENTS_COUNT));
         long idsCount = c.getLong(c.getColumnIndexOrThrow(Observation.IDENTIFICATIONS_COUNT));
         long lastCommentsCount = c.getLong(c.getColumnIndexOrThrow(Observation.LAST_COMMENTS_COUNT));
@@ -633,7 +655,9 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 mContext.startActivity(intent);
             });
         }
+        Trace.endSection();
 
+        Trace.beginSection("syncNeeded");
         long syncedAt = c.getLong(c.getColumnIndexOrThrow(Observation._SYNCED_AT));
         boolean syncNeeded = updatedAt > syncedAt;
 
@@ -689,8 +713,10 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 opc.close();
             }
         }
+        Trace.endSection();
 
 
+        Trace.beginSection("location");
         if (!mIsGrid) {
             if (((placeGuessValue == null) || (placeGuessValue.length() == 0)) &&
                 ((privatePlaceGuessValue == null) || (privatePlaceGuessValue.length() == 0))) {
@@ -708,10 +734,12 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                     privatePlaceGuessValue : placeGuessValue);
             }
         }
+        Trace.endSection();
 
         
         holder.syncNeeded = syncNeeded;
 
+        Trace.beginSection("species_guess");
         String description = c.getString(c.getColumnIndexOrThrow(Observation.DESCRIPTION));
         String preferredCommonName = c.getString(c.getColumnIndexOrThrow(Observation.PREFERRED_COMMON_NAME));
 
@@ -750,7 +778,9 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 speciesGuess.setText(R.string.unknown_species);
             }
         }
+        Trace.endSection();
 
+        Trace.beginSection("misc");
         holder.hasErrors = hasErrors;
         if (hasErrors)  {
             view.setBackgroundResource(R.drawable.observation_item_error_background);
@@ -842,6 +872,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         holder.obsId = obsId;
         holder.updatedAt = updatedAt;
         holder.observation = new Observation(c);
+        Trace.endSection();
 
 
         return view;
