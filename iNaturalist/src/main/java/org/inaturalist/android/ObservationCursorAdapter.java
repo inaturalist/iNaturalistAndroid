@@ -10,15 +10,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Trace;
@@ -73,6 +76,7 @@ import static android.content.Context.MODE_PRIVATE;
 class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListView.OnScrollListener {
     private static final String TAG = "SimpleCursorAdapter";
     private final ActivityHelper mHelper;
+    private final Resources mResources;
 
     private int mDimension;
     private HashMap<String, String[]> mPhotoInfo = new HashMap<>();
@@ -124,6 +128,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         mContext = (Activity)context;
         mApp = (INaturalistApp) mContext.getApplicationContext();
         mHelper = new ActivityHelper(mContext);
+        mResources = context.getResources();
 
         getPhotoInfo(true);
 
@@ -528,10 +533,9 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         Trace.beginSection("photo");
         String iconicTaxonName = c.getString(c.getColumnIndexOrThrow(Observation.ICONIC_TAXON_NAME));
 
-        int iconResource = getIconicTaxonDrawable(iconicTaxonName);
-
+        Drawable iconResource = getIconicTaxonDrawable(mResources, iconicTaxonName);
         obsIconicImage.setVisibility(View.VISIBLE);
-        obsIconicImage.setImageResource(iconResource);
+        obsIconicImage.setImageDrawable(iconResource);
         obsImage.setVisibility(View.INVISIBLE);
 
         if (photoInfo != null) {
@@ -1244,42 +1248,62 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         ContextCompat.startForegroundService(mContext, serviceIntent);
     }
 
-    public static int getIconicTaxonDrawable(String iconicTaxonName) {
-        int iconResource;
+    static HashMap<String, Drawable> taxonIconCache = new HashMap<>();
+    public static Drawable getIconicTaxonDrawable(Resources res, String iconicTaxonName) {
 
-        if (iconicTaxonName == null) {
-            iconResource = R.drawable.iconic_taxon_unknown;
-        } else if (iconicTaxonName.equals("Animalia")) {
-            iconResource = R.drawable.iconic_taxon_animalia;
-        } else if (iconicTaxonName.equals("Plantae")) {
-            iconResource = R.drawable.iconic_taxon_plantae;
-        } else if (iconicTaxonName.equals("Chromista")) {
-            iconResource = R.drawable.iconic_taxon_chromista;
-        } else if (iconicTaxonName.equals("Fungi")) {
-            iconResource = R.drawable.iconic_taxon_fungi;
-        } else if (iconicTaxonName.equals("Protozoa")) {
-            iconResource = R.drawable.iconic_taxon_protozoa;
-        } else if (iconicTaxonName.equals("Actinopterygii")) {
-            iconResource = R.drawable.iconic_taxon_actinopterygii;
-        } else if (iconicTaxonName.equals("Amphibia")) {
-            iconResource = R.drawable.iconic_taxon_amphibia;
-        } else if (iconicTaxonName.equals("Reptilia")) {
-            iconResource = R.drawable.iconic_taxon_reptilia;
-        } else if (iconicTaxonName.equals("Aves")) {
-            iconResource = R.drawable.iconic_taxon_aves;
-        } else if (iconicTaxonName.equals("Mammalia")) {
-            iconResource = R.drawable.iconic_taxon_mammalia;
-        } else if (iconicTaxonName.equals("Mollusca")) {
-            iconResource = R.drawable.iconic_taxon_mollusca;
-        } else if (iconicTaxonName.equals("Insecta")) {
-            iconResource = R.drawable.iconic_taxon_insecta;
-        } else if (iconicTaxonName.equals("Arachnida")) {
-            iconResource = R.drawable.iconic_taxon_arachnida;
-        } else {
-            iconResource = R.drawable.iconic_taxon_unknown;
+        // Yes, this is not thread safe. That's OK for this simple usage
+        if (taxonIconCache.containsKey(iconicTaxonName))
+            return taxonIconCache.get(iconicTaxonName);
+
+        int iconResource = R.drawable.iconic_taxon_unknown;
+        if (iconicTaxonName != null) {
+            switch (iconicTaxonName) {
+                case "Animalia":
+                    iconResource = R.drawable.iconic_taxon_animalia;
+                    break;
+                case "Plantae":
+                    iconResource = R.drawable.iconic_taxon_plantae;
+                    break;
+                case "Chromista":
+                    iconResource = R.drawable.iconic_taxon_chromista;
+                    break;
+                case "Fungi":
+                    iconResource = R.drawable.iconic_taxon_fungi;
+                    break;
+                case "Protozoa":
+                    iconResource = R.drawable.iconic_taxon_protozoa;
+                    break;
+                case "Actinopterygii":
+                    iconResource = R.drawable.iconic_taxon_actinopterygii;
+                    break;
+                case "Amphibia":
+                    iconResource = R.drawable.iconic_taxon_amphibia;
+                    break;
+                case "Reptilia":
+                    iconResource = R.drawable.iconic_taxon_reptilia;
+                    break;
+                case "Aves":
+                    iconResource = R.drawable.iconic_taxon_aves;
+                    break;
+                case "Mammalia":
+                    iconResource = R.drawable.iconic_taxon_mammalia;
+                    break;
+                case "Mollusca":
+                    iconResource = R.drawable.iconic_taxon_mollusca;
+                    break;
+                case "Insecta":
+                    iconResource = R.drawable.iconic_taxon_insecta;
+                    break;
+                case "Arachnida":
+                    iconResource = R.drawable.iconic_taxon_arachnida;
+                    break;
+            }
         }
 
-        return iconResource;
+        Drawable d = res.getDrawable(iconResource, null);
+        if (iconicTaxonName != null)
+            taxonIconCache.put(iconicTaxonName, d);
+        return d;
     }
 
     public void updateProgress(float progress) {
