@@ -37,6 +37,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.UiThread;
 import androidx.core.content.ContextCompat;
 
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
@@ -555,7 +556,9 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 });
             }
 
+            Trace.beginSection("photo_load");
             loadObsImage(position, obsImage, photoFilename, photoInfo[2] != null, false);
+            Trace.endSection();
 
             holder.photoFilename = photoFilename;
         } else {
@@ -1020,6 +1023,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         // Decode image in background.
         @Override
         protected Bitmap doInBackground(String... params) {
+            Trace.beginSection("load_obs_bitmap");
             mFilename = params[0];
 
             Bitmap bitmapImage;
@@ -1045,6 +1049,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 }
             }
 
+            Trace.endSection();
             return bitmapImage;
         }
 
@@ -1073,10 +1078,13 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     private Map<ImageView, String> mImageViewToUrlAfterLoading = new HashMap<>();
     private Map<ImageView, String> mImageViewToUrlExpected = new HashMap<>();
 
+    /**
+     * Loads obs image either from local disk or triggers remote download with callback
+     */
+    @UiThread
     private void loadObsImage(final int position, final ImageView imageView, final String name, boolean isOnline, final boolean largeVersion) {
-        Logger.tag(TAG).debug("loadObsImage: " + position + ":" + isOnline + ":" + imageView + ":" + name);
-
-        boolean isLowMemory = mApp.isLowMemory();
+        Logger.tag(TAG).debug("loadObsImage(pos:{}, iv:{}, name:{}, isOnline:{}, large:{})"
+                , position, imageView, name, isOnline, largeVersion);
 
         String prevUrl = mImageViewToUrlExpected.get(imageView);
 
@@ -1100,6 +1108,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         String imageUrl = name;
 
         if (!isOnline) {
+            Trace.beginSection("check_local");
             File file = new File(name);
             if (!file.exists()) {
                 // Local file - but it was deleted for some reason (probably user cleared cache)
@@ -1123,9 +1132,11 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                     isOnline = true;
                 }
             }
+            Trace.endSection();
         }
 
         if (isOnline) {
+            Trace.beginSection("online");
             // Online image
 
             // Use the small image instead of a large image (default) - to load images quickly
@@ -1156,21 +1167,26 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
                             mImageViewToUrlAfterLoading.put(imageView, newImageUrl);
 
-                            if (!largeVersion && !isLowMemory) {
+                            // If we have not yet loaded large version, trigger that if we have mem
+                            // Note the careful usage of isLowMemory() call - it's an expensive call,
+                            // we delay calling it until/unless we absolutely have to do so
+                            if (!largeVersion && !mApp.isLowMemory()) {
                                 loadObsImage(position, imageView, name, true, true);
                             }
                         }
 
                         @Override
                         public void onError() {
+                            Logger.tag(TAG).warn("Picasso error for {}", newImageUrl);
                         }
                     });
         } else {
             // Offline image
-
+            Trace.beginSection("offline");
             BitmapWorkerTask task = new BitmapWorkerTask(imageView);
             task.execute(name);
         }
+        Trace.endSection();
     }
 
     @SuppressLint("DefaultLocale")
