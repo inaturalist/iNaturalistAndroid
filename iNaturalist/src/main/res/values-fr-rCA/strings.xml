@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">iNaturalist</string>
     <string name="email_address">Adresse de courriel</string>
     <string name="delete_observation">Supprimer l\'observation</string>
     <string name="observation_deleted">Observation supprimée</string>
@@ -198,7 +197,7 @@
     <string name="alert_message_use_argentinat">ArgentiNat est membre du réseau iNaturalist en Argentine. Les institutions locales qui soutiennent ArgentiNat auront accès à votre adresse courriel et aux coordonnées GPS pour les observations qui sont masquées ou privées. Veuillez ne pas modifier votre affiliation de façon expérimentale si vous avez plus de 1000 observations. Souhaitez-vous changer votre affiliation?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel est membre du réseau iNaturalist en Israël. Les institutions locales soutenant iNaturalist Israël auront accès à votre adresse courriel et aux coordonnées GPS pour les observations qui sont masquées ou privées. Veuillez ne pas modifier votre affiliation de façon expérimentale si vous avez plus de 1000 observations. Souhaitez-vous changer votre affiliation?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finlande est membre du réseau iNaturalist en Finlande. Les institutions locales soutenant iNaturalist Finlande auront accès à votre adresse de courriel et auront accès aux véritables coordonnées pour les observations qui sont masquées ou privées au public. Veuillez ne pas modifier votre affiliation de façon expérimentale si vous avez plus de 1000 observations. Souhaitez-vous changer votre affiliation?</string>
-    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chili est membre du réseau iNaturalist au Chili. Les institutions locales soutenant iNaturalist Chili auront accès à votre adresse courriel et accès aux véritables coordonnées pour les observations qui sont masquées ou privées au public. Veuillez ne pas modifier votre affiliation de manière expérimentale si vous avez plus de 1000 observations. Souhaitez-vous changer votre affiliation?</string>
     <string name="editor">Éditeur</string>
     <string name="license">Licence</string>
     <string name="download_for_offline_use">Télécharger pour utilisation en mode hors connexion</string>
@@ -739,7 +738,7 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Équateur : l\'Instituto Nacional de Biodiversidad (INABIO) soutient iNaturalist Equateur (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israël : l\'Université de Haïfa soutient iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finlande: Musée finlandais d\'histoire naturaliste (LUOMUS) soutenant iNaturalist Finlande (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
-    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chili : Ministerio del Medio Ambiente soutenant iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">Marquer tout comme lu</string>
     <string name="content_hidden">Contenu masqué</string>
     <string name="show_hidden_content">Afficher le contenu masqué</string>
@@ -775,7 +774,7 @@
     <string name="pin_current_location">Mémoriser la géolocalisation actuelle</string>
     <string name="location_pinned_successfully">Géolocalisation actuelle mémorisée avec succès</string>
     <string name="delete_this_pinned_location">Supprimer cet géolocalisation?</string>
-    <!-- Verb, as in "Duplicate this photo" -->
+    <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Dupliquer </string>
     <string name="couldnt_duplicate_photo">Impossible de dupliquer la photo!</string>
     <string name="couldnt_edit_photo">Impossible de modifier la photo!</string>
@@ -971,4 +970,12 @@ les <a href="/pages/community+guidelines" target="_blank">Règles de la Communau
     <string name="filter_observations_by_months">Filtrer les observations par mois</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="remove_date_observed">Remove date &amp; time observed</string>
+    <string name="remove_time_observed">Remove time observed</string>
+    <string name="remove_location">Supprimer la localisation</string>
+    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
+    <string name="share_location">Partager la localisation</string>
+    <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
 </resources>

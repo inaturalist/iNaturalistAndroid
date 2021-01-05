@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">iNaturalist</string>
     <string name="email_address">E-mailová adresa</string>
     <string name="delete_observation">Odstranit pozorování</string>
     <string name="observation_deleted">Pozorování bylo smazáno</string>
@@ -789,7 +788,7 @@
     <string name="pin_current_location">Připnout současnou polohu</string>
     <string name="location_pinned_successfully">Aktuální poloha byla úspěšně připojena</string>
     <string name="delete_this_pinned_location">Odstranit toto připnuté umístění?</string>
-    <!-- Verb, as in "Duplicate this photo" -->
+    <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Duplikát</string>
     <string name="couldnt_duplicate_photo">Nelze duplikovat fotku!</string>
     <string name="couldnt_edit_photo">Nelze upravit fotku!</string>
@@ -988,4 +987,12 @@ a naše <a href="https://www.inaturalist.org/terms">Smluvní podmínky</a>.]]></
     <string name="filter_observations_by_months">Filtrovat pozorování podle měsíců</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="remove_date_observed">Odstranit datum &amp; čas pozorování</string>
+    <string name="remove_time_observed">Odstranit čas pozorování</string>
+    <string name="remove_location">Odstranit polohu</string>
+    <string name="are_you_sure_you_want_to_remove_date">Opravdu chcete odstranit datum pozorování?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Opravdu chcete odstranit čas pozorování?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Opravdu chcete odstranit polohu pozorování?</string>
+    <string name="share_location">Sdílet polohu</string>
+    <string name="couldnt_duplicate_sound">Nelze duplikovat zvuk!</string>
 </resources>

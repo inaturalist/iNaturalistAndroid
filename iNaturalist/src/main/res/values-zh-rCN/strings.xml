@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">iNaturalist</string>
     <string name="email_address">电邮地址</string>
     <string name="delete_observation">删除观察记录</string>
     <string name="observation_deleted">已删除的观察记录</string>
@@ -768,7 +767,7 @@
     <string name="pin_current_location">釘选当前位置</string>
     <string name="location_pinned_successfully">当前位置钉选成功</string>
     <string name="delete_this_pinned_location">删除这个釘选的位置？</string>
-    <!-- Verb, as in "Duplicate this photo" -->
+    <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">复制</string>
     <string name="couldnt_duplicate_photo">无法复制照片！</string>
     <string name="couldnt_edit_photo">无法编辑照片！</string>
@@ -960,4 +959,12 @@
     <string name="filter_observations_by_months">按月份筛选观察</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="remove_date_observed">Remove date &amp; time observed</string>
+    <string name="remove_time_observed">Remove time observed</string>
+    <string name="remove_location">Remove location</string>
+    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
+    <string name="share_location">Share Location</string>
+    <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
 </resources>

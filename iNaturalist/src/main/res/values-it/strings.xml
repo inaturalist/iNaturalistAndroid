@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">iNaturalist</string>
     <string name="email_address">Indirizzo Email</string>
     <string name="delete_observation">Cancella osservazione</string>
     <string name="observation_deleted">Osservazione cancellata</string>
@@ -775,7 +774,7 @@
     <string name="pin_current_location">Segna la posizione corrente</string>
     <string name="location_pinned_successfully">Posizione attuale segnata con successo</string>
     <string name="delete_this_pinned_location">Elimina questa posizione segnata?</string>
-    <!-- Verb, as in "Duplicate this photo" -->
+    <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Duplica</string>
     <string name="couldnt_duplicate_photo">Impossibile duplicare la foto!</string>
     <string name="couldnt_edit_photo">Impossibile modificare la foto!</string>
@@ -968,4 +967,12 @@ le <a href="https://www.inaturalist.org/pages/community+guidelines">Linee Guida 
     <string name="filter_observations_by_months">Filtra le osservazioni per mese</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="remove_date_observed">Rimuovi data &amp; ora di osservazione</string>
+    <string name="remove_time_observed">Rimuovi l\'ora dell\'osservazione</string>
+    <string name="remove_location">Rimuovi posizione</string>
+    <string name="are_you_sure_you_want_to_remove_date">Sei sicuro di voler rimuovere la data &amp; l\'ora di osservazione?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Sei sicuro di voler rimuovere l\'ora di osservazione?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Sei sicuro che vuoi eliminare la posizione?</string>
+    <string name="share_location">Condividi Posizione</string>
+    <string name="couldnt_duplicate_sound">Impossibile duplicare il suono!</string>
 </resources>
