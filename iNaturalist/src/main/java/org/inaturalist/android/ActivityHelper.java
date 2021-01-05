@@ -410,7 +410,7 @@ public class ActivityHelper {
                 cameraUpdate = CameraUpdateFactory.newLatLngZoom(latlng, 15);
             } else {
                 // Show circle of private positional accuracy
-                cameraUpdate = addCircle(map, latlng, observation.positional_accuracy, observation, updateCamera);
+                cameraUpdate = addCircle(map, latlng, Math.abs(observation.positional_accuracy), observation, updateCamera);
             }
         } else {
             if ((observation.positional_accuracy != null) && (publicAcc != null) &&
