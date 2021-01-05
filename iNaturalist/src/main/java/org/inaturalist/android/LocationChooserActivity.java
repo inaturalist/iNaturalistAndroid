@@ -711,6 +711,8 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
     }
 
     private void updateLocationBasedOnMap() {
+        if (mMap == null) return;
+
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         int screenWidth = metrics.widthPixels;
