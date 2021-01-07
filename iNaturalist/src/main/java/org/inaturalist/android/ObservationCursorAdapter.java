@@ -673,9 +673,9 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         boolean syncNeeded = updatedAt > syncedAt;
 
         if (syncedAt == 0) {
-            Logger.tag(TAG).debug("getView %d: %s: Sync needed - syncedAt == null", position, speciesGuessValue);
+            Logger.tag(TAG).debug("getView {}: {}: Sync needed - syncedAt == null", position, speciesGuessValue);
         } else if (updatedAt > syncedAt) {
-            Logger.tag(TAG).debug("getView %d: %s: Sync needed - updatedAt (%s) > sycnedAt (%s)",
+            Logger.tag(TAG).debug("getView {}: {}: Sync needed - updatedAt ({}) > sycnedAt ({})",
                     position, speciesGuessValue, updatedAt, syncedAt);
         }
 
@@ -686,13 +686,13 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 photoInfo[3] != null) {
             if (photoInfo[4] == null) {
                 syncNeeded = true;
-                Logger.tag(TAG).debug("getView %d: %s: Sync needed - photoInfo == null - %s / %s / %s / %s / %s",
+                Logger.tag(TAG).debug("getView {}: {}: Sync needed - photoInfo == null - {} / {} / {} / {} / {}",
                         position, speciesGuessValue, photoInfo[0], photoInfo[1], photoInfo[2], photoInfo[3], photoInfo[4]);
             } else {
                 Long photoSyncedAt = Long.parseLong(photoInfo[4]);
                 Long photoUpdatedAt = Long.parseLong(photoInfo[3]);
                 if (photoUpdatedAt > photoSyncedAt) {
-                    Logger.tag(TAG).debug("getView %d: %s: Sync needed - photoUpdatedAt (%d) > photoSyncedAt (%d)",
+                    Logger.tag(TAG).debug("getView {}: {}: Sync needed - photoUpdatedAt ({}) > photoSyncedAt ({})",
                             position, speciesGuessValue, photoUpdatedAt, photoSyncedAt);
                     syncNeeded = true;
                 }
