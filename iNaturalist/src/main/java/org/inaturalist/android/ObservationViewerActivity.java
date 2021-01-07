@@ -1915,7 +1915,10 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                                     locationLabel = TaxonUtils.getTaxonName(ObservationViewerActivity.this, mTaxon);
                                 }
 
-                                String uri = String.format("geo:0,0?q=%f,%f(%s)", mObservation.latitude, mObservation.longitude, locationLabel);
+                                double latitude = (mObservation.geoprivacy == null) || (mObservation.geoprivacy.equals("open")) ? mObservation.latitude : mObservation.private_latitude;
+                                double longitude = (mObservation.geoprivacy == null) || (mObservation.geoprivacy.equals("open")) ? mObservation.longitude : mObservation.private_longitude;
+
+                                String uri = String.format("geo:0,0?q=%f,%f(%s)", latitude, longitude, locationLabel);
                                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                                 startActivity(mapIntent);
                                 break;
@@ -1923,26 +1926,27 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     }
                 };
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                    PopupMenu popup = new PopupMenu(ObservationViewerActivity.this, mSharePhoto);
-                    popup.getMenuInflater().inflate(R.menu.share_photo_menu, popup.getMenu());
-                    if ((mObservation.latitude == null) || (mObservation.longitude == null)) {
-                        // No latitude/longitude - Hide "Share Location" menu option
-                        popup.getMenu().getItem(1).setVisible(false);
-                    }
-
-                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(android.view.MenuItem menuItem) {
-                            onClick.onClick(null, menuItem.getItemId());
-                            return true;
-                        }
-                    });
-
-                    popup.show();
+                PopupMenu popup = new PopupMenu(ObservationViewerActivity.this, mSharePhoto);
+                popup.getMenuInflater().inflate(R.menu.share_photo_menu, popup.getMenu());
+                if ((mObservation.latitude == null) || (mObservation.longitude == null)) {
+                    // No latitude/longitude - Hide "Share Location" menu option
+                    popup.getMenu().getItem(1).setVisible(false);
                 } else {
-                    new BottomSheet.Builder(ObservationViewerActivity.this).sheet(R.menu.share_photo_menu).listener(onClick).show();
+                    if ((mObservation.geoprivacy != null) && (!mObservation.geoprivacy.equals("open"))) {
+                        popup.getMenu().getItem(1).setTitle(R.string.share_hidden_location);
+                    }
                 }
+
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(android.view.MenuItem menuItem) {
+                        onClick.onClick(null, menuItem.getItemId());
+                        return true;
+                    }
+                });
+
+                popup.show();
+
 
             }
         });
