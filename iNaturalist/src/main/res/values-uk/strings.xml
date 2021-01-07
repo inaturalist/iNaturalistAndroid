@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">iNaturalist</string>
     <string name="email_address">E-mail адреса</string>
     <string name="delete_observation">Видалення спостереження</string>
     <string name="observation_deleted">Спостереження видалено</string>
@@ -19,9 +18,9 @@
     <string name="signed_in">Увійшли!</string>
     <string name="please_sign_in">Будь ласка, увійдіть</string>
     <string name="please_sign_in_description">Будь ласка, увійдіть до Вашого облікового запису iNaturalist або зареєструйте новий.</string>
-    <string name="please_enable_location_services">Будь ласка, увімкніть геолокацію, щоб знайти своє поточне місцеозташування...</string>
+    <string name="please_enable_location_services">Будь ласка, увімкніть геолокацію, щоб знайти своє поточне місцерозташування...</string>
     <string name="go_to_settings">Перейти до налаштувань</string>
-    <string name="photo_not_specified">Фото не вказано</string>
+    <string name="photo_not_specified">Фото не визначено</string>
     <string name="set_date">Дата</string>
     <string name="set_time">Час</string>
     <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
@@ -31,11 +30,11 @@
     <string name="observations">Мої спостереження</string>
     <string name="map">Мапа</string>
     <string name="settings">Налаштування</string>
-    <string name="projects">Проекти</string>
+    <string name="projects">Проєкти</string>
     <string name="delete_photo">Видалити фото</string>
     <string name="menu">Меню</string>
     <string name="my_location">Моє розташування</string>
-    <string name="nearby_observations">Спостерігачі поблизу</string>
+    <string name="nearby_observations">Спостереження поблизу</string>
     <string name="add">Додати</string>
     <string name="view_on_inat">Переглянути на iNaturalist.org</string>
     <string name="reload">Перезавантажити</string>
@@ -681,7 +680,7 @@
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">Бутонізація</string>
     <!-- Observation presents no evidence of flowering phenology -->
-    <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
+    <string name="annotation_value_no_evidence_of_flowering">Немає доказів квітіння</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Дорослий</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -749,7 +748,7 @@
     <string name="based_on_evidence_can_community_id_be_confirmed">Ґрунтуючись на свідченнях, чи можна підтвердити або покращити ідентифікатор спільноти?</string>
     <string name="no_as_good_as_it_can_be">Ні, це добре, наскільки можливо</string>
     <string name="seasonality">Сезонність</string>
-    <string name="verifiable">Перевіряється</string>
+    <string name="verifiable">Доступний до перевірки</string>
     <string name="no_annotation">Анотацій немає</string>
     <string name="donate_to_inaturalist">Пожертвувати на iNaturalist</string>
     <string name="prefers_scientific_name_first">Показувати наукові назви першими</string>
@@ -793,7 +792,7 @@
     <string name="clears_up_storage_room_on_your_phone">Очистити кеш програми</string>
     <string name="number_of_days_to_store_logs">Кількість днів зберігання журналів</string>
     <string name="send_debug_logs_from_start_date">Надіслати журнал відлагодження з початкової дати</string>
-    <string name="send_debug_logs_by_email">Надіслати звіт про технічну неполадку електронною поштою (із назначенною датою початку)</string>
+    <string name="send_debug_logs_by_email">Надіслати звіт про технічну неполадку електронною поштою (із назначеною датою початку)</string>
     <string name="debug_settings">Налаштування відлагодження</string>
     <string name="are_you_sure_you_want_to_delete_logs">Ви впевнені, що хочете видалити всі звіти про технічні неполадки? Натисніть \"Так\" тільки якщо Ви бажаєте очистити сховище Вашого телефону</string>
     <string name="no_log_files_found">Для цього діапазону дат файли журналу не знайдені - спробувати більш ранні дати?</string>
@@ -801,7 +800,7 @@
     <string name="pin_current_location">Закріпити поточне місце</string>
     <string name="location_pinned_successfully">Поточне місце успішно закріплено</string>
     <string name="delete_this_pinned_location">Видалити це закріплене місце?</string>
-    <!-- Verb, as in "Duplicate this photo" -->
+    <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Дублювати</string>
     <string name="couldnt_duplicate_photo">Не вдалося продублювати фото!</string>
     <string name="couldnt_edit_photo">Не вдалося відредагувати фото!</string>
@@ -822,7 +821,7 @@
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
     <string name="ucrop_label_original">Оригінал</string>
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
-    <string name="ucrop_label_free">Без обмежень</string>
+    <string name="ucrop_label_free">Довільно</string>
     <!-- Verb phrase, button label to edit an observation photo -->
     <string name="ucrop_label_edit_photo">Редагувати фото</string>
     <string name="service_temporarily_unavailable">Сервіс тимчасово недоступний.</string>
@@ -848,8 +847,9 @@
     <string name="disabled">Вимкнено</string>
     <string name="third_party_data_sharing_notes1"><![CDATA[Ми використовуємо різні сторонні сервіси для моніторингу стабільності та діагностики помилок і проблем в нашому програмному забезпеченні. Ці треті сторони включають:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
     <string name="third_party_data_sharing_notes2"><![CDATA[Інформація, яку ми розповідаємо третім особам:<br/><ul><li> IP-адреси (яку можна використовувати для отримання інформації на рівні роздільної здатності міста і відстеження вас на різних сайтах і послугах; Зверніть увагу, що ми увімкнули <a href="https://support.google.com/analytics/answer/2763052">IP-анонімність</a> в Google Analytics і <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> не запам\'ятовує IP-адресу наших знань)</li><li>Деталі браузера, таких як make, model, і версія</li><li>деталі збою, як саме рядок коду спричинив аварію</li><li>деталі пристрою, подобається зробити та модель мобільного телефону</li></ul>]]></string>
-    <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third-party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
-    <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b> Ці сторонні сервіси є особливо цінними </b> у підтримці стабільності та зручності використання iNaturalist нашим порівняно невеликим штатом співробітників. На мобільних пристроях майже немає іншого способу зрозуміти проблеми, які виникають, оскільки програмне забезпечення працює на пристроях, які ми не контролюємо.
+Іноді ми навіть не усвідомлюємо, що такі проблеми виникають, поки ми не бачимо їх у даних, які надають ці служби. <b> Поділившись цією інформацією, ви допомагаєте нам працювати для вас і всієї спільноти iNaturalist. </b>]]></string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[Зауважте, що ця опція застосовується лише до аналітичних даних та даних про збої, які ми явно надсилаємо цим компаніям. Всі сервери iNaturalist надаються та розміщуються корпорацією Microsoft, усі зображення iNaturalist розміщуються в Amazon, а майже всі карти iNaturalist обслуговуються Google, що означає, що кожного разу, коли ви переглядаєте спостереження на iNaturalist, ви підключаєтеся до послуг, що надаються цими компаніями, і принаймні виставляєте їм свою IP-адресу (у додатку iPhone ми використовуємо карти Apple). iNaturalist, мабуть, не існував би без послуг, які надають ці компанії, і хоча ми можемо обмежити обсяг та види даних, якими ви ділитесь з ними під час використання iNaturalist, ми не можемо повністю зупинити потік даних.]]></string>
     <string name="common_names_place"><![CDATA[Місце загальних назв: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Натисніть, щоб встановити пріоритет загальних імен з певного місця.</string>
     <string name="search_places">Пошук місць</string>
@@ -863,12 +863,13 @@
     </plurals>
     <string name="future_observed_on_date_error">Ваше спостереження було створено (та надіслано) %1$s, проте ви намагаєтеся змінити дату спостереження на новішу, а саме %2$s</string>
     <string name="no_more_photos_allowed">Спостереження можуть мати лише %1$d фотографій. Щоб додати більше, вам доведеться видалити деякі з них.</string>
-    <string name="warning_multiple_photos">If you\'re adding photos of different kinds of organisms to this observation, or the same kind at different places or times, you should remove those photos and add them as separate observations. An observation can only have %1$d photos.</string>
+    <string name="warning_multiple_photos">Якщо ви додаєте до цього спостереження фотографії різних видів організмів, або одного і того ж виду в різних місцях чи у різний час, вам слід видалити ці фотографії та додати їх як окремі спостереження. Спостереження може містити лише %1$d фото.</string>
     <string name="choosing_specific_language_warning">Вибір конкретної мови для вашого облікового запису потребує підключення до інтернету</string>
     <string name="running_in_background_notfication">Працює у фоновому режимі, так що ми можемо працювати безперебійно</string>
     <string name="opt_out_of_community_taxon">Відмовитися від таксону спільноти</string>
     <string name="opt_in_to_community_taxon">Погодитися із таксоном спільноти</string>
-    <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
+    <string name="opt_out_message">Відмова від використання таксону спільноти  призводить до того, що це спостереження буде асоціюватися з таксоном з вашої поточної ідентифікації, а не з таксоном, який отримано з усіх ідентифікацій, що були додані до цього спостереження. Якщо достатня кількість експертів не згодні з вами, ваше спостереження набуде статус «Звичайне».
+Ви повинні відмовитись лише в тому випадку, якщо ви впевнені, що ваша ідентифікація правильна, а інші ідентифікації – неправильні.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
     <string name="permission_required">Потрібен дозвіл</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
@@ -876,7 +877,7 @@
     <!-- Dialog title when displaying a message that an action is not permitted -->
     <string name="forbidden">Заборонено</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
-    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
+    <string name="app_you_shared_blocked">Додаток, з якого ви надали спільний доступ, створює фотографії, які не підходять для спостережень, оскільки вони не є свідченням вашого досвіду роботи з іншим організмом, тому що вони включають невідповідний брендинг чи комерційний контент або тому, що вони іншим чином порушують наші «Умови використання».</string>
     <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">Прапорець для вибору спостереження в режимі множинного вибору</string>
     <!-- Description of a UI element for screen readers -->
@@ -886,7 +887,7 @@
     <string name="messages">Повідомлення</string>
     <string name="all_messages">Усі повідомлення</string>
     <string name="search_messages">Пошук повідомлень</string>
-    <string name="no_messages">You currently have no messages. You can send a new message with the green button, or message them from their profile page.</string>
+    <string name="no_messages">Зараз у вас немає повідомлень. Ви можете надіслати нове повідомлення за допомогою зеленої кнопки або надіслати повідомлення комусь зі сторінки його профілю.</string>
     <string name="no_messages_found">Повідомлень не знайдено</string>
     <string name="send_a_message">Надіслати повідомлення</string>
     <string name="sending_message">Повідомлення надсилається...</string>
@@ -939,59 +940,67 @@
     <string name="rank_infraorder">Інфраряд</string>
     <string name="rank_subterclass">Під-підклас</string>
     <string name="rank_parvorder">Парворяд</string>
-    <string name="rank_zoosection">Zoosection</string>
-    <string name="rank_zoosubsection">Zoosubsection</string>
-    <string name="rank_superfamily">Superfamily</string>
-    <string name="rank_epifamily">Epifamily</string>
-    <string name="rank_family">Family</string>
-    <string name="rank_subfamily">Subfamily</string>
-    <string name="rank_supertribe">Supertribe</string>
-    <string name="rank_tribe">Tribe</string>
-    <string name="rank_subtribe">Subtribe</string>
-    <string name="rank_genus">Genus</string>
-    <string name="rank_genushybrid">Genushybrid</string>
-    <string name="rank_subgenus">Subgenus</string>
-    <string name="rank_section">Section</string>
-    <string name="rank_subsection">subsection</string>
+    <string name="rank_zoosection">Зоосекція</string>
+    <string name="rank_zoosubsection">Зоопідсекція</string>
+    <string name="rank_superfamily">Надродина</string>
+    <string name="rank_epifamily">Епіродина</string>
+    <string name="rank_family">Родина</string>
+    <string name="rank_subfamily">Підродина</string>
+    <string name="rank_supertribe">Надтриба</string>
+    <string name="rank_tribe">Триба</string>
+    <string name="rank_subtribe">Підтриба</string>
+    <string name="rank_genus">Рід</string>
+    <string name="rank_genushybrid">Геногібрид</string>
+    <string name="rank_subgenus">Підрід</string>
+    <string name="rank_section">Секція</string>
+    <string name="rank_subsection">підсекція</string>
     <string name="rank_complex">Комплекс</string>
     <!-- Singular -->
-    <string name="rank_species">Species</string>
+    <string name="rank_species">Види</string>
     <string name="rank_hybrid">Гібрид</string>
     <!-- Singular -->
     <string name="rank_subspecies">Підвид</string>
     <string name="rank_variety">Різновид</string>
     <string name="rank_form">Форма</string>
-    <string name="rank_infrahybrid">Infrahybrid</string>
-    <string name="rank_leaves">Leaves</string>
-    <string name="location_lat_lng">Location: %1$f, %2$f</string>
-    <string name="i_consent_process_personal_info"><![CDATA[I consent to allow iNaturalist to store and process limited kinds of personal information about me in order to manage my account. <b>Learn More</b>]]></string>
-    <string name="about_personal_information">About Personal Information</string>
-    <string name="personal_information_notes"><![CDATA[We store personal information like usernames and email addresses in order to manage accounts on this site, and to comply with privacy laws, we need you to check this box to indicate that you consent to this use of personal information. To learn more about what information we collect and how we use it, please see our <a href="https://www.inaturalist.org/privacy">Privacy Policy</a> and our <a href="https://www.inaturalist.org/terms">Terms of Service</a>.]]></string>
-    <string name="i_agree_to_tos_and_privacy"><![CDATA[I agree to the <a href="https://www.inaturalist.org/terms">Terms of Service</a> and <a href="https://www.inaturalist.org/privacy">Privacy Policy</a>, and I have reviewed the <a href="https://www.inaturalist.org/pages/community+guidelines">Community Guidelines</a>.]]></string>
-    <string name="privacy_policy">Privacy Policy</string>
-    <string name="terms_of_service">Terms of Service</string>
+    <string name="rank_infrahybrid">Інфрагібрид</string>
+    <string name="rank_leaves">Листки</string>
+    <string name="location_lat_lng">Місцерозташування: %1$f, %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[Я надаю дозвіл iNaturalist зберігати та обробляти обмежені види особистої інформації про мене з метою управління моїм обліковим записом. <b> Дізнатися більше </b>]]></string>
+    <string name="about_personal_information">Про персональні дані</string>
+    <string name="personal_information_notes"><![CDATA[Ми зберігаємо особисту інформацію, таку як імена користувачів та адреси електронної пошти, для управління обліковими записами на цьому сайті та для дотримання законодавства про конфіденційність. Ви маєте встановити цей прапорець, щоб вказати, що ви даєте згоду на використання цієї особистої інформації. Щоб дізнатись більше про те, яку інформацію ми збираємо і як ми її використовуємо, перегляньте наш <a href = "https: //www.inaturalist.org / privacy "> Політика конфіденційності </a> та наші <a href="https://www.inaturalist.org/terms"> Умови використання </a>.]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[Я погоджуюся з <a href="https://www.inaturalist.org/terms"> Умовами обслуговування </a> та <a href="https://www.inaturalist.org/privacy"> Політикою конфіденційності </a>, і я переглянув <a href="https://www.inaturalist.org/pages/community+guidelines"> Правила спільноти </a>.]]></string>
+    <string name="privacy_policy">Політика конфіденційності</string>
+    <string name="terms_of_service">Умови надання послуг</string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
-    <string name="deleted_user">Deleted User</string>
+    <string name="deleted_user">Видалений користувач</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short_this_year">MMM d</string>
+    <string name="date_short_this_year">d MMM</string>
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short">MM/dd/yy</string>
+    <string name="date_short">dd/MM/yy</string>
     <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
-    <string name="show_common_names">Show common names</string>
-    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
-    <string name="email_must_look_like_email_address">Email must look like an email address</string>
-    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
-    <string name="password_too_short">Password must be at least six characters long</string>
-    <string name="switch_to_grid_view">Switch to grid view</string>
-    <string name="switch_to_list_view">Switch to list view</string>
-    <string name="remove_project_filter">Remove project filter</string>
+    <string name="show_common_names"> Показати звичайні назви</string>
+    <string name="show_common_names_description">Вимкніть, якщо ви бажаєте бачити тільки наукові назви</string>
+    <string name="email_must_look_like_email_address">Email має виглядати як адреса електронної пошти</string>
+    <string name="username_must_begin_with">Ім\'я користувача має починатися з літери, не містити пробілів і містити лише літери, цифри, тире та підкреслення</string>
+    <string name="password_too_short">Пароль має містити щонайменше шість символів</string>
+    <string name="switch_to_grid_view">Перемикнути до вигляду сітки</string>
+    <string name="switch_to_list_view">Перемикнути до вигляду списку</string>
+    <string name="remove_project_filter">Видалити фільтр проєкту</string>
     <string name="remove_observer_filter">Видалити фільтр за спостереженнями</string>
     <string name="filter_observations_by_an_exact_date">Фільтрувати спостереження за точною датою</string>
     <string name="filter_observations_by_a_date_range">Фільтрувати спостереження за датою</string>
     <string name="filter_observations_by_months">Фільтрувати спостереження за місяцями</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="remove_date_observed">Видалити дату та час спостереження</string>
+    <string name="remove_time_observed">Видаляти час спостереження</string>
+    <string name="remove_location">Видалити розташування</string>
+    <string name="are_you_sure_you_want_to_remove_date">Ви впевнені, що хочете видалити дату спостереження?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Ви впевнені, що хочете видалити час спостереження?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Ви впевнені, що хочете видалити розташування?</string>
+    <string name="share_location">Поділитися розташуванням</string>
+    <string name="couldnt_duplicate_sound">Не вдалося продублювати звук!</string>
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">iNaturalist</string>
     <string name="email_address">E-mail адреса</string>
     <string name="delete_observation">Избриши набљудување</string>
     <string name="observation_deleted">Набљудувањето е избришано</string>
@@ -775,7 +774,7 @@
     <string name="pin_current_location">Pin Current Location</string>
     <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
     <string name="delete_this_pinned_location">Delete this pinned location?</string>
-    <!-- Verb, as in "Duplicate this photo" -->
+    <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Duplicate</string>
     <string name="couldnt_duplicate_photo">Couldn\'t duplicate photo!</string>
     <string name="couldnt_edit_photo">Couldn\'t edit photo!</string>
@@ -966,4 +965,12 @@
     <string name="filter_observations_by_months">Filter observations by months</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="remove_date_observed">Remove date &amp; time observed</string>
+    <string name="remove_time_observed">Remove time observed</string>
+    <string name="remove_location">Remove location</string>
+    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
+    <string name="share_location">Share Location</string>
+    <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
 </resources>

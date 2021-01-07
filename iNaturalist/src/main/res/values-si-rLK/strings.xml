@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">iNaturalist</string>
     <string name="email_address">විද්‍යුත් තැපැල් ලිපිනය</string>
     <string name="delete_observation">නිරීක්ෂණය මකන්න</string>
     <string name="observation_deleted">නිරීක්ෂණය මකා දමන ලදි</string>
@@ -360,7 +359,7 @@
     <string name="resume">යලි අරඹන්න</string>
     <string name="cleaning_up">පිරිසිඳු කරමින්...</string>
     <string name="syncing">සමමුහුර්ත වෙමින්...</string>
-    <string name="syncing_observation_fields">හඳුනාගැනීමේ ක්ෂේත්‍ර සමමුහුර්ත කරමින්...</string>
+    <string name="syncing_observation_fields">නිරීක්ෂණ ක්ෂේත්‍ර සමමුහුර්ත කරමින්...</string>
     <string name="syncing_observations">නිරීක්ෂණ සමමුහුර්ත කරමින්...</string>
     <string name="syncing_paused">විරාමයක ඇත</string>
     <string name="upload">උඩුගත කරන්න</string>
@@ -775,7 +774,7 @@
     <string name="pin_current_location">වත්මන් ස්ථානය අමුණන්න</string>
     <string name="location_pinned_successfully">වත්මන් ස්ථානය සාර්ථකව අමුණා ඇත</string>
     <string name="delete_this_pinned_location">මෙම අමුණා ඇති ස්ථානය මකන්නද?</string>
-    <!-- Verb, as in "Duplicate this photo" -->
+    <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">අනුපිටපත් කරන්න</string>
     <string name="couldnt_duplicate_photo">ඡායාරූපය අනුපිටපත් කිරීමට නොහැකි විය!</string>
     <string name="couldnt_edit_photo">ඡායාරූපය සංස්කරණය කිරීමට නොහැකි විය!</string>
@@ -966,4 +965,12 @@
     <string name="filter_observations_by_months">නිරීක්ෂණ මාස අනුව පෙරහන් කරන්න</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="remove_date_observed">Remove date &amp; time observed</string>
+    <string name="remove_time_observed">Remove time observed</string>
+    <string name="remove_location">Remove location</string>
+    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
+    <string name="share_location">Share Location</string>
+    <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
 </resources>

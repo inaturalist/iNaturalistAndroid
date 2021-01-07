@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">iNaturalist</string>
     <string name="email_address">E-pasta adrese</string>
     <string name="delete_observation">Dzēst novērojumu</string>
     <string name="observation_deleted">Novērojums izdzēsts</string>
@@ -419,9 +418,9 @@ globālā iNaturalist tīkla.</string>
         content.
     -->
     <plurals name="new_activities">
-        <item quantity="zero">%1s new</item>
-        <item quantity="one">%1s new</item>
-        <item quantity="other">%1s new</item>
+        <item quantity="zero">%1s jaunumi</item>
+        <item quantity="one">%1s jaunums</item>
+        <item quantity="other">%1s jaunumi</item>
     </plurals>
     <string name="no_results_found">Nekas netika atrasts.</string>
     <plurals name="syncing_x_out_of_y_observations">
@@ -784,7 +783,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="pin_current_location">Atzīmēt pašreizējo atrašanās vietu</string>
     <string name="location_pinned_successfully">Pašreizējā atrašanās vieta veiksmīgi atzīmēta</string>
     <string name="delete_this_pinned_location">Dzēst atzīmēto atrašanās vietu?</string>
-    <!-- Verb, as in "Duplicate this photo" -->
+    <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Kopēt</string>
     <string name="couldnt_duplicate_photo">Neizdevās izveidot fotogrāfijas kopiju</string>
     <string name="couldnt_edit_photo">Neizdevās apstrādāt fotogrāfiju</string>
@@ -967,13 +966,21 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="email_must_look_like_email_address">Email must look like an email address</string>
     <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
     <string name="password_too_short">Password must be at least six characters long</string>
-    <string name="switch_to_grid_view">Switch to grid view</string>
-    <string name="switch_to_list_view">Switch to list view</string>
-    <string name="remove_project_filter">Remove project filter</string>
+    <string name="switch_to_grid_view">Pārslēgt uz režģa skatu</string>
+    <string name="switch_to_list_view">Pārslēgt uz saraksta skatu</string>
+    <string name="remove_project_filter">Noņemt projekta filtru</string>
     <string name="remove_observer_filter">Remove observer filter</string>
-    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
-    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
-    <string name="filter_observations_by_months">Filter observations by months</string>
+    <string name="filter_observations_by_an_exact_date">Filtrēt novērojumus pēc precīza datuma</string>
+    <string name="filter_observations_by_a_date_range">Filtrēt novērojumus pēc datuma diapazona</string>
+    <string name="filter_observations_by_months">Filtrēt novērojumus pēc mēnešiem</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="remove_date_observed">Dzēst novērojuma datumu &amp; laiku</string>
+    <string name="remove_time_observed">Dzēst novērojuma laiku</string>
+    <string name="remove_location">Dzēst atrašanās vietu</string>
+    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
+    <string name="share_location">Share Location</string>
+    <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">iNaturalist</string>
     <string name="email_address">E-Mail-Adresse</string>
     <string name="delete_observation">Beobachtung löschen</string>
     <string name="observation_deleted">Beobachtung gelöscht</string>
@@ -775,7 +774,7 @@
     <string name="pin_current_location">Aktuellen Standort anpinnen</string>
     <string name="location_pinned_successfully">Aktueller Standort erfolgreich angepinnt</string>
     <string name="delete_this_pinned_location">Diesen angepinnten Ort löschen?</string>
-    <!-- Verb, as in "Duplicate this photo" -->
+    <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Duplizieren</string>
     <string name="couldnt_duplicate_photo">Foto konnte nicht dupliziert werden!</string>
     <string name="couldnt_edit_photo">Foto konnte nicht bearbeitet werden!</string>
@@ -948,7 +947,7 @@ und unsere <a href="https://www.inaturalist.org/terms">Geschäftsbedingungen</a>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_short_this_year">d. MMM</string>
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short">dd.MMM \'\'yy</string>
+    <string name="date_short">dd.MMM\'\'yy</string>
     <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
@@ -967,4 +966,12 @@ und unsere <a href="https://www.inaturalist.org/terms">Geschäftsbedingungen</a>
     <string name="filter_observations_by_months">Beobachtungen nach Monaten filtern</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="remove_date_observed">Datum &amp; beobachtete Zeit entfernen</string>
+    <string name="remove_time_observed">Beobachtungszeit entfernen</string>
+    <string name="remove_location">Standort entfernen</string>
+    <string name="are_you_sure_you_want_to_remove_date">Möchtest du das Beobachtungsdatum wirklich entfernen?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Möchtest du die Beobachtungszeit wirklich entfernen?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Bist du sicher, dass du den Beobachtungsort entfernen willst?</string>
+    <string name="share_location">Standort teilen</string>
+    <string name="couldnt_duplicate_sound">Audioaufnahme konnte nicht dupliziert werden!</string>
 </resources>

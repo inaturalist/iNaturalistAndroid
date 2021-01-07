@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">iNaturalist</string>
     <string name="email_address">E-mailadres</string>
     <string name="delete_observation">Waarneming verwijderen</string>
     <string name="observation_deleted">Waarneming verwijderd</string>
@@ -735,7 +734,7 @@
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
     <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina steunt ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
-    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia steunt iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Australië: Atlas of Living Australia steunt iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) steunt iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa steunt iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Naturalist History (LUOMUS) dat iNaturalist Finland ondersteunt (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
@@ -775,7 +774,7 @@
     <string name="pin_current_location">Huidige locatie bewaren</string>
     <string name="location_pinned_successfully">Huidige locatie met succes bewaard</string>
     <string name="delete_this_pinned_location">Deze vaste locatie verwijderen?</string>
-    <!-- Verb, as in "Duplicate this photo" -->
+    <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Dupliceren</string>
     <string name="couldnt_duplicate_photo">Kon foto niet dupliceren!</string>
     <string name="couldnt_edit_photo">Kon foto niet bewerken!</string>
@@ -970,4 +969,12 @@ de <a href="https://www.inaturalist.org/pages/community+guidelines">gemeenschaps
     <string name="filter_observations_by_months">Filter waarnemingen op maanden</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="remove_date_observed">Verwijder datum &amp; tijd waargenomen</string>
+    <string name="remove_time_observed">Verwijder tijd waargenomen</string>
+    <string name="remove_location">Verwijder locatie</string>
+    <string name="are_you_sure_you_want_to_remove_date">Weet je zeker dat je de waarnemingsdatum wilt verwijderen?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Weet je zeker dat je de tijd waargenomen wilt verwijderen?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Weet je zeker dat je de locatie wilt verwijderen?</string>
+    <string name="share_location">Locatie delen</string>
+    <string name="couldnt_duplicate_sound">Kon geluid niet dupliceren!</string>
 </resources>
