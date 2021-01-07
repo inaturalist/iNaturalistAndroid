@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">iNaturalist</string>
     <string name="email_address">Adresa de e-mail</string>
     <string name="delete_observation">Șterge observarea</string>
     <string name="observation_deleted">Observare ștearsă</string>
@@ -782,7 +781,7 @@
     <string name="pin_current_location">Salvați Locația Curentă</string>
     <string name="location_pinned_successfully">Locația Curentă Salvată cu Succes</string>
     <string name="delete_this_pinned_location">Ștergeți Această Locație Salvată?</string>
-    <!-- Verb, as in "Duplicate this photo" -->
+    <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Duplicat</string>
     <string name="couldnt_duplicate_photo">Nu se poate dubla fotografia!</string>
     <string name="couldnt_edit_photo">Nu se poate edita fotografia!</string>
@@ -974,4 +973,12 @@
     <string name="filter_observations_by_months">Filtrează observațiile după luni</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="remove_date_observed">Elimină data &amp; ora observației</string>
+    <string name="remove_time_observed">Elimină ora de observare</string>
+    <string name="remove_location">Elimină locația</string>
+    <string name="are_you_sure_you_want_to_remove_date">Sigur dorești să elimini data &amp; observației?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Sigur dorești să elimini ora observației?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Sigur dorești să elimini locația?</string>
+    <string name="share_location">Partajează locația</string>
+    <string name="couldnt_duplicate_sound">Nu s-a putut duplica sunetul!</string>
 </resources>

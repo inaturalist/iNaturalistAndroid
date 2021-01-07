@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">iNaturalist</string>
     <string name="email_address">E-postadresse</string>
     <string name="delete_observation">Slett observasjon</string>
     <string name="observation_deleted">Observasjon slettet</string>
@@ -775,7 +774,7 @@
     <string name="pin_current_location">Fest nåværende beliggenhet</string>
     <string name="location_pinned_successfully">Nåværende beliggenhet ble festet vellykket</string>
     <string name="delete_this_pinned_location">Slett denne festede beliggenheten?</string>
-    <!-- Verb, as in "Duplicate this photo" -->
+    <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Dupliser</string>
     <string name="couldnt_duplicate_photo">Kunne ikke duplisere bilde!</string>
     <string name="couldnt_edit_photo">Kunne ikke redigere bilde!</string>
@@ -970,4 +969,12 @@ mer om vår definisjon av \"passende\" i ofte stilte spørsmål.</string>
     <string name="filter_observations_by_months">Filter observations by months</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="remove_date_observed">Fjern dato &amp; tid observert</string>
+    <string name="remove_time_observed">Fjern tid observert</string>
+    <string name="remove_location">Fjern posisjon</string>
+    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Er du sikker på at du vil fjerne tid observert?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Er du sikker på at du vil fjerne posisjonen?</string>
+    <string name="share_location">Del posisjon</string>
+    <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
 </resources>

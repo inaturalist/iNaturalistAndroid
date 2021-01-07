@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">iNaturalist</string>
     <string name="email_address">E-Mail-Adress</string>
     <string name="delete_observation">Observatioun läschen</string>
     <string name="observation_deleted">Observatioun geläscht</string>
@@ -416,8 +415,8 @@
         content.
     -->
     <plurals name="new_activities">
-        <item quantity="one">%1s new</item>
-        <item quantity="other">%1s new</item>
+        <item quantity="one">%1s nei</item>
+        <item quantity="other">%1s nei</item>
     </plurals>
     <string name="no_results_found">Keen Resultat fonnt...</string>
     <plurals name="syncing_x_out_of_y_observations">
@@ -513,7 +512,7 @@
     <string name="continent">Kontinent</string>
     <string name="estate">Estate</string>
     <string name="historical_town">Historesch stad</string>
-    <string name="aggregate">Aggregate</string>
+    <string name="aggregate">Aggregatioun</string>
     <string name="open_space">Open Space</string>
     <string name="territory">Territoire</string>
     <string name="district">Distrikt</string>
@@ -533,7 +532,7 @@
     <!-- https://gadm.org place type, presumably describing an area larger than an individual property but smaller than a neighborhood -->
     <string name="village_block">Village block</string>
     <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
-    <string name="sum">Sum</string>
+    <string name="sum">﻿Zomm</string>
     <string name="shire">Shire</string>
     <string name="prefecture_city">Prefecture City</string>
     <!-- Indonesian sub-sub-national place type -->
@@ -616,7 +615,7 @@
     <string name="see_more_identifications">Mei Bestemmungen gesinn</string>
     <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
     <string name="description">Beschreiwung</string>
-    <string name="quantity">Qty</string>
+    <string name="quantity">Quantitéit</string>
     <string name="agree2">Zoustëmmen</string>
     <string name="project_observations">Observatiounen</string>
     <string name="project_species">Aarten</string>
@@ -775,7 +774,7 @@
     <string name="pin_current_location">Aktuelle Site spéngelen</string>
     <string name="location_pinned_successfully">Aktuellen Site gespéngelt</string>
     <string name="delete_this_pinned_location">Delete this pinned location?</string>
-    <!-- Verb, as in "Duplicate this photo" -->
+    <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Dubléieren</string>
     <string name="couldnt_duplicate_photo">Konnt d\'Foto net dubléieren</string>
     <string name="couldnt_edit_photo">Konnt d\'Foto net editéieren</string>
@@ -966,4 +965,12 @@
     <string name="filter_observations_by_months">Filter observations by months</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="remove_date_observed">Remove date &amp; time observed</string>
+    <string name="remove_time_observed">Remove time observed</string>
+    <string name="remove_location">Remove location</string>
+    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
+    <string name="share_location">Share Location</string>
+    <string name="couldnt_duplicate_sound">Konnt de Sound net dubléieren</string>
 </resources>

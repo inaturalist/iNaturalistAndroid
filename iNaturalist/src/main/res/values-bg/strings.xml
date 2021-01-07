@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">iNaturalist</string>
     <string name="email_address">Имейл адрес</string>
     <string name="delete_observation">Изтрий наблюдението</string>
     <string name="observation_deleted">Наблюдението е изтрито</string>
@@ -198,7 +197,7 @@
     <string name="alert_message_use_argentinat">ArgentiNat е член на Мрежата на iNaturalist в Аржентина. Местните институции, поддържащи ArgentiNat, ще получат достъп до Вашия имейл адрес и до истинските координати на наблюдения, които са маскирани или поверителни. Моля, не променяйте експериментално членството си ако имате повече от 1000 наблюдения. Искате ли да промените членството си?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel е член на Мрежата на iNaturalist в Израел. Местните институции, поддържащи iNaturalist Israel, ще получат достъп до Вашия имейл адрес и до истинските координати на наблюдения, които са маскирани или поверителни. Моля, не променяйте експериментално членството си ако имате повече от 1000 наблюдения. Искате ли да промените членството си?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland е член на Мрежата на iNaturalist във Финландия. Местните институции, поддържащи iNaturalist Finland, ще получат достъп до Вашия имейл адрес и до истинските координати на наблюдения, които са маскирани или поверителни. Моля, не променяйте експериментално членството си ако имате повече от 1000 наблюдения. Искате ли да промените членството си?</string>
-    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Finland е член на Мрежата на iNaturalist в Чили. Местните институции, поддържащи iNaturalist Finland, ще получат достъп до Вашия имейл адрес и до истинските координати на наблюдения, които са маскирани или поверителни. Моля, не променяйте експериментално членството си ако имате повече от 1000 наблюдения. Искате ли да промените членството си?</string>
     <string name="editor">Редактор</string>
     <string name="license">Лиценз</string>
     <string name="download_for_offline_use">Изтегли за извънмрежов достъп</string>
@@ -747,7 +746,7 @@ CalTech и Cornell Tech помогнаха при разработката на 
     <string name="network_credit_inaturalistecuador"><![CDATA[Еквадор: Instituto Nacional de Biodiversidad (INABIO) поддържа iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Израел: University of Haifa поддържа iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Финландия: Finnish Museum of Natural History (LUOMUS) поддържа iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
-    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Чили: Ministerio del Medio Ambiente поддържащо iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">Маркирай всичко като прегледано</string>
     <string name="content_hidden">Скрито съдържание</string>
     <string name="show_hidden_content">Покажи скритото съдържание</string>
@@ -783,7 +782,7 @@ CalTech и Cornell Tech помогнаха при разработката на 
     <string name="pin_current_location">Закачи текущото място</string>
     <string name="location_pinned_successfully">Текущото място беше закачено успешно</string>
     <string name="delete_this_pinned_location">Изтриване на това закачено място?</string>
-    <!-- Verb, as in "Duplicate this photo" -->
+    <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Дублирай</string>
     <string name="couldnt_duplicate_photo">Неуспешно дублиране на снимката!</string>
     <string name="couldnt_edit_photo">Неуспешно редактиране на снимката!</string>
@@ -986,4 +985,12 @@ CalTech и Cornell Tech помогнаха при разработката на 
     <string name="filter_observations_by_months">Филтрирай наблюденията по месеци</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="remove_date_observed">Remove date &amp; time observed</string>
+    <string name="remove_time_observed">Remove time observed</string>
+    <string name="remove_location">Remove location</string>
+    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
+    <string name="share_location">Share Location</string>
+    <string name="couldnt_duplicate_sound">Неуспешно дублиране на звука!</string>
 </resources>
