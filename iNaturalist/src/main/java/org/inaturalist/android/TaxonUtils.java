@@ -141,6 +141,14 @@ public class TaxonUtils {
         }
     }
 
+
+    /** Return a translation string that contains a rank - e.g. pretty_sure_kingdom/pretty_sure_genus */
+    public static String getStringWithRank(INaturalistApp app, String rank, String stringResourceName) {
+        String translated = app.getStringResourceByNameOrNull(String.format("%s%s",  stringResourceName, toSnakeCase(rank)));
+
+        return translated;
+    }
+
     /** Return the translated rank name (i.e. translated name of species/order/etc.) - if not found
      * returns the rank as-is */
     public static String getTranslatedRank(INaturalistApp app, String rank) {

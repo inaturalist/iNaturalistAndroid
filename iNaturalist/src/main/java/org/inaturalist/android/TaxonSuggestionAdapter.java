@@ -63,10 +63,16 @@ class TaxonSuggestionAdapter extends ArrayAdapter<String> {
         View selectTaxon = view.findViewById(R.id.select_taxon);
         View compareTaxon = view.findViewById(R.id.compare_taxon);
 
-        Float visionScore = item.getFloat("vision_score");
-        Float frequencyScore = item.getFloat("frequency_score");
+        JSONObject sourceDetails = item.getJSONObject("source_details");
+        Double visionScore = null;
+        Double frequencyScore = null;
 
-        if ((visionScore == null) || (frequencyScore == null)) {
+        if (sourceDetails != null) {
+            visionScore = sourceDetails.optDouble("vision_score", 0);
+            frequencyScore = sourceDetails.optDouble("frequency_score", 0);
+        }
+
+        if (((visionScore == null) || (frequencyScore == null)) || ((frequencyScore == 0) && (visionScore == 0))) {
             visuallySimilar.setVisibility(View.GONE);
         } else if ((visionScore > 0) && (frequencyScore > 0)) {
             visuallySimilar.setText(R.string.visually_similar_seen_nearby);

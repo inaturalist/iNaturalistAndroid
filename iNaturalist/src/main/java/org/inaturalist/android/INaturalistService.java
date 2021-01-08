@@ -2635,10 +2635,8 @@ public class INaturalistService extends IntentService {
         if (limit != null) params.add(new BasicNameValuePair("limit", limit.toString()));
         if (page != null) params.add(new BasicNameValuePair("page", page.toString()));
         params.add(new BasicNameValuePair("locale", deviceLanguage));
-        params.add(new BasicNameValuePair("lat", latitude.toString()));
-        params.add(new BasicNameValuePair("lng", longitude.toString()));
         if (date != null) params.add(new BasicNameValuePair("observed_on", date));
-        params.add(new BasicNameValuePair("image", photoFilename));
+        if (suggestionSource.equals(SUGGESTION_SOURCE_VISUAL)) params.add(new BasicNameValuePair("image", photoFilename));
         params.add(new BasicNameValuePair("source", suggestionSource));
         if (placeId != null) {
             params.add(new BasicNameValuePair("place_id", placeId.toString()));
@@ -2646,11 +2644,16 @@ public class INaturalistService extends IntentService {
         if (taxonId != null) {
             params.add(new BasicNameValuePair("taxon_id", taxonId.toString()));
         }
-        if (placeLat != null) {
-            params.add(new BasicNameValuePair("place_lat", placeLat.toString()));
-        }
-        if (placeLng != null) {
-            params.add(new BasicNameValuePair("place_lng", placeLng.toString()));
+        if (suggestionSource.equals(SUGGESTION_SOURCE_VISUAL)) {
+            params.add(new BasicNameValuePair("lat", latitude.toString()));
+            params.add(new BasicNameValuePair("lng", longitude.toString()));
+        } else {
+            if (placeLat != null) {
+                params.add(new BasicNameValuePair("place_lat", placeLat.toString()));
+            }
+            if (placeLng != null) {
+                params.add(new BasicNameValuePair("place_lng", placeLng.toString()));
+            }
         }
 
 
