@@ -464,7 +464,7 @@
     <string name="view_suggestions">View Suggestions</string>
     <string name="species_search">Species Search</string>
     <string name="were_not_confident_enough">We\'re not confident enough to make a recommendation, but here are our top suggestions:</string>
-    <string name="most_observed_options_matching_filters">Most observed options matching filters</string>
+    <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
     <string name="top_suggestions">Top suggestions</string>
     <string name="pretty_sure_rank">We\'re pretty sure it\'s in this %1$s:</string>
     <string name="what_did_you_see">What did you see?</string>
@@ -990,7 +990,7 @@
     <string name="suggestions_source">Suggestions Source</string>
     <string name="research_grade_observations">Research Grade Observations</string>
     <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
-    <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will only provide suggestions observed nearby at this time of year.</string>
+    <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will suggest species observed in a specific place and within a specific taxonomic group.</string>
     <string name="taxon">Taxon:</string>
     <string name="place">Place:</string>
     <string name="pretty_sure_kingdom">We\'re pretty sure it\'s in this kingdom:</string>

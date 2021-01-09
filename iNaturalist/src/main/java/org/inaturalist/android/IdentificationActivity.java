@@ -4,6 +4,7 @@ import com.evernote.android.state.State;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
@@ -175,7 +176,11 @@ public class IdentificationActivity extends AppCompatActivity {
                 intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_JSON, mObservationJson);
             } else {
                 intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_ID_INTERNAL, mObsIdInternal);
-                intent.putExtra(TaxonSuggestionsActivity.OBSERVATION, new Observation(new BetterJSONObject(mObservationJson)));
+
+                Cursor c = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "_id = ?", new String[]{String.valueOf(mObsIdInternal)}, Observation.DEFAULT_SORT_ORDER);
+                Observation obs = new Observation(c);
+                c.close();
+                intent.putExtra(TaxonSuggestionsActivity.OBSERVATION, obs);
                 intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_JSON, mObservationJson);
             }
             startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);

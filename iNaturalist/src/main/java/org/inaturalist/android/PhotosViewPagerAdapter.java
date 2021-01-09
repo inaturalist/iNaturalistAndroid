@@ -42,6 +42,7 @@ class PhotosViewPagerAdapter extends PagerAdapter {
     private final Observation mObservation;
     private final Context mContext;
     private final String mObservationJson;
+    private final INaturalistApp mApp;
     private Cursor mImageCursor = null;
     private boolean mIsExternal = false;
 
@@ -50,16 +51,30 @@ class PhotosViewPagerAdapter extends PagerAdapter {
     public PhotosViewPagerAdapter(Context context, Observation observation, String obsJson) {
         mObservation = observation;
         mContext = context;
+        mApp = (INaturalistApp) mContext.getApplicationContext();
         mObservationJson = obsJson;
         
-        if (mObservation != null && mObservation.uuid != null) {
-            mImageCursor = mContext.getContentResolver().query(ObservationPhoto.CONTENT_URI,
-                    ObservationPhoto.PROJECTION,
-                    "(observation_uuid=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
-                    new String[]{mObservation.uuid},
-                    ObservationPhoto.DEFAULT_SORT_ORDER);
-            mIsExternal = mImageCursor.getCount() == 0;
-            mImageCursor.moveToFirst();
+        if (mObservation != null) {
+            if (mObservation.uuid != null) {
+                mImageCursor = mContext.getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                        ObservationPhoto.PROJECTION,
+                        "(observation_uuid=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
+                        new String[]{mObservation.uuid},
+                        ObservationPhoto.DEFAULT_SORT_ORDER);
+            } else if (mApp.loggedIn()) {
+                if (mObservation.user_login.toLowerCase().equals(mApp.currentUserLogin().toLowerCase())) {
+                    mImageCursor = mContext.getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                            ObservationPhoto.PROJECTION,
+                            "(observation_id=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
+                            new String[]{String.valueOf(mObservation.id)},
+                            ObservationPhoto.DEFAULT_SORT_ORDER);
+                }
+            }
+
+            if (mImageCursor != null) {
+                mIsExternal = mImageCursor.getCount() == 0;
+                mImageCursor.moveToFirst();
+            }
         }
     }
 
