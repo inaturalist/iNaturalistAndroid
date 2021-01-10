@@ -217,12 +217,14 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
             }
 
 
-            // Finally, sort by annotation ID
+            // Sort by annotation label
             Collections.sort(mAttributes, new Comparator<Pair<JSONObject, JSONObject>>() {
                 @Override
                 public int compare(Pair<JSONObject, JSONObject> p1, Pair<JSONObject, JSONObject> p2) {
                     try {
-                        return p1.first.getInt("id") - p2.first.getInt("id");
+                        String translatedName1 = getAnnotationTranslatedValue(mApp, p1.first.getString("label"), false);
+                        String translatedName2 = getAnnotationTranslatedValue(mApp, p2.first.getString("label"), false);
+                        return translatedName1.compareTo(translatedName2);
                     } catch (JSONException e) {
                         Logger.tag(TAG).error(e);
                         return 0;
