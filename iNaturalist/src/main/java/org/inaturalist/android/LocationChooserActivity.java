@@ -143,6 +143,8 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
     private Long mLocationRequestedAt;
     private Location mCurrentLocation;
 
+    @State public Float mOriginalZoom = null;
+
     private static final int ONE_MINUTE = 60 * 1000;
 
     @Override
@@ -629,14 +631,28 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
             LatLngBounds bounds = builder.build();
             boolean isPortrait = (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT);
 
+            GoogleMap.CancelableCallback callback = new GoogleMap.CancelableCallback() {
+                @Override
+                public void onFinish() {
+                    if (mOriginalZoom != null) {
+                        mOriginalZoom = mMap.getCameraPosition().zoom;
+                    }
+                }
+
+                @Override
+                public void onCancel() {
+
+                }
+            };
+
             if (mZoomToLocation) {
                 if (mMap != null) {
-                    new Handler().postDelayed(() -> mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, (int) (screenWidth * 0.3))), 100);
+                    new Handler().postDelayed(() -> mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, (int) (screenWidth * 0.3)), callback), 100);
                 }
         		mZoomToLocation = false;
         	} else {
                 if (mMap != null) {
-                    new Handler().postDelayed(() -> mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, screenWidth, screenHeight, (int) ((isPortrait ? screenWidth : screenHeight) * 0.3)), 1, null), 100);
+                    new Handler().postDelayed(() -> mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, screenWidth, screenHeight, (int) ((isPortrait ? screenWidth : screenHeight) * 0.3)), 1, callback), 100);
                 }
         	}
         }
@@ -728,10 +744,12 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         p2.x = (int) (screenWidth * 0.5); p2.y = (int) (screenHeight * 0.5);
         LatLng rightSide = mMap.getProjection().fromScreenLocation(p2);
 
-        float[] results = new float[3];
-        Location.distanceBetween(leftSide.latitude, leftSide.longitude, rightSide.latitude, rightSide.longitude, results);
-        mAccuracy = results[0];
-        Logger.tag(TAG).error("Meters per radius = " + mAccuracy);
+        if ((mOriginalZoom == null) || (!mOriginalZoom.equals(mMap.getCameraPosition().zoom))) {
+            float[] results = new float[3];
+            Location.distanceBetween(leftSide.latitude, leftSide.longitude, rightSide.latitude, rightSide.longitude, results);
+            mAccuracy = results[0];
+            Logger.tag(TAG).error("Meters per radius = " + mAccuracy);
+        }
 
         mLatitude = mMap.getCameraPosition().target.latitude;
         mLongitude = mMap.getCameraPosition().target.longitude;
