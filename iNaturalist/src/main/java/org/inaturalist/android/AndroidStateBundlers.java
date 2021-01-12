@@ -2,6 +2,7 @@ package org.inaturalist.android;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Pair;
 
 import androidx.annotation.NonNull;
@@ -175,8 +176,17 @@ public class AndroidStateBundlers {
         @Override
         public void put(@NonNull String key, @NonNull List<BetterJSONObject> value, @NonNull Bundle bundle) {
             if (value != null) {
-                JSONArray arr = new JSONArray(value);
-                bundle.putString(key, arr.toString());
+                StringBuilder string = new StringBuilder();
+                string.append('[');
+                for (int i = 0; i < value.size(); i++) {
+                    BetterJSONObject obj = value.get(i);
+                    string.append(obj.getJSONObject().toString());
+                    if (i < value.size() - 1) {
+                        string.append(',');
+                    }
+                }
+                string.append(']');
+                bundle.putString(key, string.toString());
             }
         }
 

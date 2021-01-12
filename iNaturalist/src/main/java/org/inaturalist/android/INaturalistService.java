@@ -256,6 +256,9 @@ public class INaturalistService extends IntentService {
 
     private static final int MAX_OBSVERATIONS_TO_REDOWNLOAD = 100; // Happens when user switches language and we need the new taxon name in that language
 
+    public static final String SUGGESTION_SOURCE = "suggestion_source";
+    public static final String SUGGESTION_SOURCE_VISUAL = "visual";
+    public static final String SUGGESTION_SOURCE_RESEARCH_GRADE_OBS = "rg_observations";
     public static final String USER = "user";
     public static final String AUTHENTICATION_FAILED = "authentication_failed";
     public static final String USER_DELETED = "user_deleted";
@@ -317,6 +320,8 @@ public class INaturalistService extends IntentService {
     public static final String ADD_OBSERVATION_TO_PROJECT_RESULT = "add_observation_to_project_result";
     public static final String DELETE_ACCOUNT_RESULT = "delete_account_result";
     public static final String TAXON_ID = "taxon_id";
+    public static final String PLACE_LAT = "place_lat";
+    public static final String PLACE_LNG = "place_lng";
     public static final String RESEARCH_GRADE = "research_grade";
     public static final String TAXON = "taxon";
     public static final String UUID = "uuid";
@@ -1101,7 +1106,20 @@ public class INaturalistService extends IntentService {
                 String obsUrl = intent.getStringExtra(OBS_PHOTO_URL);
                 Double longitude = intent.getDoubleExtra(LONGITUDE, 0);
                 Double latitude = intent.getDoubleExtra(LATITUDE, 0);
+                String suggestionSource = intent.getStringExtra(SUGGESTION_SOURCE);
                 Timestamp observedOn = (Timestamp) intent.getSerializableExtra(OBSERVED_ON);
+                Integer placeId = intent.getIntExtra(PLACE_ID, -1);
+                if (placeId == -1) placeId = null;
+                Integer taxonId = intent.getIntExtra(TAXON_ID, -1);
+                if (taxonId == -1) taxonId = null;
+                Integer limit = 50;
+                Integer page = intent.getIntExtra(PAGE_NUMBER, -1);
+                if (page == -1) page = 0;
+                Double placeLat = intent.getDoubleExtra(PLACE_LAT, -1);
+                if (placeLat == -1) placeLat = null;
+                Double placeLng = intent.getDoubleExtra(PLACE_LNG, -1);
+                if (placeLng == -1) placeLng = null;
+
                 File tempFile = null;
 
                 if (obsFilename == null) {
@@ -1130,13 +1148,15 @@ public class INaturalistService extends IntentService {
                     tempFile.delete();
                 }
 
-                BetterJSONObject taxonSuggestions = getTaxonSuggestions(resizedPhotoFilename, latitude, longitude, observedOn);
+                BetterJSONObject taxonSuggestions = getTaxonSuggestions(resizedPhotoFilename, latitude, longitude, observedOn, suggestionSource, placeId, taxonId, placeLat, placeLng, limit, page);
 
                 File resizedFile = new File(resizedPhotoFilename);
                 resizedFile.delete();
 
                 Intent reply = new Intent(ACTION_GET_TAXON_SUGGESTIONS_RESULT);
                 reply.putExtra(TAXON_SUGGESTIONS, taxonSuggestions);
+                reply.putExtra(OBS_PHOTO_URL, obsUrl);
+                reply.putExtra(OBS_PHOTO_FILENAME, obsFilename);
                 LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GET_TAXON_NEW)) {
@@ -2601,18 +2621,37 @@ public class INaturalistService extends IntentService {
         }
     }
 
-    private BetterJSONObject getTaxonSuggestions(String photoFilename, Double latitude, Double longitude, Timestamp observedOn) throws AuthenticationException {
+    private BetterJSONObject getTaxonSuggestions(String photoFilename, Double latitude, Double longitude, Timestamp observedOn, String suggestionSource, Integer placeId, Integer taxonId, Double placeLat, Double placeLng, Integer limit, Integer page) throws AuthenticationException {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
         String date = observedOn != null ? new SimpleDateFormat("yyyy-MM-dd").format(observedOn) : null;
         ArrayList<NameValuePair> params = new ArrayList<>();
-        String url = String.format(Locale.ENGLISH, API_HOST + "/computervision/score_image");
+        String url = String.format(Locale.ENGLISH, API_HOST + "/taxa/suggest");
 
+        if (limit != null) params.add(new BasicNameValuePair("limit", limit.toString()));
+        if (page != null) params.add(new BasicNameValuePair("page", page.toString()));
         params.add(new BasicNameValuePair("locale", deviceLanguage));
-        params.add(new BasicNameValuePair("lat", latitude.toString()));
-        params.add(new BasicNameValuePair("lng", longitude.toString()));
         if (date != null) params.add(new BasicNameValuePair("observed_on", date));
-        params.add(new BasicNameValuePair("image", photoFilename));
+        if (suggestionSource.equals(SUGGESTION_SOURCE_VISUAL)) params.add(new BasicNameValuePair("image", photoFilename));
+        params.add(new BasicNameValuePair("source", suggestionSource));
+        if (placeId != null) {
+            params.add(new BasicNameValuePair("place_id", placeId.toString()));
+        }
+        if (taxonId != null) {
+            params.add(new BasicNameValuePair("taxon_id", taxonId.toString()));
+        }
+        if (suggestionSource.equals(SUGGESTION_SOURCE_VISUAL)) {
+            params.add(new BasicNameValuePair("lat", latitude.toString()));
+            params.add(new BasicNameValuePair("lng", longitude.toString()));
+        } else {
+            if (placeLat != null) {
+                params.add(new BasicNameValuePair("place_lat", placeLat.toString()));
+            }
+            if (placeLng != null) {
+                params.add(new BasicNameValuePair("place_lng", placeLng.toString()));
+            }
+        }
+
 
         JSONArray json = request(url, "post", params, null, true, true, true);
         if (json == null || json.length() == 0) {

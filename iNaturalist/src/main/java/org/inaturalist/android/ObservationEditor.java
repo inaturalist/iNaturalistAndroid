@@ -935,7 +935,8 @@ public class ObservationEditor extends AppCompatActivity {
                     intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_ID, mObservation.id);
                     intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_ID_INTERNAL, mObservation._id);
                     intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_UUID, mObservation.uuid);
-                    intent.putExtra(TaxonSuggestionsActivity.OBSERVATION, mObservation.toJSONObject().toString());
+                    intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_JSON, mObservation.toJSONObject().toString());
+                    intent.putExtra(TaxonSuggestionsActivity.OBSERVATION, mObservation);
                     startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
                 }
             }

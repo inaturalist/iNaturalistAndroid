@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:background="#EEEEEE"
     android:layout_height="match_parent">
 
     <RelativeLayout
         android:paddingLeft="20dp"
-        android:paddingRight="20dp"
+        android:paddingRight="13dp"
         android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="161dp">
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/photos"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
 
         <ImageView
             android:id="@+id/back"
@@ -22,19 +29,28 @@
             android:scaleType="centerCrop"
             />
 
+
         <ImageView
-            android:id="@+id/observation_photo"
-            android:layout_width="131dp"
-            android:layout_height="126dp"
-            android:layout_centerInParent="true"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            android:elevation="8dp"
-            android:background="#464646"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            android:id="@+id/suggestion_source"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="14dp"
+            android:src="@drawable/ic_empty_binoculars"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:scaleType="centerCrop"
+            android:background="@drawable/circular_button_dark_gray"
+            android:tint="#ffffff"
             />
 
+
+        <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/photos_indicator"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_alignParentBottom="true"
+            app:radius="6dp"
+            android:paddingBottom="16dp" />
     </RelativeLayout>
 
 
@@ -127,22 +143,201 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-                <TextView
-                    android:id="@+id/suggestions_description"
-                    android:textSize="14sp"
-                    android:textColor="#8B000000"
-                    android:text="@plurals/were_not_confident"
-                    android:layout_marginLeft="17dp"
-                    android:layout_marginRight="17dp"
-                    android:layout_marginTop="23dp"
-                    android:layout_marginBottom="8dp"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    >
+
+                    <RelativeLayout
+                        android:id="@+id/results_top_part"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_centerVertical="true"
+                            android:id="@+id/filters"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/rounded_green_button"
+                            android:gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="23dp">
+                            <ImageView
+                                android:layout_width="12dp"
+                                android:layout_height="13dp"
+                                android:src="@drawable/filters_gray"
+                                android:tint="#ffffff"
+                                />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/filters"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:layout_marginLeft="6dp"
+                                />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/suggestions_description"
+                            android:layout_centerVertical="true"
+                            android:textSize="14sp"
+                            android:textColor="#8B000000"
+                            android:text="@string/were_not_confident_enough"
+                            android:layout_marginLeft="17dp"
+                            android:layout_marginRight="17dp"
+                            android:layout_marginTop="23dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_toLeftOf="@id/filters"
+                            android:layout_alignParentLeft="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/active_filters"
+                        android:layout_below="@id/results_top_part"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        app:cardCornerRadius="16dp"
+                        >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+                        <RelativeLayout
+                            android:id="@+id/filters_icon"
+                            android:layout_width="37dp"
+                            android:layout_height="match_parent"
+                            android:background="#74ac00"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignBottom="@id/filters_right_side"
+                            >
+                            <ImageView
+                                android:layout_width="37dp"
+                                android:layout_height="37dp"
+                                android:tint="#ffffff"
+                                android:src="@drawable/filters_gray"
+                                android:padding="10dp"
+                                android:layout_centerInParent="true"
+                                />
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:id="@+id/clear_filters"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignBottom="@id/filters_right_side"
+                            android:gravity="center_vertical|right"
+                            android:paddingRight="19dp"
+                            android:layout_width="wrap_content"
+                            android:minWidth="50dp"
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:id="@+id/clear_filters_image"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/baseline_close_black_24"
+                                android:tint="#797a7b"
+                                android:visibility="visible"
+                                />
+                            <TextView
+                                android:id="@+id/clear_filters_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/reset"
+                                android:visibility="gone"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/filters_right_side"
+                            android:layout_toRightOf="@id/filters_icon"
+                            android:layout_toLeftOf="@id/clear_filters"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="11dp"
+                            android:paddingTop="12dp"
+                            android:paddingBottom="12dp"
+                            android:layout_centerVertical="true"
+                            >
+                            <LinearLayout
+                                android:id="@+id/filters_taxon_container"
+                                android:orientation="horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/taxon"
+                                    android:textSize="14sp"
+                                    />
+                                <TextView
+                                    android:id="@+id/filter_taxon_name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Plants"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:layout_marginLeft="5dp"
+                                    />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/filters_place_container"
+                                android:orientation="horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/place"
+                                    android:textSize="14sp"
+                                    />
+                                <TextView
+                                    android:id="@+id/filter_place_name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="North America"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:layout_marginLeft="5dp"
+                                    />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+                </RelativeLayout>
 
                 <ListView
                     android:id="@+id/suggestions_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/view_suggestions_not_near_by"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_gravity="center"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp"
+                    android:background="@drawable/circular_button"
+                    android:text="@string/view_suggestions_not_seen_nearby" />
 
             </LinearLayout>
         </LinearLayout>

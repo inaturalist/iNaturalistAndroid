@@ -166,7 +166,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                 }
             }
 
-            if (!mReadOnly) mActionContainer.setVisibility(View.VISIBLE);
+            mActionContainer.setVisibility(mReadOnly ? View.GONE : View.VISIBLE);
             mDeletePhoto.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
