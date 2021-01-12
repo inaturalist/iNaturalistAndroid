@@ -194,6 +194,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
         if (mSearchFilters.place == null) {
             if (place != null) {
                 mSearchFilters.place = place;
+                mSearchFilters.isCurrentLocation = false;
             }
         }
 
@@ -283,6 +284,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
             // Clear the filters
             mSearchFilters.place = null;
             mSearchFilters.taxon = null;
+            mSearchFilters.isCurrentLocation = true;
 
             mTaxonResultsByIndex = new HashMap<>(); // Clear results cache
             mTaxonSuggestions = null;
