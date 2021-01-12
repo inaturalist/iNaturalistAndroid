@@ -1894,7 +1894,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                                 shareIntent.setAction(Intent.ACTION_SEND);
                                 shareIntent.setType("text/plain");
                                 shareIntent.putExtra(Intent.EXTRA_TEXT, obsUrl);
-                                startActivityForResult(shareIntent, SHARE_REQUEST_CODE);
+
+                                Intent chooserIntent = Intent.createChooser(shareIntent, getString(R.string.share));
+                                startActivityForResult(chooserIntent, SHARE_REQUEST_CODE);
 
                                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_SHARE_STARTED);
                                 break;
