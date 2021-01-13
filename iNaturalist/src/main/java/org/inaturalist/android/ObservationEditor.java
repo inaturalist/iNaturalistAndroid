@@ -80,6 +80,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -259,6 +260,7 @@ public class ObservationEditor extends AppCompatActivity {
     @State public String mCapturedPhotoFilePath;
     @State public boolean mDuplicate;
     @State public int mOnlineDuplicatedPhotosAndSounds;
+    private String mErrorImporting;
 
     @Override
 	protected void onStop()
@@ -3124,14 +3126,16 @@ public class ObservationEditor extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                boolean errorImporting = false;
+                mErrorImporting = null;
 
                 if (mPhotosAndSoundsAdded != null) {
                     for (final Uri sound : sounds) {
                         Uri createdUri = createObservationSoundForSound(sound);
 
+                        if (mErrorImporting != null) break;
+
                         if (createdUri == null) {
-                            errorImporting = true;
+                            mErrorImporting = getString(R.string.invalid_audio_extension);
                             break;
                         }
 
@@ -3139,15 +3143,14 @@ public class ObservationEditor extends AppCompatActivity {
                     }
                 }
 
-                final boolean finalErrorImporting = errorImporting;
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         updateImagesAndSounds();
                         mHelper.stopLoading();
 
-                        if (finalErrorImporting) {
-                            mHelper.alert(getString(R.string.invalid_audio_extension));
+                        if (mErrorImporting != null) {
+                            mHelper.alert(mErrorImporting);
                         }
                     }
                 });
@@ -3234,6 +3237,7 @@ public class ObservationEditor extends AppCompatActivity {
             ContentResolver cr = getContentResolver();
             String mimeType = cr.getType(soundUri);
             if ((mimeType == null) || (!mimeType.startsWith("audio/"))) {
+                mErrorImporting = getString(R.string.invalid_audio_extension);
                 return null;
             }
 
@@ -3251,6 +3255,19 @@ public class ObservationEditor extends AppCompatActivity {
                 (!extension.toLowerCase().equals("m4a")) &&
                 (!extension.toLowerCase().equals("amr"))
             ) {
+            mErrorImporting = getString(R.string.invalid_audio_extension);
+            return null;
+        }
+
+        // Try and play file first - to see if it's supported by the OS
+        try {
+            MediaPlayer mediaPlayer = new MediaPlayer();
+            mediaPlayer.setDataSource(this, soundUri);
+            mediaPlayer.prepare();
+            mediaPlayer.release();
+        } catch (IOException exc) {
+            Logger.tag(TAG).error(exc);
+            mErrorImporting = getString(R.string.sound_format_not_supported);
             return null;
         }
 
@@ -3260,7 +3277,7 @@ public class ObservationEditor extends AppCompatActivity {
             FileUtils.copyFileFromUri(this, soundUri, destFile);
         } catch (IOException e) {
             Logger.tag(TAG).error(e);
-            Toast.makeText(this,  R.string.couldnt_retrieve_sound, Toast.LENGTH_LONG).show();
+            mErrorImporting = getString(R.string.couldnt_retrieve_sound);
             return null;
         }
 
