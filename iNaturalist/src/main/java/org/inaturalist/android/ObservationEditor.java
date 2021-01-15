@@ -306,6 +306,8 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private void refreshMenuItems() {
+        if (mMenu == null) return;
+
         mMenu.getItem(1).setVisible(mDateSetByUser != null);
         mMenu.getItem(2).setVisible(mTimeSetByUser != null);
         mMenu.getItem(3).setVisible(
