@@ -320,6 +320,8 @@ public class INaturalistApp extends MultiDexApplication {
         File[] list = root.listFiles();
         long total = 0;
 
+        if (list == null) return 0;
+
         for (File f : list) {
             if (f.isDirectory()) {
                 total += listFilesRecursively(f);
