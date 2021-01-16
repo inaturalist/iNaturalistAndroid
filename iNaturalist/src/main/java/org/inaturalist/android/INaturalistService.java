@@ -626,7 +626,7 @@ public class INaturalistService extends IntentService {
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
                     .setOngoing(false)
                     .setPriority(NotificationCompat.PRIORITY_MIN)
-                    .setContentTitle(getString(R.string.app_name))
+                    .setContentTitle(getString(R.string.app_title))
                     .setContentText(getString(R.string.running_in_background_notfication))
                     .setCategory(Notification.CATEGORY_SERVICE)
                     .setSmallIcon(R.drawable.ic_notification);
