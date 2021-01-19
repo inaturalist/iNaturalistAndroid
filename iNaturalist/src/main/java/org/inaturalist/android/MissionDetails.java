@@ -438,8 +438,12 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
                     @Override
                     public void onCameraChange(CameraPosition arg0) {
                         if (finalCoordsCount > 0) {
+                            int width = getResources().getDisplayMetrics().widthPixels;
+                            int height = getResources().getDisplayMetrics().heightPixels;
+                            int padding = (int) (Math.min(width, height) * 0.2);
+
                             LatLngBounds bounds = builder.build();
-                            CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 100 /* Padding */);
+                            CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
                             mMissionMap.moveCamera(cu);
                         }
 
