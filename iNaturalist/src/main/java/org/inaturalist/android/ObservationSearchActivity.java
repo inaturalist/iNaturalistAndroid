@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteConstraintException;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -258,7 +259,13 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
             opcv.put(ObservationPhoto._PHOTO_ID, photo._photo_id);
             opcv.put(ObservationPhoto._ID, photo.id);
             opcv.put(ObservationPhoto.OBSERVATION_UUID, jsonObservation.uuid);
-            getContentResolver().insert(ObservationPhoto.CONTENT_URI, opcv);
+
+            try {
+                getContentResolver().insert(ObservationPhoto.CONTENT_URI, opcv);
+            } catch (SQLiteConstraintException exc) {
+                Logger.tag(TAG).info("OP - searchObservationLocally - ObservationPhoto already exists - updating it");
+                getContentResolver().update(ObservationPhoto.CONTENT_URI, opcv, "_id = ?", new String[] { String.valueOf(photo.id) });
+            }
         }
 
         // Add the observation's projects
