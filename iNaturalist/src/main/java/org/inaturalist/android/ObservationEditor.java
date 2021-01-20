@@ -910,6 +910,7 @@ public class ObservationEditor extends AppCompatActivity {
             public void onClick(View view) {
                 mTaxonSearchStarted = true;
                 if (
+                        (!mApp.isNetworkAvailable()) ||
                         (((GalleryCursorAdapter)mGallery.getAdapter()).getPhotoCount() == 0) ||
                         (!mApp.getSuggestSpecies()) ||
                         ((mSpeciesGuess != null) && (mSpeciesGuess.length() > 0) && (mObservation.taxon_id == null))
