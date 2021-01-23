@@ -382,6 +382,9 @@ public class ActivityHelper {
             // can't do anything
             return;
         }
+
+        boolean privateCoordinates = (observation.private_latitude != null) && (observation.private_longitude != null);
+
         LatLng latlng = new LatLng(lat, lon);
         String currentUser = mApp.currentUserLogin();
         CameraUpdate cameraUpdate = null;
@@ -391,7 +394,7 @@ public class ActivityHelper {
         publicAcc = observationJson != null ? observationJson.getInteger("public_positional_accuracy") : null;
 
         if (((observation.geoprivacy != null) && (observation.geoprivacy.equals("private"))) ||
-                (publicAcc == null) || (markerOnly)) {
+                (publicAcc == null) || (markerOnly) || (privateCoordinates)) {
             // Add a single marker
             BitmapDescriptor obsIcon = TaxonUtils.observationMarkerIcon(observation.iconic_taxon_name, false);
             MarkerOptions opts = new MarkerOptions().position(latlng).icon(obsIcon);
