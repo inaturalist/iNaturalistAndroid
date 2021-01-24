@@ -4,8 +4,8 @@
     package="org.inaturalist.android"
     android:installLocation="auto"
     android:requestLegacyExternalStorage="true"
-    android:versionCode="467"
-    android:versionName="1.21.0">
+    android:versionCode="468"
+    android:versionName="1.21.1">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
