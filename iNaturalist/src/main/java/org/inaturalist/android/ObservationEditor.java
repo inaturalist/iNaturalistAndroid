@@ -456,6 +456,8 @@ public class ObservationEditor extends AppCompatActivity {
                     originalObsCursor.close();
 
                     newObs.observed_on_string = originalObs.observed_on_string;
+                    newObs.observed_on = originalObs.observed_on;
+                    newObs.time_observed_at = originalObs.time_observed_at;
                     newObs.place_guess = originalObs.place_guess;
                     newObs.private_place_guess = originalObs.private_place_guess;
                     newObs.latitude = originalObs.latitude;
