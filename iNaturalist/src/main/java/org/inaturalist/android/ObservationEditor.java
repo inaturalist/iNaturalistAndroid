@@ -3465,6 +3465,8 @@ public class ObservationEditor extends AppCompatActivity {
             String datetime = null;
             boolean useLocalTimezone = false;
 
+            SimpleDateFormat exifDateFormat = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
+
             if (exif != null) {
                 // TAG_GPS_DATE_STAMP is defined as UTC / GMT+0
                 String date = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_GPS_DATE_STAMP);
@@ -3476,7 +3478,7 @@ public class ObservationEditor extends AppCompatActivity {
                     time = orgExif.getAttribute(ExifInterface.TAG_GPS_TIMESTAMP);
                 }
 
-                if ((date == null) || (date.length() == 0) || (time == null) || (time.length() == 0)) {
+                if ((date == null) || (date.length() == 0) || (date.startsWith("1970")) || (time == null) || (time.length() == 0)) {
                     // No timezone defined - assume user's local timezone
                     useLocalTimezone = true;
                     String dateTimeValue = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_DATE_TIME_ORIGINAL);
@@ -3493,7 +3495,7 @@ public class ObservationEditor extends AppCompatActivity {
                 String date = orgExif.getAttribute(ExifInterface.TAG_GPS_DATESTAMP);
                 String time = orgExif.getAttribute(ExifInterface.TAG_GPS_TIMESTAMP);
 
-                if ((date == null) || (time == null)) {
+                if ((date == null) || (time == null) || (date.startsWith("1970"))) {
                     useLocalTimezone = true;
                     datetime = orgExif.getAttribute(ExifInterface.TAG_DATETIME_ORIGINAL);
                 } else {
@@ -3506,7 +3508,6 @@ public class ObservationEditor extends AppCompatActivity {
             }
 
             if (datetime != null) {
-                SimpleDateFormat exifDateFormat = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
                 if (!useLocalTimezone) exifDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 
                 try {
