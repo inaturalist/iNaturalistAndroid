@@ -74,6 +74,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -127,6 +128,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
     private ScrollView mScrollView;
     private ImageView mTaxonomyIcon;
     private ViewGroup mViewOnINat;
+    private ViewGroup mViewObservations;
     private ViewGroup mTaxonButtons;
     private ViewGroup mSelectTaxon;
     private ViewGroup mCompareTaxon;
@@ -721,6 +723,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
 
             }
         });
+        mViewObservations = (ViewGroup) findViewById(R.id.view_observations);
         mViewOnINat = (ViewGroup) findViewById(R.id.view_on_inat);
         mLoadingPhotos = (ProgressBar) findViewById(R.id.loading_photos);
         mTaxonButtons = (ViewGroup) findViewById(R.id.taxon_buttons);
@@ -764,6 +767,21 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
                 finish();
             }
         });
+
+        mViewObservations.setOnClickListener(v -> {
+            // Show explore screen with filtering by this taxon, global location
+            ExploreSearchFilters searchFilters = new ExploreSearchFilters();
+            searchFilters.isCurrentLocation = false;
+            searchFilters.mapBounds = null;
+            searchFilters.place = null;
+            searchFilters.taxon = mTaxon.getJSONObject();
+
+            Intent intent1 = new Intent(TaxonActivity.this, ExploreActivity.class);
+            intent1.putExtra(ExploreActivity.SEARCH_FILTERS, searchFilters);
+            intent1.putExtra(ExploreActivity.ACTIVE_TAB, ExploreActivity.VIEW_TYPE_OBSERVATIONS);
+            startActivity(intent1);
+        });
+
 
         mViewOnINat.setOnClickListener(new View.OnClickListener() {
             @Override
