@@ -471,7 +471,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
 
                 Integer taxonId = null;
 
-                if ((obs.rank_level <= 10) && (mTaxon != null)) {
+                if ((obs.rank_level != null) && (obs.rank_level <= 10) && (mTaxon != null)) {
                     // Observation taxon is species or below - use the parent taxon ID instead
                     JSONArray ancestors = mTaxon.getJSONArray("ancestor_ids").getJSONArray();
                     int ancestorsCount = ancestors.length();
