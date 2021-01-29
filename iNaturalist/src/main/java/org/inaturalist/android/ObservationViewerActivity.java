@@ -1125,9 +1125,12 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         mObservation.identifications_count = mObservation.last_identifications_count = mIdCount;
         if (mObservation.getUri() != null) {
             ContentValues cv = mObservation.getContentValues();
-            if (!((mObservation._synced_at == null) || (mObservation.id == null) || ((mObservation._updated_at != null) && ((mObservation._updated_at.after(mObservation._synced_at)) || (mObservation._updated_at.equals(mObservation._synced_at)))))) {
-                cv.put(Observation._SYNCED_AT, System.currentTimeMillis()); // No need to sync
+            if ((mObservation._synced_at != null) && (mObservation.id != null)) {
+                if ((mObservation._updated_at == null) || (mObservation._updated_at.before(mObservation._synced_at)) || (mObservation._updated_at.equals(mObservation._synced_at))) {
+                    cv.put(Observation._SYNCED_AT, System.currentTimeMillis()); // No need to sync
+                }
             }
+
             getContentResolver().update(mObservation.getUri(), cv, null, null);
             Logger.tag(TAG).debug("ObservationViewerActivity - refreshActivity - update obs: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
         }
