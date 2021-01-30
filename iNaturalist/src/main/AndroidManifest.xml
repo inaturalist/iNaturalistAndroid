@@ -5,7 +5,7 @@
     android:installLocation="auto"
     android:requestLegacyExternalStorage="true"
     android:versionCode="471"
-    android:versionName="1.21.3">
+    android:versionName="1.21.4">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
