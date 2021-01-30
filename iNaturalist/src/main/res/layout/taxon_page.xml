@@ -390,9 +390,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+
+            <LinearLayout
+                android:id="@+id/view_observations"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:background="@drawable/circular_button_white_with_border"
+                android:gravity="center_horizontal|center_vertical"
+                android:clickable="true"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="17dp"
+                android:layout_marginRight="17dp"
+                android:layout_height="48dp">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_explore_black_24dp"
+                    android:tint="#75AA1F"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/view_observations"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:paddingLeft="7dp"
+                    />
+            </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/view_on_inat"
-                android:layout_below="@id/about_taxon"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:background="@drawable/circular_button_white_with_border"
