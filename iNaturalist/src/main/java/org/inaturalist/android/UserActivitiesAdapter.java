@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import androidx.core.content.ContextCompat;
@@ -271,11 +272,11 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
 
         // Get first image for the observation
         Cursor opc = mContext.getContentResolver().query(ObservationPhoto.CONTENT_URI, ObservationPhoto.PROJECTION, "observation_id = ?", new String[] { String.valueOf(obsId) }, ObservationPhoto.DEFAULT_SORT_ORDER);
-        int iconicTaxonDrawable = ObservationCursorAdapter.getIconicTaxonDrawable(obs.iconic_taxon_name);
+        Drawable iconicTaxonDrawable = ObservationCursorAdapter.getIconicTaxonDrawable(mContext.getResources(), obs.iconic_taxon_name);
 
         if (opc.getCount() == 0) {
             // No photos for observation - just show iconic taxon image
-            obsPic.setImageResource(iconicTaxonDrawable);
+            obsPic.setImageDrawable(iconicTaxonDrawable);
         } else {
             // Show first photo
             ObservationPhoto op = new ObservationPhoto(opc);

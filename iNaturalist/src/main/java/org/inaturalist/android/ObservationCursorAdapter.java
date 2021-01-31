@@ -10,17 +10,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Trace;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +37,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.UiThread;
 import androidx.core.content.ContextCompat;
 
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
@@ -72,6 +77,7 @@ import static android.content.Context.MODE_PRIVATE;
 class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListView.OnScrollListener {
     private static final String TAG = "SimpleCursorAdapter";
     private final ActivityHelper mHelper;
+    private final Resources mResources;
 
     private int mDimension;
     private HashMap<String, String[]> mPhotoInfo = new HashMap<>();
@@ -123,6 +129,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         mContext = (Activity)context;
         mApp = (INaturalistApp) mContext.getApplicationContext();
         mHelper = new ActivityHelper(mContext);
+        mResources = context.getResources();
 
         getPhotoInfo(true);
 
@@ -413,22 +420,34 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
     }
 
+    public View getView(int position, View convertView, ViewGroup parent) {
+        Trace.beginSection("getView");
+        try {
+            return getViewInternal(position, convertView, parent);
+        } finally {
+            Trace.endSection();
+        }
+    }
+
     // TODO This uses INVISIBLE in multiple locations where we should be using GONE
     // to maximize screen real estate. I've confirmed the current mix works in list mode, but
     // before we set everything to GONE we need to debug the grid mode and make sure removing
     // views does not break the layout
-    public View getView(int position, View convertView, ViewGroup parent) {
+    private View getViewInternal(int position, View convertView, ViewGroup parent) {
         final View view = super.getView(position, convertView, parent);
         ViewHolder holder;
         Cursor c = this.getCursor();
 
-        Logger.tag(TAG).debug("getView " + position);
+        Logger.tag(TAG).debug("getView {}", position);
 
         if (c.getCount() == 0) {
             return view;
         }
-        c.moveToPosition(position);
+        if (!c.moveToPosition(position)) {
+            Logger.tag(TAG).warn("moveToPosition failed. Reason unclear");
+        }
 
+        Trace.beginSection("get_basics");
         final long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
         final long externalObsId = c.getLong(c.getColumnIndexOrThrow(Observation.ID));
         long updatedAt = c.getLong(c.getColumnIndexOrThrow(Observation._UPDATED_AT));
@@ -437,7 +456,9 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         String[] photoInfo = obsUUID != null ? mPhotoInfo.get(obsUUID) : null;
         boolean hasSounds = (obsUUID != null && mHasSounds.get(obsUUID) != null);
         boolean hasErrors = (mApp.getErrorsForObservation(((int)(externalObsId > 0 ? externalObsId : obsId))).length() > 0);
+        Trace.endSection();
 
+        Trace.beginSection("setup_VH");
         if (convertView == null) {
             holder = new ViewHolder((ViewGroup) view);
             view.setTag(holder);
@@ -462,13 +483,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         TextView commentCount = holder.commentCount;
         TextView idCount = holder.idCount;
 
-        if (!mIsGrid) {
-            // !isGrid uses a constraintlayout which has no concept of view groups, so we manually
-            // build one. Note: androidx.constraintlayout.widget.Group will not work here
-             commentIdContainer = new DelegatingConstraintViewGroup(mContext,
-                    commentIcon, commentCount, idIcon, idCount);
-        }
-
         TextView placeGuess = holder.placeGuess;
         ImageView locationIcon = holder.locationIcon;
 
@@ -477,14 +491,25 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         View soundsIndicator = holder.soundsIndicator;
 
+        Trace.endSection();
+
+        if (!mIsGrid) {
+            // !isGrid uses a constraintlayout which has no concept of view groups, so we manually
+            // build one. Note: androidx.constraintlayout.widget.Group will not work here
+             commentIdContainer = new DelegatingConstraintViewGroup(mContext,
+                    commentIcon, commentCount, idIcon, idCount);
+        }
+
+        Trace.beginSection("query_loc");
         String placeGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.PLACE_GUESS));
         String privatePlaceGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.PRIVATE_PLACE_GUESS));
         double latitude = c.getDouble(c.getColumnIndexOrThrow(Observation.LATITUDE));
         double longitude = c.getDouble(c.getColumnIndexOrThrow(Observation.LONGITUDE));
         double privateLatitude = c.getDouble(c.getColumnIndexOrThrow(Observation.PRIVATE_LATITUDE));
         double privateLongitude = c.getDouble(c.getColumnIndexOrThrow(Observation.PRIVATE_LONGITUDE));
+        Trace.endSection();
 
-        Logger.tag(TAG).info("getView " + position + ": " + mMultiSelectionMode);
+        Logger.tag(TAG).info("getView {}: {}",  position, mMultiSelectionMode);
 
         if (mIsGrid) {
             mDimension = mGrid.getColumnWidth();
@@ -506,12 +531,12 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             }
         }
 
+        Trace.beginSection("photo");
         String iconicTaxonName = c.getString(c.getColumnIndexOrThrow(Observation.ICONIC_TAXON_NAME));
 
-        int iconResource = getIconicTaxonDrawable(iconicTaxonName);
-
+        Drawable iconResource = getIconicTaxonDrawable(mResources, iconicTaxonName);
         obsIconicImage.setVisibility(View.VISIBLE);
-        obsIconicImage.setImageResource(iconResource);
+        obsIconicImage.setImageDrawable(iconResource);
         obsImage.setVisibility(View.INVISIBLE);
 
         if (photoInfo != null) {
@@ -531,7 +556,9 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 });
             }
 
+            Trace.beginSection("photo_load");
             loadObsImage(position, obsImage, photoFilename, photoInfo[2] != null, false);
+            Trace.endSection();
 
             holder.photoFilename = photoFilename;
         } else {
@@ -543,17 +570,21 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 obsIconicImage.setImageResource(R.drawable.sound);
             }
         }
+        Trace.endSection();
 
-        long observationTimestamp = 0L;
-        if (c.isNull(c.getColumnIndexOrThrow(Observation.TIME_OBSERVED_AT))) {
-            if (!c.isNull(c.getColumnIndexOrThrow(Observation.OBSERVED_ON))) {
-                observationTimestamp = c.getLong(c.getColumnIndexOrThrow(Observation.OBSERVED_ON));
-            }
-        } else {
-            observationTimestamp = c.getLong(c.getColumnIndexOrThrow(Observation.TIME_OBSERVED_AT));
-        }
-
+        Trace.beginSection("timestamp");
         if (!mIsGrid) {
+            long observationTimestamp = 0L;
+            int obsAtIndex = c.getColumnIndexOrThrow(Observation.TIME_OBSERVED_AT);
+            if (!c.isNull(obsAtIndex)) {
+                observationTimestamp = c.getLong(obsAtIndex);
+            } else {
+                int obsOnIndex = c.getColumnIndexOrThrow(Observation.OBSERVED_ON);
+                if (!c.isNull(obsOnIndex)) {
+                    observationTimestamp = c.getLong(obsOnIndex);
+                }
+            }
+
             if (observationTimestamp == 0) {
                 // No observation date set - don't show it
                 dateObserved.setVisibility(View.GONE);
@@ -563,7 +594,9 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 dateObserved.setText(CommentsIdsAdapter.formatIdDate(mContext, observationDate));
             }
         }
+        Trace.endSection();
 
+        Trace.beginSection("comments");
         long commentsCount = c.getLong(c.getColumnIndexOrThrow(Observation.COMMENTS_COUNT));
         long idsCount = c.getLong(c.getColumnIndexOrThrow(Observation.IDENTIFICATIONS_COUNT));
         long lastCommentsCount = c.getLong(c.getColumnIndexOrThrow(Observation.LAST_COMMENTS_COUNT));
@@ -633,16 +666,17 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 mContext.startActivity(intent);
             });
         }
+        Trace.endSection();
 
+        Trace.beginSection("syncNeeded");
         long syncedAt = c.getLong(c.getColumnIndexOrThrow(Observation._SYNCED_AT));
         boolean syncNeeded = updatedAt > syncedAt;
 
         if (syncedAt == 0) {
-            Logger.tag(TAG).debug(String.format(Locale.ENGLISH,
-                    "getView %d: %s: Sync needed - syncedAt == null", position, speciesGuessValue));
+            Logger.tag(TAG).debug("getView {}: {}: Sync needed - syncedAt == null", position, speciesGuessValue);
         } else if (updatedAt > syncedAt) {
-            Logger.tag(TAG).debug(String.format(Locale.ENGLISH,
-                    "getView %d: %s: Sync needed - updatedAt (%s) > sycnedAt (%s)", position, speciesGuessValue, updatedAt, syncedAt));
+            Logger.tag(TAG).debug("getView {}: {}: Sync needed - updatedAt ({}) > sycnedAt ({})",
+                    position, speciesGuessValue, updatedAt, syncedAt);
         }
 
         // if there's a photo and it is local
@@ -652,14 +686,14 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 photoInfo[3] != null) {
             if (photoInfo[4] == null) {
                 syncNeeded = true;
-                Logger.tag(TAG).debug(String.format(Locale.ENGLISH,
-                        "getView %d: %s: Sync needed - photoInfo == null - %s / %s / %s / %s / %s", position, speciesGuessValue, photoInfo[0], photoInfo[1], photoInfo[2], photoInfo[3], photoInfo[4]));
+                Logger.tag(TAG).debug("getView {}: {}: Sync needed - photoInfo == null - {} / {} / {} / {} / {}",
+                        position, speciesGuessValue, photoInfo[0], photoInfo[1], photoInfo[2], photoInfo[3], photoInfo[4]);
             } else {
                 Long photoSyncedAt = Long.parseLong(photoInfo[4]);
                 Long photoUpdatedAt = Long.parseLong(photoInfo[3]);
                 if (photoUpdatedAt > photoSyncedAt) {
-                    Logger.tag(TAG).debug(String.format(Locale.ENGLISH,
-                            "getView %d: %s: Sync needed - photoUpdatedAt (%d) > photoSyncedAt (%d)", position, speciesGuessValue, photoUpdatedAt, photoSyncedAt));
+                    Logger.tag(TAG).debug("getView {}: {}: Sync needed - photoUpdatedAt ({}) > photoSyncedAt ({})",
+                            position, speciesGuessValue, photoUpdatedAt, photoSyncedAt);
                     syncNeeded = true;
                 }
             }
@@ -683,14 +717,16 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             if (opc != null) {
                 if (opc.getCount() > 0) {
                     syncNeeded = true;
-                    Logger.tag(TAG).debug(String.format(Locale.ENGLISH,
-                            "getView %d: %s: Sync needed - new/updated photos: %d", position, speciesGuessValue, opc.getCount()));
+                    Logger.tag(TAG).debug("getView %d: %s: Sync needed - new/updated photos: %d",
+                            position, speciesGuessValue, opc.getCount());
                 }
                 opc.close();
             }
         }
+        Trace.endSection();
 
 
+        Trace.beginSection("location");
         if (!mIsGrid) {
             if (((placeGuessValue == null) || (placeGuessValue.length() == 0)) &&
                 ((privatePlaceGuessValue == null) || (privatePlaceGuessValue.length() == 0))) {
@@ -708,10 +744,12 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                     privatePlaceGuessValue : placeGuessValue);
             }
         }
+        Trace.endSection();
 
         
         holder.syncNeeded = syncNeeded;
 
+        Trace.beginSection("species_guess");
         String description = c.getString(c.getColumnIndexOrThrow(Observation.DESCRIPTION));
         String preferredCommonName = c.getString(c.getColumnIndexOrThrow(Observation.PREFERRED_COMMON_NAME));
 
@@ -750,7 +788,9 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 speciesGuess.setText(R.string.unknown_species);
             }
         }
+        Trace.endSection();
 
+        Trace.beginSection("misc");
         holder.hasErrors = hasErrors;
         if (hasErrors)  {
             view.setBackgroundResource(R.drawable.observation_item_error_background);
@@ -842,6 +882,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         holder.obsId = obsId;
         holder.updatedAt = updatedAt;
         holder.observation = new Observation(c);
+        Trace.endSection();
 
 
         return view;
@@ -982,6 +1023,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         // Decode image in background.
         @Override
         protected Bitmap doInBackground(String... params) {
+            Trace.beginSection("load_obs_bitmap");
             mFilename = params[0];
 
             Bitmap bitmapImage;
@@ -1007,6 +1049,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 }
             }
 
+            Trace.endSection();
             return bitmapImage;
         }
 
@@ -1035,10 +1078,13 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     private Map<ImageView, String> mImageViewToUrlAfterLoading = new HashMap<>();
     private Map<ImageView, String> mImageViewToUrlExpected = new HashMap<>();
 
+    /**
+     * Loads obs image either from local disk or triggers remote download with callback
+     */
+    @UiThread
     private void loadObsImage(final int position, final ImageView imageView, final String name, boolean isOnline, final boolean largeVersion) {
-        Logger.tag(TAG).debug("loadObsImage: " + position + ":" + isOnline + ":" + imageView + ":" + name);
-
-        boolean isLowMemory = mApp.isLowMemory();
+        Logger.tag(TAG).debug("loadObsImage(pos:{}, iv:{}, name:{}, isOnline:{}, large:{})"
+                , position, imageView, name, isOnline, largeVersion);
 
         String prevUrl = mImageViewToUrlExpected.get(imageView);
 
@@ -1062,6 +1108,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         String imageUrl = name;
 
         if (!isOnline) {
+            Trace.beginSection("check_local");
             File file = new File(name);
             if (!file.exists()) {
                 // Local file - but it was deleted for some reason (probably user cleared cache)
@@ -1085,9 +1132,11 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                     isOnline = true;
                 }
             }
+            Trace.endSection();
         }
 
         if (isOnline) {
+            Trace.beginSection("online");
             // Online image
 
             // Use the small image instead of a large image (default) - to load images quickly
@@ -1118,21 +1167,26 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
                             mImageViewToUrlAfterLoading.put(imageView, newImageUrl);
 
-                            if (!largeVersion && !isLowMemory) {
+                            // If we have not yet loaded large version, trigger that if we have mem
+                            // Note the careful usage of isLowMemory() call - it's an expensive call,
+                            // we delay calling it until/unless we absolutely have to do so
+                            if (!largeVersion && !mApp.isLowMemory()) {
                                 loadObsImage(position, imageView, name, true, true);
                             }
                         }
 
                         @Override
                         public void onError() {
+                            Logger.tag(TAG).warn("Picasso error for {}", newImageUrl);
                         }
                     });
         } else {
             // Offline image
-
+            Trace.beginSection("offline");
             BitmapWorkerTask task = new BitmapWorkerTask(imageView);
             task.execute(name);
         }
+        Trace.endSection();
     }
 
     @SuppressLint("DefaultLocale")
@@ -1210,42 +1264,62 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         ContextCompat.startForegroundService(mContext, serviceIntent);
     }
 
-    public static int getIconicTaxonDrawable(String iconicTaxonName) {
-        int iconResource;
+    static HashMap<String, Drawable> taxonIconCache = new HashMap<>();
+    public static Drawable getIconicTaxonDrawable(Resources res, String iconicTaxonName) {
 
-        if (iconicTaxonName == null) {
-            iconResource = R.drawable.iconic_taxon_unknown;
-        } else if (iconicTaxonName.equals("Animalia")) {
-            iconResource = R.drawable.iconic_taxon_animalia;
-        } else if (iconicTaxonName.equals("Plantae")) {
-            iconResource = R.drawable.iconic_taxon_plantae;
-        } else if (iconicTaxonName.equals("Chromista")) {
-            iconResource = R.drawable.iconic_taxon_chromista;
-        } else if (iconicTaxonName.equals("Fungi")) {
-            iconResource = R.drawable.iconic_taxon_fungi;
-        } else if (iconicTaxonName.equals("Protozoa")) {
-            iconResource = R.drawable.iconic_taxon_protozoa;
-        } else if (iconicTaxonName.equals("Actinopterygii")) {
-            iconResource = R.drawable.iconic_taxon_actinopterygii;
-        } else if (iconicTaxonName.equals("Amphibia")) {
-            iconResource = R.drawable.iconic_taxon_amphibia;
-        } else if (iconicTaxonName.equals("Reptilia")) {
-            iconResource = R.drawable.iconic_taxon_reptilia;
-        } else if (iconicTaxonName.equals("Aves")) {
-            iconResource = R.drawable.iconic_taxon_aves;
-        } else if (iconicTaxonName.equals("Mammalia")) {
-            iconResource = R.drawable.iconic_taxon_mammalia;
-        } else if (iconicTaxonName.equals("Mollusca")) {
-            iconResource = R.drawable.iconic_taxon_mollusca;
-        } else if (iconicTaxonName.equals("Insecta")) {
-            iconResource = R.drawable.iconic_taxon_insecta;
-        } else if (iconicTaxonName.equals("Arachnida")) {
-            iconResource = R.drawable.iconic_taxon_arachnida;
-        } else {
-            iconResource = R.drawable.iconic_taxon_unknown;
+        // Yes, this is not thread safe. That's OK for this simple usage
+        if (taxonIconCache.containsKey(iconicTaxonName))
+            return taxonIconCache.get(iconicTaxonName);
+
+        int iconResource = R.drawable.iconic_taxon_unknown;
+        if (iconicTaxonName != null) {
+            switch (iconicTaxonName) {
+                case "Animalia":
+                    iconResource = R.drawable.iconic_taxon_animalia;
+                    break;
+                case "Plantae":
+                    iconResource = R.drawable.iconic_taxon_plantae;
+                    break;
+                case "Chromista":
+                    iconResource = R.drawable.iconic_taxon_chromista;
+                    break;
+                case "Fungi":
+                    iconResource = R.drawable.iconic_taxon_fungi;
+                    break;
+                case "Protozoa":
+                    iconResource = R.drawable.iconic_taxon_protozoa;
+                    break;
+                case "Actinopterygii":
+                    iconResource = R.drawable.iconic_taxon_actinopterygii;
+                    break;
+                case "Amphibia":
+                    iconResource = R.drawable.iconic_taxon_amphibia;
+                    break;
+                case "Reptilia":
+                    iconResource = R.drawable.iconic_taxon_reptilia;
+                    break;
+                case "Aves":
+                    iconResource = R.drawable.iconic_taxon_aves;
+                    break;
+                case "Mammalia":
+                    iconResource = R.drawable.iconic_taxon_mammalia;
+                    break;
+                case "Mollusca":
+                    iconResource = R.drawable.iconic_taxon_mollusca;
+                    break;
+                case "Insecta":
+                    iconResource = R.drawable.iconic_taxon_insecta;
+                    break;
+                case "Arachnida":
+                    iconResource = R.drawable.iconic_taxon_arachnida;
+                    break;
+            }
         }
 
-        return iconResource;
+        Drawable d = res.getDrawable(iconResource, null);
+        if (iconicTaxonName != null)
+            taxonIconCache.put(iconicTaxonName, d);
+        return d;
     }
 
     public void updateProgress(float progress) {

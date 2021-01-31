@@ -69,6 +69,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Debug;
 import android.os.Handler;
 import android.os.LocaleList;
 import androidx.annotation.NonNull;
@@ -79,6 +80,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 import androidx.core.content.res.ResourcesCompat;
+
+import android.os.Trace;
 import android.telephony.TelephonyManager;
 import android.text.format.DateFormat;
 import android.util.DisplayMetrics;
@@ -1255,27 +1258,45 @@ public class INaturalistApp extends MultiDexApplication {
     }
 
 
+    /**
+     * Checks if either JVM or Native memory is running low
+     *
+     * TODO {@link ActivityManager#getMemoryInfo(ActivityManager.MemoryInfo)} specifically says not
+     * to poll, which we are doing. This is pretty slow as it does IPC.
+     */
     public boolean isLowMemory() {
+        Trace.beginSection("isLowMem");
+
+        // Check JVM memory
         Runtime runtime = Runtime.getRuntime();
         long usedMem = (runtime.totalMemory() - runtime.freeMemory());
         long maxHeapSize = runtime.maxMemory();
         long availableHeapSize = maxHeapSize - usedMem;
         float freeHeapPercentage = (float)availableHeapSize / maxHeapSize;
+        Logger.tag(TAG).debug("isLowMemory: JVM Heap: {} / {} ({})",
+                availableHeapSize, maxHeapSize, freeHeapPercentage);
 
-        Logger.tag(TAG).debug(String.format(Locale.ENGLISH, "isLowMemory: Heap: %d / %d (%f)", availableHeapSize, maxHeapSize, freeHeapPercentage));
+        boolean isLowMemory = false;
 
-        ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
-        ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-        activityManager.getMemoryInfo(mi);
-        long nativeHeapSize = mi.totalMem;
-        long nativeHeapFreeSize = mi.availMem;
-        float nativeHeapPercentage = (float)nativeHeapFreeSize / nativeHeapSize;
+        if (freeHeapPercentage < 0.10) {
+            isLowMemory = true;
+        } else {
+            // JVM mem is OK, check native mem
+            ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
+            ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+            activityManager.getMemoryInfo(mi);
+            long nativeHeapSize = mi.totalMem;
+            long nativeHeapFreeSize = mi.availMem;
+            float nativeHeapPercentage = (float) nativeHeapFreeSize / nativeHeapSize;
+            Logger.tag(TAG).debug("isLowMemory: Native Heap: {} / {} ({})",
+                    nativeHeapFreeSize, nativeHeapSize, nativeHeapPercentage);
 
-        Logger.tag(TAG).debug(String.format(Locale.ENGLISH, "isLowMemory: Native Heap: %d / %d (%f)", nativeHeapFreeSize, nativeHeapSize, nativeHeapPercentage));
+            if (nativeHeapPercentage < 0.10)
+                isLowMemory = true;
+        }
 
-        boolean isLowMemory = (freeHeapPercentage < 0.10) || (nativeHeapPercentage < 0.10);
-
-        Logger.tag(TAG).debug(String.format("isLowMemory: Result = %s", isLowMemory));
+        Logger.tag(TAG).debug("isLowMemory: Result = {}", isLowMemory);
+        Trace.endSection();
         return isLowMemory;
     }
 
