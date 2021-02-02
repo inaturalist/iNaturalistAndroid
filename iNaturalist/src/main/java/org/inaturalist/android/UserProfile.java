@@ -435,6 +435,8 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
     }
 
     private void refreshViewType() {
+        if (mViewType == null) return;
+
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
