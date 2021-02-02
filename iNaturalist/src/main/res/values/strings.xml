@@ -390,8 +390,11 @@
     <string name="mammals">Mammals</string>
     <string name="insects">Insects</string>
     <string name="reptiles">Reptiles</string>
+    <string name="animals">Animals</string>
     <string name="fish">Fish</string>
     <string name="mollusks">Mollusks</string>
+    <string name="protozoans">Protozoans</string>
+    <string name="chromista">Kelp, Diatoms, and Allies</string>
     <string name="amphibians">Amphibians</string>
     <string name="fungi">Fungi</string>
     <string name="birds">Birds</string>

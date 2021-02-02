@@ -104,16 +104,20 @@ public class ExploreSearchActivity extends AppCompatActivity {
 
         try {
             DEFAULT_TAXON_RESULTS = new ArrayList<>();
-            DEFAULT_TAXON_RESULTS.add(new JSONObject("{ \"preferred_common_name\": \"" + getString(R.string.plants) + "\", \"name\": \"Plantae\", \"iconic_taxon_name\": \"Plantae\", \"id\": 47126, \"rank_level\": 70, \"rank\": \"kingdom\" }"));
-            DEFAULT_TAXON_RESULTS.add(new JSONObject("{ \"preferred_common_name\": \"" + getString(R.string.mammals) + "\", \"name\": \"Mammalia\", \"iconic_taxon_name\": \"Mammalia\", \"id\": 40151, \"rank_level\": 50, \"rank\": \"class\" }"));
-            DEFAULT_TAXON_RESULTS.add(new JSONObject("{ \"preferred_common_name\": \"" + getString(R.string.insects) + "\", \"name\": \"Insecta\", \"iconic_taxon_name\": \"Insecta\", \"id\": 47158, \"rank_level\": 50, \"rank\": \"class\" }"));
-            DEFAULT_TAXON_RESULTS.add(new JSONObject("{ \"preferred_common_name\": \"" + getString(R.string.reptiles) + "\", \"name\": \"Reptilia\", \"iconic_taxon_name\": \"Reptilia\", \"id\": 26036, \"rank_level\": 50, \"rank\": \"class\" }"));
+            DEFAULT_TAXON_RESULTS.add(new JSONObject("{ \"preferred_common_name\": \"" + getString(R.string.animals) + "\", \"name\": \"Animalia\", \"iconic_taxon_name\": \"Animalia\", \"id\": 1, \"rank_level\": 70, \"rank\": \"kingdom\" }"));
             DEFAULT_TAXON_RESULTS.add(new JSONObject("{ \"preferred_common_name\": \"" + getString(R.string.fish) + "\", \"name\": \"Actinopterygii\", \"iconic_taxon_name\": \"Actinopterygii\", \"id\": 47178, \"rank_level\": 50, \"rank\": \"class\" }"));
-            DEFAULT_TAXON_RESULTS.add(new JSONObject("{ \"preferred_common_name\": \"" + getString(R.string.mollusks) + "\", \"name\": \"Mollusca\", \"iconic_taxon_name\": \"Mollusca\", \"id\": 47115, \"rank_level\": 60, \"rank\": \"phylum\" }"));
-            DEFAULT_TAXON_RESULTS.add(new JSONObject("{ \"preferred_common_name\": \"" + getString(R.string.amphibians) + "\", \"name\": \"Amphibia\", \"iconic_taxon_name\": \"Amphibia\", \"id\": 20978, \"rank_level\": 50, \"rank\": \"class\" }"));
-            DEFAULT_TAXON_RESULTS.add(new JSONObject("{ \"preferred_common_name\": \"" + getString(R.string.fungi) + "\", \"name\": \"Fungi\", \"iconic_taxon_name\": \"Fungi\", \"id\": 47170, \"rank_level\": 70, \"rank\": \"kingdom\" }"));
             DEFAULT_TAXON_RESULTS.add(new JSONObject("{ \"preferred_common_name\": \"" + getString(R.string.birds) + "\", \"name\": \"Aves\", \"iconic_taxon_name\": \"Aves\", \"id\": 3, \"rank_level\": 50, \"rank\": \"class\" }"));
+            DEFAULT_TAXON_RESULTS.add(new JSONObject("{ \"preferred_common_name\": \"" + getString(R.string.reptiles) + "\", \"name\": \"Reptilia\", \"iconic_taxon_name\": \"Reptilia\", \"id\": 26036, \"rank_level\": 50, \"rank\": \"class\" }"));
+            DEFAULT_TAXON_RESULTS.add(new JSONObject("{ \"preferred_common_name\": \"" + getString(R.string.amphibians) + "\", \"name\": \"Amphibia\", \"iconic_taxon_name\": \"Amphibia\", \"id\": 20978, \"rank_level\": 50, \"rank\": \"class\" }"));
+            DEFAULT_TAXON_RESULTS.add(new JSONObject("{ \"preferred_common_name\": \"" + getString(R.string.mammals) + "\", \"name\": \"Mammalia\", \"iconic_taxon_name\": \"Mammalia\", \"id\": 40151, \"rank_level\": 50, \"rank\": \"class\" }"));
             DEFAULT_TAXON_RESULTS.add(new JSONObject("{ \"preferred_common_name\": \"" + getString(R.string.arachnids) + "\", \"name\": \"Arachnida\", \"iconic_taxon_name\": \"Arachnida\", \"id\": 47119, \"rank_level\": 50, \"rank\": \"class\" }"));
+            DEFAULT_TAXON_RESULTS.add(new JSONObject("{ \"preferred_common_name\": \"" + getString(R.string.insects) + "\", \"name\": \"Insecta\", \"iconic_taxon_name\": \"Insecta\", \"id\": 47158, \"rank_level\": 50, \"rank\": \"class\" }"));
+            DEFAULT_TAXON_RESULTS.add(new JSONObject("{ \"preferred_common_name\": \"" + getString(R.string.plants) + "\", \"name\": \"Plantae\", \"iconic_taxon_name\": \"Plantae\", \"id\": 47126, \"rank_level\": 70, \"rank\": \"kingdom\" }"));
+            DEFAULT_TAXON_RESULTS.add(new JSONObject("{ \"preferred_common_name\": \"" + getString(R.string.fungi) + "\", \"name\": \"Fungi\", \"iconic_taxon_name\": \"Fungi\", \"id\": 47170, \"rank_level\": 70, \"rank\": \"kingdom\" }"));
+            DEFAULT_TAXON_RESULTS.add(new JSONObject("{ \"preferred_common_name\": \"" + getString(R.string.protozoans) + "\", \"name\": \"Protozoa\", \"iconic_taxon_name\": \"Protozoa\", \"id\": 47686, \"rank_level\": 70, \"rank\": \"kingdom\" }"));
+            DEFAULT_TAXON_RESULTS.add(new JSONObject("{ \"preferred_common_name\": \"" + getString(R.string.mollusks) + "\", \"name\": \"Mollusca\", \"iconic_taxon_name\": \"Mollusca\", \"id\": 47115, \"rank_level\": 60, \"rank\": \"phylum\" }"));
+            DEFAULT_TAXON_RESULTS.add(new JSONObject("{ \"preferred_common_name\": \"" + getString(R.string.chromista) + "\", \"name\": \"Chromista\", \"iconic_taxon_name\": \"Chromista\", \"id\": 48222, \"rank_level\": 70, \"rank\": \"kingdom\" }"));
+
         } catch (JSONException e) {
             Logger.tag(TAG).error(e);
         }

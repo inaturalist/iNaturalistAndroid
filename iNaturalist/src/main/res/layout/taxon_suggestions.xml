@@ -18,16 +18,23 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
 
-        <ImageView
+        <RelativeLayout
             android:id="@+id/back"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/ic_arrow_back"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:scaleType="centerCrop"
-            />
+            >
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_arrow_back"
+                android:scaleType="centerCrop"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                />
+        </RelativeLayout>
 
 
         <ImageView
