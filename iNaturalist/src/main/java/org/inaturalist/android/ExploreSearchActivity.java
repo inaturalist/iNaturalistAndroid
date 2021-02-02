@@ -225,6 +225,8 @@ public class ExploreSearchActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final EditText editText;
 
+                if (mSearchFilters == null) return;
+
                 if (v == mClearTaxon) {
                     mSearchFilters.taxon = null;
                     editText = mTaxonEditText;
