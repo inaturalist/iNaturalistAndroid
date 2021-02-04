@@ -455,19 +455,9 @@
     <string name="more_info_on_inat">Более подробная информация о iNaturalist.org</string>
     <string name="view_suggestions">Посмотреть предложения</string>
     <string name="species_search">Поиск видов</string>
-    <plurals name="were_not_confident">
-        <!-- This will probably never happen -->
-        <item quantity="one">Мы не настолько уверены, чтобы давать рекомендации, но вот наше %1$d предложение</item>
-        <item quantity="few">Мы не настолько уверены, чтобы давать рекомендации, но вот наши %1$d предложения</item>
-        <item quantity="many">Мы не настолько уверены, чтобы давать рекомендации, но вот наши лучшие из %1$d предложений</item>
-        <item quantity="other">Мы не настолько уверены, чтобы давать рекомендации, но вот наши лучшие из %1$d предложений</item>
-    </plurals>
-    <plurals name="top_species_suggestions">
-        <item quantity="one">Наше лучшее из %1$d предложение</item>
-        <item quantity="few">Наши лучшие из %1$d предложений</item>
-        <item quantity="many">Наши лучшие из %1$d предложений</item>
-        <item quantity="other">Наши лучшие из %1$d предложений</item>
-    </plurals>
+    <string name="were_not_confident_enough">Мы не полностью уверены, что можем дать рекомендацию, но вот наши лучшие предложения</string>
+    <string name="most_observed_options_matching_filters">Наиболее часто наблюдаемые варианты, соответствующие фильтрам:</string>
+    <string name="top_suggestions">Лучшие предложения</string>
     <string name="pretty_sure_rank">Мы уверены, что это в этой %1$s:</string>
     <string name="what_did_you_see">Что Вы видели?</string>
     <string name="suggest_species">Предложить вид</string>
@@ -791,6 +781,7 @@
     <string name="delete_this_pinned_location">Удалить это прикрепленное местоположение?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Дублировать</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_photo">Не удалось дублировать фото!</string>
     <string name="couldnt_edit_photo">Не удалось изменить фото!</string>
     <!-- Verb, as in "Rotate this photo" -->
@@ -982,6 +973,51 @@
     <string name="filter_observations_by_months">Фильтровать наблюдения по месяцам</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="view_suggestions_not_seen_nearby">Просмотр предложений не встречавшихся поблизости</string>
+    <string name="only_view_nearby_suggestions">Просмотр только предложений, встречавшихся поблизости</string>
+    <string name="suggestions_source">Источник предложений</string>
+    <string name="research_grade_observations">Наблюдения исследовательского уровня</string>
+    <string name="visually_similar_description">iNaturalist даст предложения, основанные на том, насколько визуально эти изображения схожи с изображениями видов, наблюдаемых вблизи этого места в это время года.</string>
+    <string name="research_grade_observations_description">Вместо визуально похожих iNaturalist будет предлагать виды, наблюдаемые в определенном месте и в рамках конкретной таксономической группы.</string>
+    <string name="taxon">Таксон:</string>
+    <string name="place">Место:</string>
+    <string name="pretty_sure_kingdom">Мы почти уверены, что это относится к царству:</string>
+    <string name="pretty_sure_subkingdom">Мы почти уверены, что это относится к подцарству:</string>
+    <string name="pretty_sure_phylum">Мы почти уверены, что это относится к типу:</string>
+    <string name="pretty_sure_subphylum">Мы почти уверены, что это относится к подтипу:</string>
+    <string name="pretty_sure_superclass">Мы почти уверены, что это относится к надклассу:</string>
+    <string name="pretty_sure_class">Мы почти уверены, что это относится к классу:</string>
+    <string name="pretty_sure_subclass">Мы почти уверены, что это относится к подклассу:</string>
+    <string name="pretty_sure_infraclass">Мы почти уверены, что это относится к инфраклассу:</string>
+    <string name="pretty_sure_superorder">Мы почти уверены, что это относится к надотряду:</string>
+    <string name="pretty_sure_order">Мы почти уверены, что это относится к отряду:</string>
+    <string name="pretty_sure_suborder">Мы почти уверены, что это относится к подотряду:</string>
+    <string name="pretty_sure_infraorder">Мы почти уверены, что это относится к инфраотряду:</string>
+    <string name="pretty_sure_subterclass">Мы почти уверены, что это относится к надклассу:</string>
+    <string name="pretty_sure_parvorder">Мы почти уверены, что это относится к парвотряду:</string>
+    <string name="pretty_sure_zoosection">Мы почти уверены, что это относится к зоосекции:</string>
+    <string name="pretty_sure_zoosubsection">Мы почти уверены, что это относится к зооподсекции:</string>
+    <string name="pretty_sure_superfamily">Мы почти уверены, что это относится к надсемейству:</string>
+    <string name="pretty_sure_epifamily">Мы почти уверены, что это относится к эписемейству:</string>
+    <string name="pretty_sure_family">Мы почти уверены, что это относится к семейству:</string>
+    <string name="pretty_sure_subfamily">Мы почти уверены, что это относится к подсемейству:</string>
+    <string name="pretty_sure_supertribe">Мы почти уверены, что это относится к надтрибе:</string>
+    <string name="pretty_sure_tribe">Мы почти уверены, что это относится к трибе:</string>
+    <string name="pretty_sure_subtribe">Мы почти уверены, что это относится к подтрибе:</string>
+    <string name="pretty_sure_genus">Мы почти уверены, что это относится к роду:</string>
+    <string name="pretty_sure_genushybrid">Мы почти уверены, что это относится к родовому гибриду:</string>
+    <string name="pretty_sure_subgenus">Мы почти уверены, что это относится к подроду:</string>
+    <string name="pretty_sure_section">Мы почти уверены, что это относится к секции:</string>
+    <string name="pretty_sure_subsection">Мы почти уверены, что это относится к подсекции:</string>
+    <string name="pretty_sure_complex">Мы почти уверены, что это относится к комплексу:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_species">Мы почти уверены, что это относится к виду:</string>
+    <string name="pretty_sure_hybrid">Мы почти уверены, что это относится к гибриду:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_subspecies">Мы почти уверены, что это относится к подвиду:</string>
+    <string name="pretty_sure_variety">Мы почти уверены, что это относится к разновидности:</string>
+    <string name="pretty_sure_form">Мы почти уверены, что это относится к форме:</string>
+    <string name="pretty_sure_infrahybrid">Мы почти уверены, что это относится к инфрагибриду:</string>
     <string name="remove_date_observed">Удалить дату &amp; время наблюдения</string>
     <string name="remove_time_observed">Удалить время наблюдения</string>
     <string name="remove_location">Удалить место</string>
@@ -989,5 +1025,9 @@
     <string name="are_you_sure_you_want_to_remove_time">Вы уверены, что хотите удалить время наблюдения?</string>
     <string name="are_you_sure_you_want_to_remove_location">Вы уверены, что хотите удалить место наблюдения?</string>
     <string name="share_location">Поделиться местоположением</string>
+    <string name="share_hidden_location">Поделиться скрытым местоположением</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Не удалось создать копию звука!</string>
+    <string name="sound_format_not_supported">Этот аудиофайл имеет правильное расширение, но используемый кодек не поддерживается Android.</string>
+    <string name="view_observations">Просмотреть наблюдения</string>
 </resources>

@@ -139,24 +139,24 @@
     <string name="discard_location_changes">Oled sa kindel, et soovid salvestamata muudatused maha kanda?</string>
     <string name="edit_location">Muuda asukohta</string>
     <string name="edit_locality_notes">Edit Locality Notes</string>
-    <string name="get_current_location">Get current location</string>
+    <string name="get_current_location">Leia praegune asukoht</string>
     <string name="pull_to_refresh">Pull to refresh...</string>
     <string name="release_to_refresh">Release to refresh...</string>
-    <string name="refreshing">Refreshing...</string>
+    <string name="refreshing">Värskendan...</string>
     <plurals name="sync_x_observations">
         <item quantity="one">Sync %1$d observation</item>
         <item quantity="other">Sync %1$d observations</item>
     </plurals>
     <string name="sync_observations">Sync Observations</string>
-    <string name="lets_get_started">Let\'s get started!</string>
+    <string name="lets_get_started">Alustame!</string>
     <string name="view_nearby_observations">View Nearby Observations</string>
     <string name="skip_for_now">Skip for Now</string>
     <string-array name="tutorial_titles">
         <item></item>
-        <item>Observe</item>
-        <item>Share</item>
-        <item>Learn</item>
-        <item>Contribute</item>
+        <item>Vaatle</item>
+        <item>Jaga</item>
+        <item>Õpi</item>
+        <item>Panusta</item>
     </string-array>
     <string-array name="tutorial_descriptions">
         <item>Explore and Connect with Nature</item>
@@ -226,9 +226,9 @@
     <string name="already_have_account">Konto juba olemas?</string>
     <string name="log_in">Logi sisse</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
-    <string name="sign_up">Sign Up</string>
+    <string name="sign_up">Registreeri</string>
     <!-- Title of the view used to sign up for a new account -->
-    <string name="sign_up_title">Sign Up</string>
+    <string name="sign_up_title">Registreeri</string>
     <string name="min_6_chars">Min. 6 characters</string>
     <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data (recommended). <b>Learn More</b>]]></string>
     <string name="content_licensing">Content Licensing</string>
@@ -241,33 +241,33 @@
     <string name="recommended_next_step">Recommended Next Step</string>
     <string name="could_not_register_user">Couldn\'t register user</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
-    <string name="login_signup">Log In / Sign Up</string>
+    <string name="login_signup">Logi Sisse / Registreeru</string>
     <string name="please_sign_in_via_settings_for_guides">You must be logged in to view your guides.</string>
     <string name="please_sign_in_for_updates">You must be logged in to view your updates.</string>
     <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="https://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
     <string name="activity">Uudised</string>
-    <string name="camera">Take Photo</string>
+    <string name="camera">Tee Pilt</string>
     <string name="upload_photo">Vali pilt</string>
     <string name="menu_text">Fotot pole</string>
-    <string name="first">1st</string>
+    <string name="first">Esimene</string>
     <string name="make_first">Make 1st</string>
     <string name="notes">Märkmed</string>
     <string name="location_is">Location is</string>
     <string name="is_captive">It is captive or cultivated</string>
     <string name="location_visibility">Location Visibility</string>
     <string name="set_location">Asukoht</string>
-    <string name="coordinates_lat">Lat:</string>
-    <string name="coordinates_lon">Lon:</string>
+    <string name="coordinates_lat">Laius:</string>
+    <string name="coordinates_lon">Pikkus:</string>
     <string name="coordinates_acc">Acc. </string>
     <string name="required">* Kohustuslik</string>
     <string name="downloading_observations">Downloading observations...</string>
     <string name="no_thanks">Ei Aitäh</string>
-    <string name="turn_on">Turn On</string>
+    <string name="turn_on">Lülita sisse</string>
     <string name="introducing_auto_sync">Introducing Auto-Sync!</string>
     <string name="turn_on_auto_sync">Turn on Auto-Sync in Settings and your observations will be automatically uploaded to iNaturalist.</string>
     <string name="automatic_upload">Automatic Upload (Auto Sync)</string>
     <string name="waiting_to_upload">Waiting to upload...</string>
-    <string name="uploading">Uploading...</string>
+    <string name="uploading">Laen üles...</string>
     <string name="failed_to_add_to_project">Failed to add to project \'%1$s\': %2$s</string>
     <string name="needs_your_attention">Needs your attention...</string>
     <string name="observation">Observation</string>
@@ -335,8 +335,8 @@
     <string name="add_to_projects">Add to project(s)</string>
     <string name="are_you_sure_you_want_to_save_obs_without_coords">Are you sure you want to save the observation without any coordinates?</string>
     <string name="users_identification">%1$s\'s ID: %2$s</string>
-    <string name="edit_profile">Edit Profile</string>
-    <string name="remove_photo">Remove Photo</string>
+    <string name="edit_profile">Muuda profiili</string>
+    <string name="remove_photo">Eemalda Pilt</string>
     <string name="name">Nimi</string>
     <string name="tell_us_about_yourself">Tell us about yourself...</string>
     <string name="view_profile">Profiil</string>
@@ -346,25 +346,25 @@
     <string name="there_was_a_problem_updating_profile_params">There was a problem while updating your profile: %1$s</string>
     <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
     <string name="log_out">Logi välja</string>
-    <string name="not_logged_in">Not logged in</string>
+    <string name="not_logged_in">Pole sisse logitud</string>
     <string name="auto_upload_description">Auto-upload new observations and edits to observations</string>
-    <string name="language">Language</string>
-    <string name="version">Version</string>
+    <string name="language">Keel</string>
+    <string name="version">Versioon</string>
     <string name="inat_network">iNaturalist Network</string>
     <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
-    <string name="more_info">More Info</string>
+    <string name="more_info">Rohkem Infot</string>
     <string name="select_network">Select Network Affiliation</string>
-    <string name="help">Help</string>
-    <string name="stop">Stop</string>
+    <string name="help">Abi</string>
+    <string name="stop">Peata</string>
     <string name="resume">Jätka</string>
-    <string name="cleaning_up">Cleaning up...</string>
+    <string name="cleaning_up">Puhastan...</string>
     <string name="syncing">Sünkroniseerin...</string>
     <string name="syncing_observation_fields">Syncing observation fields...</string>
     <string name="syncing_observations">Syncing observations...</string>
-    <string name="syncing_paused">Paused</string>
+    <string name="syncing_paused">Peatatud</string>
     <string name="upload">Lae ülesse</string>
     <string name="search_observations">Search Observations...</string>
-    <string name="withdraw">Withdraw</string>
+    <string name="withdraw">Võta tagasi</string>
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Update Identification Description</string>
     <string name="your_identification">Sinu ID: %1$s</string>
@@ -375,14 +375,14 @@
     <string name="multi_select_description">Import multiple photos by long-pressing on a single photo</string>
     <string name="preparing_photo">Preparing photo...</string>
     <string name="recommended_for_you">Recommended for You</string>
-    <string name="missions">Missions</string>
+    <string name="missions">Missioonid</string>
     <string name="browse_by_category">Browse By Category</string>
     <string name="couldnt_load_recommended_missions">Couldn\'t load recommended missions: %1$s</string>
     <string name="plants">Taimed</string>
-    <string name="mammals">Mammals</string>
-    <string name="insects">Insects</string>
-    <string name="reptiles">Reptiles</string>
-    <string name="fish">Fish</string>
+    <string name="mammals">Imetajad</string>
+    <string name="insects">Putukad</string>
+    <string name="reptiles">Roomajad</string>
+    <string name="fish">Kalad</string>
     <string name="mollusks">Molluskid</string>
     <string name="amphibians">Kahepaiksed</string>
     <string name="fungi">Seened</string>
@@ -423,10 +423,10 @@
         <item quantity="one">Syncing %1$d of %2$d observation...</item>
         <item quantity="other">Syncing %1$d of %2$d observations...</item>
     </plurals>
-    <string name="deleting_observations">Deleting observations...</string>
-    <string name="preparing">Preparing...</string>
+    <string name="deleting_observations">Kustutan vaatlused</string>
+    <string name="preparing">Valmistan...</string>
     <string name="add_edit_remark">Add/Edit Remark</string>
-    <string name="restore">Restore</string>
+    <string name="restore">Taasta</string>
     <string name="compare">Compare</string>
     <string name="select">Select</string>
     <string name="source_wikipedia">(Source: Wikipedia)</string>
@@ -437,39 +437,33 @@
     <string name="conservation_status_endangered">Endangered</string>
     <string name="conservation_status_critically_endangered">Critically endangered</string>
     <string name="conservation_status_extinct_in_the_wild">Extinct in the wild</string>
-    <string name="conservation_status_extinct">Extinct</string>
-    <string name="map_of_observations">Map of Observations</string>
-    <string name="taxonomy">Taxonomy</string>
+    <string name="conservation_status_extinct">Väljasurnud</string>
+    <string name="map_of_observations">Vaatluste kaart</string>
+    <string name="taxonomy">Taksonoomia</string>
     <string name="about_this_section">About This Section</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
     <string name="taxonomy_info">These are links to ancestors of this particular taxon. They are in order from coarser to more refined. Use these links to move up and down the Tree of Life. For example, if you don\'t know what an organism is, but know what grouping it falls into, tap on a taxon from the list to view more information about it.</string>
-    <string name="more_info_on_inat">More Info on iNaturalist.org</string>
+    <string name="more_info_on_inat">Rohkem infot lehel iNaturalist.org</string>
     <string name="view_suggestions">View Suggestions</string>
     <string name="species_search">Species Search</string>
-    <plurals name="were_not_confident">
-        <!-- This will probably never happen -->
-        <item quantity="one">We\'re not confident enough to make a recommendation, but here is our number %1$d suggestion:</item>
-        <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
-    </plurals>
-    <plurals name="top_species_suggestions">
-        <item quantity="one">Top %1$d suggestion:</item>
-        <item quantity="other">Top %1$d suggestions:</item>
-    </plurals>
+    <string name="were_not_confident_enough">We\'re not confident enough to make a recommendation, but here are our top suggestions:</string>
+    <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
+    <string name="top_suggestions">Top suggestions</string>
     <string name="pretty_sure_rank">We\'re pretty sure it\'s in this %1$s:</string>
-    <string name="what_did_you_see">What did you see?</string>
+    <string name="what_did_you_see">Mida sa nägid?</string>
     <string name="suggest_species">Suggest Species</string>
     <string name="suggest_species_description">Suggest species based on visual similarity to photos.</string>
     <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visually Similar</string>
     <string name="visually_similar_seen_nearby">Visually Similar / Seen Nearby</string>
     <string name="seen_nearby">Seen Nearby</string>
-    <string name="enlarge">Enlarge</string>
+    <string name="enlarge">Suurenda</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">View Children</string>
     <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
     <string name="taxon_has_no_photos">This taxon has no photos.</string>
     <string name="terrain">Maastik</string>
-    <string name="filters">Filters</string>
+    <string name="filters">Filtrid</string>
     <string name="exploring_all">Exploring All</string>
     <string name="nearby">Nearby</string>
     <string name="couldnt_load_results">Couldn\'t load results: %1$s</string>
@@ -776,6 +770,7 @@
     <string name="delete_this_pinned_location">Delete this pinned location?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Duplicate</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_photo">Couldn\'t duplicate photo!</string>
     <string name="couldnt_edit_photo">Couldn\'t edit photo!</string>
     <!-- Verb, as in "Rotate this photo" -->
@@ -965,6 +960,51 @@
     <string name="filter_observations_by_months">Filter observations by months</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="view_suggestions_not_seen_nearby">View suggestions not seen nearby</string>
+    <string name="only_view_nearby_suggestions">Only view nearby suggestions</string>
+    <string name="suggestions_source">Suggestions Source</string>
+    <string name="research_grade_observations">Research Grade Observations</string>
+    <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
+    <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will suggest species observed in a specific place and within a specific taxonomic group.</string>
+    <string name="taxon">Taxon:</string>
+    <string name="place">Place:</string>
+    <string name="pretty_sure_kingdom">We\'re pretty sure it\'s in this kingdom:</string>
+    <string name="pretty_sure_subkingdom">We\'re pretty sure it\'s in this subkingdom:</string>
+    <string name="pretty_sure_phylum">We\'re pretty sure it\'s in this phylum:</string>
+    <string name="pretty_sure_subphylum">We\'re pretty sure it\'s in this subphylum:</string>
+    <string name="pretty_sure_superclass">We\'re pretty sure it\'s in this superclass:</string>
+    <string name="pretty_sure_class">We\'re pretty sure it\'s in this class:</string>
+    <string name="pretty_sure_subclass">We\'re pretty sure it\'s in this subclass:</string>
+    <string name="pretty_sure_infraclass">We\'re pretty sure it\'s in this infraclass:</string>
+    <string name="pretty_sure_superorder">We\'re pretty sure it\'s in this superorder:</string>
+    <string name="pretty_sure_order">We\'re pretty sure it\'s in this order:</string>
+    <string name="pretty_sure_suborder">We\'re pretty sure it\'s in this suborder:</string>
+    <string name="pretty_sure_infraorder">We\'re pretty sure it\'s in this infraorder:</string>
+    <string name="pretty_sure_subterclass">We\'re pretty sure it\'s in this subterclass:</string>
+    <string name="pretty_sure_parvorder">We\'re pretty sure it\'s in this parvorder:</string>
+    <string name="pretty_sure_zoosection">We\'re pretty sure it\'s in this zoosection:</string>
+    <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
+    <string name="pretty_sure_superfamily">We\'re pretty sure it\'s in this superfamily:</string>
+    <string name="pretty_sure_epifamily">We\'re pretty sure it\'s in this epifamily:</string>
+    <string name="pretty_sure_family">We\'re pretty sure it\'s in this family:</string>
+    <string name="pretty_sure_subfamily">We\'re pretty sure it\'s in this subfamily:</string>
+    <string name="pretty_sure_supertribe">We\'re pretty sure it\'s in this supertribe:</string>
+    <string name="pretty_sure_tribe">We\'re pretty sure it\'s in this tribe:</string>
+    <string name="pretty_sure_subtribe">We\'re pretty sure it\'s in this subtribe:</string>
+    <string name="pretty_sure_genus">We\'re pretty sure it\'s in this genus:</string>
+    <string name="pretty_sure_genushybrid">We\'re pretty sure it\'s in this genushybrid:</string>
+    <string name="pretty_sure_subgenus">We\'re pretty sure it\'s in this subgenus:</string>
+    <string name="pretty_sure_section">We\'re pretty sure it\'s in this section:</string>
+    <string name="pretty_sure_subsection">We\'re pretty sure it\'s in this subsection:</string>
+    <string name="pretty_sure_complex">We\'re pretty sure it\'s in this complex:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_species">We\'re pretty sure it\'s in this species:</string>
+    <string name="pretty_sure_hybrid">We\'re pretty sure it\'s in this hybrid:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_subspecies">We\'re pretty sure it\'s in this subspecies:</string>
+    <string name="pretty_sure_variety">We\'re pretty sure it\'s in this variety:</string>
+    <string name="pretty_sure_form">We\'re pretty sure it\'s in this form:</string>
+    <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
     <string name="remove_date_observed">Remove date &amp; time observed</string>
     <string name="remove_time_observed">Remove time observed</string>
     <string name="remove_location">Remove location</string>
@@ -972,5 +1012,9 @@
     <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
     <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
     <string name="share_location">Share Location</string>
+    <string name="share_hidden_location">Share Hidden Location</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
+    <string name="sound_format_not_supported">This sound file is the right file extension, but the specific audio encoding is not supported by Android.</string>
+    <string name="view_observations">View Observations</string>
 </resources>

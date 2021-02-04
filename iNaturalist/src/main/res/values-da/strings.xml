@@ -446,15 +446,9 @@
     <string name="more_info_on_inat">Yderligere info på iNaturalist.org</string>
     <string name="view_suggestions">Se forslag</string>
     <string name="species_search">Artssøgning</string>
-    <plurals name="were_not_confident">
-        <!-- This will probably never happen -->
-        <item quantity="one">Vi er ikke sikre nok til at komme med en anbefaling, men her er vores forslag nummer %1$d:</item>
-        <item quantity="other">Vi er ikke sikre på nok til at komme med en anbefaling, men her er vores %1$d bedste forslag:</item>
-    </plurals>
-    <plurals name="top_species_suggestions">
-        <item quantity="one">Top %1$d forslag:</item>
-        <item quantity="other">%1$d bedste forslag:</item>
-    </plurals>
+    <string name="were_not_confident_enough">Vi er ikke tilstrækkeligt sikre til at give en anbefaling, men her vore bedste forslag.</string>
+    <string name="most_observed_options_matching_filters">Mest observerede jf. indstillinger i matchningfiltre:</string>
+    <string name="top_suggestions">Topforslag</string>
     <string name="pretty_sure_rank">Vi er ret sikre på, at den er i denne %1$s:</string>
     <string name="what_did_you_see">Hvad så du?</string>
     <string name="suggest_species">Foreslå arter</string>
@@ -776,6 +770,7 @@
     <string name="delete_this_pinned_location">Slet denne fasgjorte placering?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Dublér</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_photo">Kunne ikke dublere foto!</string>
     <string name="couldnt_edit_photo">Kunne ikke redigere foto!</string>
     <!-- Verb, as in "Rotate this photo" -->
@@ -969,6 +964,51 @@ og <a href="https://www.inaturalist.org/terms">Tjenestevilkår</a>.]]></string>
     <string name="filter_observations_by_months">Filtrér observationer efter måneder</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="view_suggestions_not_seen_nearby">Se forslag, som ikke set i nærheden</string>
+    <string name="only_view_nearby_suggestions">Vis kun forslag set i nærheden</string>
+    <string name="suggestions_source">Forslagskilde</string>
+    <string name="research_grade_observations">Forskningkvalitetsobservationer</string>
+    <string name="visually_similar_description">iNaturalist vil leverer forslag baseret på, hvordan visuelt lignende billederne er ift. de arter, som er observeret nær dette sted på denne tid af året.</string>
+    <string name="research_grade_observations_description">I stedet for visuelt lignende forslag, vil iNaturalist foreslå arter observeret på et bestemt sted og inden for en bestemt taksonomisk gruppe.</string>
+    <string name="taxon">Takson</string>
+    <string name="place">Sted</string>
+    <string name="pretty_sure_kingdom">Vi er ret sikre på, at den er i dette rige:</string>
+    <string name="pretty_sure_subkingdom">Vi er ret sikre på, at den er i dette underrige:</string>
+    <string name="pretty_sure_phylum">Vi er ret sikre på, at den er i denne slægt:</string>
+    <string name="pretty_sure_subphylum">Vi er ret sikre på, at den er i denne underslægt:</string>
+    <string name="pretty_sure_superclass">Vi er ret sikre på, at den er i denne superklasse:</string>
+    <string name="pretty_sure_class">Vi er ret sikre på, at den er i denne klasse:</string>
+    <string name="pretty_sure_subclass">Vi er ret sikre på, at den er i denne underklasse:</string>
+    <string name="pretty_sure_infraclass">Vi er ret sikre på, at den er i denne infraklasse:</string>
+    <string name="pretty_sure_superorder">Vi er ret sikre på, at den er i denne superorden:</string>
+    <string name="pretty_sure_order">Vi er ret sikre på, at den er i denne orden:</string>
+    <string name="pretty_sure_suborder">Vi er ret sikre på, at den er i denne underorden:</string>
+    <string name="pretty_sure_infraorder">Vi er ret sikre på, at den er i denne infraorden:</string>
+    <string name="pretty_sure_subterclass">Vi er ret sikre på, at den er i denne subterklasse:</string>
+    <string name="pretty_sure_parvorder">Vi er ret sikre på, at den er i denne parvorden:</string>
+    <string name="pretty_sure_zoosection">Vi er ret sikre på, at den er i denne zoosektion:</string>
+    <string name="pretty_sure_zoosubsection">Vi er ret sikre på, at den er i denne zooundersektion:</string>
+    <string name="pretty_sure_superfamily">Vi er ret sikre på, at den er i denne superfamilie:</string>
+    <string name="pretty_sure_epifamily">Vi er ret sikre på, at den er i denne epifamilie:</string>
+    <string name="pretty_sure_family">Vi er ret sikre på, at den er i denne familie:</string>
+    <string name="pretty_sure_subfamily">Vi er ret sikre på, at den er i denne underfamilie:</string>
+    <string name="pretty_sure_supertribe">Vi er ret sikre på, at den er i denne superstamme:</string>
+    <string name="pretty_sure_tribe">Vi er ret sikre på, at den er i denne stamme:</string>
+    <string name="pretty_sure_subtribe">Vi er ret sikre på, at den er i denne understamme:</string>
+    <string name="pretty_sure_genus">Vi er ret sikre på, at den er i denne slægt:</string>
+    <string name="pretty_sure_genushybrid">Vi er ret sikre på, at den er i denne slægtshybrid:</string>
+    <string name="pretty_sure_subgenus">Vi er ret sikre på, at den er i denne underslægt:</string>
+    <string name="pretty_sure_section">Vi er ret sikre på, at den er i denne sektion:</string>
+    <string name="pretty_sure_subsection">Vi er ret sikre på, at den er i denne undersektion:</string>
+    <string name="pretty_sure_complex">Vi er ret sikre på, at den er i dette kompleks:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_species">Vi er ret sikre på, at den er i denne art:</string>
+    <string name="pretty_sure_hybrid">Vi er ret sikre på, at den er i denne hybrid:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_subspecies">Vi er ret sikre på, at den er i denne underart:</string>
+    <string name="pretty_sure_variety">Vi er ret sikre på, at den er i denne afart:</string>
+    <string name="pretty_sure_form">Vi er ret sikre på, at den er i denne form:</string>
+    <string name="pretty_sure_infrahybrid">Vi er ret sikre på, at den er i denne infrahybrid:</string>
     <string name="remove_date_observed">Fjern observationsdato og -tidspunkt</string>
     <string name="remove_time_observed">Fjern observationstidspunkt</string>
     <string name="remove_location">Fjern placering</string>
@@ -976,5 +1016,9 @@ og <a href="https://www.inaturalist.org/terms">Tjenestevilkår</a>.]]></string>
     <string name="are_you_sure_you_want_to_remove_time">Sikker på, at du vil fjerne observationstidspunktet?</string>
     <string name="are_you_sure_you_want_to_remove_location">Sikker på, at du vil fjerne placeringen?</string>
     <string name="share_location">Del placering</string>
+    <string name="share_hidden_location">Del skjult placering</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Kunne ikke dublere lyd!</string>
+    <string name="sound_format_not_supported">Denne lydfil er af den korrekte filtype, men den aktuelle lydkodning er uunderstøttet i Android.</string>
+    <string name="view_observations">Vis observationer</string>
 </resources>

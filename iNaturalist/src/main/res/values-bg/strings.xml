@@ -450,15 +450,9 @@
     <string name="more_info_on_inat">Повече инфо на iNaturalist.org</string>
     <string name="view_suggestions">Вижте предложения</string>
     <string name="species_search">Търсене на видове</string>
-    <plurals name="were_not_confident">
-        <!-- This will probably never happen -->
-        <item quantity="one">Не сме достатъчно уверени за да препоръчаме нещо, но ето това е нашето предположение номер %1$d:</item>
-        <item quantity="other">Не сме достатъчно уверени за да препоръчаме нещо, но ето това са нашите %1$d най-добри предположения:</item>
-    </plurals>
-    <plurals name="top_species_suggestions">
-        <item quantity="one">Топ %1$d предложение:</item>
-        <item quantity="other">Топ %1$d предложения:</item>
-    </plurals>
+    <string name="were_not_confident_enough">Не сме достатъчно уверени за да препоръчаме нещо, но ето нашите най-добри предположения:</string>
+    <string name="most_observed_options_matching_filters">Най-наблюдавани възможности отговарящи на филтрите:</string>
+    <string name="top_suggestions">Най-добри предположения:</string>
     <string name="pretty_sure_rank">Почти сигурни сме, че това е от %1$s:</string>
     <string name="what_did_you_see">Какво наблюдавахте?</string>
     <string name="suggest_species">Предлагай видове</string>
@@ -784,6 +778,7 @@ CalTech и Cornell Tech помогнаха при разработката на 
     <string name="delete_this_pinned_location">Изтриване на това закачено място?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Дублирай</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_photo">Неуспешно дублиране на снимката!</string>
     <string name="couldnt_edit_photo">Неуспешно редактиране на снимката!</string>
     <!-- Verb, as in "Rotate this photo" -->
@@ -985,12 +980,61 @@ CalTech и Cornell Tech помогнаха при разработката на 
     <string name="filter_observations_by_months">Филтрирай наблюденията по месеци</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="remove_date_observed">Remove date &amp; time observed</string>
-    <string name="remove_time_observed">Remove time observed</string>
-    <string name="remove_location">Remove location</string>
-    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
-    <string name="share_location">Share Location</string>
+    <string name="view_suggestions_not_seen_nearby">Виж предположения, които не са наблюдаване наоколо</string>
+    <string name="only_view_nearby_suggestions">Виж само предположения от околността</string>
+    <string name="suggestions_source">Източник на предположенията</string>
+    <string name="research_grade_observations">Наблюдения с Изследователско качество</string>
+    <string name="visually_similar_description">iNaturalist ще направи предположения въз основа на визуалното сходство на изображенията с видове, които са наблюдавани в околността по това време на годината.</string>
+    <string name="research_grade_observations_description">Вместо визуално подобни предположения, iNaturalist ще предложи видове наблюдавани на конкретно място и от конкретна таксономична група.</string>
+    <string name="taxon">Таксон:</string>
+    <string name="place">Място:</string>
+    <string name="pretty_sure_kingdom">Почти сигурни сме, че е от това царство:</string>
+    <string name="pretty_sure_subkingdom">Почти сигурни сме, че е от това подцарство:</string>
+    <string name="pretty_sure_phylum">Почти сигурни сме, че е от този тип:</string>
+    <string name="pretty_sure_subphylum">Почти сигурни сме, че е от този подтип:</string>
+    <string name="pretty_sure_superclass">Почти сигурни сме, че е от това надсемейство:</string>
+    <string name="pretty_sure_class">Почти сигурни сме, че е от този клас:</string>
+    <string name="pretty_sure_subclass">Почти сигурни сме, че е от този подклас:</string>
+    <string name="pretty_sure_infraclass">Почти сигурни сме, че е от този инфраклас:</string>
+    <string name="pretty_sure_superorder">Почти сигурни сме, че е от този надразред:</string>
+    <string name="pretty_sure_order">Почти сигурни сме, че е от този разред:</string>
+    <string name="pretty_sure_suborder">Почти сигурни сме, че е от този подразред:</string>
+    <string name="pretty_sure_infraorder">Почти сигурни сме, че е от този инфраразред:</string>
+    <string name="pretty_sure_subterclass">Почти сигурни сме, че е от този субтерклас:</string>
+    <string name="pretty_sure_parvorder">Почти сигурни сме, че е от този парворазред:</string>
+    <string name="pretty_sure_zoosection">Почти сигурни сме, че е от тази зоосекция:</string>
+    <string name="pretty_sure_zoosubsection">Почти сигурни сме, че е от тази зооподсекция:</string>
+    <string name="pretty_sure_superfamily">Почти сигурни сме, че е от това надсемейство:</string>
+    <string name="pretty_sure_epifamily">Почти сигурни сме, че е от това еписемейство:</string>
+    <string name="pretty_sure_family">Почти сигурни сме, че е от това семейство:</string>
+    <string name="pretty_sure_subfamily">Почти сигурни сме, че е от това подсемейство:</string>
+    <string name="pretty_sure_supertribe">Почти сигурни сме, че е от този надтрибус:</string>
+    <string name="pretty_sure_tribe">Почти сигурни сме, че е от този трибус:</string>
+    <string name="pretty_sure_subtribe">Почти сигурни сме, че е от този подтрибус:</string>
+    <string name="pretty_sure_genus">Почти сигурни сме, че е от този род:</string>
+    <string name="pretty_sure_genushybrid">Почти сигурни сме, че е от този родов хибрид:</string>
+    <string name="pretty_sure_subgenus">Почти сигурни сме, че е от този подрод:</string>
+    <string name="pretty_sure_section">Почти сигурни сме, че е от тази секция:</string>
+    <string name="pretty_sure_subsection">Почти сигурни сме, че е от тази подсекция:</string>
+    <string name="pretty_sure_complex">Почти сигурни сме, че е от този комплекс:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_species">Почти сигурни сме, че е от този вид:</string>
+    <string name="pretty_sure_hybrid">Почти сигурни сме, че е от този хибрид:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_subspecies">Почти сигурни сме, че е от този подвид:</string>
+    <string name="pretty_sure_variety">Почти сигурни сме, че е от този вариетет:</string>
+    <string name="pretty_sure_form">Почти сигурни сме, че е от тази форма:</string>
+    <string name="pretty_sure_infrahybrid">Почти сигурни сме, че е от този инфрахибрид:</string>
+    <string name="remove_date_observed">Премахни дата и час на наблюдаване</string>
+    <string name="remove_time_observed">Премахни час на наблюдаване</string>
+    <string name="remove_location">Премахни местоположение</string>
+    <string name="are_you_sure_you_want_to_remove_date">Сигурни ли сте, че искате да премахнете датата и часа на наблюдаване?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Сигурни ли сте, че искате да премахнете часа на наблюдаване?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Сигурни ли сте, че искате да премахнете местоположението?</string>
+    <string name="share_location">Сподели местоположението</string>
+    <string name="share_hidden_location">Сподели скритото местоположение</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Неуспешно дублиране на звука!</string>
+    <string name="sound_format_not_supported">Този аудиофайл е с правилното файлово разширение, но конкретното кодиране не се поддържа от Андроид.</string>
+    <string name="view_observations">Виж наблюдения</string>
 </resources>

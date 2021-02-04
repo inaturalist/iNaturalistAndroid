@@ -80,9 +80,9 @@
     <string name="no">Nein</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">Einverstanden?</string>
-    <string name="no_comments">Noch keine Kommentare/Identifizierungen</string>
+    <string name="no_comments">Noch keine Kommentare/Bestimmungen</string>
     <string name="add_comment">Kommentar hinzufügen</string>
-    <string name="add_id">Identifizierung hinzufügen</string>
+    <string name="add_id">Bestimmung hinzufügen</string>
     <string name="remarks">Anmerkungen...</string>
     <string name="enter_taxon_name">Artenname</string>
     <string name="no_projects">Keine Projekte gefunden.</string>
@@ -290,9 +290,9 @@
     <string name="id_title">%1$ss ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">Löschen</string>
-    <string name="delete_id">Identifikation zurückziehen</string>
+    <string name="delete_id">Bestimmung zurückziehen</string>
     <string name="delete_comment">Kommentar löschen</string>
-    <string name="delete_id_message">Bist du sicher, dass du die Identifikation zurückziehen möchtest?</string>
+    <string name="delete_id_message">Bist du sicher, dass du die Bestimmung zurückziehen möchtest?</string>
     <string name="delete_comment_message">Möchtest du diesen Kommentar wirklich löschen?</string>
     <string name="comment">Kommentar</string>
     <string name="suggest_id">ID vorschlagen</string>
@@ -366,7 +366,7 @@
     <string name="search_observations">Beobachtungen suchen...</string>
     <string name="withdraw">Zurückziehen</string>
     <!-- Dialog title for when you are updating the description of an identification -->
-    <string name="update_id_description">Identifikationsbeschreibung aktualisieren</string>
+    <string name="update_id_description">Schreibe eine neue Bemerkung</string>
     <string name="your_identification">Deine ID: %1$s</string>
     <string name="onboarding_species_name">Falls möglich, gib ein, was du gesehen hast - auch wenn es nur „Insekt” oder „Vogel” ist, oder lasse das Feld einfach leer. Andere können helfen, es zu bestimmen! Allerdings wird es eher bestimmt, wenn man bereits selber etwas einträgt.</string>
     <string name="upload_complete">Hochladen abgeschlossen!</string>
@@ -442,19 +442,13 @@
     <string name="taxonomy">Taxonomie</string>
     <string name="about_this_section">Über diesen Abschnitt</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
-    <string name="taxonomy_info">Hier finden sich Links zu höheren hierarchischen Ebenen dieses speziellen Taxons, in der Reihenfolge von grob nach fein sortiert. Nutze diese Links um sich durch den Stammbaum zu bewegen. Wenn du z.B. den genauen Namen eines Organismus nicht kennst, aber weißt wo er einzuordnen ist, klicke auf ein Taxon aus der Liste um mehr Informationen anzuzeigen.</string>
+    <string name="taxonomy_info">Hier finden sich Links zu höheren taxonomischen Ebenen dieses speziellen Taxons, in hierarchischer  Reihenfolge sortiert. Verwende diese Links um den Stammbaum zu erkunden. Wenn du z.B. den genauen Namen eines Organismus nicht kennst, aber weißt wo er auf höherer Ebene einzuordnen ist, klicke auf ein Taxon aus der Liste um mehr Informationen anzuzeigen und so möglicherweise etwas über deinen Fund herauszubekommen.</string>
     <string name="more_info_on_inat">Weitere Informationen auf iNaturalist.org</string>
     <string name="view_suggestions">Vorschläge anzeigen</string>
     <string name="species_search">Suche nach Arten</string>
-    <plurals name="were_not_confident">
-        <!-- This will probably never happen -->
-        <item quantity="one">Wir sind nicht sicher genug, um eine Empfehlung abzugeben, aber hier ist unserer Nummer %1$d Vorschlag:</item>
-        <item quantity="other">Wir sind nicht sicher genug, um eine Empfehlung abzugeben, aber hier sind unserer Top %1$d Vorschläge:</item>
-    </plurals>
-    <plurals name="top_species_suggestions">
-        <item quantity="one">Top %1$d Vorschlag:</item>
-        <item quantity="other">Top %1$d Vorschläge:</item>
-    </plurals>
+    <string name="were_not_confident_enough">Wir sind nicht sicher genug, um eine Empfehlung abzugeben, aber hier sind unsere besten Vorschläge.</string>
+    <string name="most_observed_options_matching_filters">Den gewählten Filtern entsprechend die häufigsten Beobachtungen:</string>
+    <string name="top_suggestions">Beste Vorschläge</string>
     <string name="pretty_sure_rank">Wir sind ziemlich sicher, dass es in dieser %1$s ist:</string>
     <string name="what_did_you_see">Was hast du gefunden?</string>
     <string name="suggest_species">Art vorschlagen</string>
@@ -612,7 +606,7 @@
     <string name="new_to_inat_sign_up_now"><![CDATA[Neu auf %1$s? <b>Jetzt anmelden!</b>]]></string>
     <string name="see_more_observations">Weitere Beobachtungen anzeigen</string>
     <string name="see_more_species">Weitere Arten anzeigen</string>
-    <string name="see_more_identifications">Weitere Identifikationen anzeigen</string>
+    <string name="see_more_identifications">Weitere Bestimmungen anzeigen</string>
     <string name="collection_and_umbrella_projects">Sammlungs- und Schirmprojekte</string>
     <string name="description">Beschreibung</string>
     <string name="quantity">Menge</string>
@@ -776,6 +770,7 @@
     <string name="delete_this_pinned_location">Diesen angepinnten Ort löschen?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Duplizieren</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_photo">Foto konnte nicht dupliziert werden!</string>
     <string name="couldnt_edit_photo">Foto konnte nicht bearbeitet werden!</string>
     <!-- Verb, as in "Rotate this photo" -->
@@ -966,6 +961,51 @@ und unsere <a href="https://www.inaturalist.org/terms">Geschäftsbedingungen</a>
     <string name="filter_observations_by_months">Beobachtungen nach Monaten filtern</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="view_suggestions_not_seen_nearby">Zusätzlich Vorschläge anzeigen, die nicht aus der Nähe stammen</string>
+    <string name="only_view_nearby_suggestions">Vorschläge auf die nähere Umgebung beschränken</string>
+    <string name="suggestions_source">Grundlage der Vorschläge</string>
+    <string name="research_grade_observations">Beobachtungen mit Forschungsqualität</string>
+    <string name="visually_similar_description">Der Algorithmus bietet Vorschläge basierend auf Ähnlichkeiten zu in der Nähe beobachteten Arten zu dieser Zeit des Jahres an </string>
+    <string name="research_grade_observations_description">Anstelle von visuell ähnlichen Vorschlägen werden Arten angeboten, die in einem bestimmten Gebiet und innerhalb einer bestimmten taxonomischen Gruppe beobachtet werden.</string>
+    <string name="taxon">Taxon:</string>
+    <string name="place">Gebiet:</string>
+    <string name="pretty_sure_kingdom">Wir sind ziemlich sicher, die Beobachtung gehört in dieses Reich:</string>
+    <string name="pretty_sure_subkingdom">Wir sind ziemlich sicher, die Beobachtung gehört in dieses Unterreich:</string>
+    <string name="pretty_sure_phylum">Wir sind ziemlich sicher, die Beobachtung gehört zu diesem Stamm:</string>
+    <string name="pretty_sure_subphylum">Wir sind ziemlich sicher, die Beobachtung gehört zu diesem Unterstamm:</string>
+    <string name="pretty_sure_superclass">Wir sind ziemlich sicher, die Beobachtung gehört in diese Überklasse:</string>
+    <string name="pretty_sure_class">Wir sind ziemlich sicher, die Beobachtung gehört in diese Klasse:</string>
+    <string name="pretty_sure_subclass">Wir sind ziemlich sicher, die Beobachtung gehört in diese Unterklasse:</string>
+    <string name="pretty_sure_infraclass">Wir sind ziemlich sicher, die Beobachtung gehört in diese Infraklasse:</string>
+    <string name="pretty_sure_superorder">Wir sind ziemlich sicher, die Beobachtung gehört in diese Überordnung:</string>
+    <string name="pretty_sure_order">Wir sind ziemlich sicher, die Beobachtung gehört in diese Ordnung:</string>
+    <string name="pretty_sure_suborder">Wir sind ziemlich sicher, die Beobachtung gehört in diese Unterordnung:</string>
+    <string name="pretty_sure_infraorder">Wir sind ziemlich sicher, die Beobachtung gehört in diese Infraordnung:</string>
+    <string name="pretty_sure_subterclass">Wir sind ziemlich sicher, die Beobachtung gehört in diese Subterklasse:</string>
+    <string name="pretty_sure_parvorder">Wir sind ziemlich sicher, die Beobachtung gehört in diese Parvordnung:</string>
+    <string name="pretty_sure_zoosection">Wir sind ziemlich sicher, die Beobachtung gehört in diese Zoosektion:</string>
+    <string name="pretty_sure_zoosubsection">Wir sind ziemlich sicher, die Beobachtung gehört in diese Zoountersektion:</string>
+    <string name="pretty_sure_superfamily">Wir sind ziemlich sicher, die Beobachtung gehört in diese Überfamilie:</string>
+    <string name="pretty_sure_epifamily">Wir sind ziemlich sicher, die Beobachtung gehört in diese Epifamilie:</string>
+    <string name="pretty_sure_family">Wir sind ziemlich sicher, die Beobachtung gehört in diese Familie:</string>
+    <string name="pretty_sure_subfamily">Wir sind ziemlich sicher, die Beobachtung gehört in diese Unterfamilie:</string>
+    <string name="pretty_sure_supertribe">Wir sind ziemlich sicher, die Beobachtung gehört in dieses Übertribus:</string>
+    <string name="pretty_sure_tribe">Wir sind ziemlich sicher, die Beobachtung gehört in dieses Tribus:</string>
+    <string name="pretty_sure_subtribe">Wir sind ziemlich sicher, die Beobachtung gehört in dieses Untertribus:</string>
+    <string name="pretty_sure_genus">Wir sind ziemlich sicher, die Beobachtung gehört in diese Gattung:</string>
+    <string name="pretty_sure_genushybrid">Wir sind ziemlich sicher, die Beobachtung gehört zu diesem Gattungshybrid:</string>
+    <string name="pretty_sure_subgenus">Wir sind ziemlich sicher, die Beobachtung gehört in diese Untergattung:</string>
+    <string name="pretty_sure_section">Wir sind ziemlich sicher, die Beobachtung gehört in diese Sektion:</string>
+    <string name="pretty_sure_subsection">Wir sind ziemlich sicher, die Beobachtung gehört in diese Untersektion:</string>
+    <string name="pretty_sure_complex">Wir sind ziemlich sicher, die Beobachtung gehört in diesen Komplex:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_species">Wir sind ziemlich sicher, die Beobachtung gehört zu dieser Art:</string>
+    <string name="pretty_sure_hybrid">Wir sind ziemlich sicher, die Beobachtung gehört zu diesem Hybrid:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_subspecies">Wir sind ziemlich sicher, die Beobachtung gehört zu dieser Unterart:</string>
+    <string name="pretty_sure_variety">Wir sind ziemlich sicher, die Beobachtung gehört zu dieser Varietät:</string>
+    <string name="pretty_sure_form">Wir sind ziemlich sicher, die Beobachtung gehört zu dieser Form:</string>
+    <string name="pretty_sure_infrahybrid">Wir sind ziemlich sicher, die Beobachtung gehört zu diesem Infrahybrid:</string>
     <string name="remove_date_observed">Datum &amp; beobachtete Zeit entfernen</string>
     <string name="remove_time_observed">Beobachtungszeit entfernen</string>
     <string name="remove_location">Standort entfernen</string>
@@ -973,5 +1013,9 @@ und unsere <a href="https://www.inaturalist.org/terms">Geschäftsbedingungen</a>
     <string name="are_you_sure_you_want_to_remove_time">Möchtest du die Beobachtungszeit wirklich entfernen?</string>
     <string name="are_you_sure_you_want_to_remove_location">Bist du sicher, dass du den Beobachtungsort entfernen willst?</string>
     <string name="share_location">Standort teilen</string>
+    <string name="share_hidden_location">Versteckten Standort teilen</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Audioaufnahme konnte nicht dupliziert werden!</string>
+    <string name="sound_format_not_supported">Diese Sounddatei ist die richtige Dateierweiterung, aber die spezifische Audio-Encodierung wird von Android nicht unterstützt.</string>
+    <string name="view_observations">Beobachtungen anzeigen</string>
 </resources>
