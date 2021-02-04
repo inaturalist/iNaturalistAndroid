@@ -1,6 +1,6 @@
 #
-# Python 3 script for validating and importing translations from a crowdin build
-# zip.
+# Python 3 script for validating and importing translations from a crowdin
+# build zip.
 #
 
 from glob import glob
@@ -12,6 +12,7 @@ import shutil
 import tempfile
 import xml.etree.ElementTree as ET
 from optparse import OptionParser
+
 
 class bcolors:
     HEADER = '\033[95m'
@@ -26,8 +27,24 @@ class bcolors:
 
 
 # https://developer.android.com/reference/java/util/Formatter#syntax
-ANDROID_FORMAT_PATTERN = re.compile(r"%((?P<argument_index>\d+)\$)?(?P<flags>[\-\#\+\s0\,\(])?(?P<width>\d+)?(?P<precision>\.\d+)?(?P<conversion>[bhscdoxefgat%n])")
-DATE_FORMAT_KEYS = ['date_short_this_year', 'date_short', 'time_short_24_hour', 'time_short_12_hour']
+ANDROID_FORMAT_PATTERN = re.compile(
+    r"%((?P<argument_index>\d+)\$)?(?P<flags>[\-\#\+\s0\,\(])?(?P<width>\d+)?(?P<precision>\.\d+)?(?P<conversion>[bhscdoxefgat%n])"  # noqa: E501
+)
+DATE_FORMAT_KEYS = [
+    "date_short_this_year",
+    "date_short",
+    "time_short_24_hour",
+    "time_short_12_hour"
+]
+# These are locales where Crowdin doesn't actually have the correct Android
+# locale code, or where we need to copy files to multiple locations to
+# accommodate different contexts, e.g. the same Hebrew translations for several
+# locale codes
+CROWDIN_TO_ANDROID_LOCALES = {
+    "he": ["iw", "iw-rIL", "he-rIL"],
+    "sv-rSE": ["sv"],
+    "sr-rCyrl": ["sr"]
+}
 
 
 def call_cmd(*args, **kwargs):
@@ -41,7 +58,9 @@ def extless_basename(path):
 
 
 def copy_to_android_locale(src, android_locale, options={}):
-    android_dir_path = os.path.join( "iNaturalist", "src", "main", "res", "values-{}".format(android_locale))
+    android_dir_path = os.path.join(
+        "iNaturalist", "src", "main", "res", "values-{}".format(android_locale)
+    )
     if not os.path.isdir(android_dir_path):
         if options.verbose:
             print("\tCreating {}".format(android_dir_path))
@@ -68,12 +87,17 @@ def import_crowdin_for_android(zip_path, options={}):
             android_locale = "{}-r{}".format(locale, sublocale)
         src = os.path.join(path, "Android", "strings.xml")
         copy_to_android_locale(src, android_locale, options)
-        # Copy Hebrew file to the old locale codes that some modern Androids still use
-        if locale == "he":
-            for new_android_locale in ["iw", "iw-rIL", "he-rIL"]:
-                copy_to_android_locale(src, new_android_locale, options)
-        elif android_locale == "sv-rSE":
-            copy_to_android_locale(src, "sv", options)
+        # Copy Hebrew file to the old locale codes that some modern Androids
+        # still use
+        for src_crowdin_locale in CROWDIN_TO_ANDROID_LOCALES:
+            if crowdin_locale == src_crowdin_locale:
+                for dest_android_locale in CROWDIN_TO_ANDROID_LOCALES[src_crowdin_locale]:
+                    copy_to_android_locale(src, dest_android_locale, options)
+        # if locale == "he":
+        #     for new_android_locale in ["iw", "iw-rIL", "he-rIL"]:
+        #         copy_to_android_locale(src, new_android_locale, options)
+        # elif android_locale == "sv-rSE":
+        #     copy_to_android_locale(src, "sv", options)
 
 
 def validate_translation(path, key, text, en_string, errors, warnings,
@@ -148,7 +172,8 @@ def validate_translation(path, key, text, en_string, errors, warnings,
         if bad_characters and len(bad_characters) > 0:
             if key not in errors[path]:
                 errors[path][key] = []
-            errors[path][key].append("Invalid date format characters: {}".format(bad_characters))
+            errors[path][key].append(
+                f"Invalid date format characters: {bad_characters}")
             if options.debug:
                 print("\t\t{}".format(errors[path][key][-1]))
 
@@ -258,7 +283,7 @@ def validate_android_translations(options={}):
         if options.locale and options.locale not in path:
             continue
         keys = list(errors[path].keys()) + list(warnings[path].keys())
-        keys = [k for k in keys if k != None]
+        keys = [k for k in keys if k is not None]
         keys = set(keys)
         print(f"{bcolors.BOLD}{path}{bcolors.ENDC}")
         if path in progress_counts:
