@@ -203,14 +203,12 @@
 
         <TextView
             android:id="@+id/identifications_list_empty"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:padding="30dp"
-            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:text="@string/no_identifications_found" />
+            android:layout_marginTop="140dp"
+            android:text="@string/no_identifications_yet" />
 
         <ListView
             android:id="@+id/identifications_list"
@@ -262,14 +260,12 @@
 
         <TextView
             android:id="@+id/species_list_empty"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:padding="30dp"
-            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:text="@string/no_species_found" />
+            android:layout_marginTop="140dp"
+            android:text="@string/no_species_yet" />
 
         <ListView
             android:id="@+id/species_list"
@@ -320,14 +316,12 @@
 
         <TextView
             android:id="@+id/observations_list_empty"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:padding="30dp"
-            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:text="@string/no_observations_found" />
+            android:layout_marginTop="140dp"
+            android:text="@string/no_observations_yet2" />
 
         <ListView
             android:id="@+id/observations_list"
