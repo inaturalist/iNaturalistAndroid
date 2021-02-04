@@ -1528,13 +1528,12 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         }
     }
 
-    private View createTabContent(int tabIconResource) {
+    private View createTabContent(int tabIconResource, int contentDescriptionResource) {
         View view = LayoutInflater.from(this).inflate(R.layout.observation_viewer_tab, null);
         TextView countText = (TextView) view.findViewById(R.id.count);
         ImageView tabIcon = (ImageView) view.findViewById(R.id.tab_icon);
-
+        tabIcon.setContentDescription(getString(contentDescriptionResource));
         tabIcon.setImageResource(tabIconResource);
-
         return view;
     }
 
@@ -1543,9 +1542,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     private void setupTabs() {
         mTabHost.setup();
 
-        addTab(mTabHost, mTabHost.newTabSpec(VIEW_TYPE_INFO).setIndicator(createTabContent(R.drawable.ic_info_black_48dp)));
-        addTab(mTabHost, mTabHost.newTabSpec(VIEW_TYPE_COMMENTS_IDS).setIndicator(createTabContent(R.drawable.ic_forum_black_48dp)));
-        addTab(mTabHost, mTabHost.newTabSpec(VIEW_TYPE_FAVS).setIndicator(createTabContent(R.drawable.ic_star_black_48dp)));
+        addTab(mTabHost, mTabHost.newTabSpec(VIEW_TYPE_INFO).setIndicator(createTabContent(R.drawable.ic_info_black_48dp, R.string.details)));
+        addTab(mTabHost, mTabHost.newTabSpec(VIEW_TYPE_COMMENTS_IDS).setIndicator(createTabContent(R.drawable.ic_forum_black_48dp, R.string.comments_ids_title)));
+        addTab(mTabHost, mTabHost.newTabSpec(VIEW_TYPE_FAVS).setIndicator(createTabContent(R.drawable.ic_star_black_48dp, R.string.faves)));
 
         mTabHost.getTabWidget().setDividerDrawable(null);
 

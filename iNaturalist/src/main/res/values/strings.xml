@@ -554,6 +554,7 @@
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegation</string>
     <string name="apply_filters">Apply Filters</string>
+    <string name="remove_filters">Remove Filters</string>
     <string name="reset">Reset</string>
     <string name="show_only_my_observations">Show Only My Observations</string>
     <string name="project">Project</string>
@@ -1042,5 +1043,18 @@
     <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
     <string name="sound_format_not_supported">This sound file is the right file extension, but the specific audio encoding is not supported by Android.</string>
     <string name="view_observations">View Observations</string>
+    <string name="choose_this_option">Choose this option</string>
+    <string name="compare_observation_with_this_option">Compare observation with this option</string>
+    <string name="go_back">Go back</string>
+    <string name="change_the_source_of_the_suggestions">Change the source of the suggestions</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Thumbnail photo for suggested taxon</string>
+    <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
+    <string name="comments_ids_title">Comments and Identifications</string>
+    <!-- Accessibility text for the faves tab on the observation detail view -->
+    <string name="faves">Faves</string>
+    <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
+    <string name="previous_option">Previous Option</string>
+    <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string name="next_option">Next Option</string>
 </resources>
 

@@ -21,7 +21,8 @@
 	        android:layout_centerVertical="true"
 	        android:layout_alignParentStart="true"
 	        android:layout_marginEnd="5dp"
-	        android:src="@drawable/actionbar_back_indicator" />
+	        android:src="@drawable/actionbar_back_indicator"
+			android:contentDescription="@string/thumbnail_photo_for_suggested_taxon"/>
 	
         <LinearLayout
             android:layout_width="wrap_content"

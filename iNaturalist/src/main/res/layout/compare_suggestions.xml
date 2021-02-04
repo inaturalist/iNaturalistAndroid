@@ -9,7 +9,6 @@
     <LinearLayout
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="0dp">
 
@@ -61,29 +60,29 @@
                     android:id="@+id/previous_taxon"
                     android:layout_width="26dp"
                     android:layout_height="26dp"
-                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:src="@drawable/ic_keyboard_arrow_left_black_48dp"
                     android:tint="#ffffff"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginEnd="8dp"
                     android:background="@drawable/circle_green"
-                    />
+                    android:contentDescription="@string/previous_option" />
 
                 <ImageView
                     android:id="@+id/next_taxon"
                     android:layout_width="26dp"
                     android:layout_height="26dp"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:src="@drawable/ic_keyboard_arrow_right_black_48dp"
                     android:background="@drawable/circle_green"
                     android:tint="#ffffff"
-                    android:layout_marginLeft="8dp"
-                    />
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="@string/next_option" />
                 <LinearLayout
                     android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/next_taxon"
-                    android:layout_toRightOf="@id/previous_taxon"
+                    android:layout_toStartOf="@id/next_taxon"
+                    android:layout_toEndOf="@id/previous_taxon"
                     android:orientation="horizontal"
                     android:gravity="center"
                     android:layout_width="wrap_content"
@@ -93,8 +92,9 @@
                         android:layout_height="16dp"
                         android:src="@drawable/ic_info_outline_black_24dp"
                         android:tint="#74AC00"
-                        android:layout_marginRight="9dp"
+                        android:layout_marginEnd="9dp"
                         android:id="@+id/taxon_name_icon"
+                        android:importantForAccessibility="no"
                         />
                     <TextView
                         android:id="@+id/taxon_name"
@@ -145,12 +145,13 @@
                     android:orientation="horizontal"
                     android:gravity="center_horizontal|center_vertical"
                     android:clickable="true"
-                    >
+                    android:focusable="true">
                     <ImageView
                         android:layout_width="16dp"
                         android:layout_height="16dp"
                         android:src="@drawable/ic_check_circle_black_24dp"
                         android:tint="#ffffff"
+                        android:importantForAccessibility="no"
                         />
                     <TextView
                         android:layout_width="wrap_content"
@@ -158,7 +159,7 @@
                         android:text="@string/select"
                         android:textSize="16sp"
                         android:textColor="#ffffff"
-                        android:paddingLeft="7dp"
+                        android:paddingStart="7dp"
                         />
                 </LinearLayout>
 
@@ -172,12 +173,13 @@
                     android:gravity="center_horizontal|center_vertical"
                     android:clickable="true"
                     android:layout_marginTop="20dp"
-                    >
+                    android:focusable="true">
                     <ImageView
                         android:layout_width="16dp"
                         android:layout_height="16dp"
                         android:src="@drawable/ic_zoom_out_map_black_48dp"
                         android:tint="#ffffff"
+                        android:importantForAccessibility="no"
                         />
                     <TextView
                         android:layout_width="wrap_content"
@@ -185,7 +187,7 @@
                         android:text="@string/enlarge"
                         android:textSize="16sp"
                         android:textColor="#ffffff"
-                        android:paddingLeft="7dp"
+                        android:paddingStart="7dp"
                         />
                 </LinearLayout>
 
@@ -199,12 +201,13 @@
                     android:gravity="center_horizontal|center_vertical"
                     android:clickable="true"
                     android:layout_marginTop="20dp"
-                    >
+                    android:focusable="true">
                     <ImageView
                         android:layout_width="16dp"
                         android:layout_height="16dp"
                         android:src="@drawable/ic_info_outline_black_24dp"
                         android:tint="#ffffff"
+                        android:importantForAccessibility="no"
                         />
                     <TextView
                         android:layout_width="wrap_content"
@@ -212,7 +215,7 @@
                         android:text="@string/about_taxon_short"
                         android:textSize="16sp"
                         android:textColor="#ffffff"
-                        android:paddingLeft="7dp"
+                        android:paddingStart="7dp"
                         />
                 </LinearLayout>
 
@@ -231,8 +234,9 @@
         android:padding="4dp"
         android:background="@drawable/circle_semi_transparent"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="11dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="11dp"
         android:layout_marginTop="11dp"
+        android:contentDescription="@string/go_back"
         />
 </RelativeLayout>
