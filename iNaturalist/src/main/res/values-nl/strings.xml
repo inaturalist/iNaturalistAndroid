@@ -446,15 +446,9 @@
     <string name="more_info_on_inat">Meer Info op iNaturalist.org</string>
     <string name="view_suggestions">Suggesties bekijken</string>
     <string name="species_search">Soort zoeken</string>
-    <plurals name="were_not_confident">
-        <!-- This will probably never happen -->
-        <item quantity="one">We zijn niet zeker genoeg om een aanbeveling te doen, maar hier is onze top %1$d suggestie:</item>
-        <item quantity="other">We zijn niet zeker genoeg om een aanbeveling te doen, maar hier zijn onze top %1$d suggesties:</item>
-    </plurals>
-    <plurals name="top_species_suggestions">
-        <item quantity="one">Top %1$d suggestie:</item>
-        <item quantity="other">Top %1$d suggesties:</item>
-    </plurals>
+    <string name="were_not_confident_enough">We zijn niet zeker genoeg om een aanbeveling te doen, maar hier zijn onze belangrijkste suggesties:</string>
+    <string name="most_observed_options_matching_filters">Meest waargenomen soorten met de geselecteerde filters:</string>
+    <string name="top_suggestions">Belangrijkste suggesties</string>
     <string name="pretty_sure_rank">We zijn vrij zeker van dat het in deze %1$s is:</string>
     <string name="what_did_you_see">Wat heb je waargenomen?</string>
     <string name="suggest_species">Soort suggereren</string>
@@ -776,6 +770,7 @@
     <string name="delete_this_pinned_location">Deze vaste locatie verwijderen?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Dupliceren</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_photo">Kon foto niet dupliceren!</string>
     <string name="couldnt_edit_photo">Kon foto niet bewerken!</string>
     <!-- Verb, as in "Rotate this photo" -->
@@ -969,6 +964,51 @@ de <a href="https://www.inaturalist.org/pages/community+guidelines">gemeenschaps
     <string name="filter_observations_by_months">Filter waarnemingen op maanden</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="view_suggestions_not_seen_nearby">Alle soorten</string>
+    <string name="only_view_nearby_suggestions">Bekijk alleen soorten uit de omgeving</string>
+    <string name="suggestions_source">Bron soortenlijst</string>
+    <string name="research_grade_observations">Waarnemingen van onderzoekskwaliteit</string>
+    <string name="visually_similar_description">iNaturalist geeft suggesties van visueel vergelijkbare afbeeldingen van soorten die in de omgeving van deze locatie zijn waargenomen op dit moment van het jaar.</string>
+    <string name="research_grade_observations_description">In plaats van visueel vergelijkbare suggesties zal iNaturalist soorten voorstellen die zijn waargenomen op een specifieke plek en binnen een specifieke taxonomische groep.</string>
+    <string name="taxon">Taxon</string>
+    <string name="place">Plaats:</string>
+    <string name="pretty_sure_kingdom">We zijn er vrij zeker van dat het in dit koninkrijk is:</string>
+    <string name="pretty_sure_subkingdom">We zijn er vrij zeker van dat het in dit onderkoninkrijk is:</string>
+    <string name="pretty_sure_phylum">We zijn er vrij zeker van dat het in deze stam is:</string>
+    <string name="pretty_sure_subphylum">We zijn er vrij zeker van dat het in deze onderstam is:</string>
+    <string name="pretty_sure_superclass">We zijn er vrij zeker van dat het in deze superklasse is:</string>
+    <string name="pretty_sure_class">We zijn er vrij zeker van dat het in deze klasse is:</string>
+    <string name="pretty_sure_subclass">We zijn er vrij zeker van dat het in deze onderklasse is:</string>
+    <string name="pretty_sure_infraclass">We zijn er vrij zeker van dat het in deze infraklasse is:</string>
+    <string name="pretty_sure_superorder">We zijn er vrij zeker van dat het in deze superorde is:</string>
+    <string name="pretty_sure_order">We zijn er vrij zeker van dat het in deze orde is:</string>
+    <string name="pretty_sure_suborder">We zijn er vrij zeker van dat het in deze suborde is:</string>
+    <string name="pretty_sure_infraorder">We zijn er vrij zeker van dat het in deze infraorde is:</string>
+    <string name="pretty_sure_subterclass">We zijn er vrij zeker van dat het in deze subterklasse is:</string>
+    <string name="pretty_sure_parvorder">We zijn er vrij zeker van dat het in deze parvorde is:</string>
+    <string name="pretty_sure_zoosection">We zijn er vrij zeker van dat het in deze zoosection is:</string>
+    <string name="pretty_sure_zoosubsection">We zijn er vrij zeker van dat het in deze zoosubsection is:</string>
+    <string name="pretty_sure_superfamily">We zijn er vrij zeker van dat het in deze superfamilie is:</string>
+    <string name="pretty_sure_epifamily">We zijn er vrij zeker van dat het in deze epifamilie is:</string>
+    <string name="pretty_sure_family">We zijn er vrij zeker van dat het in deze familie is:</string>
+    <string name="pretty_sure_subfamily">We zijn er vrij zeker van dat het in deze subfamilie is:</string>
+    <string name="pretty_sure_supertribe">We zijn er vrij zeker van dat het in deze supergeslachtengroep is:</string>
+    <string name="pretty_sure_tribe">We zijn er vrij zeker van dat het in deze geslachtengroep is:</string>
+    <string name="pretty_sure_subtribe">We zijn er vrij zeker van dat het in deze ondergeslachtengroep is:</string>
+    <string name="pretty_sure_genus">We zijn er vrij zeker van dat het in dit geslacht is:</string>
+    <string name="pretty_sure_genushybrid">We zijn er vrij zeker van dat het in dit geslachthybride is:</string>
+    <string name="pretty_sure_subgenus">We zijn er vrij zeker van dat het in dit ondergeslacht is:</string>
+    <string name="pretty_sure_section">We zijn er vrij zeker van dat het in deze sectie is:</string>
+    <string name="pretty_sure_subsection">We zijn er vrij zeker van dat het in deze subsectie is:</string>
+    <string name="pretty_sure_complex">We zijn er vrij zeker van dat het in dit complex is:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_species">We zijn er vrij zeker van dat het deze soort is:</string>
+    <string name="pretty_sure_hybrid">We zijn er vrij zeker van dat het deze hybride is:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_subspecies">We zijn er vrij zeker van dat het deze ondersoort is:</string>
+    <string name="pretty_sure_variety">We zijn er vrij zeker van dat het in deze variëteit is:</string>
+    <string name="pretty_sure_form">We zijn er vrij zeker van dat het in deze forma is:</string>
+    <string name="pretty_sure_infrahybrid">We zijn er vrij zeker van dat het in dit infrahybride is:</string>
     <string name="remove_date_observed">Verwijder datum &amp; tijd waargenomen</string>
     <string name="remove_time_observed">Verwijder tijd waargenomen</string>
     <string name="remove_location">Verwijder locatie</string>
@@ -976,5 +1016,9 @@ de <a href="https://www.inaturalist.org/pages/community+guidelines">gemeenschaps
     <string name="are_you_sure_you_want_to_remove_time">Weet je zeker dat je de tijd waargenomen wilt verwijderen?</string>
     <string name="are_you_sure_you_want_to_remove_location">Weet je zeker dat je de locatie wilt verwijderen?</string>
     <string name="share_location">Locatie delen</string>
+    <string name="share_hidden_location">Verborgen Locatie Delen</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Kon geluid niet dupliceren!</string>
+    <string name="sound_format_not_supported">Dit geluidsbestand heeft de juiste bestandsextensie maar de specifieke audiocodering wordt niet ondersteund door Android.</string>
+    <string name="view_observations">Toon Waarnemingen</string>
 </resources>

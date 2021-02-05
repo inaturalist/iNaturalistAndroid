@@ -454,19 +454,9 @@
     <string name="more_info_on_inat">Daugiau informacijos tinklalapyje</string>
     <string name="view_suggestions">Žiūrėti pasiūlymus</string>
     <string name="species_search">Rūšies paieška</string>
-    <plurals name="were_not_confident">
-        <!-- This will probably never happen -->
-        <item quantity="one">Mes nesame pakankamai užtikrinti, kad teiktumėme rekomendacijas, bet čia yra mūsų numeris %1$d pasiūlymas:</item>
-        <item quantity="few">Mes nesame pakankamai užtikrinti, kad teiktumėme rekomendacijas, tačiau čia yra mūsų %1$d geriausių pasiūlymų:</item>
-        <item quantity="many">Mes nesame pakankamai užtikrinti, kad teiktumėme rekomendacijas, tačiau čia yra mūsų %1$d geriausių pasiūlymų:</item>
-        <item quantity="other">Mes nesame pakankamai užtikrinti, kad teiktumėme rekomendacijas, tačiau čia yra mūsų %1$d geriausių pasiūlymų:</item>
-    </plurals>
-    <plurals name="top_species_suggestions">
-        <item quantity="one">Top %1$d pasiūlymas:</item>
-        <item quantity="few">Top %1$d pasiūlymai:</item>
-        <item quantity="many">Top %1$d pasiūlymai:</item>
-        <item quantity="other">Top %1$d pasiūlymai:</item>
-    </plurals>
+    <string name="were_not_confident_enough">We\'re not confident enough to make a recommendation, but here are our top suggestions:</string>
+    <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
+    <string name="top_suggestions">Top suggestions</string>
     <string name="pretty_sure_rank">Mes įsitikinę, jog tai priklauso šiai %1$s:</string>
     <string name="what_did_you_see">Ką pamatėte?</string>
     <string name="suggest_species">Siūlyti rūšį</string>
@@ -790,6 +780,7 @@
     <string name="delete_this_pinned_location">Ištrinti šią prisegtą vietovę?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Sukurti kopiją</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_photo">Nepavyko sukurti nuotraukos kopijos!</string>
     <string name="couldnt_edit_photo">Nepavyko redaguoti nuotraukos!</string>
     <!-- Verb, as in "Rotate this photo" -->
@@ -963,7 +954,7 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_short_this_year">MMM d</string>
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short">MM/dd/yy</string>
+    <string name="date_short">MM/dd/mm</string>
     <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
@@ -982,12 +973,61 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <string name="filter_observations_by_months">Filtruoti stebėjimus pagal mėnesius</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="remove_date_observed">Remove date &amp; time observed</string>
-    <string name="remove_time_observed">Remove time observed</string>
-    <string name="remove_location">Remove location</string>
-    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
-    <string name="share_location">Share Location</string>
-    <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
+    <string name="view_suggestions_not_seen_nearby">View suggestions not seen nearby</string>
+    <string name="only_view_nearby_suggestions">Only view nearby suggestions</string>
+    <string name="suggestions_source">Suggestions Source</string>
+    <string name="research_grade_observations">Research Grade Observations</string>
+    <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
+    <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will suggest species observed in a specific place and within a specific taxonomic group.</string>
+    <string name="taxon">Taxon:</string>
+    <string name="place">Place:</string>
+    <string name="pretty_sure_kingdom">We\'re pretty sure it\'s in this kingdom:</string>
+    <string name="pretty_sure_subkingdom">We\'re pretty sure it\'s in this subkingdom:</string>
+    <string name="pretty_sure_phylum">We\'re pretty sure it\'s in this phylum:</string>
+    <string name="pretty_sure_subphylum">We\'re pretty sure it\'s in this subphylum:</string>
+    <string name="pretty_sure_superclass">We\'re pretty sure it\'s in this superclass:</string>
+    <string name="pretty_sure_class">We\'re pretty sure it\'s in this class:</string>
+    <string name="pretty_sure_subclass">We\'re pretty sure it\'s in this subclass:</string>
+    <string name="pretty_sure_infraclass">We\'re pretty sure it\'s in this infraclass:</string>
+    <string name="pretty_sure_superorder">We\'re pretty sure it\'s in this superorder:</string>
+    <string name="pretty_sure_order">We\'re pretty sure it\'s in this order:</string>
+    <string name="pretty_sure_suborder">We\'re pretty sure it\'s in this suborder:</string>
+    <string name="pretty_sure_infraorder">We\'re pretty sure it\'s in this infraorder:</string>
+    <string name="pretty_sure_subterclass">We\'re pretty sure it\'s in this subterclass:</string>
+    <string name="pretty_sure_parvorder">We\'re pretty sure it\'s in this parvorder:</string>
+    <string name="pretty_sure_zoosection">We\'re pretty sure it\'s in this zoosection:</string>
+    <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
+    <string name="pretty_sure_superfamily">We\'re pretty sure it\'s in this superfamily:</string>
+    <string name="pretty_sure_epifamily">We\'re pretty sure it\'s in this epifamily:</string>
+    <string name="pretty_sure_family">We\'re pretty sure it\'s in this family:</string>
+    <string name="pretty_sure_subfamily">We\'re pretty sure it\'s in this subfamily:</string>
+    <string name="pretty_sure_supertribe">We\'re pretty sure it\'s in this supertribe:</string>
+    <string name="pretty_sure_tribe">We\'re pretty sure it\'s in this tribe:</string>
+    <string name="pretty_sure_subtribe">We\'re pretty sure it\'s in this subtribe:</string>
+    <string name="pretty_sure_genus">We\'re pretty sure it\'s in this genus:</string>
+    <string name="pretty_sure_genushybrid">We\'re pretty sure it\'s in this genushybrid:</string>
+    <string name="pretty_sure_subgenus">We\'re pretty sure it\'s in this subgenus:</string>
+    <string name="pretty_sure_section">We\'re pretty sure it\'s in this section:</string>
+    <string name="pretty_sure_subsection">We\'re pretty sure it\'s in this subsection:</string>
+    <string name="pretty_sure_complex">We\'re pretty sure it\'s in this complex:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_species">We\'re pretty sure it\'s in this species:</string>
+    <string name="pretty_sure_hybrid">We\'re pretty sure it\'s in this hybrid:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_subspecies">We\'re pretty sure it\'s in this subspecies:</string>
+    <string name="pretty_sure_variety">We\'re pretty sure it\'s in this variety:</string>
+    <string name="pretty_sure_form">We\'re pretty sure it\'s in this form:</string>
+    <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
+    <string name="remove_date_observed">Pašalinti stebėjimo datą ir laiką</string>
+    <string name="remove_time_observed">Pašalinti stebėjimo laiką</string>
+    <string name="remove_location">Pašalinti lokaciją</string>
+    <string name="are_you_sure_you_want_to_remove_date">Ar tikrai norite pašalinti stebėjimo datą ir laiką?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Ar tikrai norite pašalinti stebėjimo laiką?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Ar tikrai norite pašalinti lokaciją?</string>
+    <string name="share_location">Dalintis buvimo vietos informacija</string>
+    <string name="share_hidden_location">Share Hidden Location</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
+    <string name="couldnt_duplicate_sound">Nepavyko sukurti garso kopijos!</string>
+    <string name="sound_format_not_supported">This sound file is the right file extension, but the specific audio encoding is not supported by Android.</string>
+    <string name="view_observations">View Observations</string>
 </resources>

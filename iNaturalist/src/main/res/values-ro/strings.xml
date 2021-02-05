@@ -450,17 +450,9 @@
     <string name="more_info_on_inat">Mai multe informații pe iNaturalist.org</string>
     <string name="view_suggestions">Vezi Sugestii</string>
     <string name="species_search">Căutare specie</string>
-    <plurals name="were_not_confident">
-        <!-- This will probably never happen -->
-        <item quantity="one">Nu suntem suficienți de siguri pentru a face o recomandare, dar aceasta este  sugestia noastră numărul %1$d:</item>
-        <item quantity="few">Nu suntem suficienți de siguri pentru a face o recomandare, dar acestea sunt cele %1$d sugestii de top:</item>
-        <item quantity="other">Nu suntem suficienți de siguri pentru a face o recomandare, dar acestea sunt cele %1$d de sugestii de top:</item>
-    </plurals>
-    <plurals name="top_species_suggestions">
-        <item quantity="one">%1$d sugestie:</item>
-        <item quantity="few">Top %1$d sugestii:</item>
-        <item quantity="other">Top %1$d de sugestii:</item>
-    </plurals>
+    <string name="were_not_confident_enough">Nu suntem suficient de încrezători pentru a face o recomandare, dar iată sugestiile noastre de top:</string>
+    <string name="most_observed_options_matching_filters">Cele mai observate opțiuni care corespund filtrelor:</string>
+    <string name="top_suggestions">Cele mai bune sugestii</string>
     <string name="pretty_sure_rank">Suntem destul de siguri că este aceasta %1$s:</string>
     <string name="what_did_you_see">Ce ai văzut?</string>
     <string name="suggest_species">Sugerează Specii</string>
@@ -783,6 +775,7 @@
     <string name="delete_this_pinned_location">Ștergeți Această Locație Salvată?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Duplicat</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_photo">Nu se poate dubla fotografia!</string>
     <string name="couldnt_edit_photo">Nu se poate edita fotografia!</string>
     <!-- Verb, as in "Rotate this photo" -->
@@ -973,6 +966,51 @@
     <string name="filter_observations_by_months">Filtrează observațiile după luni</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="view_suggestions_not_seen_nearby">Vezi sugestiile care nu au fost văzute în apropiere</string>
+    <string name="only_view_nearby_suggestions">Vizualizează numai sugestiile din apropiere</string>
+    <string name="suggestions_source">Sursa sugestiilor</string>
+    <string name="research_grade_observations">Observații privind calitatea cercetării</string>
+    <string name="visually_similar_description">iNaturalist va oferi sugestii bazate pe cât de vizual similare imaginile sunt cu cele ale speciilor observate în apropierea acestei locații în acest moment al anului.</string>
+    <string name="research_grade_observations_description">În loc de sugestii similare din punct de vedere vizual, iNaturalist va sugera specii observate într-un anumit loc și în cadrul unui anumit grup taxonomic.</string>
+    <string name="taxon">Taxon:</string>
+    <string name="place">Locație:</string>
+    <string name="pretty_sure_kingdom">Suntem destul de siguri că se află în acest regn:</string>
+    <string name="pretty_sure_subkingdom">Suntem destul de siguri că se află în acest subregn:</string>
+    <string name="pretty_sure_phylum">Suntem destul de siguri că se află în această ramură:</string>
+    <string name="pretty_sure_subphylum">Suntem destul de siguri că se află în această subramură:</string>
+    <string name="pretty_sure_superclass">Suntem destul de siguri că se află în această superclasă:</string>
+    <string name="pretty_sure_class">Suntem destul de siguri că se află în această clasă:</string>
+    <string name="pretty_sure_subclass">Suntem destul de siguri că se află în această subclasă:</string>
+    <string name="pretty_sure_infraclass">Suntem destul de siguri că se află în această infraclasă:</string>
+    <string name="pretty_sure_superorder">Suntem destul de siguri că se află în acest superordin:</string>
+    <string name="pretty_sure_order">Suntem destul de siguri că se află în acest ordin:</string>
+    <string name="pretty_sure_suborder">Suntem destul de siguri că se află în acest subordin:</string>
+    <string name="pretty_sure_infraorder">Suntem destul de siguri că se află în acest infraordin:</string>
+    <string name="pretty_sure_subterclass">Suntem destul de siguri că se află în această subterclasă:</string>
+    <string name="pretty_sure_parvorder">Suntem destul de siguri că se află în acest parvordin:</string>
+    <string name="pretty_sure_zoosection">Suntem destul de siguri că se află în această zoosectiune:</string>
+    <string name="pretty_sure_zoosubsection">Suntem destul de siguri că se află în această zoosubsecțiune:</string>
+    <string name="pretty_sure_superfamily">Suntem destul de siguri că se află în această superfamilie:</string>
+    <string name="pretty_sure_epifamily">Suntem destul de siguri că se află în această epifamilie:</string>
+    <string name="pretty_sure_family">Suntem destul de siguri că se află în această familie:</string>
+    <string name="pretty_sure_subfamily">Suntem destul de siguri că se află în această subfamilie:</string>
+    <string name="pretty_sure_supertribe">Suntem destul de siguri că se află în acest supertrib:</string>
+    <string name="pretty_sure_tribe">Suntem destul de siguri că se află în acest trib:</string>
+    <string name="pretty_sure_subtribe">Suntem destul de siguri că se află în acest subtrib:</string>
+    <string name="pretty_sure_genus">Suntem destul de siguri că se află în acest gen:</string>
+    <string name="pretty_sure_genushybrid">Suntem destul de siguri că se află în acest genhibrid:</string>
+    <string name="pretty_sure_subgenus">Suntem destul de siguri că se află în acest subgen:</string>
+    <string name="pretty_sure_section">Suntem destul de siguri că se află în această secțiune:</string>
+    <string name="pretty_sure_subsection">Suntem destul de siguri că se află în această subsecțiune:</string>
+    <string name="pretty_sure_complex">Suntem destul de siguri că se află în acest complex:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_species">Suntem destul de siguri că se află în această specie:</string>
+    <string name="pretty_sure_hybrid">Suntem destul de siguri că se află în acest hibrid:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_subspecies">Suntem destul de siguri că se află în această subspecie:</string>
+    <string name="pretty_sure_variety">Suntem destul de siguri că se află în această varietate:</string>
+    <string name="pretty_sure_form">Suntem destul de siguri că se află în această formă:</string>
+    <string name="pretty_sure_infrahybrid">Suntem destul de siguri că se află în acest infrahibrid:</string>
     <string name="remove_date_observed">Elimină data &amp; ora observației</string>
     <string name="remove_time_observed">Elimină ora de observare</string>
     <string name="remove_location">Elimină locația</string>
@@ -980,5 +1018,9 @@
     <string name="are_you_sure_you_want_to_remove_time">Sigur dorești să elimini ora observației?</string>
     <string name="are_you_sure_you_want_to_remove_location">Sigur dorești să elimini locația?</string>
     <string name="share_location">Partajează locația</string>
+    <string name="share_hidden_location">Partajează locația ascunsă</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Nu s-a putut duplica sunetul!</string>
+    <string name="sound_format_not_supported">Acest fișier de sunet este extensia bună de fișier, dar codarea audio specifică nu este acceptată de Android.</string>
+    <string name="view_observations">Vizualizare observații</string>
 </resources>

@@ -466,7 +466,9 @@
     <string name="view_suggestions">View Suggestions</string>
     <string name="species_search">Species Search</string>
     <string name="were_not_confident_enough">We\'re not confident enough to make a recommendation, but here are our top suggestions:</string>
+    <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
+    <!-- Header for a list of suggested taxa -->
     <string name="top_suggestions">Top suggestions</string>
     <string name="pretty_sure_rank">We\'re pretty sure it\'s in this %1$s:</string>
     <string name="what_did_you_see">What did you see?</string>
@@ -557,6 +559,7 @@
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegation</string>
     <string name="apply_filters">Apply Filters</string>
+    <string name="remove_filters">Remove Filters</string>
     <string name="reset">Reset</string>
     <string name="show_only_my_observations">Show Only My Observations</string>
     <string name="project">Project</string>
@@ -1045,6 +1048,19 @@
     <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
     <string name="sound_format_not_supported">This sound file is the right file extension, but the specific audio encoding is not supported by Android.</string>
     <string name="view_observations">View Observations</string>
+    <string name="choose_this_option">Choose this option</string>
+    <string name="compare_observation_with_this_option">Compare observation with this option</string>
+    <string name="go_back">Go back</string>
+    <string name="change_the_source_of_the_suggestions">Change the source of the suggestions</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Thumbnail photo for suggested taxon</string>
+    <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
+    <string name="comments_ids_title">Comments and Identifications</string>
+    <!-- Accessibility text for the faves tab on the observation detail view -->
+    <string name="faves">Faves</string>
+    <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
+    <string name="previous_option">Previous Option</string>
+    <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string name="next_option">Next Option</string>
     <string name="no_observations_yet2">No observations yet.</string>
     <string name="no_species_yet">No species yet.</string>
     <string name="no_identifications_yet">No identifications yet.</string>

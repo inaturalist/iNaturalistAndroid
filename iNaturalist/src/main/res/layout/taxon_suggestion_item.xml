@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#ffffff"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
     >
@@ -12,41 +13,44 @@
         android:id="@+id/taxon_photo"
         android:layout_width="59dp"
         android:layout_height="59dp"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="9dp"
-        android:src="@drawable/actionbar_back_indicator" />
+        android:layout_marginEnd="9dp"
+        android:src="@drawable/actionbar_back_indicator"
+        android:contentDescription="@string/thumbnail_photo_for_suggested_taxon" />
 
     <ImageView
         android:id="@+id/select_taxon"
         android:layout_width="40dp"
         android:layout_height="59dp"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="9dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
+        android:layout_marginStart="9dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:tint="#7A7A7A"
-        android:src="@drawable/ic_check_circle_black_24dp" />
+        android:src="@drawable/ic_check_circle_black_24dp"
+        android:contentDescription="@string/choose_this_option" />
 
     <ImageView
         android:id="@+id/compare_taxon"
         android:layout_width="40dp"
         android:layout_height="59dp"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="9dp"
-        android:layout_toLeftOf="@id/select_taxon"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
+        android:layout_marginStart="9dp"
+        android:layout_toStartOf="@id/select_taxon"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:tint="#7A7A7A"
-        android:src="@drawable/ic_compare" />
+        android:src="@drawable/ic_compare"
+        android:contentDescription="@string/compare_observation_with_this_option" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/taxon_photo"
-        android:layout_toLeftOf="@id/compare_taxon"
+        android:layout_toEndOf="@id/taxon_photo"
+        android:layout_toStartOf="@id/compare_taxon"
         android:orientation="vertical" >
 
         <TextView
@@ -55,7 +59,9 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textColor="#DE000000"
-            android:text="TextView" />
+            android:text="TextView"
+            tools:text="@string/reptiles"
+            />
 
         <TextView
             android:id="@+id/taxon_scientific_name"
@@ -64,7 +70,9 @@
             android:textColor="#8A000000"
             android:textSize="12sp"
             android:layout_marginTop="3dp"
-            android:text="TextView" />
+            android:text="TextView"
+            tools:text="Sceloporus occidentalis"
+            />
 
         <TextView
             android:id="@+id/visually_similar"
@@ -73,7 +81,8 @@
             android:textColor="#72AA00"
             android:textSize="12sp"
             android:layout_marginTop="3dp"
-            android:text="TextView" />
+            android:text="TextView"
+            tools:text="@string/visually_similar_seen_nearby"/>
     </LinearLayout>
 
 

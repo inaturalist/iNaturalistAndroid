@@ -446,15 +446,9 @@
     <string name="more_info_on_inat">Più informazioni su iNaturalist.org</string>
     <string name="view_suggestions">Visualizza Suggerimenti</string>
     <string name="species_search">Ricerca per specie</string>
-    <plurals name="were_not_confident">
-        <!-- This will probably never happen -->
-        <item quantity="one">Non siamo abbastanza sicuri per proporre un\'identificazione, ma qui c\'è il nostro suggerimento numero %1$d:</item>
-        <item quantity="other">Non siamo abbastanza sicuri per proporre un\'identificazione, ma qui ci sono il nostri migliori %1$d suggerimenti:</item>
-    </plurals>
-    <plurals name="top_species_suggestions">
-        <item quantity="one">Il migliore %1$d suggerimento:</item>
-        <item quantity="other">I migliori %1$d suggerimenti:</item>
-    </plurals>
+    <string name="were_not_confident_enough">Non siamo abbastanza sicuri per fare una raccomandazione, ma qui ci sono i nostri migliori suggerimenti.</string>
+    <string name="most_observed_options_matching_filters">Le opzioni più osservate in base ai filtri:</string>
+    <string name="top_suggestions">I migliori suggerimenti</string>
     <string name="pretty_sure_rank">Siamo abbastanza sicuri che è in %1$s:</string>
     <string name="what_did_you_see">Cosa hai visto?</string>
     <string name="suggest_species">Suggerisci specie</string>
@@ -776,6 +770,7 @@
     <string name="delete_this_pinned_location">Elimina questa posizione segnata?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Duplica</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_photo">Impossibile duplicare la foto!</string>
     <string name="couldnt_edit_photo">Impossibile modificare la foto!</string>
     <!-- Verb, as in "Rotate this photo" -->
@@ -967,6 +962,51 @@ le <a href="https://www.inaturalist.org/pages/community+guidelines">Linee Guida 
     <string name="filter_observations_by_months">Filtra le osservazioni per mese</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="view_suggestions_not_seen_nearby">Visualizza suggerimenti non nelle vicinanze</string>
+    <string name="only_view_nearby_suggestions">Visualizza solo i suggerimenti nelle vicinanze</string>
+    <string name="suggestions_source">Fonte dei Suggerimenti</string>
+    <string name="research_grade_observations">Osservazioni di Livello Ricerca</string>
+    <string name="visually_similar_description">iNaturalist fornirà suggerimenti sulla base di quanto sono visivamente simili le immagini a quelle delle specie osservate vicino a questa posizione in questo periodo dell\'anno.</string>
+    <string name="research_grade_observations_description">Invece di suggerimenti visivamente simili, iNaturalist suggerirà le specie osservate in un luogo specifico e all\'interno di un gruppo tassonomico specifico.</string>
+    <string name="taxon">Taxon:</string>
+    <string name="place">Luogo:</string>
+    <string name="pretty_sure_kingdom">Siamo abbastanza sicuri che sia in questo regno:</string>
+    <string name="pretty_sure_subkingdom">Siamo abbastanza sicuri che sia in questo sotto-regno:</string>
+    <string name="pretty_sure_phylum">Siamo abbastanza sicuri che sia in questo phylum:</string>
+    <string name="pretty_sure_subphylum">Siamo abbastanza sicuri che sia in questo subphylum:</string>
+    <string name="pretty_sure_superclass">Siamo abbastanza sicuri che sia in questa superclasse:</string>
+    <string name="pretty_sure_class">Siamo abbastanza sicuri che sia in questa classe:</string>
+    <string name="pretty_sure_subclass">Siamo abbastanza sicuri che sia in questa sottoclasse:</string>
+    <string name="pretty_sure_infraclass">Siamo abbastanza sicuri che è in questo infraclasse:</string>
+    <string name="pretty_sure_superorder">Siamo abbastanza sicuri che sia in questo superordine:</string>
+    <string name="pretty_sure_order">Siamo abbastanza sicuri che sia in questo ordine:</string>
+    <string name="pretty_sure_suborder">Siamo abbastanza sicuri che sia in questo sotto-ordine:</string>
+    <string name="pretty_sure_infraorder">Siamo abbastanza sicuri che sia in questo infraordine:</string>
+    <string name="pretty_sure_subterclass">Siamo abbastanza sicuri che sia in questa subterclasse:</string>
+    <string name="pretty_sure_parvorder">Siamo abbastanza sicuri che sia in questo parvordine:</string>
+    <string name="pretty_sure_zoosection">Siamo abbastanza sicuri che sia in questa zoosezione:</string>
+    <string name="pretty_sure_zoosubsection">Siamo abbastanza sicuri che sia in questa zoosottosezione:</string>
+    <string name="pretty_sure_superfamily">Siamo abbastanza sicuri che sia in questa superfamiglia:</string>
+    <string name="pretty_sure_epifamily">Siamo abbastanza sicuri che sia in questa epifamiglia:</string>
+    <string name="pretty_sure_family">Siamo abbastanza sicuri che sia in questa famiglia:</string>
+    <string name="pretty_sure_subfamily">Siamo abbastanza sicuri che sia in questa sottofamiglia:</string>
+    <string name="pretty_sure_supertribe">Siamo abbastanza sicuri che sia in questa supertribù:</string>
+    <string name="pretty_sure_tribe">Siamo abbastanza sicuri che sia in questa tribù:</string>
+    <string name="pretty_sure_subtribe">Siamo abbastanza sicuri che sia in questa sottotribù:</string>
+    <string name="pretty_sure_genus">Siamo abbastanza sicuri che sia in questo genere:</string>
+    <string name="pretty_sure_genushybrid">Siamo abbastanza sicuri che sia in questo genere-ibrido:</string>
+    <string name="pretty_sure_subgenus">Siamo abbastanza sicuri che è in questo sottogenere:</string>
+    <string name="pretty_sure_section">Siamo abbastanza sicuri che sia in questa sezione:</string>
+    <string name="pretty_sure_subsection">Siamo abbastanza sicuri che sia in questa sottosezione:</string>
+    <string name="pretty_sure_complex">Siamo abbastanza sicuri che sia in questo complesso:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_species">Siamo abbastanza sicuri che sia in questa specie:</string>
+    <string name="pretty_sure_hybrid">Siamo abbastanza sicuri che sia in questo ibrido:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_subspecies">Siamo abbastanza sicuri che sia in questa sottospecie:</string>
+    <string name="pretty_sure_variety">Siamo abbastanza sicuri che sia in questa varietà:</string>
+    <string name="pretty_sure_form">Siamo abbastanza sicuri che sia in questa forma:</string>
+    <string name="pretty_sure_infrahybrid">Siamo abbastanza sicuri che sia in questa infraibrido:</string>
     <string name="remove_date_observed">Rimuovi data &amp; ora di osservazione</string>
     <string name="remove_time_observed">Rimuovi l\'ora dell\'osservazione</string>
     <string name="remove_location">Rimuovi posizione</string>
@@ -974,5 +1014,9 @@ le <a href="https://www.inaturalist.org/pages/community+guidelines">Linee Guida 
     <string name="are_you_sure_you_want_to_remove_time">Sei sicuro di voler rimuovere l\'ora di osservazione?</string>
     <string name="are_you_sure_you_want_to_remove_location">Sei sicuro che vuoi eliminare la posizione?</string>
     <string name="share_location">Condividi Posizione</string>
+    <string name="share_hidden_location">Condividi Posizione Nascosta</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Impossibile duplicare il suono!</string>
+    <string name="sound_format_not_supported">Questo file audio ha la giusta estensione del file, ma la specifica codifica audio non è supportata da Android.</string>
+    <string name="view_observations">Visualizza Osservazioni</string>
 </resources>

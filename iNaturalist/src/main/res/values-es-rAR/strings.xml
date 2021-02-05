@@ -446,15 +446,9 @@
     <string name="more_info_on_inat">Más información en iNaturalist.org</string>
     <string name="view_suggestions">Ver Sugerencias</string>
     <string name="species_search">Búsqueda de especies</string>
-    <plurals name="were_not_confident">
-        <!-- This will probably never happen -->
-        <item quantity="one">No estamos suficientemente seguros para hacer una recomendación, pero esta es nuestra sugerencia número %1$d:</item>
-        <item quantity="other">No estamos suficientemente seguros para hacer una recomendación, pero estas nuestras primeras %1$d sugerencias:</item>
-    </plurals>
-    <plurals name="top_species_suggestions">
-        <item quantity="one">La sugerencia número %1$d:</item>
-        <item quantity="other">Las %1$d principales sugerencias:</item>
-    </plurals>
+    <string name="were_not_confident_enough">No estamos suficientemente seguros para hacer una recomendación, pero he aquí nuestras mejores sugerencias:</string>
+    <string name="most_observed_options_matching_filters">Opciones más observadas que cumplen los filtros:</string>
+    <string name="top_suggestions">Principales sugerencias</string>
     <string name="pretty_sure_rank">Estamos bastante seguros de que está entre estos %1$s:</string>
     <string name="what_did_you_see">¿Qué has visto?</string>
     <string name="suggest_species">Sugiere especies</string>
@@ -776,6 +770,7 @@
     <string name="delete_this_pinned_location">¿Desea borrar esta ubicación anclada?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Duplicar</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_photo">¡No se pudo duplicar la foto!</string>
     <string name="couldnt_edit_photo">¡No se ha podido editar la foto!</string>
     <!-- Verb, as in "Rotate this photo" -->
@@ -969,6 +964,51 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <string name="filter_observations_by_months">Filtrar observaciones por meses</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="view_suggestions_not_seen_nearby">Ver sugerencias que no han sido vistas cerca de aquí</string>
+    <string name="only_view_nearby_suggestions">Solo mostrar sugerencias que hayan sido vistas cerca de aquí</string>
+    <string name="suggestions_source">Fuente de sugerencias</string>
+    <string name="research_grade_observations">Observaciones con grado de investigación</string>
+    <string name="visually_similar_description">iNaturalist ofrecerá sugerencias basándose en la similaridad visual de las imágenes a las de especies observadas cerca de este lugar en esta época del año.</string>
+    <string name="research_grade_observations_description">En lugar de sugerencias visualmente similares, iNaturalist sugerirá especies del mismo grupo taxonómico que hayan sido observadas en el mismo lugar.</string>
+    <string name="taxon">Taxón:</string>
+    <string name="place">Lugar:</string>
+    <string name="pretty_sure_kingdom">Estamos bastante seguros de que está en este reino:</string>
+    <string name="pretty_sure_subkingdom">Estamos bastante seguros de que está en este subreino:</string>
+    <string name="pretty_sure_phylum">Estamos bastante seguros de que está en este filo:</string>
+    <string name="pretty_sure_subphylum">Estamos bastante seguros de que está en este subfilo:</string>
+    <string name="pretty_sure_superclass">Estamos bastante seguros de que está en esta superclase:</string>
+    <string name="pretty_sure_class">Estamos bastante seguros de que está en esta clase:</string>
+    <string name="pretty_sure_subclass">Estamos bastante seguros de que está en esta subclase:</string>
+    <string name="pretty_sure_infraclass">Estamos bastante seguros de que está en esta infraclase:</string>
+    <string name="pretty_sure_superorder">Estamos bastante seguros de que está en este superorden:</string>
+    <string name="pretty_sure_order">Estamos bastante seguros de que está en este orden:</string>
+    <string name="pretty_sure_suborder">Estamos bastante seguros de que está en este suborden:</string>
+    <string name="pretty_sure_infraorder">Estamos bastante seguros de que está en este infraorden:</string>
+    <string name="pretty_sure_subterclass">Estamos bastante seguros de que está en esta subterclase:</string>
+    <string name="pretty_sure_parvorder">Estamos bastante seguros de que está en este parvorden:</string>
+    <string name="pretty_sure_zoosection">Estamos bastante seguros de que está en esta zoosección:</string>
+    <string name="pretty_sure_zoosubsection">Estamos bastante seguros de que está en esta zoosubsección:</string>
+    <string name="pretty_sure_superfamily">Estamos bastante seguros de que está en esta superfamilia:</string>
+    <string name="pretty_sure_epifamily">Estamos bastante seguros de que está en esta epifamilia:</string>
+    <string name="pretty_sure_family">Estamos bastante seguros de que está en esta familia:</string>
+    <string name="pretty_sure_subfamily">Estamos bastante seguros de que está en esta subfamilia:</string>
+    <string name="pretty_sure_supertribe">Estamos bastante seguros de que está en esta supertribu:</string>
+    <string name="pretty_sure_tribe">Estamos bastante seguros de que está en esta tribu:</string>
+    <string name="pretty_sure_subtribe">Estamos bastante seguros de que está en esta subtribu:</string>
+    <string name="pretty_sure_genus">Estamos bastante seguros de que está en este género:</string>
+    <string name="pretty_sure_genushybrid">Estamos bastante seguros de que está en este género híbrido:</string>
+    <string name="pretty_sure_subgenus">Estamos bastante seguros de que está en este subgénero:</string>
+    <string name="pretty_sure_section">Estamos bastante seguros de que está en esta sección:</string>
+    <string name="pretty_sure_subsection">Estamos bastante seguros de que está en esta subsección:</string>
+    <string name="pretty_sure_complex">Estamos bastante seguros de que está en este complejo:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_species">Estamos bastante seguros de que está en esta especie:</string>
+    <string name="pretty_sure_hybrid">Estamos bastante seguros de que está en este híbrido:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_subspecies">Estamos bastante seguros de que está en esta subespecie:</string>
+    <string name="pretty_sure_variety">Estamos bastante seguros de que está en esta variedad:</string>
+    <string name="pretty_sure_form">Estamos bastante seguros de que está en esta forma:</string>
+    <string name="pretty_sure_infrahybrid">Estamos bastante seguros de que está en este infrahíbrido:</string>
     <string name="remove_date_observed">Eliminar fecha y hora de la observación</string>
     <string name="remove_time_observed">Eliminar hora de la observación</string>
     <string name="remove_location">Eliminar ubicación</string>
@@ -976,5 +1016,9 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <string name="are_you_sure_you_want_to_remove_time">¿Estás seguro de querer quitar la hora de la observación?</string>
     <string name="are_you_sure_you_want_to_remove_location">¿Estas seguro de querer quitar la ubicación?</string>
     <string name="share_location">Compartir ubicación</string>
+    <string name="share_hidden_location">Compartir la ubicación oculta</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">¡No se ha podido duplicar el sonido!</string>
+    <string name="sound_format_not_supported">Este archivo de sonido tiene la extensión de archivo correcta, pero su codificación de audio no es compatible con Android.</string>
+    <string name="view_observations">Ver observaciones</string>
 </resources>

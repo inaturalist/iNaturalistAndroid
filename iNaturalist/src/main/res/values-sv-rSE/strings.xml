@@ -446,15 +446,9 @@
     <string name="more_info_on_inat">Mer info om iNaturalist.org</string>
     <string name="view_suggestions">Visa förslag</string>
     <string name="species_search">Artsök</string>
-    <plurals name="were_not_confident">
-        <!-- This will probably never happen -->
-        <item quantity="one">Vi är inte tillräckligt säkra för att göra en rekommendation, men av våra förslag är detta nummer %1$d:</item>
-        <item quantity="other">Vi är inte tillräckligt säkra för att göra en rekommendation, men här är våra %1$d bästa förslag:</item>
-    </plurals>
-    <plurals name="top_species_suggestions">
-        <item quantity="one">Bästa förslag nummer %1$d:</item>
-        <item quantity="other">Bästa %1$d förslag:</item>
-    </plurals>
+    <string name="were_not_confident_enough">Vi är inte tillräckligt säkra för att göra en rekommendation, men här är våra bästa förslag:</string>
+    <string name="most_observed_options_matching_filters">Mest observerad enligt matchande filter:</string>
+    <string name="top_suggestions">Bästa förslag</string>
     <string name="pretty_sure_rank">Vi är ganska säkra på att den tillhör denna %1$s:</string>
     <string name="what_did_you_see">Vad såg du?</string>
     <string name="suggest_species">Föreslå arter</string>
@@ -776,6 +770,7 @@
     <string name="delete_this_pinned_location">Ta bort denna nålade plats?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Kopiera</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_photo">Kunde inte kopiera foto!</string>
     <string name="couldnt_edit_photo">Kunde inte redigera foto!</string>
     <!-- Verb, as in "Rotate this photo" -->
@@ -965,12 +960,61 @@
     <string name="filter_observations_by_months">Filtrera observationer med månader</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="remove_date_observed">Remove date &amp; time observed</string>
-    <string name="remove_time_observed">Remove time observed</string>
-    <string name="remove_location">Remove location</string>
-    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
-    <string name="share_location">Share Location</string>
-    <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
+    <string name="view_suggestions_not_seen_nearby">Visa förslag som inte setts i närheten</string>
+    <string name="only_view_nearby_suggestions">Visa endast förslag i närheten</string>
+    <string name="suggestions_source">Källa till förslagen</string>
+    <string name="research_grade_observations">Observationer av forskningskvalitet</string>
+    <string name="visually_similar_description">iNaturalist kommer att ge förslag baserat på hur visuellt liknande bilderna är jämfört med arter som observerats nära denna plats vid denna tid på året.</string>
+    <string name="research_grade_observations_description">Istället för visuellt liknande förslag, kommer iNaturalist föreslå arter som observerats på en specifik lokal och inom en specifik taxonomisk grupp.</string>
+    <string name="taxon">Taxon:</string>
+    <string name="place">Lokal:</string>
+    <string name="pretty_sure_kingdom">Vi är ganska säkra på att det tillhör detta rike:</string>
+    <string name="pretty_sure_subkingdom">Vi är ganska säkra på att det tillhör detta underrike:</string>
+    <string name="pretty_sure_phylum">Vi är ganska säkra på att det tillhör detta fylum:</string>
+    <string name="pretty_sure_subphylum">Vi är ganska säkra på att det tillhör detta underfylum:</string>
+    <string name="pretty_sure_superclass">Vi är ganska säkra på att det tillhör denna superklass:</string>
+    <string name="pretty_sure_class">Vi är ganska säkra på att det tillhör denna klass:</string>
+    <string name="pretty_sure_subclass">Vi är ganska säkra på att det tillhör denna underklass:</string>
+    <string name="pretty_sure_infraclass">Vi är ganska säkra på att det tillhör denna infraklass:</string>
+    <string name="pretty_sure_superorder">Vi är ganska säkra på att det tillhör denna överordning:</string>
+    <string name="pretty_sure_order">Vi är ganska säkra på att det tillhör denna ordning:</string>
+    <string name="pretty_sure_suborder">Vi är ganska säkra på att det tillhör denna underordning:</string>
+    <string name="pretty_sure_infraorder">Vi är ganska säkra på att det tillhör denna infraordning:</string>
+    <string name="pretty_sure_subterclass">Vi är ganska säkra på att det tillhör denna subterklass:</string>
+    <string name="pretty_sure_parvorder">Vi är ganska säkra på att det tillhör denna parvordning:</string>
+    <string name="pretty_sure_zoosection">Vi är ganska säkra på att det tillhör denna zoosektion:</string>
+    <string name="pretty_sure_zoosubsection">Vi är ganska säkra på att det tillhör denna zooundersektion:</string>
+    <string name="pretty_sure_superfamily">Vi är ganska säkra på att det tillhör denna överfamilj:</string>
+    <string name="pretty_sure_epifamily">Vi är ganska säkra på att det tillhör denna eipfamilj:</string>
+    <string name="pretty_sure_family">Vi är ganska säkra på att det tillhör denna familj:</string>
+    <string name="pretty_sure_subfamily">Vi är ganska säkra på att det tillhör denna underfamilj:</string>
+    <string name="pretty_sure_supertribe">Vi är ganska säkra på att det tillhör denna övertribus:</string>
+    <string name="pretty_sure_tribe">Vi är ganska säkra på att det tillhör denna tribus:</string>
+    <string name="pretty_sure_subtribe">Vi är ganska säkra på att det tillhör denna undertribus:</string>
+    <string name="pretty_sure_genus">Vi är ganska säkra på att det tillhör detta släkte:</string>
+    <string name="pretty_sure_genushybrid">Vi är ganska säkra på att det tillhör denna släkteshybrid:</string>
+    <string name="pretty_sure_subgenus">Vi är ganska säkra på att det tillhör detta undersläkte:</string>
+    <string name="pretty_sure_section">Vi är ganska säkra på att det tillhör denna sektion:</string>
+    <string name="pretty_sure_subsection">Vi är ganska säkra på att det tillhör denna undersektion:</string>
+    <string name="pretty_sure_complex">Vi är ganska säkra på att det tillhör detta komplex:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_species">Vi är ganska säkra på att det tillhör denna art:</string>
+    <string name="pretty_sure_hybrid">Vi är ganska säkra på att det tillhör denna hybrid:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_subspecies">Vi är ganska säkra på att det tillhör denna underart:</string>
+    <string name="pretty_sure_variety">Vi är ganska säkra på att det tillhör denna varietet:</string>
+    <string name="pretty_sure_form">Vi är ganska säkra på att det tillhör denna form:</string>
+    <string name="pretty_sure_infrahybrid">Vi är ganska säkra på att det tillhör denna infrahybrid:</string>
+    <string name="remove_date_observed">Ta bort datum &amp; tid för observation</string>
+    <string name="remove_time_observed">Ta bort tid för observation</string>
+    <string name="remove_location">Ta bort lokal</string>
+    <string name="are_you_sure_you_want_to_remove_date">Vill du verkligen ta bort datum &amp; tid för observationen?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Vill du verkligen ta bort tiden för observation?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Vill du verkligen ta bort lokalen?</string>
+    <string name="share_location">Dela lokal</string>
+    <string name="share_hidden_location">Dela dold position:</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
+    <string name="couldnt_duplicate_sound">Lyckades inte duplicera ljud!</string>
+    <string name="sound_format_not_supported">Den här ljudfilen har rätt filnamnsändelse, men den specifika ljudkodningen stöds inte av Android.</string>
+    <string name="view_observations">Visa observationer</string>
 </resources>

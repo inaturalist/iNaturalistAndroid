@@ -446,15 +446,9 @@
     <string name="more_info_on_inat">Mais informações em iNaturalist.org</string>
     <string name="view_suggestions">Ver Sugestões</string>
     <string name="species_search">Procurar Espécies</string>
-    <plurals name="were_not_confident">
-        <!-- This will probably never happen -->
-        <item quantity="one">We\'re not confident enough to make a recommendation, but here is our number %1$d suggestion:</item>
-        <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
-    </plurals>
-    <plurals name="top_species_suggestions">
-        <item quantity="one">Top %1$d suggestion:</item>
-        <item quantity="other">Top %1$d suggestions:</item>
-    </plurals>
+    <string name="were_not_confident_enough">Não temos confiança suficiente para fazer uma recomendação, mas aqui estão as nossas melhores sugestões.</string>
+    <string name="most_observed_options_matching_filters">Opções mais observadas que correspondem aos filtros:</string>
+    <string name="top_suggestions">Principais sugestões</string>
     <string name="pretty_sure_rank">Temos quase a certeza que pertence a %1$s:</string>
     <string name="what_did_you_see">O que viu?</string>
     <string name="suggest_species">Sugerir Espécie(s)</string>
@@ -778,6 +772,7 @@ nossa comunidade de código aberto]]></string>
     <string name="delete_this_pinned_location">Delete this pinned location?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Duplicate</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_photo">Couldn\'t duplicate photo!</string>
     <string name="couldnt_edit_photo">Couldn\'t edit photo!</string>
     <!-- Verb, as in "Rotate this photo" -->
@@ -967,6 +962,51 @@ nossa comunidade de código aberto]]></string>
     <string name="filter_observations_by_months">Filter observations by months</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="view_suggestions_not_seen_nearby">Ver sugestões não vistas nas proximidades</string>
+    <string name="only_view_nearby_suggestions">Ver apenas sugestões nas proximidades</string>
+    <string name="suggestions_source">Fonte das Sugestões</string>
+    <string name="research_grade_observations">Observações com grau de pesquisa</string>
+    <string name="visually_similar_description">O iNaturalist fornecerá sugestões com base em quão visualmente similares são as imagens das espécies observadas perto desta localização nesta época do ano.</string>
+    <string name="research_grade_observations_description">Em vez de sugestões visualmente semelhantes, o iNaturalist irá sugerir espécies observadas num lugar específico e dentro de um grupo taxonómico específico.</string>
+    <string name="taxon">Táxon:</string>
+    <string name="place">Lugar:</string>
+    <string name="pretty_sure_kingdom">Temos quase a certeza que pertence a este reino:</string>
+    <string name="pretty_sure_subkingdom">Temos quase a certeza que pertence a este subreino:</string>
+    <string name="pretty_sure_phylum">Temos quase a certeza que pertence a este Filo:</string>
+    <string name="pretty_sure_subphylum">Temos quase a certeza que pertence a este subfilo:</string>
+    <string name="pretty_sure_superclass">Temos quase a certeza que pertence a esta superclasse:</string>
+    <string name="pretty_sure_class">Temos quase a certeza que pertence a esta classe:</string>
+    <string name="pretty_sure_subclass">Temos quase a certeza que pertence a esta subclasse:</string>
+    <string name="pretty_sure_infraclass">Temos quase a certeza que pertence a esta infraclasse:</string>
+    <string name="pretty_sure_superorder">Temos quase a certeza que pertence a esta superordem:</string>
+    <string name="pretty_sure_order">Temos quase a certeza que pertence a esta ordem:</string>
+    <string name="pretty_sure_suborder">Temos quase a certeza que pertence a esta subordem:</string>
+    <string name="pretty_sure_infraorder">Temos quase a certeza que pertence a esta infraordem:</string>
+    <string name="pretty_sure_subterclass">Temos quase a certeza que pertence a esta subterclasse:</string>
+    <string name="pretty_sure_parvorder">Temos quase a certeza que pertence a esta parvordem:</string>
+    <string name="pretty_sure_zoosection">Temos quase a certeza que pertence a esta zoosecção:</string>
+    <string name="pretty_sure_zoosubsection">Temos quase a certeza que pertence a esta zoosubsecção:</string>
+    <string name="pretty_sure_superfamily">Temos quase a certeza que pertence a esta superfamília:</string>
+    <string name="pretty_sure_epifamily">Temos quase a certeza que pertence a esta epifamília:</string>
+    <string name="pretty_sure_family">Temos quase a certeza que pertence a esta família:</string>
+    <string name="pretty_sure_subfamily">Temos quase a certeza que pertence a esta subfamília:</string>
+    <string name="pretty_sure_supertribe">Temos quase a certeza que pertence a esta supertribo:</string>
+    <string name="pretty_sure_tribe">Temos quase a certeza que pertence a esta tribo:</string>
+    <string name="pretty_sure_subtribe">Temos quase a certeza que pertence a esta subtribo:</string>
+    <string name="pretty_sure_genus">Temos quase a certeza que pertence a este género:</string>
+    <string name="pretty_sure_genushybrid">Temos quase a certeza que pertence a este género híbrido:</string>
+    <string name="pretty_sure_subgenus">Temos quase a certeza que pertence a este subgénero:</string>
+    <string name="pretty_sure_section">Temos quase a certeza que pertence a esta secção:</string>
+    <string name="pretty_sure_subsection">Temos quase a certeza que pertence a esta subsecção:</string>
+    <string name="pretty_sure_complex">Temos quase a certeza que pertence a este complexo:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_species">Temos quase a certeza que pertence a esta espécie:</string>
+    <string name="pretty_sure_hybrid">Temos quase a certeza que pertence a este híbrido:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_subspecies">Temos quase a certeza que pertence a esta subespécie:</string>
+    <string name="pretty_sure_variety">Temos quase a certeza que pertence a esta variedade:</string>
+    <string name="pretty_sure_form">Temos quase a certeza que pertence a esta forma:</string>
+    <string name="pretty_sure_infrahybrid">Temos quase a certeza que pertence a este infrahíbrido:</string>
     <string name="remove_date_observed">Remove date &amp; time observed</string>
     <string name="remove_time_observed">Remove time observed</string>
     <string name="remove_location">Remove location</string>
@@ -974,5 +1014,9 @@ nossa comunidade de código aberto]]></string>
     <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
     <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
     <string name="share_location">Share Location</string>
+    <string name="share_hidden_location">Partilhar localização oculta</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Impossível duplicar som!</string>
+    <string name="sound_format_not_supported">Este arquivo de som é da extensão correta, mas a codificação de áudio específica não é suportada pelo Android.</string>
+    <string name="view_observations">Ver observações</string>
 </resources>

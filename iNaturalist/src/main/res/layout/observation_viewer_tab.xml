@@ -23,7 +23,7 @@
             android:text="56"
             android:layout_gravity="center_vertical"
             android:textSize="18sp"
-            android:paddingLeft="5dp"
+            android:paddingStart="5dp"
             android:visibility="gone"
             />
 
