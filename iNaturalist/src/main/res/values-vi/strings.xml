@@ -196,7 +196,7 @@
     <string name="alert_message_use_argentinat">ArgentiNat là thành viên của Mạng lưới iNaturalist ở Argentina. Các tổ chức địa phương hỗ trợ ArgentiNat sẽ có quyền truy cập vào địa chỉ email của bạn và truy cập vào tọa độ xác thực của các quan sát được đặt ở chế độ che khuất hoặc riêng tư. Vui lòng không thử thay đổi liên kết của bạn nếu bạn có hơn 1000 quan sát. Bạn có muốn thay đổi liên kết của bạn?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel là thành viên của Mạng lưới iNaturalist ở Israel. Các tổ chức địa phương hỗ trợ iNaturalist Israel sẽ có quyền truy cập vào địa chỉ email của bạn và truy cập vào tọa độ xác thực của các quan sát được đặt ở chế độ che khuất hoặc riêng tư. Vui lòng không thử thay đổi liên kết của bạn nếu bạn có hơn 1000 quan sát. Bạn có muốn thay đổi liên kết của bạn?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland là thành viên của Mạng lưới iNaturalist ở Phần Lan. Các tổ chức địa phương hỗ trợ iNaturalist Finland sẽ có quyền truy cập vào địa chỉ email của bạn và truy cập vào tọa độ xác thực của các quan sát được đặt ở chế độ che khuất hoặc riêng tư. Vui lòng không thử thay đổi liên kết của bạn nếu bạn có hơn 1000 quan sát. Bạn có muốn thay đổi liên kết của bạn?</string>
-    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile là thành viên của Mạng lưới iNaturalist ở Chile. Các tổ chức địa phương hỗ trợ iNaturalist Chile sẽ có quyền truy cập vào địa chỉ email của bạn và truy cập vào tọa độ xác thực của các quan sát được đặt ở chế độ che khuất hoặc riêng tư. Vui lòng không thử thay đổi liên kết của bạn nếu bạn có hơn 1000 quan sát. Bạn có muốn thay đổi liên kết của bạn?</string>
     <string name="editor">Trình biên tập</string>
     <string name="license">Bản quyền</string>
     <string name="download_for_offline_use">Tải xuống để đọc ngoại tuyến</string>
@@ -442,13 +442,9 @@
     <string name="more_info_on_inat">Xem chi tiết trên iNaturalist.org</string>
     <string name="view_suggestions">Xem các gợi ý</string>
     <string name="species_search">Tìm chủng loài</string>
-    <plurals name="were_not_confident">
-        <!-- This will probably never happen -->
-        <item quantity="other">Chúng tôi không đủ tự tin để đưa ra đề , nhưng đây là %1$d đề xuất của chúng tôi:</item>
-    </plurals>
-    <plurals name="top_species_suggestions">
-        <item quantity="other">Top %1$d gợi ý:</item>
-    </plurals>
+    <string name="were_not_confident_enough">We\'re not confident enough to make a recommendation, but here are our top suggestions:</string>
+    <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
+    <string name="top_suggestions">Top suggestions</string>
     <string name="pretty_sure_rank">Chúng tôi chắc chắn là ở đây %1$s:</string>
     <string name="what_did_you_see">Bạn đã thấy gì?</string>
     <string name="suggest_species">Đề xuất loài</string>
@@ -492,7 +488,7 @@
     <string name="miscellaneous">Linh tinh</string>
     <string name="nationality">Quốc tịch</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
-    <string name="supername">Supername</string>
+    <string name="supername">Biệt danh khu vực</string>
     <string name="point_of_interest">Điểm quan tâm </string>
     <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">Miền</string>
@@ -506,7 +502,7 @@
     <string name="continent">Châu lục</string>
     <string name="estate">Di sản</string>
     <string name="historical_town">Thị trấn lịch sử</string>
-    <string name="aggregate">Aggregate</string>
+    <string name="aggregate">Khối kết tập</string>
     <string name="open_space">Không gian ngoài trời</string>
     <string name="territory">Lãnh thổ</string>
     <string name="district">Quận</string>
@@ -527,7 +523,7 @@
     <string name="village_block">Khối làng</string>
     <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
     <string name="sum">Sum</string>
-    <string name="shire">Shire</string>
+    <string name="shire">Huyện</string>
     <string name="prefecture_city">Thành phố tỉnh</string>
     <!-- Indonesian sub-sub-national place type -->
     <string name="regency">Regency</string>
@@ -731,7 +727,7 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) hỗ trợ cho iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: Trường đại học Haifa hỗ trợ cho iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Phần Lan: Bảo tàng Lịch sử thiên nhiên Phần Lan (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
-    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente ủng hộ iNaturalist Chile  (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">Đánh dấu tất cả là đã đọc</string>
     <string name="content_hidden">Ẩn nội dung</string>
     <string name="show_hidden_content">Hiển thị nội dung ẩn</string>
@@ -769,6 +765,7 @@
     <string name="delete_this_pinned_location">Xóa vị trí đã ghim này?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Tạo bản sao</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_photo">Không thể tạo bản sao cho ảnh!</string>
     <string name="couldnt_edit_photo">Không thể chỉnh sửa ảnh!</string>
     <!-- Verb, as in "Rotate this photo" -->
@@ -840,9 +837,9 @@ Các bên thứ ba này bao gồm: <br/><ul><li>Google (<a href="https://analyti
     <!-- Dialog title when displaying a message that an action is not permitted -->
     <string name="forbidden">Bị cấm</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
-    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
+    <string name="app_you_shared_blocked">Ứng dụng bạn đã chia sẻ tạo ra những bức ảnh không phù hợp để quan sát vì chúng không thể chứng minh bằng chứng về trải nghiệm của bạn với một sinh vật khác, hoặc vì chúng có thương hiệu hay nội dung thương mại không phù hợp, hoặc vì chúng vi phạm Điều khoản dịch vụ của chúng tôi theo những cách khác.</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <string name="list_observation_checkbox_description">Hộp chọn để chọn quan sát trong chế độ nhiều lựa chọn</string>
     <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_iconic_pic_description">Ảnh thu nhỏ của đơn vị phân loại quan sát</string>
     <!-- Description of a UI element for screen readers -->
@@ -873,8 +870,8 @@ Các bên thứ ba này bao gồm: <br/><ul><li>Google (<a href="https://analyti
     <string name="mute">Tắt tiếng</string>
     <string name="muting_user">Đang tắt tiếng người dùng...</string>
     <string name="unmuting_user">Đang bật tiếng người dùng...</string>
-    <string name="failed_muting_user">Failed muting user!</string>
-    <string name="failed_unmuting_user">Failed unmuting user!</string>
+    <string name="failed_muting_user">Không thể tắt tiếng người dùng!</string>
+    <string name="failed_unmuting_user">Không thể bật tiếng người dùng!</string>
     <string name="flag_conversation">Flag conversation</string>
     <string name="spam">Thư rác</string>
     <string name="commercial_solicitation">Mồi chài quảng cáo, links không kết , v.v.</string>
@@ -926,12 +923,12 @@ Các bên thứ ba này bao gồm: <br/><ul><li>Google (<a href="https://analyti
     <string name="rank_variety">Variety</string>
     <string name="rank_form">Hình dạng</string>
     <string name="rank_infrahybrid">Lai nội loài</string>
-    <string name="rank_leaves">Leaves</string>
+    <string name="rank_leaves">Lá</string>
     <string name="location_lat_lng">Vị trí: %1$f, %2$f</string>
     <string name="i_consent_process_personal_info"><![CDATA[Tôi đồng ý cho phép iNaturalist lưu trữ và xử lý các loại thông tin cá nhân được giới hạn về tôi để quản lý tài khoản cho tôi. <b>Xem Thêm</b>]]></string>
     <string name="about_personal_information">Về thông tin cá nhân</string>
-    <string name="personal_information_notes"><![CDATA[We store personal information like usernames and email addresses in order to manage accounts on this site, and to comply with privacy laws, we need you to check this box to indicate that you consent to this use of personal information. To learn more about what information we collect and how we use it, please see our <a href="https://www.inaturalist.org/privacy">Privacy Policy</a> and our <a href="https://www.inaturalist.org/terms">Terms of Service</a>.]]></string>
-    <string name="i_agree_to_tos_and_privacy"><![CDATA[I agree to the <a href="https://www.inaturalist.org/terms">Terms of Service</a> and <a href="https://www.inaturalist.org/privacy">Privacy Policy</a>, and I have reviewed the <a href="https://www.inaturalist.org/pages/community+guidelines">Community Guidelines</a>.]]></string>
+    <string name="personal_information_notes"><![CDATA[Chúng tôi lưu trữ thông tin cá nhân như tên người dùng và địa chỉ email để quản lý tài khoản trên trang web này. Để tuân thủ luật bảo mật, chúng tôi cần bạn chọn hộp này để biết rằng bạn đồng ý với việc sử dụng thông tin cá nhân. Để tìm hiểu thêm về thông tin chúng tôi thu thập và cách chúng tôi sử dụng thông tin đó, vui lòng xem<a href="https://www.inaturalist.org/privacy">Điều khoản bảo mật</a> và<a href="https://www.inaturalist.org/terms">Điều khoản dịch vụ</a> của chúng tôi.]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[Tôi đồng ý với<a href="https://www.inaturalist.org/terms">Điều khoản dịch vụ</a> và <a href="https://www.inaturalist.org/privacy">Điều khoản bảo mật</a>, và tôi đã xem xét kỹ lưỡng mục <a href="https://www.inaturalist.org/pages/community+guidelines">Nguyên tắc cộng đồng</a>.]]></string>
     <string name="privacy_policy">Chính sách bảo mật</string>
     <string name="terms_of_service">Điều khoản dịch vụ</string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
@@ -949,7 +946,7 @@ Các bên thứ ba này bao gồm: <br/><ul><li>Google (<a href="https://analyti
     <string name="email_must_look_like_email_address">Email phải giống như một địa chỉ email</string>
     <string name="username_must_begin_with">Tên người dùng phải bắt đầu bằng một chữ cái, không chứa khoảng trống và chỉ sử dụng các chữ cái, số, dấu gạch ngang và dấu gạch dưới</string>
     <string name="password_too_short">Mật khẩu phải có ít nhất 6 kí tự.</string>
-    <string name="switch_to_grid_view">Switch to grid view</string>
+    <string name="switch_to_grid_view">Chuyển sang dạng xem kiểu lưới</string>
     <string name="switch_to_list_view">Chuyển sang chế độ danh sách</string>
     <string name="remove_project_filter">Xóa bộ lọc dự án</string>
     <string name="remove_observer_filter">Xóa bộ lọc người quan sát</string>
@@ -958,12 +955,61 @@ Các bên thứ ba này bao gồm: <br/><ul><li>Google (<a href="https://analyti
     <string name="filter_observations_by_months">Lọc các quan sát theo tháng</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="remove_date_observed">Remove date &amp; time observed</string>
-    <string name="remove_time_observed">Remove time observed</string>
-    <string name="remove_location">Remove location</string>
-    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
-    <string name="share_location">Share Location</string>
-    <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
+    <string name="view_suggestions_not_seen_nearby">View suggestions not seen nearby</string>
+    <string name="only_view_nearby_suggestions">Only view nearby suggestions</string>
+    <string name="suggestions_source">Suggestions Source</string>
+    <string name="research_grade_observations">Research Grade Observations</string>
+    <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
+    <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will suggest species observed in a specific place and within a specific taxonomic group.</string>
+    <string name="taxon">Taxon:</string>
+    <string name="place">Place:</string>
+    <string name="pretty_sure_kingdom">We\'re pretty sure it\'s in this kingdom:</string>
+    <string name="pretty_sure_subkingdom">We\'re pretty sure it\'s in this subkingdom:</string>
+    <string name="pretty_sure_phylum">We\'re pretty sure it\'s in this phylum:</string>
+    <string name="pretty_sure_subphylum">We\'re pretty sure it\'s in this subphylum:</string>
+    <string name="pretty_sure_superclass">We\'re pretty sure it\'s in this superclass:</string>
+    <string name="pretty_sure_class">We\'re pretty sure it\'s in this class:</string>
+    <string name="pretty_sure_subclass">We\'re pretty sure it\'s in this subclass:</string>
+    <string name="pretty_sure_infraclass">We\'re pretty sure it\'s in this infraclass:</string>
+    <string name="pretty_sure_superorder">We\'re pretty sure it\'s in this superorder:</string>
+    <string name="pretty_sure_order">We\'re pretty sure it\'s in this order:</string>
+    <string name="pretty_sure_suborder">We\'re pretty sure it\'s in this suborder:</string>
+    <string name="pretty_sure_infraorder">We\'re pretty sure it\'s in this infraorder:</string>
+    <string name="pretty_sure_subterclass">We\'re pretty sure it\'s in this subterclass:</string>
+    <string name="pretty_sure_parvorder">We\'re pretty sure it\'s in this parvorder:</string>
+    <string name="pretty_sure_zoosection">We\'re pretty sure it\'s in this zoosection:</string>
+    <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
+    <string name="pretty_sure_superfamily">We\'re pretty sure it\'s in this superfamily:</string>
+    <string name="pretty_sure_epifamily">We\'re pretty sure it\'s in this epifamily:</string>
+    <string name="pretty_sure_family">We\'re pretty sure it\'s in this family:</string>
+    <string name="pretty_sure_subfamily">We\'re pretty sure it\'s in this subfamily:</string>
+    <string name="pretty_sure_supertribe">We\'re pretty sure it\'s in this supertribe:</string>
+    <string name="pretty_sure_tribe">We\'re pretty sure it\'s in this tribe:</string>
+    <string name="pretty_sure_subtribe">We\'re pretty sure it\'s in this subtribe:</string>
+    <string name="pretty_sure_genus">We\'re pretty sure it\'s in this genus:</string>
+    <string name="pretty_sure_genushybrid">We\'re pretty sure it\'s in this genushybrid:</string>
+    <string name="pretty_sure_subgenus">We\'re pretty sure it\'s in this subgenus:</string>
+    <string name="pretty_sure_section">We\'re pretty sure it\'s in this section:</string>
+    <string name="pretty_sure_subsection">We\'re pretty sure it\'s in this subsection:</string>
+    <string name="pretty_sure_complex">We\'re pretty sure it\'s in this complex:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_species">We\'re pretty sure it\'s in this species:</string>
+    <string name="pretty_sure_hybrid">We\'re pretty sure it\'s in this hybrid:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_subspecies">We\'re pretty sure it\'s in this subspecies:</string>
+    <string name="pretty_sure_variety">We\'re pretty sure it\'s in this variety:</string>
+    <string name="pretty_sure_form">We\'re pretty sure it\'s in this form:</string>
+    <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
+    <string name="remove_date_observed">Loại bỏ ngày &amp; thời gian quan sát</string>
+    <string name="remove_time_observed">Loại bỏ thời gian quan sát</string>
+    <string name="remove_location">Xóa bỏ địa điểm</string>
+    <string name="are_you_sure_you_want_to_remove_date">Bạn có chắc chắn muốn xóa ngày &amp; thời gian quan sát?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Bạn có chắc muốn xóa bỏ thời gian quan sát?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Bạn có chắc muốn xóa bỏ địa điểm?</string>
+    <string name="share_location">Chia sẻ địa điểm</string>
+    <string name="share_hidden_location">Share Hidden Location</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
+    <string name="couldnt_duplicate_sound">Không thể tạo bản sao âm thanh!</string>
+    <string name="sound_format_not_supported">This sound file is the right file extension, but the specific audio encoding is not supported by Android.</string>
+    <string name="view_observations">View Observations</string>
 </resources>

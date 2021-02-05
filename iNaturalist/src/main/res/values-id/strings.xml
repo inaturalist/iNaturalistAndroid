@@ -196,7 +196,7 @@
     <string name="alert_message_use_argentinat">ArgentiNat adalah anggota Jaringan iNaturalist di Argentina. Institusi lokal yang mendukung ArgentiNat akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel adalah anggota iNaturalist Network di Israel. Institusi lokal yang mendukung iNaturalist Israel akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland adalah anggota iNaturalist Network di Finlandia. Institusi lokal yang mendukung iNaturalist Finland akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
-    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile adalah anggota iNaturalist Network di Chile. Institusi lokal yang mendukung iNaturalist Chile akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan dengan geoprivacy yang diatur \"dikaburkan\" atau \"pribadi\". Harap jangan mengubah afiliasi Anda untuk coba-coba jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
     <string name="editor">Penyunting</string>
     <string name="license">Lisensi</string>
     <string name="download_for_offline_use">Download untuk penggunaan offline</string>
@@ -442,13 +442,9 @@
     <string name="more_info_on_inat">Info lainnya di iNaturalist.org</string>
     <string name="view_suggestions">Lihat Saran</string>
     <string name="species_search">Cari Spesies</string>
-    <plurals name="were_not_confident">
-        <!-- This will probably never happen -->
-        <item quantity="other">Kami tidak cukup percaya diri untuk membuat rekomendasi, namun inilah %1$d saran utama kami:</item>
-    </plurals>
-    <plurals name="top_species_suggestions">
-        <item quantity="other">%1$d usulan utama:</item>
-    </plurals>
+    <string name="were_not_confident_enough">Kami tidak cukup percaya diri untuk membuat rekomendasi, namun berikut adalah usulan utama kami:</string>
+    <string name="most_observed_options_matching_filters">Pilihan paling banyak terobservasi sesuai dengan filter:</string>
+    <string name="top_suggestions">Usulan utama</string>
     <string name="pretty_sure_rank">Kami cukup yakin %1$s ini di:</string>
     <string name="what_did_you_see">Apa yang Anda lihat?</string>
     <string name="suggest_species">Sarankan Spesies</string>
@@ -731,7 +727,7 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Ekuador: Instituto Nacional de Biodiversidad (INABIO) mendukung iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa mendukung iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finlandia: Finnish Museum of Naturalist History (LUOMUS) mendukung iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
-    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente menyokong iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">Tandai semua sebagai dilihat</string>
     <string name="content_hidden">Konten Tersembunyi</string>
     <string name="show_hidden_content">Tampilkan Konten Tersembunyi</string>
@@ -769,6 +765,7 @@
     <string name="delete_this_pinned_location">Hapus lokasi yang disematkan ini?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Duplikat</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_photo">Tidak dapat menduplikasi foto!</string>
     <string name="couldnt_edit_photo">Tidak dapat mengedit foto!</string>
     <!-- Verb, as in "Rotate this photo" -->
@@ -957,12 +954,61 @@
     <string name="filter_observations_by_months">Filter observasi berdasarkan bulan</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="remove_date_observed">Remove date &amp; time observed</string>
-    <string name="remove_time_observed">Remove time observed</string>
-    <string name="remove_location">Remove location</string>
-    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
-    <string name="share_location">Share Location</string>
-    <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
+    <string name="view_suggestions_not_seen_nearby">Tampilkan usulan yang tidak ditemui di sekitar</string>
+    <string name="only_view_nearby_suggestions">Hanya tampilkan usulan yang ditemui di sekitar</string>
+    <string name="suggestions_source">Sumber usulan</string>
+    <string name="research_grade_observations">Observasi Kelas Riset</string>
+    <string name="visually_similar_description">iNaturalist akan menampilkan pilihan usulan yang didasari oleh kemiripan visual gambar dengan spesies-spesies yang telah diobservasi di dekat lokasi ini.</string>
+    <string name="research_grade_observations_description">Alih-alih berdasarkan tingkat kemiripan visual, iNaturalist akan mengusulkan spesies yang telah diobservasi pada suatu tempat dan dalam kurun suatu kelompok taksonomik.</string>
+    <string name="taxon">Takson:</string>
+    <string name="place">Tempat:</string>
+    <string name="pretty_sure_kingdom">Kami cukup yakin ini termasuk kingdom:</string>
+    <string name="pretty_sure_subkingdom">Kami cukup yakin ini termasuk subkingdom:</string>
+    <string name="pretty_sure_phylum">Kami cukup yakin ini termasuk phylum:</string>
+    <string name="pretty_sure_subphylum">Kami cukup yakin ini termasuk subphylum:</string>
+    <string name="pretty_sure_superclass">Kami cukup yakin ini termasuk superclass:</string>
+    <string name="pretty_sure_class">Kami cukup yakin ini termasuk class:</string>
+    <string name="pretty_sure_subclass">Kami cukup yakin ini termasuk subclass:</string>
+    <string name="pretty_sure_infraclass">Kami cukup yakin ini termasuk infraclass:</string>
+    <string name="pretty_sure_superorder">Kami cukup yakin ini termasuk superorder:</string>
+    <string name="pretty_sure_order">Kami cukup yakin ini termasuk order:</string>
+    <string name="pretty_sure_suborder">Kami cukup yakin ini termasuk suborder:</string>
+    <string name="pretty_sure_infraorder">Kami cukup yakin ini termasuk infraorder:</string>
+    <string name="pretty_sure_subterclass">Kami cukup yakin ini termasuk subterclass:</string>
+    <string name="pretty_sure_parvorder">Kami cukup yakin ini termasuk parvorder:</string>
+    <string name="pretty_sure_zoosection">Kami cukup yakin ini termasuk zoosection:</string>
+    <string name="pretty_sure_zoosubsection">Kami cukup yakin ini termasuk zoosubsection:</string>
+    <string name="pretty_sure_superfamily">Kami cukup yakin ini termasuk superfamily:</string>
+    <string name="pretty_sure_epifamily">Kami cukup yakin ini termasuk epifamily:</string>
+    <string name="pretty_sure_family">Kami cukup yakin ini termasuk family:</string>
+    <string name="pretty_sure_subfamily">Kami cukup yakin ini termasuk subfamily:</string>
+    <string name="pretty_sure_supertribe">Kami cukup yakin ini termasuk supertribe:</string>
+    <string name="pretty_sure_tribe">Kami cukup yakin ini termasuk tribe:</string>
+    <string name="pretty_sure_subtribe">Kami cukup yakin ini termasuk subtribe:</string>
+    <string name="pretty_sure_genus">Kami cukup yakin ini termasuk genus:</string>
+    <string name="pretty_sure_genushybrid">Kami cukup yakin ini termasuk genushybrid:</string>
+    <string name="pretty_sure_subgenus">Kami cukup yakin ini termasuk subgenus:</string>
+    <string name="pretty_sure_section">Kami cukup yakin ini termasuk section:</string>
+    <string name="pretty_sure_subsection">Kami cukup yakin ini termasuk subsection:</string>
+    <string name="pretty_sure_complex">Kami cukup yakin ini termasuk complex:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_species">Kami cukup yakin ini termasuk species:</string>
+    <string name="pretty_sure_hybrid">Kami cukup yakin ini termasuk hybrid:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_subspecies">Kami cukup yakin ini termasuk subspecies</string>
+    <string name="pretty_sure_variety">Kami cukup yakin ini termasuk variety:</string>
+    <string name="pretty_sure_form">Kami cukup yakin ini termasuk form:</string>
+    <string name="pretty_sure_infrahybrid">Kami cukup yakin ini termasuk infrahybrid:</string>
+    <string name="remove_date_observed">Hapus tanggal &amp; waktu observasi</string>
+    <string name="remove_time_observed">Hapus waktu observasi</string>
+    <string name="remove_location">Hapus lokasi</string>
+    <string name="are_you_sure_you_want_to_remove_date">Apakah Anda yakin Anda ingin menghapus tanggal &amp; waktu observasi?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Apakah Anda yakin Anda ingin menghapus waktu observasi?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Apakah Anda yakin Anda ingin menghapus lokasi ini?</string>
+    <string name="share_location">Bagi Lokasi</string>
+    <string name="share_hidden_location">Bagi Lokasi Tersembunyi</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
+    <string name="couldnt_duplicate_sound">Tidak dapat menduplikasikan suara!</string>
+    <string name="sound_format_not_supported">File suara ini memiliki ekstensi file yang benar, tetapi encoding audio-nya tidak didukung oleh Android.</string>
+    <string name="view_observations">Lihat Observasi</string>
 </resources>

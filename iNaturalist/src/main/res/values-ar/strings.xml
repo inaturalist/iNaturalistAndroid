@@ -202,7 +202,7 @@
     <string name="alert_message_use_argentinat">ArgentiNat هو عضو شبكة ايناتشويريلست في أرجنتينا. وعليه يحق للمؤسسات الداعمة للشبكة الوصول للعناوين الالكترونية وإحداثيات مواقع الملحوظات العامة والخاصة منها. لذلك نرجو منك عدم القيام بتجارب تغيير جهة الاشتراك اذا كان لديك أكثر من ١٠٠ ملحوظة. هل ترغب في تغيير جهة الاشتراك؟</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel هو عضو شبكة ايناتشويريلست في إسرائيل. وعليه يحق للمؤسسات الداعمة للشبكة الوصول للعناوين الالكترونية وإحداثيات مواقع الملحوظات العامة والخاصة منها. لذلك نرجو منك عدم القيام بتجارب تغيير جهة الاشتراك اذا كان لديك أكثر من ١٠٠ ملحوظة. هل ترغب في تغيير جهة الاشتراك؟</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland هو عضو شبكة ايناتشويريلست في فينلندا. وعليه يحق للمؤسسات الداعمة للشبكة الوصول للعناوين الالكترونية وإحداثيات مواقع الملحوظات العامة والخاصة منها. لذلك نرجو منك عدم القيام بتجارب تغيير جهة الاشتراك اذا كان لديك أكثر من ١٠٠ ملحوظة. هل ترغب في تغيير جهة الاشتراك؟</string>
-    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcl">الطبيعيين في شيلي عضو في شبكة الطبيعيين في شيلي. ستتمكن المؤسسات المحلية التي تدعم عالم الطبيعة في شيلي من الوصول إلى عنوان بريدك الإلكتروني والإطلاع على الإحداثيات الحقيقية للملاحظات المحجوبة أو الخاصة علناً. الرجاء عدم تغيير انتسابك تجريبياً إذا كان لديك أكثر من 1000 ملاحظة. هل ترغب في تغيير هويتك؟</string>
     <string name="editor">محرر</string>
     <string name="license">ترخيص</string>
     <string name="download_for_offline_use">تحميل,للاستخدام بدون التواصل مع شبكة الانترنت</string>
@@ -463,23 +463,9 @@
     <string name="more_info_on_inat">المزيد من المعلومات على iNaturalist.org</string>
     <string name="view_suggestions">عرض الإقتراحات</string>
     <string name="species_search">بحث عن الأنواع</string>
-    <plurals name="were_not_confident">
-        <item quantity="zero">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
-        <!-- This will probably never happen -->
-        <item quantity="one">We\'re not confident enough to make a recommendation, but here is our number %1$d suggestion:</item>
-        <item quantity="two">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
-        <item quantity="few">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
-        <item quantity="many">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
-        <item quantity="other">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</item>
-    </plurals>
-    <plurals name="top_species_suggestions">
-        <item quantity="zero">Top %1$d suggestions:</item>
-        <item quantity="one">Top %1$d suggestion:</item>
-        <item quantity="two">Top %1$d suggestions:</item>
-        <item quantity="few">Top %1$d suggestions:</item>
-        <item quantity="many">Top %1$d suggestions:</item>
-        <item quantity="other">Top %1$d suggestions:</item>
-    </plurals>
+    <string name="were_not_confident_enough">We\'re not confident enough to make a recommendation, but here are our top suggestions:</string>
+    <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
+    <string name="top_suggestions">Top suggestions</string>
     <string name="pretty_sure_rank">نحن متأكدون تماما بأنها من هذا النوع %1$s:</string>
     <string name="what_did_you_see">ما الذي رأيته؟</string>
     <string name="suggest_species">إقترح نوع</string>
@@ -744,19 +730,19 @@
     <string name="has_id_supported_by_two_or_more">هوية مدعومة من قبل اثنين أو أكثر</string>
     <string name="date_is_accurate">التاريخ صحيح</string>
     <string name="location_is_accurate">الموقع صحيح</string>
-    <string name="organism_is_wild">Organism is wild</string>
-    <string name="evidence_of_organism">Evidence of organism</string>
-    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
-    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
-    <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
+    <string name="organism_is_wild">الكائن الحي هو البرية</string>
+    <string name="evidence_of_organism">دليل على الكائن الحي</string>
+    <string name="recent_evidence_of_an_organism">دليل حديث لكائن حي</string>
+    <string name="community_id_at_species_level_or_lower">تعريف المجتمع على مستوى الأنواع أو أقل</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">واستنادا إلى الأدلة، هل يمكن تأكيد أو تحسين هوية المجتمع المحلي؟</string>
     <string name="no_as_good_as_it_can_be">لا، إنها جيدة بقدر ما يمكن أن تكون</string>
     <string name="seasonality">موسمية</string>
-    <string name="verifiable">Verifiable</string>
-    <string name="no_annotation">No Annotation</string>
+    <string name="verifiable">يمكن التحقق منها</string>
+    <string name="no_annotation">بلا تعليق توضيحي</string>
     <string name="donate_to_inaturalist">تبرع إلى iNaturalist</string>
     <string name="prefers_scientific_name_first">عرض الأسماء العلمية أولا</string>
     <string name="prefers_scientific_name_first_description">عرض الأسماء العلمية قبل الأسماء الشائعة.</string>
-    <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, and Parks Canada operating iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[كندا: الاتحاد الكندي للحياة البرية، متحف أونتاريو الملكي، خدمة الطبيعة كندا، وحدائق كندا تشغيل iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
     <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
     <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) operating NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
     <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network operating iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
@@ -805,6 +791,7 @@
     <string name="delete_this_pinned_location">Delete this pinned location?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Duplicate</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_photo">Couldn\'t duplicate photo!</string>
     <string name="couldnt_edit_photo">Couldn\'t edit photo!</string>
     <!-- Verb, as in "Rotate this photo" -->
@@ -998,6 +985,51 @@
     <string name="filter_observations_by_months">Filter observations by months</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="view_suggestions_not_seen_nearby">View suggestions not seen nearby</string>
+    <string name="only_view_nearby_suggestions">Only view nearby suggestions</string>
+    <string name="suggestions_source">Suggestions Source</string>
+    <string name="research_grade_observations">Research Grade Observations</string>
+    <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
+    <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will suggest species observed in a specific place and within a specific taxonomic group.</string>
+    <string name="taxon">Taxon:</string>
+    <string name="place">Place:</string>
+    <string name="pretty_sure_kingdom">We\'re pretty sure it\'s in this kingdom:</string>
+    <string name="pretty_sure_subkingdom">We\'re pretty sure it\'s in this subkingdom:</string>
+    <string name="pretty_sure_phylum">We\'re pretty sure it\'s in this phylum:</string>
+    <string name="pretty_sure_subphylum">We\'re pretty sure it\'s in this subphylum:</string>
+    <string name="pretty_sure_superclass">We\'re pretty sure it\'s in this superclass:</string>
+    <string name="pretty_sure_class">We\'re pretty sure it\'s in this class:</string>
+    <string name="pretty_sure_subclass">We\'re pretty sure it\'s in this subclass:</string>
+    <string name="pretty_sure_infraclass">We\'re pretty sure it\'s in this infraclass:</string>
+    <string name="pretty_sure_superorder">We\'re pretty sure it\'s in this superorder:</string>
+    <string name="pretty_sure_order">We\'re pretty sure it\'s in this order:</string>
+    <string name="pretty_sure_suborder">We\'re pretty sure it\'s in this suborder:</string>
+    <string name="pretty_sure_infraorder">We\'re pretty sure it\'s in this infraorder:</string>
+    <string name="pretty_sure_subterclass">We\'re pretty sure it\'s in this subterclass:</string>
+    <string name="pretty_sure_parvorder">We\'re pretty sure it\'s in this parvorder:</string>
+    <string name="pretty_sure_zoosection">We\'re pretty sure it\'s in this zoosection:</string>
+    <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
+    <string name="pretty_sure_superfamily">We\'re pretty sure it\'s in this superfamily:</string>
+    <string name="pretty_sure_epifamily">We\'re pretty sure it\'s in this epifamily:</string>
+    <string name="pretty_sure_family">We\'re pretty sure it\'s in this family:</string>
+    <string name="pretty_sure_subfamily">We\'re pretty sure it\'s in this subfamily:</string>
+    <string name="pretty_sure_supertribe">We\'re pretty sure it\'s in this supertribe:</string>
+    <string name="pretty_sure_tribe">We\'re pretty sure it\'s in this tribe:</string>
+    <string name="pretty_sure_subtribe">We\'re pretty sure it\'s in this subtribe:</string>
+    <string name="pretty_sure_genus">We\'re pretty sure it\'s in this genus:</string>
+    <string name="pretty_sure_genushybrid">We\'re pretty sure it\'s in this genushybrid:</string>
+    <string name="pretty_sure_subgenus">We\'re pretty sure it\'s in this subgenus:</string>
+    <string name="pretty_sure_section">We\'re pretty sure it\'s in this section:</string>
+    <string name="pretty_sure_subsection">We\'re pretty sure it\'s in this subsection:</string>
+    <string name="pretty_sure_complex">We\'re pretty sure it\'s in this complex:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_species">We\'re pretty sure it\'s in this species:</string>
+    <string name="pretty_sure_hybrid">We\'re pretty sure it\'s in this hybrid:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_subspecies">We\'re pretty sure it\'s in this subspecies:</string>
+    <string name="pretty_sure_variety">We\'re pretty sure it\'s in this variety:</string>
+    <string name="pretty_sure_form">We\'re pretty sure it\'s in this form:</string>
+    <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
     <string name="remove_date_observed">Remove date &amp; time observed</string>
     <string name="remove_time_observed">Remove time observed</string>
     <string name="remove_location">Remove location</string>
@@ -1005,5 +1037,9 @@
     <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
     <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
     <string name="share_location">Share Location</string>
+    <string name="share_hidden_location">Share Hidden Location</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
+    <string name="sound_format_not_supported">This sound file is the right file extension, but the specific audio encoding is not supported by Android.</string>
+    <string name="view_observations">View Observations</string>
 </resources>

@@ -4,7 +4,7 @@
     <string name="delete_observation">Видалення спостереження</string>
     <string name="observation_deleted">Спостереження видалено</string>
     <string name="species_guess_hint">Назва виду</string>
-    <string name="ok">OK</string>
+    <string name="ok">Гаразд</string>
     <string name="cancel">Скасувати</string>
     <string name="loading">Завантаження...</string>
     <string name="sync_required">Необхідна синхронізація</string>
@@ -466,19 +466,9 @@
     <string name="more_info_on_inat">Детальніше на iNaturalist.org</string>
     <string name="view_suggestions">Подивитись пропозиції</string>
     <string name="species_search">Пошук видів</string>
-    <plurals name="were_not_confident">
-        <!-- This will probably never happen -->
-        <item quantity="one">Ми не настільки впевнені, щоб давати рекомендації, але ось наша %1$d пропозиція</item>
-        <item quantity="few">Ми не настільки впевнені, щоб давати рекомендації, але ось наша %1$d пропозиція</item>
-        <item quantity="many">Ми не настільки впевнені, щоб давати рекомендації, але ось наша %1$d пропозиція</item>
-        <item quantity="other">Ми не настільки впевнені, щоб давати рекомендації, але ось наша %1$d пропозиція</item>
-    </plurals>
-    <plurals name="top_species_suggestions">
-        <item quantity="one">Наше найкраще %1$d припущення:</item>
-        <item quantity="few">Наші найкращі %1$d припущення:</item>
-        <item quantity="many">Наші найкращі %1$d припущення: </item>
-        <item quantity="other">Наші найкращі %1$d припущення: </item>
-    </plurals>
+    <string name="were_not_confident_enough">We\'re not confident enough to make a recommendation, but here are our top suggestions:</string>
+    <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
+    <string name="top_suggestions">Кращі пропозиції</string>
     <string name="pretty_sure_rank">Ми впевнені, що це %1$s:</string>
     <string name="what_did_you_see">Що ви бачите?</string>
     <string name="suggest_species">Запропонувати вид</string>
@@ -802,6 +792,7 @@
     <string name="delete_this_pinned_location">Видалити це закріплене місце?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Дублювати</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_photo">Не вдалося продублювати фото!</string>
     <string name="couldnt_edit_photo">Не вдалося відредагувати фото!</string>
     <!-- Verb, as in "Rotate this photo" -->
@@ -995,6 +986,51 @@
     <string name="filter_observations_by_months">Фільтрувати спостереження за місяцями</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
+    <string name="view_suggestions_not_seen_nearby">Перегляд пропозицій, які не зустрічалися поблизу</string>
+    <string name="only_view_nearby_suggestions">Переглянути лише пропозиції поблизу</string>
+    <string name="suggestions_source">Джерела пропозицій</string>
+    <string name="research_grade_observations">Дослідницький клас спостережень</string>
+    <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
+    <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will suggest species observed in a specific place and within a specific taxonomic group.</string>
+    <string name="taxon">Таксон:</string>
+    <string name="place">Розташування:</string>
+    <string name="pretty_sure_kingdom">Ми майже впевнені, що це відноситься до царства:</string>
+    <string name="pretty_sure_subkingdom">Ми майже впевнені, що це відноситься до підцарства:</string>
+    <string name="pretty_sure_phylum">Ми майже впевнені, що це відноситься до типу:</string>
+    <string name="pretty_sure_subphylum">Ми майже впевнені, що це відноситься до підтипу:</string>
+    <string name="pretty_sure_superclass">Ми майже впевнені, що це відноситься до надкласу:</string>
+    <string name="pretty_sure_class">Ми майже впевнені, що це відноситься до класу:</string>
+    <string name="pretty_sure_subclass">Ми майже впевнені, що це відноситься до підкласу:</string>
+    <string name="pretty_sure_infraclass">Ми майже впевнені, що це відноситься до інфракласу:</string>
+    <string name="pretty_sure_superorder">Ми майже впевнені, що це відноситься до надряду:</string>
+    <string name="pretty_sure_order">Ми майже впевнені, що це відноситься до ряду:</string>
+    <string name="pretty_sure_suborder">Ми майже впевнені, що це відноситься до підряду:</string>
+    <string name="pretty_sure_infraorder">Ми майже впевнені, що це відноситься до інфраряду:</string>
+    <string name="pretty_sure_subterclass">Ми майже впевнені, що це відноситься до під-підкласу:</string>
+    <string name="pretty_sure_parvorder">Ми майже впевнені, що це відноситься до парворяду:</string>
+    <string name="pretty_sure_zoosection">Ми майже впевнені, що це відноситься до зоосекції:</string>
+    <string name="pretty_sure_zoosubsection">Ми майже впевнені, що це відноситься до зоопідсекції:</string>
+    <string name="pretty_sure_superfamily">Ми майже впевнені, що це відноситься до надродини:</string>
+    <string name="pretty_sure_epifamily">We\'re pretty sure it\'s in this epifamily:</string>
+    <string name="pretty_sure_family">We\'re pretty sure it\'s in this family:</string>
+    <string name="pretty_sure_subfamily">We\'re pretty sure it\'s in this subfamily:</string>
+    <string name="pretty_sure_supertribe">We\'re pretty sure it\'s in this supertribe:</string>
+    <string name="pretty_sure_tribe">We\'re pretty sure it\'s in this tribe:</string>
+    <string name="pretty_sure_subtribe">We\'re pretty sure it\'s in this subtribe:</string>
+    <string name="pretty_sure_genus">We\'re pretty sure it\'s in this genus:</string>
+    <string name="pretty_sure_genushybrid">We\'re pretty sure it\'s in this genushybrid:</string>
+    <string name="pretty_sure_subgenus">We\'re pretty sure it\'s in this subgenus:</string>
+    <string name="pretty_sure_section">We\'re pretty sure it\'s in this section:</string>
+    <string name="pretty_sure_subsection">We\'re pretty sure it\'s in this subsection:</string>
+    <string name="pretty_sure_complex">We\'re pretty sure it\'s in this complex:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_species">We\'re pretty sure it\'s in this species:</string>
+    <string name="pretty_sure_hybrid">We\'re pretty sure it\'s in this hybrid:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_subspecies">We\'re pretty sure it\'s in this subspecies:</string>
+    <string name="pretty_sure_variety">We\'re pretty sure it\'s in this variety:</string>
+    <string name="pretty_sure_form">We\'re pretty sure it\'s in this form:</string>
+    <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
     <string name="remove_date_observed">Видалити дату та час спостереження</string>
     <string name="remove_time_observed">Видаляти час спостереження</string>
     <string name="remove_location">Видалити розташування</string>
@@ -1002,5 +1038,9 @@
     <string name="are_you_sure_you_want_to_remove_time">Ви впевнені, що хочете видалити час спостереження?</string>
     <string name="are_you_sure_you_want_to_remove_location">Ви впевнені, що хочете видалити розташування?</string>
     <string name="share_location">Поділитися розташуванням</string>
+    <string name="share_hidden_location">Share Hidden Location</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Не вдалося продублювати звук!</string>
+    <string name="sound_format_not_supported">This sound file is the right file extension, but the specific audio encoding is not supported by Android.</string>
+    <string name="view_observations">View Observations</string>
 </resources>

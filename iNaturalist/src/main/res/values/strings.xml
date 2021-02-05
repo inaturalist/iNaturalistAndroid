@@ -463,7 +463,9 @@
     <string name="view_suggestions">View Suggestions</string>
     <string name="species_search">Species Search</string>
     <string name="were_not_confident_enough">We\'re not confident enough to make a recommendation, but here are our top suggestions:</string>
+    <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
+    <!-- Header for a list of suggested taxa -->
     <string name="top_suggestions">Top suggestions</string>
     <string name="pretty_sure_rank">We\'re pretty sure it\'s in this %1$s:</string>
     <string name="what_did_you_see">What did you see?</string>

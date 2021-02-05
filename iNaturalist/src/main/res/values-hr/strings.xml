@@ -1,162 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="email_address">ईमेल पता</string>
-    <string name="delete_observation">प्रेक्षण हटाएं </string>
-    <string name="observation_deleted">प्रेक्षण हटा दिया गया </string>
-    <string name="species_guess_hint">प्रजातियों का नाम</string>
-    <string name="ok">ठीक</string>
-    <string name="cancel">रद्द करें</string>
-    <string name="loading">लोड हो रहा है...</string>
-    <string name="sync_required">सिंक की आवश्यकता है</string>
-    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
-    <string name="street">सड़क</string>
+    <string name="email_address">Adresa e-pošte</string>
+    <string name="delete_observation">Izbriši opservaciju</string>
+    <string name="observation_deleted">Opservacija izbrisana</string>
+    <string name="species_guess_hint">Naziv vrste</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Poništi</string>
+    <string name="loading">Učitavanje</string>
+    <string name="sync_required">Potrebna sinhronizacija </string>
+    <string name="sync_required_message">%1$d opservacija, %2$d fotografija za sinhronizaciju</string>
+    <string name="street">Ulica</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
-    <string name="satellite">सैटेलाइट</string>
-    <string name="couldnt_load_nearby_observations">आस-पास के प्रेक्षण लोड नहीं किये जा सके: %1$s</string>
-    <string name="username_invalid">Username or password was invalid, please sign in again.</string>
-    <string name="signing_in">साइन इन कर रहे हैं...</string>
-    <string name="signed_in">साइन इन किया है </string>
-    <string name="please_sign_in">कृपया साइन इन करें</string>
-    <string name="please_sign_in_description">Please sign in to your iNaturalist account or sign up for a new one.</string>
-    <string name="please_enable_location_services">Please enable location services in order to find your current location...</string>
-    <string name="go_to_settings">सेटिंग पर जाएँ</string>
-    <string name="photo_not_specified">Photo not specified</string>
-    <string name="set_date">दिनांक</string>
-    <string name="set_time">समय</string>
+    <string name="satellite">Satelit</string>
+    <string name="couldnt_load_nearby_observations">Neuspješno učitavanje obližnje opservacije: %1$s</string>
+    <string name="username_invalid">Korisničko ime ili šifra nisu tačni, molimo da se ponovo prijavite.</string>
+    <string name="signing_in">Prijavljivanje</string>
+    <string name="signed_in">Prijavljeni!</string>
+    <string name="please_sign_in">Molimo da se prijavite</string>
+    <string name="please_sign_in_description">Molimo da se prijavite na vaš iNaturalist račun ili da se registrujete za novi račun.</string>
+    <string name="please_enable_location_services">Omogućite usluge lokacije kako biste pronašli vašu trenutnu lokaciju...</string>
+    <string name="go_to_settings">Idi na Podešavanja</string>
+    <string name="photo_not_specified">Foto nije specificirana</string>
+    <string name="set_date">Datum</string>
+    <string name="set_time">Vrijeme</string>
     <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
-    <string name="something_went_wrong">Blast, something went wrong: %1$s</string>
-    <string name="edit">संपादित करें</string>
-    <string name="oh_no">अरे नहीं! %1$s</string>
-    <string name="observations">मेरे प्रेक्षण </string>
-    <string name="map">नक्शा</string>
-    <string name="settings">सेटिंग्स</string>
-    <string name="projects">परियोजनाएं</string>
-    <string name="delete_photo">फ़ोटो हटाएँ</string>
-    <string name="menu">मेन्यू</string>
-    <string name="my_location">मेरा स्थान</string>
-    <string name="nearby_observations">Nearby Observations</string>
-    <string name="add">जोड़ें</string>
-    <string name="view_on_inat">iNaturalist.org पर देखें</string>
-    <string name="reload">रीलोड करें</string>
-    <string name="view_in_browser">ब्राउज़र में देखें</string>
-    <string name="add_observation">प्रेक्षण जोड़ें</string>
-    <string name="take_picture">तस्वीर खींचे</string>
-    <string name="save">सहेजें</string>
-    <string name="no_observations_yet">अब तक कोई प्रेक्षण नहीं!</string>
-    <string name="or">या</string>
-    <string name="signed_out">साइन आउट करें</string>
-    <string name="username">उपयोगकर्ता नाम</string>
-    <string name="password">पासवर्ड</string>
-    <string name="unknown">अज्ञात</string>
-    <string name="unknown_species">अज्ञात प्रजाति</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">ठीक</string>
-    <string name="com_facebook_loginview_log_out_button">लॉग आउट करें</string>
-    <string name="com_facebook_loginview_log_in_button">लॉग इन करें</string>
-    <string name="com_facebook_loginview_logged_in_as">%1$s के रूप में लॉग इन हैं</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">फेसबुक के साथ लॉगिन हैं</string>
-    <string name="com_facebook_loginview_log_out_action">लॉग आउट करें</string>
-    <string name="com_facebook_loginview_cancel_action">रद्द करें</string>
-    <string name="com_facebook_logo_content_description">Facebook लोगो</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">लॉग इन करें...</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">लॉग इन किया है</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">लॉग इन नहीं हैं</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d यहाँ थे</string>
+    <string name="something_went_wrong">Ups, nešto je pošlo po zlu: %1$s</string>
+    <string name="edit">Uredi</string>
+    <string name="oh_no">O ne! %1$s</string>
+    <string name="observations">Moje opservacije</string>
+    <string name="map">Karta</string>
+    <string name="settings">Postavke</string>
+    <string name="projects">Projekti</string>
+    <string name="delete_photo">Izbriši fotografiju</string>
+    <string name="menu">Izbornik</string>
+    <string name="my_location">Moja lokacija</string>
+    <string name="nearby_observations">Obližnje opservacije</string>
+    <string name="add">Dodaj</string>
+    <string name="view_on_inat">Pogledan na iNaturalist.org</string>
+    <string name="reload">Ponovno učitaj</string>
+    <string name="view_in_browser">Otvori u pregledniku</string>
+    <string name="add_observation">Dodaj opservaciju</string>
+    <string name="take_picture">Napravi fotku</string>
+    <string name="save">Spremi</string>
+    <string name="no_observations_yet">Opservacije nisu pronađene</string>
+    <string name="or">ili</string>
+    <string name="signed_out">Odjavi se</string>
+    <string name="username">Korisničko ime</string>
+    <string name="password">Šifra</string>
+    <string name="unknown">Nepoznato</string>
+    <string name="unknown_species">Nepoznata vrsta</string>
+    <string name="com_facebook_dialogloginactivity_ok_button">OK</string>
+    <string name="com_facebook_loginview_log_out_button">Odjava</string>
+    <string name="com_facebook_loginview_log_in_button">Prijavite se</string>
+    <string name="com_facebook_loginview_logged_in_as">Prijavljen kao: %1$s</string>
+    <string name="com_facebook_loginview_logged_in_using_facebook">Prijavljen koristeći Facebook</string>
+    <string name="com_facebook_loginview_log_out_action">Odjavi se</string>
+    <string name="com_facebook_loginview_cancel_action">Poništi</string>
+    <string name="com_facebook_logo_content_description">Facebook Logo</string>
+    <string name="com_facebook_usersettingsfragment_log_in_button">Log In&#8230;</string>
+    <string name="com_facebook_usersettingsfragment_logged_in">Prijavljeni</string>
+    <string name="com_facebook_usersettingsfragment_not_logged_in">Niste prijavljeni</string>
+    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d were here</string>
     <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d यहाँ थे</string>
-    <string name="com_facebook_picker_done_button_text">पूर्ण हुआ</string>
-    <string name="com_facebook_choose_friends">मित्र चुनें</string>
-    <string name="com_facebook_nearby">आस पास के</string>
-    <string name="com_facebook_loading">लोड हो रहा है...</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifest त्रुटि</string>
-    <string name="com_facebook_internet_permission_error_message">WebView login requires INTERNET permission</string>
-    <string name="com_facebook_requesterror_web_login">आपका Facebook खाता बंद है। जारी रखने के लिए कृपया facebook.com पर लॉग इन करें। </string>
-    <string name="com_facebook_requesterror_relogin">Please log into this app again to reconnect your Facebook account.</string>
-    <string name="com_facebook_requesterror_password_changed">Your Facebook password has changed. Please log into this app again to reconnect your Facebook account.</string>
-    <string name="com_facebook_requesterror_reconnect">Please log into this app again to reconnect your Facebook account.</string>
-    <string name="com_facebook_requesterror_permissions">This app doesn’t have permission to do this. To change permissions, try logging into the app again.</string>
-    <string name="edit_observation">प्रेक्षण संपादित करें</string>
-    <string name="discard_changes">Are you sure you want to discard unsaved changes?</string>
-    <string name="yes">हाँ</string>
-    <string name="no">नहीं</string>
+    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d su bili ovdje</string>
+    <string name="com_facebook_picker_done_button_text">Gotovo</string>
+    <string name="com_facebook_choose_friends">Odaberite prijatelje</string>
+    <string name="com_facebook_nearby">U blizini</string>
+    <string name="com_facebook_loading">Učitavanje</string>
+    <string name="com_facebook_internet_permission_error_title">Pogreška AndroidManifest</string>
+    <string name="com_facebook_internet_permission_error_message">Za prijavu na WebView potrebno je odobrenje INTERNET</string>
+    <string name="com_facebook_requesterror_web_login">Vaš je Facebook račun zaključan. Molimo vas prijavite se na www.facebook.com da biste nastavili.</string>
+    <string name="com_facebook_requesterror_relogin">Prijavite se ponovo u ovu aplikaciju da biste ponovo povezali svoj Facebook račun.</string>
+    <string name="com_facebook_requesterror_password_changed">Vaša se lozinka za Facebook promijenila. Prijavite se ponovo u ovu aplikaciju da biste ponovo povezali svoj Facebook račun.</string>
+    <string name="com_facebook_requesterror_reconnect">Prijavite se ponovo u ovu aplikaciju da biste ponovo povezali svoj Facebook račun.</string>
+    <string name="com_facebook_requesterror_permissions">Ova aplikacija nema dopuštenje za to. Da biste promijenili dopuštenja, pokušajte se ponovo prijaviti u aplikaciju.</string>
+    <string name="edit_observation">Uredi Opservaciju</string>
+    <string name="discard_changes">Jeste li sigurni da želite odbaciti Vaše nespašene izmjene?</string>
+    <string name="yes">Da</string>
+    <string name="no">Ne</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
-    <string name="agree">सहमत हैं?</string>
-    <string name="no_comments">No comments/identifications yet</string>
-    <string name="add_comment">टिप्पणी जोड़ें</string>
-    <string name="add_id">पहचान जोड़ें</string>
-    <string name="remarks">टिप्पणीयाँ...</string>
-    <string name="enter_taxon_name">प्रजातियों का नाम</string>
-    <string name="no_projects">कोई परियोजना नहीं मिली!</string>
-    <string name="no_guides">कोई गाइड नहीं मिले!</string>
-    <string name="loading_projects">परियोजनाएं लोड हो रही हैं...</string>
-    <string name="joined_projects">शामिल हो गए</string>
-    <string name="nearby_projects">आस पास के</string>
+    <string name="agree">Slažem se</string>
+    <string name="no_comments">Bez komentara/identifikacije</string>
+    <string name="add_comment">Dodaj komentar</string>
+    <string name="add_id">Dodaj identifikaciju</string>
+    <string name="remarks">Napomene: </string>
+    <string name="enter_taxon_name">Naziv vrste</string>
+    <string name="no_projects">Projekti nisu pronađeni!</string>
+    <string name="no_guides">Nema pronađenih vodiča.</string>
+    <string name="loading_projects">Učitavanje projekata</string>
+    <string name="joined_projects">Pridružen/a</string>
+    <string name="nearby_projects">U blizini</string>
     <!-- Tab title for the list of featured projects in the Projects screen -->
-    <string name="featured_projects">विशेष रुप से प्रदर्शित</string>
+    <string name="featured_projects">Izdvojeni</string>
     <!-- Verb, used as a label for actions like leaving a project -->
-    <string name="leave">छोड़ें</string>
-    <string name="join">शामिल हों</string>
-    <string name="no_check_list">No Taxa in Check List!</string>
+    <string name="leave">Izađi</string>
+    <string name="join">Pridruži se</string>
+    <string name="no_check_list">Bez Taxa na spisku</string>
     <string name="failed_to_add_obs_to_project">Failed to add observation \'%1$s\' to project \'%2$s\': %3$s</string>
-    <string name="invalid_project_field">Please enter a valid value for field \'%1s\'</string>
+    <string name="invalid_project_field">Molimo dodati važeću vrijednost za polje \'%1s\'</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
-    <string name="select_projects">शामिल हुए परियोजनाओं में से चुनें</string>
-    <string name="not_connected">You must be connected to the Internet in order to do that!</string>
-    <string name="search_projects">परियोजनाओं की खोज करें..</string>
-    <string name="search_guides">Search guides...</string>
-    <string name="save_observation">Save observation</string>
+    <string name="select_projects">Select from Joined Projects</string>
+    <string name="not_connected">Da biste to učinili, morate biti povezani s Internetom!</string>
+    <string name="search_projects">Traži projekte …</string>
+    <string name="search_guides">Pretraži vodiče...</string>
+    <string name="save_observation">Spasi opservaciju</string>
     <!-- Header for a description an individual guide -->
-    <string name="about_guide">हमारे बारे में</string>
-    <string name="about_guide_all_caps">के बारे में</string>
+    <string name="about_guide">O</string>
+    <string name="about_guide_all_caps">OKO</string>
     <!-- Header for a description an individual project -->
     <string name="about_project">About</string>
     <string name="about_project_all_caps">ABOUT</string>
-    <string name="about_this_app">About</string>
-    <string name="about_taxon_short">About</string>
+    <string name="about_this_app">O ovoj aplikaciji</string>
+    <string name="about_taxon_short">O taksonu kratko</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
-    <string name="geoprivacy">Geoprivacy</string>
+    <string name="geoprivacy">Geoprivacy Imenica koja opisuje sposobnost prikrivanja ili skrivanja koordinata promatranja. Trebala bi biti kratka imenska imenica-fraza prikladna za upotrebu na bu</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
     <string name="geoprivacy_with_value">Geoprivacy: %1$s</string>
-    <string name="delete_confirmation">Are you sure you want to delete this observation?</string>
+    <string name="delete_confirmation">Jeste li sigurni da želite izbrisati ovo zapažanje?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
-    <string name="guides">Guides</string>
-    <string name="my_guides">आपके</string>
-    <string name="nearby_guides">Nearby</string>
-    <string name="all_guides">सब</string>
-    <string name="no_taxa">इस गाइड में कोई टेक्सा नहीं मिले!</string>
-    <string name="search_taxa">टेक्सा खोजें....</string>
-    <string name="no_internet_guides">गाइड के लिए इंटरनेट कनेक्शन की आवश्यकता है</string>
-    <string name="no_internet_projects">परियोजनाओं के लिए इंटरनेट कनेक्शन की आवश्यकता है</string>
-    <string name="locale_gl">गैलिशियन्</string>
-    <string name="locale_eu">Basque</string>
-    <string name="use_device_language_settings">डिवाइस भाषा सेटिंग्स का उपयोग करें</string>
-    <string name="choose_location">स्थान चुनें</string>
-    <string name="done">पूर्ण हुआ</string>
+    <string name="guides">Vodiči</string>
+    <string name="my_guides">Vaši</string>
+    <string name="nearby_guides">U blizini</string>
+    <string name="all_guides">Svi</string>
+    <string name="no_taxa">Za ovaj vodič nije pronađena svojta!</string>
+    <string name="search_taxa">Search taxa...</string>
+    <string name="no_internet_guides">Vodiči zahtijevaju internetsku vezu</string>
+    <string name="no_internet_projects">Projects require an Internet connection</string>
+    <string name="locale_gl">Galicijski</string>
+    <string name="locale_eu">Baskijski</string>
+    <string name="use_device_language_settings">Koristite postavke jezika uređaja</string>
+    <string name="choose_location">Odaberi lokaciju</string>
+    <string name="done">Završeno</string>
     <string name="please_sign_in_via_settings">You must be logged in to view projects you\'ve joined.</string>
-    <string name="contact_support">सहायता के लिए संपर्क करें</string>
+    <string name="contact_support">Kontaktirajte podršku</string>
     <string name="credits">Designed and built by iNaturalist.org with support from the California Academy of Sciences</string>
-    <string name="leave_project">Leave Project</string>
-    <string name="leave_project_confirmation">क्या आप सुनिश्चित हैं कि आप इस परियोजना को छोड़ना चाहते हैं?</string>
+    <string name="leave_project">Napusti projekt</string>
+    <string name="leave_project_confirmation">Are you sure you want to leave this project?</string>
     <string name="discard_location_changes">Are you sure you want to discard unsaved changes?</string>
-    <string name="edit_location">स्थान संपादित करें</string>
+    <string name="edit_location">Edit Location</string>
     <string name="edit_locality_notes">Edit Locality Notes</string>
-    <string name="get_current_location">वर्तमान स्थान प्राप्त करें</string>
-    <string name="pull_to_refresh">Pull to refresh...</string>
+    <string name="get_current_location">Get current location</string>
+    <string name="pull_to_refresh">Povuci za osvježavanje</string>
     <string name="release_to_refresh">Release to refresh...</string>
-    <string name="refreshing">रेफ़रेश किया जा रहा है...</string>
+    <string name="refreshing">Osvježavanje...</string>
     <plurals name="sync_x_observations">
         <item quantity="one">Sync %1$d observation</item>
+        <item quantity="few">Sync %1$d observations</item>
         <item quantity="other">Sync %1$d observations</item>
     </plurals>
     <string name="sync_observations">Sync Observations</string>
     <string name="lets_get_started">Let\'s get started!</string>
     <string name="view_nearby_observations">View Nearby Observations</string>
-    <string name="skip_for_now">अभी के लिए छोड़ें</string>
+    <string name="skip_for_now">Skip for Now</string>
     <string-array name="tutorial_titles">
         <item></item>
-        <item>प्रेक्षण</item>
-        <item>साझा करें </item>
-        <item>सीखें</item>
-        <item>Contribute</item>
+        <item>Observe</item>
+        <item>Podijeli</item>
+        <item>Nauči</item>
+        <item>Doprinesi</item>
     </string-array>
     <string-array name="tutorial_descriptions">
         <item>Explore and Connect with Nature</item>
@@ -166,24 +167,24 @@
         <item><![CDATA[<b>Research Grade</b> observations are shared with scientists working to better understand and protect nature.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
-        <item>खोलें</item>
+        <item>Otvori</item>
         <item>Obscured</item>
-        <item>निजी</item>
+        <item>Privatno</item>
     </string-array>
     <string name="alert_sign_out">Are you sure you want to sign out? This will delete all your observations on this device. It will not affect any observations you\'ve uploaded to iNaturalist.</string>
     <string name="alert_unsupported_media_type">Sorry, but there was a problem loading the photo from this source</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
-    <string name="explore">Explore</string>
-    <string name="restricted_to_current_map_area">Restricted to current map area</string>
-    <string name="search">खोजें</string>
-    <string name="details">विवरण</string>
-    <string name="observation_photos">Observation Photos</string>
-    <string name="remove">हटाएं?</string>
-    <string name="no_observations_found">No observations found</string>
+    <string name="explore">Istraži</string>
+    <string name="restricted_to_current_map_area">Ograničeno na trenutno područje karte</string>
+    <string name="search">Traži</string>
+    <string name="details">Detalji</string>
+    <string name="observation_photos">Fotografije opservacija</string>
+    <string name="remove">Ukloniti?</string>
+    <string name="no_observations_found">Opservacije nisu pronađene</string>
     <string name="license_none">None, all rights reserved</string>
-    <string name="sources_and_attribution">Sources and Attribution</string>
-    <string name="photos"><![CDATA[<b>तस्वीरें:</b> %1$s]]></string>
-    <string name="text"><![CDATA[<b>टेक्स्ट:</b> %1$s]]></string>
+    <string name="sources_and_attribution">Izvori i pripisivanje</string>
+    <string name="photos"><![CDATA[<b>Photos:</b> %1$s]]></string>
+    <string name="text"><![CDATA[<b>Text:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">The main iNaturalist Network. Clicking OK will set your app as part of the global iNaturalist network.</string>
     <string name="alert_message_use_naturalista">NaturaLista is a member of the iNaturalist Network in Mexico. Local institutions supporting NaturaLista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
@@ -198,37 +199,37 @@
     <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland is a member of the iNaturalist Network in Finland. Local institutions supporting iNaturalist Finland will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="editor">Editor</string>
-    <string name="license">License</string>
-    <string name="download_for_offline_use">Download for offline use</string>
-    <string name="download_not_available">Download not available</string>
-    <string name="guide_editor_must_enable_this_feature">Guide editor must enable this feature.</string>
-    <string name="are_you_sure">Are you sure?</string>
+    <string name="editor">Urednik</string>
+    <string name="license">Licenca</string>
+    <string name="download_for_offline_use">Preuzimanje za vanmrežno korištenje</string>
+    <string name="download_not_available">Preuzimanje nije dostupno</string>
+    <string name="guide_editor_must_enable_this_feature">Uređivač vodiča mora omogućiti ovu značajku.</string>
+    <string name="are_you_sure">Da li ste sigurni?</string>
     <string name="download_guide_alert">This will download %1$s of data so you can use this guide even when you don\'t have Internet access.</string>
-    <string name="download">Download</string>
-    <string name="failed_to_download_guide">Failed to download guide</string>
-    <string name="internet_connection_seems_to_be_offline">The Internet connection appears to be offline.</string>
-    <string name="downloading">Downloading...</string>
+    <string name="download">Preuzimanje</string>
+    <string name="failed_to_download_guide">Preuzimanje vodiča nije uspjelo</string>
+    <string name="internet_connection_seems_to_be_offline">Čini se da je internetska veza izvan mreže.</string>
+    <string name="downloading">Preuzimanje...</string>
     <string name="extracting">Extracting...</string>
-    <string name="downloaded">Downloaded</string>
-    <string name="delete_download">Delete download</string>
-    <string name="re_download">Re-download</string>
-    <string name="error">Error</string>
+    <string name="downloaded">Preuzeto</string>
+    <string name="delete_download">Izbriši preuzimanje</string>
+    <string name="re_download">Ponovo preuzmi</string>
+    <string name="error">Greška</string>
     <string name="could_not_retrieve_guide">Could not retrieve the guide details - probably a network error.</string>
-    <string name="inat_support_email_subject">Help with iNaturalist (version %1$s - %2$s; user id - %3$s)</string>
-    <string name="send_email">Send email...</string>
-    <string name="login_with">Log In with</string>
+    <string name="inat_support_email_subject">Pomoć s iNaturalistom (version %1$s - %2$s; user id - %3$s)</string>
+    <string name="send_email">Pošalji poštu...</string>
+    <string name="login_with">Prijavi se putem</string>
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Email</string>
-    <string name="sign_up_with">Sign Up with</string>
-    <string name="skip">Skip  ›</string>
-    <string name="already_have_account">Already have an account?</string>
-    <string name="log_in">Log In</string>
+    <string name="sign_up_with">Prijavi se putem</string>
+    <string name="skip">Preskoči  ›</string>
+    <string name="already_have_account">Već imate račun?</string>
+    <string name="log_in">Prijavite se</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
-    <string name="sign_up">Sign Up</string>
+    <string name="sign_up">Registrirajte se</string>
     <!-- Title of the view used to sign up for a new account -->
-    <string name="sign_up_title">Sign Up</string>
+    <string name="sign_up_title">Registrirajte se</string>
     <string name="min_6_chars">Min. 6 characters</string>
     <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data (recommended). <b>Learn More</b>]]></string>
     <string name="content_licensing">Content Licensing</string>
@@ -251,26 +252,26 @@
     <string name="menu_text">No Photo</string>
     <string name="first">1st</string>
     <string name="make_first">Make 1st</string>
-    <string name="notes">Notes</string>
+    <string name="notes">Bilješke</string>
     <string name="location_is">Location is</string>
     <string name="is_captive">It is captive or cultivated</string>
     <string name="location_visibility">Location Visibility</string>
-    <string name="set_location">Location</string>
+    <string name="set_location">Lokacija</string>
     <string name="coordinates_lat">Lat:</string>
     <string name="coordinates_lon">Lon:</string>
     <string name="coordinates_acc">Acc. </string>
     <string name="required">* Required</string>
     <string name="downloading_observations">Downloading observations...</string>
-    <string name="no_thanks">No Thanks</string>
-    <string name="turn_on">Turn On</string>
+    <string name="no_thanks">Ne hvala</string>
+    <string name="turn_on">Uključi</string>
     <string name="introducing_auto_sync">Introducing Auto-Sync!</string>
     <string name="turn_on_auto_sync">Turn on Auto-Sync in Settings and your observations will be automatically uploaded to iNaturalist.</string>
     <string name="automatic_upload">Automatic Upload (Auto Sync)</string>
     <string name="waiting_to_upload">Waiting to upload...</string>
     <string name="uploading">Uploading...</string>
     <string name="failed_to_add_to_project">Failed to add to project \'%1$s\': %2$s</string>
-    <string name="needs_your_attention">Needs your attention...</string>
-    <string name="observation">Observation</string>
+    <string name="needs_your_attention">Potrebna vaša pažnja...</string>
+    <string name="observation">Opservacija</string>
     <string name="share">Share</string>
     <string name="unable_to_acquire_location">Unable to acquire location</string>
     <string name="casual_grade">Casual Grade</string>
@@ -284,6 +285,7 @@
     <string name="needs_id_more_ids"><![CDATA[ Observation needs <b>more identifications</b> from the community to become "Research Grade" status. ]]></string>
     <plurals name="included_in_projects">
         <item quantity="one">Included in %1$d project</item>
+        <item quantity="few">Included in %1$d projects</item>
         <item quantity="other">Included in %1$d projects</item>
     </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy is a setting you can make on your observations that controls how the spatial coordinates (latitude and longitude) are displayed. Here are the options:<br/><b>open</b> - Everyone can see the coordinates unless the taxon is threatened. <br/><b>obscured</b> - Public coordinates shown as a random point within a 0.2 by 0.2 degree area that contains the true coordinates, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. True coordinates are only visible to you and the curators of projects to which you add the observation. <br/><b>private</b> - Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. <br/><br/>Note that curators of individual projects can always see the coordinates regardless of your geoprivacy setting, so if you are concerned about who has access to the coordinates you should be sure you trust the curators of the projects in which you participate. ]]></string>
@@ -294,8 +296,8 @@
     <string name="delete_comment">Delete Comment</string>
     <string name="delete_id_message">Are you sure you want to withdraw this identification?</string>
     <string name="delete_comment_message">Are you sure you want to delete this comment?</string>
-    <string name="comment">Comment</string>
-    <string name="suggest_id">Suggest ID</string>
+    <string name="comment">Komentar</string>
+    <string name="suggest_id">Predloži ID</string>
     <string name="update_comment">Update Comment</string>
     <string name="fave_this_observation">Fave This Observation</string>
     <string name="faved">Faved</string>
@@ -303,7 +305,7 @@
     <string name="leave_a_comment">Leave a comment or suggest an identification...</string>
     <string name="location_coords">Lat: %1$s Lon: %2$s Acc. %3$s</string>
     <string name="location_coords_no_acc">Lat: %1$s Lon: %2$s</string>
-    <string name="location">Location</string>
+    <string name="location">Lokacija</string>
     <string name="login_in_to_add_comments_ids">Log In or Sign Up to leave a comment or suggest an identification...</string>
     <string name="login_in_to_fav">Log In or Sign Up to see faves or fave this observation...</string>
     <string name="sync_obs_to_see_favs">Sync this observation to see faves...</string>
@@ -313,56 +315,56 @@
     <string name="about_this_species">About this Species</string>
     <string name="view_on_wikipedia">Wikipedia Article</string>
     <string name="photo"><![CDATA[Photo: <b><a href="%1$s">%2$s</a></b>]]></string>
-    <string name="photo_attr"><![CDATA[Photo: <b>%1$s</b>]]></string>
+    <string name="photo_attr"><![CDATA[Fotografija: <b>%1$s</b>]]></string>
     <string name="finding_current_location">Finding current location...</string>
     <string name="flag_as_captive">Flag as Captive/Cultivated</string>
-    <string name="observation_flagged_as_captive">Observation was flagged as captive/cultivated</string>
+    <string name="observation_flagged_as_captive">Opservacija je označena kao zatvoreno / uzgajano</string>
     <string name="are_you_sure_you_want_to_flag_as_captive">Are you sure you want to flag this observation as captive/cultivated? (Pressing yes will also close the observation viewer window)</string>
-    <string name="do_you_agree_to_the_following">Do you agree to the following?</string>
-    <string name="terms">Terms</string>
-    <string name="observation_rules">Observation Rules</string>
-    <string name="couldnt_load_project_details">Couldn\'t load project details: %1$s</string>
-    <string name="no_people_found">No people found</string>
-    <string name="rank">Rank</string>
-    <string name="identifications">Identifications</string>
-    <string name="no_news_found">No news items found</string>
-    <string name="news">News</string>
-    <string name="article">Article</string>
-    <string name="couldnt_load_project_news">Couldn\'t load project news: %1$s</string>
-    <string name="couldnt_load_user_details">Couldn\'t load user details: %1$s</string>
-    <string name="more_bio"><![CDATA[<b><font color="#ffffff">More »</font></b>]]></string>
-    <string name="no_location">No Location</string>
-    <string name="add_to_projects">Add to project(s)</string>
+    <string name="do_you_agree_to_the_following">Slažete li se sa sljedećim?</string>
+    <string name="terms">Uvjeti</string>
+    <string name="observation_rules">Pravila za opservacije</string>
+    <string name="couldnt_load_project_details">Nije moguće učitati pojedinosti o projektu: %1$s</string>
+    <string name="no_people_found">Osobe nisu pronađene</string>
+    <string name="rank">Rang</string>
+    <string name="identifications">IIdentifikacije</string>
+    <string name="no_news_found">Nije pronađena nijedna vijest</string>
+    <string name="news">Novosti</string>
+    <string name="article">Članak</string>
+    <string name="couldnt_load_project_news">Nemoguće učitati novosti o projektu: %1$s</string>
+    <string name="couldnt_load_user_details">Nemoguće učitati korisničke pojedinosti: %1$s</string>
+    <string name="more_bio"><![CDATA[<b><font color="#ffffff">Više »</font></b>]]></string>
+    <string name="no_location">Bez lokacije</string>
+    <string name="add_to_projects">Dodaj u projekat(te)</string>
     <string name="are_you_sure_you_want_to_save_obs_without_coords">Are you sure you want to save the observation without any coordinates?</string>
     <string name="users_identification">%1$s\'s ID: %2$s</string>
-    <string name="edit_profile">Edit Profile</string>
-    <string name="remove_photo">Remove Photo</string>
-    <string name="name">Name</string>
-    <string name="tell_us_about_yourself">Tell us about yourself...</string>
+    <string name="edit_profile">Uredi profil</string>
+    <string name="remove_photo">Ukloni fotografiju</string>
+    <string name="name">Ime</string>
+    <string name="tell_us_about_yourself">Recite nam o sebi...</string>
     <string name="view_profile">View Profile</string>
     <string name="are_you_sure_you_want_to_remove_photo">Are you sure you would like to remove your photo?</string>
     <string name="updating_profile">Updating Profile...</string>
     <string name="there_was_a_problem_updating_profile">There was a problem while updating your profile!</string>
     <string name="there_was_a_problem_updating_profile_params">There was a problem while updating your profile: %1$s</string>
     <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
-    <string name="log_out">Log out</string>
+    <string name="log_out">Odjavite se</string>
     <string name="not_logged_in">Not logged in</string>
     <string name="auto_upload_description">Auto-upload new observations and edits to observations</string>
-    <string name="language">Language</string>
-    <string name="version">Version</string>
-    <string name="inat_network">iNaturalist Network</string>
-    <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
-    <string name="more_info">More Info</string>
+    <string name="language">Jezik</string>
+    <string name="version">Verzija</string>
+    <string name="inat_network">iNaturalist Mreža</string>
+    <string name="inat_network_description">iNaturalist mreža okvir je za lokaliziranje iNaturalist zajednice. Mrežne stranice podržavaju lokalne institucije koje su s iNaturalist potpisale sporazum o poticanju lokalne upotrebe i koristi lokalnoj biološkoj raznolikosti.</string>
+    <string name="more_info">Više informacija</string>
     <string name="select_network">Select Network Affiliation</string>
-    <string name="help">Help</string>
+    <string name="help">Pomoć</string>
     <string name="stop">Stop</string>
-    <string name="resume">Resume</string>
+    <string name="resume">Nastavi</string>
     <string name="cleaning_up">Cleaning up...</string>
-    <string name="syncing">Syncing...</string>
-    <string name="syncing_observation_fields">Syncing observation fields...</string>
+    <string name="syncing">Sinhronizira...</string>
+    <string name="syncing_observation_fields">Sinhronizira polja opservacije</string>
     <string name="syncing_observations">Syncing observations...</string>
-    <string name="syncing_paused">Paused</string>
-    <string name="upload">Upload</string>
+    <string name="syncing_paused">Pauzirano</string>
+    <string name="upload">Učitaj</string>
     <string name="search_observations">Search Observations...</string>
     <string name="withdraw">Withdraw</string>
     <!-- Dialog title for when you are updating the description of an identification -->
@@ -416,11 +418,13 @@
     -->
     <plurals name="new_activities">
         <item quantity="one">%1s new</item>
+        <item quantity="few">%1s new</item>
         <item quantity="other">%1s new</item>
     </plurals>
     <string name="no_results_found">No Results Found...</string>
     <plurals name="syncing_x_out_of_y_observations">
         <item quantity="one">Syncing %1$d of %2$d observation...</item>
+        <item quantity="few">Syncing %1$d of %2$d observations...</item>
         <item quantity="other">Syncing %1$d of %2$d observations...</item>
     </plurals>
     <string name="deleting_observations">Deleting observations...</string>
@@ -687,6 +691,7 @@
     <string name="quantity_all_caps">QTY</string>
     <plurals name="observation_count_all_caps">
         <item quantity="one">%1$s OBSERVATION</item>
+        <item quantity="few">%1$s OBSERVATIONS</item>
         <item quantity="other">%1$s OBSERVATIONS</item>
     </plurals>
     <string name="agree_all_caps">AGREE</string>
@@ -825,6 +830,7 @@
     <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
         <item quantity="one">Are you sure you want to delete this %1$d observation?</item>
+        <item quantity="few">Are you sure you want to delete these %1$d observations?</item>
         <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
     </plurals>
     <string name="future_observed_on_date_error">Your observation was created (and submitted) on %1$s, but you\'re trying to set an observation date that is later than that: %2$s</string>

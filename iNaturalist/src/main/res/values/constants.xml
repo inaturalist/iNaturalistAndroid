@@ -38,6 +38,7 @@
 		<item/>
 		<item>ar</item>
 		<item>bg</item>
+		<item>bs</item>
 		<item>ca</item>
 		<item>cs</item>
 		<item>da</item>
@@ -58,6 +59,7 @@
 		<item>he</item>
 		<item>he-rIL</item>
 		<item>hi</item>
+		<item>hr</item>
 		<item>hu</item>
 		<item>id</item>
 		<item>it</item>
@@ -96,6 +98,7 @@
 		<item>@string/use_device_language_settings</item>
 		<item>عربى</item>
 		<item>Български</item>
+		<item>Bosanski</item>
 		<item>Català</item>
 		<item>Čeština</item>
 		<item>Dansk</item>
@@ -116,6 +119,7 @@
 		<item>עברית</item>
 		<item>עברית (ישראל)</item>
 		<item>हिन्दी</item>
+		<item>Hrvatski</item>
 		<item>Magyar</item>
 		<item>Bahasa Indonesia</item>
 		<item>Italiano</item>
