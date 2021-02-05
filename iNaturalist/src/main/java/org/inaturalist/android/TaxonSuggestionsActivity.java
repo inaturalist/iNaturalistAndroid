@@ -155,6 +155,10 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
 
             BetterJSONObject resultsObject = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.TAXON_SUGGESTIONS);
 
+            if (resultsObject == null) {
+                return;
+            }
+
             mTaxonResultsByIndex.put(mPhotosViewPager.getCurrentItem(), resultsObject);
 
             loadTaxonSuggestionsFromResultsObject(resultsObject);
