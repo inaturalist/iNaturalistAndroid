@@ -45,7 +45,7 @@
         android:text="Filter"
         android:layout_alignParentTop="true"
         android:visibility="gone"
-        android:maxLines="1"
+        android:maxLines="2"
         android:ellipsize="end"
         />
 

@@ -20,7 +20,7 @@
 
     <TextView
         android:id="@+id/grid_filter_bar"
-        android:maxLines="1"
+        android:maxLines="2"
         android:ellipsize="end"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -112,7 +112,7 @@
 
          <TextView
              android:id="@+id/map_filter_bar"
-             android:maxLines="1"
+             android:maxLines="2"
              android:ellipsize="end"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"

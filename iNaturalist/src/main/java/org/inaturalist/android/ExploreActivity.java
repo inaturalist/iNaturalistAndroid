@@ -839,6 +839,22 @@ public class ExploreActivity extends BaseFragmentActivity {
             builder.append(", ");
         }
 
+        if ((mSearchFilters.orderBy != null) && (mSearchFilters.order != null)) {
+            List<String> sortByValues = Arrays.asList(getResources().getStringArray(R.array.explore_order_by_values));
+            List<String> sortValues = Arrays.asList(getResources().getStringArray(R.array.explore_order_values));
+            List<String> sortByLabels = Arrays.asList(getResources().getStringArray(R.array.explore_order_by_items));
+            List<String> sortLabels = Arrays.asList(getResources().getStringArray(R.array.explore_order_items));
+
+            if ((!mSearchFilters.orderBy.equals(sortByValues.get(0))) || (!mSearchFilters.order.equals(sortValues.get(0)))) {
+                // Non-default sorting
+                String filterMessage = getString(R.string.sorted_by_full);
+                String sortByLabel = sortByLabels.get(sortByValues.indexOf(mSearchFilters.orderBy));
+                String sortLabel = sortLabels.get(sortValues.indexOf(mSearchFilters.order));
+
+                builder.append(String.format(filterMessage, sortByLabel, sortLabel));
+                builder.append(", ");
+            }
+        }
 
         if (builder.length() == 0) {
             filterBar.setText("");

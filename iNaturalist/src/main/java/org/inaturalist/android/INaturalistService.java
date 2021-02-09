@@ -1480,7 +1480,7 @@ public class INaturalistService extends IntentService {
                 int pageNumber = intent.getIntExtra(PAGE_NUMBER, 1);
                 int pageSize = intent.getIntExtra(PAGE_SIZE, EXPLORE_DEFAULT_RESULTS_PER_PAGE);
                 String uuid = intent.getStringExtra(UUID);
-                BetterJSONObject observations = getExploreResults(null, filters, pageNumber, pageSize, "observation.id");
+                BetterJSONObject observations = getExploreResults(null, filters, pageNumber, pageSize, null);
                 observations = ObservationUtils.getMinimalObservationResults(observations);
 
                 Intent reply = new Intent(EXPLORE_GET_OBSERVATIONS_RESULT);

@@ -47,6 +47,15 @@ public class ExploreSearchFilters implements Serializable {
     public static final int DATE_TYPE_MIN_MAX_DATE = 2;
     public static final int DATE_TYPE_MONTHS = 3;
 
+    public static final String ORDER_DESCENDING = "desc";
+    public static final String ORDER_ASCENDING = "asc";
+
+    public static final String ORDER_BY_CREATED_AT = "created_at";
+    public static final String ORDER_BY_OBSERVED_ON = "observed_on";
+    public static final String ORDER_BY_UPDATED_AT = "updated_at";
+    public static final String ORDER_BY_VOTES = "votes";
+    public static final String ORDER_BY_RANDOM= "random";
+
     public int dateFilterType = DATE_TYPE_ANY;
 
     private String placeJson;
@@ -58,6 +67,9 @@ public class ExploreSearchFilters implements Serializable {
     public String annotationName;
     public Integer annotationValueId;
     public String annotationValue;
+
+    public String order; // Ascending or descending
+    public String orderBy; // Created at, observed on, ...
 
     public boolean hasPhotos = false;
     public boolean hasSounds = false;
@@ -87,6 +99,9 @@ public class ExploreSearchFilters implements Serializable {
         annotationValueId = null;
         annotationName = null;
         annotationValue = null;
+
+        order = ORDER_DESCENDING;
+        orderBy = ORDER_BY_CREATED_AT;
     }
 
     public boolean isDirty() {
@@ -98,6 +113,7 @@ public class ExploreSearchFilters implements Serializable {
                 (observedOn != null) || (observedOnMinDate != null) ||
                 (observedOnMaxDate != null) || (!observedOnMonths.isEmpty()) ||
                 (annotationNameId != null) || (annotationValueId != null)) ||
+                (!order.equals(ORDER_DESCENDING)) || (!orderBy.equals(ORDER_BY_CREATED_AT)) ||
                 (hasPhotos) || (hasSounds);
     }
 
@@ -197,6 +213,9 @@ public class ExploreSearchFilters implements Serializable {
         if (hasSounds) {
             url.append("&sounds=true");
         }
+
+        url.append("&order_by=" + orderBy);
+        url.append("&order=" + order);
 
         if (url.length() == 0) return url.toString();
 

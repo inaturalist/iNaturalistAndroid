@@ -1064,5 +1064,20 @@
     <string name="no_observations_yet2">No observations yet.</string>
     <string name="no_species_yet">No species yet.</string>
     <string name="no_identifications_yet">No identifications yet.</string>
+    <string name="sort_by">Sort By</string>
+    <string-array name="explore_order_by_items">
+        <item>Date Added</item>
+        <item>Date Observed</item>
+        <item>Date Updated</item>
+        <!--<item>Faves</item>-->
+        <item>Random</item>
+    </string-array>
+    <string-array name="explore_order_items">
+        <item>Descending</item>
+        <item>Ascending</item>
+    </string-array>
+    <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
+    See explore_order_by_items and explore_order_items keys !-->
+    <string name="sorted_by_full">Sorted by %1$s (%2$s)</string>
 </resources>
 

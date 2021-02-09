@@ -23,6 +23,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -42,6 +43,7 @@ import org.tinylog.Logger;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -100,11 +102,11 @@ public class ExploreFiltersActivity extends AppCompatActivity {
 
     private MenuItem mResetFilters;
     @State public SerializableJSONArray mAllAnnotations;
+    private Spinner mSortByProperty;
+    private Spinner mSortByOrder;
 
 
-
-
-	@Override
+    @Override
 	protected void onStop()
 	{
 		super.onStop();		
@@ -192,6 +194,9 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         mAnnotationName = (Spinner) findViewById(R.id.annotation_name);
         mAnnotationEqual = (TextView) findViewById(R.id.annotation_equal);
         mAnnotationValue = (Spinner) findViewById(R.id.annotation_value);
+
+        mSortByProperty = (Spinner) findViewById(R.id.sort_by_property);
+        mSortByOrder = (Spinner) findViewById(R.id.sort_by_order);
 
         mDateAny.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -499,6 +504,32 @@ public class ExploreFiltersActivity extends AppCompatActivity {
             }
         });
 
+        mSortByProperty.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                List<String> sortBy = Arrays.asList(getResources().getStringArray(R.array.explore_order_by_values));
+                mSearchFilters.orderBy = sortBy.get(position);
+                refreshResetFiltersButton();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        mSortByOrder.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                List<String> sort = Arrays.asList(getResources().getStringArray(R.array.explore_order_values));
+                mSearchFilters.order = sort.get(position);
+                refreshResetFiltersButton();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
         mAnnotationValue.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -740,6 +771,12 @@ public class ExploreFiltersActivity extends AppCompatActivity {
                 }
             }
         }
+
+        List<String> sortBy = Arrays.asList(getResources().getStringArray(R.array.explore_order_by_values));
+        mSortByProperty.setSelection(sortBy.indexOf(mSearchFilters.orderBy));
+
+        List<String> sortByOrder = Arrays.asList(getResources().getStringArray(R.array.explore_order_values));
+        mSortByOrder.setSelection(sortByOrder.indexOf(mSearchFilters.order));
 
         refreshResetFiltersButton();
     }

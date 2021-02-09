@@ -2,6 +2,17 @@
 <resources>
 	<!-- Resources that should not be translated / renamed -->
 	<string name="app_title">iNaturalist</string>
+	<string-array name="explore_order_values">
+		<item>desc</item>
+		<item>asc</item>
+	</string-array>
+	<string-array name="explore_order_by_values">
+		<item>created_at</item>
+		<item>observed_on</item>
+		<item>updated_at</item>
+		<!--<item>votes</item>-->
+		<item>random</item>
+	</string-array>
 	<string-array name="tutorial_images">
 		<item>slide_logo</item>
 		<item>slide_observe</item>
