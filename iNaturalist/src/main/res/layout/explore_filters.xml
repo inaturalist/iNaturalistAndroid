@@ -78,6 +78,37 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/hide_my_observations"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:id="@+id/hide_my_observations_checkbox"
+                    android:background="@drawable/inat_checkbox"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/hide_my_observations_checkbox"
+                    android:text="@string/hide_my_observations"
+                    android:layout_alignParentStart="true"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:labelFor="@id/hide_my_observations_checkbox"
+                    />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="20dp"

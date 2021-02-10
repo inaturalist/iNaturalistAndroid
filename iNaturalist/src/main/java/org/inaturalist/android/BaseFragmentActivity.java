@@ -894,6 +894,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
             }
 
             editor.putString("username", newUsername);
+            editor.putInt("user_id", user.getInt("id"));
             editor.apply();
 
             // Update network settings as well

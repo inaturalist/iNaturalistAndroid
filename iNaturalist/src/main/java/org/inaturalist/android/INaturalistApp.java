@@ -1017,6 +1017,11 @@ public class INaturalistApp extends MultiDexApplication {
         return getPrefs().getString("username", null);
     }
 
+    public Integer currentUserId() {
+        return getPrefs().getInt("user_id", -1);
+    }
+
+
     public SharedPreferences getPrefs() {
         if (mPrefs == null) {
             mPrefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);   

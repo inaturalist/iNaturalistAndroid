@@ -242,6 +242,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 
         mPrefEditor.putString("username", mUsername);
 
+
         String credentials;
         credentials = result; // Access token
         mPrefEditor.putString("credentials", credentials);

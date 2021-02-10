@@ -1601,6 +1601,7 @@ public class INaturalistService extends IntentService {
                     String prevLogin = mLogin;
                     mLogin = newUser.optString("login");
                     editor.putString("username", mLogin);
+                    editor.putInt("user_id", newUser.optInt("id"));
                     if (!newUser.has("user_icon_url") || newUser.isNull("user_icon_url")) {
                         editor.putString("user_icon_url", null);
                     } else {

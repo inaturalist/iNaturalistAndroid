@@ -75,7 +75,9 @@ public class ExploreFiltersActivity extends AppCompatActivity {
     private RecyclerView mTaxonicIcons;
     private Button mApplyFilters;
     private View mShowMyObservationsCheckbox;
+    private View mHideMyObservationsCheckbox;
     private ViewGroup mShowMyObservationsRow;
+    private ViewGroup mHideMyObservationsRow;
     private ImageView mProjectPic;
     private TextView mProjectName;
     private ImageView mClearProject;
@@ -171,6 +173,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         mTaxonicIcons = (RecyclerView) findViewById(R.id.taxonic_icons);
         mShowMyObservationsCheckbox = (View) findViewById(R.id.show_my_observations_checkbox);
         mShowMyObservationsRow = (ViewGroup) findViewById(R.id.show_my_observations);
+        mHideMyObservationsCheckbox = (View) findViewById(R.id.hide_my_observations_checkbox);
+        mHideMyObservationsRow = (ViewGroup) findViewById(R.id.hide_my_observations);
         mProjectPic = (ImageView) findViewById(R.id.project_pic);
         mProjectName = (TextView) findViewById(R.id.project_name);
         mClearProject = (ImageView) findViewById(R.id.clear_project);
@@ -263,6 +267,9 @@ public class ExploreFiltersActivity extends AppCompatActivity {
 
                 if (view.isSelected()) {
                     // Show my observations
+                    mHideMyObservationsCheckbox.setSelected(false);
+                    mSearchFilters.hideObservationsUserId = null;
+
                     try {
                         JSONObject myUser = new JSONObject();
                         myUser.put("login", currentUsername);
@@ -287,6 +294,37 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         });
 
         mShowMyObservationsRow.setVisibility(currentUsername == null ? View.GONE : View.VISIBLE);
+
+
+        mHideMyObservationsCheckbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mSearchFilters == null) return;
+
+                view.setSelected(!view.isSelected());
+
+                if (view.isSelected()) {
+                    // Hide my observations
+                    mSearchFilters.hideObservationsUserId = mApp.currentUserId();
+                    mSearchFilters.user = null;
+                    mShowMyObservationsCheckbox.setSelected(false);
+                } else {
+                    mSearchFilters.hideObservationsUserId = null;
+                }
+
+                refreshViewState();
+            }
+        });
+
+        mHideMyObservationsRow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mHideMyObservationsCheckbox.performClick();
+            }
+        });
+
+        mHideMyObservationsRow.setVisibility(currentUsername == null ? View.GONE : View.VISIBLE);
+
 
 
         View.OnClickListener onDataQualityCheckbox = new View.OnClickListener() {
@@ -656,6 +694,11 @@ public class ExploreFiltersActivity extends AppCompatActivity {
             }
         }
 
+        if (mSearchFilters.hideObservationsUserId == null) {
+            mHideMyObservationsCheckbox.setSelected(false);
+        } else {
+            mHideMyObservationsCheckbox.setSelected(true);
+        }
 
         if (mSearchFilters.user == null) {
             mClearUser.setVisibility(View.GONE);
@@ -900,6 +943,13 @@ public class ExploreFiltersActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 try {
                     mSearchFilters.user = new JSONObject(data.getStringExtra(ItemSearchActivity.RESULT));
+                    if (mApp.loggedIn()) {
+                        if ((mSearchFilters.user != null) && (mSearchFilters.user.optString("login").equals(mApp.currentUserLogin()))) {
+                            // User selected his own username
+                            mHideMyObservationsCheckbox.setSelected(false);
+                            mSearchFilters.hideObservationsUserId = null;
+                        }
+                    }
                     refreshViewState();
                 } catch (JSONException e) {
                     Logger.tag(TAG).error(e);

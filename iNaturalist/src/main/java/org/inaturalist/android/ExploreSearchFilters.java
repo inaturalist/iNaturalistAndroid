@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -74,6 +73,8 @@ public class ExploreSearchFilters implements Serializable {
     public boolean hasPhotos = false;
     public boolean hasSounds = false;
 
+    public Integer hideObservationsUserId = null;
+
     public ExploreSearchFilters() {
         resetToDefault();
     }
@@ -102,6 +103,8 @@ public class ExploreSearchFilters implements Serializable {
 
         order = ORDER_DESCENDING;
         orderBy = ORDER_BY_CREATED_AT;
+
+        hideObservationsUserId = null;
     }
 
     public boolean isDirty() {
@@ -114,7 +117,8 @@ public class ExploreSearchFilters implements Serializable {
                 (observedOnMaxDate != null) || (!observedOnMonths.isEmpty()) ||
                 (annotationNameId != null) || (annotationValueId != null)) ||
                 (!order.equals(ORDER_DESCENDING)) || (!orderBy.equals(ORDER_BY_CREATED_AT)) ||
-                (hasPhotos) || (hasSounds);
+                (hasPhotos) || (hasSounds) ||
+                (hideObservationsUserId != null);
     }
 
     private void writeObject(ObjectOutputStream oos) throws IOException {
@@ -177,6 +181,10 @@ public class ExploreSearchFilters implements Serializable {
             } else {
                 url.append("&user_id=" + user.optInt("id"));
             }
+        }
+
+        if (hideObservationsUserId != null) {
+            url.append("&not_user_id=" + hideObservationsUserId);
         }
 
         if (!qualityGrade.isEmpty()) {

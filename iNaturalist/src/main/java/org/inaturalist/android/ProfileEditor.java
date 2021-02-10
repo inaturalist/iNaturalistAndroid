@@ -545,6 +545,7 @@ public class ProfileEditor extends AppCompatActivity {
             String newUsername = user.getString("login");
 
             editor.putString("username", newUsername);
+            editor.putInt("user_id", user.getInt("id"));
             editor.apply();
 
             mUserName = prefs.getString("username", "");

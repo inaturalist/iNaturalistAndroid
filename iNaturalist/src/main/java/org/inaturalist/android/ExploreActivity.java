@@ -839,6 +839,11 @@ public class ExploreActivity extends BaseFragmentActivity {
             builder.append(", ");
         }
 
+        if (mSearchFilters.hideObservationsUserId != null) {
+            builder.append(getString(R.string.hide_my_observations));
+            builder.append(", ");
+        }
+
         if ((mSearchFilters.orderBy != null) && (mSearchFilters.order != null)) {
             List<String> sortByValues = Arrays.asList(getResources().getStringArray(R.array.explore_order_by_values));
             List<String> sortValues = Arrays.asList(getResources().getStringArray(R.array.explore_order_values));

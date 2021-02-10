@@ -1079,5 +1079,6 @@
     <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
     See explore_order_by_items and explore_order_items keys !-->
     <string name="sorted_by_full">Sorted by %1$s (%2$s)</string>
+    <string name="hide_my_observations">Hide My Observations</string>
 </resources>
 
