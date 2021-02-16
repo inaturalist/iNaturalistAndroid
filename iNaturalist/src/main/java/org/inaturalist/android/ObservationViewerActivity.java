@@ -1124,7 +1124,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         mObservation.comments_count = mObservation.last_comments_count = mCommentCount;
         mObservation.identifications_count = mObservation.last_identifications_count = mIdCount;
         if (mObservation.getUri() != null) {
-            ContentValues cv = mObservation.getContentValues();
+            ContentValues cv = new ContentValues();
+            cv.put(Observation.COMMENTS_COUNT, mObservation.comments_count);
+            cv.put(Observation.IDENTIFICATIONS_COUNT, mObservation.identifications_count);
             if ((mObservation._synced_at != null) && (mObservation.id != null)) {
                 if ((mObservation._updated_at == null) || (mObservation._updated_at.before(mObservation._synced_at)) || (mObservation._updated_at.equals(mObservation._synced_at))) {
                     cv.put(Observation._SYNCED_AT, System.currentTimeMillis()); // No need to sync
