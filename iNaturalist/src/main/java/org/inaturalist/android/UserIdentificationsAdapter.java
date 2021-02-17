@@ -100,7 +100,7 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
             idIconicPic.setVisibility(View.VISIBLE);
 
             JSONObject observation = item.getJSONObject("observation");
-            JSONObject taxon = observation.has("taxon") ? observation.optJSONObject("taxon") : item.getJSONObject("taxon");
+            JSONObject taxon = item.getJSONObject("taxon");
 
             if (mApp.getShowScientificNameFirst()) {
                 // Show scientific name first, before common name

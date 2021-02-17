@@ -1425,10 +1425,10 @@ public class INaturalistService extends IntentService {
             } else if (action.equals(ACTION_GET_USER_IDENTIFICATIONS)) {
                 String username = intent.getStringExtra(USERNAME);
                 BetterJSONObject identifications = getUserIdentifications(username);
-                identifications = ObservationUtils.getMinimalIdentificationResults(identifications);
+                BetterJSONObject minimalIdentifications = ObservationUtils.getMinimalIdentificationResults(identifications, username);
 
                 Intent reply = new Intent(IDENTIFICATIONS_RESULT);
-                mApp.setServiceResult(IDENTIFICATIONS_RESULT, identifications);
+                mApp.setServiceResult(IDENTIFICATIONS_RESULT, minimalIdentifications);
                 reply.putExtra(IS_SHARED_ON_APP, true);
                 reply.putExtra(USERNAME, username);
                 LocalBroadcastManager.getInstance(this).sendBroadcast(reply);

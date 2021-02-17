@@ -8,7 +8,7 @@ import org.tinylog.Logger;
 public class ObservationUtils {
     private static final String TAG = "ObservationUtils";
 
-    public static BetterJSONObject getMinimalIdentificationResults(BetterJSONObject results) {
+    public static BetterJSONObject getMinimalIdentificationResults(BetterJSONObject results, String username) {
         if (results == null) return null;
 
         SerializableJSONArray innerResults = results.getJSONArray("results");
@@ -21,7 +21,7 @@ public class ObservationUtils {
 
             for (int i = 0; i < identificationResults.length(); i++) {
                 JSONObject item = identificationResults.optJSONObject(i);
-                minimizedResults.put(getMinimalIdentification(item));
+                minimizedResults.put(getMinimalIdentification(item, username));
             }
 
             results.put("results", minimizedResults);
@@ -152,7 +152,7 @@ public class ObservationUtils {
 
 
     // Returns a minimal version of an identification JSON (used to lower memory usage)
-    public static JSONObject getMinimalIdentification(JSONObject identification) {
+    public static JSONObject getMinimalIdentification(JSONObject identification, String username) {
         JSONObject minimalObserver = new JSONObject();
 
         if (identification == null) return null;
@@ -160,6 +160,23 @@ public class ObservationUtils {
         try {
             if (identification.has("observation")) minimalObserver.put("observation", getMinimalObservation(identification.optJSONObject("observation")));
             if (identification.has("taxon")) minimalObserver.put("taxon", getMinimalTaxon(identification.optJSONObject("taxon")));
+
+            // See if we can retrieve a full identification details object (since the basic taxon object of the observation doesn't
+            // contain things like taxon name, image URL etc.)
+            if (identification.has("observation")) {
+                JSONObject observation = identification.getJSONObject("observation");
+                if (observation.has("identifications")) {
+                    JSONArray obsIdentifications = observation.getJSONArray("identifications");
+                    for (int i = 0; i < obsIdentifications.length(); i++) {
+                        JSONObject id = obsIdentifications.optJSONObject(i);
+                        if ((id.getJSONObject("user").getString("login").equalsIgnoreCase(username)) && (id.getBoolean("current"))) {
+                            // Found current ID of the user, for this observation
+                            minimalObserver.put("taxon", getMinimalTaxon(id.getJSONObject("taxon")));
+                        }
+                    }
+                }
+            }
+
         } catch (JSONException e) {
             Logger.tag(TAG).error(e);
             return null;
