@@ -1924,7 +1924,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                                 double latitude = (mObservation.geoprivacy == null) || (mObservation.geoprivacy.equals("open")) ? mObservation.latitude : mObservation.private_latitude;
                                 double longitude = (mObservation.geoprivacy == null) || (mObservation.geoprivacy.equals("open")) ? mObservation.longitude : mObservation.private_longitude;
 
-                                String uri = String.format("geo:0,0?q=%f,%f(%s)", latitude, longitude, locationLabel);
+                                String uri = String.format(Locale.ENGLISH, "geo:0,0?q=%f,%f(%s)", latitude, longitude, locationLabel);
                                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                                 startActivity(mapIntent);
                                 break;
