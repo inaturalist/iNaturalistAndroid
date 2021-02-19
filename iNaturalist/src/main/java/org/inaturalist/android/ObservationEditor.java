@@ -146,7 +146,7 @@ public class ObservationEditor extends AppCompatActivity {
     public static final int RESULT_RETURN_TO_OBSERVATION_LIST = 0x1001;
     public static final int RESULT_REFRESH_OBS = 0x1002;
 
-    private static final int MAX_PHOTOS_PER_OBSERVATION = 20; // Max photos per observation
+    public static final int MAX_PHOTOS_PER_OBSERVATION = 20; // Max photos per observation
     private static final int PHOTO_COUNT_WARNING = 10; // After how many photos should we show a warning to to the user
 
     @State(AndroidStateBundlers.UriBundler.class) public Uri mUri;

@@ -114,6 +114,8 @@ public class ObservationPhotosViewer extends AppCompatActivity {
         mEditPhoto = findViewById(R.id.edit_photo);
         mActionContainer = findViewById(R.id.action_container);
 
+        mHelper = new ActivityHelper(this);
+
         Intent intent = getIntent();
 
         try {
@@ -179,6 +181,11 @@ public class ObservationPhotosViewer extends AppCompatActivity {
             mDuplicatePhoto.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    if (adapter.getCount() >= ObservationEditor.MAX_PHOTOS_PER_OBSERVATION) {
+                        mHelper.alert(String.format(getString(R.string.no_more_photos_allowed), ObservationEditor.MAX_PHOTOS_PER_OBSERVATION));
+                        return;
+                    }
+
                     Intent data = new Intent();
                     data.putExtra(DUPLICATE_PHOTO_INDEX, mViewPager.getCurrentItem());
                     if (mReplacedPhotos.size() > 0) {
