@@ -2374,9 +2374,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
 		@Override
 	    public void onReceive(Context context, Intent intent) {
-            Logger.tag(TAG).error("AttributesReceiver");
-
-            BaseFragmentActivity.safeUnregisterReceiver(mAttributesReceiver, ObservationViewerActivity.this);
+            Logger.tag(TAG).info("AttributesReceiver");
 
             BetterJSONObject resultsObj = (BetterJSONObject) mApp.getServiceResult(INaturalistService.GET_ATTRIBUTES_FOR_TAXON_RESULT);
 
@@ -2503,7 +2501,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            downloadCommunityTaxon();
+                            downloadCommunityTaxon(false);
                         }
                     }).start();
                 }
@@ -2539,7 +2537,6 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     Logger.tag(TAG).debug("ObservationViewerActivity - ObservationReceiver - update obs: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
                 }
             }
-
             reloadPhotos();
             loadObservationIntoUI();
             setupMap();
@@ -2662,7 +2659,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            downloadCommunityTaxon();
+                            downloadCommunityTaxon(false);
                         }
                     }).start();
                 }
@@ -2697,6 +2694,14 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     getContentResolver().update(mUri, cv, null, null);
                     Logger.tag(TAG).debug("ObservationViewerActivity - ObservationReceiver - update obs: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
                 }
+
+                // Get latest annotations since community taxon might have changed
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        downloadCommunityTaxon(true);
+                    }
+                }).start();
             }
 
             if (mReloadObs && mReadOnly && mObservation.id != null && mApp.loggedIn()) {
@@ -2741,7 +2746,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
 	}
 
-    private void downloadCommunityTaxon() {
+    private void downloadCommunityTaxon(boolean downloadFromOriginalObservation) {
         JSONObject observation;
         try {
             observation = new JSONObject(mObsJson);
@@ -2765,6 +2770,10 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_ATTRIBUTES_FOR_TAXON, null, ObservationViewerActivity.this, INaturalistService.class);
             ContextCompat.startForegroundService(this, serviceIntent);
             return;
+        }
+
+        if (downloadFromOriginalObservation) {
+            taxonId = mObservation.taxon_id;
         }
 
         JSONObject taxon = downloadTaxon(taxonId);
