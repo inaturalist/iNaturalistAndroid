@@ -272,7 +272,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
         mLoadingSuggestions = (ProgressBar) findViewById(R.id.loading_suggestions);
         mSuggestionsContainer = (ViewGroup) findViewById(R.id.suggestions_container);
         mNoNetwork = (TextView) findViewById(R.id.no_network);
-        mViewSuggestionsNotNearByButton = (Button) findViewById(R.id.view_suggestions_not_near_by);
+        mViewSuggestionsNotNearByButton = (Button) findViewById(R.id.include_suggestions_not_near_by);
         mSuggestionSourceButton = (ImageView) findViewById(R.id.suggestion_source);
         mFiltersButton = findViewById(R.id.filters);
         mActiveFilters = (ViewGroup) findViewById(R.id.active_filters);
@@ -740,7 +740,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
                 Collections.sort(sortedSuggestions, (s1, s2) -> Double.compare(s2.getJSONObject("source_details").optDouble("combined_score"), s1.getJSONObject("source_details").optDouble("combined_score")));
             }
 
-            mViewSuggestionsNotNearByButton.setText(R.string.view_suggestions_not_seen_nearby);
+            mViewSuggestionsNotNearByButton.setText(R.string.include_suggestions_not_seen_nearby);
         }
 
         Logger.tag(TAG).info("After: ");

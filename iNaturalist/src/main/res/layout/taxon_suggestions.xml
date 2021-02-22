@@ -339,7 +339,7 @@
                     android:layout_height="wrap_content" />
 
                 <Button
-                    android:id="@+id/view_suggestions_not_near_by"
+                    android:id="@+id/include_suggestions_not_near_by"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="20dp"
@@ -349,7 +349,7 @@
                     android:textColor="#ffffff"
                     android:textSize="14sp"
                     android:background="@drawable/circular_button"
-                    android:text="@string/view_suggestions_not_seen_nearby"
+                    android:text="@string/include_suggestions_not_seen_nearby"
                     />
 
             </LinearLayout>

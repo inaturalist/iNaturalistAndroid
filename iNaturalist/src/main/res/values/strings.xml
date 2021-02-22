@@ -991,7 +991,7 @@
     <string name="filter_observations_by_months">Filter observations by months</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="view_suggestions_not_seen_nearby">View suggestions not seen nearby</string>
+    <string name="include_suggestions_not_seen_nearby">Include suggestions not seen nearby</string>
     <string name="only_view_nearby_suggestions">Only view nearby suggestions</string>
     <string name="suggestions_source">Suggestions Source</string>
     <string name="research_grade_observations">Research Grade Observations</string>
