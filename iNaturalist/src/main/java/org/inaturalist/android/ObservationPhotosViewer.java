@@ -376,6 +376,11 @@ public class ObservationPhotosViewer extends AppCompatActivity {
             mInternalObservationId = _observationId;
             mObservationUUID = uuid;
 
+            if (mObservationUUID == null) {
+                Logger.tag(TAG).error("UUID is null!");
+                return;
+            }
+
             Cursor imageCursor = activity.getContentResolver().query(ObservationPhoto.CONTENT_URI,
                     ObservationPhoto.PROJECTION,
                     "(observation_uuid=?) AND ((is_deleted = 0) OR (is_deleted IS NULL))",
