@@ -81,6 +81,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 import androidx.core.content.res.ResourcesCompat;
 
+import android.os.StrictMode;
 import android.os.Trace;
 import android.telephony.TelephonyManager;
 import android.text.format.DateFormat;
@@ -982,21 +983,6 @@ public class INaturalistApp extends MultiDexApplication {
     }
     public boolean getCancelSync() {
         return mCancelSync;
-    }
-
-    public void checkSyncNeeded() {
-        Cursor oCursor = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, 
-                "_synced_at IS NULL OR (_updated_at > _synced_at)", null, Observation.DEFAULT_SORT_ORDER);
-        Cursor opCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI, ObservationPhoto.PROJECTION, 
-                "_synced_at IS NULL OR (_updated_at > _synced_at)", null, ObservationPhoto.DEFAULT_SORT_ORDER);
-        if (mIsSyncing) {
-            Resources res = getResources();
-            serviceNotify(SYNC_NOTIFICATION, 
-                    res.getString(R.string.sync_required),
-                    String.format(res.getString(R.string.sync_required_message), oCursor.getCount(), opCursor.getCount()),
-                    null,
-                    new Intent(INaturalistService.ACTION_SYNC, null, this, INaturalistService.class));
-        }
     }
 
     public boolean loggedIn() {

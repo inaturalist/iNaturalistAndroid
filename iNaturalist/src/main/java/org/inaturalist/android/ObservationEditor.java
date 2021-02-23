@@ -1971,7 +1971,9 @@ public class ObservationEditor extends AppCompatActivity {
     private final Boolean isDeleteable() {
         if (mCursor == null) { return true; }
         Cursor c = getContentResolver().query(mUri, new String[]{Observation._ID}, null, null, null);
-        if (c.getCount() == 0) { return true; }
+        int count = c.getCount();
+        c.close();
+        if (count == 0) { return true; }
 
         if (Intent.ACTION_INSERT.equals(getIntent().getAction()) && mCanceled) return true;
         return false;
@@ -2936,7 +2938,9 @@ public class ObservationEditor extends AppCompatActivity {
         Cursor cursor = getContentResolver().query(uri, null, null, null, null);
         cursor.moveToFirst();
         int index = cursor.getColumnIndex(MediaStore.Audio.AudioColumns.DATA);
-        return cursor.getString(index);
+        String path = cursor.getString(index);
+        cursor.close();
+        return path;
     }
 
     private void prepareCapturedSound(Uri selectedSoundUri, boolean translateUriToPath) {

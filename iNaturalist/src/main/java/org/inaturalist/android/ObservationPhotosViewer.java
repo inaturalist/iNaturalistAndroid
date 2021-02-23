@@ -389,7 +389,10 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
             imageCursor.moveToFirst();
 
-            if (imageCursor.getCount() == 0) return;
+            if (imageCursor.getCount() == 0) {
+                imageCursor.close();
+                return;
+            }
 
             for (int i = 0; i < imageCursor.getCount(); i++) {
                 mImageViews.add(null);
@@ -416,6 +419,8 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                     mImageThumbnails.add(null);
                 }
             } while (imageCursor.moveToNext());
+
+            imageCursor.close();
         }
  		public IdPicsPagerAdapter(Activity activity, ViewPager viewPager, JSONObject observation, boolean isTaxon, OnClickListener listener) {
             this(activity, viewPager, observation, isTaxon);
