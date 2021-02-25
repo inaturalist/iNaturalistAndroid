@@ -126,40 +126,6 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:id="@+id/choose_sound_container"
-            android:layout_width="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:clickable="true"
-                android:id="@+id/choose_sound"
-                android:layout_width="69dp"
-                android:layout_height="69dp"
-                android:layout_gravity="center"
-                android:background="@drawable/circular_bottom_menu_icon">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/sound_menu"
-                    android:tint="#2c2c2c"
-                    />
-            </LinearLayout>
-            <TextView
-                android:ellipsize="end"
-                android:lines="2"
-                android:textSize="14sp"
-                android:gravity="center"
-                android:layout_width="101dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="#161616"
-                android:layout_marginTop="12dp"
-                android:text="@string/upload_sound"
-                />
-        </LinearLayout>
-
-        <LinearLayout
             android:id="@+id/record_sound_container"
             android:layout_width="wrap_content"
             android:layout_marginLeft="12dp"
@@ -193,6 +159,41 @@
                 android:text="@string/record_sound"
                 />
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/choose_sound_container"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:clickable="true"
+                android:id="@+id/choose_sound"
+                android:layout_width="69dp"
+                android:layout_height="69dp"
+                android:layout_gravity="center"
+                android:background="@drawable/circular_bottom_menu_icon">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/sound_menu"
+                    android:tint="#2c2c2c"
+                    />
+            </LinearLayout>
+            <TextView
+                android:ellipsize="end"
+                android:lines="2"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_width="101dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#161616"
+                android:layout_marginTop="12dp"
+                android:text="@string/upload_sound"
+                />
+        </LinearLayout>
+
 
     </LinearLayout>
 

@@ -317,7 +317,7 @@
     <string name="sync_obs_to_see_favs">Sync this observation to see faves...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Sync this observation in order to leave a comment or suggest an identification...</string>
-    <string name="no_photo">No Photo</string>
+    <string name="no_photo">No Media</string>
     <string name="about_this_species">About this Species</string>
     <string name="view_on_wikipedia">Wikipedia Article</string>
     <string name="photo"><![CDATA[Photo: <b><a href="%1$s">%2$s</a></b>]]></string>
