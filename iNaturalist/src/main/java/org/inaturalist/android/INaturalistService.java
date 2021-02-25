@@ -10,9 +10,9 @@ import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.nio.charset.Charset;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -429,6 +429,8 @@ public class INaturalistService extends IntentService {
     public static String ACTION_GET_OBSERVATION = "get_observation";
     public static String ACTION_GET_AND_SAVE_OBSERVATION = "get_and_save_observation";
     public static String ACTION_FLAG_OBSERVATION_AS_CAPTIVE = "flag_observation_as_captive";
+    public static String ACTION_FOLLOW_OBSERVATION = "follow_observation";
+    public static String ACTION_GET_OBSERVATION_SUBSCRIPTIONS = "action_get_observation_subscriptions";
     public static String ACTION_GET_CHECK_LIST = "get_check_list";
     public static String ACTION_GET_MESSAGES = "get_messages";
     public static String ACTION_GET_NOTIFICATION_COUNTS = "get_notification_counts";
@@ -477,6 +479,8 @@ public class INaturalistService extends IntentService {
     public static String ACTION_PROJECT_OBSERVATIONS_RESULT = "get_project_observations_result";
     public static String ACTION_PROJECT_NEWS_RESULT = "get_project_news_result";
     public static String ACTION_NEWS_RESULT = "get_news_result";
+    public static String ACTION_FOLLOW_OBSERVATION_RESULT = "action_follow_observation_result";
+    public static String ACTION_GET_OBSERVATION_SUBSCRIPTIONS_RESULT = "action_get_observation_subscriptions_result";
     public static String ACTION_PROJECT_SPECIES_RESULT = "get_project_species_result";
     public static String ACTION_PROJECT_OBSERVERS_RESULT = "get_project_observers_result";
     public static String ACTION_PROJECT_IDENTIFIERS_RESULT = "get_project_identifiers_result";
@@ -1856,6 +1860,22 @@ public class INaturalistService extends IntentService {
 
                 Intent reply = new Intent(ACTION_CHECK_LIST_RESULT);
                 reply.putExtra(CHECK_LIST_RESULT, checkList);
+                LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_GET_OBSERVATION_SUBSCRIPTIONS)) {
+                int id = intent.getExtras().getInt(OBSERVATION_ID);
+                JSONArray subscriptions = getObservationSubscriptions(id);
+
+                Intent reply = new Intent(ACTION_GET_OBSERVATION_SUBSCRIPTIONS_RESULT);
+                reply.putExtra(RESULTS, new SerializableJSONArray(subscriptions));
+                LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_FOLLOW_OBSERVATION)) {
+                int id = intent.getExtras().getInt(OBSERVATION_ID);
+                boolean success = followObservation(id);
+
+                Intent reply = new Intent(ACTION_FOLLOW_OBSERVATION_RESULT);
+                reply.putExtra(SUCCESS, success);
                 LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
 
             } else if (action.equals(ACTION_FLAG_OBSERVATION_AS_CAPTIVE)) {
@@ -4951,6 +4971,33 @@ public class INaturalistService extends IntentService {
     }
 
 
+    public JSONArray getObservationSubscriptions(int obsId) throws AuthenticationException {
+        JSONArray json = get(String.format(Locale.ENGLISH, "%s/observations/%d/subscriptions", API_HOST, obsId));
+
+        if (json == null) {
+            return null;
+        }
+
+        JSONArray results = json.optJSONObject(0).optJSONArray("results");
+
+        return results;
+    }
+
+
+
+    public boolean followObservation(int obsId) throws AuthenticationException {
+        JSONArray result = null;
+        try {
+            result = post(String.format(Locale.ENGLISH, "%s/subscriptions/observation/%d/subscribe", API_HOST, obsId), (JSONObject) null);
+        } catch (Exception exc) {
+            exc.printStackTrace();
+            return false;
+        }
+
+        return ((mResponseErrors == null) && (mLastStatusCode == HttpStatus.SC_OK));
+    }
+
+
     public void flagObservationAsCaptive(int obsId) throws AuthenticationException {
         post(String.format(Locale.ENGLISH, "%s/observations/%d/quality/wild.json?agree=false", HOST, obsId), (JSONObject) null);
     }
@@ -6193,7 +6240,7 @@ public class INaturalistService extends IntentService {
             Response response = client.newCall(request).execute();
             Logger.tag(TAG).info("isSuccessful: " + response.isSuccessful() + "; response code = " + response.code());
             response.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             Logger.tag(TAG).error("Failed contacting " + url);
             Logger.tag(TAG).error(e);
         }

@@ -259,7 +259,12 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     private ProgressBar mLoadingAnnotations;
     private ViewGroup mAnnotationsContent;
     private DownloadObservationReceiver mDownloadObservationReceiver;
+    private ObservationSubscriptionsReceiver mObservationSubscriptionsReceiver;
+    private ObservationFollowReceiver mObservationFollowReceiver;
     private Menu mMenu;
+
+    @State(AndroidStateBundlers.JSONArrayBundler.class) public JSONArray mObservationSubscriptions = null;
+    @State public boolean mFollowingObservation = false;
 
     @Override
 	protected void onStart() {
@@ -652,6 +657,15 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         mDownloadObservationReceiver = new DownloadObservationReceiver();
         IntentFilter filter3 = new IntentFilter(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION_RESULT);
         BaseFragmentActivity.safeRegisterReceiver(mDownloadObservationReceiver, filter3, this);
+
+        mObservationSubscriptionsReceiver = new ObservationSubscriptionsReceiver();
+        IntentFilter filter4 = new IntentFilter(INaturalistService.ACTION_GET_OBSERVATION_SUBSCRIPTIONS_RESULT);
+        BaseFragmentActivity.safeRegisterReceiver(mObservationSubscriptionsReceiver, filter4, this);
+
+        mObservationFollowReceiver = new ObservationFollowReceiver();
+        IntentFilter filter5 = new IntentFilter(INaturalistService.ACTION_FOLLOW_OBSERVATION_RESULT);
+        BaseFragmentActivity.safeRegisterReceiver(mObservationFollowReceiver, filter5, this);
+
     }
 
     @Override
@@ -798,6 +812,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         getCommentIdList();
         refreshDataQuality();
         refreshAttributes();
+        refreshFollowStatus();
 
         // Mark observation updates as viewed
         if (mObservation != null && mObservation._synced_at != null) {
@@ -805,6 +820,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
             ContextCompat.startForegroundService(this, serviceIntent);
         }
+
     }
 
     private void reloadObservation(Bundle savedInstanceState, boolean forceReload) {
@@ -2250,6 +2266,14 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 refreshDataQuality();
                 refreshMenu();
                 return true;
+            case R.id.follow_observation:
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_FOLLOW_OBSERVATION, null, ObservationViewerActivity.this, INaturalistService.class);
+                serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
+                ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
+
+                mFollowingObservation = true;
+                refreshMenu();
+                return true;
             case R.id.duplicate:
                 intent = new Intent(Intent.ACTION_EDIT, mUri, this, ObservationEditor.class);
                 if (mObsJson != null) intent.putExtra(ObservationEditor.OBSERVATION_JSON, mObsJson);
@@ -2320,9 +2344,12 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     }
     
     private void refreshMenu() {
+        if (mMenu == null) return;
+
         MenuItem flagCaptive = mMenu.findItem(R.id.flag_captive);
         MenuItem duplicate = mMenu.findItem(R.id.duplicate);
         MenuItem edit = mMenu.findItem(R.id.edit_observation);
+        MenuItem follow = mMenu.findItem(R.id.follow_observation);
 
         if (mReadOnly) {
             edit.setVisible(false);
@@ -2333,6 +2360,15 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         }
 
         flagCaptive.setChecked(mFlagAsCaptive);
+
+        if (mObservationSubscriptions == null) {
+            follow.setEnabled(false);
+            follow.setTitle(R.string.follow_this_observation);
+        } else {
+            follow.setEnabled(!mFollowingObservation);
+            follow.setTitle(mObservationSubscriptions.length() > 0 ?
+                    R.string.unfollow_this_observation : R.string.follow_this_observation);
+        }
     }
 
     @Override
@@ -2370,6 +2406,16 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
 	}
 
+	private void refreshFollowStatus() {
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION_SUBSCRIPTIONS, null, ObservationViewerActivity.this, INaturalistService.class);
+        serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
+        ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
+
+        mObservationSubscriptions = null;
+        mFollowingObservation = false;
+        refreshMenu();
+    }
+
     private class AttributesReceiver extends BroadcastReceiver {
 
 		@Override
@@ -2390,6 +2436,66 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 	    }
 
 	}
+
+    private class ObservationFollowReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Logger.tag(TAG).error("ObservationFollowReceiver - result");
+
+            boolean success = intent.getBooleanExtra(INaturalistService.SUCCESS, false);
+
+            if (!success) {
+                mFollowingObservation = false;
+                Toast.makeText(getApplicationContext(), getString(
+                        (mObservationSubscriptions != null) && (mObservationSubscriptions.length() > 0) ?
+                                R.string.could_not_unfollow_observation : R.string.could_not_follow_observation
+                    ), Toast.LENGTH_LONG).show();
+                refreshMenu();
+                return;
+            }
+
+            mFollowingObservation = false;
+
+            if ((mObservationSubscriptions == null) || (mObservationSubscriptions.length() == 0)) {
+                mObservationSubscriptions = new JSONArray();
+                mObservationSubscriptions.put(true);
+            } else {
+                mObservationSubscriptions = new JSONArray();
+            }
+
+            refreshMenu();
+        }
+
+    }
+
+    private class ObservationSubscriptionsReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Logger.tag(TAG).error("ObservationSubscriptionsReceiver - result");
+
+            boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
+            SerializableJSONArray subscriptions;
+            if (isSharedOnApp) {
+                subscriptions = (SerializableJSONArray) mApp.getServiceResult(INaturalistService.ACTION_GET_OBSERVATION_SUBSCRIPTIONS_RESULT);
+            } else {
+                subscriptions = (SerializableJSONArray) intent.getSerializableExtra(INaturalistService.RESULTS);
+            }
+
+            if ((subscriptions == null) || (subscriptions.getJSONArray() == null)) {
+                mObservationSubscriptions = null;
+                refreshMenu();
+                return;
+            }
+
+            JSONArray results = subscriptions.getJSONArray();
+            mObservationSubscriptions = results;
+
+            refreshMenu();
+        }
+
+    }
 
     private class DownloadObservationReceiver extends BroadcastReceiver {
 
@@ -3181,6 +3287,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         BaseFragmentActivity.safeUnregisterReceiver(mAttributesReceiver, this);
         BaseFragmentActivity.safeUnregisterReceiver(mChangeAttributesReceiver, this);
         BaseFragmentActivity.safeUnregisterReceiver(mDownloadObservationReceiver, this);
+        BaseFragmentActivity.safeUnregisterReceiver(mObservationSubscriptionsReceiver, this);
+        BaseFragmentActivity.safeUnregisterReceiver(mObservationFollowReceiver, this);
 
         if (mPhotosAdapter != null) {
             mPhotosAdapter.pause();

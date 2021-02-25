@@ -1080,5 +1080,9 @@
     See explore_order_by_items and explore_order_items keys !-->
     <string name="sorted_by_full">Sorted by %1$s (%2$s)</string>
     <string name="hide_my_observations">Hide My Observations</string>
+    <string name="follow_this_observation">Follow this Observation</string>
+    <string name="unfollow_this_observation">Unfollow this Observation</string>
+    <string name="could_not_follow_observation">Could not follow this observation</string>
+    <string name="could_not_unfollow_observation">Could not unfollow this observation</string>
 </resources>
 
