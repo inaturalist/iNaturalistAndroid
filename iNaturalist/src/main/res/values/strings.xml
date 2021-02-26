@@ -1084,5 +1084,7 @@
     <string name="unfollow_this_observation">Unfollow this Observation</string>
     <string name="could_not_follow_observation">Could not follow this observation</string>
     <string name="could_not_unfollow_observation">Could not unfollow this observation</string>
+    <string name="copy_coordinates">Copy coordinates</string>
+    <string name="coordinates_copied_to_clipboard">Coordinates copied to clipboard</string>
 </resources>
 

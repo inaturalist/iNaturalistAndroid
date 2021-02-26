@@ -2,6 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/copy_coordinates"
+        android:title="@string/copy_coordinates"
+        android:icon="@drawable/baseline_content_copy_black_24"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/share_location"
+        android:title="@string/share_location"
+        android:icon="@drawable/baseline_share_black_24"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/save_location"
         android:title=""
         android:icon="@drawable/ic_check_black_24dp"

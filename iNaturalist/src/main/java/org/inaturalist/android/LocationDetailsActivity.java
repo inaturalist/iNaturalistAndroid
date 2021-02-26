@@ -1,10 +1,13 @@
 package org.inaturalist.android;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.evernote.android.state.State;
 
@@ -25,6 +29,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.livefront.bridge.Bridge;
 
 import org.tinylog.Logger;
+
+import java.util.Locale;
 
 public class LocationDetailsActivity extends AppCompatActivity implements LocationListener {
     private final static String TAG = "LocationDetailsActivity";
@@ -178,6 +184,29 @@ public class LocationDetailsActivity extends AppCompatActivity implements Locati
         case android.R.id.home:
             finish();
             return true;
+        case R.id.copy_coordinates:
+            double latitude = (mObservation.geoprivacy == null) || (mObservation.geoprivacy.equals("open")) ? mObservation.latitude : mObservation.private_latitude;
+            double longitude = (mObservation.geoprivacy == null) || (mObservation.geoprivacy.equals("open")) ? mObservation.longitude : mObservation.private_longitude;
+            String coordinates = String.format(Locale.ENGLISH, "%f,%f", latitude, longitude);
+
+            android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            android.content.ClipData clip = android.content.ClipData.newPlainText(coordinates, coordinates);
+            clipboard.setPrimaryClip(clip);
+
+            Toast.makeText(this, getString(R.string.coordinates_copied_to_clipboard), Toast.LENGTH_LONG).show();
+            return true;
+
+        case R.id.share_location:
+            String locationLabel = "";
+
+            latitude = (mObservation.geoprivacy == null) || (mObservation.geoprivacy.equals("open")) ? mObservation.latitude : mObservation.private_latitude;
+            longitude = (mObservation.geoprivacy == null) || (mObservation.geoprivacy.equals("open")) ? mObservation.longitude : mObservation.private_longitude;
+
+            String uri = String.format(Locale.ENGLISH, "geo:0,0?q=%f,%f(%s)", latitude, longitude, locationLabel);
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+            startActivity(mapIntent);
+            return true;
+
         case R.id.satellite:
             mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
             return true;
