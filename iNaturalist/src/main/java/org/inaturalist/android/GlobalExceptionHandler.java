@@ -3,7 +3,7 @@ package org.inaturalist.android;
 import org.tinylog.Logger;
 
 /** Handle global uncaught exceptions - and logs them to file using our logger (from there, continues
- * to send it up the chain to Fabric) */
+ * to send it up the chain to analytics services) */
 public class GlobalExceptionHandler implements Thread.UncaughtExceptionHandler {
 
     private Thread.UncaughtExceptionHandler mRootHandler;
