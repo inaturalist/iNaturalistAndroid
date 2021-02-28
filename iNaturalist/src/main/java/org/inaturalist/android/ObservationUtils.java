@@ -104,6 +104,7 @@ public class ObservationUtils {
         try {
             minimaldObs.put("id", observation.optInt("id"));
             minimaldObs.put("quality_grade", observation.optString("quality_grade"));
+            if (observation.has("uuid") && !observation.isNull("uuid")) minimaldObs.put("uuid", observation.optString("uuid"));
             if (observation.has("observed_on") && !observation.isNull("observed_on")) minimaldObs.put("observed_on", observation.optString("observed_on"));
             if (observation.has("time_observed_at") && !observation.isNull("time_observed_at")) minimaldObs.put("time_observed_at", observation.optString("time_observed_at"));
             if (observation.has("species_guess") && !observation.isNull("species_guess")) minimaldObs.put("species_guess", observation.optString("species_guess"));

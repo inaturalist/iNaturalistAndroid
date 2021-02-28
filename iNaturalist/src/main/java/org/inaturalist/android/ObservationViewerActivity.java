@@ -265,6 +265,12 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
     @State(AndroidStateBundlers.JSONArrayBundler.class) public JSONArray mObservationSubscriptions = null;
     @State public boolean mFollowingObservation = false;
+    
+    private TextView mMetadataObservationID;
+    private ViewGroup mMetadataObservationIDRow;
+    private TextView mMetadataObservationUUID;
+    private TextView mMetadataObservationURL;
+    private ViewGroup mMetadataObservationURLRow;
 
     @Override
 	protected void onStart() {
@@ -684,6 +690,12 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         setContentView(R.layout.observation_viewer);
         mHelper = new ActivityHelper(this);
 
+        mMetadataObservationID = (TextView) findViewById(R.id.observation_id);
+        mMetadataObservationIDRow = (ViewGroup) findViewById(R.id.metadata_id_row);
+        mMetadataObservationUUID = (TextView) findViewById(R.id.observation_uuid);
+        mMetadataObservationURL = (TextView) findViewById(R.id.observation_url);
+        mMetadataObservationURLRow = (ViewGroup) findViewById(R.id.metadata_url_row);
+
         reloadObservation(savedInstanceState, false);
 
         mAnnotationSection = (ViewGroup) findViewById(R.id.annotations_section);
@@ -769,6 +781,15 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         mLoadingPhotos = (ProgressBar) findViewById(R.id.loading_photos);
         mLoadingMap = (ProgressBar) findViewById(R.id.loading_map);
         mTaxonInactive = (ViewGroup) findViewById(R.id.taxon_inactive);
+
+
+        mMetadataObservationURL.setOnClickListener(v -> {
+            String inatNetwork = mApp.getInaturalistNetworkMember();
+            String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+            String obsUrl = inatHost + "/observations/" + mObservation.id;
+
+            mHelper.openUrlInBrowser(obsUrl);
+        });
 
         WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
@@ -945,6 +966,30 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
             serviceIntent.putExtra(INaturalistService.GET_PROJECTS, true);
             ContextCompat.startForegroundService(this, serviceIntent);
+        }
+
+        if (mObservation != null) {
+            JSONObject json = null;
+            try {
+                if (mObsJson != null) json = new JSONObject(mObsJson);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            mMetadataObservationUUID.setText(mObservation.uuid != null ? mObservation.uuid : json.optString("uuid"));
+
+            if (mObservation.id != null) {
+                mMetadataObservationIDRow.setVisibility(View.VISIBLE);
+                mMetadataObservationID.setText(String.valueOf(mObservation.id));
+                mMetadataObservationURLRow.setVisibility(View.VISIBLE);
+
+                String inatNetwork = mApp.getInaturalistNetworkMember();
+                String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+                String obsUrl = inatHost + "/observations/" + mObservation.id;
+                mMetadataObservationURL.setText(obsUrl);
+            } else {
+                mMetadataObservationIDRow.setVisibility(View.GONE);
+                mMetadataObservationURLRow.setVisibility(View.GONE);
+            }
         }
 
     }

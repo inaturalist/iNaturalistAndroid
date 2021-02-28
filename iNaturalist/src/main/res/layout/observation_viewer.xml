@@ -1045,6 +1045,133 @@
                 />
         </RelativeLayout>
 
+
+
+        <LinearLayout
+            android:id="@+id/metadata_section"
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/metadata"
+                android:layout_marginBottom="10dp"
+                android:textSize="18sp"
+                android:layout_marginTop="8dp" />
+
+            <LinearLayout
+                android:id="@+id/metadata_id_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/id"
+                    android:textSize="15sp"
+                    android:textColor="#808080"
+                    android:layout_gravity="top"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/observation_id"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:text="123456789"
+                    android:textSize="15sp"
+                    android:textColor="#808080"
+                    android:layout_gravity="top"
+                    android:textIsSelectable="true"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/metadata_uuid_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/uuid"
+                    android:textSize="15sp"
+                    android:textColor="#808080"
+                    android:layout_gravity="top"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/observation_uuid"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:text="abcdef-12345-78990"
+                    android:textSize="15sp"
+                    android:textColor="#808080"
+                    android:layout_gravity="top"
+                    android:textIsSelectable="true"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/metadata_url_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/url"
+                    android:textSize="15sp"
+                    android:textColor="#808080"
+                    android:layout_gravity="top"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/observation_url"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:text="https://www.inaturalist.org/observations/12345"
+                    android:textSize="15sp"
+                    android:textColor="#2867CF"
+                    android:layout_gravity="top"
+                    android:clickable="true"
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
 </LinearLayout>
