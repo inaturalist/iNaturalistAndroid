@@ -1079,16 +1079,25 @@
     <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
     See explore_order_by_items and explore_order_items keys !-->
     <string name="sorted_by_full">Sorted by %1$s (%2$s)</string>
+    <!-- Label for an observation search filter to exclude your own observations -->
     <string name="hide_my_observations">Hide My Observations</string>
+    <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
     <string name="follow_this_observation">Follow this Observation</string>
+    <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
     <string name="unfollow_this_observation">Unfollow this Observation</string>
+    <!-- Error message shown when an attempt to follow an observation fails -->
     <string name="could_not_follow_observation">Could not follow this observation</string>
+    <!-- Error message shown when an attempt to unfollow an observation fails -->
     <string name="could_not_unfollow_observation">Could not unfollow this observation</string>
+    <!-- Label for a button to copy the coordinates of an observation -->
     <string name="copy_coordinates">Copy coordinates</string>
     <string name="coordinates_copied_to_clipboard">Coordinates copied to clipboard</string>
+    <!--  Title of a section on the observation detail view that displays minor metadata  -->
     <string name="metadata">Metadata</string>
+    <!--  iNat observation identifier  -->
     <string name="id">ID</string>
+    <!--  iNat observation Universally Unique Identifier  -->
     <string name="uuid">UUID</string>
+    <!--  Universal Resource Locator  -->
     <string name="url">URL</string>
 </resources>
-
