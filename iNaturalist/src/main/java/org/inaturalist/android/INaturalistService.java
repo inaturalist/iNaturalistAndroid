@@ -320,6 +320,7 @@ public class INaturalistService extends IntentService {
     public static final String ADD_OBSERVATION_TO_PROJECT_RESULT = "add_observation_to_project_result";
     public static final String DELETE_ACCOUNT_RESULT = "delete_account_result";
     public static final String TAXON_ID = "taxon_id";
+    public static final String ANCESTORS = "ancestors";
     public static final String PLACE_LAT = "place_lat";
     public static final String PLACE_LNG = "place_lng";
     public static final String RESEARCH_GRADE = "research_grade";
@@ -1097,8 +1098,9 @@ public class INaturalistService extends IntentService {
                 LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GET_ATTRIBUTES_FOR_TAXON)) {
-                BetterJSONObject taxon = (BetterJSONObject) intent.getSerializableExtra(TAXON);
-                BetterJSONObject results = getAttributesForTaxon(taxon != null ? taxon.getJSONObject() : null);
+                Integer taxonId = intent.getIntExtra(TAXON_ID, -1);
+                SerializableJSONArray ancestors = (SerializableJSONArray) intent.getSerializableExtra(ANCESTORS);
+                BetterJSONObject results = getAttributesForTaxon(ancestors != null ? ancestors.getJSONArray() : null, taxonId);
 
                 Intent reply = new Intent(GET_ATTRIBUTES_FOR_TAXON_RESULT);
                 mApp.setServiceResult(GET_ATTRIBUTES_FOR_TAXON_RESULT, results);
@@ -2920,9 +2922,7 @@ public class INaturalistService extends IntentService {
         }
     }
 
-    private BetterJSONObject getAttributesForTaxon(JSONObject taxon) throws AuthenticationException {
-        JSONArray ancestors = taxon != null ? taxon.optJSONArray("ancestor_ids") : null;
-
+    private BetterJSONObject getAttributesForTaxon(JSONArray ancestors, Integer taxonId) throws AuthenticationException {
         String url;
         if (ancestors != null) {
             String ancestry = "";
@@ -2931,7 +2931,7 @@ public class INaturalistService extends IntentService {
                 int currentTaxonId = ancestors.optInt(i);
                 ancestry += String.format(Locale.ENGLISH, "%d,", currentTaxonId);
             }
-            ancestry += String.format(Locale.ENGLISH, "%d", taxon.optInt("id"));
+            ancestry += String.format(Locale.ENGLISH, "%d", taxonId);
             url = API_HOST + "/controlled_terms/for_taxon?taxon_id=" + ancestry + "&ttl=-1&locale=" + mApp.getLanguageCodeForAPI();
 
         } else {

@@ -2942,10 +2942,10 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         mTaxonJson = taxon.toString();
 
-
         // Now that we have full taxon details, we can retrieve the annotations/attributes for that taxon
         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_ATTRIBUTES_FOR_TAXON, null, ObservationViewerActivity.this, INaturalistService.class);
-        serviceIntent.putExtra(INaturalistService.TAXON, new BetterJSONObject(mTaxonJson));
+        serviceIntent.putExtra(INaturalistService.TAXON_ID, taxon.optInt("id"));
+        serviceIntent.putExtra(INaturalistService.ANCESTORS, new SerializableJSONArray(taxon.optJSONArray("ancestor_ids")));
         ContextCompat.startForegroundService(this, serviceIntent);
     }
 
