@@ -362,6 +362,8 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
                 final JSONObject user = annotationValue.getJSONObject("user");
                 final String annotationValueUUID = annotationValue.getString("uuid");
 
+                userPic.setContentDescription(user.getString("login"));
+
                 if (user.has("icon_url") && !user.isNull("icon_url")) {
                     UrlImageViewHelper.setUrlDrawable(userPic, user.getString("icon_url"), R.drawable.ic_account_circle_black_24dp, new UrlImageViewCallback() {
                         @Override

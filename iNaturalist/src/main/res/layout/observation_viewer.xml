@@ -31,8 +31,8 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:paddingStart="@dimen/obs_detail_gutter"
+        android:paddingEnd="@dimen/obs_detail_gutter"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:background="#EEEEEE">
@@ -41,10 +41,8 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
             android:src="@drawable/ic_account_circle_black_24dp" />
 
         <TextView
@@ -53,7 +51,7 @@
             android:layout_height="wrap_content"
             android:text="Mar 20 • 11:56PM"
             android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:textSize="15sp"
             android:textColor="#9399A5"
             />
@@ -63,8 +61,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="username"
-            android:layout_toRightOf="@id/user_pic"
-            android:layout_toLeftOf="@id/observed_on"
+            android:layout_toEndOf="@id/user_pic"
+            android:layout_toStartOf="@id/observed_on"
             android:layout_centerVertical="true"
             android:textSize="15sp"
             />
@@ -95,9 +93,9 @@
             android:layout_height="45dp"
             android:src="@drawable/share_shadow"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:paddingTop="15dp"
-            android:paddingRight="15dp"
+            android:paddingEnd="15dp"
             />
 
 
@@ -144,23 +142,23 @@
         android:background="#FFFFFF"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
+        android:paddingStart="@dimen/obs_detail_gutter"
         android:paddingTop="10dp"
-        android:paddingRight="16dp"
+        android:paddingEnd="@dimen/obs_detail_gutter"
         android:paddingBottom="10dp">
         <ImageView
             android:id="@+id/id_icon"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/iconic_taxon_unknown"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:background="@drawable/id_pic_background" />
 
         <LinearLayout
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/id_icon"
-            android:layout_marginLeft="14dp"
+            android:layout_toEndOf="@id/id_icon"
+            android:layout_marginStart="14dp"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -197,7 +195,7 @@
                     android:layout_height="20dp"
                     android:src="@drawable/ic_error_black_24dp"
                     android:tint="#C32417"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginEnd="5dp"
                     />
                 <TextView
                     android:text="@string/inactive_taxon"
@@ -217,9 +215,9 @@
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:src="@drawable/ic_arrow_forward_gray_24dp" />
-        
+
     </RelativeLayout>
 
     <View
@@ -290,7 +288,6 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:visibility="gone"
-            android:layout_alignParentTop="true"
             />
 
 
@@ -305,12 +302,10 @@
             android:paddingTop="10dp"
             android:paddingBottom="20dp"
             android:visibility="gone"
-            android:layout_alignParentTop="true"
             />
 
 
         <LinearLayout
-            android:layout_below="@id/login_to_add_fave"
             android:id="@+id/faves_login_signup"
             android:orientation="horizontal"
             android:paddingBottom="10dp"
@@ -400,7 +395,7 @@
                     android:text="@string/faved"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_gravity="center_vertical"
                     />
             </LinearLayout>
@@ -410,8 +405,8 @@
             android:id="@+id/add_favorite"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginStart="@dimen/obs_detail_gutter"
+            android:layout_marginEnd="@dimen/obs_detail_gutter"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
             android:background="@drawable/circular_button">
@@ -433,7 +428,7 @@
                     android:text="@string/fave_this_observation"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_gravity="center_vertical"
                     />
             </LinearLayout>
@@ -452,7 +447,7 @@
             android:background="#D8D8D8"
             android:layout_width="6dp"
             android:layout_height="1dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
             android:layout_alignParentTop="true"
             />
 
@@ -542,8 +537,8 @@
             android:id="@+id/activity_buttons"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingStart="@dimen/obs_detail_gutter"
+            android:paddingEnd="@dimen/obs_detail_gutter"
             android:layout_below="@id/comment_id_list"
             android:orientation="vertical"
             android:layout_width="fill_parent"
@@ -573,8 +568,8 @@
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 android:background="@drawable/circular_button"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp">
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp">
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_centerInParent="true"
@@ -593,7 +588,7 @@
                         android:text="@string/comment"
                         android:textColor="#FFFFFF"
                         android:textSize="16sp"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
                         android:layout_gravity="center_vertical"
                         />
                 </LinearLayout>
@@ -605,8 +600,8 @@
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 android:background="@drawable/circular_button"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp">
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp">
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_centerInParent="true"
@@ -625,7 +620,7 @@
                         android:text="@string/suggest_id"
                         android:textColor="#FFFFFF"
                         android:textSize="16sp"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
                         android:layout_gravity="center_vertical"
                         />
                 </LinearLayout>
@@ -656,8 +651,8 @@
                 android:textSize="18sp"
                 android:textColor="#000000"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginStart="@dimen/obs_detail_gutter"
+                android:layout_marginEnd="@dimen/obs_detail_gutter"
                 android:layout_marginBottom="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -669,8 +664,8 @@
                 android:textIsSelectable="true"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginStart="@dimen/obs_detail_gutter"
+                android:layout_marginEnd="@dimen/obs_detail_gutter"
                 />
 
             <View
@@ -696,9 +691,9 @@
                 android:background="#C7C2C8"
                 android:padding="0dp"
                 android:visibility="gone"
-                android:layout_marginLeft="22dp"
+                android:layout_marginStart="22dp"
                 android:layout_marginTop="23dp"
-                android:layout_marginRight="22dp"
+                android:layout_marginEnd="22dp"
                 android:layout_marginBottom="20dp">
                 <ImageView
                     android:id="@+id/unknown_location"
@@ -715,9 +710,9 @@
                 android:layout_height="fill_parent"
                 android:background="@drawable/map_preview_background"
                 android:padding="1dp"
-                android:layout_marginLeft="22dp"
+                android:layout_marginStart="@dimen/obs_detail_gutter"
                 android:layout_marginTop="23dp"
-                android:layout_marginRight="22dp"
+                android:layout_marginEnd="@dimen/obs_detail_gutter"
                 android:layout_marginBottom="20dp">
                 <fragment
                     android:id="@+id/location_map"
@@ -744,22 +739,22 @@
                 android:layout_width="fill_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/shadow_background"
-                android:layout_marginLeft="37dp"
-                android:layout_marginRight="37dp"
+                android:layout_marginStart="37dp"
+                android:layout_marginEnd="37dp"
                 android:layout_marginBottom="34dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerVertical="true"
-                android:paddingLeft="7dp"
+                android:paddingStart="7dp"
                 android:paddingTop="7dp"
                 android:paddingBottom="7dp"
-                android:paddingRight="7dp"
+                android:paddingEnd="7dp"
                 >
                 <ImageView
                     android:id="@+id/location_private"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_visibility_off_black_24dp"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:tint="#9A9A9A"
                     />
@@ -768,12 +763,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="San Francisco, CA with some very long text that is multi line"
-                    android:layout_toLeftOf="@id/location_private"
+                    android:layout_toStartOf="@id/location_private"
                     android:ellipsize="end"
                     android:lines="1"
                     android:textColor="#89000000"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     />
             </RelativeLayout>
 
@@ -789,8 +784,8 @@
 
         <RelativeLayout
             android:id="@+id/data_quality_graph"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
+            android:paddingStart="@dimen/obs_detail_gutter"
+            android:paddingEnd="@dimen/obs_detail_gutter"
             android:paddingTop="10dp"
             android:layout_width="fill_parent"
             android:layout_height="184dp">
@@ -800,7 +795,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/data_quality"
                 android:textSize="18sp"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="8dp" />
 
@@ -811,7 +806,7 @@
                 android:layout_height="24dp"
                 android:src="@drawable/ic_done_black_24dp"
                 android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:background="@drawable/circular_border_thick_green"
                 android:padding="3dp"
                 android:tint="#8DBA30"
@@ -834,7 +829,7 @@
                 android:layout_height="24dp"
                 android:src="@drawable/ic_done_black_24dp"
                 android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:background="@drawable/circular_border_thick_green"
                 android:padding="3dp"
                 android:tint="#8DBA30"
@@ -846,10 +841,10 @@
                 android:layout_height="6dp"
                 android:background="#8DBA30"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/needs_id_icon"
-                android:layout_toRightOf="@id/casual_grade_icon"
-                android:layout_marginLeft="-1dp"
-                android:layout_marginRight="-2dp"
+                android:layout_toStartOf="@id/needs_id_icon"
+                android:layout_toEndOf="@id/casual_grade_icon"
+                android:layout_marginStart="-1dp"
+                android:layout_marginEnd="-2dp"
                 />
 
             <View
@@ -858,17 +853,17 @@
                 android:layout_height="6dp"
                 android:background="#8DBA30"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/research_grade_icon"
-                android:layout_toRightOf="@id/needs_id_icon"
-                android:layout_marginLeft="-1dp"
-                android:layout_marginRight="-2dp"
+                android:layout_toStartOf="@id/research_grade_icon"
+                android:layout_toEndOf="@id/needs_id_icon"
+                android:layout_marginStart="-1dp"
+                android:layout_marginEnd="-2dp"
                 />
 
             <TextView
                 android:id="@+id/casual_grade_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_below="@id/casual_grade_icon"
                 android:layout_marginTop="8dp"
                 android:text="@string/casual_grade"
@@ -891,7 +886,7 @@
                 android:id="@+id/research_grade_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_below="@id/research_grade_icon"
                 android:layout_marginTop="8dp"
                 android:text="@string/research_grade"
@@ -903,7 +898,7 @@
 
         <RelativeLayout
             android:id="@+id/data_quality_reason"
-            android:padding="16dp"
+            android:padding="@dimen/obs_detail_gutter"
             android:background="#EAEAEA"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
@@ -913,19 +908,19 @@
                 android:layout_height="38dp"
                 android:src="@drawable/ic_lightbulb_outline_black_24dp"
                 android:tint="#8DBA30"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:scaleType="fitCenter"
                 />
 
             <TextView
                 android:id="@+id/tip_text"
-                android:layout_toRightOf="@id/tip_icon"
+                android:layout_toEndOf="@id/tip_icon"
                 android:layout_centerVertical="true"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/casual_grade_add_date"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:textSize="16sp"
                 />
         </RelativeLayout>
@@ -936,8 +931,6 @@
             android:background="#1e000000"
             />
 
-
-
         <RelativeLayout
             android:id="@+id/annotations_section"
             android:paddingTop="10dp"
@@ -945,17 +938,16 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
-
             <TextView
                 android:id="@+id/annotations_title"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginStart="@dimen/obs_detail_gutter"
+                android:layout_marginEnd="@dimen/obs_detail_gutter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/annotations"
                 android:layout_marginBottom="10dp"
                 android:textSize="18sp"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="8dp" />
 
@@ -976,11 +968,13 @@
                 android:id="@+id/annotations_content"
                 android:layout_below="@id/annotations_title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+
+                >
                 <include
                     android:id="@+id/annotations_header"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginStart="@dimen/obs_detail_gutter"
+                    android:layout_marginEnd="@dimen/obs_detail_gutter"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     layout="@layout/annotation_header" />
@@ -988,8 +982,8 @@
 
                 <ListView
                     android:id="@+id/annotations_list"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginStart="@dimen/obs_detail_gutter"
+                    android:layout_marginEnd="@dimen/obs_detail_gutter"
                     android:layout_width="match_parent"
                     android:layout_below="@id/annotations_header"
                     android:layout_height="30dp" />
@@ -999,6 +993,7 @@
                     android:layout_height="1px"
                     android:background="#1e000000"
                     android:layout_below="@id/annotations_list"
+                    android:layout_marginTop="24dp"
                     />
             </RelativeLayout>
          </RelativeLayout>
@@ -1008,8 +1003,8 @@
             android:id="@+id/included_in_projects_container"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="@dimen/obs_detail_gutter"
+            android:layout_marginStart="@dimen/obs_detail_gutter"
             android:background="@drawable/shadow_background"
             android:layout_width="fill_parent"
             android:layout_height="60dp">
@@ -1045,136 +1040,89 @@
                 />
         </RelativeLayout>
 
+        <TextView
+            android:layout_marginStart="@dimen/obs_detail_gutter"
+            android:layout_marginEnd="@dimen/obs_detail_gutter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/metadata"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:layout_marginTop="8dp" />
 
-
-        <LinearLayout
+        <TableLayout
             android:id="@+id/metadata_section"
             android:orientation="vertical"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-
-            <TextView
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/metadata"
-                android:layout_marginBottom="10dp"
-                android:textSize="18sp"
-                android:layout_marginTop="8dp" />
-
-            <LinearLayout
-                android:id="@+id/metadata_id_row"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="5dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp">
-
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="@dimen/obs_detail_gutter"
+            android:layout_marginEnd="@dimen/obs_detail_gutter"
+            >
+            <TableRow android:id="@+id/metadata_id_row">
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
                     android:text="@string/id"
                     android:textSize="15sp"
                     android:textColor="#808080"
-                    android:layout_gravity="top"
                     android:textStyle="bold"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="10dp"
                     />
-
                 <TextView
                     android:id="@+id/observation_id"
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_height="wrap_content"
                     android:text="123456789"
                     android:textSize="15sp"
                     android:textColor="#808080"
-                    android:layout_gravity="top"
                     android:textIsSelectable="true"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/metadata_uuid_row"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="5dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    />
+            </TableRow>
+            <TableRow android:id="@+id/metadata_uuid_row">
+                <TextView
                     android:text="@string/uuid"
                     android:textSize="15sp"
                     android:textColor="#808080"
-                    android:layout_gravity="top"
                     android:textStyle="bold"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="10dp"
                     />
-
                 <TextView
                     android:id="@+id/observation_uuid"
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_height="wrap_content"
                     android:text="abcdef-12345-78990"
                     android:textSize="15sp"
                     android:textColor="#808080"
-                    android:layout_gravity="top"
                     android:textIsSelectable="true"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/metadata_url_row"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="5dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_width="0dp"
+                    />
+            </TableRow>
+            <TableRow android:id="@+id/metadata_url_row">
+                <TextView
                     android:text="@string/url"
                     android:textSize="15sp"
                     android:textColor="#808080"
-                    android:layout_gravity="top"
                     android:textStyle="bold"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="10dp"
                     />
-
                 <TextView
                     android:id="@+id/observation_url"
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_height="wrap_content"
-                    android:text="https://www.inaturalist.org/observations/12345"
+                    android:text="https://www.inaturalist.org"
                     android:textSize="15sp"
-                    android:textColor="#2867CF"
-                    android:layout_gravity="top"
-                    android:clickable="true"
+                    android:textColor="#808080"
+                    android:textIsSelectable="true"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_width="0dp"
                     />
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-
+            </TableRow>
+        </TableLayout>
     </LinearLayout>
-
 </LinearLayout>
+
 </ScrollView>
 
     <View
@@ -1189,8 +1137,8 @@
         android:id="@+id/add_comment_container"
         android:visibility="gone"
         android:paddingTop="0dp"
-        android:paddingLeft="17dp"
-        android:paddingRight="0dp"
+        android:paddingStart="17dp"
+        android:paddingEnd="0dp"
         android:paddingBottom="0dp"
         android:background="#ffffff"
         android:layout_alignParentBottom="true"
@@ -1203,15 +1151,15 @@
             android:layout_alignTop="@id/add_comment_text"
             android:layout_alignBottom="@id/add_comment_text"
             android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:id="@+id/add_comment_done"
-            android:paddingRight="17dp"
+            android:paddingEnd="17dp"
             android:layout_width="60dp"
             android:minHeight="50dp"
             android:layout_height="wrap_content">
             <ImageView
                 android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:scaleType="fitCenter"
@@ -1223,8 +1171,8 @@
             android:id="@+id/add_comment_text"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:layout_marginRight="1dp"
-            android:layout_toLeftOf="@id/add_comment_done"
+            android:layout_marginEnd="1dp"
+            android:layout_toStartOf="@id/add_comment_done"
             android:layout_centerVertical="true"
             android:textSize="14sp"
             android:hint="@string/leave_comment"
