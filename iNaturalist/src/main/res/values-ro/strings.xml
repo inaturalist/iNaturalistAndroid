@@ -311,7 +311,7 @@
     <string name="sync_obs_to_see_favs">Sincronizați această observaţie pentru a vedea favoritele...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Sincronizează această observație pentru a lăsa un comentariu sau a sugera o identificare...</string>
-    <string name="no_photo">Nici o imagine</string>
+    <string name="no_photo">Fără media</string>
     <string name="about_this_species">Despre această specie</string>
     <string name="view_on_wikipedia">Articol Wikipedia</string>
     <string name="photo"><![CDATA[Fotografie: <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -384,8 +384,11 @@
     <string name="mammals">Mamifere</string>
     <string name="insects">Insecte</string>
     <string name="reptiles">Reptile</string>
+    <string name="animals">Animale</string>
     <string name="fish">Pești</string>
     <string name="mollusks">Moluște</string>
+    <string name="protozoans">Protozoare</string>
+    <string name="chromista">Laminarii, Diatomee și Similare</string>
     <string name="amphibians">Amfibieni</string>
     <string name="fungi">Ciuperci</string>
     <string name="birds">Păsări</string>
@@ -451,7 +454,9 @@
     <string name="view_suggestions">Vezi Sugestii</string>
     <string name="species_search">Căutare specie</string>
     <string name="were_not_confident_enough">Nu suntem suficient de încrezători pentru a face o recomandare, dar iată sugestiile noastre de top:</string>
+    <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Cele mai observate opțiuni care corespund filtrelor:</string>
+    <!-- Header for a list of suggested taxa -->
     <string name="top_suggestions">Cele mai bune sugestii</string>
     <string name="pretty_sure_rank">Suntem destul de siguri că este aceasta %1$s:</string>
     <string name="what_did_you_see">Ce ai văzut?</string>
@@ -542,6 +547,7 @@
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegare</string>
     <string name="apply_filters">Aplicați Filtrele</string>
+    <string name="remove_filters">Elimină filtrele</string>
     <string name="reset">Resetare</string>
     <string name="show_only_my_observations">Arată doar observaţiile mele</string>
     <string name="project">Proiect</string>
@@ -966,7 +972,7 @@
     <string name="filter_observations_by_months">Filtrează observațiile după luni</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="view_suggestions_not_seen_nearby">Vezi sugestiile care nu au fost văzute în apropiere</string>
+    <string name="include_suggestions_not_seen_nearby">Include sugestii care nu au fost văzute în apropiere</string>
     <string name="only_view_nearby_suggestions">Vizualizează numai sugestiile din apropiere</string>
     <string name="suggestions_source">Sursa sugestiilor</string>
     <string name="research_grade_observations">Observații privind calitatea cercetării</string>
@@ -1023,4 +1029,56 @@
     <string name="couldnt_duplicate_sound">Nu s-a putut duplica sunetul!</string>
     <string name="sound_format_not_supported">Acest fișier de sunet este extensia bună de fișier, dar codarea audio specifică nu este acceptată de Android.</string>
     <string name="view_observations">Vizualizare observații</string>
+    <string name="choose_this_option">Alege această opțiune</string>
+    <string name="compare_observation_with_this_option">Compară observația cu această opțiune</string>
+    <string name="go_back">Înapoi</string>
+    <string name="change_the_source_of_the_suggestions">Schimbă sursa sugestiilor</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Fotografie în miniatură pentru taxonul sugerat</string>
+    <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
+    <string name="comments_ids_title">Comentarii și Identificări</string>
+    <!-- Accessibility text for the faves tab on the observation detail view -->
+    <string name="faves">Favorite</string>
+    <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
+    <string name="previous_option">Opțiunea anterioară</string>
+    <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string name="next_option">Următoarea opțiune</string>
+    <string name="no_observations_yet2">Nici o observație încă.</string>
+    <string name="no_species_yet">Nici o specie încă.</string>
+    <string name="no_identifications_yet">Nu există încă identificări.</string>
+    <string name="sort_by">Sortare după</string>
+    <string-array name="explore_order_by_items">
+        <item>Dată Adăugare</item>
+        <item>Data Observării</item>
+        <item>Data Actualizării</item>
+        <!--<item>Faves</item>-->
+        <item>Aleatoriu</item>
+    </string-array>
+    <string-array name="explore_order_items">
+        <item>Descrescător</item>
+        <item>Crescător</item>
+    </string-array>
+    <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
+    See explore_order_by_items and explore_order_items keys !-->
+    <string name="sorted_by_full">Sortate după %1$s (%2$s)</string>
+    <!-- Label for an observation search filter to exclude your own observations -->
+    <string name="hide_my_observations">Ascunde observațiile mele</string>
+    <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
+    <string name="follow_this_observation">Urmează această observație</string>
+    <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
+    <string name="unfollow_this_observation">Anulează urmarea acestei observații</string>
+    <!-- Error message shown when an attempt to follow an observation fails -->
+    <string name="could_not_follow_observation">Nu am putut urma această observație</string>
+    <!-- Error message shown when an attempt to unfollow an observation fails -->
+    <string name="could_not_unfollow_observation">Nu am putut anula urmarea acestei observații</string>
+    <!-- Label for a button to copy the coordinates of an observation -->
+    <string name="copy_coordinates">Copiază coordonatele</string>
+    <string name="coordinates_copied_to_clipboard">Coordonatele s-au copiat în clipboard</string>
+    <!--  Title of a section on the observation detail view that displays minor metadata  -->
+    <string name="metadata">Metadate</string>
+    <!--  iNat observation identifier  -->
+    <string name="id">ID</string>
+    <!--  iNat observation Universally Unique Identifier  -->
+    <string name="uuid">UUID</string>
+    <!--  Universal Resource Locator  -->
+    <string name="url">URL</string>
 </resources>

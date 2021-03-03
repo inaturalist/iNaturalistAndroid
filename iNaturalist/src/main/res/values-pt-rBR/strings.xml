@@ -197,7 +197,7 @@
     <string name="alert_message_use_argentinat">AgentiNat é um membro da iNaturalist Network na Argentina. Instituições Locais que ajudam a AngentiNat terão acesso ao seu email e à coordenadas para a localidades que são publicamente ocultas ou privadas. Por favor, não tente mudar a sua afiliação se você tem mais de 1000 localidades. Você gostaria de mudar a sua afiliação?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel é um membro da Rede iNaturalist em Israel. Instituições locais que apoiam o iNaturalist Israel terão acesso ao seu endereço de e-mail e às reais coordenadas de observações obscurecidas ou privadas do público. Por favor, não altere sua afiliação experimentalmente se tiver mais de 1000 observações. Deseja mudar sua afiliação?</string>
     <string name="alert_message_use_inaturalistfi">O iNaturalist Finlândia é um membro da rede iNaturalist na Finlândia. Instituições locais que apoiam o iNaturalist Finlândia terão acesso ao seu endereço de e-mail e acesso às coordenadas verdadeiras para observações que são publicamente obscurecidas ou privadas. Por favor, não altere experimentalmente sua afiliação se você tiver mais de 1000 observações. Você gostaria de mudar sua afiliação?</string>
-    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcl">O iNaturalist Chile é um membro da rede iNaturalist no Chile. Instituições locais que apoiam o iNaturalist Chile terão acesso ao seu endereço de e-mail e acesso às coordenadas verdadeiras para observações que são publicamente obscurecidas ou privadas. Por favor, não altere experimentalmente sua afiliação se você tiver mais de 1000 observações. Você gostaria de mudar sua afiliação?</string>
     <string name="editor">Editor</string>
     <string name="license">Licença</string>
     <string name="download_for_offline_use">Download para uso offline</string>
@@ -309,7 +309,7 @@
     <string name="sync_obs_to_see_favs">Sincronizar esta observação para ver os favoritos...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Sincronizar esta observação para deixar um comentário ou sugerir uma identificação...</string>
-    <string name="no_photo">Sem foto</string>
+    <string name="no_photo">No Media</string>
     <string name="about_this_species">Sobre esta espécie</string>
     <string name="view_on_wikipedia">Artigo da Wikipédia</string>
     <string name="photo"><![CDATA[Foto: <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -382,8 +382,11 @@
     <string name="mammals">Mamíferos</string>
     <string name="insects">Insetos</string>
     <string name="reptiles">Répteis</string>
+    <string name="animals">Animais</string>
     <string name="fish">Peixes</string>
     <string name="mollusks">Moluscos</string>
+    <string name="protozoans">Protozoários</string>
+    <string name="chromista">Kelp, Diatoms, and Allies</string>
     <string name="amphibians">Anfíbios</string>
     <string name="fungi">Fungos</string>
     <string name="birds">Aves</string>
@@ -415,8 +418,8 @@
         content.
     -->
     <plurals name="new_activities">
-        <item quantity="one">%1s new</item>
-        <item quantity="other">%1s new</item>
+        <item quantity="one">%1s nova</item>
+        <item quantity="other">%1s novas</item>
     </plurals>
     <string name="no_results_found">Não foram encontrados resultados...</string>
     <plurals name="syncing_x_out_of_y_observations">
@@ -446,9 +449,11 @@
     <string name="more_info_on_inat">Mais em iNaturalist.org</string>
     <string name="view_suggestions">Ver sugestões</string>
     <string name="species_search">Pesquisa de espécies</string>
-    <string name="were_not_confident_enough">We\'re not confident enough to make a recommendation, but here are our top suggestions:</string>
+    <string name="were_not_confident_enough">Não estamos confiantes o suficiente para fazer uma recomendação, mas aqui estão as nossas melhores sugestões:</string>
+    <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
-    <string name="top_suggestions">Top suggestions</string>
+    <!-- Header for a list of suggested taxa -->
+    <string name="top_suggestions">Principais sugestões</string>
     <string name="pretty_sure_rank">Nós temos certeza que está neste(a) %1$s:</string>
     <string name="what_did_you_see">O que você viu?</string>
     <string name="suggest_species">Sugerir espécie</string>
@@ -538,6 +543,7 @@
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegação</string>
     <string name="apply_filters">Aplicar filtros</string>
+    <string name="remove_filters">Remover filtros</string>
     <string name="reset">Resetar</string>
     <string name="show_only_my_observations">Mostras apenas as minhas observações</string>
     <string name="project">Projeto</string>
@@ -732,7 +738,7 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Equador: Instituto Nacional de Biodiversidad (INABIO) apoiando o iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa apoiando o iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finlândia: Finnish Museum of Natural History (LUOMUS) apoiando o iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
-    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministério do Meio Ambiente apoiando o iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">Marcar todos como visto</string>
     <string name="content_hidden">Conteúdo oculto</string>
     <string name="show_hidden_content">Mostrar conteúdo oculto</string>
@@ -946,33 +952,33 @@
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
-    <string name="show_common_names">Show common names</string>
+    <string name="show_common_names">Mostrar nomes comuns</string>
     <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
-    <string name="email_must_look_like_email_address">Email must look like an email address</string>
+    <string name="email_must_look_like_email_address">O e-mail deve parecer um endereço de e-mail</string>
     <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
-    <string name="password_too_short">Password must be at least six characters long</string>
-    <string name="switch_to_grid_view">Switch to grid view</string>
-    <string name="switch_to_list_view">Switch to list view</string>
-    <string name="remove_project_filter">Remove project filter</string>
-    <string name="remove_observer_filter">Remove observer filter</string>
-    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
+    <string name="password_too_short">A senha deve ter pelo menos seis caracteres</string>
+    <string name="switch_to_grid_view">Mudar para exibição em grade</string>
+    <string name="switch_to_list_view">Alternar para visualização em lista</string>
+    <string name="remove_project_filter">Remover filtro de projeto</string>
+    <string name="remove_observer_filter">Remover filtro do observador</string>
+    <string name="filter_observations_by_an_exact_date">Filtrar observações por uma data exata</string>
     <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
-    <string name="filter_observations_by_months">Filter observations by months</string>
+    <string name="filter_observations_by_months">Filtrar observações por meses</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="view_suggestions_not_seen_nearby">View suggestions not seen nearby</string>
+    <string name="include_suggestions_not_seen_nearby">Incluir sugestões não vistas nas proximidades</string>
     <string name="only_view_nearby_suggestions">Only view nearby suggestions</string>
-    <string name="suggestions_source">Suggestions Source</string>
+    <string name="suggestions_source">Fonte das Sugestões</string>
     <string name="research_grade_observations">Research Grade Observations</string>
     <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
-    <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will suggest species observed in a specific place and within a specific taxonomic group.</string>
+    <string name="research_grade_observations_description">Em vez de sugestões visualmente semelhantes, o iNaturalist irá sugerir espécies observadas em um lugar específico e dentro de um grupo taxonômico específico.</string>
     <string name="taxon">Taxon:</string>
     <string name="place">Place:</string>
-    <string name="pretty_sure_kingdom">We\'re pretty sure it\'s in this kingdom:</string>
-    <string name="pretty_sure_subkingdom">We\'re pretty sure it\'s in this subkingdom:</string>
-    <string name="pretty_sure_phylum">We\'re pretty sure it\'s in this phylum:</string>
-    <string name="pretty_sure_subphylum">We\'re pretty sure it\'s in this subphylum:</string>
-    <string name="pretty_sure_superclass">We\'re pretty sure it\'s in this superclass:</string>
+    <string name="pretty_sure_kingdom">Nós temos certeza de que está neste reino:</string>
+    <string name="pretty_sure_subkingdom">Nós temos certeza de que está neste subreino:</string>
+    <string name="pretty_sure_phylum">Nós temos certeza de que isso está neste filo:</string>
+    <string name="pretty_sure_subphylum">Nós temos certeza de que está neste subfilo:</string>
+    <string name="pretty_sure_superclass">Nós temos certeza de que está nesta superclasse:</string>
     <string name="pretty_sure_class">We\'re pretty sure it\'s in this class:</string>
     <string name="pretty_sure_subclass">We\'re pretty sure it\'s in this subclass:</string>
     <string name="pretty_sure_infraclass">We\'re pretty sure it\'s in this infraclass:</string>
@@ -1017,4 +1023,56 @@
     <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
     <string name="sound_format_not_supported">This sound file is the right file extension, but the specific audio encoding is not supported by Android.</string>
     <string name="view_observations">View Observations</string>
+    <string name="choose_this_option">Choose this option</string>
+    <string name="compare_observation_with_this_option">Compare observation with this option</string>
+    <string name="go_back">Go back</string>
+    <string name="change_the_source_of_the_suggestions">Change the source of the suggestions</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Thumbnail photo for suggested taxon</string>
+    <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
+    <string name="comments_ids_title">Comments and Identifications</string>
+    <!-- Accessibility text for the faves tab on the observation detail view -->
+    <string name="faves">Faves</string>
+    <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
+    <string name="previous_option">Previous Option</string>
+    <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string name="next_option">Next Option</string>
+    <string name="no_observations_yet2">No observations yet.</string>
+    <string name="no_species_yet">No species yet.</string>
+    <string name="no_identifications_yet">No identifications yet.</string>
+    <string name="sort_by">Sort By</string>
+    <string-array name="explore_order_by_items">
+        <item>Date Added</item>
+        <item>Date Observed</item>
+        <item>Date Updated</item>
+        <!--<item>Faves</item>-->
+        <item>Random</item>
+    </string-array>
+    <string-array name="explore_order_items">
+        <item>Descending</item>
+        <item>Ascending</item>
+    </string-array>
+    <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
+    See explore_order_by_items and explore_order_items keys !-->
+    <string name="sorted_by_full">Sorted by %1$s (%2$s)</string>
+    <!-- Label for an observation search filter to exclude your own observations -->
+    <string name="hide_my_observations">Hide My Observations</string>
+    <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
+    <string name="follow_this_observation">Follow this Observation</string>
+    <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
+    <string name="unfollow_this_observation">Unfollow this Observation</string>
+    <!-- Error message shown when an attempt to follow an observation fails -->
+    <string name="could_not_follow_observation">Could not follow this observation</string>
+    <!-- Error message shown when an attempt to unfollow an observation fails -->
+    <string name="could_not_unfollow_observation">Could not unfollow this observation</string>
+    <!-- Label for a button to copy the coordinates of an observation -->
+    <string name="copy_coordinates">Copy coordinates</string>
+    <string name="coordinates_copied_to_clipboard">Coordinates copied to clipboard</string>
+    <!--  Title of a section on the observation detail view that displays minor metadata  -->
+    <string name="metadata">Metadata</string>
+    <!--  iNat observation identifier  -->
+    <string name="id">ID</string>
+    <!--  iNat observation Universally Unique Identifier  -->
+    <string name="uuid">UUID</string>
+    <!--  Universal Resource Locator  -->
+    <string name="url">URL</string>
 </resources>

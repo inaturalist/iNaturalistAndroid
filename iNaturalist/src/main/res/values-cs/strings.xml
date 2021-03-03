@@ -313,7 +313,7 @@
     <string name="sync_obs_to_see_favs">Synchronizujte toto pozorování, abyste mohli vidět oblíbené...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Synchronizujte toto pozorování za účelem zanechání komentáře nebo navržení identifikace...</string>
-    <string name="no_photo">Žádné fotografie</string>
+    <string name="no_photo">Žádná média</string>
     <string name="about_this_species">O tomto druhu</string>
     <string name="view_on_wikipedia">Článek z Wikipedie</string>
     <string name="photo"><![CDATA[Fotografie: <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -386,8 +386,11 @@
     <string name="mammals">Savci</string>
     <string name="insects">Hmyz</string>
     <string name="reptiles">Plazi</string>
+    <string name="animals">Živočichové</string>
     <string name="fish">Ryby</string>
     <string name="mollusks">Měkkýši</string>
+    <string name="protozoans">Prvoci</string>
+    <string name="chromista">Chaluhy, rozsivky a příbuzné rody</string>
     <string name="amphibians">Obojživelníci</string>
     <string name="fungi">Houby</string>
     <string name="birds">Ptáci</string>
@@ -455,7 +458,9 @@
     <string name="view_suggestions">Zobrazit návrhy</string>
     <string name="species_search">Hledání druhů</string>
     <string name="were_not_confident_enough">Nejsme dostatečně přesvědčeni, abychom mohli něco doporučit, ale zde jsou naše nejlepší návrhy:</string>
+    <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Možnosti nejčastějšího pozorování odpovídající filtrům:</string>
+    <!-- Header for a list of suggested taxa -->
     <string name="top_suggestions">Nejlepší návrhy</string>
     <string name="pretty_sure_rank">Jsme si jisti, že je to v tomto %1$s:</string>
     <string name="what_did_you_see">Co jste viděli?</string>
@@ -476,7 +481,7 @@
     <string name="nearby">V okolí</string>
     <string name="couldnt_load_results">Není možné načíst výsledky: %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
-    <string name="research_grade_initials">RG</string>
+    <string name="research_grade_initials">VS</string>
     <string name="taxon_search_hint">např. ptáci, lejskovec</string>
     <string name="location_search_hint">např. město, stát, park, země...</string>
     <string name="no_taxon">Je nám líto, taxon nebyl nalezen</string>
@@ -546,6 +551,7 @@
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegace</string>
     <string name="apply_filters">Použít filtry</string>
+    <string name="remove_filters">Odstranit filtry</string>
     <string name="reset">Resetovat</string>
     <string name="show_only_my_observations">Ukázat jen má pozorování</string>
     <string name="project">Projekt</string>
@@ -978,51 +984,51 @@ a naše <a href="https://www.inaturalist.org/terms">Smluvní podmínky</a>.]]></
     <string name="filter_observations_by_months">Filtrovat pozorování podle měsíců</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="view_suggestions_not_seen_nearby">Zobrazit návrhy neviděné v blízkosti</string>
+    <string name="include_suggestions_not_seen_nearby">Zahrnout i návrhy neviděné v okolí</string>
     <string name="only_view_nearby_suggestions">Zobrazit pouze návrhy v blízkosti</string>
     <string name="suggestions_source">Zdroj návrhů</string>
-    <string name="research_grade_observations">Research Grade Observations</string>
-    <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
-    <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will suggest species observed in a specific place and within a specific taxonomic group.</string>
+    <string name="research_grade_observations">Pozorování výzkumného stupně</string>
+    <string name="visually_similar_description">iNaturalist bude poskytovat návrhy založené na tom, jak jsou obrázky vizuálně podobné fotografiím druhů pozorovaných v blízkosti tohoto místa touto roční dobou.</string>
+    <string name="research_grade_observations_description">Namísto vizuálně podobných návrhů bude iNaturalist navrhovat druhy pozorované na daném místě v rámci konkrétní taxonomické skupiny.</string>
     <string name="taxon">Taxon:</string>
     <string name="place">Místo:</string>
-    <string name="pretty_sure_kingdom">We\'re pretty sure it\'s in this kingdom:</string>
-    <string name="pretty_sure_subkingdom">We\'re pretty sure it\'s in this subkingdom:</string>
-    <string name="pretty_sure_phylum">We\'re pretty sure it\'s in this phylum:</string>
-    <string name="pretty_sure_subphylum">We\'re pretty sure it\'s in this subphylum:</string>
-    <string name="pretty_sure_superclass">We\'re pretty sure it\'s in this superclass:</string>
-    <string name="pretty_sure_class">We\'re pretty sure it\'s in this class:</string>
-    <string name="pretty_sure_subclass">We\'re pretty sure it\'s in this subclass:</string>
-    <string name="pretty_sure_infraclass">We\'re pretty sure it\'s in this infraclass:</string>
-    <string name="pretty_sure_superorder">We\'re pretty sure it\'s in this superorder:</string>
-    <string name="pretty_sure_order">We\'re pretty sure it\'s in this order:</string>
-    <string name="pretty_sure_suborder">We\'re pretty sure it\'s in this suborder:</string>
-    <string name="pretty_sure_infraorder">We\'re pretty sure it\'s in this infraorder:</string>
-    <string name="pretty_sure_subterclass">We\'re pretty sure it\'s in this subterclass:</string>
-    <string name="pretty_sure_parvorder">We\'re pretty sure it\'s in this parvorder:</string>
-    <string name="pretty_sure_zoosection">We\'re pretty sure it\'s in this zoosection:</string>
-    <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
-    <string name="pretty_sure_superfamily">We\'re pretty sure it\'s in this superfamily:</string>
-    <string name="pretty_sure_epifamily">We\'re pretty sure it\'s in this epifamily:</string>
-    <string name="pretty_sure_family">We\'re pretty sure it\'s in this family:</string>
-    <string name="pretty_sure_subfamily">We\'re pretty sure it\'s in this subfamily:</string>
-    <string name="pretty_sure_supertribe">We\'re pretty sure it\'s in this supertribe:</string>
-    <string name="pretty_sure_tribe">We\'re pretty sure it\'s in this tribe:</string>
-    <string name="pretty_sure_subtribe">We\'re pretty sure it\'s in this subtribe:</string>
-    <string name="pretty_sure_genus">We\'re pretty sure it\'s in this genus:</string>
-    <string name="pretty_sure_genushybrid">We\'re pretty sure it\'s in this genushybrid:</string>
-    <string name="pretty_sure_subgenus">We\'re pretty sure it\'s in this subgenus:</string>
-    <string name="pretty_sure_section">We\'re pretty sure it\'s in this section:</string>
-    <string name="pretty_sure_subsection">We\'re pretty sure it\'s in this subsection:</string>
-    <string name="pretty_sure_complex">We\'re pretty sure it\'s in this complex:</string>
+    <string name="pretty_sure_kingdom">Jsme si docela jisti, že je to v této říši:</string>
+    <string name="pretty_sure_subkingdom">Jsme si docela jisti, že je to v této podříši:</string>
+    <string name="pretty_sure_phylum">Jsme si docela jisti, že je to v tomto kmeni:</string>
+    <string name="pretty_sure_subphylum">Jsme si docela jisti, že je to v tomto podkmeni:</string>
+    <string name="pretty_sure_superclass">Jsme si docela jisti, že je to v této nadtřídě:</string>
+    <string name="pretty_sure_class">Jsme si docela jisti, že je to v této třídě:</string>
+    <string name="pretty_sure_subclass">Jsme si docela jisti, že je to v této podtřídě:</string>
+    <string name="pretty_sure_infraclass">Jsme si docela jisti, že je to v této infratřídě:</string>
+    <string name="pretty_sure_superorder">Jsme si docela jisti, že je to v tomto nadřádu:</string>
+    <string name="pretty_sure_order">Jsme si docela jisti, že je to v tomto řádu:</string>
+    <string name="pretty_sure_suborder">Jsme si docela jisti, že je to v tomto podřádu:</string>
+    <string name="pretty_sure_infraorder">Jsme si docela jisti, že je to v tomto infrařádu:</string>
+    <string name="pretty_sure_subterclass">Jsme si docela jisti, že je to v této subtertřídě:</string>
+    <string name="pretty_sure_parvorder">Jsme si docela jisti, že je to v tomto parvřádu:</string>
+    <string name="pretty_sure_zoosection">Jsme si docela jisti, že je to v této zoosekci:</string>
+    <string name="pretty_sure_zoosubsection">Jsme si docela jisti, že je to v této zoopodsekci:</string>
+    <string name="pretty_sure_superfamily">Jsme si docela jisti, že je to v této nadčeledi:</string>
+    <string name="pretty_sure_epifamily">Jsme si docela jisti, že je to v této epičeledi:</string>
+    <string name="pretty_sure_family">Jsme si docela jisti, že je to v této čeledi:</string>
+    <string name="pretty_sure_subfamily">Jsme si docela jisti, že je to v této podčeledi:</string>
+    <string name="pretty_sure_supertribe">Jsme si docela jisti, že je to v tomto nadtribu:</string>
+    <string name="pretty_sure_tribe">Jsme si docela jisti, že je to v tomto tribu:</string>
+    <string name="pretty_sure_subtribe">Jsme si docela jisti, že je to v tomto podtribu:</string>
+    <string name="pretty_sure_genus">Jsme si docela jisti, že je to v tomto rodu:</string>
+    <string name="pretty_sure_genushybrid">Jsme si docela jisti, že je to v tomto kříženém rodu:</string>
+    <string name="pretty_sure_subgenus">Jsme si docela jisti, že je to v tomto podrodu:</string>
+    <string name="pretty_sure_section">Jsme si docela jisti, že je to v této sekci:</string>
+    <string name="pretty_sure_subsection">Jsme si docela jisti, že je to v této podsekci:</string>
+    <string name="pretty_sure_complex">Jsme si docela jisti, že je to v tomto komplexu druhů:</string>
     <!-- Singular -->
-    <string name="pretty_sure_species">We\'re pretty sure it\'s in this species:</string>
-    <string name="pretty_sure_hybrid">We\'re pretty sure it\'s in this hybrid:</string>
+    <string name="pretty_sure_species">Jsme si docela jisti, že je to v tomto druhu:</string>
+    <string name="pretty_sure_hybrid">Jsme si docela jisti, že je to v tomto kříženci:</string>
     <!-- Singular -->
-    <string name="pretty_sure_subspecies">We\'re pretty sure it\'s in this subspecies:</string>
-    <string name="pretty_sure_variety">We\'re pretty sure it\'s in this variety:</string>
-    <string name="pretty_sure_form">We\'re pretty sure it\'s in this form:</string>
-    <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
+    <string name="pretty_sure_subspecies">Jsme si docela jisti, že je to v tomto poddruhu:</string>
+    <string name="pretty_sure_variety">Jsme si docela jisti, že je to v této odrůdě:</string>
+    <string name="pretty_sure_form">Jsme si docela jisti, že je to v této formě:</string>
+    <string name="pretty_sure_infrahybrid">Jsme si docela jisti, že je to v tomto infrakříženci:</string>
     <string name="remove_date_observed">Odstranit datum &amp; čas pozorování</string>
     <string name="remove_time_observed">Odstranit čas pozorování</string>
     <string name="remove_location">Odstranit polohu</string>
@@ -1034,5 +1040,57 @@ a naše <a href="https://www.inaturalist.org/terms">Smluvní podmínky</a>.]]></
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Nelze duplikovat zvuk!</string>
     <string name="sound_format_not_supported">This sound file is the right file extension, but the specific audio encoding is not supported by Android.</string>
-    <string name="view_observations">View Observations</string>
+    <string name="view_observations">Zobrazit pozorování</string>
+    <string name="choose_this_option">Vybrat tuto možnost</string>
+    <string name="compare_observation_with_this_option">Porovnat pozorování s touto možností</string>
+    <string name="go_back">Jít zpět</string>
+    <string name="change_the_source_of_the_suggestions">Změnit zdroj návrhů</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Náhled navrženého taxonu</string>
+    <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
+    <string name="comments_ids_title">Komentáře a identifikace</string>
+    <!-- Accessibility text for the faves tab on the observation detail view -->
+    <string name="faves">Oblíbené</string>
+    <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
+    <string name="previous_option">Předchozí možnost</string>
+    <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string name="next_option">Následující možnost</string>
+    <string name="no_observations_yet2">Zatím žádná pozorování.</string>
+    <string name="no_species_yet">Zatím žádné druhy.</string>
+    <string name="no_identifications_yet">Zatím žádné identifikace.</string>
+    <string name="sort_by">Seřadit podle</string>
+    <string-array name="explore_order_by_items">
+        <item>Datum přidání</item>
+        <item>Datum pozorování</item>
+        <item>Datum aktualizace</item>
+        <!--<item>Faves</item>-->
+        <item>Náhodně</item>
+    </string-array>
+    <string-array name="explore_order_items">
+        <item>Sestupně</item>
+        <item>Vzestupně</item>
+    </string-array>
+    <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
+    See explore_order_by_items and explore_order_items keys !-->
+    <string name="sorted_by_full">Seřazeno dle %1$s (%2$s)</string>
+    <!-- Label for an observation search filter to exclude your own observations -->
+    <string name="hide_my_observations">Skrýt moje pozorování</string>
+    <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
+    <string name="follow_this_observation">Sledovat toto pozorování</string>
+    <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
+    <string name="unfollow_this_observation">Přestat sledovat toto pozorování</string>
+    <!-- Error message shown when an attempt to follow an observation fails -->
+    <string name="could_not_follow_observation">Nelze sledovat toto pozorování</string>
+    <!-- Error message shown when an attempt to unfollow an observation fails -->
+    <string name="could_not_unfollow_observation">Nelze zrušit sledování tohoto pozorování</string>
+    <!-- Label for a button to copy the coordinates of an observation -->
+    <string name="copy_coordinates">Kopírovat souřadnice</string>
+    <string name="coordinates_copied_to_clipboard">Souřadnice zkopírovány do schránky</string>
+    <!--  Title of a section on the observation detail view that displays minor metadata  -->
+    <string name="metadata">Metadata</string>
+    <!--  iNat observation identifier  -->
+    <string name="id">ID</string>
+    <!--  iNat observation Universally Unique Identifier  -->
+    <string name="uuid">UUID</string>
+    <!--  Universal Resource Locator  -->
+    <string name="url">URL</string>
 </resources>

@@ -256,8 +256,8 @@
     <string name="is_captive">Недиво или култивирано</string>
     <string name="location_visibility">Видимост на местоположението</string>
     <string name="set_location">Местоположение</string>
-    <string name="coordinates_lat">Дълж.:</string>
-    <string name="coordinates_lon">Дълж.</string>
+    <string name="coordinates_lat">Шир:</string>
+    <string name="coordinates_lon">Дълж:</string>
     <string name="coordinates_acc">Точност</string>
     <string name="required">* Задължително</string>
     <string name="downloading_observations">Изтегляне на наблюдения...</string>
@@ -305,15 +305,15 @@
     <string name="faved">Харесано</string>
     <string name="be_the_first_to_fave_this_obs">Станете първият харесал наблюдението...</string>
     <string name="leave_a_comment">Добавете коментар или разпознаване...</string>
-    <string name="location_coords">Шир.: %1$s Дълж.: %2$s Точн. %3$s</string>
-    <string name="location_coords_no_acc">Шир.: %1$s Дълж.: %2$s</string>
+    <string name="location_coords">Шир: %1$s Дълж: %2$s Точн. %3$s</string>
+    <string name="location_coords_no_acc">Шир: %1$s Дълж: %2$s</string>
     <string name="location">Местоположение</string>
     <string name="login_in_to_add_comments_ids">Влезте или се регистрирайте за да добавите коментар или разпознаване...</string>
     <string name="login_in_to_fav">Влезте или се регистрирайте, за да харесате или видите харесванията на наблюдението...</string>
     <string name="sync_obs_to_see_favs">Синхронизирайте наблюдението за да видите харесванията...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Синхронизирайте наблюдението за да коментирате или разпознаете...</string>
-    <string name="no_photo">Няма снимка</string>
+    <string name="no_photo">Без медия</string>
     <string name="about_this_species">Относно вида</string>
     <string name="view_on_wikipedia">Статия в Уикипедия</string>
     <string name="photo"><![CDATA[Снимка: <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -386,8 +386,11 @@
     <string name="mammals">Бозайници</string>
     <string name="insects">Насекоми</string>
     <string name="reptiles">Влечуги</string>
+    <string name="animals">Животни</string>
     <string name="fish">Риби</string>
     <string name="mollusks">Мекотели</string>
+    <string name="protozoans">Първаци</string>
+    <string name="chromista">Кафяви и кремъчни водорасли и сродни</string>
     <string name="amphibians">Земноводни</string>
     <string name="fungi">Гъби</string>
     <string name="birds">Птици</string>
@@ -451,7 +454,9 @@
     <string name="view_suggestions">Вижте предложения</string>
     <string name="species_search">Търсене на видове</string>
     <string name="were_not_confident_enough">Не сме достатъчно уверени за да препоръчаме нещо, но ето нашите най-добри предположения:</string>
+    <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Най-наблюдавани възможности отговарящи на филтрите:</string>
+    <!-- Header for a list of suggested taxa -->
     <string name="top_suggestions">Най-добри предположения:</string>
     <string name="pretty_sure_rank">Почти сигурни сме, че това е от %1$s:</string>
     <string name="what_did_you_see">Какво наблюдавахте?</string>
@@ -542,6 +547,7 @@
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Делегация</string>
     <string name="apply_filters">Приложи филтрите</string>
+    <string name="remove_filters">Изчисти филтрите</string>
     <string name="reset">Нулирай</string>
     <string name="show_only_my_observations">Показвай само моите наблюдения</string>
     <string name="project">Проект</string>
@@ -980,7 +986,7 @@ CalTech и Cornell Tech помогнаха при разработката на 
     <string name="filter_observations_by_months">Филтрирай наблюденията по месеци</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="view_suggestions_not_seen_nearby">Виж предположения, които не са наблюдаване наоколо</string>
+    <string name="include_suggestions_not_seen_nearby">Включи и предположения, ненаблюдавани наоколо</string>
     <string name="only_view_nearby_suggestions">Виж само предположения от околността</string>
     <string name="suggestions_source">Източник на предположенията</string>
     <string name="research_grade_observations">Наблюдения с Изследователско качество</string>
@@ -1037,4 +1043,56 @@ CalTech и Cornell Tech помогнаха при разработката на 
     <string name="couldnt_duplicate_sound">Неуспешно дублиране на звука!</string>
     <string name="sound_format_not_supported">Този аудиофайл е с правилното файлово разширение, но конкретното кодиране не се поддържа от Андроид.</string>
     <string name="view_observations">Виж наблюдения</string>
+    <string name="choose_this_option">Избери тази възможност</string>
+    <string name="compare_observation_with_this_option">Сравни наблюдението с тази възможност</string>
+    <string name="go_back">Обратно</string>
+    <string name="change_the_source_of_the_suggestions">Промени източника на предположения</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Миниатюра на предложен таксон</string>
+    <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
+    <string name="comments_ids_title">Коментари и разпознавания</string>
+    <!-- Accessibility text for the faves tab on the observation detail view -->
+    <string name="faves">Любими</string>
+    <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
+    <string name="previous_option">Предишен избор</string>
+    <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string name="next_option">Следващ избор</string>
+    <string name="no_observations_yet2">Все още няма наблюдения.</string>
+    <string name="no_species_yet">Няма видове.</string>
+    <string name="no_identifications_yet">Все още няма разпознавания.</string>
+    <string name="sort_by">Сортиране по</string>
+    <string-array name="explore_order_by_items">
+        <item>Дата на добавяне</item>
+        <item>Дата на наблюдаване</item>
+        <item>Дата на обновяване</item>
+        <!--<item>Faves</item>-->
+        <item>Произволно</item>
+    </string-array>
+    <string-array name="explore_order_items">
+        <item>Низходящо</item>
+        <item>Възходящо</item>
+    </string-array>
+    <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
+    See explore_order_by_items and explore_order_items keys !-->
+    <string name="sorted_by_full">Сортирано по %1$s (%2$s)</string>
+    <!-- Label for an observation search filter to exclude your own observations -->
+    <string name="hide_my_observations">Скрий наблюденията ми</string>
+    <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
+    <string name="follow_this_observation">Следвай наблюдението</string>
+    <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
+    <string name="unfollow_this_observation">Отпиши ме от наблюдението</string>
+    <!-- Error message shown when an attempt to follow an observation fails -->
+    <string name="could_not_follow_observation">Неуспешно абониране за наблюдението</string>
+    <!-- Error message shown when an attempt to unfollow an observation fails -->
+    <string name="could_not_unfollow_observation">Неуспешно отписване от наблюдението</string>
+    <!-- Label for a button to copy the coordinates of an observation -->
+    <string name="copy_coordinates">Копирай координатите</string>
+    <string name="coordinates_copied_to_clipboard">Координатите са копирани в системния буфер</string>
+    <!--  Title of a section on the observation detail view that displays minor metadata  -->
+    <string name="metadata">Метаданни</string>
+    <!--  iNat observation identifier  -->
+    <string name="id">ID</string>
+    <!--  iNat observation Universally Unique Identifier  -->
+    <string name="uuid">UUID</string>
+    <!--  Universal Resource Locator  -->
+    <string name="url">URL</string>
 </resources>

@@ -309,7 +309,7 @@
     <string name="sync_obs_to_see_favs">Synk observationen for at se favoriserede...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Synk observationen for at kunne kommentere eller foreslå en identifikation...</string>
-    <string name="no_photo">Intet foto</string>
+    <string name="no_photo">Intet medie</string>
     <string name="about_this_species">Om denne Art</string>
     <string name="view_on_wikipedia">Wikipedia-artikel</string>
     <string name="photo"><![CDATA[Foto: <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -382,8 +382,11 @@
     <string name="mammals">Pattedyr</string>
     <string name="insects">Insekter</string>
     <string name="reptiles">Krybdyr</string>
+    <string name="animals">Dyr</string>
     <string name="fish">Fisk</string>
     <string name="mollusks">Bløddyr</string>
+    <string name="protozoans">Protozoer</string>
+    <string name="chromista">Tang, kiselalger og beslægtede</string>
     <string name="amphibians">Padder</string>
     <string name="fungi">Svampe</string>
     <string name="birds">Fugle</string>
@@ -447,7 +450,9 @@
     <string name="view_suggestions">Se forslag</string>
     <string name="species_search">Artssøgning</string>
     <string name="were_not_confident_enough">Vi er ikke tilstrækkeligt sikre til at give en anbefaling, men her vore bedste forslag.</string>
+    <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Mest observerede jf. indstillinger i matchningfiltre:</string>
+    <!-- Header for a list of suggested taxa -->
     <string name="top_suggestions">Topforslag</string>
     <string name="pretty_sure_rank">Vi er ret sikre på, at den er i denne %1$s:</string>
     <string name="what_did_you_see">Hvad så du?</string>
@@ -538,6 +543,7 @@
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegation</string>
     <string name="apply_filters">Anvend filtre</string>
+    <string name="remove_filters">Fjern filtre</string>
     <string name="reset">Nulstil</string>
     <string name="show_only_my_observations">Vis kun mine observationer</string>
     <string name="project">Projekt</string>
@@ -964,7 +970,7 @@ og <a href="https://www.inaturalist.org/terms">Tjenestevilkår</a>.]]></string>
     <string name="filter_observations_by_months">Filtrér observationer efter måneder</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="view_suggestions_not_seen_nearby">Se forslag, som ikke set i nærheden</string>
+    <string name="include_suggestions_not_seen_nearby">Medtag forslag for ikke set i nærheden</string>
     <string name="only_view_nearby_suggestions">Vis kun forslag set i nærheden</string>
     <string name="suggestions_source">Forslagskilde</string>
     <string name="research_grade_observations">Forskningkvalitetsobservationer</string>
@@ -1021,4 +1027,56 @@ og <a href="https://www.inaturalist.org/terms">Tjenestevilkår</a>.]]></string>
     <string name="couldnt_duplicate_sound">Kunne ikke dublere lyd!</string>
     <string name="sound_format_not_supported">Denne lydfil er af den korrekte filtype, men den aktuelle lydkodning er uunderstøttet i Android.</string>
     <string name="view_observations">Vis observationer</string>
+    <string name="choose_this_option">Vælg denne mulighed</string>
+    <string name="compare_observation_with_this_option">Sammenlign observation med denne mulighed</string>
+    <string name="go_back">Gå tilbage</string>
+    <string name="change_the_source_of_the_suggestions">Ændre kilden til forslagene</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Eksempelfoto til observationstaksonomi</string>
+    <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
+    <string name="comments_ids_title">Kommentarer og identifikationer</string>
+    <!-- Accessibility text for the faves tab on the observation detail view -->
+    <string name="faves">Favoritter</string>
+    <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
+    <string name="previous_option">Foregående mulighed</string>
+    <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string name="next_option">Næste mulighed</string>
+    <string name="no_observations_yet2">Ingen observationer endnu.</string>
+    <string name="no_species_yet">Ingen arter endnu.</string>
+    <string name="no_identifications_yet">Ingen identifikationer endnu</string>
+    <string name="sort_by">Sortér efter</string>
+    <string-array name="explore_order_by_items">
+        <item>Tilføjelsesdato</item>
+        <item>Observationsdato</item>
+        <item>Opdateringsdato</item>
+        <!--<item>Faves</item>-->
+        <item>Tilfældig</item>
+    </string-array>
+    <string-array name="explore_order_items">
+        <item>Faldende</item>
+        <item>Stigende</item>
+    </string-array>
+    <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
+    See explore_order_by_items and explore_order_items keys !-->
+    <string name="sorted_by_full">Sorteret efter %1$s (%2$s)</string>
+    <!-- Label for an observation search filter to exclude your own observations -->
+    <string name="hide_my_observations">Skjul Mine observationer</string>
+    <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
+    <string name="follow_this_observation">Følg denne observation</string>
+    <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
+    <string name="unfollow_this_observation">Følg ikke denne observation</string>
+    <!-- Error message shown when an attempt to follow an observation fails -->
+    <string name="could_not_follow_observation">Kunne ikke følge denne observation</string>
+    <!-- Error message shown when an attempt to unfollow an observation fails -->
+    <string name="could_not_unfollow_observation">Følg ikke denne observation mislykkedes</string>
+    <!-- Label for a button to copy the coordinates of an observation -->
+    <string name="copy_coordinates">Kopiér koordinater</string>
+    <string name="coordinates_copied_to_clipboard">Koordinater kopieret til udklipsholder</string>
+    <!--  Title of a section on the observation detail view that displays minor metadata  -->
+    <string name="metadata">Metadata</string>
+    <!--  iNat observation identifier  -->
+    <string name="id">ID</string>
+    <!--  iNat observation Universally Unique Identifier  -->
+    <string name="uuid">UUID</string>
+    <!--  Universal Resource Locator  -->
+    <string name="url">URL</string>
 </resources>

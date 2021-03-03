@@ -307,7 +307,7 @@
     <string name="sync_obs_to_see_favs">同步该记录并查看点赞量</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">同步该记录以添加评论或提交鉴定</string>
-    <string name="no_photo">没有照片</string>
+    <string name="no_photo">No Media</string>
     <string name="about_this_species">关于这个物种</string>
     <string name="view_on_wikipedia">维基百科文章</string>
     <string name="photo"><![CDATA[照片： <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -380,8 +380,11 @@
     <string name="mammals">哺乳动物</string>
     <string name="insects">昆虫</string>
     <string name="reptiles">爬行动物</string>
+    <string name="animals">Animals</string>
     <string name="fish">鱼类</string>
     <string name="mollusks">软体动物</string>
+    <string name="protozoans">Protozoans</string>
+    <string name="chromista">Kelp, Diatoms, and Allies</string>
     <string name="amphibians">两生类</string>
     <string name="fungi">真菌</string>
     <string name="birds">鸟类</string>
@@ -443,8 +446,10 @@
     <string name="view_suggestions">查看建议</string>
     <string name="species_search">物种搜寻</string>
     <string name="were_not_confident_enough">We\'re not confident enough to make a recommendation, but here are our top suggestions:</string>
+    <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
-    <string name="top_suggestions">Top suggestions</string>
+    <!-- Header for a list of suggested taxa -->
+    <string name="top_suggestions">最佳建议</string>
     <string name="pretty_sure_rank">我们很肯定的是在这 %1$s:</string>
     <string name="what_did_you_see">您看到什么？</string>
     <string name="suggest_species">建议的物种</string>
@@ -534,6 +539,7 @@
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">代表</string>
     <string name="apply_filters">使用搜索条件</string>
+    <string name="remove_filters">Remove Filters</string>
     <string name="reset">重置</string>
     <string name="show_only_my_observations">只显示我的观察记录</string>
     <string name="project">项目</string>
@@ -956,15 +962,15 @@
     <string name="filter_observations_by_months">按月份筛选观察</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="view_suggestions_not_seen_nearby">View suggestions not seen nearby</string>
+    <string name="include_suggestions_not_seen_nearby">Include suggestions not seen nearby</string>
     <string name="only_view_nearby_suggestions">Only view nearby suggestions</string>
-    <string name="suggestions_source">Suggestions Source</string>
+    <string name="suggestions_source">建议来源</string>
     <string name="research_grade_observations">Research Grade Observations</string>
     <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
     <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will suggest species observed in a specific place and within a specific taxonomic group.</string>
-    <string name="taxon">Taxon:</string>
-    <string name="place">Place:</string>
-    <string name="pretty_sure_kingdom">We\'re pretty sure it\'s in this kingdom:</string>
+    <string name="taxon">分类：</string>
+    <string name="place">地点：</string>
+    <string name="pretty_sure_kingdom">我们比较确定它在这个界：</string>
     <string name="pretty_sure_subkingdom">We\'re pretty sure it\'s in this subkingdom:</string>
     <string name="pretty_sure_phylum">We\'re pretty sure it\'s in this phylum:</string>
     <string name="pretty_sure_subphylum">We\'re pretty sure it\'s in this subphylum:</string>
@@ -1013,4 +1019,56 @@
     <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
     <string name="sound_format_not_supported">This sound file is the right file extension, but the specific audio encoding is not supported by Android.</string>
     <string name="view_observations">View Observations</string>
+    <string name="choose_this_option">Choose this option</string>
+    <string name="compare_observation_with_this_option">Compare observation with this option</string>
+    <string name="go_back">Go back</string>
+    <string name="change_the_source_of_the_suggestions">Change the source of the suggestions</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Thumbnail photo for suggested taxon</string>
+    <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
+    <string name="comments_ids_title">Comments and Identifications</string>
+    <!-- Accessibility text for the faves tab on the observation detail view -->
+    <string name="faves">Faves</string>
+    <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
+    <string name="previous_option">Previous Option</string>
+    <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string name="next_option">Next Option</string>
+    <string name="no_observations_yet2">No observations yet.</string>
+    <string name="no_species_yet">No species yet.</string>
+    <string name="no_identifications_yet">No identifications yet.</string>
+    <string name="sort_by">Sort By</string>
+    <string-array name="explore_order_by_items">
+        <item>Date Added</item>
+        <item>Date Observed</item>
+        <item>Date Updated</item>
+        <!--<item>Faves</item>-->
+        <item>Random</item>
+    </string-array>
+    <string-array name="explore_order_items">
+        <item>Descending</item>
+        <item>Ascending</item>
+    </string-array>
+    <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
+    See explore_order_by_items and explore_order_items keys !-->
+    <string name="sorted_by_full">Sorted by %1$s (%2$s)</string>
+    <!-- Label for an observation search filter to exclude your own observations -->
+    <string name="hide_my_observations">Hide My Observations</string>
+    <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
+    <string name="follow_this_observation">Follow this Observation</string>
+    <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
+    <string name="unfollow_this_observation">Unfollow this Observation</string>
+    <!-- Error message shown when an attempt to follow an observation fails -->
+    <string name="could_not_follow_observation">Could not follow this observation</string>
+    <!-- Error message shown when an attempt to unfollow an observation fails -->
+    <string name="could_not_unfollow_observation">Could not unfollow this observation</string>
+    <!-- Label for a button to copy the coordinates of an observation -->
+    <string name="copy_coordinates">Copy coordinates</string>
+    <string name="coordinates_copied_to_clipboard">Coordinates copied to clipboard</string>
+    <!--  Title of a section on the observation detail view that displays minor metadata  -->
+    <string name="metadata">Metadata</string>
+    <!--  iNat observation identifier  -->
+    <string name="id">ID</string>
+    <!--  iNat observation Universally Unique Identifier  -->
+    <string name="uuid">UUID</string>
+    <!--  Universal Resource Locator  -->
+    <string name="url">URL</string>
 </resources>
