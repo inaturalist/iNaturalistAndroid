@@ -436,7 +436,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
                 FacebookSdk.setApplicationId(getString(R.string.facebook_app_id));
                 FacebookSdk.sdkInitialize(getApplicationContext());
 
-                recreateSignInTaskIfNeeded();
+                mSignInTask = new SignInTask(LoginSignupActivity.this, LoginSignupActivity.this, mFacebookLoginButton, mVerifyPassword);
                 mFacebookLoginButton.performClick();
             }
         });
