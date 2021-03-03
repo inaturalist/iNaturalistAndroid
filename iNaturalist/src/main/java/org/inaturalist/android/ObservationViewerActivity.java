@@ -2411,9 +2411,26 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             follow.setTitle(R.string.follow_this_observation);
         } else {
             follow.setEnabled(!mFollowingObservation);
-            follow.setTitle(mObservationSubscriptions.length() > 0 ?
+            follow.setTitle(isFollowingObservation() ?
                     R.string.unfollow_this_observation : R.string.follow_this_observation);
         }
+    }
+
+    private boolean isFollowingObservation() {
+        if ((mObservationSubscriptions == null) || (mObservationSubscriptions.length() == 0)) {
+            return false;
+        }
+
+        for (int i = 0; i < mObservationSubscriptions.length(); i++) {
+            JSONObject subscription = mObservationSubscriptions.optJSONObject(i);
+            Logger.tag(TAG).error("AAA - " + subscription);
+            Logger.tag(TAG).error("AAA - " + mObservation.id);
+            if ((subscription.optString("resource_type", "").equals("Observation")) && (subscription.optInt("resource_id", -1) == mObservation.id)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override
@@ -2486,14 +2503,14 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            Logger.tag(TAG).error("ObservationFollowReceiver - result");
+            Logger.tag(TAG).error("ObservationFollowReceiver - result - " + mObservationSubscriptions);
 
             boolean success = intent.getBooleanExtra(INaturalistService.SUCCESS, false);
 
             if (!success) {
                 mFollowingObservation = false;
                 Toast.makeText(getApplicationContext(), getString(
-                        (mObservationSubscriptions != null) && (mObservationSubscriptions.length() > 0) ?
+                        isFollowingObservation() ?
                                 R.string.could_not_unfollow_observation : R.string.could_not_follow_observation
                     ), Toast.LENGTH_LONG).show();
                 refreshMenu();
@@ -2502,9 +2519,16 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
             mFollowingObservation = false;
 
-            if ((mObservationSubscriptions == null) || (mObservationSubscriptions.length() == 0)) {
+            if (!isFollowingObservation()) {
                 mObservationSubscriptions = new JSONArray();
-                mObservationSubscriptions.put(true);
+                try {
+                    JSONObject item = new JSONObject();
+                    item.put("resource_type", "Observation");
+                    item.put("resource_id", mObservation.id);
+                    mObservationSubscriptions.put(item);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             } else {
                 mObservationSubscriptions = new JSONArray();
             }
