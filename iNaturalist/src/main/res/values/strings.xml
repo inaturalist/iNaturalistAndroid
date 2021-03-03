@@ -250,7 +250,9 @@
     <string name="please_sign_in_for_updates">You must be logged in to view your updates.</string>
     <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="https://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
     <string name="activity">Activity</string>
+    <!-- Label for a button to open the camera to take a new photo for an observation -->
     <string name="camera">Take Photo</string>
+    <!-- Label for a button to import an existing photo for an observation -->
     <string name="upload_photo">Choose Image</string>
     <string name="menu_text">No Photo</string>
     <string name="first">1st</string>
@@ -317,6 +319,7 @@
     <string name="sync_obs_to_see_favs">Sync this observation to see faves...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Sync this observation in order to leave a comment or suggest an identification...</string>
+    <!--  Label for a button to add an observation without a photo or a sound  -->
     <string name="no_photo">No Media</string>
     <string name="about_this_species">About this Species</string>
     <string name="view_on_wikipedia">Wikipedia Article</string>
@@ -771,9 +774,11 @@
     <string name="could_not_play_sound">Couldn\'t play sound - probably a network issue</string>
     <string name="cant_play_soundcloud"><![CDATA[To listen to Soundcloud sounds, view the <a href="%1$s">website</a>.]]></string>
     <string name="soundcloud">Soundcloud</string>
+    <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Record Sound</string>
     <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
+    <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Choose Sound</string>
     <string name="multi_select_sound_description">Import multiple sounds by long-pressing on a single sound</string>
     <string name="alert_unsupported_audio_type">Sorry, but there was a problem loading the sound from this source</string>
