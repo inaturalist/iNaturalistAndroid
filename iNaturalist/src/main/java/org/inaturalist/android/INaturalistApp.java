@@ -1,7 +1,6 @@
 package org.inaturalist.android;
 
 import com.evernote.android.state.StateSaver;
-import com.facebook.FacebookSdk;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
@@ -194,8 +193,6 @@ public class INaturalistApp extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        FacebookSdk.sdkInitialize(getApplicationContext());
 
         FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(!getPrefersNoTracking());
 

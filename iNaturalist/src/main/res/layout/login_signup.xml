@@ -396,12 +396,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/facebook_login_button"
-        android:visibility="gone"
-        android:layout_width="0dp"
-        android:layout_height="0dp" />
-
     <TextView
         android:id="@+id/terms"
         android:visibility="gone"

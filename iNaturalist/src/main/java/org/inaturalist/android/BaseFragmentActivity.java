@@ -1,5 +1,6 @@
 package org.inaturalist.android;
 
+import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
@@ -708,6 +709,8 @@ public class BaseFragmentActivity extends AppCompatActivity {
         INaturalistService.LoginType loginType = INaturalistService.LoginType.valueOf(prefs.getString("login_type", INaturalistService.LoginType.OAUTH_PASSWORD.toString()));
 
         if (loginType == INaturalistService.LoginType.FACEBOOK) {
+            FacebookSdk.setApplicationId(context.getString(R.string.facebook_app_id));
+            FacebookSdk.sdkInitialize(context);
             LoginManager.getInstance().logOut();
         }
 

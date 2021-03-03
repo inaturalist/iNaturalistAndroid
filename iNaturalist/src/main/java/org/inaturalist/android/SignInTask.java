@@ -85,57 +85,59 @@ public class SignInTask extends AsyncTask<String, Void, String> {
         mFacebookLoginButton = facebookLoginButton;
         mPasswordVerificationForDeletion = passwordVerificationForDeletion;
 
-        mFacebookAccessTokenTracker = new AccessTokenTracker() {
-            @Override
-            protected void onCurrentAccessTokenChanged(AccessToken oldToken, AccessToken newToken) {
-                if (newToken != null) {
-                    String username = mPreferences.getString("username", null);
-                    if (username == null) {
-                        // First time login
-                        String accessToken = newToken.getToken();
-                        execute(null, accessToken, INaturalistService.LoginType.FACEBOOK.toString());
+        if (mFacebookLoginButton != null) {
+            mFacebookAccessTokenTracker = new AccessTokenTracker() {
+                @Override
+                protected void onCurrentAccessTokenChanged(AccessToken oldToken, AccessToken newToken) {
+                    if (newToken != null) {
+                        String username = mPreferences.getString("username", null);
+                        if (username == null) {
+                            // First time login
+                            String accessToken = newToken.getToken();
+                            execute(null, accessToken, INaturalistService.LoginType.FACEBOOK.toString());
+                        }
                     }
                 }
-            }
-        };
+            };
 
-        mFacebookCallbackManager = CallbackManager.Factory.create();
+            mFacebookCallbackManager = CallbackManager.Factory.create();
 
-        ArrayList<String> permissions = new ArrayList<String>();
-        permissions.add("email");
-        mFacebookLoginButton.setReadPermissions(permissions);
+            ArrayList<String> permissions = new ArrayList<String>();
+            permissions.add("email");
+            mFacebookLoginButton.setReadPermissions(permissions);
 
-        mFacebookLoginButton.registerCallback(mFacebookCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
+            mFacebookLoginButton.registerCallback(mFacebookCallbackManager, new FacebookCallback<LoginResult>() {
+                @Override
+                public void onSuccess(LoginResult loginResult) {
 
-            }
+                }
 
-            @Override
-            public void onCancel() {
-                if (!isNetworkAvailable()) {
+                @Override
+                public void onCancel() {
+                    if (!isNetworkAvailable()) {
+                        Toast.makeText(mActivity.getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                @Override
+                public void onError(FacebookException exception) {
+                    mLoginErrorMessage = exception.getMessage();
                     Toast.makeText(mActivity.getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
+
+
+                    try {
+                        JSONObject eventParams = new JSONObject();
+                        eventParams.put(AnalyticsClient.EVENT_PARAM_FROM, AnalyticsClient.EVENT_VALUE_FACEBOOK);
+                        if (mLoginErrorMessage != null) eventParams.put(AnalyticsClient.EVENT_PARAM_CODE, mLoginErrorMessage);
+
+                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_LOGIN_FAILED, eventParams);
+                    } catch (JSONException e) {
+                        Logger.tag(TAG).error(e);
+                    }
+
                 }
-            }
-
-            @Override
-            public void onError(FacebookException exception) {
-                mLoginErrorMessage = exception.getMessage();
-                Toast.makeText(mActivity.getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
-
-
-                try {
-                    JSONObject eventParams = new JSONObject();
-                    eventParams.put(AnalyticsClient.EVENT_PARAM_FROM, AnalyticsClient.EVENT_VALUE_FACEBOOK);
-                    if (mLoginErrorMessage != null) eventParams.put(AnalyticsClient.EVENT_PARAM_CODE, mLoginErrorMessage);
-
-                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_LOGIN_FAILED, eventParams);
-                } catch (JSONException e) {
-                    Logger.tag(TAG).error(e);
-                }
-
-            }
-        });
+            });
+        }
     }
 
     private boolean isNetworkAvailable() {

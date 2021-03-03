@@ -20,9 +20,12 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+
+import com.facebook.FacebookSdk;
 import com.facebook.login.widget.LoginButton;
 
 
@@ -38,10 +41,11 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
     private ViewFlipper mBackgroundImage;
-    private LoginButton mFacebookLoginButton;
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mPrefEditor;
     private SignInTask mSignInTask;
+
+    private LoginButton mFacebookLoginButton;
 
     @Override
 	protected void onStart() {
@@ -154,12 +158,15 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
             closeButton.setVisibility(View.INVISIBLE);
         }
 
-        mFacebookLoginButton = (LoginButton) findViewById(R.id.facebook_login_button);
-
         View loginWithFacebook = findViewById(R.id.login_with_facebook);
         loginWithFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FacebookSdk.setApplicationId(getString(R.string.facebook_app_id));
+                FacebookSdk.sdkInitialize(getApplicationContext());
+                mFacebookLoginButton = new LoginButton(OnboardingActivity.this);
+                mFacebookLoginButton.setLayoutParams(new RelativeLayout.LayoutParams(0, 0));
+                mSignInTask = new SignInTask(OnboardingActivity.this, OnboardingActivity.this, mFacebookLoginButton, false);
                 mFacebookLoginButton.performClick();
             }
         });
@@ -187,7 +194,7 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
             }
         });
 
-        mSignInTask = new SignInTask(this, this, mFacebookLoginButton, false);
+        mSignInTask = new SignInTask(this, this, null, false);
 
         if (shouldLogin) {
             // Show login screen
