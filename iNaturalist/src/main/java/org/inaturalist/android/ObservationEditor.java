@@ -1091,18 +1091,22 @@ public class ObservationEditor extends AppCompatActivity {
 
         	} else {
         		// Get IDs of project-observations
-        		int obsId = (mObservation.id == null ? mObservation._id : mObservation.id);
-        		Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI, ProjectObservation.PROJECTION,
-        				"(observation_id = " + obsId + ") AND ((is_deleted = 0) OR (is_deleted is NULL))",
-        				null, ProjectObservation.DEFAULT_SORT_ORDER);
-        		c.moveToFirst();
-        		mProjectIds = new ArrayList<Integer>();
-        		while (c.isAfterLast() == false) {
-        			ProjectObservation projectObservation = new ProjectObservation(c);
-        			mProjectIds.add(projectObservation.project_id);
-        			c.moveToNext();
-        		}
-        		c.close();
+                if ((mObservation.id == null) && (mObservation._id == null)) {
+                    mProjectIds = new ArrayList<Integer>();
+                } else {
+                    int obsId = (mObservation.id == null ? mObservation._id : mObservation.id);
+                    Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI, ProjectObservation.PROJECTION,
+                            "(observation_id = " + obsId + ") AND ((is_deleted = 0) OR (is_deleted is NULL))",
+                            null, ProjectObservation.DEFAULT_SORT_ORDER);
+                    c.moveToFirst();
+                    mProjectIds = new ArrayList<Integer>();
+                    while (c.isAfterLast() == false) {
+                        ProjectObservation projectObservation = new ProjectObservation(c);
+                        mProjectIds.add(projectObservation.project_id);
+                        c.moveToNext();
+                    }
+                    c.close();
+                }
         	}
         }
 
