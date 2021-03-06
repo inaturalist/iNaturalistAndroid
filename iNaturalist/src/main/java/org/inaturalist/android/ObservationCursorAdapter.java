@@ -299,9 +299,19 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         if (onlinePc != null) {
             onlinePc.moveToFirst();
             while (!onlinePc.isAfterLast()) {
-                String photoUrl = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
-                String photoFilename = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
-                String obsUUID = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.OBSERVATION_UUID));
+                String photoUrl;
+                String photoFilename;
+                String obsUUID;
+
+                try {
+                    photoUrl = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
+                    photoFilename = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
+                    obsUUID = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.OBSERVATION_UUID));
+                } catch (IllegalStateException exc) {
+                    // This could happen in case we're of out of memory (not enough memory to allocate the contents of another cursor row)
+                    exc.printStackTrace();
+                    break;
+                }
 
                 onlinePc.moveToNext();
 
