@@ -309,7 +309,7 @@
     <string name="sync_obs_to_see_favs">ප්‍රියතමයන් බැලීමට මෙම නිරීක්ෂණය සමමුහුර්ත කරන්න...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">අදහස් දැක්වීමක් තැබීමට හෝ හඳුනා ගැනීමක් යෝජනා කිරීම සඳහා මෙම නිරීක්ෂණය සමමුහුර්ත කරන්න...</string>
-    <string name="no_photo">ඡායාරූපයක් නොමැත</string>
+    <string name="no_photo">No Media</string>
     <string name="about_this_species">මෙම විශේෂය පිළිබඳව</string>
     <string name="view_on_wikipedia">විකිපීඩියා ලිපිය</string>
     <string name="photo"><![CDATA[ඡායාරූපය: <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -382,8 +382,11 @@
     <string name="mammals">ක්ෂීරපායින්</string>
     <string name="insects">කෘමීන්</string>
     <string name="reptiles">උරගයින්</string>
+    <string name="animals">සතුන්</string>
     <string name="fish">මත්ස්‍ය</string>
     <string name="mollusks">මෘද්වංගීන්</string>
+    <string name="protozoans">Protozoans</string>
+    <string name="chromista">Kelp, Diatoms, and Allies</string>
     <string name="amphibians">උභයජීවීන්</string>
     <string name="fungi">දිලීරයන්</string>
     <string name="birds">පක්ෂීන්</string>
@@ -447,7 +450,9 @@
     <string name="view_suggestions">යෝජනා බලන්න</string>
     <string name="species_search">විශේෂයන් සෙවීම</string>
     <string name="were_not_confident_enough">We\'re not confident enough to make a recommendation, but here are our top suggestions:</string>
+    <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
+    <!-- Header for a list of suggested taxa -->
     <string name="top_suggestions">Top suggestions</string>
     <string name="pretty_sure_rank">අපට විශ්වාසයි එය මෙම %1$s ට අයත් බව:</string>
     <string name="what_did_you_see">ඔබ මොනවද දුටුවේ?</string>
@@ -538,6 +543,7 @@
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegation</string>
     <string name="apply_filters">පෙරහන් යොදන්න</string>
+    <string name="remove_filters">Remove Filters</string>
     <string name="reset">නැවත සකසන්න</string>
     <string name="show_only_my_observations">මගේ නිරීක්ෂණ පමණක් පෙන්වන්න</string>
     <string name="project">ව්‍යාපෘතිය</string>
@@ -926,7 +932,7 @@
     <!-- Singular -->
     <string name="rank_subspecies">උපවිශේෂය</string>
     <string name="rank_variety">ප්‍රභේදය</string>
-    <string name="rank_form">සිට</string>
+    <string name="rank_form">ස්වරූපය</string>
     <string name="rank_infrahybrid">අවදෙමුහුම්</string>
     <string name="rank_leaves">පත්‍ර</string>
     <string name="location_lat_lng">ස්ථානය: %1$f, %2$f</string>
@@ -960,51 +966,51 @@
     <string name="filter_observations_by_months">නිරීක්ෂණ මාස අනුව පෙරහන් කරන්න</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="view_suggestions_not_seen_nearby">View suggestions not seen nearby</string>
+    <string name="include_suggestions_not_seen_nearby">Include suggestions not seen nearby</string>
     <string name="only_view_nearby_suggestions">Only view nearby suggestions</string>
     <string name="suggestions_source">Suggestions Source</string>
     <string name="research_grade_observations">Research Grade Observations</string>
     <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
     <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will suggest species observed in a specific place and within a specific taxonomic group.</string>
-    <string name="taxon">Taxon:</string>
-    <string name="place">Place:</string>
-    <string name="pretty_sure_kingdom">We\'re pretty sure it\'s in this kingdom:</string>
-    <string name="pretty_sure_subkingdom">We\'re pretty sure it\'s in this subkingdom:</string>
-    <string name="pretty_sure_phylum">We\'re pretty sure it\'s in this phylum:</string>
-    <string name="pretty_sure_subphylum">We\'re pretty sure it\'s in this subphylum:</string>
-    <string name="pretty_sure_superclass">We\'re pretty sure it\'s in this superclass:</string>
-    <string name="pretty_sure_class">We\'re pretty sure it\'s in this class:</string>
-    <string name="pretty_sure_subclass">We\'re pretty sure it\'s in this subclass:</string>
-    <string name="pretty_sure_infraclass">We\'re pretty sure it\'s in this infraclass:</string>
-    <string name="pretty_sure_superorder">We\'re pretty sure it\'s in this superorder:</string>
-    <string name="pretty_sure_order">We\'re pretty sure it\'s in this order:</string>
-    <string name="pretty_sure_suborder">We\'re pretty sure it\'s in this suborder:</string>
-    <string name="pretty_sure_infraorder">We\'re pretty sure it\'s in this infraorder:</string>
-    <string name="pretty_sure_subterclass">We\'re pretty sure it\'s in this subterclass:</string>
-    <string name="pretty_sure_parvorder">We\'re pretty sure it\'s in this parvorder:</string>
-    <string name="pretty_sure_zoosection">We\'re pretty sure it\'s in this zoosection:</string>
-    <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
-    <string name="pretty_sure_superfamily">We\'re pretty sure it\'s in this superfamily:</string>
-    <string name="pretty_sure_epifamily">We\'re pretty sure it\'s in this epifamily:</string>
-    <string name="pretty_sure_family">We\'re pretty sure it\'s in this family:</string>
-    <string name="pretty_sure_subfamily">We\'re pretty sure it\'s in this subfamily:</string>
-    <string name="pretty_sure_supertribe">We\'re pretty sure it\'s in this supertribe:</string>
-    <string name="pretty_sure_tribe">We\'re pretty sure it\'s in this tribe:</string>
-    <string name="pretty_sure_subtribe">We\'re pretty sure it\'s in this subtribe:</string>
-    <string name="pretty_sure_genus">We\'re pretty sure it\'s in this genus:</string>
-    <string name="pretty_sure_genushybrid">We\'re pretty sure it\'s in this genushybrid:</string>
-    <string name="pretty_sure_subgenus">We\'re pretty sure it\'s in this subgenus:</string>
-    <string name="pretty_sure_section">We\'re pretty sure it\'s in this section:</string>
-    <string name="pretty_sure_subsection">We\'re pretty sure it\'s in this subsection:</string>
-    <string name="pretty_sure_complex">We\'re pretty sure it\'s in this complex:</string>
+    <string name="taxon">තක්සෝනය:</string>
+    <string name="place">ස්ථානය:</string>
+    <string name="pretty_sure_kingdom">අපට විශ්වාසයි එය මෙම රාජධානියට අයත් බව:</string>
+    <string name="pretty_sure_subkingdom">අපට විශ්වාසයි එය මෙම උපරාජධානියට අයත් බව:</string>
+    <string name="pretty_sure_phylum">අපට විශ්වාසයි එය මෙම වංශයට අයත් බව:</string>
+    <string name="pretty_sure_subphylum">අපට විශ්වාසයි එය මෙම උපවංශයට අයත් බව:</string>
+    <string name="pretty_sure_superclass">අපට විශ්වාසයි එය මෙම උපරිවර්ගයට අයත් බව:</string>
+    <string name="pretty_sure_class">අපට විශ්වාසයි එය මෙම වර්ගයට අයත් බව:</string>
+    <string name="pretty_sure_subclass">අපට විශ්වාසයි එය මෙම උපවර්ගයට අයත් බව:</string>
+    <string name="pretty_sure_infraclass">අපට විශ්වාසයි එය මෙම අවවර්ගයට අයත් බව:</string>
+    <string name="pretty_sure_superorder">අපට විශ්වාසයි එය මෙම උපරිගෝත්‍රයට අයත් බව:</string>
+    <string name="pretty_sure_order">අපට විශ්වාසයි එය මෙම ගෝත්‍රයට අයත් බව:</string>
+    <string name="pretty_sure_suborder">අපට විශ්වාසයි එය මෙම උපගෝත්‍රයට අයත් බව:</string>
+    <string name="pretty_sure_infraorder">අපට විශ්වාසයි එය මෙම අවගෝත්‍රයට අයත් බව:</string>
+    <string name="pretty_sure_subterclass">අපට විශ්වාසයි එය මෙම යටිවර්ගයට අයත් බව:</string>
+    <string name="pretty_sure_parvorder">අපට විශ්වාසයි එය මෙම අල්ප ගෝත්‍රයට අයත් බව:</string>
+    <string name="pretty_sure_zoosection">අපට විශ්වාසයි එය මෙම සත්ත්ව කොට්ඨාසයට අයත් බව:</string>
+    <string name="pretty_sure_zoosubsection">අපට විශ්වාසයි එය මෙම සත්ත්ව උප කොට්ඨාසයට අයත් බව:</string>
+    <string name="pretty_sure_superfamily">අපට විශ්වාසයි එය මෙම උපරිකුලයට අයත් බව:</string>
+    <string name="pretty_sure_epifamily">අපට විශ්වාසයි එය මෙම අපිකුලයට අයත් බව:</string>
+    <string name="pretty_sure_family">අපට විශ්වාසයි එය මෙම කුලයට අයත් බව:</string>
+    <string name="pretty_sure_subfamily">අපට විශ්වාසයි එය මෙම උපකුලයට අයත් බව:</string>
+    <string name="pretty_sure_supertribe">අපට විශ්වාසයි එය මෙම උපරිවරිගයට අයත් බව:</string>
+    <string name="pretty_sure_tribe">අපට විශ්වාසයි එය මෙම වරිගයට අයත් බව:</string>
+    <string name="pretty_sure_subtribe">අපට විශ්වාසයි එය මෙම උපවරිගයට අයත් බව:</string>
+    <string name="pretty_sure_genus">අපට විශ්වාසයි එය මෙම ගණයට අයත් බව:</string>
+    <string name="pretty_sure_genushybrid">අපට විශ්වාසයි එය මෙම දෙමුහුම් ගණයට අයත් බව:</string>
+    <string name="pretty_sure_subgenus">අපට විශ්වාසයි එය මෙම උපගණයට අයත් බව:</string>
+    <string name="pretty_sure_section">අපට විශ්වාසයි එය මෙම කොට්ඨාසයට අයත් බව:</string>
+    <string name="pretty_sure_subsection">අපට විශ්වාසයි එය මෙම සත්ත්ව උපකොට්ඨාසයට අයත් බව:</string>
+    <string name="pretty_sure_complex">අපට විශ්වාසයි එය මෙම සංකීර්ණයට අයත් බව:</string>
     <!-- Singular -->
-    <string name="pretty_sure_species">We\'re pretty sure it\'s in this species:</string>
-    <string name="pretty_sure_hybrid">We\'re pretty sure it\'s in this hybrid:</string>
+    <string name="pretty_sure_species">අපට විශ්වාසයි එය මෙම විශේෂයට අයත් බව:</string>
+    <string name="pretty_sure_hybrid">අපට විශ්වාසයි එය මෙම දෙමුහුමට අයත් බව:</string>
     <!-- Singular -->
-    <string name="pretty_sure_subspecies">We\'re pretty sure it\'s in this subspecies:</string>
-    <string name="pretty_sure_variety">We\'re pretty sure it\'s in this variety:</string>
-    <string name="pretty_sure_form">We\'re pretty sure it\'s in this form:</string>
-    <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
+    <string name="pretty_sure_subspecies">අපට විශ්වාසයි එය මෙම උපවිශේෂයට අයත් බව:</string>
+    <string name="pretty_sure_variety">අපට විශ්වාසයි එය මෙම ප්‍රභේදයට අයත් බව:</string>
+    <string name="pretty_sure_form">අපට විශ්වාසයි එය මෙම ස්වරූපයට අයත් බව:</string>
+    <string name="pretty_sure_infrahybrid">අපට විශ්වාසයි එය මෙම අවදෙමුහුමට අයත් බව:</string>
     <string name="remove_date_observed">නිරීක්ෂණය කළ දිනය සහ වේලාව ඉවත් කරන්න</string>
     <string name="remove_time_observed">නිරීක්ෂණය කළ වේලාව ඉවත් කරන්න</string>
     <string name="remove_location">ස්ථානය ඉවත් කරන්න</string>
@@ -1016,5 +1022,57 @@
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">ශබ්දය අනුපිටපත් කිරීමට නොහැකි විය!</string>
     <string name="sound_format_not_supported">This sound file is the right file extension, but the specific audio encoding is not supported by Android.</string>
-    <string name="view_observations">View Observations</string>
+    <string name="view_observations">නිරීක්ෂණ බලන්න</string>
+    <string name="choose_this_option">Choose this option</string>
+    <string name="compare_observation_with_this_option">Compare observation with this option</string>
+    <string name="go_back">Go back</string>
+    <string name="change_the_source_of_the_suggestions">Change the source of the suggestions</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Thumbnail photo for suggested taxon</string>
+    <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
+    <string name="comments_ids_title">Comments and Identifications</string>
+    <!-- Accessibility text for the faves tab on the observation detail view -->
+    <string name="faves">Faves</string>
+    <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
+    <string name="previous_option">Previous Option</string>
+    <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string name="next_option">Next Option</string>
+    <string name="no_observations_yet2">No observations yet.</string>
+    <string name="no_species_yet">No species yet.</string>
+    <string name="no_identifications_yet">No identifications yet.</string>
+    <string name="sort_by">සැකසිය යුතු පිලිවෙල</string>
+    <string-array name="explore_order_by_items">
+        <item>එක් කළ දිනය</item>
+        <item>නිරීක්ෂණය කළ දිනය</item>
+        <item>යාවත්කාලීන කළ දිනය</item>
+        <!--<item>Faves</item>-->
+        <item>අහඹු</item>
+    </string-array>
+    <string-array name="explore_order_items">
+        <item>අවරෝහණ</item>
+        <item>ආරෝහණ</item>
+    </string-array>
+    <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
+    See explore_order_by_items and explore_order_items keys !-->
+    <string name="sorted_by_full">%1$s (%2$s) පිලිවෙලට සකසා ඇත</string>
+    <!-- Label for an observation search filter to exclude your own observations -->
+    <string name="hide_my_observations">මගේ නිරීක්ෂණ සඟවන්න</string>
+    <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
+    <string name="follow_this_observation">Follow this Observation</string>
+    <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
+    <string name="unfollow_this_observation">Unfollow this Observation</string>
+    <!-- Error message shown when an attempt to follow an observation fails -->
+    <string name="could_not_follow_observation">Could not follow this observation</string>
+    <!-- Error message shown when an attempt to unfollow an observation fails -->
+    <string name="could_not_unfollow_observation">Could not unfollow this observation</string>
+    <!-- Label for a button to copy the coordinates of an observation -->
+    <string name="copy_coordinates">Copy coordinates</string>
+    <string name="coordinates_copied_to_clipboard">Coordinates copied to clipboard</string>
+    <!--  Title of a section on the observation detail view that displays minor metadata  -->
+    <string name="metadata">Metadata</string>
+    <!--  iNat observation identifier  -->
+    <string name="id">ID</string>
+    <!--  iNat observation Universally Unique Identifier  -->
+    <string name="uuid">UUID</string>
+    <!--  Universal Resource Locator  -->
+    <string name="url">URL</string>
 </resources>

@@ -87,8 +87,8 @@
              android:tint="#676767"
              android:padding="12dp"
              android:layout_marginBottom="60dp"
-             android:layout_marginRight="20dp"
-             android:layout_alignParentRight="true"
+             android:layout_marginEnd="20dp"
+             android:layout_alignParentEnd="true"
              android:layout_alignParentBottom="true"
              android:elevation="3dp"
              android:layout_width="50dp"
@@ -101,14 +101,12 @@
              android:tint="#676767"
              android:padding="14dp"
              android:layout_above="@id/change_map_layers"
-             android:layout_alignRight="@id/change_map_layers"
+             android:layout_alignEnd="@id/change_map_layers"
              android:layout_marginBottom="15dp"
              android:elevation="3dp"
              android:layout_width="50dp"
-             android:layout_height="50dp" />
-
-
-
+             android:layout_height="50dp"
+             android:contentDescription="@string/get_current_location" />
 
          <TextView
              android:id="@+id/map_filter_bar"

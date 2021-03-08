@@ -250,7 +250,7 @@
     <string name="upload_photo">Bild auswählen</string>
     <string name="menu_text">Foto überspringen</string>
     <string name="first">1.</string>
-    <string name="make_first">Erste erstellen</string>
+    <string name="make_first">Zum 1. Bild machen</string>
     <string name="notes">Bemerkungen</string>
     <string name="location_is">Standort ist</string>
     <string name="is_captive">Ist die Beobachtung ein Tier in Haltung, eine angepflanzte/kultivierte Pflanze etc.?</string>
@@ -309,7 +309,7 @@
     <string name="sync_obs_to_see_favs">Diese Beobachtung synchronisieren, um Favoriten zu sehen …</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Diese Beobachtung synchronisieren, um einen Kommentar zu hinterlassen oder eine Identifizierung vorzuschlagen …</string>
-    <string name="no_photo">ohne Foto</string>
+    <string name="no_photo">Keine Medieninhalte</string>
     <string name="about_this_species">Über diese Art</string>
     <string name="view_on_wikipedia">Wikipedia-Artikel</string>
     <string name="photo"><![CDATA[Foto: <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -382,8 +382,11 @@
     <string name="mammals">Säugetiere</string>
     <string name="insects">Insekten</string>
     <string name="reptiles">Reptilien</string>
+    <string name="animals">Tiere</string>
     <string name="fish">Fische</string>
     <string name="mollusks">Weichtiere</string>
+    <string name="protozoans">Protozoen</string>
+    <string name="chromista">Braunalgen, Diatomeen und Verwandte</string>
     <string name="amphibians">Amphibien</string>
     <string name="fungi">Pilze</string>
     <string name="birds">Vögel</string>
@@ -447,7 +450,9 @@
     <string name="view_suggestions">Vorschläge anzeigen</string>
     <string name="species_search">Suche nach Arten</string>
     <string name="were_not_confident_enough">Wir sind nicht sicher genug, um eine Empfehlung abzugeben, aber hier sind unsere besten Vorschläge.</string>
-    <string name="most_observed_options_matching_filters">Den gewählten Filtern entsprechend die häufigsten Beobachtungen:</string>
+    <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
+    <string name="most_observed_options_matching_filters">Die häufigsten Beobachtungen mit diesen Filtereinstellungen:</string>
+    <!-- Header for a list of suggested taxa -->
     <string name="top_suggestions">Beste Vorschläge</string>
     <string name="pretty_sure_rank">Wir sind ziemlich sicher, dass es in dieser %1$s ist:</string>
     <string name="what_did_you_see">Was hast du gefunden?</string>
@@ -538,6 +543,7 @@
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegation</string>
     <string name="apply_filters">Filter anwenden</string>
+    <string name="remove_filters">Filter entfernen</string>
     <string name="reset">Zurücksetzen</string>
     <string name="show_only_my_observations">Nur meine Beobachtungen anzeigen</string>
     <string name="project">Projekt</string>
@@ -578,11 +584,11 @@
     <string name="swipe">Wischen</string>
     <string name="swipe_indicator">›</string>
     <string name="select_google_account">Google-Konto auswählen</string>
-    <string name="potential_disagreement">Mögliche Unstimmigkeit</string>
-    <string name="do_you_think_this_could_be"><![CDATA[Ist der Nachweis ausreichend, um zu bestätigen, das dies ein <b>%1$s</b> ist?]]></string>
+    <string name="potential_disagreement">Möglicher Widerspruch</string>
+    <string name="do_you_think_this_could_be"><![CDATA[Möchtest du der Bestimmung \'<b>%1$s</b>\' widersprechen?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
-    <string name="i_dont_know_but"><![CDATA[Ich weiß nicht, aber ich bin sicher, dass dies ein <b>%1$s</b> ist.]]></string>
-    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Nein, aber ist ein Mitglied von <b>%1$s</b>.]]></string>
+    <string name="i_dont_know_but"><![CDATA[Nein. Ich bin mir zumindest sicher, dass \'<b>%1$s</b>\' richtig ist.]]></string>
+    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Ja, der Nachweis lässt diese ID nicht zu. \'<b>%1$s</b>\' ist aber korrekt.]]></string>
     <string name="submit">Absenden</string>
     <string name="change_password">Passwort ändern</string>
     <string name="search_projects_youve_joined">Suche Projekte, denen du beigetreten bist...</string>
@@ -624,7 +630,7 @@
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
     <string name="value">Wert</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
-    <string name="disagree">Ablehnen</string>
+    <string name="disagree">Widersprechen</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
     <string name="annotations">Anmerkungen</string>
     <!-- Used when filtering observations with annotations -->
@@ -961,7 +967,7 @@ und unsere <a href="https://www.inaturalist.org/terms">Geschäftsbedingungen</a>
     <string name="filter_observations_by_months">Beobachtungen nach Monaten filtern</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="view_suggestions_not_seen_nearby">Zusätzlich Vorschläge anzeigen, die nicht aus der Nähe stammen</string>
+    <string name="include_suggestions_not_seen_nearby">Vorschläge einbeziehen, die nicht aus der Nähe stammen</string>
     <string name="only_view_nearby_suggestions">Vorschläge auf die nähere Umgebung beschränken</string>
     <string name="suggestions_source">Grundlage der Vorschläge</string>
     <string name="research_grade_observations">Beobachtungen mit Forschungsqualität</string>
@@ -1018,4 +1024,56 @@ und unsere <a href="https://www.inaturalist.org/terms">Geschäftsbedingungen</a>
     <string name="couldnt_duplicate_sound">Audioaufnahme konnte nicht dupliziert werden!</string>
     <string name="sound_format_not_supported">Diese Sounddatei ist die richtige Dateierweiterung, aber die spezifische Audio-Encodierung wird von Android nicht unterstützt.</string>
     <string name="view_observations">Beobachtungen anzeigen</string>
+    <string name="choose_this_option">Option auswählen</string>
+    <string name="compare_observation_with_this_option">Beobachtung mit dieser Option vergleichen</string>
+    <string name="go_back">Zurück</string>
+    <string name="change_the_source_of_the_suggestions">Quelle der Vorschläge ändern</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Miniaturansicht des vorgeschlagenen Taxons</string>
+    <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
+    <string name="comments_ids_title">Kommentare &amp; Bestimmungen</string>
+    <!-- Accessibility text for the faves tab on the observation detail view -->
+    <string name="faves">Stimmen</string>
+    <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
+    <string name="previous_option">Vorherige Option</string>
+    <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string name="next_option">Nächste Option</string>
+    <string name="no_observations_yet2">Noch keine Beobachtungen.</string>
+    <string name="no_species_yet">Noch keine Arten.</string>
+    <string name="no_identifications_yet">Noch keine Bestimmungen</string>
+    <string name="sort_by">Sortieren nach</string>
+    <string-array name="explore_order_by_items">
+        <item>Hinzugefügt am</item>
+        <item>Beobachtet am</item>
+        <item>Aktualisiert am</item>
+        <!--<item>Faves</item>-->
+        <item>Zufällig</item>
+    </string-array>
+    <string-array name="explore_order_items">
+        <item>Absteigend</item>
+        <item>Aufsteigend</item>
+    </string-array>
+    <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
+    See explore_order_by_items and explore_order_items keys !-->
+    <string name="sorted_by_full">Sortiert nach %1$s (%2$s)</string>
+    <!-- Label for an observation search filter to exclude your own observations -->
+    <string name="hide_my_observations">Eigene Beobachtungen ausblenden</string>
+    <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
+    <string name="follow_this_observation">Dieser Beobachtung folgen</string>
+    <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
+    <string name="unfollow_this_observation">Dieser Beobachtung nicht mehr folgen</string>
+    <!-- Error message shown when an attempt to follow an observation fails -->
+    <string name="could_not_follow_observation">Dieser Beobachtung konnte nicht gefolgt werden</string>
+    <!-- Error message shown when an attempt to unfollow an observation fails -->
+    <string name="could_not_unfollow_observation">Ein Folgen dieser Beobachtung konnte nicht aufgehoben werden</string>
+    <!-- Label for a button to copy the coordinates of an observation -->
+    <string name="copy_coordinates">Koordinaten kopieren</string>
+    <string name="coordinates_copied_to_clipboard">Koordinaten in Zwischenablage kopiert</string>
+    <!--  Title of a section on the observation detail view that displays minor metadata  -->
+    <string name="metadata">Metadaten</string>
+    <!--  iNat observation identifier  -->
+    <string name="id">ID</string>
+    <!--  iNat observation Universally Unique Identifier  -->
+    <string name="uuid">UUID</string>
+    <!--  Universal Resource Locator  -->
+    <string name="url">URL</string>
 </resources>

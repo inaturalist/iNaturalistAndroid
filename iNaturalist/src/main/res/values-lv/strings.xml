@@ -199,7 +199,7 @@ globālā iNaturalist tīkla.</string>
     <string name="alert_message_use_argentinat">ArgentiNat ir daļa no iNaturalist tīkla Argentīnā. Vietējām organizācijām, kas atbalsta NaturaLista būs pieeja tavai e-pasta adresei un novērojumu faktiskajām koordinātām – tas ietver gan publikai apslēptās, gan privātās koordinātas. Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu. Vai vēlies pievienoties citam iNaturalist partnerim?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel ir daļa no iNaturalist tīkla Izraēlā. Vietējām organizācijām, kas atbalsta NaturaLista būs pieeja tavai e-pasta adresei un novērojumu faktiskajām koordinātām – tas ietver gan publikai apslēptās, gan privātās koordinātas. Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu. Vai vēlies pievienoties citam iNaturalist partnerim?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland ir daļa no iNaturalist tīkla Somijā. Vietējām organizācijām, kas atbalsta NaturaLista būs pieeja tavai e-pasta adresei un novērojumu faktiskajām koordinātām – tas ietver gan publikai apslēptās, gan privātās koordinātas. Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu. Vai vēlies pievienoties citam iNaturalist partnerim?</string>
-    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile ir daļa no iNaturalist tīkla Čīlē. Vietējām organizācijām, kas atbalsta iNaturalist Chile būs pieeja tavai e-pasta adresei un novērojumu faktiskajām koordinātām – tas ietver gan publikai apslēptās, gan privātās koordinātas. Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu. Vai vēlies pievienoties citam iNaturalist partnerim?</string>
     <string name="editor">Redaktors</string>
     <string name="license">Licence</string>
     <string name="download_for_offline_use">Lejupielādēt bezsaistes lietošanai</string>
@@ -312,7 +312,7 @@ globālā iNaturalist tīkla.</string>
     <string name="sync_obs_to_see_favs">Sinhronizē novērojumu, lai atvērtu izlasi.</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Sinhronizē novērojumu, lai pievienotu komentāru vai palīdzētu identificēt.</string>
-    <string name="no_photo">Nav fotogrāfiju</string>
+    <string name="no_photo">No Media</string>
     <string name="about_this_species">Sugas apraksts</string>
     <string name="view_on_wikipedia">Vikipēdijas raksts</string>
     <string name="photo"><![CDATA[Fotogrāfija: <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -385,8 +385,11 @@ globālā iNaturalist tīkla.</string>
     <string name="mammals">Zīdītāji</string>
     <string name="insects">Kukaiņi</string>
     <string name="reptiles">Rāpuļi</string>
+    <string name="animals">Dzīvnieki</string>
     <string name="fish">Zivis</string>
     <string name="mollusks">Gliemji</string>
+    <string name="protozoans">Vienšūņi</string>
+    <string name="chromista">Jūras aļģes, diatomejas u.t.m.l.</string>
     <string name="amphibians">Abinieki</string>
     <string name="fungi">Sēnes</string>
     <string name="birds">Putni</string>
@@ -451,9 +454,11 @@ globālā iNaturalist tīkla.</string>
     <string name="more_info_on_inat">Vairāk informācijas iNaturalist.org lapā</string>
     <string name="view_suggestions">Skatīt minējumus</string>
     <string name="species_search">Meklēt sugu</string>
-    <string name="were_not_confident_enough">We\'re not confident enough to make a recommendation, but here are our top suggestions:</string>
-    <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
-    <string name="top_suggestions">Top suggestions</string>
+    <string name="were_not_confident_enough">Neesam pietiekami pārliecināti, lai ieteiktu sugu, bet šie ir mūsu labākie minējumi:</string>
+    <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
+    <string name="most_observed_options_matching_filters">Visbiežāk novērotie indivīdi, kas atbilst izvēlētajiem filtriem:</string>
+    <!-- Header for a list of suggested taxa -->
+    <string name="top_suggestions">Labākie minējumi</string>
     <string name="pretty_sure_rank">Esam diezgan pārliecināti, ka organisms pieder šai kategorijai: %1$s</string>
     <string name="what_did_you_see">Ko redzēji?</string>
     <string name="suggest_species">Ieteikt sugu</string>
@@ -544,6 +549,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Apgabals</string>
     <string name="apply_filters">Aktivizēt filtrus</string>
+    <string name="remove_filters">Dezaktivizēt filtrus</string>
     <string name="reset">Nodzēst visu</string>
     <string name="show_only_my_observations">Rādīt tikai manus novērojumus</string>
     <string name="project">Projekts</string>
@@ -739,7 +745,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="network_credit_inaturalistecuador"><![CDATA[Ekvadora: Instituto Nacional de Biodiversidad (INABIO), kas uztur iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Izraēla: University of Haifa, kas uztur iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Somija: Finnish Museum of Naturalist History (LUOMUS), kas uztur iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
-    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Čīle: Ministerio del Medio Ambiente, kas atbild par iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>).]]></string>
     <string name="mark_all_as_viewed">Atzīmēt visu kā skatītu</string>
     <string name="content_hidden">Slēpts saturs</string>
     <string name="show_hidden_content">Rādīt slēpto saturu</string>
@@ -954,75 +960,127 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
-    <string name="show_common_names">Show common names</string>
-    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
-    <string name="email_must_look_like_email_address">Email must look like an email address</string>
-    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
-    <string name="password_too_short">Password must be at least six characters long</string>
+    <string name="show_common_names">Rādīt tautā pieņemtos nosaukumus</string>
+    <string name="show_common_names_description">Atspējo šo opciju, ja vēlies redzēt tikai zinātniskos nosaukumus.</string>
+    <string name="email_must_look_like_email_address">E-pasta laukā jāievada atbilstoša e-pasta adrese</string>
+    <string name="username_must_begin_with">Lietotājvārdam jāsākas ar burtu un tam jāsatur tikai skaitļi, burti, defises un apakšsvītras, bet tas nedrīkst saturēt atstarpes.</string>
+    <string name="password_too_short">Parolei jābūt vismaz sešus simbolus garai.</string>
     <string name="switch_to_grid_view">Pārslēgt uz režģa skatu</string>
     <string name="switch_to_list_view">Pārslēgt uz saraksta skatu</string>
     <string name="remove_project_filter">Noņemt projekta filtru</string>
-    <string name="remove_observer_filter">Remove observer filter</string>
+    <string name="remove_observer_filter">Noņemt novērotāja filtru</string>
     <string name="filter_observations_by_an_exact_date">Filtrēt novērojumus pēc precīza datuma</string>
     <string name="filter_observations_by_a_date_range">Filtrēt novērojumus pēc datuma diapazona</string>
     <string name="filter_observations_by_months">Filtrēt novērojumus pēc mēnešiem</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="view_suggestions_not_seen_nearby">View suggestions not seen nearby</string>
-    <string name="only_view_nearby_suggestions">Only view nearby suggestions</string>
-    <string name="suggestions_source">Suggestions Source</string>
-    <string name="research_grade_observations">Research Grade Observations</string>
-    <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
-    <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will suggest species observed in a specific place and within a specific taxonomic group.</string>
-    <string name="taxon">Taxon:</string>
-    <string name="place">Place:</string>
-    <string name="pretty_sure_kingdom">We\'re pretty sure it\'s in this kingdom:</string>
-    <string name="pretty_sure_subkingdom">We\'re pretty sure it\'s in this subkingdom:</string>
-    <string name="pretty_sure_phylum">We\'re pretty sure it\'s in this phylum:</string>
-    <string name="pretty_sure_subphylum">We\'re pretty sure it\'s in this subphylum:</string>
-    <string name="pretty_sure_superclass">We\'re pretty sure it\'s in this superclass:</string>
-    <string name="pretty_sure_class">We\'re pretty sure it\'s in this class:</string>
-    <string name="pretty_sure_subclass">We\'re pretty sure it\'s in this subclass:</string>
-    <string name="pretty_sure_infraclass">We\'re pretty sure it\'s in this infraclass:</string>
-    <string name="pretty_sure_superorder">We\'re pretty sure it\'s in this superorder:</string>
-    <string name="pretty_sure_order">We\'re pretty sure it\'s in this order:</string>
-    <string name="pretty_sure_suborder">We\'re pretty sure it\'s in this suborder:</string>
-    <string name="pretty_sure_infraorder">We\'re pretty sure it\'s in this infraorder:</string>
-    <string name="pretty_sure_subterclass">We\'re pretty sure it\'s in this subterclass:</string>
-    <string name="pretty_sure_parvorder">We\'re pretty sure it\'s in this parvorder:</string>
-    <string name="pretty_sure_zoosection">We\'re pretty sure it\'s in this zoosection:</string>
-    <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
-    <string name="pretty_sure_superfamily">We\'re pretty sure it\'s in this superfamily:</string>
-    <string name="pretty_sure_epifamily">We\'re pretty sure it\'s in this epifamily:</string>
-    <string name="pretty_sure_family">We\'re pretty sure it\'s in this family:</string>
-    <string name="pretty_sure_subfamily">We\'re pretty sure it\'s in this subfamily:</string>
-    <string name="pretty_sure_supertribe">We\'re pretty sure it\'s in this supertribe:</string>
-    <string name="pretty_sure_tribe">We\'re pretty sure it\'s in this tribe:</string>
-    <string name="pretty_sure_subtribe">We\'re pretty sure it\'s in this subtribe:</string>
-    <string name="pretty_sure_genus">We\'re pretty sure it\'s in this genus:</string>
-    <string name="pretty_sure_genushybrid">We\'re pretty sure it\'s in this genushybrid:</string>
-    <string name="pretty_sure_subgenus">We\'re pretty sure it\'s in this subgenus:</string>
-    <string name="pretty_sure_section">We\'re pretty sure it\'s in this section:</string>
-    <string name="pretty_sure_subsection">We\'re pretty sure it\'s in this subsection:</string>
-    <string name="pretty_sure_complex">We\'re pretty sure it\'s in this complex:</string>
+    <string name="include_suggestions_not_seen_nearby">Iekļaut indivīdu minējumus, kas nav novēroti tuvumā</string>
+    <string name="only_view_nearby_suggestions">Skatīt tikai tos indivīdu minējumus, kas novēroti tuvumā</string>
+    <string name="suggestions_source">Minējumu pamatojums</string>
+    <string name="research_grade_observations">Pētniecības līmeņa novērojumi</string>
+    <string name="visually_similar_description">iNaturalist piedāvās ieteikumus, kas balstīti uz to, cik fotogrāfijās redzamie indivīdi ir līdzīgi jau veiktajiem novērojumiem šajā atrašanās vietā un laikā.</string>
+    <string name="research_grade_observations_description">Tā vietā, lai piedāvātu vizuāli līdzīgus minējumus, iNaturalist piedāvās sugas, kas novērotas noteiktā vietā un iekļautas konkrētā taksonomiskajā grupā.</string>
+    <string name="taxon">Taksons:</string>
+    <string name="place">Vieta:</string>
+    <string name="pretty_sure_kingdom">Esam diezgan pārliecināti, ka organisms pieder šai valstij:</string>
+    <string name="pretty_sure_subkingdom">Esam diezgan pārliecināti, ka organisms pieder šai apakšvalstij:</string>
+    <string name="pretty_sure_phylum">Esam diezgan pārliecināti, ka organisms pieder šim tipam:</string>
+    <string name="pretty_sure_subphylum">Esam diezgan pārliecināti, ka organisms pieder šim apakštipam:</string>
+    <string name="pretty_sure_superclass">Esam diezgan pārliecināti, ka organisms pieder šai virsklasei:</string>
+    <string name="pretty_sure_class">Esam diezgan pārliecināti, ka organisms pieder šai klasei:</string>
+    <string name="pretty_sure_subclass">Esam diezgan pārliecināti, ka organisms pieder šai apakšklasei:</string>
+    <string name="pretty_sure_infraclass">Esam diezgan pārliecināti, ka organisms pieder šai infraklasei:</string>
+    <string name="pretty_sure_superorder">Esam diezgan pārliecināti, ka organisms pieder augstākajai kārtai:</string>
+    <string name="pretty_sure_order">Esam diezgan pārliecināti, ka organisms pieder šai kārtai:</string>
+    <string name="pretty_sure_suborder">Esam diezgan pārliecināti, ka organisms pieder šai apakškārtai:</string>
+    <string name="pretty_sure_infraorder">Esam diezgan pārliecināti, ka organisms pieder šai infrakārtai:</string>
+    <string name="pretty_sure_subterclass">Esam diezgan pārliecināti, ka organisms pieder šai sīkkārtai:</string>
+    <string name="pretty_sure_parvorder">Esam diezgan pārliecināti, ka organisms pieder šai sīkkārtai:</string>
+    <string name="pretty_sure_zoosection">Esam diezgan pārliecināti, ka organisms pieder šai sekcijai:</string>
+    <string name="pretty_sure_zoosubsection">Esam diezgan pārliecināti, ka organisms pieder šai apakšsekcijai:</string>
+    <string name="pretty_sure_superfamily">Esam diezgan pārliecināti, ka organisms pieder šai virsdzimtai:</string>
+    <string name="pretty_sure_epifamily">Esam diezgan pārliecināti, ka organisms pieder šai \"Epifamily\" dzimtai:</string>
+    <string name="pretty_sure_family">Esam diezgan pārliecināti, ka organisms pieder šai dzimtai:</string>
+    <string name="pretty_sure_subfamily">Esam diezgan pārliecināti, ka organisms pieder šai apakšdzimtai:</string>
+    <string name="pretty_sure_supertribe">Esam diezgan pārliecināti, ka organisms pieder šai virsciltij:</string>
+    <string name="pretty_sure_tribe">Esam diezgan pārliecināti, ka organisms pieder šai ciltij:</string>
+    <string name="pretty_sure_subtribe">Esam diezgan pārliecināti, ka organisms pieder šai apakšciltij:</string>
+    <string name="pretty_sure_genus">Esam diezgan pārliecināti, ka organisms pieder šai ģintij:</string>
+    <string name="pretty_sure_genushybrid">Esam diezgan pārliecināti, ka organisms pieder šim ģints hibrīdam:</string>
+    <string name="pretty_sure_subgenus">Esam diezgan pārliecināti, ka organisms pieder šai apakšģintij:</string>
+    <string name="pretty_sure_section">Esam diezgan pārliecināti, ka organisms pieder šai sekcijai:</string>
+    <string name="pretty_sure_subsection">Esam diezgan pārliecināti, ka organisms pieder šai apakšsekcijai:</string>
+    <string name="pretty_sure_complex">Esam diezgan pārliecināti, ka organisms pieder šai sīksugai:</string>
     <!-- Singular -->
-    <string name="pretty_sure_species">We\'re pretty sure it\'s in this species:</string>
-    <string name="pretty_sure_hybrid">We\'re pretty sure it\'s in this hybrid:</string>
+    <string name="pretty_sure_species">Esam diezgan pārliecināti, ka organisms pieder šai sugai:</string>
+    <string name="pretty_sure_hybrid">Esam diezgan pārliecināti, ka organisms pieder šim hibrīdam:</string>
     <!-- Singular -->
-    <string name="pretty_sure_subspecies">We\'re pretty sure it\'s in this subspecies:</string>
-    <string name="pretty_sure_variety">We\'re pretty sure it\'s in this variety:</string>
-    <string name="pretty_sure_form">We\'re pretty sure it\'s in this form:</string>
-    <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
+    <string name="pretty_sure_subspecies">Esam diezgan pārliecināti, ka organisms pieder šai apakšsugai:</string>
+    <string name="pretty_sure_variety">Esam diezgan pārliecināti, ka organisms pieder šai šķirnei:</string>
+    <string name="pretty_sure_form">Esam diezgan pārliecināti, ka organisms pieder šai kultūrformai:</string>
+    <string name="pretty_sure_infrahybrid">Esam diezgan pārliecināti, ka organisms pieder šim infrahibrīdam:</string>
     <string name="remove_date_observed">Dzēst novērojuma datumu &amp; laiku</string>
     <string name="remove_time_observed">Dzēst novērojuma laiku</string>
     <string name="remove_location">Dzēst atrašanās vietu</string>
-    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
-    <string name="share_location">Share Location</string>
-    <string name="share_hidden_location">Share Hidden Location</string>
+    <string name="are_you_sure_you_want_to_remove_date">Vai tiešām vēlies dzēst novērojuma laiku un datumu?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Vai tiešām vēlies dzēst novērojuma laiku?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Vai tiešām vēlies dzēst šo atrašanās vietu?</string>
+    <string name="share_location">Dalīties ar atrašanās vietu</string>
+    <string name="share_hidden_location">Dalīties ar slēpto atrašanās vietu</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
-    <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
-    <string name="sound_format_not_supported">This sound file is the right file extension, but the specific audio encoding is not supported by Android.</string>
-    <string name="view_observations">View Observations</string>
+    <string name="couldnt_duplicate_sound">Neizdevās nokopēt skaņu!</string>
+    <string name="sound_format_not_supported">Šim audiofailam ir atbilstošs faila paplašinājums, bet Android neatbalsta šo audio kodēšanas veidu.</string>
+    <string name="view_observations">Skatīt novērojumus</string>
+    <string name="choose_this_option">Izvēlēties šo opciju</string>
+    <string name="compare_observation_with_this_option">Salīdzināt novērojumu, izmantojot šo opciju</string>
+    <string name="go_back">Atgriezties</string>
+    <string name="change_the_source_of_the_suggestions">Mainīt minējumu avotu</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Ieteiktā taksona sīktēls</string>
+    <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
+    <string name="comments_ids_title">Komentāri un novērojumi</string>
+    <!-- Accessibility text for the faves tab on the observation detail view -->
+    <string name="faves">Izlase</string>
+    <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
+    <string name="previous_option">Iepriekšējā opcija</string>
+    <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string name="next_option">Nākamā opcija</string>
+    <string name="no_observations_yet2">Pagaidām nav novērojumu.</string>
+    <string name="no_species_yet">Pagaidām nav sugu</string>
+    <string name="no_identifications_yet">Pagaidām nav novērojumu</string>
+    <string name="sort_by">Šķirot pēc</string>
+    <string-array name="explore_order_by_items">
+        <item>Pievienošanas datums</item>
+        <item>Novērojuma datums</item>
+        <item>Izmaiņu datums</item>
+        <!--<item>Faves</item>-->
+        <item>Nejaušs</item>
+    </string-array>
+    <string-array name="explore_order_items">
+        <item>Dilstošā secībā</item>
+        <item>Augošā secībā</item>
+    </string-array>
+    <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
+    See explore_order_by_items and explore_order_items keys !-->
+    <string name="sorted_by_full">Šķirots pēc %1$s (%2$s)</string>
+    <!-- Label for an observation search filter to exclude your own observations -->
+    <string name="hide_my_observations">Slēpt manus novērojumus</string>
+    <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
+    <string name="follow_this_observation">Follow this Observation</string>
+    <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
+    <string name="unfollow_this_observation">Unfollow this Observation</string>
+    <!-- Error message shown when an attempt to follow an observation fails -->
+    <string name="could_not_follow_observation">Could not follow this observation</string>
+    <!-- Error message shown when an attempt to unfollow an observation fails -->
+    <string name="could_not_unfollow_observation">Could not unfollow this observation</string>
+    <!-- Label for a button to copy the coordinates of an observation -->
+    <string name="copy_coordinates">Copy coordinates</string>
+    <string name="coordinates_copied_to_clipboard">Coordinates copied to clipboard</string>
+    <!--  Title of a section on the observation detail view that displays minor metadata  -->
+    <string name="metadata">Metadata</string>
+    <!--  iNat observation identifier  -->
+    <string name="id">ID</string>
+    <!--  iNat observation Universally Unique Identifier  -->
+    <string name="uuid">UUID</string>
+    <!--  Universal Resource Locator  -->
+    <string name="url">URL</string>
 </resources>

@@ -166,8 +166,8 @@
         <item><![CDATA[Les observations de <b>calibre Recherche</b> sont partagées avec les scientifiques qui travaillent à mieux comprendre et protéger la nature.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
-        <item>Ouvrir</item>
-        <item>Obscurci</item>
+        <item>Public</item>
+        <item>Masqué</item>
         <item>Privé</item>
     </string-array>
     <string name="alert_sign_out">Désirez-vous vraiment vous déconnecter? Toutes vos observations sur cet appareil seront supprimées. Les observations que vous avez téléversées sur iNaturalist ne seront pas touchées.</string>
@@ -309,7 +309,7 @@
     <string name="sync_obs_to_see_favs">Synchronisez cette observation pour voir les favoris...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Synchroniser cette observation afin de laisser un commentaire ou de suggérer une identification...</string>
-    <string name="no_photo">Aucune photo</string>
+    <string name="no_photo">Aucun média</string>
     <string name="about_this_species">À propos de cette espèce</string>
     <string name="view_on_wikipedia">Article de wikipedia</string>
     <string name="photo"><![CDATA[Photo : <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -382,8 +382,11 @@
     <string name="mammals">Mammifères</string>
     <string name="insects">Insectes</string>
     <string name="reptiles">Reptiles</string>
+    <string name="animals">Animals</string>
     <string name="fish">Poissons</string>
     <string name="mollusks">Mollusques</string>
+    <string name="protozoans">Protozoans</string>
+    <string name="chromista">Kelp, Diatoms, and Allies</string>
     <string name="amphibians">Amphibiens</string>
     <string name="fungi">Champignons</string>
     <string name="birds">Oiseaux</string>
@@ -447,8 +450,10 @@
     <string name="view_suggestions">Voir les propositions</string>
     <string name="species_search">Recherche d’espèces</string>
     <string name="were_not_confident_enough">We\'re not confident enough to make a recommendation, but here are our top suggestions:</string>
+    <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
-    <string name="top_suggestions">Top suggestions</string>
+    <!-- Header for a list of suggested taxa -->
+    <string name="top_suggestions">Meilleures suggestions</string>
     <string name="pretty_sure_rank">Nous sommes assez sûrs que c’est dans cette %1$s :</string>
     <string name="what_did_you_see">Qu’avez-vous vu ?</string>
     <string name="suggest_species">Suggérer des espèces</string>
@@ -538,6 +543,7 @@
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Délégation</string>
     <string name="apply_filters">Appliquer les filtres</string>
+    <string name="remove_filters">Remove Filters</string>
     <string name="reset">Remettre à zéro</string>
     <string name="show_only_my_observations">Montrer uniquement mes observations</string>
     <string name="project">Projet</string>
@@ -965,50 +971,50 @@ les <a href="/pages/community+guidelines" target="_blank">Règles de la Communau
     <string name="filter_observations_by_months">Filtrer les observations par mois</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="view_suggestions_not_seen_nearby">View suggestions not seen nearby</string>
+    <string name="include_suggestions_not_seen_nearby">Include suggestions not seen nearby</string>
     <string name="only_view_nearby_suggestions">Only view nearby suggestions</string>
     <string name="suggestions_source">Suggestions Source</string>
     <string name="research_grade_observations">Research Grade Observations</string>
     <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
     <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will suggest species observed in a specific place and within a specific taxonomic group.</string>
     <string name="taxon">Taxon:</string>
-    <string name="place">Place:</string>
-    <string name="pretty_sure_kingdom">We\'re pretty sure it\'s in this kingdom:</string>
-    <string name="pretty_sure_subkingdom">We\'re pretty sure it\'s in this subkingdom:</string>
-    <string name="pretty_sure_phylum">We\'re pretty sure it\'s in this phylum:</string>
-    <string name="pretty_sure_subphylum">We\'re pretty sure it\'s in this subphylum:</string>
-    <string name="pretty_sure_superclass">We\'re pretty sure it\'s in this superclass:</string>
-    <string name="pretty_sure_class">We\'re pretty sure it\'s in this class:</string>
-    <string name="pretty_sure_subclass">We\'re pretty sure it\'s in this subclass:</string>
-    <string name="pretty_sure_infraclass">We\'re pretty sure it\'s in this infraclass:</string>
-    <string name="pretty_sure_superorder">We\'re pretty sure it\'s in this superorder:</string>
-    <string name="pretty_sure_order">We\'re pretty sure it\'s in this order:</string>
-    <string name="pretty_sure_suborder">We\'re pretty sure it\'s in this suborder:</string>
-    <string name="pretty_sure_infraorder">We\'re pretty sure it\'s in this infraorder:</string>
-    <string name="pretty_sure_subterclass">We\'re pretty sure it\'s in this subterclass:</string>
-    <string name="pretty_sure_parvorder">We\'re pretty sure it\'s in this parvorder:</string>
+    <string name="place">Lieu:</string>
+    <string name="pretty_sure_kingdom">Nous sommes assez sûrs que c\'est dans ce règne:</string>
+    <string name="pretty_sure_subkingdom">Nous sommes assez sûrs que c\'est dans ce sous-règne:</string>
+    <string name="pretty_sure_phylum">Nous sommes assez sûrs que c\'est dans cet embranchement:</string>
+    <string name="pretty_sure_subphylum">Nous sommes assez sûrs que c\'est dans ce sous-embranchement:</string>
+    <string name="pretty_sure_superclass">Nous sommes assez sûrs que c\'est dans cette super-classe:</string>
+    <string name="pretty_sure_class">Nous sommes assez sûrs que c\'est dans cette classe:</string>
+    <string name="pretty_sure_subclass">Nous sommes assez sûrs que c\'est dans cette sous-classe:</string>
+    <string name="pretty_sure_infraclass">Nous sommes assez sûrs que c\'est dans cette infra-classe:</string>
+    <string name="pretty_sure_superorder">Nous sommes assez sûrs que c\'est dans ce super-ordre:</string>
+    <string name="pretty_sure_order">Nous sommes assez sûrs que c\'est dans cet ordre:</string>
+    <string name="pretty_sure_suborder">Nous sommes assez sûrs que c\'est dans ce sous-ordre:</string>
+    <string name="pretty_sure_infraorder">Nous sommes assez sûrs que c\'est dans cet infra-ordre:</string>
+    <string name="pretty_sure_subterclass">Nous sommes assez sûrs que c\'est dans cette subter-classe:</string>
+    <string name="pretty_sure_parvorder">Nous sommes assez sûrs que c\'est dans ce micro-ordre:</string>
     <string name="pretty_sure_zoosection">We\'re pretty sure it\'s in this zoosection:</string>
     <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
-    <string name="pretty_sure_superfamily">We\'re pretty sure it\'s in this superfamily:</string>
-    <string name="pretty_sure_epifamily">We\'re pretty sure it\'s in this epifamily:</string>
-    <string name="pretty_sure_family">We\'re pretty sure it\'s in this family:</string>
-    <string name="pretty_sure_subfamily">We\'re pretty sure it\'s in this subfamily:</string>
-    <string name="pretty_sure_supertribe">We\'re pretty sure it\'s in this supertribe:</string>
-    <string name="pretty_sure_tribe">We\'re pretty sure it\'s in this tribe:</string>
-    <string name="pretty_sure_subtribe">We\'re pretty sure it\'s in this subtribe:</string>
-    <string name="pretty_sure_genus">We\'re pretty sure it\'s in this genus:</string>
-    <string name="pretty_sure_genushybrid">We\'re pretty sure it\'s in this genushybrid:</string>
-    <string name="pretty_sure_subgenus">We\'re pretty sure it\'s in this subgenus:</string>
-    <string name="pretty_sure_section">We\'re pretty sure it\'s in this section:</string>
-    <string name="pretty_sure_subsection">We\'re pretty sure it\'s in this subsection:</string>
-    <string name="pretty_sure_complex">We\'re pretty sure it\'s in this complex:</string>
+    <string name="pretty_sure_superfamily">Nous sommes assez sûrs que c\'est dans cette super-famille:</string>
+    <string name="pretty_sure_epifamily">Nous sommes assez sûrs que c\'est dans cette épifamille:</string>
+    <string name="pretty_sure_family">Nous sommes assez sûrs que c\'est dans cette famille:</string>
+    <string name="pretty_sure_subfamily">Nous sommes assez sûrs que c\'est dans cette sous-famille:</string>
+    <string name="pretty_sure_supertribe">Nous sommes assez sûrs que c\'est dans cette super-tribu:</string>
+    <string name="pretty_sure_tribe">Nous sommes assez sûrs que c\'est dans cette tribu:</string>
+    <string name="pretty_sure_subtribe">Nous sommes assez sûrs que c\'est dans cette sous-tribu:</string>
+    <string name="pretty_sure_genus">Nous sommes assez sûrs que c\'est dans ce genre:</string>
+    <string name="pretty_sure_genushybrid">Nous sommes assez sûrs que c\'est dans ce nothogène:</string>
+    <string name="pretty_sure_subgenus">Nous sommes assez sûrs que c\'est dans ce sous-genre:</string>
+    <string name="pretty_sure_section">Nous sommes assez sûrs que c\'est dans cette section:</string>
+    <string name="pretty_sure_subsection">Nous sommes assez sûrs que c\'est dans cette sous-section:</string>
+    <string name="pretty_sure_complex">Nous sommes assez sûrs que c\'est dans ce complexe:</string>
     <!-- Singular -->
-    <string name="pretty_sure_species">We\'re pretty sure it\'s in this species:</string>
-    <string name="pretty_sure_hybrid">We\'re pretty sure it\'s in this hybrid:</string>
+    <string name="pretty_sure_species">Nous sommes assez sûrs que c\'est dans cette espèce:</string>
+    <string name="pretty_sure_hybrid">Nous sommes assez sûrs que c\'est dans cet hybride:</string>
     <!-- Singular -->
-    <string name="pretty_sure_subspecies">We\'re pretty sure it\'s in this subspecies:</string>
-    <string name="pretty_sure_variety">We\'re pretty sure it\'s in this variety:</string>
-    <string name="pretty_sure_form">We\'re pretty sure it\'s in this form:</string>
+    <string name="pretty_sure_subspecies">Nous sommes assez sûrs que c\'est dans cette sous-espèce:</string>
+    <string name="pretty_sure_variety">Nous sommes assez sûrs que c\'est dans cette variété:</string>
+    <string name="pretty_sure_form">Nous sommes assez sûrs que c\'est dans cette forme:</string>
     <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
     <string name="remove_date_observed">Supprimer la date et l\'heure de l\'observation</string>
     <string name="remove_time_observed">Supprimer l\'heure de l\'observation</string>
@@ -1017,9 +1023,61 @@ les <a href="/pages/community+guidelines" target="_blank">Règles de la Communau
     <string name="are_you_sure_you_want_to_remove_time">Êtes-vous certain de vouloir supprimer l\'heure de l\'observation?</string>
     <string name="are_you_sure_you_want_to_remove_location">Êtes-vous certain de vouloir supprimer l\'emplacement?</string>
     <string name="share_location">Partager l\'emplacement</string>
-    <string name="share_hidden_location">Share Hidden Location</string>
+    <string name="share_hidden_location">Partager l\'emplacement caché</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Impossible de faire une copie de l\'enregistrement sonore</string>
     <string name="sound_format_not_supported">This sound file is the right file extension, but the specific audio encoding is not supported by Android.</string>
-    <string name="view_observations">View Observations</string>
+    <string name="view_observations">Voir les observations</string>
+    <string name="choose_this_option">Choose this option</string>
+    <string name="compare_observation_with_this_option">Compare observation with this option</string>
+    <string name="go_back">Go back</string>
+    <string name="change_the_source_of_the_suggestions">Change the source of the suggestions</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Thumbnail photo for suggested taxon</string>
+    <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
+    <string name="comments_ids_title">Comments and Identifications</string>
+    <!-- Accessibility text for the faves tab on the observation detail view -->
+    <string name="faves">Faves</string>
+    <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
+    <string name="previous_option">Previous Option</string>
+    <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string name="next_option">Next Option</string>
+    <string name="no_observations_yet2">No observations yet.</string>
+    <string name="no_species_yet">No species yet.</string>
+    <string name="no_identifications_yet">No identifications yet.</string>
+    <string name="sort_by">Sort By</string>
+    <string-array name="explore_order_by_items">
+        <item>Date Added</item>
+        <item>Date Observed</item>
+        <item>Date Updated</item>
+        <!--<item>Faves</item>-->
+        <item>Random</item>
+    </string-array>
+    <string-array name="explore_order_items">
+        <item>Descending</item>
+        <item>Ascending</item>
+    </string-array>
+    <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
+    See explore_order_by_items and explore_order_items keys !-->
+    <string name="sorted_by_full">Sorted by %1$s (%2$s)</string>
+    <!-- Label for an observation search filter to exclude your own observations -->
+    <string name="hide_my_observations">Hide My Observations</string>
+    <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
+    <string name="follow_this_observation">Suivre cette observation</string>
+    <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
+    <string name="unfollow_this_observation">Ne plus suivre cette observation</string>
+    <!-- Error message shown when an attempt to follow an observation fails -->
+    <string name="could_not_follow_observation">Impossible de suivre cette observation</string>
+    <!-- Error message shown when an attempt to unfollow an observation fails -->
+    <string name="could_not_unfollow_observation">Impossible de ne plus suivre cette observation</string>
+    <!-- Label for a button to copy the coordinates of an observation -->
+    <string name="copy_coordinates">Copier les coordonnées</string>
+    <string name="coordinates_copied_to_clipboard">Coordonnées copiées dans le presse-papiers</string>
+    <!--  Title of a section on the observation detail view that displays minor metadata  -->
+    <string name="metadata">Métadonnées</string>
+    <!--  iNat observation identifier  -->
+    <string name="id">ID</string>
+    <!--  iNat observation Universally Unique Identifier  -->
+    <string name="uuid">UUID</string>
+    <!--  Universal Resource Locator  -->
+    <string name="url">URL</string>
 </resources>

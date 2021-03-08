@@ -115,7 +115,7 @@
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Geoprivacidade</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
-    <string name="geoprivacy_with_value">Geoprivacy: %1$s</string>
+    <string name="geoprivacy_with_value">Geoprivacidade: %1$s</string>
     <string name="delete_confirmation">Tem a certeza que deseja eliminar esta observação?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">Guias</string>
@@ -194,9 +194,9 @@
     <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá é membro da Rede iNaturalist no Panamá. As instituições locais que apoiam o iNaturalist Panamá terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador é membro da Rede iNaturalist no Equador. As instituições locais que apoiam o iNaturalist Ecuador terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia é membro da Rede iNaturalist na Austrália. As instituições locais que apoiam o iNaturalist Australia terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
-    <string name="alert_message_use_argentinat">ArgentiNat is a member of the iNaturalist Network in Argentina. Local institutions supporting ArgentiNat will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistfi">iNaturalist Finland is a member of the iNaturalist Network in Finland. Local institutions supporting iNaturalist Finland will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat é membro da Rede iNaturalist na Argentina. As instituições locais que apoiam o ArgentiNat terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel é membro da Rede iNaturalist em Israel. As instituições locais que apoiam o iNaturalist Israel terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finlândia é membro da Rede iNaturalist na Finlândia. As instituições locais que apoiam o iNaturalist Finlândia terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
     <string name="alert_message_use_inaturalistcl">iNaturalist Chile é membro da Rede iNaturalist no Chile. As instituições locais que apoiam o iNaturalist Chile terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
     <string name="editor">Editor</string>
     <string name="license">Licença</string>
@@ -228,9 +228,9 @@
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Registar-se</string>
     <!-- Title of the view used to sign up for a new account -->
-    <string name="sign_up_title">Sign Up</string>
+    <string name="sign_up_title">Registar-se</string>
     <string name="min_6_chars">Mínimo de 6 caracteres</string>
-    <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data (recommended). <b>Learn More</b>]]></string>
+    <string name="use_my_license"><![CDATA[Sim, quero licenciar o meu conteúdo para que os cientistas possam usar os meus dados (recomendado). <b>Saber mais</b>]]></string>
     <string name="content_licensing">Licenciar conteúdo</string>
     <string name="content_licensing_description">Verifique esta caixa se quer aplicar uma licença Create Commons Attribution-NonCommercial às suas fotos. Pode escolher outra licença ou remover a licença mais tarde, mas esta é a melhor licença para partilhar com investigadores.</string>
     <!-- Try to keep this about the length of the English text -->
@@ -309,7 +309,7 @@
     <string name="sync_obs_to_see_favs">Sincronizar esta observação para ver os favoritos...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Sincronizar esta observação para deixar um comentário ou sugerir uma identificação...</string>
-    <string name="no_photo">Sem Foto</string>
+    <string name="no_photo">No Media</string>
     <string name="about_this_species">Acerca desta espécie</string>
     <string name="view_on_wikipedia">Artigo da Wikipedia</string>
     <string name="photo"><![CDATA[Foto: <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -368,7 +368,7 @@
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Atualizar a Descrição da Identificação</string>
     <string name="your_identification">A sua Identificação: %1$s</string>
-    <string name="onboarding_species_name">Name what you saw if you can, even if that\'s just \"insect\" or \"bird,\" or just leave this blank. Others may help you identify it!</string>
+    <string name="onboarding_species_name">Nomeie o que você viu se puder, mesmo que seja apenas \"inseto\" ou \"pássaro\", ou deixe em branco. Outros podem ajudá-lo a identificar!</string>
     <string name="upload_complete">Carregamento Terminado!</string>
     <string name="onboarding_upload_description">Voltar a verificar em breve as identificações e os comentários da(s) sua(s) observação(ões).</string>
     <string name="importing_photos">A importar foto(s)...</string>
@@ -382,8 +382,11 @@
     <string name="mammals">Mamíferos</string>
     <string name="insects">Insetos</string>
     <string name="reptiles">Répteis</string>
+    <string name="animals">Animais</string>
     <string name="fish">Peixes</string>
     <string name="mollusks">Moluscos</string>
+    <string name="protozoans">Protozoários</string>
+    <string name="chromista">Kelp, Diatoms, and Allies</string>
     <string name="amphibians">Anfíbios</string>
     <string name="fungi">Fungos</string>
     <string name="birds">Aves</string>
@@ -447,7 +450,9 @@
     <string name="view_suggestions">Ver Sugestões</string>
     <string name="species_search">Procurar Espécies</string>
     <string name="were_not_confident_enough">Não temos confiança suficiente para fazer uma recomendação, mas aqui estão as nossas melhores sugestões.</string>
+    <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Opções mais observadas que correspondem aos filtros:</string>
+    <!-- Header for a list of suggested taxa -->
     <string name="top_suggestions">Principais sugestões</string>
     <string name="pretty_sure_rank">Temos quase a certeza que pertence a %1$s:</string>
     <string name="what_did_you_see">O que viu?</string>
@@ -538,6 +543,7 @@
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegação</string>
     <string name="apply_filters">Aplicar Filtros</string>
+    <string name="remove_filters">Remover filtros</string>
     <string name="reset">Repor</string>
     <string name="show_only_my_observations">Mostrar Apenas as Minhas Observações</string>
     <string name="project">Projeto</string>
@@ -545,7 +551,7 @@
     <string name="search_users">Procurar Utilizadores...</string>
     <string name="quality_grade">Grau de Qualidade</string>
     <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
-    <string name="date_observed">Date Observed</string>
+    <string name="date_observed">Data da observação</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
     <string name="any">Qualquer</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
@@ -642,7 +648,7 @@ nossa comunidade de código aberto]]></string>
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Género</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
-    <string name="annotation_name_alive_or_dead">Alive or Dead</string>
+    <string name="annotation_name_alive_or_dead">Vivo ou morto</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Floração</string>
     <!-- Adjective, having fruit -->
@@ -650,9 +656,9 @@ nossa comunidade de código aberto]]></string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_budding">Brotamento</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_flower_budding">Flower Budding</string>
+    <string name="annotation_value_flower_budding">Flor em botão</string>
     <!-- Observation presents no evidence of flowering phenology -->
-    <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
+    <string name="annotation_value_no_evidence_of_flowering">Nenhuma evidência de Floração</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Adulto</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -675,7 +681,7 @@ nossa comunidade de código aberto]]></string>
     <!-- Adjective, dead or shows signs of imminent death -->
     <string name="annotation_value_dead">Morto</string>
     <!-- Value for when the value of the attribute cannot be determined -->
-    <string name="annotation_value_cannot_be_determined">Cannot Be Determined</string>
+    <string name="annotation_value_cannot_be_determined">Não pode ser determinado</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">A QUE ADERIU</string>
     <string name="nearby_projects_all_caps">NAS PROXIMIDADES</string>
@@ -729,11 +735,11 @@ nossa comunidade de código aberto]]></string>
     <string name="network_credit_naturewatchnz"><![CDATA[Nova Zelândia: o New Zealand Biodiversity Recording Network que gere o iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>).]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: a Associação Biodiversidade Para Todos que gere o Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>).]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panamá: o Ministerio de Ambiente que gere o iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>).]]></string>
-    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
-    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
-    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Natural History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina apoiando o ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Austrália: Atlas of Living Australia apoiando o iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) apoiando o iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Israel: Universidade de Haifa apoiando o iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Finlandês: Museu Finlandês de História Natural (LUOMUS) que apoia o iNaturalist Finlândia (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente que apoia o iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="mark_all_as_viewed">Marcar tudo como visto</string>
     <string name="content_hidden">Conteúdo Oculto</string>
@@ -758,47 +764,47 @@ nossa comunidade de código aberto]]></string>
     <string name="deleted_sounds_from_cache_error">Como limpou o cache da aplicação antes de carregar o ficheiro, eliminou o som. Precisa de adicionar novamente o som à sua observação a partir da galeria. De futuro, por favor verifique que carregou todas os sons antes de limpar a cache da aplicação.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f seg</string>
-    <string name="clear_all_debug_logs">Clear All Debug Logs</string>
-    <string name="clears_up_storage_room_on_your_phone">Clears up storage room on your phone</string>
-    <string name="number_of_days_to_store_logs">Number of days to store logs</string>
-    <string name="send_debug_logs_from_start_date">Send Debug Logs From Start Date</string>
-    <string name="send_debug_logs_by_email">Send debug logs by email (from specified start date)</string>
-    <string name="debug_settings">Debug Settings</string>
-    <string name="are_you_sure_you_want_to_delete_logs">Are you sure you want to delete all debug logs? Only press \'Yes\' if you want clear up storage room for your phone</string>
-    <string name="no_log_files_found">No log files found for that date range - try earlier date?</string>
-    <string name="choose_pinned_location">Choose Pinned Location</string>
-    <string name="pin_current_location">Pin Current Location</string>
-    <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
-    <string name="delete_this_pinned_location">Delete this pinned location?</string>
+    <string name="clear_all_debug_logs">Limpar Todos os Logs de Depuração</string>
+    <string name="clears_up_storage_room_on_your_phone">Limpa espaço de armazenamento no seu telefone</string>
+    <string name="number_of_days_to_store_logs">Número de dias para armazenar logs</string>
+    <string name="send_debug_logs_from_start_date">Enviar Logs de Depuração a partir da Data Inicial</string>
+    <string name="send_debug_logs_by_email">Enviar logs de depuração por e-mail (a partir da data de início especificada)</string>
+    <string name="debug_settings">Definições de depuração</string>
+    <string name="are_you_sure_you_want_to_delete_logs">Tem certeza que deseja excluir todos os logs de depuração? Pressione apenas \'Sim\' se quiser limpar espaço de armazenamento no seu telefone</string>
+    <string name="no_log_files_found">Não foram encontrados arquivos de log para esse intervalo de datas - tente uma data anterior?</string>
+    <string name="choose_pinned_location">Escolher Local Fixado</string>
+    <string name="pin_current_location">Fixar localização atual</string>
+    <string name="location_pinned_successfully">Local atual fixado com sucesso</string>
+    <string name="delete_this_pinned_location">Apagar esta localização?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
-    <string name="duplicate">Duplicate</string>
+    <string name="duplicate">Duplicar</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
-    <string name="couldnt_duplicate_photo">Couldn\'t duplicate photo!</string>
-    <string name="couldnt_edit_photo">Couldn\'t edit photo!</string>
+    <string name="couldnt_duplicate_photo">Impossível duplicar foto!</string>
+    <string name="couldnt_edit_photo">Não foi possível editar foto!</string>
     <!-- Verb, as in "Rotate this photo" -->
-    <string name="ucrop_rotate">Rotate</string>
+    <string name="ucrop_rotate">Rodar</string>
     <!-- Verb, as in "Scale (resize) this photo" -->
-    <string name="ucrop_scale">Scale</string>
+    <string name="ucrop_scale">Escalar</string>
     <!-- Verb, as in "Crop this photo" -->
-    <string name="ucrop_crop">Crop</string>
+    <string name="ucrop_crop">Recortar</string>
     <!-- Label for adjusting the brightness of an image -->
-    <string name="ucrop_brightness">Brightness</string>
+    <string name="ucrop_brightness">Brilho</string>
     <!-- Label for adjusting the contrast of an image -->
-    <string name="ucrop_contrast">Contrast</string>
+    <string name="ucrop_contrast">Contraste</string>
     <!-- Label for adjusting the saturation of an image -->
-    <string name="ucrop_saturation">Saturation</string>
+    <string name="ucrop_saturation">Saturação</string>
     <!-- Label for adjusting the sharpness of an image -->
-    <string name="ucrop_sharpness">Sharpness</string>
+    <string name="ucrop_sharpness">Nitidez</string>
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
     <string name="ucrop_label_original">Original</string>
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
-    <string name="ucrop_label_free">Free</string>
+    <string name="ucrop_label_free">Livre</string>
     <!-- Verb phrase, button label to edit an observation photo -->
-    <string name="ucrop_label_edit_photo">Edit Photo</string>
-    <string name="service_temporarily_unavailable">Service temporarily unavailable.</string>
-    <string name="please_try_again_in_a_few_hours">Please try again in a few hours.</string>
+    <string name="ucrop_label_edit_photo">Editar fotografia</string>
+    <string name="service_temporarily_unavailable">Serviço temporariamente indisponível.</string>
+    <string name="please_try_again_in_a_few_hours">Por favor, tente novamente dentro de algumas horas.</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
-    <string name="please_try_again_in_x">Please try again in %1$d %2$s.</string>
+    <string name="please_try_again_in_x">Tente novamente em %1$d %2$s</string>
     <string name="hours">hours</string>
     <string name="minutes">minutes</string>
     <string name="seconds_value">seconds</string>
@@ -860,56 +866,56 @@ nossa comunidade de código aberto]]></string>
     <string name="sending_message">Sending message...</string>
     <string name="could_not_send_message">Couldn\'t send message: %1$s</string>
     <string name="subject">Subject</string>
-    <string name="body">Body</string>
-    <string name="type_your_message_here">Type your message here</string>
-    <string name="new_message_to">New Message to %1$s</string>
-    <string name="who_would_you_like_to_send_a_message_to">Who would you like to send a message to?</string>
-    <string name="new_message">New Message</string>
-    <string name="search_for_inaturalist_users">Search for iNaturalist users</string>
-    <string name="please_sign_in_for_messages">You must be logged in to view your messages.</string>
-    <string name="sorry">Sorry</string>
-    <string name="you_must_have_three_observations">You must have three verifiable observations or three identifications for others in order to do that.</string>
-    <string name="mute_this_user">Mute this user</string>
-    <string name="unmute_this_user">Unmute this user</string>
-    <string name="flag_this_conversation">Flag this conversation</string>
-    <string name="mute_this_user_question">Mute this user?</string>
-    <string name="you_will_no_longer_receive_messages">You will no longer receive any notifications about activity from this user, including messages, comments, identifications, and mentions.</string>
-    <string name="mute">Mute</string>
-    <string name="muting_user">Muting user...</string>
-    <string name="unmuting_user">Unmuting user...</string>
-    <string name="failed_muting_user">Failed muting user!</string>
-    <string name="failed_unmuting_user">Failed unmuting user!</string>
-    <string name="flag_conversation">Flag conversation</string>
+    <string name="body">Corpo</string>
+    <string name="type_your_message_here">Escreva aqui a sua mensagem</string>
+    <string name="new_message_to">Nova mensagem para %1$s</string>
+    <string name="who_would_you_like_to_send_a_message_to">Para quem gostaria de enviar uma mensagem?</string>
+    <string name="new_message">Nova mensagem</string>
+    <string name="search_for_inaturalist_users">Pesquisar utilizadores do iNaturalist</string>
+    <string name="please_sign_in_for_messages">Tem de iniciar a sessão para ver as suas mensagens.</string>
+    <string name="sorry">Lamentamos</string>
+    <string name="you_must_have_three_observations">Para fazer isto, é preciso que tenha três observações verificáveis ou três identificações para outros.</string>
+    <string name="mute_this_user">Silenciar este utilizador</string>
+    <string name="unmute_this_user">Reativar este utilizador</string>
+    <string name="flag_this_conversation">Sinalizar esta conversa</string>
+    <string name="mute_this_user_question">Silenciar este utilizador?</string>
+    <string name="you_will_no_longer_receive_messages">Não receberá mais notificações sobre a atividade deste utilizador, incluindo mensagens, comentários, identificações e menções.</string>
+    <string name="mute">Silenciar</string>
+    <string name="muting_user">Silenciando utilizador...</string>
+    <string name="unmuting_user">Reativando utilizador...</string>
+    <string name="failed_muting_user">Falha ao silenciar utilizador!</string>
+    <string name="failed_unmuting_user">Falha ao reativar utilizador!</string>
+    <string name="flag_conversation">Sinalizar esta conversa</string>
     <string name="spam">Spam</string>
-    <string name="commercial_solicitation">Commercial solicitation, links to nowhere, etc.</string>
-    <string name="offensive_inappropriate">Offensive/Inappropriate</string>
-    <string name="misleading_or_illegal_content">Misleading or illegal content, racial or ethnic slurs, etc. For more on our definition of \"appropriate,\" see the FAQ.</string>
-    <string name="other">Other</string>
-    <string name="some_other_reason">Some other reason you can explain.</string>
-    <string name="continue_text">Continue</string>
-    <string name="why_are_you_flagging_this_item">Why are you flagging this item?</string>
-    <string name="thank_you_for_submitting_the_flag">Thank you for submitting the flag!</string>
-    <string name="flagging_conversation">Flagging conversation...</string>
-    <string name="failed_flagging_conversation">Failed flagging conversation!</string>
-    <string name="no_subject">No Subject</string>
-    <string name="rank_state_of_matter">State of matter</string>
-    <string name="rank_kingdom">Kingdom</string>
-    <string name="rank_subkingdom">Subkingdom</string>
-    <string name="rank_phylum">Phylum</string>
-    <string name="rank_subphylum">Subphylum</string>
-    <string name="rank_superclass">Superclass</string>
-    <string name="rank_class">Class</string>
-    <string name="rank_subclass">Subclass</string>
-    <string name="rank_infraclass">Infraclass</string>
-    <string name="rank_superorder">Superorder</string>
-    <string name="rank_order">Order</string>
-    <string name="rank_suborder">Suborder</string>
-    <string name="rank_infraorder">Infraorder</string>
-    <string name="rank_subterclass">Subterclass</string>
-    <string name="rank_parvorder">Parvorder</string>
-    <string name="rank_zoosection">Zoosection</string>
-    <string name="rank_zoosubsection">Zoosubsection</string>
-    <string name="rank_superfamily">Superfamily</string>
+    <string name="commercial_solicitation">Solicitação comercial, links sem vínculo, etc.</string>
+    <string name="offensive_inappropriate">ofensivo / inapropriado</string>
+    <string name="misleading_or_illegal_content">Conteúdo enganador ou ilegal, insultos racistas ou xenófobos, etc. Para mais informação acerca do que consideramos \"conteúdo apropriado\" ver as perguntas frequentes.</string>
+    <string name="other">Outro(s)</string>
+    <string name="some_other_reason">Outra razão que você pode explicar.</string>
+    <string name="continue_text">Continuar</string>
+    <string name="why_are_you_flagging_this_item">Porque está a sinalizar este item?</string>
+    <string name="thank_you_for_submitting_the_flag">Obrigado por sinalizar!</string>
+    <string name="flagging_conversation">Sinalizando conversa...</string>
+    <string name="failed_flagging_conversation">Falha ao sinalizar conversa!</string>
+    <string name="no_subject">Sem Assunto</string>
+    <string name="rank_state_of_matter">Estado da matéria</string>
+    <string name="rank_kingdom">Reino</string>
+    <string name="rank_subkingdom">sub-reino</string>
+    <string name="rank_phylum">Filo</string>
+    <string name="rank_subphylum">Subfilo</string>
+    <string name="rank_superclass">Superclasse</string>
+    <string name="rank_class">Classe</string>
+    <string name="rank_subclass">Subclasse</string>
+    <string name="rank_infraclass">Infraclasse</string>
+    <string name="rank_superorder">Superordem</string>
+    <string name="rank_order">Ordem</string>
+    <string name="rank_suborder">Subordem</string>
+    <string name="rank_infraorder">Infraordem</string>
+    <string name="rank_subterclass">Subterclasse</string>
+    <string name="rank_parvorder">Parvordem</string>
+    <string name="rank_zoosection">Zoosecção</string>
+    <string name="rank_zoosubsection">Zoosubsecção</string>
+    <string name="rank_superfamily">Superfamília</string>
     <string name="rank_epifamily">Epifamily</string>
     <string name="rank_family">Family</string>
     <string name="rank_subfamily">Subfamily</string>
@@ -962,7 +968,7 @@ nossa comunidade de código aberto]]></string>
     <string name="filter_observations_by_months">Filter observations by months</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="view_suggestions_not_seen_nearby">Ver sugestões não vistas nas proximidades</string>
+    <string name="include_suggestions_not_seen_nearby">Incluir sugestões não vistas nas proximidades</string>
     <string name="only_view_nearby_suggestions">Ver apenas sugestões nas proximidades</string>
     <string name="suggestions_source">Fonte das Sugestões</string>
     <string name="research_grade_observations">Observações com grau de pesquisa</string>
@@ -1013,10 +1019,62 @@ nossa comunidade de código aberto]]></string>
     <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
     <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
     <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
-    <string name="share_location">Share Location</string>
+    <string name="share_location">Partilhar localização</string>
     <string name="share_hidden_location">Partilhar localização oculta</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Impossível duplicar som!</string>
     <string name="sound_format_not_supported">Este arquivo de som é da extensão correta, mas a codificação de áudio específica não é suportada pelo Android.</string>
     <string name="view_observations">Ver observações</string>
+    <string name="choose_this_option">Escolher esta opção</string>
+    <string name="compare_observation_with_this_option">Comparar observação com esta opção</string>
+    <string name="go_back">Voltar</string>
+    <string name="change_the_source_of_the_suggestions">Alterar a fonte das sugestões</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Miniatura de foto para táxon sugerido</string>
+    <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
+    <string name="comments_ids_title">Comentários e identificações</string>
+    <!-- Accessibility text for the faves tab on the observation detail view -->
+    <string name="faves">Favoritos</string>
+    <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
+    <string name="previous_option">Opção anterior</string>
+    <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string name="next_option">Próxima Opção</string>
+    <string name="no_observations_yet2">Ainda não existem observações.</string>
+    <string name="no_species_yet">Nenhuma espécie ainda.</string>
+    <string name="no_identifications_yet">Sem identificações ainda.</string>
+    <string name="sort_by">Ordenar por</string>
+    <string-array name="explore_order_by_items">
+        <item>Data de Adição</item>
+        <item>Data de observação</item>
+        <item>Data de Atualização</item>
+        <!--<item>Faves</item>-->
+        <item>Aleatório</item>
+    </string-array>
+    <string-array name="explore_order_items">
+        <item>Descendente</item>
+        <item>Ascendente</item>
+    </string-array>
+    <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
+    See explore_order_by_items and explore_order_items keys !-->
+    <string name="sorted_by_full">Ordenado por %1$s (%2$s)</string>
+    <!-- Label for an observation search filter to exclude your own observations -->
+    <string name="hide_my_observations">Ocultar as minhas observações</string>
+    <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
+    <string name="follow_this_observation">Follow this Observation</string>
+    <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
+    <string name="unfollow_this_observation">Unfollow this Observation</string>
+    <!-- Error message shown when an attempt to follow an observation fails -->
+    <string name="could_not_follow_observation">Could not follow this observation</string>
+    <!-- Error message shown when an attempt to unfollow an observation fails -->
+    <string name="could_not_unfollow_observation">Could not unfollow this observation</string>
+    <!-- Label for a button to copy the coordinates of an observation -->
+    <string name="copy_coordinates">Copy coordinates</string>
+    <string name="coordinates_copied_to_clipboard">Coordinates copied to clipboard</string>
+    <!--  Title of a section on the observation detail view that displays minor metadata  -->
+    <string name="metadata">Metadata</string>
+    <!--  iNat observation identifier  -->
+    <string name="id">ID</string>
+    <!--  iNat observation Universally Unique Identifier  -->
+    <string name="uuid">UUID</string>
+    <!--  Universal Resource Locator  -->
+    <string name="url">URL</string>
 </resources>

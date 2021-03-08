@@ -334,7 +334,7 @@ def find_unused_keys(options={}):
             [
                 "egrep",
                 "-r",
-                "(R\.(string|array)\.|@(string|array)\/){}".format(key),
+                "(R\.(string|array|plurals)\.|@(string|array|plurals)\/){}".format(key),
                 "./iNaturalist/src/main/"
             ],
             stdout=PIPE

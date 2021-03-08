@@ -80,7 +80,7 @@
     <string name="no">Nee</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">Mee eens?</string>
-    <string name="no_comments">Nog geen opmerkingen/identificaties</string>
+    <string name="no_comments">Nog geen reacties/determinaties</string>
     <string name="add_comment">Reactie toevoegen</string>
     <string name="add_id">Waarneming toevoegen</string>
     <string name="remarks">Opmerkingen...</string>
@@ -162,7 +162,7 @@
         <item>Trek de natuur in</item>
         <item>Trek erop uit! Zoek iets wild en neem een duidelijke beeldvullende foto.</item>
         <item>Deel je waarneming met de iNaturalist community.</item>
-        <item>Controleer uw waarnemingen op opmerkingen en determinaties!</item>
+        <item>Kom terug om reacties en determinaties op je waarnemingen te zien!</item>
         <item><![CDATA[<b>Onderzoekskwaliteit</b> waarnemingen worden gedeeld met wetenschappers om zo de natuur beter te begrijpen en te beschermen.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
@@ -232,7 +232,7 @@
     <string name="min_6_chars">Minimum 6 tekens</string>
     <string name="use_my_license"><![CDATA[Ja, kies een licentie zodat onderzoekers mijn data kunnen gebruiken (aanbevolen). <b>Lees verder</b>]]></string>
     <string name="content_licensing">Licenties</string>
-    <string name="content_licensing_description">Schakel dit selectievakje in als u een Creative Commons Attribution-NonCommercial-licentie wilt toevoegen aan uw foto\'s. U kunt een andere licentie kiezen of de licentie later verwijderen, maar dit is de meest geschikte licentie om foto\'s met onderzoekers te delen.</string>
+    <string name="content_licensing_description">Vink dit vakje aan als je een Creative Commons Attribution-NonCommercial-licentie wilt toevoegen aan je foto\'s. Jekunt een andere licentie kiezen of de licentie later verwijderen, maar dit is de beste licentie om met onderzoekers te delen.</string>
     <!-- Try to keep this about the length of the English text -->
     <string name="username_or_email">Gebruikersnaam of E-mailadres</string>
     <string name="forgot">Vergeten?</string>
@@ -304,12 +304,12 @@
     <string name="location_coords">Lat: %1$s Lon: %2$s Nauwk: %3$s</string>
     <string name="location_coords_no_acc">Lat: %1$s Lon: %2$s</string>
     <string name="location">Locatie</string>
-    <string name="login_in_to_add_comments_ids">Log In of Registreer om een opmerking te geven of een identificatie te suggereren...</string>
+    <string name="login_in_to_add_comments_ids">Log In of Registreer om een reactie achter te laten of een determinatie voor te stellen...</string>
     <string name="login_in_to_fav">Log In of registreer om favorieten te zien of deze opmerkingen als favoriet te markeren...</string>
     <string name="sync_obs_to_see_favs">Sync deze waarneming om faves te zien...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
-    <string name="sync_obs_to_add_comments_ids">Sync deze waarneming om een reactie te zien of een identificatie te suggereren...</string>
-    <string name="no_photo">Geen foto</string>
+    <string name="sync_obs_to_add_comments_ids">Sync deze waarneming om een reactie achter te laten of een determinatie voor te stellen...</string>
+    <string name="no_photo">Geen media</string>
     <string name="about_this_species">Over deze soort</string>
     <string name="view_on_wikipedia">Wikipedia artikel</string>
     <string name="photo"><![CDATA[Foto: <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -370,7 +370,7 @@
     <string name="your_identification">Uw identificatie: %1$s</string>
     <string name="onboarding_species_name">Noteer wat je hebt gezien als je kunt, ook als dat alleen \"insect\" of \"vogel\" is, of laat dit gewoon leeg. Anderen kunnen je helpen met determineren!</string>
     <string name="upload_complete">Upload voltooid!</string>
-    <string name="onboarding_upload_description">Kom snel terug voor identificaties en opmerkingen op jouw waarnemingen.</string>
+    <string name="onboarding_upload_description">Kom snel terug voor determinaties en reacties op je waarneming(en).</string>
     <string name="importing_photos">Foto(\'s) importeren...</string>
     <string name="multi_select_description">Meerdere foto\'s importeren door lang te drukken op een enkele foto</string>
     <string name="preparing_photo">Voorbereiden foto...</string>
@@ -382,8 +382,11 @@
     <string name="mammals">Zoogdieren</string>
     <string name="insects">Insecten</string>
     <string name="reptiles">Reptielen</string>
+    <string name="animals">Dieren</string>
     <string name="fish">Vissen</string>
     <string name="mollusks">Weekdieren</string>
+    <string name="protozoans">Eencelligen</string>
+    <string name="chromista">Zeewier, diatomeeën en verwanten</string>
     <string name="amphibians">Amfibieën</string>
     <string name="fungi">Schimmels</string>
     <string name="birds">Vogels</string>
@@ -446,9 +449,11 @@
     <string name="more_info_on_inat">Meer Info op iNaturalist.org</string>
     <string name="view_suggestions">Suggesties bekijken</string>
     <string name="species_search">Soort zoeken</string>
-    <string name="were_not_confident_enough">We zijn niet zeker genoeg om een aanbeveling te doen, maar hier zijn onze belangrijkste suggesties:</string>
+    <string name="were_not_confident_enough">We zijn niet zeker genoeg om een aanbeveling te doen, maar dit zijn onze topsuggesties:</string>
+    <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Meest waargenomen soorten met de geselecteerde filters:</string>
-    <string name="top_suggestions">Belangrijkste suggesties</string>
+    <!-- Header for a list of suggested taxa -->
+    <string name="top_suggestions">Topsuggesties</string>
     <string name="pretty_sure_rank">We zijn vrij zeker van dat het in deze %1$s is:</string>
     <string name="what_did_you_see">Wat heb je waargenomen?</string>
     <string name="suggest_species">Soort suggereren</string>
@@ -538,6 +543,7 @@
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Overdragen</string>
     <string name="apply_filters">Pas filters toe</string>
+    <string name="remove_filters">Filters verwijderen</string>
     <string name="reset">Reset</string>
     <string name="show_only_my_observations">Toon alleen mijn waarnemingen</string>
     <string name="project">Project</string>
@@ -720,7 +726,7 @@
     <string name="no_annotation">Geen aantekeningen</string>
     <string name="donate_to_inaturalist">Doneren aan iNaturalist</string>
     <string name="prefers_scientific_name_first">Toon wetenschappelijke namen eerst</string>
-    <string name="prefers_scientific_name_first_description">Toon wetenschappelijke namen voor lokale namen.</string>
+    <string name="prefers_scientific_name_first_description">Wetenschappelijke namen vóór algemene namen tonen.</string>
     <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, en Parks Canada operating iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
     <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
     <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) operating NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
@@ -819,7 +825,7 @@
     <string name="third_party_data_sharing_notes3"><![CDATA[<b>Deze services van derden zijn erg waardevol voor ons</b> bij het stabiel en bruikbaar houden van iNaturalist met ons relatief kleine aantal werknemers. Op mobiele apparaten is er nagenoeg geen andere manier om inzicht te krijgen in de problemen die zich voordoen, aangezien de software draait op apparaten waarover we geen controle hebben. Soms weten we niet eens dat zulke problemen zich voordoen voordat we ze in de data van zulke diensten zien. <b>Door deze informatie te delen help je ons, en de gehele gemeenschap op iNaturalist.</b>]]></string>
     <string name="third_party_data_sharing_notes4"><![CDATA[Deze optie is alleen van toepassing op de analytische en crashgegevens die wij expliciet naar deze bedrijven sturen. Alle iNaturalist servers zijn geleverd en gehost door Microsoft, alle iNaturalist afbeeldingen worden gehost door Amazon en bijna alle iNaturalist kaarten worden geleverd door Google. Dit betekent dat wanneer je naar een waarneming op iNaturalist kijkt je verbonden bent met diensten aangeboden door deze bedrijven en zij op zijn minst beschikken over je IP-adres (de iPhone app gebruikt Apple\'s maps). iNaturalist zou waarschijnlijk niet bestaan zonder de diensten die deze bedrijven leveren. Hoewel iNaturalist de hoeveelheid en soort gegevens kan beperken die je met hen deelt tijdens het gebruik van iNat, kunnen we de datastroom niet helemaal stoppen.]]></string>
     <string name="common_names_place"><![CDATA[Plaats voor lokale namen: <b>%1$s</b>]]></string>
-    <string name="tap_to_prioritize_common_names">Tik om lokale namen van een bepaalde plek te prioriteren.</string>
+    <string name="tap_to_prioritize_common_names">Tik om algemene namen van een bepaalde plek te prioriteren.</string>
     <string name="search_places">Plaatsen zoeken</string>
     <string name="restart_app">App herstarten</string>
     <string name="disable_third_party_sharing_restart">Om gegevens delen van derden onmiddellijk uit te schakelen moet de app opnieuw opgestart worden.</string>
@@ -871,7 +877,7 @@
     <string name="unmute_this_user">Dempen van deze gebruiker opheffen</string>
     <string name="flag_this_conversation">Markeer dit gesprek</string>
     <string name="mute_this_user_question">Deze gebruiker dempen?</string>
-    <string name="you_will_no_longer_receive_messages">Je ontvangt niet langer meldingen over de activiteit van deze gebruiker, waaronder berichten, opmerkingen, determinaties en vermeldingen.</string>
+    <string name="you_will_no_longer_receive_messages">Je ontvangt geen meldingen meer over activiteiten van deze gebruiker, waaronder berichten, reacties, determinaties en vermeldingen.</string>
     <string name="mute">Dempen</string>
     <string name="muting_user">Gebruiker dempen...</string>
     <string name="unmuting_user">Opheffen demping gebruiker...</string>
@@ -950,8 +956,8 @@ de <a href="https://www.inaturalist.org/pages/community+guidelines">gemeenschaps
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
-    <string name="show_common_names">Toon lokale namen</string>
-    <string name="show_common_names_description">Uitschakelen als je alleen wetenschappelijke namen wilt zien.</string>
+    <string name="show_common_names">Algemene namen tonen</string>
+    <string name="show_common_names_description">Schakel uit als je alleen wetenschappelijke namen wilt zien.</string>
     <string name="email_must_look_like_email_address">E-mail moet eruit zien als een e-mailadres</string>
     <string name="username_must_begin_with">Gebruikersnaam moet beginnen met een letter, geen spaties bevatten en gebruik alleen letters, cijfers, streepjes en onderstrepingstekens</string>
     <string name="password_too_short">Wachtwoord moet tenminste zes tekens lang zijn</string>
@@ -964,12 +970,12 @@ de <a href="https://www.inaturalist.org/pages/community+guidelines">gemeenschaps
     <string name="filter_observations_by_months">Filter waarnemingen op maanden</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="view_suggestions_not_seen_nearby">Alle soorten</string>
-    <string name="only_view_nearby_suggestions">Bekijk alleen soorten uit de omgeving</string>
-    <string name="suggestions_source">Bron soortenlijst</string>
+    <string name="include_suggestions_not_seen_nearby">Includeer niet-nabijgelegen suggesties</string>
+    <string name="only_view_nearby_suggestions">Bekijk alleen suggesties uit de omgeving</string>
+    <string name="suggestions_source">Bron voor suggesties</string>
     <string name="research_grade_observations">Waarnemingen van onderzoekskwaliteit</string>
-    <string name="visually_similar_description">iNaturalist geeft suggesties van visueel vergelijkbare afbeeldingen van soorten die in de omgeving van deze locatie zijn waargenomen op dit moment van het jaar.</string>
-    <string name="research_grade_observations_description">In plaats van visueel vergelijkbare suggesties zal iNaturalist soorten voorstellen die zijn waargenomen op een specifieke plek en binnen een specifieke taxonomische groep.</string>
+    <string name="visually_similar_description">iNaturalist doet suggesties op basis van hoeveel de afbeeldingen lijken op die van soorten die rond deze locatie zijn waargenomen in deze tijd van het jaar.</string>
+    <string name="research_grade_observations_description">In plaats van visueel lijkende suggesties zal iNaturalist soorten voorstellen die zijn waargenomen op een specifieke plek en binnen een specifieke taxonomische groep.</string>
     <string name="taxon">Taxon</string>
     <string name="place">Plaats:</string>
     <string name="pretty_sure_kingdom">We zijn er vrij zeker van dat het in dit koninkrijk is:</string>
@@ -1021,4 +1027,56 @@ de <a href="https://www.inaturalist.org/pages/community+guidelines">gemeenschaps
     <string name="couldnt_duplicate_sound">Kon geluid niet dupliceren!</string>
     <string name="sound_format_not_supported">Dit geluidsbestand heeft de juiste bestandsextensie maar de specifieke audiocodering wordt niet ondersteund door Android.</string>
     <string name="view_observations">Toon Waarnemingen</string>
+    <string name="choose_this_option">Kies deze optie</string>
+    <string name="compare_observation_with_this_option">Vergelijk waarneming met deze optie</string>
+    <string name="go_back">Ga terug</string>
+    <string name="change_the_source_of_the_suggestions">Wijzig de bron van de suggesties</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Thumbnail foto voor het voorgesteld taxon</string>
+    <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
+    <string name="comments_ids_title">Reacties en determinaties</string>
+    <!-- Accessibility text for the faves tab on the observation detail view -->
+    <string name="faves">Favorieten</string>
+    <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
+    <string name="previous_option">Vorige optie</string>
+    <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string name="next_option">Volgende optie</string>
+    <string name="no_observations_yet2">Nog geen waarnemingen. </string>
+    <string name="no_species_yet">Nog geen soorten.</string>
+    <string name="no_identifications_yet">Nog geen determinaties.</string>
+    <string name="sort_by">Sorteren op</string>
+    <string-array name="explore_order_by_items">
+        <item>Invoerdatum</item>
+        <item>Waarnemingsdatum</item>
+        <item>Datum bijgewerkt</item>
+        <!--<item>Faves</item>-->
+        <item>Willekeurig</item>
+    </string-array>
+    <string-array name="explore_order_items">
+        <item>Aflopend</item>
+        <item>Oplopend</item>
+    </string-array>
+    <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
+    See explore_order_by_items and explore_order_items keys !-->
+    <string name="sorted_by_full">Gesorteerd op %1$s (%2$s)</string>
+    <!-- Label for an observation search filter to exclude your own observations -->
+    <string name="hide_my_observations">Mijn waarnemingen verbergen</string>
+    <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
+    <string name="follow_this_observation">Volg deze waarneming</string>
+    <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
+    <string name="unfollow_this_observation">Deze waarneming ontvolgen</string>
+    <!-- Error message shown when an attempt to follow an observation fails -->
+    <string name="could_not_follow_observation">Kon deze waarneming niet volgen</string>
+    <!-- Error message shown when an attempt to unfollow an observation fails -->
+    <string name="could_not_unfollow_observation">Kon deze waarneming niet ontvolgen</string>
+    <!-- Label for a button to copy the coordinates of an observation -->
+    <string name="copy_coordinates">Kopieer coördinaten</string>
+    <string name="coordinates_copied_to_clipboard">Coördinaten naar klembord gekopieerd</string>
+    <!--  Title of a section on the observation detail view that displays minor metadata  -->
+    <string name="metadata">Metadata</string>
+    <!--  iNat observation identifier  -->
+    <string name="id">ID</string>
+    <!--  iNat observation Universally Unique Identifier  -->
+    <string name="uuid">UUID</string>
+    <!--  Universal Resource Locator  -->
+    <string name="url">URL</string>
 </resources>
