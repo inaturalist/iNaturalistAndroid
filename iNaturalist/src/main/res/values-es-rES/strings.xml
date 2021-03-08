@@ -309,7 +309,7 @@
     <string name="sync_obs_to_see_favs">Sincronizar esta observación para ver favoritos...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Sincronizar esta observación para dejar un comentario o sugerir una identificación...</string>
-    <string name="no_photo">No hay foto</string>
+    <string name="no_photo">No Media</string>
     <string name="about_this_species">Sobre esta especie</string>
     <string name="view_on_wikipedia">Artículo de Wikipedia</string>
     <string name="photo"><![CDATA[Foto: <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -382,8 +382,11 @@
     <string name="mammals">Mamíferos</string>
     <string name="insects">Insectos</string>
     <string name="reptiles">Reptiles</string>
+    <string name="animals">Animales</string>
     <string name="fish">Peces</string>
     <string name="mollusks">Moluscos</string>
+    <string name="protozoans">Protozoos</string>
+    <string name="chromista">Algas pardas, diatomeas y parientes</string>
     <string name="amphibians">Anfibios</string>
     <string name="fungi">Hongos</string>
     <string name="birds">Aves</string>
@@ -447,7 +450,9 @@
     <string name="view_suggestions">Ver Sugerencias</string>
     <string name="species_search">Búsqueda de especies</string>
     <string name="were_not_confident_enough">No estamos suficientemente seguros para hacer una recomendación, pero he aquí nuestras mejores sugerencias:</string>
+    <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Opciones más observadas que cumplen los filtros:</string>
+    <!-- Header for a list of suggested taxa -->
     <string name="top_suggestions">Principales sugerencias</string>
     <string name="pretty_sure_rank">Estamos bastante seguros de que está entre estos %1$s:</string>
     <string name="what_did_you_see">¿Qué has visto?</string>
@@ -538,6 +543,7 @@
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegación</string>
     <string name="apply_filters">Aplicar filtros</string>
+    <string name="remove_filters">Eliminar filtros</string>
     <string name="reset">Restablecer</string>
     <string name="show_only_my_observations">Mostrar únicamente las propias observaciones</string>
     <string name="project">Proyecto</string>
@@ -964,7 +970,7 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <string name="filter_observations_by_months">Filtrar observaciones por meses</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="view_suggestions_not_seen_nearby">Ver sugerencias que no han sido vistas cerca de aquí</string>
+    <string name="include_suggestions_not_seen_nearby">Incluir sugerencias que no han sido vistas cerca de aquí</string>
     <string name="only_view_nearby_suggestions">Solo mostrar sugerencias que hayan sido vistas cerca de aquí</string>
     <string name="suggestions_source">Fuente de sugerencias</string>
     <string name="research_grade_observations">Observaciones con grado de investigación</string>
@@ -1021,4 +1027,56 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <string name="couldnt_duplicate_sound">¡No se ha podido duplicar el sonido!</string>
     <string name="sound_format_not_supported">Este archivo de sonido tiene la extensión de archivo correcta, pero su codificación de audio no es compatible con Android.</string>
     <string name="view_observations">Ver observaciones</string>
+    <string name="choose_this_option">Elegir esta opción</string>
+    <string name="compare_observation_with_this_option">Comparar la observación con esta opción</string>
+    <string name="go_back">Volver</string>
+    <string name="change_the_source_of_the_suggestions">Cambiar el origen de las sugerencias</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Foto en miniatura del taxón sugerido</string>
+    <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
+    <string name="comments_ids_title">Comentarios e identificaciones</string>
+    <!-- Accessibility text for the faves tab on the observation detail view -->
+    <string name="faves">Favoritos</string>
+    <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
+    <string name="previous_option">Opción anterior</string>
+    <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string name="next_option">Siguiente opción</string>
+    <string name="no_observations_yet2">Aún no hay observaciones.</string>
+    <string name="no_species_yet">Aún no hay especies.</string>
+    <string name="no_identifications_yet">Aún no hay identificaciones.</string>
+    <string name="sort_by">Ordenar por</string>
+    <string-array name="explore_order_by_items">
+        <item>Fecha de adición</item>
+        <item>Fecha de observación</item>
+        <item>Fecha de actualización</item>
+        <!--<item>Faves</item>-->
+        <item>Al azar</item>
+    </string-array>
+    <string-array name="explore_order_items">
+        <item>Descendente</item>
+        <item>Ascendente</item>
+    </string-array>
+    <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
+    See explore_order_by_items and explore_order_items keys !-->
+    <string name="sorted_by_full">Ordenado por %1$s (%2$s)</string>
+    <!-- Label for an observation search filter to exclude your own observations -->
+    <string name="hide_my_observations">Ocultar mis observaciones</string>
+    <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
+    <string name="follow_this_observation">Follow this Observation</string>
+    <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
+    <string name="unfollow_this_observation">Unfollow this Observation</string>
+    <!-- Error message shown when an attempt to follow an observation fails -->
+    <string name="could_not_follow_observation">Could not follow this observation</string>
+    <!-- Error message shown when an attempt to unfollow an observation fails -->
+    <string name="could_not_unfollow_observation">Could not unfollow this observation</string>
+    <!-- Label for a button to copy the coordinates of an observation -->
+    <string name="copy_coordinates">Copy coordinates</string>
+    <string name="coordinates_copied_to_clipboard">Coordinates copied to clipboard</string>
+    <!--  Title of a section on the observation detail view that displays minor metadata  -->
+    <string name="metadata">Metadata</string>
+    <!--  iNat observation identifier  -->
+    <string name="id">ID</string>
+    <!--  iNat observation Universally Unique Identifier  -->
+    <string name="uuid">UUID</string>
+    <!--  Universal Resource Locator  -->
+    <string name="url">URL</string>
 </resources>

@@ -12,7 +12,7 @@
     <string name="street">Strooss</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satellit</string>
-    <string name="couldnt_load_nearby_observations">Couldn\'t load nearby observations: %1$s</string>
+    <string name="couldnt_load_nearby_observations">Konnt Observatiounen aus der Ëmgéigend net lueden: %1$s</string>
     <string name="username_invalid">Benotzernumm oder Passwuert sinn net gülteg, w.e.g. nach emol aloggen.</string>
     <string name="signing_in">Umeldung leeft...</string>
     <string name="signed_in">Ugemellt!</string>
@@ -80,7 +80,7 @@
     <string name="no">Nee</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">Zoustëmmen?</string>
-    <string name="no_comments">No comments/identifications yet</string>
+    <string name="no_comments">Nach keng Kommentaren/Bestëmmungen</string>
     <string name="add_comment">Kommentar bäifügen</string>
     <string name="add_id">Bestëmmung bäifügen</string>
     <string name="remarks">Remarken</string>
@@ -162,7 +162,7 @@
         <item>Erfuerschen an verbannen mat der Natur</item>
         <item>Get outside! Find something wild, and take a clear, full frame photo.</item>
         <item>Share your observation with the iNaturalist community.</item>
-        <item>Check back for comments and identifications on your observation!</item>
+        <item>Kommt spéider nach emol zeréck fir Kommentaren oder Bestëmmungen zu Ären Observatiounen</item>
         <item><![CDATA[<b>Recherche Grade</b> Observatioune gi mat Wëssenschaftler gedeelt an hëllefen d\'Natur ze verstoen an ze schützen.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
@@ -258,13 +258,13 @@
     <string name="set_location">Site</string>
     <string name="coordinates_lat">Lat:</string>
     <string name="coordinates_lon">Lon:</string>
-    <string name="coordinates_acc">Acc. </string>
+    <string name="coordinates_acc">Präzisioun</string>
     <string name="required">* obligatoresch</string>
     <string name="downloading_observations">Observatioune ginn erofgelueden...</string>
     <string name="no_thanks">Nee Merci</string>
     <string name="turn_on">Aschalten</string>
-    <string name="introducing_auto_sync">Introducing Auto-Sync!</string>
-    <string name="turn_on_auto_sync">Turn on Auto-Sync in Settings and your observations will be automatically uploaded to iNaturalist.</string>
+    <string name="introducing_auto_sync">Néi: Auto-Sync!</string>
+    <string name="turn_on_auto_sync">Schalt d\'Auto-Sync Funktioun an den Astellungen un domadder Är Observatiounen automatesch op iNaturalist eropgeluede ginn.</string>
     <string name="automatic_upload">Automatischen Upload (Auto-Sync)</string>
     <string name="waiting_to_upload">Warden ob Upload...</string>
     <string name="uploading">Eroplueden...</string>
@@ -292,14 +292,14 @@
     <string name="delete">Läschen</string>
     <string name="delete_id">Bestëmmung zeréckleien</string>
     <string name="delete_comment">Kommentar läschen</string>
-    <string name="delete_id_message">Sidd Dir sécher datt Dir dës Bestemmung zeréckleien wëllt?</string>
+    <string name="delete_id_message">Sidd Dir sécher datt Dir dës Bestëmmung zeréckleien wëllt?</string>
     <string name="delete_comment_message">Sidd Dir sécher datt Dir dësen Kommentar läsche wëllt?</string>
     <string name="comment">Kommentar</string>
     <string name="suggest_id">ID virschloen</string>
     <string name="update_comment">Kommentar aktualiséieren</string>
-    <string name="fave_this_observation">Fave This Observation</string>
+    <string name="fave_this_observation">Dës Observatioun favoriseiren</string>
     <string name="faved">Faved</string>
-    <string name="be_the_first_to_fave_this_obs">Be the first to fave this observation...</string>
+    <string name="be_the_first_to_fave_this_obs">Sidd deen éischten deen dësen Observatioun favoriséiert...</string>
     <string name="leave_a_comment">Hannerloosst ee Kommentar oder schlot eng Bestëmmung vir</string>
     <string name="location_coords">Lat: %1$s Lon: %2$s Acc. %3$s</string>
     <string name="location_coords_no_acc">Lat: %1$s Lon: %2$s</string>
@@ -309,13 +309,13 @@
     <string name="sync_obs_to_see_favs">Sync this observation to see faves...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Sync this observation in order to leave a comment or suggest an identification...</string>
-    <string name="no_photo">Keng Foto</string>
+    <string name="no_photo">No Media</string>
     <string name="about_this_species">Iwwert dës Aart</string>
     <string name="view_on_wikipedia">Wikipedia-Artikel</string>
     <string name="photo"><![CDATA[Foto: <b><a href="%1$s">%2$s</a></b>]]></string>
     <string name="photo_attr"><![CDATA[Foto: <b>%1$s</b>]]></string>
     <string name="finding_current_location">Finding current location...</string>
-    <string name="flag_as_captive">Flag as Captive/Cultivated</string>
+    <string name="flag_as_captive">Als Gefaangen/Kultivéiert markeiren</string>
     <string name="observation_flagged_as_captive">Observatioun ass als gefaangen/kultivéiert markéiert ginn</string>
     <string name="are_you_sure_you_want_to_flag_as_captive">Are you sure you want to flag this observation as captive/cultivated? (Pressing yes will also close the observation viewer window)</string>
     <string name="do_you_agree_to_the_following">Stemm dir dem Folgenden zou?</string>
@@ -324,7 +324,7 @@
     <string name="couldnt_load_project_details">Couldn\'t load project details: %1$s</string>
     <string name="no_people_found">Keng Léit fonnt</string>
     <string name="rank">Rang</string>
-    <string name="identifications">Bestemmungen</string>
+    <string name="identifications">Bestëmmungen</string>
     <string name="no_news_found">Keng Noriichte fonnt</string>
     <string name="news">Neiegkeeten</string>
     <string name="article">Artikel</string>
@@ -347,7 +347,7 @@
     <string name="logged_in_as_html"><![CDATA[Ageloggt als <b>%1$s</b>]]></string>
     <string name="log_out">Ausloggen</string>
     <string name="not_logged_in">Net ageloggt</string>
-    <string name="auto_upload_description">Auto-upload new observations and edits to observations</string>
+    <string name="auto_upload_description">Nei Observatiounen a Verännerunge vun Observatiounen automatesch eroplueden</string>
     <string name="language">Sprooch</string>
     <string name="version">Versioun</string>
     <string name="inat_network">iNaturalist Netzwierk</string>
@@ -366,11 +366,11 @@
     <string name="search_observations">Observatioune sichen...</string>
     <string name="withdraw">Zréckzéien</string>
     <!-- Dialog title for when you are updating the description of an identification -->
-    <string name="update_id_description">Bestemmungsbeschreiwung aktualiséieren</string>
+    <string name="update_id_description">Bëstemmungsbeschreiwung aktualiséieren</string>
     <string name="your_identification">Är ID: %1$s</string>
     <string name="onboarding_species_name">Name what you saw if you can, even if that\'s just \"insect\" or \"bird,\" or just leave this blank. Others may help you identify it!</string>
     <string name="upload_complete">Upload finaliséieren!</string>
-    <string name="onboarding_upload_description">Check back soon for identifications and comments on your observation(s).</string>
+    <string name="onboarding_upload_description">Kommt spéider nach emol zeréck fir Kommentaren oder Bestëmmungen zu Ären Observatioun(en).</string>
     <string name="importing_photos">Foto(en) ginn importéiert...</string>
     <string name="multi_select_description">Importéiert méi wei eng Foto andeems dir laang ob eng eenzel Foto klickt</string>
     <string name="preparing_photo">Foto virbereet...</string>
@@ -382,8 +382,11 @@
     <string name="mammals">Mamendéieren</string>
     <string name="insects">Insekten</string>
     <string name="reptiles">Reptilien</string>
+    <string name="animals">Animals</string>
     <string name="fish">Fësch</string>
     <string name="mollusks">Mollusken</string>
+    <string name="protozoans">Protozoans</string>
+    <string name="chromista">Kelp, Diatoms, and Allies</string>
     <string name="amphibians">Amphibien</string>
     <string name="fungi">Pilzen</string>
     <string name="birds">Vigel</string>
@@ -399,13 +402,13 @@
     <string name="introducing_missions">Introducing Missions!</string>
     <string name="missions_onboarding_description">Missions are realtime recommendations of what to look for around you. This way you can discover species new to you! (Requires connectivity)</string>
     <string name="ok_got_it">OK, verstanen!</string>
-    <string name="could_not_download_observations">Could not download latest observations - Connection problems. Try again later.</string>
+    <string name="could_not_download_observations">Déi neisten Observatioune konnten net erofgeluede ginn - Connectiounsproblem. Versicht et spéiderer nach emol</string>
     <string name="no_news_yet">Nach keng Neiegkeet. Bleift drun!</string>
     <string name="my_content">Mäi Contenu</string>
     <string name="following">Following</string>
     <string name="no_updates_yet">No updates yet. Stay tuned!</string>
-    <string name="you_will_only_receive_updates_when_creating">(You will only receive updates once you\'ve created observations)</string>
-    <string name="you_will_only_receive_updates_when_following">(You will only receive updates once you\'re following observations)</string>
+    <string name="you_will_only_receive_updates_when_creating">(Dir kritt nëmmen Updates wann Dir Observatiounen erstallt hutt)</string>
+    <string name="you_will_only_receive_updates_when_following">(Dir kritt nëmmen Updates wann Dir Observatiounen followed)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> suggeréiert d´ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> huet kommenteiert: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">It looks like you deleted a photo by clearing the app cache before uploading. You will need to add the photo back to your observation from your gallery. In the future, please make sure you have uploaded all your photos before clearing the app cache.</string>
@@ -420,8 +423,8 @@
     </plurals>
     <string name="no_results_found">Keen Resultat fonnt...</string>
     <plurals name="syncing_x_out_of_y_observations">
-        <item quantity="one">Syncing %1$d of %2$d observation...</item>
-        <item quantity="other">Syncing %1$d of %2$d observations...</item>
+        <item quantity="one">Synchroniséieren %1$d vun %2$d Observatioun...</item>
+        <item quantity="other">Synchroniséieren %1$d vun %2$d Observatiounen...</item>
     </plurals>
     <string name="deleting_observations">Observatiounen läschen...</string>
     <string name="preparing">A Preparatioun</string>
@@ -443,11 +446,13 @@
     <string name="about_this_section">Iwwert dësen Beräich</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
     <string name="taxonomy_info">These are links to ancestors of this particular taxon. They are in order from coarser to more refined. Use these links to move up and down the Tree of Life. For example, if you don\'t know what an organism is, but know what grouping it falls into, tap on a taxon from the list to view more information about it.</string>
-    <string name="more_info_on_inat">More Info on iNaturalist.org</string>
+    <string name="more_info_on_inat">Méi Infoen ob iNaturalist.org</string>
     <string name="view_suggestions">Suggestiounen kucken</string>
     <string name="species_search">Aarte-Sich</string>
     <string name="were_not_confident_enough">We\'re not confident enough to make a recommendation, but here are our top suggestions:</string>
+    <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
+    <!-- Header for a list of suggested taxa -->
     <string name="top_suggestions">Top suggestions</string>
     <string name="pretty_sure_rank">Mir sinn zimmlech sécher et ass an dësem %1$s:</string>
     <string name="what_did_you_see">Wat hutt Dir gesinn?</string>
@@ -538,6 +543,7 @@
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegatioun</string>
     <string name="apply_filters">Filter uwenden</string>
+    <string name="remove_filters">Remove Filters</string>
     <string name="reset">Zrécksetzen</string>
     <string name="show_only_my_observations">Nëmmen eng Observatioune weisen</string>
     <string name="project">Projet</string>
@@ -572,7 +578,7 @@
     <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
     <string name="no_species_found">This is a list of the species you have observed the most.\n\nFYI: There\'s an estimated 9 million species on the planet, so get out there and observe them!</string>
     <string name="make_an_observation">Eng Observatioun maachen</string>
-    <string name="no_observations_found_new">Observations are records of your encounters with individual organisms at particular times and locations.</string>
+    <string name="no_observations_found_new">Observatioune sinn Opzeechnunge vun Äre Begéinungen mat engem eenzelen Organismus zu engem bestëmmten Zäiten a Standuerter.</string>
     <string name="discard_comment">Sidd Dir sécher datt Dir dësen Kommentar läsche wëllt?</string>
     <string name="leave_comment">Kommentar hannerloossen...</string>
     <string name="swipe">Wëschen</string>
@@ -586,7 +592,7 @@
     <string name="submit">Areechen</string>
     <string name="change_password">Passwuert änneren</string>
     <string name="search_projects_youve_joined">Search projects you\'ve joined...</string>
-    <string name="must_be_connected_to_load_more_obs">You must be connected to the Internet to load more observations</string>
+    <string name="must_be_connected_to_load_more_obs">Dir musst mam Internet verbonnen si fir méi Observatioune kennen ze lueden</string>
     <string name="inat_about_title">iNaturalist is a joint initiative by the California Academy of Sciences and the National Geographic Society.</string>
     <!--
         Prunciation of people's names (as approved by the people in question):
@@ -606,7 +612,7 @@
     <string name="new_to_inat_sign_up_now"><![CDATA[ Nei bei %1$s? <b>Elo aschreiwen!</b>]]></string>
     <string name="see_more_observations">Méi Observatiounen kucken</string>
     <string name="see_more_species">Mei Aarten gesinn</string>
-    <string name="see_more_identifications">Mei Bestemmungen gesinn</string>
+    <string name="see_more_identifications">Mei Bëstemmungen gesinn</string>
     <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
     <string name="description">Beschreiwung</string>
     <string name="quantity">Quantitéit</string>
@@ -648,9 +654,9 @@
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_budding">Knospenbildung</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_flower_budding">Flower Budding</string>
+    <string name="annotation_value_flower_budding">Bléienknospen</string>
     <!-- Observation presents no evidence of flowering phenology -->
-    <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
+    <string name="annotation_value_no_evidence_of_flowering">Keng Unzeeche vu Bléien</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Erwuessen</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -694,7 +700,7 @@
     <string name="species_all_caps">AARTEN</string>
     <string name="people_all_caps">PERSOUNEN</string>
     <string name="identifiers_all_caps">BESTEMMER</string>
-    <string name="identifications_all_caps">BESTEMMUGEN</string>
+    <string name="identifications_all_caps">BËSTEMMUNGEN</string>
     <string name="news_all_caps">Neiegkeeten</string>
     <string name="got_it_all_caps">VERSTANEN!</string>
     <string name="view_all_all_caps">ALL KUCKEN</string>
@@ -741,18 +747,18 @@
     <string name="content">Contenu</string>
     <string name="has_photos">Huet Fotoen</string>
     <string name="has_sounds">Huet Téin</string>
-    <string name="could_not_play_sound">Den Toun kann net gespillt sinn - méiglecherweis en Netzwierksprobleem</string>
+    <string name="could_not_play_sound">Den Sound kann net gespillt sinn - méiglecherweis en Netzwierksprobleem</string>
     <string name="cant_play_soundcloud"><![CDATA[Fir Soundcloud Téin ze lauschteren, kuckt de <a href="%1$s">Website</a>.]]></string>
     <string name="soundcloud">SoundCloud</string>
     <string name="record_sound">Geräisch ophuelen</string>
-    <string name="no_recorder_found">Kee standard Toun-Recorder fonnt!</string>
-    <string name="couldnt_retrieve_sound">Konnt keen Toun vum standard Recorder kreien - probéiert den Toun z\'importéieren</string>
-    <string name="upload_sound">Een Toun wielen</string>
+    <string name="no_recorder_found">Kee standard Sound-Recorder fonnt!</string>
+    <string name="couldnt_retrieve_sound">Konnt keen Sound vum standard Recorder kreien - probéiert den Sound z\'importéieren</string>
+    <string name="upload_sound">Sound wielen</string>
     <string name="multi_select_sound_description">Importéiert méi Téin andeems Dir laang ob eng eenzel Datei klickt</string>
-    <string name="alert_unsupported_audio_type">Pardon, awer et gouf e Problem beim Luede vum Toun vun dëser Quell</string>
-    <string name="invalid_audio_extension">Feeler beim Import vun Toun/Téin: Kann nëmmen Toundateien mat WAV/MP3/AMR Extensiounen importéieren</string>
-    <string name="importing_sounds">Toun/Téin ginn importéiert...</string>
-    <string name="observation_sound">Observatiouns Toun</string>
+    <string name="alert_unsupported_audio_type">Pardon, awer et gouf e Problem beim Luede vum Sound vun dëser Quell</string>
+    <string name="invalid_audio_extension">Feeler beim Import vun Sound(s): Kann nëmmen Sounddateien mat WAV/MP3/AMR Extensiounen importéieren</string>
+    <string name="importing_sounds">Sound(s) ginn importéiert...</string>
+    <string name="observation_sound">Observatiouns Sound</string>
     <string name="deleted_sounds_from_cache_error">It looks like you deleted a sound by clearing the app cache before uploading. You will need to add the sound back to your observation from your gallery. In the future, please make sure you have uploaded all your sounds before clearing the app cache.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f Sek.</string>
@@ -819,7 +825,7 @@
     <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third-party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
     <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
     <string name="common_names_place"><![CDATA[Lokalitéit fir déi allgemeng Nimm: <b>%1$s</b>]]></string>
-    <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
+    <string name="tap_to_prioritize_common_names">Auswiele fir Allgemeng-Nimm vun enger gewësser Platz ze preferéieren.</string>
     <string name="search_places">Search Places</string>
     <string name="restart_app">App neistarten</string>
     <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
@@ -866,7 +872,7 @@
     <string name="search_for_inaturalist_users">Search for iNaturalist users</string>
     <string name="please_sign_in_for_messages">Dir musst ageloggt si fir Äre Message ze gesinn.</string>
     <string name="sorry">Pardon</string>
-    <string name="you_must_have_three_observations">You must have three verifiable observations or three identifications for others in order to do that.</string>
+    <string name="you_must_have_three_observations">Dir musst dräi verifizéierbar Observatiounen oder dräi Bestëmmungen vun anerer hunn fir dat ze maachen.</string>
     <string name="mute_this_user">Dësen Benotzer stomm stellen</string>
     <string name="unmute_this_user">Unmute this user</string>
     <string name="flag_this_conversation">Gespréich mellen</string>
@@ -947,7 +953,7 @@
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
     <string name="show_common_names">Populär Nimm weisen</string>
-    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
+    <string name="show_common_names_description">Deaktivéiere wann Dir nëmme wëllt wëssenschaftlech Nimm gesinn.</string>
     <string name="email_must_look_like_email_address">Email must look like an email address</string>
     <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
     <string name="password_too_short">Password must be at least six characters long</string>
@@ -955,15 +961,15 @@
     <string name="switch_to_list_view">Switch to list view</string>
     <string name="remove_project_filter">Remove project filter</string>
     <string name="remove_observer_filter">Observatiounsfilter ewechhuelen</string>
-    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
-    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
-    <string name="filter_observations_by_months">Filter observations by months</string>
+    <string name="filter_observations_by_an_exact_date">Observatioune fir ee bestëmmten Datum filteren</string>
+    <string name="filter_observations_by_a_date_range">Observatioune fir eng Zäitspann filteren</string>
+    <string name="filter_observations_by_months">Observatiounen no Mount filteren</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="view_suggestions_not_seen_nearby">View suggestions not seen nearby</string>
+    <string name="include_suggestions_not_seen_nearby">Include suggestions not seen nearby</string>
     <string name="only_view_nearby_suggestions">Only view nearby suggestions</string>
     <string name="suggestions_source">Suggestions Source</string>
-    <string name="research_grade_observations">Research Grade Observations</string>
+    <string name="research_grade_observations">Recherche Grade Observatiounen</string>
     <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
     <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will suggest species observed in a specific place and within a specific taxonomic group.</string>
     <string name="taxon">Taxon:</string>
@@ -1011,10 +1017,62 @@
     <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
     <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
     <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
-    <string name="share_location">Share Location</string>
-    <string name="share_hidden_location">Share Hidden Location</string>
+    <string name="share_location">Standuert deelen</string>
+    <string name="share_hidden_location">Verstoppten Standuert deelen</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Konnt de Sound net dubléieren</string>
     <string name="sound_format_not_supported">This sound file is the right file extension, but the specific audio encoding is not supported by Android.</string>
-    <string name="view_observations">View Observations</string>
+    <string name="view_observations">Observatioune kucken</string>
+    <string name="choose_this_option">Choose this option</string>
+    <string name="compare_observation_with_this_option">Compare observation with this option</string>
+    <string name="go_back">Go back</string>
+    <string name="change_the_source_of_the_suggestions">Change the source of the suggestions</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Thumbnail photo for suggested taxon</string>
+    <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
+    <string name="comments_ids_title">Kommentaren a Bestëmmungen </string>
+    <!-- Accessibility text for the faves tab on the observation detail view -->
+    <string name="faves">Favoriséiert</string>
+    <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
+    <string name="previous_option">Previous Option</string>
+    <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string name="next_option">Next Option</string>
+    <string name="no_observations_yet2">Nach keng Observatiounen.</string>
+    <string name="no_species_yet">Nach keng Aarten.</string>
+    <string name="no_identifications_yet">Nach keng Bestëmmungen</string>
+    <string name="sort_by">Sort By</string>
+    <string-array name="explore_order_by_items">
+        <item>Date Added</item>
+        <item>Date Observed</item>
+        <item>Date Updated</item>
+        <!--<item>Faves</item>-->
+        <item>Random</item>
+    </string-array>
+    <string-array name="explore_order_items">
+        <item>Descending</item>
+        <item>Ascending</item>
+    </string-array>
+    <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
+    See explore_order_by_items and explore_order_items keys !-->
+    <string name="sorted_by_full">Sorted by %1$s (%2$s)</string>
+    <!-- Label for an observation search filter to exclude your own observations -->
+    <string name="hide_my_observations">Meng Observatioune verstoppen</string>
+    <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
+    <string name="follow_this_observation">Follow this Observation</string>
+    <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
+    <string name="unfollow_this_observation">Unfollow this Observation</string>
+    <!-- Error message shown when an attempt to follow an observation fails -->
+    <string name="could_not_follow_observation">Could not follow this observation</string>
+    <!-- Error message shown when an attempt to unfollow an observation fails -->
+    <string name="could_not_unfollow_observation">Could not unfollow this observation</string>
+    <!-- Label for a button to copy the coordinates of an observation -->
+    <string name="copy_coordinates">Copy coordinates</string>
+    <string name="coordinates_copied_to_clipboard">Coordinates copied to clipboard</string>
+    <!--  Title of a section on the observation detail view that displays minor metadata  -->
+    <string name="metadata">Metadata</string>
+    <!--  iNat observation identifier  -->
+    <string name="id">ID</string>
+    <!--  iNat observation Universally Unique Identifier  -->
+    <string name="uuid">UUID</string>
+    <!--  Universal Resource Locator  -->
+    <string name="url">URL</string>
 </resources>
