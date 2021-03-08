@@ -312,9 +312,19 @@ public class RecordSoundActivity extends AppCompatActivity implements SoundRecor
     }
 
     private void onBack() {
-        mCancelledRecording = true;
-        mRecorder.stopRecording();
-        mHelper.loading();
+        if (mRecorder.hasStartedRecording()) {
+            // Need to cleanly finish recording
+            mCancelledRecording = true;
+            mRecorder.stopRecording();
+            mHelper.loading();
+        } else {
+            // Just immediately exit the activity
+            File outputFile = new File(mOutputFilename);
+            outputFile.delete();
+
+            setResult(RESULT_CANCELED);
+            finish();
+        }
     }
 
 
