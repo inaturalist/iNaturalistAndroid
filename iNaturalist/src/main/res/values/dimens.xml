@@ -6,4 +6,5 @@
     <dimen name="location_text_padding_right_short">40dp</dimen>
     <dimen name="location_text_padding_right_full">7dp</dimen>
     <dimen name="obs_viewer_photo_thumb_size">50dp</dimen>
+    <dimen name="obs_detail_gutter">16dp</dimen>
 </resources>

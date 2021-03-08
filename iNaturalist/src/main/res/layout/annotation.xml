@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#F5F5F5">
@@ -36,16 +37,17 @@
                     android:id="@+id/expand"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
                     android:clickable="true"
                     android:scaleType="centerInside"
                     android:src="@drawable/baseline_arrow_drop_down_black_48"
-                    android:tint="#C3C3C3" />
+                    android:tint="#C3C3C3"
+                    android:focusable="true" />
 
                 <RelativeLayout
-                    android:layout_toLeftOf="@id/expand"
-                    android:layout_marginLeft="5dp"
+                    android:layout_toStartOf="@id/expand"
+                    android:layout_marginStart="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <ImageView
@@ -53,9 +55,10 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_gravity="top"
-                        android:layout_marginRight="8dp"
-                        android:layout_alignParentLeft="true"
-                        android:src="@drawable/usericon" />
+                        android:layout_marginEnd="8dp"
+                        android:layout_alignParentStart="true"
+                        android:src="@drawable/usericon"
+                        tools:ignore="ContentDescription" />
 
                    <TextView
                         android:id="@+id/select_attribute_value"
@@ -65,7 +68,7 @@
                         android:textSize="15sp"
                         android:textColor="@color/inatapptheme_color"
                         android:layout_gravity="top"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:visibility="gone"
                        />
 
@@ -74,8 +77,8 @@
                         android:layout_width="22dp"
                         android:layout_height="22dp"
                         android:layout_gravity="top"
-                        android:layout_marginLeft="5dp"
-                        android:layout_alignParentRight="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_alignParentEnd="true"
                         android:tint="#C3C3C3"
                         android:src="@drawable/baseline_cancel_black_24" />
 
@@ -88,8 +91,8 @@
                         android:textSize="15sp"
                         android:textColor="#808080"
                         android:layout_gravity="top"
-                        android:layout_toRightOf="@id/user_pic"
-                        android:layout_toLeftOf="@id/delete_attribute_value"
+                        android:layout_toEndOf="@id/user_pic"
+                        android:layout_toStartOf="@id/delete_attribute_value"
                         />
 
 
@@ -102,21 +105,23 @@
                 android:orientation="horizontal"
                 android:paddingTop="12dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:baselineAligned="false">
                 <LinearLayout
                     android:id="@+id/agree_container"
                     android:clickable="true"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_gravity="left|bottom"
+                    android:layout_gravity="start|bottom"
                     android:orientation="horizontal"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:focusable="true">
 
                      <ImageView
                         android:id="@+id/agree_prefix"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginEnd="5dp"
                         android:layout_gravity="center_vertical"
                         android:tint="@color/inatapptheme_color"
                         android:src="@drawable/ic_check_black_24dp" />
@@ -137,7 +142,7 @@
                         android:textSize="13sp"
                         android:tint="#C3C3C3"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
                         />
 
                 </LinearLayout>
@@ -148,12 +153,13 @@
                     android:layout_weight="1"
                     android:clickable="true"
                     android:orientation="horizontal"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:focusable="true">
                     <ImageView
                         android:id="@+id/disagree_prefix"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginEnd="5dp"
                         android:layout_gravity="center_vertical"
                         android:tint="#FF0000"
                         android:src="@drawable/ic_close_black_48dp" />
@@ -174,7 +180,7 @@
                         android:textSize="13sp"
                         android:tint="#C3C3C3"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
                         />
 
                 </LinearLayout>
@@ -190,7 +196,8 @@
         android:layout_alignBottom="@id/main_view"
         android:layout_alignTop="@id/main_view"
         android:clickable="true"
-        android:background="#88000000">
+        android:background="#88000000"
+        android:focusable="true">
 
         <ProgressBar
             style="?android:attr/progressBarStyle"
