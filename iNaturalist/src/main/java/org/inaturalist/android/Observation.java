@@ -2,9 +2,12 @@
 package org.inaturalist.android;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -18,6 +21,8 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
+
+import static org.inaturalist.android.INaturalistApp.DATETIME_ISO_FORMAT;
 
 @SuppressWarnings("WeakerAccess")
 public class Observation implements BaseColumns, Serializable {
@@ -37,6 +42,7 @@ public class Observation implements BaseColumns, Serializable {
     public Double longitude;
     public Timestamp observed_on;
     public String observed_on_string;
+    public String time_zone;
     public Boolean out_of_range;
     public Boolean captive;
     public String place_guess;
@@ -79,6 +85,7 @@ public class Observation implements BaseColumns, Serializable {
     public Timestamp created_at_was;
     public String description_was;
     public String geoprivacy_was;
+    public String time_zone_was;
     public Integer iconic_taxon_id_was;
     public String iconic_taxon_name_was;
     public Integer id_was;
@@ -141,6 +148,7 @@ public class Observation implements BaseColumns, Serializable {
     public static final String LONGITUDE = "longitude";
     public static final String OBSERVED_ON = "observed_on";
     public static final String OBSERVED_ON_STRING = "observed_on_string";
+    public static final String TIME_ZONE = "time_zone";
     public static final String OUT_OF_RANGE = "out_of_range";
     public static final String CAPTIVE = "captive";
     public static final String PLACE_GUESS = "place_guess";
@@ -172,7 +180,6 @@ public class Observation implements BaseColumns, Serializable {
     public static final String RANK = "rank";
     public static final String PREFERS_COMMUNITY_TAXON = "prefers_community_taxon";
 
-
     public static final String[] PROJECTION = new String[] {
         Observation._ID,
         Observation._CREATED_AT,
@@ -190,6 +197,7 @@ public class Observation implements BaseColumns, Serializable {
         Observation.LONGITUDE,
         Observation.OBSERVED_ON,
         Observation.OBSERVED_ON_STRING,
+        Observation.TIME_ZONE,
         Observation.OUT_OF_RANGE,
         Observation.CAPTIVE,
         Observation.PLACE_GUESS,
@@ -240,6 +248,7 @@ public class Observation implements BaseColumns, Serializable {
         PROJECTION_MAP.put(Observation.LONGITUDE, Observation.LONGITUDE);
         PROJECTION_MAP.put(Observation.OBSERVED_ON, Observation.OBSERVED_ON);
         PROJECTION_MAP.put(Observation.OBSERVED_ON_STRING, Observation.OBSERVED_ON_STRING);
+        PROJECTION_MAP.put(Observation.TIME_ZONE, Observation.TIME_ZONE);
         PROJECTION_MAP.put(Observation.OUT_OF_RANGE, Observation.OUT_OF_RANGE);
         PROJECTION_MAP.put(Observation.CAPTIVE, Observation.CAPTIVE);
         PROJECTION_MAP.put(Observation.PLACE_GUESS, Observation.PLACE_GUESS);
@@ -305,6 +314,8 @@ public class Observation implements BaseColumns, Serializable {
         this.longitude_was = this.longitude;
         this.observed_on = bc.getTimestamp(OBSERVED_ON);
         this.observed_on_was = this.observed_on;
+        this.time_zone = bc.getString(TIME_ZONE);
+        this.time_zone_was = this.time_zone;
         this.observed_on_string = bc.getString(OBSERVED_ON_STRING);
         this.observed_on_string_was = this.observed_on_string;
         this.out_of_range = bc.getBoolean(OUT_OF_RANGE);
@@ -393,6 +404,8 @@ public class Observation implements BaseColumns, Serializable {
         this.observed_on_was = this.observed_on;
         this.observed_on_string = o.getString("observed_on_string");
         this.observed_on_string_was = this.observed_on_string;
+        this.time_zone = o.getString("time_zone");
+        this.time_zone_was = this.time_zone;
         this.out_of_range = o.getBoolean("out_of_range");
         this.out_of_range_was = this.out_of_range;
         this.captive = o.getBoolean("captive");
@@ -601,6 +614,7 @@ public class Observation implements BaseColumns, Serializable {
         if ((latitude == null) && (longitude == null)) bo.put("location", null);
         bo.put("observed_on", observed_on);
         bo.put("observed_on_string", observed_on_string);
+        bo.put("time_zone", time_zone);
         if (!partial) bo.put("out_of_range", out_of_range);
         bo.put("captive_flag", captive);
         bo.put("place_guess", (private_place_guess != null) && (private_place_guess.length() > 0) ? private_place_guess : place_guess);
@@ -620,7 +634,7 @@ public class Observation implements BaseColumns, Serializable {
         bo.put("quality_grade", quality_grade);
         bo.put("species_guess", species_guess);
         bo.put("taxon_id", taxon_id);
-        bo.put("time_observed_at", time_observed_at);
+        bo.put("time_observed_at", DATETIME_ISO_FORMAT.format(time_observed_at));
         bo.put("updated_at", updated_at);
         bo.put("user_agent", user_agent);
         bo.put("user_id", user_id);
@@ -661,6 +675,7 @@ public class Observation implements BaseColumns, Serializable {
         if (!areFieldsEqual(this.longitude, observation.longitude)) return false;
         if (!areFieldsEqual(this.observed_on, observation.observed_on)) return false;
         if (!areFieldsEqual(this.observed_on_string, observation.observed_on_string)) return false;
+        if (!areFieldsEqual(this.time_zone, observation.time_zone)) return false;
         if (!areFieldsEqual(this.out_of_range, observation.out_of_range)) return false;
         if (!areFieldsEqual(this.captive, observation.captive)) return false;
         if (!areFieldsEqual(this.place_guess, observation.place_guess)) return false;
@@ -707,6 +722,7 @@ public class Observation implements BaseColumns, Serializable {
             this.longitude = observation.longitude;
             this.observed_on = observation.observed_on;
             this.observed_on_string = observation.observed_on_string;
+            this.time_zone = observation.time_zone;
             this.out_of_range = observation.out_of_range;
             this.captive = observation.captive;
             this.place_guess = observation.place_guess;
@@ -750,6 +766,7 @@ public class Observation implements BaseColumns, Serializable {
             if ((this.longitude == null) && (observation.longitude != null)) { this.longitude = observation.longitude; isModified = true; }
             if ((this.observed_on == null) && (observation.observed_on != null)) { this.observed_on = observation.observed_on; isModified = true; }
             if ((this.observed_on_string == null) && (observation.observed_on_string != null)) { this.observed_on_string = observation.observed_on_string; isModified = true; }
+            if ((this.time_zone == null) && (observation.time_zone != null)) { this.time_zone = observation.time_zone; isModified = true; }
             if ((this.out_of_range == null) && (observation.out_of_range != null)) { this.out_of_range = observation.out_of_range; isModified = true; }
             if ((this.captive == null) && (observation.captive != null)) { this.captive = observation.captive; isModified = true; }
             if ((this.place_guess == null) && (observation.place_guess != null)) { this.place_guess = observation.place_guess; isModified = true; }
@@ -804,6 +821,7 @@ public class Observation implements BaseColumns, Serializable {
             }
         }
         cv.put(OBSERVED_ON_STRING, observed_on_string);
+        cv.put(TIME_ZONE, time_zone);
         cv.put(OUT_OF_RANGE, out_of_range);
         cv.put(CAPTIVE, captive);
         cv.put(PLACE_GUESS, place_guess);
@@ -848,34 +866,6 @@ public class Observation implements BaseColumns, Serializable {
         return cv;
     }
 
-    public ArrayList<NameValuePair> getParams() {
-        final ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-        if (description != null) { params.add(new BasicNameValuePair("observation[description]", description.toString())); }
-        if (geoprivacy != null) { params.add(new BasicNameValuePair("observation[geoprivacy]", geoprivacy.toString())); }
-        if (iconic_taxon_id != null) { params.add(new BasicNameValuePair("observation[iconic_taxon_id]", iconic_taxon_id.toString())); }
-        if (id_please != null) { params.add(new BasicNameValuePair("observation[id_please]", id_please.toString())); }
-        params.add(new BasicNameValuePair("observation[latitude]", latitude != null ? latitude.toString() : ""));
-        params.add(new BasicNameValuePair("observation[longitude]", longitude != null ? longitude.toString() : ""));
-        if (observed_on_string != null) { params.add(new BasicNameValuePair("observation[observed_on_string]", observed_on_string.toString())); }
-        if (out_of_range != null) { params.add(new BasicNameValuePair("observation[out_of_range]", out_of_range.toString())); }
-        if (captive != null) { params.add(new BasicNameValuePair("observation[captive_flag]", captive.toString())); }
-        if (place_guess != null) { params.add(new BasicNameValuePair("observation[place_guess]", (private_place_guess != null) && (private_place_guess.length() > 0) ? private_place_guess.toString() : place_guess.toString())); }
-        if (uuid != null) { params.add(new BasicNameValuePair("observation[uuid]", uuid)); }
-        if (owners_identification_from_vision != null) { params.add(new BasicNameValuePair("observation[owners_identification_from_vision]", owners_identification_from_vision != null ? owners_identification_from_vision.toString() : "false")); }
-        params.add(new BasicNameValuePair("observation[positional_accuracy]", positional_accuracy != null ? positional_accuracy.toString() : ""));
-        if (positioning_device != null) { params.add(new BasicNameValuePair("observation[positioning_device]", positioning_device.toString())); }
-        if (positioning_method != null) { params.add(new BasicNameValuePair("observation[positioning_method]", positioning_method.toString())); }
-        if (private_latitude != null) { params.add(new BasicNameValuePair("observation[private_latitude]", private_latitude.toString())); }
-        if (private_longitude != null) { params.add(new BasicNameValuePair("observation[private_longitude]", private_longitude.toString())); }
-        if (private_positional_accuracy != null) { params.add(new BasicNameValuePair("observation[private_positional_accuracy]", private_positional_accuracy.toString())); }
-        if (quality_grade != null) { params.add(new BasicNameValuePair("observation[quality_grade]", quality_grade.toString())); }
-        if (species_guess != null) { params.add(new BasicNameValuePair("observation[species_guess]", species_guess.toString())); }
-        if (taxon_id != null) { params.add(new BasicNameValuePair("observation[taxon_id]", taxon_id.toString())); }
-        if (user_agent != null) { params.add(new BasicNameValuePair("observation[user_agent]", user_agent.toString())); }
-
-        return params;
-    }
-
     public static String sqlCreate() {
         return "CREATE TABLE " + TABLE_NAME + " ("
                 + Observation._ID + " INTEGER PRIMARY KEY,"
@@ -894,6 +884,7 @@ public class Observation implements BaseColumns, Serializable {
                 + "longitude REAL,"
                 + "observed_on INTEGER,"
                 + "observed_on_string TEXT,"
+                + "time_zone TEXT,"
                 + "out_of_range INTEGER,"
                 + "captive INTEGER,"
                 + "place_guess TEXT,"
@@ -943,6 +934,7 @@ public class Observation implements BaseColumns, Serializable {
     public boolean longitude_changed() { return !String.valueOf(longitude).equals(String.valueOf(longitude_was)); }
     public boolean observed_on_changed() { return !String.valueOf(observed_on).equals(String.valueOf(observed_on_was)); }
     public boolean observed_on_string_changed() { return !String.valueOf(observed_on_string).equals(String.valueOf(observed_on_string_was)); }
+    public boolean time_zone_changed() { return !String.valueOf(time_zone).equals(String.valueOf(time_zone_was)); }
     public boolean out_of_range_changed() { return !String.valueOf(out_of_range).equals(String.valueOf(out_of_range_was)); }
     public boolean captive_changed() { return !String.valueOf(captive).equals(String.valueOf(captive_was)); }
     public boolean place_guess_changed() { return !String.valueOf(place_guess).equals(String.valueOf(place_guess_was)); }

@@ -456,6 +456,7 @@ public class ObservationEditor extends AppCompatActivity {
                     originalObsCursor.close();
 
                     newObs.observed_on_string = originalObs.observed_on_string;
+                    newObs.time_zone = originalObs.time_zone;
                     newObs.observed_on = originalObs.observed_on;
                     newObs.time_observed_at = originalObs.time_observed_at;
                     newObs.place_guess = originalObs.place_guess;
@@ -1733,7 +1734,8 @@ public class ObservationEditor extends AppCompatActivity {
                     if (mSharePhotos == null) {
                         mObservation.observed_on = mObservation.observed_on_was = mObservation.created_at;
                         mObservation.time_observed_at = mObservation.time_observed_at_was = mObservation.observed_on;
-                        mObservation.observed_on_string = mObservation.observed_on_string_was = mApp.formatDatetime(mObservation.time_observed_at);
+                        mObservation.observed_on_string = mObservation.observed_on_string_was = mApp.formatDatetimeISONoTimezone(mObservation.time_observed_at);
+                        mObservation.time_zone = mObservation.time_zone_was = mApp.getCurrentTimeZoneName();
                     }
 
                 }
@@ -2093,7 +2095,7 @@ public class ObservationEditor extends AppCompatActivity {
                 if (date.getTime() > System.currentTimeMillis()) {
                     date = new Timestamp(System.currentTimeMillis());
                 }
-                mObservedOnStringTextView.setText(INaturalistApp.DATETIME_FORMAT.format(date));
+                mObservedOnStringTextView.setText(mApp.formatDatetimeISONoTimezone(date));
                 mObservedOnStringTextView.setTextColor(Color.parseColor("#000000"));
                 mObservedOnButton.setText(mApp.shortFormatDate(date));
             } catch (ParseException dateTimeException) {
@@ -2142,7 +2144,7 @@ public class ObservationEditor extends AppCompatActivity {
             if (datetime.getTime() > System.currentTimeMillis()) {
                 datetime = new Timestamp(System.currentTimeMillis());
             }
-            mObservedOnStringTextView.setText(mApp.formatDatetime(datetime));
+            mObservedOnStringTextView.setText(mApp.formatDatetimeISONoTimezone(datetime));
             mObservedOnStringTextView.setTextColor(Color.parseColor("#000000"));
             mTimeObservedAtButton.setText(mApp.shortFormatTime(datetime));
             mTimeObservedAtButton.setTextColor(Color.parseColor("#000000"));
@@ -3526,9 +3528,10 @@ public class ObservationEditor extends AppCompatActivity {
                     Timestamp timestamp = new Timestamp(date.getTime());
                     mObservation.observed_on = timestamp;
                     mObservation.time_observed_at = timestamp;
-                    mObservation.observed_on_string = mApp.formatDatetime(timestamp);
+                    mObservation.observed_on_string = mApp.formatDatetimeISONoTimezone(timestamp);
+                    mObservation.time_zone = mApp.getCurrentTimeZoneName();
 
-                    mObservedOnStringTextView.setText(mApp.formatDatetime(timestamp));
+                    mObservedOnStringTextView.setText(mApp.formatDatetimeISONoTimezone(timestamp));
                     mObservedOnStringTextView.setTextColor(Color.parseColor("#000000"));
                     mTimeObservedAtButton.setText(mApp.shortFormatTime(timestamp));
                     mTimeObservedAtButton.setTextColor(Color.parseColor("#000000"));

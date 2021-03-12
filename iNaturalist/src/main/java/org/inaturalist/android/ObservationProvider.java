@@ -25,7 +25,7 @@ import android.text.TextUtils;
 public class ObservationProvider extends ContentProvider {
     private static final String TAG = "ObservationProvider";
     private static final String DATABASE_NAME = "inaturalist.db";
-    private static final int DATABASE_VERSION = 20;
+    private static final int DATABASE_VERSION = 21;
     private static final SQLiteCursorFactory sFactory;
     public static final UriMatcher URI_MATCHER;
 
@@ -138,6 +138,10 @@ public class ObservationProvider extends ContentProvider {
             if (oldVersion < 20) {
                 // New taxon_geoprivacy column for observation
                 addColumnIfNotExists(db, Observation.TABLE_NAME, "taxon_geoprivacy", "TEXT DEFAULT NULL");
+            }
+            if (oldVersion < 21) {
+                // New time_zone column for observation
+                addColumnIfNotExists(db, Observation.TABLE_NAME, "time_zone", "TEXT DEFAULT NULL");
             }
         }
 

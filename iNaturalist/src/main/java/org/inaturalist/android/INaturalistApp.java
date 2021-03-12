@@ -29,6 +29,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -36,6 +37,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.TimeZone;
 import java.util.UUID;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -105,6 +107,8 @@ public class INaturalistApp extends MultiDexApplication {
     public static SimpleDateFormat DATETIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd h:mm:ss a z", Locale.ENGLISH);
     public static SimpleDateFormat SHORT_DATE_FORMAT = new SimpleDateFormat("d MMM yyyy");
     public static SimpleDateFormat SHORT_TIME_FORMAT = new SimpleDateFormat("hh:mm a z");
+    public static SimpleDateFormat DATETIME_ISO_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.ENGLISH);
+    public static SimpleDateFormat DATETIME_ISO_NO_TIMEZONE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
     private static Integer SYNC_NOTIFICATION = 3;
     private static Context context;
     private Locale mLocale = null;
@@ -1053,9 +1057,17 @@ public class INaturalistApp extends MultiDexApplication {
     public void setNotificationCallback(INotificationCallback callback) {
     	mNotificationCallback = callback;
     }
+
+    public String getCurrentTimeZoneName() {
+        Calendar cal = Calendar.getInstance();
+        TimeZone tz = cal.getTimeZone();
+        return tz.getID();
+    }
     
     public String formatDate(Timestamp date) { return DATE_FORMAT.format(date); }
     public String formatDatetime(Timestamp date) { return DATETIME_FORMAT.format(date); }
+    public String formatDatetimeISO(Timestamp date) { return DATETIME_ISO_FORMAT.format(date); }
+    public String formatDatetimeISONoTimezone(Timestamp date) { return DATETIME_ISO_NO_TIMEZONE_FORMAT.format(date); }
     public String shortFormatDate(Timestamp date) {
         SimpleDateFormat f;
         if (Locale.getDefault().getCountry().equals("US")) {

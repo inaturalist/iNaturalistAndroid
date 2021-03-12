@@ -6816,18 +6816,6 @@ public class INaturalistService extends IntentService {
         }
     }
 
-    private ArrayList<NameValuePair> paramsForObservation(Observation observation, boolean isPOST) {
-        ArrayList<NameValuePair> params = observation.getParams();
-        params.add(new BasicNameValuePair("ignore_photos", "true"));
-
-        if (isPOST) {
-            String inatNetwork = mApp.getInaturalistNetworkMember();
-            params.add(new BasicNameValuePair("site_id", mApp.getStringResourceByName("inat_site_id_" + inatNetwork)));
-        }
-
-        return params;
-    }
-
     private boolean handleObservationResponse(Observation observation, JSONArray response) {
         try {
             if (response == null || response.length() != 1) {
