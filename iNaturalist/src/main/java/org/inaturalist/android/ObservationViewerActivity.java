@@ -2471,6 +2471,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 	}
 
 	private void refreshFollowStatus() {
+        if (mObservation == null) return;
+
         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION_SUBSCRIPTIONS, null, ObservationViewerActivity.this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
         ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
