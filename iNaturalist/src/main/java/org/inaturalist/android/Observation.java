@@ -634,7 +634,7 @@ public class Observation implements BaseColumns, Serializable {
         bo.put("quality_grade", quality_grade);
         bo.put("species_guess", species_guess);
         bo.put("taxon_id", taxon_id);
-        bo.put("time_observed_at", DATETIME_ISO_FORMAT.format(time_observed_at));
+        if (time_observed_at != null) bo.put("time_observed_at", DATETIME_ISO_FORMAT.format(time_observed_at));
         bo.put("updated_at", updated_at);
         bo.put("user_agent", user_agent);
         bo.put("user_id", user_id);
