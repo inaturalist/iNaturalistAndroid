@@ -4521,7 +4521,7 @@ public class INaturalistService extends IntentService {
 
         String url;
         if (command == null) {
-            url = String.format(Locale.ENGLISH, "%s/observations%s?locale=%s&page=%d&per_page=%d&ordered_by=%s&order=desc&return_bounds=true&%s",
+            url = String.format(Locale.ENGLISH, "%s/observations%s?locale=%s&page=%d&per_page=%d&ordered_by=%s&return_bounds=true&%s",
                     API_HOST,
                     command == null ? "" : "/" + command,
                     mApp.getLanguageCodeForAPI(),
