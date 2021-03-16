@@ -3230,7 +3230,7 @@ public class ObservationEditor extends AppCompatActivity {
                         mHelper.stopLoading();
 
                         if (finalErrorImporting) {
-                            mHelper.alert(getString(R.string.invalid_photo_extension));
+                            mHelper.alert(getString(R.string.invalid_photo));
                         }
                     }
                 });
