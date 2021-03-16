@@ -634,7 +634,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
             GoogleMap.CancelableCallback callback = new GoogleMap.CancelableCallback() {
                 @Override
                 public void onFinish() {
-                    if (mOriginalZoom != null) {
+                    if (mOriginalZoom == null) {
                         mOriginalZoom = mMap.getCameraPosition().zoom;
                     }
                 }
@@ -744,11 +744,12 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         p2.x = (int) (screenWidth * 0.5); p2.y = (int) (screenHeight * 0.5);
         LatLng rightSide = mMap.getProjection().fromScreenLocation(p2);
 
+        Logger.tag(TAG).info(String.format("mOriginalZoom = %s; current zoom = %f", mOriginalZoom, mMap.getCameraPosition().zoom));
         if ((mOriginalZoom == null) || (!mOriginalZoom.equals(mMap.getCameraPosition().zoom))) {
             float[] results = new float[3];
             Location.distanceBetween(leftSide.latitude, leftSide.longitude, rightSide.latitude, rightSide.longitude, results);
             mAccuracy = results[0];
-            Logger.tag(TAG).error("Meters per radius = " + mAccuracy);
+            Logger.tag(TAG).info("Meters per radius = " + mAccuracy);
         }
 
         mLatitude = mMap.getCameraPosition().target.latitude;
