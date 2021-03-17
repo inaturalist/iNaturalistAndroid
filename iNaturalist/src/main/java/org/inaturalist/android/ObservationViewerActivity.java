@@ -2425,8 +2425,6 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         for (int i = 0; i < mObservationSubscriptions.length(); i++) {
             JSONObject subscription = mObservationSubscriptions.optJSONObject(i);
-            Logger.tag(TAG).error("AAA - " + subscription);
-            Logger.tag(TAG).error("AAA - " + mObservation.id);
             if ((subscription.optString("resource_type", "").equals("Observation")) && (subscription.optInt("resource_id", -1) == mObservation.id)) {
                 return true;
             }

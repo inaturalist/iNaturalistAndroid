@@ -1905,6 +1905,7 @@ public class INaturalistService extends IntentService {
                     if (c.getCount() > 0) {
                         Observation innerObs = new Observation(c);
                         observation._id = innerObs._id;
+                        observation._synced_at = innerObs._synced_at;
                     }
                     c.close();
 
