@@ -4,8 +4,8 @@
     package="org.inaturalist.android"
     android:installLocation="auto"
     android:requestLegacyExternalStorage="true"
-    android:versionCode="478"
-    android:versionName="1.21.11">
+    android:versionCode="479"
+    android:versionName="1.21.12">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -361,6 +361,39 @@
             android:configChanges="orientation"
             android:enabled="false"
             android:label="@string/network_inaturalistcl">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name=".ObservationListActivity.inaturalistgr"
+            android:targetActivity=".ObservationListActivity"
+            android:configChanges="orientation"
+            android:enabled="false"
+            android:label="@string/network_inaturalistgr">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name=".ObservationListActivity.inaturalistlu"
+            android:targetActivity=".ObservationListActivity"
+            android:configChanges="orientation"
+            android:enabled="false"
+            android:label="@string/network_inaturalistlu">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name=".ObservationListActivity.inaturalistuk"
+            android:targetActivity=".ObservationListActivity"
+            android:configChanges="orientation"
+            android:enabled="false"
+            android:label="@string/network_inaturalistuk">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
