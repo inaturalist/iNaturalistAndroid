@@ -975,7 +975,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            mMetadataObservationUUID.setText(mObservation.uuid != null ? mObservation.uuid : json.optString("uuid"));
+            mMetadataObservationUUID.setText((mObservation.uuid != null) && (json != null) ? mObservation.uuid : json.optString("uuid"));
 
             if (mObservation.id != null) {
                 mMetadataObservationIDRow.setVisibility(View.VISIBLE);
