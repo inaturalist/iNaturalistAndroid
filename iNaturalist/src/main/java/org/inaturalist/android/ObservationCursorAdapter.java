@@ -64,6 +64,7 @@ import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -96,6 +97,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     private Set<Long> mSelectedObservations = new HashSet<>();
 
     private boolean mMultiSelectionMode = false;
+
+    private Long mLastAlertTime = null;
 
     public interface OnLoadingMoreResultsListener {
         void onLoadingMoreResultsStart();
@@ -1260,9 +1263,13 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         if (mLoadingAdditionalObs) return;
         if (!mApp.loggedIn()) return;
         if (!mApp.isNetworkAvailable()) {
-            (new Handler()).postDelayed(() -> Toast.makeText(mContext,
-                    mContext.getResources().getString(R.string.must_be_connected_to_load_more_obs),
-                    Toast.LENGTH_SHORT).show(), 100);
+            // Don't show the alert too frequently
+            if ((mLastAlertTime == null) || (System.currentTimeMillis() - mLastAlertTime > 60000)) {
+                mLastAlertTime = System.currentTimeMillis();
+                (new Handler()).postDelayed(() -> Toast.makeText(mContext,
+                        mContext.getResources().getString(R.string.must_be_connected_to_load_more_obs),
+                        Toast.LENGTH_SHORT).show(), 100);
+            }
             return;
         }
 
