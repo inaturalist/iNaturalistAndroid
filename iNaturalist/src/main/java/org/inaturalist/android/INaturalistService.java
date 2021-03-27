@@ -517,6 +517,12 @@ public class INaturalistService extends IntentService {
     public static String ACTION_USER_PASSWORD = "user_password";
     public static String ACTION_USER_EMAIL = "user_email";
     public static String ACTION_USER_PIC = "user_pic";
+    public static String ACTION_USER_LICENSE = "user_license";
+    public static String ACTION_USER_PHOTO_LICENSE = "user_photo_license";
+    public static String ACTION_USER_SOUND_LICENSE = "user_sound_license";
+    public static String ACTION_MAKE_LICENSE_SAME = "make_license_same";
+    public static String ACTION_MAKE_PHOTO_LICENSE_SAME = "make_photo_license_same";
+    public static String ACTION_MAKE_SOUND_LICENSE_SAME = "make_sound_license_same";
     public static String ACTION_USER_DELETE_PIC = "user_delete_pic";
     public static String ACTION_REGISTER_USER_RESULT = "register_user_result";
     public static String TAXA_GUIDE_RESULT = "taxa_guide_result";
@@ -1596,9 +1602,15 @@ public class INaturalistService extends IntentService {
                 String password = intent.getStringExtra(ACTION_USER_PASSWORD);
                 String email = intent.getStringExtra(ACTION_USER_EMAIL);
                 String userPic = intent.getStringExtra(ACTION_USER_PIC);
+                String userLicense = intent.getStringExtra(ACTION_USER_LICENSE);
+                String userPhotoLicense = intent.getStringExtra(ACTION_USER_PHOTO_LICENSE);
+                String userSoundLicense = intent.getStringExtra(ACTION_USER_SOUND_LICENSE);
+                boolean makeLicenseSame = intent.getBooleanExtra(ACTION_MAKE_LICENSE_SAME, false);
+                boolean makePhotoLicenseSame = intent.getBooleanExtra(ACTION_MAKE_PHOTO_LICENSE_SAME, false);
+                boolean makeSoundLicenseSame = intent.getBooleanExtra(ACTION_MAKE_SOUND_LICENSE_SAME, false);
                 boolean deletePic = intent.getBooleanExtra(ACTION_USER_DELETE_PIC, false);
 
-                JSONObject newUser = updateUser(username, email, password, fullName, bio, userPic, deletePic);
+                JSONObject newUser = updateUser(username, email, password, fullName, bio, userPic, deletePic, userLicense, userPhotoLicense, userSoundLicense, makeLicenseSame, makePhotoLicenseSame, makeSoundLicenseSame);
 
                 if ((newUser != null) && (!newUser.has("errors"))) {
                     SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
@@ -1611,12 +1623,17 @@ public class INaturalistService extends IntentService {
                     if (!newUser.has("user_icon_url") || newUser.isNull("user_icon_url")) {
                         editor.putString("user_icon_url", null);
                     } else {
-                        editor.putString("user_icon_url", newUser.has("medium_user_icon_url") ? newUser.optString("medium_user_icon_url") : newUser.optString("user_icon_url"));
+                        editor.putString("user_icon_url", newUser.has("icon") ? newUser.optString("icon") : newUser.optString("user_icon_url"));
                     }
-                    editor.putString("user_bio", newUser.optString("description"));
-                    editor.putString("user_email", newUser.optString("email", email));
+                    if (bio != null) editor.putString("user_bio", newUser.optString("description"));
+                    if (email != null) editor.putString("user_email", newUser.optString("email", email));
                     editor.putString("user_full_name", newUser.optString("name"));
+
                     editor.apply();
+
+                    if (userLicense != null) mApp.setDefaultObservationLicense(userLicense);
+                    if (userPhotoLicense != null) mApp.setDefaultPhotoLicense(userPhotoLicense);
+                    if (userSoundLicense != null) mApp.setDefaultSoundLicense(userSoundLicense);
 
 
                     if ((prevLogin != null) && (!prevLogin.equals(mLogin))) {
@@ -3655,12 +3672,12 @@ public class INaturalistService extends IntentService {
     }
 
     // Updates a user's profile
-    private JSONObject updateUser(String username, String email, String password, String fullName, String bio, String userPic, boolean deletePic) throws AuthenticationException {
+    private JSONObject updateUser(String username, String email, String password, String fullName, String bio, String userPic, boolean deletePic, String license, String photoLicense, String soundLicense, boolean makeLicenseSame, boolean makePhotoLicenseSame, boolean makeSoundLicenseSame) throws AuthenticationException {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("user[login]", username));
-        params.add(new BasicNameValuePair("user[name]", fullName));
-        params.add(new BasicNameValuePair("user[description]", bio));
-        params.add(new BasicNameValuePair("user[email]", email));
+        if (username != null) params.add(new BasicNameValuePair("user[login]", username));
+        if (fullName != null) params.add(new BasicNameValuePair("user[name]", fullName));
+        if (bio != null) params.add(new BasicNameValuePair("user[description]", bio));
+        if (email != null) params.add(new BasicNameValuePair("user[email]", email));
         if ((password != null) && (password.length() > 0)) {
             params.add(new BasicNameValuePair("user[password]", password));
             params.add(new BasicNameValuePair("user[password_confirmation]", password));
@@ -3671,10 +3688,23 @@ public class INaturalistService extends IntentService {
             params.add(new BasicNameValuePair("icon_delete", "true"));
         } else if (userPic != null) {
             // New profile pic
-            params.add(new BasicNameValuePair("user[icon]", userPic));
+            if (userPic != null) params.add(new BasicNameValuePair("user[icon]", userPic));
         }
 
-        JSONArray array = put(HOST + "/users/" + mLogin + ".json", params);
+        if (license != null) {
+            params.add(new BasicNameValuePair("user[preferred_observation_license]", license));
+            if (makeLicenseSame) params.add(new BasicNameValuePair("user[make_observation_licenses_same]", "1"));
+        }
+        if (photoLicense != null) {
+            params.add(new BasicNameValuePair("user[preferred_photo_license]", photoLicense));
+            if (makePhotoLicenseSame) params.add(new BasicNameValuePair("user[make_photo_licenses_same]", "1"));
+        }
+        if (soundLicense != null) {
+            params.add(new BasicNameValuePair("user[preferred_sound_license]", soundLicense));
+            if (makeSoundLicenseSame) params.add(new BasicNameValuePair("user[make_sound_licenses_same]", "1"));
+        }
+
+        JSONArray array = put(API_HOST + "/users/" + mLogin, params);
 
         if ((mResponseErrors != null) || (array == null)) {
             // Couldn't update user
@@ -4611,12 +4641,12 @@ public class INaturalistService extends IntentService {
     }
 
     private BetterJSONObject getUserDetails() throws AuthenticationException {
-        String url = HOST + "/users/edit.json";
+        String url = API_HOST + "/users/me";
         JSONArray json = get(url, true);
         try {
             if (json == null) return null;
             if (json.length() == 0) return null;
-            return new BetterJSONObject(json.getJSONObject(0));
+            return new BetterJSONObject(json.getJSONObject(0).getJSONArray("results").getJSONObject(0));
         } catch (JSONException e) {
             Logger.tag(TAG).error(e);
             return null;

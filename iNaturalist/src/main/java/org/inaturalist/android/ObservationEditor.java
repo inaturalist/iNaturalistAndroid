@@ -1519,6 +1519,10 @@ public class ObservationEditor extends AppCompatActivity {
             case android.R.id.home:
                 return onBack();
 
+            case R.id.edit_observation_license:
+                LicenseUtils.showLicenseChooser(this, R.string.observation_license, mObservation.license, license -> mObservation.license = license.value);
+                return true;
+
             case R.id.remove_location:
                 mHelper.confirm(getString(R.string.remove_location), getString(R.string.are_you_sure_you_want_to_remove_location),
                         (DialogInterface.OnClickListener) (dialogInterface, i) -> {

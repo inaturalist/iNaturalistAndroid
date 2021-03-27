@@ -508,6 +508,53 @@ public class INaturalistApp extends MultiDexApplication {
         // FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(!value);
     }
 
+
+    public License getDefaultObservationLicense() {
+        SharedPreferences settings = getPrefs();
+        String value = settings.getString("preferred_observation_license", "");
+        License license = LicenseUtils.getLicenseByValue(this, value);
+        return license;
+    }
+
+    public void setDefaultObservationLicense(String value) {
+        SharedPreferences settings = getPrefs();
+        Editor settingsEditor = settings.edit();
+
+        settingsEditor.putString("preferred_observation_license", value != null ? value : "");
+        settingsEditor.apply();
+    }
+
+    public License getDefaultPhotoLicense() {
+        SharedPreferences settings = getPrefs();
+        String value = settings.getString("preferred_photo_license", "");
+        License license = LicenseUtils.getLicenseByValue(this, value);
+        return license;
+    }
+
+    public void setDefaultPhotoLicense(String value) {
+        SharedPreferences settings = getPrefs();
+        Editor settingsEditor = settings.edit();
+
+        settingsEditor.putString("preferred_photo_license", value != null ? value : "");
+        settingsEditor.apply();
+    }
+
+    public License getDefaultSoundLicense() {
+        SharedPreferences settings = getPrefs();
+        String value = settings.getString("preferred_sound_license", "");
+        License license = LicenseUtils.getLicenseByValue(this, value);
+        return license;
+    }
+
+    public void setDefaultSoundLicense(String value) {
+        SharedPreferences settings = getPrefs();
+        Editor settingsEditor = settings.edit();
+
+        settingsEditor.putString("preferred_sound_license", value != null ? value : "");
+        settingsEditor.apply();
+    }
+
+
     public void setUserRoles(Set<String> roles) {
     	SharedPreferences settings = getPrefs();
     	Editor settingsEditor = settings.edit();
@@ -821,6 +868,13 @@ public class INaturalistApp extends MultiDexApplication {
     		return getString(resId);
     	}
     }
+
+    public int getDrawableResourceByName(String aString) {
+        String name = getStringResourceByName(aString);
+        String packageName = getPackageName();
+        return getResources().getIdentifier(name, "drawable", packageName);
+    }
+
 
     public String getStringResourceByNameOrNull(String aString) {
     	int resId = getResourceIdByName(aString, "string");

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- All available license types (unique ID of each one, used for other string resources -
+		This also determines the order of display) -->
+	<string-array name="license_types">
+        <item>cc0</item>
+		<item>cc_by</item>
+		<item>cc_by_nc</item>
+		<item>cc_by_nc_sa</item>
+		<item>cc_by_nc_nd</item>
+		<item>cc_by_nd</item>
+		<item>cc_by_sa</item>
+		<item>no_license</item>
+	</string-array>
+
+    <!-- Values of the licenses (when sending/receiving license values to the APIs) -->
+	<string name="license_value_cc0">cc0</string>
+	<string name="license_value_cc_by">cc-by</string>
+	<string name="license_value_cc_by_nc">cc-by-nc</string>
+	<string name="license_value_cc_by_nc_sa">cc-by-nc-sa</string>
+	<string name="license_value_cc_by_nc_nd">cc-by-nc-nd</string>
+	<string name="license_value_cc_by_nd">cc-by-nd</string>
+	<string name="license_value_cc_by_sa">cc-by-sa</string>
+	<string name="license_value_no_license"></string> <!-- Empty string means no license -->
+
+	<!-- License Short Name -->
+	<string name="license_short_name_cc0">CC0</string>
+	<string name="license_short_name_cc_by">CC-BY</string>
+	<string name="license_short_name_cc_by_nc">CC-BY-NC</string>
+	<string name="license_short_name_cc_by_nc_sa">CC-BY-NC-SA</string>
+	<string name="license_short_name_cc_by_nc_nd">CC-BY-NC-ND</string>
+	<string name="license_short_name_cc_by_nd">CC-BY-ND</string>
+	<string name="license_short_name_cc_by_sa">CC-BY-SA</string>
+	<string name="license_short_name_no_license">No License</string>
+
+	<!-- Is license GBIF compatible? -->
+	<string name="license_gbif_cc0">1</string>
+	<string name="license_gbif_cc_by">1</string>
+	<string name="license_gbif_cc_by_nc">1</string>
+	<string name="license_gbif_cc_by_nc_sa">0</string>
+	<string name="license_gbif_cc_by_nc_nd">0</string>
+	<string name="license_gbif_cc_by_nd">0</string>
+	<string name="license_gbif_cc_by_sa">0</string>
+	<string name="license_gbif_no_license">0</string>
+
+	<!-- Is license Wikimedia compatible? -->
+	<string name="license_wikimedia_cc0">1</string>
+	<string name="license_wikimedia_cc_by">1</string>
+	<string name="license_wikimedia_cc_by_nc">0</string>
+	<string name="license_wikimedia_cc_by_nc_sa">1</string>
+	<string name="license_wikimedia_cc_by_nc_nd">0</string>
+	<string name="license_wikimedia_cc_by_nd">0</string>
+	<string name="license_wikimedia_cc_by_sa">0</string>
+	<string name="license_wikimedia_no_license">0</string>
+
+	<!-- License Logo -->
+	<string name="license_logo_cc0">cc0</string>
+	<string name="license_logo_cc_by">cc_by</string>
+	<string name="license_logo_cc_by_nc">cc_by_nc</string>
+	<string name="license_logo_cc_by_nc_sa">cc_by_nc_sa</string>
+	<string name="license_logo_cc_by_nc_nd">cc_by_nc_nd</string>
+	<string name="license_logo_cc_by_nd">cc_by_nd</string>
+	<string name="license_logo_cc_by_sa">cc_by_sa</string>
+	<string name="license_logo_no_license"></string> <!-- No logo -->
+
+	<!-- License URLs (no_license type doesn't have a URL) -->
+	<string name="license_url_cc0">https://creativecommons.org/publicdomain/zero/1.0/</string>
+	<string name="license_url_cc_by">https://creativecommons.org/licenses/by/4.0/</string>
+	<string name="license_url_cc_by_nc">https://creativecommons.org/licenses/by-nc/4.0/</string>
+	<string name="license_url_cc_by_nc_sa">https://creativecommons.org/licenses/by-nc-sa/4.0/</string>
+	<string name="license_url_cc_by_nc_nd">https://creativecommons.org/licenses/by-nc-nd/4.0/</string>
+	<string name="license_url_cc_by_nd">https://creativecommons.org/licenses/by-nd/4.0/</string>
+	<string name="license_url_cc_by_sa">https://creativecommons.org/licenses/by-sa/4.0/</string>
+</resources>

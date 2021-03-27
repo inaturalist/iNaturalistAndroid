@@ -31,6 +31,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private static final int REQUEST_CODE_THIRD_PARTY_DATA_SHARING = 0x1002;
     private static final int REQUEST_CODE_VERIFY_PASSWORD = 0x1003;
     private static final int REQUEST_CODE_CHANGE_NAME_PLACE = 0x1004;
+    private static final int REQUEST_CODE_CHANGE_DEFAULT_LICENSES = 0x1005;
 
     private static final String TAG = "SettingsFragment";
 
@@ -44,6 +45,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private Preference mDeleteAccount;
     private Preference mThirdPartyDataSharing;
     private Preference mNamePlacePreference;
+    private Preference mDefaultLicenses;
 
     private SharedPreferences mPreferences;
     private ActivityHelper mHelper;
@@ -73,6 +75,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         mDeleteAccount = (Preference) getPreferenceManager().findPreference("delete_account");
         mThirdPartyDataSharing = (Preference) getPreferenceManager().findPreference("third_party_data_sharing");
         mNamePlacePreference = (Preference) getPreferenceManager().findPreference("name_place");
+        mDefaultLicenses = (Preference) getPreferenceManager().findPreference("default_licenses");
 
         mHelper = new ActivityHelper(getActivity());
         mPreferences = getActivity().getSharedPreferences("iNaturalistPreferences", Activity.MODE_PRIVATE);
@@ -300,6 +303,14 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         });
 
+        mDefaultLicenses.setVisible(mApp.currentUserLogin() != null);
+        mDefaultLicenses.setSummary(mApp.getDefaultObservationLicense().shortName);
+        mDefaultLicenses.setOnPreferenceClickListener(preference -> {
+            Intent intent = new Intent(getActivity(), DefaultLicensesActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivityForResult(intent, REQUEST_CODE_CHANGE_DEFAULT_LICENSES);
+            return false;
+        });
+
         mNamePlacePreference.setVisible(mApp.currentUserLogin() != null);
         String placeName = mApp.getPrefs().getString("user_place_display_name", getString(R.string.global));
         mNamePlacePreference.setTitle(Html.fromHtml(String.format(getString(R.string.common_names_place), placeName)));
@@ -363,6 +374,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             signOut();
         } else if (requestCode == REQUEST_CODE_THIRD_PARTY_DATA_SHARING) {
             // Refresh third party data sharing setting
+            refreshSettings();
+        } else if (requestCode == REQUEST_CODE_CHANGE_DEFAULT_LICENSES) {
+            // Refresh default licenses setting
             refreshSettings();
         } else if (requestCode == REQUEST_CODE_CHANGE_NAME_PLACE) {
             if (resultCode == Activity.RESULT_OK) {

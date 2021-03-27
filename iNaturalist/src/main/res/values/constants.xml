@@ -2,6 +2,11 @@
 <resources>
 	<!-- Resources that should not be translated / renamed -->
 	<string name="app_title">iNaturalist</string>
+
+	<!-- These organization names (used in the license chooser) - should not be translated -->
+	<string name="gbif">GBIF</string>
+	<string name="wikimedia">Wikimedia</string>
+
 	<string-array name="explore_order_values">
 		<item>desc</item>
 		<item>asc</item>

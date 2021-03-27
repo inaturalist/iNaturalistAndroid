@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import android.view.ViewTreeObserver;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -126,11 +128,26 @@ public class ActivityHelper {
    }
 
     public void selection(String title, ListAdapter adapter) {
+        selection(title, adapter, null, null, null);
+    }
+
+    public void selection(String title, ListAdapter adapter, DialogInterface.OnClickListener onItemSelected, Drawable titleIcon, View.OnClickListener onIconClick) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 
         ViewGroup content = (ViewGroup) inflater.inflate(R.layout.dialog_list_popup, null, false);
         ((TextView)content.findViewById(R.id.title)).setText(title);
+        ImageView icon = (ImageView) content.findViewById(R.id.title_icon);
+
+        if (titleIcon != null) {
+            icon.setVisibility(View.VISIBLE);
+            icon.setImageDrawable(titleIcon);
+
+            if (onIconClick != null) {
+                icon.setOnClickListener(onIconClick);
+            }
+        }
+
         ListView listView = (ListView) content.findViewById(R.id.list_view);
         listView.setAdapter(adapter);
 
@@ -146,6 +163,16 @@ public class ActivityHelper {
         });
 
         alert.show();
+
+        if (onItemSelected != null) {
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    alert.dismiss();
+                    onItemSelected.onClick(alert, i);
+                }
+            });
+        }
    }
 
     public void selection(String title, String[] items, final DialogInterface.OnClickListener onItemSelected) {

@@ -656,6 +656,21 @@
             android:configChanges="orientation"></activity>
 
         <activity
+            android:name=".AboutLicensesActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="orientation"></activity>
+
+        <activity
+            android:name=".DefaultLicensesActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="orientation"></activity>
+
+        <activity
+            android:name=".PastLicensesActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="orientation"></activity>
+
+        <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

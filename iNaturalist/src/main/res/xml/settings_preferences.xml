@@ -46,6 +46,12 @@
         android:title="@string/common_names_place"
         android:summary="@string/tap_to_prioritize_common_names" />
 
+    <Preference
+        android:layout="@layout/custom_preference"
+        android:key="default_licenses"
+        android:title="@string/default_licenses"
+        android:summary="CC-BY-NC"
+        />
 
     <Preference
         android:layout="@layout/custom_preference"

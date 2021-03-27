@@ -35,6 +35,8 @@ public class ObservationPhoto implements BaseColumns, Serializable {
     public String uuid;
     public Boolean is_deleted;
     public Boolean is_deleted_was;
+    public String license;
+    public String license_was;
 
     public Timestamp _created_at_was;
     public Integer _observation_id_was;
@@ -69,6 +71,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
     public static final String OBSERVATION_UUID = "observation_uuid";
     public static final String PHOTO_URL = "photo_url";
     public static final String PHOTO_FILENAME = "photo_filename";
+    public static final String LICENSE = "license";
     public static final String ID = "id";
     public static final String OBSERVATION_ID = "observation_id";
     public static final String PHOTO_ID = "photo_id";
@@ -96,6 +99,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         ObservationPhoto.PHOTO_URL,
         ObservationPhoto.IS_DELETED,
         ObservationPhoto.PHOTO_FILENAME,
+        ObservationPhoto.LICENSE,
         ObservationPhoto.ORIGINAL_PHOTO_FILENAME
     };
 
@@ -118,6 +122,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         PROJECTION_MAP.put(ObservationPhoto.IS_DELETED, ObservationPhoto.IS_DELETED);
         PROJECTION_MAP.put(ObservationPhoto.PHOTO_URL, ObservationPhoto.PHOTO_URL);
         PROJECTION_MAP.put(ObservationPhoto.PHOTO_FILENAME, ObservationPhoto.PHOTO_FILENAME);
+        PROJECTION_MAP.put(ObservationPhoto.LICENSE, ObservationPhoto.LICENSE);
         PROJECTION_MAP.put(ObservationPhoto.ORIGINAL_PHOTO_FILENAME, ObservationPhoto.ORIGINAL_PHOTO_FILENAME);
     }
 
@@ -155,6 +160,8 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         this.updated_at_was = this.updated_at;
         this.photo_url = bc.getString(PHOTO_URL);
         this.photo_filename = bc.getString(PHOTO_FILENAME);
+        this.license = bc.getString(LICENSE);
+        this.license_was = this.license;
         this.original_photo_filename = bc.getString(ORIGINAL_PHOTO_FILENAME);
     }
 
@@ -184,7 +191,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         this.position_was = this.position;
         this.updated_at = o.getTimestamp("updated_at");
         this.updated_at_was = this.updated_at;
-        
+
         String photoUrlSize = "large_url";
         if (o.has(photoUrlSize)) {
         	this.photo_url = o.getString(photoUrlSize);
@@ -205,6 +212,10 @@ public class ObservationPhoto implements BaseColumns, Serializable {
             this.photo_id_was = this.photo_id;
             this._photo_id = this.photo_id;
             this._photo_id_was = this._photo_id;
+
+            this.license = photo.optString("license_code");
+            if (this.license != null) this.license = this.license.toLowerCase();
+            this.license_was = this.license;
         }
 
         if ((this.photo_url == null) && (o.has("url")) && (!o.isNull("url"))) {
@@ -231,11 +242,6 @@ public class ObservationPhoto implements BaseColumns, Serializable {
 
     public JSONObject toJSONObject() {
         BetterJSONObject bo = new BetterJSONObject();
-        bo.put("_created_at", _created_at);
-        bo.put("_observation_id", _observation_id);
-        bo.put("_photo_id", _photo_id);
-        bo.put("_synced_at", _synced_at);
-        bo.put("_updated_at", _updated_at);
         bo.put("created_at", created_at);
         bo.put("uuid", uuid);
         bo.put("id", id);
@@ -265,6 +271,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
             this.position = observation_photo.position;
             this.updated_at = observation_photo.updated_at;
             this.uuid = observation_photo.uuid;
+            this.license = observation_photo.license;
 
         } else {
             // set if null
@@ -275,6 +282,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
             if (this.position == null) { this.position = observation_photo.position; }
             if (this.updated_at == null) { this.updated_at = observation_photo.updated_at; }
             if (this.uuid == null) { this.uuid = observation_photo.uuid; }
+            if (this.license == null) { this.license = observation_photo.license; }
 
         }
     }
@@ -291,6 +299,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         cv.put(PHOTO_FILENAME, photo_filename);
         cv.put(ORIGINAL_PHOTO_FILENAME, original_photo_filename);
         cv.put(IS_DELETED, is_deleted);
+        cv.put(LICENSE, license);
         if (updated_at != null) { cv.put(UPDATED_AT, updated_at.getTime()); }
         if (uuid != null) { cv.put(UUID, uuid); }
         if (observation_uuid != null) { cv.put(OBSERVATION_UUID, observation_uuid); }
@@ -303,6 +312,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         if (observation_id != null) { params.add(new BasicNameValuePair("observation_photo[observation_id]", observation_id.toString())); }
         if (photo_id != null) { params.add(new BasicNameValuePair("observation_photo[photo_id]", photo_id.toString())); }
         if (position != null) { params.add(new BasicNameValuePair("observation_photo[position]", position.toString())); }
+        if (license != null) { params.add(new BasicNameValuePair("observation_photo[photo][license]", license)); }
         if (uuid != null) { params.add(new BasicNameValuePair("observation_photo[uuid]", uuid)); }
 
         return params;
@@ -327,6 +337,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
                 + "is_deleted INTEGER,"
                 + "photo_url TEXT,"
                 + "photo_filename TEXT,"
+                + "license TEXT,"
                 + "original_photo_filename TEXT"
                 + ");";
     }
@@ -341,6 +352,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
     public boolean observation_id_changed() { return !String.valueOf(observation_id).equals(String.valueOf(observation_id_was)); }
     public boolean photo_id_changed() { return !String.valueOf(photo_id).equals(String.valueOf(photo_id_was)); }
     public boolean position_changed() { return !String.valueOf(position).equals(String.valueOf(position_was)); }
+    public boolean license_changed() { return !String.valueOf(license).equals(String.valueOf(license_was)); }
     public boolean updated_at_changed() { return !String.valueOf(updated_at).equals(String.valueOf(updated_at_was)); }
     public boolean is_deleted_changed() { return is_deleted != is_deleted_was; }
 
@@ -356,6 +368,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         if (observation_id_changed()) { return true; }
         if (photo_id_changed()) { return true; }
         if (position_changed()) { return true; }
+        if (license_changed()) { return true; }
         if (updated_at_changed()) { return true; }
         if (is_deleted_changed()) { return true; }
 

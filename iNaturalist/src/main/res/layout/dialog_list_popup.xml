@@ -4,9 +4,22 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
 
+    <ImageView
+        android:id="@+id/title_icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_help_black_24dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="20dp"
+        android:visibility="gone"
+        />
+
     <TextView
         android:id="@+id/title"
         android:textSize="22sp"
+        android:layout_toStartOf="@id/title_icon"
         android:text="Some title"
         android:padding="20dp"
         android:textColor="#000000"

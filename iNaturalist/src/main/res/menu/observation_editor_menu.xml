@@ -17,4 +17,8 @@
         android:id="@+id/remove_location"
         android:title="@string/remove_location"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/edit_observation_license"
+        android:title="@string/edit_observation_license"
+        app:showAsAction="never" />
 </menu>

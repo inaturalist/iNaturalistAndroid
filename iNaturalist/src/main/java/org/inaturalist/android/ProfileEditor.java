@@ -536,7 +536,7 @@ public class ProfileEditor extends AppCompatActivity {
             SharedPreferences.Editor editor = prefs.edit();
 
             editor.putInt("observation_count", user.getInt("observations_count"));
-            String iconUrl = user.has("medium_user_icon_url") ? user.getString("medium_user_icon_url") : user.getString("user_icon_url");
+            String iconUrl = user.has("icon_url") ? user.getString("icon_url") : user.getString("icon");
             editor.putString("user_icon_url", iconUrl);
             editor.putString("user_bio", user.getString("description"));
             editor.putString("user_email", user.getString("email"));
