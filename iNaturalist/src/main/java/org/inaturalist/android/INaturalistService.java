@@ -6993,6 +6993,8 @@ public class INaturalistService extends IntentService {
 
         String userAgent = USER_AGENT.replace("%BUILD%", info != null ? String.valueOf(info.versionCode) : String.valueOf(INaturalistApp.VERSION));
         userAgent = userAgent.replace("%VERSION%", info != null ? info.versionName : String.valueOf(INaturalistApp.VERSION));
+        // Remove non-ASCII characters (invalid for HTTP headers)
+        userAgent = userAgent.replaceAll("[^\\x00-\\x7F]", "");
 
         return userAgent;
     }
