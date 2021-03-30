@@ -1088,14 +1088,18 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             ContentValues cv = new ContentValues();
             BetterCursor bc = new BetterCursor(cursor);
 
-            cv.put(Observation.LAST_COMMENTS_COUNT, bc.getInt(Observation.COMMENTS_COUNT));
-            cv.put(Observation.LAST_IDENTIFICATIONS_COUNT, bc.getInt(Observation.IDENTIFICATIONS_COUNT));
-            // Update its sync at time so we won't update the remote servers later on (since we won't
-            // accidentally consider this an updated record)
-            cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
-            int count = getContentResolver().update(ContentUris.withAppendedId(Observation.CONTENT_URI, bc.getInt(Observation._ID)), cv, null, null);
-            if (count != 1) {
-                Logger.tag(TAG).warn("Failed to update observation when marking all observations read");
+            Integer obsId = bc.getInt(Observation._ID);
+
+            if (obsId != null) {
+                cv.put(Observation.LAST_COMMENTS_COUNT, bc.getInt(Observation.COMMENTS_COUNT));
+                cv.put(Observation.LAST_IDENTIFICATIONS_COUNT, bc.getInt(Observation.IDENTIFICATIONS_COUNT));
+                // Update its sync at time so we won't update the remote servers later on (since we won't
+                // accidentally consider this an updated record)
+                cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
+                int count = getContentResolver().update(ContentUris.withAppendedId(Observation.CONTENT_URI, obsId), cv, null, null);
+                if (count != 1) {
+                    Logger.tag(TAG).warn("Failed to update observation when marking all observations read");
+                }
             }
 
         } while (cursor.moveToNext());
