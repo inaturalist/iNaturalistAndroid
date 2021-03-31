@@ -504,6 +504,10 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
             loadSuggestions();
         }
 
+        if (mObservationJson == null) {
+            return;
+        }
+
         mPhotosAdapter = new PhotosViewPagerAdapter(this, new Observation(new BetterJSONObject(mObservationJson)), mObservationJson);
         mPhotosViewPager.setAdapter(mPhotosAdapter);
         mIndicator.setViewPager(mPhotosViewPager);
