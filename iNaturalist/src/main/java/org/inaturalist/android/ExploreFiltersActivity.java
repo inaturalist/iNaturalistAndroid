@@ -520,6 +520,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
                 mHelper.selection(getString(R.string.annotation_name), items, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        if (mSearchFilters == null) return;
+
                         if (i == 0) {
                             // None
                             mSearchFilters.annotationNameId = null;
@@ -545,6 +547,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         mSortByProperty.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (mSearchFilters == null) return;
+
                 List<String> sortBy = Arrays.asList(getResources().getStringArray(R.array.explore_order_by_values));
                 mSearchFilters.orderBy = sortBy.get(position);
                 refreshResetFiltersButton();
@@ -558,6 +562,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         mSortByOrder.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (mSearchFilters == null) return;
+
                 List<String> sort = Arrays.asList(getResources().getStringArray(R.array.explore_order_values));
                 mSearchFilters.order = sort.get(position);
                 refreshResetFiltersButton();
