@@ -715,7 +715,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
                         intent.putExtra(TaxonMapActivity.MAP_LATITUDE, position.target.latitude);
                         intent.putExtra(TaxonMapActivity.MAP_LONGITUDE, position.target.longitude);
                         intent.putExtra(TaxonMapActivity.MAP_ZOOM, position.zoom);
-                        intent.putExtra(TaxonMapActivity.OBSERVATION, mObservation);
+                        intent.putExtra(TaxonMapActivity.OBSERVATION, new BetterJSONObject(ObservationUtils.getMinimalObservation(mObservation.getJSONObject())));
                         startActivity(intent);
                     }
                 });
