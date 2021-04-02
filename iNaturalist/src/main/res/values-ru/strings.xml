@@ -200,6 +200,9 @@
     <string name="alert_message_use_inaturalistil">iNaturalist Israel - это член сети iNaturalist Network в Израиле. Местные организации, поддерживающие iNaturalist Israel, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland - это член сети iNaturalist Network в Финляндии. Местные организации, поддерживающие iNaturalist Finland, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
     <string name="alert_message_use_inaturalistcl">iNaturalist Chile — это член сети iNaturalist Network в Чили. Местные организации, поддерживающие iNaturalist Chile, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично замаскированы или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Greece — член сети iNaturalist Network в Греции. Местные организации, поддерживающие iNaturalist Greece, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg — член сети iNaturalist Network в Люксембурге. Местные организации, поддерживающие iNaturalist Luxembourg, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom — член сети iNaturalist Network в Великобритании. Местные организации, поддерживающие iNaturalist United Kingdom, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
     <string name="editor">Редактор</string>
     <string name="license">Лицензия</string>
     <string name="download_for_offline_use">Загрузить для использования в автономном режиме</string>
@@ -248,9 +251,10 @@
     <string name="please_sign_in_for_updates">Вы должны войти для просмотра ваших обновлений.</string>
     <string name="by_using_inat_terms"><![CDATA[Используя iNaturalist, вы соглашаетесь с <b><a href="http://www.inaturalist.org/pages/terms"> Условиями использования</a></b> и <b><a href="http://www.inaturalist.org/pages/privacy"> Политикой конфиденциальности</a></b>]]></string>
     <string name="activity">Деятельность</string>
+    <!-- Label for a button to open the camera to take a new photo for an observation -->
     <string name="camera">Сфотографировать</string>
+    <!-- Label for a button to import an existing photo for an observation -->
     <string name="upload_photo">Выбрать изображение</string>
-    <string name="menu_text">Нет фото</string>
     <string name="first">1-й</string>
     <string name="make_first">Сделать первым</string>
     <string name="notes">Заметки</string>
@@ -314,6 +318,7 @@
     <string name="sync_obs_to_see_favs">Синхронизируйте это наблюдение, чтобы видеть фавориты...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Синхронизировать это наблюдение, чтобы оставить комментарий или предложить идентификацию...</string>
+    <!--  Label for a button to add an observation without a photo or a sound  -->
     <string name="no_photo">Нет медиа</string>
     <string name="about_this_species">Об этом виде</string>
     <string name="view_on_wikipedia">Статья в Википедии</string>
@@ -632,7 +637,6 @@
     <string name="project_identifiers">Идентификаторы</string>
     <string name="got_it">Готово!</string>
     <string name="view_all">Просмотреть все</string>
-    <string name="new_badge">Новый</string>
     <string name="observers">Наблюдатели</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
     <string name="attribute">Атрибут</string>
@@ -750,6 +754,9 @@
     <string name="network_credit_inaturalistil"><![CDATA[Израиль: Университет Хайфы поддерживающий iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Финляндия: Финский Музей естествознания (LUOMUS) поддерживающий  iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="network_credit_inaturalistcl"><![CDATA[Чили: Министерство окружающей среды поддерживает  iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Греция: iSea поддерживающий iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Люксембург: Национальный музей естественной истории Люксембурга (MNHNL) поддерживает iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Великобритания: Национальный фонд сети по биоразнообразию, поддерживающий iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Пометить все как просмотренные</string>
     <string name="content_hidden">Скрытый контент</string>
     <string name="show_hidden_content">Показать скрытый контент</string>
@@ -761,9 +768,11 @@
     <string name="could_not_play_sound">Не удалось воспроизвести звук - вероятно, проблема с сетью</string>
     <string name="cant_play_soundcloud"><![CDATA[Чтобы прослушивать звуки Soundcloud, перейдите на <a href="%1$s">веб-сайт</a>.]]></string>
     <string name="soundcloud">Soundcloud</string>
+    <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Записать звук</string>
     <string name="no_recorder_found">Не найдено устройство записи звука по умолчанию!</string>
     <string name="couldnt_retrieve_sound">Не удалось получить звук с устройства записи звука по умолчанию - попробуйте вместо этого импортировать звук</string>
+    <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Выберите звук</string>
     <string name="multi_select_sound_description">Импортировать несколько звуков долгим нажатием на один звук</string>
     <string name="alert_unsupported_audio_type">Сожалеем, возникла проблема с загрузкой звука из этого источника</string>
@@ -1034,7 +1043,7 @@
     <string name="share_hidden_location">Поделиться скрытым местоположением</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Не удалось создать копию звука!</string>
-    <string name="sound_format_not_supported">Этот аудиофайл имеет правильное расширение, но используемый кодек не поддерживается Android.</string>
+    <string name="sound_format_not_supported">Эта аудио кодировка не поддерживается Android.</string>
     <string name="view_observations">Просмотреть наблюдения</string>
     <string name="choose_this_option">Выбрать этот вариант</string>
     <string name="compare_observation_with_this_option">Сравнить наблюдение с этим вариантом</string>
@@ -1088,4 +1097,50 @@
     <string name="uuid">UUID</string>
     <!--  Universal Resource Locator  -->
     <string name="url">URL</string>
+    <string name="default_licenses">Лицензии по умолчанию</string>
+    <string name="default_observation_license">Лицензия на наблюдения по умолчанию</string>
+    <string name="default_photo_license">Лицензия на фотографию по умолчанию</string>
+    <string name="default_sound_license">Лицензия на аудио по умолчанию</string>
+    <string name="change_licenses_for_existing_observations">Изменить лицензии на все имеющиеся наблюдения, фото и аудио</string>
+    <string name="change_licenses_for_all_existing_observations">Изменить лицензии на все имеющиеся наблюдения</string>
+    <string name="change_licenses_for_all_existing_photos">Изменить лицензии на все имеющиеся фото</string>
+    <string name="change_licenses_for_all_existing_sounds">Изменить лицензии на все имеющиеся аудио</string>
+    <string name="change_observation_licenses">Изменить лицензии на наблюдения</string>
+    <string name="change_photo_licenses">Изменить лицензии на фотографии</string>
+    <string name="change_sound_licenses">Изменить лицензии на аудио</string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[Изменить лицензии у <b>%1$d</b> имеющихся наблюдения на <b>%2$s</b>?]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[Изменить лицензии у имеющихся фото на <b>%1$s</b>?]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Изменить лицензии у имеющихся аудио на <b>%1$s</b>?]]></string>
+    <string name="observation_licenses_updated">Лицензии на наблюдения обновлены</string>
+    <string name="photo_licenses_updated">Лицензии на фотографии обновлены</string>
+    <string name="sound_licenses_updated">Лицензии на аудио обновлены</string>
+    <string name="existing_observation_licenses_have_been_updated">Лицензии у всех имеющихся наблюдений были изменены на %1$s.</string>
+    <string name="existing_photo_licenses_have_been_updated">Лицензии у всех имеющихся фото были изменены на %1$s.</string>
+    <string name="existing_sound_licenses_have_been_updated">Лицензии у всех имеющихся аудио были изменены на %1$s.</string>
+    <string name="default_licenses_description"><![CDATA[Лицензирование вашего контента дает любому человеку законное право использовать его, не спрашивая вашего разрешения, если он соблюдает условия лицензии. Кроме того, iNat включает ваш контент под лицензией Creative Commons в регулярно обновляемые архивы, которые создаются для избранных партнерских организаций, заинтересованных в наших данных. Например, мы включаем записи без авторских прав (CC0), с указанием авторства (CC BY) и с указанием некоммерческого содержания (CC BY-NC) в архив, который мы создаем для <a href="https://www.gbif.org/"> Глобального информационного фонда по биоразнообразию (GBIF) </a>, международной межправительственной организации, которая собирает и распространяет информацию о биоразнообразии со всего мира.]]></string>
+    <string name="photo_license">Лицензия на фотографию</string>
+    <string name="edit_photo_license">Изменить лицензию на фотографию</string>
+    <string name="observation_license">Лицензия на наблюдение</string>
+    <string name="edit_observation_license">Изменить лицензию на наблюдение</string>
+    <string name="about_licenses">О лицензиях</string>
+    <string name="view_license">Просмотр лицензии</string>
+    <!-- License Names -->
+    <string name="license_name_cc0">Общественное достояние</string>
+    <string name="license_name_cc_by">С указанием авторства</string>
+    <string name="license_name_cc_by_nc">С указанием авторства — Некоммерческая</string>
+    <string name="license_name_cc_by_nc_sa">С указанием авторства — Некоммерческая — С сохранением условий</string>
+    <string name="license_name_cc_by_nc_nd">С указанием авторства — Некоммерческая — Без производных</string>
+    <string name="license_name_cc_by_nd">С указанием авторства — Без производных</string>
+    <string name="license_name_cc_by_sa">С указанием авторства — С сохранением условий</string>
+    <string name="license_name_no_license">Все права защищены</string>
+    <!-- License Descriptions -->
+    <string name="license_description_cc0">Эта лицензия делает вашу работу общественным достоянием, поэтому другие могут копировать, изменять, распространять и видоизменять вашу работу, даже в коммерческих целях, без вашего разрешения или выражения вам благодарности. Это наиболее свободный вариант из всех предлагаемых лицензий. Рекомендуется для максимального распространения и использования лицензированных материалов.</string>
+    <string name="license_description_cc_by">Эта лицензия позволяет другим распространять, перерабатывать, исправлять и развивать произведение, даже в коммерческих целях, при условии указания автора произведения.</string>
+    <string name="license_description_cc_by_nc">Эта лицензия позволяет другим перерабатывать, исправлять и развивать произведение на некоммерческой основе, и хотя для производных работ сохраняются требования указания авторов и некоммерческого использования, не требуется предоставления третьим лицам аналогичных прав на производные от неё.</string>
+    <string name="license_description_cc_by_nc_sa">Эта лицензия позволяет другим перерабатывать, исправлять и развивать произведение на некоммерческой основе, до тех пор, пока они упоминают оригинальное авторство и лицензируют производные работы на аналогичных лицензионных условиях.</string>
+    <string name="license_description_cc_by_nc_nd">Данная лицензия имеет наибольшие ограничения среди шести основных лицензий, она позволяет другим только получать и распространять произведение, до тех пор пока они упоминают автора и ссылаются на него, но они не могут ни под каким видом изменять произведение и использовать его в коммерческих целях.</string>
+    <string name="license_description_cc_by_nd">Эта лицензия позволяет свободно распространять произведение, как на коммерческой, так некоммерческой основе, при этом работа должна оставаться неизменной и обязательно должно указываться авторство.</string>
+    <string name="license_description_cc_by_sa">Эта лицензия позволяет другим копировать, распространять, воспроизводить, исполнять и перерабатывать ваше произведение только в некоммерческих целях. Если они хотят использовать ваше произведение в коммерческих целях, они должны обратиться к вам за соответствующим разрешением.</string>
+    <string name="license_description_no_license">Вы сохраняете полное авторское право на свой контент, кроме тех прав, которые предоставляются iNaturalist по нашим Условиям использования.</string>
+    <string name="invalid_photo">Формат фото не поддерживается</string>
 </resources>

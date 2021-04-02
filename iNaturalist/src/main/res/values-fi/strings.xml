@@ -198,6 +198,9 @@
     <string name="alert_message_use_inaturalistil">iNaturalist Israel on iNaturalist-verkoston jäsen Israelissa. iNaruralist Israel:n kanssa yhteistyössä olevat organisaatiot näkevät sähköpostiosoitteesi sekä kaikkien havaintojesi tarkat koordinaatit, myös karkeistettujen ja yksityisten havaintojen. Ole hyvä äläkä vaihda kotiverkostoasi vain testataksesi tätä, jos sinulla on yli 1000 havaintoa. Haluatko vaihtaa kotiverkostoasi?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Suomi on kansainvälisen iNaturalist-verkoston jäsen. Siitä vastaa Suomen Lajitietokeskus. Haluatko yhdistää tunnuksesi iNaturalist Suomeen (suositeltu)? Tällöin Lajitietokeskus näkee havaintojesi tarkat paikat sekä sähköpostiosoitteesi, joten havaintosi tulevat paremmin hyötykäyttöön Suomessa, ja voit saada suomenkielisiä iNaturalistiin liittyviä tiedotteita.</string>
     <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Greece is a member of the iNaturalist Network in Greece. Local institutions supporting iNaturalist Greece will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg is a member of the iNaturalist Network in Luxembourg. Local institutions supporting iNaturalist Luxembourg will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom is a member of the iNaturalist Network in United Kingdom. Local institutions supporting iNaturalist United Kingdom will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editori</string>
     <string name="license">Lisenssi</string>
     <string name="download_for_offline_use">Lataa offline-käyttöön</string>
@@ -246,9 +249,10 @@
     <string name="please_sign_in_for_updates">Sinun täytyy kirjautua sisään nähdäksesi omia päivityksiäsi.</string>
     <string name="by_using_inat_terms"><![CDATA[Käyttämällä iNaturalistia, hyväksyt <b><a href="https://www.inaturalist.org/pages/terms">Käyttöehdot</a></b> ja <b><a href="https://www.inaturalist.org/pages/privacy">Yksityisyyskäytännön</a></b>]]></string>
     <string name="activity">Toiminta</string>
+    <!-- Label for a button to open the camera to take a new photo for an observation -->
     <string name="camera">Ota kuva</string>
+    <!-- Label for a button to import an existing photo for an observation -->
     <string name="upload_photo">Valitse kuva</string>
-    <string name="menu_text">Ei kuvia</string>
     <string name="first">1.</string>
     <string name="make_first">Tee tästä ensisijainen</string>
     <string name="notes">Merkinnät</string>
@@ -314,7 +318,8 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="sync_obs_to_see_favs">Synkronoi tämä havainto nähdäksesi suosikit...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Synkronoi tämä havainto jättääksesi kommentin tai ehdottaaksesi tunnistusta...</string>
-    <string name="no_photo">No Media</string>
+    <!--  Label for a button to add an observation without a photo or a sound  -->
+    <string name="no_photo">Ei mediaa</string>
     <string name="about_this_species">Tietoja tästä lajista</string>
     <string name="view_on_wikipedia">Wikipedia-artikkeli</string>
     <string name="photo"><![CDATA[Kuva: <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -387,10 +392,10 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="mammals">Nisäkkäät</string>
     <string name="insects">Hyönteiset</string>
     <string name="reptiles">Matelijat</string>
-    <string name="animals">Animals</string>
+    <string name="animals">Eläimet</string>
     <string name="fish">Kalat</string>
     <string name="mollusks">Simpukat</string>
-    <string name="protozoans">Protozoans</string>
+    <string name="protozoans">Alkueläimet</string>
     <string name="chromista">Kelp, Diatoms, and Allies</string>
     <string name="amphibians">Sammakkoeläimet</string>
     <string name="fungi">Sienet</string>
@@ -548,7 +553,7 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegaatio</string>
     <string name="apply_filters">Käytä suodattimia</string>
-    <string name="remove_filters">Remove Filters</string>
+    <string name="remove_filters">Poista suodattimet</string>
     <string name="reset">Nollaa</string>
     <string name="show_only_my_observations">Näytä vain omat havainnot</string>
     <string name="project">Projekti</string>
@@ -633,7 +638,6 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="project_identifiers">Tunnistajaa</string>
     <string name="got_it">Selvä!</string>
     <string name="view_all">Näytä kaikki</string>
-    <string name="new_badge">Uusi</string>
     <string name="observers">Havainnoijaa</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
     <string name="attribute">Määrite</string>
@@ -749,6 +753,9 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa ylläpitää portaalia iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Suomi: Luonnontieteellinen keskusmuseo Luomus ylläpitää iNaturalist Suomea (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Merkitse kaikki katsotuksi</string>
     <string name="content_hidden">Sisältö piilotettu</string>
     <string name="show_hidden_content">Näytä piilotettu sisältö</string>
@@ -760,9 +767,11 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="could_not_play_sound">Ääntä ei voitu toistaa - luultavasti verkko-ongelma</string>
     <string name="cant_play_soundcloud"><![CDATA[Kuunnellaksesi Soundcloud-ääniä, siirry <a href="%1$s">verkkosivulle</a>.]]></string>
     <string name="soundcloud">SoundCloud</string>
+    <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Nauhoita ääntä</string>
     <string name="no_recorder_found">Oletusäänentallenninta ei löytynyt!</string>
     <string name="couldnt_retrieve_sound">Ei voitu hakea äänitettä oletustallentimesta - kokeile sen sijasta importoida äänite</string>
+    <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Valitse ääni</string>
     <string name="multi_select_sound_description">Tuo useita äänitteitä painamalla yksittäistä äänitettä pitkään</string>
     <string name="alert_unsupported_audio_type">Virhe ladattaessa äänitettä tästä lähteestä</string>
@@ -982,8 +991,8 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="research_grade_observations">Research Grade Observations</string>
     <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
     <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will suggest species observed in a specific place and within a specific taxonomic group.</string>
-    <string name="taxon">Taxon:</string>
-    <string name="place">Place:</string>
+    <string name="taxon">Taksoni:</string>
+    <string name="place">Paikka:</string>
     <string name="pretty_sure_kingdom">We\'re pretty sure it\'s in this kingdom:</string>
     <string name="pretty_sure_subkingdom">We\'re pretty sure it\'s in this subkingdom:</string>
     <string name="pretty_sure_phylum">We\'re pretty sure it\'s in this phylum:</string>
@@ -1028,12 +1037,12 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="are_you_sure_you_want_to_remove_time">Oletko varma että haluat poistaa havaintoajan?</string>
     <string name="are_you_sure_you_want_to_remove_location">Oletko varma että haluat poistaa sijainnin?</string>
     <string name="share_location">Jaa sijainti</string>
-    <string name="share_hidden_location">Share Hidden Location</string>
+    <string name="share_hidden_location">Jaa piilotettu sijainti</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Ääntä ei voitu monistaa!</string>
-    <string name="sound_format_not_supported">This sound file is the right file extension, but the specific audio encoding is not supported by Android.</string>
-    <string name="view_observations">View Observations</string>
-    <string name="choose_this_option">Choose this option</string>
+    <string name="sound_format_not_supported">Android ei tue tätä äänen tallennusmuotoa.</string>
+    <string name="view_observations">Näytä havainnot</string>
+    <string name="choose_this_option">Valitse tämä vaihtoehto</string>
     <string name="compare_observation_with_this_option">Compare observation with this option</string>
     <string name="go_back">Go back</string>
     <string name="change_the_source_of_the_suggestions">Change the source of the suggestions</string>
@@ -1055,7 +1064,7 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
         <item>Date Observed</item>
         <item>Date Updated</item>
         <!--<item>Faves</item>-->
-        <item>Random</item>
+        <item>Satunnainen</item>
     </string-array>
     <string-array name="explore_order_items">
         <item>Descending</item>
@@ -1065,11 +1074,11 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     See explore_order_by_items and explore_order_items keys !-->
     <string name="sorted_by_full">Sorted by %1$s (%2$s)</string>
     <!-- Label for an observation search filter to exclude your own observations -->
-    <string name="hide_my_observations">Hide My Observations</string>
+    <string name="hide_my_observations">Piilota havaintoni</string>
     <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
-    <string name="follow_this_observation">Follow this Observation</string>
+    <string name="follow_this_observation">Seuraa tätä havaintoa</string>
     <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
-    <string name="unfollow_this_observation">Unfollow this Observation</string>
+    <string name="unfollow_this_observation">Lopeta tämän havainnon seuraaminen</string>
     <!-- Error message shown when an attempt to follow an observation fails -->
     <string name="could_not_follow_observation">Could not follow this observation</string>
     <!-- Error message shown when an attempt to unfollow an observation fails -->
@@ -1078,11 +1087,59 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="copy_coordinates">Copy coordinates</string>
     <string name="coordinates_copied_to_clipboard">Coordinates copied to clipboard</string>
     <!--  Title of a section on the observation detail view that displays minor metadata  -->
-    <string name="metadata">Metadata</string>
+    <string name="metadata">Metatiedot</string>
     <!--  iNat observation identifier  -->
     <string name="id">ID</string>
     <!--  iNat observation Universally Unique Identifier  -->
     <string name="uuid">UUID</string>
     <!--  Universal Resource Locator  -->
     <string name="url">URL</string>
+    <string name="default_licenses">Oletuslisenssit</string>
+    <string name="default_observation_license">Oletuslisenssi havainnoille</string>
+    <string name="default_photo_license">Oletuslisenssi kuville</string>
+    <string name="default_sound_license">Oletuslisenssi äänille</string>
+    <string name="change_licenses_for_existing_observations">Vaihda tallennettujen havaintojen, valokuvien ja äänien lisenssi</string>
+    <string name="change_licenses_for_all_existing_observations">Vaihda kaikkien tallennettujen havaintojen lisenssi</string>
+    <string name="change_licenses_for_all_existing_photos">Vaihda kaikkien valokuvien lisenssi</string>
+    <string name="change_licenses_for_all_existing_sounds">Vaihda kaikkien äänien lisenssi</string>
+    <string name="change_observation_licenses">Vaihda havaintojen lisenssi</string>
+    <string name="change_photo_licenses">Vaihda valokuvien lisenssi</string>
+    <string name="change_sound_licenses">Vaihda äänien lisenssi</string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[Vaihdetaanko <b>%1$d</b> tallennettujen havaintojen lisenssit <b>%2$s</b>?]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[Vaihdetaanko tallennettujen kuvien lisenssit <b>%1$s</b>?]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Vaihdetaanko tallennettujen äänien lisenssit <b>%1$s</b>?]]></string>
+    <string name="observation_licenses_updated">Havaintojen lisenssit päivitetty</string>
+    <string name="photo_licenses_updated">Valokuvien lisenssit päivitetty</string>
+    <string name="sound_licenses_updated">Äänien lisenssit päivitetty</string>
+    <string name="existing_observation_licenses_have_been_updated">Kaikkien tallennettujen havaintojen lisenssiksi on muutettu %1$s.</string>
+    <string name="existing_photo_licenses_have_been_updated">Kaikkien valokuvien lisenssiksi on muutettu %1$s.</string>
+    <string name="existing_sound_licenses_have_been_updated">Kaikkien äänien lisenssiksi on muutettu %1$s.</string>
+    <string name="default_licenses_description"><![CDATA[Sisältösi lisensointi antaa kenelle tahansa laillisen oikeuden käyttää sitä kysymättä erikseen lupaasi, kunhan he noudattavat lisenssin ehtoja. Lisäksi iNaturalist sisällyttää Creative Commons -lisensoidun sisällön säännöllisesti päivitettäviin tietoarkistoihin, jotka toimitetaan valituille kumppaniorganisaatioillemme. Esimerkiksi sisällytämme CC0-, Nimeä- (CC BY) ja Nimeä-Epäkaupallinen
+(CC BY-NC) -lisensoidut tiedot arkistoon, jonka toimitamme <a href="http://www.gbif.org/">Global Biodiversity Information
+Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen ja jakaa tietoa luonnon monimuotoisuudesta ympäri maailmaa.]]></string>
+    <string name="photo_license">Kuvien lisensointi</string>
+    <string name="edit_photo_license">Muuta valokuvien lisenssiä</string>
+    <string name="observation_license">Havaintojen lisenssi</string>
+    <string name="edit_observation_license">Muuta havaintojen lisenssiä</string>
+    <string name="about_licenses">Tietoja lisensseistä</string>
+    <string name="view_license">Näytä lisenssi</string>
+    <!-- License Names -->
+    <string name="license_name_cc0">Tekijänoikeudeton</string>
+    <string name="license_name_cc_by">Nimeä</string>
+    <string name="license_name_cc_by_nc">Nimeä-EiKaupallinen</string>
+    <string name="license_name_cc_by_nc_sa">Nimeä-EiKaupallinen-JaaSamoin</string>
+    <string name="license_name_cc_by_nc_nd">Nimeä-EiKaupallinen-EiMuutoksia</string>
+    <string name="license_name_cc_by_nd">Nimeä-EiMuutoksia</string>
+    <string name="license_name_cc_by_sa">Nimeä-JaaSamoin</string>
+    <string name="license_name_no_license">Kaikki oikeudet pidätetään.</string>
+    <!-- License Descriptions -->
+    <string name="license_description_cc0">Tämä lisenssi tekee teoksestasi tekijänoikeudettoman. Muilla on oikeus kopioida, muokata, jakaa ja esittää teostasi, myös kaupallisessa tarkoituksessa, kysymättä sinulta lupaa tai mainitsematta nimeäsi käytön yhteydessä. Tämä on tarjolla olevista lisensseistä kaikkein sallivin. Suositellaan teoksille, joille toivotaan mahdollisimman suurta levitystä ja käyttöä.</string>
+    <string name="license_description_cc_by">Tämä lisenssi antaa muille oikeuden levittää, muokata ja käyttää pohjana teostasi, myös kaupallisessa tarkoituksessa, kunhan he käytön yhteydessä mainitsevat nimesi alkuperäisen teoksen tekijänä.</string>
+    <string name="license_description_cc_by_nc">Tämä lisenssi antaa muille oikeuden muokata ja käyttää pohjana teostasi ei-kaupallisessa tarkoituksessa. Vaikka nimesi on mainittava uuden teoksen esittämisen yhteydessä ja esittämisen on oltava ei-kaupallinen, uutta teosta ei tarvitse lisensoida samoilla ehdoilla kuin alkupeäistä.</string>
+    <string name="license_description_cc_by_nc_sa">Tämä lisenssi antaa muille oikeuden muokata ja käyttää pohjana teostasi ei-kaupallisessa tarkoituksessa, kunhan nimesi mainitaan alkuperäisen teoksen tekijänä ja uusi teos lisensoidaan tällä samalla lisenssillä.</string>
+    <string name="license_description_cc_by_nc_nd">Tämä lisenssi on kuudesta tärkeimmästä lisenssistä rajoittavin. Se antaa muille oikeuden tallentaa ja jakaa teostasi sillä edellytyksellä, että nimesi mainitaan jakamisen yhteydessä. Muilla ei ole oikeutta muokata teostasi millään tavalla eikä käyttää sitä kaupallisiin tarkoituksiin.</string>
+    <string name="license_description_cc_by_nd">Tämä lisenssi sallii kaupallisen ja epäkaupallisen uudelleenjakelun kunhan se esitetään muokkaamatta ja kokonaisena sekä sinut tekijänä mainittuna.</string>
+    <string name="license_description_cc_by_sa">Tämä lisenssi antaa muille oikeuden muokata ja käyttää pohjana teostasi ei-kaupallisessa tarkoituksessa. Vaikka nimesi on mainittava uuden teoksen esittämisen yhteydessä ja esittämisen on oltava ei-kaupallinen, uutta teosta ei tarvitse lisensoida samoilla ehdoilla kuin alkupeäistä.</string>
+    <string name="license_description_no_license">Säilytät täydet tekijänoikeudet sisältöösi, lukuun ottamatta käyttöehdoissa määriteltyjä iNaturalistille myönnettyjä oikeuksia.</string>
+    <string name="invalid_photo">Kuvaformaattia ei tueta</string>
 </resources>

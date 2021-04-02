@@ -186,18 +186,21 @@
     <string name="text"><![CDATA[<b>Text:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">Det centrala iNaturalist-nätverket. Klickar du på OK kommer din app inkluderas som en del av det globala iNaturalist-nätverket.</string>
-    <string name="alert_message_use_naturalista">NaturaLista är medlem i iNaturalist-nätverket i Mexiko. Lokala institutioner som stödjer NaturaLista kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 observationer. Vill du ändra din tillhörighet?</string>
+    <string name="alert_message_use_naturalista">NaturaLista är medlem i iNaturalist-nätverket i Mexiko. Lokala institutioner som stödjer NaturaLista kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 observationer. Vill du ändra din anknytning?</string>
     <string name="alert_message_use_naturewatchnz">iNaturalist NZ är medlem i iNaturalist-nätverket i Nya Zeeland. Lokala institutioner som stödjer iNaturalist NZ kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 observationer. Vill du ändra din tillhörighet?</string>
-    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada är medlem i iNaturalist-nätverket i Kanada. Lokala institutioner som stödjer iNaturalist Canada kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 observationer. Vill du ändra din tillhörighet?</string>
-    <string name="alert_message_use_naturalistacolombia">Naturalista är medlem i iNaturalist-nätverket i Colombia. Lokala institutioner som stödjer Naturalista kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 observationer. Vill du ändra din tillhörighet?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4All är medlem i iNaturalist-nätverket i Portugal. Lokala institutioner som stödjer biologisk Biodiversity4All kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 observationer. Vill du ändra din tillhörighet?</string>
-    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá är medlem i iNaturalist-nätverket i Panama. Lokala institutioner som stöder iNaturalist Panamá kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 observationer. Vill du ändra din tillhörighet?</string>
-    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador är medlem i iNaturalist-nätverket i Ecuador. Lokala institutioner som stödjer iNaturalist Ecuador kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 observationer. Vill du ändra din tillhörighet?</string>
-    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australien är medlem i iNaturalist-nätverket i Australien. Lokala institutioner som stöder iNaturalist Australien kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 observationer. Vill du ändra din tillhörighet?</string>
-    <string name="alert_message_use_argentinat">ArgentiNat är medlem i iNaturalist-nätverket i Argentina. Lokala institutioner som stödjer ArgentiNat kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 observationer. Vill du ändra din tillhörighet?</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel är medlem i iNaturalist-nätverket i Israel. Lokala institutioner som stödjer iNaturalist Israel kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Experimentera inte med att ändra din tillhörighet om du har mer än 1000 observationer. Vill du ändra din tillhörighet?</string>
-    <string name="alert_message_use_inaturalistfi">iNaturalist Finland är medlem i iNaturalist-nätverket i Finland. Lokala institutioner som stöder iNaturalist Finland har tillgång till din e-postadress och tillgång till de verkliga koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 observationer. Vill du ändra din tillhörighet?</string>
-    <string name="alert_message_use_inaturalistcl">iNaturalist Chile är medlem i iNaturalist-nätverket i Chile. Lokala institutioner som stödjer iNaturalist Chile kommer att ha tillgång till din e-postadress och tillgång till de riktiga koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 observationer. Vill du ändra din tillhörighet?</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada är medlem i iNaturalist-nätverket i Kanada. Lokala institutioner som stödjer iNaturalist Canada kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 observationer. Vill du ändra din anknytning?</string>
+    <string name="alert_message_use_naturalistacolombia">Naturalista är medlem i iNaturalist-nätverket i Colombia. Lokala institutioner som stödjer Naturalista kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 observationer. Vill du ändra din anknytning?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All är medlem i iNaturalist-nätverket i Portugal. Lokala institutioner som stödjer biologisk Biodiversity4All kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 observationer. Vill du ändra din anknytning?</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá är medlem i iNaturalist-nätverket i Panama. Lokala institutioner som stöder iNaturalist Panamá kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 observationer. Vill du ändra din anknytning?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador är medlem i iNaturalist-nätverket i Ecuador. Lokala institutioner som stödjer iNaturalist Ecuador kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 observationer. Vill du ändra din anknytning?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australien är medlem i iNaturalist-nätverket i Australien. Lokala institutioner som stöder iNaturalist Australien kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 observationer. Vill du ändra din anknytning?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat är medlem i iNaturalist-nätverket i Argentina. Lokala institutioner som stödjer ArgentiNat kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 observationer. Vill du ändra din anknytning?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel är medlem i iNaturalist-nätverket i Israel. Lokala institutioner som stödjer iNaturalist Israel kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Experimentera inte med att ändra din anknytning om du har mer än 1000 observationer. Vill du ändra din anknytning?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland är medlem i iNaturalist-nätverket i Finland. Lokala institutioner som stöder iNaturalist Finland har tillgång till din e-postadress och tillgång till de verkliga koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 observationer. Vill du ändra din anknytning?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile är medlem i iNaturalist-nätverket i Chile. Lokala institutioner som stödjer iNaturalist Chile kommer att ha tillgång till din e-postadress och tillgång till de riktiga koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 observationer. Vill du ändra din anknytning?</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Grekland är medlem i iNaturalist-nätverket i Grekland. Lokala institutioner som stöder iNaturalist Grekland kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 observationer. Vill du ändra din tillhörighet?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg är medlem i iNaturalist-nätverket i Luxemburg. Lokala institutioner som stöder iNaturalist Luxemburg kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 observationer. Vill du ändra din tillhörighet?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist Storbritannien är medlem i iNaturalist-nätverket i Storbritannien. Lokala institutioner som stöder iNaturalist Storbritannien kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 observationer. Vill du ändra din tillhörighet?</string>
     <string name="editor">Redigerare</string>
     <string name="license">Programvarulicens</string>
     <string name="download_for_offline_use">Ladda ner för användning offline</string>
@@ -246,9 +249,10 @@
     <string name="please_sign_in_for_updates">Du måste vara inloggad för att se dina uppdateringar.</string>
     <string name="by_using_inat_terms"><![CDATA[Genom att använda iNaturalist godkänner du <b><a href="https://www.inaturalist.org/pages/terms">användarvillkoren</a></b> och <b><a href="https://www.inaturalist.org/pages/privacy">integritetspolicy</a></b>]]></string>
     <string name="activity">Aktivitet</string>
+    <!-- Label for a button to open the camera to take a new photo for an observation -->
     <string name="camera">Ta bild</string>
+    <!-- Label for a button to import an existing photo for an observation -->
     <string name="upload_photo">Välj bild</string>
-    <string name="menu_text">Ingen bild</string>
     <string name="first">1:a</string>
     <string name="make_first">Flytta till 1:a</string>
     <string name="notes">Noteringar</string>
@@ -309,6 +313,7 @@
     <string name="sync_obs_to_see_favs">Synkronisera den här observationen för att se favoriter...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Synkronisera denna observation för att kommentera eller föreslå en bestämning...</string>
+    <!--  Label for a button to add an observation without a photo or a sound  -->
     <string name="no_photo">Ingen media</string>
     <string name="about_this_species">Om denna art</string>
     <string name="view_on_wikipedia">Wikipedia-artikel</string>
@@ -353,7 +358,7 @@
     <string name="inat_network">iNaturalist-nätverket</string>
     <string name="inat_network_description">iNaturalist-nätverket är ett ramverk för lokalisering av iNaturalist-gemenskapen. Nätverkens webbplatser stöds av lokala institutioner som har undertecknat ett avtal med iNaturalist för att uppmuntra lokal användning och gynna lokal biologisk mångfald.</string>
     <string name="more_info">Mer information</string>
-    <string name="select_network">Välj nätverkstillhörighet</string>
+    <string name="select_network">Välj nätverksanknytning</string>
     <string name="help">Hjälp</string>
     <string name="stop">Avsluta</string>
     <string name="resume">Återuppta</string>
@@ -623,7 +628,6 @@
     <string name="project_identifiers">Identifierare</string>
     <string name="got_it">Jag fattar!</string>
     <string name="view_all">Visa alla</string>
-    <string name="new_badge">Ny</string>
     <string name="observers">Observatörer</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
     <string name="attribute">Egenskap</string>
@@ -739,6 +743,9 @@
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa stöder iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finska Naturhistoriska centralmuseet (LUOMUS) stöder iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente stöder iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Grekland: iSea stöder iNaturalist Grekland (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Luxemburg: Naturhistoriska riksmuseet i Luxemburg (MnhnL) stöder iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Storbritannien: National Biodiversity Network Trust stöder iNaturalist Storbritannien (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Markera alla som lästa</string>
     <string name="content_hidden">Dolt innehåll</string>
     <string name="show_hidden_content">Visa dolt innehåll</string>
@@ -750,9 +757,11 @@
     <string name="could_not_play_sound">Kunde inte spela upp ljud - förmodligen ett nätverksproblem</string>
     <string name="cant_play_soundcloud"><![CDATA[För att lyssna på Soundcloud-ljud, se <a href="%1$s">webbplats</a>.]]></string>
     <string name="soundcloud">SoundCloud</string>
+    <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Spela in ljud</string>
     <string name="no_recorder_found">Ingen standardljudinspelare hittades!</string>
     <string name="couldnt_retrieve_sound">Kunde inte hämta ljud från standardinspelaren - försök importera ljudet istället</string>
+    <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Välj ljud</string>
     <string name="multi_select_sound_description">Importera flera ljud genom att trycka länge på ett enskilt ljud</string>
     <string name="alert_unsupported_audio_type">Tyvärr, kunde inte att ladda ljudet från denna källa</string>
@@ -1021,7 +1030,7 @@
     <string name="share_hidden_location">Dela dold position:</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Lyckades inte duplicera ljud!</string>
-    <string name="sound_format_not_supported">Den här ljudfilen har rätt filnamnsändelse, men den specifika ljudkodningen stöds inte av Android.</string>
+    <string name="sound_format_not_supported">Den ljudkodningen stöds inte av Android.</string>
     <string name="view_observations">Visa observationer</string>
     <string name="choose_this_option">Välj detta alternativ</string>
     <string name="compare_observation_with_this_option">Jämför observation med detta alternativ</string>
@@ -1075,4 +1084,50 @@
     <string name="uuid">UUID</string>
     <!--  Universal Resource Locator  -->
     <string name="url">URL</string>
+    <string name="default_licenses">Standardlicenser</string>
+    <string name="default_observation_license">Standardobservationslicens</string>
+    <string name="default_photo_license">Standardbildlicens</string>
+    <string name="default_sound_license">Standardljudlicens</string>
+    <string name="change_licenses_for_existing_observations">Ändra licenser för befintliga observationer, bilder och ljud</string>
+    <string name="change_licenses_for_all_existing_observations">Ändra licenser för alla befintliga observationer</string>
+    <string name="change_licenses_for_all_existing_photos">Ändra licenser för alla befintliga bilder</string>
+    <string name="change_licenses_for_all_existing_sounds">Ändra licenser för alla befintliga ljud</string>
+    <string name="change_observation_licenses">Ändra observationslicenser</string>
+    <string name="change_photo_licenses">Ändra bildlicenser</string>
+    <string name="change_sound_licenses">Ändra ljudlicenser</string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[Ändra licenser för <b>%1$d</b> befintliga observationer till <b>%2$s</b>?]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[Ändra licenserna för befintliga bilder till <b>%1$s</b>?]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Ändra licenserna för befintliga ljud till <b>%1$s</b>?]]></string>
+    <string name="observation_licenses_updated">Observationslicenser uppdaterade</string>
+    <string name="photo_licenses_updated">Bildlicenser uppdaterade</string>
+    <string name="sound_licenses_updated">Ljudlicenser uppdaterade</string>
+    <string name="existing_observation_licenses_have_been_updated">Alla befintliga observationslicenser har ändrats till %1$s.</string>
+    <string name="existing_photo_licenses_have_been_updated">Alla befintliga bildlicenser har ändrats till %1$s.</string>
+    <string name="existing_sound_licenses_have_been_updated">Alla befintliga ljudlicenser har ändrats till %1$s.</string>
+    <string name="default_licenses_description"><![CDATA[Licensiering av ditt innehåll ger vem som helst laglig rätt att använda det utan att be om ditt tillstånd förutsatt att de följer licensvillkoren. Dessutom inkluderar iNat ditt Creative Commons-licensierade innehåll i regelbundet uppdaterade arkiv som produceras för utvalda partnerorganisationer som är intresserade av våra data. Till exempel inkluderar vi poster med Ingen Copyright (CC0), Erkännande (CC BY), och Erkännande-Icke kommersiell (CC BY-NC) i det arkiv vi genererar för <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), en internationell, mellanstatlig organisation som sammanställer och tillgängliggör information om biologisk mångfald från hela världen.]]></string>
+    <string name="photo_license">Bildlicens</string>
+    <string name="edit_photo_license">Redigera bildlicens</string>
+    <string name="observation_license">Observationslicens</string>
+    <string name="edit_observation_license">Redigera observationslicens</string>
+    <string name="about_licenses">Om licenser</string>
+    <string name="view_license">Visa licens</string>
+    <!-- License Names -->
+    <string name="license_name_cc0">Allmängods</string>
+    <string name="license_name_cc_by">Erkännande</string>
+    <string name="license_name_cc_by_nc">Erkännande-IckeKommersiell</string>
+    <string name="license_name_cc_by_nc_sa">Erkännande-IckeKommersiell-DelaLika</string>
+    <string name="license_name_cc_by_nc_nd">Erkännande-Ickekommersiell-IngaBearbetningar</string>
+    <string name="license_name_cc_by_nd">Erkännande-IngaBearbetningar</string>
+    <string name="license_name_cc_by_sa">Erkännande-DelaLika</string>
+    <string name="license_name_no_license">Alla rättigheter förbehållna</string>
+    <!-- License Descriptions -->
+    <string name="license_description_cc0">Denna licens gör ditt verk publikt tillgängligt, så att andra kan kopiera, ändra, sprida och uppföra ditt verk, även för kommersiella ändamål, allt utan att be om tillstånd eller erkänna dig. Detta är den mest tillåtande licens som erbjuds. Rekommenderas för maximal spridning och användning av licensierat material.</string>
+    <string name="license_description_cc_by">Denna licens låter andra sprida, remixa, anpassa och bygga vidare på ditt verk, även kommersiellt, så länge de erkänner dig som den ursprungliga upphovsmannen.</string>
+    <string name="license_description_cc_by_nc">Denna licens låter andra remixa, anpassa och bygga vidare på ditt verk för icke-kommersiella syften, och även om deras nya verk också måste erkänna dig som upphovsman och vara icke-kommersiella, måste de inte licensiera sina bearbetningar på samma villkor.</string>
+    <string name="license_description_cc_by_nc_sa">Denna licens låter andra remixa, anpassa och bygga vidare på ditt verk i icke-kommersiella syften så länge de erkänner dig och licensierar sina bearbetningar på samma villkor.</string>
+    <string name="license_description_cc_by_nc_nd">Denna licens är den mest restriktiva av våra sex huvudlicenser. Den tillåter bara andra att ladda ner dina verk och dela dem med andra, så länge de erkänner dig som upphovsman, men de får inte ändra dem på något sätt och får inte använda dem kommersiellt.</string>
+    <string name="license_description_cc_by_nd">Denna licens tillåter vidaredistribution, kommersiell och icke-kommersiell, så länge verket sprids oförändrat och i sin helhet, samt att du erkänns som upphovsman.</string>
+    <string name="license_description_cc_by_sa">Denna licens låter andra remixa, anpassa och bygga vidare på ditt verk för icke-kommersiella syften, och även om deras nya verk också måste erkänna dig som upphovsman och vara icke-kommersiella, måste de inte licensiera sina bearbetningar på samma villkor.</string>
+    <string name="license_description_no_license">Du behåller full upphovsrätt till ditt innehåll förutom de rättigheter som beviljats iNaturalist i våra användarvillkor.</string>
+    <string name="invalid_photo">Bildformatet stöds inte</string>
 </resources>

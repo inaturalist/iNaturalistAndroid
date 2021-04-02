@@ -198,6 +198,9 @@
     <string name="alert_message_use_inaturalistil">iNaturalist Israel és membre de la Xarxa iNaturalist d\'Israel. Les institucions locals que donen suport a iNaturalist Israel tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finlàndia és membre de la xarxa iNaturalist a Finlàndia. Les institucions locals que donen suport a iNaturalist Finlàndia tindran accés a la teva adreça de correu electrònic i a les coordenades reals de les teves observacions encara que estiguin públicament enfosquides o siguin privades. Per favor, no canviïs de forma experimental la teva afiliació si tens més de 1000 observacions. Vols canviar la teva afiliació?</string>
     <string name="alert_message_use_inaturalistcl">iNaturalist Xile és membre de la xarxa iNaturalist a Xile. Les institucions locals que donen suport a iNaturalist Xile tindran accés a la teva adreça de correu electrònic i a les coordenades reals de les teves observacions encara que estiguin públicament enfosquides o siguin privades. Per favor, no canviïs de forma experimental la teva afiliació si tens més de 1000 observacions. Vols canviar la teva afiliació?</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Grècia és membre de la Xarxa iNaturalist a Grècia. Les institucions locals que donen suport a iNaturalist Grècia tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxemburg és membre de la Xarxa iNaturalist a Luxemburg. Les institucions locals que donen suport a iNaturalist Luxemburg tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist Regne Unit és membre de la xarxa iNaturalist al Regne Unit. Les institucions locals que donen suport a iNaturalist Regne Unit tindran accés a la teva adreça de correu electrònic i a les coordenades reals de les teves observacions encara que estiguin públicament enfosquides o siguin privades. Per favor, no canviïs de forma experimental la teva afiliació si tens més de 1000 observacions. Vols canviar la teva afiliació?</string>
     <string name="editor">Editor</string>
     <string name="license">Llicència</string>
     <string name="download_for_offline_use">Descarregar per a ús fora de línia</string>
@@ -246,9 +249,10 @@
     <string name="please_sign_in_for_updates">Heu d\'haver iniciat sessió per veure les vostres actualitzacions.</string>
     <string name="by_using_inat_terms"><![CDATA[Utilitzant iNaturalist accepteu les <b><a href="https://www.inaturalist.org/pages/terms">Condicions d\'ús</a></b> i la <b><a href="https://www.inaturalist.org/pages/privacy">Política de privacitat</a></b>]]></string>
     <string name="activity">Activitat</string>
+    <!-- Label for a button to open the camera to take a new photo for an observation -->
     <string name="camera">Fer foto</string>
+    <!-- Label for a button to import an existing photo for an observation -->
     <string name="upload_photo">Escollir imatge</string>
-    <string name="menu_text">Omet foto</string>
     <string name="first">1er</string>
     <string name="make_first">Fer 1er</string>
     <string name="notes">Notes</string>
@@ -309,7 +313,8 @@
     <string name="sync_obs_to_see_favs">Sincronitzar aquesta observació per veure els favorits...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Sincronitzar aquesta observació per deixar un comentari o suggerir una identificació...</string>
-    <string name="no_photo">No Media</string>
+    <!--  Label for a button to add an observation without a photo or a sound  -->
+    <string name="no_photo">Sense fitxers audiovisuals</string>
     <string name="about_this_species">Sobre aquesta espècie</string>
     <string name="view_on_wikipedia">Article de la Viquipèdia</string>
     <string name="photo"><![CDATA[Foto: <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -623,7 +628,6 @@
     <string name="project_identifiers">Identificadors</string>
     <string name="got_it">Entesos!</string>
     <string name="view_all">Mostrar-ho tot</string>
-    <string name="new_badge">Nou</string>
     <string name="observers">Observadors</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
     <string name="attribute">Atribut</string>
@@ -739,6 +743,9 @@
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa dona suport a iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finlàndia: Museu Finès d\'Història Natural (LUOMUS) dóna suport iNaturalist Finlàndia (<a href="https://inaturalist.laji.fi/"> inaturalist.laji.fi </a>)]]></string>
     <string name="network_credit_inaturalistcl"><![CDATA[Xile: Ministeri del Medi Ambient dona suport a iNaturalist Xile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Grècia: iSea dona suport  iNaturalist Grècia /<a href="https://greece.inaturalist.org">grece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Luxemburg: Luxembourg National Museum of Natural History (MnhnL) dona suport a iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Regne Unit: National Biodiversity Network Trust dona suport a iNaturalist Regne Unit (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Marca tot com a vist</string>
     <string name="content_hidden">Contingut amagat</string>
     <string name="show_hidden_content">Mostra Contingut Amagat</string>
@@ -750,9 +757,11 @@
     <string name="could_not_play_sound">No s\'ha pogut reproduir el so -probablement hi ha un problema amb la xarxa</string>
     <string name="cant_play_soundcloud"><![CDATA[Per escoltar els sons de Soundcloud, mireu el <a href="%1$s">web</a>.]]></string>
     <string name="soundcloud">Soundcloud</string>
+    <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Gravar So</string>
     <string name="no_recorder_found">No s\'ha trobat gravadora per defecte!</string>
     <string name="couldnt_retrieve_sound">No s\'ha pogut recuperar cap so de la gravadora per defecte - proveu d\'importar el so</string>
+    <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Triar So</string>
     <string name="multi_select_sound_description">Importar diversos sons mantenint polsat un so</string>
     <string name="alert_unsupported_audio_type">Ho sentim, però hi ha hagut un problema en carregar el so d\'aquesta font</string>
@@ -1021,7 +1030,7 @@
     <string name="share_hidden_location">Compartiu posició oculta</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">No s\'han pogut duplicar el so!</string>
-    <string name="sound_format_not_supported">L\'arxiu de só té l\'extensió correcta, però la codificació específica de l\'àudio no és suportada per Android.</string>
+    <string name="sound_format_not_supported">Aquesta codificació d\'àudio no esta suportada per Android.</string>
     <string name="view_observations">Veure Observacions</string>
     <string name="choose_this_option">Escollir aquesta opció</string>
     <string name="compare_observation_with_this_option">Compara l\'observació amb aquesta opció</string>
@@ -1057,22 +1066,68 @@
     <!-- Label for an observation search filter to exclude your own observations -->
     <string name="hide_my_observations">Oculta les meves Observacions</string>
     <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
-    <string name="follow_this_observation">Follow this Observation</string>
+    <string name="follow_this_observation">Segueix aquesta observació</string>
     <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
-    <string name="unfollow_this_observation">Unfollow this Observation</string>
+    <string name="unfollow_this_observation">Deixa de seguir aquesta observació</string>
     <!-- Error message shown when an attempt to follow an observation fails -->
-    <string name="could_not_follow_observation">Could not follow this observation</string>
+    <string name="could_not_follow_observation">No podeu seguir aquesta observació</string>
     <!-- Error message shown when an attempt to unfollow an observation fails -->
-    <string name="could_not_unfollow_observation">Could not unfollow this observation</string>
+    <string name="could_not_unfollow_observation">No podeu deixar de seguir aquesta observació</string>
     <!-- Label for a button to copy the coordinates of an observation -->
-    <string name="copy_coordinates">Copy coordinates</string>
-    <string name="coordinates_copied_to_clipboard">Coordinates copied to clipboard</string>
+    <string name="copy_coordinates">Copiar coordenades</string>
+    <string name="coordinates_copied_to_clipboard">Coordenades copiades al porta-retalls</string>
     <!--  Title of a section on the observation detail view that displays minor metadata  -->
-    <string name="metadata">Metadata</string>
+    <string name="metadata">Metadades</string>
     <!--  iNat observation identifier  -->
     <string name="id">ID</string>
     <!--  iNat observation Universally Unique Identifier  -->
     <string name="uuid">UUID</string>
     <!--  Universal Resource Locator  -->
     <string name="url">URL</string>
+    <string name="default_licenses">Llicències per defecte</string>
+    <string name="default_observation_license">Llicència a les vostres observacions predeterminades:</string>
+    <string name="default_photo_license">Llicència a les vostres fotos predeterminades:</string>
+    <string name="default_sound_license">Llicències de sons predeterminades</string>
+    <string name="change_licenses_for_existing_observations">Canviar les llicències de les observacions, fotos i sons existents</string>
+    <string name="change_licenses_for_all_existing_observations">Canviar les llicències de totes les observacions existents</string>
+    <string name="change_licenses_for_all_existing_photos">Canviar les llicències de totes les fotografies existents</string>
+    <string name="change_licenses_for_all_existing_sounds">Canviar les llicències de tots les sons existents</string>
+    <string name="change_observation_licenses">Canviar les llicències de les observacions</string>
+    <string name="change_photo_licenses">Canviar les llicències de les fotografies</string>
+    <string name="change_sound_licenses">Canviar les llicències dels sons</string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[Voleu canviar les llicències de <b>%1$d</b> observacions existents a <b>%2$s</b>?]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[Voleu canviar les llicències de les fotografies existents a <b>%1$s</b>?]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Voleu canviar les llicències dels sons existents a <b>%1$s</b>?]]></string>
+    <string name="observation_licenses_updated">Llicències de les Observacions Actualitzades</string>
+    <string name="photo_licenses_updated">Llicències de les Fotografies Actualitzades</string>
+    <string name="sound_licenses_updated">Llicències dels Sons Actualitzades</string>
+    <string name="existing_observation_licenses_have_been_updated">Totes les llicències de les observacions actuals han estat canviades a %1$s.</string>
+    <string name="existing_photo_licenses_have_been_updated">Totes les llicències de les fotografies actuals han estat canviades a %1$s.</string>
+    <string name="existing_sound_licenses_have_been_updated">Totes les llicències dels sons actuals han estat canviades a %1$s.</string>
+    <string name="default_licenses_description"><![CDATA[Llicenciar els vostres continguts atorga qualsevol altre el dret a utilitzar-los sense demanar permís si atenen a les condicions de la llicència. iNat inclou els vostres continguts amb llicencia Creative Commons en arxius actualitzats periòdicament produïts per determinades organitzacions associades interessades en les nostres dades. Per exemple, incloem registres No Copyright (CC0), Reconeixement (CC BY) i Reconeixement-No Comercial (CC BY-NC) a l\'arxiu que generem pel <a href="https://www.gbif.org/"> Global Biodiversity Information Facility (GBIF) </a>, una organització internacional intergovernamental que recopila i distribueix informació sobre biodiversitat de tot el món.]]></string>
+    <string name="photo_license">Llicència de la foto</string>
+    <string name="edit_photo_license">Edita la llicència de la foto</string>
+    <string name="observation_license">Llicència de l\'observació</string>
+    <string name="edit_observation_license">Edita la llicència de l\'observació</string>
+    <string name="about_licenses">Sobre les llicències</string>
+    <string name="view_license">Veure la llicència</string>
+    <!-- License Names -->
+    <string name="license_name_cc0">Domini públic</string>
+    <string name="license_name_cc_by">Reconeixement</string>
+    <string name="license_name_cc_by_nc">Reconeixement - No comercial</string>
+    <string name="license_name_cc_by_nc_sa">Reconeixement - No comercial - Compartir igual</string>
+    <string name="license_name_cc_by_nc_nd">Reconeixement - No comercial – Sense obra derivada</string>
+    <string name="license_name_cc_by_nd">Reconeixement – Sense obra derivada</string>
+    <string name="license_name_cc_by_sa">Reconeixement - Compartir igual</string>
+    <string name="license_name_no_license">Tots els drets reservats</string>
+    <!-- License Descriptions -->
+    <string name="license_description_cc0">Aquesta llicència allibera la vostra obra a domini públic, de manera que els altres poden copiar, modificar, distribuir i dur a terme el seu treball, fins i tot amb finalitat comercial, sense demanar-vos permís, o donar-vos crèdit. Aquesta és la llicència més lliure de les que s\'ofereixen. Recomanat per a una màxima difusió i ús de la llicència de materials.</string>
+    <string name="license_description_cc_by">Aquesta llicència permet que altres persones distribueixin, combinin, ajustin i facin creacions a partir dels vostres continguts, fins i tot amb finalitats comercials, sempre que als crèdits n’esmentin el creador original.</string>
+    <string name="license_description_cc_by_nc">Aquesta llicència permet a altres persones remesclar, modificar i adaptar el vostre treball de forma no comercial i, tot i que les seves noves obres també us han de reconèixer i no ser comercials, no han de llicenciar les seves obres en els mateixos termes.</string>
+    <string name="license_description_cc_by_nc_sa">Aquesta llicència permet a altres persones remesclar, modificar i adaptar el vostre treball de manera no comercial, sempre que us ho reconeguin i llicenciïn les seves noves creacions en els mateixos termes.</string>
+    <string name="license_description_cc_by_nc_nd">Aquesta llicència és la més restrictiva de les sis llicències principals, només permet als altres descarregar les vostres obres i compartir-les amb altres sempre que us reconeguin l\'autoria, però no les poden canviar ni utilitzar-les comercialment.</string>
+    <string name="license_description_cc_by_nd">Aquesta llicència permet la redistribució, comercial i no comercial, sempre que es distribueixi sense canvis i íntegrament, amb els crèdits a vosaltres.</string>
+    <string name="license_description_cc_by_sa">Aquesta llicència permet a altres persones remesclar, modificar i adaptar el vostre treball de forma no comercial i, tot i que les seves noves obres també us han de reconèixer i no ser comercials, no tenen per què llicenciar les seves obres derivades en els mateixos termes.</string>
+    <string name="license_description_no_license">Manteniu tots els drets sobre el vostre contingut,a més dels drets concedits a iNaturalist en les nostres Condicions de Servei.</string>
+    <string name="invalid_photo">Format de fotografia no suportat</string>
 </resources>

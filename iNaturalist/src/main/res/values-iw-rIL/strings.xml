@@ -200,6 +200,9 @@
     <string name="alert_message_use_inaturalistil">האם תרצה לשייך את החשבון שלך ל iNaturalist Israel, להפוך לחלק מהקהילה המקומית ולתרום להגנת הטבע בישראל? iNaturalist Israel  הוא הנציג של ישראל ברשת העולמית של iNaturalist . שותפים מקומיים של iNaturalist Israel יקבלו פרטים של המייל שלכם וגישה למיקום המדויק של תצפיות שמוסתרות מהציבור הרחב. אם העלת כבר יותר מ100 תצפיות, בבקשה שלא לשנות את השייכות של חשבון המשתמש שלך . האם תרצה לשייך את החשבון שלך ל iNaturalist Israel?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist פינלנד הוא הנציג הפיני ברשת העולמית של iNaturalist . שותפים מקומיים של iNaturalist פינלנד יקבלו פרטים של המייל שלכם וגישה למיקום המדויק של תצפיות שמוסתרות מהציבור הרחב. בבקשה שלא לשנות את השייכות של חשבון המשתמש שלך אם העלת כבר יותר מ100 תצפיות. האם תרצה לשייך את החשבון שלך ל iNaturalist פינלנד?</string>
     <string name="alert_message_use_inaturalistcl">iNaturalist צ\'ילה הוא הנציג הצ\'יליאני ברשת העולמית של iNaturalist . שותפים מקומיים של iNaturalist צ\'ילה יקבלו פרטים של המייל שלכם וגישה למיקום המדויק של תצפיות שמוסתרות מהציבור הרחב. בבקשה שלא לשנות את השייכות של חשבון המשתמש שלך אם העלת כבר יותר מ100 תצפיות. האם תרצה לשייך את החשבון שלך ל iNaturalist צ\'ילה?</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Greece is a member of the iNaturalist Network in Greece. Local institutions supporting iNaturalist Greece will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg is a member of the iNaturalist Network in Luxembourg. Local institutions supporting iNaturalist Luxembourg will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom is a member of the iNaturalist Network in United Kingdom. Local institutions supporting iNaturalist United Kingdom will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">עורך</string>
     <string name="license">רשיון</string>
     <string name="download_for_offline_use">הורדה לשימוש ללא אינטרנט</string>
@@ -248,9 +251,10 @@
     <string name="please_sign_in_for_updates">עליך להיות מחובר/ת כדי לצפות בעדכונים שלך.</string>
     <string name="by_using_inat_terms"><![CDATA[שימוש בשירותי אי-נטוראליסט מתקיים הסכמה עם <b><a href="https://www.inaturalist.org/pages/terms">תנאי השירות</a></b> וגם עם <b><a href="https://www.inaturalist.org/pages/privacy">תנאי הפרטיות</a></b>]]></string>
     <string name="activity">פעילות</string>
+    <!-- Label for a button to open the camera to take a new photo for an observation -->
     <string name="camera">צלם/י תמונה</string>
+    <!-- Label for a button to import an existing photo for an observation -->
     <string name="upload_photo">בחר/י תמונה</string>
-    <string name="menu_text">אין תמונה</string>
     <string name="first">הראשון</string>
     <string name="make_first">שנו לראשון</string>
     <string name="notes">רשימות</string>
@@ -313,6 +317,7 @@
     <string name="sync_obs_to_see_favs">סנכרן/ני תצפית זו כדי לראות מועדפים...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">סנכרן/ני תצפית זו כדי להגיב או להציע זיהוי...</string>
+    <!--  Label for a button to add an observation without a photo or a sound  -->
     <string name="no_photo">No Media</string>
     <string name="about_this_species">אודות זן זה</string>
     <string name="view_on_wikipedia">מאמר בויקיפדיה</string>
@@ -386,7 +391,7 @@
     <string name="mammals">יונקים</string>
     <string name="insects">חרקים</string>
     <string name="reptiles">זוחלים</string>
-    <string name="animals">Animals</string>
+    <string name="animals">בעלי חיים</string>
     <string name="fish">דג</string>
     <string name="mollusks">רכיכות</string>
     <string name="protozoans">Protozoans</string>
@@ -457,11 +462,11 @@
     <string name="more_info_on_inat">מידע נוסף על iNaturalist.org</string>
     <string name="view_suggestions">צפייה בהצעות</string>
     <string name="species_search">חיפוש מינים</string>
-    <string name="were_not_confident_enough">We\'re not confident enough to make a recommendation, but here are our top suggestions:</string>
+    <string name="were_not_confident_enough">אנחנו לא לגמרי בטוחים, אבל הנה ההצעות הנבחרות שלנו:</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
     <!-- Header for a list of suggested taxa -->
-    <string name="top_suggestions">Top suggestions</string>
+    <string name="top_suggestions">הצעות נבחרות</string>
     <string name="pretty_sure_rank">אנחנו די בטוחים שזה %1$s:</string>
     <string name="what_did_you_see">מה ראית?</string>
     <string name="suggest_species">הציעו מינים</string>
@@ -551,7 +556,7 @@
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">מאציל סמכויות</string>
     <string name="apply_filters">החל מסננים</string>
-    <string name="remove_filters">Remove Filters</string>
+    <string name="remove_filters"> הסר מסננים</string>
     <string name="reset">אפס</string>
     <string name="show_only_my_observations">הצג רק תצפיות שלי</string>
     <string name="project">פרויקט</string>
@@ -631,7 +636,6 @@
     <string name="project_identifiers">מזהים</string>
     <string name="got_it">הבנתי!</string>
     <string name="view_all">צפה/י בהכל</string>
-    <string name="new_badge">חדש</string>
     <string name="observers">מתצפתים</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
     <string name="attribute">תכונה</string>
@@ -749,6 +753,9 @@
     <string name="network_credit_inaturalistil"><![CDATA[ישראל: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[פינלנד: Finnish Museum of Natural History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="network_credit_inaturalistcl"><![CDATA[צ\'ילה: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">סימון הכל כנסקרו</string>
     <string name="content_hidden">תוכן מוסתר</string>
     <string name="show_hidden_content">הציג תוכן מוסתר</string>
@@ -760,9 +767,11 @@
     <string name="could_not_play_sound">לא התאפשר להשמיע - רוב הסיכויים תקלה במערכת</string>
     <string name="cant_play_soundcloud"><![CDATA[להקשיב לקולות Soundcloud, צפה ב<a href="%1$s">אתר</a>.]]></string>
     <string name="soundcloud">סאונדקלאוד</string>
+    <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">הקלט קול</string>
     <string name="no_recorder_found">לא נמצאה ברירת מחדל למקליט קול!</string>
     <string name="couldnt_retrieve_sound">לא ניתן לאחזר קבצי קול ממהמקליט שמהווה ברירת המחדל - במקום, נסה לייבא את קובץ הקול </string>
+    <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">בחר צליל</string>
     <string name="multi_select_sound_description">ייבא מספר קבצי קול ע\"י לחיצה ארוכה על קול מסויים</string>
     <string name="alert_unsupported_audio_type">מצטערים, בעיה בטעינת הצליל ממקור זה</string>
@@ -790,32 +799,32 @@
     <string name="couldnt_duplicate_photo">לא ניתן היה לשכפל את התמונות!</string>
     <string name="couldnt_edit_photo">לא ניתן לערוך את התמונה!</string>
     <!-- Verb, as in "Rotate this photo" -->
-    <string name="ucrop_rotate">Rotate</string>
+    <string name="ucrop_rotate">סובב</string>
     <!-- Verb, as in "Scale (resize) this photo" -->
-    <string name="ucrop_scale">Scale</string>
+    <string name="ucrop_scale">גודל</string>
     <!-- Verb, as in "Crop this photo" -->
-    <string name="ucrop_crop">Crop</string>
+    <string name="ucrop_crop">חתוך</string>
     <!-- Label for adjusting the brightness of an image -->
-    <string name="ucrop_brightness">Brightness</string>
+    <string name="ucrop_brightness">בהירות</string>
     <!-- Label for adjusting the contrast of an image -->
-    <string name="ucrop_contrast">Contrast</string>
+    <string name="ucrop_contrast">ניגודיות</string>
     <!-- Label for adjusting the saturation of an image -->
-    <string name="ucrop_saturation">Saturation</string>
+    <string name="ucrop_saturation">רוויה</string>
     <!-- Label for adjusting the sharpness of an image -->
-    <string name="ucrop_sharpness">Sharpness</string>
+    <string name="ucrop_sharpness">חדות</string>
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
-    <string name="ucrop_label_original">Original</string>
+    <string name="ucrop_label_original">מקור</string>
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
-    <string name="ucrop_label_free">Free</string>
+    <string name="ucrop_label_free">חינם</string>
     <!-- Verb phrase, button label to edit an observation photo -->
-    <string name="ucrop_label_edit_photo">Edit Photo</string>
+    <string name="ucrop_label_edit_photo">ערוך תמונה</string>
     <string name="service_temporarily_unavailable">Service temporarily unavailable.</string>
     <string name="please_try_again_in_a_few_hours">Please try again in a few hours.</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
     <string name="please_try_again_in_x">Please try again in %1$d %2$s.</string>
-    <string name="hours">hours</string>
-    <string name="minutes">minutes</string>
-    <string name="seconds_value">seconds</string>
+    <string name="hours">שעות</string>
+    <string name="minutes">דקות</string>
+    <string name="seconds_value">שניות</string>
     <string name="shop_the_inat_store">Shop the iNat Store</string>
     <string name="delete_your_account">מחוק את חשבונך</string>
     <string name="delete_account_message"><![CDATA[כשאתה מוחק את חשבונך, אתה מוחק:<br/><br/><ul><li> את כל התצפיות שלך, כולל את כל העבודה של אלה שעזרו לך לזהות אותן.</li><li> כל הזהויות שהוספת לתצפיות של אחרים, שעלול להשפיע ברמת האיכות של תצפיות אלה.</li><li> את כל התגובות שכתבת.</li></ul><br/> בנוסף: לא ניתן להחזיר את חשבונך. אם תשנה את דעתך בעת מאוחר יותר, לא תוכל להחזיר את כל המידע הזה.<br/><br/> אם שירות הזאת שולחת אליך יותר מדי הערות, עליך לשקול <a href="https://www.inaturalist.org/users/edit">לשנות את ההגדרות שלך </a>כדי לא לקבל הערות מסוימות או כדי להפסיק קבלת מיילים ממנו. אם יש לך בעיה עם מישהו מסוים, יש אפשרות <a href="https://www.inaturalist.org/users"/edit">לחסום אותם</a> במקום למחוק את חשבונך.<br/><br/> אם אתה עדיין בטוח שאתה מעוניין במחיקת חשבונך, הקליד<b>%1$s</b> כאן כדי למחוק את חשבונך ואת כל המידע שקשור אליו.]]></string>
@@ -875,8 +884,8 @@
     <string name="send_a_message">Send a message</string>
     <string name="sending_message">Sending message...</string>
     <string name="could_not_send_message">Couldn\'t send message: %1$s</string>
-    <string name="subject">Subject</string>
-    <string name="body">Body</string>
+    <string name="subject">נושא</string>
+    <string name="body">גוף</string>
     <string name="type_your_message_here">Type your message here</string>
     <string name="new_message_to">New Message to %1$s</string>
     <string name="who_would_you_like_to_send_a_message_to">Who would you like to send a message to?</string>
@@ -1033,7 +1042,7 @@
     <string name="share_hidden_location">Share Hidden Location</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
-    <string name="sound_format_not_supported">This sound file is the right file extension, but the specific audio encoding is not supported by Android.</string>
+    <string name="sound_format_not_supported">That audio encoding is not supported by Android.</string>
     <string name="view_observations">View Observations</string>
     <string name="choose_this_option">Choose this option</string>
     <string name="compare_observation_with_this_option">Compare observation with this option</string>
@@ -1087,4 +1096,50 @@
     <string name="uuid">UUID</string>
     <!--  Universal Resource Locator  -->
     <string name="url">URL</string>
+    <string name="default_licenses">Default Licenses</string>
+    <string name="default_observation_license">Default Observation License</string>
+    <string name="default_photo_license">Default Photo License</string>
+    <string name="default_sound_license">Default Sound License</string>
+    <string name="change_licenses_for_existing_observations">Change licenses for existing observations, photos and sounds</string>
+    <string name="change_licenses_for_all_existing_observations">Change licenses for all existing observations</string>
+    <string name="change_licenses_for_all_existing_photos">Change licenses for all existing photos</string>
+    <string name="change_licenses_for_all_existing_sounds">Change licenses for all existing sounds</string>
+    <string name="change_observation_licenses">Change Observation Licenses</string>
+    <string name="change_photo_licenses">Change Photo Licenses</string>
+    <string name="change_sound_licenses">Change Sound Licenses</string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[Change the licenses of <b>%1$d</b> existing observations to <b>%2$s</b>?]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[Change the licenses of existing photos to <b>%1$s</b>?]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Change the licenses of existing sounds to <b>%1$s</b>?]]></string>
+    <string name="observation_licenses_updated">Observation Licenses Updated</string>
+    <string name="photo_licenses_updated">Photo Licenses Updated</string>
+    <string name="sound_licenses_updated">Sound Licenses Updated</string>
+    <string name="existing_observation_licenses_have_been_updated">All existing observation licenses have been changed to %1$s.</string>
+    <string name="existing_photo_licenses_have_been_updated">All existing photo licenses have been changed to %1$s.</string>
+    <string name="existing_sound_licenses_have_been_updated">All existing sound licenses have been changed to %1$s.</string>
+    <string name="default_licenses_description"><![CDATA[Licensing your content gives anyone the legal right to use it without asking your permission if they abide by the terms of the license. In addition, iNat includes your Creative Commons-licensed content in regularly-updated archives produced for select partner organizations interested in our data. For example, we include No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC) records in the archive we generate for the <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, an international, inter-governmental organization that compiles and distributes biodiversity information from around the world.]]></string>
+    <string name="photo_license">Photo License</string>
+    <string name="edit_photo_license">Edit Photo License</string>
+    <string name="observation_license">Observation License</string>
+    <string name="edit_observation_license">Edit Observation License</string>
+    <string name="about_licenses">About Licenses</string>
+    <string name="view_license">View License</string>
+    <!-- License Names -->
+    <string name="license_name_cc0">Public Domain</string>
+    <string name="license_name_cc_by">Attribution</string>
+    <string name="license_name_cc_by_nc">Attribution-NonCommercial</string>
+    <string name="license_name_cc_by_nc_sa">Attribution-NonCommercial-ShareAlike</string>
+    <string name="license_name_cc_by_nc_nd">Attribution-NonCommercial-NoDerivs</string>
+    <string name="license_name_cc_by_nd">Attribution-NoDerivs</string>
+    <string name="license_name_cc_by_sa">Attribution-ShareAlike</string>
+    <string name="license_name_no_license">All rights reserved</string>
+    <!-- License Descriptions -->
+    <string name="license_description_cc0">This license releases your work into the public domain, so others can copy, modify, distribute and perform your work, even for commercial purposes, all without asking permission or giving you credit. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.</string>
+    <string name="license_description_cc_by">This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation.</string>
+    <string name="license_description_cc_by_nc">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
+    <string name="license_description_cc_by_nc_sa">This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms.</string>
+    <string name="license_description_cc_by_nc_nd">This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can\'t change them in any way or use them commercially.</string>
+    <string name="license_description_cc_by_nd">This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.</string>
+    <string name="license_description_cc_by_sa">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
+    <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
+    <string name="invalid_photo">Photo format not supported</string>
 </resources>
