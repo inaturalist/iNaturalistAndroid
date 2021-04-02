@@ -573,6 +573,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
 
             SimpleDateFormat format = new SimpleDateFormat("MMM");
             Calendar cal = Calendar.getInstance();
+            cal.set(Calendar.DAY_OF_MONTH, 1);
             cal.set(Calendar.MONTH, month);
             String monthName = format.format(cal.getTime());
 
