@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="email_address">Enderezo electrónico</string>
-    <string name="delete_observation">Borrar observación</string>
-    <string name="observation_deleted">Observación borrada</string>
-    <string name="species_guess_hint">Nome da especie...</string>
+    <string name="email_address">Email Address</string>
+    <string name="delete_observation">Delete observation</string>
+    <string name="observation_deleted">Observation deleted</string>
+    <string name="species_guess_hint">Species name</string>
     <string name="ok">OK</string>
-    <string name="cancel">Cancelar</string>
-    <string name="loading">Cargando...</string>
-    <string name="sync_required">Require sincronización</string>
-    <string name="sync_required_message">%1$d observacións, %2$d fotos para sincronizar</string>
-    <string name="street">Rúa</string>
+    <string name="cancel">Cancel</string>
+    <string name="loading">Loading...</string>
+    <string name="sync_required">Sync required</string>
+    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
+    <string name="street">Street</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
-    <string name="satellite">Satélite</string>
-    <string name="couldnt_load_nearby_observations">Non se puideron cargar as observacións próximas: %1$s</string>
-    <string name="username_invalid">Nome de usuario ou contrasinal non válidos; por favor, inicia sesión de novo.</string>
-    <string name="signing_in">Iniciando sesión...</string>
-    <string name="signed_in">Sesión iniciada!</string>
-    <string name="please_sign_in">Por favor, inicia sesión</string>
-    <string name="please_sign_in_description">Por favor, inicia sesión na túa conta de iNaturalist ou rexístrate cunha nova.</string>
+    <string name="satellite">Satellite</string>
+    <string name="couldnt_load_nearby_observations">Couldn\'t load nearby observations: %1$s</string>
+    <string name="username_invalid">Username or password was invalid, please sign in again.</string>
+    <string name="signing_in">Signing in...</string>
+    <string name="signed_in">Signed in!</string>
+    <string name="please_sign_in">Please sign in</string>
+    <string name="please_sign_in_description">Please sign in to your iNaturalist account or sign up for a new one.</string>
     <string name="please_enable_location_services">Please enable location services in order to find your current location...</string>
     <string name="go_to_settings">Go to Settings</string>
-    <string name="photo_not_specified">Foto non especificada</string>
-    <string name="set_date">Establecer data</string>
-    <string name="set_time">Establecer hora</string>
+    <string name="photo_not_specified">Photo not specified</string>
+    <string name="set_date">Date</string>
+    <string name="set_time">Time</string>
     <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
-    <string name="something_went_wrong">Vaites, algo foi mal: %1$s</string>
-    <string name="edit">Editar</string>
-    <string name="oh_no">Oh, non! %1$s</string>
-    <string name="observations">Observacións</string>
-    <string name="map">Mapa</string>
-    <string name="settings">Configuración</string>
-    <string name="projects">Proxectos</string>
-    <string name="delete_photo">Borrar foto</string>
-    <string name="menu">Menú</string>
-    <string name="my_location">A miña localización</string>
-    <string name="nearby_observations">Observacións próximas</string>
-    <string name="add">Engadir</string>
-    <string name="view_on_inat">Ver en iNat</string>
-    <string name="reload">Refrescar</string>
-    <string name="view_in_browser">Ver no navegador</string>
-    <string name="add_observation">Engadir observación</string>
-    <string name="take_picture">Tomar unha foto</string>
-    <string name="save">Gardar</string>
-    <string name="no_observations_yet">Aínda non hai observacións!</string>
-    <string name="or">ou</string>
-    <string name="signed_out">Pechar sesión</string>
-    <string name="username">Nome de usuario</string>
-    <string name="password">Contrasinal</string>
-    <string name="unknown">Descoñecido</string>
-    <string name="unknown_species">Especie descoñecida</string>
+    <string name="something_went_wrong">Blast, something went wrong: %1$s</string>
+    <string name="edit">Edit</string>
+    <string name="oh_no">Oh no! %1$s</string>
+    <string name="observations">My Observations</string>
+    <string name="map">Map</string>
+    <string name="settings">Settings</string>
+    <string name="projects">Projects</string>
+    <string name="delete_photo">Delete photo</string>
+    <string name="menu">Menu</string>
+    <string name="my_location">My Location</string>
+    <string name="nearby_observations">Nearby Observations</string>
+    <string name="add">Add</string>
+    <string name="view_on_inat">View on iNaturalist.org</string>
+    <string name="reload">Reload</string>
+    <string name="view_in_browser">View in browser</string>
+    <string name="add_observation">Add observation</string>
+    <string name="take_picture">Take picture</string>
+    <string name="save">Save</string>
+    <string name="no_observations_yet">No observations yet!</string>
+    <string name="or">or</string>
+    <string name="signed_out">Sign out</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="unknown">Unknown</string>
+    <string name="unknown_species">Unknown species</string>
     <string name="com_facebook_dialogloginactivity_ok_button">OK</string>
     <string name="com_facebook_loginview_log_out_button">Log Out</string>
     <string name="com_facebook_loginview_log_in_button">Log In</string>
@@ -74,36 +74,36 @@
     <string name="com_facebook_requesterror_password_changed">Your Facebook password has changed. Please log into this app again to reconnect your Facebook account.</string>
     <string name="com_facebook_requesterror_reconnect">Please log into this app again to reconnect your Facebook account.</string>
     <string name="com_facebook_requesterror_permissions">This app doesn’t have permission to do this. To change permissions, try logging into the app again.</string>
-    <string name="edit_observation">Edita a observación</string>
-    <string name="discard_changes">Seguro que queres descartar os cambios non gardados?</string>
-    <string name="yes">Si</string>
-    <string name="no">Non</string>
+    <string name="edit_observation">Edit Observation</string>
+    <string name="discard_changes">Are you sure you want to discard unsaved changes?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
-    <string name="agree">De acordo?</string>
-    <string name="no_comments">Sen comentarios/identificacións aínda</string>
-    <string name="add_comment">Engadir comentario</string>
-    <string name="add_id">Engadir indentificación</string>
-    <string name="remarks">Notas...</string>
-    <string name="enter_taxon_name">Escribe o nome do taxón</string>
-    <string name="no_projects">Ningún proxecto atopado!</string>
-    <string name="no_guides">Ningunha guía atopada!</string>
-    <string name="loading_projects">Cargando proxectos...</string>
-    <string name="joined_projects">Inscrito</string>
-    <string name="nearby_projects">Próximos</string>
+    <string name="agree">Agree?</string>
+    <string name="no_comments">No comments/identifications yet</string>
+    <string name="add_comment">Add comment</string>
+    <string name="add_id">Add identification</string>
+    <string name="remarks">Remarks...</string>
+    <string name="enter_taxon_name">Species name</string>
+    <string name="no_projects">No projects found!</string>
+    <string name="no_guides">No guides found!</string>
+    <string name="loading_projects">Loading projects...</string>
+    <string name="joined_projects">Joined</string>
+    <string name="nearby_projects">Nearby</string>
     <!-- Tab title for the list of featured projects in the Projects screen -->
-    <string name="featured_projects">Destacados</string>
+    <string name="featured_projects">Featured</string>
     <!-- Verb, used as a label for actions like leaving a project -->
-    <string name="leave">Abandonar</string>
-    <string name="join">Unirse</string>
-    <string name="no_check_list">Ningún taxón na listaxe!</string>
-    <string name="failed_to_add_obs_to_project">Erro ao engadir a observación \'%1$s\' no proxecto \'%2$s\': %3$s</string>
-    <string name="invalid_project_field">Por favor, insire un valor válido para o campo \'%1s\'</string>
+    <string name="leave">Leave</string>
+    <string name="join">Join</string>
+    <string name="no_check_list">No Taxa in Check List!</string>
+    <string name="failed_to_add_obs_to_project">Failed to add observation \'%1$s\' to project \'%2$s\': %3$s</string>
+    <string name="invalid_project_field">Please enter a valid value for field \'%1s\'</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
-    <string name="select_projects">Seleccionar proxectos</string>
-    <string name="not_connected">Fai falta estar conectado a Internet para poder facer isto!</string>
-    <string name="search_projects">Buscar proxectos...</string>
-    <string name="search_guides">Buscar guías...</string>
-    <string name="save_observation">Gardar observación</string>
+    <string name="select_projects">Select from Joined Projects</string>
+    <string name="not_connected">You must be connected to the Internet in order to do that!</string>
+    <string name="search_projects">Search projects...</string>
+    <string name="search_guides">Search guides...</string>
+    <string name="save_observation">Save observation</string>
     <!-- Header for a description an individual guide -->
     <string name="about_guide">About</string>
     <string name="about_guide_all_caps">ABOUT</string>
@@ -113,41 +113,41 @@
     <string name="about_this_app">About</string>
     <string name="about_taxon_short">About</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
-    <string name="geoprivacy">Xeoprivacidade</string>
+    <string name="geoprivacy">Geoprivacy</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
     <string name="geoprivacy_with_value">Geoprivacy: %1$s</string>
-    <string name="delete_confirmation">Seguro que queres borrar esta observación?</string>
+    <string name="delete_confirmation">Are you sure you want to delete this observation?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
-    <string name="guides">Guías</string>
-    <string name="my_guides">As túas</string>
-    <string name="nearby_guides">Próximas</string>
-    <string name="all_guides">Todas</string>
-    <string name="no_taxa">Ningún taxón atopado nesta guía!</string>
-    <string name="search_taxa">Buscar taxons...</string>
-    <string name="no_internet_guides">As guías precisan dunha conexión a Internet</string>
-    <string name="no_internet_projects">Os proxectos precisan dunha conexión a Internet</string>
-    <string name="locale_gl">Galego</string>
-    <string name="locale_eu">Euskera</string>
-    <string name="use_device_language_settings">Usar as opcións de idioma do terminal</string>
-    <string name="choose_location">Elixir localización</string>
-    <string name="done">Feito</string>
+    <string name="guides">Guides</string>
+    <string name="my_guides">Yours</string>
+    <string name="nearby_guides">Nearby</string>
+    <string name="all_guides">All</string>
+    <string name="no_taxa">No taxa found for this guide!</string>
+    <string name="search_taxa">Search taxa...</string>
+    <string name="no_internet_guides">Guides require an Internet connection</string>
+    <string name="no_internet_projects">Projects require an Internet connection</string>
+    <string name="locale_gl">Galician</string>
+    <string name="locale_eu">Basque</string>
+    <string name="use_device_language_settings">Use device language settings</string>
+    <string name="choose_location">Choose Location</string>
+    <string name="done">Done</string>
     <string name="please_sign_in_via_settings">You must be logged in to view projects you\'ve joined.</string>
     <string name="contact_support">Contact Support</string>
     <string name="credits">Designed and built by iNaturalist.org with support from the California Academy of Sciences</string>
-    <string name="leave_project">Abandonar o proxecto</string>
+    <string name="leave_project">Leave Project</string>
     <string name="leave_project_confirmation">Are you sure you want to leave this project?</string>
-    <string name="discard_location_changes">Seguro que queres descartar os cambios non gardados?</string>
-    <string name="edit_location">Editar localización</string>
+    <string name="discard_location_changes">Are you sure you want to discard unsaved changes?</string>
+    <string name="edit_location">Edit Location</string>
     <string name="edit_locality_notes">Edit Locality Notes</string>
-    <string name="get_current_location">Obter localización actual</string>
-    <string name="pull_to_refresh">Turra para actualizar...</string>
-    <string name="release_to_refresh">Solta para actualizar...</string>
-    <string name="refreshing">Actualizando...</string>
+    <string name="get_current_location">Get current location</string>
+    <string name="pull_to_refresh">Pull to refresh...</string>
+    <string name="release_to_refresh">Release to refresh...</string>
+    <string name="refreshing">Refreshing...</string>
     <plurals name="sync_x_observations">
         <item quantity="one">Sync %1$d observation</item>
         <item quantity="other">Sync %1$d observations</item>
     </plurals>
-    <string name="sync_observations">Sincronizar observacións</string>
+    <string name="sync_observations">Sync Observations</string>
     <string name="lets_get_started">Let\'s get started!</string>
     <string name="view_nearby_observations">View Nearby Observations</string>
     <string name="skip_for_now">Skip for Now</string>
@@ -185,7 +185,7 @@
     <string name="photos"><![CDATA[<b>Photos:</b> %1$s]]></string>
     <string name="text"><![CDATA[<b>Text:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
-    <string name="alert_message_use_inaturalist">A principal rede iNaturalist. Ao tocar en Aceptar fixará a túa aplicación como parte da rede global de iNaturalist.</string>
+    <string name="alert_message_use_inaturalist">The main iNaturalist Network. Clicking OK will set your app as part of the global iNaturalist network.</string>
     <string name="alert_message_use_naturalista">NaturaLista is a member of the iNaturalist Network in Mexico. Local institutions supporting NaturaLista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_naturewatchnz">iNaturalist NZ is a member of the iNaturalist Network in New Zealand. Local institutions supporting iNaturalist NZ will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Local institutions supporting iNaturalist Canada will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
@@ -202,7 +202,7 @@
     <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg is a member of the iNaturalist Network in Luxembourg. Local institutions supporting iNaturalist Luxembourg will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom is a member of the iNaturalist Network in United Kingdom. Local institutions supporting iNaturalist United Kingdom will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editor</string>
-    <string name="license">License</string>
+    <string name="license">Licence</string>
     <string name="download_for_offline_use">Download for offline use</string>
     <string name="download_not_available">Download not available</string>
     <string name="guide_editor_must_enable_this_feature">Guide editor must enable this feature.</string>
@@ -235,7 +235,7 @@
     <string name="min_6_chars">Min. 6 characters</string>
     <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data (recommended). <b>Learn More</b>]]></string>
     <string name="content_licensing">Content Licensing</string>
-    <string name="content_licensing_description">Check this box if you want to apply a Creative Commons Attribution-NonCommercial license to your photos. You can choose a different license or remove the license later, but this is the best license for sharing with researchers.</string>
+    <string name="content_licensing_description">Check this box if you want to apply a Creative Commons Attribution-NonCommercial licence to your photos. You can choose a different licence or remove the licence later, but this is the best licence for sharing with researchers.</string>
     <!-- Try to keep this about the length of the English text -->
     <string name="username_or_email">Username or Email</string>
     <string name="forgot">Forgot?</string>
@@ -356,7 +356,7 @@
     <string name="language">Language</string>
     <string name="version">Version</string>
     <string name="inat_network">iNaturalist Network</string>
-    <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
+    <string name="inat_network_description">The iNaturalist Network is a framework for localising the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
     <string name="more_info">More Info</string>
     <string name="select_network">Select Network Affiliation</string>
     <string name="help">Help</string>
@@ -431,7 +431,7 @@
         <item quantity="one">Syncing %1$d of %2$d observation...</item>
         <item quantity="other">Syncing %1$d of %2$d observations...</item>
     </plurals>
-    <string name="deleting_observations">Deleting observations...</string>
+    <string name="deleting_observations">Deleting Observations...</string>
     <string name="preparing">Preparing...</string>
     <string name="add_edit_remark">Add/Edit Remark</string>
     <string name="restore">Restore</string>
@@ -470,7 +470,7 @@
     <string name="enlarge">Enlarge</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">View Children</string>
-    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
+    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG extensions</string>
     <string name="taxon_has_no_photos">This taxon has no photos.</string>
     <string name="terrain">Terrain</string>
     <string name="filters">Filters</string>
@@ -608,7 +608,7 @@
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
     <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="http://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
-    <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
+    <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localised, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organisations.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Credits</string>
     <string name="password_changed">The password the app uses no longer works - did you change your password on the website? Please enter the new one here</string>

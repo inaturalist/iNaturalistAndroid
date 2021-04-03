@@ -198,6 +198,9 @@
     <string name="alert_message_use_inaturalistil">iNaturalist Israel é membro da Rede iNaturalist em Israel. As instituições locais que apoiam o iNaturalist Israel terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finlândia é membro da Rede iNaturalist na Finlândia. As instituições locais que apoiam o iNaturalist Finlândia terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
     <string name="alert_message_use_inaturalistcl">iNaturalist Chile é membro da Rede iNaturalist no Chile. As instituições locais que apoiam o iNaturalist Chile terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Grécia é membro da Rede iNaturalist na Grécia. As instituições locais que apoiam o iNaturalist Grécia terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxemburgo é membro da Rede iNaturalist no Luxemburgo. As instituições locais que apoiam o iNaturalist Luxemburgo terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist Reino Unido é membro da Rede iNaturalist no Reino Unido. As instituições locais que apoiam o iNaturalist Reino Unido terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
     <string name="editor">Editor</string>
     <string name="license">Licença</string>
     <string name="download_for_offline_use">Descarregar para usar offline</string>
@@ -246,9 +249,10 @@
     <string name="please_sign_in_for_updates">Tem de ter sessão iniciada para ver as suas atualizações.</string>
     <string name="by_using_inat_terms"><![CDATA[Ao usar o iNaturalist você concorda com os <b><a href="https://www.inaturalist.org/pages/terms">Termos de Utilização</a></b> e <b><a href="https://www.inaturalist.org/pages/privacy">Política de Privacidade</a></b>]]></string>
     <string name="activity">Atividade</string>
+    <!-- Label for a button to open the camera to take a new photo for an observation -->
     <string name="camera">Tirar Foto</string>
+    <!-- Label for a button to import an existing photo for an observation -->
     <string name="upload_photo">Escolher Imagem</string>
-    <string name="menu_text">Sem Foto</string>
     <string name="first">1º</string>
     <string name="make_first">Fazer 1º</string>
     <string name="notes">Notas</string>
@@ -309,7 +313,8 @@
     <string name="sync_obs_to_see_favs">Sincronizar esta observação para ver os favoritos...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Sincronizar esta observação para deixar um comentário ou sugerir uma identificação...</string>
-    <string name="no_photo">No Media</string>
+    <!--  Label for a button to add an observation without a photo or a sound  -->
+    <string name="no_photo">Sem multimédia</string>
     <string name="about_this_species">Acerca desta espécie</string>
     <string name="view_on_wikipedia">Artigo da Wikipedia</string>
     <string name="photo"><![CDATA[Foto: <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -386,7 +391,7 @@
     <string name="fish">Peixes</string>
     <string name="mollusks">Moluscos</string>
     <string name="protozoans">Protozoários</string>
-    <string name="chromista">Kelp, Diatoms, and Allies</string>
+    <string name="chromista">algas, diatomáceas e similares</string>
     <string name="amphibians">Anfíbios</string>
     <string name="fungi">Fungos</string>
     <string name="birds">Aves</string>
@@ -625,7 +630,6 @@ nossa comunidade de código aberto]]></string>
     <string name="project_identifiers">Identificadores</string>
     <string name="got_it">Percebi!</string>
     <string name="view_all">Ver Tudo</string>
-    <string name="new_badge">Novo</string>
     <string name="observers">Observadores</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
     <string name="attribute">Atributo</string>
@@ -741,6 +745,9 @@ nossa comunidade de código aberto]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: Universidade de Haifa apoiando o iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finlandês: Museu Finlandês de História Natural (LUOMUS) que apoia o iNaturalist Finlândia (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente que apoia o iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Grécia: iSea apoiando o iNaturalist Grécia (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Luxemburgo, Museu Nacional de História Natural do Luxemburgo (MnhnL) que apoia o iNaturalist Luxemburgo (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Reino Unido: National Biodiversity Network Trust apoiando o iNaturalist UK (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Marcar tudo como visto</string>
     <string name="content_hidden">Conteúdo Oculto</string>
     <string name="show_hidden_content">Mostrar Conteúdo Oculto</string>
@@ -752,9 +759,11 @@ nossa comunidade de código aberto]]></string>
     <string name="could_not_play_sound">Não foi possível reproduzir o som - é provável que seja um problema na rede</string>
     <string name="cant_play_soundcloud"><![CDATA[Para ouvir sons do Soundcloud, consulte o website <a href="%1$s"></a>.]]></string>
     <string name="soundcloud">Soundcloud</string>
+    <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Gravar Som</string>
     <string name="no_recorder_found">Nenhum gravador de som padrão encontrado!</string>
     <string name="couldnt_retrieve_sound">Não foi possível recuperar o som do gravador padrão - tente importar o som em vez disso</string>
+    <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Escolher Som</string>
     <string name="multi_select_sound_description">Importar vários sons ao pressionar continuamente num única som</string>
     <string name="alert_unsupported_audio_type">Lamentamos, mas houve um problema de incompatibilidade com o som a carregar</string>
@@ -805,66 +814,66 @@ nossa comunidade de código aberto]]></string>
     <string name="please_try_again_in_a_few_hours">Por favor, tente novamente dentro de algumas horas.</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
     <string name="please_try_again_in_x">Tente novamente em %1$d %2$s</string>
-    <string name="hours">hours</string>
-    <string name="minutes">minutes</string>
-    <string name="seconds_value">seconds</string>
-    <string name="shop_the_inat_store">Shop the iNat Store</string>
-    <string name="delete_your_account">Delete Your Account</string>
-    <string name="delete_account_message"><![CDATA[By deleting your account you will remove:<br/><br/><ul><li> All of your observations, including the work of the all the people who have helped you out with identifications.</li><li> All of the identifications you\'ve added to the observations of other people, which will potentially affect the data quality of those observations.</li><li> All of the comments you\'ve added.</li></ul><br/>Furthermore, this action cannot be undone. If you change your mind later, you aren\'t getting any of that content back.<br/><br/>If this service generates too many notifications, consider <a href="https://www.inaturalist.org/users/edit">editing your settings on the website</a> to opt out of certain notifications or stop receiving email from us. If you\'re having trouble with a specific person, consider <a href="https://www.inaturalist.org/users/edit">muting them</a> instead of deleting your account.<br/><br/>If you\'re still sure you want to delete your account, enter <b>\"%1$s\"</b> in the form below and click the button to delete your account and all your data.]]></string>
-    <string name="your_account_has_been_deleted">Your account has been deleted</string>
-    <string name="you_must_enter_username_in_the_form_to_delete_account">You must enter \'%1$s\' in the form to delete your account</string>
+    <string name="hours">horas</string>
+    <string name="minutes">minutos</string>
+    <string name="seconds_value">segundos</string>
+    <string name="shop_the_inat_store">Compre na Loja iNat</string>
+    <string name="delete_your_account">Apagar a sua conta</string>
+    <string name="delete_account_message"><![CDATA[Ao apagar a sua conta, você removerá:<br/><br/><ul><li> Todas as suas observações, incluindo o trabalho de todas as pessoas que o ajudaram com identificações.</li><li> Todas as identificações que você adicionou às observações das outras pessoas, o que poderá afectar a qualidade dos dados dessas observações.</li><li> Todos os comentários que adicionou.</li></ul><br/>Além disso, esta ação não pode ser desfeita. Se você mudar de ideias mais tarde, não receberá nenhum desse conteúdo de volta.<br/><br/>Se este serviço gera muitas notificações, considere <a href="https://www.inaturalist.org/users/edit">editar as suas configurações no site</a> para optar por não receber certas notificações ou parar de receber e-mails. Se você está a ter problemas com uma pessoa específica, considere <a href="https://www.inaturalist.org/users/edit">silenciá-la</a> em vez de apagar a sua conta.<br/><br/>Se ainda tem certeza de que deseja apagar a sua conta, Digite <b>\"%1$s\"</b> no formulário abaixo e clique no botão para apagar a sua conta e todos os seus dados.]]></string>
+    <string name="your_account_has_been_deleted">A sua conta foi eliminada</string>
+    <string name="you_must_enter_username_in_the_form_to_delete_account">Você deve digitar \'%1$s\' no formulário para apagar a sua conta</string>
     <!-- Second person hint text asking the user to enter their username -->
-    <string name="type_your_username">Type your username</string>
-    <string name="error_deleting_account">There was an error deleting your account - please check your Internet connection</string>
-    <string name="verify_your_password">Verify Your Password</string>
-    <string name="third_party_data_sharing">Third-party Data Sharing</string>
-    <string name="disable_third_party_data_sharing">Disable Third-party Data Sharing</string>
-    <string name="do_not_collect_third_party_data">Do not collect stability and usage data using third-party services</string>
-    <string name="enabled">Enabled</string>
-    <string name="disabled">Disabled</string>
-    <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third-party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
-    <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
-    <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third-party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
-    <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
-    <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
-    <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
-    <string name="search_places">Search Places</string>
-    <string name="restart_app">Restart App</string>
-    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
+    <string name="type_your_username">Insira o seu nome de utilizador</string>
+    <string name="error_deleting_account">Ocorreu um erro ao apagar a sua conta - por favor, verifique a sua ligação à internet</string>
+    <string name="verify_your_password">Verifique a sua Palavra-passe</string>
+    <string name="third_party_data_sharing">Partilha de dados com terceiros</string>
+    <string name="disable_third_party_data_sharing">Desativar partilha de dados com terceiros</string>
+    <string name="do_not_collect_third_party_data">Não recolha dados de estabilidade e uso usando serviços de terceiros</string>
+    <string name="enabled">Ativado</string>
+    <string name="disabled">Desativado</string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[Usamos uma variedade de serviços de terceiros para monitorizar a estabilidade e diagnosticar bugs e problemas no nosso software. Esses terceiros incluem:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="third_party_data_sharing_notes2"><![CDATA[As informações que partilhamos com esses terceiros incluem:<br/><ul><li> endereços IP (que podem ser usados para obter localização ao nível da cidade e para acompanhá-lo através de diferentes sites e serviços; note que ativamos a <a href="https://support.google.com/analytics/answer/2763052">anonimização de IP</a> no Google Analytics e <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> não registra endereços IP, no nosso conhecimento)</li><li>detalhes do navegador, como marca, modelo e versão</li><li>detalhes de erro, como exatamente qual linha de código causou um erro</li><li>Detalhes do dispositivo, como marca e modelo de um telefone</li></ul>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b>Estes serviços de terceiros fornecem-nos enorme valor</b> na manutenção da estabilidade e da usabilidade do iNaturalist com a nossa equipa relativamente pequena. Em dispositivos móveis, quase não há outra forma de podermos ter uma visão dos problemas que estão a acontecer, uma vez que o software está a ser executado em dispositivos que não controlamos. Às vezes, nem sequer estamos cientes de que tais problemas estão a ocorrer até os vermos nos dados que esses serviços fornecem. <b>Ao compartilhar estas informações, você está a ajudar-nos a servi-lo e a toda a comunidade iNaturalist.</b>]]></string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[Note que esta opção só se aplica a dados de análise e erro que estamos explicitamente a enviar para estas empresas. Todos os servidores do iNaturalist são fornecidos e hospedados pela Microsoft, todas as imagens do iNaturalist são hospedadas pela Amazon, e quase todos os mapas do iNaturalist são servidos pelo Google, o que significa que cada vez que você vir uma observação no iNaturalist, você está a ligar-se aos serviços prestados por essas empresas e expondo-lhes o seu endereço IP, pelo menos (no aplicativo para iPhone, usamos mapas da Apple). O iNaturalist provavelmente não existiria sem os serviços que essas empresas fornecem, e enquanto podemos limitar a quantidade e os tipos de dados que você partilha com eles ao usar iNat, não podemos interromper o fluxo de dados completamente.]]></string>
+    <string name="common_names_place"><![CDATA[Local dos nomes comuns: <b>%1$s</b>]]></string>
+    <string name="tap_to_prioritize_common_names">Toque para dar prioridade a nomes comuns de um local específico.</string>
+    <string name="search_places">Pesquisar locais</string>
+    <string name="restart_app">Reiniciar aplicativo</string>
+    <string name="disable_third_party_sharing_restart">Para desativar imediatamente a partilha de dados de terceiros, o aplicativo deve reiniciar.</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
-        <item quantity="one">Are you sure you want to delete this %1$d observation?</item>
-        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+        <item quantity="one">Tem a certeza que deseja eliminar esta %1$d observação?</item>
+        <item quantity="other">Tem a certeza que deseja eliminar estas %1$d observações?</item>
     </plurals>
-    <string name="future_observed_on_date_error">Your observation was created (and submitted) on %1$s, but you\'re trying to set an observation date that is later than that: %2$s</string>
-    <string name="no_more_photos_allowed">Observations can only have %1$d photos. To add more you will need to remove some.</string>
-    <string name="warning_multiple_photos">If you\'re adding photos of different kinds of organisms to this observation, or the same kind at different places or times, you should remove those photos and add them as separate observations. An observation can only have %1$d photos.</string>
-    <string name="choosing_specific_language_warning">Choosing a specific language for your account requires an Internet connection</string>
-    <string name="running_in_background_notfication">Running in the background so we can run without interruption</string>
-    <string name="opt_out_of_community_taxon">Opt out of the Community Taxon</string>
-    <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
-    <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
+    <string name="future_observed_on_date_error">A sua observação foi criada (e enviada) em %1$s, mas você está a tentar definir uma data de observação que é posterior: %2$s</string>
+    <string name="no_more_photos_allowed">As observações só podem ter %1$d fotografias. Para adicionar mais precisará de remover algumas.</string>
+    <string name="warning_multiple_photos">Se você estiver a adicionar fotos de diferentes tipos de organismos a esta observação, ou o mesmo tipo em lugares ou horários diferentes, deve remover essas fotos e adicioná-las como observações separadas. Uma observação só pode ter %1$d fotos.</string>
+    <string name="choosing_specific_language_warning">Escolher um idioma específico para a sua conta requer uma ligação à Internet</string>
+    <string name="running_in_background_notfication">Executando em segundo plano para que possamos funcionar sem interrupção</string>
+    <string name="opt_out_of_community_taxon">Optar por sair do táxon da comunidade</string>
+    <string name="opt_in_to_community_taxon">Optar pelo táxon da comunidade</string>
+    <string name="opt_out_message">Optar por sair do táxon comunitário força esta observação a estar associada com o táxon da sua identificação atual, não a um táxon derivado de todas as identificações que foram adicionadas a esta observação. Se um número suficiente de identificadores discordarem de si, a sua observação tornar-se-á Casual. Você só deverá optar por sair se tiver a certeza de que a sua identificação está correta e que as outras identificações estão incorretas.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
-    <string name="permission_required">Permission Required</string>
+    <string name="permission_required">Autorização Necessária</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
-    <string name="to_access_your_location">To access your location you must grant location access permission to this app.</string>
+    <string name="to_access_your_location">Para aceder à sua localização precisa conceder permissão de acesso à localização a esta APP.</string>
     <!-- Dialog title when displaying a message that an action is not permitted -->
-    <string name="forbidden">Forbidden</string>
+    <string name="forbidden">Proibido</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
-    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
+    <string name="app_you_shared_blocked">O aplicativo com que partilhou cria fotos que não são adequadas para observações porque não representam evidência da sua experiência com outro organismo, porque incluem marcas ou conteúdo comercial inadequados, ou porque violam os nossos Termos de Serviço de outras formas.</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <string name="list_observation_checkbox_description">Caixa de seleção para selecionar a observação no modo multi-seleção</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <string name="observation_list_item_iconic_pic_description">Miniatura de foto para táxon da observação</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
-    <string name="messages">Messages</string>
-    <string name="all_messages">All Messages</string>
-    <string name="search_messages">Search messages</string>
-    <string name="no_messages">You currently have no messages. You can send a new message with the green button, or message them from their profile page.</string>
-    <string name="no_messages_found">No messages found.</string>
-    <string name="send_a_message">Send a message</string>
-    <string name="sending_message">Sending message...</string>
-    <string name="could_not_send_message">Couldn\'t send message: %1$s</string>
+    <string name="observation_list_item_obs_pic_description">Miniatura de foto para observação</string>
+    <string name="messages">Mensagens</string>
+    <string name="all_messages">Todas as Mensagens</string>
+    <string name="search_messages">Procurar mensagens</string>
+    <string name="no_messages">Não tem mensagens de momento. Pode enviar uma nova mensagem com o botão verde ou enviar-lhes mensagem a partir da página de perfil deles.</string>
+    <string name="no_messages_found">Não foram encontradas mensagens.</string>
+    <string name="send_a_message">Enviar uma mensagem</string>
+    <string name="sending_message">A enviar mensagem...</string>
+    <string name="could_not_send_message">Não foi possível enviar mensagem: %1$s</string>
     <string name="subject">Subject</string>
     <string name="body">Corpo</string>
     <string name="type_your_message_here">Escreva aqui a sua mensagem</string>
@@ -1023,7 +1032,7 @@ nossa comunidade de código aberto]]></string>
     <string name="share_hidden_location">Partilhar localização oculta</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Impossível duplicar som!</string>
-    <string name="sound_format_not_supported">Este arquivo de som é da extensão correta, mas a codificação de áudio específica não é suportada pelo Android.</string>
+    <string name="sound_format_not_supported">A codificação de áudio não é suportada pelo Android.</string>
     <string name="view_observations">Ver observações</string>
     <string name="choose_this_option">Escolher esta opção</string>
     <string name="compare_observation_with_this_option">Comparar observação com esta opção</string>
@@ -1059,22 +1068,68 @@ nossa comunidade de código aberto]]></string>
     <!-- Label for an observation search filter to exclude your own observations -->
     <string name="hide_my_observations">Ocultar as minhas observações</string>
     <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
-    <string name="follow_this_observation">Follow this Observation</string>
+    <string name="follow_this_observation">Seguir esta observação</string>
     <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
-    <string name="unfollow_this_observation">Unfollow this Observation</string>
+    <string name="unfollow_this_observation">Parar de seguir esta observação</string>
     <!-- Error message shown when an attempt to follow an observation fails -->
-    <string name="could_not_follow_observation">Could not follow this observation</string>
+    <string name="could_not_follow_observation">Não foi possível seguir esta observação</string>
     <!-- Error message shown when an attempt to unfollow an observation fails -->
-    <string name="could_not_unfollow_observation">Could not unfollow this observation</string>
+    <string name="could_not_unfollow_observation">Não foi possível deixar de seguir esta observação</string>
     <!-- Label for a button to copy the coordinates of an observation -->
-    <string name="copy_coordinates">Copy coordinates</string>
-    <string name="coordinates_copied_to_clipboard">Coordinates copied to clipboard</string>
+    <string name="copy_coordinates">Copiar coordenadas</string>
+    <string name="coordinates_copied_to_clipboard">Coordenadas copiadas para área de transferência</string>
     <!--  Title of a section on the observation detail view that displays minor metadata  -->
-    <string name="metadata">Metadata</string>
+    <string name="metadata">Metadados</string>
     <!--  iNat observation identifier  -->
     <string name="id">ID</string>
     <!--  iNat observation Universally Unique Identifier  -->
     <string name="uuid">UUID</string>
     <!--  Universal Resource Locator  -->
     <string name="url">URL</string>
+    <string name="default_licenses">Licenças Padrão</string>
+    <string name="default_observation_license">Licença padrão para observações</string>
+    <string name="default_photo_license">Licença padrão para fotografias</string>
+    <string name="default_sound_license">Licença padrão para sons</string>
+    <string name="change_licenses_for_existing_observations">Alterar licenças para observações, fotos e sons existentes</string>
+    <string name="change_licenses_for_all_existing_observations">Alterar licenças para todas as observações existentes</string>
+    <string name="change_licenses_for_all_existing_photos">Alterar licenças para todas as fotos existentes</string>
+    <string name="change_licenses_for_all_existing_sounds">Alterar licenças para todos os sons existentes</string>
+    <string name="change_observation_licenses">Alterar licenças de observação</string>
+    <string name="change_photo_licenses">Alterar licenças para fotos</string>
+    <string name="change_sound_licenses">Alterar Licenças de Som</string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[Alterar as licenças de <b>%1$d</b> observações existentes para <b>%2$s</b>?]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[Alterar as licenças das fotos existentes para <b>%1$s</b>?]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Alterar as licenças dos sons existentes para <b>%1$s</b>?]]></string>
+    <string name="observation_licenses_updated">Licenças de Observação Atualizadas</string>
+    <string name="photo_licenses_updated">Licenças de Fotos Atualizadas</string>
+    <string name="sound_licenses_updated">Licenças de Som Atualizadas</string>
+    <string name="existing_observation_licenses_have_been_updated">Todas as licenças de observação existentes foram alteradas para %1$s.</string>
+    <string name="existing_photo_licenses_have_been_updated">Todas as licenças existentes para fotos foram alteradas para %1$s.</string>
+    <string name="existing_sound_licenses_have_been_updated">Todas as licenças de som existentes foram alteradas para %1$s.</string>
+    <string name="default_licenses_description"><![CDATA[Licenciar o seu conteúdo dá a qualquer pessoa o direito legal de usá-lo sem pedir a sua permissão se cumprir os termos da licença. Além disso, iNat inclui o seu conteúdo com licença Creative Commons em arquivos atualizados regularmente, produzidos para organizações parceiras selecionadas, interessadas nos nossos dados. Por exemplo, incluímos No Copyright (CC0), Attribution (CC BY), e registros Attribution-NonCommercial (CC BY-NC) no arquivo que geramos para <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>,  uma organização internacional intergovernamental que compila e distribui informação sobre biodiversidade em todo o mundo.]]></string>
+    <string name="photo_license">Licença da Foto</string>
+    <string name="edit_photo_license">Editar Licença Foto</string>
+    <string name="observation_license">Licença de Observação</string>
+    <string name="edit_observation_license">Editar Licença de Observação</string>
+    <string name="about_licenses">Sobre as licenças</string>
+    <string name="view_license">Ver Licença</string>
+    <!-- License Names -->
+    <string name="license_name_cc0">Domínio Público</string>
+    <string name="license_name_cc_by">Atribuição</string>
+    <string name="license_name_cc_by_nc">Atribuição-Não Comercial</string>
+    <string name="license_name_cc_by_nc_sa">Atribuição-Não Comercial-Partilha igual</string>
+    <string name="license_name_cc_by_nc_nd">Atribuição – Uso Não Comercial – Não a Obras Derivadas</string>
+    <string name="license_name_cc_by_nd">Atribuição – Não a Obras Derivadas</string>
+    <string name="license_name_cc_by_sa">Atribuição – Compartilhamento pela mesma Licença</string>
+    <string name="license_name_no_license">Todos os direitos reservados</string>
+    <!-- License Descriptions -->
+    <string name="license_description_cc0">Esta licença libera a sua obra em domínio público, de modo que outros podem copiar, modificar, distribuir e levar a termo o seu trabalho, inclusive com finalidade comercial, sem pedir permissão, ou dar-lhe crédito. Esta é a licença mais livre das que se oferecem. Recomendado para uma máxima difusão e uso dos materiais licenciados.</string>
+    <string name="license_description_cc_by">Esta licença permite a outros distribuir, remexer, alterar ou trabalhar a partir do seu trabalho, mesmo comercialmente, desde que seja dado crédito pela criação original.</string>
+    <string name="license_description_cc_by_nc">Esta licença permite a outros remexer, alterar ou trabalhar a partir do seu trabalho para fins não comerciais. Apesar dos seus novos trabalhos não poderem ser comerciais e serem obrigados a atribuir-lhe crédito, as obras derivadas não têm de ser licenciadas nos mesmos termos.</string>
+    <string name="license_description_cc_by_nc_sa">Esta licença permite a outros remexer, alterar e trabalhar a partir da sua obra para fins não comerciais, desde que lhe dêem crédito e licenciem as novas criações nos mesmos termos.</string>
+    <string name="license_description_cc_by_nc_nd">Esta licença é a mais restritiva das seis principais licenças, permitindo apenas a outros fazer download dos seus trabalhos e partilhá-los com outros desde que lhe dêem crédito, mas não permitindo alterações de qualquer tipo ou o seu uso comercial.</string>
+    <string name="license_description_cc_by_nd">Esta licença permite a redistribuição, comercial e não comercial, desde que seja usada integralmente sem alterações, e lhe dêem crédito enquanto autor.</string>
+    <string name="license_description_cc_by_sa">Esta licença permite a outros remexer, alterar ou trabalhar a partir do seu trabalho para fins não comerciais. Apesar dos seus novos trabalhos não poderem ser comerciais e serem obrigados a atribuir-lhe crédito, as obras derivadas não têm de ser licenciadas nos mesmos termos.</string>
+    <string name="license_description_no_license">Você detém total direito sobre o seu conteúdo a partir dos direitos concedidos ao iNaturalist nos nossos Termos de Serviço.</string>
+    <string name="invalid_photo">Formato de foto não suportado</string>
 </resources>

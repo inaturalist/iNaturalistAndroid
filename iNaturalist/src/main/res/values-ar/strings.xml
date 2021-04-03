@@ -203,6 +203,9 @@
     <string name="alert_message_use_inaturalistil">iNaturalist Israel هو عضو شبكة ايناتشويريلست في إسرائيل. وعليه يحق للمؤسسات الداعمة للشبكة الوصول للعناوين الالكترونية وإحداثيات مواقع الملحوظات العامة والخاصة منها. لذلك نرجو منك عدم القيام بتجارب تغيير جهة الاشتراك اذا كان لديك أكثر من ١٠٠ ملحوظة. هل ترغب في تغيير جهة الاشتراك؟</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland هو عضو شبكة ايناتشويريلست في فينلندا. وعليه يحق للمؤسسات الداعمة للشبكة الوصول للعناوين الالكترونية وإحداثيات مواقع الملحوظات العامة والخاصة منها. لذلك نرجو منك عدم القيام بتجارب تغيير جهة الاشتراك اذا كان لديك أكثر من ١٠٠ ملحوظة. هل ترغب في تغيير جهة الاشتراك؟</string>
     <string name="alert_message_use_inaturalistcl">الطبيعيين في شيلي عضو في شبكة الطبيعيين في شيلي. ستتمكن المؤسسات المحلية التي تدعم عالم الطبيعة في شيلي من الوصول إلى عنوان بريدك الإلكتروني والإطلاع على الإحداثيات الحقيقية للملاحظات المحجوبة أو الخاصة علناً. الرجاء عدم تغيير انتسابك تجريبياً إذا كان لديك أكثر من 1000 ملاحظة. هل ترغب في تغيير هويتك؟</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Greece is a member of the iNaturalist Network in Greece. Local institutions supporting iNaturalist Greece will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg is a member of the iNaturalist Network in Luxembourg. Local institutions supporting iNaturalist Luxembourg will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom is a member of the iNaturalist Network in United Kingdom. Local institutions supporting iNaturalist United Kingdom will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">محرر</string>
     <string name="license">ترخيص</string>
     <string name="download_for_offline_use">تحميل,للاستخدام بدون التواصل مع شبكة الانترنت</string>
@@ -251,9 +254,10 @@
     <string name="please_sign_in_for_updates">الرجاء الدخول بواسطة شباك الاعدادات للاطلاع على المستجدات </string>
     <string name="by_using_inat_terms"><![CDATA[باستخدام iNaturalist فإنك توافق على <b><a href="https://www.inaturalist.org/pages/terms">شروط الخدمة</a></b> و <b><a href="https://www.inaturalist.org/pages/privacy">سياسة الخصوصية</a></b>]]></string>
     <string name="activity">تحديثات</string>
+    <!-- Label for a button to open the camera to take a new photo for an observation -->
     <string name="camera">تصوير</string>
+    <!-- Label for a button to import an existing photo for an observation -->
     <string name="upload_photo">اختيار صورة</string>
-    <string name="menu_text">تخطي صوره</string>
     <string name="first">أول</string>
     <string name="make_first">ارجع للموقع الاول</string>
     <string name="notes">تعقيبات</string>
@@ -318,6 +322,7 @@
     <string name="sync_obs_to_see_favs">قم مزامنة هذه الملحوظة لرؤية قائمة المفضلة لديك...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">قم بتسجيل الدخول أو التسجيل لترك تعليق أو اقتراح محدد...</string>
+    <!--  Label for a button to add an observation without a photo or a sound  -->
     <string name="no_photo">No Media</string>
     <string name="about_this_species">حول هذا النوع</string>
     <string name="view_on_wikipedia">مقالة ويكيبيديا</string>
@@ -391,11 +396,11 @@
     <string name="mammals">الثدييات</string>
     <string name="insects">حشرات</string>
     <string name="reptiles">الزواحف</string>
-    <string name="animals">Animals</string>
+    <string name="animals">الحيوانات</string>
     <string name="fish">أسماك</string>
     <string name="mollusks">الرخويات</string>
-    <string name="protozoans">Protozoans</string>
-    <string name="chromista">Kelp, Diatoms, and Allies</string>
+    <string name="protozoans">الأوليات</string>
+    <string name="chromista">الكلب والدياتوم والحلفاء</string>
     <string name="amphibians">برمائيات</string>
     <string name="fungi">الفطريات</string>
     <string name="birds">الطيور</string>
@@ -466,11 +471,11 @@
     <string name="more_info_on_inat">المزيد من المعلومات على iNaturalist.org</string>
     <string name="view_suggestions">عرض الإقتراحات</string>
     <string name="species_search">بحث عن الأنواع</string>
-    <string name="were_not_confident_enough">We\'re not confident enough to make a recommendation, but here are our top suggestions:</string>
+    <string name="were_not_confident_enough">نحن لسنا واثقين بما فيه الكفاية لتقديم توصية، ولكن فيما يلي أهم مقترحاتنا:</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
-    <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
+    <string name="most_observed_options_matching_filters">أكثر الخيارات الملاحظة تطابق المرشحات:</string>
     <!-- Header for a list of suggested taxa -->
-    <string name="top_suggestions">Top suggestions</string>
+    <string name="top_suggestions">أفضل الاقتراحات</string>
     <string name="pretty_sure_rank">نحن متأكدون تماما بأنها من هذا النوع %1$s:</string>
     <string name="what_did_you_see">ما الذي رأيته؟</string>
     <string name="suggest_species">إقترح نوع</string>
@@ -560,7 +565,7 @@
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">الوفد</string>
     <string name="apply_filters">تطبيق أدوات التصفية</string>
-    <string name="remove_filters">Remove Filters</string>
+    <string name="remove_filters">إزالة الفلاتر</string>
     <string name="reset">إعادة التشغيل</string>
     <string name="show_only_my_observations">إظهار ملاحظاتي فقط</string>
     <string name="project">المشروع</string>
@@ -640,7 +645,6 @@
     <string name="project_identifiers">مُحدِدات</string>
     <string name="got_it">حسنا!</string>
     <string name="view_all">عرض الكل</string>
-    <string name="new_badge">جديد</string>
     <string name="observers">الملاحظون</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
     <string name="attribute">سمة</string>
@@ -749,50 +753,55 @@
     <string name="prefers_scientific_name_first">عرض الأسماء العلمية أولا</string>
     <string name="prefers_scientific_name_first_description">عرض الأسماء العلمية قبل الأسماء الشائعة.</string>
     <string name="network_credit_inaturalistcanada"><![CDATA[كندا: الاتحاد الكندي للحياة البرية، متحف أونتاريو الملكي، خدمة الطبيعة كندا، وحدائق كندا تشغيل iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
-    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
-    <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) operating NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
-    <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network operating iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
-    <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
-    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
-    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
-    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Natural History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
-    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
-    <string name="mark_all_as_viewed">Mark all as viewed</string>
-    <string name="content_hidden">Content Hidden</string>
-    <string name="show_hidden_content">Show Hidden Content</string>
-    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
-    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
-    <string name="content">Content</string>
-    <string name="has_photos">Has Photos</string>
-    <string name="has_sounds">Has Sounds</string>
-    <string name="could_not_play_sound">Couldn\'t play sound - probably a network issue</string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[كولومبيا: Instituto Humboldt operation Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) operating NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[نيوزيلندا: شبكة نيوزيلندا لتسجيل التنوع البيولوجي التي تشغل iNaturalist NZ - Ma<unk> taki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
+    <string name="network_credit_biodiversity4all"><![CDATA[البرتغال: Associac<unk> a<unk> o Biodiversidade Para Todos operation Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[بنما: وزارة البيئة العاملة في iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[الأرجنتين: Fundacio<unk> n Vida Silvestre Argentina الداعمة ArgentiNat (<a href="https://www.argentinat.org">www.ar2,000 at.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[أستراليا: أطلس أستراليا لدعم iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[إكوادور: المعهد الوطني للأحياء (INABIO) الذي يدعم إيناتوراليست إكوادور (<a href="https://ecuador.inaturalist.org">Ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[إسرائيل: جامعة حيفا التي تدعم إيناتوراليست إسرائيل (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[فنلندا: المتحف الفنلندي للتاريخ الطبيعي (LUOMUS) الذي يدعم إيناتوراليست فنلندا (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[شيلي: وزارة شؤون البيئة الداعمة لإيناتوراليست شيلي (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="mark_all_as_viewed">تحديد الكل كمشاهدة</string>
+    <string name="content_hidden">المحتوى مخفي</string>
+    <string name="show_hidden_content">إظهار المحتوى المخفي</string>
+    <string name="content_hidden_because">المحتوى مخفي من قبل @%1$s في %2$s لأن: \"%3$s\"</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">اتصل بالدعم</a>]]></string>
+    <string name="content">المحتوى</string>
+    <string name="has_photos">لديه صور</string>
+    <string name="has_sounds">لديه أصوات</string>
+    <string name="could_not_play_sound">تعذر تشغيل الصوت-ربما مشكلة في الشبكة</string>
     <string name="cant_play_soundcloud"><![CDATA[To listen to Soundcloud sounds, view the <a href="%1$s">website</a>.]]></string>
-    <string name="soundcloud">Soundcloud</string>
-    <string name="record_sound">Record Sound</string>
-    <string name="no_recorder_found">No default sound recorder found!</string>
-    <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
-    <string name="upload_sound">Choose Sound</string>
-    <string name="multi_select_sound_description">Import multiple sounds by long-pressing on a single sound</string>
-    <string name="alert_unsupported_audio_type">Sorry, but there was a problem loading the sound from this source</string>
-    <string name="invalid_audio_extension">Error importing sound(s): Can only import sound files with WAV/MP3/AMR extensions</string>
-    <string name="importing_sounds">Importing sound(s)...</string>
-    <string name="observation_sound">Observation Sound</string>
-    <string name="deleted_sounds_from_cache_error">It looks like you deleted a sound by clearing the app cache before uploading. You will need to add the sound back to your observation from your gallery. In the future, please make sure you have uploaded all your sounds before clearing the app cache.</string>
+    <string name="soundcloud">سوندكلود</string>
+    <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
+    <string name="record_sound">تسجيل الصوت</string>
+    <string name="no_recorder_found">لم يتم العثور على مسجل صوتي افتراضي!</string>
+    <string name="couldnt_retrieve_sound">تعذر استرداد الصوت من المسجل الافتراضي - حاول استيراد الصوت بدلا من ذلك</string>
+    <!-- Label for a button to import an existing sound for an observation -->
+    <string name="upload_sound">اختر الصوت</string>
+    <string name="multi_select_sound_description">استيراد أصوات متعددة بالضغط المطول على صوت واحد</string>
+    <string name="alert_unsupported_audio_type">عذراً، ولكن حدثت مشكلة في تحميل الصوت من هذا المصدر</string>
+    <string name="invalid_audio_extension">خطأ في استيراد الأصوات: يمكن فقط استيراد ملفات الصوت مع امتدادات WAV/MP3/AMR</string>
+    <string name="importing_sounds">استيراد الأصوات...</string>
+    <string name="observation_sound">صوت الملاحظة</string>
+    <string name="deleted_sounds_from_cache_error">يبدو أنك قمت بحذف صوت من خلال مسح ذاكرة التخزين المؤقت للتطبيق قبل التحميل. سوف تحتاج إلى إضافة الصوت مرة أخرى إلى ملاحظتك من المعرض الخاص بك. في المستقبل، يرجى التأكد من أنك قمت برفع جميع الأصوات الخاصة بك قبل مسح ذاكرة التخزين المؤقت للتطبيق.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
-    <string name="seconds">%1$.1f sec</string>
-    <string name="clear_all_debug_logs">Clear All Debug Logs</string>
-    <string name="clears_up_storage_room_on_your_phone">Clears up storage room on your phone</string>
-    <string name="number_of_days_to_store_logs">Number of days to store logs</string>
-    <string name="send_debug_logs_from_start_date">Send Debug Logs From Start Date</string>
-    <string name="send_debug_logs_by_email">Send debug logs by email (from specified start date)</string>
-    <string name="debug_settings">Debug Settings</string>
-    <string name="are_you_sure_you_want_to_delete_logs">Are you sure you want to delete all debug logs? Only press \'Yes\' if you want clear up storage room for your phone</string>
-    <string name="no_log_files_found">No log files found for that date range - try earlier date?</string>
-    <string name="choose_pinned_location">Choose Pinned Location</string>
-    <string name="pin_current_location">Pin Current Location</string>
+    <string name="seconds">%1$.1f ثانية</string>
+    <string name="clear_all_debug_logs">مسح جميع سجلات التصحيح</string>
+    <string name="clears_up_storage_room_on_your_phone">مسح غرفة التخزين على هاتفك</string>
+    <string name="number_of_days_to_store_logs">عدد الأيام لتخزين السجلات</string>
+    <string name="send_debug_logs_from_start_date">إرسال سجلات التصحيح من تاريخ البدء</string>
+    <string name="send_debug_logs_by_email">إرسال سجلات التصحيح عن طريق البريد الإلكتروني (من تاريخ البدء المحدد)</string>
+    <string name="debug_settings">إعدادات التصحيح</string>
+    <string name="are_you_sure_you_want_to_delete_logs">هل أنت متأكد من أنك تريد حذف جميع سجلات التصحيح؟ فقط اضغط \'نعم\' إذا كنت تريد مسح غرفة التخزين لهاتفك</string>
+    <string name="no_log_files_found">لم يتم العثور على ملفات سجل لهذا النطاق من التاريخ - حاول في تاريخ أبكر؟</string>
+    <string name="choose_pinned_location">اختر الموقع المثبت</string>
+    <string name="pin_current_location">تثبيت الموقع الحالي</string>
     <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
     <string name="delete_this_pinned_location">Delete this pinned location?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
@@ -864,22 +873,22 @@
     <string name="choosing_specific_language_warning">Choosing a specific language for your account requires an Internet connection</string>
     <string name="running_in_background_notfication">Running in the background so we can run without interruption</string>
     <string name="opt_out_of_community_taxon">Opt out of the Community Taxon</string>
-    <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
-    <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
+    <string name="opt_in_to_community_taxon">اختيار الدخول إلى أصنوفة المجتمع</string>
+    <string name="opt_out_message">اختيار الخروج من أصنوفة المجتمع يجبر هذه الملاحظة على الارتباط بالأصنوفة من التعريف الحالي الخاص بك، ليس أصنوفة مستمدة من جميع التعاريف التي أضيفت إلى هذه الملاحظة. إذا اختلفت معرفات كافية معك ، فإن ملاحظتك ستصبح عادية. يجب عليك أن تختار الخروج فقط إذا كنت متأكداً من صحة هويتك وأن الهويات الأخرى غير صحيحة.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
-    <string name="permission_required">Permission Required</string>
+    <string name="permission_required">الإذن مطلوب</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
-    <string name="to_access_your_location">To access your location you must grant location access permission to this app.</string>
+    <string name="to_access_your_location">للوصول إلى موقعك يجب عليك منح إذن الوصول إلى الموقع لهذا التطبيق.</string>
     <!-- Dialog title when displaying a message that an action is not permitted -->
-    <string name="forbidden">Forbidden</string>
+    <string name="forbidden">ممنوع</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
-    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
+    <string name="app_you_shared_blocked">التطبيق الذي شاركته من إنشاء صور غير مناسبة للملاحظات لأنها لا تمثل دليلا على تجربتك مع كائن عضوي آخر، لأنها تتضمن علامة تجارية غير مناسبة أو محتوى تجاري، أو لأنها تنتهك شروط الخدمة الخاصة بنا بطرق أخرى.</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <string name="list_observation_checkbox_description">خانة الاختيار لاختيار الملاحظة في وضع تعدد التحديد</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <string name="observation_list_item_iconic_pic_description">صورة مصغرة لأصنوفة الملاحظة</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
+    <string name="observation_list_item_obs_pic_description">صورة مصغرة للملاحظة</string>
     <string name="messages">الرسائل</string>
     <string name="all_messages">الرسائل</string>
     <string name="search_messages">بحث عن رسالة</string>
@@ -935,57 +944,57 @@
     <string name="rank_suborder">تصتيف ثانوي</string>
     <string name="rank_infraorder">تصيف دنيوي</string>
     <string name="rank_subterclass">رتبة سفلية</string>
-    <string name="rank_parvorder">Parvorder</string>
-    <string name="rank_zoosection">Zoosection</string>
-    <string name="rank_zoosubsection">Zoosubsection</string>
-    <string name="rank_superfamily">Superfamily</string>
-    <string name="rank_epifamily">Epifamily</string>
-    <string name="rank_family">Family</string>
-    <string name="rank_subfamily">Subfamily</string>
-    <string name="rank_supertribe">Supertribe</string>
-    <string name="rank_tribe">Tribe</string>
-    <string name="rank_subtribe">Subtribe</string>
-    <string name="rank_genus">Genus</string>
-    <string name="rank_genushybrid">Genushybrid</string>
-    <string name="rank_subgenus">Subgenus</string>
-    <string name="rank_section">Section</string>
-    <string name="rank_subsection">subsection</string>
-    <string name="rank_complex">Complex</string>
+    <string name="rank_parvorder">بارفرتير</string>
+    <string name="rank_zoosection">قسم حديقة الحيوان</string>
+    <string name="rank_zoosubsection">قسم حديقة الحيوان القرعي</string>
+    <string name="rank_superfamily">فصيلة عليا</string>
+    <string name="rank_epifamily">فصيلة إضافية</string>
+    <string name="rank_family">العائلة</string>
+    <string name="rank_subfamily">فُصيلة</string>
+    <string name="rank_supertribe">قبيلة عليا</string>
+    <string name="rank_tribe">قبيلة</string>
+    <string name="rank_subtribe">عميرة</string>
+    <string name="rank_genus">جنس</string>
+    <string name="rank_genushybrid">جنس هجين</string>
+    <string name="rank_subgenus">جنيس</string>
+    <string name="rank_section">قسم</string>
+    <string name="rank_subsection">مقطع فرعي</string>
+    <string name="rank_complex">مجمع</string>
     <!-- Singular -->
-    <string name="rank_species">Species</string>
-    <string name="rank_hybrid">Hybrid</string>
+    <string name="rank_species">أنواع</string>
+    <string name="rank_hybrid">هجين</string>
     <!-- Singular -->
-    <string name="rank_subspecies">Subspecies</string>
-    <string name="rank_variety">Variety</string>
-    <string name="rank_form">Form</string>
-    <string name="rank_infrahybrid">Infrahybrid</string>
-    <string name="rank_leaves">Leaves</string>
+    <string name="rank_subspecies">نويع</string>
+    <string name="rank_variety">ضرب</string>
+    <string name="rank_form">شكل</string>
+    <string name="rank_infrahybrid">الآشعة تحت الهجين</string>
+    <string name="rank_leaves">أوراق أشجار</string>
     <string name="location_lat_lng">الموقع:%1$f%2$f</string>
-    <string name="i_consent_process_personal_info"><![CDATA[I consent to allow iNaturalist to store and process limited kinds of personal information about me in order to manage my account. <b>Learn More</b>]]></string>
-    <string name="about_personal_information">About Personal Information</string>
-    <string name="personal_information_notes"><![CDATA[We store personal information like usernames and email addresses in order to manage accounts on this site, and to comply with privacy laws, we need you to check this box to indicate that you consent to this use of personal information. To learn more about what information we collect and how we use it, please see our <a href="https://www.inaturalist.org/privacy">Privacy Policy</a> and our <a href="https://www.inaturalist.org/terms">Terms of Service</a>.]]></string>
-    <string name="i_agree_to_tos_and_privacy"><![CDATA[I agree to the <a href="https://www.inaturalist.org/terms">Terms of Service</a> and <a href="https://www.inaturalist.org/privacy">Privacy Policy</a>, and I have reviewed the <a href="https://www.inaturalist.org/pages/community+guidelines">Community Guidelines</a>.]]></string>
-    <string name="privacy_policy">Privacy Policy</string>
-    <string name="terms_of_service">Terms of Service</string>
+    <string name="i_consent_process_personal_info"><![CDATA[أوافق على السماح لإيناتوراليست بتخزين ومعالجة أنواع محدودة من المعلومات الشخصية عني من أجل إدارة حسابي. <b>اعرف المزيد</b>]]></string>
+    <string name="about_personal_information">حول المعلومات الشخصية</string>
+    <string name="personal_information_notes"><![CDATA[نقوم بتخزين المعلومات الشخصية مثل أسماء المستخدمين وعناوين البريد الإلكتروني من أجل إدارة الحسابات على هذا الموقع، وللامتثال لقوانين الخصوصية، نحن بحاجة إلى تحديد هذا المربع للإشارة إلى أنك توافق على هذا الاستخدام للمعلومات الشخصية. لمعرفة المزيد حول المعلومات التي نجمعها وكيف نستخدمها، يرجى الاطلاع على <a href="https://www.inaturalist.org/privacy">سياسة الخصوصية</a> و <a href="https://www.inaturalist.org/terms">شروط الخدمة</a> لدينا.]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[أنا أوافق على <a href="https://www.inaturalist.org/terms">شروط الخدمة</a> و <a href="https://www.inaturalist.org/privacy">سياسة الخصوصية</a>، وقد راجعت <a href="https://www.inaturalist.org/pages/community+guidelines">مبادئ المجتمع التوجيهية</a>.]]></string>
+    <string name="privacy_policy">سياسة الخصوصية</string>
+    <string name="terms_of_service">شروط الخدمة</string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
     <string name="deleted_user">المستخدمين المحذوفين</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_short_this_year">MMM d</string>
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short">MM/dd/yy</string>
+    <string name="date_short">MM/dd/y</string>
     <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
-    <string name="show_common_names">Show common names</string>
-    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
-    <string name="email_must_look_like_email_address">Email must look like an email address</string>
-    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
-    <string name="password_too_short">Password must be at least six characters long</string>
-    <string name="switch_to_grid_view">Switch to grid view</string>
-    <string name="switch_to_list_view">Switch to list view</string>
-    <string name="remove_project_filter">Remove project filter</string>
-    <string name="remove_observer_filter">Remove observer filter</string>
+    <string name="show_common_names">إظهار الأسماء الشائعة</string>
+    <string name="show_common_names_description">تعطيل إذا كنت ترغب فقط في عرض الأسماء العلمية.</string>
+    <string name="email_must_look_like_email_address">يجب أن يبدو البريد الإلكتروني مثل عنوان البريد الإلكتروني</string>
+    <string name="username_must_begin_with">اسم المستخدم يجب أن يبدأ بحرف، يحتوي على أي فراغات، ويستخدم فقط الأحرف والأرقام والشرطات والشرطات السفلية السفلية</string>
+    <string name="password_too_short">يجب أن تكون كلمة المرور على الأقل ستة أحرف</string>
+    <string name="switch_to_grid_view">التبديل إلى عرض الشبكة</string>
+    <string name="switch_to_list_view">التبديل إلى عرض القائمة</string>
+    <string name="remove_project_filter">إزالة فلتر المشروع</string>
+    <string name="remove_observer_filter">إزالة عامل تصفية المراقب</string>
     <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
     <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
     <string name="filter_observations_by_months">Filter observations by months</string>
@@ -1039,48 +1048,48 @@
     <string name="remove_date_observed">Remove date &amp; time observed</string>
     <string name="remove_time_observed">Remove time observed</string>
     <string name="remove_location">Remove location</string>
-    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
-    <string name="share_location">Share Location</string>
-    <string name="share_hidden_location">Share Hidden Location</string>
+    <string name="are_you_sure_you_want_to_remove_date">هل أنت متأكد من أنك تريد إزالة التاريخ &amp; الوقت الملاحظ؟</string>
+    <string name="are_you_sure_you_want_to_remove_time">هل أنت متأكد من أنك تريد إزالة الوقت الملاحظ؟</string>
+    <string name="are_you_sure_you_want_to_remove_location">هل أنت متأكد من أنك تريد إزالة الموقع؟</string>
+    <string name="share_location">مشاركة الموقع</string>
+    <string name="share_hidden_location">مشاركة الموقع المخفي</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
-    <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
-    <string name="sound_format_not_supported">This sound file is the right file extension, but the specific audio encoding is not supported by Android.</string>
-    <string name="view_observations">View Observations</string>
-    <string name="choose_this_option">Choose this option</string>
-    <string name="compare_observation_with_this_option">Compare observation with this option</string>
-    <string name="go_back">Go back</string>
-    <string name="change_the_source_of_the_suggestions">Change the source of the suggestions</string>
-    <string name="thumbnail_photo_for_suggested_taxon">Thumbnail photo for suggested taxon</string>
+    <string name="couldnt_duplicate_sound">تعذر تكرار الصوت!</string>
+    <string name="sound_format_not_supported">That audio encoding is not supported by Android.</string>
+    <string name="view_observations">عرض الملاحظات</string>
+    <string name="choose_this_option">اختر هذا الخيار</string>
+    <string name="compare_observation_with_this_option">مقارنة الملاحظة مع هذا الخيار</string>
+    <string name="go_back">العودة إلى الوراء</string>
+    <string name="change_the_source_of_the_suggestions">تغيير مصدر الاقتراحات</string>
+    <string name="thumbnail_photo_for_suggested_taxon">صورة مصغرة للأصنوفة المقترحة</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
-    <string name="comments_ids_title">Comments and Identifications</string>
+    <string name="comments_ids_title">التعليقات والهويات</string>
     <!-- Accessibility text for the faves tab on the observation detail view -->
-    <string name="faves">Faves</string>
+    <string name="faves">مفضلة</string>
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
-    <string name="previous_option">Previous Option</string>
+    <string name="previous_option">الخيار السابق</string>
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
-    <string name="next_option">Next Option</string>
-    <string name="no_observations_yet2">No observations yet.</string>
-    <string name="no_species_yet">No species yet.</string>
-    <string name="no_identifications_yet">No identifications yet.</string>
-    <string name="sort_by">Sort By</string>
+    <string name="next_option">الخيار التالي</string>
+    <string name="no_observations_yet2">لا توجد ملاحظات بعد.</string>
+    <string name="no_species_yet">لا توجد أنواع بعد.</string>
+    <string name="no_identifications_yet">لا توجد هويات بعد.</string>
+    <string name="sort_by">الترتيب حسب</string>
     <string-array name="explore_order_by_items">
-        <item>Date Added</item>
-        <item>Date Observed</item>
-        <item>Date Updated</item>
+        <item>تاريخ الإضافة</item>
+        <item>تاريخ الملاحظة</item>
+        <item>تاريخ التحديث</item>
         <!--<item>Faves</item>-->
-        <item>Random</item>
+        <item>عشوائي</item>
     </string-array>
     <string-array name="explore_order_items">
-        <item>Descending</item>
-        <item>Ascending</item>
+        <item>تنازلي</item>
+        <item>تصاعدي</item>
     </string-array>
     <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
     See explore_order_by_items and explore_order_items keys !-->
-    <string name="sorted_by_full">Sorted by %1$s (%2$s)</string>
+    <string name="sorted_by_full">مرتبة حسب %1$s (%2$s)</string>
     <!-- Label for an observation search filter to exclude your own observations -->
-    <string name="hide_my_observations">Hide My Observations</string>
+    <string name="hide_my_observations">عرض الملاحظات</string>
     <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
     <string name="follow_this_observation">Follow this Observation</string>
     <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
@@ -1100,4 +1109,50 @@
     <string name="uuid">UUID</string>
     <!--  Universal Resource Locator  -->
     <string name="url">URL</string>
+    <string name="default_licenses">Default Licenses</string>
+    <string name="default_observation_license">Default Observation License</string>
+    <string name="default_photo_license">Default Photo License</string>
+    <string name="default_sound_license">Default Sound License</string>
+    <string name="change_licenses_for_existing_observations">Change licenses for existing observations, photos and sounds</string>
+    <string name="change_licenses_for_all_existing_observations">Change licenses for all existing observations</string>
+    <string name="change_licenses_for_all_existing_photos">Change licenses for all existing photos</string>
+    <string name="change_licenses_for_all_existing_sounds">Change licenses for all existing sounds</string>
+    <string name="change_observation_licenses">Change Observation Licenses</string>
+    <string name="change_photo_licenses">Change Photo Licenses</string>
+    <string name="change_sound_licenses">Change Sound Licenses</string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[Change the licenses of <b>%1$d</b> existing observations to <b>%2$s</b>?]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[Change the licenses of existing photos to <b>%1$s</b>?]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Change the licenses of existing sounds to <b>%1$s</b>?]]></string>
+    <string name="observation_licenses_updated">Observation Licenses Updated</string>
+    <string name="photo_licenses_updated">Photo Licenses Updated</string>
+    <string name="sound_licenses_updated">Sound Licenses Updated</string>
+    <string name="existing_observation_licenses_have_been_updated">All existing observation licenses have been changed to %1$s.</string>
+    <string name="existing_photo_licenses_have_been_updated">All existing photo licenses have been changed to %1$s.</string>
+    <string name="existing_sound_licenses_have_been_updated">All existing sound licenses have been changed to %1$s.</string>
+    <string name="default_licenses_description"><![CDATA[Licensing your content gives anyone the legal right to use it without asking your permission if they abide by the terms of the license. In addition, iNat includes your Creative Commons-licensed content in regularly-updated archives produced for select partner organizations interested in our data. For example, we include No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC) records in the archive we generate for the <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, an international, inter-governmental organization that compiles and distributes biodiversity information from around the world.]]></string>
+    <string name="photo_license">Photo License</string>
+    <string name="edit_photo_license">Edit Photo License</string>
+    <string name="observation_license">Observation License</string>
+    <string name="edit_observation_license">Edit Observation License</string>
+    <string name="about_licenses">About Licenses</string>
+    <string name="view_license">View License</string>
+    <!-- License Names -->
+    <string name="license_name_cc0">Public Domain</string>
+    <string name="license_name_cc_by">Attribution</string>
+    <string name="license_name_cc_by_nc">Attribution-NonCommercial</string>
+    <string name="license_name_cc_by_nc_sa">Attribution-NonCommercial-ShareAlike</string>
+    <string name="license_name_cc_by_nc_nd">Attribution-NonCommercial-NoDerivs</string>
+    <string name="license_name_cc_by_nd">Attribution-NoDerivs</string>
+    <string name="license_name_cc_by_sa">Attribution-ShareAlike</string>
+    <string name="license_name_no_license">All rights reserved</string>
+    <!-- License Descriptions -->
+    <string name="license_description_cc0">This license releases your work into the public domain, so others can copy, modify, distribute and perform your work, even for commercial purposes, all without asking permission or giving you credit. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.</string>
+    <string name="license_description_cc_by">This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation.</string>
+    <string name="license_description_cc_by_nc">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
+    <string name="license_description_cc_by_nc_sa">This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms.</string>
+    <string name="license_description_cc_by_nc_nd">This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can\'t change them in any way or use them commercially.</string>
+    <string name="license_description_cc_by_nd">This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.</string>
+    <string name="license_description_cc_by_sa">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
+    <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
+    <string name="invalid_photo">Photo format not supported</string>
 </resources>

@@ -198,6 +198,9 @@
     <string name="alert_message_use_inaturalistil">iNaturalist Israel er et medlem av iNaturalistnettverket i Israel. Lokale institusjoner som støtter iNaturalist Israel kan se din e-postadresse og de reelle koordinatene for observasjoner som ellers er skjult for offentligheten eller private. Vennligst ikke endre din tilknytning eksperimentelt hvis du har mer enn 1000 observasjoner. Vil du endre din tilknytning?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland er et medlem av iNaturalistnettverket i Finland. Lokale institusjoner som støtter iNaturalist Finland kan se din e-postadresse og de reelle koordinatene for observasjoner som ellers er skjult for offentligheten eller private. Vennligst ikke endre din tilknytning eksperimentelt hvis du har mer enn 1000 observasjoner. Vil du endre din tilknytning?</string>
     <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Hellas er et medlem av iNaturalist-nettverket i Hellas. Lokale institusjoner som støtter iNaturalist Hellas vil ha tilgang til e-postadressen din og de reelle koordinatene for observasjoner som ellers er skjult for offentligheten eller private. Vennligst ikke endre din tilknytning eksperimentelt hvis du har mer enn 1000 observasjoner. Vil du endre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg er et medlem av iNaturalist-nettverket i Luxembourg. Lokale institusjoner som støtter iNaturalist Luxembourg vil ha tilgang til e-postadressen din og de reelle koordinatene for observasjoner som ellers er skjult for offentligheten eller private. Vennligst ikke endre din tilknytning eksperimentelt hvis du har mer enn 1000 observasjoner. Vil du endre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist Storbritannia er et medlem av iNaturalist-nettverket i Storbritannia. Lokale institusjoner som støtter iNaturalist Storbritannia vil ha tilgang til e-postadressen din og de reelle koordinatene for observasjoner som ellers er skjult for offentligheten eller private. Vennligst ikke endre din tilknytning eksperimentelt hvis du har mer enn 1000 observasjoner. Vil du endre din tilknytning?</string>
     <string name="editor">Redaktør</string>
     <string name="license">Lisens</string>
     <string name="download_for_offline_use">Nedlastning for av nett-bruk</string>
@@ -246,9 +249,10 @@
     <string name="please_sign_in_for_updates">Du må være logget inn for å se oppdateringene dine.</string>
     <string name="by_using_inat_terms"><![CDATA[Ved å bruke iNaturalist godtar du <b><a href="https://www.inaturalist.org/pages/terms">vilkår for bruk</a></b> og <b><a href="https://www.inaturalist.org/pages/privacy">personvernreglene</a></b>]]></string>
     <string name="activity">Aktivitet</string>
+    <!-- Label for a button to open the camera to take a new photo for an observation -->
     <string name="camera">Ta fotografi</string>
+    <!-- Label for a button to import an existing photo for an observation -->
     <string name="upload_photo">Velg bilde</string>
-    <string name="menu_text">Hopp over fotografi</string>
     <string name="first">1.</string>
     <string name="make_first">Skap den første</string>
     <string name="notes">Notater</string>
@@ -309,6 +313,7 @@
     <string name="sync_obs_to_see_favs">Synkroniser denne observasjonen for å se favoritter...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Synkronisér denne observasjonen for å etterlate en kommentar eller foreslå en identifikasjon...</string>
+    <!--  Label for a button to add an observation without a photo or a sound  -->
     <string name="no_photo">No Media</string>
     <string name="about_this_species">Om denne arten</string>
     <string name="view_on_wikipedia">Wikipedia-artikkel</string>
@@ -623,7 +628,6 @@
     <string name="project_identifiers">Identifikatorer</string>
     <string name="got_it">Har det!</string>
     <string name="view_all">Vis alle</string>
-    <string name="new_badge">Nytt</string>
     <string name="observers">Observatører</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
     <string name="attribute">Egenskap</string>
@@ -739,6 +743,9 @@
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa støtter iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Natural History (LUOMUS) støtter iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Hellas:  iSea støtter iNaturalist Hellas (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) støtter iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Storbritannia: National Biodiversity Network Trust støtter iNaturalist Storbritannia (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Merk alle som lest</string>
     <string name="content_hidden">Innhold skjult</string>
     <string name="show_hidden_content">Vis skjult innhold</string>
@@ -750,9 +757,11 @@
     <string name="could_not_play_sound">Kunne ikke spille av lyd - sikkert en nettverksfeil</string>
     <string name="cant_play_soundcloud"><![CDATA[For å høre på lyder fra Soundcloud, se <a href="%1$s">nettside</a>.]]></string>
     <string name="soundcloud">Soundcloud</string>
+    <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Spill inn lyd</string>
     <string name="no_recorder_found">Ingen standard lydopptaker funnet!</string>
     <string name="couldnt_retrieve_sound">Kunne ikke hente lyd fra standard lydopptaker - prøv å importere lyden i stedet</string>
+    <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Velg lyd</string>
     <string name="multi_select_sound_description">Importér flere fotografier ved å trykke på og holde inne et enkelt bilde</string>
     <string name="alert_unsupported_audio_type">Unnskyld, men det var et problem under innlastningen av bildet fra denne kilden</string>
@@ -1025,7 +1034,7 @@ mer om vår definisjon av \"passende\" i ofte stilte spørsmål.</string>
     <string name="share_hidden_location">Share Hidden Location</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
-    <string name="sound_format_not_supported">This sound file is the right file extension, but the specific audio encoding is not supported by Android.</string>
+    <string name="sound_format_not_supported">Den lydkodingen støttes ikke av Android.</string>
     <string name="view_observations">View Observations</string>
     <string name="choose_this_option">Choose this option</string>
     <string name="compare_observation_with_this_option">Compare observation with this option</string>
@@ -1079,4 +1088,50 @@ mer om vår definisjon av \"passende\" i ofte stilte spørsmål.</string>
     <string name="uuid">UUID</string>
     <!--  Universal Resource Locator  -->
     <string name="url">URL</string>
+    <string name="default_licenses">Standard lisenser</string>
+    <string name="default_observation_license">Standard observasjonslisens</string>
+    <string name="default_photo_license">Standard fotolisens</string>
+    <string name="default_sound_license">Standard lydlisens</string>
+    <string name="change_licenses_for_existing_observations">Endre lisenser for eksisterende observasjoner, bilder og lyder</string>
+    <string name="change_licenses_for_all_existing_observations">Endre lisenser for alle eksisterende observasjoner</string>
+    <string name="change_licenses_for_all_existing_photos">Endre lisenser for alle eksisterende bilder</string>
+    <string name="change_licenses_for_all_existing_sounds">Endre lisenser for alle eksisterende lyder</string>
+    <string name="change_observation_licenses">Endre observasjonslisenser</string>
+    <string name="change_photo_licenses">Endre fotolisenser</string>
+    <string name="change_sound_licenses">Endre lydlisenser</string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[Endre lisensene for <b>%1$d</b> eksisterende observasjoner til <b>%2$s</b>?]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[Endre lisensene for eksisterende bilder til <b>%1$s</b>?]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Endre lisensene for eksisterende lyder til <b>%1$s</b>?]]></string>
+    <string name="observation_licenses_updated">Observasjonslisenser oppdatert</string>
+    <string name="photo_licenses_updated">Fotolisenser oppdatert</string>
+    <string name="sound_licenses_updated">Lydlisenser oppdatert</string>
+    <string name="existing_observation_licenses_have_been_updated">Alle eksisterende observasjonslisenser er endret til %1$s.</string>
+    <string name="existing_photo_licenses_have_been_updated">Alle eksisterende fotolisenser har blitt endret til %1$s.</string>
+    <string name="existing_sound_licenses_have_been_updated">Alle eksisterende lydlisenser er endret til %1$s.</string>
+    <string name="default_licenses_description"><![CDATA[Lisensiering av ditt innhold gir hvem som helst lov til å bruke det uten å be deg om tillatelse så lenge de oppfyller vilkårene i lisensen. I tillegg inkluderer iNat ditt innhold som er lisensiert under Creative Commons i jevnlig oppdaterte arkiver som produseres for utvalgte partner-organisasjoner som er interessert i dine data. Vi inkluderer, for eksempel, registreringer uten opphavsrett (CC0), og i kategoriene Kreditering (CC BY), og Kreditering-IkkeKommersiell (CC BY-NC) i arkivet som vi genererer for <a href="http://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, en internasjonal mellomstatlig organisasjon som sammenstiller og distribuerer informasjon om biodiversitet fra hele verden.]]></string>
+    <string name="photo_license">Fotolisens</string>
+    <string name="edit_photo_license">Rediger fotolisens</string>
+    <string name="observation_license">Observasjonslisens</string>
+    <string name="edit_observation_license">Rediger observasjonslisens</string>
+    <string name="about_licenses">Om lisenser</string>
+    <string name="view_license">Vis lisens</string>
+    <!-- License Names -->
+    <string name="license_name_cc0">Public Domain</string>
+    <string name="license_name_cc_by">Kreditering</string>
+    <string name="license_name_cc_by_nc">Kreditering-IkkeKommersiell</string>
+    <string name="license_name_cc_by_nc_sa">Kreditering-IkkeKommersiell-DelPåSammeVilkår</string>
+    <string name="license_name_cc_by_nc_nd">Attribution-NonCommercial-NoDerivs</string>
+    <string name="license_name_cc_by_nd">Attribution-NoDerivs</string>
+    <string name="license_name_cc_by_sa">Kreditering-DelPåSammeVilkår</string>
+    <string name="license_name_no_license">Alle rettigheter forbeholdt</string>
+    <!-- License Descriptions -->
+    <string name="license_description_cc0">This license releases your work into the public domain, so others can copy, modify, distribute and perform your work, even for commercial purposes, all without asking permission or giving you credit. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.</string>
+    <string name="license_description_cc_by">This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation.</string>
+    <string name="license_description_cc_by_nc">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
+    <string name="license_description_cc_by_nc_sa">This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms.</string>
+    <string name="license_description_cc_by_nc_nd">This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can\'t change them in any way or use them commercially.</string>
+    <string name="license_description_cc_by_nd">This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.</string>
+    <string name="license_description_cc_by_sa">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
+    <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
+    <string name="invalid_photo">Photo format not supported</string>
 </resources>
