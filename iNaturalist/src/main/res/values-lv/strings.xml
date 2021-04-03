@@ -110,7 +110,7 @@
     <!-- Header for a description an individual project -->
     <string name="about_project">Apraksts</string>
     <string name="about_project_all_caps">APRAKSTS</string>
-    <string name="about_this_app">Apraksts</string>
+    <string name="about_this_app">Par iNat</string>
     <string name="about_taxon_short">Apraksts</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Ģeoprivātums</string>
@@ -133,7 +133,7 @@
     <string name="done">Gatavs</string>
     <string name="please_sign_in_via_settings">Pieslēdzies, lai apskatītu projektus, kuros esi iesaistījies.</string>
     <string name="contact_support">Sazināties ar atbalsta dienestu</string>
-    <string name="credits">Lietotni izstrādājuši iNaturalist.org ar atbalstu no Kalifornijas Zinātņu akadēmijas.</string>
+    <string name="credits">Lietotni izstrādājuši iNaturalist.org ar atbalstu no California Academy of Sciences.</string>
     <string name="leave_project">Pamest projektu</string>
     <string name="leave_project_confirmation">Vai tiešām vēlies pamest projektu?</string>
     <string name="discard_location_changes">Vai tiešām vēlies atcelt nesaglabātās izmaiņas?</string>
@@ -200,6 +200,9 @@ globālā iNaturalist tīkla.</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel ir daļa no iNaturalist tīkla Izraēlā. Vietējām organizācijām, kas atbalsta NaturaLista būs pieeja tavai e-pasta adresei un novērojumu faktiskajām koordinātām – tas ietver gan publikai apslēptās, gan privātās koordinātas. Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu. Vai vēlies pievienoties citam iNaturalist partnerim?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland ir daļa no iNaturalist tīkla Somijā. Vietējām organizācijām, kas atbalsta NaturaLista būs pieeja tavai e-pasta adresei un novērojumu faktiskajām koordinātām – tas ietver gan publikai apslēptās, gan privātās koordinātas. Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu. Vai vēlies pievienoties citam iNaturalist partnerim?</string>
     <string name="alert_message_use_inaturalistcl">iNaturalist Chile ir daļa no iNaturalist tīkla Čīlē. Vietējām organizācijām, kas atbalsta iNaturalist Chile būs pieeja tavai e-pasta adresei un novērojumu faktiskajām koordinātām – tas ietver gan publikai apslēptās, gan privātās koordinātas. Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu. Vai vēlies pievienoties citam iNaturalist partnerim?</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Greece is a member of the iNaturalist Network in Greece. Local institutions supporting iNaturalist Greece will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg is a member of the iNaturalist Network in Luxembourg. Local institutions supporting iNaturalist Luxembourg will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom is a member of the iNaturalist Network in United Kingdom. Local institutions supporting iNaturalist United Kingdom will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Redaktors</string>
     <string name="license">Licence</string>
     <string name="download_for_offline_use">Lejupielādēt bezsaistes lietošanai</string>
@@ -248,9 +251,10 @@ globālā iNaturalist tīkla.</string>
     <string name="please_sign_in_for_updates">Pieslēdzies, lai apskatītu jaunumus.</string>
     <string name="by_using_inat_terms"><![CDATA[Izmantojot iNaturalist, tu piekrīti <b><a href="https://www.inaturalist.org/pages/terms">lietošanas noteikumiem</a></b> un <b><a href="https://www.inaturalist.org/pages/privacy">privātuma politikai.</a></b>]]></string>
     <string name="activity">Paziņojumi</string>
+    <!-- Label for a button to open the camera to take a new photo for an observation -->
     <string name="camera">Uzņemt fotogrāfiju</string>
+    <!-- Label for a button to import an existing photo for an observation -->
     <string name="upload_photo">Izvēlēties fotogrāfiju</string>
-    <string name="menu_text">Nav fotogrāfiju</string>
     <string name="first">1.</string>
     <string name="make_first">Novietot sākumā</string>
     <string name="notes">Piezīmes</string>
@@ -283,7 +287,7 @@ globālā iNaturalist tīkla.</string>
     <string name="casual_grade_add_date"><![CDATA[Pievieno <b>datumu</b>, lai paaugstinātu novērojuma līmeni uz “Nepieciešama identifikācija”. ]]></string>
     <string name="casual_grade_add_photo"><![CDATA[Pievieno <b>fotogrāfiju</b>, lai paaugstinātu novērojuma līmeni uz “Nepieciešama identifikācija”.]]></string>
     <string name="casual_grade_captive"><![CDATA[Novērojums ir hobija līmenī, jo indivīds ir <b>nebrīvē vai kultivēts</b>.]]></string>
-    <string name="needs_id_more_ids"><![CDATA[Lai novērojums būtu pētniecības līmenī, nepieciešams vairāk kopienas sniegto  <b>identifikāciju</b>.]]></string>
+    <string name="needs_id_more_ids"><![CDATA[Lai novērojums iegūtu pētniecības līmeni, nepieciešams vairāk kopienas <b>identifikāciju</b>.]]></string>
     <plurals name="included_in_projects">
         <item quantity="zero">Pievienots %1$d projektiem</item>
         <item quantity="one">Pievienots %1$d projektam</item>
@@ -312,7 +316,8 @@ globālā iNaturalist tīkla.</string>
     <string name="sync_obs_to_see_favs">Sinhronizē novērojumu, lai atvērtu izlasi.</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Sinhronizē novērojumu, lai pievienotu komentāru vai palīdzētu identificēt.</string>
-    <string name="no_photo">No Media</string>
+    <!--  Label for a button to add an observation without a photo or a sound  -->
+    <string name="no_photo">Bez uzņēmuma</string>
     <string name="about_this_species">Sugas apraksts</string>
     <string name="view_on_wikipedia">Vikipēdijas raksts</string>
     <string name="photo"><![CDATA[Fotogrāfija: <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -492,7 +497,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="town">Pilsēta</string>
     <!-- As in a political administrative area, e.g. Hawaii in the United States -->
     <string name="state">Štats</string>
-    <string name="county">Valsts</string>
+    <string name="county">Apgabals</string>
     <string name="local_administrative_area">Vietējā administratīvā teritorija</string>
     <string name="country">Valsts</string>
     <string name="island">Sala</string>
@@ -501,10 +506,10 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="land_feature">Dabas objekts</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="miscellaneous">Dažādi</string>
-    <string name="nationality">Valstspiederība</string>
+    <string name="nationality">Nācija</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Kontinenta vai reģiona daļa</string>
-    <string name="point_of_interest">Apskates punkts</string>
+    <string name="point_of_interest">Apskates objekts</string>
     <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">Reģions</string>
     <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
@@ -572,7 +577,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <!-- As in redo search in the current map area -->
     <string name="search_map_area">Meklēt kartes nogabalā</string>
     <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
-    <string name="date_minute">%d mēn.</string>
+    <string name="date_minute">%d min.</string>
     <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
     <string name="date_hour">%d st.</string>
     <!-- Compact form of "X days ago", so "3 days ago" would be "3d" -->
@@ -599,7 +604,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="change_password">Mainīt paroli</string>
     <string name="search_projects_youve_joined">Meklēt projektus, kuros piedalies.</string>
     <string name="must_be_connected_to_load_more_obs">Lai ielādētu vēl novērojumus, nepieciešams interneta pieslēgums.</string>
-    <string name="inat_about_title">iNaturalist.org ir Kalifornijas Zinātņu akadēmijas un National Geographic Society kopdarbs.</string>
+    <string name="inat_about_title">iNaturalist.org ir California Academy of Sciences un National Geographic Society kopdarbs.</string>
     <!--
         Prunciation of people's names (as approved by the people in question):
 
@@ -629,7 +634,6 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="project_identifiers">Identificētāji</string>
     <string name="got_it">Skaidrs!</string>
     <string name="view_all">Apskatīt visu</string>
-    <string name="new_badge">Jauns</string>
     <string name="observers">Novērotāji</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
     <string name="attribute">Informācija</string>
@@ -746,6 +750,9 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="network_credit_inaturalistil"><![CDATA[Izraēla: University of Haifa, kas uztur iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Somija: Finnish Museum of Naturalist History (LUOMUS), kas uztur iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="network_credit_inaturalistcl"><![CDATA[Čīle: Ministerio del Medio Ambiente, kas atbild par iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>).]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Atzīmēt visu kā skatītu</string>
     <string name="content_hidden">Slēpts saturs</string>
     <string name="show_hidden_content">Rādīt slēpto saturu</string>
@@ -757,9 +764,11 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="could_not_play_sound">Audiofailu neizdevās atskaņot – visticamāk, ka savienojuma kļūdas dēļ.</string>
     <string name="cant_play_soundcloud"><![CDATA[Lai atskaņotu Soundcloud audiofailus, atver <a href="%1$s">tīmekļa vietni</a>.]]></string>
     <string name="soundcloud">Soundcloud</string>
+    <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Ierakstīt audio</string>
     <string name="no_recorder_found">Neizdevās savienoties ar ierīces mikrofonu!</string>
     <string name="couldnt_retrieve_sound">Neizdevās ierakstīt ar ierīces mikrofonu, labāk pamēģini augšupielādēt audiofailu!</string>
+    <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Izvēlēties audiofailu</string>
     <string name="multi_select_sound_description">Paturi pirkstu uz audiofaila, lai augšupielādētu vairākus failus reizē.</string>
     <string name="alert_unsupported_audio_type">Lādējot audiofailu no šī avota, radās kļūda.</string>
@@ -894,7 +903,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="flag_conversation">Atzīmēt sarunu ar karodziņu</string>
     <string name="spam">Mēstules</string>
     <string name="commercial_solicitation">Komerciālā aģitācija vai saites bez galamērķa u.t.m.l.</string>
-    <string name="offensive_inappropriate">Aizskarošs vai nepiedienīgs</string>
+    <string name="offensive_inappropriate">Aizskarošs vai nepieņemams</string>
     <string name="misleading_or_illegal_content">Maldinošs vai nelikumīgs saturs, rasu un etniskā un naida izraisīšana u.t.m.l. Lai uzzinātu vairāk par to, ko saprotam ar vārdu \"piemērots\", skatīt BUJ.</string>
     <string name="other">Cits</string>
     <string name="some_other_reason">Kāds cits iemesls, ko vari paskaidrot.</string>
@@ -970,7 +979,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="remove_project_filter">Noņemt projekta filtru</string>
     <string name="remove_observer_filter">Noņemt novērotāja filtru</string>
     <string name="filter_observations_by_an_exact_date">Filtrēt novērojumus pēc precīza datuma</string>
-    <string name="filter_observations_by_a_date_range">Filtrēt novērojumus pēc datuma diapazona</string>
+    <string name="filter_observations_by_a_date_range">Filtrēt novērojumus pēc datuma perioda</string>
     <string name="filter_observations_by_months">Filtrēt novērojumus pēc mēnešiem</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
@@ -1029,7 +1038,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="share_hidden_location">Dalīties ar slēpto atrašanās vietu</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Neizdevās nokopēt skaņu!</string>
-    <string name="sound_format_not_supported">Šim audiofailam ir atbilstošs faila paplašinājums, bet Android neatbalsta šo audio kodēšanas veidu.</string>
+    <string name="sound_format_not_supported">Android neatbalsta šo skaņas kodējumu.</string>
     <string name="view_observations">Skatīt novērojumus</string>
     <string name="choose_this_option">Izvēlēties šo opciju</string>
     <string name="compare_observation_with_this_option">Salīdzināt novērojumu, izmantojot šo opciju</string>
@@ -1065,22 +1074,68 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <!-- Label for an observation search filter to exclude your own observations -->
     <string name="hide_my_observations">Slēpt manus novērojumus</string>
     <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
-    <string name="follow_this_observation">Follow this Observation</string>
+    <string name="follow_this_observation">Sekot šim novērojumam</string>
     <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
-    <string name="unfollow_this_observation">Unfollow this Observation</string>
+    <string name="unfollow_this_observation">Atsekot no šī novērojuma</string>
     <!-- Error message shown when an attempt to follow an observation fails -->
-    <string name="could_not_follow_observation">Could not follow this observation</string>
+    <string name="could_not_follow_observation">Neizdevās pieteikties sekot šim novērojumam</string>
     <!-- Error message shown when an attempt to unfollow an observation fails -->
-    <string name="could_not_unfollow_observation">Could not unfollow this observation</string>
+    <string name="could_not_unfollow_observation">Neizdevās atteikties sekot šim novērojumam</string>
     <!-- Label for a button to copy the coordinates of an observation -->
-    <string name="copy_coordinates">Copy coordinates</string>
-    <string name="coordinates_copied_to_clipboard">Coordinates copied to clipboard</string>
+    <string name="copy_coordinates">Kopēt koordinātas</string>
+    <string name="coordinates_copied_to_clipboard">Koordinātas nokopētas starpliktuvē</string>
     <!--  Title of a section on the observation detail view that displays minor metadata  -->
-    <string name="metadata">Metadata</string>
+    <string name="metadata">Metadati</string>
     <!--  iNat observation identifier  -->
     <string name="id">ID</string>
     <!--  iNat observation Universally Unique Identifier  -->
     <string name="uuid">UUID</string>
     <!--  Universal Resource Locator  -->
     <string name="url">URL</string>
+    <string name="default_licenses">Default Licenses</string>
+    <string name="default_observation_license">Default Observation License</string>
+    <string name="default_photo_license">Default Photo License</string>
+    <string name="default_sound_license">Default Sound License</string>
+    <string name="change_licenses_for_existing_observations">Change licenses for existing observations, photos and sounds</string>
+    <string name="change_licenses_for_all_existing_observations">Change licenses for all existing observations</string>
+    <string name="change_licenses_for_all_existing_photos">Change licenses for all existing photos</string>
+    <string name="change_licenses_for_all_existing_sounds">Change licenses for all existing sounds</string>
+    <string name="change_observation_licenses">Change Observation Licenses</string>
+    <string name="change_photo_licenses">Change Photo Licenses</string>
+    <string name="change_sound_licenses">Change Sound Licenses</string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[Change the licenses of <b>%1$d</b> existing observations to <b>%2$s</b>?]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[Change the licenses of existing photos to <b>%1$s</b>?]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Change the licenses of existing sounds to <b>%1$s</b>?]]></string>
+    <string name="observation_licenses_updated">Observation Licenses Updated</string>
+    <string name="photo_licenses_updated">Photo Licenses Updated</string>
+    <string name="sound_licenses_updated">Sound Licenses Updated</string>
+    <string name="existing_observation_licenses_have_been_updated">All existing observation licenses have been changed to %1$s.</string>
+    <string name="existing_photo_licenses_have_been_updated">All existing photo licenses have been changed to %1$s.</string>
+    <string name="existing_sound_licenses_have_been_updated">All existing sound licenses have been changed to %1$s.</string>
+    <string name="default_licenses_description"><![CDATA[Licensing your content gives anyone the legal right to use it without asking your permission if they abide by the terms of the license. In addition, iNat includes your Creative Commons-licensed content in regularly-updated archives produced for select partner organizations interested in our data. For example, we include No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC) records in the archive we generate for the <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, an international, inter-governmental organization that compiles and distributes biodiversity information from around the world.]]></string>
+    <string name="photo_license">Photo License</string>
+    <string name="edit_photo_license">Edit Photo License</string>
+    <string name="observation_license">Observation License</string>
+    <string name="edit_observation_license">Edit Observation License</string>
+    <string name="about_licenses">About Licenses</string>
+    <string name="view_license">View License</string>
+    <!-- License Names -->
+    <string name="license_name_cc0">Public Domain</string>
+    <string name="license_name_cc_by">Attribution</string>
+    <string name="license_name_cc_by_nc">Attribution-NonCommercial</string>
+    <string name="license_name_cc_by_nc_sa">Attribution-NonCommercial-ShareAlike</string>
+    <string name="license_name_cc_by_nc_nd">Attribution-NonCommercial-NoDerivs</string>
+    <string name="license_name_cc_by_nd">Attribution-NoDerivs</string>
+    <string name="license_name_cc_by_sa">Attribution-ShareAlike</string>
+    <string name="license_name_no_license">All rights reserved</string>
+    <!-- License Descriptions -->
+    <string name="license_description_cc0">This license releases your work into the public domain, so others can copy, modify, distribute and perform your work, even for commercial purposes, all without asking permission or giving you credit. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.</string>
+    <string name="license_description_cc_by">This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation.</string>
+    <string name="license_description_cc_by_nc">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
+    <string name="license_description_cc_by_nc_sa">This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms.</string>
+    <string name="license_description_cc_by_nc_nd">This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can\'t change them in any way or use them commercially.</string>
+    <string name="license_description_cc_by_nd">This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.</string>
+    <string name="license_description_cc_by_sa">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
+    <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
+    <string name="invalid_photo">Photo format not supported</string>
 </resources>

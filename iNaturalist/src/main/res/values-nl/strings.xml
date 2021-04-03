@@ -197,7 +197,10 @@
     <string name="alert_message_use_argentinat">ArgentiNat is lid van het iNaturalist Netwerk in Argentinië. Lokale instellingen die ArgentiNat ondersteunen zullen toegang hebben tot uw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel is lid van het iNaturalist Network in Israel. Lokale instellingen die iNaturalist Israel ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland is lid van het iNaturalist Network in Finland. Lokale instellingen die iNaturalist Finland ondersteunen hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
-    <string name="alert_message_use_inaturalistcl">iNaturalist Chili is lid van het iNaturalist Network in Chili. Lokale instellingen die iNaturalist Chili ondersteunen hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw lidmaatschap wijzigen?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chili is lid van het iNaturalist Network in Chili. Lokale instellingen die iNaturalist Chili ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel jouw lidmaatschap als jij meer dan 1000 waarnemingen hebt. Wil jij jouw lidmaatschap wijzigen?</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Griekenland is lid van het iNaturalist Network in Griekenland. Lokale instellingen die iNaturalist Griekenland ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel je lidmaatschap als jij meer dan 1000 waarnemingen hebt. Wil jij jouw lidmaatschap wijzigen?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxemburg is lid van het iNaturalist Network in Luxemburg. Lokale instellingen die iNaturalist Luxemburg ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel jouw lidmaatschap als jij meer dan 1000 waarnemingen hebt. Wil jij jouw lidmaatschap wijzigen?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist Verenigd Koninkrijk is lid van het iNaturalist Network in het Verenigd Koninkrijk. Lokale instellingen die iNaturalist Verenigd Koninkrijk ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel jouw lidmaatschap als jij meer dan 1000 waarnemingen hebt. Wilt jij jouw lidmaatschap wijzigen?</string>
     <string name="editor">Redacteur</string>
     <string name="license">Licentie</string>
     <string name="download_for_offline_use">Downloaden voor offline gebruik</string>
@@ -246,9 +249,10 @@
     <string name="please_sign_in_for_updates">Je moet ingelogd zijn om jouw updates te bekijken.</string>
     <string name="by_using_inat_terms"><![CDATA[Door iNaturalist te gebruiken gaat u akkoord met de <b><a href="http://www.inaturalist.org/pages/terms"> Terms of Service</a></b> en de <b><a href="http://www.inaturalist.org/pages/privacy"> Privacy Policy</a></b>]]></string>
     <string name="activity">Activiteit</string>
+    <!-- Label for a button to open the camera to take a new photo for an observation -->
     <string name="camera">Foto Maken</string>
+    <!-- Label for a button to import an existing photo for an observation -->
     <string name="upload_photo">Selecteer afbeelding</string>
-    <string name="menu_text">Geen afbeelding</string>
     <string name="first">1ste</string>
     <string name="make_first">1ste maken</string>
     <string name="notes">Opmerkingen</string>
@@ -309,6 +313,7 @@
     <string name="sync_obs_to_see_favs">Sync deze waarneming om faves te zien...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Sync deze waarneming om een reactie achter te laten of een determinatie voor te stellen...</string>
+    <!--  Label for a button to add an observation without a photo or a sound  -->
     <string name="no_photo">Geen media</string>
     <string name="about_this_species">Over deze soort</string>
     <string name="view_on_wikipedia">Wikipedia artikel</string>
@@ -623,7 +628,6 @@
     <string name="project_identifiers">Identificeerders</string>
     <string name="got_it">Ik snap het!</string>
     <string name="view_all">Alles bekijken</string>
-    <string name="new_badge">Nieuw</string>
     <string name="observers">Waarnemers</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
     <string name="attribute">Kenmerk</string>
@@ -739,6 +743,9 @@
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa steunt iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Naturalist History (LUOMUS) dat iNaturalist Finland ondersteunt (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="network_credit_inaturalistcl"><![CDATA[Chili: Ministerio del Medio Ambiente ondersteunt iNaturalist Chili (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Griekenland: iSea steunt iNaturalist Griekenland(<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Luxemburg: Luxembourg National Museum of Natural History (MnhnL) steunt iNaturalist Luxemburg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Verenigd Koningkrijk: National Biodiversity Network Trust steunt iNaturalist Verenigd Koningkrijk (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Markeer alle berichten als gelezen</string>
     <string name="content_hidden">Inhoud verborgen</string>
     <string name="show_hidden_content">Toon verborgen inhoud</string>
@@ -750,9 +757,11 @@
     <string name="could_not_play_sound">Kon geluid niet afspelen - waarschijnlijk een netwerkprobleem</string>
     <string name="cant_play_soundcloud"><![CDATA[Om geluiden op Soundcloud te beluisteren, bekijk de <a href="%1$s">website</a>.]]></string>
     <string name="soundcloud">SoundCloud</string>
+    <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Geluid opnemen</string>
     <string name="no_recorder_found">Geen standaard geluidsrecorder gevonden!</string>
     <string name="couldnt_retrieve_sound">Kon geluid niet ophalen van standaard recorder - probeer het geluid in plaats daarvan te importeren</string>
+    <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Kies geluid</string>
     <string name="multi_select_sound_description">Om meerdere geluiden te importeren, druk lang op een enkel geluid</string>
     <string name="alert_unsupported_audio_type">Sorry, er was een probleem bij het laden van het geluid uit deze bron</string>
@@ -1025,7 +1034,7 @@ de <a href="https://www.inaturalist.org/pages/community+guidelines">gemeenschaps
     <string name="share_hidden_location">Verborgen Locatie Delen</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Kon geluid niet dupliceren!</string>
-    <string name="sound_format_not_supported">Dit geluidsbestand heeft de juiste bestandsextensie maar de specifieke audiocodering wordt niet ondersteund door Android.</string>
+    <string name="sound_format_not_supported">Die audio-codering wordt niet ondersteund door Android.</string>
     <string name="view_observations">Toon Waarnemingen</string>
     <string name="choose_this_option">Kies deze optie</string>
     <string name="compare_observation_with_this_option">Vergelijk waarneming met deze optie</string>
@@ -1079,4 +1088,51 @@ de <a href="https://www.inaturalist.org/pages/community+guidelines">gemeenschaps
     <string name="uuid">UUID</string>
     <!--  Universal Resource Locator  -->
     <string name="url">URL</string>
+    <string name="default_licenses">Standaardlicentie</string>
+    <string name="default_observation_license">Standaard Waarnemingslicentie</string>
+    <string name="default_photo_license">Standaard Fotolicentie</string>
+    <string name="default_sound_license">Standaard Opnamelicentie</string>
+    <string name="change_licenses_for_existing_observations">Wijzig de licenties voor bestaande waarnemingen, foto\'s en geluiden</string>
+    <string name="change_licenses_for_all_existing_observations">Wijzig de licenties voor alle bestaande waarnemingen</string>
+    <string name="change_licenses_for_all_existing_photos">Wijzig de licenties voor alle bestaande waarnemingen</string>
+    <string name="change_licenses_for_all_existing_sounds">Wijzig de licenties voor alle bestaande geluiden</string>
+    <string name="change_observation_licenses">Wijzig waarnemingslicenties</string>
+    <string name="change_photo_licenses">Fotolicenties wijzigen</string>
+    <string name="change_sound_licenses">Geluidslicenties wijzigen</string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[De licenties van <b>%1$d</b> bestaande waarnemingen wijzigen in <b>%2$s</b>?]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[De licenties van bestaande foto\'s wijzigen in <b>%1$s</b>?]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[De licenties van bestaande geluiden wijzigen in <b>%1$s</b>?]]></string>
+    <string name="observation_licenses_updated">Waarnemingslicenties bijgewerkt</string>
+    <string name="photo_licenses_updated">Fotolicenties bijgewerkt</string>
+    <string name="sound_licenses_updated">Geluidslicenties bijgewerkt</string>
+    <string name="existing_observation_licenses_have_been_updated">Alle bestaande waarnemingslicenties zijn veranderd naar %1$s.</string>
+    <string name="existing_photo_licenses_have_been_updated">Alle bestaande fotolicenties zijn veranderd naar %1$s.</string>
+    <string name="existing_sound_licenses_have_been_updated">Alle bestaande geluidslicenties zijn veranderd naar %1$s.</string>
+    <string name="default_licenses_description"><![CDATA[Het licentiëren van je inhoud geeft iedereen het wettelijke recht om het te gebruiken
+zonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van de licentie. Daarnaast neemt iNat je Creative Commons gelicentieerde inhoud op in archieven die regelmatig gedeeld worden met geselecteerde partnerorganisaties die daar interesse in hebben. Zo nemen we bijvoorbeeld gegevens met de licenties Geen Auteursrechten (CC0), Naamsvermelding (CC BY) en Naamsvermelding-Niet commercieel op in de archieven die we maken voor de <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>(GBIF), een internationale, intergouvernementele organisatie die biodiversiteitsinformatie van over de hele wereld compileert en distribueert.]]></string>
+    <string name="photo_license">Fotolicentie</string>
+    <string name="edit_photo_license">Fotolicentie bewerken</string>
+    <string name="observation_license">Waarnemingslicentie</string>
+    <string name="edit_observation_license">Bewerk waarnemingslicentie</string>
+    <string name="about_licenses">Over licenties</string>
+    <string name="view_license">Bekijk licentie</string>
+    <!-- License Names -->
+    <string name="license_name_cc0">Publiek Domein</string>
+    <string name="license_name_cc_by">Naamsvermelding</string>
+    <string name="license_name_cc_by_nc">Naamsvermelding-NietCommercieel</string>
+    <string name="license_name_cc_by_nc_sa">Naamsvermelding-NietCommercieel-GelijkDelen</string>
+    <string name="license_name_cc_by_nc_nd">Naamsvermelding-NietCommercieel-GeenAfgeleideWerken</string>
+    <string name="license_name_cc_by_nd">Naamsvermelding-GeenAfgeleideWerken</string>
+    <string name="license_name_cc_by_sa">Naamsvermelding-GelijkDelen</string>
+    <string name="license_name_no_license">Alle rechten voorbehouden</string>
+    <!-- License Descriptions -->
+    <string name="license_description_cc0">Deze licentie geeft je werk vrij in het publieke domein, zodat anderen je werk kunnen kopiëren, wijzigen, distribueren en uitvoeren, zelfs voor commerciële doeleinden, allemaal zonder toestemming te vragen of jouw naam te vermelden. Dit is de meest inschikkelijke licentie die wordt aangeboden. Aanbevolen voor maximale verspreiding en gebruik van het materiaal.</string>
+    <string name="license_description_cc_by">Met deze licentie kunnen anderen je werk distribueren, remixen, aanpassen en uitbreiden, zelfs commercieel, zolang ze je crediteren voor de oorspronkelijke creatie.</string>
+    <string name="license_description_cc_by_nc">Deze licentie laat anderen remixen, aanpassen en niet-commercieel op je werk bouwen en hoewel hun nieuwe werken je ook moeten erkennen en niet-commercieel zijn, hoeven ze hun afgeleide werken niet onder dezelfde voorwaarden in licentie te geven.</string>
+    <string name="license_description_cc_by_nc_sa">Met deze licentie kunnen anderen je werk remixen, aanpassen en op je werk voortborduren voor niet-commerciële doeleinden, zolang ze jouw naam vermelden en hun nieuwe creaties onder dezelfde licentievoorwaarden licentiëren.</string>
+    <string name="license_description_cc_by_nc_nd">Deze licentie is de meest beperkende van de zes hoofdlicenties en staat anderen alleen toe om je werken te downloaden en ze met anderen te delen zolang ze jouw naam vermelden, maar ze kunnen deze op geen enkele manier wijzigen of commercieel gebruiken.</string>
+    <string name="license_description_cc_by_nd">Deze licentie staat verspreiding toe, commercieel en niet-commercieel, zolang het onveranderd en in zijn geheel wordt verspreid, en jouw naam wordt vermeld.</string>
+    <string name="license_description_cc_by_sa">Deze licentie laat anderen remixen, aanpassen en niet-commercieel op je werk bouwen en hoewel hun nieuwe werken je ook moeten erkennen en niet-commercieel zijn, hoeven ze hun afgeleide werken niet onder dezelfde voorwaarden in licentie te geven.</string>
+    <string name="license_description_no_license">Je behoudt het volledige auteursrecht op je inhoud los van de rechten die iNaturalist heeft in onze Servicevoorwaarden.</string>
+    <string name="invalid_photo">Fotoformaat wordt niet ondersteund</string>
 </resources>

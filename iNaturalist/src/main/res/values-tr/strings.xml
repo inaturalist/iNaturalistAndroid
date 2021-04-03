@@ -197,7 +197,10 @@
     <string name="alert_message_use_argentinat">ArgentiNat, Arjantin’deki iNaturalist Ağı\'nın bir üyesidir. ArgentiNat\'ı destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamusal olarak gizlenmiş ya da özel gözlemleriniz için gerçek koordinatlarınıza erişebilecek. 1000\'den çok gözleminiz varsa lütfen deneyerek üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist İsrail, İsrail\'deki iNaturalist Ağı\'nın üyesidir. İNaturalist İsrail\'i destekleyen yerel kurumlar, e-posta adresinize ve genel olarak gizlenmiş ya da özel gözlemler için gerçek koordinatlara erişebilir. 1000\'den çok gözleminiz varsa, lütfen üyeliğinizi deneysel olarak değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finlandiya, Finlandiya\'daki iNaturalist Ağı üyesidir. iNaturalist Finlandiya’yı destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamu tarafından gizlenmiş ya da özel gözlemler için gerçek koordinatlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
-    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Şili, Şili\'deki iNaturalist Ağı üyesidir. iNaturalist Şili\'yi destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamu tarafından gizlenmiş veya özel gözlemler için gerçek koordinatlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Yunanistan, Yunanistan\'daki iNaturalist Ağı üyesidir. iNaturalist Yunanistan\'ı destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamu tarafından gizlenmiş veya özel gözlemler için gerçek koordinatlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Lüksemburg, Lüksemburg\'daki iNaturalist Ağı üyesidir. iNaturalist Lüksemburg\'u destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamu tarafından gizlenmiş veya özel gözlemler için gerçek koordinatlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist Birleşik Krallık, Birleşik Krallık\'taki iNaturalist Ağı üyesidir. iNaturalist Birleşik Krallık’ı destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamu tarafından gizlenmiş veya özel gözlemlerin gerçek koordinatlarına erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
     <string name="editor">Düzenleyici</string>
     <string name="license">Lisans</string>
     <string name="download_for_offline_use">Çevrimdışı kullanım için indir</string>
@@ -246,9 +249,10 @@
     <string name="please_sign_in_for_updates">Güncellemelerinizi görüntüleyebilmek için giriş yapmanız gerekmektedir.</string>
     <string name="by_using_inat_terms"><![CDATA[iNaturalist’i kullanarak <b><a href="https://www.inaturalist.org/pages/terms">Hizmet Şartları </a></b> ve <b><a href="https://www.inaturalist.org/pages/privacy">Gizlilik Politikası\'nı</a></b> onaylarsınız]]></string>
     <string name="activity">Etkinlik</string>
+    <!-- Label for a button to open the camera to take a new photo for an observation -->
     <string name="camera">Resim Çek</string>
+    <!-- Label for a button to import an existing photo for an observation -->
     <string name="upload_photo">Resim Seç</string>
-    <string name="menu_text">Fotoğraf Yok</string>
     <string name="first">Birinci</string>
     <string name="make_first">Birinci yap</string>
     <string name="notes">Notlar</string>
@@ -309,7 +313,8 @@
     <string name="sync_obs_to_see_favs">Favorileri görmek için bu gözlemi eşitleyin...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Yorum bırakmak ya da tanımlamak için bu gözlemi eşitleyin...</string>
-    <string name="no_photo">No Media</string>
+    <!--  Label for a button to add an observation without a photo or a sound  -->
+    <string name="no_photo">Ortam Yok</string>
     <string name="about_this_species">Bu türler hakkında</string>
     <string name="view_on_wikipedia">Vikipedi Makalesi</string>
     <string name="photo"><![CDATA[Fotoğraf: <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -382,10 +387,10 @@
     <string name="mammals">Memeliler</string>
     <string name="insects">Böcekler</string>
     <string name="reptiles">Sürüngenler</string>
-    <string name="animals">Animals</string>
+    <string name="animals">Hayvanlar</string>
     <string name="fish">Balık</string>
     <string name="mollusks">Yumuşakçalar</string>
-    <string name="protozoans">Protozoans</string>
+    <string name="protozoans">Tek Hücreliler</string>
     <string name="chromista">Kelp, Diatoms, and Allies</string>
     <string name="amphibians">Yüzergezerler</string>
     <string name="fungi">Mantarlar</string>
@@ -418,8 +423,8 @@
         content.
     -->
     <plurals name="new_activities">
-        <item quantity="one">%1s new</item>
-        <item quantity="other">%1s new</item>
+        <item quantity="one">%1s yeni</item>
+        <item quantity="other">%1s yeni</item>
     </plurals>
     <string name="no_results_found">Sonuçlar Bulunamadı...</string>
     <plurals name="syncing_x_out_of_y_observations">
@@ -449,11 +454,11 @@
     <string name="more_info_on_inat">iNaturalist.org üzerinden daha çok bilgi</string>
     <string name="view_suggestions">Önerileri Görüntüle</string>
     <string name="species_search">Tür Ara</string>
-    <string name="were_not_confident_enough">We\'re not confident enough to make a recommendation, but here are our top suggestions:</string>
+    <string name="were_not_confident_enough">Tavsiyede bulunacak kadar emin değiliz, ama işte en iyi önerilerimiz:</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
-    <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
+    <string name="most_observed_options_matching_filters">Filtrelere uyan en çok gözlenen seçenekler:</string>
     <!-- Header for a list of suggested taxa -->
-    <string name="top_suggestions">Top suggestions</string>
+    <string name="top_suggestions">En iyi öneriler</string>
     <string name="pretty_sure_rank">Bunun %1$s içinde olduğuna oldukça eminiz:</string>
     <string name="what_did_you_see">Ne gördünüz?</string>
     <string name="suggest_species">Tür Öner</string>
@@ -543,7 +548,7 @@
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegasyon</string>
     <string name="apply_filters">Filtreleri Uygula</string>
-    <string name="remove_filters">Remove Filters</string>
+    <string name="remove_filters">Filtreleri Kaldır</string>
     <string name="reset">Sıfırla</string>
     <string name="show_only_my_observations">Yalnız Gözlemlerimi Göster</string>
     <string name="project">Proje</string>
@@ -623,7 +628,6 @@
     <string name="project_identifiers">Tanımlayıcılar</string>
     <string name="got_it">Anladım!</string>
     <string name="view_all">Hepsini göster</string>
-    <string name="new_badge">Yeni</string>
     <string name="observers">Gözlemciler</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
     <string name="attribute">Nitelik</string>
@@ -738,7 +742,10 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Ekvador: Instituto Nacional de Biodiversidad (INABIO), iNaturalist Ecuador\'u destekliyor (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[İsrail: Hayfa Üniversitesi, iNaturalist Israel\'i destekliyor (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finlandiya: Finnish Museum of Naturalist History (LUOMUS), iNaturalist Finlandiya\'yı destekliyor (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
-    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Şili: Ministerio del Medio Ambiente iNaturalist Şili\'yi destekliyor (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Yunanistan: iSea iNaturalist Yunanistan\'ı destekliyor (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Lüksemburg: Lüksemburg Ulusal Tabiat Tarihi Müzesi (MnhnL) iNaturalist Lüksemburg\'u destekliyor (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Birleşik Krallık: National Biodiversity Network Trust iNaturalist Birleşik Krallık\'ı destekliyor (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Tümünü görüntülendi olarak işaretle</string>
     <string name="content_hidden">İçerik Gizlendi</string>
     <string name="show_hidden_content">Gizli İçeriği Göster</string>
@@ -750,9 +757,11 @@
     <string name="could_not_play_sound">Ses oynatılamıyor - olasılıkla bir ağ sorunu</string>
     <string name="cant_play_soundcloud"><![CDATA[Soundcloud seslerini dinlemek için <a href="%1$s">genel ağ sayfasını</a> görüntüleyin.]]></string>
     <string name="soundcloud">Soundcloud</string>
+    <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Ses Kaydet</string>
     <string name="no_recorder_found">Varsayılan ses kaydedici bulunamadı!</string>
     <string name="couldnt_retrieve_sound">Varsayılan kayıt aygıtından ses alınamadı - bunun yerine sesi almayı deneyin</string>
+    <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Ses Seç</string>
     <string name="multi_select_sound_description">Tek bir sese uzun basarak birden çok ses alın</string>
     <string name="alert_unsupported_audio_type">Üzgünüm, sesi bu kaynaktan yüklerken bir sorun oluştu</string>
@@ -967,107 +976,107 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="filter_observations_by_months">Gözlemleri aylık olarak filtreleyin</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="include_suggestions_not_seen_nearby">Include suggestions not seen nearby</string>
-    <string name="only_view_nearby_suggestions">Only view nearby suggestions</string>
-    <string name="suggestions_source">Suggestions Source</string>
-    <string name="research_grade_observations">Research Grade Observations</string>
-    <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
-    <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will suggest species observed in a specific place and within a specific taxonomic group.</string>
-    <string name="taxon">Taxon:</string>
-    <string name="place">Place:</string>
-    <string name="pretty_sure_kingdom">We\'re pretty sure it\'s in this kingdom:</string>
-    <string name="pretty_sure_subkingdom">We\'re pretty sure it\'s in this subkingdom:</string>
-    <string name="pretty_sure_phylum">We\'re pretty sure it\'s in this phylum:</string>
-    <string name="pretty_sure_subphylum">We\'re pretty sure it\'s in this subphylum:</string>
-    <string name="pretty_sure_superclass">We\'re pretty sure it\'s in this superclass:</string>
-    <string name="pretty_sure_class">We\'re pretty sure it\'s in this class:</string>
-    <string name="pretty_sure_subclass">We\'re pretty sure it\'s in this subclass:</string>
+    <string name="include_suggestions_not_seen_nearby">Yakınlarda görülmemiş önerileri de içer</string>
+    <string name="only_view_nearby_suggestions">Yalnızca yakındaki önerileri göster</string>
+    <string name="suggestions_source">Öneri Kaynağı</string>
+    <string name="research_grade_observations">Araştırma Seviyesinde Gözlemler</string>
+    <string name="visually_similar_description">iNaturalist yılın bu zamanlarında bu bölgeye yakın gözlemlenen türlere en çok benzeyen fotoğrafları temel alarak önerilerde bulunacak.</string>
+    <string name="research_grade_observations_description">iNaturalist görsel olarak benzerliğe dayanan önerilerin yerine, belli bir yerde ve belli bir taksonomik grupta gözlenen türleri önerecek.</string>
+    <string name="taxon">Sınıf:</string>
+    <string name="place">Konum:</string>
+    <string name="pretty_sure_kingdom">Şu alemde olduğuna oldukça eminiz:</string>
+    <string name="pretty_sure_subkingdom">Şu alt alemde olduğuna oldukça eminiz:</string>
+    <string name="pretty_sure_phylum">Şu şubede olduğuna oldukça eminiz:</string>
+    <string name="pretty_sure_subphylum">Şu alt şubede olduğuna oldukça eminiz:</string>
+    <string name="pretty_sure_superclass">Şu üst sınıfta olduğuna oldukça eminiz:</string>
+    <string name="pretty_sure_class">Şu sınıfta olduğuna oldukça eminiz:</string>
+    <string name="pretty_sure_subclass">Şu alt sınıfta olduğuna oldukça eminiz:</string>
     <string name="pretty_sure_infraclass">We\'re pretty sure it\'s in this infraclass:</string>
-    <string name="pretty_sure_superorder">We\'re pretty sure it\'s in this superorder:</string>
-    <string name="pretty_sure_order">We\'re pretty sure it\'s in this order:</string>
-    <string name="pretty_sure_suborder">We\'re pretty sure it\'s in this suborder:</string>
+    <string name="pretty_sure_superorder">Şu üst takımda olduğuna oldukça eminiz:</string>
+    <string name="pretty_sure_order">Şu takımda olduğuna oldukça eminiz:</string>
+    <string name="pretty_sure_suborder">Şu alt takımda olduğuna oldukça eminiz:</string>
     <string name="pretty_sure_infraorder">We\'re pretty sure it\'s in this infraorder:</string>
     <string name="pretty_sure_subterclass">We\'re pretty sure it\'s in this subterclass:</string>
     <string name="pretty_sure_parvorder">We\'re pretty sure it\'s in this parvorder:</string>
     <string name="pretty_sure_zoosection">We\'re pretty sure it\'s in this zoosection:</string>
     <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
-    <string name="pretty_sure_superfamily">We\'re pretty sure it\'s in this superfamily:</string>
+    <string name="pretty_sure_superfamily">Şu üst ailede olduğuna oldukça eminiz:</string>
     <string name="pretty_sure_epifamily">We\'re pretty sure it\'s in this epifamily:</string>
-    <string name="pretty_sure_family">We\'re pretty sure it\'s in this family:</string>
-    <string name="pretty_sure_subfamily">We\'re pretty sure it\'s in this subfamily:</string>
+    <string name="pretty_sure_family">Şu ailede olduğuna oldukça eminiz:</string>
+    <string name="pretty_sure_subfamily">Şu alt ailede olduğuna oldukça eminiz:</string>
     <string name="pretty_sure_supertribe">We\'re pretty sure it\'s in this supertribe:</string>
-    <string name="pretty_sure_tribe">We\'re pretty sure it\'s in this tribe:</string>
-    <string name="pretty_sure_subtribe">We\'re pretty sure it\'s in this subtribe:</string>
-    <string name="pretty_sure_genus">We\'re pretty sure it\'s in this genus:</string>
+    <string name="pretty_sure_tribe">Şu oymakta olduğuna oldukça eminiz:</string>
+    <string name="pretty_sure_subtribe">Şu alt oymakta olduğuna oldukça eminiz:</string>
+    <string name="pretty_sure_genus">Şu cinste olduğuna oldukça eminiz:</string>
     <string name="pretty_sure_genushybrid">We\'re pretty sure it\'s in this genushybrid:</string>
-    <string name="pretty_sure_subgenus">We\'re pretty sure it\'s in this subgenus:</string>
+    <string name="pretty_sure_subgenus">Şu alt cinste olduğuna oldukça eminiz:</string>
     <string name="pretty_sure_section">We\'re pretty sure it\'s in this section:</string>
     <string name="pretty_sure_subsection">We\'re pretty sure it\'s in this subsection:</string>
     <string name="pretty_sure_complex">We\'re pretty sure it\'s in this complex:</string>
     <!-- Singular -->
-    <string name="pretty_sure_species">We\'re pretty sure it\'s in this species:</string>
+    <string name="pretty_sure_species">Şu türde olduğuna oldukça eminiz:</string>
     <string name="pretty_sure_hybrid">We\'re pretty sure it\'s in this hybrid:</string>
     <!-- Singular -->
     <string name="pretty_sure_subspecies">We\'re pretty sure it\'s in this subspecies:</string>
     <string name="pretty_sure_variety">We\'re pretty sure it\'s in this variety:</string>
     <string name="pretty_sure_form">We\'re pretty sure it\'s in this form:</string>
     <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
-    <string name="remove_date_observed">Remove date &amp; time observed</string>
-    <string name="remove_time_observed">Remove time observed</string>
-    <string name="remove_location">Remove location</string>
-    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
-    <string name="share_location">Share Location</string>
-    <string name="share_hidden_location">Share Hidden Location</string>
+    <string name="remove_date_observed">Gözlem tarih ve zamanını kaldır</string>
+    <string name="remove_time_observed">Gözlem zamanını kaldır</string>
+    <string name="remove_location">Konumu kaldır</string>
+    <string name="are_you_sure_you_want_to_remove_date">Gözlem tarih ve zamanını kaldırmak istediğine emin misin?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Gözlem zamanını kaldırmak istediğine emin misin?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Konumu kaldırmak istediğine emin misin?</string>
+    <string name="share_location">Konum Paylaş</string>
+    <string name="share_hidden_location">Gizli Konumu Paylaş</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
-    <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
-    <string name="sound_format_not_supported">This sound file is the right file extension, but the specific audio encoding is not supported by Android.</string>
-    <string name="view_observations">View Observations</string>
-    <string name="choose_this_option">Choose this option</string>
-    <string name="compare_observation_with_this_option">Compare observation with this option</string>
-    <string name="go_back">Go back</string>
-    <string name="change_the_source_of_the_suggestions">Change the source of the suggestions</string>
-    <string name="thumbnail_photo_for_suggested_taxon">Thumbnail photo for suggested taxon</string>
+    <string name="couldnt_duplicate_sound">Ses çoğaltılamadı!</string>
+    <string name="sound_format_not_supported">Bu ses kodlaması Android tarafından desteklenmiyor.</string>
+    <string name="view_observations">Gözlemleri Görüntüle</string>
+    <string name="choose_this_option">Bu seçeneği seç</string>
+    <string name="compare_observation_with_this_option">Gözlemi bu seçenekle karşılaştır</string>
+    <string name="go_back">Geri git</string>
+    <string name="change_the_source_of_the_suggestions">Öneri kaynağını değiştir</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Önerilen sınıfın küçük fotoğrafı</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
-    <string name="comments_ids_title">Comments and Identifications</string>
+    <string name="comments_ids_title">Yorum ve Tanımlamalar</string>
     <!-- Accessibility text for the faves tab on the observation detail view -->
-    <string name="faves">Faves</string>
+    <string name="faves">Favoriler</string>
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
-    <string name="previous_option">Previous Option</string>
+    <string name="previous_option">Önceki Seçenek</string>
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
-    <string name="next_option">Next Option</string>
-    <string name="no_observations_yet2">No observations yet.</string>
-    <string name="no_species_yet">No species yet.</string>
-    <string name="no_identifications_yet">No identifications yet.</string>
-    <string name="sort_by">Sort By</string>
+    <string name="next_option">Sonraki Seçenek</string>
+    <string name="no_observations_yet2">Henüz gözlem yok.</string>
+    <string name="no_species_yet">Henüz bir tür yok.</string>
+    <string name="no_identifications_yet">Henüz bir tanımlama yok.</string>
+    <string name="sort_by">Sırala</string>
     <string-array name="explore_order_by_items">
-        <item>Date Added</item>
-        <item>Date Observed</item>
-        <item>Date Updated</item>
+        <item>Eklenme Tarihi</item>
+        <item>Gözlem Tarihi</item>
+        <item>Güncellenme Tarihi</item>
         <!--<item>Faves</item>-->
-        <item>Random</item>
+        <item>Rastgele</item>
     </string-array>
     <string-array name="explore_order_items">
-        <item>Descending</item>
-        <item>Ascending</item>
+        <item>Azalan</item>
+        <item>Artan</item>
     </string-array>
     <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
     See explore_order_by_items and explore_order_items keys !-->
-    <string name="sorted_by_full">Sorted by %1$s (%2$s)</string>
+    <string name="sorted_by_full">Sıralama: %1$s (%2$s)</string>
     <!-- Label for an observation search filter to exclude your own observations -->
-    <string name="hide_my_observations">Hide My Observations</string>
+    <string name="hide_my_observations">Gözlemlerimi Gizle</string>
     <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
-    <string name="follow_this_observation">Follow this Observation</string>
+    <string name="follow_this_observation">Bu gözlemi Takip Et</string>
     <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
-    <string name="unfollow_this_observation">Unfollow this Observation</string>
+    <string name="unfollow_this_observation">Bu Gözlemi Takip Etmeyi Bırak</string>
     <!-- Error message shown when an attempt to follow an observation fails -->
-    <string name="could_not_follow_observation">Could not follow this observation</string>
+    <string name="could_not_follow_observation">Bu gözlem Takip Edilemedi</string>
     <!-- Error message shown when an attempt to unfollow an observation fails -->
-    <string name="could_not_unfollow_observation">Could not unfollow this observation</string>
+    <string name="could_not_unfollow_observation">Bu gözlem takipten kaldırılamadı</string>
     <!-- Label for a button to copy the coordinates of an observation -->
-    <string name="copy_coordinates">Copy coordinates</string>
-    <string name="coordinates_copied_to_clipboard">Coordinates copied to clipboard</string>
+    <string name="copy_coordinates">Koordinatları kopyala</string>
+    <string name="coordinates_copied_to_clipboard">Koordinatlar panoya kopyalandı</string>
     <!--  Title of a section on the observation detail view that displays minor metadata  -->
     <string name="metadata">Metadata</string>
     <!--  iNat observation identifier  -->
@@ -1076,4 +1085,50 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="uuid">UUID</string>
     <!--  Universal Resource Locator  -->
     <string name="url">URL</string>
+    <string name="default_licenses">Varsayılan Lisans</string>
+    <string name="default_observation_license">Varsayılan Gözlem Lisansı</string>
+    <string name="default_photo_license">Varsayılan Fotoğraf Lisansı</string>
+    <string name="default_sound_license">Varsayılan Ses Lisansı</string>
+    <string name="change_licenses_for_existing_observations">Varolan gözlem, fotoğraf ve seslerin lisanslarını değiştir</string>
+    <string name="change_licenses_for_all_existing_observations">Varolan tüm gözlemlerin lisanslarını değiştir</string>
+    <string name="change_licenses_for_all_existing_photos">Varolan tüm fotoğrafların lisanslarını değiştir</string>
+    <string name="change_licenses_for_all_existing_sounds">Varolan tüm seslerin lisanslarını değiştir</string>
+    <string name="change_observation_licenses">Gözlem Lisansını Değiştir</string>
+    <string name="change_photo_licenses">Fotoğraf Lisansını Değiştir</string>
+    <string name="change_sound_licenses">Ses Lisansını Değiştir</string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[Varolan <b>%1$d</b> gözlem lisansı <b>%2$s</b> olarak değiştirilsin mi?]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[Varolan fotoğrafın lisansı <b>%1$s</b> olarak değiştirilsin mi?]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Varolan sesin lisansı <b>%1$s</b> olarak değiştirilsin mi?]]></string>
+    <string name="observation_licenses_updated">Gözlem Lisansı Güncellendi</string>
+    <string name="photo_licenses_updated">Fotoğraf Lisansı Güncellendi</string>
+    <string name="sound_licenses_updated">Ses Lisansı Güncellendi</string>
+    <string name="existing_observation_licenses_have_been_updated">Tüm varolan gözlem lisansları %1$s olarak değiştirildi.</string>
+    <string name="existing_photo_licenses_have_been_updated">Tüm varolan fotoğraf lisansları %1$s olarak değiştirildi.</string>
+    <string name="existing_sound_licenses_have_been_updated">Tüm varolan ses lisansları %1$s olarak değiştirildi.</string>
+    <string name="default_licenses_description"><![CDATA[Licensing your content gives anyone the legal right to use it without asking your permission if they abide by the terms of the license. In addition, iNat includes your Creative Commons-licensed content in regularly-updated archives produced for select partner organizations interested in our data. For example, we include No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC) records in the archive we generate for the <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, an international, inter-governmental organization that compiles and distributes biodiversity information from around the world.]]></string>
+    <string name="photo_license">Fotoğraf Lisansı</string>
+    <string name="edit_photo_license">Fotoğraf Lisansını Düzenle</string>
+    <string name="observation_license">Gözlem Lisansı</string>
+    <string name="edit_observation_license">Gözlem Lisansını Düzenle</string>
+    <string name="about_licenses">Lisanslar Hakkında</string>
+    <string name="view_license">Lisansı Görüntüle</string>
+    <!-- License Names -->
+    <string name="license_name_cc0">Halka Açık Alan</string>
+    <string name="license_name_cc_by">Attribution</string>
+    <string name="license_name_cc_by_nc">Atıf-Ticari Olmayan</string>
+    <string name="license_name_cc_by_nc_sa">Atıf-Ticari Olmayan-Aynı Lisansla Paylaş</string>
+    <string name="license_name_cc_by_nc_nd">Atıf-Ticari Olmayan-Türetilemez</string>
+    <string name="license_name_cc_by_nd">Atıf-Türetilemez</string>
+    <string name="license_name_cc_by_sa">Atıf-Aynı Lisansla Paylaş</string>
+    <string name="license_name_no_license">Tüm hakları saklıdır</string>
+    <!-- License Descriptions -->
+    <string name="license_description_cc0">This license releases your work into the public domain, so others can copy, modify, distribute and perform your work, even for commercial purposes, all without asking permission or giving you credit. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.</string>
+    <string name="license_description_cc_by">This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation.</string>
+    <string name="license_description_cc_by_nc">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
+    <string name="license_description_cc_by_nc_sa">Bu lisans, çalışmalarını başkalarının ancak seni kaynak gösterdikleri ve yeni türevlerini aynı şartlar altında lisansladıkları sürece ve ticari olmayan şekilde yeniden karıştırmalarına, düzenlemelerine ve geliştirmelerine izin verir.</string>
+    <string name="license_description_cc_by_nc_nd">Bu lisans, altı ana lisansın en kısıtlayıcı olanıdır; çalışmanı yalnızca, başkalarının indirmelerine ve seni kaynak gösterdikleri sürece başkalarıyla paylaşmasına izin verir, ancak onları hiçbir şekilde değiştiremez veya ticari olarak kullanamazlar.</string>
+    <string name="license_description_cc_by_nd">This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.</string>
+    <string name="license_description_cc_by_sa">Bu lisans, başkalarının çalışmalarını ticari olmayan şekilde yeniden karıştırmalarına, düzenlemelerine ve geliştirmelerine izin verir ve yeni çalışmaları da senin tarafından onaylanmalı ve ticari olmamalıdır, türetilmiş çalışmalarını aynı şartlarla lisanslamak zorunda kalmazlar.</string>
+    <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
+    <string name="invalid_photo">Fotoğraf formatı desteklenmiyor</string>
 </resources>

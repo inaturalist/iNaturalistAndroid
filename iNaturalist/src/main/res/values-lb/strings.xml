@@ -198,6 +198,9 @@
     <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland is a member of the iNaturalist Network in Finland. Local institutions supporting iNaturalist Finland will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Greece is a member of the iNaturalist Network in Greece. Local institutions supporting iNaturalist Greece will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg is a member of the iNaturalist Network in Luxembourg. Local institutions supporting iNaturalist Luxembourg will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom is a member of the iNaturalist Network in United Kingdom. Local institutions supporting iNaturalist United Kingdom will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editeur</string>
     <string name="license">Lizenz</string>
     <string name="download_for_offline_use">Erofluede fir offline Notzung</string>
@@ -246,9 +249,10 @@
     <string name="please_sign_in_for_updates">Dir musst ageloggt si fir Är Updates ze gesinn.</string>
     <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="https://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
     <string name="activity">Aktivitéit</string>
+    <!-- Label for a button to open the camera to take a new photo for an observation -->
     <string name="camera">Foto maachen</string>
+    <!-- Label for a button to import an existing photo for an observation -->
     <string name="upload_photo">Bild wielen</string>
-    <string name="menu_text">Keng Foto</string>
     <string name="first">1.</string>
     <string name="make_first">Den éischte maachen</string>
     <string name="notes">Notizen</string>
@@ -309,6 +313,7 @@
     <string name="sync_obs_to_see_favs">Sync this observation to see faves...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Sync this observation in order to leave a comment or suggest an identification...</string>
+    <!--  Label for a button to add an observation without a photo or a sound  -->
     <string name="no_photo">No Media</string>
     <string name="about_this_species">Iwwert dës Aart</string>
     <string name="view_on_wikipedia">Wikipedia-Artikel</string>
@@ -382,7 +387,7 @@
     <string name="mammals">Mamendéieren</string>
     <string name="insects">Insekten</string>
     <string name="reptiles">Reptilien</string>
-    <string name="animals">Animals</string>
+    <string name="animals">Déieren</string>
     <string name="fish">Fësch</string>
     <string name="mollusks">Mollusken</string>
     <string name="protozoans">Protozoans</string>
@@ -509,7 +514,7 @@
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_county">Historescht Land</string>
     <string name="continent">Kontinent</string>
-    <string name="estate">Estate</string>
+    <string name="estate">Anwesen</string>
     <string name="historical_town">Historesch stad</string>
     <string name="aggregate">Aggregatioun</string>
     <string name="open_space">Open Space</string>
@@ -517,7 +522,7 @@
     <string name="district">Distrikt</string>
     <string name="province">Provënz</string>
     <string name="municipality">Gemeng</string>
-    <string name="parish">Parish</string>
+    <string name="parish">Par</string>
     <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
     <string name="department_segment">Department Segment</string>
     <string name="city_building">City Building</string>
@@ -543,7 +548,7 @@
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegatioun</string>
     <string name="apply_filters">Filter uwenden</string>
-    <string name="remove_filters">Remove Filters</string>
+    <string name="remove_filters">Filter eweghuelen</string>
     <string name="reset">Zrécksetzen</string>
     <string name="show_only_my_observations">Nëmmen eng Observatioune weisen</string>
     <string name="project">Projet</string>
@@ -623,7 +628,6 @@
     <string name="project_identifiers">Bestemmer</string>
     <string name="got_it">Verstan!</string>
     <string name="view_all">All kucken</string>
-    <string name="new_badge">Nei</string>
     <string name="observers">Observateuren</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
     <string name="attribute">Attribut</string>
@@ -739,6 +743,9 @@
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa ënnerstëtzt iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Natural History (LUOMUS) ënnerstëtzt iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">All als gekuckt markéieren</string>
     <string name="content_hidden">Contenu verstoppt</string>
     <string name="show_hidden_content">Verstoppten Contenu weisen</string>
@@ -750,9 +757,11 @@
     <string name="could_not_play_sound">Den Sound kann net gespillt sinn - méiglecherweis en Netzwierksprobleem</string>
     <string name="cant_play_soundcloud"><![CDATA[Fir Soundcloud Téin ze lauschteren, kuckt de <a href="%1$s">Website</a>.]]></string>
     <string name="soundcloud">SoundCloud</string>
+    <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Geräisch ophuelen</string>
     <string name="no_recorder_found">Kee standard Sound-Recorder fonnt!</string>
     <string name="couldnt_retrieve_sound">Konnt keen Sound vum standard Recorder kreien - probéiert den Sound z\'importéieren</string>
+    <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Sound wielen</string>
     <string name="multi_select_sound_description">Importéiert méi Téin andeems Dir laang ob eng eenzel Datei klickt</string>
     <string name="alert_unsupported_audio_type">Pardon, awer et gouf e Problem beim Luede vum Sound vun dëser Quell</string>
@@ -973,7 +982,7 @@
     <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
     <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will suggest species observed in a specific place and within a specific taxonomic group.</string>
     <string name="taxon">Taxon:</string>
-    <string name="place">Place:</string>
+    <string name="place">Plaz:</string>
     <string name="pretty_sure_kingdom">We\'re pretty sure it\'s in this kingdom:</string>
     <string name="pretty_sure_subkingdom">We\'re pretty sure it\'s in this subkingdom:</string>
     <string name="pretty_sure_phylum">We\'re pretty sure it\'s in this phylum:</string>
@@ -1021,11 +1030,11 @@
     <string name="share_hidden_location">Verstoppten Standuert deelen</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Konnt de Sound net dubléieren</string>
-    <string name="sound_format_not_supported">This sound file is the right file extension, but the specific audio encoding is not supported by Android.</string>
+    <string name="sound_format_not_supported">That audio encoding is not supported by Android.</string>
     <string name="view_observations">Observatioune kucken</string>
     <string name="choose_this_option">Choose this option</string>
     <string name="compare_observation_with_this_option">Compare observation with this option</string>
-    <string name="go_back">Go back</string>
+    <string name="go_back">Zréck goen</string>
     <string name="change_the_source_of_the_suggestions">Change the source of the suggestions</string>
     <string name="thumbnail_photo_for_suggested_taxon">Thumbnail photo for suggested taxon</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
@@ -1039,13 +1048,13 @@
     <string name="no_observations_yet2">Nach keng Observatiounen.</string>
     <string name="no_species_yet">Nach keng Aarten.</string>
     <string name="no_identifications_yet">Nach keng Bestëmmungen</string>
-    <string name="sort_by">Sort By</string>
+    <string name="sort_by">Sortéieren no</string>
     <string-array name="explore_order_by_items">
         <item>Date Added</item>
         <item>Date Observed</item>
         <item>Date Updated</item>
         <!--<item>Faves</item>-->
-        <item>Random</item>
+        <item>Zoufälleg</item>
     </string-array>
     <string-array name="explore_order_items">
         <item>Descending</item>
@@ -1068,11 +1077,57 @@
     <string name="copy_coordinates">Copy coordinates</string>
     <string name="coordinates_copied_to_clipboard">Coordinates copied to clipboard</string>
     <!--  Title of a section on the observation detail view that displays minor metadata  -->
-    <string name="metadata">Metadata</string>
+    <string name="metadata">Metadaten</string>
     <!--  iNat observation identifier  -->
     <string name="id">ID</string>
     <!--  iNat observation Universally Unique Identifier  -->
     <string name="uuid">UUID</string>
     <!--  Universal Resource Locator  -->
     <string name="url">URL</string>
+    <string name="default_licenses">Default Licenses</string>
+    <string name="default_observation_license">Default Observation License</string>
+    <string name="default_photo_license">Default Photo License</string>
+    <string name="default_sound_license">Default Sound License</string>
+    <string name="change_licenses_for_existing_observations">Change licenses for existing observations, photos and sounds</string>
+    <string name="change_licenses_for_all_existing_observations">Change licenses for all existing observations</string>
+    <string name="change_licenses_for_all_existing_photos">Change licenses for all existing photos</string>
+    <string name="change_licenses_for_all_existing_sounds">Change licenses for all existing sounds</string>
+    <string name="change_observation_licenses">Change Observation Licenses</string>
+    <string name="change_photo_licenses">Change Photo Licenses</string>
+    <string name="change_sound_licenses">Change Sound Licenses</string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[Change the licenses of <b>%1$d</b> existing observations to <b>%2$s</b>?]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[Change the licenses of existing photos to <b>%1$s</b>?]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Change the licenses of existing sounds to <b>%1$s</b>?]]></string>
+    <string name="observation_licenses_updated">Observation Licenses Updated</string>
+    <string name="photo_licenses_updated">Photo Licenses Updated</string>
+    <string name="sound_licenses_updated">Sound Licenses Updated</string>
+    <string name="existing_observation_licenses_have_been_updated">All existing observation licenses have been changed to %1$s.</string>
+    <string name="existing_photo_licenses_have_been_updated">All existing photo licenses have been changed to %1$s.</string>
+    <string name="existing_sound_licenses_have_been_updated">All existing sound licenses have been changed to %1$s.</string>
+    <string name="default_licenses_description"><![CDATA[Licensing your content gives anyone the legal right to use it without asking your permission if they abide by the terms of the license. In addition, iNat includes your Creative Commons-licensed content in regularly-updated archives produced for select partner organizations interested in our data. For example, we include No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC) records in the archive we generate for the <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, an international, inter-governmental organization that compiles and distributes biodiversity information from around the world.]]></string>
+    <string name="photo_license">Fotolizenz</string>
+    <string name="edit_photo_license">Edit Photo License</string>
+    <string name="observation_license">Observation License</string>
+    <string name="edit_observation_license">Edit Observation License</string>
+    <string name="about_licenses">About Licenses</string>
+    <string name="view_license">View License</string>
+    <!-- License Names -->
+    <string name="license_name_cc0">Domaine public</string>
+    <string name="license_name_cc_by">Attribution</string>
+    <string name="license_name_cc_by_nc">Attribution-NonCommercial</string>
+    <string name="license_name_cc_by_nc_sa">Attribution-NonCommercial-ShareAlike</string>
+    <string name="license_name_cc_by_nc_nd">Attribution-NonCommercial-NoDerivs</string>
+    <string name="license_name_cc_by_nd">Attribution-NoDerivs</string>
+    <string name="license_name_cc_by_sa">Attribution-ShareAlike</string>
+    <string name="license_name_no_license">All rights reserved</string>
+    <!-- License Descriptions -->
+    <string name="license_description_cc0">This license releases your work into the public domain, so others can copy, modify, distribute and perform your work, even for commercial purposes, all without asking permission or giving you credit. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.</string>
+    <string name="license_description_cc_by">This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation.</string>
+    <string name="license_description_cc_by_nc">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
+    <string name="license_description_cc_by_nc_sa">This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms.</string>
+    <string name="license_description_cc_by_nc_nd">This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can\'t change them in any way or use them commercially.</string>
+    <string name="license_description_cc_by_nd">This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.</string>
+    <string name="license_description_cc_by_sa">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
+    <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
+    <string name="invalid_photo">Photo format not supported</string>
 </resources>
