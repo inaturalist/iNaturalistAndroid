@@ -177,7 +177,7 @@ public class ExploreSearchFilters implements Serializable {
 
         if (user != null) {
             if (user.has("login")) {
-                url.append("&user_login=" + user.optString("login"));
+                url.append("&user_id=" + user.optString("login"));
             } else {
                 url.append("&user_id=" + user.optInt("id"));
             }
