@@ -1756,6 +1756,10 @@ public class INaturalistService extends IntentService {
                 }
 
                 Intent reply = new Intent(ACTION_JOINED_PROJECTS_RESULT);
+                Logger.tag(TAG).debug("Joined projects: " + projects);
+                if (projects != null) {
+                    Logger.tag(TAG).debug("Joined projects 2: " + projects.getJSONArray().toString());
+                }
                 mApp.setServiceResult(ACTION_JOINED_PROJECTS_RESULT, projects);
                 reply.putExtra(IS_SHARED_ON_APP, true);
                 LocalBroadcastManager.getInstance(this).sendBroadcast(reply);

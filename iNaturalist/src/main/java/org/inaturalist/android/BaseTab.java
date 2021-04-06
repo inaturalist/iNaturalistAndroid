@@ -71,7 +71,8 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
             	serializableArray = (SerializableJSONArray) mApp.getServiceResult(getFilterResultName());
             	mApp.setServiceResult(getFilterResultName(), null); // Clear data afterwards
             }
-            
+            Logger.tag(TAG).debug("Response for: " + getFilterResultName() + ":" + serializableArray);
+
             if (serializableArray == null) {
             	mProjects = new ArrayList<JSONObject>();
             	loadProjectsIntoUI();
@@ -79,13 +80,14 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
             }
 
             JSONArray projects = serializableArray.getJSONArray();
+            Logger.tag(TAG).debug("Response (2) for: " + getFilterResultName() + ":" + projects);
             mProjects = new ArrayList<JSONObject>();
             
             if (projects == null) {
                 loadProjectsIntoUI();
                 return;
             }
-            
+
             for (int i = 0; i < projects.length(); i++) {
                 try {
                     mProjects.add(projects.getJSONObject(i));
@@ -106,7 +108,10 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     }
 
     private void loadProjectsIntoUI() {
+        Logger.tag(TAG).debug("loadProjectsIntoUI 1");
         if (mContext ==  null) return;
+        Logger.tag(TAG).debug("loadProjectsIntoUI 2 - " + mProjects);
+        if (mProjects != null) Logger.tag(TAG).debug("loadProjectsIntoUI 3 - " + mProjects.size());
 
         mAdapter = new ProjectsAdapter(mContext, null, this, mProjects, getDefaultIcon());
         mProjectList.setAdapter(mAdapter);
