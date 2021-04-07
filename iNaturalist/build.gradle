@@ -58,6 +58,7 @@ android {
         }
     }
 
+    ndkVersion "22.1.7171670"
     buildTypes {
         debug {
             minifyEnabled false
@@ -65,6 +66,10 @@ android {
         release {
             minifyEnabled true
             proguardFiles 'proguard-rules.txt'
+
+            ndk {
+                debugSymbolLevel 'FULL'
+            }
         }
     }
 
