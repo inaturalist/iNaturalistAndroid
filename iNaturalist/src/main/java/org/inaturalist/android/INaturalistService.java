@@ -90,6 +90,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import okhttp3.FormBody;
 import okhttp3.Headers;
+import okhttp3.HttpUrl;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -1126,38 +1127,19 @@ public class INaturalistService extends IntentService {
                 Double placeLng = intent.getDoubleExtra(PLACE_LNG, -1);
                 if (placeLng == -1) placeLng = null;
 
-                File tempFile = null;
-
+                BetterJSONObject taxonSuggestions;
                 if (obsFilename == null) {
-                    // It's an online observation - need to download the image first.
-                    try {
-                        tempFile = File.createTempFile("online_photo", ".jpeg", getCacheDir());
+                    // It's an online observation
+                    taxonSuggestions = getTaxonSuggestions(obsUrl, latitude, longitude, observedOn, suggestionSource, placeId, taxonId, placeLat, placeLng, limit, page);
+                } else {
+                    // Local photo  - Resize photo to 299x299 max
+                    String resizedPhotoFilename = ImageUtils.resizeImage(this, obsFilename, null, 299);
+                    taxonSuggestions = getTaxonSuggestions(resizedPhotoFilename, latitude, longitude, observedOn, suggestionSource, placeId, taxonId, placeLat, placeLng, limit, page);
 
-                        if (!downloadToFile(obsUrl, tempFile.getAbsolutePath())) {
-                            Intent reply = new Intent(ACTION_GET_TAXON_SUGGESTIONS_RESULT);
-                            reply.putExtra(TAXON_SUGGESTIONS, (Serializable) null);
-                            LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
-                            return;
-                        }
-
-                        obsFilename = tempFile.getAbsolutePath();
-                    } catch (IOException e) {
-                        Logger.tag(TAG).error(e);
-                    }
-
+                    File resizedFile = new File(resizedPhotoFilename);
+                    resizedFile.delete();
                 }
 
-                // Resize photo to 299x299 max
-                String resizedPhotoFilename = ImageUtils.resizeImage(this, obsFilename, null, 299);
-
-                if (tempFile != null) {
-                    tempFile.delete();
-                }
-
-                BetterJSONObject taxonSuggestions = getTaxonSuggestions(resizedPhotoFilename, latitude, longitude, observedOn, suggestionSource, placeId, taxonId, placeLat, placeLng, limit, page);
-
-                File resizedFile = new File(resizedPhotoFilename);
-                resizedFile.delete();
 
                 Intent reply = new Intent(ACTION_GET_TAXON_SUGGESTIONS_RESULT);
                 reply.putExtra(TAXON_SUGGESTIONS, taxonSuggestions);
@@ -2660,7 +2642,17 @@ public class INaturalistService extends IntentService {
         if (page != null) params.add(new BasicNameValuePair("page", page.toString()));
         params.add(new BasicNameValuePair("locale", deviceLanguage));
         if (date != null) params.add(new BasicNameValuePair("observed_on", date));
-        if (suggestionSource.equals(SUGGESTION_SOURCE_VISUAL)) params.add(new BasicNameValuePair("image", photoFilename));
+        boolean isOnline = false;
+        if (suggestionSource.equals(SUGGESTION_SOURCE_VISUAL)) {
+            if (photoFilename.startsWith("http://") || photoFilename.startsWith("https://")) {
+                // Online photo
+                isOnline = true;
+                params.add(new BasicNameValuePair("image_url", photoFilename));
+            } else {
+                // Local filename
+                params.add(new BasicNameValuePair("image", photoFilename));
+            }
+        }
         params.add(new BasicNameValuePair("source", suggestionSource));
         if (placeId != null) {
             params.add(new BasicNameValuePair("place_id", placeId.toString()));
@@ -2681,7 +2673,12 @@ public class INaturalistService extends IntentService {
         }
 
 
-        JSONArray json = request(url, "post", params, null, true, true, true);
+        JSONArray json;
+        if (isOnline) {
+            json = request(url, "get", params, null, true, true, true);
+        } else {
+            json = request(url, "post", params, null, true, true, true);
+        }
         if (json == null || json.length() == 0) {
             return null;
         }
@@ -5982,7 +5979,18 @@ public class INaturalistService extends IntentService {
         method = method.toUpperCase();
         RequestBody requestBody = null;
 
-        if ((jsonContent == null) && (params == null) && (method.equals("PUT") || method.equals("POST"))) {
+        if (method.equals("GET") && (params != null)) {
+            HttpUrl.Builder httpUriBuilder = HttpUrl.parse(url).newBuilder();
+
+            for (int i = 0; i < params.size(); i++) {
+                httpUriBuilder.addQueryParameter(params.get(i).getName(), params.get(i).getValue());
+            }
+            HttpUrl httpUrl = httpUriBuilder.build();
+            requestBuilder = new Request.Builder()
+                    .addHeader("User-Agent", getUserAgent(mApp))
+                    .url(httpUrl);
+
+        } else if ((jsonContent == null) && (params == null) && (method.equals("PUT") || method.equals("POST"))) {
             // PUT/POST with empty body
             requestBody = RequestBody.create(null, new byte[]{});
 
