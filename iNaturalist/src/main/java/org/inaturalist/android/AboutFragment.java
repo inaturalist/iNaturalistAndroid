@@ -111,7 +111,9 @@ public class AboutFragment extends PreferenceFragmentCompat {
                     Intent mailer = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", getString(R.string.inat_support_email_address), null));
                     mailer.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.inat_support_email_address)});
                     String username = mPreferences.getString("username", null);
-                    mailer.putExtra(Intent.EXTRA_SUBJECT, String.format(getString(R.string.inat_support_email_subject), info.versionName, info.versionCode, username == null ? "N/A" : username));
+                    String subject = String.format(getString(R.string.inat_support_email_subject), info.versionName, info.versionCode, username == null ? "N/A" : username);
+                    mailer.putExtra(Intent.EXTRA_SUBJECT, subject);
+                    mailer.setData(Uri.parse("mailto:" + getString(R.string.inat_support_email_address) + "?subject=" + subject));
                     startActivity(Intent.createChooser(mailer, getString(R.string.send_email)));
                 } catch (PackageManager.NameNotFoundException e) {
                     Logger.tag(TAG).error(e);
