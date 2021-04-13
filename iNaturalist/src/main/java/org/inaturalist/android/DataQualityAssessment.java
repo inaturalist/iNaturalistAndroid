@@ -243,6 +243,8 @@ public class DataQualityAssessment extends AppCompatActivity implements DataQual
     private void refreshIdCanBeImproved() {
         Logger.tag(TAG).debug("refreshIdCanBeImproved");
 
+        if (mObservation == null) return;
+
         mLoadingIdCanBeImproved.setVisibility(View.GONE);
 
         mIdCanBeImprovedText.setText(R.string.yes);
