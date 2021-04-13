@@ -115,6 +115,17 @@ public class ObservationUtils {
             if (observation.has("comments_count") && !observation.isNull("comments_count")) minimaldObs.put("comments_count", observation.optInt("comments_count"));
             if (observation.has("identifications_count") && !observation.isNull("identifications_count")) minimaldObs.put("identifications_count", observation.optInt("identifications_count"));
 
+            if (observation.has("location") && !minimaldObs.has("latitude") && !minimaldObs.has("longitude")) {
+                String location = observation.getString("location");
+                if ((location != null) && (location.length() > 0) && (!location.equals("null"))) {
+                    String[] locationSplit = location.split(",");
+                    if ((locationSplit.length == 2) && (!locationSplit[0].equals("null")) && (!locationSplit[1].equals("null"))) {
+                        minimaldObs.put("latitude", locationSplit[0]);
+                        minimaldObs.put("longitude", locationSplit[1]);
+                    }
+                }
+            }
+
             minimaldObs.put("taxon", getMinimalTaxon(observation.optJSONObject("taxon")));
             if (observation.has("iconic_taxon_name")) minimaldObs.put("iconic_taxon_name", observation.optString("iconic_taxon_name"));
 

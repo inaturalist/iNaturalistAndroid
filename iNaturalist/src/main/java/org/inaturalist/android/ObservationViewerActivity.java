@@ -1727,7 +1727,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             // No photos
             dataQuality = DATA_QUALITY_CASUAL_GRADE;
             reasonText = R.string.casual_grade_add_photo;
-        } else if (mObservation.captive || mFlagAsCaptive) {
+        } else if ((mObservation.captive != null && mObservation.captive) || mFlagAsCaptive) {
             // Captive
             dataQuality = DATA_QUALITY_CASUAL_GRADE;
             reasonText = R.string.casual_grade_captive;
