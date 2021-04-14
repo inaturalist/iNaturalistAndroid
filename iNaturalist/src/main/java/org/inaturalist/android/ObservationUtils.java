@@ -277,8 +277,12 @@ public class ObservationUtils {
         return minimalSound;
     }
 
-    // Returns a minimal version of a photo JSON (used to lower memory usage)
     public static JSONObject getMinimalPhoto(JSONObject photo) {
+        return getMinimalPhoto(photo, false);
+    }
+
+    // Returns a minimal version of a photo JSON (used to lower memory usage)
+    public static JSONObject getMinimalPhoto(JSONObject photo, boolean returnMultiplePhotoSizes) {
         JSONObject minimalPhoto = new JSONObject();
 
         if (photo == null) return null;
@@ -290,7 +294,14 @@ public class ObservationUtils {
             if (photo.has("photo") && !photo.isNull("photo")) {
                 JSONObject innerPhoto = new JSONObject();
                 innerPhoto.put("id", photo.optJSONObject("photo").optInt("id"));
-                innerPhoto.put("url", photo.optJSONObject("photo").optString("url"));
+
+                if (!returnMultiplePhotoSizes) {
+                    innerPhoto.put("url", photo.optJSONObject("photo").optString("url"));
+                } else {
+                    if (photo.optJSONObject("photo").has("large_url") && !photo.optJSONObject("photo").isNull("large_url")) innerPhoto.put("large_url", photo.optJSONObject("photo").optString("large_url"));
+                    if (photo.optJSONObject("photo").has("original_url") && !photo.optJSONObject("photo").isNull("original_url")) innerPhoto.put("original_url", photo.optJSONObject("photo").optString("original_url"));
+                    if (photo.optJSONObject("photo").has("small_url") && !photo.optJSONObject("photo").isNull("small_url")) innerPhoto.put("small_url", photo.optJSONObject("photo").optString("small_url"));
+                }
 
                 minimalPhoto.put("photo", innerPhoto);
             }
@@ -303,8 +314,12 @@ public class ObservationUtils {
     }
 
 
-    // Returns a minimal version of a taxon JSON (used to lower memory usage)
     public static JSONObject getMinimalTaxon(JSONObject taxon) {
+        return getMinimalTaxon(taxon, false);
+    }
+
+    // Returns a minimal version of a taxon JSON (used to lower memory usage)
+    public static JSONObject getMinimalTaxon(JSONObject taxon, boolean includePhotos) {
         JSONObject minimalTaxon = new JSONObject();
 
         if (taxon == null) return null;
@@ -333,6 +348,17 @@ public class ObservationUtils {
 
                 minimalTaxon.put("default_photo", minimalPhoto);
             }
+
+            if (includePhotos && taxon.has("taxon_photos") && !taxon.isNull("taxon_photos")) {
+                JSONArray minimalTaxonPhotos = new JSONArray();
+                JSONArray taxonPhotos = taxon.optJSONArray("taxon_photos");
+                for (int i = 0; i < taxonPhotos.length(); i++) {
+                    minimalTaxonPhotos.put(getMinimalPhoto(taxonPhotos.optJSONObject(i), true));
+                }
+
+                minimalTaxon.put("taxon_photos", minimalTaxonPhotos);
+            }
+
         } catch (JSONException e) {
             Logger.tag(TAG).error(e);
             return null;

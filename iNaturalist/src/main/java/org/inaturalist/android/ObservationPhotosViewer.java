@@ -460,7 +460,11 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                                 mImageThumbnails.add(innerPhoto.has("thumb_url") ? innerPhoto.optString("thumb_url") : innerPhoto.optString("small_url"));
  							} else {
  							    String url = innerPhoto.optString("url");
- 							    if ((url != null) && (url.length() > 0)) {
+ 							    if (isTaxon) {
+ 							        // Taxon photos sometimes point to outside sources like Flickr, so we can't deduce thumbnail/original size URLs.
+                                    mImages.add(url);
+                                    mImageThumbnails.add(url);
+                                } else if ((url != null) && (url.length() > 0)) {
                                     String extension = url.substring(url.lastIndexOf("."));
 
                                     // Deduce the original-sized URL

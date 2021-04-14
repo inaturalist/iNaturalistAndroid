@@ -1167,7 +1167,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, ObservationPhotosViewer.class);
                     intent.putExtra(ObservationPhotosViewer.CURRENT_PHOTO_INDEX, position);
-                    intent.putExtra(ObservationPhotosViewer.OBSERVATION, mTaxon.toString());
+                    intent.putExtra(ObservationPhotosViewer.OBSERVATION, ObservationUtils.getMinimalTaxon(mTaxon, true).toString());
                     intent.putExtra(ObservationPhotosViewer.IS_TAXON, true);
                     mContext.startActivity(intent);
                 }
