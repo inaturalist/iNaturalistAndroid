@@ -2950,6 +2950,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         }
 
         if (downloadFromOriginalObservation) {
+            if (mObservation == null) return;
+
             taxonId = mObservation.taxon_id;
         }
 
