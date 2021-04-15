@@ -4086,25 +4086,49 @@ public class INaturalistService extends IntentService {
                 checkForCancelSync();
 
                 op = new ObservationPhoto(c);
-                ArrayList<NameValuePair> params = op.getParams();
                 String inatNetwork = mApp.getInaturalistNetworkMember();
                 String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
-                params.add(new BasicNameValuePair("site_id", mApp.getStringResourceByName("inat_site_id_" + inatNetwork)));
+                String siteId = mApp.getStringResourceByName("inat_site_id_" + inatNetwork);
 
 
-                Logger.tag(TAG).debug("postPhotos: Updating " + op + ":" + params);
-                JSONArray response = put(inatHost + "/observation_photos/" + op.id + ".json", params);
+                // Updating the photo requires calling two APIs - one for updating the license (the Photo object itself),
+                // the other for updating the ObservationPhoto (e.g. position)
+
+
+                // Photo object update
+                JSONObject params = op.toJSONObject();
+                try {
+                    params.put("site_id", siteId);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+                Logger.tag(TAG).debug("postPhotos: Photo: Updating " + op + ":" + params);
+                JSONArray response = put(API_HOST + "/photos/" + op.photo_id, params);
                 try {
                     if (response == null || response.length() != 1) {
                         Logger.tag(TAG).debug("postPhotos: Failed updating " + op.id);
                         c.close();
                         throw new SyncFailedException();
                     }
+
+                    ArrayList<NameValuePair> params2 = op.getParams();
+                    params2.add(new BasicNameValuePair("site_id", siteId));
+                    Logger.tag(TAG).debug("postPhotos: ObservationPhoto: Updating " + op + ":" + params2);
+                    response = put(inatHost + "/observation_photos/" + op.id + ".json", params);
+
+                    if (response == null || response.length() != 1) {
+                        Logger.tag(TAG).debug("postPhotos: Failed updating " + op.id);
+                        c.close();
+                        throw new SyncFailedException();
+                    }
+
                     increaseProgressForObservation(observation);
 
                     JSONObject json = response.getJSONObject(0);
                     BetterJSONObject j = new BetterJSONObject(json);
-                    ObservationPhoto jsonObservationPhoto = new ObservationPhoto(j);
+                    ObservationPhoto jsonObservationPhoto = new ObservationPhoto(j, op);
                     Logger.tag(TAG).debug("postPhotos after put: " + j);
                     Logger.tag(TAG).debug("postPhotos after put 2: " + jsonObservationPhoto);
                     op.merge(jsonObservationPhoto);

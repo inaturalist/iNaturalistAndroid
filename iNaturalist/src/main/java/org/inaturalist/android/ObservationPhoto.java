@@ -165,7 +165,27 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         this.original_photo_filename = bc.getString(ORIGINAL_PHOTO_FILENAME);
     }
 
+
     public ObservationPhoto(BetterJSONObject o) {
+        this(o, null);
+    }
+
+    public ObservationPhoto(BetterJSONObject o, ObservationPhoto parent) {
+        if (parent != null) {
+            // This is a special JSON response from the photo endpoint (PUT /photos/1234), so it contains
+            // only the inner photo JSON, not the ObservationPhoto details
+            this.updated_at = o.getTimestamp("updated_at");
+            this.created_at = o.getTimestamp("created_at");
+            this.id = parent.id;
+            this.observation_id = parent.observation_id;
+            this.photo_id = o.getInt("id");
+            this.position = o.getInt("id");
+            this.uuid = parent.uuid;
+            this.license = parent.license;
+
+            return;
+        }
+
         this._created_at = o.getTimestamp("_created_at");
         this._created_at_was = this._created_at;
         this._observation_id = o.getInteger("_observation_id");
@@ -242,13 +262,19 @@ public class ObservationPhoto implements BaseColumns, Serializable {
 
     public JSONObject toJSONObject() {
         BetterJSONObject bo = new BetterJSONObject();
-        bo.put("created_at", created_at);
-        bo.put("uuid", uuid);
-        bo.put("id", id);
-        bo.put("observation_id", observation_id);
-        bo.put("photo_id", photo_id);
-        bo.put("position", position);
-        bo.put("updated_at", updated_at);
+        if (observation_id != null) { bo.put("observation_id", observation_id); }
+        if (photo_id != null) { bo.put("photo_id", photo_id); }
+        if (position != null) { bo.put("position", position); }
+        if (uuid != null) { bo.put("uuid", uuid); }
+        if (license != null) {
+            JSONObject photo = new JSONObject();
+            try {
+                photo.put("license_code", license);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            bo.put("photo", photo);
+        }
 
         return bo.getJSONObject();
     }
@@ -312,7 +338,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         if (observation_id != null) { params.add(new BasicNameValuePair("observation_photo[observation_id]", observation_id.toString())); }
         if (photo_id != null) { params.add(new BasicNameValuePair("observation_photo[photo_id]", photo_id.toString())); }
         if (position != null) { params.add(new BasicNameValuePair("observation_photo[position]", position.toString())); }
-        if (license != null) { params.add(new BasicNameValuePair("observation_photo[photo][license]", license)); }
+        if (license != null) { params.add(new BasicNameValuePair("observation_photo[photo][license_code]", license)); }
         if (uuid != null) { params.add(new BasicNameValuePair("observation_photo[uuid]", uuid)); }
 
         return params;

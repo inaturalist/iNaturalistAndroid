@@ -625,7 +625,7 @@ public class Observation implements BaseColumns, Serializable {
         bo.put("observed_on", observed_on);
         bo.put("observed_on_string", observed_on_string);
         bo.put("time_zone", time_zone);
-        bo.put("license", license);
+        bo.put("license_code", license);
         if (!partial) bo.put("out_of_range", out_of_range);
         bo.put("captive_flag", captive);
         bo.put("place_guess", (private_place_guess != null) && (private_place_guess.length() > 0) ? private_place_guess : place_guess);
