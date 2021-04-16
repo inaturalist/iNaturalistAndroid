@@ -107,7 +107,6 @@ public class INaturalistApp extends MultiDexApplication {
     public static SimpleDateFormat DATETIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd h:mm:ss a z", Locale.ENGLISH);
     public static SimpleDateFormat SHORT_DATE_FORMAT = new SimpleDateFormat("d MMM yyyy");
     public static SimpleDateFormat SHORT_TIME_FORMAT = new SimpleDateFormat("hh:mm a z");
-    public static SimpleDateFormat DATETIME_ISO_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.ENGLISH);
     public static SimpleDateFormat DATETIME_ISO_NO_TIMEZONE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
     private static Integer SYNC_NOTIFICATION = 3;
     private static Context context;
@@ -1066,7 +1065,6 @@ public class INaturalistApp extends MultiDexApplication {
     
     public String formatDate(Timestamp date) { return DATE_FORMAT.format(date); }
     public String formatDatetime(Timestamp date) { return DATETIME_FORMAT.format(date); }
-    public String formatDatetimeISO(Timestamp date) { return DATETIME_ISO_FORMAT.format(date); }
     public String formatDatetimeISONoTimezone(Timestamp date) { return DATETIME_ISO_NO_TIMEZONE_FORMAT.format(date); }
     public String shortFormatDate(Timestamp date) {
         SimpleDateFormat f;

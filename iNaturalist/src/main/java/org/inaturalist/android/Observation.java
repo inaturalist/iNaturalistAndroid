@@ -22,10 +22,11 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
-import static org.inaturalist.android.INaturalistApp.DATETIME_ISO_FORMAT;
-
 @SuppressWarnings("WeakerAccess")
 public class Observation implements BaseColumns, Serializable {
+    //private static SimpleDateFormat DATETIME_ISO_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.ENGLISH);
+    private static SimpleDateFormat DATETIME_ISO_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ", Locale.ENGLISH);
+
     public Integer _id;
     public Timestamp _created_at;
     public Timestamp _synced_at;
