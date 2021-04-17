@@ -755,6 +755,16 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
         mSuggestionsList.setAdapter(new TaxonSuggestionAdapter(this, sortedSuggestions, onSuggestion, true));
         mDisplayedSuggestions = sortedSuggestions;
 
+        if (sortedSuggestions.size() == 0) {
+            // No results at all
+            mSuggestionsDescription.setText(R.string.were_not_confident_enough_no_suggestions);
+            mFiltersButton.setVisibility(View.GONE);
+            mViewSuggestionsNotNearByButton.setVisibility(View.GONE);
+        } else {
+            mFiltersButton.setVisibility(View.VISIBLE);
+            mViewSuggestionsNotNearByButton.setVisibility(View.VISIBLE);
+        }
+
         resizeSuggestionsList();
     }
 
