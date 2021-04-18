@@ -291,6 +291,8 @@ public class INaturalistService extends IntentService {
     public static final String EXPLORE_GET_SPECIES_RESULT = "explore_get_species_result";
     public static final String EXPLORE_GET_IDENTIFIERS_RESULT = "explore_get_identifiers_result";
     public static final String EXPLORE_GET_OBSERVERS_RESULT = "explore_get_observers_result";
+    public static final String GET_TOP_OBSERVERS_RESULT = "get_top_observers_result";
+    public static final String GET_TOP_IDENTIFIERS_RESULT = "get_top_identifiers_result";
     public static final String GET_ATTRIBUTES_FOR_TAXON_RESULT = "get_attributes_for_taxon_result";
     public static final String GET_ALL_ATTRIBUTES_RESULT = "get_all_attributes_result";
     public static final String DELETE_ANNOTATION_RESULT = "delete_annotation_result";
@@ -390,6 +392,7 @@ public class INaturalistService extends IntentService {
     public static final String FIRST_SYNC = "first_sync";
     public static final String PAGE_NUMBER = "page_number";
     public static final String PAGE_SIZE = "page_size";
+    public static final String TAXON_IDS = "taxon_ids";
     public static final String ID = "id";
     public static final String OBS_IDS_TO_SYNC = "obs_ids_to_sync";
     public static final String OBS_IDS_TO_DELETE = "obs_ids_to_delete";
@@ -536,6 +539,8 @@ public class INaturalistService extends IntentService {
     public static String ACTION_EXPLORE_GET_SPECIES = "explore_get_species";
     public static String ACTION_EXPLORE_GET_IDENTIFIERS = "explore_get_identifiers";
     public static String ACTION_EXPLORE_GET_OBSERVERS = "explore_get_observers";
+    public static String ACTION_GET_TOP_OBSERVERS = "action_get_top_observers";
+    public static String ACTION_GET_TOP_IDENTIFIERS = "action_get_top_identifiers";
     public static String ACTION_VIEWED_UPDATE = "viewed_update";
     public static String ACTION_GET_USER_OBSERVATIONS = "get_user_observations";
     public static String ACTION_GET_RECOMMENDED_MISSIONS = "get_recommended_missions";
@@ -1419,6 +1424,32 @@ public class INaturalistService extends IntentService {
                 mApp.setServiceResult(IDENTIFICATIONS_RESULT, minimalIdentifications);
                 reply.putExtra(IS_SHARED_ON_APP, true);
                 reply.putExtra(USERNAME, username);
+                LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_GET_TOP_IDENTIFIERS)) {
+                int pageSize = intent.getIntExtra(PAGE_SIZE, EXPLORE_DEFAULT_RESULTS_PER_PAGE);
+                String uuid = intent.getStringExtra(UUID);
+                SerializableJSONArray taxonIds = (SerializableJSONArray) intent.getSerializableExtra(TAXON_IDS);
+                BetterJSONObject results = getObservationResultsForMultipleTaxa("identifiers", pageSize, taxonIds.getJSONArray());
+                results = ObservationUtils.getMinimalObserverResults(results);
+
+                Intent reply = new Intent(GET_TOP_IDENTIFIERS_RESULT);
+                mApp.setServiceResult(GET_TOP_IDENTIFIERS_RESULT, results);
+                reply.putExtra(IS_SHARED_ON_APP, true);
+                reply.putExtra(UUID, uuid);
+                LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_GET_TOP_OBSERVERS)) {
+                int pageSize = intent.getIntExtra(PAGE_SIZE, EXPLORE_DEFAULT_RESULTS_PER_PAGE);
+                String uuid = intent.getStringExtra(UUID);
+                SerializableJSONArray taxonIds = (SerializableJSONArray) intent.getSerializableExtra(TAXON_IDS);
+                BetterJSONObject results = getObservationResultsForMultipleTaxa("observers", pageSize, taxonIds.getJSONArray());
+                results = ObservationUtils.getMinimalObserverResults(results);
+
+                Intent reply = new Intent(GET_TOP_OBSERVERS_RESULT);
+                mApp.setServiceResult(GET_TOP_OBSERVERS_RESULT, results);
+                reply.putExtra(IS_SHARED_ON_APP, true);
+                reply.putExtra(UUID, uuid);
                 LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
 
             } else if (action.equals(ACTION_EXPLORE_GET_OBSERVERS)) {
@@ -4508,6 +4539,25 @@ public class INaturalistService extends IntentService {
         String url = API_HOST + "/identifications?user_id=" + username + "&own_observation=false&per_page=30";
         JSONArray json = get(url, false);
 
+        if (json == null) return null;
+        if (json.length() == 0) return null;
+        try {
+            return new BetterJSONObject(json.getJSONObject(0));
+        } catch (JSONException e) {
+            Logger.tag(TAG).error(e);
+            return null;
+        }
+    }
+
+    private BetterJSONObject getObservationResultsForMultipleTaxa(String type, int pageSize, JSONArray taxonIds) throws AuthenticationException {
+        String ids = taxonIds.toString();
+        String url = String.format(Locale.ENGLISH, "%s/observations/%s?per_page=%d&taxon_id=%s",
+                    API_HOST,
+                    type,
+                    pageSize,
+                    ids.substring(1, ids.length() - 1));
+
+        JSONArray json = get(url, false);
         if (json == null) return null;
         if (json.length() == 0) return null;
         try {

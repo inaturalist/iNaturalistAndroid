@@ -42,6 +42,7 @@ import com.viewpagerindicator.CirclePageIndicator;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.tinylog.Logger;
 
@@ -50,6 +51,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 public class TaxonSuggestionsActivity extends AppCompatActivity {
     private static String TAG = "TaxonSuggestionsActivity";
@@ -118,11 +121,14 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
     private ViewGroup mFilterTaxonContainer;
     private View mClearFiltersText;
     private View mClearFiltersImage;
+    private TextView mSuggestionsBasedOn;
     @State public BetterJSONObject mTaxon;
     @State(AndroidStateBundlers.BetterJSONListBundler.class) public List<BetterJSONObject> mDisplayedSuggestions;
     @State public HashMap<Integer, BetterJSONObject> mTaxonResultsByIndex = new HashMap<>();
     @State public BetterJSONObject mInitialQueryTaxon = null;
     @State public BetterJSONObject mInitialQueryPlace = null;
+    @State public String mTopResultsUUID;
+    private TopResultsReceiver mTopResultsReceiver;
 
 
     @Override
@@ -140,6 +146,76 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
 
     }
 
+
+    private class TopResultsReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Logger.tag(TAG).debug(String.format("TopResultsReceiver %s", intent.getAction()));
+
+            Bundle extras = intent.getExtras();
+            String uuid = intent.getStringExtra(INaturalistService.UUID);
+
+            if ((uuid == null) || (mTopResultsUUID == null)) {
+                Logger.tag(TAG).debug("Null UUID or latest search UUID");
+                return;
+            }
+
+            if (!mTopResultsUUID.equals(uuid)) {
+                Logger.tag(TAG).debug(String.format("UUID Mismatch %s - %s", uuid, mTopResultsUUID));
+                return;
+            }
+
+            String error = extras.getString("error");
+            if (error != null) {
+                return;
+            }
+
+            BetterJSONObject resultsObject;
+            SerializableJSONArray resultsJSON;
+
+            resultsObject = (BetterJSONObject) mApp.getServiceResult(intent.getAction());
+
+            JSONArray results = null;
+            int totalResults = 0;
+
+            if (resultsObject != null) {
+                resultsJSON = resultsObject.getJSONArray("results");
+                Integer count = resultsObject.getInt("total_results");
+                if (count != null) {
+                    totalResults = count;
+                    results = resultsJSON.getJSONArray();
+                }
+            }
+
+            if (results == null) {
+                return;
+            }
+
+            ArrayList<String> usernames = new ArrayList<>();
+
+            for (int i = 0; i < results.length(); i++) {
+                try {
+                    JSONObject item = results.getJSONObject(i);
+                    JSONObject user = item.getJSONObject("user");
+                    String name = user.optString("name");
+                    if (name == null || name.length() == 0) name = user.optString("login");
+                    usernames.add(name);
+                } catch (JSONException e) {
+                    Logger.tag(TAG).error(e);
+                }
+            }
+
+            // In case there are less than 3 names
+            int size = usernames.size();
+            for (int i = 3; i > size; i--) {
+                usernames.add("");
+            }
+
+            mSuggestionsBasedOn.setVisibility(View.VISIBLE);
+            String message = getString(R.string.suggestions_based_on);
+            mSuggestionsBasedOn.setText(String.format(message, usernames.get(0), usernames.get(1), usernames.get(2)));
+        }
+    }
 
     private class TaxonSuggestionsReceiver extends BroadcastReceiver {
         @Override
@@ -222,6 +298,20 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
         }
 
         loadSuggestions();
+
+        // Also get new top identifiers/observers for the top taxa
+        String action = (new Random()).nextInt(2) == 0 ? INaturalistService.ACTION_GET_TOP_IDENTIFIERS : INaturalistService.ACTION_GET_TOP_OBSERVERS;
+        Intent serviceIntent = new Intent(action, null, this, INaturalistService.class);
+        serviceIntent.putExtra(INaturalistService.FILTERS, mSearchFilters);
+        serviceIntent.putExtra(INaturalistService.PAGE_SIZE, 3);
+        JSONArray taxonIds = new JSONArray();
+        for (BetterJSONObject t : mTaxonSuggestions) {
+            taxonIds.put(t.getJSONObject("taxon").optInt("id"));
+        }
+        serviceIntent.putExtra(INaturalistService.TAXON_IDS, new SerializableJSONArray(taxonIds));
+        mTopResultsUUID = UUID.randomUUID().toString();
+        serviceIntent.putExtra(INaturalistService.UUID, mTopResultsUUID);
+        ContextCompat.startForegroundService(this, serviceIntent);
     }
 
 
@@ -261,6 +351,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
 
         setContentView(R.layout.taxon_suggestions);
 
+        mSuggestionsBasedOn = (TextView) findViewById(R.id.suggestions_based_on_users);
         mPhotosViewPager = (ViewPager) findViewById(R.id.photos);
         mIndicator = (CirclePageIndicator)findViewById(R.id.photos_indicator);
         mBackButton = findViewById(R.id.back);
@@ -320,6 +411,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
 
         mLoadingSuggestions.setVisibility(View.VISIBLE);
         mSuggestionsContainer.setVisibility(View.GONE);
+        mSuggestionsBasedOn.setVisibility(View.GONE);
 
         mSpeciesSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -423,6 +515,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
 
         BaseFragmentActivity.safeUnregisterReceiver(mTaxonSuggestionsReceiver, this);
         BaseFragmentActivity.safeUnregisterReceiver(mTaxonReceiver, this);
+        BaseFragmentActivity.safeUnregisterReceiver(mTopResultsReceiver, this);
     }
 
     private void getTaxonSuggestions() {
@@ -595,6 +688,13 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
                 ContextCompat.startForegroundService(this, serviceIntent);
             }
         }
+
+        mTopResultsReceiver = new TopResultsReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(INaturalistService.GET_TOP_IDENTIFIERS_RESULT);
+        filter.addAction(INaturalistService.GET_TOP_OBSERVERS_RESULT);
+        BaseFragmentActivity.safeRegisterReceiver(mTopResultsReceiver, filter, this);
+
     }
 
     private void refreshFilters() {
@@ -766,6 +866,8 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
         }
 
         resizeSuggestionsList();
+
+        mSuggestionsBasedOn.setVisibility(View.GONE);
     }
 
     private void refreshSuggestionSource() {

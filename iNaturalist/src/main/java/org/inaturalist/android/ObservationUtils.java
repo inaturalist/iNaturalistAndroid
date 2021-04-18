@@ -228,6 +228,7 @@ public class ObservationUtils {
         try {
             minimalUser.put("login", user.optString("login"));
             minimalUser.put("icon_url", user.optString("icon_url"));
+            if (user.has("name")) minimalUser.put("name", user.optString("name"));
 
             if (user.has("observations_count")) minimalUser.put("observations_count", user.optInt("observations_count"));
             if (user.has("identifications_count")) minimalUser.put("identifications_count", user.optInt("identifications_count"));
