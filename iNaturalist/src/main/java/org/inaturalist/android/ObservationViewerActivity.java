@@ -2765,6 +2765,62 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 return;
             }
 
+            String obsJson;
+            if (isSharedOnApp) {
+                obsJson = (String) mApp.getServiceResult(INaturalistService.OBSERVATION_JSON_RESULT);
+            } else {
+                obsJson = intent.getStringExtra(INaturalistService.OBSERVATION_JSON_RESULT);
+            }
+
+            if ((!mReadOnly) && (mObservation != null)) {
+                if (
+                        ((mObservation.license == null) && (observation.license != null)) ||
+                        ((!mObservation.license.equals(observation.license)) && (observation.updated_at.after(mObservation.updated_at)))
+                    ) {
+                    // Update observation license from server - this happens either when:
+                    // A) This observation has no license set locally (older app version), or;
+                    // B) The observation has a different license type and it updated remotely recently (happens
+                    // when the user retroactively updated all past observations' licenses)
+
+                    // Just update the observation's license
+                    Logger.tag(TAG).debug(String.format("Setting observation license to %s", observation.license));
+                    ContentValues cv = new ContentValues();
+                    cv.put(Observation.LICENSE, observation.license);
+                    if (mObservation._synced_at != null) {
+                        cv.put(Observation._SYNCED_AT, mObservation._synced_at.getTime());
+                    }
+
+                    getContentResolver().update(mUri, cv, null, null);
+
+                    // Also update the observation's photo licenses
+                    Observation obs = new Observation(new BetterJSONObject(obsJson));
+                    if (obs.photos != null) {
+                        for (int i = 0; i < obs.photos.size(); i++) {
+                            ObservationPhoto photo = obs.photos.get(i);
+                            if ((photo.id != null) && (photo.license != null)) {
+                                Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI, ObservationPhoto.PROJECTION, "id = ?", new String[]{String.valueOf(photo.id)}, ObservationPhoto.DEFAULT_SORT_ORDER);
+                                if (c.getCount() > 0) {
+                                    ObservationPhoto localPhoto = new ObservationPhoto(c);
+                                    c.close();
+                                    if (localPhoto.license == null) {
+                                        Logger.tag(TAG).debug(String.format("Setting observation photo %d license to %s", photo.id, observation.license));
+                                        cv = new ContentValues();
+                                        cv.put(ObservationPhoto.LICENSE, photo.license);
+                                        if (localPhoto._synced_at != null) {
+                                            cv.put(ObservationPhoto._SYNCED_AT, localPhoto._synced_at.getTime());
+                                        }
+                                        getContentResolver().update(localPhoto.getUri(), cv, null, null);
+                                    }
+                                } else {
+                                    c.close();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+
             JSONArray projects = observation.projects.getJSONArray();
 	        JSONArray comments = observation.comments.getJSONArray();
 	        JSONArray ids = observation.identifications.getJSONArray();
@@ -2826,11 +2882,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             }
 
             if (mReloadObs || mLoadObsJson) {
-                if (isSharedOnApp) {
-                    mObsJson = (String) mApp.getServiceResult(INaturalistService.OBSERVATION_JSON_RESULT);
-                } else {
-                    mObsJson = intent.getStringExtra(INaturalistService.OBSERVATION_JSON_RESULT);
-                }
+                mObsJson = obsJson;
 
                 if (mTaxonJson == null) {
                     new Thread(new Runnable() {

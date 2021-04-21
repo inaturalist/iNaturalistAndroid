@@ -310,17 +310,18 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
             case R.id.edit_photo_license:
                 Long imageId = mAdapter.getImageId(mViewPager.getCurrentItem());
-                Logger.tag(TAG).error("AAA: " + imageId);
                 Uri uri = ContentUris.withAppendedId(ObservationPhoto.CONTENT_URI, imageId);
                 Cursor c = getContentResolver().query(uri, ObservationPhoto.PROJECTION, null, null, null);
                 ObservationPhoto photo = new ObservationPhoto(c);
                 c.close();
-                Logger.tag(TAG).error("AAA2: " + photo.license + ":" + photo);
-                LicenseUtils.showLicenseChooser(this, R.string.photo_license, photo.license, license -> {
-                    photo.license = license.value;
-                    ContentValues cv = photo.getContentValues();
-                    getContentResolver().update(uri, cv, null, null);
-                });
+                LicenseUtils.showLicenseChooser(this,
+                        R.string.photo_license,
+                        photo.license,
+                        license -> {
+                            photo.license = license.value;
+                            ContentValues cv = photo.getContentValues();
+                            getContentResolver().update(uri, cv, null, null);
+                        });
                 return true;
 
             case R.id.set_as_first:
