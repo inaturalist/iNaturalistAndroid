@@ -1,15 +1,9 @@
 package org.inaturalist.android;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import androidx.core.content.ContextCompat;
@@ -34,7 +28,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     private static final String TAG = "SettingsFragment";
 
-    private Preference mUsernamePreference;
+    private Preference mSignInPreference;
+    private Preference mSignOutPreference;
     private CheckBoxPreference mAutoSyncPreference;
     private CheckBoxPreference mSuggestSpeciesPreference;
     private CheckBoxPreference mShowScientificNameFirstPreference;
@@ -63,7 +58,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         StrictMode.VmPolicy.Builder newBuilder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(newBuilder.build());
 
-        mUsernamePreference = getPreferenceManager().findPreference("username");
+        mSignInPreference = getPreferenceManager().findPreference("sign_in");
+        mSignOutPreference = getPreferenceManager().findPreference("sign_out");
         mAutoSyncPreference = (CheckBoxPreference) getPreferenceManager().findPreference("auto_sync");
         mSuggestSpeciesPreference = (CheckBoxPreference) getPreferenceManager().findPreference("suggest_species");
         mShowScientificNameFirstPreference = (CheckBoxPreference) getPreferenceManager().findPreference("prefers_scientific_name_first");
@@ -95,9 +91,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         if (username == null) {
             // Signed out
-            mUsernamePreference.setTitle(R.string.not_logged_in);
-            mUsernamePreference.setSummary(R.string.log_in);
-            mUsernamePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            mSignInPreference.setVisible(true);
+            mSignOutPreference.setVisible(false);
+            mSignInPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     Intent intent = new Intent(getActivity(), OnboardingActivity.class);
@@ -110,10 +106,12 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         } else {
             // Signed in
-            mUsernamePreference.setTitle(Html.fromHtml(String.format(getString(R.string.logged_in_as_html), username)));
-            mUsernamePreference.setSummary(R.string.log_out);
+            mSignInPreference.setVisible(false);
+            mSignOutPreference.setVisible(true);
 
-            mUsernamePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            mSignOutPreference.setSummary(Html.fromHtml(String.format(getString(R.string.currently_logged_in_as_html), username)));
+
+            mSignOutPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     mHelper.confirm(getString(R.string.signed_out),

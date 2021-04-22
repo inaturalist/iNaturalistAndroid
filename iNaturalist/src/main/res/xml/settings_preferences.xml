@@ -4,9 +4,9 @@
 
     <Preference
         android:layout="@layout/custom_preference"
-        android:key="username"
-        android:summary="Sign out"
-        android:title="Some title" />
+        android:key="sign_in"
+        android:title="@string/login_or_sign_up"
+        android:summary="@string/not_logged_in" />
 
     <CheckBoxPreference
         android:layout="@layout/custom_preference"
@@ -70,8 +70,15 @@
         android:summary="Network Name" />
 
     <Preference
-        android:layout="@layout/custom_preference"
+        android:layout="@layout/red_preference"
         android:key="delete_account"
         android:title="@string/delete_your_account" />
+
+    <Preference
+        android:layout="@layout/custom_preference"
+        android:key="sign_out"
+        android:title="@string/log_out"
+        android:summary="@string/currently_logged_in_as_html" />
+
 
 </androidx.preference.PreferenceScreen>
