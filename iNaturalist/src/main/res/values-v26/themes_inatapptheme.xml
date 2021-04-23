@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="iNatAppTheme" parent="@style/_iNatAppTheme"/>
+
+    <!-- Styles -->
+    <style name="OverFlow" parent="@android:style/Widget.Holo.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_more_vert_black_24dp</item>
+    </style>
+
+    <style name="_iNatAppTheme" parent="Theme.MaterialComponents.Light.Bridge">
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+
+
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:autoSizeMinTextSize">12sp</item>
+        <item name="android:autoSizeMaxTextSize">16sp</item>
+        <item name="android:autoSizeStepGranularity">1sp</item>
+
+
+        <item name="android:windowContentTransitions">true</item>
+
+        <item name="actionBarStyle">@style/iNatActionBar</item>
+        <item name="colorPrimary">#ffffff</item>
+
+        <item name="android:actionOverflowButtonStyle">@style/OverFlow</item>
+
+        <!--<item name="switchStyle">@style/iNatAppThemeSwitch</item>-->
+
+        <item name="android:editTextBackground">@drawable/inatapptheme_edit_text_holo_light</item>
+
+        <item name="android:textColorHighlight">#99669900</item>
+        <item name="android:textSelectHandleLeft">@drawable/inatapptheme_text_select_handle_left</item>
+        <item name="android:textSelectHandleRight">@drawable/inatapptheme_text_select_handle_right</item>
+        <item name="android:textSelectHandle">@drawable/inatapptheme_text_select_handle_middle</item>
+
+        <item name="android:listChoiceIndicatorMultiple">@drawable/inatapptheme_btn_check_holo_light</item>
+
+        <item name="android:listChoiceIndicatorSingle">@drawable/inatapptheme_btn_radio_holo_light</item>
+
+        <item name="android:buttonStyle">@style/ButtoniNatAppTheme</item>
+
+        <item name="android:imageButtonStyle">@style/ImageButtoniNatAppTheme</item>
+
+        <item name="android:dropDownSpinnerStyle">@style/SpinneriNatAppTheme</item>
+
+        <item name="android:progressBarStyleHorizontal">@style/ProgressBariNatAppTheme</item>
+
+        <item name="android:buttonStyleToggle">@style/ToggleiNatAppTheme</item>
+
+        <item name="android:listChoiceBackgroundIndicator">@drawable/inatapptheme_list_selector_holo_light</item>
+
+        <item name="android:activatedBackgroundIndicator">@drawable/inatapptheme_activated_background_holo_light</item>
+
+        <item name="android:fastScrollThumbDrawable">@drawable/inatapptheme_fastscroll_thumb_holo</item>
+
+
+        <item name="android:progressBarStyleLarge">@style/ProgressBarLargeiNatAppTheme</item>
+        <item name="android:progressBarStyleSmall">@style/ProgressBarSmalliNatAppTheme</item>
+
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+    </style>
+
+</resources>
