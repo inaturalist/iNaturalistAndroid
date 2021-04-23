@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.inaturalist.android"
     android:installLocation="auto"
-    android:requestLegacyExternalStorage="true"
     android:versionCode="484"
     android:versionName="1.21.17">
 
