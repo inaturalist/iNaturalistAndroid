@@ -6282,12 +6282,12 @@ public class INaturalistService extends IntentService {
 
         Logger.tag(TAG).info("Performing connectivity test");
 
-        contactUrl("https://api.inaturalist.org/v1/taxa/1");
-        contactUrl("http://api.inaturalist.org/v1/taxa/1");
-        contactUrl("https://www.inaturalist.org/taxa/1.json");
-        contactUrl("http://www.inaturalist.org/taxa/1.json");
-        contactUrl("https://www.naturalista.mx/taxa/1.json");
-        contactUrl("http://www.naturalista.mx/taxa/1.json");
+        contactUrl("https://api.inaturalist.org");
+        contactUrl("http://api.inaturalist.org");
+        contactUrl("https://www.inaturalist.org/ping");
+        contactUrl("http://www.inaturalist.org/ping");
+        contactUrl("https://www.naturalista.mx/ping");
+        contactUrl("http://www.naturalista.mx/ping");
         contactUrl("https://www.google.com");
         contactUrl("http://www.example.com");
     }
@@ -6295,6 +6295,8 @@ public class INaturalistService extends IntentService {
     private void contactUrl(String url) {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
+                .addHeader("User-Agent", getUserAgent(mApp))
+                .head()
                 .url(url)
                 .build();
 
