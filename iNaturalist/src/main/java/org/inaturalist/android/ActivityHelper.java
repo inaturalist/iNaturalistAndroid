@@ -26,6 +26,8 @@ import android.view.ViewTreeObserver;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -159,7 +161,7 @@ public class ActivityHelper {
         ViewGroup content = (ViewGroup) inflater.inflate(R.layout.dialog_title_top_bar, null, false);
         content.addView(titleBar, 0);
         ListView listView = (ListView) inflater.inflate(R.layout.dialog_list, null, false);
-        listView.setAdapter(new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1, items));
+        listView.setAdapter(new ArrayAdapter<String>(mContext, R.layout.selection_list_item, items));
 
         content.addView(listView, 2);
 
@@ -250,6 +252,10 @@ public class ActivityHelper {
         alert.show();
         alert.getButton(alert.BUTTON_POSITIVE).setTextColor(Color.parseColor("#85B623"));
         alert.getButton(alert.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#85B623"));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            alert.getButton(alert.BUTTON_POSITIVE).setAutoSizeTextTypeUniformWithConfiguration(14, 15, 1, TypedValue.COMPLEX_UNIT_SP);
+            alert.getButton(alert.BUTTON_NEGATIVE).setAutoSizeTextTypeUniformWithConfiguration(14, 15, 1, TypedValue.COMPLEX_UNIT_SP);
+        }
     }
 
     public void confirm(View title, Object msg, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener, int okText, int cancelText) {

@@ -1,10 +1,14 @@
 package org.inaturalist.android;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
+
+import android.util.TypedValue;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -77,4 +81,15 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         mHour = hour;
         mMinute = minute;
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ((TimePickerDialog) getDialog()).getButton(DatePickerDialog.BUTTON_POSITIVE).setAutoSizeTextTypeUniformWithConfiguration(14, 15, 1, TypedValue.COMPLEX_UNIT_SP);
+            ((TimePickerDialog) getDialog()).getButton(DatePickerDialog.BUTTON_NEGATIVE).setAutoSizeTextTypeUniformWithConfiguration(14, 15, 1, TypedValue.COMPLEX_UNIT_SP);
+        }
+    }
+
 }

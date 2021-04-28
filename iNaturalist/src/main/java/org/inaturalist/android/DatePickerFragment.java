@@ -3,10 +3,12 @@ package org.inaturalist.android;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
 
 import android.util.Log;
+import android.util.TypedValue;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
@@ -87,4 +89,15 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
         mMonth = month;
         mDay = day;
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ((DatePickerDialog) getDialog()).getButton(DatePickerDialog.BUTTON_POSITIVE).setAutoSizeTextTypeUniformWithConfiguration(14, 15, 1, TypedValue.COMPLEX_UNIT_SP);
+            ((DatePickerDialog) getDialog()).getButton(DatePickerDialog.BUTTON_NEGATIVE).setAutoSizeTextTypeUniformWithConfiguration(14, 15, 1, TypedValue.COMPLEX_UNIT_SP);
+        }
+    }
+
 }

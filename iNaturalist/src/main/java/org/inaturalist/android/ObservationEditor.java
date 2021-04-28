@@ -25,9 +25,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -100,6 +98,7 @@ import androidx.exifinterface.media.ExifInterface;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -109,6 +108,7 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Pair;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -202,8 +202,6 @@ public class ObservationEditor extends AppCompatActivity {
     private static final int OBSERVATION_SOUNDS_REQUEST_CODE = 108;
     private static final int RECORD_SOUND_INTERNAL_ACTIVITY_REQUEST_CODE = 109;
     private static final int MEDIA_TYPE_IMAGE = 1;
-    private static final int DATE_DIALOG_ID = 0;
-    private static final int TIME_DIALOG_ID = 1;
     private static final int ONE_MINUTE = 60 * 1000;
     
     private static final int TAXON_SEARCH_REQUEST_CODE = 302;
@@ -1037,14 +1035,26 @@ public class ObservationEditor extends AppCompatActivity {
         mObservedOnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialog(DATE_DIALOG_ID);
+                DatePickerFragment newFragment = new DatePickerFragment();
+
+                Bundle args = new Bundle();
+                args.putSerializable("date", mObservation.observed_on != null ? mObservation.observed_on : new Timestamp(Long.valueOf(System.currentTimeMillis())));
+                newFragment.setArguments(args);
+                newFragment.setOnDateSetListener(mDateSetListener);
+                newFragment.show(getSupportFragmentManager(), "datePicker");
             }
         });
 
         mTimeObservedAtButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialog(TIME_DIALOG_ID);
+                TimePickerFragment newFragment = new TimePickerFragment();
+
+                Bundle args = new Bundle();
+                args.putSerializable("time", mObservation.time_observed_at != null ? mObservation.time_observed_at : new Timestamp(Long.valueOf(System.currentTimeMillis())));
+                newFragment.setArguments(args);
+                newFragment.setOnTimeSetListener(mTimeSetListener);
+                newFragment.show(getSupportFragmentManager(), "timePicker");
             }
         });
 
@@ -2158,41 +2168,94 @@ public class ObservationEditor extends AppCompatActivity {
     private ArrayList<ProjectField> mProjectFields;
     @State public HashMap<Integer, ProjectFieldValue> mProjectFieldValues = null;
 
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        switch (id) {
-        case DATE_DIALOG_ID:
+
+    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+        private DatePickerDialog.OnDateSetListener mOnDateSetListener = null;
+
+        public void setOnDateSetListener(DatePickerDialog.OnDateSetListener listener) {
+            mOnDateSetListener = listener;
+        }
+
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
             Timestamp refDate;
-            if (mObservation.observed_on != null) {
-                refDate = mObservation.observed_on;
+            Bundle args = getArguments();
+            if (args != null) {
+                refDate = (Timestamp) args.getSerializable("date");
             } else {
                 refDate = new Timestamp(Long.valueOf(System.currentTimeMillis()));
             }
             try {
-                return new DatePickerDialog(this, mDateSetListener, 
+                return new DatePickerDialog(getActivity(), mOnDateSetListener,
                         refDate.getYear() + 1900,
                         refDate.getMonth(),
                         refDate.getDate());
             } catch (IllegalArgumentException e) {
                 refDate = new Timestamp(Long.valueOf(System.currentTimeMillis()));
-                return new DatePickerDialog(this, mDateSetListener, 
+                return new DatePickerDialog(getActivity(), mOnDateSetListener,
                         refDate.getYear() + 1900,
                         refDate.getMonth(),
-                        refDate.getDate());   
+                        refDate.getDate());
             }
-        case TIME_DIALOG_ID:
-            if (mObservation.time_observed_at != null) {
-                refDate = mObservation.time_observed_at;
+        }
+
+        @Override
+        public void onStart() {
+            super.onStart();
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                ((DatePickerDialog) getDialog()).getButton(DatePickerDialog.BUTTON_POSITIVE).setAutoSizeTextTypeUniformWithConfiguration(14, 15, 1, TypedValue.COMPLEX_UNIT_SP);
+                ((DatePickerDialog) getDialog()).getButton(DatePickerDialog.BUTTON_NEGATIVE).setAutoSizeTextTypeUniformWithConfiguration(14, 15, 1, TypedValue.COMPLEX_UNIT_SP);
+            }
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            mOnDateSetListener.onDateSet(view, year, month, day);
+        }
+    }
+
+    public static class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
+        private TimePickerDialog.OnTimeSetListener mOnTimeSetListener = null;
+
+        public void setOnTimeSetListener(TimePickerDialog.OnTimeSetListener listener) {
+            mOnTimeSetListener = listener;
+        }
+
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            Timestamp refDate;
+            Bundle args = getArguments();
+
+            if (args != null) {
+                refDate = (Timestamp) args.getSerializable("time");
             } else {
                 refDate = new Timestamp(Long.valueOf(System.currentTimeMillis()));
             }
-            return new TimePickerDialog(this, mTimeSetListener, 
+
+            return new TimePickerDialog(getActivity(), mOnTimeSetListener,
                     refDate.getHours(),
                     refDate.getMinutes(),
                     false);
         }
-        return null;
+
+        @Override
+        public void onStart() {
+            super.onStart();
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                ((TimePickerDialog) getDialog()).getButton(TimePickerDialog.BUTTON_POSITIVE).setAutoSizeTextTypeUniformWithConfiguration(14, 15, 1, TypedValue.COMPLEX_UNIT_SP);
+                ((TimePickerDialog) getDialog()).getButton(TimePickerDialog.BUTTON_NEGATIVE).setAutoSizeTextTypeUniformWithConfiguration(14, 15, 1, TypedValue.COMPLEX_UNIT_SP);
+            }
+        }
+
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            mOnTimeSetListener.onTimeSet(view, hourOfDay, minute);
+        }
     }
+
 
     /**
      * Location

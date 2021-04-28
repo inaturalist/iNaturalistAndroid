@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import androidx.fragment.app.DialogFragment;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Pair;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -201,6 +203,15 @@ public class ExploreFiltersActivity extends AppCompatActivity {
 
         mSortByProperty = (Spinner) findViewById(R.id.sort_by_property);
         mSortByOrder = (Spinner) findViewById(R.id.sort_by_order);
+
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.explore_order_by_items, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        mSortByProperty.setAdapter(adapter);
+
+        ArrayAdapter adapter2 = ArrayAdapter.createFromResource(this, R.array.explore_order_items, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        mSortByOrder.setAdapter(adapter2);
+
 
         mDateAny.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1001,6 +1012,16 @@ public class ExploreFiltersActivity extends AppCompatActivity {
             if (maxDate != null) dialog.getDatePicker().setMaxDate(maxDate.getTime());
 
             return dialog;
+        }
+
+        @Override
+        public void onStart() {
+            super.onStart();
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                ((DatePickerDialog) getDialog()).getButton(DatePickerDialog.BUTTON_POSITIVE).setAutoSizeTextTypeUniformWithConfiguration(14, 15, 1, TypedValue.COMPLEX_UNIT_SP);
+                ((DatePickerDialog) getDialog()).getButton(DatePickerDialog.BUTTON_NEGATIVE).setAutoSizeTextTypeUniformWithConfiguration(14, 15, 1, TypedValue.COMPLEX_UNIT_SP);
+            }
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
