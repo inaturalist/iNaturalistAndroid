@@ -2678,6 +2678,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
+                            Logger.tag(TAG).debug("Calling downloadCommunityTaxon 1");
                             downloadCommunityTaxon(false);
                         }
                     }).start();
@@ -2836,6 +2837,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
+                            Logger.tag(TAG).debug("Calling downloadCommunityTaxon 2");
                             downloadCommunityTaxon(false);
                         }
                     }).start();
@@ -2876,6 +2878,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        Logger.tag(TAG).debug("Calling downloadCommunityTaxon 3");
                         downloadCommunityTaxon(true);
                     }
                 }).start();
@@ -2942,6 +2945,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             }
         }
 
+        Logger.tag(TAG).debug("downloadCommunityTaxon - " + taxonId);
+
         if (taxonId == -1) {
             // No taxon - get the generic attributes (no taxon)
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_ATTRIBUTES_FOR_TAXON, null, ObservationViewerActivity.this, INaturalistService.class);
@@ -2969,6 +2974,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         }
 
         mTaxonJson = taxon.toString();
+
+        Logger.tag(TAG).debug("downloadCommunityTaxon 2 - " + taxon.optInt("id"));
 
         // Now that we have full taxon details, we can retrieve the annotations/attributes for that taxon
         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_ATTRIBUTES_FOR_TAXON, null, ObservationViewerActivity.this, INaturalistService.class);
