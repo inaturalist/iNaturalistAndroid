@@ -114,6 +114,8 @@ public class ObservationUtils {
             if (observation.has("observed_on") && !observation.isNull("observed_on")) minimaldObs.put("observed_on", observation.optString("observed_on"));
             if (observation.has("comments_count") && !observation.isNull("comments_count")) minimaldObs.put("comments_count", observation.optInt("comments_count"));
             if (observation.has("identifications_count") && !observation.isNull("identifications_count")) minimaldObs.put("identifications_count", observation.optInt("identifications_count"));
+            if (observation.has("private_latitude") && !observation.isNull("private_latitude")) minimaldObs.put("private_latitude", observation.optString("private_latitude"));
+            if (observation.has("private_longitude") && !observation.isNull("private_longitude")) minimaldObs.put("private_longitude", observation.optString("private_longitude"));
 
             if (observation.has("location") && !minimaldObs.has("latitude") && !minimaldObs.has("longitude")) {
                 String location = observation.getString("location");
