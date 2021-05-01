@@ -129,6 +129,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
     @State public BetterJSONObject mInitialQueryPlace = null;
     @State public String mTopResultsUUID;
     private TopResultsReceiver mTopResultsReceiver;
+    @State public ArrayList<String> mUsernames;
 
 
     @Override
@@ -191,7 +192,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
                 return;
             }
 
-            ArrayList<String> usernames = new ArrayList<>();
+            mUsernames = new ArrayList<>();
 
             for (int i = 0; i < results.length(); i++) {
                 try {
@@ -199,21 +200,23 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
                     JSONObject user = item.getJSONObject("user");
                     String name = user.optString("name");
                     if (name == null || name.length() == 0) name = user.optString("login");
-                    usernames.add(name);
+                    mUsernames.add(name);
                 } catch (JSONException e) {
                     Logger.tag(TAG).error(e);
                 }
             }
 
             // In case there are less than 3 names
-            int size = usernames.size();
+            int size = mUsernames.size();
             for (int i = 3; i > size; i--) {
-                usernames.add("");
+                mUsernames.add("");
             }
 
-            mSuggestionsBasedOn.setVisibility(View.VISIBLE);
-            String message = getString(R.string.suggestions_based_on);
-            mSuggestionsBasedOn.setText(String.format(message, usernames.get(0), usernames.get(1), usernames.get(2)));
+            if ((mDisplayedSuggestions != null) && (mDisplayedSuggestions.size() > 0)) {
+                mSuggestionsBasedOn.setVisibility(View.VISIBLE);
+                String message = getString(R.string.suggestions_based_on);
+                mSuggestionsBasedOn.setText(String.format(message, mUsernames.get(0), mUsernames.get(1), mUsernames.get(2)));
+            }
         }
     }
 
@@ -743,6 +746,14 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
             // Clear only
             mClearFiltersImage.setVisibility(View.VISIBLE);
             mClearFiltersText.setVisibility(View.GONE);
+        }
+
+        if (mUsernames != null) {
+            mSuggestionsBasedOn.setVisibility(View.VISIBLE);
+            String message = getString(R.string.suggestions_based_on);
+            mSuggestionsBasedOn.setText(String.format(message, mUsernames.get(0), mUsernames.get(1), mUsernames.get(2)));
+        } else {
+            mSuggestionsBasedOn.setVisibility(View.GONE);
         }
     }
 
