@@ -1129,7 +1129,14 @@ public class ObservationEditor extends AppCompatActivity {
 
         updateObservationVisibilityDescription();
 
-        ((SwipeableLinearLayout)findViewById(R.id.swipeable_layout)).setOnSwipeListener(new SwipeableLinearLayout.SwipeListener() {
+        SwipeableLinearLayout swipeableLayout = findViewById(R.id.swipeable_layout);
+        // Make sure not to intercept any swipes above the photo gallery
+        mGallery.post(() -> {
+            int[] point = new int[2];
+            mGallery.getLocationInWindow(point);
+            swipeableLayout.setTopMargin(mGallery.getHeight() + point[1]);
+        });
+        swipeableLayout.setOnSwipeListener(new SwipeableLinearLayout.SwipeListener() {
             @Override
             public void onSwipeRight() {
                 editNextObservation(-1);

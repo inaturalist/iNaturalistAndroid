@@ -8,8 +8,12 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.LinearLayout;
 
+import org.tinylog.Logger;
+
 // Linear layout that intercepts all swiping gestures (so it won't reach its child views)
 public class SwipeableLinearLayout extends LinearLayout {
+
+    private int mTopMargin = 0;
 
     public SwipeableLinearLayout(Context context) {
         super(context);
@@ -43,9 +47,20 @@ public class SwipeableLinearLayout extends LinearLayout {
         mOnSwipeListener = listener;
     }
 
+    public void setTopMargin(int topMargin) {
+        mTopMargin = topMargin;
+    }
+
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         if (mOnSwipeListener == null) {
+            return false;
+        }
+
+        Logger.tag("AAA").error("Swipe: " + ev.getAction() + ":" + ev.getRawX() + ":" + ev.getRawY() + " < " + mTopMargin);
+
+        if (ev.getRawY() < mTopMargin) {
+            // Ignore any swipes above the top margin
             return false;
         }
 
@@ -60,6 +75,7 @@ public class SwipeableLinearLayout extends LinearLayout {
             try {
                 float diffY = ev.getRawY() - mStartEventY;
                 float diffX = ev.getRawX() - mStartEventX;
+                Logger.tag("AAA").error("Swipe: " + diffY + ":" + diffX);
                 if ((Math.abs(diffX) - Math.abs(diffY)) > SWIPE_THRESHOLD) {
                     if (Math.abs(diffX) > SWIPE_THRESHOLD) {
                         if (diffX > 0) {
