@@ -21,11 +21,6 @@
         <item name="actionMenuTextAppearance">@style/ActionMenuTextAppearance</item>
         <item name="android:actionMenuTextAppearance">@style/ActionMenuTextAppearance</item>
 
-        <item name="android:autoSizeTextType">uniform</item>
-        <item name="android:autoSizeMinTextSize">12sp</item>
-        <item name="android:autoSizeMaxTextSize">26sp</item>
-        <item name="android:autoSizeStepGranularity">1sp</item>
-
         <item name="android:windowContentTransitions">true</item>
 
         <item name="actionBarStyle">@style/iNatActionBar</item>

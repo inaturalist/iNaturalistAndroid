@@ -590,6 +590,10 @@
                         android:textSize="16sp"
                         android:layout_marginStart="5dp"
                         android:layout_gravity="center_vertical"
+                        android:autoSizeTextType="uniform"
+                        android:autoSizeMinTextSize="12sp"
+                        android:autoSizeMaxTextSize="26sp"
+                        android:autoSizeStepGranularity="1sp"
                         />
                 </LinearLayout>
             </RelativeLayout>
@@ -623,7 +627,11 @@
                         android:layout_marginStart="5dp"
                         android:layout_gravity="center_vertical"
                         android:gravity="center"
-                        />
+                        android:autoSizeTextType="uniform"
+                        android:autoSizeMinTextSize="12sp"
+                        android:autoSizeMaxTextSize="26sp"
+                        android:autoSizeStepGranularity="1sp"
+                    />
                 </LinearLayout>
             </RelativeLayout>
 
