@@ -351,8 +351,12 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="there_was_a_problem_updating_profile">¡Hubo un problema mientras se actualizaba tu perfil!</string>
     <string name="there_was_a_problem_updating_profile_params">Hubo un problema mientras se actualizaba tu perfil: %1$s</string>
     <string name="logged_in_as_html"><![CDATA[Conectado como <b>%1$s</b>]]></string>
+    <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
+    <string name="currently_logged_in_as_html"><![CDATA[Conectado como <b>%1$s</b>]]></string>
     <string name="log_out">Cerrar la sesión</string>
     <string name="not_logged_in">No has iniciado sesión</string>
+    <!-- Prompt to log in to your account or sign up for a new account -->
+    <string name="login_or_sign_up">Iniciar sesión o registrarse</string>
     <string name="auto_upload_description">Carga automática de nuevas observaciones y sus modificaciones</string>
     <string name="language">Idioma</string>
     <string name="version">Versión</string>
@@ -391,7 +395,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="animals">Animales</string>
     <string name="fish">Peces</string>
     <string name="mollusks">Moluscos</string>
-    <string name="protozoans">Protozoos</string>
+    <string name="protozoans">Protozoarios</string>
     <string name="chromista">Algas pardas, diatomeas y parientes</string>
     <string name="amphibians">Anfibios</string>
     <string name="fungi">Hongos</string>
@@ -456,6 +460,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="view_suggestions">Ver sugerencias</string>
     <string name="species_search">Búsqueda de especies</string>
     <string name="were_not_confident_enough">No estamos suficientemente seguros para hacer una recomendación, pero he aquí nuestras mejores sugerencias:</string>
+    <string name="were_not_confident_enough_no_suggestions">No estamos lo suficientemente seguros para hacer una recomendación.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Opciones más observadas que cumplen los filtros:</string>
     <!-- Header for a list of suggested taxa -->
@@ -978,7 +983,7 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <string name="filter_observations_by_months">Filtra observaciones por meses</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="include_suggestions_not_seen_nearby">Incluir sugerencias que no han sido vistas cerca de aquí</string>
+    <string name="include_suggestions_not_seen_nearby">Incluye sugerencias no vistas en la cercanía</string>
     <string name="only_view_nearby_suggestions">Solo mostrar sugerencias que hayan sido vistas cerca de aquí</string>
     <string name="suggestions_source">Fuente de sugerencias</string>
     <string name="research_grade_observations">Observaciones con grado de investigación</string>
@@ -1037,7 +1042,7 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <string name="view_observations">Ver observaciones</string>
     <string name="choose_this_option">Elegir esta opción</string>
     <string name="compare_observation_with_this_option">Comparar la observación con esta opción</string>
-    <string name="go_back">Volver</string>
+    <string name="go_back">Regresar</string>
     <string name="change_the_source_of_the_suggestions">Cambiar el origen de las sugerencias</string>
     <string name="thumbnail_photo_for_suggested_taxon">Foto en miniatura del taxón sugerido</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
@@ -1053,7 +1058,7 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <string name="no_identifications_yet">Aún no hay identificaciones.</string>
     <string name="sort_by">Ordenar por</string>
     <string-array name="explore_order_by_items">
-        <item>Fecha de adición</item>
+        <item>Fecha añadida</item>
         <item>Fecha de observación</item>
         <item>Fecha de actualización</item>
         <!--<item>Faves</item>-->
@@ -1084,10 +1089,10 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <!--  iNat observation identifier  -->
     <string name="id">ID</string>
     <!--  iNat observation Universally Unique Identifier  -->
-    <string name="uuid">UUID</string>
+    <string name="uuid">IDUU</string>
     <!--  Universal Resource Locator  -->
     <string name="url">URL</string>
-    <string name="default_licenses">Licencia por defecto</string>
+    <string name="default_licenses">Licencias por defecto</string>
     <string name="default_observation_license">Licencia predeterminada para tus observaciones:</string>
     <string name="default_photo_license">Licencia predeterminada para tus fotos:</string>
     <string name="default_sound_license">Licencia predeterminada de los sonidos</string>
@@ -1117,15 +1122,15 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <!-- License Names -->
     <string name="license_name_cc0">Dominio público</string>
     <string name="license_name_cc_by">Atribución</string>
-    <string name="license_name_cc_by_nc">Atribución-NoComercial</string>
-    <string name="license_name_cc_by_nc_sa">Atribución-NoComercial-CompartirIgual</string>
-    <string name="license_name_cc_by_nc_nd">Atribución-NoComercial-SinDerivadas</string>
-    <string name="license_name_cc_by_nd">Atribución-SinDerivadas</string>
-    <string name="license_name_cc_by_sa">Atribución-CompartirIgual</string>
+    <string name="license_name_cc_by_nc">Atribución - No Comercial</string>
+    <string name="license_name_cc_by_nc_sa">Atribución - No Comercial - Compartir bajo la Misma Licencia</string>
+    <string name="license_name_cc_by_nc_nd">Atribución - No comercial - No derivados</string>
+    <string name="license_name_cc_by_nd">Atribución - No derivados</string>
+    <string name="license_name_cc_by_sa">Atribución - Compartir bajo la misma licencia</string>
     <string name="license_name_no_license">Todos los derechos reservados</string>
     <!-- License Descriptions -->
-    <string name="license_description_cc0">Esta licencia difunde su trabajo al dominio público, para que otros puedan copiar, modificar, distribuir y realizar su trabajo, incluso con fines comerciales, todo sin pedir permiso o darle crédito. Esta es la licencia más complaciente que se ofrece. Recomendado para la máxima difusión y uso de materiales con licencia. </string>
-    <string name="license_description_cc_by">Esta licencia permite que otros distribuyan, mezclen, modifiquen y realicen desde su trabajo, incluso comercialmente, siempre que le reconozcan la creación original. </string>
+    <string name="license_description_cc0">Esta licencia difunde su trabajo al dominio público, para que otros puedan copiar, modificar, distribuir y presentar su trabajo, incluso con fines comerciales, todo sin pedir permiso o darle crédito. Esta es la licencia más libertades que se ofrece. Recomendado para la máxima difusión y uso de materiales con licencia. </string>
+    <string name="license_description_cc_by">Esta licencia permite que otros distribuyan, mezclen, modifiquen y construyan sobre su trabajo, incluso comercialmente, siempre que le reconozcan la creación original. </string>
     <string name="license_description_cc_by_nc">Esta licencia permite que otros mezclen, modifiquen y construyan sobre su trabajo de forma no comercial, aunque sus nuevos trabajos también deben reconocerlo y ser no comerciales, no tienen que licenciar sus trabajos derivados en los mismos términos.</string>
     <string name="license_description_cc_by_nc_sa">Esta licencia permite que otros mezclen, modifiquen y construyan sobre su trabajo, sin fines comerciales, siempre que le otorguen crédito y licencien sus nuevas creaciones bajo los mismos términos.</string>
     <string name="license_description_cc_by_nc_nd">Esta licencia es la más restrictiva de las seis licencias principales, únicamente permite que otros descarguen sus trabajos y los compartan con otros siempre que le den crédito, pero no pueden cambiarlos de ninguna manera ni usarlos comercialmente.</string>
@@ -1133,4 +1138,6 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <string name="license_description_cc_by_sa">Esta licencia permite que otros mezclen, modifiquen y construyan sobre su trabajo de forma no comercial, y aunque sus nuevos trabajos también deben reconocerlo y ser no comerciales, no tienen por qué licenciar sus trabajos derivados en los mismos términos.</string>
     <string name="license_description_no_license">Conservas todos los derechos de autor sobre tu contenido además de los derechos otorgados a iNaturalist en nuestras Condiciones de Servicio.</string>
     <string name="invalid_photo">Formato de fotografía no compatible.</string>
+    <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
+    <string name="suggestions_based_on">Sugerencias basadas en observaciones e identificaciones ofrecidas por la comunidad de iNaturalist, de %1$s, %2$s, %3$s, entre otros.</string>
 </resources>

@@ -200,7 +200,7 @@
     <string name="alert_message_use_inaturalistcl">iNaturalist Chili is lid van het iNaturalist Network in Chili. Lokale instellingen die iNaturalist Chili ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel jouw lidmaatschap als jij meer dan 1000 waarnemingen hebt. Wil jij jouw lidmaatschap wijzigen?</string>
     <string name="alert_message_use_inaturalistgr">iNaturalist Griekenland is lid van het iNaturalist Network in Griekenland. Lokale instellingen die iNaturalist Griekenland ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel je lidmaatschap als jij meer dan 1000 waarnemingen hebt. Wil jij jouw lidmaatschap wijzigen?</string>
     <string name="alert_message_use_inaturalistlu">iNaturalist Luxemburg is lid van het iNaturalist Network in Luxemburg. Lokale instellingen die iNaturalist Luxemburg ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel jouw lidmaatschap als jij meer dan 1000 waarnemingen hebt. Wil jij jouw lidmaatschap wijzigen?</string>
-    <string name="alert_message_use_inaturalistuk">iNaturalist Verenigd Koninkrijk is lid van het iNaturalist Network in het Verenigd Koninkrijk. Lokale instellingen die iNaturalist Verenigd Koninkrijk ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel jouw lidmaatschap als jij meer dan 1000 waarnemingen hebt. Wilt jij jouw lidmaatschap wijzigen?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist Verenigd Koninkrijk is lid van het iNaturalist Network in het Verenigd Koninkrijk. Lokale instellingen die iNaturalist Verenigd Koninkrijk ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel jouw lidmaatschap als jij meer dan 1000 waarnemingen hebt. Wil jij jouw lidmaatschap wijzigen?</string>
     <string name="editor">Redacteur</string>
     <string name="license">Licentie</string>
     <string name="download_for_offline_use">Downloaden voor offline gebruik</string>
@@ -350,13 +350,17 @@
     <string name="there_was_a_problem_updating_profile">Er is een probleem opgetreden tijdens het bijwerken van uw profiel!</string>
     <string name="there_was_a_problem_updating_profile_params">Er is een probleem opgetreden tijdens het bijwerken van uw profiel: %1$s</string>
     <string name="logged_in_as_html"><![CDATA[Ingelogd als <b>%1$s</b>]]></string>
+    <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
+    <string name="currently_logged_in_as_html"><![CDATA[Momenteel ingelogd als <b>%1$s</b>]]></string>
     <string name="log_out">Uitloggen</string>
     <string name="not_logged_in">Niet ingelogd</string>
+    <!-- Prompt to log in to your account or sign up for a new account -->
+    <string name="login_or_sign_up">Aanmelden of Registreren</string>
     <string name="auto_upload_description">Auto-upload nieuwe en gewijzigde waarnemingen</string>
     <string name="language">Taal</string>
     <string name="version">Versie</string>
     <string name="inat_network">iNaturalist netwerk</string>
-    <string name="inat_network_description">De iNaturalist netwerk is een raamwerk voor het lokaliseren van de iNaturalist Gemeenschap. Netwerksites worden ondersteund door lokale instellingen die hebben een overeenkomst getekend met iNaturalist om het lokale gebruik aan te moedigen en profiteren van de lokale biodiversiteit.</string>
+    <string name="inat_network_description">Het iNaturalist netwerk is een raamwerk voor het lokaal maken van de iNaturalist Gemeenschap. Netwerksites worden ondersteund door lokale instellingen die een overeenkomst hebben ondertekend met iNaturalist om lokaal gebruik aan te moedigen en te profiteren van de lokale biodiversiteit.</string>
     <string name="more_info">Meer Info</string>
     <string name="select_network">Selecteer Netwerk Affiliatie</string>
     <string name="help">Help</string>
@@ -455,6 +459,7 @@
     <string name="view_suggestions">Suggesties bekijken</string>
     <string name="species_search">Soort zoeken</string>
     <string name="were_not_confident_enough">We zijn niet zeker genoeg om een aanbeveling te doen, maar dit zijn onze topsuggesties:</string>
+    <string name="were_not_confident_enough_no_suggestions">We hebben er onvoldoende vertrouwen in dat we een goede aanbeveling zullen doen.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Meest waargenomen soorten met de geselecteerde filters:</string>
     <!-- Header for a list of suggested taxa -->
@@ -731,12 +736,12 @@
     <string name="donate_to_inaturalist">Doneren aan iNaturalist</string>
     <string name="prefers_scientific_name_first">Toon wetenschappelijke namen eerst</string>
     <string name="prefers_scientific_name_first_description">Wetenschappelijke namen vóór algemene namen tonen.</string>
-    <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, en Parks Canada operating iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, het Royal Ontario Museum, NatureServe Canada en Parks Canada beheren iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
     <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
-    <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) operating NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
-    <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network operating iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
-    <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
-    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) beheren NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[Nieuw Zeeland: New Zealand Biodiversity Recording Network beheert iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
+    <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos beheert Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente beheert iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
     <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina steunt ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
     <string name="network_credit_inaturalistaustralia"><![CDATA[Australië: Atlas of Living Australia steunt iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) steunt iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
@@ -745,7 +750,7 @@
     <string name="network_credit_inaturalistcl"><![CDATA[Chili: Ministerio del Medio Ambiente ondersteunt iNaturalist Chili (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="network_credit_inaturalistgr"><![CDATA[Griekenland: iSea steunt iNaturalist Griekenland(<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxemburg: Luxembourg National Museum of Natural History (MnhnL) steunt iNaturalist Luxemburg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
-    <string name="network_credit_inaturalistuk"><![CDATA[Verenigd Koningkrijk: National Biodiversity Network Trust steunt iNaturalist Verenigd Koningkrijk (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Verenigd Koninkrijk: National Biodiversity Network Trust steunt iNaturalist Verenigd Koninkrijk (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Markeer alle berichten als gelezen</string>
     <string name="content_hidden">Inhoud verborgen</string>
     <string name="show_hidden_content">Toon verborgen inhoud</string>
@@ -1135,4 +1140,6 @@ zonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van d
     <string name="license_description_cc_by_sa">Deze licentie laat anderen remixen, aanpassen en niet-commercieel op je werk bouwen en hoewel hun nieuwe werken je ook moeten erkennen en niet-commercieel zijn, hoeven ze hun afgeleide werken niet onder dezelfde voorwaarden in licentie te geven.</string>
     <string name="license_description_no_license">Je behoudt het volledige auteursrecht op je inhoud los van de rechten die iNaturalist heeft in onze Servicevoorwaarden.</string>
     <string name="invalid_photo">Fotoformaat wordt niet ondersteund</string>
+    <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
+    <string name="suggestions_based_on">Suggesties zijn gebaseerd op waarnemingen en determinaties door de iNaturalist-gemeenschap waaronder %1$s, %2$s, %3$s en vele anderen.</string>
 </resources>

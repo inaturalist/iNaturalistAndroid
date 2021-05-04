@@ -350,8 +350,12 @@
     <string name="there_was_a_problem_updating_profile">Houve um problema ao atualizar o seu perfil!</string>
     <string name="there_was_a_problem_updating_profile_params">Houve um problema ao atualizar o seu perfil: %1$s</string>
     <string name="logged_in_as_html"><![CDATA[Iniciou sessão como: <b>%1$s</b>]]></string>
+    <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
+    <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
     <string name="log_out">Sair</string>
     <string name="not_logged_in">Sem sessão iniciada</string>
+    <!-- Prompt to log in to your account or sign up for a new account -->
+    <string name="login_or_sign_up">Log In or Sign Up</string>
     <string name="auto_upload_description">Carrega automaticamente novas observações e edita as observações existentes</string>
     <string name="language">Idioma</string>
     <string name="version">Versão</string>
@@ -455,6 +459,7 @@
     <string name="view_suggestions">Ver Sugestões</string>
     <string name="species_search">Procurar Espécies</string>
     <string name="were_not_confident_enough">Não temos confiança suficiente para fazer uma recomendação, mas aqui estão as nossas melhores sugestões.</string>
+    <string name="were_not_confident_enough_no_suggestions">We\'re not confident enough to make a recommendation.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Opções mais observadas que correspondem aos filtros:</string>
     <!-- Header for a list of suggested taxa -->
@@ -1132,4 +1137,6 @@ nossa comunidade de código aberto]]></string>
     <string name="license_description_cc_by_sa">Esta licença permite a outros remexer, alterar ou trabalhar a partir do seu trabalho para fins não comerciais. Apesar dos seus novos trabalhos não poderem ser comerciais e serem obrigados a atribuir-lhe crédito, as obras derivadas não têm de ser licenciadas nos mesmos termos.</string>
     <string name="license_description_no_license">Você detém total direito sobre o seu conteúdo a partir dos direitos concedidos ao iNaturalist nos nossos Termos de Serviço.</string>
     <string name="invalid_photo">Formato de foto não suportado</string>
+    <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
+    <string name="suggestions_based_on">Suggestions based on observations and identifications provided by the iNaturalist community, including %1$s, %2$s, %3$s, and many others.</string>
 </resources>

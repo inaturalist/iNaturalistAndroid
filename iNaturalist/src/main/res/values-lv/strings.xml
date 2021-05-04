@@ -83,7 +83,7 @@
     <string name="no_comments">Pagaidām nav ne komentāru, ne identifikāciju</string>
     <string name="add_comment">Komentēt</string>
     <string name="add_id">Pievienot identifikāciju</string>
-    <string name="remarks">Piezīmes.</string>
+    <string name="remarks">Komentāri.</string>
     <string name="enter_taxon_name">Sugas nosaukums</string>
     <string name="no_projects">Projekti nav atrasti.</string>
     <string name="no_guides">Padomi nav atrasti.</string>
@@ -174,7 +174,7 @@
     <string name="alert_sign_out">Vai tiešām vēlies iziet no sava profila? Ja iziesi, no šīs ierīces izdzēsīsies visi tavi novērojumi. Jau augšupielādētie novērojumi netiks ietekmēti.</string>
     <string name="alert_unsupported_media_type">Atvaino, ielādējot attēlu no šī avota, radās kļūda.</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
-    <string name="explore">Izzini</string>
+    <string name="explore">Izzināt</string>
     <string name="restricted_to_current_map_area">Rāda novērojumus pašreiz izvēlētajā kartes nogabalā</string>
     <string name="search">Meklēt</string>
     <string name="details">Dati</string>
@@ -236,7 +236,7 @@ globālā iNaturalist tīkla.</string>
     <string name="sign_up_title">Reģistrācija</string>
     <string name="min_6_chars">Vismaz seši simboli</string>
     <string name="use_my_license"><![CDATA[Jā, licencējiet manu saturu, lai zinātnieki varētu izmantot manus datus (ieteicams). <b>Uzzināt vairāk.</b>]]></string>
-    <string name="content_licensing">Satura licencēšana</string>
+    <string name="content_licensing">Satura licences</string>
     <string name="content_licensing_description">Atzīmē šo lodziņu, lai piešķirtu fotogrāfijām \"Creative Commons Attribution-NonCommercial\" licenci. Vēlāk to var noņemt vai izvēlēties citu licenci, bet jāņem vērā, ka tā ir labākā licence, lai dalītos ar saviem datiem ar zinātniekiem.</string>
     <!-- Try to keep this about the length of the English text -->
     <string name="username_or_email">Lietotājvārds vai e-pasts</string>
@@ -353,8 +353,12 @@ globālā iNaturalist tīkla.</string>
     <string name="there_was_a_problem_updating_profile">Atjaunojot profila informāciju, radās problēma.</string>
     <string name="there_was_a_problem_updating_profile_params">Atjaunojot profila informāciju, radās problēma: %1$s</string>
     <string name="logged_in_as_html"><![CDATA[Pieslēdzies ar lietotājvārdu: <b>%1$s</b>]]></string>
+    <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
+    <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
     <string name="log_out">Iziet</string>
     <string name="not_logged_in">Neesi pieslēdzies</string>
+    <!-- Prompt to log in to your account or sign up for a new account -->
+    <string name="login_or_sign_up">Log In or Sign Up</string>
     <string name="auto_upload_description">Aktivizēt novērojumu un labojumu automātiskās augšupielādes funkciju.</string>
     <string name="language">Valoda</string>
     <string name="version">Versija</string>
@@ -460,6 +464,7 @@ globālā iNaturalist tīkla.</string>
     <string name="view_suggestions">Skatīt minējumus</string>
     <string name="species_search">Meklēt sugu</string>
     <string name="were_not_confident_enough">Neesam pietiekami pārliecināti, lai ieteiktu sugu, bet šie ir mūsu labākie minējumi:</string>
+    <string name="were_not_confident_enough_no_suggestions">We\'re not confident enough to make a recommendation.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Visbiežāk novērotie indivīdi, kas atbilst izvēlētajiem filtriem:</string>
     <!-- Header for a list of suggested taxa -->
@@ -1138,4 +1143,6 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="license_description_cc_by_sa">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
     <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
     <string name="invalid_photo">Photo format not supported</string>
+    <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
+    <string name="suggestions_based_on">Suggestions based on observations and identifications provided by the iNaturalist community, including %1$s, %2$s, %3$s, and many others.</string>
 </resources>
