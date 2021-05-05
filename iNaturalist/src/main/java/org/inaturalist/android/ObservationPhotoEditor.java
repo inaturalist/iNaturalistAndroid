@@ -180,7 +180,7 @@ public class ObservationPhotoEditor extends AppCompatActivity implements UCropFr
     }
 
     public void closeActivity() {
-        if (mFragment.isDirty()) {
+        if (mFragment != null && mFragment.isDirty()) {
             // Display a confirmation dialog
             mHelper.confirm(
                     getString(R.string.edit_observation),
