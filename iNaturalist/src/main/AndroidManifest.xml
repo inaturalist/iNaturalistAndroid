@@ -478,11 +478,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.facebook.FacebookActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="iNaturalist" />
-
-        <activity
             android:name=".LocationChooserActivity"
             android:configChanges="orientation"
             android:theme="@style/LocationChooserActionBar"
