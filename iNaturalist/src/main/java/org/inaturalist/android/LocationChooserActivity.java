@@ -920,6 +920,8 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
 
                                 if (!mNoMapRefresh) {
                                     // User moved the map view - reset place guess
+
+                                    mCurrentLocation = null;
                                     updateLocationBasedOnMap();
                                     refreshActionBar();
 
@@ -1199,7 +1201,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         return false;
     }
 
-        private boolean locationRequestIsOld() {
+    private boolean locationRequestIsOld() {
         long delta = System.currentTimeMillis() - mLocationRequestedAt;
         return delta > ONE_MINUTE;
     }
