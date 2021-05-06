@@ -1132,7 +1132,7 @@ public class INaturalistService extends IntentService {
                 Double placeLng = intent.getDoubleExtra(PLACE_LNG, -1);
                 if (placeLng == -1) placeLng = null;
 
-                BetterJSONObject taxonSuggestions;
+                BetterJSONObject taxonSuggestions = null;
                 if (obsFilename == null) {
                     // It's an online observation
                     taxonSuggestions = getTaxonSuggestions(obsUrl, latitude, longitude, observedOn, suggestionSource, placeId, taxonId, placeLat, placeLng, limit, page);

@@ -522,6 +522,8 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
     }
 
     private void getTaxonSuggestions() {
+        if (mSearchFilters == null) return;
+
         // Get taxon suggestions
         BetterJSONObject cachedResults = null;
 
