@@ -94,7 +94,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
                         if (username == null) {
                             // First time login
                             String accessToken = newToken.getToken();
-                            execute(null, accessToken, INaturalistService.LoginType.FACEBOOK.toString());
+                            new SignInTask(activity, callback, facebookLoginButton, passwordVerificationForDeletion).execute(null, accessToken, INaturalistService.LoginType.FACEBOOK.toString());
                         }
                     }
                 }
