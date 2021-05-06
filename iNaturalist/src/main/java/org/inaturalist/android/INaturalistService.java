@@ -1139,10 +1139,13 @@ public class INaturalistService extends IntentService {
                 } else {
                     // Local photo  - Resize photo to 299x299 max
                     String resizedPhotoFilename = ImageUtils.resizeImage(this, obsFilename, null, 299);
-                    taxonSuggestions = getTaxonSuggestions(resizedPhotoFilename, latitude, longitude, observedOn, suggestionSource, placeId, taxonId, placeLat, placeLng, limit, page);
 
-                    File resizedFile = new File(resizedPhotoFilename);
-                    resizedFile.delete();
+                    if (resizedPhotoFilename != null) {
+                        taxonSuggestions = getTaxonSuggestions(resizedPhotoFilename, latitude, longitude, observedOn, suggestionSource, placeId, taxonId, placeLat, placeLng, limit, page);
+
+                        File resizedFile = new File(resizedPhotoFilename);
+                        resizedFile.delete();
+                    }
                 }
 
 
