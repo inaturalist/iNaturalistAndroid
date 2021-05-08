@@ -1162,4 +1162,6 @@
     <string name="invalid_photo">Photo format not supported</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">Suggestions based on observations and identifications provided by the iNaturalist community, including %1$s, %2$s, %3$s, and many others.</string>
+    <string name="default_observation_action">Default Observation Action</string>
+    <string name="show_options">Show Options</string>
 </resources>

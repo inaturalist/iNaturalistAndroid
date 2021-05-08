@@ -294,6 +294,43 @@ public class BaseFragmentActivity extends AppCompatActivity {
     }
 
     public void showNewObsMenu() {
+        showNewObsMenu(false);
+    }
+
+    public void showNewObsMenu(boolean showAll) {
+        String defaultAction = mApp.getDefaultObsAction();
+
+        if (!showAll && !defaultAction.equals(INaturalistApp.DEFAULT_ACTION_SHOW_OPTIONS)) {
+            // Assume it's the default observation action
+            if (defaultAction.equals(INaturalistApp.DEFAULT_ACTION_TAKE_PHOTO)) {
+                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_SHUTTER);
+                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
+                intent.putExtra(ObservationEditor.TAKE_PHOTO, true);
+                startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
+
+            } else if (defaultAction.equals(INaturalistApp.DEFAULT_ACTION_CHOOSE_IMAGE)) {
+                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_LIBRARY_START);
+                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
+                intent.putExtra(ObservationEditor.CHOOSE_PHOTO, true);
+                startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
+
+            } else if (defaultAction.equals(INaturalistApp.DEFAULT_ACTION_RECORD_SOUND)) {
+                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
+                intent.putExtra(ObservationEditor.RECORD_SOUND, true);
+                startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
+
+            } else if (defaultAction.equals(INaturalistApp.DEFAULT_ACTION_CHOOSE_SOUND)) {
+                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
+                intent.putExtra(ObservationEditor.CHOOSE_SOUND, true);
+                startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
+
+            } else if (defaultAction.equals(INaturalistApp.DEFAULT_ACTION_NO_MEDIA)) {
+                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_NO_PHOTO);
+                startActivityForResult(new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class), REQUEST_CODE_OBSERVATION_EDIT);
+            }
+            return;
+        }
+
         mSelectedBottomGrid = false;
 
         mBottomSheetDialog = new ExpandedBottomSheetDialog(this);

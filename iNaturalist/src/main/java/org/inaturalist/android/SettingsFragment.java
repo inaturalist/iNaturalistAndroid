@@ -19,6 +19,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.tinylog.Logger;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class SettingsFragment extends PreferenceFragmentCompat {
     private static final int REQUEST_CODE_LOGIN = 0x1000;
     private static final int REQUEST_CODE_DELETE_ACCOUNT = 0x1001;
@@ -44,6 +48,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private ActivityHelper mHelper;
     private SharedPreferences.Editor mPrefEditor;
     private INaturalistApp mApp;
+    private ListPreference mDefaultObsAction;
 
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
@@ -58,6 +63,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         StrictMode.VmPolicy.Builder newBuilder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(newBuilder.build());
 
+        mDefaultObsAction = (ListPreference) getPreferenceManager().findPreference("default_obs_action");
         mSignInPreference = getPreferenceManager().findPreference("sign_in");
         mSignOutPreference = getPreferenceManager().findPreference("sign_out");
         mAutoSyncPreference = (CheckBoxPreference) getPreferenceManager().findPreference("auto_sync");
@@ -87,6 +93,27 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
 
     private void refreshSettings() {
+        String[] defaultObsActions = new String[] {
+                getString(R.string.show_options),
+                getString(R.string.camera),
+                getString(R.string.upload_photo),
+                getString(R.string.record_sound),
+                getString(R.string.upload_sound),
+                getString(R.string.no_photo),
+        };
+        List<String> obsActionsValues = Arrays.asList(getResources().getStringArray(R.array.default_obs_action_values));
+
+        mDefaultObsAction.setEntries(defaultObsActions);
+        String defaultObsAction = mApp.getDefaultObsAction();
+        mDefaultObsAction.setValue(defaultObsAction);
+        mDefaultObsAction.setSummary(defaultObsActions[obsActionsValues.indexOf(defaultObsAction)]);
+
+        mDefaultObsAction.setOnPreferenceChangeListener((preference, newValue) -> {
+            mApp.setDefaultObsAction((String)newValue);
+            refreshSettings();
+            return false;
+        });
+
         String username = mPreferences.getString("username", null);
 
         if (username == null) {

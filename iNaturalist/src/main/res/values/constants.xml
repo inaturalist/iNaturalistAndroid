@@ -2,6 +2,14 @@
 <resources>
 	<!-- Resources that should not be translated / renamed -->
 	<string name="app_title">iNaturalist</string>
+	<string-array name="default_obs_action_values">
+		<item>show_options</item>
+		<item>take_photo</item>
+		<item>choose_image</item>
+		<item>record_sound</item>
+		<item>choose_sound</item>
+		<item>no_media</item>
+	</string-array>
 	<string-array name="explore_order_values">
 		<item>desc</item>
 		<item>asc</item>

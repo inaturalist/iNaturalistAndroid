@@ -24,7 +24,16 @@
         android:summary="@string/suggest_species_description"
         android:title="@string/suggest_species" />
 
-     <CheckBoxPreference
+    <ListPreference
+        android:layout="@layout/custom_preference"
+        android:key="default_obs_action"
+        android:title="@string/default_observation_action"
+        android:summary="@string/show_options"
+        android:entries="@array/default_obs_action_values"
+        android:entryValues="@array/default_obs_action_values"
+        />
+
+    <CheckBoxPreference
         android:layout="@layout/custom_preference"
         android:defaultValue="false"
         android:widgetLayout="@layout/custom_checkbox_preference"

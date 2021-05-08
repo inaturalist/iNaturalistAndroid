@@ -1493,6 +1493,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mAddButton.setOnClickListener(onAddObs);
                     mAddButtonText.setOnClickListener(onAddObs);
 
+                    mAddButton.setOnLongClickListener(v -> {
+                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_START);
+                        showNewObsMenu(true);
+                        return false;
+                    });
+
 
                     if (mApp.loggedIn() && mApp.getIsSyncing() && (mObservationListAdapter.getCount() == 0)) {
                         // Show a "downloading ..." message instead of "no observations yet"

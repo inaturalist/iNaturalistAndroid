@@ -100,6 +100,13 @@ public class INaturalistApp extends MultiDexApplication {
 
     private static final int DEFAULT_DEBUG_LOG_DAY_COUNT = 5;
 
+    public static final String DEFAULT_ACTION_SHOW_OPTIONS = "show_options";
+    public static final String DEFAULT_ACTION_TAKE_PHOTO = "take_photo";
+    public static final String DEFAULT_ACTION_CHOOSE_IMAGE = "choose_image";
+    public static final String DEFAULT_ACTION_RECORD_SOUND = "record_sound";
+    public static final String DEFAULT_ACTION_CHOOSE_SOUND = "choose_sound";
+    public static final String DEFAULT_ACTION_NO_MEDIA = "no_media";
+
     private SharedPreferences mPrefs;
 	private boolean mIsSyncing = false;
     public static Integer VERSION = 1;
@@ -519,6 +526,19 @@ public class INaturalistApp extends MultiDexApplication {
     	SharedPreferences settings = getPrefs();
         return settings.getStringSet("user_roles", new HashSet<String>());
 	}
+
+    public String getDefaultObsAction() {
+        SharedPreferences settings = getPrefs();
+        return settings.getString("default_obs_action", DEFAULT_ACTION_SHOW_OPTIONS);
+    }
+
+    public void setDefaultObsAction(String value) {
+        SharedPreferences settings = getPrefs();
+        Editor settingsEditor = settings.edit();
+
+        settingsEditor.putString("default_obs_action", value);
+        settingsEditor.apply();
+    }
 
 	public boolean getAutoSync() {
     	SharedPreferences settings = getPrefs();
