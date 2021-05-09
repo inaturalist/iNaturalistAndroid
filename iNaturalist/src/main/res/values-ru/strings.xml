@@ -355,8 +355,12 @@
     <string name="there_was_a_problem_updating_profile">Возникла проблема при обновлении вашего профиля!</string>
     <string name="there_was_a_problem_updating_profile_params">Возникла проблема при обновлении вашего профиля: %1$s</string>
     <string name="logged_in_as_html"><![CDATA[Вы вошли в систему как <b>%1$s</b>]]></string>
+    <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
+    <string name="currently_logged_in_as_html"><![CDATA[Вы вошли как <b>%1$s</b>]]></string>
     <string name="log_out">Выход</string>
     <string name="not_logged_in">Вы не вошли в систему</string>
+    <!-- Prompt to log in to your account or sign up for a new account -->
+    <string name="login_or_sign_up">Вход / Регистрация</string>
     <string name="auto_upload_description">Автозагрузка новых наблюдений и редактирования существующих наблюдений</string>
     <string name="language">Язык</string>
     <string name="version">Версия</string>
@@ -464,6 +468,7 @@
     <string name="view_suggestions">Посмотреть предложения</string>
     <string name="species_search">Поиск видов</string>
     <string name="were_not_confident_enough">Мы не полностью уверены, что можем дать рекомендацию, но вот наши лучшие предложения</string>
+    <string name="were_not_confident_enough_no_suggestions">Мы недостаточно уверены, чтобы дать рекомендацию.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Наиболее часто наблюдаемые варианты, соответствующие фильтрам:</string>
     <!-- Header for a list of suggested taxa -->
@@ -1053,7 +1058,7 @@
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
     <string name="comments_ids_title">Комментарии и идентификации</string>
     <!-- Accessibility text for the faves tab on the observation detail view -->
-    <string name="faves">Фавориты</string>
+    <string name="faves">Избранное</string>
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
     <string name="previous_option">Предыдущий вариант</string>
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
@@ -1143,4 +1148,6 @@
     <string name="license_description_cc_by_sa">Эта лицензия позволяет другим копировать, распространять, воспроизводить, исполнять и перерабатывать ваше произведение только в некоммерческих целях. Если они хотят использовать ваше произведение в коммерческих целях, они должны обратиться к вам за соответствующим разрешением.</string>
     <string name="license_description_no_license">Вы сохраняете полное авторское право на свой контент, кроме тех прав, которые предоставляются iNaturalist по нашим Условиям использования.</string>
     <string name="invalid_photo">Формат фото не поддерживается</string>
+    <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
+    <string name="suggestions_based_on">Предложения, основанные на наблюдениях и идентификациях, предоставляемых сообществом iNaturalist, в том числе %1$s, %2$s, %3$s и многими другими.</string>
 </resources>

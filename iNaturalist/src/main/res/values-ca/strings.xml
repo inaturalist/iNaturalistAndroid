@@ -350,8 +350,12 @@
     <string name="there_was_a_problem_updating_profile">Hi ha hagut un problema mentre actualitzàvem el vostre perfil!</string>
     <string name="there_was_a_problem_updating_profile_params">Hi ha hagut un problema mentre actualitzàvem el vostre perfil: %1$s</string>
     <string name="logged_in_as_html"><![CDATA[Sessió iniciada com <b>%1$s</b>]]></string>
+    <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
+    <string name="currently_logged_in_as_html"><![CDATA[Connectat com a <b>%1$s</b>]]></string>
     <string name="log_out">Surt</string>
     <string name="not_logged_in">No s\'ha iniciat sessió</string>
+    <!-- Prompt to log in to your account or sign up for a new account -->
+    <string name="login_or_sign_up">Inicieu sessió o registreu-vos</string>
     <string name="auto_upload_description">Pujar automàticament les noves observacions i les seves edicions</string>
     <string name="language">Llengua</string>
     <string name="version">Versió</string>
@@ -455,6 +459,7 @@
     <string name="view_suggestions">Veure suggeriments</string>
     <string name="species_search">Cerca espècies</string>
     <string name="were_not_confident_enough">No estem prou segurs per fer una recomanació, però aquí teniu els nostres primers suggeriments:</string>
+    <string name="were_not_confident_enough_no_suggestions">No estem prou segurs com per fer una recomanació.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Les opcions més observades que compleixen els filtres:</string>
     <!-- Header for a list of suggested taxa -->
@@ -1130,4 +1135,6 @@
     <string name="license_description_cc_by_sa">Aquesta llicència permet a altres persones remesclar, modificar i adaptar el vostre treball de forma no comercial i, tot i que les seves noves obres també us han de reconèixer i no ser comercials, no tenen per què llicenciar les seves obres derivades en els mateixos termes.</string>
     <string name="license_description_no_license">Manteniu tots els drets sobre el vostre contingut,a més dels drets concedits a iNaturalist en les nostres Condicions de Servei.</string>
     <string name="invalid_photo">Format de fotografia no suportat</string>
+    <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
+    <string name="suggestions_based_on">Suggeriments basats en observacions i identificacions aportades per la comunitat d\'iNaturalist, incloent-hi %1$s, %2$s i %3$s, entre altres.</string>
 </resources>

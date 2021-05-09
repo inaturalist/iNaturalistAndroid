@@ -199,10 +199,10 @@
     <string name="alert_message_use_argentinat">ArgentiNat yra Argentinos iNaturalist tinklo narys. Vietinės institucijos, remiančios ArgentiNat, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel yra Izraelio iNaturalist tinklo narys. Vietinės institucijos, remiančios iNaturalist Israel, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland yra Suomijos iNaturalist tinklo narys. Vietinės institucijos, remiančios iNaturalist Finland, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
-    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistgr">iNaturalist Greece is a member of the iNaturalist Network in Greece. Local institutions supporting iNaturalist Greece will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg is a member of the iNaturalist Network in Luxembourg. Local institutions supporting iNaturalist Luxembourg will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom is a member of the iNaturalist Network in United Kingdom. Local institutions supporting iNaturalist United Kingdom will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile yra Čilės iNaturalist tinklo narys. Vietinės institucijos, remiančios iNaturalist Chile, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Greece yra Graikijos iNaturalist tinklo narys. Vietinės institucijos, remiančios iNaturalist Greece, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg yra Liuksemburgo iNaturalist tinklo narys. Vietinės institucijos, remiančios iNaturalist Luxembourg, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom yra Jungtinės Karalystės iNaturalist tinklo narys. Vietinės institucijos, remiančios iNaturalist United Kingdom, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
     <string name="editor">Redaktorius</string>
     <string name="license">Licencija</string>
     <string name="download_for_offline_use">Atsisiųsti naudojimui atsijungus nuo tinklo</string>
@@ -354,8 +354,12 @@
     <string name="there_was_a_problem_updating_profile">Iškilo problema naujinant profilį!</string>
     <string name="there_was_a_problem_updating_profile_params">Iškilo problema naujinant profilį! %1$s</string>
     <string name="logged_in_as_html"><![CDATA[Prisijungta kaip <b>%1$s</b>]]></string>
+    <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
+    <string name="currently_logged_in_as_html"><![CDATA[Šiuo metu prisijungę kaip <b>%1$s</b>]]></string>
     <string name="log_out">Atsijungti</string>
     <string name="not_logged_in">Esate neprisijungę</string>
+    <!-- Prompt to log in to your account or sign up for a new account -->
+    <string name="login_or_sign_up">Prisijungti arba registruotis</string>
     <string name="auto_upload_description">Automatiškai užkrauti naujus stebėjimus ir stebėjimo redagavimus</string>
     <string name="language">Kalba</string>
     <string name="version">Versija</string>
@@ -463,6 +467,7 @@
     <string name="view_suggestions">Žiūrėti pasiūlymus</string>
     <string name="species_search">Rūšies paieška</string>
     <string name="were_not_confident_enough">Mes nesame pakankamai užtikrinti, kad teiktumėme rekomendacijas, tačiau čia yra mūsų geriausi pasiūlymai:</string>
+    <string name="were_not_confident_enough_no_suggestions">Mes nesame tokie tikri, kad galėtume rekomenduoti.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
     <!-- Header for a list of suggested taxa -->
@@ -741,21 +746,21 @@
     <string name="donate_to_inaturalist">Aukoti iNaturalist kūrėjams</string>
     <string name="prefers_scientific_name_first">Pirmiausia rodyti mokslinius pavadinimus</string>
     <string name="prefers_scientific_name_first_description">Lotyniškus pavadinimus rodyti prieš lietuviškus.</string>
-    <string name="network_credit_inaturalistcanada"><![CDATA[Kanada: Canadian Wildlife Federation, Royal Ontario Museum, NatureServe Canada ir Parks Canada kontroliuoja iNaturalist Kanada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
-    <string name="network_credit_naturalistacolombia"><![CDATA[Kolumbija: Instituto Humboldt kontroliuoja Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
-    <string name="network_credit_naturalista"><![CDATA[Meksika: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) kontroliuoja NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
-    <string name="network_credit_naturewatchnz"><![CDATA[Naujoji Zelandija: New Zealand Biodiversity Recording Network kontroliuoja iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
-    <string name="network_credit_biodiversity4all"><![CDATA[Portugalija: Associação Biodiversidade Para Todos kontroliuoja Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
-    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente kontroliuoja iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[Kanada: Canadian Wildlife Federation, Royal Ontario Museum, NatureServe Canada ir Parks Canada palaiko iNaturalist Kanada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[Kolumbija: Instituto Humboldt palaiko Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalista"><![CDATA[Meksika: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) palaiko NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[Naujoji Zelandija: New Zealand Biodiversity Recording Network palaiko iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
+    <string name="network_credit_biodiversity4all"><![CDATA[Portugalija: Associação Biodiversidade Para Todos palaiko Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente palaiko iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
     <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina remia ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
     <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia remia iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) remia iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa remia iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Naturalist History (LUOMUS) remia iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
-    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
-    <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
-    <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Čilė: Ministerio del Medio Ambiente palaiko iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Graikija: iSea palaiko iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Liuksemburgas: Luxembourg National Museum of Natural History (MnhnL) palaiko iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Jungtinė karalystė: National Biodiversity Network Trust palaiko iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Pažymėti visus kaip peržiūrėtus</string>
     <string name="content_hidden">Turinys paslėptas</string>
     <string name="show_hidden_content">Rodyti paslėptą turinį</string>
@@ -857,7 +862,7 @@
     <string name="future_observed_on_date_error">Jūs bandote nustatyti stebėjimo datą (%1$s), bet ji yra vėlesnė negu stebėjimas buvo sukurtas (ir pateiktas): %2$s</string>
     <string name="no_more_photos_allowed">Stebėjimai gali turėti tik %1$d nuotraukų. Jeigu norite pridėti dar nuotraukų, turėsite kai kurias ištrinti.</string>
     <string name="warning_multiple_photos">Jeigu pridedate nuotraukas su skirtingų rūšių organizmais, arba su ta pačios rūšies organizmais, bet darytas skirtingose vietose ar skirtingu laiku, jums reikėtų panaikinti tas nuotraukas ir įkelti jas kaip atskirus stebėjimus. Vienas stebėjimas gali turėti tik %1$d nuotraukų.</string>
-    <string name="choosing_specific_language_warning">Choosing a specific language for your account requires an Internet connection</string>
+    <string name="choosing_specific_language_warning">Specifinės kalbos parinkimui paskyrai reikalingas interneto ryšys</string>
     <string name="running_in_background_notfication">Veikia fone, kad veiktų be pertraukimų</string>
     <string name="opt_out_of_community_taxon">Opt out of the Community Taxon</string>
     <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
@@ -988,50 +993,50 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <string name="filter_observations_by_months">Filtruoti stebėjimus pagal mėnesius</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="include_suggestions_not_seen_nearby">Include suggestions not seen nearby</string>
-    <string name="only_view_nearby_suggestions">Only view nearby suggestions</string>
-    <string name="suggestions_source">Suggestions Source</string>
-    <string name="research_grade_observations">Research Grade Observations</string>
-    <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
-    <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will suggest species observed in a specific place and within a specific taxonomic group.</string>
+    <string name="include_suggestions_not_seen_nearby">Įtraukti pasiūlymus, kurie netoliese stebėti nebuvo</string>
+    <string name="only_view_nearby_suggestions">Žiūrėti tik pasiūlymus, kurie buvo stebėti netoliese</string>
+    <string name="suggestions_source">Pasiūlymų šaltinis</string>
+    <string name="research_grade_observations">Identifikuoti stebėjimai</string>
+    <string name="visually_similar_description">iNaturalist teiks rūšių, kurios vizualiai panašios į nuotraukas ir buvo stebėtos netoliese tuo pačiu metų laiku, pasiūlymus.</string>
+    <string name="research_grade_observations_description">Vietoje vizualiai panašių pasiūlymų, iNaturalist siūlys rūšis, stebėtas tam tikroje vietoje ir priklausančias tam tikrai taksonominei grupei.</string>
     <string name="taxon">Taksonas:</string>
     <string name="place">Vieta:</string>
     <string name="pretty_sure_kingdom">Mes įsitikinę, jog tai priklauso šiai karalystei:</string>
-    <string name="pretty_sure_subkingdom">We\'re pretty sure it\'s in this subkingdom:</string>
+    <string name="pretty_sure_subkingdom">Mes įsitikinę, jog tai priklauso šiai pokaralystei:</string>
     <string name="pretty_sure_phylum">Mes įsitikinę, jog tai priklauso šiam tipui:</string>
-    <string name="pretty_sure_subphylum">We\'re pretty sure it\'s in this subphylum:</string>
-    <string name="pretty_sure_superclass">We\'re pretty sure it\'s in this superclass:</string>
-    <string name="pretty_sure_class">We\'re pretty sure it\'s in this class:</string>
-    <string name="pretty_sure_subclass">We\'re pretty sure it\'s in this subclass:</string>
-    <string name="pretty_sure_infraclass">We\'re pretty sure it\'s in this infraclass:</string>
-    <string name="pretty_sure_superorder">We\'re pretty sure it\'s in this superorder:</string>
-    <string name="pretty_sure_order">We\'re pretty sure it\'s in this order:</string>
-    <string name="pretty_sure_suborder">We\'re pretty sure it\'s in this suborder:</string>
-    <string name="pretty_sure_infraorder">We\'re pretty sure it\'s in this infraorder:</string>
+    <string name="pretty_sure_subphylum">Mes įsitikinę, jog tai priklauso šiam potipiui:</string>
+    <string name="pretty_sure_superclass">Mes įsitikinę, jog tai priklauso šiam antklasiui:</string>
+    <string name="pretty_sure_class">Mes įsitikinę, jog tai priklauso šiai klasei:</string>
+    <string name="pretty_sure_subclass">Mes įsitikinę, jog tai priklauso šiam poklasiui:</string>
+    <string name="pretty_sure_infraclass">Mes įsitikinę, jog tai priklauso šiai infraklasei:</string>
+    <string name="pretty_sure_superorder">Mes įsitikinę, jog tai priklauso šiam antbūriui:</string>
+    <string name="pretty_sure_order">Mes įsitikinę, jog tai priklauso šiam būriui:</string>
+    <string name="pretty_sure_suborder">Mes įsitikinę, jog tai priklauso šiam pobūriui:</string>
+    <string name="pretty_sure_infraorder">Mes įsitikinę, jog tai priklauso šiam infrabūriui:</string>
     <string name="pretty_sure_subterclass">We\'re pretty sure it\'s in this subterclass:</string>
     <string name="pretty_sure_parvorder">We\'re pretty sure it\'s in this parvorder:</string>
     <string name="pretty_sure_zoosection">We\'re pretty sure it\'s in this zoosection:</string>
     <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
-    <string name="pretty_sure_superfamily">We\'re pretty sure it\'s in this superfamily:</string>
+    <string name="pretty_sure_superfamily">Mes įsitikinę, jog tai priklauso šiam antšeimiui:</string>
     <string name="pretty_sure_epifamily">We\'re pretty sure it\'s in this epifamily:</string>
-    <string name="pretty_sure_family">We\'re pretty sure it\'s in this family:</string>
-    <string name="pretty_sure_subfamily">We\'re pretty sure it\'s in this subfamily:</string>
+    <string name="pretty_sure_family">Mes įsitikinę, jog tai priklauso šiai šeimai:</string>
+    <string name="pretty_sure_subfamily">Mes įsitikinę, jog tai priklauso šiam pošeimiui:</string>
     <string name="pretty_sure_supertribe">We\'re pretty sure it\'s in this supertribe:</string>
-    <string name="pretty_sure_tribe">We\'re pretty sure it\'s in this tribe:</string>
+    <string name="pretty_sure_tribe">Mes įsitikinę, jog tai priklauso šiai tribai:</string>
     <string name="pretty_sure_subtribe">We\'re pretty sure it\'s in this subtribe:</string>
-    <string name="pretty_sure_genus">We\'re pretty sure it\'s in this genus:</string>
+    <string name="pretty_sure_genus">Mes įsitikinę, jog tai priklauso šiai genčiai:</string>
     <string name="pretty_sure_genushybrid">We\'re pretty sure it\'s in this genushybrid:</string>
-    <string name="pretty_sure_subgenus">We\'re pretty sure it\'s in this subgenus:</string>
+    <string name="pretty_sure_subgenus">Mes įsitikinę, jog tai priklauso šiai pogenčiai:</string>
     <string name="pretty_sure_section">We\'re pretty sure it\'s in this section:</string>
     <string name="pretty_sure_subsection">We\'re pretty sure it\'s in this subsection:</string>
-    <string name="pretty_sure_complex">We\'re pretty sure it\'s in this complex:</string>
+    <string name="pretty_sure_complex">Mes įsitikinę, jog tai priklauso šiam kompleksui:</string>
     <!-- Singular -->
-    <string name="pretty_sure_species">We\'re pretty sure it\'s in this species:</string>
-    <string name="pretty_sure_hybrid">We\'re pretty sure it\'s in this hybrid:</string>
+    <string name="pretty_sure_species">Mes įsitikinę, jog tai priklauso šiai rūšiai:</string>
+    <string name="pretty_sure_hybrid">Mes įsitikinę, jog tai priklauso šiam hibridui:</string>
     <!-- Singular -->
-    <string name="pretty_sure_subspecies">We\'re pretty sure it\'s in this subspecies:</string>
-    <string name="pretty_sure_variety">We\'re pretty sure it\'s in this variety:</string>
-    <string name="pretty_sure_form">We\'re pretty sure it\'s in this form:</string>
+    <string name="pretty_sure_subspecies">Mes įsitikinę, jog tai priklauso šiam porūšiui:</string>
+    <string name="pretty_sure_variety">Mes įsitikinę, jog tai priklauso šiam varietetui:</string>
+    <string name="pretty_sure_form">Mes įsitikinę, jog tai priklauso šiai formai:</string>
     <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
     <string name="remove_date_observed">Pašalinti stebėjimo datą ir laiką</string>
     <string name="remove_time_observed">Pašalinti stebėjimo laiką</string>
@@ -1040,27 +1045,27 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <string name="are_you_sure_you_want_to_remove_time">Ar tikrai norite pašalinti stebėjimo laiką?</string>
     <string name="are_you_sure_you_want_to_remove_location">Ar tikrai norite pašalinti lokaciją?</string>
     <string name="share_location">Dalintis buvimo vietos informacija</string>
-    <string name="share_hidden_location">Share Hidden Location</string>
+    <string name="share_hidden_location">Dalintis paslėpta vieta</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Nepavyko sukurti garso kopijos!</string>
-    <string name="sound_format_not_supported">That audio encoding is not supported by Android.</string>
+    <string name="sound_format_not_supported">Android nepalaiko tokio garso kodavimo.</string>
     <string name="view_observations">Žiūrėti stebėjimus</string>
-    <string name="choose_this_option">Choose this option</string>
-    <string name="compare_observation_with_this_option">Compare observation with this option</string>
+    <string name="choose_this_option">Rinktis šį pasirinkimą</string>
+    <string name="compare_observation_with_this_option">Palyginti stebėjimą su šiuo pasirinkimu</string>
     <string name="go_back">Grįžti</string>
-    <string name="change_the_source_of_the_suggestions">Change the source of the suggestions</string>
-    <string name="thumbnail_photo_for_suggested_taxon">Thumbnail photo for suggested taxon</string>
+    <string name="change_the_source_of_the_suggestions">Pakeisti pasiūlymų šaltinį</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Siūlomo taksono miniatiūra</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
-    <string name="comments_ids_title">Comments and Identifications</string>
+    <string name="comments_ids_title">Komentarai ir identifikacijos</string>
     <!-- Accessibility text for the faves tab on the observation detail view -->
     <string name="faves">Pamėgimai</string>
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
-    <string name="previous_option">Previous Option</string>
+    <string name="previous_option">Ankstesnis pasirinkimas</string>
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
-    <string name="next_option">Next Option</string>
-    <string name="no_observations_yet2">No observations yet.</string>
-    <string name="no_species_yet">No species yet.</string>
-    <string name="no_identifications_yet">No identifications yet.</string>
+    <string name="next_option">Sekantis pasirinkimas</string>
+    <string name="no_observations_yet2">Dar nėra stebėjimų.</string>
+    <string name="no_species_yet">Dar nėra rūšių.</string>
+    <string name="no_identifications_yet">Dar nėra identifikacijų.</string>
     <string name="sort_by">Rikiuoti pagal</string>
     <string-array name="explore_order_by_items">
         <item>Įkėlimo data</item>
@@ -1083,14 +1088,14 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
     <string name="unfollow_this_observation">Nebesekti šio stebėjimo</string>
     <!-- Error message shown when an attempt to follow an observation fails -->
-    <string name="could_not_follow_observation">Could not follow this observation</string>
+    <string name="could_not_follow_observation">Negalima sekti šio stebėjimo</string>
     <!-- Error message shown when an attempt to unfollow an observation fails -->
-    <string name="could_not_unfollow_observation">Could not unfollow this observation</string>
+    <string name="could_not_unfollow_observation">Negalima nebesekti šio stebėjimo</string>
     <!-- Label for a button to copy the coordinates of an observation -->
-    <string name="copy_coordinates">Copy coordinates</string>
-    <string name="coordinates_copied_to_clipboard">Coordinates copied to clipboard</string>
+    <string name="copy_coordinates">Kopijuoti koordinates</string>
+    <string name="coordinates_copied_to_clipboard">Koordinatės nukopijuotos į mainų sritį</string>
     <!--  Title of a section on the observation detail view that displays minor metadata  -->
-    <string name="metadata">Metadata</string>
+    <string name="metadata">Metaduomenys</string>
     <!--  iNat observation identifier  -->
     <string name="id">ID</string>
     <!--  iNat observation Universally Unique Identifier  -->
@@ -1118,12 +1123,12 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <string name="existing_photo_licenses_have_been_updated">All existing photo licenses have been changed to %1$s.</string>
     <string name="existing_sound_licenses_have_been_updated">All existing sound licenses have been changed to %1$s.</string>
     <string name="default_licenses_description"><![CDATA[Licensing your content gives anyone the legal right to use it without asking your permission if they abide by the terms of the license. In addition, iNat includes your Creative Commons-licensed content in regularly-updated archives produced for select partner organizations interested in our data. For example, we include No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC) records in the archive we generate for the <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, an international, inter-governmental organization that compiles and distributes biodiversity information from around the world.]]></string>
-    <string name="photo_license">Photo License</string>
-    <string name="edit_photo_license">Edit Photo License</string>
-    <string name="observation_license">Observation License</string>
-    <string name="edit_observation_license">Edit Observation License</string>
-    <string name="about_licenses">About Licenses</string>
-    <string name="view_license">View License</string>
+    <string name="photo_license">Nuotraukos licencija</string>
+    <string name="edit_photo_license">Redaguoti nuotraukos licenciją</string>
+    <string name="observation_license">Stebėjimo licencija</string>
+    <string name="edit_observation_license">Redaguoti stebėjimo licenciją</string>
+    <string name="about_licenses">Apie licencijas</string>
+    <string name="view_license">Žiūrėti licenciją</string>
     <!-- License Names -->
     <string name="license_name_cc0">Public Domain</string>
     <string name="license_name_cc_by">Attribution</string>
@@ -1132,7 +1137,7 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <string name="license_name_cc_by_nc_nd">Attribution-NonCommercial-NoDerivs</string>
     <string name="license_name_cc_by_nd">Attribution-NoDerivs</string>
     <string name="license_name_cc_by_sa">Attribution-ShareAlike</string>
-    <string name="license_name_no_license">All rights reserved</string>
+    <string name="license_name_no_license">Visos teisės saugomos</string>
     <!-- License Descriptions -->
     <string name="license_description_cc0">This license releases your work into the public domain, so others can copy, modify, distribute and perform your work, even for commercial purposes, all without asking permission or giving you credit. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.</string>
     <string name="license_description_cc_by">This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation.</string>
@@ -1142,5 +1147,7 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <string name="license_description_cc_by_nd">This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.</string>
     <string name="license_description_cc_by_sa">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
     <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
-    <string name="invalid_photo">Photo format not supported</string>
+    <string name="invalid_photo">Nuotraukos formatas nepalaikomas</string>
+    <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
+    <string name="suggestions_based_on">Patarimai, paremti stebėjimai ir identifikacijomis, kurias pateikė „iNaturalist“ bendruomenės, įskaitant %1$s, %2$s, %3$s ir daug kitų.</string>
 </resources>

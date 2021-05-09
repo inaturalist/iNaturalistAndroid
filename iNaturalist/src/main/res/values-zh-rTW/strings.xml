@@ -348,8 +348,12 @@
     <string name="there_was_a_problem_updating_profile">更新您的個人資料時發生問題！</string>
     <string name="there_was_a_problem_updating_profile_params">更新您的個人資料時發生問題：%1$s</string>
     <string name="logged_in_as_html"><![CDATA[已登入為 <b>%1$s</b>]]></string>
+    <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
+    <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
     <string name="log_out">登出</string>
     <string name="not_logged_in">未登入</string>
+    <!-- Prompt to log in to your account or sign up for a new account -->
+    <string name="login_or_sign_up">Log In or Sign Up</string>
     <string name="auto_upload_description">自動上傳新的觀察和編輯過的觀察記錄</string>
     <string name="language">語言</string>
     <string name="version">版本</string>
@@ -451,6 +455,7 @@
     <string name="view_suggestions">查看建議</string>
     <string name="species_search">物種搜尋</string>
     <string name="were_not_confident_enough">我們信心不足以致於無法提出物種鑑定的建議，但以下是我們最佳的建議：</string>
+    <string name="were_not_confident_enough_no_suggestions">我們信心不足以致無法提出鑑定上的建議。</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">符合篩選條件中最多觀察的選項</string>
     <!-- Header for a list of suggested taxa -->
@@ -989,7 +994,7 @@
     <string name="pretty_sure_order">我們很肯定的是在此目：</string>
     <string name="pretty_sure_suborder">我們很肯定的是在此亞目：</string>
     <string name="pretty_sure_infraorder">我們很肯定的是在此下目：</string>
-    <string name="pretty_sure_subterclass">We\'re pretty sure it\'s in this subterclass:</string>
+    <string name="pretty_sure_subterclass">我們很肯定它是在此準綱：</string>
     <string name="pretty_sure_parvorder">我們很肯定的是在此小目：</string>
     <string name="pretty_sure_zoosection">We\'re pretty sure it\'s in this zoosection:</string>
     <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
@@ -1124,4 +1129,6 @@
     <string name="license_description_cc_by_sa">此許可協議可讓其他人發佈、重製、調整，和以您的作品為基礎來創作在以非商業目的下，雖然他們的新作品必須在非商業目的下致謝於您，但他們的衍生作品可以不必依同樣使用條款來作為許可。</string>
     <string name="license_description_no_license">除了由我們的服務條款授予給 iNaturalist 的這些權限外，您保留了您內容的完整版權。</string>
     <string name="invalid_photo">不支援的照片格式</string>
+    <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
+    <string name="suggestions_based_on">基於 iNaturalist 社群 (包括%1$s、%2$s、%3$s 和其他許多人)所提供之觀察和鑑定的建議。</string>
 </resources>
