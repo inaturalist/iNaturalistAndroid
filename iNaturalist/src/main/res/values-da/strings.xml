@@ -350,8 +350,12 @@
     <string name="there_was_a_problem_updating_profile">Et problem opstod under opdatering af din profil!</string>
     <string name="there_was_a_problem_updating_profile_params">Et problem opstod under opdatering af din profil: %1$s</string>
     <string name="logged_in_as_html"><![CDATA[Logget ind som <b>%1$s</b>]]></string>
+    <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
+    <string name="currently_logged_in_as_html"><![CDATA[Pt. logget ind som <b>%1$s</b>]]></string>
     <string name="log_out">Log ud</string>
     <string name="not_logged_in">Ikke logget ind</string>
+    <!-- Prompt to log in to your account or sign up for a new account -->
+    <string name="login_or_sign_up">Log ind eller Tilmeld</string>
     <string name="auto_upload_description">Auto-upload nye observationer og/eller redigeringer til observationer</string>
     <string name="language">Sprog</string>
     <string name="version">Version</string>
@@ -455,6 +459,7 @@
     <string name="view_suggestions">Se forslag</string>
     <string name="species_search">Artssøgning</string>
     <string name="were_not_confident_enough">Vi er ikke tilstrækkeligt sikre til at give en anbefaling, men her vore bedste forslag.</string>
+    <string name="were_not_confident_enough_no_suggestions">Vi er ikke tilstrækkeligt sikre til at komme med en anbefaling.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Mest observerede jf. indstillinger i matchningfiltre:</string>
     <!-- Header for a list of suggested taxa -->
@@ -1134,4 +1139,6 @@ og <a href="https://www.inaturalist.org/terms">Tjenestevilkår</a>.]]></string>
     <string name="license_description_cc_by_sa">Denne licens tillader andre at bearbejde, tilpasse og viderebygge på dit værk ikke-kommercielt, og selv om deres nye værker også skal kreditere dig og være ikke-kommercielle, behøver de ikke licensere deres afledte værker på samme vilkår.</string>
     <string name="license_description_no_license">Du beholder fuld ophavsret til dit indhold fraset de rettigheder, som er tildelt iNaturalist i vores Tjenestevilkår.</string>
     <string name="invalid_photo">Fotoformat ikke understøttet</string>
+    <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
+    <string name="suggestions_based_on">Forslag baseret på observationer og identifikationer leveret af iNaturalist-fællesskabet, herunder %1$s, %2$s, %3$s og mange andre.</string>
 </resources>

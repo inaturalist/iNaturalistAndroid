@@ -350,8 +350,12 @@
     <string name="there_was_a_problem_updating_profile">Un problème est survenu durant la mise à jour de votre profil !</string>
     <string name="there_was_a_problem_updating_profile_params">Un problème est survenu durant la mise à jour de votre profil: %1$s</string>
     <string name="logged_in_as_html"><![CDATA[Connecté en tant que <b>%1$s</b>]]></string>
+    <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
+    <string name="currently_logged_in_as_html"><![CDATA[Actuellement connecté en tant que <b>%1$s</b>]]></string>
     <string name="log_out">Se déconnecter</string>
     <string name="not_logged_in">Vous n\'êtes pas connecté(e)</string>
+    <!-- Prompt to log in to your account or sign up for a new account -->
+    <string name="login_or_sign_up">Identifiez-vous ou inscrivez-vous</string>
     <string name="auto_upload_description">Upload automatique des nouvelles observations et de leurs modificaitons</string>
     <string name="language">Langue</string>
     <string name="version">Version</string>
@@ -455,6 +459,7 @@
     <string name="view_suggestions">Voir les suggestions</string>
     <string name="species_search">Recherche d’espèces</string>
     <string name="were_not_confident_enough">Nous ne sommes pas suffisamment sûrs pour faire une recommandation, mais voici nos meilleures suggestions:</string>
+    <string name="were_not_confident_enough_no_suggestions">Nous ne sommes pas assez confiants pour faire une recommandation.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Options les plus observées correspondant aux filtres</string>
     <!-- Header for a list of suggested taxa -->
@@ -743,9 +748,9 @@
     <string name="network_credit_inaturalistil"><![CDATA[Israël : l\'Université d\'Haïfa soutient iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finlande: Musée finlandais d\'histoire naturaliste (LUOMUS) soutenant iNaturalist Finlande (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="network_credit_inaturalistcl"><![CDATA[Chili : Ministerio del Medio Ambiente soutenant iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
-    <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
-    <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Grèce : iSea soutient iNaturalist Grèce (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>).]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg : Le Musée national d\'histoire naturelle du Luxembourg (MNHNL) soutient iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>).]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Royaume-Uni : Le National Biodiversity Network Trust soutient iNaturalist Royaume-Uni (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>).]]></string>
     <string name="mark_all_as_viewed">Marquer tout comme lu</string>
     <string name="content_hidden">Contenu masqué</string>
     <string name="show_hidden_content">Afficher le contenu masqué</string>
@@ -989,7 +994,7 @@ les <a href="/pages/community+guidelines" target="_blank">Règles de la Communau
     <string name="suggestions_source">Type de suggestion</string>
     <string name="research_grade_observations">Observations de niveau recherche</string>
     <string name="visually_similar_description">iNaturalist proposera des suggestions basées sur la ressemblance visuelle avec des espèces observées au même endroit à cette période de l\'année.</string>
-    <string name="research_grade_observations_description">Plutôt que des suggestions visuellement similaires, iNaturalist recommendera des espèces observées à cet endroit et qui font partie d\'un groupe taxonomique précis.</string>
+    <string name="research_grade_observations_description">Plutôt que des suggestions visuellement similaires, iNaturalist recommendera des espèces observées à un endroit et pour un groupe taxonomique précis.</string>
     <string name="taxon">Taxon</string>
     <string name="place">Lieu:</string>
     <string name="pretty_sure_kingdom">Nous sommes quasiment sûrs que ça fait partie de ce règne:</string>
@@ -1039,7 +1044,7 @@ les <a href="/pages/community+guidelines" target="_blank">Règles de la Communau
     <string name="share_hidden_location">Partager la géolocalisation cachée</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Impossible de dupliquer de le son !</string>
-    <string name="sound_format_not_supported">That audio encoding is not supported by Android.</string>
+    <string name="sound_format_not_supported">Cet encodage audio n\'est pas supporté par Android.</string>
     <string name="view_observations">Afficher les observations</string>
     <string name="choose_this_option">Choisir cette option</string>
     <string name="compare_observation_with_this_option">Comparer l’observation avec cette option</string>
@@ -1098,45 +1103,48 @@ les <a href="/pages/community+guidelines" target="_blank">Règles de la Communau
     <string name="default_photo_license">Licence des photos par défaut</string>
     <string name="default_sound_license">Licence des sons par défaut</string>
     <string name="change_licenses_for_existing_observations">Modifier les licences pour les observations, photos et sons existants</string>
-    <string name="change_licenses_for_all_existing_observations">Change licenses for all existing observations</string>
-    <string name="change_licenses_for_all_existing_photos">Change licenses for all existing photos</string>
-    <string name="change_licenses_for_all_existing_sounds">Change licenses for all existing sounds</string>
-    <string name="change_observation_licenses">Change Observation Licenses</string>
-    <string name="change_photo_licenses">Change Photo Licenses</string>
-    <string name="change_sound_licenses">Change Sound Licenses</string>
-    <string name="change_licenses_for_observations_confirmation"><![CDATA[Change the licenses of <b>%1$d</b> existing observations to <b>%2$s</b>?]]></string>
-    <string name="change_licenses_for_photos_confirmation"><![CDATA[Change the licenses of existing photos to <b>%1$s</b>?]]></string>
-    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Change the licenses of existing sounds to <b>%1$s</b>?]]></string>
-    <string name="observation_licenses_updated">Observation Licenses Updated</string>
-    <string name="photo_licenses_updated">Photo Licenses Updated</string>
-    <string name="sound_licenses_updated">Sound Licenses Updated</string>
-    <string name="existing_observation_licenses_have_been_updated">All existing observation licenses have been changed to %1$s.</string>
-    <string name="existing_photo_licenses_have_been_updated">All existing photo licenses have been changed to %1$s.</string>
-    <string name="existing_sound_licenses_have_been_updated">All existing sound licenses have been changed to %1$s.</string>
-    <string name="default_licenses_description"><![CDATA[Licensing your content gives anyone the legal right to use it without asking your permission if they abide by the terms of the license. In addition, iNat includes your Creative Commons-licensed content in regularly-updated archives produced for select partner organizations interested in our data. For example, we include No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC) records in the archive we generate for the <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, an international, inter-governmental organization that compiles and distributes biodiversity information from around the world.]]></string>
-    <string name="photo_license">Photo License</string>
-    <string name="edit_photo_license">Edit Photo License</string>
-    <string name="observation_license">Observation License</string>
-    <string name="edit_observation_license">Edit Observation License</string>
-    <string name="about_licenses">About Licenses</string>
-    <string name="view_license">View License</string>
+    <string name="change_licenses_for_all_existing_observations">Changer la licence de toutes les observations</string>
+    <string name="change_licenses_for_all_existing_photos">Changer la licence de toutes les photos</string>
+    <string name="change_licenses_for_all_existing_sounds">Changer la licence de tous les sons</string>
+    <string name="change_observation_licenses">Changer la licence des observations</string>
+    <string name="change_photo_licenses">Changer la licence des photos</string>
+    <string name="change_sound_licenses">Changer la licence des sons</string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[Changer les licences de <b>%1$d</b> observations existantes en <b>%2$s</b>?]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[Changer les licences des photos existantes en <b>%1$s</b>?]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Changer les licences des enregistrements audio existants en <b>%1$s</b>?]]></string>
+    <string name="observation_licenses_updated">Licence des observations mise à jour</string>
+    <string name="photo_licenses_updated">Licence des photos mise à jour</string>
+    <string name="sound_licenses_updated">Licences des fichiers audio mises à jour</string>
+    <string name="existing_observation_licenses_have_been_updated">La licence de toutes les observations existantes a été changée en %1$s.</string>
+    <string name="existing_photo_licenses_have_been_updated">La licence de toutes les photos existantes a été changée en %1$s.</string>
+    <string name="existing_sound_licenses_have_been_updated">La licence de tous les enregistrements audio existants a été changée en %1$s.</string>
+    <string name="default_licenses_description"><![CDATA[En mettant votre contenu sous licence, vous donnez à quiconque le droit de l’utiliser légalement sans demander votre permission s’il reste dans les conditions de la licence. De plus, iNat inclut votre contenu sous licence Creative Commons dans des archives régulièrement mises à jour produites pour des organisations partenaires sélectionnées intéressées par nos données. Par exemple, nous incluons les enregistrements sans droit d’auteur (CC0), sous licence Attribution (CC BY) et sous licence Attribution - Pas d\'utilisation commerciale (CC BY-NC) dans les archives que nous générons pour le <a href="http://www.gbif.org/">Système mondial d’information sur la biodiversité</a> (GBIF), une organisation intergouvernementale internationale qui compile et distribue des informations sur la biodiversité rassemblées dans le monde entier.]]></string>
+    <string name="photo_license">Licence de la photo</string>
+    <string name="edit_photo_license">Modifier la licence de la photo</string>
+    <string name="observation_license">Licence de l’observation</string>
+    <string name="edit_observation_license">Modifier la licence de l’observation</string>
+    <string name="about_licenses">À propos des licences</string>
+    <string name="view_license">Voir la licence</string>
     <!-- License Names -->
     <string name="license_name_cc0">Domaine public</string>
     <string name="license_name_cc_by">Attribution</string>
-    <string name="license_name_cc_by_nc">Attribution-NonCommercial</string>
-    <string name="license_name_cc_by_nc_sa">Attribution-NonCommercial-ShareAlike</string>
-    <string name="license_name_cc_by_nc_nd">Attribution-NonCommercial-NoDerivs</string>
-    <string name="license_name_cc_by_nd">Attribution-NoDerivs</string>
-    <string name="license_name_cc_by_sa">Attribution-ShareAlike</string>
+    <string name="license_name_cc_by_nc">Attribution - Pas d\'utilisation commerciale</string>
+    <string name="license_name_cc_by_nc_sa">Attribution - Pas d\'utilisation commerciale - Partage dans les mêmes conditions</string>
+    <string name="license_name_cc_by_nc_nd">Attribution - Pas d\'utilisation commerciale - Pas de modification</string>
+    <string name="license_name_cc_by_nd">Attribution - Pas de modification</string>
+    <string name="license_name_cc_by_sa">Attribution - Partage dans les mêmes conditions</string>
     <string name="license_name_no_license">Tous droits réservés</string>
     <!-- License Descriptions -->
-    <string name="license_description_cc0">This license releases your work into the public domain, so others can copy, modify, distribute and perform your work, even for commercial purposes, all without asking permission or giving you credit. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.</string>
-    <string name="license_description_cc_by">This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation.</string>
-    <string name="license_description_cc_by_nc">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
-    <string name="license_description_cc_by_nc_sa">This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms.</string>
-    <string name="license_description_cc_by_nc_nd">This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can\'t change them in any way or use them commercially.</string>
-    <string name="license_description_cc_by_nd">This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.</string>
-    <string name="license_description_cc_by_sa">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
+    <string name="license_description_cc0">Cette licence place votre travail dans le domaine public, de telle sorte que d’autres personnes peuvent le copier, le modifier, le distribuer et l\'interpréter, même à des fins commerciales, sans vous demander votre autorisation ni vous mentionner. C’est la licence qui laisse le plus de latitude parmi celles proposées. Elle est recommandée pour maximiser la diffusion et l’utilisation du matériel sous licence.</string>
+    <string name="license_description_cc_by">Cette licence permet à d\'autres personnes de distribuer, de réarranger, d\'adapter et de développer votre travail, même à des fins commerciales, tant qu’elles mentionnent que vous avez créé le travail original.</string>
+    <string name="license_description_cc_by_nc">Cette licence permet à d\'autres personnes de réarranger, d\'adapter et de développer votre travail à des fins non commerciales en mentionnant que vous avez créé le travail original, mais sans être tenues de soumettre les créations qui en dérivent aux mêmes conditions que celles de la licence de la création originale.</string>
+    <string name="license_description_cc_by_nc_sa">Cette licence permet à d\'autres personnes de réarranger, d\'adapter et de développer votre travail à des fins non commerciales à condition de mentionner que vous avez créé le travail original et de soumettre les créations qui en dérivent aux mêmes conditions de licence.</string>
+    <string name="license_description_cc_by_nc_nd">Cette licence est la plus restrictive des six licences principales. Elle permet à d\'autres personnes de télécharger et de distribuer vos travaux, tant qu’elles vous mentionnent, mais elles ne peuvent en aucune façon les modifier ni les utiliser à des fins commerciales.</string>
+    <string name="license_description_cc_by_nd">Cette licence autorise la redistribution, à des fins commerciales ou
+non, tant que le travail demeure inchangé et complet, et que vous êtes mentionné·e.</string>
+    <string name="license_description_cc_by_sa">Cette licence permet à d\'autres personnes de réarranger, d\'adapter et de développer votre travail à des fins non commerciales en vous attribuant la création originale, mais sans être tenues de soumettre le travail dérivé aux mêmes conditions que celles de la licence de la création originale.</string>
     <string name="license_description_no_license">Vous conservez l\'intégralité des droits d\'auteur sur votre contenu en dehors des droits accordés à iNaturalist dans nos Conditions d\'utilisation.</string>
     <string name="invalid_photo">Format photo non pris en charge</string>
+    <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
+    <string name="suggestions_based_on">Suggestions basées sur les observations et identifications fournies par la communauté iNaturalist, y compris %1$s, %2$s, %3$s et bien d\'autres.</string>
 </resources>

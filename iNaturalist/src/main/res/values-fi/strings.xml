@@ -355,8 +355,12 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="there_was_a_problem_updating_profile">Virhe päivitettäessä profiiliasi!</string>
     <string name="there_was_a_problem_updating_profile_params">Virhe päivitettäessä profiiliasi: %1$s</string>
     <string name="logged_in_as_html"><![CDATA[Kirjautunut sisään nimellä <b>%1$s</b>]]></string>
+    <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
+    <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
     <string name="log_out">Kirjaudu ulos</string>
     <string name="not_logged_in">Ei kirjautuneena sisään</string>
+    <!-- Prompt to log in to your account or sign up for a new account -->
+    <string name="login_or_sign_up">Log In or Sign Up</string>
     <string name="auto_upload_description">Tallenna uudet havainnot ja muokkaukset havaintoihin automaattisesti</string>
     <string name="language">Kieli</string>
     <string name="version">Versio</string>
@@ -460,6 +464,7 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="view_suggestions">Paina tästä niin näet ehdotuksia</string>
     <string name="species_search">Lajihaku</string>
     <string name="were_not_confident_enough">We\'re not confident enough to make a recommendation, but here are our top suggestions:</string>
+    <string name="were_not_confident_enough_no_suggestions">We\'re not confident enough to make a recommendation.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
     <!-- Header for a list of suggested taxa -->
@@ -1142,4 +1147,6 @@ Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen 
     <string name="license_description_cc_by_sa">Tämä lisenssi antaa muille oikeuden muokata ja käyttää pohjana teostasi ei-kaupallisessa tarkoituksessa. Vaikka nimesi on mainittava uuden teoksen esittämisen yhteydessä ja esittämisen on oltava ei-kaupallinen, uutta teosta ei tarvitse lisensoida samoilla ehdoilla kuin alkupeäistä.</string>
     <string name="license_description_no_license">Säilytät täydet tekijänoikeudet sisältöösi, lukuun ottamatta käyttöehdoissa määriteltyjä iNaturalistille myönnettyjä oikeuksia.</string>
     <string name="invalid_photo">Kuvaformaattia ei tueta</string>
+    <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
+    <string name="suggestions_based_on">Suggestions based on observations and identifications provided by the iNaturalist community, including %1$s, %2$s, %3$s, and many others.</string>
 </resources>

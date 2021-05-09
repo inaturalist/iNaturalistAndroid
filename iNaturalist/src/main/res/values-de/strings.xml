@@ -350,8 +350,12 @@
     <string name="there_was_a_problem_updating_profile">Es gab ein Problem beim Aktualisieren deines Profils!</string>
     <string name="there_was_a_problem_updating_profile_params">Es gab ein Problem beim Aktualisieren deines Profils: %1$s</string>
     <string name="logged_in_as_html"><![CDATA[Angemeldet als <b>%1$s</b>]]></string>
+    <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
+    <string name="currently_logged_in_as_html"><![CDATA[Derzeit angemeldet als <b>%1$s</b>]]></string>
     <string name="log_out">Abmelden</string>
     <string name="not_logged_in">Nicht angemeldet</string>
+    <!-- Prompt to log in to your account or sign up for a new account -->
+    <string name="login_or_sign_up">Anmelden oder Registrieren</string>
     <string name="auto_upload_description">Neue Beobachtungen und Änderungen an Beobachtungen automatisch hochladen</string>
     <string name="language">Sprache</string>
     <string name="version">Version</string>
@@ -455,6 +459,7 @@
     <string name="view_suggestions">Vorschläge anzeigen</string>
     <string name="species_search">Suche nach Arten</string>
     <string name="were_not_confident_enough">Wir sind nicht sicher genug, um eine Empfehlung abzugeben, aber hier sind unsere besten Vorschläge.</string>
+    <string name="were_not_confident_enough_no_suggestions">Eine Empfehlung abzugeben ist uns hier zu unsicher.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Die häufigsten Beobachtungen mit diesen Filtereinstellungen:</string>
     <!-- Header for a list of suggested taxa -->
@@ -1135,4 +1140,6 @@ Facility</a> (GBIF) generieren: eine internationale, zwischenstaatliche Organisa
     <string name="license_description_cc_by_sa">Diese Lizenz erlaubt es anderen, dein Werk zu verändern, zu optimieren und darauf aufzubauen, ohne es zu kommerziellen Zwecken zu nutzen. Obwohl ihre neuen Werke dich ebenfalls anerkennen müssen und nicht kommerziell sein dürfen, müssen sie ihre abgeleiteten Werke nicht zu den gleichen Bedingungen lizenzieren.</string>
     <string name="license_description_no_license">Du behältst das volle Urheberrecht an deinen Inhalten, abgesehen von den Rechten, die iNaturalist in unseren Nutzungsbedingungen gewährt werden.</string>
     <string name="invalid_photo">Fotoformat wird nicht unterstützt</string>
+    <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
+    <string name="suggestions_based_on">Vorschläge basierend auf Beobachtungen und Bestimmungen der iNaturalist-Community, darunter %1$s, %2$s, %3$s und viele anderen.</string>
 </resources>

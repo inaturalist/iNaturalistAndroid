@@ -350,8 +350,12 @@
     <string name="there_was_a_problem_updating_profile">Profiliniz güncellenirken bir sorunla karşılaştık!</string>
     <string name="there_was_a_problem_updating_profile_params">Profiliniz güncellenirken bir sorunla karşılaştık: %1$s</string>
     <string name="logged_in_as_html"><![CDATA[<b>%1$s</b> olarak giriş yapıldı]]></string>
+    <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
+    <string name="currently_logged_in_as_html"><![CDATA[Şu anki giriş kullanıcısı: <b>%1$s</b>]]></string>
     <string name="log_out">Çıkış yap</string>
     <string name="not_logged_in">Giriş yapılmadı</string>
+    <!-- Prompt to log in to your account or sign up for a new account -->
+    <string name="login_or_sign_up">Oturum Aç veya Kaydol</string>
     <string name="auto_upload_description">Yeni gözlemleri ve gözlem düzenlemerini otomatik yükle</string>
     <string name="language">Dil</string>
     <string name="version">Sürüm</string>
@@ -455,6 +459,7 @@
     <string name="view_suggestions">Önerileri Görüntüle</string>
     <string name="species_search">Tür Ara</string>
     <string name="were_not_confident_enough">Tavsiyede bulunacak kadar emin değiliz, ama işte en iyi önerilerimiz:</string>
+    <string name="were_not_confident_enough_no_suggestions">Öneride bulunacak kadar kendimize güvenmiyoruz.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Filtrelere uyan en çok gözlenen seçenekler:</string>
     <!-- Header for a list of suggested taxa -->
@@ -1017,8 +1022,8 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="pretty_sure_species">Şu türde olduğuna oldukça eminiz:</string>
     <string name="pretty_sure_hybrid">We\'re pretty sure it\'s in this hybrid:</string>
     <!-- Singular -->
-    <string name="pretty_sure_subspecies">We\'re pretty sure it\'s in this subspecies:</string>
-    <string name="pretty_sure_variety">We\'re pretty sure it\'s in this variety:</string>
+    <string name="pretty_sure_subspecies">Şu alt türde olduğuna oldukça eminiz:</string>
+    <string name="pretty_sure_variety">Şu varyasyonda olduğuna oldukça eminiz:</string>
     <string name="pretty_sure_form">We\'re pretty sure it\'s in this form:</string>
     <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
     <string name="remove_date_observed">Gözlem tarih ve zamanını kaldır</string>
@@ -1131,4 +1136,6 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="license_description_cc_by_sa">Bu lisans, başkalarının çalışmalarını ticari olmayan şekilde yeniden karıştırmalarına, düzenlemelerine ve geliştirmelerine izin verir ve yeni çalışmaları da senin tarafından onaylanmalı ve ticari olmamalıdır, türetilmiş çalışmalarını aynı şartlarla lisanslamak zorunda kalmazlar.</string>
     <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
     <string name="invalid_photo">Fotoğraf formatı desteklenmiyor</string>
+    <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
+    <string name="suggestions_based_on">Öneriler, iNaturalist topluluğu ve %1$s, %2$s, %3$s gibi daha bir çok kişinin de sağladığı gözlem ve tanımlara dayalıdır.</string>
 </resources>

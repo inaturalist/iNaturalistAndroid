@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="email_address">E-postadress</string>
-    <string name="delete_observation">Radera observation</string>
-    <string name="observation_deleted">Observation raderad</string>
+    <string name="delete_observation">Radera fynd</string>
+    <string name="observation_deleted">Fynd raderat</string>
     <string name="species_guess_hint">Artnamn</string>
     <string name="ok">OK</string>
     <string name="cancel">Avbryt</string>
     <string name="loading">Laddar…...</string>
     <string name="sync_required">Synkronisering krävs</string>
-    <string name="sync_required_message">%1$d observationer, %2$d bilder att synkronisera</string>
+    <string name="sync_required_message">%1$d fynd, %2$d bilder att synkronisera</string>
     <string name="street">Gatuadress</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satellit</string>
-    <string name="couldnt_load_nearby_observations">Kunde inte ladda observationer i närheten: %1$s</string>
+    <string name="couldnt_load_nearby_observations">Kunde inte ladda fynd i närheten: %1$s</string>
     <string name="username_invalid">Användarnamnet eller lösenordet är ogiltigt, vänligen logga in igen.</string>
     <string name="signing_in">Loggar in...</string>
     <string name="signed_in">Inloggad!</string>
@@ -27,22 +27,22 @@
     <string name="something_went_wrong">Attans, något gick fel: %1$s</string>
     <string name="edit">Ändra</string>
     <string name="oh_no">Åh nej! %1$s</string>
-    <string name="observations">Mina observationer</string>
+    <string name="observations">Mina fynd</string>
     <string name="map">Karta</string>
     <string name="settings">Inställningar</string>
     <string name="projects">Projekt</string>
     <string name="delete_photo">Radera foto</string>
     <string name="menu">Meny</string>
     <string name="my_location">Min plats</string>
-    <string name="nearby_observations">Närliggande observationer</string>
+    <string name="nearby_observations">Närliggande fynd</string>
     <string name="add">Lägg till</string>
     <string name="view_on_inat">Visa på iNaturalist.org</string>
     <string name="reload">Ladda om</string>
     <string name="view_in_browser">Visa i webbläsare</string>
-    <string name="add_observation">Lägg till observation</string>
+    <string name="add_observation">Lägg till fynd</string>
     <string name="take_picture">Ta bild</string>
     <string name="save">Spara</string>
-    <string name="no_observations_yet">Inga observationer ännu!</string>
+    <string name="no_observations_yet">Inga fynd ännu!</string>
     <string name="or">eller</string>
     <string name="signed_out">Logga ut</string>
     <string name="username">Användarnamn</string>
@@ -74,7 +74,7 @@
     <string name="com_facebook_requesterror_password_changed">Ditt Facebook-lösenord har ändrats. Vänligen logga in på denna app igen för att återansluta ditt Facebook-konto.</string>
     <string name="com_facebook_requesterror_reconnect">Vänligen logga in på denna app igen för att återansluta ditt Facebook-konto.</string>
     <string name="com_facebook_requesterror_permissions">Denna app har inte behörighet att göra detta. Om du vill ändra behörighetsinställningarna, försök att logga in på appen igen.</string>
-    <string name="edit_observation">Ändra observation</string>
+    <string name="edit_observation">Ändra fynd</string>
     <string name="discard_changes">Är du säker på att du vill kasta osparade ändringar?</string>
     <string name="yes">Ja</string>
     <string name="no">Nej</string>
@@ -96,14 +96,14 @@
     <string name="leave">Lämna</string>
     <string name="join">Bli medlem</string>
     <string name="no_check_list">Inga taxa i checklistan!</string>
-    <string name="failed_to_add_obs_to_project">Kunde inte lägga till observationen \"%1$s\" till projekt \"%2$s\": %3$s</string>
+    <string name="failed_to_add_obs_to_project">Kunde inte lägga till fyndet \"%1$s\" till projekt \"%2$s\": %3$s</string>
     <string name="invalid_project_field">Ange ett giltigt värde för fältet \"%1s\"</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
     <string name="select_projects">Välj projekt</string>
     <string name="not_connected">Du måste vara ansluten till internet för att kunna göra detta!</string>
     <string name="search_projects">Sök projekt...</string>
     <string name="search_guides">Sök guider...</string>
-    <string name="save_observation">Spara observation</string>
+    <string name="save_observation">Spara fynd</string>
     <!-- Header for a description an individual guide -->
     <string name="about_guide">Om</string>
     <string name="about_guide_all_caps">OM</string>
@@ -116,7 +116,7 @@
     <string name="geoprivacy">Koordinatsekretess</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
     <string name="geoprivacy_with_value">Koordinatsekretess: %1$s</string>
-    <string name="delete_confirmation">Är du säker du vill radera denna observation?</string>
+    <string name="delete_confirmation">Är du säker du vill radera detta fynd?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">Fältguider</string>
     <string name="my_guides">Din(a)</string>
@@ -144,12 +144,12 @@
     <string name="release_to_refresh">Släpp för att uppdatera...</string>
     <string name="refreshing">Uppdaterar...</string>
     <plurals name="sync_x_observations">
-        <item quantity="one">Synka %1$d observation</item>
-        <item quantity="other">Synka %1$d observationer</item>
+        <item quantity="one">Synka %1$d fynd</item>
+        <item quantity="other">Synka %1$d fynd</item>
     </plurals>
-    <string name="sync_observations">Synkronisera observationer</string>
+    <string name="sync_observations">Synkronisera fynd</string>
     <string name="lets_get_started">Låt oss börja!</string>
-    <string name="view_nearby_observations">Visa närliggande observationer</string>
+    <string name="view_nearby_observations">Visa närliggande fynd</string>
     <string name="skip_for_now">Hoppa över för tillfället</string>
     <string-array name="tutorial_titles">
         <item></item>
@@ -161,46 +161,46 @@
     <string-array name="tutorial_descriptions">
         <item>Utforska och var nära naturen</item>
         <item>Gå ut i naturen! Hitta en vild organism och ta en bra, fokuserad bild.</item>
-        <item>Dela din observation med iNaturalists medlemmar.</item>
-        <item>Kolla senare om du fått kommentarer och bestämningar av din observation!</item>
-        <item><![CDATA[<b>Forskningsgrads</b>observationer delas med forskare som arbetar för att bättre förstå och skydda naturen.]]></item>
+        <item>Dela ditt fynd med iNaturalists medlemmar.</item>
+        <item>Kolla senare om du fått kommentarer på och bestämningar av ditt fynd!</item>
+        <item><![CDATA[<b>Forskningsklass</b>fynd delas med forskare som arbetar för att bättre förstå och skydda naturen.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
         <item>Öppen</item>
         <item>Diffuserad</item>
         <item>Privat</item>
     </string-array>
-    <string name="alert_sign_out">Är du säker på att du vill logga ut? Detta raderar alla dina observationer på den här mobila enheten. Det påverkar inte observationer som du redan har laddat upp till iNaturalist.</string>
+    <string name="alert_sign_out">Är du säker på att du vill logga ut? Detta raderar alla dina fynd på den här mobila enheten. Det påverkar inte fynd som du redan har laddat upp till iNaturalist.</string>
     <string name="alert_unsupported_media_type">Tyvärr gick det inte att ladda bilden från denna källa</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
     <string name="explore">Upptäck</string>
     <string name="restricted_to_current_map_area">Begränsad till aktuellt kartområde</string>
     <string name="search">Sök</string>
     <string name="details">Detaljer</string>
-    <string name="observation_photos">Observationsbilder</string>
+    <string name="observation_photos">Fyndbilder</string>
     <string name="remove">Ta bort?</string>
-    <string name="no_observations_found">Inga observationer hittade</string>
+    <string name="no_observations_found">Inga fynd hittade</string>
     <string name="license_none">Ingen, alla rättigheter förbehållna</string>
     <string name="sources_and_attribution">Källor och Erkännande</string>
     <string name="photos"><![CDATA[<b>Bilder:</b> %1$s]]></string>
     <string name="text"><![CDATA[<b>Text:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">Det centrala iNaturalist-nätverket. Klickar du på OK kommer din app inkluderas som en del av det globala iNaturalist-nätverket.</string>
-    <string name="alert_message_use_naturalista">NaturaLista är medlem i iNaturalist-nätverket i Mexiko. Lokala institutioner som stödjer NaturaLista kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 observationer. Vill du ändra din anknytning?</string>
-    <string name="alert_message_use_naturewatchnz">iNaturalist NZ är medlem i iNaturalist-nätverket i Nya Zeeland. Lokala institutioner som stödjer iNaturalist NZ kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 observationer. Vill du ändra din tillhörighet?</string>
-    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada är medlem i iNaturalist-nätverket i Kanada. Lokala institutioner som stödjer iNaturalist Canada kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 observationer. Vill du ändra din anknytning?</string>
-    <string name="alert_message_use_naturalistacolombia">Naturalista är medlem i iNaturalist-nätverket i Colombia. Lokala institutioner som stödjer Naturalista kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 observationer. Vill du ändra din anknytning?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4All är medlem i iNaturalist-nätverket i Portugal. Lokala institutioner som stödjer biologisk Biodiversity4All kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 observationer. Vill du ändra din anknytning?</string>
-    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá är medlem i iNaturalist-nätverket i Panama. Lokala institutioner som stöder iNaturalist Panamá kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 observationer. Vill du ändra din anknytning?</string>
-    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador är medlem i iNaturalist-nätverket i Ecuador. Lokala institutioner som stödjer iNaturalist Ecuador kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 observationer. Vill du ändra din anknytning?</string>
-    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australien är medlem i iNaturalist-nätverket i Australien. Lokala institutioner som stöder iNaturalist Australien kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 observationer. Vill du ändra din anknytning?</string>
-    <string name="alert_message_use_argentinat">ArgentiNat är medlem i iNaturalist-nätverket i Argentina. Lokala institutioner som stödjer ArgentiNat kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 observationer. Vill du ändra din anknytning?</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel är medlem i iNaturalist-nätverket i Israel. Lokala institutioner som stödjer iNaturalist Israel kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Experimentera inte med att ändra din anknytning om du har mer än 1000 observationer. Vill du ändra din anknytning?</string>
-    <string name="alert_message_use_inaturalistfi">iNaturalist Finland är medlem i iNaturalist-nätverket i Finland. Lokala institutioner som stöder iNaturalist Finland har tillgång till din e-postadress och tillgång till de verkliga koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 observationer. Vill du ändra din anknytning?</string>
-    <string name="alert_message_use_inaturalistcl">iNaturalist Chile är medlem i iNaturalist-nätverket i Chile. Lokala institutioner som stödjer iNaturalist Chile kommer att ha tillgång till din e-postadress och tillgång till de riktiga koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 observationer. Vill du ändra din anknytning?</string>
-    <string name="alert_message_use_inaturalistgr">iNaturalist Grekland är medlem i iNaturalist-nätverket i Grekland. Lokala institutioner som stöder iNaturalist Grekland kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 observationer. Vill du ändra din tillhörighet?</string>
-    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg är medlem i iNaturalist-nätverket i Luxemburg. Lokala institutioner som stöder iNaturalist Luxemburg kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 observationer. Vill du ändra din tillhörighet?</string>
-    <string name="alert_message_use_inaturalistuk">iNaturalist Storbritannien är medlem i iNaturalist-nätverket i Storbritannien. Lokala institutioner som stöder iNaturalist Storbritannien kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för observationer som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 observationer. Vill du ändra din tillhörighet?</string>
+    <string name="alert_message_use_naturalista">NaturaLista är medlem i iNaturalist-nätverket i Mexiko. Lokala institutioner som stödjer NaturaLista kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för fynd som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 fynd. Vill du ändra din anknytning?</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZ är medlem i iNaturalist-nätverket i Nya Zeeland. Lokala institutioner som stödjer iNaturalist NZ kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för fynd som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 fynd. Vill du ändra din tillhörighet?</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada är medlem i iNaturalist-nätverket i Kanada. Lokala institutioner som stödjer iNaturalist Canada kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för fynd som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 fynd. Vill du ändra din anknytning?</string>
+    <string name="alert_message_use_naturalistacolombia">Naturalista är medlem i iNaturalist-nätverket i Colombia. Lokala institutioner som stödjer Naturalista kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för fynd som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 fynd. Vill du ändra din anknytning?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All är medlem i iNaturalist-nätverket i Portugal. Lokala institutioner som stödjer biologisk Biodiversity4All kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för fynd som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 fynd. Vill du ändra din anknytning?</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá är medlem i iNaturalist-nätverket i Panama. Lokala institutioner som stöder iNaturalist Panamá kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för fynd som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 fynd. Vill du ändra din anknytning?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador är medlem i iNaturalist-nätverket i Ecuador. Lokala institutioner som stödjer iNaturalist Ecuador kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för fynd som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 fynd. Vill du ändra din anknytning?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australien är medlem i iNaturalist-nätverket i Australien. Lokala institutioner som stöder iNaturalist Australien kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för fynd som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 fynd. Vill du ändra din anknytning?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat är medlem i iNaturalist-nätverket i Argentina. Lokala institutioner som stödjer ArgentiNat kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för fynd som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 fynd. Vill du ändra din anknytning?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel är medlem i iNaturalist-nätverket i Israel. Lokala institutioner som stödjer iNaturalist Israel kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för fynd som är offentligt diffuserade eller privata. Experimentera inte med att ändra din anknytning om du har mer än 1000 fynd. Vill du ändra din anknytning?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland är medlem i iNaturalist-nätverket i Finland. Lokala institutioner som stöder iNaturalist Finland har tillgång till din e-postadress och tillgång till de verkliga koordinaterna för fynd som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 fynd. Vill du ändra din anknytning?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile är medlem i iNaturalist-nätverket i Chile. Lokala institutioner som stödjer iNaturalist Chile kommer att ha tillgång till din e-postadress och tillgång till de riktiga koordinaterna för fynd som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 fynd. Vill du ändra din anknytning?</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Grekland är medlem i iNaturalist-nätverket i Grekland. Lokala institutioner som stöder iNaturalist Grekland kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för fynd som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 fynd. Vill du ändra din tillhörighet?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg är medlem i iNaturalist-nätverket i Luxemburg. Lokala institutioner som stöder iNaturalist Luxemburg kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för fynd som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 fynd. Vill du ändra din tillhörighet?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist Storbritannien är medlem i iNaturalist-nätverket i Storbritannien. Lokala institutioner som stöder iNaturalist Storbritannien kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för fynd som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 fynd. Vill du ändra din tillhörighet?</string>
     <string name="editor">Redigerare</string>
     <string name="license">Programvarulicens</string>
     <string name="download_for_offline_use">Ladda ner för användning offline</string>
@@ -264,33 +264,33 @@
     <string name="coordinates_lon">Long:</string>
     <string name="coordinates_acc">Noggr. </string>
     <string name="required">* Obligatorisk</string>
-    <string name="downloading_observations">Hämtar observationer...</string>
+    <string name="downloading_observations">Hämtar fynd...</string>
     <string name="no_thanks">Nej tack</string>
     <string name="turn_on">Slå på</string>
     <string name="introducing_auto_sync">Introducerar Auto-Sync!</string>
-    <string name="turn_on_auto_sync">Aktivera Auto-Sync i Inställningarna och dina observationer kommer automatiskt att laddas upp till iNaturalist.</string>
+    <string name="turn_on_auto_sync">Aktivera Auto-Sync i Inställningarna och dina fynd kommer automatiskt att laddas upp till iNaturalist.</string>
     <string name="automatic_upload">Automatisk uppladdning (Auto Sync)</string>
     <string name="waiting_to_upload">Väntar på att ladda upp...</string>
     <string name="uploading">Laddar upp...</string>
     <string name="failed_to_add_to_project">Det gick inte att lägga till i projektet \'%1$s\': %2$s</string>
     <string name="needs_your_attention">Kräver din uppmärksamhet...</string>
-    <string name="observation">Observation</string>
+    <string name="observation">Fynd</string>
     <string name="share">Dela</string>
     <string name="unable_to_acquire_location">Kunde inte bestämma plats</string>
     <string name="casual_grade">Grundklass</string>
     <string name="needs_id">Behöver bestämmas</string>
     <string name="research_grade">Forskningsklass</string>
     <string name="data_quality">Datakvalitet</string>
-    <string name="casual_grade_add_location"><![CDATA[ Lägg till en <b>plats</b> för att uppdatera denna observation till ”behöver bestämning”-status. ]]></string>
-    <string name="casual_grade_add_date"><![CDATA[ Lägg till ett <b>datum</b> för att uppdatera denna observation till ”behöver bestämning”-status. ]]></string>
-    <string name="casual_grade_add_photo"><![CDATA[ Lägg till en <b>bild</b> för att uppdatera denna observation till ”behöver bestämning” status. ]]></string>
-    <string name="casual_grade_captive"><![CDATA[ Observationen är av grundklass eftersom den är <b>i fångenskap/odlas</b>. ]]></string>
-    <string name="needs_id_more_ids"><![CDATA[ Observationen behöver <b>fler bestämningar</b> för att få ”Forskningkvalitets”-status. ]]></string>
+    <string name="casual_grade_add_location"><![CDATA[ Lägg till en <b>plats</b> för att uppdatera detta fynd till ”behöver bestämning”-status. ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ Lägg till ett <b>datum</b> för att uppdatera detta fynd till ”behöver bestämning”-status. ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[ Lägg till en <b>bild</b> för att uppdatera detta fynd till ”behöver bestämning” status. ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ Fyndet är av grundklass eftersom det är <b>i fångenskap/odlat</b>. ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ Fyndet behöver <b>fler bestämningar</b> för att få ”Forskningklass”-status. ]]></string>
     <plurals name="included_in_projects">
         <item quantity="one">Ingår i %1$d projekt</item>
         <item quantity="other">Ingår i %1$d projekt</item>
     </plurals>
-    <string name="geoprivacy_explanation"><![CDATA[ Koordinatsekretess är en inställning du kan göra för dina observationer som styr hur de geografiska koordinaterna (latitud och longitud) visas. Här är alternativen:<br/><b>öppen</b> - alla kan se koordinaterna såvida arten inte är hotad. <br/><b>diffuserad</b> - Publika koordinater visas som en slumpmässig punkt inom ett 0,2 x 0,2 graders område som inkluderar den exakta koordinaten, vilket motsvarar ett 22 x 22 km kvadratiskt område vid ekvatorn, mindre ju närmare polerna man kommer. De exakta koordinaterna är endast synliga för dig och förvaltare av projekt som du har lagt observationen i. <br/><b>privat</b> - koordinaterna visas inte på offentliga kartor, de faktiska koordinaterna är endast synliga för dig och förvaltare av projekt som du har lagt observationen i. <br/><br/>Observera att förvaltare av enskilda projekt alltid kan se koordinaterna oavsett vilken koordinatsekretess du har valt, så om du är orolig för vem som har tillgång till koordinaterna bör du se till att du litar på förvaltarna av projekten som du deltar i. ]]></string>
+    <string name="geoprivacy_explanation"><![CDATA[ Koordinatsekretess är en inställning du kan göra för dina fynd som styr hur de geografiska koordinaterna (latitud och longitud) visas. Här är alternativen:<br/><b>öppen</b> - alla kan se koordinaterna såvida arten inte är hotad. <br/><b>diffuserad</b> - Publika koordinater visas som en slumpmässig punkt inom ett 0,2 x 0,2 graders område som inkluderar den exakta koordinaten, vilket motsvarar ett 22 x 22 km kvadratiskt område vid ekvatorn, mindre ju närmare polerna man kommer. De exakta koordinaterna är endast synliga för dig och förvaltare av projekt som du har lagt fyndet i. <br/><b>privat</b> - koordinaterna visas inte på offentliga kartor, de faktiska koordinaterna är endast synliga för dig och förvaltare av projekt som du har lagt fyndet i. <br/><br/>Observera att förvaltare av enskilda projekt alltid kan se koordinaterna oavsett vilken koordinatsekretess du har valt, så om du är orolig för vem som har tillgång till koordinaterna bör du se till att du litar på förvaltarna av projekten som du deltar i. ]]></string>
     <string name="id_title">%1$s\'s ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">Radera</string>
@@ -301,18 +301,18 @@
     <string name="comment">Kommentar</string>
     <string name="suggest_id">Föreslå bestämning</string>
     <string name="update_comment">Uppdatera kommentar</string>
-    <string name="fave_this_observation">Markera som favorit</string>
+    <string name="fave_this_observation">Markera fynd som favorit</string>
     <string name="faved">Favoritmarkerad</string>
-    <string name="be_the_first_to_fave_this_obs">Bli först med att favoritmarkera denna observation...</string>
+    <string name="be_the_first_to_fave_this_obs">Bli först med att favoritmarkera detta fynd...</string>
     <string name="leave_a_comment">Lämna en kommentar eller föreslå en bestämning...</string>
     <string name="location_coords">Lat: %1$s Long: %2$s Noggr. %3$s</string>
     <string name="location_coords_no_acc">Lat: %1$s Long: %2$s</string>
     <string name="location">Plats</string>
     <string name="login_in_to_add_comments_ids">Logga in eller registrera dig om du vill kommentera eller föreslå en bestämning...</string>
-    <string name="login_in_to_fav">Logga In eller Gå med för att se dina favoriter eller favoritmarkera denna observation...</string>
-    <string name="sync_obs_to_see_favs">Synkronisera den här observationen för att se favoriter...</string>
+    <string name="login_in_to_fav">Logga In eller Gå med för att se dina favoriter eller favoritmarkera detta fynd...</string>
+    <string name="sync_obs_to_see_favs">Synkronisera det här fyndet för att se favoriter...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
-    <string name="sync_obs_to_add_comments_ids">Synkronisera denna observation för att kommentera eller föreslå en bestämning...</string>
+    <string name="sync_obs_to_add_comments_ids">Synkronisera detta fynd för att kommentera eller föreslå en bestämning...</string>
     <!--  Label for a button to add an observation without a photo or a sound  -->
     <string name="no_photo">Ingen media</string>
     <string name="about_this_species">Om denna art</string>
@@ -321,11 +321,11 @@
     <string name="photo_attr"><![CDATA[Bild: <b>%1$s</b>]]></string>
     <string name="finding_current_location">Letar efter din plats...</string>
     <string name="flag_as_captive">Markera som I fångenskap/Odlad</string>
-    <string name="observation_flagged_as_captive">Observation har markerats som i fångenskap/odlad</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Är du säker du vill markera denna observation som i fångenskap/odlad? (Trycker du på Ja kommer observationsfönstret att stängas)</string>
+    <string name="observation_flagged_as_captive">Fynd har markerats som i fångenskap/odlat</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive">Är du säker du vill markera detta fynd som i fångenskap/odlat? (Trycker du på Ja kommer fyndfönstret att stängas)</string>
     <string name="do_you_agree_to_the_following">Håller du med om följande?</string>
     <string name="terms">Villkor</string>
-    <string name="observation_rules">Observationsregler</string>
+    <string name="observation_rules">Fyndregler</string>
     <string name="couldnt_load_project_details">Kunde inte ladda projektinformationen: %1$s</string>
     <string name="no_people_found">Inga personer hittades</string>
     <string name="rank">Rang</string>
@@ -338,7 +338,7 @@
     <string name="more_bio"><![CDATA[<b><font color="#ffffff"> mer»</font></b>]]></string>
     <string name="no_location">Ingen plats</string>
     <string name="add_to_projects">Lägg till i projekt</string>
-    <string name="are_you_sure_you_want_to_save_obs_without_coords">Är du säker du vill spara observationen utan några koordinater?</string>
+    <string name="are_you_sure_you_want_to_save_obs_without_coords">Är du säker du vill spara fyndet utan några koordinater?</string>
     <string name="users_identification">%1$ss bestämning: %2$s</string>
     <string name="edit_profile">Redigera din profil</string>
     <string name="remove_photo">Ta bort bild</string>
@@ -350,9 +350,13 @@
     <string name="there_was_a_problem_updating_profile">Ett problem uppstod när din profil uppdaterades!</string>
     <string name="there_was_a_problem_updating_profile_params">Ett problem uppstod när din profil uppdaterades: %1$s</string>
     <string name="logged_in_as_html"><![CDATA[Inloggad som <b>%1$s</b>]]></string>
+    <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
+    <string name="currently_logged_in_as_html"><![CDATA[För närvarande inloggad som <b>%1$s</b>]]></string>
     <string name="log_out">Logga ut</string>
     <string name="not_logged_in">Ej inloggad</string>
-    <string name="auto_upload_description">Ladda automatiskt upp nya observationer och ändringar av observationer</string>
+    <!-- Prompt to log in to your account or sign up for a new account -->
+    <string name="login_or_sign_up">Logga in eller Registrera dig</string>
+    <string name="auto_upload_description">Ladda automatiskt upp nya fynd och ändringar av fynd</string>
     <string name="language">Språk</string>
     <string name="version">Version</string>
     <string name="inat_network">iNaturalist-nätverket</string>
@@ -364,18 +368,18 @@
     <string name="resume">Återuppta</string>
     <string name="cleaning_up">Rensar upp...</string>
     <string name="syncing">Synkroniserar...</string>
-    <string name="syncing_observation_fields">Synkroniserar observationsfält...</string>
-    <string name="syncing_observations">Synkar observationer...</string>
+    <string name="syncing_observation_fields">Synkroniserar fyndfält...</string>
+    <string name="syncing_observations">Synkar fynd...</string>
     <string name="syncing_paused">Pausad</string>
     <string name="upload">Ladda upp</string>
-    <string name="search_observations">Sök observationer...</string>
+    <string name="search_observations">Sök fynd...</string>
     <string name="withdraw">Återkalla</string>
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Uppdatera bestämningsbeskrivning</string>
     <string name="your_identification">Din bestämning: %1$s</string>
     <string name="onboarding_species_name">Namnge vad du såg om du kan, även om det bara är en \"insekt\" eller \"fågel\", eller lämna detta tomt. Andra kan hjälpa dig med bestämningen!</string>
     <string name="upload_complete">Uppladdning klar!</string>
-    <string name="onboarding_upload_description">Kolla igen snart för bestämningar av, och kommentarer på, dina observationer.</string>
+    <string name="onboarding_upload_description">Kolla igen snart för bestämningar av, och kommentarer på, dina fynd.</string>
     <string name="importing_photos">Importerar bild(er)...</string>
     <string name="multi_select_description">Importera flera bilder genom trycka länge på en enstaka bild</string>
     <string name="preparing_photo">Förbereder bild...</string>
@@ -407,16 +411,16 @@
     <string name="introducing_missions">Introducerar Uppdrag!</string>
     <string name="missions_onboarding_description">Uppdrag är rekommendationer i realtid om vad du ska leta efter omkring dig. På så sätt kan du upptäcka arter som är nya för dig! (Kräver anslutning)</string>
     <string name="ok_got_it">Ok, jag förstår!</string>
-    <string name="could_not_download_observations">Kunde inte hämta senaste observationerna - Anslutningsproblem. Försök igen senare.</string>
+    <string name="could_not_download_observations">Kunde inte hämta senaste fynden- Anslutningsproblem. Försök igen senare.</string>
     <string name="no_news_yet">Inga nyheter än. Håll ögonen öppna!</string>
     <string name="my_content">Mitt innehåll</string>
     <string name="following">Följer</string>
     <string name="no_updates_yet">Inga nyheter än. Håll ögonen öppna!</string>
-    <string name="you_will_only_receive_updates_when_creating">(Du får bara uppdateringar när du väl har skapat observationer)</string>
-    <string name="you_will_only_receive_updates_when_following">(Du kommer bara få uppdateringar när du väl följer observationer)</string>
+    <string name="you_will_only_receive_updates_when_creating">(Du får bara uppdateringar när du väl har skapat fynd)</string>
+    <string name="you_will_only_receive_updates_when_following">(Du kommer bara få uppdateringar när du väl följer fynd)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> föreslog en bestämning: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> kommenterade: &ldquo;%2$ss&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="deleted_photos_from_cache_error">Det ser ut som du raderade en bild genom att du rensade cacheminnet i appen innan du laddade upp observationen. Du måste lägga till bilden igen till din observation från ditt bildgalleri. I framtiden, kontrollera att du har laddat upp alla dina bilder innan du rensar cacheminnet i appen.</string>
+    <string name="deleted_photos_from_cache_error">Det ser ut som du raderade en bild genom att du rensade cacheminnet i appen innan du laddade upp fyndet. Du måste lägga till bilden igen till ditt fynd från ditt bildgalleri. I framtiden, kontrollera att du har laddat upp alla dina bilder innan du rensar cacheminnet i appen.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
         the side drawer next to the Activity menu item when you have new activity on your own
@@ -428,10 +432,10 @@
     </plurals>
     <string name="no_results_found">Inga resultat hittades...</string>
     <plurals name="syncing_x_out_of_y_observations">
-        <item quantity="one">Synkar %1$d av %2$d observation...</item>
-        <item quantity="other">Synkar %1$d av %2$d observationer...</item>
+        <item quantity="one">Synkar %1$d av %2$d fynd...</item>
+        <item quantity="other">Synkar %1$d av %2$d fynd...</item>
     </plurals>
-    <string name="deleting_observations">Tar bort observationer...</string>
+    <string name="deleting_observations">Tar bort fynd...</string>
     <string name="preparing">Förbereder...</string>
     <string name="add_edit_remark">Lägg till/Ändra kommentar</string>
     <string name="restore">Återställ</string>
@@ -446,7 +450,7 @@
     <string name="conservation_status_critically_endangered">Akut hotad</string>
     <string name="conservation_status_extinct_in_the_wild">Utdöd i vilt tillstånd</string>
     <string name="conservation_status_extinct">Utdöd</string>
-    <string name="map_of_observations">Observationskarta</string>
+    <string name="map_of_observations">Fyndkarta</string>
     <string name="taxonomy">Taxonomi</string>
     <string name="about_this_section">Om den här delen</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
@@ -455,6 +459,7 @@
     <string name="view_suggestions">Visa förslag</string>
     <string name="species_search">Artsök</string>
     <string name="were_not_confident_enough">Vi är inte tillräckligt säkra för att göra en rekommendation, men här är våra bästa förslag:</string>
+    <string name="were_not_confident_enough_no_suggestions">Vi är inte tillräckligt säkra för att göra en rekommendation.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Mest observerad enligt matchande filter:</string>
     <!-- Header for a list of suggested taxa -->
@@ -550,13 +555,13 @@
     <string name="apply_filters">Verkställ filter</string>
     <string name="remove_filters">Ta bort filter</string>
     <string name="reset">Återställ</string>
-    <string name="show_only_my_observations">Visa endast mina observationer</string>
+    <string name="show_only_my_observations">Visa endast mina fynd</string>
     <string name="project">Projekt</string>
     <string name="user">Användare</string>
     <string name="search_users">Sök användare...</string>
     <string name="quality_grade">Kvalitetsklass</string>
     <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
-    <string name="date_observed">Datum observerad</string>
+    <string name="date_observed">Fynddatum</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
     <string name="any">Vilken som</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
@@ -578,12 +583,12 @@
     <string name="date_day">%dd</string>
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
     <string name="date_week">%dv</string>
-    <string name="new_observation">Ny observation</string>
+    <string name="new_observation">Nytt fynd</string>
     <string name="inactive_taxon">Inaktivt taxon</string>
-    <string name="no_identifications_found">Spåra bestämningar du föreslår för observationer gjorda av andra.</string>
+    <string name="no_identifications_found">Spåra bestämningar du föreslår för fynd gjorda av andra.</string>
     <string name="no_species_found">Detta är en lista över de arter du har observerat mest.\n\nFYI: Det finns uppskattningsvis 9 miljoner arter på planeten, så gå ut och observera dem!</string>
-    <string name="make_an_observation">Gör en observation</string>
-    <string name="no_observations_found_new">Observationer dokumenterar dina möten med olika organismer på särskilda tider och platser.</string>
+    <string name="make_an_observation">Gör ett fynd</string>
+    <string name="no_observations_found_new">Fynd dokumenterar dina möten med olika organismer på särskilda tider och platser.</string>
     <string name="discard_comment">Är du säker på att du vill radera denna kommentar?</string>
     <string name="leave_comment">Lämna en kommentar...</string>
     <string name="swipe">Svep</string>
@@ -597,7 +602,7 @@
     <string name="submit">Skicka</string>
     <string name="change_password">Byt lösenord</string>
     <string name="search_projects_youve_joined">Sök efter projekt du gått med i...</string>
-    <string name="must_be_connected_to_load_more_obs">Du måste vara ansluten till internet för att ladda fler observationer</string>
+    <string name="must_be_connected_to_load_more_obs">Du måste vara ansluten till internet för att ladda fler fynd</string>
     <string name="inat_about_title">iNaturalist är ett gemensamt initiativ från California Academy of Sciences och National Geographic Society.</string>
     <!--
         Prunciation of people's names (as approved by the people in question):
@@ -615,14 +620,14 @@
     <string name="just_so_you_know">Bara så du vet...</string>
     <string name="ask_for_g_plus_permissions">Google kräver att vi ber om tillstånd för åtkomst till dina kontakter för att kunna använda ditt Google-konto, trots att vi inte alls använder oss av dina kontakter. Om du inte tillåter detta måste du registrera dig eller logga in med användarnamn och lösenord.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[Ny på %1$s? <b>Registrera dig nu!</b>]]></string>
-    <string name="see_more_observations">Visa fler observationer</string>
+    <string name="see_more_observations">Visa fler fynd</string>
     <string name="see_more_species">Visa fler arter</string>
     <string name="see_more_identifications">Visa fler bestämningar</string>
     <string name="collection_and_umbrella_projects">Insamlings- och Paraplyprojekt</string>
     <string name="description">Beskrivning</string>
     <string name="quantity">Antal</string>
     <string name="agree2">Godkänn</string>
-    <string name="project_observations">Observationer</string>
+    <string name="project_observations">Fynd</string>
     <string name="project_species">Arter</string>
     <string name="project_people">Deltagare</string>
     <string name="project_identifiers">Identifierare</string>
@@ -696,11 +701,11 @@
     <string name="description_all_caps">BESKRIVNING</string>
     <string name="quantity_all_caps">ANTAL</string>
     <plurals name="observation_count_all_caps">
-        <item quantity="one">%1$s OBSERVATION</item>
-        <item quantity="other">%1$s OBSERVATIONER</item>
+        <item quantity="one">%1$s FYND</item>
+        <item quantity="other">%1$s FYND</item>
     </plurals>
     <string name="agree_all_caps">GODKÄNN</string>
-    <string name="observations_all_caps">OBSERVATIONER</string>
+    <string name="observations_all_caps">FYND</string>
     <string name="species_all_caps">ARTER</string>
     <string name="people_all_caps">PERSONER</string>
     <string name="identifiers_all_caps">BESTÄMD AV</string>
@@ -710,7 +715,7 @@
     <string name="view_all_all_caps">VISA ALLA</string>
     <string name="new_all_caps">NYTT</string>
     <string name="observers_all_caps">OBSERVATÖRER</string>
-    <string name="observations_regular">Observationer</string>
+    <string name="observations_regular">Fynd</string>
     <string name="data_quality_assessment">Bedömning av datakvalitet</string>
     <string name="research_grade_qualification">Bedömningsgrund för forskningsnivå</string>
     <string name="date_specified">Angivet datum</string>
@@ -767,8 +772,8 @@
     <string name="alert_unsupported_audio_type">Tyvärr, kunde inte att ladda ljudet från denna källa</string>
     <string name="invalid_audio_extension">Fel vid ljudimport: Kan endast importera ljudfiler med WAV/MP3/AMR-ändelse</string>
     <string name="importing_sounds">Importerar ljud...</string>
-    <string name="observation_sound">Observationsljud</string>
-    <string name="deleted_sounds_from_cache_error">Det ser ut som du raderade ett ljud genom att rensa cacheminnet i appen innan uppladdningen. Du måste lägga till ljudet igen till din observation från ditt ljudgalleri. I fortsättningen, kontrollera att du har laddat upp alla dina ljud innan du rensar din cacheminnet i appen.</string>
+    <string name="observation_sound">Fyndljud</string>
+    <string name="deleted_sounds_from_cache_error">Det ser ut som du raderade ett ljud genom att rensa cacheminnet i appen innan uppladdningen. Du måste lägga till ljudet igen till ditt fynd från ditt ljudgalleri. I fortsättningen, kontrollera att du har laddat upp alla dina ljud innan du rensar cacheminnet i appen.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f s</string>
     <string name="clear_all_debug_logs">Rensa alla felsökningsloggar</string>
@@ -786,7 +791,7 @@
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Kopiera</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
-    <string name="couldnt_duplicate_photo">Kunde inte kopiera foto!</string>
+    <string name="couldnt_duplicate_photo">Kunde inte kopiera bild!</string>
     <string name="couldnt_edit_photo">Kunde inte redigera foto!</string>
     <!-- Verb, as in "Rotate this photo" -->
     <string name="ucrop_rotate">Rotera</string>
@@ -817,7 +822,7 @@
     <string name="seconds_value">sekunder</string>
     <string name="shop_the_inat_store">Shoppa i iNat Store</string>
     <string name="delete_your_account">Radera ditt konto</string>
-    <string name="delete_account_message"><![CDATA[Genom att radera ditt konto kommer du att ta bort:<br/><br/><ul><li> Alla dina observationer, inklusive arbetet från alla de människor som hjälpt dig med bestämning.</li><li> Alla bestämningar du har gjort av andra personers observationer, som potentiellt kommer att påverka datakvaliteten för dessa observationer.</li><li> Alla kommentarer du har lagt till.</li></ul><br/>Dessutom kan denna åtgärd inte ångras. Om du senare ändrar dig får du inte tillbaka något av detta innehåll.<br/><br/>Om denna tjänst genererar för många meddelanden, överväg <a href="https://www.inaturalist.org/users/edit">att ändra dina inställningar på webbplatsen</a> för att välja bort vissa meddelanden eller sluta få e-post från oss. Om du har problem med en viss person, överväg <a href="https://www.inaturalist.org/users/edit">att tysta dem</a> istället för att radera ditt konto.<br/><br/>Om du fortfarande är säker på att du vill radera ditt konto, skriv <b>\"%1$s\"</b> i formuläret nedan och klicka på knappen för att radera ditt konto och alla dina data.]]></string>
+    <string name="delete_account_message"><![CDATA[Genom att radera ditt konto kommer du att ta bort:<br/><br/><ul><li> Alla dina fynd, inklusive arbetet av alla de människor som hjälpt dig med bestämning.</li><li> Alla bestämningar du har gjort av andra personers fynd, som potentiellt kommer att påverka datakvaliteten för dessa fynd.</li><li> Alla kommentarer du har lagt till.</li></ul><br/>Dessutom kan denna åtgärd inte ångras. Om du senare ändrar dig får du inte tillbaka något av detta innehåll.<br/><br/>Om denna tjänst genererar för många meddelanden, överväg <a href="https://www.inaturalist.org/users/edit">att ändra dina inställningar på webbplatsen</a> för att välja bort vissa meddelanden eller sluta få e-post från oss. Om du har problem med en viss person, överväg <a href="https://www.inaturalist.org/users/edit">att tysta dem</a> istället för att radera ditt konto.<br/><br/>Om du fortfarande är säker på att du vill radera ditt konto, skriv <b>\"%1$s\"</b> i formuläret nedan och klicka på knappen för att radera ditt konto och alla dina data.]]></string>
     <string name="your_account_has_been_deleted">Ditt konto har raderats</string>
     <string name="you_must_enter_username_in_the_form_to_delete_account">Du måste ange \'%1$s\' i formuläret för att radera ditt konto</string>
     <!-- Second person hint text asking the user to enter their username -->
@@ -832,24 +837,24 @@
     <string name="third_party_data_sharing_notes1"><![CDATA[Vi använder en mängd tjänster från tredje part för att övervaka stabilitet och diagnostisera buggar och problem med vår programvara. Dessa tredje parter inkluderar:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">Ny relik</a></li></ul>]]></string>
     <string name="third_party_data_sharing_notes2"><![CDATA[Information som vi delar med dessa tredje parter:<br/><ul><li> IP-adresser (som kan användas för att härleda plats på stadsnivå, och spåra dig över olika webbplatser och tjänster; observera att vi har aktiverat <a href="https://support.google.com/analytics/answer/2763052">IP-anonymisering</a> i Google Analytics och <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> inte spelar in IP-adress så vitt vi vet)</li><li>Webbläsardetaljer, som typ, modell och version</li><li>Kraschdetaljer, t.ex. exakt vilken kodrad som orsakade en krasch</li><li>Enhetsdetaljer, som märke och modell av mobiltelefon</li></ul>]]></string>
     <string name="third_party_data_sharing_notes3"><![CDATA[<b>Dessa tredjepartstjänster är enormt värdefulla</b> för att vi ska kunna upprätthålla iNaturalists stabilitet och användbarhet med relativt lite personal. På mobila enheter finns det nästan inget annat sätt för oss att få insikt i problem som uppstår, eftersom programvaran körs på enheter som vi inte kan kontrollera. Ibland är vi inte ens medvetna om att sådana problem inträffar förrän vi ser dem i de data som dessa tjänster tillhandahåller. <b>Genom att dela denna information hjälper du oss att hjälpa dig och hela iNaturalist-gemenskapen.</b>]]></string>
-    <string name="third_party_data_sharing_notes4"><![CDATA[Observera att detta alternativ endast gäller analys- och kraschdata som vi uttryckligen skickar till dessa företag. Alla iNaturalist-servrar tillhandahålls och driftas av Microsoft, alla iNaturalist-bilder tillhandahålls av Amazon, och nästan alla iNaturalist-kartor kommer från Google, vilket innebär att varje gång du tittar på en observation på iNaturalist, ansluter du till tjänster som tillhandahålls av dessa företag och visar din IP-adress för dem, som ett minimum (i iPhone-appen använder vi Apples kartor). iNaturalist skulle förmodligen inte existera utan de tjänster som dessa företag tillhandahåller, och även om vi kan begränsa mängden och de typer av data som du delar med dem när du använder iNat, kan vi inte stoppa flödet av data helt.]]></string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[Observera att detta alternativ endast gäller analys- och kraschdata som vi uttryckligen skickar till dessa företag. Alla iNaturalist-servrar tillhandahålls och driftas av Microsoft, alla iNaturalist-bilder tillhandahålls av Amazon, och nästan alla iNaturalist-kartor kommer från Google, vilket innebär att varje gång du tittar på ett fynd på iNaturalist, ansluter du till tjänster som tillhandahålls av dessa företag och visar din IP-adress för dem, som ett minimum (i iPhone-appen använder vi Apples kartor). iNaturalist skulle förmodligen inte existera utan de tjänster som dessa företag tillhandahåller, och även om vi kan begränsa mängden och de typer av data som du delar med dem när du använder iNat, kan vi inte stoppa flödet av data helt.]]></string>
     <string name="common_names_place"><![CDATA[Plats för trivialnamn: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Tryck för att prioritera trivialnamn från en specifik plats.</string>
     <string name="search_places">Sök platser</string>
     <string name="restart_app">Starta om appen</string>
     <string name="disable_third_party_sharing_restart">För att omedelbart inaktivera delning av data med tredjepart måste appen startas om.</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
-        <item quantity="one">Är du säker på att du vill ta bort denna %1$d observation?</item>
-        <item quantity="other">Är du säker på att du vill ta bort dessa %1$d observationer?</item>
+        <item quantity="one">Är du säker på att du vill ta bort detta %1$d fynd?</item>
+        <item quantity="other">Är du säker på att du vill ta bort dessa %1$d fynd?</item>
     </plurals>
-    <string name="future_observed_on_date_error">Din observation skapades (och skickades) den %1$s, men du försöker ange ett observationsdatum som är senare än det: %2$s</string>
-    <string name="no_more_photos_allowed">Observationer kan bara ha %1$d bilder. För att lägga till fler måste du först ta bort några.</string>
-    <string name="warning_multiple_photos">Om du lägger till bilder av olika sorts organismer till denna observation, eller samma sort på olika platser eller tider, bör du ta bort dessa bilder och lägga till dem som separata observationer. En observation kan bara ha %1$d bilder.</string>
+    <string name="future_observed_on_date_error">Ditt fynd skapades (och skickades) den %1$s, men du försöker ange ett fynddatum som är senare än så: %2$s</string>
+    <string name="no_more_photos_allowed">Fynd kan bara ha %1$d bilder. För att lägga till fler måste du först ta bort några.</string>
+    <string name="warning_multiple_photos">Om du lägger till bilder av olika sorts organismer till detta fynd, eller samma sort på olika platser eller tider, bör du ta bort dessa bilder och lägga till dem som separata fynd. Ett fynd kan bara ha %1$d bilder.</string>
     <string name="choosing_specific_language_warning">Att välja ett specifikt språk för ditt konto kräver internetanslutning</string>
     <string name="running_in_background_notfication">Körs i bakgrunden så att vi kan köra utan avbrott</string>
     <string name="opt_out_of_community_taxon">Avaktivera Gemenskapens taxon</string>
     <string name="opt_in_to_community_taxon">Aktivera Gemenskapens taxon</string>
-    <string name="opt_out_message">Genom att avaktivera Gemenskapens taxon kopplas denna observation till din nuvarande bestämnings taxon, inte det taxon som är resultatet av alla de bestämningar som lagts till denna observation. Om tillräckligt många av bestämningarna avviker från din egen kommer din observation att få Grundklass. Du bör bara avaktivera om du är säker på att din bestämning är korrekt och andra bestämningar är felaktiga.</string>
+    <string name="opt_out_message">Genom att avaktivera Community-taxon kopplas detta fynd till ditt nuvarande bestämningstaxon, inte det taxon som är resultatet av alla de bestämningar som lagts till detta fynd. Om tillräckligt många av bestämningarna avviker från din egen kommer ditt fynd att få Grundklass. Du bör bara avaktivera om du är säker på att din bestämning är korrekt och andra bestämningar är felaktiga.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
     <string name="permission_required">Tillstånd krävs</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
@@ -857,13 +862,13 @@
     <!-- Dialog title when displaying a message that an action is not permitted -->
     <string name="forbidden">Förbjudet</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
-    <string name="app_you_shared_blocked">Appen du delade från skapar bilder som inte är lämpliga för observationer för att de inte fungerar som stöd för din upplevelse av en annan organism, för att de innehåller ett olämpligt varumärke eller kommersiellt innehåll eller för att de bryter mot våra användarvillkor på annat sätt.</string>
+    <string name="app_you_shared_blocked">Appen du delade från skapar bilder som inte är lämpliga för fynd för att de inte fungerar som stöd för din upplevelse av en annan organism, för att de innehåller ett olämpligt varumärke eller kommersiellt innehåll eller för att de bryter mot våra användarvillkor på annat sätt.</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="list_observation_checkbox_description">Kryssruta för att välja observation i flervalsläge</string>
+    <string name="list_observation_checkbox_description">Kryssruta för att välja fynd i flervalsläge</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="observation_list_item_iconic_pic_description">Miniatyrbild för observationstaxon</string>
+    <string name="observation_list_item_iconic_pic_description">Miniatyrbild för fyndtaxon</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="observation_list_item_obs_pic_description">Miniatyrbild för observation</string>
+    <string name="observation_list_item_obs_pic_description">Miniatyrbild för fynd</string>
     <string name="messages">Meddelanden</string>
     <string name="all_messages">Alla meddelanden</string>
     <string name="search_messages">Sök meddelanden</string>
@@ -881,7 +886,7 @@
     <string name="search_for_inaturalist_users">Sök efter iNautralist-användare</string>
     <string name="please_sign_in_for_messages">Du måste vara inloggad för att se dina meddelanden.</string>
     <string name="sorry">Beklagar</string>
-    <string name="you_must_have_three_observations">Du måste ha tre verifierbara observationer eller tre bestämningar för andra för att kunna göra det.</string>
+    <string name="you_must_have_three_observations">Du måste ha tre verifierbara fynd eller tre bestämningar för andra för att kunna göra det.</string>
     <string name="mute_this_user">Tysta denna användare</string>
     <string name="unmute_this_user">Slå på denna användare igen</string>
     <string name="flag_this_conversation">Flagga denna konversation</string>
@@ -970,15 +975,15 @@
     <string name="switch_to_list_view">Växla till listvy</string>
     <string name="remove_project_filter">Ta bort projektfilter</string>
     <string name="remove_observer_filter">Ta bort observatörsfilter</string>
-    <string name="filter_observations_by_an_exact_date">Filtrera observationer med ett exakt datum</string>
-    <string name="filter_observations_by_a_date_range">Filtrera observationer med ett datumintervall</string>
-    <string name="filter_observations_by_months">Filtrera observationer med månader</string>
+    <string name="filter_observations_by_an_exact_date">Filtrera fynd med ett exakt datum</string>
+    <string name="filter_observations_by_a_date_range">Filtrera fynd med ett datumintervall</string>
+    <string name="filter_observations_by_months">Filtrera fynd med månader</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
     <string name="include_suggestions_not_seen_nearby">Ta med förslag som inte setts i närheten</string>
     <string name="only_view_nearby_suggestions">Visa endast förslag i närheten</string>
     <string name="suggestions_source">Källa till förslagen</string>
-    <string name="research_grade_observations">Observationer av forskningsklass</string>
+    <string name="research_grade_observations">Fynd av forskningsklass</string>
     <string name="visually_similar_description">iNaturalist kommer att ge förslag baserat på hur visuellt liknande bilderna är jämfört med arter som observerats nära denna plats vid denna tid på året.</string>
     <string name="research_grade_observations_description">Istället för visuellt liknande förslag, kommer iNaturalist föreslå arter som observerats på en specifik fyndplats och inom en specifik taxonomisk grupp.</string>
     <string name="taxon">Taxon:</string>
@@ -1020,20 +1025,20 @@
     <string name="pretty_sure_variety">Vi är ganska säkra på att det tillhör denna varietet:</string>
     <string name="pretty_sure_form">Vi är ganska säkra på att det tillhör denna form:</string>
     <string name="pretty_sure_infrahybrid">Vi är ganska säkra på att det tillhör denna infrahybrid:</string>
-    <string name="remove_date_observed">Ta bort datum &amp; tid för observation</string>
-    <string name="remove_time_observed">Ta bort tid för observation</string>
+    <string name="remove_date_observed">Ta bort datum &amp; tid för fynd</string>
+    <string name="remove_time_observed">Ta bort tid för fynd</string>
     <string name="remove_location">Ta bort fyndplats</string>
-    <string name="are_you_sure_you_want_to_remove_date">Vill du verkligen ta bort datum &amp; tid för observationen?</string>
-    <string name="are_you_sure_you_want_to_remove_time">Vill du verkligen ta bort tiden för observation?</string>
+    <string name="are_you_sure_you_want_to_remove_date">Vill du verkligen ta bort datum &amp; tid för fyndet?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Vill du verkligen ta bort tiden för fyndet?</string>
     <string name="are_you_sure_you_want_to_remove_location">Vill du verkligen ta bort fyndplatsen?</string>
     <string name="share_location">Dela fyndplats</string>
     <string name="share_hidden_location">Dela dold position:</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Lyckades inte duplicera ljud!</string>
     <string name="sound_format_not_supported">Den ljudkodningen stöds inte av Android.</string>
-    <string name="view_observations">Visa observationer</string>
+    <string name="view_observations">Visa fynd</string>
     <string name="choose_this_option">Välj detta alternativ</string>
-    <string name="compare_observation_with_this_option">Jämför observation med detta alternativ</string>
+    <string name="compare_observation_with_this_option">Jämför fynd med detta alternativ</string>
     <string name="go_back">Gå tillbaka</string>
     <string name="change_the_source_of_the_suggestions">Ändra källan till förslagen</string>
     <string name="thumbnail_photo_for_suggested_taxon">Miniatyrbild för föreslaget taxon</string>
@@ -1045,13 +1050,13 @@
     <string name="previous_option">Föregående alternativ</string>
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
     <string name="next_option">Nästa alternativ</string>
-    <string name="no_observations_yet2">Inga observationer ännu.</string>
+    <string name="no_observations_yet2">Inga fynd ännu.</string>
     <string name="no_species_yet">Inga arter än.</string>
     <string name="no_identifications_yet">Inga bestämningar ännu.</string>
     <string name="sort_by">Sortera efter</string>
     <string-array name="explore_order_by_items">
         <item>Tilläggningsdatum</item>
-        <item>Observationsdatum</item>
+        <item>Fynddatum</item>
         <item>Uppdateringsdatum</item>
         <!--<item>Faves</item>-->
         <item>Slumpmässig</item>
@@ -1064,15 +1069,15 @@
     See explore_order_by_items and explore_order_items keys !-->
     <string name="sorted_by_full">Sorterad efter %1$s (%2$s)</string>
     <!-- Label for an observation search filter to exclude your own observations -->
-    <string name="hide_my_observations">Dölj mina observationer</string>
+    <string name="hide_my_observations">Dölj mina fynd</string>
     <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
-    <string name="follow_this_observation">Följ denna observation</string>
+    <string name="follow_this_observation">Följ detta fynd</string>
     <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
-    <string name="unfollow_this_observation">Sluta följa denna observation</string>
+    <string name="unfollow_this_observation">Sluta följa detta fynd</string>
     <!-- Error message shown when an attempt to follow an observation fails -->
-    <string name="could_not_follow_observation">Lyckades inte följa denna observation</string>
+    <string name="could_not_follow_observation">Lyckades inte följa detta fynd</string>
     <!-- Error message shown when an attempt to unfollow an observation fails -->
-    <string name="could_not_unfollow_observation">Lyckades inte sluta följa denna observation</string>
+    <string name="could_not_unfollow_observation">Lyckades inte sluta följa detta fynd</string>
     <!-- Label for a button to copy the coordinates of an observation -->
     <string name="copy_coordinates">Kopiera koordinater</string>
     <string name="coordinates_copied_to_clipboard">Koordinater kopierade till urklipp</string>
@@ -1085,30 +1090,30 @@
     <!--  Universal Resource Locator  -->
     <string name="url">URL</string>
     <string name="default_licenses">Standardlicenser</string>
-    <string name="default_observation_license">Standardobservationslicens</string>
+    <string name="default_observation_license">Standardfyndlicens</string>
     <string name="default_photo_license">Standardbildlicens</string>
     <string name="default_sound_license">Standardljudlicens</string>
-    <string name="change_licenses_for_existing_observations">Ändra licenser för befintliga observationer, bilder och ljud</string>
-    <string name="change_licenses_for_all_existing_observations">Ändra licenser för alla befintliga observationer</string>
+    <string name="change_licenses_for_existing_observations">Ändra licenser för befintliga fynd, bilder och ljud</string>
+    <string name="change_licenses_for_all_existing_observations">Ändra licenser för alla befintliga fynd</string>
     <string name="change_licenses_for_all_existing_photos">Ändra licenser för alla befintliga bilder</string>
     <string name="change_licenses_for_all_existing_sounds">Ändra licenser för alla befintliga ljud</string>
-    <string name="change_observation_licenses">Ändra observationslicenser</string>
+    <string name="change_observation_licenses">Ändra fyndlicenser</string>
     <string name="change_photo_licenses">Ändra bildlicenser</string>
     <string name="change_sound_licenses">Ändra ljudlicenser</string>
-    <string name="change_licenses_for_observations_confirmation"><![CDATA[Ändra licenser för <b>%1$d</b> befintliga observationer till <b>%2$s</b>?]]></string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[Ändra licenser för <b>%1$d</b> befintliga fynd till <b>%2$s</b>?]]></string>
     <string name="change_licenses_for_photos_confirmation"><![CDATA[Ändra licenserna för befintliga bilder till <b>%1$s</b>?]]></string>
     <string name="change_licenses_for_sounds_confirmation"><![CDATA[Ändra licenserna för befintliga ljud till <b>%1$s</b>?]]></string>
-    <string name="observation_licenses_updated">Observationslicenser uppdaterade</string>
+    <string name="observation_licenses_updated">Fyndlicenser uppdaterade</string>
     <string name="photo_licenses_updated">Bildlicenser uppdaterade</string>
     <string name="sound_licenses_updated">Ljudlicenser uppdaterade</string>
-    <string name="existing_observation_licenses_have_been_updated">Alla befintliga observationslicenser har ändrats till %1$s.</string>
+    <string name="existing_observation_licenses_have_been_updated">Alla befintliga fyndlicenser har ändrats till %1$s.</string>
     <string name="existing_photo_licenses_have_been_updated">Alla befintliga bildlicenser har ändrats till %1$s.</string>
     <string name="existing_sound_licenses_have_been_updated">Alla befintliga ljudlicenser har ändrats till %1$s.</string>
     <string name="default_licenses_description"><![CDATA[Licensiering av ditt innehåll ger vem som helst laglig rätt att använda det utan att be om ditt tillstånd förutsatt att de följer licensvillkoren. Dessutom inkluderar iNat ditt Creative Commons-licensierade innehåll i regelbundet uppdaterade arkiv som produceras för utvalda partnerorganisationer som är intresserade av våra data. Till exempel inkluderar vi poster med Ingen Copyright (CC0), Erkännande (CC BY), och Erkännande-Icke kommersiell (CC BY-NC) i det arkiv vi genererar för <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), en internationell, mellanstatlig organisation som sammanställer och tillgängliggör information om biologisk mångfald från hela världen.]]></string>
     <string name="photo_license">Bildlicens</string>
     <string name="edit_photo_license">Redigera bildlicens</string>
-    <string name="observation_license">Observationslicens</string>
-    <string name="edit_observation_license">Redigera observationslicens</string>
+    <string name="observation_license">Fyndlicens</string>
+    <string name="edit_observation_license">Redigera fyndlicens</string>
     <string name="about_licenses">Om licenser</string>
     <string name="view_license">Visa licens</string>
     <!-- License Names -->
@@ -1130,4 +1135,6 @@
     <string name="license_description_cc_by_sa">Denna licens låter andra remixa, anpassa och bygga vidare på ditt verk för icke-kommersiella syften, och även om deras nya verk också måste erkänna dig som upphovsman och vara icke-kommersiella, måste de inte licensiera sina bearbetningar på samma villkor.</string>
     <string name="license_description_no_license">Du behåller full upphovsrätt till ditt innehåll förutom de rättigheter som beviljats iNaturalist i våra användarvillkor.</string>
     <string name="invalid_photo">Bildformatet stöds inte</string>
+    <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
+    <string name="suggestions_based_on">Förslag baserade på fynd och bestämningar tillhandahållna av iNaturalist-communityn, inklusive %1$s, %2$s, %3$s och många fler.</string>
 </resources>

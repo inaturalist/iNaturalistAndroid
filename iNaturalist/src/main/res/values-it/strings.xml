@@ -350,8 +350,12 @@
     <string name="there_was_a_problem_updating_profile">C\'era un problema durante l\'aggiornamento il tuo profilo!</string>
     <string name="there_was_a_problem_updating_profile_params">C\'era un problema durante l\'aggiornamento il tuo profilo: %1$s</string>
     <string name="logged_in_as_html"><![CDATA[Loggato come <b>%1$s</b>]]></string>
+    <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
+    <string name="currently_logged_in_as_html"><![CDATA[Attualmente collegato come <b>%1$s</b>]]></string>
     <string name="log_out">Esci</string>
     <string name="not_logged_in">Non hai effettuato l\'accesso</string>
+    <!-- Prompt to log in to your account or sign up for a new account -->
+    <string name="login_or_sign_up">Accedi o registrati</string>
     <string name="auto_upload_description">Caricamento automatico delle nuove osservazioni e modifiche alle osservazioni</string>
     <string name="language">Lingua</string>
     <string name="version">Versione</string>
@@ -455,6 +459,7 @@
     <string name="view_suggestions">Visualizza Suggerimenti</string>
     <string name="species_search">Ricerca per specie</string>
     <string name="were_not_confident_enough">Non siamo abbastanza sicuri per fare una raccomandazione, ma qui ci sono i nostri migliori suggerimenti.</string>
+    <string name="were_not_confident_enough_no_suggestions">Non siamo abbastanza sicuri per fare una raccomandazione.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Le opzioni più osservate in base ai filtri:</string>
     <!-- Header for a list of suggested taxa -->
@@ -1132,4 +1137,6 @@ le <a href="https://www.inaturalist.org/pages/community+guidelines">Linee Guida 
     <string name="license_description_cc_by_sa">Questa licenza permette agli altri di modificare, migliorare ed integrare il tuo lavoro per scopi non commerciali, e anche se le loro nuove opere devono accreditarti e rimanere non commerciali, non sono tenuti a licenziare i loro lavori derivati alle stesse condizioni.</string>
     <string name="license_description_no_license">Mantieni il pieno copyright sui tuoi contenuti tranne quelli concessi ad iNaturalist secondo nostri Termini di Servizio.</string>
     <string name="invalid_photo">Formato foto non supportato</string>
+    <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
+    <string name="suggestions_based_on">Suggerimenti basati sulle osservazioni e le identificazioni fornite dalla comunità di iNaturalist, tra cui %1$s, %2$s, %3$s e molti altri.</string>
 </resources>
