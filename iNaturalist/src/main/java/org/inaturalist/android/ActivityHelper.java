@@ -161,7 +161,7 @@ public class ActivityHelper {
         ViewGroup content = (ViewGroup) inflater.inflate(R.layout.dialog_title_top_bar, null, false);
         content.addView(titleBar, 0);
         ListView listView = (ListView) inflater.inflate(R.layout.dialog_list, null, false);
-        listView.setAdapter(new ArrayAdapter<String>(mContext, R.layout.selection_list_item, items));
+        listView.setAdapter(new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1, items));
 
         content.addView(listView, 2);
 

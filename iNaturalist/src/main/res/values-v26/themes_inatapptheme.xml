@@ -10,16 +10,8 @@
         <item name="android:src">@drawable/ic_more_vert_black_24dp</item>
     </style>
 
-    <style name="ActionMenuTextAppearance" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Menu">
-        <item name="android:textSize">12sp</item>
-    </style>
-
-
     <style name="_iNatAppTheme" parent="Theme.MaterialComponents.Light.Bridge">
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
-
-        <item name="actionMenuTextAppearance">@style/ActionMenuTextAppearance</item>
-        <item name="android:actionMenuTextAppearance">@style/ActionMenuTextAppearance</item>
 
         <item name="android:windowContentTransitions">true</item>
 

@@ -40,7 +40,7 @@
 
     <TextView
         android:id="@+id/is_research_grade"
-        android:layout_width="47dp"
+        android:layout_width="37dp"
         android:layout_height="34dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -48,9 +48,8 @@
         android:textColor="#ffffff"
         android:text="@string/research_grade_initials"
         android:gravity="center"
-        android:textSize="10sp"
-        android:padding="8dp"
-        android:visibility="visible"
+        android:textSize="14sp"
+        android:visibility="gone"
         />
 
     <ImageView

@@ -43,8 +43,7 @@ public class LanguageListPreference extends ListPreference {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setTitle(R.string.language);
 
-        //ArrayAdapter adapter = new ArrayAdapter<CharSequence>(mContext, R.layout.checked_selection_list_item, languages);
-        CheckedItemAdapter adapter = new CheckedItemAdapter(mContext, R.layout.checked_selection_list_item, android.R.id.text1, languages);
+        ArrayAdapter adapter = new ArrayAdapter<CharSequence>(mContext, R.layout.checked_selection_list_item, languages);
 
         builder.setSingleChoiceItems(
                 adapter,

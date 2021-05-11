@@ -415,7 +415,12 @@
                     android:text="@string/view_observations"
                     android:textColor="#000000"
                     android:textSize="18sp"
+                    android:gravity="center"
                     android:paddingLeft="7dp"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="12sp"
+                    android:autoSizeMaxTextSize="26sp"
+                    android:autoSizeStepGranularity="1sp"
                     />
             </LinearLayout>
 
@@ -443,7 +448,12 @@
                     android:text="@string/more_info_on_inat"
                     android:textColor="#000000"
                     android:textSize="18sp"
+                    android:gravity="center"
                     android:paddingLeft="7dp"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="12sp"
+                    android:autoSizeMaxTextSize="26sp"
+                    android:autoSizeStepGranularity="1sp"
                     />
             </LinearLayout>
 

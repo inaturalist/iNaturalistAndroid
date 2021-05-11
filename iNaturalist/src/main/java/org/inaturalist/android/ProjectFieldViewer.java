@@ -377,7 +377,7 @@ public class ProjectFieldViewer {
             mSpinner.setVisibility(View.VISIBLE);
             String[] allowedValues = mField.allowed_values.split("\\|");
             mSpinnerAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item, android.R.id.text1, allowedValues);
-            mSpinnerAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+            mSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             mSpinner.setAdapter(mSpinnerAdapter);
 
             if (mFieldValue.value != null) {

@@ -204,15 +204,6 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         mSortByProperty = (Spinner) findViewById(R.id.sort_by_property);
         mSortByOrder = (Spinner) findViewById(R.id.sort_by_order);
 
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.explore_order_by_items, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        mSortByProperty.setAdapter(adapter);
-
-        ArrayAdapter adapter2 = ArrayAdapter.createFromResource(this, R.array.explore_order_items, android.R.layout.simple_spinner_item);
-        adapter2.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        mSortByOrder.setAdapter(adapter2);
-
-
         mDateAny.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
