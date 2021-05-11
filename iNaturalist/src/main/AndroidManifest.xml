@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.inaturalist.android"
     android:installLocation="auto"
-    android:versionCode="487"
-    android:versionName="1.22.0">
+    android:versionCode="488"
+    android:versionName="1.22.1">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -145,6 +145,10 @@
                     android:host="inaturalist.laji.fi"
                     android:pathPattern="/people/.*"
                     android:scheme="https"/>
+                <data
+                    android:host="*.naturalist.se"
+                    android:pathPattern="/people/.*"
+                    android:scheme="https"/>
             </intent-filter>
 
         </activity>
@@ -228,6 +232,10 @@
                     android:scheme="https"/>
                 <data
                     android:host="inaturalist.laji.fi"
+                    android:pathPattern="/observations/.*"
+                    android:scheme="https"/>
+                <data
+                    android:host="*.naturalist.se"
                     android:pathPattern="/observations/.*"
                     android:scheme="https"/>
             </intent-filter>
@@ -415,6 +423,39 @@
             android:configChanges="orientation"
             android:enabled="false"
             android:label="@string/network_argentinat">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name=".ObservationListActivity.inaturalistcr"
+            android:targetActivity=".ObservationListActivity"
+            android:configChanges="orientation"
+            android:enabled="false"
+            android:label="@string/network_inaturalistcr">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name=".ObservationListActivity.inaturalistgt"
+            android:targetActivity=".ObservationListActivity"
+            android:configChanges="orientation"
+            android:enabled="false"
+            android:label="@string/network_inaturalistgt">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name=".ObservationListActivity.inaturalistse"
+            android:targetActivity=".ObservationListActivity"
+            android:configChanges="orientation"
+            android:enabled="false"
+            android:label="@string/network_inaturalistse">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -667,6 +708,10 @@
                     android:scheme="https"/>
                 <data
                     android:host="inaturalist.laji.fi"
+                    android:pathPattern="/messages/.*"
+                    android:scheme="https"/>
+                <data
+                    android:host="*.naturalist.se"
                     android:pathPattern="/messages/.*"
                     android:scheme="https"/>
             </intent-filter>

@@ -19,6 +19,9 @@
         <item>inaturalistgr</item>
         <item>inaturalistlu</item>
         <item>inaturalistuk</item>
+        <item>inaturalistcr</item>
+        <item>inaturalistgt</item>
+        <item>inaturalistse</item>
     </string-array>
 
     <!-- The names of the iNat networks -->
@@ -38,6 +41,9 @@
     <string name="network_inaturalistgr">iNaturalist Greece</string>
     <string name="network_inaturalistlu">iNaturalist Luxembourg</string>
     <string name="network_inaturalistuk">iNaturalist United Kingdom</string>
+    <string name="network_inaturalistcr">Naturalista Costa Rica</string>
+    <string name="network_inaturalistgt">iNaturalist Guatemala</string>
+    <string name="network_inaturalistse">iNaturalist Sweden</string>
 
     <!-- If value==1 -> change app name/title in the Android launcher, when network is changed.
     Otherwise, just keep it as the original app name ("iNaturalist") -->
@@ -57,6 +63,9 @@
     <string name="change_app_title_inaturalistgr">0</string>
     <string name="change_app_title_inaturalistlu">0</string>
     <string name="change_app_title_inaturalistuk">0</string>
+    <string name="change_app_title_inaturalistcr">0</string>
+    <string name="change_app_title_inaturalistgt">0</string>
+    <string name="change_app_title_inaturalistse">0</string>
 
 
     <!-- The ISO-3166 alpha-2 country code to use for each network type - used when detecting the user's country -->
@@ -76,6 +85,9 @@
     <string name="inat_country_inaturalistgr">gr</string> <!-- Greece -->
     <string name="inat_country_inaturalistlu">lu</string> <!-- Luxembourg -->
     <string name="inat_country_inaturalistuk">gb</string> <!-- UK -->
+    <string name="inat_country_inaturalistcr">cr</string> <!-- Costa Rica -->
+    <string name="inat_country_inaturalistgt">gt</string> <!-- Guatemala -->
+    <string name="inat_country_inaturalistse">se</string> <!-- Sweden -->
 
      <!-- The country display name to use for each network type - used when detecting the user's country -->
     <string name="inat_country_name_inaturalist">Global</string>
@@ -94,6 +106,9 @@
     <string name="inat_country_name_inaturalistgr">Greece</string>
     <string name="inat_country_name_inaturalistlu">Luxembourg</string>
     <string name="inat_country_name_inaturalistuk">United Kingdom</string>
+    <string name="inat_country_name_inaturalistcr">Costa Rica</string>
+    <string name="inat_country_name_inaturalistgt">Guatemala</string>
+    <string name="inat_country_name_inaturalistse">Sweden</string>
 
     <!-- The domain endpoint to use for each network type - used when adding new observations (NO trailing slash at the end) -->
     <string name="inat_host_inaturalist">https://www.inaturalist.org</string>
@@ -112,6 +127,9 @@
     <string name="inat_host_inaturalistgr">https://greece.inaturalist.org</string>
     <string name="inat_host_inaturalistlu">https://inaturalist.lu/</string>
     <string name="inat_host_inaturalistuk">https://uk.inaturalist.org</string>
+    <string name="inat_host_inaturalistcr">https://costarica.inaturalist.org</string>
+    <string name="inat_host_inaturalistgt">https://guatemala.inaturalist.org</string>
+    <string name="inat_host_inaturalistse">https://www.inaturalist.se</string>
 
     <!-- The site id parameter to use for each network type - used when adding new observations -->
     <string name="inat_site_id_inaturalist">1</string>
@@ -130,6 +148,9 @@
     <string name="inat_site_id_inaturalistgr">23</string>
     <string name="inat_site_id_inaturalistlu">26</string>
     <string name="inat_site_id_inaturalistuk">25</string>
+    <string name="inat_site_id_inaturalistcr">17</string>
+    <string name="inat_site_id_inaturalistgt">24</string>
+    <string name="inat_site_id_inaturalistse">21</string>
 
     <!-- The lexicon name to use for each network type - used when searching for taxa (so we'll
     	know which display name to use for the results) -->
@@ -149,6 +170,9 @@
     <string name="inat_lexicon_inaturalistgr">Greek</string>
     <string name="inat_lexicon_inaturalistlu">English</string>
     <string name="inat_lexicon_inaturalistuk">English</string>
+    <string name="inat_lexicon_inaturalistcr">Spanish</string>
+    <string name="inat_lexicon_inaturalistgt">Spanish</string>
+    <string name="inat_lexicon_inaturalistse">Swedish</string>
 
     <!-- The logo drawable name to use for each network type -->
     <string name="inat_logo_inaturalist">logo_text</string>
@@ -167,4 +191,7 @@
     <string name="inat_logo_inaturalistgr">logo_inaturalistgr</string>
     <string name="inat_logo_inaturalistlu">logo_inaturalistlu</string>
     <string name="inat_logo_inaturalistuk">logo_inaturalistuk</string>
+    <string name="inat_logo_inaturalistcr">logo_inaturalistcr</string>
+    <string name="inat_logo_inaturalistgt">logo_inaturalistgt</string>
+    <string name="inat_logo_inaturalistse">logo_inaturalistse</string>
 </resources>

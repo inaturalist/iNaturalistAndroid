@@ -6,6 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import org.apache.commons.collections4.ListUtils;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 public class CreditsActivity extends AppCompatActivity {
     private static final String TAG = "Credits";
 
@@ -56,7 +64,15 @@ public class CreditsActivity extends AppCompatActivity {
         credits.append(getString(R.string.inat_credits_networks_pre));
         credits.append("<br/><br/>");
 
-        for (String network : inatNetworks) {
+        // Show credits, sorted alphabetically by country name
+        List<String> networks = Arrays.asList(inatNetworks);
+        Collections.sort(networks, (n1, n2) -> {
+            String countryName1 = mApp.getStringResourceByName("inat_country_name_" + n1, "n/a");
+            String countryName2 = mApp.getStringResourceByName("inat_country_name_" + n2, "n/a");
+            return countryName1.compareTo(countryName2);
+        });
+
+        for (String network : networks) {
             String networkCredit = mApp.getStringResourceByName("network_credit_" + network, "n/a");
             if (networkCredit.equals("n/a")) continue;
 
