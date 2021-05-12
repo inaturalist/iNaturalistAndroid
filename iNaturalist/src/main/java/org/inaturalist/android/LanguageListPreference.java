@@ -43,10 +43,8 @@ public class LanguageListPreference extends ListPreference {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setTitle(R.string.language);
 
-        ArrayAdapter adapter = new ArrayAdapter<CharSequence>(mContext, R.layout.checked_selection_list_item, languages);
-
         builder.setSingleChoiceItems(
-                adapter,
+                languages,
                 checkItem,
                 (dialog, item) -> {
                     if (noInternet && item == 1) {
