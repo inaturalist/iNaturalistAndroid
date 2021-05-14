@@ -401,6 +401,12 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
             do {
                 String photoFileName = imageCursor.getString(imageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
+                String originalPhotoFileName = imageCursor.getString(imageCursor.getColumnIndexOrThrow(ObservationPhoto.ORIGINAL_PHOTO_FILENAME));
+
+                if ((originalPhotoFileName != null) && ((new File(originalPhotoFileName).exists()))) {
+                    // Use original full-resolution photo if possible
+                    photoFileName = originalPhotoFileName;
+                }
 
                 if ((photoFileName != null) && (!(new File(photoFileName).exists()))) {
                     // Our local copy file was deleted

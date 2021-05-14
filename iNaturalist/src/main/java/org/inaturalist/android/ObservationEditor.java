@@ -3411,7 +3411,6 @@ public class ObservationEditor extends AppCompatActivity {
             return null;
         }
 
-
         ObservationPhoto op = new ObservationPhoto();
 
         op.uuid = UUID.randomUUID().toString();
@@ -3420,7 +3419,7 @@ public class ObservationEditor extends AppCompatActivity {
         cv.put(ObservationPhoto._OBSERVATION_ID, mObservation._id);
         cv.put(ObservationPhoto.OBSERVATION_ID, mObservation.id);
         cv.put(ObservationPhoto.PHOTO_FILENAME, resizedPhoto);
-        cv.put(ObservationPhoto.ORIGINAL_PHOTO_FILENAME, (String)null);
+        cv.put(ObservationPhoto.ORIGINAL_PHOTO_FILENAME, path);
         cv.put(ObservationPhoto.POSITION, position);
         cv.put(ObservationPhoto.OBSERVATION_UUID, mObservation.uuid);
 
