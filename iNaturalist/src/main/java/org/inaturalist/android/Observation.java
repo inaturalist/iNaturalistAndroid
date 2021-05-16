@@ -44,6 +44,7 @@ public class Observation implements BaseColumns, Serializable {
     public Timestamp observed_on;
     public String observed_on_string;
     public String time_zone;
+    public String license;
     public Boolean out_of_range;
     public Boolean captive;
     public String place_guess;
@@ -87,6 +88,7 @@ public class Observation implements BaseColumns, Serializable {
     public String description_was;
     public String geoprivacy_was;
     public String time_zone_was;
+    public String license_was;
     public Integer iconic_taxon_id_was;
     public String iconic_taxon_name_was;
     public Integer id_was;
@@ -150,6 +152,7 @@ public class Observation implements BaseColumns, Serializable {
     public static final String OBSERVED_ON = "observed_on";
     public static final String OBSERVED_ON_STRING = "observed_on_string";
     public static final String TIME_ZONE = "time_zone";
+    public static final String LICENSE = "license";
     public static final String OUT_OF_RANGE = "out_of_range";
     public static final String CAPTIVE = "captive";
     public static final String PLACE_GUESS = "place_guess";
@@ -199,6 +202,7 @@ public class Observation implements BaseColumns, Serializable {
         Observation.OBSERVED_ON,
         Observation.OBSERVED_ON_STRING,
         Observation.TIME_ZONE,
+        Observation.LICENSE,
         Observation.OUT_OF_RANGE,
         Observation.CAPTIVE,
         Observation.PLACE_GUESS,
@@ -250,6 +254,7 @@ public class Observation implements BaseColumns, Serializable {
         PROJECTION_MAP.put(Observation.OBSERVED_ON, Observation.OBSERVED_ON);
         PROJECTION_MAP.put(Observation.OBSERVED_ON_STRING, Observation.OBSERVED_ON_STRING);
         PROJECTION_MAP.put(Observation.TIME_ZONE, Observation.TIME_ZONE);
+        PROJECTION_MAP.put(Observation.LICENSE, Observation.LICENSE);
         PROJECTION_MAP.put(Observation.OUT_OF_RANGE, Observation.OUT_OF_RANGE);
         PROJECTION_MAP.put(Observation.CAPTIVE, Observation.CAPTIVE);
         PROJECTION_MAP.put(Observation.PLACE_GUESS, Observation.PLACE_GUESS);
@@ -317,6 +322,8 @@ public class Observation implements BaseColumns, Serializable {
         this.observed_on_was = this.observed_on;
         this.time_zone = bc.getString(TIME_ZONE);
         this.time_zone_was = this.time_zone;
+        this.license = bc.getString(LICENSE);
+        this.license_was = this.license;
         this.observed_on_string = bc.getString(OBSERVED_ON_STRING);
         this.observed_on_string_was = this.observed_on_string;
         this.out_of_range = bc.getBoolean(OUT_OF_RANGE);
@@ -407,6 +414,9 @@ public class Observation implements BaseColumns, Serializable {
         this.observed_on_string_was = this.observed_on_string;
         this.time_zone = o.getString("time_zone");
         this.time_zone_was = this.time_zone;
+        this.license = o.getString("license_code");
+        if (this.license != null) this.license = this.license.toLowerCase();
+        this.license_was = this.license;
         this.out_of_range = o.getBoolean("out_of_range");
         this.out_of_range_was = this.out_of_range;
         this.captive = o.getBoolean("captive");
@@ -616,6 +626,7 @@ public class Observation implements BaseColumns, Serializable {
         bo.put("observed_on", observed_on);
         bo.put("observed_on_string", observed_on_string);
         bo.put("time_zone", time_zone);
+        bo.put("license_code", license);
         if (!partial) bo.put("out_of_range", out_of_range);
         bo.put("captive_flag", captive);
         bo.put("place_guess", (private_place_guess != null) && (private_place_guess.length() > 0) ? private_place_guess : place_guess);
@@ -677,6 +688,7 @@ public class Observation implements BaseColumns, Serializable {
         if (!areFieldsEqual(this.observed_on, observation.observed_on)) return false;
         if (!areFieldsEqual(this.observed_on_string, observation.observed_on_string)) return false;
         if (!areFieldsEqual(this.time_zone, observation.time_zone)) return false;
+        if (!areFieldsEqual(this.license, observation.license)) return false;
         if (!areFieldsEqual(this.out_of_range, observation.out_of_range)) return false;
         if (!areFieldsEqual(this.captive, observation.captive)) return false;
         if (!areFieldsEqual(this.place_guess, observation.place_guess)) return false;
@@ -724,6 +736,7 @@ public class Observation implements BaseColumns, Serializable {
             this.observed_on = observation.observed_on;
             this.observed_on_string = observation.observed_on_string;
             this.time_zone = observation.time_zone;
+            this.license = observation.license;
             this.out_of_range = observation.out_of_range;
             this.captive = observation.captive;
             this.place_guess = observation.place_guess;
@@ -768,6 +781,7 @@ public class Observation implements BaseColumns, Serializable {
             if ((this.observed_on == null) && (observation.observed_on != null)) { this.observed_on = observation.observed_on; isModified = true; }
             if ((this.observed_on_string == null) && (observation.observed_on_string != null)) { this.observed_on_string = observation.observed_on_string; isModified = true; }
             if ((this.time_zone == null) && (observation.time_zone != null)) { this.time_zone = observation.time_zone; isModified = true; }
+            if ((this.license == null) && (observation.license != null)) { this.license = observation.license; isModified = true; }
             if ((this.out_of_range == null) && (observation.out_of_range != null)) { this.out_of_range = observation.out_of_range; isModified = true; }
             if ((this.captive == null) && (observation.captive != null)) { this.captive = observation.captive; isModified = true; }
             if ((this.place_guess == null) && (observation.place_guess != null)) { this.place_guess = observation.place_guess; isModified = true; }
@@ -823,6 +837,7 @@ public class Observation implements BaseColumns, Serializable {
         }
         cv.put(OBSERVED_ON_STRING, observed_on_string);
         cv.put(TIME_ZONE, time_zone);
+        cv.put(LICENSE, license);
         cv.put(OUT_OF_RANGE, out_of_range);
         cv.put(CAPTIVE, captive);
         cv.put(PLACE_GUESS, place_guess);
@@ -886,6 +901,7 @@ public class Observation implements BaseColumns, Serializable {
                 + "observed_on INTEGER,"
                 + "observed_on_string TEXT,"
                 + "time_zone TEXT,"
+                + "license TEXT,"
                 + "out_of_range INTEGER,"
                 + "captive INTEGER,"
                 + "place_guess TEXT,"
@@ -936,6 +952,7 @@ public class Observation implements BaseColumns, Serializable {
     public boolean observed_on_changed() { return !String.valueOf(observed_on).equals(String.valueOf(observed_on_was)); }
     public boolean observed_on_string_changed() { return !String.valueOf(observed_on_string).equals(String.valueOf(observed_on_string_was)); }
     public boolean time_zone_changed() { return !String.valueOf(time_zone).equals(String.valueOf(time_zone_was)); }
+    public boolean license_changed() { return !String.valueOf(license).equals(String.valueOf(license_was)); }
     public boolean out_of_range_changed() { return !String.valueOf(out_of_range).equals(String.valueOf(out_of_range_was)); }
     public boolean captive_changed() { return !String.valueOf(captive).equals(String.valueOf(captive_was)); }
     public boolean place_guess_changed() { return !String.valueOf(place_guess).equals(String.valueOf(place_guess_was)); }
@@ -973,6 +990,8 @@ public class Observation implements BaseColumns, Serializable {
         if (longitude_changed()) { return true; }
         if (observed_on_changed()) { return true; }
         if (observed_on_string_changed()) { return true; }
+        if (time_zone_changed()) { return true; }
+        if (license_changed()) { return true; }
         if (out_of_range_changed()) { return true; }
         if (captive_changed()) { return true; }
         if (place_guess_changed()) { return true; }

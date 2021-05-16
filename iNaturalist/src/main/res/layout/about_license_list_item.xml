@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="26dp"
+    android:paddingRight="26dp"
+    android:paddingTop="13dp"
+    android:paddingBottom="13dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:id="@+id/license_icon"
+            android:layout_width="88dp"
+            android:layout_height="31dp"
+            android:src="@drawable/cc_by_nc"
+            android:layout_gravity="center"
+            android:layout_marginRight="15dp"
+            />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/license_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@android:style/TextAppearance.Medium"
+                android:text="License Name"
+                />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="9dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/gbif"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="@string/gbif"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"
+                    android:background="@drawable/rounded_gbif"
+                    android:layout_marginRight="8dp"
+                    />
+                <TextView
+                    android:id="@+id/wikimedia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="@string/wikimedia"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"
+                    android:background="@drawable/rounded_wikimedia"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/license_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Many lines..."
+        android:layout_marginTop="15dp"
+        />
+
+    <TextView
+        android:id="@+id/license_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/view_license"
+        android:textColor="#2e78b8"
+        android:layout_marginTop="8dp"
+        />
+
+</LinearLayout>

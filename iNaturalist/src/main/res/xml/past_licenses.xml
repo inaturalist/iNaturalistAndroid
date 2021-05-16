@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <Preference
+        android:layout="@layout/custom_preference"
+        android:key="change_licenses_for_all_existing_observations"
+        android:title="@string/change_licenses_for_all_existing_observations"
+        />
+
+    <Preference
+        android:layout="@layout/custom_preference"
+        android:key="change_licenses_for_all_existing_photos"
+        android:title="@string/change_licenses_for_all_existing_photos"
+        />
+
+    <Preference
+        android:layout="@layout/custom_preference"
+        android:key="change_licenses_for_all_existing_sounds"
+        android:title="@string/change_licenses_for_all_existing_sounds"
+        />
+
+</androidx.preference.PreferenceScreen>

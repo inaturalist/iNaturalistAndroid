@@ -1,3 +1,4 @@
+
 package org.inaturalist.android;
 
 import com.bumptech.glide.Glide;
@@ -1001,6 +1002,13 @@ public class ObservationEditor extends AppCompatActivity {
 
         initUi();
 
+
+        if ((mObservation != null) && (mObservation.id == null) && (mObservation.license == null)) {
+            // Set default license
+            mObservation.license = mApp.getDefaultObservationLicense().value;
+        }
+
+
         if (intent != null) {
             mObsJson = intent.getStringExtra(OBSERVATION_JSON);
 
@@ -1535,6 +1543,12 @@ public class ObservationEditor extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 return onBack();
+
+            case R.id.edit_observation_license:
+                LicenseUtils.showLicenseChooser(this, R.string.observation_license,
+                        mObservation.license,
+                        license -> mObservation.license = license.value);
+                return true;
 
             case R.id.remove_location:
                 mHelper.confirm(getString(R.string.remove_location), getString(R.string.are_you_sure_you_want_to_remove_location),
@@ -3422,6 +3436,7 @@ public class ObservationEditor extends AppCompatActivity {
         cv.put(ObservationPhoto.ORIGINAL_PHOTO_FILENAME, path);
         cv.put(ObservationPhoto.POSITION, position);
         cv.put(ObservationPhoto.OBSERVATION_UUID, mObservation.uuid);
+        cv.put(ObservationPhoto.LICENSE, mApp.getDefaultPhotoLicense().value);
 
         return getContentResolver().insert(ObservationPhoto.CONTENT_URI, cv);
     }

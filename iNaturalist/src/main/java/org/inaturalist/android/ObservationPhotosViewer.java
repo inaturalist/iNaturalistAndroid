@@ -32,6 +32,8 @@ import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropFragment;
 
 import android.app.Activity;
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
@@ -93,6 +95,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
     @State public String mObservationUUID;
     @State public boolean mIsTaxon;
     @State(AndroidStateBundlers.ListPairBundler.class) public List<Pair<Uri, Long>> mReplacedPhotos = new ArrayList<>();
+    private IdPicsPagerAdapter mAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -154,17 +157,18 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
         mViewPager = (HackyViewPager) findViewById(R.id.id_pic_view_pager);
 		if ((mObservation != null) && (!mIsNewObservation)) {
-            mViewPager.setAdapter(new IdPicsPagerAdapter(this, mViewPager, mObservation, mIsTaxon));
+		    mAdapter = new IdPicsPagerAdapter(this, mViewPager, mObservation, mIsTaxon);
+            mViewPager.setAdapter(mAdapter);
             mEditPhoto.setVisibility(View.GONE);
             mDuplicatePhoto.setVisibility(View.GONE);
             mDeletePhoto.setVisibility(View.GONE);
 		} else if (mIsNewObservation) {
-		    IdPicsPagerAdapter adapter = new IdPicsPagerAdapter(this, mViewPager, mObservationId, mObservationIdInternal, mObservationUUID);
-            mViewPager.setAdapter(adapter);
+		    mAdapter = new IdPicsPagerAdapter(this, mViewPager, mObservationId, mObservationIdInternal, mObservationUUID);
+            mViewPager.setAdapter(mAdapter);
             if (mReplacedPhotos.size() > 0) {
                 // Update with any modified/cropped photos
                 for (Pair<Uri, Long> replacedPhoto : mReplacedPhotos) {
-                    adapter.setImageUri(replacedPhoto.second.intValue(), replacedPhoto.first);
+                    mAdapter.setImageUri(replacedPhoto.second.intValue(), replacedPhoto.first);
                 }
             }
 
@@ -181,7 +185,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
             mDuplicatePhoto.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (adapter.getCount() >= ObservationEditor.MAX_PHOTOS_PER_OBSERVATION) {
+                    if (mAdapter.getCount() >= ObservationEditor.MAX_PHOTOS_PER_OBSERVATION) {
                         mHelper.alert(String.format(getString(R.string.no_more_photos_allowed), ObservationEditor.MAX_PHOTOS_PER_OBSERVATION));
                         return;
                     }
@@ -303,6 +307,23 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                 checkForReplacedPhotos();
                 finish();
                 return true;
+
+            case R.id.edit_photo_license:
+                Long imageId = mAdapter.getImageId(mViewPager.getCurrentItem());
+                Uri uri = ContentUris.withAppendedId(ObservationPhoto.CONTENT_URI, imageId);
+                Cursor c = getContentResolver().query(uri, ObservationPhoto.PROJECTION, null, null, null);
+                ObservationPhoto photo = new ObservationPhoto(c);
+                c.close();
+                LicenseUtils.showLicenseChooser(this,
+                        R.string.photo_license,
+                        photo.license,
+                        license -> {
+                            photo.license = license.value;
+                            ContentValues cv = photo.getContentValues();
+                            getContentResolver().update(uri, cv, null, null);
+                        });
+                return true;
+
             case R.id.set_as_first:
                 Intent data = new Intent();
                 data.putExtra(SET_DEFAULT_PHOTO_INDEX, mViewPager.getCurrentItem());

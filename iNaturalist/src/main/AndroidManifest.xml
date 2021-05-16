@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.inaturalist.android"
     android:installLocation="auto"
-    android:versionCode="488"
-    android:versionName="1.22.1">
+    android:versionCode="489"
+    android:versionName="1.23.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -724,6 +724,21 @@
 
         <activity
             android:name=".NewMessageSelectUserActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="orientation"></activity>
+
+        <activity
+            android:name=".AboutLicensesActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="orientation"></activity>
+
+        <activity
+            android:name=".DefaultLicensesActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="orientation"></activity>
+
+        <activity
+            android:name=".PastLicensesActivity"
             android:windowSoftInputMode="adjustResize"
             android:configChanges="orientation"></activity>
 
