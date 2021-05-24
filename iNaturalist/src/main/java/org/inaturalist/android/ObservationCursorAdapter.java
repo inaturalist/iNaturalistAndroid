@@ -1202,43 +1202,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         Trace.endSection();
     }
 
-    @SuppressLint("DefaultLocale")
-    private JSONObject getObservationJson(int id) {
-        URL url;
-        try {
-            url = new URL(String.format("%s/observations/%d.json?locale=%s", INaturalistService.HOST, id, mApp.getLanguageCodeForAPI()));
-        } catch (MalformedURLException e) {
-            Logger.tag(TAG).error(e);
-            return null;
-        }
-
-
-        JSONObject json = null;
-
-        try {
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            InputStreamReader in = new InputStreamReader(conn.getInputStream());
-
-            // Load the results into a StringBuilder
-            int read;
-            char[] buff = new char[1024];
-            StringBuilder result = new StringBuilder();
-
-            while ((read = in.read(buff)) != -1) {
-                result.append(buff, 0, read);
-            }
-
-            json = new JSONObject(result.toString());
-
-            conn.disconnect();
-        } catch (IOException | JSONException e) {
-            Logger.tag(TAG).error(e);
-        }
-
-        return json;
-    }
-
-
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
         final Picasso picasso = Picasso.with(mContext);

@@ -25,7 +25,7 @@ import android.text.TextUtils;
 public class ObservationProvider extends ContentProvider {
     private static final String TAG = "ObservationProvider";
     private static final String DATABASE_NAME = "inaturalist.db";
-    private static final int DATABASE_VERSION = 22;
+    private static final int DATABASE_VERSION = 23;
     private static final SQLiteCursorFactory sFactory;
     public static final UriMatcher URI_MATCHER;
 
@@ -148,6 +148,10 @@ public class ObservationProvider extends ContentProvider {
                 addColumnIfNotExists(db, Observation.TABLE_NAME, "license", "TEXT DEFAULT NULL");
                 // New license column for observation photo
                 addColumnIfNotExists(db, ObservationPhoto.TABLE_NAME, "license", "TEXT DEFAULT NULL");
+            }
+            if (oldVersion < 23) {
+                // New ID column for project observation
+                addColumnIfNotExists(db, ProjectObservation.TABLE_NAME, "id", "INTEGER DEFAULT NULL");
             }
         }
 

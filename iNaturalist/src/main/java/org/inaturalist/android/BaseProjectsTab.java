@@ -44,10 +44,7 @@ public abstract class BaseProjectsTab extends BaseTab {
     }
     
     public static String getSearchUrl(INaturalistApp app) {
-        String inatNetwork = app.getInaturalistNetworkMember();
-        String inatHost = app.getStringResourceByName("inat_host_" + inatNetwork);
-
-        return inatHost + "/projects/search.json";
+        return INaturalistService.API_HOST + "/projects";
     }
 
     protected boolean recallServiceActionIfNoResults() {

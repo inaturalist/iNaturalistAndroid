@@ -92,7 +92,7 @@ public class Project implements BaseColumns, Serializable {
         this.project_type = o.getString("project_type");
 
         try {
-            this.check_list_id = o.getJSONObject("project_list").getInt("id");
+            if (o.has("project_list") && !o.isNull("project_list")) this.check_list_id = o.getJSONObject("project_list").getInt("id");
         } catch (JSONException e) {
             Logger.tag(TAG).error(e);
         }
