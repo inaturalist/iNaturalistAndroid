@@ -2776,7 +2776,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             if ((!mReadOnly) && (mObservation != null)) {
                 if (
                         ((mObservation.license == null) && (observation.license != null)) ||
-                        ((!mObservation.license.equals(observation.license)) && (observation.updated_at.after(mObservation.updated_at)))
+                        ((mObservation.license != null) && (observation.license != null) && (!mObservation.license.equals(observation.license)) && (observation.updated_at.after(mObservation.updated_at)))
                     ) {
                     // Update observation license from server - this happens either when:
                     // A) This observation has no license set locally (older app version), or;
