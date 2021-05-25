@@ -943,7 +943,9 @@ public class BaseFragmentActivity extends AppCompatActivity {
             editor.apply();
 
             // Update network settings as well
-            int networkSiteId = user.getInt("site_id");
+            Integer networkSiteId = user.getInt("site_id");
+            if (networkSiteId == null) networkSiteId = 1; // Default network if missing
+
             // Find matching network name (according to site id)
             INaturalistApp app = (INaturalistApp) getApplication();
             final String[] inatNetworks = app.getINatNetworks();
