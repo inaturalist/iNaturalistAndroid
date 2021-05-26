@@ -278,7 +278,7 @@ public class ActivityHelper {
         AlertDialog alert = builder.create();
         alert.show();
         alert.getButton(alert.BUTTON_POSITIVE).setTextColor(Color.parseColor("#85B623"));
-        alert.getButton(alert.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#85B623"));
+        if (cancelListener != null) alert.getButton(alert.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#85B623"));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             alert.getButton(alert.BUTTON_POSITIVE).setAutoSizeTextTypeUniformWithConfiguration(14, 15, 1, TypedValue.COMPLEX_UNIT_SP);
             alert.getButton(alert.BUTTON_NEGATIVE).setAutoSizeTextTypeUniformWithConfiguration(14, 15, 1, TypedValue.COMPLEX_UNIT_SP);
