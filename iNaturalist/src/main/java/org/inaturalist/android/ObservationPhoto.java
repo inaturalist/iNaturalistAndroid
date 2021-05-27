@@ -179,7 +179,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
             this.id = parent.id;
             this.observation_id = parent.observation_id;
             this.photo_id = o.getInt("id");
-            this.position = o.getInt("id");
+            this.position = o.getInt("position");
             this.uuid = parent.uuid;
             this.license = parent.license;
 
