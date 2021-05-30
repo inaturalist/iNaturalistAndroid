@@ -281,20 +281,24 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
             // Show first photo
             ObservationPhoto op = new ObservationPhoto(opc);
             RequestCreator rc;
-            if (op.photo_url != null) {
-                // Online photo
-                rc = Picasso.with(mContext).
-                        load(op.photo_url);
+            if ((op.photo_url == null) && (op.photo_filename == null)) {
+                obsPic.setImageDrawable(iconicTaxonDrawable);
             } else {
-                // Offline photo
-                rc = Picasso.with(mContext).
-                        load(new File(op.photo_filename));
+                if (op.photo_url != null) {
+                    // Online photo
+                    rc = Picasso.with(mContext).
+                            load(op.photo_url);
+                } else {
+                    // Offline photo
+                    rc = Picasso.with(mContext).
+                            load(new File(op.photo_filename));
+                }
+                rc.
+                        placeholder(iconicTaxonDrawable).
+                        fit().
+                        centerCrop().
+                        into(obsPic);
             }
-            rc.
-                    placeholder(iconicTaxonDrawable).
-                    fit().
-                    centerCrop().
-                    into(obsPic);
         }
         opc.close();
 
