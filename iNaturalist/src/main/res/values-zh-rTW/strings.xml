@@ -200,6 +200,9 @@
     <string name="alert_message_use_inaturalistgr">iNaturalist Greece 是 iNaturalist 附屬網路在希臘的成員。支援 iNaturalist Greece 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
     <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg 是 iNaturalist 附屬網路在盧森堡的成員。支援 iNaturalist Luxembourg 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
     <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom 是 iNaturalist 附屬網路在英國的成員。支援 iNaturalist United Kingdom 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is a member of the iNaturalist Network in Costa Rica. Local institutions supporting Naturalista Costa Rica will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">編輯</string>
     <string name="license">授權</string>
     <string name="download_for_offline_use">下載供離線使用</string>
@@ -349,11 +352,11 @@
     <string name="there_was_a_problem_updating_profile_params">更新您的個人資料時發生問題：%1$s</string>
     <string name="logged_in_as_html"><![CDATA[已登入為 <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
-    <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
+    <string name="currently_logged_in_as_html"><![CDATA[現在登入為  <b>%1$s</b>]]></string>
     <string name="log_out">登出</string>
     <string name="not_logged_in">未登入</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
-    <string name="login_or_sign_up">Log In or Sign Up</string>
+    <string name="login_or_sign_up">登入或註冊</string>
     <string name="auto_upload_description">自動上傳新的觀察和編輯過的觀察記錄</string>
     <string name="language">語言</string>
     <string name="version">版本</string>
@@ -746,6 +749,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[希臘：iSea (Greece: iSea)支援 iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[盧森堡國家自然歷史博物館 (MnhnL) 支援 iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[英國：國家多樣性網路 (United Kingdom: National Biodiversity Network Trust) 支持 iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">標記為已讀</string>
     <string name="content_hidden">內容已隱藏</string>
     <string name="show_hidden_content">顯示隱藏內容</string>
@@ -1087,6 +1093,7 @@
     <string name="default_observation_license">預設觀察授權</string>
     <string name="default_photo_license">預設照片授權</string>
     <string name="default_sound_license">預設聲音授權</string>
+    <string name="change_existing_licenses">Change Existing Licenses</string>
     <string name="change_licenses_for_existing_observations">更改既有的觀察、照片與聲音的授權</string>
     <string name="change_licenses_for_all_existing_observations">更改全部既有的觀察授權</string>
     <string name="change_licenses_for_all_existing_photos">更改全部既有的照片授權</string>
@@ -1105,6 +1112,7 @@
     <string name="existing_sound_licenses_have_been_updated">全部既有聲音的授權已更改為%1$s。</string>
     <string name="default_licenses_description"><![CDATA[授權您的內容可讓任何遵守授權條款的用戶不必向您詢問許可，即能合法使用其中資料。除此之外，iNat 會替對於我們資料感興趣的精選夥伴組織來定期更新存檔，當中會含有您的創用 CC 授權內容。例如，替<a href="https://www.gbif.org/">全球生物多樣性資訊機構</a>（GBIF）所產生的存檔裡，我們包含公眾領域貢獻宣告（CC0）、姓名標示（CC BY）、姓名標示-非商業性（CC BY-NC）等紀錄，其中 GBIF 是一個專門彙編、發佈來自全球生物多樣化訊息的國際政府間組織。]]></string>
     <string name="photo_license">照片授權</string>
+    <string name="sound_license">Sound License</string>
     <string name="edit_photo_license">編輯照片授權</string>
     <string name="observation_license">觀察授權</string>
     <string name="edit_observation_license">編輯觀察授權</string>
@@ -1126,9 +1134,13 @@
     <string name="license_description_cc_by_nc_sa">此授權可讓其他人在非商業目的前提下重製、修改、以及基於您的作品來創作，只要他們標注您的貢獻，並以同樣條款在他們的新作品上。</string>
     <string name="license_description_cc_by_nc_nd">這是六種主要授權中最多限制的授權，僅允許其他人下載您的作品，與標注您的貢獻前提下分享給其他人，並且不准以任何方式更改內容或用於商業目的。</string>
     <string name="license_description_cc_by_nd">此許可協議允許在用於商業或非商業目的下重新發佈，只要有註明於您並以未更改內容的完整情況下。</string>
-    <string name="license_description_cc_by_sa">此許可協議可讓其他人發佈、重製、調整，和以您的作品為基礎來創作在以非商業目的下，雖然他們的新作品必須在非商業目的下致謝於您，但他們的衍生作品可以不必依同樣使用條款來作為許可。</string>
+    <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
     <string name="license_description_no_license">除了由我們的服務條款授予給 iNaturalist 的這些權限外，您保留了您內容的完整版權。</string>
     <string name="invalid_photo">不支援的照片格式</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">基於 iNaturalist 社群 (包括%1$s、%2$s、%3$s 和其他許多人)所提供之觀察和鑑定的建議。</string>
+    <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">預設觀察動作</string>
+    <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">顯示選項</string>
 </resources>

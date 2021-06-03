@@ -202,6 +202,9 @@
     <string name="alert_message_use_inaturalistgr">INaturalist Grecia este membru al rețelei iNaturalist din Grecia. Instituțiile locale care sprijină iNaturalist Grecia vor avea acces la adresa dvs. de e-mail și la coordonatele adevărate ale observațiilor care sunt ascunse public sau private. Vă rugăm să nu modificați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
     <string name="alert_message_use_inaturalistlu">iNaturalist Luxemburg este membru al rețelei iNaturalist din Luxemburg. Instituțiile locale care sprijină iNaturalist Luxemburg vor avea acces la adresa dvs. de e-mail și la coordonatele adevărate ale observațiilor care sunt ascunse public sau private. Vă rugăm să nu modificați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
     <string name="alert_message_use_inaturalistuk">iNaturalist Marea Britanie este membru al rețelei iNaturalist din Marea Britanie. Instituțiile locale care sprijină iNaturalist Marea Britanie vor avea acces la adresa dvs. de e-mail și la coordonatele adevărate ale observațiilor care sunt ascunse public sau private. Vă rugăm să nu modificați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is a member of the iNaturalist Network in Costa Rica. Local institutions supporting Naturalista Costa Rica will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editor</string>
     <string name="license">Licență</string>
     <string name="download_for_offline_use">Descarcă pentru utilizare offline</string>
@@ -756,6 +759,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Grecia: iSea sprijină iNaturalist Grecia (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxemburg: Muzeul național de istorie naturală din Luxemburg (MnhnL) sprijină iNaturalist Luxemburg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[Marea Britanie: National Biodiversity Network Trust sprijină iNaturalist Marea Britanie (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Bifează tot ca vizionat</string>
     <string name="content_hidden">Conținut ascuns</string>
     <string name="show_hidden_content">Arată conținut ascuns</string>
@@ -1099,6 +1105,7 @@
     <string name="default_observation_license">Licență implicită de observație</string>
     <string name="default_photo_license">Licență implicită foto</string>
     <string name="default_sound_license">Licență implicită de sunet</string>
+    <string name="change_existing_licenses">Change Existing Licenses</string>
     <string name="change_licenses_for_existing_observations">Modificați licențele pentru observațiile, fotografiile și sunetele existente</string>
     <string name="change_licenses_for_all_existing_observations">Modificați licențele pentru toate observațiile existente</string>
     <string name="change_licenses_for_all_existing_photos">Modificați licențele pentru toate fotografiile existente</string>
@@ -1117,6 +1124,7 @@
     <string name="existing_sound_licenses_have_been_updated">Toate licențele de sunet existente au fost modificate la %1$s.</string>
     <string name="default_licenses_description"><![CDATA[Licențierea conținutului dvs. conferă oricui dreptul legal de a-l utiliza fără a vă cere permisiunea, dacă respectă termenii licenței. În plus, iNat include conținutul dvs. cu licență Creative Commons în arhive actualizate în mod regulat, produse pentru anumite organizații partenere interesate de datele noastre. De exemplu, includem în arhivă înregistrările Fără drept de autor (CC0), Atribuire (CC BY) și Atribuire-NonComercială (CC BY-NC) pe care le generăm pentru <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, o organizație internațională, interguvernamentală care compilează și distribuie informații despre biodiversitate din întreaga lume.]]></string>
     <string name="photo_license">Licență foto</string>
+    <string name="sound_license">Sound License</string>
     <string name="edit_photo_license">Editare licență foto</string>
     <string name="observation_license">Licență de observație</string>
     <string name="edit_observation_license">Editare licență de observație</string>
@@ -1138,9 +1146,13 @@
     <string name="license_description_cc_by_nc_sa">Această licență permite altora să modifice, să optimizeze și să se bazeze pe munca dvs. non-comercial, atâta timp cât vă creditează și licențiază lucrările lor noi în condiții identice.</string>
     <string name="license_description_cc_by_nc_nd">Această licență este cea mai restrictivă dintre cele șase licențe principale, permițând altor persoane doar să vă descarce lucrările și să le partajeze cu alții, atâta timp cât vă creditează, dar nu le pot schimba în niciun fel și nu le pot utiliza în scop comercial.</string>
     <string name="license_description_cc_by_nd">Această licență permite redistribuirea în scop comercial sau non-comercial, atâta timp cât lucrarea este distribuită integral și fără modificări iar creditul vă aparține.</string>
-    <string name="license_description_cc_by_sa">Această licență permite altora să se modifice, să optimizeze și să se bazeze pe munca dvs. non-comercial și, deși lucrările lor noi trebuie să vă recunoască și să fie non-comerciale, ei nu trebuie să licențieze lucrările lor derivate în aceiași termeni.</string>
+    <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
     <string name="license_description_no_license">Rețineți complet dreptul de autor asupra conținutului dvs., în afară de acele drepturi acordate iNaturalist în termenii noștri de utilizare.</string>
     <string name="invalid_photo">Format foto neacceptat</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">Sugestii bazate pe observații și identificări oferite de comunitatea iNaturalist, incluzând %1$s, %2$s, %3$s, și mulți alții.</string>
+    <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">Default Observation Action</string>
+    <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">Show Options</string>
 </resources>

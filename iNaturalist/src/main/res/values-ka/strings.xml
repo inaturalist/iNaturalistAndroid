@@ -201,6 +201,9 @@
     <string name="alert_message_use_inaturalistgr">iNaturalist Greece is a member of the iNaturalist Network in Greece. Local institutions supporting iNaturalist Greece will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg is a member of the iNaturalist Network in Luxembourg. Local institutions supporting iNaturalist Luxembourg will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom is a member of the iNaturalist Network in United Kingdom. Local institutions supporting iNaturalist United Kingdom will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is a member of the iNaturalist Network in Costa Rica. Local institutions supporting Naturalista Costa Rica will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">რედაქტორი</string>
     <string name="license">ლიცენზია</string>
     <string name="download_for_offline_use">Download for offline use</string>
@@ -684,9 +687,9 @@
     <string name="annotation_value_female">მდედრობითი</string>
     <string name="annotation_value_male">მამრ.</string>
     <!-- Adjective, alive and shows no signs of imminent death -->
-    <string name="annotation_value_alive">Alive</string>
+    <string name="annotation_value_alive">ცოცხალი</string>
     <!-- Adjective, dead or shows signs of imminent death -->
-    <string name="annotation_value_dead">Dead</string>
+    <string name="annotation_value_dead">მკვდარი</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Cannot Be Determined</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
@@ -712,7 +715,7 @@
     <string name="identifications_all_caps">IDENTIFICATIONS</string>
     <string name="news_all_caps">სიახლეები</string>
     <string name="got_it_all_caps">გასაგებია!</string>
-    <string name="view_all_all_caps">VIEW ALL</string>
+    <string name="view_all_all_caps">ყველას ნახვა</string>
     <string name="new_all_caps">ახალი</string>
     <string name="observers_all_caps">OBSERVERS</string>
     <string name="observations_regular">Observations</string>
@@ -751,6 +754,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Mark all as viewed</string>
     <string name="content_hidden">Content Hidden</string>
     <string name="show_hidden_content">Show Hidden Content</string>
@@ -798,7 +804,7 @@
     <!-- Verb, as in "Scale (resize) this photo" -->
     <string name="ucrop_scale">Scale</string>
     <!-- Verb, as in "Crop this photo" -->
-    <string name="ucrop_crop">Crop</string>
+    <string name="ucrop_crop">მოჭრა</string>
     <!-- Label for adjusting the brightness of an image -->
     <string name="ucrop_brightness">Brightness</string>
     <!-- Label for adjusting the contrast of an image -->
@@ -832,7 +838,7 @@
     <string name="third_party_data_sharing">Third-party Data Sharing</string>
     <string name="disable_third_party_data_sharing">Disable Third-party Data Sharing</string>
     <string name="do_not_collect_third_party_data">Do not collect stability and usage data using third-party services</string>
-    <string name="enabled">Enabled</string>
+    <string name="enabled">ჩართულია</string>
     <string name="disabled">Disabled</string>
     <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third-party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
     <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
@@ -885,24 +891,24 @@
     <string name="new_message">New Message</string>
     <string name="search_for_inaturalist_users">Search for iNaturalist users</string>
     <string name="please_sign_in_for_messages">You must be logged in to view your messages.</string>
-    <string name="sorry">Sorry</string>
+    <string name="sorry">ბოდიში</string>
     <string name="you_must_have_three_observations">You must have three verifiable observations or three identifications for others in order to do that.</string>
     <string name="mute_this_user">Mute this user</string>
     <string name="unmute_this_user">Unmute this user</string>
     <string name="flag_this_conversation">Flag this conversation</string>
     <string name="mute_this_user_question">Mute this user?</string>
     <string name="you_will_no_longer_receive_messages">You will no longer receive any notifications about activity from this user, including messages, comments, identifications, and mentions.</string>
-    <string name="mute">Mute</string>
+    <string name="mute">დადუმება</string>
     <string name="muting_user">Muting user...</string>
     <string name="unmuting_user">Unmuting user...</string>
     <string name="failed_muting_user">Failed muting user!</string>
     <string name="failed_unmuting_user">Failed unmuting user!</string>
     <string name="flag_conversation">Flag conversation</string>
-    <string name="spam">Spam</string>
+    <string name="spam">სპამი</string>
     <string name="commercial_solicitation">Commercial solicitation, links to nowhere, etc.</string>
     <string name="offensive_inappropriate">Offensive/Inappropriate</string>
     <string name="misleading_or_illegal_content">Misleading or illegal content, racial or ethnic slurs, etc. For more on our definition of \"appropriate,\" see the FAQ.</string>
-    <string name="other">Other</string>
+    <string name="other">სხვა</string>
     <string name="some_other_reason">Some other reason you can explain.</string>
     <string name="continue_text">Continue</string>
     <string name="why_are_you_flagging_this_item">Why are you flagging this item?</string>
@@ -916,7 +922,7 @@
     <string name="rank_phylum">Phylum</string>
     <string name="rank_subphylum">Subphylum</string>
     <string name="rank_superclass">Superclass</string>
-    <string name="rank_class">Class</string>
+    <string name="rank_class">კლასი</string>
     <string name="rank_subclass">Subclass</string>
     <string name="rank_infraclass">Infraclass</string>
     <string name="rank_superorder">Superorder</string>
@@ -929,7 +935,7 @@
     <string name="rank_zoosubsection">Zoosubsection</string>
     <string name="rank_superfamily">Superfamily</string>
     <string name="rank_epifamily">Epifamily</string>
-    <string name="rank_family">Family</string>
+    <string name="rank_family">ოჯახი</string>
     <string name="rank_subfamily">Subfamily</string>
     <string name="rank_supertribe">Supertribe</string>
     <string name="rank_tribe">Tribe</string>
@@ -946,9 +952,9 @@
     <!-- Singular -->
     <string name="rank_subspecies">Subspecies</string>
     <string name="rank_variety">Variety</string>
-    <string name="rank_form">Form</string>
+    <string name="rank_form">ფორმა</string>
     <string name="rank_infrahybrid">Infrahybrid</string>
-    <string name="rank_leaves">Leaves</string>
+    <string name="rank_leaves">ფოთლები</string>
     <string name="location_lat_lng">Location: %1$f, %2$f</string>
     <string name="i_consent_process_personal_info"><![CDATA[I consent to allow iNaturalist to store and process limited kinds of personal information about me in order to manage my account. <b>Learn More</b>]]></string>
     <string name="about_personal_information">About Personal Information</string>
@@ -1039,7 +1045,7 @@
     <string name="view_observations">View Observations</string>
     <string name="choose_this_option">Choose this option</string>
     <string name="compare_observation_with_this_option">Compare observation with this option</string>
-    <string name="go_back">Go back</string>
+    <string name="go_back">უკან</string>
     <string name="change_the_source_of_the_suggestions">Change the source of the suggestions</string>
     <string name="thumbnail_photo_for_suggested_taxon">Thumbnail photo for suggested taxon</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
@@ -1093,6 +1099,7 @@
     <string name="default_observation_license">Default Observation License</string>
     <string name="default_photo_license">Default Photo License</string>
     <string name="default_sound_license">Default Sound License</string>
+    <string name="change_existing_licenses">Change Existing Licenses</string>
     <string name="change_licenses_for_existing_observations">Change licenses for existing observations, photos and sounds</string>
     <string name="change_licenses_for_all_existing_observations">Change licenses for all existing observations</string>
     <string name="change_licenses_for_all_existing_photos">Change licenses for all existing photos</string>
@@ -1111,6 +1118,7 @@
     <string name="existing_sound_licenses_have_been_updated">All existing sound licenses have been changed to %1$s.</string>
     <string name="default_licenses_description"><![CDATA[Licensing your content gives anyone the legal right to use it without asking your permission if they abide by the terms of the license. In addition, iNat includes your Creative Commons-licensed content in regularly-updated archives produced for select partner organizations interested in our data. For example, we include No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC) records in the archive we generate for the <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, an international, inter-governmental organization that compiles and distributes biodiversity information from around the world.]]></string>
     <string name="photo_license">Photo License</string>
+    <string name="sound_license">Sound License</string>
     <string name="edit_photo_license">Edit Photo License</string>
     <string name="observation_license">Observation License</string>
     <string name="edit_observation_license">Edit Observation License</string>
@@ -1132,9 +1140,13 @@
     <string name="license_description_cc_by_nc_sa">This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms.</string>
     <string name="license_description_cc_by_nc_nd">This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can\'t change them in any way or use them commercially.</string>
     <string name="license_description_cc_by_nd">This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.</string>
-    <string name="license_description_cc_by_sa">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
+    <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
     <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
     <string name="invalid_photo">Photo format not supported</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">Suggestions based on observations and identifications provided by the iNaturalist community, including %1$s, %2$s, %3$s, and many others.</string>
+    <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">Default Observation Action</string>
+    <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">Show Options</string>
 </resources>

@@ -201,6 +201,9 @@
     <string name="alert_message_use_inaturalistgr">iNaturalist Yunanistan, Yunanistan\'daki iNaturalist Ağı üyesidir. iNaturalist Yunanistan\'ı destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamu tarafından gizlenmiş veya özel gözlemler için gerçek koordinatlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
     <string name="alert_message_use_inaturalistlu">iNaturalist Lüksemburg, Lüksemburg\'daki iNaturalist Ağı üyesidir. iNaturalist Lüksemburg\'u destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamu tarafından gizlenmiş veya özel gözlemler için gerçek koordinatlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
     <string name="alert_message_use_inaturalistuk">iNaturalist Birleşik Krallık, Birleşik Krallık\'taki iNaturalist Ağı üyesidir. iNaturalist Birleşik Krallık’ı destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamu tarafından gizlenmiş veya özel gözlemlerin gerçek koordinatlarına erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is a member of the iNaturalist Network in Costa Rica. Local institutions supporting Naturalista Costa Rica will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Düzenleyici</string>
     <string name="license">Lisans</string>
     <string name="download_for_offline_use">Çevrimdışı kullanım için indir</string>
@@ -395,7 +398,7 @@
     <string name="fish">Balık</string>
     <string name="mollusks">Yumuşakçalar</string>
     <string name="protozoans">Tek Hücreliler</string>
-    <string name="chromista">Kelp, Diatoms, and Allies</string>
+    <string name="chromista">Yosun, Diyatomeler ve Benzerleri</string>
     <string name="amphibians">Yüzergezerler</string>
     <string name="fungi">Mantarlar</string>
     <string name="birds">Kuşlar</string>
@@ -751,6 +754,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Yunanistan: iSea iNaturalist Yunanistan\'ı destekliyor (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Lüksemburg: Lüksemburg Ulusal Tabiat Tarihi Müzesi (MnhnL) iNaturalist Lüksemburg\'u destekliyor (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[Birleşik Krallık: National Biodiversity Network Trust iNaturalist Birleşik Krallık\'ı destekliyor (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Tümünü görüntülendi olarak işaretle</string>
     <string name="content_hidden">İçerik Gizlendi</string>
     <string name="show_hidden_content">Gizli İçeriği Göster</string>
@@ -924,31 +930,31 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="rank_order">Takım</string>
     <string name="rank_suborder">Alt Takım</string>
     <string name="rank_infraorder">İnfra Takım</string>
-    <string name="rank_subterclass">Subter Sınıf</string>
+    <string name="rank_subterclass">Enaltsınıf</string>
     <string name="rank_parvorder">Geçiş Takımı</string>
     <string name="rank_zoosection">Zoosection</string>
     <string name="rank_zoosubsection">Zoosubsection</string>
-    <string name="rank_superfamily">Üst Aile</string>
-    <string name="rank_epifamily">Epi Aile</string>
-    <string name="rank_family">Aile</string>
-    <string name="rank_subfamily">Alt Aile</string>
+    <string name="rank_superfamily">Üst Familya</string>
+    <string name="rank_epifamily">Epi Familya</string>
+    <string name="rank_family">Familya</string>
+    <string name="rank_subfamily">Alt Familya</string>
     <string name="rank_supertribe">Üst Oymak</string>
     <string name="rank_tribe">Oymak</string>
     <string name="rank_subtribe">Alt Oymak</string>
     <string name="rank_genus">Cins</string>
-    <string name="rank_genushybrid">Yüzergezer cins</string>
+    <string name="rank_genushybrid">Melez Cins</string>
     <string name="rank_subgenus">Alt Cins</string>
     <string name="rank_section">Seksiyon</string>
     <string name="rank_subsection">alt seksiyon</string>
     <string name="rank_complex">Kompleks</string>
     <!-- Singular -->
     <string name="rank_species">Tür</string>
-    <string name="rank_hybrid">Yüzergezer</string>
+    <string name="rank_hybrid">Melez</string>
     <!-- Singular -->
     <string name="rank_subspecies">Alt Tür</string>
     <string name="rank_variety">Varyete</string>
     <string name="rank_form">Form</string>
-    <string name="rank_infrahybrid">İnfra yüzergezer</string>
+    <string name="rank_infrahybrid">Ara Melez</string>
     <string name="rank_leaves">Yapraklar</string>
     <string name="location_lat_lng">Konum: %1$f, %2$f</string>
     <string name="i_consent_process_personal_info"><![CDATA[iNaturalist\'in hesabımı yönetmek için benimle ilgili sınırlı türde kişisel bilgileri saklamasına ve işlemesine izin veriyorum. <b>Daha Çok Bilgi</b>]]></string>
@@ -996,36 +1002,36 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="pretty_sure_superclass">Şu üst sınıfta olduğuna oldukça eminiz:</string>
     <string name="pretty_sure_class">Şu sınıfta olduğuna oldukça eminiz:</string>
     <string name="pretty_sure_subclass">Şu alt sınıfta olduğuna oldukça eminiz:</string>
-    <string name="pretty_sure_infraclass">We\'re pretty sure it\'s in this infraclass:</string>
+    <string name="pretty_sure_infraclass">Şu ara sınıfta olduğuna oldukça eminiz:</string>
     <string name="pretty_sure_superorder">Şu üst takımda olduğuna oldukça eminiz:</string>
     <string name="pretty_sure_order">Şu takımda olduğuna oldukça eminiz:</string>
     <string name="pretty_sure_suborder">Şu alt takımda olduğuna oldukça eminiz:</string>
-    <string name="pretty_sure_infraorder">We\'re pretty sure it\'s in this infraorder:</string>
-    <string name="pretty_sure_subterclass">We\'re pretty sure it\'s in this subterclass:</string>
-    <string name="pretty_sure_parvorder">We\'re pretty sure it\'s in this parvorder:</string>
-    <string name="pretty_sure_zoosection">We\'re pretty sure it\'s in this zoosection:</string>
-    <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
-    <string name="pretty_sure_superfamily">Şu üst ailede olduğuna oldukça eminiz:</string>
-    <string name="pretty_sure_epifamily">We\'re pretty sure it\'s in this epifamily:</string>
-    <string name="pretty_sure_family">Şu ailede olduğuna oldukça eminiz:</string>
-    <string name="pretty_sure_subfamily">Şu alt ailede olduğuna oldukça eminiz:</string>
-    <string name="pretty_sure_supertribe">We\'re pretty sure it\'s in this supertribe:</string>
+    <string name="pretty_sure_infraorder">Şu ara takımda olduğuna oldukça eminiz:</string>
+    <string name="pretty_sure_subterclass">Şu en alt sınıfta olduğuna oldukça eminiz:</string>
+    <string name="pretty_sure_parvorder">Şu geçiş takımında olduğuna oldukça eminiz:</string>
+    <string name="pretty_sure_zoosection">Şu zoobölümde olduğuna oldukça eminiz:</string>
+    <string name="pretty_sure_zoosubsection">Şu zooaltbölümde olduğuna oldukça eminiz:</string>
+    <string name="pretty_sure_superfamily">Şu üst familyada olduğuna oldukça eminiz:</string>
+    <string name="pretty_sure_epifamily">Şu epi familyada olduğuna oldukça eminiz:</string>
+    <string name="pretty_sure_family">Şu familyada olduğuna oldukça eminiz:</string>
+    <string name="pretty_sure_subfamily">Şu alt familyada olduğuna oldukça eminiz:</string>
+    <string name="pretty_sure_supertribe">Şu üst oymakta olduğuna oldukça eminiz:</string>
     <string name="pretty_sure_tribe">Şu oymakta olduğuna oldukça eminiz:</string>
     <string name="pretty_sure_subtribe">Şu alt oymakta olduğuna oldukça eminiz:</string>
     <string name="pretty_sure_genus">Şu cinste olduğuna oldukça eminiz:</string>
-    <string name="pretty_sure_genushybrid">We\'re pretty sure it\'s in this genushybrid:</string>
+    <string name="pretty_sure_genushybrid">Şu melez cinste olduğuna oldukça eminiz:</string>
     <string name="pretty_sure_subgenus">Şu alt cinste olduğuna oldukça eminiz:</string>
-    <string name="pretty_sure_section">We\'re pretty sure it\'s in this section:</string>
-    <string name="pretty_sure_subsection">We\'re pretty sure it\'s in this subsection:</string>
-    <string name="pretty_sure_complex">We\'re pretty sure it\'s in this complex:</string>
+    <string name="pretty_sure_section">Şu seksiyonda olduğuna oldukça eminiz:</string>
+    <string name="pretty_sure_subsection">Şu alt seksiyonda olduğuna oldukça eminiz:</string>
+    <string name="pretty_sure_complex">Şu kompleksde olduğuna oldukça eminiz:</string>
     <!-- Singular -->
     <string name="pretty_sure_species">Şu türde olduğuna oldukça eminiz:</string>
-    <string name="pretty_sure_hybrid">We\'re pretty sure it\'s in this hybrid:</string>
+    <string name="pretty_sure_hybrid">Şu melezde olduğuna oldukça eminiz:</string>
     <!-- Singular -->
     <string name="pretty_sure_subspecies">Şu alt türde olduğuna oldukça eminiz:</string>
     <string name="pretty_sure_variety">Şu varyasyonda olduğuna oldukça eminiz:</string>
-    <string name="pretty_sure_form">We\'re pretty sure it\'s in this form:</string>
-    <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
+    <string name="pretty_sure_form">Şu formda olduğuna oldukça eminiz:</string>
+    <string name="pretty_sure_infrahybrid">Şu ara melezde olduğuna oldukça eminiz:</string>
     <string name="remove_date_observed">Gözlem tarih ve zamanını kaldır</string>
     <string name="remove_time_observed">Gözlem zamanını kaldır</string>
     <string name="remove_location">Konumu kaldır</string>
@@ -1083,7 +1089,7 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="copy_coordinates">Koordinatları kopyala</string>
     <string name="coordinates_copied_to_clipboard">Koordinatlar panoya kopyalandı</string>
     <!--  Title of a section on the observation detail view that displays minor metadata  -->
-    <string name="metadata">Metadata</string>
+    <string name="metadata">Metaveri</string>
     <!--  iNat observation identifier  -->
     <string name="id">ID</string>
     <!--  iNat observation Universally Unique Identifier  -->
@@ -1094,6 +1100,7 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="default_observation_license">Varsayılan Gözlem Lisansı</string>
     <string name="default_photo_license">Varsayılan Fotoğraf Lisansı</string>
     <string name="default_sound_license">Varsayılan Ses Lisansı</string>
+    <string name="change_existing_licenses">Change Existing Licenses</string>
     <string name="change_licenses_for_existing_observations">Varolan gözlem, fotoğraf ve seslerin lisanslarını değiştir</string>
     <string name="change_licenses_for_all_existing_observations">Varolan tüm gözlemlerin lisanslarını değiştir</string>
     <string name="change_licenses_for_all_existing_photos">Varolan tüm fotoğrafların lisanslarını değiştir</string>
@@ -1110,8 +1117,10 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="existing_observation_licenses_have_been_updated">Tüm varolan gözlem lisansları %1$s olarak değiştirildi.</string>
     <string name="existing_photo_licenses_have_been_updated">Tüm varolan fotoğraf lisansları %1$s olarak değiştirildi.</string>
     <string name="existing_sound_licenses_have_been_updated">Tüm varolan ses lisansları %1$s olarak değiştirildi.</string>
-    <string name="default_licenses_description"><![CDATA[Licensing your content gives anyone the legal right to use it without asking your permission if they abide by the terms of the license. In addition, iNat includes your Creative Commons-licensed content in regularly-updated archives produced for select partner organizations interested in our data. For example, we include No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC) records in the archive we generate for the <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, an international, inter-governmental organization that compiles and distributes biodiversity information from around the world.]]></string>
+    <string name="default_licenses_description"><![CDATA[İçeriğini lisanslamak, lisansın şartlarına dayanarak iznin sorulmadan kullanma hakkını yasal olarak verir. Ayrıca, iNat, Creative Commons lisanslı içeriğini, verilerimizle ilgilenen belirli ortak kuruluşlar için üretilen ve düzenli olarak güncellenen arşivlere dahil eder. Örneğin, Telif Hakkı Yok (CC0), Atfetme (CC BY), ve
+Ticari Olmayan Atfetme (CC BY-NC), gibi kayıtların  biyolojik çeşitlilik bilgisini dünyanın dört bir yanında derleyen ve dağıtan <a href="http://www.gbif.org/">Küresel Biyoçeşitlilik Danışma Tesisi</a> (GBIF),  uluslararası, hükümetler arası organizasyonlar için ürettiğimiz arşive dahil ediyoruz.]]></string>
     <string name="photo_license">Fotoğraf Lisansı</string>
+    <string name="sound_license">Sound License</string>
     <string name="edit_photo_license">Fotoğraf Lisansını Düzenle</string>
     <string name="observation_license">Gözlem Lisansı</string>
     <string name="edit_observation_license">Gözlem Lisansını Düzenle</string>
@@ -1119,7 +1128,7 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="view_license">Lisansı Görüntüle</string>
     <!-- License Names -->
     <string name="license_name_cc0">Halka Açık Alan</string>
-    <string name="license_name_cc_by">Attribution</string>
+    <string name="license_name_cc_by">Atıf</string>
     <string name="license_name_cc_by_nc">Atıf-Ticari Olmayan</string>
     <string name="license_name_cc_by_nc_sa">Atıf-Ticari Olmayan-Aynı Lisansla Paylaş</string>
     <string name="license_name_cc_by_nc_nd">Atıf-Ticari Olmayan-Türetilemez</string>
@@ -1127,15 +1136,19 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="license_name_cc_by_sa">Atıf-Aynı Lisansla Paylaş</string>
     <string name="license_name_no_license">Tüm hakları saklıdır</string>
     <!-- License Descriptions -->
-    <string name="license_description_cc0">This license releases your work into the public domain, so others can copy, modify, distribute and perform your work, even for commercial purposes, all without asking permission or giving you credit. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.</string>
-    <string name="license_description_cc_by">This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation.</string>
-    <string name="license_description_cc_by_nc">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
+    <string name="license_description_cc0">Bu lisans, çalışmanı kamuya açık bir alanda yayınlar; böylece diğerleri, izin almadan veya atıfta bulunmadan ticari amaçlarla bile çalışmanı kopyalayabilir, değiştirebilir, dağıtabilir ve kullanabilir. Sunulan lisansların en uygunu budur. Azami yayılma ve lisanslı malzemelerin kullanımı için önerilir.</string>
+    <string name="license_description_cc_by">Bu lisans; başkalarının senin çalışmana atıf yaptıkları sürece yeniden düzenlemelerine, kırpma yapmalarına, geliştirmelerine, dağıtım yapmalarına ve hatta ticari olarak kullanımlarına izin verir.</string>
+    <string name="license_description_cc_by_nc">Bu lisans, başkalarının çalışmalarını ticari olmayan şekilde yeniden karıştırmalarına, düzenlemelerine ve geliştirmelerine izin verir ve yeni çalışmaları da sizin tarafınızdan onaylanmalı ve ticari olmamalıdır, ikincil çalışmalarını aynı şartlarla lisanslamak zorunda kalmazlar.</string>
     <string name="license_description_cc_by_nc_sa">Bu lisans, çalışmalarını başkalarının ancak seni kaynak gösterdikleri ve yeni türevlerini aynı şartlar altında lisansladıkları sürece ve ticari olmayan şekilde yeniden karıştırmalarına, düzenlemelerine ve geliştirmelerine izin verir.</string>
     <string name="license_description_cc_by_nc_nd">Bu lisans, altı ana lisansın en kısıtlayıcı olanıdır; çalışmanı yalnızca, başkalarının indirmelerine ve seni kaynak gösterdikleri sürece başkalarıyla paylaşmasına izin verir, ancak onları hiçbir şekilde değiştiremez veya ticari olarak kullanamazlar.</string>
-    <string name="license_description_cc_by_nd">This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.</string>
-    <string name="license_description_cc_by_sa">Bu lisans, başkalarının çalışmalarını ticari olmayan şekilde yeniden karıştırmalarına, düzenlemelerine ve geliştirmelerine izin verir ve yeni çalışmaları da senin tarafından onaylanmalı ve ticari olmamalıdır, türetilmiş çalışmalarını aynı şartlarla lisanslamak zorunda kalmazlar.</string>
-    <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
+    <string name="license_description_cc_by_nd">Bu lisans; senin çalışman değiştirilmeden, bir bütün halinde olacak şekilde ve sana atıf yapılarak kar amacı gütmeden veya ticari olarak yayılmasına izin verir.</string>
+    <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
+    <string name="license_description_no_license">iNaturalist Hizmet Şartlarımızda verilen hakların yanı sıra, içeriğinin tüm telif haklarını saklı tutarsın.</string>
     <string name="invalid_photo">Fotoğraf formatı desteklenmiyor</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">Öneriler, iNaturalist topluluğu ve %1$s, %2$s, %3$s gibi daha bir çok kişinin de sağladığı gözlem ve tanımlara dayalıdır.</string>
+    <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">Varsayılan Gözlem Hareketi</string>
+    <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">Seçenekleri Göster</string>
 </resources>

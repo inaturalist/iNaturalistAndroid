@@ -201,6 +201,9 @@
     <string name="alert_message_use_inaturalistgr">iNaturalist Grekland är medlem i iNaturalist-nätverket i Grekland. Lokala institutioner som stöder iNaturalist Grekland kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för fynd som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 fynd. Vill du ändra din tillhörighet?</string>
     <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg är medlem i iNaturalist-nätverket i Luxemburg. Lokala institutioner som stöder iNaturalist Luxemburg kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för fynd som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 fynd. Vill du ändra din tillhörighet?</string>
     <string name="alert_message_use_inaturalistuk">iNaturalist Storbritannien är medlem i iNaturalist-nätverket i Storbritannien. Lokala institutioner som stöder iNaturalist Storbritannien kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för fynd som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 fynd. Vill du ändra din tillhörighet?</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica är medlem i iNaturalist-nätverket i Costa Rica. Lokala institutioner som stödjer Naturalista Costa Rica kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för fynd som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 observationer. Vill du ändra din anknytning?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala är medlem i iNaturalist-nätverket i Guatemala. Lokala institutioner som stöder iNaturalist Guatemala kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för fynd som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 fynd. Vill du ändra din anknytning?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sweden är medlem i iNaturalist-nätverket i Sverige. Lokala institutioner som stödjer iNaturalist Sweden kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för fynd som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 fynd. Vill du ändra din tillhörighet?</string>
     <string name="editor">Redigerare</string>
     <string name="license">Programvarulicens</string>
     <string name="download_for_offline_use">Ladda ner för användning offline</string>
@@ -751,6 +754,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Grekland: iSea stöder iNaturalist Grekland (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxemburg: Naturhistoriska riksmuseet i Luxemburg (MnhnL) stöder iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[Storbritannien: National Biodiversity Network Trust stöder iNaturalist Storbritannien (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) stödjer Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) stödjer iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sverige: SLU Artdatabanken stödjer iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Markera alla som lästa</string>
     <string name="content_hidden">Dolt innehåll</string>
     <string name="show_hidden_content">Visa dolt innehåll</string>
@@ -1093,6 +1099,7 @@
     <string name="default_observation_license">Standardfyndlicens</string>
     <string name="default_photo_license">Standardbildlicens</string>
     <string name="default_sound_license">Standardljudlicens</string>
+    <string name="change_existing_licenses">Ändra befintliga licenser</string>
     <string name="change_licenses_for_existing_observations">Ändra licenser för befintliga fynd, bilder och ljud</string>
     <string name="change_licenses_for_all_existing_observations">Ändra licenser för alla befintliga fynd</string>
     <string name="change_licenses_for_all_existing_photos">Ändra licenser för alla befintliga bilder</string>
@@ -1111,6 +1118,7 @@
     <string name="existing_sound_licenses_have_been_updated">Alla befintliga ljudlicenser har ändrats till %1$s.</string>
     <string name="default_licenses_description"><![CDATA[Licensiering av ditt innehåll ger vem som helst laglig rätt att använda det utan att be om ditt tillstånd förutsatt att de följer licensvillkoren. Dessutom inkluderar iNat ditt Creative Commons-licensierade innehåll i regelbundet uppdaterade arkiv som produceras för utvalda partnerorganisationer som är intresserade av våra data. Till exempel inkluderar vi poster med Ingen Copyright (CC0), Erkännande (CC BY), och Erkännande-Icke kommersiell (CC BY-NC) i det arkiv vi genererar för <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), en internationell, mellanstatlig organisation som sammanställer och tillgängliggör information om biologisk mångfald från hela världen.]]></string>
     <string name="photo_license">Bildlicens</string>
+    <string name="sound_license">Ljudlicens</string>
     <string name="edit_photo_license">Redigera bildlicens</string>
     <string name="observation_license">Fyndlicens</string>
     <string name="edit_observation_license">Redigera fyndlicens</string>
@@ -1132,9 +1140,13 @@
     <string name="license_description_cc_by_nc_sa">Denna licens låter andra remixa, anpassa och bygga vidare på ditt verk i icke-kommersiella syften så länge de erkänner dig och licensierar sina bearbetningar på samma villkor.</string>
     <string name="license_description_cc_by_nc_nd">Denna licens är den mest restriktiva av våra sex huvudlicenser. Den tillåter bara andra att ladda ner dina verk och dela dem med andra, så länge de erkänner dig som upphovsman, men de får inte ändra dem på något sätt och får inte använda dem kommersiellt.</string>
     <string name="license_description_cc_by_nd">Denna licens tillåter vidaredistribution, kommersiell och icke-kommersiell, så länge verket sprids oförändrat och i sin helhet, samt att du erkänns som upphovsman.</string>
-    <string name="license_description_cc_by_sa">Denna licens låter andra remixa, anpassa och bygga vidare på ditt verk för icke-kommersiella syften, och även om deras nya verk också måste erkänna dig som upphovsman och vara icke-kommersiella, måste de inte licensiera sina bearbetningar på samma villkor.</string>
+    <string name="license_description_cc_by_sa">Denna licens låter andra remixa, anpassa och bygga vidare på ditt verk även för kommersiella ändamål, så länge de anger dig som upphovsman och licensierar sina nya verk med exakt samma villkor. Denna licens jämförs ofta med licenser för fri programvara med öppen källkod. Alla nya verk baserade på ditt kommer att ha samma licens, så alla derivat kommer också att tillåta kommersiell användning. Detta är den licens som används av Wikipedia, och rekommenderas för sådant som skulle gynnas av att införliva innehåll från Wikipedia och liknande licensierade projekt.</string>
     <string name="license_description_no_license">Du behåller full upphovsrätt till ditt innehåll förutom de rättigheter som beviljats iNaturalist i våra användarvillkor.</string>
     <string name="invalid_photo">Bildformatet stöds inte</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">Förslag baserade på fynd och bestämningar tillhandahållna av iNaturalist-communityn, inklusive %1$s, %2$s, %3$s och många fler.</string>
+    <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">Standardåtgärd för fynd</string>
+    <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">Visa alternativ</string>
 </resources>
