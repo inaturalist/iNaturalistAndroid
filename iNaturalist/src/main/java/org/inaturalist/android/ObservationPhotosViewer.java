@@ -467,7 +467,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
 
 
- 			JSONArray photos = observation.optJSONArray(isTaxon ? "taxon_photos" : "observation_photos");
+ 			JSONArray photos = observation == null ? null : observation.optJSONArray(isTaxon ? "taxon_photos" : "observation_photos");
  			if ((photos != null) && (photos.length() > 0)) {
                 for (int i = 0; i < photos.length(); i++) {
                     mImageViews.add(null);
