@@ -613,6 +613,7 @@
 
 
             <RelativeLayout
+                android:id="@+id/is_captive"
                 android:layout_width="fill_parent"
                 android:paddingLeft="16dp"
                 android:paddingStart="16dp"
@@ -638,7 +639,6 @@
 
 
                 <TextView
-                    android:id="@+id/is_captive"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="@string/is_captive"

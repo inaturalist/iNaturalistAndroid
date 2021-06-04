@@ -621,7 +621,7 @@ public class ObservationEditor extends AppCompatActivity {
         });
 
 
-        findViewById(R.id.is_captive_checkbox).setOnClickListener(new OnClickListener() {
+        findViewById(R.id.is_captive).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 mIsCaptive = !mIsCaptive;
