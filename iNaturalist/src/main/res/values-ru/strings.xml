@@ -203,6 +203,9 @@
     <string name="alert_message_use_inaturalistgr">iNaturalist Greece — член сети iNaturalist Network в Греции. Местные организации, поддерживающие iNaturalist Greece, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
     <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg — член сети iNaturalist Network в Люксембурге. Местные организации, поддерживающие iNaturalist Luxembourg, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
     <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom — член сети iNaturalist Network в Великобритании. Местные организации, поддерживающие iNaturalist United Kingdom, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica - это член сети iNaturalist Network в Коста-Рике. Местные организации, поддерживающие Naturalista Costa Rica, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala - это член сети iNaturalist Network в Гватемале. Местные организации, поддерживающие iNaturalist Guatemala, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sweden - это член сети iNaturalist Network в Швеции. Местные организации, поддерживающие iNaturalist Sweden, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
     <string name="editor">Редактор</string>
     <string name="license">Лицензия</string>
     <string name="download_for_offline_use">Загрузить для использования в автономном режиме</string>
@@ -762,6 +765,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Греция: iSea поддерживающий iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Люксембург: Национальный музей естественной истории Люксембурга (MNHNL) поддерживает iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[Великобритания: Национальный фонд сети по биоразнообразию, поддерживающий iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Коста-Рика: Национальная комиссия по управлению биоразнообразием (CONAGEBIO) поддерживает Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Гватемала: Национальный совет по охраняемым районам (CONAP) поддерживает iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Швеция: Шведский информационный центр по видам SLU поддерживает iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Пометить все как просмотренные</string>
     <string name="content_hidden">Скрытый контент</string>
     <string name="show_hidden_content">Показать скрытый контент</string>
@@ -1106,6 +1112,7 @@
     <string name="default_observation_license">Лицензия на наблюдения по умолчанию</string>
     <string name="default_photo_license">Лицензия на фотографию по умолчанию</string>
     <string name="default_sound_license">Лицензия на аудио по умолчанию</string>
+    <string name="change_existing_licenses">Изменить текущие лицензии</string>
     <string name="change_licenses_for_existing_observations">Изменить лицензии на все имеющиеся наблюдения, фото и аудио</string>
     <string name="change_licenses_for_all_existing_observations">Изменить лицензии на все имеющиеся наблюдения</string>
     <string name="change_licenses_for_all_existing_photos">Изменить лицензии на все имеющиеся фото</string>
@@ -1124,6 +1131,7 @@
     <string name="existing_sound_licenses_have_been_updated">Лицензии у всех имеющихся аудио были изменены на %1$s.</string>
     <string name="default_licenses_description"><![CDATA[Лицензирование вашего контента дает любому человеку законное право использовать его, не спрашивая вашего разрешения, если он соблюдает условия лицензии. Кроме того, iNat включает ваш контент под лицензией Creative Commons в регулярно обновляемые архивы, которые создаются для избранных партнерских организаций, заинтересованных в наших данных. Например, мы включаем записи без авторских прав (CC0), с указанием авторства (CC BY) и с указанием некоммерческого содержания (CC BY-NC) в архив, который мы создаем для <a href="https://www.gbif.org/"> Глобального информационного фонда по биоразнообразию (GBIF) </a>, международной межправительственной организации, которая собирает и распространяет информацию о биоразнообразии со всего мира.]]></string>
     <string name="photo_license">Лицензия на фотографию</string>
+    <string name="sound_license">Лицензия на аудио</string>
     <string name="edit_photo_license">Изменить лицензию на фотографию</string>
     <string name="observation_license">Лицензия на наблюдение</string>
     <string name="edit_observation_license">Изменить лицензию на наблюдение</string>
@@ -1145,9 +1153,13 @@
     <string name="license_description_cc_by_nc_sa">Эта лицензия позволяет другим перерабатывать, исправлять и развивать произведение на некоммерческой основе, до тех пор, пока они упоминают оригинальное авторство и лицензируют производные работы на аналогичных лицензионных условиях.</string>
     <string name="license_description_cc_by_nc_nd">Данная лицензия имеет наибольшие ограничения среди шести основных лицензий, она позволяет другим только получать и распространять произведение, до тех пор пока они упоминают автора и ссылаются на него, но они не могут ни под каким видом изменять произведение и использовать его в коммерческих целях.</string>
     <string name="license_description_cc_by_nd">Эта лицензия позволяет свободно распространять произведение, как на коммерческой, так некоммерческой основе, при этом работа должна оставаться неизменной и обязательно должно указываться авторство.</string>
-    <string name="license_description_cc_by_sa">Эта лицензия позволяет другим копировать, распространять, воспроизводить, исполнять и перерабатывать ваше произведение только в некоммерческих целях. Если они хотят использовать ваше произведение в коммерческих целях, они должны обратиться к вам за соответствующим разрешением.</string>
+    <string name="license_description_cc_by_sa">Эта лицензия позволяет другим перерабатывать, исправлять и развивать произведение даже в коммерческих целях при условии указания авторства и лицензирования производных работ на аналогичных условиях. Эту лицензию часто сравнивают с лицензиями на бесплатное программное обеспечение с открытым исходным кодом «copyleft». Все новые работы, основанные на ваших, будут иметь ту же лицензию, поэтому все производные также будет разрешено использовать в коммерческих целях. Эта лицензия используется Википедией, и она рекомендуется для материалов, которые выиграют от включения информации из Википедии и аналогично лицензированных проектов.</string>
     <string name="license_description_no_license">Вы сохраняете полное авторское право на свой контент, кроме тех прав, которые предоставляются iNaturalist по нашим Условиям использования.</string>
     <string name="invalid_photo">Формат фото не поддерживается</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">Предложения, основанные на наблюдениях и идентификациях, предоставляемых сообществом iNaturalist, в том числе %1$s, %2$s, %3$s и многими другими.</string>
+    <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">Действие над наблюдением по умолчанию</string>
+    <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">Показать варианты</string>
 </resources>

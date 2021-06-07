@@ -201,6 +201,9 @@
     <string name="alert_message_use_inaturalistgr">iNaturalist Grécia é membro da Rede iNaturalist na Grécia. As instituições locais que apoiam o iNaturalist Grécia terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
     <string name="alert_message_use_inaturalistlu">iNaturalist Luxemburgo é membro da Rede iNaturalist no Luxemburgo. As instituições locais que apoiam o iNaturalist Luxemburgo terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
     <string name="alert_message_use_inaturalistuk">iNaturalist Reino Unido é membro da Rede iNaturalist no Reino Unido. As instituições locais que apoiam o iNaturalist Reino Unido terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is a member of the iNaturalist Network in Costa Rica. Local institutions supporting Naturalista Costa Rica will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editor</string>
     <string name="license">Licença</string>
     <string name="download_for_offline_use">Descarregar para usar offline</string>
@@ -753,6 +756,9 @@ nossa comunidade de código aberto]]></string>
     <string name="network_credit_inaturalistgr"><![CDATA[Grécia: iSea apoiando o iNaturalist Grécia (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxemburgo, Museu Nacional de História Natural do Luxemburgo (MnhnL) que apoia o iNaturalist Luxemburgo (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[Reino Unido: National Biodiversity Network Trust apoiando o iNaturalist UK (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Marcar tudo como visto</string>
     <string name="content_hidden">Conteúdo Oculto</string>
     <string name="show_hidden_content">Mostrar Conteúdo Oculto</string>
@@ -1095,6 +1101,7 @@ nossa comunidade de código aberto]]></string>
     <string name="default_observation_license">Licença padrão para observações</string>
     <string name="default_photo_license">Licença padrão para fotografias</string>
     <string name="default_sound_license">Licença padrão para sons</string>
+    <string name="change_existing_licenses">Change Existing Licenses</string>
     <string name="change_licenses_for_existing_observations">Alterar licenças para observações, fotos e sons existentes</string>
     <string name="change_licenses_for_all_existing_observations">Alterar licenças para todas as observações existentes</string>
     <string name="change_licenses_for_all_existing_photos">Alterar licenças para todas as fotos existentes</string>
@@ -1113,6 +1120,7 @@ nossa comunidade de código aberto]]></string>
     <string name="existing_sound_licenses_have_been_updated">Todas as licenças de som existentes foram alteradas para %1$s.</string>
     <string name="default_licenses_description"><![CDATA[Licenciar o seu conteúdo dá a qualquer pessoa o direito legal de usá-lo sem pedir a sua permissão se cumprir os termos da licença. Além disso, iNat inclui o seu conteúdo com licença Creative Commons em arquivos atualizados regularmente, produzidos para organizações parceiras selecionadas, interessadas nos nossos dados. Por exemplo, incluímos No Copyright (CC0), Attribution (CC BY), e registros Attribution-NonCommercial (CC BY-NC) no arquivo que geramos para <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>,  uma organização internacional intergovernamental que compila e distribui informação sobre biodiversidade em todo o mundo.]]></string>
     <string name="photo_license">Licença da Foto</string>
+    <string name="sound_license">Sound License</string>
     <string name="edit_photo_license">Editar Licença Foto</string>
     <string name="observation_license">Licença de Observação</string>
     <string name="edit_observation_license">Editar Licença de Observação</string>
@@ -1134,9 +1142,13 @@ nossa comunidade de código aberto]]></string>
     <string name="license_description_cc_by_nc_sa">Esta licença permite a outros remexer, alterar e trabalhar a partir da sua obra para fins não comerciais, desde que lhe dêem crédito e licenciem as novas criações nos mesmos termos.</string>
     <string name="license_description_cc_by_nc_nd">Esta licença é a mais restritiva das seis principais licenças, permitindo apenas a outros fazer download dos seus trabalhos e partilhá-los com outros desde que lhe dêem crédito, mas não permitindo alterações de qualquer tipo ou o seu uso comercial.</string>
     <string name="license_description_cc_by_nd">Esta licença permite a redistribuição, comercial e não comercial, desde que seja usada integralmente sem alterações, e lhe dêem crédito enquanto autor.</string>
-    <string name="license_description_cc_by_sa">Esta licença permite a outros remexer, alterar ou trabalhar a partir do seu trabalho para fins não comerciais. Apesar dos seus novos trabalhos não poderem ser comerciais e serem obrigados a atribuir-lhe crédito, as obras derivadas não têm de ser licenciadas nos mesmos termos.</string>
+    <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
     <string name="license_description_no_license">Você detém total direito sobre o seu conteúdo a partir dos direitos concedidos ao iNaturalist nos nossos Termos de Serviço.</string>
     <string name="invalid_photo">Formato de foto não suportado</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">Suggestions based on observations and identifications provided by the iNaturalist community, including %1$s, %2$s, %3$s, and many others.</string>
+    <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">Default Observation Action</string>
+    <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">Show Options</string>
 </resources>

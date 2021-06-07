@@ -41,9 +41,15 @@ DATE_FORMAT_KEYS = [
 # accommodate different contexts, e.g. the same Hebrew translations for several
 # locale codes
 CROWDIN_TO_ANDROID_LOCALES = {
+    # Assume Spanish in Spain is the default Spanish
+    "es-ES": ["es", "es-rES"],
+    # Long and complicated history of locale changes for Hebrew, so we just
+    # copy this to all possibilities
     "he": ["iw", "iw-rIL", "he-rIL"],
-    "sv-rSE": ["sv"],
-    "sr-rCyrl": ["sr"]
+    # Assume Portuguese in Portugal is the default Portuguese
+    "pt-PT": ["pt", "pt-rPT"],
+    "sv-SE": ["sv"],
+    "sr-Cyrl": ["sr"]
 }
 
 
@@ -76,7 +82,9 @@ def import_crowdin_for_android(zip_path, options={}):
         zip_path = sys.argv[1]
     dir_path = os.path.join(tempfile.mkdtemp(), extless_basename(zip_path))
     call_cmd("unzip", zip_path, "-d", dir_path)
-    for path in glob("{}/*".format(dir_path)):
+    for path in sorted(glob("{}/*".format(dir_path))):
+        if options.verbose:
+            print(f"Considering {path}")
         if options.locale and options.locale not in path:
             continue
         crowdin_locale = extless_basename(path)
@@ -90,8 +98,12 @@ def import_crowdin_for_android(zip_path, options={}):
         # Copy Hebrew file to the old locale codes that some modern Androids
         # still use
         for src_crowdin_locale in CROWDIN_TO_ANDROID_LOCALES:
+            if options.verbose:
+                print(f"Considering if {src_crowdin_locale} matches {crowdin_locale}...")
             if crowdin_locale == src_crowdin_locale:
                 for dest_android_locale in CROWDIN_TO_ANDROID_LOCALES[src_crowdin_locale]:
+                    if options.verbose:
+                        print(f"Copying to {dest_android_locale}...")
                     copy_to_android_locale(src, dest_android_locale, options)
         # if locale == "he":
         #     for new_android_locale in ["iw", "iw-rIL", "he-rIL"]:
