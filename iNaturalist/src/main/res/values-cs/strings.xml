@@ -203,6 +203,9 @@
     <string name="alert_message_use_inaturalistgr">iNaturalist Řecko je členem sítě iNaturalist v Řecku. Místní instituce podporující iNaturalist Řecko  budou mít přístup k vaší e-mailové adrese a přístup ke skutečným souřadnicím pozorování, které jsou skryté veřejnosti nebo soukromé. Pokud máte více než 1 000 pozorování, neměňte experimentálně své přičlenění. Chcete změnit své přičlenění?</string>
     <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg is a member of the iNaturalist Network in Luxembourg. Local institutions supporting iNaturalist Luxembourg will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom is a member of the iNaturalist Network in United Kingdom. Local institutions supporting iNaturalist United Kingdom will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is a member of the iNaturalist Network in Costa Rica. Local institutions supporting Naturalista Costa Rica will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editor</string>
     <string name="license">Licence</string>
     <string name="download_for_offline_use">Stáhnout pro offline použití</string>
@@ -760,7 +763,10 @@
     <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente podporuje iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
-    <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Spojené království: Nadační fond Národní sítě pro biologickou rozmanitost podporuje iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>).]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Označit vše za prohlédnuté</string>
     <string name="content_hidden">Skrytý obsah</string>
     <string name="show_hidden_content">Zobrazit skrytý obsah</string>
@@ -1111,6 +1117,7 @@ a naše <a href="https://www.inaturalist.org/terms">Smluvní podmínky</a>.]]></
     <string name="default_observation_license">Výchozí licence pozorování</string>
     <string name="default_photo_license">Výchozí licence fotografií</string>
     <string name="default_sound_license">Výchozí licence pro zvuk</string>
+    <string name="change_existing_licenses">Change Existing Licenses</string>
     <string name="change_licenses_for_existing_observations">Změnit licence existujících pozorování, fotografií a zvuků</string>
     <string name="change_licenses_for_all_existing_observations">Změnit licence pro všechna existující pozorování</string>
     <string name="change_licenses_for_all_existing_photos">Změnit licence pro všechny existující fotky</string>
@@ -1129,6 +1136,7 @@ a naše <a href="https://www.inaturalist.org/terms">Smluvní podmínky</a>.]]></
     <string name="existing_sound_licenses_have_been_updated">Všechny existující licence zvuku byly změněny na %1$s.</string>
     <string name="default_licenses_description"><![CDATA[Licencování vašeho obsahu dává komukoli zákonné právo jej používat, aniž by vás požádal o svolení, pokud dodržuje podmínky licence. Kromě toho iNat zahrnuje váš obsah s licencí Creative Commons do pravidelně aktualizovaných archivů vytvořených pro vybrané partnerské organizace, které se zajímají o naše data. Například do archivu, který generujeme pro <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF) </a>, mezinárodní mezivládní organizace, která shromažďuje a distribuuje informace o biologické rozmanitosti z celého světa, zahrneme záznamy No Copyright (CC0), Attribution (CC BY) a Attribution-NonCommercial (CC BY-NC). ]]></string>
     <string name="photo_license">Licence k fotografii</string>
+    <string name="sound_license">Sound License</string>
     <string name="edit_photo_license">Upravit licenci fotografie</string>
     <string name="observation_license">Licence pozorování</string>
     <string name="edit_observation_license">Upravit licenci pozorování</string>
@@ -1150,9 +1158,13 @@ a naše <a href="https://www.inaturalist.org/terms">Smluvní podmínky</a>.]]></
     <string name="license_description_cc_by_nc_sa">Tato licence umožní ostatním upravovat Vaše dílo a zároveň jej používat jako podklad pro jejich další práce. Tyto práce však budou moci být využity jen nekomerčně, a to pod podmínkou, že Vás uvedou jako autora a rovněž bude použita stejná licence.</string>
     <string name="license_description_cc_by_nc_nd">Tato licence je z šesti možných nejrestriktivnější. Umožňuje ostatním pouze stáhnout si vaše dílo a sdílet jej s ostatními jen za podmínek, že vás uvedou jako autora. Nebudou však moci jej jakkoliv změnit nebo komerčně používat.</string>
     <string name="license_description_cc_by_nd">Tato licence umožňuje komerční a nekomerční šíření, musí však být zachováno dílo jako celek s uvedením autora.</string>
-    <string name="license_description_cc_by_sa">Tato licence umožňuje ostatním šířit, kombinovat, upravovat a rozpracovávat vaše dílo pro nekomerční účely, přičemž nová díla vás musí uvést jako autora a být nekomerční povahy, odvozená díla však nepodléhají licenci za stejných podmínek.</string>
+    <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
     <string name="license_description_no_license">Veškerá autorská práva na váš obsah si ponecháváte kromě práv udělených iNaturalist v našich podmínkách služby.</string>
     <string name="invalid_photo">Formát fotografií není podporován.</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">Návrhy založené na pozorování a identifikaci poskytovaných komunitou iNaturalist, včetně %1$s, %2$s, %3$s a mnoha dalších.</string>
+    <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">Výchozí akce pro pozorování</string>
+    <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">Zobrazit možnosti</string>
 </resources>

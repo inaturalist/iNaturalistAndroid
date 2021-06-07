@@ -188,18 +188,21 @@
     <string name="alert_message_use_naturalista">NaturaListaはメキシコのiNaturalist Networkのメンバーです。 NaturaListaをサポートする地元の機関は、あなたのメールアドレスにアクセスでき、公的に隠されているか私的な観測の真の座標にアクセスできます。 観測値が1000を超える場合は、実験的に所属を変更しないでください。 所属を変更しますか？</string>
     <string name="alert_message_use_naturewatchnz">iNaturalist NZは、ニュージーランドのiNaturalist Networkのメンバーです。 iNaturalist NZをサポートする地元の機関は、あなたのメールアドレスにアクセスでき、公的に隠されている、または私的な観測の真の座標にアクセスできます。 観測値が1000を超える場合は、実験的に所属を変更しないでください。 所属を変更しますか？</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist Canadaは、カナダのiNaturalist Networkのメンバーです。 iNaturalist Canadaをサポートする地元の機関は、あなたのメールアドレスにアクセスでき、公的に隠されているか私的な観測の真の座標にアクセスできます。 観測値が1000を超える場合は、実験的に所属を変更しないでください。 所属を変更しますか？</string>
-    <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Local institutions supporting Naturalista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4All is a member of the iNaturalist Network in Portugal. Local institutions supporting Biodiversity4All will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá is a member of the iNaturalist Network in Panama. Local institutions supporting iNaturalist Panamá will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador is a member of the iNaturalist Network in Ecuador. Local institutions supporting iNaturalist Ecuador will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia is a member of the iNaturalist Network in Australia. Local institutions supporting iNaturalist Australia will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_argentinat">ArgentiNat is a member of the iNaturalist Network in Argentina. Local institutions supporting ArgentiNat will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalistacolombia">NaturaListaはコロンビアのiNaturalist Networkのメンバーです。 NaturaListaを支援するローカルの機関らは、あなたのメールアドレスにアクセスでき、公または私的に隠されている観測地点の真の位置座標にアクセスできます。 観測数が1000を超える場合は、試しだとしても所属を変更しないでください。それでもあなたは所属を変更しますか？</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4Allは、ポルトガルのiNaturalist Networkのメンバーです。 Biodiversity4Allを支援するローカルの機関らは、あなたのメールアドレスにアクセスでき、公または私的に隠されている観測地点の真の位置座標にアクセスできます。 観測数が1000を超える場合は、試しだとしても所属を変更しないでください。それでもあなたは所属を変更しますか？</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamáは、パナマのiNaturalist Networkのメンバーです。 iNaturalist Panamáをサポートする地元の機関は、あなたのメールアドレスにアクセスでき、公的または私的に隠されている観測地点の真の座標位置にアクセスできます。 観測数が1000を超える場合は、試しにでも所属を変更しないでください。 それでもあなたは所属を変更しますか？</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuadorは、エクアドルのiNaturalist Networkのメンバーです。 iNaturalist Ecuadorをサポートする地元の機関は、あなたのメールアドレスにアクセスでき、公的または私的に隠されている観測地点の真の座標位置にアクセスできます。 観測数が1000を超える場合は、試しにでも所属を変更しないでください。 それでもあなたは所属を変更しますか？</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australiaは、オーストラリアのiNaturalist Networkのメンバーです。 iNaturalist Australiaをサポートする地元の機関は、あなたのメールアドレスにアクセスでき、公的または私的に隠されている観測地点の真の座標位置にアクセスできます。 観測数が1000を超える場合は、試しにでも所属を変更しないでください。 それでもあなたは所属を変更しますか？</string>
+    <string name="alert_message_use_argentinat">ArgentiNatは、アルゼンチンのiNaturalist Networkのメンバーです。 ArgentiNatをサポートする地元の機関は、あなたのメールアドレスにアクセスでき、公的または私的に隠されている観測地点の真の座標位置にアクセスできます。 観測数が1000を超える場合は、試しにでも所属を変更しないでください。 それでもあなたは所属を変更しますか？</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israelは、イスラエルのiNaturalist Networkのメンバーです。 iNaturalist Israelをサポートする地元の機関は、あなたのメールアドレスにアクセスでき、公的または私的に隠されている観測地点の真の座標位置にアクセスできます。 観測数が1000を超える場合は、試しにでも所属を変更しないでください。 それでもあなたは所属を変更しますか？</string>
     <string name="alert_message_use_inaturalistfi">iNaturalistフィンランドは、フィンランドのiNaturalistネットワークのメンバーです。 iNaturalistフィンランドをサポートする地元の機関は、あなたのメールアドレスにアクセスでき、公的に隠されているか私的な観測の真の座標にアクセスできます。 観測値が1000を超える場合は、実験的に所属を変更しないでください。 所属を変更しますか？</string>
-    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistgr">iNaturalist Greece is a member of the iNaturalist Network in Greece. Local institutions supporting iNaturalist Greece will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg is a member of the iNaturalist Network in Luxembourg. Local institutions supporting iNaturalist Luxembourg will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom is a member of the iNaturalist Network in United Kingdom. Local institutions supporting iNaturalist United Kingdom will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chileは、チリのiNaturalist Networkのメンバーです。 iNaturalist Chileをサポートする地元の機関は、あなたのメールアドレスにアクセスでき、公的または私的に隠されている観測地点の真の座標位置にアクセスできます。 観測数が1000を超える場合は、試しにでも所属を変更しないでください。 それでもあなたは所属を変更しますか？</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Greeceは、ギリシャのiNaturalist Networkのメンバーです。 iNaturalist Greeceをサポートする地元の機関は、あなたのメールアドレスにアクセスでき、公的または私的に隠されている観測地点の真の座標位置にアクセスできます。 観測数が1000を超える場合は、試しにでも所属を変更しないでください。 それでもあなたは所属を変更しますか？</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourgは、ルクセンブルグのiNaturalist Networkのメンバーです。 iNaturalist Luxembourgをサポートする地元の機関らは、あなたのメールアドレスにアクセスでき、公的または私的に隠されている観測地点の真の座標位置にアクセスできます。 観測数が1000を超える場合は、試しにでも所属を変更しないでください。 それでもあなたは所属を変更しますか？</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdomは、イギリスのiNaturalist Networkのメンバーです。 iNaturalist United Kingdomをサポートする地元の機関らは、あなたのメールアドレスにアクセスでき、公的または私的に隠されている観測地点の真の座標位置にアクセスできます。 観測数が1000を超える場合は、試しにでも所属を変更しないでください。 それでもあなたは所属を変更しますか？</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is a member of the iNaturalist Network in Costa Rica. Local institutions supporting Naturalista Costa Rica will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">編集者</string>
     <string name="license">ライセンス</string>
     <string name="download_for_offline_use">オフラインでも使用できるようにダウンロードする</string>
@@ -232,7 +235,7 @@
     <!-- Title of the view used to sign up for a new account -->
     <string name="sign_up_title">新規登録</string>
     <string name="min_6_chars">6文字以上</string>
-    <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data (recommended). <b>Learn More</b>]]></string>
+    <string name="use_my_license"><![CDATA[はい、私の観測データを科学研究用に提供することに同意します。<b>詳細はこちら</b>]]></string>
     <string name="content_licensing">コンテンツのライセンス</string>
     <string name="content_licensing_description">ここにチェックを入れると投稿した写真に「表示—非営利」のクリエイティブ・コモンズ・ライセンスが適用されます。別のライセンスの選択もできますし、後でライセンスを削除することもできますが、このライセンスは観察データを科学研究目的に提供するには推奨しているものです。</string>
     <!-- Try to keep this about the length of the English text -->
@@ -286,7 +289,7 @@
     <string name="casual_grade_captive"><![CDATA[ <b>飼育/栽培</b>のため、観察記録は一般用です。 ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ 観察記録が、「研究用」の状態になるには、コミュニティから<b>さらに同定</b>が必要です。 ]]></string>
     <plurals name="included_in_projects">
-        <item quantity="other">Included in %1$d projects</item>
+        <item quantity="other">%1$dプロジェクトに含まれています</item>
     </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy は、あなたが観察をすることができる空間座標 (緯度と経度) の表示方法を制御する設定です。ここでのオプションは: <br/><b>オープン</b> - 分類群を侵害しない限り、だれでも座標を見ることができます。<br/><b>隠蔽</b> - 赤道面座標系を含む 0.2 × 0.2 度の領域内のランダム点として表示される公共測地座標系で、極に近づくにつれて減少する、赤道では不確実な約 22 x 22 km の正方形の領域ということになります。赤道面座標系は、あなたとあなたが観察記録を追加したプロジェクトのキュレーターにのみ表示されます。<br/><b>プライベート</b> - 座標は公図から完全に隠蔽されます。赤道面座標系は、あなたとあなたが観察記録を追加したプロジェクトのキュレーターにのみ表示されます。<br/><br/>個々のプロジェクトのキュレーターは Geoprivacy の設定に関係なく、常に座標を見ることができるため、誰が座標にアクセスするかについて不安がある場合は、参加しているプロジェクトのキュレーターを確認する必要があることにご注意ください。 ]]></string>
     <string name="id_title">%1$s\'s ID • %2$s</string>
@@ -308,11 +311,11 @@
     <string name="location">位置情報</string>
     <string name="login_in_to_add_comments_ids">ログインまたは登録して、コメントを残したり、同定を提案してください...</string>
     <string name="login_in_to_fav">ログインまたは登録して、お気に入りを見たり、この観察記録をお気に入りにしてください...</string>
-    <string name="sync_obs_to_see_favs">Sync this observation to see faves...</string>
+    <string name="sync_obs_to_see_favs">この観察記録を同期してお気に入りを見る...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">コメントを残したり、同定を提案するために、この観察記録を同期します...</string>
     <!--  Label for a button to add an observation without a photo or a sound  -->
-    <string name="no_photo">No Media</string>
+    <string name="no_photo">写真・音声なし</string>
     <string name="about_this_species">この種について</string>
     <string name="view_on_wikipedia">ウィキペディアの記事</string>
     <string name="photo"><![CDATA[写真: <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -349,18 +352,18 @@
     <string name="there_was_a_problem_updating_profile_params">プロフィールの更新中に問題が発生しました: %1$s</string>
     <string name="logged_in_as_html"><![CDATA[<b>%1$s</b>としてログイン]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
-    <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
+    <string name="currently_logged_in_as_html"><![CDATA[現在、 <b>%1$sとしてログインしています</b>]]></string>
     <string name="log_out">ログアウト</string>
     <string name="not_logged_in">ログインしていません</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
-    <string name="login_or_sign_up">Log In or Sign Up</string>
+    <string name="login_or_sign_up">ログインまたは新規登録</string>
     <string name="auto_upload_description">新しい観察記録を自動アップロードして、観察記録の編集</string>
     <string name="language">言語</string>
     <string name="version">バージョン</string>
     <string name="inat_network">iNaturalistネットワーク</string>
-    <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
+    <string name="inat_network_description">iNaturalistネットワークは、iNaturalistコミュニティをローカライズするためのフレームワークです。 各iNaturalistネットワークのサイトは、地元の機関によってサポートされています。地域の生物多様性の利用と恩恵を促進するために、各ネットワークサイトは、iNaturalistと協定を締結しています。</string>
     <string name="more_info">詳細情報</string>
-    <string name="select_network">Select Network Affiliation</string>
+    <string name="select_network">所属するiNaturalistネットワークを選択</string>
     <string name="help">ヘルプ</string>
     <string name="stop">停止</string>
     <string name="resume">再開</string>
@@ -375,7 +378,7 @@
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">同定の説明を更新します</string>
     <string name="your_identification">あなたの ID: %1$s</string>
-    <string name="onboarding_species_name">Name what you saw if you can, even if that\'s just \"insect\" or \"bird,\" or just leave this blank. Others may help you identify it!</string>
+    <string name="onboarding_species_name">あながた見たのものは、詳しくわからなければ「昆虫」や「鳥」だけで名前を付けることができますし、空白のままでもOKです。あなたが記録したものを他の人が同定することで助けるかもしれません！</string>
     <string name="upload_complete">アップロード完了!</string>
     <string name="onboarding_upload_description">すぐに観察結果を確認して、コメントしてください。</string>
     <string name="importing_photos">写真をインポートしています...</string>
@@ -389,11 +392,11 @@
     <string name="mammals">哺乳類</string>
     <string name="insects">昆虫</string>
     <string name="reptiles">爬虫類</string>
-    <string name="animals">Animals</string>
+    <string name="animals">動物</string>
     <string name="fish">魚</string>
     <string name="mollusks">軟体動物</string>
-    <string name="protozoans">Protozoans</string>
-    <string name="chromista">Kelp, Diatoms, and Allies</string>
+    <string name="protozoans">原生動物</string>
+    <string name="chromista">褐藻、珪藻、その他仲間の藻類</string>
     <string name="amphibians">両生類</string>
     <string name="fungi">菌類</string>
     <string name="birds">鳥</string>
@@ -425,11 +428,11 @@
         content.
     -->
     <plurals name="new_activities">
-        <item quantity="other">%1s new</item>
+        <item quantity="other">新規 %1s</item>
     </plurals>
     <string name="no_results_found">結果は見つかりませんでした...</string>
     <plurals name="syncing_x_out_of_y_observations">
-        <item quantity="other">Syncing %1$d of %2$d observations...</item>
+        <item quantity="other">%2$d 個中 %1$d 個目の観察記録を同期しています...</item>
     </plurals>
     <string name="deleting_observations">観察記録を削除しています...</string>
     <string name="preparing">準備しています...</string>
@@ -454,12 +457,12 @@
     <string name="more_info_on_inat">iNaturalist.org の詳細情報</string>
     <string name="view_suggestions">提案の表示</string>
     <string name="species_search">種検索</string>
-    <string name="were_not_confident_enough">We\'re not confident enough to make a recommendation, but here are our top suggestions:</string>
-    <string name="were_not_confident_enough_no_suggestions">We\'re not confident enough to make a recommendation.</string>
+    <string name="were_not_confident_enough">信頼性は高くないかもしれませんが、こちらが上位10件のおすすめです</string>
+    <string name="were_not_confident_enough_no_suggestions">残念ながら信頼性のあるおすすめを提示できません。</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
-    <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
+    <string name="most_observed_options_matching_filters">フィルタに一致する最も観察されるオプション:</string>
     <!-- Header for a list of suggested taxa -->
-    <string name="top_suggestions">Top suggestions</string>
+    <string name="top_suggestions">人気のおすすめ</string>
     <string name="pretty_sure_rank">この %1$s にあるはずです:</string>
     <string name="what_did_you_see">何を見ましたか？</string>
     <string name="suggest_species">種の提案</string>
@@ -504,12 +507,12 @@
     <string name="nationality">国籍</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">スーパーネーム</string>
-    <string name="point_of_interest">Point of Interest</string>
+    <string name="point_of_interest">地点の情報</string>
     <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">地域</string>
     <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
     <string name="colloquial">通称</string>
-    <string name="zone">Zone</string>
+    <string name="zone">ゾーン</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_state">Historical State</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
@@ -566,24 +569,24 @@
     <string name="start">開始</string>
     <string name="end">End</string>
     <string name="months">Months</string>
-    <string name="choose_months">Choose months(s)</string>
+    <string name="choose_months">月を選択</string>
     <string name="map_area">地図表示エリア</string>
     <string name="global">グローバル</string>
     <!-- As in redo search in the current map area -->
     <string name="search_map_area">地図エリアを検索する</string>
     <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
-    <string name="date_minute">%dm</string>
+    <string name="date_minute">%d分前</string>
     <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
-    <string name="date_hour">%dh</string>
+    <string name="date_hour">%d時間前</string>
     <!-- Compact form of "X days ago", so "3 days ago" would be "3d" -->
-    <string name="date_day">%dd</string>
+    <string name="date_day">%d日前</string>
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
-    <string name="date_week">%dw</string>
+    <string name="date_week">%d週間前</string>
     <string name="new_observation">新しい観察</string>
     <string name="inactive_taxon">アクティブでない分類群</string>
-    <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
+    <string name="no_identifications_found">ここで他の人の観測情報にあなたが提案した同定・識別情報を追跡します。</string>
     <string name="no_species_found">こちらはあなたが観察した種のリストです。\n\n地球上には推定９百万種が存在します。世界に出て、観察しましょう！</string>
-    <string name="make_an_observation">Make an observation</string>
+    <string name="make_an_observation">観察記録を作成</string>
     <string name="no_observations_found_new">Observations are records of your encounters with individual organisms at particular times and locations.</string>
     <string name="discard_comment">Are you sure you want to discard this comment?</string>
     <string name="leave_comment">Leave a comment...</string>
@@ -659,9 +662,9 @@
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_budding">出芽</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_flower_budding">Flower Budding</string>
+    <string name="annotation_value_flower_budding">花芽（つぼみ）</string>
     <!-- Observation presents no evidence of flowering phenology -->
-    <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
+    <string name="annotation_value_no_evidence_of_flowering">開花の証拠はありません</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">成体</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -687,13 +690,13 @@
     <string name="annotation_value_cannot_be_determined">判断できません</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">登録済み</string>
-    <string name="nearby_projects_all_caps">NEARBY</string>
-    <string name="featured_projects_all_caps">FEATURED</string>
+    <string name="nearby_projects_all_caps">付近のプロジェクト</string>
+    <string name="featured_projects_all_caps">注目プロジェクト</string>
     <!-- Text for a button or label that allows someone to join a project -->
     <string name="join_all_caps">参加</string>
-    <string name="my_guides_all_caps">YOURS</string>
-    <string name="nearby_guides_all_caps">NEARBY</string>
-    <string name="all_guides_all_caps">ALL</string>
+    <string name="my_guides_all_caps">あなたのガイド</string>
+    <string name="nearby_guides_all_caps">付近のガイド</string>
+    <string name="all_guides_all_caps">全ガイド</string>
     <string name="description_all_caps">DESCRIPTION</string>
     <string name="quantity_all_caps">QTY</string>
     <plurals name="observation_count_all_caps">
@@ -746,6 +749,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Mark all as viewed</string>
     <string name="content_hidden">Content Hidden</string>
     <string name="show_hidden_content">Show Hidden Content</string>
@@ -967,7 +973,7 @@
     <string name="password_too_short">Password must be at least six characters long</string>
     <string name="switch_to_grid_view">Switch to grid view</string>
     <string name="switch_to_list_view">Switch to list view</string>
-    <string name="remove_project_filter">Remove project filter</string>
+    <string name="remove_project_filter">プロジェクトフィルターを削除</string>
     <string name="remove_observer_filter">Remove observer filter</string>
     <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
     <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
@@ -1087,6 +1093,7 @@
     <string name="default_observation_license">Default Observation License</string>
     <string name="default_photo_license">Default Photo License</string>
     <string name="default_sound_license">Default Sound License</string>
+    <string name="change_existing_licenses">Change Existing Licenses</string>
     <string name="change_licenses_for_existing_observations">Change licenses for existing observations, photos and sounds</string>
     <string name="change_licenses_for_all_existing_observations">Change licenses for all existing observations</string>
     <string name="change_licenses_for_all_existing_photos">Change licenses for all existing photos</string>
@@ -1105,6 +1112,7 @@
     <string name="existing_sound_licenses_have_been_updated">All existing sound licenses have been changed to %1$s.</string>
     <string name="default_licenses_description"><![CDATA[Licensing your content gives anyone the legal right to use it without asking your permission if they abide by the terms of the license. In addition, iNat includes your Creative Commons-licensed content in regularly-updated archives produced for select partner organizations interested in our data. For example, we include No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC) records in the archive we generate for the <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, an international, inter-governmental organization that compiles and distributes biodiversity information from around the world.]]></string>
     <string name="photo_license">Photo License</string>
+    <string name="sound_license">Sound License</string>
     <string name="edit_photo_license">Edit Photo License</string>
     <string name="observation_license">Observation License</string>
     <string name="edit_observation_license">Edit Observation License</string>
@@ -1126,9 +1134,13 @@
     <string name="license_description_cc_by_nc_sa">This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms.</string>
     <string name="license_description_cc_by_nc_nd">This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can\'t change them in any way or use them commercially.</string>
     <string name="license_description_cc_by_nd">This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.</string>
-    <string name="license_description_cc_by_sa">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
+    <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
     <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
     <string name="invalid_photo">Photo format not supported</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">Suggestions based on observations and identifications provided by the iNaturalist community, including %1$s, %2$s, %3$s, and many others.</string>
+    <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">Default Observation Action</string>
+    <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">オプションを表示</string>
 </resources>

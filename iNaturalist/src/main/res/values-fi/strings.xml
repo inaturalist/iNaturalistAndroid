@@ -201,6 +201,9 @@
     <string name="alert_message_use_inaturalistgr">iNaturalist Greece is a member of the iNaturalist Network in Greece. Local institutions supporting iNaturalist Greece will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg is a member of the iNaturalist Network in Luxembourg. Local institutions supporting iNaturalist Luxembourg will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom is a member of the iNaturalist Network in United Kingdom. Local institutions supporting iNaturalist United Kingdom will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica on iNaturalist-verkoston jäsen Costa Ricassa. Naturalistan kanssa yhteistyössä olevat organisaatiot näkevät sähköpostiosoitteesi sekä kaikkien havaintojesi tarkat koordinaatit, myös karkeistettujen ja yksityisten havaintojen. Ole hyvä äläkä vaihda kotiverkostoasi vain testataksesi tätä, jos sinulla on yli 1000 havaintoa. Haluatko vaihtaa kotiverkostoasi?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala on iNaturalist-verkoston jäsen Guatemalassa. iNaruralist Guatemalan kanssa yhteistyössä olevat organisaatiot näkevät sähköpostiosoitteesi sekä kaikkien havaintojesi tarkat koordinaatit, myös karkeistettujen ja yksityisten havaintojen. Ole hyvä äläkä vaihda kotiverkostoasi vain testataksesi tätä, jos sinulla on yli 1000 havaintoa. Haluatko vaihtaa kotiverkostoasi?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sweden on iNaturalist-verkoston jäsen Ruotsissa. iNaruralist Swedenin kanssa yhteistyössä olevat organisaatiot näkevät sähköpostiosoitteesi sekä kaikkien havaintojesi tarkat koordinaatit, myös karkeistettujen ja yksityisten havaintojen. Ole hyvä äläkä vaihda kotiverkostoasi vain testataksesi tätä, jos sinulla on yli 1000 havaintoa. Haluatko vaihtaa kotiverkostoasi?</string>
     <string name="editor">Editori</string>
     <string name="license">Lisenssi</string>
     <string name="download_for_offline_use">Lataa offline-käyttöön</string>
@@ -761,6 +764,9 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Merkitse kaikki katsotuksi</string>
     <string name="content_hidden">Sisältö piilotettu</string>
     <string name="show_hidden_content">Näytä piilotettu sisältö</string>
@@ -1103,6 +1109,7 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="default_observation_license">Oletuslisenssi havainnoille</string>
     <string name="default_photo_license">Oletuslisenssi kuville</string>
     <string name="default_sound_license">Oletuslisenssi äänille</string>
+    <string name="change_existing_licenses">Vaihda olemassa olevat lisenssit</string>
     <string name="change_licenses_for_existing_observations">Vaihda tallennettujen havaintojen, valokuvien ja äänien lisenssi</string>
     <string name="change_licenses_for_all_existing_observations">Vaihda kaikkien tallennettujen havaintojen lisenssi</string>
     <string name="change_licenses_for_all_existing_photos">Vaihda kaikkien valokuvien lisenssi</string>
@@ -1123,6 +1130,7 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
 (CC BY-NC) -lisensoidut tiedot arkistoon, jonka toimitamme <a href="http://www.gbif.org/">Global Biodiversity Information
 Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen ja jakaa tietoa luonnon monimuotoisuudesta ympäri maailmaa.]]></string>
     <string name="photo_license">Kuvien lisensointi</string>
+    <string name="sound_license">Äänilisenssi</string>
     <string name="edit_photo_license">Muuta valokuvien lisenssiä</string>
     <string name="observation_license">Havaintojen lisenssi</string>
     <string name="edit_observation_license">Muuta havaintojen lisenssiä</string>
@@ -1144,9 +1152,13 @@ Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen 
     <string name="license_description_cc_by_nc_sa">Tämä lisenssi antaa muille oikeuden muokata ja käyttää pohjana teostasi ei-kaupallisessa tarkoituksessa, kunhan nimesi mainitaan alkuperäisen teoksen tekijänä ja uusi teos lisensoidaan tällä samalla lisenssillä.</string>
     <string name="license_description_cc_by_nc_nd">Tämä lisenssi on kuudesta tärkeimmästä lisenssistä rajoittavin. Se antaa muille oikeuden tallentaa ja jakaa teostasi sillä edellytyksellä, että nimesi mainitaan jakamisen yhteydessä. Muilla ei ole oikeutta muokata teostasi millään tavalla eikä käyttää sitä kaupallisiin tarkoituksiin.</string>
     <string name="license_description_cc_by_nd">Tämä lisenssi sallii kaupallisen ja epäkaupallisen uudelleenjakelun kunhan se esitetään muokkaamatta ja kokonaisena sekä sinut tekijänä mainittuna.</string>
-    <string name="license_description_cc_by_sa">Tämä lisenssi antaa muille oikeuden muokata ja käyttää pohjana teostasi ei-kaupallisessa tarkoituksessa. Vaikka nimesi on mainittava uuden teoksen esittämisen yhteydessä ja esittämisen on oltava ei-kaupallinen, uutta teosta ei tarvitse lisensoida samoilla ehdoilla kuin alkupeäistä.</string>
+    <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
     <string name="license_description_no_license">Säilytät täydet tekijänoikeudet sisältöösi, lukuun ottamatta käyttöehdoissa määriteltyjä iNaturalistille myönnettyjä oikeuksia.</string>
     <string name="invalid_photo">Kuvaformaattia ei tueta</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">Suggestions based on observations and identifications provided by the iNaturalist community, including %1$s, %2$s, %3$s, and many others.</string>
+    <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">Havainnon oletustoiminto</string>
+    <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">Näytä valinnat</string>
 </resources>

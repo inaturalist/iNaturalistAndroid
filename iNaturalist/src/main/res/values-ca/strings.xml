@@ -201,6 +201,9 @@
     <string name="alert_message_use_inaturalistgr">iNaturalist Grècia és membre de la Xarxa iNaturalist a Grècia. Les institucions locals que donen suport a iNaturalist Grècia tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
     <string name="alert_message_use_inaturalistlu">iNaturalist Luxemburg és membre de la Xarxa iNaturalist a Luxemburg. Les institucions locals que donen suport a iNaturalist Luxemburg tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
     <string name="alert_message_use_inaturalistuk">iNaturalist Regne Unit és membre de la xarxa iNaturalist al Regne Unit. Les institucions locals que donen suport a iNaturalist Regne Unit tindran accés a la teva adreça de correu electrònic i a les coordenades reals de les teves observacions encara que estiguin públicament enfosquides o siguin privades. Per favor, no canviïs de forma experimental la teva afiliació si tens més de 1000 observacions. Vols canviar la teva afiliació?</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica és membre de la Xarxa iNaturalist a Costa RIca. Les institucions locals que donen suport a Naturalista Costa Rica tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala és membre de la Xarxa iNaturalist a Guatemala. Les institucions locals que donen suport a iNaturalist Guatemala tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Suècia és membre de la Xarxa iNaturalist a Suècia. Les institucions locals que donen suport a iNaturalist Suècia tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
     <string name="editor">Editor</string>
     <string name="license">Llicència</string>
     <string name="download_for_offline_use">Descarregar per a ús fora de línia</string>
@@ -751,6 +754,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Grècia: iSea dona suport  iNaturalist Grècia /<a href="https://greece.inaturalist.org">grece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxemburg: Luxembourg National Museum of Natural History (MnhnL) dona suport a iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[Regne Unit: National Biodiversity Network Trust dona suport a iNaturalist Regne Unit (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) dona suport a Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: el Consejo Nacional de Áreas Protegidas (CONAP) dóna suport a iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Suècia: el SLU Swedish Species Information Centre dona suport a iNaturalist Suècia (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Marca tot com a vist</string>
     <string name="content_hidden">Contingut amagat</string>
     <string name="show_hidden_content">Mostra Contingut Amagat</string>
@@ -1093,6 +1099,7 @@
     <string name="default_observation_license">Llicència a les vostres observacions predeterminades:</string>
     <string name="default_photo_license">Llicència a les vostres fotos predeterminades:</string>
     <string name="default_sound_license">Llicències de sons predeterminades</string>
+    <string name="change_existing_licenses">Canvia les Llicències actuals</string>
     <string name="change_licenses_for_existing_observations">Canviar les llicències de les observacions, fotos i sons existents</string>
     <string name="change_licenses_for_all_existing_observations">Canviar les llicències de totes les observacions existents</string>
     <string name="change_licenses_for_all_existing_photos">Canviar les llicències de totes les fotografies existents</string>
@@ -1111,6 +1118,7 @@
     <string name="existing_sound_licenses_have_been_updated">Totes les llicències dels sons actuals han estat canviades a %1$s.</string>
     <string name="default_licenses_description"><![CDATA[Llicenciar els vostres continguts atorga qualsevol altre el dret a utilitzar-los sense demanar permís si atenen a les condicions de la llicència. iNat inclou els vostres continguts amb llicencia Creative Commons en arxius actualitzats periòdicament produïts per determinades organitzacions associades interessades en les nostres dades. Per exemple, incloem registres No Copyright (CC0), Reconeixement (CC BY) i Reconeixement-No Comercial (CC BY-NC) a l\'arxiu que generem pel <a href="https://www.gbif.org/"> Global Biodiversity Information Facility (GBIF) </a>, una organització internacional intergovernamental que recopila i distribueix informació sobre biodiversitat de tot el món.]]></string>
     <string name="photo_license">Llicència de la foto</string>
+    <string name="sound_license">Llicències dels sons</string>
     <string name="edit_photo_license">Edita la llicència de la foto</string>
     <string name="observation_license">Llicència de l\'observació</string>
     <string name="edit_observation_license">Edita la llicència de l\'observació</string>
@@ -1132,9 +1140,13 @@
     <string name="license_description_cc_by_nc_sa">Aquesta llicència permet a altres persones remesclar, modificar i adaptar el vostre treball de manera no comercial, sempre que us ho reconeguin i llicenciïn les seves noves creacions en els mateixos termes.</string>
     <string name="license_description_cc_by_nc_nd">Aquesta llicència és la més restrictiva de les sis llicències principals, només permet als altres descarregar les vostres obres i compartir-les amb altres sempre que us reconeguin l\'autoria, però no les poden canviar ni utilitzar-les comercialment.</string>
     <string name="license_description_cc_by_nd">Aquesta llicència permet la redistribució, comercial i no comercial, sempre que es distribueixi sense canvis i íntegrament, amb els crèdits a vosaltres.</string>
-    <string name="license_description_cc_by_sa">Aquesta llicència permet a altres persones remesclar, modificar i adaptar el vostre treball de forma no comercial i, tot i que les seves noves obres també us han de reconèixer i no ser comercials, no tenen per què llicenciar les seves obres derivades en els mateixos termes.</string>
+    <string name="license_description_cc_by_sa">Aquesta llicència permet a tercers mesclar la teva obra, adaptar-la i basar-se en ella, fins i tot amb finalitats comercials, sempre que facin referencia a la teva autoria i que llicenciïn les seves creacions amb les mateixes condicions. Aquest llicència sovint es comparada amb el \"copyleft\" de les llicències de software lliure i gratuït. Totes les obres que es basin en la teva tindran la mateixa llicència, per això, qualsevol obra derivada també permetrà el seu ús comercial. Aquesta és la llicència que utilitza Viquipèdia, i es recomana per a materials que es podrien beneficiar d\'incorporar contingut de la Viquipèdia i d\'altres projectes amb llicències semblants.</string>
     <string name="license_description_no_license">Manteniu tots els drets sobre el vostre contingut,a més dels drets concedits a iNaturalist en les nostres Condicions de Servei.</string>
     <string name="invalid_photo">Format de fotografia no suportat</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">Suggeriments basats en observacions i identificacions aportades per la comunitat d\'iNaturalist, incloent-hi %1$s, %2$s i %3$s, entre altres.</string>
+    <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">Acció per defecte per a les Observacions</string>
+    <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">Mostrar opcions</string>
 </resources>

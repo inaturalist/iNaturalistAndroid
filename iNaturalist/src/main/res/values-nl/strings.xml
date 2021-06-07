@@ -201,6 +201,9 @@
     <string name="alert_message_use_inaturalistgr">iNaturalist Griekenland is lid van het iNaturalist Network in Griekenland. Lokale instellingen die iNaturalist Griekenland ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel je lidmaatschap als jij meer dan 1000 waarnemingen hebt. Wil jij jouw lidmaatschap wijzigen?</string>
     <string name="alert_message_use_inaturalistlu">iNaturalist Luxemburg is lid van het iNaturalist Network in Luxemburg. Lokale instellingen die iNaturalist Luxemburg ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel jouw lidmaatschap als jij meer dan 1000 waarnemingen hebt. Wil jij jouw lidmaatschap wijzigen?</string>
     <string name="alert_message_use_inaturalistuk">iNaturalist Verenigd Koninkrijk is lid van het iNaturalist Network in het Verenigd Koninkrijk. Lokale instellingen die iNaturalist Verenigd Koninkrijk ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel jouw lidmaatschap als jij meer dan 1000 waarnemingen hebt. Wil jij jouw lidmaatschap wijzigen?</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is lid van het iNaturalist Network in Costa Rica. Lokale instellingen die Naturalista Costa Rica ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstjeblieft niet experimenteel je lidmaatschap als jij meer dan 1000 waarnemingen hebt. Wil jij jouw lidmaatschap wijzigen?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is lid van het iNaturalist Network in Guatemala. Lokale instellingen die iNaturalist Guatemala ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel je lidmaatschap als jij meer dan 1000 waarnemingen hebt. Wil jij jouw lidmaatschap wijzigen?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Zweden is lid van het iNaturalist Network in Zweden. Lokale instellingen die iNaturalist Zweden ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel jouw lidmaatschap als jij meer dan 1000 waarnemingen hebt. Wil jij jouw lidmaatschap wijzigen?</string>
     <string name="editor">Redacteur</string>
     <string name="license">Licentie</string>
     <string name="download_for_offline_use">Downloaden voor offline gebruik</string>
@@ -751,6 +754,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Griekenland: iSea steunt iNaturalist Griekenland(<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxemburg: Luxembourg National Museum of Natural History (MnhnL) steunt iNaturalist Luxemburg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[Verenigd Koninkrijk: National Biodiversity Network Trust steunt iNaturalist Verenigd Koninkrijk (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) steunt Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) steunt iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Zweden: SLU Swedish Species Information Centre steunt iNaturalist Zweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Markeer alle berichten als gelezen</string>
     <string name="content_hidden">Inhoud verborgen</string>
     <string name="show_hidden_content">Toon verborgen inhoud</string>
@@ -1097,6 +1103,7 @@ de <a href="https://www.inaturalist.org/pages/community+guidelines">gemeenschaps
     <string name="default_observation_license">Standaard Waarnemingslicentie</string>
     <string name="default_photo_license">Standaard Fotolicentie</string>
     <string name="default_sound_license">Standaard Opnamelicentie</string>
+    <string name="change_existing_licenses">Bestaande licenties wijzigen</string>
     <string name="change_licenses_for_existing_observations">Wijzig de licenties voor bestaande waarnemingen, foto\'s en geluiden</string>
     <string name="change_licenses_for_all_existing_observations">Wijzig de licenties voor alle bestaande waarnemingen</string>
     <string name="change_licenses_for_all_existing_photos">Wijzig de licenties voor alle bestaande waarnemingen</string>
@@ -1116,6 +1123,7 @@ de <a href="https://www.inaturalist.org/pages/community+guidelines">gemeenschaps
     <string name="default_licenses_description"><![CDATA[Het licentiëren van je inhoud geeft iedereen het wettelijke recht om het te gebruiken
 zonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van de licentie. Daarnaast neemt iNat je Creative Commons gelicentieerde inhoud op in archieven die regelmatig gedeeld worden met geselecteerde partnerorganisaties die daar interesse in hebben. Zo nemen we bijvoorbeeld gegevens met de licenties Geen Auteursrechten (CC0), Naamsvermelding (CC BY) en Naamsvermelding-Niet commercieel op in de archieven die we maken voor de <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>(GBIF), een internationale, intergouvernementele organisatie die biodiversiteitsinformatie van over de hele wereld compileert en distribueert.]]></string>
     <string name="photo_license">Fotolicentie</string>
+    <string name="sound_license">Geluidslicentie</string>
     <string name="edit_photo_license">Fotolicentie bewerken</string>
     <string name="observation_license">Waarnemingslicentie</string>
     <string name="edit_observation_license">Bewerk waarnemingslicentie</string>
@@ -1137,9 +1145,13 @@ zonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van d
     <string name="license_description_cc_by_nc_sa">Met deze licentie kunnen anderen je werk remixen, aanpassen en op je werk voortborduren voor niet-commerciële doeleinden, zolang ze jouw naam vermelden en hun nieuwe creaties onder dezelfde licentievoorwaarden licentiëren.</string>
     <string name="license_description_cc_by_nc_nd">Deze licentie is de meest beperkende van de zes hoofdlicenties en staat anderen alleen toe om je werken te downloaden en ze met anderen te delen zolang ze jouw naam vermelden, maar ze kunnen deze op geen enkele manier wijzigen of commercieel gebruiken.</string>
     <string name="license_description_cc_by_nd">Deze licentie staat verspreiding toe, commercieel en niet-commercieel, zolang het onveranderd en in zijn geheel wordt verspreid, en jouw naam wordt vermeld.</string>
-    <string name="license_description_cc_by_sa">Deze licentie laat anderen remixen, aanpassen en niet-commercieel op je werk bouwen en hoewel hun nieuwe werken je ook moeten erkennen en niet-commercieel zijn, hoeven ze hun afgeleide werken niet onder dezelfde voorwaarden in licentie te geven.</string>
+    <string name="license_description_cc_by_sa">Deze licentie laat anderen remixen, aanpassen en voortbouwen op je werk, zelfs voor commerciële doeleinden zolang ze je erkennen en hun nieuwe creaties onder dezelfde voorwaarden licentiëren. Deze licentie wordt vaak vergeleken met \"copyleft\" gratis en open source softwarelicenties. Alle nieuwe werken gebaseeerd op die van jou hebben dezelfde licentie dus alle afgeleiden staan ook commercieel gebruik toe. Deze licentie wordt gebruikt door Wikipedia en wordt aanbevolen voor materialen die baat zouden hebben bij het opnemen van inhoud uit Wikipedia en vergelijkbare gelicenseerde projecten.</string>
     <string name="license_description_no_license">Je behoudt het volledige auteursrecht op je inhoud los van de rechten die iNaturalist heeft in onze Servicevoorwaarden.</string>
     <string name="invalid_photo">Fotoformaat wordt niet ondersteund</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">Suggesties zijn gebaseerd op waarnemingen en determinaties door de iNaturalist-gemeenschap waaronder %1$s, %2$s, %3$s en vele anderen.</string>
+    <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">Standaard waarneming actie</string>
+    <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">Toon Opties</string>
 </resources>
