@@ -43,6 +43,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
+            android:importantForAccessibility="no"
             android:src="@drawable/ic_account_circle_black_24dp" />
 
         <TextView
@@ -96,6 +97,7 @@
             android:layout_alignParentEnd="true"
             android:paddingTop="15dp"
             android:paddingEnd="15dp"
+            android:contentDescription="@string/share_observation"
             />
 
 
@@ -121,6 +123,7 @@
                 android:id="@+id/id_icon_big"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:importantForAccessibility="no"
                 android:tint="#C3C3C3"
                 android:src="@drawable/iconic_taxon_unknown" />
 
@@ -148,6 +151,7 @@
         android:paddingBottom="10dp">
         <ImageView
             android:id="@+id/id_icon"
+            android:importantForAccessibility="no"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/iconic_taxon_unknown"
@@ -196,6 +200,7 @@
                     android:src="@drawable/ic_error_black_24dp"
                     android:tint="#C32417"
                     android:layout_marginEnd="5dp"
+                    android:importantForAccessibility="no"
                     />
                 <TextView
                     android:text="@string/inactive_taxon"
@@ -216,6 +221,7 @@
             android:layout_height="25dp"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
+            android:importantForAccessibility="no"
             android:src="@drawable/ic_arrow_forward_gray_24dp" />
 
     </RelativeLayout>
@@ -388,6 +394,7 @@
                     android:src="@drawable/ic_star_black_24dp"
                     android:tint="#FFFFFF"
                     android:layout_gravity="center_vertical"
+                    android:importantForAccessibility="no"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -421,6 +428,7 @@
                     android:src="@drawable/ic_star_border_black_24dp"
                     android:tint="#FFFFFF"
                     android:layout_gravity="center_vertical"
+                    android:importantForAccessibility="no"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -581,6 +589,7 @@
                         android:src="@drawable/ic_chat_bubble_black_24dp"
                         android:tint="#FFFFFF"
                         android:layout_gravity="center_vertical"
+                        android:importantForAccessibility="no"
                         />
                     <TextView
                         android:layout_width="wrap_content"
@@ -617,6 +626,7 @@
                         android:src="@drawable/ic_local_offer_black_24dp"
                         android:tint="#FFFFFF"
                         android:layout_gravity="center_vertical"
+                        android:importantForAccessibility="no"
                         />
                     <TextView
                         android:layout_width="wrap_content"
@@ -710,6 +720,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_location_off_white_48dp"
                     android:layout_centerInParent="true"
+                    android:contentDescription="@string/unknown_location"
                     />
             </RelativeLayout>
             <RelativeLayout
@@ -766,6 +777,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:tint="#9A9A9A"
+                    android:importantForAccessibility="no"
                     />
                 <TextView
                     android:id="@+id/location_text"
@@ -819,6 +831,7 @@
                 android:background="@drawable/circular_border_thick_green"
                 android:padding="3dp"
                 android:tint="#8DBA30"
+                android:importantForAccessibility="no"
                 />
 
             <ImageView
@@ -830,6 +843,7 @@
                 android:background="@drawable/circular_border_thick_green"
                 android:padding="3dp"
                 android:tint="#8DBA30"
+                android:importantForAccessibility="no"
                 />
 
             <ImageView
@@ -842,6 +856,7 @@
                 android:background="@drawable/circular_border_thick_green"
                 android:padding="3dp"
                 android:tint="#8DBA30"
+                android:importantForAccessibility="no"
                 />
 
             <View
@@ -877,7 +892,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/casual_grade"
                 android:textColor="#74AC00"
-                android:textSize="14dp"
+                android:textSize="14sp"
                 />
 
             <TextView
@@ -889,7 +904,7 @@
                 android:layout_marginBottom="8dp"
                 android:text="@string/needs_id"
                 android:textColor="#74AC00"
-                android:textSize="14dp"
+                android:textSize="14sp"
                 />
             <TextView
                 android:id="@+id/research_grade_text"
@@ -900,7 +915,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/research_grade"
                 android:textColor="#74AC00"
-                android:textSize="14dp"
+                android:textSize="14sp"
                 />
 
         </RelativeLayout>
@@ -920,6 +935,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:scaleType="fitCenter"
+                android:importantForAccessibility="no"
                 />
 
             <TextView
@@ -1025,6 +1041,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
+                android:importantForAccessibility="no"
                 />
 
             <ImageView
@@ -1035,6 +1052,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="10dp"
                 android:src="@drawable/ic_work_gray_24dp"
+                android:importantForAccessibility="no"
                 />
 
             <TextView
@@ -1171,6 +1189,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
+                android:contentDescription="@string/add_comment"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_send_black_48dp"
                 android:tint="@color/inatapptheme_color" />

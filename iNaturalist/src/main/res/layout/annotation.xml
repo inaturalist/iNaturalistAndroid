@@ -42,6 +42,7 @@
                     android:clickable="true"
                     android:scaleType="centerInside"
                     android:src="@drawable/baseline_arrow_drop_down_black_48"
+                    android:contentDescription="@string/expand_annotation_to_agree_or_disagree"
                     android:tint="#C3C3C3"
                     android:focusable="true" />
 
@@ -79,6 +80,7 @@
                         android:layout_gravity="top"
                         android:layout_marginStart="5dp"
                         android:layout_alignParentEnd="true"
+                        android:contentDescription="@string/delete_attribute_value"
                         android:tint="#C3C3C3"
                         android:src="@drawable/baseline_cancel_black_24" />
 
@@ -117,12 +119,13 @@
                     android:layout_height="wrap_content"
                     android:focusable="true">
 
-                     <ImageView
+                    <ImageView
                         android:id="@+id/agree_prefix"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_marginEnd="5dp"
                         android:layout_gravity="center_vertical"
+                        android:importantForAccessibility="no"
                         android:tint="@color/inatapptheme_color"
                         android:src="@drawable/ic_check_black_24dp" />
 
@@ -131,6 +134,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_gravity="center_vertical"
+                        android:importantForAccessibility="no"
                         android:tint="#C3C3C3"
                         android:src="@drawable/baseline_thumb_up_black_36" />
 
@@ -161,6 +165,7 @@
                         android:layout_height="24dp"
                         android:layout_marginEnd="5dp"
                         android:layout_gravity="center_vertical"
+                        android:importantForAccessibility="no"
                         android:tint="#FF0000"
                         android:src="@drawable/ic_close_black_48dp" />
 
@@ -170,6 +175,7 @@
                         android:layout_height="24dp"
                         android:tint="#C3C3C3"
                         android:layout_gravity="center_vertical"
+                        android:importantForAccessibility="no"
                         android:src="@drawable/baseline_thumb_down_black_36" />
 
                     <TextView

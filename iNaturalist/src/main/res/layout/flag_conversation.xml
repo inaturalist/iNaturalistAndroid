@@ -48,6 +48,7 @@
             android:minLines="5"
             android:maxLines="5"
             android:gravity="top"
+            android:hint="@string/why_are_you_flagging_this_item"
             />
 
     </LinearLayout>

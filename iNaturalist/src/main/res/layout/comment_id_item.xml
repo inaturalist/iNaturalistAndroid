@@ -18,6 +18,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginEnd="10dp"
+            android:importantForAccessibility="no"
             android:src="@drawable/actionbar_back_indicator" />
 
         <LinearLayout
@@ -39,6 +40,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginEnd="10dp"
+                    android:importantForAccessibility="no"
                     android:src="@drawable/actionbar_back_indicator" />
 
                 <Button

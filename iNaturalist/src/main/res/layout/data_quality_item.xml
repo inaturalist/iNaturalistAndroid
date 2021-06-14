@@ -23,6 +23,7 @@
                 android:layout_height="24dp"
                 android:layout_marginRight="10dp"
                 android:scaleType="fitCenter"
+                android:importantForAccessibility="no"
                 android:src="@drawable/actinopterygii_large" />
 
             <TextView
@@ -45,6 +46,7 @@
 
             <ImageView
                 android:id="@+id/agree_prefix"
+                android:contentDescription="@string/agree"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginRight="5dp"
@@ -54,6 +56,7 @@
 
             <ImageView
                 android:id="@+id/agree_icon"
+                android:contentDescription="@string/agree"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center_vertical"
@@ -82,6 +85,7 @@
             android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/disagree_prefix"
+                android:contentDescription="@string/disagree"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginRight="5dp"
@@ -91,6 +95,7 @@
 
             <ImageView
                 android:id="@+id/disagree_icon"
+                android:contentDescription="@string/disagree"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:tint="#C3C3C3"

@@ -17,18 +17,21 @@
             android:layout_height="fill_parent"
             android:src="@drawable/signup_background_1"
             android:scaleType="fitXY"
+            android:importantForAccessibility="no"
             />
         <ImageView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:src="@drawable/signup_background_2"
             android:scaleType="fitXY"
+            android:importantForAccessibility="no"
             />
         <ImageView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:src="@drawable/signup_background_3"
             android:scaleType="fitXY"
+            android:importantForAccessibility="no"
             />
 
     </ViewFlipper>
@@ -45,6 +48,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="5dp"
         android:layout_marginTop="25dp"
+        android:contentDescription="@string/close"
         />
 
 
@@ -53,6 +57,7 @@
         android:layout_height="42dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
+        android:contentDescription="@string/app_title"
         android:src="@drawable/logo_inat_signup" />
 
     <LinearLayout
@@ -123,6 +128,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/facebook_button_icon"
                     android:layout_centerHorizontal="true"
+                    android:importantForAccessibility="no"
                     />
             </RelativeLayout>
 
@@ -172,6 +178,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/gplus_button_icon"
                     android:layout_centerHorizontal="true"
+                    android:importantForAccessibility="no"
                     />
             </RelativeLayout>
 
@@ -221,6 +228,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/email_button_icon"
                     android:layout_centerHorizontal="true"
+                    android:importantForAccessibility="no"
                     />
             </RelativeLayout>
 

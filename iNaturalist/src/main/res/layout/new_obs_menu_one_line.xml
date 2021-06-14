@@ -31,6 +31,7 @@
                     android:layout_height="match_parent"
                     android:src="@drawable/ic_mode_edit_gray_24dp"
                     android:tint="#2c2c2c"
+                    android:importantForAccessibility="no"
                     />
             </LinearLayout>
             <TextView
@@ -66,6 +67,7 @@
                     android:layout_height="match_parent"
                     android:src="@drawable/ic_photo_camera_gray_24dp"
                     android:tint="@color/inatapptheme_color"
+                    android:importantForAccessibility="no"
                     />
             </LinearLayout>
             <TextView
@@ -101,6 +103,7 @@
                     android:layout_height="match_parent"
                     android:src="@drawable/ic_image_gray_24dp"
                     android:tint="#2c2c2c"
+                    android:importantForAccessibility="no"
                     />
             </LinearLayout>
             <TextView
@@ -136,6 +139,7 @@
                     android:layout_height="match_parent"
                     android:src="@drawable/microphone_white"
                     android:tint="#000000"
+                    android:importantForAccessibility="no"
                     />
             </LinearLayout>
             <TextView
@@ -171,6 +175,7 @@
                     android:layout_height="match_parent"
                     android:src="@drawable/sound_menu"
                     android:tint="#2c2c2c"
+                    android:importantForAccessibility="no"
                     />
             </LinearLayout>
             <TextView

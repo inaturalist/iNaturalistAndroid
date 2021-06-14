@@ -23,7 +23,8 @@
                  android:scaleType="centerInside"
                  android:id="@+id/take_photo"
                  android:background="@drawable/actionbar_btn"
-                 android:layout_alignParentEnd="true"
+            	 android:contentDescription="@string/take_picture"
+			     android:layout_alignParentEnd="true"
 		         android:layout_centerVertical="true" />
     
 

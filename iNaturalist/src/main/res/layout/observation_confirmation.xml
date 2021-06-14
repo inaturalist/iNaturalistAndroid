@@ -2,7 +2,6 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ScrollView
@@ -51,6 +50,7 @@
                         android:src="@drawable/ic_add_a_photo_black_24dp"
                         android:layout_centerInParent="true"
                         android:alpha="0.6"
+                        android:contentDescription="@string/upload_photo"
                         />
                 </RelativeLayout>
 
@@ -108,6 +108,7 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="18dp"
                     android:tint="@color/inatapptheme_color"
+                    android:importantForAccessibility="no"
                     />
 
                 <TextView
@@ -162,6 +163,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:alpha="0.6"
+                    android:importantForAccessibility="no"
                     />
 
                 <ImageView
@@ -174,6 +176,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:tint="#717171"
+                    android:contentDescription="@string/clear_species_guess"
                     />
 
                 <LinearLayout
@@ -242,6 +245,7 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="18dp"
                     android:tint="@color/inatapptheme_color"
+                    android:importantForAccessibility="no"
                     />
 
                 <TextView
@@ -302,6 +306,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:tint="#686868"
+                    android:importantForAccessibility="no"
                     />
 
 
@@ -348,6 +353,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:tint="#686868"
+                    android:contentDescription="@string/date_observed"
                     />
 
                 <TextView
@@ -416,6 +422,7 @@
                         android:layout_height="32dp"
                         android:src="@drawable/ic_location_on_black_24dp"
                         android:tint="#686868"
+                        android:contentDescription="@string/location"
                         />
 
                     <ProgressBar
@@ -576,6 +583,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:tint="#686868"
+                    android:importantForAccessibility="no"
                     />
 
                 <RelativeLayout
@@ -635,6 +643,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:tint="#686868"
+                    android:importantForAccessibility="no"
                     />
 
 
@@ -668,6 +677,7 @@
                         android:background="#74ac00"
                         android:tint="#ffffff"
                         android:visibility="gone"
+                        android:importantForAccessibility="no"
                         />
                     <ImageView
                         android:id="@+id/is_captive_off_icon"
@@ -675,6 +685,7 @@
                         android:layout_height="fill_parent"
                         android:src="@drawable/ic_check_box_white_24dp"
                         android:background="@drawable/border"
+                        android:importantForAccessibility="no"
                         />
                 </RelativeLayout>
 
@@ -708,6 +719,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:tint="#686868"
+                    android:contentDescription="@string/projects"
                     />
 
                 <TextView
@@ -774,6 +786,7 @@
                 android:src="@drawable/baseline_delete_24"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
+                android:contentDescription="@string/delete_observation"
                 />
             <ImageView
                 android:id="@+id/record_sound"
@@ -783,6 +796,7 @@
                 android:tint="#6d6d6d"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                android:contentDescription="@string/record_sound"
                 />
             <ImageView
                 android:id="@+id/take_photo_bottom"
@@ -792,17 +806,16 @@
                 android:layout_toLeftOf="@id/record_sound"
                 android:layout_marginRight="20dp"
                 android:layout_centerVertical="true"
+                android:contentDescription="@string/take_picture"
                 />
         </RelativeLayout>
     </com.google.android.material.bottomappbar.BottomAppBar>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/save_observation"
+        android:contentDescription="@string/save_observation"
         android:layout_width="wrap_content"
         android:src="@drawable/baseline_done_white_48"
-        fab:fab_colorNormal="@color/inatapptheme_color"
-        fab:fab_colorPressed="@color/inatapptheme_color_highlighted"
-        fab:fab_colorRipple="@color/inatapptheme_color_highlighted"
         android:backgroundTint="@color/inatapptheme_color"
         android:layout_height="wrap_content"
         app:layout_anchor="@id/bottom_bar" />

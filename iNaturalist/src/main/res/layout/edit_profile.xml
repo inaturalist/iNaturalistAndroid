@@ -28,6 +28,7 @@
             android:layout_centerInParent="true"
             android:scaleType="centerCrop"
             android:background="#D8D8D8"
+            android:contentDescription="@string/change_user_profile_photo"
             />
 
         <ImageView
@@ -39,6 +40,7 @@
             android:background="#aa000000"
             android:layout_alignBottom="@id/user_pic"
             android:layout_alignRight="@id/user_pic"
+            android:contentDescription="@string/change_user_profile_photo"
             />
 
     </RelativeLayout>
@@ -71,6 +73,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:alpha="0.6"
+            android:importantForAccessibility="no"
             />
         
         <EditText
@@ -115,6 +118,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:alpha="0.6"
+            android:importantForAccessibility="no"
             />
 
         <EditText
@@ -159,6 +163,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:alpha="0.6"
+            android:importantForAccessibility="no"
             />
 
         <EditText
@@ -204,6 +209,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:alpha="0.6"
+            android:importantForAccessibility="no"
             />
 
         <EditText
@@ -247,6 +253,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:tint="#686868"
+            android:importantForAccessibility="no"
             />
 
 

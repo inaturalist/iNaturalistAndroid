@@ -23,6 +23,7 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="36dp"
+        android:importantForAccessibility="no"
         android:src="@drawable/usericon" />
 
     <TextView

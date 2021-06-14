@@ -19,6 +19,7 @@
             android:layout_width="27dp"
             android:layout_height="27dp"
             android:scaleType="fitCenter"
+            android:importantForAccessibility="no"
             android:src="@drawable/ic_account_circle_black_24dp" />
 
         <TextView
@@ -44,6 +45,7 @@
         android:background="@drawable/circular_gray_background"
         android:padding="4dp"
         android:tint="#6F6F6F"
+        android:contentDescription="@string/open_menu_for_more_options"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         />
@@ -63,6 +65,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@drawable/eye_slash"
+            android:importantForAccessibility="no"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -88,6 +91,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginRight="10dp"
+            android:importantForAccessibility="no"
             android:src="@drawable/iconic_taxon_unknown" />
 
         <LinearLayout
@@ -128,6 +132,7 @@
                     android:src="@drawable/ic_error_black_24dp"
                     android:tint="#C32417"
                     android:layout_marginRight="5dp"
+                    android:importantForAccessibility="no"
                     />
                 <TextView
                     android:text="@string/inactive_taxon"
@@ -207,6 +212,7 @@
                     android:src="@drawable/ic_done_black_24dp"
                     android:tint="#FFFFFF"
                     android:background="@drawable/circular_green_background"
+                    android:importantForAccessibility="no"
                     />
                 <TextView
                     android:id="@+id/id_agree_text"

@@ -15,6 +15,7 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="9dp"
+        android:importantForAccessibility="no"
         android:src="@drawable/actionbar_back_indicator" />
 
     <LinearLayout

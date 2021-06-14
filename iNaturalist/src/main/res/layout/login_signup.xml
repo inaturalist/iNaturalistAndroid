@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 
@@ -9,6 +10,7 @@
         android:layout_height="fill_parent"
         android:src="@drawable/signup_background_3_blurred"
         android:scaleType="fitXY"
+        android:importantForAccessibility="no"
         />
 
     <RelativeLayout
@@ -35,6 +37,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginTop="25dp"
+            android:contentDescription="@string/go_back"
             />
     </RelativeLayout>
 
@@ -75,6 +78,7 @@
                 android:id="@+id/email_icon"
                 android:focusable="true"
                 android:clickable="true"
+                android:importantForAccessibility="no"
                 />
 
             <EditText
@@ -112,6 +116,7 @@
                 android:id="@+id/password_icon"
                 android:focusable="true"
                 android:clickable="true"
+                android:importantForAccessibility="no"
                 />
 
             <EditText
@@ -162,6 +167,7 @@
                 android:id="@+id/username_icon"
                 android:focusable="true"
                 android:clickable="true"
+                android:importantForAccessibility="no"
                 />
 
             <EditText
@@ -200,13 +206,14 @@
                     android:id="@+id/checkbox"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/ic_check_box_white_24dp"
+                    android:importantForAccessibility="no"
                     />
                 <TextView
                     android:id="@+id/checkbox_description"
                     android:layout_gravity="center_vertical"
                     android:text="@string/use_my_license"
                     android:textColor="#aaffffff"
-                    android:textSize="13dp"
+                    android:textSize="13sp"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -223,13 +230,14 @@
                     android:id="@+id/checkbox2"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/ic_check_box_outline_blank_white_24dp"
+                    android:importantForAccessibility="no"
                     />
                 <TextView
                     android:id="@+id/checkbox_description2"
                     android:layout_gravity="center_vertical"
                     android:text="@string/i_consent_process_personal_info"
                     android:textColor="#aaffffff"
-                    android:textSize="13dp"
+                    android:textSize="13sp"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -246,6 +254,7 @@
                     android:id="@+id/checkbox3"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/ic_check_box_outline_blank_white_24dp"
+                    android:importantForAccessibility="no"
                     />
                 <TextView
                     android:clickable="true"
@@ -253,7 +262,7 @@
                     android:layout_gravity="center_vertical"
                     android:text="@string/i_agree_to_tos_and_privacy"
                     android:textColor="#aaffffff"
-                    android:textSize="13dp"
+                    android:textSize="13sp"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -330,6 +339,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/facebook_button_icon"
                 android:layout_marginStart="3dp"
+                android:importantForAccessibility="no"
                 />
 
             <View
@@ -372,6 +382,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/gplus_button_icon"
                 android:layout_marginStart="3dp"
+                android:importantForAccessibility="no"
                 />
 
             <View
@@ -405,7 +416,7 @@
         android:paddingBottom="17dp"
         android:lines="2"
         android:textColor="#aaffffff"
-        android:textSize="13dp"
+        android:textSize="13sp"
         android:layout_width="fill_parent"
         android:layout_alignParentBottom="true"
         android:layout_height="wrap_content" />
@@ -413,6 +424,8 @@
 
     <EditText
         android:id="@+id/hide_focus"
+        tools:ignore="LabelFor"
+        android:importantForAccessibility="no"
         android:layout_width="0dp"
         android:layout_height="0dp" />
 

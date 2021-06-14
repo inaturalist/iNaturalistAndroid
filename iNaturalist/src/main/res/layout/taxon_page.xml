@@ -28,6 +28,7 @@
                     android:layout_width="85dp"
                     android:layout_height="85dp"
                     android:src="@drawable/iconic_taxon_arachnida"
+                    android:importantForAccessibility="no"
                     android:tint="#8C8C8C" />
 
                 <TextView
@@ -113,6 +114,7 @@
                     android:layout_height="24dp"
                     android:src="@drawable/ic_compare"
                     android:tint="#74ac00"
+                    android:importantForAccessibility="no"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -141,6 +143,7 @@
                     android:layout_height="24dp"
                     android:src="@drawable/ic_check_circle_black_24dp"
                     android:tint="#ffffff"
+                    android:importantForAccessibility="no"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -200,6 +203,7 @@
                     android:src="@drawable/ic_error_black_24dp"
                     android:tint="#C32417"
                     android:layout_marginRight="5dp"
+                    android:importantForAccessibility="no"
                     />
                 <TextView
                     android:text="@string/inactive_taxon"
@@ -381,6 +385,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginRight="17dp"
+                    android:importantForAccessibility="no"
                     />
 
             </RelativeLayout>
@@ -408,6 +413,7 @@
                     android:layout_height="24dp"
                     android:src="@drawable/ic_explore_black_24dp"
                     android:tint="#75AA1F"
+                    android:importantForAccessibility="no"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -441,6 +447,7 @@
                     android:layout_height="24dp"
                     android:src="@drawable/ic_open_in_browser_black_24dp"
                     android:tint="#75AA1F"
+                    android:importantForAccessibility="no"
                     />
                 <TextView
                     android:layout_width="wrap_content"
