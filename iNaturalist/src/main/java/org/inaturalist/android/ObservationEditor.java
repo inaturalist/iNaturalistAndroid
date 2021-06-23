@@ -4425,6 +4425,8 @@ public class ObservationEditor extends AppCompatActivity {
 
     
     private void refreshProjectFields() {
+        if ((mObservation == null) || (mObservation.id == null && mObservation._id == null)) return;
+
         ProjectFieldViewer.getProjectFields(this, mProjectIds, (mObservation.id == null ? mObservation._id : mObservation.id), new ProjectFieldViewer.ProjectFieldsResults() {
             @Override
             public void onProjectFieldsResults(ArrayList projectFields, HashMap<Integer, ProjectFieldValue> projectValues) {
