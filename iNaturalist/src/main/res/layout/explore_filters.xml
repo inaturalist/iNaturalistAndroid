@@ -127,8 +127,11 @@
 
                 <ImageView
                     android:id="@+id/clear_project"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:paddingLeft="24dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
                     android:src="@drawable/ic_clear_white_48dp"
                     android:tint="#61000000"
                     android:layout_centerVertical="true"
@@ -178,8 +181,11 @@
 
                 <ImageView
                     android:id="@+id/clear_user"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:paddingLeft="24dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
                     android:src="@drawable/ic_clear_white_48dp"
                     android:tint="#61000000"
                     android:layout_centerVertical="true"
@@ -228,6 +234,7 @@
                 />
 
             <RelativeLayout
+                android:id="@+id/research_grade"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
@@ -257,6 +264,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/needs_id"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
@@ -286,6 +294,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/casual_grade"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
@@ -333,6 +342,7 @@
 
 
             <RelativeLayout
+                android:id="@+id/has_photos"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
@@ -361,6 +371,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/has_sounds"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"

@@ -28,6 +28,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -87,10 +88,15 @@ public class ExploreFiltersActivity extends AppCompatActivity {
     private TextView mUserName;
     private ImageView mClearUser;
     private View mResearchGradeCheckbox;
+    private View mResearchGradeContainer;
     private View mNeedsIdCheckbox;
+    private View mNeedsIdContainer;
     private View mCasualGradeCheckbox;
+    private View mCasualGradeContainer;
     private View mHasPhotosCheckbox;
+    private View mHasPhotos;
     private View mHasSoundsCheckbox;
+    private View mHasSounds;
     private RadioButton mOptionDateAny;
     private RadioButton mOptionDateExact;
     private Spinner mDateExact;
@@ -184,10 +190,15 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         mUserName = (TextView) findViewById(R.id.user_name);
         mClearUser = (ImageView) findViewById(R.id.clear_user);
         mResearchGradeCheckbox = (View) findViewById(R.id.research_grade_checkbox);
+        mResearchGradeContainer = (View) findViewById(R.id.research_grade);
         mNeedsIdCheckbox = (View) findViewById(R.id.needs_id_checkbox);
+        mNeedsIdContainer = (View) findViewById(R.id.needs_id);
         mCasualGradeCheckbox = (View) findViewById(R.id.casual_grade_checkbox);
+        mCasualGradeContainer = (View) findViewById(R.id.casual_grade);
         mHasPhotosCheckbox = (View) findViewById(R.id.has_photos_checkbox);
+        mHasPhotos = (View) findViewById(R.id.has_photos);
         mHasSoundsCheckbox = (View) findViewById(R.id.has_sounds_checkbox);
+        mHasSounds = (View) findViewById(R.id.has_sounds);
         mOptionDateAny = (RadioButton) findViewById(R.id.option_date_any);
         mOptionDateExact = (RadioButton) findViewById(R.id.option_date_exact);
         mOptionDateMinMax = (RadioButton) findViewById(R.id.option_date_min_max);
@@ -335,18 +346,22 @@ public class ExploreFiltersActivity extends AppCompatActivity {
                 if (mSearchFilters == null) return;
 
                 String qualityGrade;
+                View checkbox;
 
-                if (view == mResearchGradeCheckbox) {
+                if (view == mResearchGradeContainer) {
                     qualityGrade = ExploreSearchFilters.QUALITY_GRADE_RESEARCH;
-                } else if (view == mNeedsIdCheckbox) {
+                    checkbox = mResearchGradeCheckbox;
+                } else if (view == mNeedsIdContainer) {
                     qualityGrade = ExploreSearchFilters.QUALITY_GRADE_NEEDS_ID;
+                    checkbox = mNeedsIdCheckbox;
                 } else {
                     qualityGrade = ExploreSearchFilters.QUALITY_GRADE_CASUAL;
+                    checkbox = mCasualGradeCheckbox;
                 }
 
-                view.setSelected(!view.isSelected());
+                checkbox.setSelected(!checkbox.isSelected());
 
-                if (view.isSelected()) {
+                if (checkbox.isSelected()) {
                     mSearchFilters.qualityGrade.add(qualityGrade);
                 } else {
                     mSearchFilters.qualityGrade.remove(qualityGrade);
@@ -356,30 +371,30 @@ public class ExploreFiltersActivity extends AppCompatActivity {
             }
         };
 
-        mResearchGradeCheckbox.setOnClickListener(onDataQualityCheckbox);
-        mNeedsIdCheckbox.setOnClickListener(onDataQualityCheckbox);
-        mCasualGradeCheckbox.setOnClickListener(onDataQualityCheckbox);
+        mResearchGradeContainer.setOnClickListener(onDataQualityCheckbox);
+        mNeedsIdContainer.setOnClickListener(onDataQualityCheckbox);
+        mCasualGradeContainer.setOnClickListener(onDataQualityCheckbox);
 
-        mHasPhotosCheckbox.setOnClickListener(new View.OnClickListener() {
+        mHasPhotos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mSearchFilters == null) return;
 
-                view.setSelected(!view.isSelected());
+                mHasPhotosCheckbox.setSelected(!mHasPhotosCheckbox.isSelected());
 
-                mSearchFilters.hasPhotos = view.isSelected();
+                mSearchFilters.hasPhotos = mHasPhotosCheckbox.isSelected();
                 refreshViewState();
             }
         });
 
-        mHasSoundsCheckbox.setOnClickListener(new View.OnClickListener() {
+        mHasSounds.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mSearchFilters == null) return;
 
-                view.setSelected(!view.isSelected());
+                mHasSoundsCheckbox.setSelected(!mHasSoundsCheckbox.isSelected());
 
-                mSearchFilters.hasSounds = view.isSelected();
+                mSearchFilters.hasSounds = mHasSoundsCheckbox.isSelected();
                 refreshViewState();
             }
         });

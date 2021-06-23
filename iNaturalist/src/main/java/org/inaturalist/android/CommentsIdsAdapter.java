@@ -174,7 +174,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				userPic.setAlpha(100);
             }
 
-			final ImageView moreMenu = (ImageView) view.findViewById(R.id.more_menu);
+			final View moreMenu = view.findViewById(R.id.more_menu);
 			final boolean isComment = item.getString("type").equals("comment");
 			final View loading = view.findViewById(R.id.loading);
 

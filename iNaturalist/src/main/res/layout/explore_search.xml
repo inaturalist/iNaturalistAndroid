@@ -63,8 +63,11 @@
 
                 <ImageView
                     android:id="@+id/clear_taxon"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:paddingLeft="24dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
                     android:src="@drawable/ic_clear_white_48dp"
                     android:tint="#61000000"
                     android:contentDescription="@string/clear_text"
@@ -113,8 +116,11 @@
 
                 <ImageView
                     android:id="@+id/clear_location"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:paddingLeft="24dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
                     android:contentDescription="@string/clear_text"
                     android:src="@drawable/ic_clear_white_48dp"
                     android:tint="#61000000"
