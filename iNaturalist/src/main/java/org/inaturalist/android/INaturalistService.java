@@ -4165,7 +4165,7 @@ public class INaturalistService extends IntentService {
                     JSONObject json = response.getJSONObject(0);
                     BetterJSONObject j = new BetterJSONObject(json);
                     ObservationPhoto jsonObservationPhoto = new ObservationPhoto(j, op);
-                    Logger.tag(TAG).debug("postPhotos after put: " + j);
+                    Logger.tag(TAG).debug("postPhotos after put: " + j.getJSONObject());
                     Logger.tag(TAG).debug("postPhotos after put 2: " + jsonObservationPhoto);
                     op.merge(jsonObservationPhoto);
                     Logger.tag(TAG).debug("postPhotos after put 3 - merge: " + op);
