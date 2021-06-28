@@ -20,7 +20,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/user_pic"
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -40,7 +40,7 @@
             android:background="#aa000000"
             android:layout_alignBottom="@id/user_pic"
             android:layout_alignRight="@id/user_pic"
-            android:contentDescription="@string/change_user_profile_photo"
+            android:importantForAccessibility="no"
             />
 
     </RelativeLayout>
@@ -73,7 +73,8 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:alpha="0.6"
-            android:importantForAccessibility="no"
+            android:labelFor="@id/user_name"
+            android:contentDescription="@string/username"
             />
         
         <EditText
@@ -118,7 +119,8 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:alpha="0.6"
-            android:importantForAccessibility="no"
+            android:labelFor="@id/full_name"
+            android:contentDescription="@string/name"
             />
 
         <EditText
@@ -163,7 +165,8 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:alpha="0.6"
-            android:importantForAccessibility="no"
+            android:labelFor="@id/email"
+            android:contentDescription="@string/email_address"
             />
 
         <EditText
@@ -209,7 +212,8 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:alpha="0.6"
-            android:importantForAccessibility="no"
+            android:labelFor="@id/password"
+            android:contentDescription="@string/change_password"
             />
 
         <EditText
@@ -253,7 +257,8 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:tint="#686868"
-            android:importantForAccessibility="no"
+            android:labelFor="@id/bio"
+            android:contentDescription="@string/tell_us_about_yourself"
             />
 
 

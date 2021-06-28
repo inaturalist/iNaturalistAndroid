@@ -200,18 +200,18 @@
                 android:layout_width="fill_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_height="40dp">
-                <ImageView
+                <CheckBox
                     android:layout_width="45dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/checkbox"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_check_box_white_24dp"
-                    android:importantForAccessibility="no"
+                    android:button="@drawable/custom_checkbox_white"
                     />
                 <TextView
                     android:id="@+id/checkbox_description"
                     android:layout_gravity="center_vertical"
                     android:text="@string/use_my_license"
+                    android:labelFor="@id/checkbox"
                     android:textColor="#aaffffff"
                     android:textSize="13sp"
                     android:layout_width="fill_parent"
@@ -224,18 +224,18 @@
                 android:layout_width="fill_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_height="wrap_content">
-                <ImageView
+                <CheckBox
                     android:layout_width="45dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/checkbox2"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_check_box_outline_blank_white_24dp"
-                    android:importantForAccessibility="no"
+                    android:button="@drawable/custom_checkbox_white"
                     />
                 <TextView
                     android:id="@+id/checkbox_description2"
                     android:layout_gravity="center_vertical"
                     android:text="@string/i_consent_process_personal_info"
+                    android:labelFor="@id/checkbox2"
                     android:textColor="#aaffffff"
                     android:textSize="13sp"
                     android:layout_width="fill_parent"
@@ -248,19 +248,19 @@
                 android:layout_width="fill_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_height="wrap_content">
-                <ImageView
+                <CheckBox
                     android:layout_width="45dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/checkbox3"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_check_box_outline_blank_white_24dp"
-                    android:importantForAccessibility="no"
+                    android:button="@drawable/custom_checkbox_white"
                     />
                 <TextView
                     android:clickable="true"
                     android:id="@+id/checkbox_description3"
                     android:layout_gravity="center_vertical"
                     android:text="@string/i_agree_to_tos_and_privacy"
+                    android:labelFor="@id/checkbox3"
                     android:textColor="#aaffffff"
                     android:textSize="13sp"
                     android:layout_width="fill_parent"

@@ -19,21 +19,17 @@
             android:layout_gravity="center"
             android:layout_marginRight="12dp"
             android:layout_height="wrap_content">
-            <LinearLayout
+            <ImageButton
                 android:id="@+id/no_media"
                 android:clickable="true"
                 android:layout_width="69dp"
                 android:layout_height="69dp"
                 android:layout_gravity="center"
-                android:background="@drawable/circular_bottom_menu_icon">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_mode_edit_gray_24dp"
-                    android:tint="#2c2c2c"
-                    android:importantForAccessibility="no"
-                    />
-            </LinearLayout>
+                android:src="@drawable/ic_mode_edit_gray_24dp"
+                android:contentDescription="@string/no_photo"
+                android:tint="#2c2c2c"
+                android:background="@drawable/circular_bottom_menu_icon"
+                />
             <TextView
                 android:ellipsize="end"
                 android:textSize="14sp"
@@ -55,21 +51,16 @@
             android:orientation="vertical"
             android:layout_gravity="center"
             android:layout_height="wrap_content">
-            <LinearLayout
+            <ImageButton
                 android:clickable="true"
                 android:id="@+id/take_photo"
                 android:layout_width="69dp"
                 android:layout_height="69dp"
                 android:layout_gravity="center"
-                android:background="@drawable/circular_bottom_menu_icon">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_photo_camera_gray_24dp"
-                    android:tint="@color/inatapptheme_color"
-                    android:importantForAccessibility="no"
-                    />
-            </LinearLayout>
+                android:src="@drawable/ic_photo_camera_gray_24dp"
+                android:tint="@color/inatapptheme_color"
+                android:contentDescription="@string/camera"
+                android:background="@drawable/circular_bottom_menu_icon" />
             <TextView
                 android:ellipsize="end"
                 android:lines="2"
@@ -91,21 +82,16 @@
             android:layout_marginLeft="12dp"
             android:layout_gravity="center"
             android:layout_height="wrap_content">
-            <LinearLayout
+            <ImageButton
                 android:clickable="true"
                 android:id="@+id/import_photo"
                 android:layout_width="69dp"
                 android:layout_height="69dp"
                 android:layout_gravity="center"
-                android:background="@drawable/circular_bottom_menu_icon">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_image_gray_24dp"
-                    android:tint="#2c2c2c"
-                    android:importantForAccessibility="no"
-                    />
-            </LinearLayout>
+                android:src="@drawable/ic_image_gray_24dp"
+                android:tint="#2c2c2c"
+                android:contentDescription="@string/upload_photo"
+                android:background="@drawable/circular_bottom_menu_icon" />
             <TextView
                 android:ellipsize="end"
                 android:lines="2"
@@ -135,21 +121,16 @@
             android:orientation="vertical"
             android:layout_gravity="center"
             android:layout_height="wrap_content">
-            <LinearLayout
+            <ImageButton
                 android:clickable="true"
                 android:id="@+id/record_sound"
                 android:layout_width="69dp"
                 android:layout_height="69dp"
                 android:layout_gravity="center"
-                android:background="@drawable/circular_bottom_menu_icon">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/microphone_white"
-                    android:tint="#000000"
-                    android:importantForAccessibility="no"
-                    />
-            </LinearLayout>
+                android:src="@drawable/baseline_mic_black_36"
+                android:tint="#2c2c2c"
+                android:contentDescription="@string/record_sound"
+                android:background="@drawable/circular_bottom_menu_icon" />
             <TextView
                 android:ellipsize="end"
                 android:lines="2"
@@ -170,21 +151,16 @@
             android:orientation="vertical"
             android:layout_gravity="center"
             android:layout_height="wrap_content">
-            <LinearLayout
+            <ImageButton
                 android:clickable="true"
                 android:id="@+id/choose_sound"
                 android:layout_width="69dp"
                 android:layout_height="69dp"
                 android:layout_gravity="center"
-                android:background="@drawable/circular_bottom_menu_icon">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/sound_menu"
-                    android:tint="#2c2c2c"
-                    android:importantForAccessibility="no"
-                    />
-            </LinearLayout>
+                android:src="@drawable/sound_menu"
+                android:tint="#2c2c2c"
+                android:contentDescription="@string/upload_sound"
+                android:background="@drawable/circular_bottom_menu_icon" />
             <TextView
                 android:ellipsize="end"
                 android:lines="2"

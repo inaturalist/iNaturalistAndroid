@@ -125,7 +125,7 @@
                     android:importantForAccessibility="no"
                     />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/clear_project"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
@@ -137,6 +137,8 @@
                     android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
                     android:contentDescription="@string/remove_project_filter"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
                     />
                 <TextView
                     android:id="@+id/project_name"
@@ -179,7 +181,7 @@
                     android:importantForAccessibility="no"
                     />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/clear_user"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
@@ -191,6 +193,8 @@
                     android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
                     android:contentDescription="@string/remove_observer_filter"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
                     />
                 <TextView
                     android:id="@+id/user_name"

@@ -13,6 +13,7 @@
         android:background="#5D5B5E"
         android:layout_centerVertical="true"
         android:layout_alignParentTop="true"
-        android:importantForAccessibility="no"
+        android:clickable="true"
+        android:contentDescription="@string/play_pause_sound"
         />
 </RelativeLayout>

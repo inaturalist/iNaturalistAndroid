@@ -61,7 +61,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/clear_taxon"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
@@ -73,6 +73,8 @@
                     android:contentDescription="@string/clear_text"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
                     />
                 <EditText
                     android:id="@+id/taxon_edit_text"
@@ -114,7 +116,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/clear_location"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
@@ -126,6 +128,8 @@
                     android:tint="#61000000"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
                     />
                 <EditText
                     android:id="@+id/location_edit_text"

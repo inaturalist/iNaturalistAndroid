@@ -171,6 +171,7 @@
             android:padding="14dp"
             android:src="@drawable/ic_add_white_24dp"
             app:backgroundTint="@color/inatapptheme_color"
+            android:contentDescription="@string/add_observation"
             android:scaleType="fitCenter"
             android:visibility="gone" />
 

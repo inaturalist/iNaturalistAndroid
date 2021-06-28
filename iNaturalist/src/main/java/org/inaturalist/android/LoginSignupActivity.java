@@ -32,6 +32,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -71,9 +73,9 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
     private TextView mCheckboxDescription;
     private TextView mCheckboxDescription2;
     private TextView mCheckboxDescription3;
-    private ImageView mCheckbox;
-    private ImageView mCheckbox2;
-    private ImageView mCheckbox3;
+    private CheckBox mCheckbox;
+    private CheckBox mCheckbox2;
+    private CheckBox mCheckbox3;
     private boolean mUseCCLicense;
     private boolean mUsePersonalInfo;
     private boolean mAgreeTOS;
@@ -324,48 +326,32 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
         mTerms = (TextView) findViewById(R.id.terms);
         HtmlUtils.fromHtml(mTerms, mTerms.getText().toString());
 
-        mCheckbox = (ImageView) findViewById(R.id.checkbox);
-        mCheckbox.setOnClickListener(new View.OnClickListener() {
+        mCheckbox = findViewById(R.id.checkbox);
+        mCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                mUseCCLicense = !mUseCCLicense;
-                if (mUseCCLicense) {
-                    mCheckbox.setImageResource(R.drawable.ic_check_box_white_24dp);
-                } else {
-                    mCheckbox.setImageResource(R.drawable.ic_check_box_outline_blank_white_24dp);
-                }
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mUseCCLicense = isChecked;
             }
         });
 
-        mCheckbox2 = (ImageView) findViewById(R.id.checkbox2);
-        mCheckbox2.setOnClickListener(new View.OnClickListener() {
+        mCheckbox2 = findViewById(R.id.checkbox2);
+        mCheckbox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                mUsePersonalInfo = !mUsePersonalInfo;
-                if (mUsePersonalInfo) {
-                    mCheckbox2.setImageResource(R.drawable.ic_check_box_white_24dp);
-                } else {
-                    mCheckbox2.setImageResource(R.drawable.ic_check_box_outline_blank_white_24dp);
-                }
-
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mUsePersonalInfo = isChecked;
                 checkFields();
             }
         });
 
-        mCheckbox3 = (ImageView) findViewById(R.id.checkbox3);
-        mCheckbox3.setOnClickListener(new View.OnClickListener() {
+        mCheckbox3 = findViewById(R.id.checkbox3);
+        mCheckbox3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                mAgreeTOS = !mAgreeTOS;
-                if (mAgreeTOS) {
-                    mCheckbox3.setImageResource(R.drawable.ic_check_box_white_24dp);
-                } else {
-                    mCheckbox3.setImageResource(R.drawable.ic_check_box_outline_blank_white_24dp);
-                }
-
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mAgreeTOS = isChecked;
                 checkFields();
             }
         });
+
 
         mSignup = (Button) findViewById(R.id.sign_up);
         mSignup.setEnabled(false);

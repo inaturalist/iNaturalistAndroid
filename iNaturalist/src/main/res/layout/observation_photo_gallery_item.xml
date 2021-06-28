@@ -11,7 +11,8 @@
         android:adjustViewBounds="false"
         android:scaleType="centerCrop"
         android:background="#5D5B5E"
-        android:importantForAccessibility="no"
+        android:clickable="true"
+        android:contentDescription="@string/view_image"
         />
 
     <RelativeLayout
