@@ -1188,4 +1188,5 @@
     <string name="default_observation_action">Default Observation Action</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Show Options</string>
+    <string name="issue_with_updating_photos">There was an issue with updating the photos on this observation - this is caused due to a bug that is now fixed - please sign out and sign in again to resolve this issue</string>
 </resources>
