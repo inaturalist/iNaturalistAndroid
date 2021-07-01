@@ -1344,6 +1344,9 @@ public class ObservationEditor extends AppCompatActivity {
 
         galleryIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
         galleryIntent.putExtra(MediaStore.EXTRA_OUTPUT, mFileUri);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            galleryIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        }
         this.startActivityForResult(galleryIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
 
         // In case a new/existing photo was taken - make sure we won't retake it in case the activity pauses/resumes.
