@@ -1693,7 +1693,9 @@ public class ObservationEditor extends AppCompatActivity {
     }
     
     private void uiToProjectFieldValues() {
-        int obsId = (mObservation.id == null ? mObservation._id : mObservation.id);
+        Integer obsId = (mObservation.id == null ? mObservation._id : mObservation.id);
+
+        if (obsId == null) return;
 
         for (int fieldId : mProjectFieldValues.keySet()) {
             ProjectFieldValue fieldValue = mProjectFieldValues.get(fieldId);
