@@ -659,6 +659,8 @@
     <string name="annotation_name_sex">Køn</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">Levende eller Død</string>
+    <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <string name="annotation_name_evidence_of_presence">Bevis for tilstedeværelse</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Blomsbærende</string>
     <!-- Adjective, having fruit -->
@@ -692,6 +694,18 @@
     <string name="annotation_value_dead">Død</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Kan ikke bestemmes</string>
+    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <string name="annotation_value_organism">Organisme</string>
+    <!-- Evidence of Presence value when for bird feathers -->
+    <string name="annotation_value_feather">Fjer</string>
+    <!-- Evidence of Presence value when for fecal remains -->
+    <string name="annotation_value_scat">Ekskrement</string>
+    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <string name="annotation_value_track">Spor</string>
+    <!-- Evidence of Presence value when for bones -->
+    <string name="annotation_value_bone">Knogle</string>
+    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <string name="annotation_value_molt">Ham</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">DELTAGER</string>
     <string name="nearby_projects_all_caps">I NÆRHEDEN</string>
@@ -1153,4 +1167,5 @@ og <a href="https://www.inaturalist.org/terms">Tjenestevilkår</a>.]]></string>
     <string name="default_observation_action">Standard observationshandling</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Vis valgmuligheder</string>
+    <string name="issue_with_updating_photos">Problemet med at opdatere fotos i denne observation er for nylig er blevet rettet. Log ud og ind igen, og problemet burde være forsvundet.</string>
 </resources>

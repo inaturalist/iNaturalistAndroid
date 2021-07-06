@@ -8,7 +8,7 @@
     <string name="cancel">रद्द करा </string>
     <string name="loading">येत आहे .. </string>
     <string name="sync_required">जुळणी आवश्यक </string>
-    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
+    <string name="sync_required_message">समक्रमित करण्यासाठी %1$d निरीक्षणे, %2$d छायाचित्रे</string>
     <string name="street">रस्ता </string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">उपग्रह</string>
@@ -80,11 +80,11 @@
     <string name="no">नाही</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">सहमत ?</string>
-    <string name="no_comments">No comments/identifications yet</string>
+    <string name="no_comments">अद्याप कोणत्याही टिप्पण्या /ओळखा नाहीत</string>
     <string name="add_comment">टिपणी करा </string>
     <string name="add_id">ओळख सुचवा</string>
-    <string name="remarks">Remarks...</string>
-    <string name="enter_taxon_name">Species name</string>
+    <string name="remarks">शेरा</string>
+    <string name="enter_taxon_name">प्रजाती नाव</string>
     <string name="no_projects">कोणतेही प्रकल्प सापडले नाहीत!</string>
     <string name="no_guides">मार्गदर्शक सापडले नाहीत</string>
     <string name="loading_projects">प्रकल्प माहिती येत आहे ...</string>
@@ -140,9 +140,9 @@
     <string name="edit_location">ठिकाण बदल</string>
     <string name="edit_locality_notes">स्थळाबद्दल टिपणे </string>
     <string name="get_current_location">सद्य स्थान</string>
-    <string name="pull_to_refresh">Pull to refresh...</string>
-    <string name="release_to_refresh">Release to refresh...</string>
-    <string name="refreshing">Refreshing...</string>
+    <string name="pull_to_refresh">रीफ्रेश करण्यासाठी खेचा</string>
+    <string name="release_to_refresh">रीफ्रेश करण्यासाठी सोडा</string>
+    <string name="refreshing">रिफ्रेश करीत आहे…</string>
     <plurals name="sync_x_observations">
         <item quantity="one">%1$d निरीक्षण संक्रमित करा</item>
         <item quantity="other">%1$d निरीक्षणे संक्रमित करा</item>
@@ -154,24 +154,24 @@
     <string-array name="tutorial_titles">
         <item></item>
         <item>निरीक्षण करा</item>
-        <item>Share</item>
+        <item>सांगा/कळवा </item>
         <item>शिका</item>
         <item>योगदान द्या</item>
     </string-array>
     <string-array name="tutorial_descriptions">
-        <item>Explore and Connect with Nature</item>
-        <item>Get outside! Find something wild, and take a clear, full frame photo.</item>
-        <item>Share your observation with the iNaturalist community.</item>
-        <item>Check back for comments and identifications on your observation!</item>
-        <item><![CDATA[<b>Research Grade</b> observations are shared with scientists working to better understand and protect nature.]]></item>
+        <item>अभ्यासा आणि निसर्गाशी जोडले जा</item>
+        <item>बाहेर पडा! कोणताही वन्यजीव शोधा आणि स्पष्ट, चौकटपूर्ण छायाचित्र घ्या.</item>
+        <item>आपले निरीक्षण iNaturalist समुदायामध्ये सामायिक करा.</item>
+        <item>आपल्या निरीक्षणावर काही टिप्पण्या आणि ओळखी आल्या आहेत का, हे काही कालावधी नंतर पुन्हा येऊन तपासा!</item>
+        <item><![CDATA[<b> संशोधन श्रेणी</b> मधील निरीक्षणे, अभ्यासासाठी तसेच निसर्गा संवर्धना निगडित कामांसाठी वैज्ञानिकां कडे पाठविण्यात येतात.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
         <item>खुली</item>
         <item>अस्पष्ट केलेली</item>
         <item>खासगी</item>
     </string-array>
-    <string name="alert_sign_out">Are you sure you want to sign out? This will delete all your observations on this device. It will not affect any observations you\'ve uploaded to iNaturalist.</string>
-    <string name="alert_unsupported_media_type">Sorry, but there was a problem loading the photo from this source</string>
+    <string name="alert_sign_out">आपण खरंच बाहेर पडू इच्छिता का? असे केल्यास, ह्या उपकरणावरील आपण नोंदवलेली सर्व निरीक्षणे हटवली जातील. परंतु, ह्याचा iNaturalist वर आधीच जोडल्या गेलेल्या तुमच्या निरीक्षणांवर कोणताही परिणाम होणार नाही.</string>
+    <string name="alert_unsupported_media_type">क्षमस्व, परंतु या स्रोतावरून छायाचित्र दाखवण्यात काही समस्या होती</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
     <string name="explore">अन्वेषण(Explore)</string>
     <string name="restricted_to_current_map_area">सध्याच्या नकाशातील दाखवा</string>
@@ -181,7 +181,7 @@
     <string name="remove">काढून टाका</string>
     <string name="no_observations_found">निरीक्षण सापडत नाही</string>
     <string name="license_none">सर्व हक्क राखीव</string>
-    <string name="sources_and_attribution">Sources and Attribution</string>
+    <string name="sources_and_attribution">स्रोत आणि विशेषता</string>
     <string name="photos"><![CDATA[<b>फोटो:</b> %1$s]]></string>
     <string name="text"><![CDATA[<b>मजकूर:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
@@ -659,6 +659,8 @@
     <string name="annotation_name_sex">Sex</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">Alive or Dead</string>
+    <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <string name="annotation_name_evidence_of_presence">अस्तित्वाचा पुरावा </string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Flowering</string>
     <!-- Adjective, having fruit -->
@@ -692,6 +694,18 @@
     <string name="annotation_value_dead">Dead</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Cannot Be Determined</string>
+    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <string name="annotation_value_organism">सजीव </string>
+    <!-- Evidence of Presence value when for bird feathers -->
+    <string name="annotation_value_feather">पीस </string>
+    <!-- Evidence of Presence value when for fecal remains -->
+    <string name="annotation_value_scat">Scat</string>
+    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <string name="annotation_value_track">मार्ग दुवा / मागोवा </string>
+    <!-- Evidence of Presence value when for bones -->
+    <string name="annotation_value_bone">हाड </string>
+    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <string name="annotation_value_molt">Molt</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">JOINED</string>
     <string name="nearby_projects_all_caps">NEARBY</string>
@@ -1149,4 +1163,5 @@
     <string name="default_observation_action">Default Observation Action</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">पर्याय दाखवा </string>
+    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
 </resources>

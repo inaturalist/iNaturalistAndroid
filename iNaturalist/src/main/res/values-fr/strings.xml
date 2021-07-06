@@ -659,6 +659,8 @@
     <string name="annotation_name_sex">Sexe</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">Vivant ou mort</string>
+    <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <string name="annotation_name_evidence_of_presence">Signe de présence</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">En fleur</string>
     <!-- Adjective, having fruit -->
@@ -692,6 +694,18 @@
     <string name="annotation_value_dead">Mort</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Indéterminable</string>
+    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <string name="annotation_value_organism">Organisme</string>
+    <!-- Evidence of Presence value when for bird feathers -->
+    <string name="annotation_value_feather">Plume</string>
+    <!-- Evidence of Presence value when for fecal remains -->
+    <string name="annotation_value_scat">Excréments</string>
+    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <string name="annotation_value_track">Piste</string>
+    <!-- Evidence of Presence value when for bones -->
+    <string name="annotation_value_bone">Os</string>
+    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <string name="annotation_value_molt">Mue</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">JOINT</string>
     <string name="nearby_projects_all_caps">À PROXIMITÉ</string>
@@ -1159,4 +1173,5 @@ non, tant que le travail demeure inchangé et complet, et que vous êtes mention
     <string name="default_observation_action">Action d\'observation par défaut</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Afficher les options</string>
+    <string name="issue_with_updating_photos">Un problème de mise à jour des photos dans cette observation a récemment été corrigé. Veuillez vous déconnecter et vous reconnecter pour résoudre ce problème.</string>
 </resources>
