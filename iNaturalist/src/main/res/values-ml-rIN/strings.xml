@@ -87,50 +87,50 @@
     <string name="enter_taxon_name">ഇനങ്ങളുടെ പേര്</string>
     <string name="no_projects">പ്രോജക്റ്റുകളൊന്നും കണ്ടെത്തിയില്ല!</string>
     <string name="no_guides">ഗൈഡുകളൊന്നും കണ്ടെത്തിയില്ല!</string>
-    <string name="loading_projects">Loading projects...</string>
-    <string name="joined_projects">Joined</string>
+    <string name="loading_projects">പ്രോജക്റ്റുകൾ ലോഡുചെയ്യുന്നു</string>
+    <string name="joined_projects">ചേർന്നു</string>
     <string name="nearby_projects">Nearby</string>
     <!-- Tab title for the list of featured projects in the Projects screen -->
-    <string name="featured_projects">Featured</string>
+    <string name="featured_projects">തിരഞ്ഞെടുത്തത്</string>
     <!-- Verb, used as a label for actions like leaving a project -->
-    <string name="leave">Leave</string>
-    <string name="join">Join</string>
-    <string name="no_check_list">No Taxa in Check List!</string>
-    <string name="failed_to_add_obs_to_project">Failed to add observation \'%1$s\' to project \'%2$s\': %3$s</string>
-    <string name="invalid_project_field">Please enter a valid value for field \'%1s\'</string>
+    <string name="leave">വിട്ടേക്കുക</string>
+    <string name="join">ചേരുക</string>
+    <string name="no_check_list">ചെക്ക് ലിസ്റ്റിൽ ടാക്സ ഇല്ല!</string>
+    <string name="failed_to_add_obs_to_project">നിരീക്ഷണം ചേർക്കുന്നതിൽ പരാജയപ്പെട്ടു \'%1$s\' പ്രോജക്റ്റ് ചെയ്യാൻ \'%2$s\': %3$s</string>
+    <string name="invalid_project_field">ഫയൽ ചെയ്യുന്നതിന് സാധുവായ ഒരു മൂല്യം നൽകുക \'%1s\'</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
-    <string name="select_projects">Select from Joined Projects</string>
-    <string name="not_connected">You must be connected to the Internet in order to do that!</string>
-    <string name="search_projects">Search projects...</string>
-    <string name="search_guides">Search guides...</string>
-    <string name="save_observation">Save observation</string>
+    <string name="select_projects">ചേർന്ന പ്രോജക്റ്റുകളിൽ നിന്ന് തിരഞ്ഞെടുക്കുക</string>
+    <string name="not_connected">അത് ചെയ്യുന്നതിന് നിങ്ങൾ ഇന്റർനെറ്റുമായി ബന്ധിപ്പിച്ചിരിക്കണം!</string>
+    <string name="search_projects">പ്രോജക്റ്റുകൾ തിരയുക ...</string>
+    <string name="search_guides">ഗൈഡുകൾ തിരയുക ...</string>
+    <string name="save_observation">നിരീക്ഷണം ചേർക്കുക</string>
     <!-- Header for a description an individual guide -->
-    <string name="about_guide">About</string>
-    <string name="about_guide_all_caps">ABOUT</string>
+    <string name="about_guide">കുറിച്ച്</string>
+    <string name="about_guide_all_caps">കുറിച്ച്</string>
     <!-- Header for a description an individual project -->
-    <string name="about_project">About</string>
-    <string name="about_project_all_caps">ABOUT</string>
-    <string name="about_this_app">About</string>
-    <string name="about_taxon_short">About</string>
+    <string name="about_project">കുറിച്ച്</string>
+    <string name="about_project_all_caps">കുറിച്ച്</string>
+    <string name="about_this_app">കുറിച്ച്</string>
+    <string name="about_taxon_short">കുറിച്ച്</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
-    <string name="geoprivacy">Geoprivacy</string>
+    <string name="geoprivacy">ജിയോപ്രിവസി</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
-    <string name="geoprivacy_with_value">Geoprivacy: %1$s</string>
-    <string name="delete_confirmation">Are you sure you want to delete this observation?</string>
+    <string name="geoprivacy_with_value">ജിയോപ്രൈവസി: %1$s</string>
+    <string name="delete_confirmation">ഈ നിരീക്ഷണം ഇല്ലാതാക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
-    <string name="guides">Guides</string>
-    <string name="my_guides">Yours</string>
+    <string name="guides">ഗൈഡുകൾ</string>
+    <string name="my_guides">താങ്കളുടെ</string>
     <string name="nearby_guides">Nearby</string>
-    <string name="all_guides">All</string>
+    <string name="all_guides">എല്ലാം</string>
     <string name="no_taxa">No taxa found for this guide!</string>
     <string name="search_taxa">Search taxa...</string>
-    <string name="no_internet_guides">Guides require an Internet connection</string>
-    <string name="no_internet_projects">Projects require an Internet connection</string>
+    <string name="no_internet_guides">ഗൈഡുകൾക്ക് ഒരു ഇന്റർനെറ്റ് കണക്ഷൻ ആവശ്യമാണ്</string>
+    <string name="no_internet_projects">പ്രോജക്റ്റുകൾക്ക് ഇന്റർനെറ്റ് കണക്ഷൻ ആവശ്യമാണ്</string>
     <string name="locale_gl">Galician</string>
     <string name="locale_eu">Basque</string>
-    <string name="use_device_language_settings">Use device language settings</string>
-    <string name="choose_location">Choose Location</string>
-    <string name="done">Done</string>
+    <string name="use_device_language_settings">ഉപകരണ ഭാഷാ ക്രമീകരണങ്ങൾ ഉപയോഗിക്കുക</string>
+    <string name="choose_location">ലൊക്കേഷൻ തിരഞ്ഞെടുക്കുക</string>
+    <string name="done">ചെയ്‌തു</string>
     <string name="please_sign_in_via_settings">You must be logged in to view projects you\'ve joined.</string>
     <string name="contact_support">Contact Support</string>
     <string name="credits">Designed and built by iNaturalist.org with support from the California Academy of Sciences</string>
@@ -659,6 +659,8 @@
     <string name="annotation_name_sex">Sex</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">Alive or Dead</string>
+    <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <string name="annotation_name_evidence_of_presence">Evidence of Presence</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Flowering</string>
     <!-- Adjective, having fruit -->
@@ -692,6 +694,18 @@
     <string name="annotation_value_dead">Dead</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Cannot Be Determined</string>
+    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <string name="annotation_value_organism">Organism</string>
+    <!-- Evidence of Presence value when for bird feathers -->
+    <string name="annotation_value_feather">Feather</string>
+    <!-- Evidence of Presence value when for fecal remains -->
+    <string name="annotation_value_scat">Scat</string>
+    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <string name="annotation_value_track">Track</string>
+    <!-- Evidence of Presence value when for bones -->
+    <string name="annotation_value_bone">Bone</string>
+    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <string name="annotation_value_molt">Molt</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">JOINED</string>
     <string name="nearby_projects_all_caps">NEARBY</string>
@@ -1149,4 +1163,5 @@
     <string name="default_observation_action">Default Observation Action</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Show Options</string>
+    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
 </resources>

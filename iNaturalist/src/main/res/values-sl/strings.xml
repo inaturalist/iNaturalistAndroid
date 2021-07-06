@@ -284,7 +284,7 @@
     <string name="unable_to_acquire_location">Lokacije ni bilo mogoče pridobiti</string>
     <string name="casual_grade">priložnostna stopnja</string>
     <string name="needs_id">potrebuje ID</string>
-    <string name="research_grade">Raziskovalna stopnja</string>
+    <string name="research_grade">Research Grade</string>
     <string name="data_quality">Kakovost podatkov</string>
     <string name="casual_grade_add_location"><![CDATA[ Dodajte <b>lokacijo</b> za prehod tega opazovanja v stanje »Potrebuje ID«.]]></string>
     <string name="casual_grade_add_date"><![CDATA[ Dodajte <b>datum</b> za prehod tega opazovanja v stanje »Potrebuje ID«.]]></string>
@@ -667,6 +667,8 @@
     <string name="annotation_name_sex">Spol</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">Živ ali mrtev</string>
+    <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <string name="annotation_name_evidence_of_presence">Evidence of Presence</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Cvetenje</string>
     <!-- Adjective, having fruit -->
@@ -700,6 +702,18 @@
     <string name="annotation_value_dead">Mrtev</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Ni mogoče določiti</string>
+    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <string name="annotation_value_organism">Organism</string>
+    <!-- Evidence of Presence value when for bird feathers -->
+    <string name="annotation_value_feather">Feather</string>
+    <!-- Evidence of Presence value when for fecal remains -->
+    <string name="annotation_value_scat">Scat</string>
+    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <string name="annotation_value_track">Track</string>
+    <!-- Evidence of Presence value when for bones -->
+    <string name="annotation_value_bone">Bone</string>
+    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <string name="annotation_value_molt">Molt</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">PRIDRUŽENI</string>
     <string name="nearby_projects_all_caps">BLIŽNJI</string>
@@ -1161,4 +1175,5 @@
     <string name="default_observation_action">Privzeto dejanje za opazovanja</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Prikaži možnosti</string>
+    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
 </resources>
