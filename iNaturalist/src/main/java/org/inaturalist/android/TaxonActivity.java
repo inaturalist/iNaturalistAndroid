@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import com.google.android.material.tabs.TabLayout;
 import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.ActionBar;
@@ -662,7 +663,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
             mIsTaxonomyListExpanded = false;
         }
 
-        setContentView(R.layout.taxon_page);
+        DataBindingUtil.setContentView(this, R.layout.taxon_page);
 
         mSeasonabilityTabLayout = (TabLayout) findViewById(R.id.seasonability_tabs);
         mSeasonabilityViewPager = (ViewPager) findViewById(R.id.seasonability_view_pager);

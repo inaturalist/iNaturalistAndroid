@@ -37,6 +37,10 @@ android {
     buildToolsVersion '29.0.2'
     useLibrary 'org.apache.http.legacy'
 
+    buildFeatures {
+        dataBinding true
+    }
+
     bundle {
         language {
             // Specifies that the app bundle should not support

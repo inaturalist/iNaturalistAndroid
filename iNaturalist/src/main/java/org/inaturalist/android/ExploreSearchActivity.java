@@ -12,6 +12,8 @@ import android.os.Handler;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -125,7 +127,7 @@ public class ExploreSearchActivity extends AppCompatActivity {
         mApp = (INaturalistApp) getApplicationContext();
         mApp.applyLocaleSettings(getBaseContext());
 
-        setContentView(R.layout.explore_search);
+        DataBindingUtil.setContentView(this, R.layout.explore_search);
 
         Intent intent = getIntent();
 
@@ -191,6 +193,10 @@ public class ExploreSearchActivity extends AppCompatActivity {
                 }
 
                 (searchType == SEARCH_TYPE_TAXON ? mClearTaxon : mClearLocation).setVisibility(query.length() > 0 ? View.VISIBLE : View.GONE);
+
+                if (query.length() > 0) {
+                    BindingAdapterUtils.increaseTouch(searchType == SEARCH_TYPE_TAXON ? mClearTaxon : mClearLocation, 100);
+                }
 
                 mLastSearch = query;
 
@@ -399,6 +405,7 @@ public class ExploreSearchActivity extends AppCompatActivity {
                     Picasso.with(this).load(TaxonUtils.observationIcon(mSearchFilters.taxon)).into(mTaxonIcon);
                 }
                 mClearTaxon.setVisibility(View.VISIBLE);
+                BindingAdapterUtils.increaseTouch(mClearTaxon, 100);
             }
 
             // Refresh location search field
@@ -414,12 +421,14 @@ public class ExploreSearchActivity extends AppCompatActivity {
                 mLocationEditText.setTextColor(getResources().getColor(R.color.inatapptheme_color));
                 mLocationIcon.setColorFilter(getResources().getColor(R.color.inatapptheme_color));
                 mClearLocation.setVisibility(View.VISIBLE);
+                BindingAdapterUtils.increaseTouch(mClearLocation, 100);
             } else if (mSearchFilters.mapBounds != null) {
                 mLocationEditText.setText(R.string.map_area);
                 mLocationEditText.setSelection(0, getString(R.string.map_area).length());
                 mLocationEditText.setTextColor(getResources().getColor(R.color.inatapptheme_color));
                 mLocationIcon.setColorFilter(getResources().getColor(R.color.inatapptheme_color));
                 mClearLocation.setVisibility(View.VISIBLE);
+                BindingAdapterUtils.increaseTouch(mClearLocation, 100);
             } else if (mSearchFilters.place != null) {
                 // Set place name
                 String placeName = mSearchFilters.place.optString("display_name");
@@ -428,6 +437,7 @@ public class ExploreSearchActivity extends AppCompatActivity {
                 mLocationEditText.setTextColor(getResources().getColor(R.color.inatapptheme_color));
                 mLocationIcon.setColorFilter(getResources().getColor(R.color.inatapptheme_color));
                 mClearLocation.setVisibility(View.VISIBLE);
+                BindingAdapterUtils.increaseTouch(mClearLocation, 100);
             } else {
                 // No location at all (global search)
                 mLocationEditText.setText("");

@@ -95,6 +95,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
+import androidx.databinding.DataBindingUtil;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.ActionBar;
@@ -351,7 +352,7 @@ public class ObservationEditor extends AppCompatActivity {
         mApp = (INaturalistApp) getApplicationContext();
         mApp.applyLocaleSettings(getBaseContext());
 
-        setContentView(R.layout.observation_confirmation);
+        DataBindingUtil.setContentView(this, R.layout.observation_confirmation);
 
         setTitle(R.string.details);
 
