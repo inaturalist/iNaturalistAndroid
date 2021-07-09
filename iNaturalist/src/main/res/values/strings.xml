@@ -1188,6 +1188,7 @@
     <string name="default_observation_action">Default Observation Action</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Show Options</string>
+    <!-- Placeholder text for an observation field value -->
     <string name="field_value">Field Value</string>
     <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
     <string name="delete_attribute_value">Delete attribute value</string>
@@ -1215,6 +1216,7 @@
     <string name="observation_selected">Observation selected</string>
     <string name="share_observation">Share observation</string>
     <string name="unknown_location">Unknown location</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
     <string name="close">Close</string>
     <string name="set_date2">Set date</string>
     <string name="project_selected">Project Selected</string>
@@ -1223,9 +1225,13 @@
     <string name="play_pause_sound">Play or pause sound</string>
     <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
     <string name="view_image">View image</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <string name="assessment_passes">Assessment passes</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
     <string name="agree_assessment_passes">Agree assessment passes</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
     <string name="does_not_pass_assessment">Does not pass assessment</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
     <string name="disagree_assessment_passes">Disagree assessment passes</string>
     <plurals name="delete_x_selected_observations">
         <item quantity="one">Delete %1$d selected observation</item>
