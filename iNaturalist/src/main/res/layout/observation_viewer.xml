@@ -583,6 +583,8 @@
                                 android:layout_height="40dp"
                                 android:layout_weight="1"
                                 android:background="@drawable/circular_button"
+                                android:clickable="true"
+                                android:contentDescription="@string/leave_comment"
                                 android:layout_marginStart="5dp"
                                 android:layout_marginEnd="5dp">
                                 <LinearLayout
@@ -620,6 +622,8 @@
                                 android:layout_height="40dp"
                                 android:layout_weight="1"
                                 android:background="@drawable/circular_button"
+                                android:clickable="true"
+                                android:contentDescription="@string/suggest_id"
                                 android:layout_marginStart="5dp"
                                 android:layout_marginEnd="5dp">
                                 <LinearLayout

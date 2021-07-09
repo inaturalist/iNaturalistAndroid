@@ -43,7 +43,7 @@
         </LinearLayout>
 
 
-        <ImageView
+        <ImageButton
             android:id="@+id/more_menu"
             android:layout_width="25dp"
             android:layout_height="25dp"
@@ -52,6 +52,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:padding="4dp"
+            android:scaleType="fitCenter"
             android:tint="#6F6F6F"
             android:contentDescription="@string/open_menu_for_more_options"
             android:layout_marginTop="10dp"
