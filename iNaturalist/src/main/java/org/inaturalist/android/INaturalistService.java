@@ -4145,8 +4145,22 @@ public class INaturalistService extends IntentService {
                 try {
                     if (response == null || response.length() != 1) {
                         Logger.tag(TAG).debug("postPhotos: Failed updating " + op.id);
-                        c.close();
-                        throw new SyncFailedException();
+
+                        if (mLastStatusCode != HttpStatus.SC_FORBIDDEN) {
+                            c.close();
+                            throw new SyncFailedException();
+                        } else {
+                            // Sepcial handling for bug #1055 - don't fail the entire syncing, just skip this one
+                            Logger.tag(TAG).debug("postPhotos: Skipping to next photo");
+                            c.moveToNext();
+
+                            // Set errors for this obs - to notify the user that we couldn't upload the obs photos
+                            JSONArray errors = new JSONArray();
+                            errors.put(getString(R.string.issue_with_updating_photos));
+                            mApp.setErrorsForObservation(op.observation_id, 0, errors);
+
+                            continue;
+                        }
                     }
 
                     ArrayList<NameValuePair> params2 = op.getParams();
@@ -4165,7 +4179,7 @@ public class INaturalistService extends IntentService {
                     JSONObject json = response.getJSONObject(0);
                     BetterJSONObject j = new BetterJSONObject(json);
                     ObservationPhoto jsonObservationPhoto = new ObservationPhoto(j, op);
-                    Logger.tag(TAG).debug("postPhotos after put: " + j);
+                    Logger.tag(TAG).debug("postPhotos after put: " + j.getJSONObject());
                     Logger.tag(TAG).debug("postPhotos after put 2: " + jsonObservationPhoto);
                     op.merge(jsonObservationPhoto);
                     Logger.tag(TAG).debug("postPhotos after put 3 - merge: " + op);

@@ -669,6 +669,8 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="annotation_name_sex">Sukupuoli</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">Elävä tai kuollut</string>
+    <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <string name="annotation_name_evidence_of_presence">Todiste läsnäolosta</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Kukkiminen</string>
     <!-- Adjective, having fruit -->
@@ -702,6 +704,18 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="annotation_value_dead">Kuollut</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Ei voida tunnistaa</string>
+    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <string name="annotation_value_organism">Eliö</string>
+    <!-- Evidence of Presence value when for bird feathers -->
+    <string name="annotation_value_feather">Sulka</string>
+    <!-- Evidence of Presence value when for fecal remains -->
+    <string name="annotation_value_scat">Jätös</string>
+    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <string name="annotation_value_track">Jälki</string>
+    <!-- Evidence of Presence value when for bones -->
+    <string name="annotation_value_bone">Luu</string>
+    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <string name="annotation_value_molt">Nahka</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">LIITYTTY</string>
     <string name="nearby_projects_all_caps">LÄHELLÄ</string>
@@ -1069,17 +1083,17 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="no_observations_yet2">No observations yet.</string>
     <string name="no_species_yet">No species yet.</string>
     <string name="no_identifications_yet">No identifications yet.</string>
-    <string name="sort_by">Sort By</string>
+    <string name="sort_by">Järjestys</string>
     <string-array name="explore_order_by_items">
-        <item>Date Added</item>
-        <item>Date Observed</item>
-        <item>Date Updated</item>
+        <item>Lisäyspäivämäärä</item>
+        <item>Havaintopäivämäärä</item>
+        <item>Päivityspäiväys</item>
         <!--<item>Faves</item>-->
         <item>Satunnainen</item>
     </string-array>
     <string-array name="explore_order_items">
-        <item>Descending</item>
-        <item>Ascending</item>
+        <item>Laskeva</item>
+        <item>Nouseva</item>
     </string-array>
     <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
     See explore_order_by_items and explore_order_items keys !-->
@@ -1160,5 +1174,6 @@ Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen 
     <!-- Preference to control what tapping on the action button does on My Observations -->
     <string name="default_observation_action">Havainnon oletustoiminto</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
-    <string name="show_options">Näytä valinnat</string>
+    <string name="show_options">Näytä vaihtoehdot</string>
+    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
 </resources>

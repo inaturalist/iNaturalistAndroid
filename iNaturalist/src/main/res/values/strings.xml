@@ -1243,4 +1243,5 @@
     </plurals>
     <string name="add_media_evidence">Add media evidence</string>
     <string name="remove_identification">Remove identification</string>
+    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
 </resources>
