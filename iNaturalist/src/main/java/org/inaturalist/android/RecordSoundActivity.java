@@ -19,8 +19,8 @@ import android.view.TextureView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.livefront.bridge.Bridge;
-import com.melnykov.fab.FloatingActionButton;
 
 import java.io.File;
 import java.nio.ByteBuffer;

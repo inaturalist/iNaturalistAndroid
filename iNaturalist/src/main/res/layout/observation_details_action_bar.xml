@@ -25,6 +25,7 @@
         android:padding="5dp"
         android:scaleType="fitCenter"
         android:singleLine="true"
+        android:contentDescription="@string/view_on_inat"
         android:src="@drawable/ic_fa_share_square_o" />
    
 </RelativeLayout>

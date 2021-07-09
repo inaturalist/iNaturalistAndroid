@@ -263,7 +263,14 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         if (mMultiSelectionMode && mSyncingTopBar != null) {
             mSyncingTopBar.setVisibility(View.GONE);
 
-            mMultiSelectionObsCount.setText(String.valueOf(mObsIdsToSync.size()));
+            int count = mObsIdsToSync.size();
+            mMultiSelectionObsCount.setText(String.valueOf(count));
+
+            View deleteMultiObs = getSupportActionBar().getCustomView().findViewById(R.id.delete);
+            deleteMultiObs.setContentDescription(getResources().getQuantityString(R.plurals.delete_x_selected_observations, count, count));
+
+            View uploadMultiObs = getSupportActionBar().getCustomView().findViewById(R.id.sync);
+            uploadMultiObs.setContentDescription(getResources().getQuantityString(R.plurals.sync_x_selected_observations, count, count));
             return;
         }
 

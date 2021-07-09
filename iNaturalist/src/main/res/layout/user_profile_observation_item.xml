@@ -19,7 +19,8 @@
         android:padding="5dp"
         android:tint="#8c8c8c"
         android:visibility="gone"
-        />
+         android:importantForAccessibility="no"
+         />
 
 
     <ImageView
@@ -30,6 +31,7 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="9dp"
+        android:importantForAccessibility="no"
         />
 
 
@@ -60,6 +62,7 @@
             android:tint="#707070"
             android:layout_marginRight="2dp"
             android:layout_marginTop="2dp"
+            android:contentDescription="@string/comment_count"
             />
 
         <TextView
@@ -78,6 +81,7 @@
             android:tint="#707070"
             android:layout_marginRight="2dp"
             android:layout_marginTop="2dp"
+            android:contentDescription="@string/id_count"
             />
 
         <TextView
@@ -118,6 +122,7 @@
             android:tint="#6F6F6F"
             android:layout_below="@id/species_guess"
             android:layout_alignParentLeft="true"
+            android:contentDescription="@string/location"
             />
         <TextView
             android:id="@+id/place_guess"

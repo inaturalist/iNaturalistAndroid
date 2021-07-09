@@ -248,5 +248,6 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="11dp"
         android:layout_marginTop="11dp"
+        android:contentDescription="@string/go_back"
         />
 </RelativeLayout>

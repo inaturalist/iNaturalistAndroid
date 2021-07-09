@@ -11,6 +11,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="@null"
+        android:contentDescription="@string/delete"
         />
 
     <RelativeLayout

@@ -16,7 +16,9 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="9dp"
         android:tint="#75AA1F"
-        android:src="@drawable/ic_subdirectory_arrow_right_black_48dp" />
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_subdirectory_arrow_right_black_48dp"
+        />
 
     <TextView
         android:layout_width="wrap_content"

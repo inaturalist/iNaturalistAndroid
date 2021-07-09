@@ -13,6 +13,7 @@
         android:layout_height="24dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
+        android:contentDescription="@string/expand_list"
         android:tint="#7F7F7F"
         android:src="@drawable/ic_more_horiz_black_48dp" />
 

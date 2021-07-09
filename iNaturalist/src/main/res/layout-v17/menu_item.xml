@@ -23,6 +23,7 @@
         android:minHeight="?android:attr/listPreferredItemHeight"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
+        android:importantForAccessibility="no"
         android:src="@drawable/right_arrow_black" />
 
 </RelativeLayout>

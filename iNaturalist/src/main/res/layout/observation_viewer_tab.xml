@@ -14,6 +14,7 @@
             android:layout_width="28dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_info_black_48dp"
+            android:importantForAccessibility="no"
             android:scaleType="fitCenter" />
 
         <TextView

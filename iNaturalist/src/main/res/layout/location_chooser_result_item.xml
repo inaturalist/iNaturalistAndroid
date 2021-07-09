@@ -11,6 +11,7 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
+        android:importantForAccessibility="no"
         android:src="@drawable/ic_location_on_black_48dp" />
 
     <LinearLayout

@@ -48,7 +48,8 @@
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:src="@drawable/actinopterygii_large"
-             />
+            android:importantForAccessibility="no"
+            />
         <ProgressBar
             android:id="@+id/id_pic_loading"
             style="?android:attr/progressBarStyleLarge"
@@ -69,17 +70,18 @@
         android:layout_below="@id/id_pic_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-         <ImageView
+        <ImageView
             android:id="@+id/user_pic"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginEnd="10dp"
+            android:importantForAccessibility="no"
             android:src="@drawable/actionbar_back_indicator" />
-         
-         
-         <RelativeLayout
+
+
+        <RelativeLayout
             android:id="@+id/observed_on"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
@@ -129,7 +131,8 @@
             android:scaleType="fitCenter"
             android:layout_below="@id/user_name"
             android:layout_toEndOf="@id/user_pic"
-             />
+            android:importantForAccessibility="no"
+            />
 
         <TextView 
             android:id="@+id/location"
@@ -139,7 +142,7 @@
             android:layout_toEndOf="@id/location_image"
             android:layout_toStartOf="@id/observed_on"
             android:layout_below="@id/user_name"
-            android:textSize="10dp"
+            android:textSize="10sp"
              />
 
         <TextView 
@@ -150,7 +153,7 @@
             android:layout_toEndOf="@id/location_image"
             android:layout_toStartOf="@id/observed_on"
             android:layout_below="@id/location"
-            android:textSize="8dp"
+            android:textSize="8sp"
             android:textColor="#999999"
              />
         

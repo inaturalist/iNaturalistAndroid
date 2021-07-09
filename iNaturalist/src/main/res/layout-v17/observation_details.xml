@@ -48,6 +48,7 @@
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
                     android:src="@drawable/actinopterygii_large"
+                    android:importantForAccessibility="no"
                     />
                 <ProgressBar
                     android:id="@+id/id_pic_loading"
@@ -76,6 +77,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginEnd="10dp"
+                    android:importantForAccessibility="no"
                     android:src="@drawable/actionbar_back_indicator" />
 
 
@@ -129,6 +131,7 @@
                     android:scaleType="fitCenter"
                     android:layout_below="@id/user_name"
                     android:layout_toEndOf="@id/user_pic"
+                    android:importantForAccessibility="no"
                     />
 
                 <TextView
@@ -139,7 +142,7 @@
                     android:layout_toEndOf="@id/location_image"
                     android:layout_toStartOf="@id/observed_on"
                     android:layout_below="@id/user_name"
-                    android:textSize="10dp"
+                    android:textSize="10sp"
                     />
 
                 <TextView
@@ -150,7 +153,7 @@
                     android:layout_toEndOf="@id/location_image"
                     android:layout_toStartOf="@id/observed_on"
                     android:layout_below="@id/location"
-                    android:textSize="8dp"
+                    android:textSize="8sp"
                     android:textColor="#999999"
                     />
 

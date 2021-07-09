@@ -12,6 +12,7 @@
         android:layout_height="32dp"
         android:layout_marginLeft="38dp"
         android:layout_gravity="center_vertical"
+        android:importantForAccessibility="no"
         />
 
     <TextView

@@ -1,817 +1,826 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <ScrollView
-        android:layout_height="fill_parent"
-        android:layout_width="fill_parent"
-        android:background="#ffffff"
-        android:id="@+id/main_content"
-        >
-        <org.inaturalist.android.SwipeableLinearLayout
-            android:id="@+id/swipeable_layout"
-            android:paddingBottom="100dp"
-            android:orientation="vertical" android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+    </data>
 
-
-            <TextView
-                android:id="@+id/errors"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Errors"
-                android:background="#F3D4DB"
-                android:textColor="#C8565F"
-                android:padding="10dp"
-                android:visibility="gone"
-                />
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:paddingTop="8dp"
-                android:paddingLeft="16dp"
-                android:paddingStart="16dp"
-                android:paddingRight="16dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="8dp"
-                android:background="#EDEDED"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-                <RelativeLayout
-                    android:id="@+id/take_photo"
-                    android:background="@drawable/circular_add_photo"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp">
-                    <ImageView
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
-                        android:src="@drawable/ic_add_a_photo_black_24dp"
-                        android:layout_centerInParent="true"
-                        android:alpha="0.6"
-                        />
-                </RelativeLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/gallery"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="75dp"
-                    android:drawSelectorOnTop="false"
-                    tools:context=".ObservationEditor"
-                    />
-
-            </LinearLayout>
-
-            <View
-                android:id="@+id/dummy_focus"
-                android:layout_width="1dp"
-                android:layout_height="1dp"
-                android:focusable="true"
-                android:focusableInTouchMode="true" />
-
-            <RelativeLayout
-                android:id="@+id/warning_multiple_photos"
-                android:background="#F1F6E5"
-                android:layout_width="fill_parent"
-                android:paddingBottom="12dp"
-                android:layout_marginTop="0dp"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:bind="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ScrollView
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
+            android:background="#ffffff"
+            android:id="@+id/main_content"
+            >
+            <org.inaturalist.android.SwipeableLinearLayout
+                android:id="@+id/swipeable_layout"
+                android:paddingBottom="100dp"
+                android:orientation="vertical" android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_alignParentTop="true"
-                    android:background="#ffffff"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp">
-                    <View
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentLeft="true"
-                        android:background="@drawable/arrow_up"
-                        android:layout_marginTop="-10dp"
-                        android:layout_marginLeft="22dp"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp" />
-                </RelativeLayout>
-
-                <ImageView
-                    android:id="@+id/info_icon2"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_info_outline_black_24dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="18dp"
-                    android:tint="@color/inatapptheme_color"
-                    />
 
                 <TextView
-                    android:id="@+id/warning_multiple_photos_text"
+                    android:id="@+id/errors"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="@string/warning_multiple_photos"
-                    android:layout_marginRight="16dp"
-                    android:layout_toRightOf="@id/info_icon2"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignTop="@id/info_icon2"
-                    android:textSize="14sp"
-                    />
-
-                <TextView
-                    android:id="@+id/warning_multiple_photos_close"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="@string/got_it_all_caps"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_below="@id/warning_multiple_photos_text"
-                    android:paddingTop="10dp"
-                    android:textColor="#8BB929"
-                    android:textStyle="bold"
-                    android:layout_marginRight="16dp"
-                    />
-            </RelativeLayout>
-
-
-
-
-            <RelativeLayout
-                android:id="@+id/species_guess_container"
-                android:layout_width="fill_parent"
-                android:paddingLeft="16dp"
-                android:paddingStart="16dp"
-                android:paddingRight="16dp"
-                android:paddingEnd="16dp"
-                android:paddingTop="6dp"
-                android:paddingBottom="8dp"
-                android:layout_height="65dp">
-
-                <ImageView
-                    android:id="@+id/species_guess_icon"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_species_field"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:alpha="0.6"
-                    />
-
-                <ImageView
-                    android:id="@+id/clear_species_guess"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_close_black_48dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:tint="#717171"
+                    android:text="Errors"
+                    android:background="#F3D4DB"
+                    android:textColor="#C8565F"
+                    android:padding="10dp"
+                    android:visibility="gone"
                     />
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_toRightOf="@id/species_guess_icon"
-                    android:layout_toLeftOf="@id/clear_species_guess"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_width="wrap_content"
-                    android:descendantFocusability="beforeDescendants"
-                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal"
+                    android:paddingTop="8dp"
+                    android:paddingLeft="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="8dp"
+                    android:background="#EDEDED"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content">
-                    <EditText
-                        android:id="@+id/speciesGuess"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:hint="@string/species_guess_hint"
-                        android:background="#00000000"
-                        android:textSize="16sp"
-                        android:focusable="false"
-                        android:clickable="false"
-                        android:focusableInTouchMode="false"
+                    <RelativeLayout
+                        android:id="@+id/take_photo"
+                        android:background="@drawable/circular_add_photo"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp">
+                        <ImageButton
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:src="@drawable/ic_add_a_photo_black_24dp"
+                            android:layout_centerInParent="true"
+                            android:alpha="0.6"
+                            android:contentDescription="@string/add_media_evidence"
+                            />
+                    </RelativeLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/gallery"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="75dp"
+                        android:drawSelectorOnTop="false"
+                        tools:context=".ObservationEditor"
                         />
-                    <TextView
-                        android:id="@+id/speciesGuessSub"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="@string/view_suggestions"
-                        android:background="#00000000"
-                        android:textSize="12sp"
-                        />
+
                 </LinearLayout>
-            </RelativeLayout>
 
-
-            <RelativeLayout
-                android:id="@+id/onboarding_species_name"
-                android:background="#F1F6E5"
-                android:layout_width="fill_parent"
-                android:paddingBottom="12dp"
-                android:layout_marginTop="-15dp"
-                android:layout_height="wrap_content">
+                <View
+                    android:id="@+id/dummy_focus"
+                    android:layout_width="1dp"
+                    android:layout_height="1dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true" />
 
                 <RelativeLayout
-                    android:layout_alignParentTop="true"
-                    android:background="#ffffff"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp">
-                    <View
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentLeft="true"
-                        android:background="@drawable/arrow_up"
-                        android:layout_marginTop="-10dp"
-                        android:layout_marginLeft="22dp"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp" />
-                </RelativeLayout>
-
-                <ImageView
-                    android:id="@+id/info_icon"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_info_outline_black_24dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="18dp"
-                    android:tint="@color/inatapptheme_color"
-                    />
-
-                <TextView
-                    android:id="@+id/onboarding_species_name_description"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="@string/onboarding_species_name"
-                    android:layout_marginRight="16dp"
-                    android:layout_toRightOf="@id/info_icon"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignTop="@id/info_icon"
-                    android:textSize="14sp"
-                    />
-
-                <TextView
-                    android:id="@+id/onboarding_species_name_close"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="@string/got_it_all_caps"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_below="@id/onboarding_species_name_description"
-                    android:paddingTop="10dp"
-                    android:textColor="#8BB929"
-                    android:textStyle="bold"
-                    android:layout_marginRight="16dp"
-                    />
-            </RelativeLayout>
-
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="64dp"
-                android:layout_marginStart="64dp"
-                android:background="#dfdfdf"
-                />
-
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:paddingLeft="16dp"
-                android:paddingStart="16dp"
-                android:paddingRight="16dp"
-                android:paddingEnd="16dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/notes_icon"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_assignment_black_24dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:tint="#686868"
-                    />
-
-
-                <EditText
-                    android:id="@+id/description"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/warning_multiple_photos"
+                    android:background="#F1F6E5"
                     android:layout_width="fill_parent"
-                    android:minHeight="50dp"
-                    android:inputType="textMultiLine|textCapSentences"
-                    android:layout_toRightOf="@id/notes_icon"
-                    android:layout_toEndOf="@id/notes_icon"
-                    android:isScrollContainer="true"
-                    android:hint="@string/notes"
-                    android:background="#00000000"
-                    />
-
-            </RelativeLayout>
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="64dp"
-                android:layout_marginStart="64dp"
-                android:background="#dfdfdf"
-                />
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:paddingLeft="16dp"
-                android:paddingStart="16dp"
-                android:paddingRight="16dp"
-                android:paddingEnd="16dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:layout_height="60dp">
-
-                <ImageView
-                    android:id="@+id/time_icon"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_access_time_black_24dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:tint="#686868"
-                    />
-
-                <TextView
-                    android:id="@+id/observed_on_string"
-                    android:visibility="gone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/time_observed_at"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:text="@string/set_time"
-                    android:layout_centerVertical="true"
-                    android:textSize="16sp"
-                    android:layout_marginLeft="5dp"
-                    />
-
-                <TextView
-                    android:id="@+id/observed_on"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:layout_toRightOf="@id/time_icon"
-                    android:layout_toEndOf="@id/time_icon"
-                    android:layout_toLeftOf="@id/time_observed_at"
-                    android:text="@string/set_date"
-                    android:layout_centerVertical="true"
-                    android:textSize="16sp"
-                    />
-
-
-            </RelativeLayout>
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#dfdfdf"
-                android:layout_marginLeft="64dp"
-                android:layout_marginStart="64dp"
-                />
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:paddingLeft="16dp"
-                android:paddingStart="16dp"
-                android:paddingRight="16dp"
-                android:paddingEnd="16dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:minHeight="60dp"
-                android:layout_height="wrap_content">
-
-                <RelativeLayout
-                    android:id="@+id/location_left_side"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp">
-                    <ImageView
-                        android:id="@+id/location_icon"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@drawable/ic_location_on_black_24dp"
-                        android:tint="#686868"
-                        />
-
-                    <ProgressBar
-                        android:id="@+id/locationProgress"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:visibility="gone" />
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/finding_current_location"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="@string/finding_current_location"
-                    android:ellipsize="end"
-                    android:lines="1"
-                    android:textSize="16sp"
-                    android:visibility="gone"
-                    android:layout_toRightOf="@id/location_left_side"
-                    android:layout_toEndOf="@id/location_left_side"
-                    android:layout_centerVertical="true"
-                    />
-
-
-                <RelativeLayout
-                    android:id="@+id/locationRefreshButton"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/location_left_side"
-                    android:layout_toEndOf="@id/location_left_side"
-                    android:layout_width="fill_parent"
+                    android:paddingBottom="12dp"
+                    android:layout_marginTop="0dp"
                     android:layout_height="wrap_content">
 
+                    <RelativeLayout
+                        android:layout_alignParentTop="true"
+                        android:background="#ffffff"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp">
+                        <View
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentLeft="true"
+                            android:background="@drawable/arrow_up"
+                            android:layout_marginTop="-10dp"
+                            android:layout_marginLeft="22dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp" />
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:id="@+id/info_icon2"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_info_outline_black_24dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="18dp"
+                        android:tint="@color/inatapptheme_color"
+                        android:importantForAccessibility="no"
+                        />
 
                     <TextView
-                        android:id="@+id/location_guess"
+                        android:id="@+id/warning_multiple_photos_text"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:text="@string/set_location"
+                        android:text="@string/warning_multiple_photos"
+                        android:layout_marginRight="16dp"
+                        android:layout_toRightOf="@id/info_icon2"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignTop="@id/info_icon2"
+                        android:textSize="14sp"
+                        />
+
+                    <TextView
+                        android:id="@+id/warning_multiple_photos_close"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/got_it_all_caps"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_below="@id/warning_multiple_photos_text"
+                        android:paddingTop="10dp"
+                        android:textColor="#8BB929"
+                        android:textStyle="bold"
+                        android:layout_marginRight="16dp"
+                        />
+                </RelativeLayout>
+
+
+
+
+                <RelativeLayout
+                    android:id="@+id/species_guess_container"
+                    android:layout_width="fill_parent"
+                    android:paddingLeft="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="8dp"
+                    android:layout_height="65dp">
+
+                    <ImageView
+                        android:id="@+id/species_guess_icon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_species_field"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:alpha="0.6"
+                        android:importantForAccessibility="no"
+                        />
+
+                    <ImageView
+                        android:id="@+id/clear_species_guess"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_close_black_48dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:tint="#717171"
+                        android:contentDescription="@string/remove_identification"
+                        />
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_toRightOf="@id/species_guess_icon"
+                        android:layout_toLeftOf="@id/clear_species_guess"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:descendantFocusability="beforeDescendants"
+                        android:focusableInTouchMode="true"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/speciesGuess"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:hint="@string/species_guess_hint"
+                            android:background="#00000000"
+                            android:textSize="16sp"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:focusableInTouchMode="false"
+                            />
+                        <TextView
+                            android:id="@+id/speciesGuessSub"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/view_suggestions"
+                            android:background="#00000000"
+                            android:textSize="12sp"
+                            />
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/onboarding_species_name"
+                    android:background="#F1F6E5"
+                    android:layout_width="fill_parent"
+                    android:paddingBottom="12dp"
+                    android:layout_marginTop="-15dp"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_alignParentTop="true"
+                        android:background="#ffffff"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp">
+                        <View
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentLeft="true"
+                            android:background="@drawable/arrow_up"
+                            android:layout_marginTop="-10dp"
+                            android:layout_marginLeft="22dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp" />
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:id="@+id/info_icon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_info_outline_black_24dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="18dp"
+                        android:tint="@color/inatapptheme_color"
+                        android:importantForAccessibility="no"
+                        />
+
+                    <TextView
+                        android:id="@+id/onboarding_species_name_description"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/onboarding_species_name"
+                        android:layout_marginRight="16dp"
+                        android:layout_toRightOf="@id/info_icon"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignTop="@id/info_icon"
+                        android:textSize="14sp"
+                        />
+
+                    <TextView
+                        android:id="@+id/onboarding_species_name_close"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/got_it_all_caps"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_below="@id/onboarding_species_name_description"
+                        android:paddingTop="10dp"
+                        android:textColor="#8BB929"
+                        android:textStyle="bold"
+                        android:layout_marginRight="16dp"
+                        />
+                </RelativeLayout>
+
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="64dp"
+                    android:layout_marginStart="64dp"
+                    android:background="#dfdfdf"
+                    />
+
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:paddingLeft="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/notes_icon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_assignment_black_24dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:tint="#686868"
+                        android:labelFor="@id/description"
+                        android:contentDescription="@string/notes"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/description"
+                        android:layout_height="wrap_content"
+                        android:layout_width="fill_parent"
+                        android:minHeight="50dp"
+                        android:inputType="textMultiLine|textCapSentences"
+                        android:layout_toRightOf="@id/notes_icon"
+                        android:layout_toEndOf="@id/notes_icon"
+                        android:isScrollContainer="true"
+                        android:hint="@string/notes"
+                        android:background="#00000000"
+                        />
+
+                </RelativeLayout>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="64dp"
+                    android:layout_marginStart="64dp"
+                    android:background="#dfdfdf"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:paddingLeft="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:layout_height="60dp">
+
+                    <ImageView
+                        android:id="@+id/time_icon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_access_time_black_24dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:tint="#686868"
+                        android:contentDescription="@string/date_observed"
+                        />
+
+                    <TextView
+                        android:id="@+id/observed_on_string"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/time_observed_at"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="@string/set_time"
+                        android:layout_centerVertical="true"
+                        android:textSize="16sp"
+                        android:layout_marginLeft="5dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/observed_on"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_toRightOf="@id/time_icon"
+                        android:layout_toEndOf="@id/time_icon"
+                        android:layout_toLeftOf="@id/time_observed_at"
+                        android:text="@string/set_date"
+                        android:layout_centerVertical="true"
+                        android:textSize="16sp"
+                        />
+
+
+                </RelativeLayout>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="#dfdfdf"
+                    android:layout_marginLeft="64dp"
+                    android:layout_marginStart="64dp"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:paddingLeft="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:minHeight="60dp"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:id="@+id/location_left_side"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp">
+                        <ImageView
+                            android:id="@+id/location_icon"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:src="@drawable/ic_location_on_black_24dp"
+                            android:tint="#686868"
+                            android:contentDescription="@string/location"
+                            android:labelFor="@id/locationRefreshButton"
+                            />
+
+                        <ProgressBar
+                            android:id="@+id/locationProgress"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/finding_current_location"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/finding_current_location"
                         android:ellipsize="end"
                         android:lines="1"
                         android:textSize="16sp"
-                        android:visibility="visible"
+                        android:visibility="gone"
+                        android:layout_toRightOf="@id/location_left_side"
+                        android:layout_toEndOf="@id/location_left_side"
+                        android:layout_centerVertical="true"
                         />
 
-                    <!--
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        -->
-                    <com.google.android.flexbox.FlexboxLayout
-                        android:id="@+id/coordinates"
-                        xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_below="@id/location_guess"
+
+                    <RelativeLayout
+                        android:id="@+id/locationRefreshButton"
                         android:layout_centerVertical="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        app:flexWrap="wrap"
-                        app:alignItems="stretch"
-                        app:alignContent="stretch"
-                        >
-                        <TextView
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:text="@string/coordinates_lat"
-                            android:textSize="12sp"
-                            android:textColor="#929292"
-                            android:layout_marginRight="2dp"
-                            android:layout_marginEnd="2dp"
-                            />
-                        <TextView
-                            android:id="@+id/latitude"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:text="12.34567890123"
-                            android:textSize="12sp"
-                            android:textColor="#929292"
-                            android:layout_marginRight="4dp"
-                            android:layout_marginEnd="4dp"
-                            android:maxWidth="80dp"
-                            android:ellipsize="end"
-                            android:lines="1"
-                            />
-                        <TextView
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:text="@string/coordinates_lon"
-                            android:textSize="12sp"
-                            android:textColor="#929292"
-                            android:layout_marginRight="4dp"
-                            android:layout_marginEnd="4dp"
-                            />
-                        <TextView
-                            android:id="@+id/longitude"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:textSize="12sp"
-                            android:textColor="#929292"
-                            android:layout_marginRight="4dp"
-                            android:layout_marginEnd="4dp"
-                            android:text="12.34567890123"
-                            android:maxWidth="80dp"
-                            android:ellipsize="end"
-                            android:lines="1"
-                            />
-                        <TextView
-                            android:id="@+id/accuracy_prefix"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:text="@string/coordinates_acc"
-                            android:textSize="12sp"
-                            android:textColor="#929292"
-                            android:layout_marginRight="2dp"
-                            android:layout_marginEnd="2dp"
-                            />
-                        <TextView
-                            android:id="@+id/accuracy"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:textSize="12sp"
-                            android:textColor="#929292"
-                            android:text="34567890123"
-                            android:maxWidth="80dp"
-                            android:ellipsize="end"
-                            android:lines="1"
-                            />
-                    </com.google.android.flexbox.FlexboxLayout>
-                    <!--</LinearLayout>-->
+                        android:layout_toRightOf="@id/location_left_side"
+                        android:layout_toEndOf="@id/location_left_side"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
 
+
+                        <TextView
+                            android:id="@+id/location_guess"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/set_location"
+                            android:ellipsize="end"
+                            android:lines="1"
+                            android:textSize="16sp"
+                            android:visibility="visible"
+                            />
+
+                        <!--
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            -->
+                        <com.google.android.flexbox.FlexboxLayout
+                            android:id="@+id/coordinates"
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_below="@id/location_guess"
+                            android:layout_centerVertical="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            app:flexWrap="wrap"
+                            app:alignItems="stretch"
+                            app:alignContent="stretch"
+                            >
+                            <TextView
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:text="@string/coordinates_lat"
+                                android:textSize="12sp"
+                                android:textColor="#929292"
+                                android:layout_marginRight="2dp"
+                                android:layout_marginEnd="2dp"
+                                />
+                            <TextView
+                                android:id="@+id/latitude"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:text="12.34567890123"
+                                android:textSize="12sp"
+                                android:textColor="#929292"
+                                android:layout_marginRight="4dp"
+                                android:layout_marginEnd="4dp"
+                                android:maxWidth="80dp"
+                                android:ellipsize="end"
+                                android:lines="1"
+                                />
+                            <TextView
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:text="@string/coordinates_lon"
+                                android:textSize="12sp"
+                                android:textColor="#929292"
+                                android:layout_marginRight="4dp"
+                                android:layout_marginEnd="4dp"
+                                />
+                            <TextView
+                                android:id="@+id/longitude"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:textSize="12sp"
+                                android:textColor="#929292"
+                                android:layout_marginRight="4dp"
+                                android:layout_marginEnd="4dp"
+                                android:text="12.34567890123"
+                                android:maxWidth="80dp"
+                                android:ellipsize="end"
+                                android:lines="1"
+                                />
+                            <TextView
+                                android:id="@+id/accuracy_prefix"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:text="@string/coordinates_acc"
+                                android:textSize="12sp"
+                                android:textColor="#929292"
+                                android:layout_marginRight="2dp"
+                                android:layout_marginEnd="2dp"
+                                />
+                            <TextView
+                                android:id="@+id/accuracy"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:textSize="12sp"
+                                android:textColor="#929292"
+                                android:text="34567890123"
+                                android:maxWidth="80dp"
+                                android:ellipsize="end"
+                                android:lines="1"
+                                />
+                        </com.google.android.flexbox.FlexboxLayout>
+                        <!--</LinearLayout>-->
+
+                    </RelativeLayout>
                 </RelativeLayout>
-            </RelativeLayout>
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#dfdfdf"
-                android:layout_marginLeft="64dp"
-                android:layout_marginStart="64dp"
-                />
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:paddingLeft="16dp"
-                android:paddingStart="16dp"
-                android:paddingRight="16dp"
-                android:paddingEnd="16dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:layout_height="60dp">
-
-                <ImageView
-                    android:id="@+id/location_visibility_icon"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_public_black_24dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:tint="#686868"
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="#dfdfdf"
+                    android:layout_marginLeft="64dp"
+                    android:layout_marginStart="64dp"
                     />
 
                 <RelativeLayout
-                    android:id="@+id/locationVisibility"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/location_visibility_icon"
-                    android:layout_toEndOf="@id/location_visibility_icon"
                     android:layout_width="fill_parent"
+                    android:paddingLeft="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:layout_height="60dp">
+
+                    <ImageView
+                        android:id="@+id/location_visibility_icon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_public_black_24dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:tint="#686868"
+                        android:labelFor="@id/locationVisibility"
+                        android:contentDescription="@string/location_visibility"
+                        />
+
+                    <RelativeLayout
+                        android:id="@+id/locationVisibility"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/location_visibility_icon"
+                        android:layout_toEndOf="@id/location_visibility_icon"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/location_visibility_description"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="Location is open"
+                            android:textSize="16sp"
+                            android:textColor="#000000"
+                            />
+                        <Spinner
+                            android:id="@+id/geoprivacy"
+                            android:visibility="gone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:entries="@array/geoprivacy_items"
+                            android:entryValues="@array/geoprivacy_values" />
+                    </RelativeLayout>
+                </RelativeLayout>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="#dfdfdf"
+                    android:layout_marginLeft="64dp"
+                    android:layout_marginStart="64dp"
+                    />
+
+
+                <RelativeLayout
+                    android:id="@+id/is_captive"
+                    android:layout_width="fill_parent"
+                    android:paddingLeft="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:minHeight="60dp"
                     android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/location_visibility_description"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="Location is open"
-                        android:textSize="16sp"
-                        android:textColor="#000000"
+                    <ImageView
+                        android:id="@+id/is_captive_icon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_nature_people_black_24dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:tint="#686868"
+                        android:labelFor="@id/is_captive_checkbox"
                         />
-                    <Spinner
-                        android:id="@+id/geoprivacy"
-                        android:visibility="gone"
-                        android:layout_width="wrap_content"
+
+
+                    <TextView
                         android:layout_height="wrap_content"
-                        android:entries="@array/geoprivacy_items"
-                        android:entryValues="@array/geoprivacy_values" />
+                        android:layout_width="wrap_content"
+                        android:text="@string/is_captive"
+                        android:textSize="16sp"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/is_captive_icon"
+                        android:layout_toEndOf="@id/is_captive_icon"
+                        android:layout_toLeftOf="@id/is_captive_checkbox"
+                        android:layout_toStartOf="@id/is_captive_checkbox"
+                        android:textColor="#000000"
+                        android:labelFor="@id/is_captive_checkbox"
+                        />
+
+                    <CheckBox
+                        android:id="@+id/is_captive_checkbox"
+                        android:paddingLeft="5dp"
+                        android:paddingStart="5dp"
+                        android:layout_width="25dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:button="@drawable/custom_checkbox"
+                        />
+
                 </RelativeLayout>
-            </RelativeLayout>
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#dfdfdf"
-                android:layout_marginLeft="64dp"
-                android:layout_marginStart="64dp"
-                />
-
-
-            <RelativeLayout
-                android:id="@+id/is_captive"
-                android:layout_width="fill_parent"
-                android:paddingLeft="16dp"
-                android:paddingStart="16dp"
-                android:paddingRight="16dp"
-                android:paddingEnd="16dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:minHeight="60dp"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/is_captive_icon"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_nature_people_black_24dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:tint="#686868"
-                    />
-
-
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="@string/is_captive"
-                    android:textSize="16sp"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/is_captive_icon"
-                    android:layout_toEndOf="@id/is_captive_icon"
-                    android:layout_toLeftOf="@id/is_captive_checkbox"
-                    android:layout_toStartOf="@id/is_captive_checkbox"
-                    android:textColor="#000000"
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="#dfdfdf"
+                    android:layout_marginLeft="64dp"
+                    android:layout_marginStart="64dp"
                     />
 
                 <RelativeLayout
-                    android:id="@+id/is_captive_checkbox"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:paddingLeft="5dp"
-                    android:paddingStart="5dp"
-                    android:layout_width="25dp"
-                    android:layout_height="20dp">
+                    android:layout_width="fill_parent"
+                    android:paddingLeft="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:layout_height="60dp">
+
                     <ImageView
-                        android:id="@+id/is_captive_on_icon"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:src="@drawable/ic_action_accept"
-                        android:background="#74ac00"
-                        android:tint="#ffffff"
-                        android:visibility="gone"
+                        android:id="@+id/projects_icon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_work_black_24dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:tint="#686868"
+                        android:contentDescription="@string/projects"
                         />
-                    <ImageView
-                        android:id="@+id/is_captive_off_icon"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:src="@drawable/ic_check_box_white_24dp"
-                        android:background="@drawable/border"
+
+                    <TextView
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:id="@+id/project_count"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="0"
+                        android:textSize="16sp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:gravity="right"
+                        android:textColor="#000000"
                         />
+
+
+                    <TextView
+                        android:layout_toRightOf="@id/projects_icon"
+                        android:layout_toEndOf="@id/projects_icon"
+                        android:layout_toLeftOf="@id/project_count"
+                        android:layout_toStartOf="@id/project_count"
+                        android:id="@+id/select_projects"
+                        android:layout_height="wrap_content"
+                        android:layout_width="fill_parent"
+                        android:text="@string/add_to_projects"
+                        android:textSize="16sp"
+                        android:layout_centerVertical="true"
+                        />
+
                 </RelativeLayout>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="#dfdfdf"
+                    android:layout_marginLeft="64dp"
+                    android:layout_marginStart="64dp"
+                    />
 
-            </RelativeLayout>
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#dfdfdf"
-                android:layout_marginLeft="64dp"
-                android:layout_marginStart="64dp"
-                />
+            </org.inaturalist.android.SwipeableLinearLayout>
+        </ScrollView>
 
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottom_bar"
+            style="@style/Widget.MaterialComponents.BottomAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:backgroundTint="#EDEDED"
+            app:fabCradleMargin="0dp"
+            app:fabCradleVerticalOffset="0dp"
+            app:fabCradleRoundedCornerRadius="0dp"
+            >
             <RelativeLayout
-                android:layout_width="fill_parent"
-                android:paddingLeft="16dp"
-                android:paddingStart="16dp"
-                android:paddingRight="16dp"
-                android:paddingEnd="16dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:layout_height="60dp">
-
+                android:layout_width="match_parent"
+                android:paddingRight="20dp"
+                android:layout_height="match_parent">
                 <ImageView
-                    android:id="@+id/projects_icon"
+                    android:id="@+id/delete_observation"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:src="@drawable/ic_work_black_24dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginEnd="16dp"
+                    bind:increaseTouch='@{80}'
+                    android:src="@drawable/baseline_delete_24"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:tint="#686868"
+                    android:contentDescription="@string/delete_observation"
                     />
-
-                <TextView
+                <ImageView
+                    android:id="@+id/record_sound"
+                    bind:increaseTouch='@{80}'
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/microphone_white"
+                    android:tint="#6d6d6d"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:id="@+id/project_count"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="0"
-                    android:textSize="16sp"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:gravity="right"
-                    android:textColor="#000000"
+                    android:contentDescription="@string/record_sound"
                     />
-
-
-                <TextView
-                    android:layout_toRightOf="@id/projects_icon"
-                    android:layout_toEndOf="@id/projects_icon"
-                    android:layout_toLeftOf="@id/project_count"
-                    android:layout_toStartOf="@id/project_count"
-                    android:id="@+id/select_projects"
-                    android:layout_height="wrap_content"
-                    android:layout_width="fill_parent"
-                    android:text="@string/add_to_projects"
-                    android:textSize="16sp"
+                <ImageView
+                    android:id="@+id/take_photo_bottom"
+                    bind:increaseTouch='@{80}'
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_action_camera"
+                    android:layout_toLeftOf="@id/record_sound"
+                    android:layout_marginRight="20dp"
                     android:layout_centerVertical="true"
+                    android:contentDescription="@string/take_picture"
                     />
-
             </RelativeLayout>
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#dfdfdf"
-                android:layout_marginLeft="64dp"
-                android:layout_marginStart="64dp"
-                />
+        </com.google.android.material.bottomappbar.BottomAppBar>
 
-        </org.inaturalist.android.SwipeableLinearLayout>
-    </ScrollView>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/save_observation"
+            android:contentDescription="@string/save_observation"
+            android:layout_width="wrap_content"
+            android:src="@drawable/baseline_done_white_48"
+            android:backgroundTint="@color/inatapptheme_color"
+            android:layout_height="wrap_content"
+            app:layout_anchor="@id/bottom_bar" />
 
-
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottom_bar"
-        style="@style/Widget.MaterialComponents.BottomAppBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:backgroundTint="#EDEDED"
-        app:fabCradleMargin="0dp"
-        app:fabCradleVerticalOffset="0dp"
-        app:fabCradleRoundedCornerRadius="0dp"
-        >
-        <RelativeLayout
+        <View
             android:layout_width="match_parent"
-            android:paddingRight="20dp"
-            android:layout_height="match_parent">
-            <ImageView
-                android:id="@+id/delete_observation"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/baseline_delete_24"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                />
-            <ImageView
-                android:id="@+id/record_sound"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/microphone_white"
-                android:tint="#6d6d6d"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                />
-            <ImageView
-                android:id="@+id/take_photo_bottom"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/ic_action_camera"
-                android:layout_toLeftOf="@id/record_sound"
-                android:layout_marginRight="20dp"
-                android:layout_centerVertical="true"
-                />
-        </RelativeLayout>
-    </com.google.android.material.bottomappbar.BottomAppBar>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/save_observation"
-        android:layout_width="wrap_content"
-        android:src="@drawable/baseline_done_white_48"
-        fab:fab_colorNormal="@color/inatapptheme_color"
-        fab:fab_colorPressed="@color/inatapptheme_color_highlighted"
-        fab:fab_colorRipple="@color/inatapptheme_color_highlighted"
-        android:backgroundTint="@color/inatapptheme_color"
-        android:layout_height="wrap_content"
-        app:layout_anchor="@id/bottom_bar" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="55dp"
-        android:layout_above="@id/bottom_bar"
-        android:background="@drawable/drop_shadow"/>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            android:layout_height="4dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="55dp"
+            android:layout_above="@id/bottom_bar"
+            android:background="@drawable/drop_shadow"/>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

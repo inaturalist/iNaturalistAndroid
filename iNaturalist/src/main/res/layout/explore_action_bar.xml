@@ -18,6 +18,7 @@
                  android:layout_width="42dp"
                  android:scaleType="centerInside"
                  android:id="@+id/search"
+                android:contentDescription="@string/search"
                  android:background="@drawable/actionbar_btn"
                  android:layout_alignParentEnd="true"
        			 android:layout_marginEnd="8dp"
@@ -31,6 +32,7 @@
                  android:layout_width="wrap_content"
                  android:scaleType="centerInside"
                  android:id="@+id/refresh"
+                android:contentDescription="@string/refreshing"
                  android:background="@drawable/actionbar_btn"
                  android:layout_toStartOf="@id/search"
 		         android:layout_centerVertical="true" />

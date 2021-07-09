@@ -10,6 +10,7 @@
         android:src="@drawable/iconic_taxon_unknown"
         android:layout_centerInParent="true"
         android:scaleType="centerCrop"
+        android:importantForAccessibility="no"
         />
 
     <ImageView
@@ -20,10 +21,11 @@
         android:tint="#ffffff"
         android:background="#BDBDBD"
         android:visibility="gone"
+        android:importantForAccessibility="no"
         />
 
 
-   <TextView
+    <TextView
        android:id="@+id/id_name"
        android:layout_width="fill_parent"
        android:layout_height="28dp"
@@ -34,7 +36,7 @@
        android:maxLines="1"
        android:ellipsize="end"
        android:gravity="center"
-       android:textSize="12dp"
+       android:textSize="12sp"
        android:text="TextView" />
     
 
@@ -64,5 +66,6 @@
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
         android:visibility="gone"
+        android:contentDescription="@string/observation_has_sounds"
         />
 </RelativeLayout>

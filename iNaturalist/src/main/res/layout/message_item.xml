@@ -12,6 +12,7 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="18dp"
+        android:importantForAccessibility="no"
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,6 +39,7 @@
             app:layout_constraintEnd_toStartOf="@+id/mute_indicator"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_chainStyle="packed"
+            android:contentDescription="@string/message_is_flagged"
             />
 
         <ImageView
@@ -55,6 +57,7 @@
             app:layout_constraintEnd_toStartOf="@+id/unread_indicator"
             app:layout_constraintStart_toEndOf="@+id/flag_indicator"
             app:layout_constraintHorizontal_chainStyle="packed"
+            android:contentDescription="@string/user_is_muted"
             />
 
         <View
