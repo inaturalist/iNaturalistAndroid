@@ -647,7 +647,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
 
             if (mZoomToLocation) {
                 if (mMap != null) {
-                    new Handler().postDelayed(() -> mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, (int) (screenWidth * 0.3)), callback), 100);
+                    new Handler().postDelayed(() -> mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, (int) ((isPortrait ? screenWidth : screenHeight) * 0.3)), callback), 100);
                 }
         		mZoomToLocation = false;
         	} else {
@@ -1133,6 +1133,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         int screenWidth = metrics.widthPixels;
+        int screenHeight = metrics.heightPixels;
 
         // Make enough room for the accuracy circle
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
@@ -1144,7 +1145,9 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         builder.include(rightPoint);
         LatLngBounds bounds = builder.build();
 
-        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, (int) (screenWidth * 0.3)),
+        boolean isPortrait = (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT);
+
+        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, (int) ((isPortrait ? screenWidth : screenHeight) * 0.3)),
                 1000,
                 new GoogleMap.CancelableCallback() {
                     @Override
