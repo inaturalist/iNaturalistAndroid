@@ -17,16 +17,17 @@
         android:scaleType="fitXY"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:importantForAccessibility="no"
         />
 
-    <TextView
+        <TextView
         android:id="@+id/category_name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textColor="#FF3A3A3A"
         android:ellipsize="end"
         android:gravity="center_horizontal"
-        android:textSize="11dp"
+        android:textSize="11sp"
         android:layout_below="@id/category_icon"
         android:layout_marginTop="2dp"
         android:text="TextView" />

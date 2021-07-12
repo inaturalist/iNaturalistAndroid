@@ -29,10 +29,11 @@
         android:tint="#FFFFFF"
         android:background="#DDD"
         android:visibility="gone"
+        android:importantForAccessibility="no"
         />
 
 
-       <ImageView
+    <ImageView
            android:id="@+id/id_pic"
            android:layout_width="45dp"
            android:layout_height="45dp"
@@ -40,6 +41,7 @@
            android:layout_centerVertical="true"
            android:layout_marginRight="9dp"
            android:background="#DDDDDD"
+           android:importantForAccessibility="no"
            android:src="@drawable/actionbar_back_indicator" />
 
         <LinearLayout

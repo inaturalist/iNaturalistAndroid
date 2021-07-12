@@ -13,6 +13,7 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:scaleType="fitCenter"
+        android:importantForAccessibility="no"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:src="@drawable/ic_account_circle_black_24dp" />

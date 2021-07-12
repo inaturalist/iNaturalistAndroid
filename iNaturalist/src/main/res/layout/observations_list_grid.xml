@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/people_container"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -141,6 +141,7 @@
             android:tint="#9A9A9A"
             android:src="@drawable/unknown_large"
             android:scaleType="fitCenter"
+            android:importantForAccessibility="no"
             />
 
         <TextView
@@ -157,7 +158,8 @@
             android:layout_marginTop="40dp"
             android:text="@string/no_observations_yet" />
 
-        <com.melnykov.fab.FloatingActionButton
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_observation"
             android:layout_width="70dp"
             android:layout_height="70dp"
@@ -168,11 +170,10 @@
             android:layout_marginEnd="16dp"
             android:padding="14dp"
             android:src="@drawable/ic_add_white_24dp"
+            app:backgroundTint="@color/inatapptheme_color"
+            android:contentDescription="@string/add_observation"
             android:scaleType="fitCenter"
-            android:visibility="gone"
-            fab:fab_colorNormal="@color/inatapptheme_color"
-            fab:fab_colorPressed="@color/inatapptheme_color_highlighted"
-            fab:fab_colorRipple="@color/inatapptheme_color_highlighted" />
+            android:visibility="gone" />
 
 
         <TextView
@@ -232,6 +233,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginEnd="16dp"
             android:tint="#ffffff"
+            android:importantForAccessibility="no"
             />
 
         <TextView

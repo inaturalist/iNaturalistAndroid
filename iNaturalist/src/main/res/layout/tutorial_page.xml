@@ -19,6 +19,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:layout_marginTop="38dp"
+            android:importantForAccessibility="no"
             android:scaleType="fitCenter" />
     </RelativeLayout>
     <LinearLayout

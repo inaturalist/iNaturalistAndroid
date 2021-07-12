@@ -15,6 +15,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
@@ -27,6 +28,7 @@ import android.os.Handler;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.ActionBar;
@@ -40,10 +42,12 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.TouchDelegate;
 import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
@@ -687,7 +691,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         mApp = (INaturalistApp) getApplicationContext();
         mApp.applyLocaleSettings(getBaseContext());
-        setContentView(R.layout.observation_viewer);
+        DataBindingUtil.setContentView(this, R.layout.observation_viewer);
         mHelper = new ActivityHelper(this);
 
         mMetadataObservationID = (TextView) findViewById(R.id.observation_id);
@@ -1853,6 +1857,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 }
                 mUserName.setText(userObj.optString("login"));
                 mUserPic.setVisibility(View.VISIBLE);
+                BindingAdapterUtils.increaseTouch(mUserPic, 80);
                 mUserName.setVisibility(View.VISIBLE);
             }
         } else {

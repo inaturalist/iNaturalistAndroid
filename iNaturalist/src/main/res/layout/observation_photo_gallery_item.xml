@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="50dp"
     android:layout_height="75dp">
 
-    <ImageView
+    <ImageButton
         android:id="@+id/observation_photo"
         android:layout_height="50dp"
         android:layout_width="50dp"
@@ -11,6 +11,7 @@
         android:adjustViewBounds="false"
         android:scaleType="centerCrop"
         android:background="#5D5B5E"
+        android:contentDescription="@string/view_image"
         />
 
     <RelativeLayout
@@ -28,6 +29,7 @@
             android:visibility="visible"
             android:layout_centerVertical="true"
             android:scaleType="fitXY"
+            android:importantForAccessibility="no"
             />
         <ImageView
             android:id="@+id/is_first_off"
@@ -40,6 +42,7 @@
             android:layout_marginStart="2dp"
             android:layout_marginTop="3dp"
             android:scaleType="fitXY"
+            android:importantForAccessibility="no"
             />
 
         <TextView

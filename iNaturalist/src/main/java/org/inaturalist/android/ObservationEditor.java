@@ -95,6 +95,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
+import androidx.databinding.DataBindingUtil;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.ActionBar;
@@ -119,6 +120,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -350,7 +352,7 @@ public class ObservationEditor extends AppCompatActivity {
         mApp = (INaturalistApp) getApplicationContext();
         mApp.applyLocaleSettings(getBaseContext());
 
-        setContentView(R.layout.observation_confirmation);
+        DataBindingUtil.setContentView(this, R.layout.observation_confirmation);
 
         setTitle(R.string.details);
 
@@ -625,13 +627,7 @@ public class ObservationEditor extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mIsCaptive = !mIsCaptive;
-                if (mIsCaptive) {
-                    findViewById(R.id.is_captive_on_icon).setVisibility(View.VISIBLE);
-                    findViewById(R.id.is_captive_off_icon).setVisibility(View.GONE);
-                } else {
-                    findViewById(R.id.is_captive_on_icon).setVisibility(View.GONE);
-                    findViewById(R.id.is_captive_off_icon).setVisibility(View.VISIBLE);
-                }
+                ((CheckBox)findViewById(R.id.is_captive_checkbox)).setChecked(mIsCaptive);
 
                 try {
                     JSONObject eventParams = new JSONObject();
@@ -1987,13 +1983,7 @@ public class ObservationEditor extends AppCompatActivity {
         }
 
         mIsCaptive = mObservation.captive != null && mObservation.captive;
-        if (mIsCaptive) {
-            findViewById(R.id.is_captive_on_icon).setVisibility(View.VISIBLE);
-            findViewById(R.id.is_captive_off_icon).setVisibility(View.GONE);
-        } else {
-            findViewById(R.id.is_captive_on_icon).setVisibility(View.GONE);
-            findViewById(R.id.is_captive_off_icon).setVisibility(View.VISIBLE);
-        }
+        ((CheckBox)findViewById(R.id.is_captive_checkbox)).setChecked(mIsCaptive);
 
         mLocationGuess.setInputType(InputType.TYPE_TEXT_FLAG_CAP_WORDS);
 

@@ -37,6 +37,10 @@ android {
     buildToolsVersion '29.0.2'
     useLibrary 'org.apache.http.legacy'
 
+    buildFeatures {
+        dataBinding true
+    }
+
     bundle {
         language {
             // Specifies that the app bundle should not support
@@ -114,7 +118,6 @@ dependencies {
     implementation 'org.apache.httpcomponents:httpmime:4.3.3'
     implementation 'com.facebook.android:facebook-android-sdk:[8,9)'
     implementation 'com.loopj.android:android-async-http:1.4.7'
-    implementation 'com.melnykov:floatingactionbutton:1.3.0'
     implementation 'org.apache.sanselan:sanselan:0.97-incubator'
     implementation 'com.cocosw:bottomsheet:1.4.0@aar'
     implementation 'com.github.JakeWharton:ViewPagerIndicator:2.4.1'
