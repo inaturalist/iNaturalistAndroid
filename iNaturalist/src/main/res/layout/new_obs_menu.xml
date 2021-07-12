@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center"
-            android:layout_marginRight="12dp"
+            android:layout_marginEnd="12dp"
             android:layout_height="wrap_content">
             <LinearLayout
                 android:id="@+id/no_media"
@@ -86,7 +86,7 @@
             android:id="@+id/choose_image_container"
             android:layout_width="wrap_content"
             android:orientation="vertical"
-            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
             android:layout_gravity="center"
             android:layout_height="wrap_content">
             <LinearLayout
@@ -128,7 +128,7 @@
         <LinearLayout
             android:id="@+id/record_sound_container"
             android:layout_width="wrap_content"
-            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
             android:orientation="vertical"
             android:layout_gravity="center"
             android:layout_height="wrap_content">

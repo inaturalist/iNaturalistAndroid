@@ -9,19 +9,19 @@
         android:id="@+id/user_pic"
         android:layout_width="71dp"
         android:layout_height="71dp"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp"
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/indicators_container"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="18dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="18dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -48,7 +48,7 @@
             android:src="@drawable/muted"
             android:tint="#757677"
             android:visibility="visible"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             app:layout_goneMarginLeft="0dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -61,7 +61,7 @@
             android:id="@+id/unread_indicator"
             android:layout_width="11dp"
             android:layout_height="11dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             app:layout_goneMarginLeft="0dp"
             android:background="@drawable/circle_green_dot"
             android:visibility="visible"
@@ -73,12 +73,12 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
-        android:layout_toRightOf="@id/user_pic"
-        android:layout_toLeftOf="@id/indicators_container"
+        android:layout_toEndOf="@id/user_pic"
+        android:layout_toStartOf="@id/indicators_container"
         android:orientation="vertical"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="18dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="18dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TextView

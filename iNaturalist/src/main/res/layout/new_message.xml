@@ -2,9 +2,9 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:paddingTop="15dp"
-    android:paddingLeft="21dp"
+    android:paddingStart="21dp"
     android:paddingBottom="15dp"
-    android:paddingRight="21dp"
+    android:paddingEnd="21dp"
     android:background="#edeeef"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -15,17 +15,17 @@
         android:layout_height="37dp"
         android:paddingTop="9dp"
         android:paddingBottom="9dp"
-        android:paddingLeft="9dp"
-        android:paddingRight="8dp"
+        android:paddingStart="9dp"
+        android:paddingEnd="8dp"
         android:background="@drawable/circular_green_background"
         android:src="@drawable/ic_send_black_48dp"
-        android:layout_marginLeft="15dp"
-        android:layout_alignParentRight="true"
+        android:layout_marginStart="15dp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:tint="#ffffff" />
 
     <LinearLayout
-        android:layout_toLeftOf="@id/send_message"
+        android:layout_toStartOf="@id/send_message"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -46,8 +46,8 @@
             android:inputType="textCapSentences"
             android:hint="@string/no_subject"
             android:minHeight="40dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
             />
 
         <TextView
@@ -67,8 +67,8 @@
             android:inputType="textMultiLine|textCapSentences"
             android:hint="@string/type_your_message_here"
             android:gravity="top"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             />

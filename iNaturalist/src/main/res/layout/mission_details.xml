@@ -107,8 +107,8 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:paddingTop="10dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:paddingBottom="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -158,15 +158,15 @@
                         android:layout_width="fill_parent"
                         android:layout_height="40dp"
                         android:background="@drawable/shadow_background"
-                        android:layout_marginLeft="17dp"
-                        android:layout_marginRight="17dp"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginEnd="17dp"
                         android:layout_marginBottom="14dp"
                         android:layout_alignParentBottom="true"
                         android:layout_centerVertical="true"
-                        android:paddingLeft="7dp"
+                        android:paddingStart="7dp"
                         android:paddingTop="7dp"
                         android:paddingBottom="7dp"
-                        android:paddingRight="7dp"
+                        android:paddingEnd="7dp"
                         >
 
                         <TextView
@@ -202,7 +202,7 @@
             <LinearLayout
                 android:background="#FFF5F5F5"
                 android:orientation="vertical"
-                android:paddingLeft="16dp"
+                android:paddingStart="16dp"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
                 android:layout_width="match_parent"
@@ -286,7 +286,7 @@
                             android:text="@string/view_on_wikipedia"
                             android:textColor="#000000"
                             android:textSize="18sp"
-                            android:paddingLeft="7dp"
+                            android:paddingStart="7dp"
                             />
                     </LinearLayout>
 
@@ -298,7 +298,7 @@
             <LinearLayout
                 android:background="#FFF5F5F5"
                 android:orientation="vertical"
-                android:paddingLeft="16dp"
+                android:paddingStart="16dp"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
                 android:layout_width="match_parent"

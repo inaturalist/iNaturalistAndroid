@@ -18,7 +18,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:drawableLeft="@drawable/ic_fa_search"
+            android:drawableStart="@drawable/ic_fa_search"
             android:drawablePadding="5dp"
             android:background="#EBEBEB"
             android:padding="10dp"

@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingLeft="26dp"
-    android:paddingRight="26dp"
+    android:paddingStart="26dp"
+    android:paddingEnd="26dp"
     android:paddingTop="13dp"
     android:paddingBottom="13dp">
 
@@ -20,7 +20,7 @@
             android:layout_height="31dp"
             android:src="@drawable/cc_by_nc"
             android:layout_gravity="center"
-            android:layout_marginRight="15dp"
+            android:layout_marginEnd="15dp"
             />
 
         <LinearLayout
@@ -49,7 +49,7 @@
                     android:textColor="#ffffff"
                     android:textStyle="bold"
                     android:background="@drawable/rounded_gbif"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginEnd="8dp"
                     />
                 <TextView
                     android:id="@+id/wikimedia"

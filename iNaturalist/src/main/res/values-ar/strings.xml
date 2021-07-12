@@ -990,7 +990,7 @@
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
     <string name="deleted_user">المستخدمين المحذوفين</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short_this_year">MMM d</string>
+    <string name="date_short_this_year">d MMM</string>
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_short">MM/dd/y</string>
     <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->

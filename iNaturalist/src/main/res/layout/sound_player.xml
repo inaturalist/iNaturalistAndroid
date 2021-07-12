@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:paddingBottom="50dp"
     android:paddingTop="30dp"
-    android:paddingLeft="30dp"
-    android:paddingRight="30dp"
+    android:paddingStart="30dp"
+    android:paddingEnd="30dp"
     android:layout_height="wrap_content">
 
     <RelativeLayout
@@ -19,8 +19,8 @@
             android:layout_height="wrap_content"
             android:text="00:00 / 00:00"
             android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="10dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
             />
         <SeekBar
             android:id="@+id/player_seekbar"
@@ -28,7 +28,7 @@
             android:thumbTint="@color/inatapptheme_color"
             android:secondaryProgressTint="#302929"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/player_time"
+            android:layout_toStartOf="@id/player_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </RelativeLayout>

@@ -3,8 +3,8 @@
     android:background="#ffffff"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
     >
@@ -12,16 +12,16 @@
         android:id="@+id/taxon_photo"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="9dp"
+        android:layout_marginEnd="9dp"
         android:src="@drawable/actionbar_back_indicator" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/taxon_photo"
+        android:layout_toEndOf="@id/taxon_photo"
         android:orientation="vertical" >
 
         <TextView

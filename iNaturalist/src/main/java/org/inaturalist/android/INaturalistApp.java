@@ -75,6 +75,7 @@ import android.os.Handler;
 import android.os.LocaleList;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.text.TextUtilsCompat;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 import androidx.core.app.ActivityCompat;
@@ -92,6 +93,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import static androidx.core.view.ViewCompat.LAYOUT_DIRECTION_RTL;
 
 public class INaturalistApp extends MultiDexApplication {
     private final static String TAG = "INAT: Application";
@@ -1372,4 +1375,7 @@ public class INaturalistApp extends MultiDexApplication {
         return isLowMemory;
     }
 
+    public boolean isLayoutRTL() {
+        return TextUtilsCompat.getLayoutDirectionFromLocale(getResources().getConfiguration().locale) == LAYOUT_DIRECTION_RTL;
+    }
 }

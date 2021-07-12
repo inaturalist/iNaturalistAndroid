@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="0dp"
-    android:paddingLeft="18dp"
-    android:paddingRight="10dp"
+    android:paddingStart="18dp"
+    android:paddingEnd="10dp"
     android:paddingBottom="0dp"
     android:minHeight="42dp"
     android:background="#ffffff">
@@ -13,7 +13,7 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:scaleType="fitCenter"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:src="@drawable/ic_account_circle_black_24dp" />
 
@@ -21,9 +21,9 @@
         android:id="@+id/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/user_pic"
+        android:layout_toEndOf="@id/user_pic"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="7dp"
+        android:layout_marginStart="7dp"
         android:text="username"
         android:textSize="15sp"
         android:textColor="#000000"
@@ -33,13 +33,13 @@
         android:id="@+id/faved_on"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="7dp"
+        android:layout_marginStart="7dp"
         android:text="Feb 22, 2015"
         android:textSize="15sp"
         android:textColor="#7f7f7f"
-        android:layout_marginRight="18dp"
+        android:layout_marginEnd="18dp"
         />
 
     <View
@@ -47,6 +47,6 @@
         android:layout_height="1dp"
         android:background="#DFDFDF"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp"
         />
 </RelativeLayout>

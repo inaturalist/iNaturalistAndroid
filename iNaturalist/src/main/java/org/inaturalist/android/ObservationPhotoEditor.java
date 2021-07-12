@@ -95,7 +95,7 @@ public class ObservationPhotoEditor extends AppCompatActivity implements UCropFr
         options.setShowCropGrid(false);
         options.setActiveControlsWidgetColor(Color.parseColor("#74AC00"));
         options.setRootViewBackgroundColor(Color.parseColor("#FFFFFF"));
-        options.setToolbarCancelDrawable(R.drawable.ic_arrow_back_white_24dp);
+        options.setToolbarCancelDrawable(R.drawable.ic_arrow_back_white);
 
         uCrop = uCrop.withOptions(options);
 

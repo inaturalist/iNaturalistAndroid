@@ -21,6 +21,7 @@
             android:textSize="15sp"
             android:textColor="#808080"
             android:layout_gravity="top"
+            android:textDirection="locale"
             />
 
         <LinearLayout
@@ -93,6 +94,7 @@
                         android:layout_gravity="top"
                         android:layout_toEndOf="@id/user_pic"
                         android:layout_toStartOf="@id/delete_attribute_value"
+                        android:textDirection="locale"
                         />
 
 

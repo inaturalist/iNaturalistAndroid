@@ -58,6 +58,7 @@
 
         <TextView
             android:id="@+id/user_name"
+            android:textDirection="locale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="username"
@@ -216,7 +217,7 @@
             android:layout_height="25dp"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_arrow_forward_gray_24dp" />
+            android:src="@drawable/ic_arrow_forward_gray" />
 
     </RelativeLayout>
 
@@ -285,8 +286,8 @@
             android:gravity="center"
             android:paddingTop="10dp"
             android:paddingBottom="20dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
             android:visibility="gone"
             />
 
@@ -320,8 +321,8 @@
                 android:textColor="#ffffff"
                 android:background="@drawable/circular_button"
                 android:text="@string/sign_up"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp" />
             <Button
                 android:id="@+id/faves_login"
                 android:textColor="#ffffff"
@@ -330,8 +331,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/circular_button"
                 android:text="@string/log_in"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp" />
         </LinearLayout>
 
 
@@ -372,8 +373,8 @@
             android:visibility="gone"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
             android:background="@drawable/circular_button">
@@ -480,8 +481,8 @@
             android:gravity="center"
             android:paddingTop="10dp"
             android:paddingBottom="20dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:visibility="visible"
             android:layout_alignParentTop="true"
             />
@@ -517,8 +518,8 @@
                 android:textColor="#ffffff"
                 android:background="@drawable/circular_button"
                 android:text="@string/sign_up"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp" />
             <Button
                 android:id="@+id/activity_login"
                 android:textColor="#ffffff"
@@ -527,8 +528,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/circular_button"
                 android:text="@string/log_in"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp" />
         </LinearLayout>
 
 
@@ -1021,10 +1022,10 @@
             <ImageView
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:src="@drawable/ic_arrow_forward_gray_24dp"
+                android:src="@drawable/ic_arrow_forward_gray"
                 android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
                 />
 
             <ImageView
@@ -1032,8 +1033,8 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="10dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
                 android:src="@drawable/ic_work_gray_24dp"
                 />
 
@@ -1041,9 +1042,9 @@
                 android:id="@+id/included_in_projects"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/projects_icon"
+                android:layout_toEndOf="@id/projects_icon"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:text="@plurals/included_in_projects"
                 android:textSize="16sp"
                 />
@@ -1078,6 +1079,7 @@
                     android:textStyle="bold"
                     android:layout_marginEnd="15dp"
                     android:layout_marginBottom="10dp"
+                    android:textDirection="locale"
                     />
                 <TextView
                     android:id="@+id/observation_id"
@@ -1096,6 +1098,7 @@
                     android:textStyle="bold"
                     android:layout_marginEnd="15dp"
                     android:layout_marginBottom="10dp"
+                    android:textDirection="locale"
                     />
                 <TextView
                     android:id="@+id/observation_uuid"
@@ -1116,6 +1119,7 @@
                     android:textStyle="bold"
                     android:layout_marginEnd="15dp"
                     android:layout_marginBottom="10dp"
+                    android:textDirection="locale"
                     />
                 <TextView
                     android:id="@+id/observation_url"

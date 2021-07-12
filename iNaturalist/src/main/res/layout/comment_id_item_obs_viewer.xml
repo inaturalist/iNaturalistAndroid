@@ -2,14 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp"
     android:background="#ffffff">
 
     <LinearLayout
         android:id="@+id/user_details"
         android:orientation="horizontal"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_width="wrap_content"
         android:padding="10dp"
@@ -26,11 +26,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="7dp"
+            android:layout_marginStart="7dp"
             android:text="bob's id"
             android:textSize="15sp"
             android:textColor="#7f7f7f"
             android:textIsSelectable="true"
+            android:textDirection="locale"
             />
     </LinearLayout>
 
@@ -39,24 +40,24 @@
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:src="@drawable/ic_more_vert_black_24dp"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:background="@drawable/circular_gray_background"
         android:padding="4dp"
         android:tint="#6F6F6F"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
         />
 
     <LinearLayout
         android:id="@+id/content_hidden"
         android:orientation="horizontal"
-        android:layout_toLeftOf="@id/more_menu"
+        android:layout_toStartOf="@id/more_menu"
         android:layout_alignWithParentIfMissing="true"
         android:gravity="center_vertical"
         android:layout_alignParentTop="true"
         android:layout_marginTop="12dp"
-        android:layout_marginRight="7dp"
+        android:layout_marginEnd="7dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <ImageView
@@ -68,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/content_hidden"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             />
 
     </LinearLayout>
@@ -85,16 +86,16 @@
             android:id="@+id/id_pic"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:src="@drawable/iconic_taxon_unknown" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/id_pic"
+            android:layout_toEndOf="@id/id_pic"
             android:orientation="vertical" >
 
             <TextView
@@ -127,7 +128,7 @@
                     android:layout_height="16dp"
                     android:src="@drawable/ic_error_black_24dp"
                     android:tint="#C32417"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginEnd="5dp"
                     />
                 <TextView
                     android:text="@string/inactive_taxon"
@@ -147,8 +148,8 @@
         android:orientation="vertical"
         android:layout_below="@id/id_layout"
         android:layout_marginTop="0dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:paddingBottom="5dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
@@ -160,7 +161,7 @@
             <TextView
                 android:id="@+id/show_hidden_content"
                 android:textColor="#555555"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:padding="5dp"
                 android:layout_centerVertical="true"
                 android:background="@drawable/gray_border"
@@ -170,11 +171,12 @@
             <TextView
                 android:id="@+id/comment"
                 android:textColor="#000000"
-                android:text="..comment.."
+                android:text="comment..."
+                android:textAlignment="viewStart"
                 android:layout_centerVertical="true"
                 android:textIsSelectable="true"
-                android:layout_alignParentLeft="true"
-                android:layout_toLeftOf="@id/show_hidden_content"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/show_hidden_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
@@ -196,7 +198,7 @@
             <LinearLayout
                 android:id="@+id/id_agree"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_marginBottom="3dp"
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
@@ -215,7 +217,7 @@
                     android:text="@string/agree_all_caps"
                     android:layout_gravity="center_vertical"
                     android:textColor="#86AB03"
-                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
                     />
             </LinearLayout>
         </RelativeLayout>

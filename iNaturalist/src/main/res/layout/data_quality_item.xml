@@ -21,7 +21,7 @@
                 android:id="@+id/icon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/actinopterygii_large" />
 
@@ -47,7 +47,7 @@
                 android:id="@+id/agree_prefix"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
                 android:layout_gravity="center_vertical"
                 android:tint="@color/inatapptheme_color"
                 android:src="@drawable/ic_check_black_24dp" />
@@ -68,7 +68,7 @@
                 android:textSize="13sp"
                 android:tint="#C3C3C3"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 />
 
         </LinearLayout>
@@ -84,7 +84,7 @@
                 android:id="@+id/disagree_prefix"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
                 android:layout_gravity="center_vertical"
                 android:tint="#FF0000"
                 android:src="@drawable/ic_close_black_48dp" />
@@ -105,7 +105,7 @@
                 android:textSize="13sp"
                 android:tint="#C3C3C3"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 />
 
         </LinearLayout>

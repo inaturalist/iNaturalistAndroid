@@ -13,8 +13,8 @@
         android:background="@drawable/side_menu_header_background"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
-        android:paddingLeft="14dp"
-        android:paddingRight="14dp"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
         android:clickable="true"
         android:layout_alignParentTop="true"
         >
@@ -53,20 +53,21 @@
             android:layout_alignParentEnd="true"
             android:layout_alignBottom="@id/side_menu_user_pic_container"
             android:layout_marginStart="10dp"
-            android:src="@drawable/ic_arrow_forward_white_24dp"
+            android:src="@drawable/ic_arrow_forward_white"
             />
 
 
         <TextView
             android:id="@+id/side_menu_username"
-            android:layout_toRightOf="@id/side_menu_user_pic_container"
-            android:layout_toLeftOf="@id/right_arrow"
+            android:layout_toEndOf="@id/side_menu_user_pic_container"
+            android:layout_toStartOf="@id/right_arrow"
             android:layout_alignTop="@id/side_menu_user_pic_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
             android:textColor="#ffffff"
             android:text="@string/not_logged_in"
+            android:textDirection="locale"
             android:paddingBottom="10dp"
             android:visibility="invisible"
             android:ellipsize="end"
@@ -75,8 +76,8 @@
 
          <TextView
             android:id="@+id/observation_count"
-            android:layout_toRightOf="@id/side_menu_user_pic_container"
-            android:layout_toLeftOf="@id/right_arrow"
+            android:layout_toEndOf="@id/side_menu_user_pic_container"
+            android:layout_toStartOf="@id/right_arrow"
             android:layout_below="@id/side_menu_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -90,7 +91,7 @@
 
         <Button
             android:id="@+id/menu_login"
-            android:layout_toRightOf="@id/side_menu_user_pic_container"
+            android:layout_toEndOf="@id/side_menu_user_pic_container"
             android:layout_above="@id/right_arrow"
             android:background="@drawable/circular_button"
             android:textColor="#ffffff"
@@ -101,8 +102,8 @@
             android:textSize="12sp"
             android:paddingTop="0dp"
             android:paddingBottom="2dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:minWidth="0dp"
             android:minHeight="0dp"
             android:height="25dp"
@@ -132,7 +133,7 @@
             android:id="@+id/menu_add_obs_icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginLeft="7dp"
+            android:layout_marginStart="7dp"
             android:scaleType="fitXY"
             android:src="@drawable/ic_add_circle_black_48dp"
             android:tint="@color/inatapptheme_color"
@@ -142,7 +143,7 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:textColor="#000000"
-            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
             android:text="@string/new_observation"/>
     </LinearLayout>
 
@@ -176,7 +177,7 @@
                     android:id="@+id/menu_explore_icon"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_explore_black_24dp"
                     />
@@ -185,7 +186,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="#000000"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:text="@string/explore"/>
             </LinearLayout>
 
@@ -203,7 +204,7 @@
                     android:id="@+id/menu_projects_icon"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_work_black_24dp"
                     />
@@ -212,7 +213,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="#000000"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:text="@string/projects"/>
             </LinearLayout>
             <LinearLayout
@@ -229,7 +230,7 @@
                     android:id="@+id/menu_guides_icon"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_book_black_24dp"
                     />
@@ -238,7 +239,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="#000000"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:text="@string/guides"/>
             </LinearLayout>
             <LinearLayout
@@ -255,7 +256,7 @@
                     android:id="@+id/menu_activity_icon"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_supervisor_account_black_24dp"
                     />
@@ -264,7 +265,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="#000000"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:text="@string/activity"/>
 
                 <TextView
@@ -275,7 +276,7 @@
                     android:background="#73AC08"
                     android:textSize="9sp"
                     android:text="32 new"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
                     android:padding="4dp"
                     />
             </LinearLayout>
@@ -295,7 +296,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:padding="2dp"
-                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/icon_messages_menu_selected"
                     />
@@ -304,7 +305,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="#000000"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:text="@string/messages"/>
 
                 <TextView
@@ -315,7 +316,7 @@
                     android:background="#73AC08"
                     android:textSize="9sp"
                     android:text="32 unread"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
                     android:padding="4dp"
                     />
             </LinearLayout>
@@ -334,7 +335,7 @@
                     android:id="@+id/menu_missions_icon"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_flag_black_24dp"
                     />
@@ -343,7 +344,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="#000000"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:text="@string/missions"/>
             </LinearLayout>
             <View
@@ -365,7 +366,7 @@
                     android:id="@+id/menu_edit_profile_icon"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_person_black_24dp"
                     />
@@ -374,7 +375,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="#000000"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:text="@string/edit_profile"/>
             </LinearLayout>
 
@@ -393,7 +394,7 @@
                     android:id="@+id/menu_settings_icon"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_settings_black_24dp"
                     />
@@ -402,7 +403,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="#000000"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:text="@string/settings"/>
             </LinearLayout>
 
@@ -420,7 +421,7 @@
                     android:id="@+id/menu_about_icon"
                     android:layout_width="42dp"
                     android:layout_height="42dp"
-                    android:layout_marginLeft="-2dp"
+                    android:layout_marginStart="-2dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_notification"
                     android:tint="#000000"
@@ -430,7 +431,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="#000000"
-                    android:layout_marginLeft="22dp"
+                    android:layout_marginStart="22dp"
                     android:text="@string/about_this_app"/>
             </LinearLayout>
 
@@ -449,7 +450,7 @@
                     android:id="@+id/menu_help_icon"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_help_black_24dp"
                     />
@@ -458,7 +459,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="#000000"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:text="@string/help"/>
             </LinearLayout>
 

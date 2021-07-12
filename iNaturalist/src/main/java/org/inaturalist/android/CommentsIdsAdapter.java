@@ -573,7 +573,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
                 dateFormatString = context.getString(R.string.date_short_this_year);
             }
 
-			FastDateFormat dateFormat = FastDateFormat.getInstance(dateFormatString);
+			FastDateFormat dateFormat = FastDateFormat.getInstance(dateFormatString, context.getResources().getConfiguration().locale);
             return dateFormat.format(new Date(postDate.getTime()));
         }
     }

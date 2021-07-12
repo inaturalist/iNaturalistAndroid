@@ -30,7 +30,7 @@
                 android:layout_height="32dp"
                 android:src="@drawable/ic_info_outline_black_24dp"
                 android:tint="#616060"
-                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
                 />
             <LinearLayout
                 android:orientation="vertical"

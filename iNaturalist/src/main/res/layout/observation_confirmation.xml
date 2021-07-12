@@ -90,10 +90,10 @@
                     android:layout_height="10dp">
                     <View
                         android:layout_alignParentTop="true"
-                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
                         android:background="@drawable/arrow_up"
                         android:layout_marginTop="-10dp"
-                        android:layout_marginLeft="22dp"
+                        android:layout_marginStart="22dp"
                         android:layout_width="20dp"
                         android:layout_height="20dp" />
                 </RelativeLayout>
@@ -103,9 +103,9 @@
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:src="@drawable/ic_info_outline_black_24dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginTop="18dp"
                     android:tint="@color/inatapptheme_color"
                     />
@@ -115,9 +115,9 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="@string/warning_multiple_photos"
-                    android:layout_marginRight="16dp"
-                    android:layout_toRightOf="@id/info_icon2"
-                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="16dp"
+                    android:layout_toEndOf="@id/info_icon2"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignTop="@id/info_icon2"
                     android:textSize="14sp"
                     />
@@ -127,13 +127,13 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="@string/got_it_all_caps"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
                     android:layout_below="@id/warning_multiple_photos_text"
                     android:paddingTop="10dp"
                     android:textColor="#8BB929"
                     android:textStyle="bold"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginEnd="16dp"
                     />
             </RelativeLayout>
 
@@ -169,18 +169,18 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_close_black_48dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:tint="#717171"
                     />
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_toRightOf="@id/species_guess_icon"
-                    android:layout_toLeftOf="@id/clear_species_guess"
-                    android:layout_alignParentRight="true"
+                    android:layout_toEndOf="@id/species_guess_icon"
+                    android:layout_toStartOf="@id/clear_species_guess"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:descendantFocusability="beforeDescendants"
@@ -224,10 +224,10 @@
                     android:layout_height="10dp">
                     <View
                         android:layout_alignParentTop="true"
-                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
                         android:background="@drawable/arrow_up"
                         android:layout_marginTop="-10dp"
-                        android:layout_marginLeft="22dp"
+                        android:layout_marginStart="22dp"
                         android:layout_width="20dp"
                         android:layout_height="20dp" />
                 </RelativeLayout>
@@ -237,9 +237,9 @@
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:src="@drawable/ic_info_outline_black_24dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginTop="18dp"
                     android:tint="@color/inatapptheme_color"
                     />
@@ -249,9 +249,9 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="@string/onboarding_species_name"
-                    android:layout_marginRight="16dp"
-                    android:layout_toRightOf="@id/info_icon"
-                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="16dp"
+                    android:layout_toEndOf="@id/info_icon"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignTop="@id/info_icon"
                     android:textSize="14sp"
                     />
@@ -261,13 +261,13 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="@string/got_it_all_caps"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
                     android:layout_below="@id/onboarding_species_name_description"
                     android:paddingTop="10dp"
                     android:textColor="#8BB929"
                     android:textStyle="bold"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginEnd="16dp"
                     />
             </RelativeLayout>
 
@@ -316,6 +316,7 @@
                     android:isScrollContainer="true"
                     android:hint="@string/notes"
                     android:background="#00000000"
+                    android:textAlignment="viewStart"
                     />
 
             </RelativeLayout>
@@ -365,7 +366,7 @@
                     android:text="@string/set_time"
                     android:layout_centerVertical="true"
                     android:textSize="16sp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     />
 
                 <TextView
@@ -374,7 +375,7 @@
                     android:layout_width="wrap_content"
                     android:layout_toRightOf="@id/time_icon"
                     android:layout_toEndOf="@id/time_icon"
-                    android:layout_toLeftOf="@id/time_observed_at"
+                    android:layout_toStartOf="@id/time_observed_at"
                     android:text="@string/set_date"
                     android:layout_centerVertical="true"
                     android:textSize="16sp"
@@ -721,7 +722,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="8dp"
                     android:layout_marginEnd="8dp"
-                    android:gravity="right"
+                    android:gravity="end"
                     android:textColor="#000000"
                     />
 
@@ -765,14 +766,14 @@
         >
         <RelativeLayout
             android:layout_width="match_parent"
-            android:paddingRight="20dp"
+            android:paddingEnd="20dp"
             android:layout_height="match_parent">
             <ImageView
                 android:id="@+id/delete_observation"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@drawable/baseline_delete_24"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 />
             <ImageView
@@ -781,7 +782,7 @@
                 android:layout_height="24dp"
                 android:src="@drawable/microphone_white"
                 android:tint="#6d6d6d"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 />
             <ImageView
@@ -789,8 +790,8 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@drawable/ic_action_camera"
-                android:layout_toLeftOf="@id/record_sound"
-                android:layout_marginRight="20dp"
+                android:layout_toStartOf="@id/record_sound"
+                android:layout_marginEnd="20dp"
                 android:layout_centerVertical="true"
                 />
         </RelativeLayout>

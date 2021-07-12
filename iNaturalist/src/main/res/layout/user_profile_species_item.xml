@@ -4,8 +4,8 @@
     android:layout_height="70dp"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
-    android:paddingLeft="15dp"
-    android:paddingRight="15dp"
+    android:paddingStart="15dp"
+    android:paddingEnd="15dp"
     >
 
     <ImageView
@@ -13,9 +13,9 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:src="@drawable/iconic_taxon_unknown"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="9dp"
+        android:layout_marginEnd="9dp"
         android:background="#DDD"
         android:padding="5dp"
         android:tint="#ffffff"
@@ -26,17 +26,17 @@
         android:id="@+id/species_pic"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:scaleType="fitXY"
-        android:layout_marginRight="9dp"
+        android:layout_marginEnd="9dp"
         android:src="@drawable/actionbar_back_indicator" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/species_pic"
+        android:layout_toEndOf="@id/species_pic"
         android:orientation="vertical" >
 
         <RelativeLayout
@@ -49,7 +49,7 @@
                 android:text="1,320"
                 style="@android:style/TextAppearance.Medium"
                 android:textColor="#000000"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
                 />
             <TextView
@@ -57,9 +57,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@android:style/TextAppearance.Medium"
+                android:textDirection="locale"
                 android:textColor="#000000"
-                android:layout_toLeftOf="@id/species_count"
-                android:layout_alignParentLeft="true"
+                android:layout_toStartOf="@id/species_count"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:maxLines="2"
                 android:ellipsize="end"

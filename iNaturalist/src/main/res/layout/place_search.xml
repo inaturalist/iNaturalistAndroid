@@ -18,15 +18,15 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="10dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="10dp"
                 android:layout_weight="1">
                 <ImageView
                     android:id="@+id/location_icon"
                     android:src="@drawable/ic_location_on_black_24dp"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginRight="10dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginEnd="10dp"
                     android:layout_width="24dp"
                     android:layout_height="24dp" />
 
@@ -37,19 +37,20 @@
                     android:src="@drawable/ic_clear_white_48dp"
                     android:tint="#61000000"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     />
                 <EditText
                     android:id="@+id/location_edit_text"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginEnd="5dp"
                     android:maxLines="1"
                     android:lines="1"
                     android:background="#ffffff"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/location_icon"
-                    android:layout_toLeftOf="@id/clear_location"
+                    android:layout_toEndOf="@id/location_icon"
+                    android:layout_toStartOf="@id/clear_location"
                     android:inputType="text"
                     android:hint="@string/location_search_hint"
+                    android:textAlignment="viewStart"
                     android:textColorHighlight="#CCDEF7"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp" />

@@ -65,12 +65,12 @@ public class MessageThreadAdapter extends RecyclerView.Adapter<MessageThreadAdap
             userPic = holder.userPicRight;
             userPic.setVisibility(View.VISIBLE);
             holder.userPicLeft.setVisibility(View.GONE);
-            holder.header.setGravity(Gravity.RIGHT);
+            holder.header.setGravity(mApp.isLayoutRTL() ? Gravity.LEFT : Gravity.RIGHT);
         } else {
             userPic = holder.userPicLeft;
             userPic.setVisibility(View.VISIBLE);
             holder.userPicRight.setVisibility(View.GONE);
-            holder.header.setGravity(Gravity.LEFT);
+            holder.header.setGravity(mApp.isLayoutRTL() ? Gravity.RIGHT : Gravity.LEFT);
         }
 
         if (userPicUrl == null) {
@@ -95,7 +95,7 @@ public class MessageThreadAdapter extends RecyclerView.Adapter<MessageThreadAdap
         Timestamp ts = message.getTimestamp("updated_at");
         Calendar cal = Calendar.getInstance(Locale.ENGLISH);
         cal.setTimeInMillis(ts.getTime());
-        holder.date.setText(DateFormat.format("MMMM d, yyyy hh:mma", cal));
+        holder.date.setText(DateFormat.format(mApp.isLayoutRTL() ? "d MMMM, yyyy HH:mm" : "MMMM d, yyyy hh:mma", cal));
 
         HtmlUtils.fromHtml(holder.message, message.getString("body"));
 

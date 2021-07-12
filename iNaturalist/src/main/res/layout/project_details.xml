@@ -111,7 +111,7 @@
                         android:layout_gravity="center_horizontal"
                         android:text="@string/news_all_caps"
                         android:textColor="@drawable/circular_button_text"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:textSize="12sp"
                         android:layout_height="30dp"
                         android:textStyle="bold" />
@@ -123,7 +123,7 @@
                         android:layout_gravity="center_horizontal"
                         android:text="@string/about_project_all_caps"
                         android:textColor="@drawable/circular_button_text"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:textSize="12sp"
                         android:layout_height="30dp"
                         android:textStyle="bold" />

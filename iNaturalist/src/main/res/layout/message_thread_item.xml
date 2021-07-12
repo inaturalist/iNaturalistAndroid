@@ -15,9 +15,9 @@
             android:id="@+id/user_pic_left"
             android:layout_width="39dp"
             android:layout_height="39dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="11dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="11dp"
             android:layout_centerVertical="true"
             />
 
@@ -25,19 +25,19 @@
             android:id="@+id/user_pic_right"
             android:layout_width="39dp"
             android:layout_height="39dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="11dp"
-            android:layout_marginRight="18dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="11dp"
+            android:layout_marginEnd="18dp"
             android:layout_centerVertical="true"
             />
 
         <LinearLayout
             android:id="@+id/header"
-            android:layout_toRightOf="@id/user_pic_left"
-            android:layout_toLeftOf="@id/user_pic_right"
+            android:layout_toEndOf="@id/user_pic_left"
+            android:layout_toStartOf="@id/user_pic_right"
             android:orientation="vertical"
             android:layout_centerVertical="true"
-            android:gravity="right"
+            android:gravity="end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
@@ -55,6 +55,8 @@
                 android:textColor="#393a3b"
                 android:layout_marginTop="4dp"
                 android:textSize="12sp"
+                android:textDirection="locale"
+                android:textAlignment="viewStart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -68,8 +70,8 @@
         android:textSize="16sp"
         android:text="This is a message"
         android:background="#ffffff"
-        android:paddingLeft="26dp"
-        android:paddingRight="26dp"
+        android:paddingStart="26dp"
+        android:paddingEnd="26dp"
         android:paddingTop="14dp"
         android:paddingBottom="24dp"
         android:textIsSelectable="true"
