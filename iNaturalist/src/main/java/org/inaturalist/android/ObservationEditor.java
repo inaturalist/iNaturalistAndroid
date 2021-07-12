@@ -354,7 +354,7 @@ public class ObservationEditor extends AppCompatActivity {
 
         DataBindingUtil.setContentView(this, R.layout.observation_confirmation);
 
-        setTitle(R.string.details);
+        setTitle(R.string.edit_observation);
 
         if (mHelper == null) {
             mHelper = new ActivityHelper(this);
@@ -952,7 +952,7 @@ public class ObservationEditor extends AppCompatActivity {
         View takePhoto;
 
         mTopActionBar.setLogo(R.drawable.ic_arrow_back);
-        mTopActionBar.setTitle(getString(R.string.details));
+        mTopActionBar.setTitle(getString(R.string.edit_observation));
         mTakePhotoButton = findViewById(R.id.take_photo);
 
         mTakePhotoButton.setOnClickListener(new OnClickListener() {
