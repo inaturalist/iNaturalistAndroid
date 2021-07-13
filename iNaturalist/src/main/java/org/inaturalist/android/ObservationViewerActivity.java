@@ -586,7 +586,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                                 intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID_INTERNAL, mObservation._id);
                                 intent.putExtra(ObservationPhotosViewer.OBSERVATION_UUID, mObservation.uuid);
                                 intent.putExtra(ObservationPhotosViewer.IS_NEW_OBSERVATION, true);
-                                intent.putExtra(ObservationPhotosViewer.READ_ONLY, false);
+                                intent.putExtra(ObservationPhotosViewer.READ_ONLY, true); // Don't allow editing photos from this screen
                                 startActivityForResult(intent, OBSERVATION_PHOTOS_REQUEST_CODE);
                             } else {
                                 try {
