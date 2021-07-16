@@ -17,6 +17,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -594,6 +595,8 @@ public class INaturalistService extends IntentService {
 
     private Location mLastLocation = null;
 
+    private boolean mCalledStartForeground = false;
+
     public enum LoginType {
         PASSWORD,
         GOOGLE,
@@ -613,15 +616,30 @@ public class INaturalistService extends IntentService {
         super.onCreate();
 
         Logger.tag(TAG).info("Service onCreate");
-
-        startIntentForeground();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Logger.tag(TAG).info("Service onStartCommand");
 
-        startIntentForeground();
+        String action = intent.getAction();
+
+        // Only use the notification for actions for which their response is crucial (e.g. syncing)
+        // (but make sure we call it at least once)
+        Logger.tag(TAG).info("Should call startIntentForeground? " + mCalledStartForeground + ":" + action);
+
+        if (!mCalledStartForeground ||
+                Arrays.stream(new String[]{
+                    ACTION_DELETE_OBSERVATIONS, ACTION_DELETE_ACCOUNT, ACTION_FIRST_SYNC,
+                    ACTION_GET_AND_SAVE_OBSERVATION, ACTION_JOIN_PROJECT, ACTION_LEAVE_PROJECT,
+                    ACTION_PASSIVE_SYNC, ACTION_POST_MESSAGE, ACTION_PULL_OBSERVATIONS,
+                    ACTION_REDOWNLOAD_OBSERVATIONS_FOR_TAXON, ACTION_REFRESH_CURRENT_USER_SETTINGS,
+                    ACTION_REGISTER_USER, ACTION_REMOVE_OBSERVATION_FROM_PROJECT, ACTION_SYNC,
+                    ACTION_SYNC_JOINED_PROJECTS, ACTION_UPDATE_USER_DETAILS, ACTION_UPDATE_USER_NETWORK
+            }).anyMatch(action::contains)) {
+            mCalledStartForeground = true;
+            startIntentForeground();
+        }
 
         return super.onStartCommand(intent, flags, startId);
     }
