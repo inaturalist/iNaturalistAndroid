@@ -47,10 +47,10 @@
 	<string name="license_wikimedia_cc0">1</string>
 	<string name="license_wikimedia_cc_by">1</string>
 	<string name="license_wikimedia_cc_by_nc">0</string>
-	<string name="license_wikimedia_cc_by_nc_sa">1</string>
+	<string name="license_wikimedia_cc_by_nc_sa">0</string>
 	<string name="license_wikimedia_cc_by_nc_nd">0</string>
 	<string name="license_wikimedia_cc_by_nd">0</string>
-	<string name="license_wikimedia_cc_by_sa">0</string>
+	<string name="license_wikimedia_cc_by_sa">1</string>
 	<string name="license_wikimedia_no_license">0</string>
 
 	<!-- License Logo -->
