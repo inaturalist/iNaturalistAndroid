@@ -595,8 +595,6 @@ public class INaturalistService extends IntentService {
 
     private Location mLastLocation = null;
 
-    private boolean mCalledStartForeground = false;
-
     public enum LoginType {
         PASSWORD,
         GOOGLE,
@@ -613,9 +611,8 @@ public class INaturalistService extends IntentService {
 
     @Override
     public void onCreate() {
-        super.onCreate();
-
         Logger.tag(TAG).info("Service onCreate");
+        super.onCreate();
     }
 
     @Override
@@ -626,9 +623,10 @@ public class INaturalistService extends IntentService {
 
         // Only use the notification for actions for which their response is crucial (e.g. syncing)
         // (but make sure we call it at least once)
-        Logger.tag(TAG).info("Should call startIntentForeground? " + mCalledStartForeground + ":" + action);
+        mApp = (INaturalistApp) getApplicationContext();
+        Logger.tag(TAG).info("Should call startIntentForeground? " + mApp.hasCalledStartForeground() + ":" + action);
 
-        if (!mCalledStartForeground ||
+        if (!mApp.hasCalledStartForeground() ||
                 Arrays.stream(new String[]{
                     ACTION_DELETE_OBSERVATIONS, ACTION_DELETE_ACCOUNT, ACTION_FIRST_SYNC,
                     ACTION_GET_AND_SAVE_OBSERVATION, ACTION_JOIN_PROJECT, ACTION_LEAVE_PROJECT,
@@ -637,7 +635,7 @@ public class INaturalistService extends IntentService {
                     ACTION_REGISTER_USER, ACTION_REMOVE_OBSERVATION_FROM_PROJECT, ACTION_SYNC,
                     ACTION_SYNC_JOINED_PROJECTS, ACTION_UPDATE_USER_DETAILS, ACTION_UPDATE_USER_NETWORK
             }).anyMatch(action::contains)) {
-            mCalledStartForeground = true;
+            mApp.setCalledStartForeground(true);
             startIntentForeground();
         }
 
@@ -7132,6 +7130,8 @@ public class INaturalistService extends IntentService {
     @Override
     public void onDestroy() {
         mIsStopped = true;
+        mApp.setCalledStartForeground(false);
+        Logger.tag(TAG).info("onDestroy");
         super.onDestroy();
     }
 
