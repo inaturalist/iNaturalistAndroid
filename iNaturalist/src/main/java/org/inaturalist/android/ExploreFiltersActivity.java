@@ -389,6 +389,30 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         mNeedsIdLabel.setOnClickListener(onDataQualityCheckbox);
         mCasualGradeLabel.setOnClickListener(onDataQualityCheckbox);
 
+        CompoundButton.OnCheckedChangeListener onDataQualityCheckboxChange = new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton view, boolean isChecked) {
+                String qualityGrade;
+
+                if (view == mResearchGradeCheckbox) {
+                    qualityGrade = ExploreSearchFilters.QUALITY_GRADE_RESEARCH;
+                } else if (view == mNeedsIdCheckbox) {
+                    qualityGrade = ExploreSearchFilters.QUALITY_GRADE_NEEDS_ID;
+                } else {
+                    qualityGrade = ExploreSearchFilters.QUALITY_GRADE_CASUAL;
+                }
+
+                if (isChecked) {
+                    mSearchFilters.qualityGrade.add(qualityGrade);
+                } else {
+                    mSearchFilters.qualityGrade.remove(qualityGrade);
+                }
+            }
+        };
+        mResearchGradeCheckbox.setOnCheckedChangeListener(onDataQualityCheckboxChange);
+        mNeedsIdCheckbox.setOnCheckedChangeListener(onDataQualityCheckboxChange);
+        mCasualGradeCheckbox.setOnCheckedChangeListener(onDataQualityCheckboxChange);
+
         mHasPhotosLabel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -398,6 +422,12 @@ public class ExploreFiltersActivity extends AppCompatActivity {
 
                 mSearchFilters.hasPhotos = mHasPhotosCheckbox.isChecked();
                 refreshViewState();
+            }
+        });
+        mHasPhotosCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mSearchFilters.hasPhotos = isChecked;
             }
         });
 
@@ -410,6 +440,12 @@ public class ExploreFiltersActivity extends AppCompatActivity {
 
                 mSearchFilters.hasSounds = mHasSoundsCheckbox.isChecked();
                 refreshViewState();
+            }
+        });
+        mHasSoundsCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mSearchFilters.hasSounds = isChecked;
             }
         });
 
@@ -771,9 +807,9 @@ public class ExploreFiltersActivity extends AppCompatActivity {
             }
         }
 
-        mResearchGradeCheckbox.setSelected(mSearchFilters.qualityGrade.contains(ExploreSearchFilters.QUALITY_GRADE_RESEARCH));
-        mNeedsIdCheckbox.setSelected(mSearchFilters.qualityGrade.contains(ExploreSearchFilters.QUALITY_GRADE_NEEDS_ID));
-        mCasualGradeCheckbox.setSelected(mSearchFilters.qualityGrade.contains(ExploreSearchFilters.QUALITY_GRADE_CASUAL));
+        mResearchGradeCheckbox.setChecked(mSearchFilters.qualityGrade.contains(ExploreSearchFilters.QUALITY_GRADE_RESEARCH));
+        mNeedsIdCheckbox.setChecked(mSearchFilters.qualityGrade.contains(ExploreSearchFilters.QUALITY_GRADE_NEEDS_ID));
+        mCasualGradeCheckbox.setChecked(mSearchFilters.qualityGrade.contains(ExploreSearchFilters.QUALITY_GRADE_CASUAL));
 
         mHasPhotosCheckbox.setChecked(mSearchFilters.hasPhotos);
         mHasSoundsCheckbox.setChecked(mSearchFilters.hasSounds);
