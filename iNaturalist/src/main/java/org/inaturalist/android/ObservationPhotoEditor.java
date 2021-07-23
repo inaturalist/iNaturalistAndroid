@@ -67,10 +67,8 @@ public class ObservationPhotoEditor extends AppCompatActivity implements UCropFr
         mHelper = new ActivityHelper(this);
 
         Intent intent = getIntent();
-        if (savedInstanceState == null) {
-            String uri = intent.getStringExtra(PHOTO_URI);
-            editPhoto(Uri.parse(uri));
-        }
+        String uri = intent.getStringExtra(PHOTO_URI);
+        editPhoto(Uri.parse(uri));
     }
 
     private void editPhoto(Uri sourceUri) {
