@@ -51,12 +51,12 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     private class ProjectsReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Logger.tag(TAG).info("GOT " + getFilterResultName());
-
             BaseFragmentActivity.safeUnregisterReceiver(mProjectsReceiver, getActivity());
 
             Boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
-            
+            Logger.tag(TAG).info("Got " + getFilterResultName() + ": " + isSharedOnApp);
+
+
             SerializableJSONArray serializableArray;
             if (!isSharedOnApp) {
                 Serializable sarr = intent.getSerializableExtra(getFilterResultParamName());
@@ -69,7 +69,6 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
             } else {
             	// Get results from app context
             	serializableArray = (SerializableJSONArray) mApp.getServiceResult(getFilterResultName());
-            	mApp.setServiceResult(getFilterResultName(), null); // Clear data afterwards
             }
             Logger.tag(TAG).debug("Response for: " + getFilterResultName() + ":" + serializableArray);
 
@@ -146,7 +145,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
         }       
     }
 
-    private static final String TAG = "INAT";
+    private static final String TAG = "BaseTab";
 
     private ListView mProjectList;
     private ProjectsReceiver mProjectsReceiver;
