@@ -1682,7 +1682,7 @@ public class ObservationEditor extends AppCompatActivity {
         		}
         	}
 
-        	if (mObservation != null) {
+        	if (mObservation != null && mObservation._id != null) {
                 mApp.setIsObservationCurrentlyBeingEdited(mObservation._id, false);
             }
         }
