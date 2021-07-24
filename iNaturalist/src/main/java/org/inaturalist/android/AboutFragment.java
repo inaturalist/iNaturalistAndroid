@@ -1,29 +1,20 @@
 package org.inaturalist.android;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.text.Html;
 import android.view.View;
+import android.widget.Toast;
 
-import androidx.core.content.ContextCompat;
-import androidx.preference.CheckBoxPreference;
-import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.tinylog.Logger;
 
 public class AboutFragment extends PreferenceFragmentCompat {
@@ -94,6 +85,9 @@ public class AboutFragment extends PreferenceFragmentCompat {
                 mDebugLogsClickCount = 0;
                 Intent intent = new Intent(getActivity(), DebugSettingsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
+            } else if (mDebugLogsClickCount == 1) {
+                FileUtils.copyToClipBoard(getActivity(), getAppVersion());
+                Toast.makeText(getActivity(), getString(R.string.app_version_copied_to_clipboard), Toast.LENGTH_LONG).show();
             }
 
             return false;
@@ -157,13 +151,18 @@ public class AboutFragment extends PreferenceFragmentCompat {
         });
 
         // Show app version
+        mVersion.setSummary(getAppVersion());
+    }
+
+    private String getAppVersion() {
         try {
             PackageManager manager = getActivity().getPackageManager();
             PackageInfo info = manager.getPackageInfo(getActivity().getPackageName(), 0);
 
-            mVersion.setSummary(String.format("%s (%d)", info.versionName, info.versionCode));
+            return String.format("%s (%d)", info.versionName, info.versionCode);
         } catch (PackageManager.NameNotFoundException e) {
             Logger.tag(TAG).error(e);
+            return "";
         }
     }
 

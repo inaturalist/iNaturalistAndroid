@@ -189,10 +189,7 @@ public class LocationDetailsActivity extends AppCompatActivity implements Locati
             double longitude = (mObservation.geoprivacy == null) || (mObservation.geoprivacy.equals("open")) ? mObservation.longitude : mObservation.private_longitude;
             String coordinates = String.format(Locale.ENGLISH, "%f,%f", latitude, longitude);
 
-            android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-            android.content.ClipData clip = android.content.ClipData.newPlainText(coordinates, coordinates);
-            clipboard.setPrimaryClip(clip);
-
+            FileUtils.copyToClipBoard(this, coordinates);
             Toast.makeText(this, getString(R.string.coordinates_copied_to_clipboard), Toast.LENGTH_LONG).show();
             return true;
 

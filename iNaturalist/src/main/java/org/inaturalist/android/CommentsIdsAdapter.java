@@ -596,17 +596,5 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
         intent.putExtra(TaxonActivity.OBSERVATION, mObservation);
         mContext.startActivity(intent);
 	}
-
-    private void copyToClipBoard(String text) {
-        int sdk = android.os.Build.VERSION.SDK_INT;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
-            android.content.ClipboardManager clipboard = (android.content.ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
-            android.content.ClipData clip = android.content.ClipData.newPlainText(text, text);
-            clipboard.setPrimaryClip(clip);
-        } else {
-            android.text.ClipboardManager clipboard = (android.text.ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
-            clipboard.setText(text);
-        }
-    }
 }
 
