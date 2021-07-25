@@ -847,7 +847,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
             mViewSuggestionsNotNearByButton.setText(R.string.only_view_nearby_suggestions);
         } else {
             // Show only results both vision_score and frequency_score, then sort by combined_score
-            CollectionUtils.filter(sortedSuggestions, suggestion -> (suggestion.getJSONObject("source_details").optDouble("frequency_score") > 0) && (suggestion.getJSONObject("source_details").optDouble("vision_score") > 0.3) );
+            CollectionUtils.filter(sortedSuggestions, suggestion -> (suggestion.getJSONObject("source_details").optDouble("frequency_score") > 0) && (suggestion.getJSONObject("source_details").optDouble("vision_score") > 0) );
             if (sortedSuggestions.size() == 0) {
                 // Special case - no nearby results
                 sortedSuggestions = new ArrayList<>(mTaxonSuggestions);

@@ -1159,8 +1159,8 @@ public class INaturalistService extends IntentService {
                     // It's an online observation
                     taxonSuggestions = getTaxonSuggestions(obsUrl, latitude, longitude, observedOn, suggestionSource, placeId, taxonId, placeLat, placeLng, limit, page);
                 } else {
-                    // Local photo  - Resize photo to 299x299 max
-                    String resizedPhotoFilename = ImageUtils.resizeImage(this, obsFilename, null, 299);
+                    // Local photo  - Resize photo to 640x640 max, not using Lanczos
+                    String resizedPhotoFilename = ImageUtils.resizeImage(this, obsFilename, null, 640, true);
 
                     if (resizedPhotoFilename != null) {
                         taxonSuggestions = getTaxonSuggestions(resizedPhotoFilename, latitude, longitude, observedOn, suggestionSource, placeId, taxonId, placeLat, placeLng, limit, page);

@@ -355,13 +355,17 @@ public class ImageUtils {
     }
 
 
+    public static String resizeImage(Context context, String path, Uri photoUri, int maxDimensions) {
+        return resizeImage(context, path, photoUri, maxDimensions, false);
+    }
     /**
      * Resizes an image to max size
      * @param path the path to the image filename (optional)
      * @param photoUri the original Uri of the image
+     * @param noLanczos if True, will not use Lanczos to resize image (but rather bilinear resampling)
      * @return the resized image - or original image if smaller than 2048x2048
      */
-    public static String resizeImage(Context context, String path, Uri photoUri, int maxDimensions) {
+    public static String resizeImage(Context context, String path, Uri photoUri, int maxDimensions, boolean noLanczos) {
         InputStream is = null;
         BitmapFactory.Options options = new BitmapFactory.Options();
 
@@ -419,7 +423,7 @@ public class ImageUtils {
             Bitmap resizedBitmap = BitmapFactory.decodeStream(is);
 
             if ((resizedBitmap != null) && ((newHeight != originalHeight) || (newWidth != originalWidth))) {
-                if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                if (!noLanczos && android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
                     // Resize bitmap using Lanczos algorithm (provides smoother/better results than the
                     // built-in Android resize methods)
                     try {
