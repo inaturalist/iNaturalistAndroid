@@ -22,6 +22,7 @@ import android.provider.MediaStore;
 import androidx.annotation.NonNull;
 import androidx.renderscript.Allocation;
 import androidx.renderscript.Element;
+import androidx.renderscript.RSInvalidStateException;
 import androidx.renderscript.RenderScript;
 import androidx.renderscript.ScriptIntrinsicBlur;
 
@@ -75,8 +76,17 @@ public class ImageUtils {
 
         Bitmap outputBitmap = Bitmap.createBitmap(image);
         final RenderScript renderScript = RenderScript.create(context);
-        Allocation tmpIn = Allocation.createFromBitmap(renderScript, image);
-        Allocation tmpOut = Allocation.createFromBitmap(renderScript, outputBitmap);
+        Allocation tmpIn;
+        Allocation tmpOut;
+
+        try {
+            tmpIn = Allocation.createFromBitmap(renderScript, image);
+            tmpOut = Allocation.createFromBitmap(renderScript, outputBitmap);
+        } catch (RSInvalidStateException exc) {
+            // This happens rarely when we there are hardware issues - just return the unblurred image
+            Logger.tag(TAG).error(exc);
+            return image;
+        }
 
         //Intrinsic Gausian blur filter
         ScriptIntrinsicBlur theIntrinsic = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript));
