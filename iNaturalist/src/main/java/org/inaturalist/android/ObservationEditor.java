@@ -2421,6 +2421,8 @@ public class ObservationEditor extends AppCompatActivity {
                     }
                 } catch (IOException e) {
                     Logger.tag(TAG).error(e);
+                } catch (IllegalArgumentException e) {
+                    Logger.tag(TAG).error(e);
                 }
             }
         })).start();
