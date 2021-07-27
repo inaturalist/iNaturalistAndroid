@@ -185,8 +185,11 @@ public class LocationDetailsActivity extends AppCompatActivity implements Locati
             finish();
             return true;
         case R.id.copy_coordinates:
-            double latitude = (mObservation.geoprivacy == null) || (mObservation.geoprivacy.equals("open")) ? mObservation.latitude : mObservation.private_latitude;
-            double longitude = (mObservation.geoprivacy == null) || (mObservation.geoprivacy.equals("open")) ? mObservation.longitude : mObservation.private_longitude;
+            Double latitude = (mObservation.geoprivacy == null) || (mObservation.geoprivacy.equals("open")) ? mObservation.latitude : mObservation.private_latitude;
+            Double longitude = (mObservation.geoprivacy == null) || (mObservation.geoprivacy.equals("open")) ? mObservation.longitude : mObservation.private_longitude;
+
+            if (latitude == null || longitude == null) return true;
+
             String coordinates = String.format(Locale.ENGLISH, "%f,%f", latitude, longitude);
 
             FileUtils.copyToClipBoard(this, coordinates);
