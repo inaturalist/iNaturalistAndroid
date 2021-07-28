@@ -909,7 +909,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                                 mReadOnly = false;
                                 c.moveToFirst();
                                 mObservation = new Observation(c);
-                                mReloadObs = false;
+                                mReloadObs = true;
                                 uri = mObservation.getUri();
                                 intent.setData(uri);
                             } else {
@@ -3049,6 +3049,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     }
 
     private void refreshAttributes() {
+        Logger.tag(TAG).error("AAAA - refreshAttributes 1");
         if ((mObservation != null) && (mObservation.id == null)) {
             // Don't show attributes for non-synced observations
             mAnnotationSection.setVisibility(View.GONE);
@@ -3081,8 +3082,10 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         }
 
         try {
+            Logger.tag(TAG).error("AAAA - refreshAttributes 2");
             mAnnotationsList.setAdapter(new AnnotationsAdapter(this, this, mObservation.toJSONObject(), mTaxonJson != null ? new JSONObject(mTaxonJson) : null, mAttributes.getJSONArray(), obsAnnotations));
         } catch (JSONException e) {
+            Logger.tag(TAG).error("AAAA - refreshAttributes 3");
             Logger.tag(TAG).error(e);
         }
 
