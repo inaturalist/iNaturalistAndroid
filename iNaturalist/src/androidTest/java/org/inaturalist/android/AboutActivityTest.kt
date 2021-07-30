@@ -4,8 +4,8 @@ import android.app.Activity
 import android.app.Instrumentation
 import android.content.Intent
 import android.net.Uri
-import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.intent.Intents
@@ -51,7 +51,7 @@ class AboutActivityTest {
         onView(withId(R.id.inat_credits))
             .check(matches(isDisplayed()))
 
-        Espresso.pressBack()
+        pressBack()
 
         onView(withText(R.string.credits_title))
             .check(matches(isDisplayed()))
