@@ -3,6 +3,7 @@ package org.inaturalist.android
 import android.app.Activity
 import android.app.Instrumentation
 import android.content.Intent
+import android.net.Uri
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
@@ -54,5 +55,82 @@ class AboutActivityTest {
 
         onView(withText(R.string.credits_title))
             .check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun verifyStoreSection() {
+        Intents.init()
+        val intentParameters = AllOf.allOf(
+            IntentMatchers.hasAction(Intent.ACTION_VIEW),
+            IntentMatchers.hasData(Uri.parse(SHOP_URL)),
+        )
+
+        onView(withText(R.string.shop_the_inat_store))
+            .perform(click())
+
+        Intents.intended(intentParameters)
+        Intents.release()
+    }
+
+    @Test
+    fun verifyDonateSection() {
+        Intents.init()
+        val intentParameters = AllOf.allOf(
+            IntentMatchers.hasAction(Intent.ACTION_VIEW),
+            IntentMatchers.hasData(Uri.parse(DONATION_URL)),
+        )
+
+        onView(withText(R.string.shop_the_inat_store))
+            .perform(click())
+
+        Intents.intended(intentParameters)
+        Intents.release()
+    }
+
+    @Test
+    fun verifyPrivacyPolicySection() {
+        Intents.init()
+        val intentParameters = AllOf.allOf(
+            IntentMatchers.hasAction(Intent.ACTION_VIEW),
+            IntentMatchers.hasData(Uri.parse(PRIVACY_POLICY_URL)),
+        )
+
+        onView(withText(R.string.shop_the_inat_store))
+            .perform(click())
+
+        Intents.intended(intentParameters)
+        Intents.release()
+    }
+
+    @Test
+    fun verifyTermsOfServiceSection() {
+        Intents.init()
+        val intentParameters = AllOf.allOf(
+            IntentMatchers.hasAction(Intent.ACTION_VIEW),
+            IntentMatchers.hasData(Uri.parse(TOS_URL)),
+        )
+
+        onView(withText(R.string.shop_the_inat_store))
+            .perform(click())
+
+        Intents.intended(intentParameters)
+        Intents.release()
+    }
+
+    @Test
+    fun verifyVersionSection() {
+        onView(withText(R.string.version))
+            .check(matches(isDisplayed()))
+    }
+
+    companion object {
+        private const val DONATION_URL =
+            "http://www.inaturalist.org/donate?utm_source=Android&utm_medium=mobile"
+        private const val SHOP_URL =
+            "https://store.inaturalist.org/?utm_source=android&utm_medium=mobile&utm_campaign=store"
+        private const val TOS_URL =
+            "https://www.inaturalist.org/terms"
+        private const val PRIVACY_POLICY_URL =
+            "https://www.inaturalist.org/privacy"
     }
 }
