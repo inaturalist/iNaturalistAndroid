@@ -9,8 +9,8 @@ import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.intent.Intents
-import androidx.test.espresso.intent.matcher.BundleMatchers
-import androidx.test.espresso.intent.matcher.IntentMatchers
+import androidx.test.espresso.intent.matcher.BundleMatchers.hasKey
+import androidx.test.espresso.intent.matcher.IntentMatchers.*
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import org.hamcrest.core.AllOf
@@ -27,9 +27,9 @@ class AboutActivityTest {
         // Start inspecting launched intents.
         Intents.init()
         val intentParameters = AllOf.allOf(
-            IntentMatchers.hasAction(Intent.ACTION_CHOOSER),
-            IntentMatchers.hasExtras(BundleMatchers.hasKey(Intent.EXTRA_INTENT)),
-            IntentMatchers.hasExtras(BundleMatchers.hasKey(Intent.EXTRA_TITLE)),
+            hasAction(Intent.ACTION_CHOOSER),
+            hasExtras(hasKey(Intent.EXTRA_INTENT)),
+            hasExtras(hasKey(Intent.EXTRA_TITLE)),
         )
 
         Intents.intending(intentParameters)
@@ -61,8 +61,8 @@ class AboutActivityTest {
     fun verifyStoreSection() {
         Intents.init()
         val intentParameters = AllOf.allOf(
-            IntentMatchers.hasAction(Intent.ACTION_VIEW),
-            IntentMatchers.hasData(Uri.parse(SHOP_URL)),
+            hasAction(Intent.ACTION_VIEW),
+            hasData(Uri.parse(SHOP_URL)),
         )
 
         onView(withText(R.string.shop_the_inat_store))
@@ -76,8 +76,8 @@ class AboutActivityTest {
     fun verifyDonateSection() {
         Intents.init()
         val intentParameters = AllOf.allOf(
-            IntentMatchers.hasAction(Intent.ACTION_VIEW),
-            IntentMatchers.hasData(Uri.parse(DONATION_URL)),
+            hasAction(Intent.ACTION_VIEW),
+            hasData(Uri.parse(DONATION_URL)),
         )
 
         onView(withText(R.string.shop_the_inat_store))
@@ -91,8 +91,8 @@ class AboutActivityTest {
     fun verifyPrivacyPolicySection() {
         Intents.init()
         val intentParameters = AllOf.allOf(
-            IntentMatchers.hasAction(Intent.ACTION_VIEW),
-            IntentMatchers.hasData(Uri.parse(PRIVACY_POLICY_URL)),
+            hasAction(Intent.ACTION_VIEW),
+            hasData(Uri.parse(PRIVACY_POLICY_URL)),
         )
 
         onView(withText(R.string.shop_the_inat_store))
@@ -106,8 +106,8 @@ class AboutActivityTest {
     fun verifyTermsOfServiceSection() {
         Intents.init()
         val intentParameters = AllOf.allOf(
-            IntentMatchers.hasAction(Intent.ACTION_VIEW),
-            IntentMatchers.hasData(Uri.parse(TOS_URL)),
+            hasAction(Intent.ACTION_VIEW),
+            hasData(Uri.parse(TOS_URL)),
         )
 
         onView(withText(R.string.shop_the_inat_store))
