@@ -1,11 +1,18 @@
 package org.inaturalist.android
 
+import android.app.Activity
+import android.app.Instrumentation
+import android.content.Intent
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.intent.Intents
+import androidx.test.espresso.intent.matcher.BundleMatchers
+import androidx.test.espresso.intent.matcher.IntentMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
+import org.hamcrest.core.AllOf
 import org.junit.Rule
 import org.junit.Test
 
@@ -13,6 +20,27 @@ class AboutActivityTest {
 
     @get:Rule
     val activityRule = ActivityScenarioRule(AboutActivity::class.java)
+
+    @Test
+    fun verifyContactSupportSection() {
+        // Start inspecting launched intents.
+        Intents.init()
+        val intentParameters = AllOf.allOf(
+            IntentMatchers.hasAction(Intent.ACTION_CHOOSER),
+            IntentMatchers.hasExtras(BundleMatchers.hasKey(Intent.EXTRA_INTENT)),
+            IntentMatchers.hasExtras(BundleMatchers.hasKey(Intent.EXTRA_TITLE)),
+        )
+
+        Intents.intending(intentParameters)
+            .respondWith(Instrumentation.ActivityResult(Activity.RESULT_OK, null))
+
+        onView(withText(R.string.contact_support))
+            .perform(click())
+
+        // Stop inspecting launched intents.
+        Intents.intended(intentParameters)
+        Intents.release()
+    }
 
     @Test
     fun verifyCreditsSection() {
