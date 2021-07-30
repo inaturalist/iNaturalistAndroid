@@ -14,6 +14,8 @@ import androidx.test.espresso.intent.matcher.IntentMatchers.*
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import org.hamcrest.core.AllOf
+import org.junit.After
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
@@ -22,10 +24,18 @@ class AboutActivityTest {
     @get:Rule
     val activityRule = ActivityScenarioRule(AboutActivity::class.java)
 
+    @Before
+    fun initialize() {
+        Intents.init()
+    }
+
+    @After
+    fun release() {
+        Intents.release()
+    }
+
     @Test
     fun verifyContactSupportSection() {
-        // Start inspecting launched intents.
-        Intents.init()
         val intentParameters = AllOf.allOf(
             hasAction(Intent.ACTION_CHOOSER),
             hasExtras(hasKey(Intent.EXTRA_INTENT)),
@@ -37,10 +47,7 @@ class AboutActivityTest {
 
         onView(withText(R.string.contact_support))
             .perform(click())
-
-        // Stop inspecting launched intents.
         Intents.intended(intentParameters)
-        Intents.release()
     }
 
     @Test
@@ -59,7 +66,6 @@ class AboutActivityTest {
 
     @Test
     fun verifyStoreSection() {
-        Intents.init()
         val intentParameters = AllOf.allOf(
             hasAction(Intent.ACTION_VIEW),
             hasData(Uri.parse(SHOP_URL)),
@@ -69,52 +75,45 @@ class AboutActivityTest {
             .perform(click())
 
         Intents.intended(intentParameters)
-        Intents.release()
     }
 
     @Test
     fun verifyDonateSection() {
-        Intents.init()
         val intentParameters = AllOf.allOf(
             hasAction(Intent.ACTION_VIEW),
             hasData(Uri.parse(DONATION_URL)),
         )
 
-        onView(withText(R.string.shop_the_inat_store))
+        onView(withText(R.string.donate_to_inaturalist))
             .perform(click())
 
         Intents.intended(intentParameters)
-        Intents.release()
     }
 
     @Test
     fun verifyPrivacyPolicySection() {
-        Intents.init()
         val intentParameters = AllOf.allOf(
             hasAction(Intent.ACTION_VIEW),
             hasData(Uri.parse(PRIVACY_POLICY_URL)),
         )
 
-        onView(withText(R.string.shop_the_inat_store))
+        onView(withText(R.string.privacy_policy))
             .perform(click())
 
         Intents.intended(intentParameters)
-        Intents.release()
     }
 
     @Test
     fun verifyTermsOfServiceSection() {
-        Intents.init()
         val intentParameters = AllOf.allOf(
             hasAction(Intent.ACTION_VIEW),
             hasData(Uri.parse(TOS_URL)),
         )
 
-        onView(withText(R.string.shop_the_inat_store))
+        onView(withText(R.string.terms_of_service))
             .perform(click())
 
         Intents.intended(intentParameters)
-        Intents.release()
     }
 
     @Test
