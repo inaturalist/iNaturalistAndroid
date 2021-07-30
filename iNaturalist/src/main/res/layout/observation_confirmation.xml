@@ -376,8 +376,9 @@
                     android:layout_toRightOf="@id/time_icon"
                     android:layout_toEndOf="@id/time_icon"
                     android:layout_toStartOf="@id/time_observed_at"
-                    android:text="@string/set_date"
+                    android:text="hello world"
                     android:layout_centerVertical="true"
+                    android:textDirection="locale"
                     android:textSize="16sp"
                     />
 

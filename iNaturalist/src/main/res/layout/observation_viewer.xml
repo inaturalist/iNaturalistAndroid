@@ -1088,6 +1088,7 @@
                     android:textColor="#808080"
                     android:textIsSelectable="true"
                     android:layout_height="wrap_content"
+                    android:textDirection="locale"
                     />
             </TableRow>
             <TableRow android:id="@+id/metadata_uuid_row">
@@ -1109,6 +1110,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:layout_width="0dp"
+                    android:textDirection="locale"
                     />
             </TableRow>
             <TableRow android:id="@+id/metadata_url_row">
@@ -1130,6 +1132,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:layout_width="0dp"
+                    android:textDirection="locale"
                     />
             </TableRow>
         </TableLayout>

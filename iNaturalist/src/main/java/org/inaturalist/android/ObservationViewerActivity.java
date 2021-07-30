@@ -376,12 +376,12 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         ObservationPhoto.PROJECTION,
                         "(observation_uuid=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
                         new String[]{mObservation.uuid},
-                        ObservationPhoto.DEFAULT_SORT_ORDER);
+                        mApp.isLayoutRTL() ? ObservationPhoto.REVERSE_DEFAULT_SORT_ORDER : ObservationPhoto.DEFAULT_SORT_ORDER);
                 mSoundCursor = getContentResolver().query(ObservationSound.CONTENT_URI,
                         ObservationSound.PROJECTION,
                         "(observation_uuid=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
                         new String[]{mObservation.uuid},
-                        ObservationSound.DEFAULT_SORT_ORDER);
+                        mApp.isLayoutRTL() ? ObservationSound.REVERSE_DEFAULT_SORT_ORDER : ObservationSound.DEFAULT_SORT_ORDER);
 
                 mImageCursor.moveToFirst();
             }
@@ -3041,6 +3041,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         mPhotosAdapter = new PhotosViewPagerAdapter();
         mPhotosViewPager.setAdapter(mPhotosAdapter);
         mIndicator.setViewPager(mPhotosViewPager);
+
+        if (mApp.isLayoutRTL()) mPhotosViewPager.setCurrentItem(mPhotosAdapter.getCount() - 1);
     }
 
     private void refreshAttributes() {

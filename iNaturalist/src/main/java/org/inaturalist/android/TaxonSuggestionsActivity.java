@@ -106,7 +106,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
     private Button mViewSuggestionsNotNearByButton;
     private PhotosViewPagerAdapter mPhotosAdapter;
     @State public Observation mObservation;
-    @State public int mPhotoPosition;
+    @State public int mPhotoPosition = -1;
     @State public String mSuggestionSource = INaturalistService.SUGGESTION_SOURCE_VISUAL;
     private ImageView mSuggestionSourceButton;
     private RadioGroup mSuggestionSources;
@@ -609,6 +609,9 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
         mPhotosAdapter = new PhotosViewPagerAdapter(this, new Observation(new BetterJSONObject(mObservationJson)), mObservationJson);
         mPhotosViewPager.setAdapter(mPhotosAdapter);
         mIndicator.setViewPager(mPhotosViewPager);
+        if (mPhotoPosition == -1) {
+            mPhotoPosition = mApp.isLayoutRTL() ? mPhotosAdapter.getCount() - 1 : 0;
+        }
         mPhotosViewPager.setCurrentItem(mPhotoPosition);
         mPhotosViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

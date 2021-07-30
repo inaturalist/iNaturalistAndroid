@@ -34,6 +34,7 @@ public class ObservationSound implements BaseColumns, Serializable {
     public static final String AUTHORITY = "org.inaturalist.android.observation_sound";
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/observation_sounds");
     public static final String DEFAULT_SORT_ORDER = "id ASC, _id ASC";
+    public static final String REVERSE_DEFAULT_SORT_ORDER = "id DESC, _id DESC";
 
     public static final String TABLE_NAME = "observation_sounds";
 
