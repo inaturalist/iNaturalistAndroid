@@ -3586,7 +3586,9 @@ public class ObservationEditor extends AppCompatActivity {
                 if (datetime == null) {
                     datetime = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_DATE_TIME);
                 }
-            } else {
+            }
+
+            if ((exif == null) || (datetime == null)) {
                 // Try using built-in EXIF library instead
                 String date = orgExif.getAttribute(ExifInterface.TAG_GPS_DATESTAMP);
                 String time = orgExif.getAttribute(ExifInterface.TAG_GPS_TIMESTAMP);
