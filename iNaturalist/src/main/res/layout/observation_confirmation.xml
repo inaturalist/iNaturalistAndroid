@@ -15,7 +15,7 @@
             android:background="#ffffff"
             android:id="@+id/main_content"
             >
-            <org.inaturalist.android.SwipeableLinearLayout
+            <LinearLayout
                 android:id="@+id/swipeable_layout"
                 android:paddingBottom="100dp"
                 android:orientation="vertical" android:layout_width="match_parent"
@@ -748,7 +748,7 @@
                     android:layout_marginStart="64dp"
                     />
 
-            </org.inaturalist.android.SwipeableLinearLayout>
+            </LinearLayout>
         </ScrollView>
 
 

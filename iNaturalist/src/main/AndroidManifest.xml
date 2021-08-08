@@ -462,7 +462,7 @@
             </intent-filter>
         </activity-alias>
         <activity
-            android:name=".ObservationEditor"
+            android:name=".ObservationEditorSlider"
             android:configChanges="orientation"
             android:label="iNaturalist"
             android:theme="@style/iNatAppThemeCustomActionBar">

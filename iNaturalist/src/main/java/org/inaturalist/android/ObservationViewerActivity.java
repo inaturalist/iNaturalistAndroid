@@ -2308,7 +2308,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 prepareToExit();
                 return true;
             case R.id.edit_observation:
-                intent = new Intent(Intent.ACTION_EDIT, mUri, this, ObservationEditor.class);
+                intent = new Intent(Intent.ACTION_EDIT, mUri, this, ObservationEditorSlider.class);
                 if (mTaxon != null) mApp.setServiceResult(ObservationEditor.TAXON, mTaxon.toString());
                 if (mObsJson != null) intent.putExtra(ObservationEditor.OBSERVATION_JSON, mObsJson);
                 startActivityForResult(intent, REQUEST_CODE_EDIT_OBSERVATION);
@@ -2327,7 +2327,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 refreshMenu();
                 return true;
             case R.id.duplicate:
-                intent = new Intent(Intent.ACTION_EDIT, mUri, this, ObservationEditor.class);
+                intent = new Intent(Intent.ACTION_EDIT, mUri, this, ObservationEditorSlider.class);
                 if (mObsJson != null) intent.putExtra(ObservationEditor.OBSERVATION_JSON, mObsJson);
                 intent.putExtra(ObservationEditor.DUPLICATE, true);
                 startActivity(intent);
