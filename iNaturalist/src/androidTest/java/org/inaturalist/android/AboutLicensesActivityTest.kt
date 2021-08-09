@@ -1,6 +1,8 @@
 package org.inaturalist.android
 
 import android.view.View
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -21,15 +23,9 @@ class AboutLicensesActivityTest {
                     hasDescendant(withText(PUBLIC_DOMAIN_LICENSE)),
                     RecyclerViewHelpers.requireAssertions(
                         listOf(
-                            {
-                                it.findViewById<View>(R.id.license_link).visibility == View.VISIBLE
-                            },
-                            {
-                                it.findViewById<View>(R.id.wikimedia).visibility == View.VISIBLE
-                            },
-                            {
-                                it.findViewById<View>(R.id.gbif).visibility == View.VISIBLE
-                            }
+                            { it.findViewById<View>(R.id.license_link).isVisible },
+                            { it.findViewById<View>(R.id.wikimedia).isVisible },
+                            { it.findViewById<View>(R.id.gbif).isVisible }
                         )
                     )
                 )
@@ -43,15 +39,9 @@ class AboutLicensesActivityTest {
                     hasDescendant(withText(ATTRIBUTION_LICENSE)),
                     RecyclerViewHelpers.requireAssertions(
                         listOf(
-                            {
-                                it.findViewById<View>(R.id.license_link).visibility == View.VISIBLE
-                            },
-                            {
-                                it.findViewById<View>(R.id.wikimedia).visibility == View.VISIBLE
-                            },
-                            {
-                                it.findViewById<View>(R.id.gbif).visibility == View.VISIBLE
-                            }
+                            { it.findViewById<View>(R.id.license_link).isVisible },
+                            { it.findViewById<View>(R.id.wikimedia).isVisible },
+                            { it.findViewById<View>(R.id.gbif).isVisible }
                         )
                     )
                 )
@@ -66,15 +56,9 @@ class AboutLicensesActivityTest {
                     hasDescendant(withText(ATTRIBUTION_NONCOMMERCIAL)),
                     RecyclerViewHelpers.requireAssertions(
                         listOf(
-                            {
-                                it.findViewById<View>(R.id.license_link).visibility == View.VISIBLE
-                            },
-                            {
-                                it.findViewById<View>(R.id.wikimedia).visibility == View.GONE
-                            },
-                            {
-                                it.findViewById<View>(R.id.gbif).visibility == View.VISIBLE
-                            }
+                            { it.findViewById<View>(R.id.license_link).isVisible },
+                            { it.findViewById<View>(R.id.wikimedia).isGone },
+                            { it.findViewById<View>(R.id.gbif).isVisible }
                         )
                     )
                 )
@@ -88,15 +72,9 @@ class AboutLicensesActivityTest {
                     hasDescendant(withText(ATTRIBUTION_NONCOMERCIAL_SHAREALIKE)),
                     RecyclerViewHelpers.requireAssertions(
                         listOf(
-                            {
-                                it.findViewById<View>(R.id.license_link).visibility == View.VISIBLE
-                            },
-                            {
-                                it.findViewById<View>(R.id.wikimedia).visibility == View.GONE
-                            },
-                            {
-                                it.findViewById<View>(R.id.gbif).visibility == View.GONE
-                            }
+                            { it.findViewById<View>(R.id.license_link).isVisible },
+                            { it.findViewById<View>(R.id.wikimedia).isGone },
+                            { it.findViewById<View>(R.id.gbif).isGone }
                         )
                     )
                 )
@@ -110,15 +88,9 @@ class AboutLicensesActivityTest {
                     hasDescendant(withText(ATTRIBUTION_NONCOMERCIAL_NODERIVS)),
                     RecyclerViewHelpers.requireAssertions(
                         listOf(
-                            {
-                                it.findViewById<View>(R.id.license_link).visibility == View.VISIBLE
-                            },
-                            {
-                                it.findViewById<View>(R.id.wikimedia).visibility == View.GONE
-                            },
-                            {
-                                it.findViewById<View>(R.id.gbif).visibility == View.GONE
-                            }
+                            { it.findViewById<View>(R.id.license_link).isVisible },
+                            { it.findViewById<View>(R.id.wikimedia).isGone },
+                            { it.findViewById<View>(R.id.gbif).isGone }
                         )
                     )
                 )
@@ -132,15 +104,9 @@ class AboutLicensesActivityTest {
                     hasDescendant(withText(ATTRIBUTION_NODERIVS)),
                     RecyclerViewHelpers.requireAssertions(
                         listOf(
-                            {
-                                it.findViewById<View>(R.id.license_link).visibility == View.VISIBLE
-                            },
-                            {
-                                it.findViewById<View>(R.id.wikimedia).visibility == View.GONE
-                            },
-                            {
-                                it.findViewById<View>(R.id.gbif).visibility == View.GONE
-                            }
+                            { it.findViewById<View>(R.id.license_link).isVisible },
+                            { it.findViewById<View>(R.id.wikimedia).isGone },
+                            { it.findViewById<View>(R.id.gbif).isGone }
                         )
                     )
                 )
@@ -154,15 +120,9 @@ class AboutLicensesActivityTest {
                     hasDescendant(withText(ATTRIBUTION_SHAREALIKE)),
                     RecyclerViewHelpers.requireAssertions(
                         listOf(
-                            {
-                                it.findViewById<View>(R.id.license_link).visibility == View.VISIBLE
-                            },
-                            {
-                                it.findViewById<View>(R.id.wikimedia).visibility == View.VISIBLE
-                            },
-                            {
-                                it.findViewById<View>(R.id.gbif).visibility == View.GONE
-                            }
+                            { it.findViewById<View>(R.id.license_link).isVisible },
+                            { it.findViewById<View>(R.id.wikimedia).isVisible },
+                            { it.findViewById<View>(R.id.gbif).isGone }
                         )
                     )
                 )
@@ -176,15 +136,9 @@ class AboutLicensesActivityTest {
                     hasDescendant(withText(ALL_RIGHTS_RESERVED)),
                     RecyclerViewHelpers.requireAssertions(
                         listOf(
-                            {
-                                it.findViewById<View>(R.id.license_link).visibility == View.GONE
-                            },
-                            {
-                                it.findViewById<View>(R.id.wikimedia).visibility == View.GONE
-                            },
-                            {
-                                it.findViewById<View>(R.id.gbif).visibility == View.GONE
-                            }
+                            { it.findViewById<View>(R.id.license_link).isGone },
+                            { it.findViewById<View>(R.id.wikimedia).isGone },
+                            { it.findViewById<View>(R.id.gbif).isGone }
                         )
                     )
                 )
