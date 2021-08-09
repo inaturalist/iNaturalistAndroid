@@ -649,6 +649,7 @@
     <string name="project_observations">Observations</string>
     <string name="project_species">Species</string>
     <string name="project_people">People</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Identifiers</string>
     <string name="got_it">Got it!</string>
     <string name="view_all">View All</string>
@@ -1139,7 +1140,7 @@
     <string name="default_photo_license">Default Photo License</string>
     <string name="default_sound_license">Default Sound License</string>
     <string name="change_existing_licenses">Change Existing Licenses</string>
-    <string name="change_licenses_for_existing_observations">Change licenses for existing observations, photos and sounds</string>
+    <string name="change_licenses_for_existing_observations">Change licenses for existing observations, photos, and sounds</string>
     <string name="change_licenses_for_all_existing_observations">Change licenses for all existing observations</string>
     <string name="change_licenses_for_all_existing_photos">Change licenses for all existing photos</string>
     <string name="change_licenses_for_all_existing_sounds">Change licenses for all existing sounds</string>

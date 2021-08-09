@@ -4163,7 +4163,7 @@ public class INaturalistService extends IntentService {
                     if (response == null || response.length() != 1) {
                         Logger.tag(TAG).debug("postPhotos: Failed updating " + op.id);
 
-                        if (mLastStatusCode != HttpStatus.SC_FORBIDDEN) {
+                        if ((mLastStatusCode != HttpStatus.SC_FORBIDDEN) && (mLastStatusCode != HttpStatus.SC_NOT_FOUND)) {
                             c.close();
                             throw new SyncFailedException();
                         } else {

@@ -198,9 +198,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     private ListView mCommentsIdsList;
     private ProgressBar mLoadingActivity;
     private CommentsIdsAdapter mAdapter;
-    private ViewGroup mAddId;
+    private View mAddId;
     private ViewGroup mActivityButtons;
-    private ViewGroup mAddComment;
+    private View mAddComment;
     private ViewGroup mFavoritesTabContainer;
     private ProgressBar mLoadingFavs;
     private ListView mFavoritesList;
@@ -756,8 +756,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         mLoadingActivity = (ProgressBar) findViewById(R.id.loading_activity);
         mCommentsIdsList = (ListView) findViewById(R.id.comment_id_list);
         mActivityButtons = (ViewGroup) findViewById(R.id.activity_buttons);
-        mAddComment = (ViewGroup) findViewById(R.id.add_comment);
-        mAddId = (ViewGroup) findViewById(R.id.add_id);
+        mAddComment = findViewById(R.id.add_comment);
+        mAddId = findViewById(R.id.add_id);
         mFavoritesTabContainer = (ViewGroup) findViewById(R.id.favorites_tab_content);
         mLoadingFavs = (ProgressBar) findViewById(R.id.loading_favorites);
         mFavoritesList = (ListView) findViewById(R.id.favorites_list);
@@ -909,7 +909,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                                 mReadOnly = false;
                                 c.moveToFirst();
                                 mObservation = new Observation(c);
-                                mReloadObs = false;
+                                mReloadObs = true;
                                 uri = mObservation.getUri();
                                 intent.setData(uri);
                             } else {
