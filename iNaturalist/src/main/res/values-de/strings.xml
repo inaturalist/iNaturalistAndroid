@@ -1168,5 +1168,61 @@ Facility</a> (GBIF) generieren: eine internationale, zwischenstaatliche Organisa
     <string name="default_observation_action">Standardaktion für Beobachtungen</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Optionen anzeigen</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Feldwert</string>
+    <string name="expand_annotation_to_agree_or_disagree">Anmerkung erweitern, um zuzustimmen oder abzulehnen</string>
+    <string name="delete_attribute_value">Attributwert löschen</string>
+    <string name="open_menu_for_more_options">Menü für weitere Optionen öffnen</string>
+    <string name="california_academy_of_sciences">California Academy of Sciences</string>
+    <string name="national_geographic">National Geographic</string>
+    <string name="change_user_profile_photo">Profilbild ändern</string>
+    <string name="expand_list">Liste erweitern</string>
+    <string name="change_map_layers">Kartenebenen ändern (Gelände vs. Satellit)</string>
+    <string name="redo_observation_search">Beobachtungssuche in diesem Kartenbereich erneut ausführen</string>
+    <string name="view_observations_on_map">Beobachtungen auf der Karte anzeigen</string>
+    <string name="view_observations_on_grid">Beobachtungen in Raster anzeigen</string>
+    <string name="clear_text">Text löschen</string>
+    <string name="observation_has_sounds">Beobachtung enthält Audioaufnahmen</string>
+    <string name="go_to_my_location">Zurück zu meinem aktuellen Standort</string>
+    <string name="change_geoprivacy">Geo-Privatsphäre ändern</string>
+    <string name="active_filters">Aktivierte Filter</string>
+    <string name="message_is_flagged">Nachricht ist gekennzeichnet</string>
+    <string name="user_is_muted">Benutzer ist stummgeschaltet</string>
+    <string name="cancel_multiple_obs_selection">Auswahl mehrerer Beobachtungen aufheben</string>
+    <string name="delete_observations">Beobachtungen löschen</string>
+    <string name="clear_species_guess">Vermutung zur Art entfernen</string>
+    <string name="comment_count">Anzahl der Kommentare</string>
+    <string name="id_count">Anzahl an Bestimmungen</string>
+    <string name="observation_selected">Beobachtung ausgewählt</string>
+    <string name="share_observation">Beobachtung teilen</string>
+    <string name="unknown_location">Unbekannter Ort</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Schließen</string>
+    <string name="set_date2">Datum festlegen</string>
+    <string name="project_selected">Projekt ausgewählt</string>
+    <string name="project_unselected">Projektauswahl aufheben</string>
+    <string name="show_my_observations">Meine Beobachtungen anzeigen</string>
+    <string name="play_pause_sound">Audioaufnahme wiedergeben oder stoppen</string>
+    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences und National Geographic</string>
+    <string name="view_image">Foto anzeigen</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Bewertungskriterien erreicht</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Zustimmende Bewertung</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Bewertungskriterien nicht erreicht</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Ablehnende Bewertung</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">%1$d ausgewählte Beobachtung löschen</item>
+        <item quantity="other">%1$d ausgewählte Beobachtungen löschen</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">%1$d ausgewählte Beobachtung synchronisieren</item>
+        <item quantity="other">%1$d ausgewählte Beobachtungen synchronisieren</item>
+    </plurals>
+    <string name="add_media_evidence">Beobachtungsnachweis hinzufügen</string>
+    <string name="remove_identification">Bestimmung entfernen</string>
     <string name="issue_with_updating_photos">Es gab ein Problem bei der Aktualisierung der Fotos in dieser Beobachtung, welches vor kurzem behoben wurde. Bitte melde dich ab und dann erneut an, um dieses Problem zu lösen.</string>
+    <string name="app_version_copied_to_clipboard">App-Version in Zwischenablage kopiert</string>
 </resources>

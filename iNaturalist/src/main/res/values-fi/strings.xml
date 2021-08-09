@@ -466,12 +466,12 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="more_info_on_inat">Lisää tietoja iNaturalist.org:issa</string>
     <string name="view_suggestions">Paina tästä niin näet ehdotuksia</string>
     <string name="species_search">Lajihaku</string>
-    <string name="were_not_confident_enough">We\'re not confident enough to make a recommendation, but here are our top suggestions:</string>
-    <string name="were_not_confident_enough_no_suggestions">We\'re not confident enough to make a recommendation.</string>
+    <string name="were_not_confident_enough">Emme ole tarpeeksi varmoja tehdäksemme suositusta, mutta tässä ovat parhaat ehdotukset: </string>
+    <string name="were_not_confident_enough_no_suggestions">Emme ole tarpeeksi varmoja tehdäksemme suositusta. </string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
     <!-- Header for a list of suggested taxa -->
-    <string name="top_suggestions">Top suggestions</string>
+    <string name="top_suggestions">Osuvimmat ehdotukset</string>
     <string name="pretty_sure_rank">Olemme melko varmoja, että %1$s on tämä:</string>
     <string name="what_did_you_see">Mitä näit?</string>
     <string name="suggest_species">Ehdota lajia</string>
@@ -1010,7 +1010,7 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="filter_observations_by_months">Suodata havaintoja kuukausittain</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="include_suggestions_not_seen_nearby">Include suggestions not seen nearby</string>
+    <string name="include_suggestions_not_seen_nearby">Anna ehdotuksia myös lajeista, joita ei ole havaittu lähistöllä</string>
     <string name="only_view_nearby_suggestions">Only view nearby suggestions</string>
     <string name="suggestions_source">Suggestions Source</string>
     <string name="research_grade_observations">Research Grade Observations</string>
@@ -1018,42 +1018,42 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will suggest species observed in a specific place and within a specific taxonomic group.</string>
     <string name="taxon">Taksoni:</string>
     <string name="place">Paikka:</string>
-    <string name="pretty_sure_kingdom">We\'re pretty sure it\'s in this kingdom:</string>
-    <string name="pretty_sure_subkingdom">We\'re pretty sure it\'s in this subkingdom:</string>
-    <string name="pretty_sure_phylum">We\'re pretty sure it\'s in this phylum:</string>
-    <string name="pretty_sure_subphylum">We\'re pretty sure it\'s in this subphylum:</string>
-    <string name="pretty_sure_superclass">We\'re pretty sure it\'s in this superclass:</string>
-    <string name="pretty_sure_class">We\'re pretty sure it\'s in this class:</string>
-    <string name="pretty_sure_subclass">We\'re pretty sure it\'s in this subclass:</string>
-    <string name="pretty_sure_infraclass">We\'re pretty sure it\'s in this infraclass:</string>
-    <string name="pretty_sure_superorder">We\'re pretty sure it\'s in this superorder:</string>
-    <string name="pretty_sure_order">We\'re pretty sure it\'s in this order:</string>
-    <string name="pretty_sure_suborder">We\'re pretty sure it\'s in this suborder:</string>
-    <string name="pretty_sure_infraorder">We\'re pretty sure it\'s in this infraorder:</string>
-    <string name="pretty_sure_subterclass">We\'re pretty sure it\'s in this subterclass:</string>
-    <string name="pretty_sure_parvorder">We\'re pretty sure it\'s in this parvorder:</string>
+    <string name="pretty_sure_kingdom">Olemme melko varmoja että tämä kuuluu kuntaan </string>
+    <string name="pretty_sure_subkingdom">Olemme melko varmoja että tämä kuuluu alakuntaan </string>
+    <string name="pretty_sure_phylum">Olemme melko varmoja että tämä kuuluu pääjaksoon </string>
+    <string name="pretty_sure_subphylum">Olemme melko varmoja että tämä kuuluu alapääjaksoon </string>
+    <string name="pretty_sure_superclass">Olemme melko varmoja että tämä kuuluu yläluokkaan </string>
+    <string name="pretty_sure_class">Olemme melko varmoja että tämä kuuluu luokkaan </string>
+    <string name="pretty_sure_subclass">Olemme melko varmoja että tämä kuuluu alaluokkaan </string>
+    <string name="pretty_sure_infraclass">Olemme melko varmoja että tämä kuuluu infraluokkaan </string>
+    <string name="pretty_sure_superorder">Olemme melko varmoja että tämä kuuluu ylälahkoon </string>
+    <string name="pretty_sure_order">Olemme melko varmoja että tämä kuuluu lahkoon </string>
+    <string name="pretty_sure_suborder">Olemme melko varmoja että tämä kuuluu alalahkoon </string>
+    <string name="pretty_sure_infraorder">Olemme melko varmoja että tämä kuuluu infralahkoon </string>
+    <string name="pretty_sure_subterclass">Olemme melko varmoja että tämä kuuluu subterclassiin </string>
+    <string name="pretty_sure_parvorder">Olemme melko varmoja että tämä kuuluu parvolahkoon </string>
     <string name="pretty_sure_zoosection">We\'re pretty sure it\'s in this zoosection:</string>
     <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
-    <string name="pretty_sure_superfamily">We\'re pretty sure it\'s in this superfamily:</string>
-    <string name="pretty_sure_epifamily">We\'re pretty sure it\'s in this epifamily:</string>
-    <string name="pretty_sure_family">We\'re pretty sure it\'s in this family:</string>
-    <string name="pretty_sure_subfamily">We\'re pretty sure it\'s in this subfamily:</string>
-    <string name="pretty_sure_supertribe">We\'re pretty sure it\'s in this supertribe:</string>
-    <string name="pretty_sure_tribe">We\'re pretty sure it\'s in this tribe:</string>
-    <string name="pretty_sure_subtribe">We\'re pretty sure it\'s in this subtribe:</string>
-    <string name="pretty_sure_genus">We\'re pretty sure it\'s in this genus:</string>
-    <string name="pretty_sure_genushybrid">We\'re pretty sure it\'s in this genushybrid:</string>
-    <string name="pretty_sure_subgenus">We\'re pretty sure it\'s in this subgenus:</string>
-    <string name="pretty_sure_section">We\'re pretty sure it\'s in this section:</string>
-    <string name="pretty_sure_subsection">We\'re pretty sure it\'s in this subsection:</string>
-    <string name="pretty_sure_complex">We\'re pretty sure it\'s in this complex:</string>
+    <string name="pretty_sure_superfamily">Olemme melko varmoja että tämä kuuluu yläheimoon </string>
+    <string name="pretty_sure_epifamily">Olemme melko varmoja että tämä kuuluu epiheimoon </string>
+    <string name="pretty_sure_family">Olemme melko varmoja että tämä kuuluu heimoon </string>
+    <string name="pretty_sure_subfamily">Olemme melko varmoja että tämä kuuluu alaheimoon </string>
+    <string name="pretty_sure_supertribe">Olemme melko varmoja että tämä kuuluu ylätribukseen</string>
+    <string name="pretty_sure_tribe">Olemme melko varmoja että tämä kuuluu tribukseen </string>
+    <string name="pretty_sure_subtribe">Olemme melko varmoja että tämä kuuluu alatribukseen </string>
+    <string name="pretty_sure_genus">Olemme melko varmoja että tämä kuuluu sukuun </string>
+    <string name="pretty_sure_genushybrid">Olemme melko varmoja että tämä kuuluu sukuristeymään </string>
+    <string name="pretty_sure_subgenus">Olemme melko varmoja että tämä kuuluu alasukuun </string>
+    <string name="pretty_sure_section">Olemme melko varmoja että tämä kuuluu sektioon </string>
+    <string name="pretty_sure_subsection">Olemme melko varmoja että tämä kuuluu alasektioon</string>
+    <string name="pretty_sure_complex">Olemme melko varmoja että tämä kuuluu kompleksiin </string>
     <!-- Singular -->
-    <string name="pretty_sure_species">We\'re pretty sure it\'s in this species:</string>
-    <string name="pretty_sure_hybrid">We\'re pretty sure it\'s in this hybrid:</string>
+    <string name="pretty_sure_species">Olemme melko varmoja että tämä kuuluu lajiin </string>
+    <string name="pretty_sure_hybrid">Olemme melko varmoja että tämä kuuluu risteymään</string>
     <!-- Singular -->
-    <string name="pretty_sure_subspecies">We\'re pretty sure it\'s in this subspecies:</string>
-    <string name="pretty_sure_variety">We\'re pretty sure it\'s in this variety:</string>
-    <string name="pretty_sure_form">We\'re pretty sure it\'s in this form:</string>
+    <string name="pretty_sure_subspecies">Olemme melko varmoja että tämä kuuluu alalajiin </string>
+    <string name="pretty_sure_variety">Olemme melko varmoja että tämä kuuluu variaatioon </string>
+    <string name="pretty_sure_form">Olemme melko varmoja että tämä kuuluu muotoon </string>
     <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
     <string name="remove_date_observed">Poista havaintopäivä ja -aika</string>
     <string name="remove_time_observed">Poista havaintoaika</string>
@@ -1170,10 +1170,66 @@ Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen 
     <string name="license_description_no_license">Säilytät täydet tekijänoikeudet sisältöösi, lukuun ottamatta käyttöehdoissa määriteltyjä iNaturalistille myönnettyjä oikeuksia.</string>
     <string name="invalid_photo">Kuvaformaattia ei tueta</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
-    <string name="suggestions_based_on">Suggestions based on observations and identifications provided by the iNaturalist community, including %1$s, %2$s, %3$s, and many others.</string>
+    <string name="suggestions_based_on">Ehdotukset perustuvat iNaturalist-yhteisön havaintoihin ja tunnistuksiin muun muassa käyttäjiltä  %1$s, %2$s, %3$s ja monilta muilta.</string>
     <!-- Preference to control what tapping on the action button does on My Observations -->
     <string name="default_observation_action">Havainnon oletustoiminto</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Näytä vaihtoehdot</string>
-    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Field Value</string>
+    <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
+    <string name="delete_attribute_value">Delete attribute value</string>
+    <string name="open_menu_for_more_options">Open menu for more options</string>
+    <string name="california_academy_of_sciences">California Academy of Sciences</string>
+    <string name="national_geographic">National Geographic</string>
+    <string name="change_user_profile_photo">Change user profile photo</string>
+    <string name="expand_list">Expand list</string>
+    <string name="change_map_layers">Change map layers (terrain vs. satellite)</string>
+    <string name="redo_observation_search">Redo observation search in this map area</string>
+    <string name="view_observations_on_map">View observations on map</string>
+    <string name="view_observations_on_grid">View observations on grid</string>
+    <string name="clear_text">Clear text</string>
+    <string name="observation_has_sounds">Observation has sounds</string>
+    <string name="go_to_my_location">Go to my current location</string>
+    <string name="change_geoprivacy">Change geoprivacy</string>
+    <string name="active_filters">Active filters</string>
+    <string name="message_is_flagged">Message is flagged</string>
+    <string name="user_is_muted">User is muted</string>
+    <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
+    <string name="delete_observations">Delete observations</string>
+    <string name="clear_species_guess">Clear species guess</string>
+    <string name="comment_count">Comment count</string>
+    <string name="id_count">Identification count</string>
+    <string name="observation_selected">Observation selected</string>
+    <string name="share_observation">Share observation</string>
+    <string name="unknown_location">Unknown location</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Close</string>
+    <string name="set_date2">Set date</string>
+    <string name="project_selected">Project Selected</string>
+    <string name="project_unselected">Project Unselected</string>
+    <string name="show_my_observations">Show my observations</string>
+    <string name="play_pause_sound">Play or pause sound</string>
+    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
+    <string name="view_image">View image</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Assessment passes</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Agree assessment passes</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Does not pass assessment</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Disagree assessment passes</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Delete %1$d selected observation</item>
+        <item quantity="other">Delete %1$d selected observations</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Sync %1$d selected observation</item>
+        <item quantity="other">Sync %1$d selected observations</item>
+    </plurals>
+    <string name="add_media_evidence">Add media evidence</string>
+    <string name="remove_identification">Remove identification</string>
+    <string name="issue_with_updating_photos">Tämän havainnon valokuvien päivityksessä tapahtui ongelma, joka on hiljattain korjattu. Kirjaudu ulos ja kirjaudu uudelleen sisään ratkaistaksesi tämän ongelman.</string>
+    <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
 </resources>

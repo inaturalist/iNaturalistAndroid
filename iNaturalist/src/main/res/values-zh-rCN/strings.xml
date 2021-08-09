@@ -1159,5 +1159,59 @@
     <string name="default_observation_action">Default Observation Action</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">显示选项</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">字段值</string>
+    <string name="expand_annotation_to_agree_or_disagree">展开注释以选择同意或不同意</string>
+    <string name="delete_attribute_value">删除属性值</string>
+    <string name="open_menu_for_more_options">打开菜单以获取更多选项</string>
+    <string name="california_academy_of_sciences">加州科学院</string>
+    <string name="national_geographic">国家地理</string>
+    <string name="change_user_profile_photo">更改个人资料照片</string>
+    <string name="expand_list">展开列表</string>
+    <string name="change_map_layers">更改地图图层(地形 vs. 卫星)</string>
+    <string name="redo_observation_search">在此地图区域重新搜索观察记录</string>
+    <string name="view_observations_on_map">在地图上查看观察记录</string>
+    <string name="view_observations_on_grid">在网格上查看观察记录</string>
+    <string name="clear_text">清除文本</string>
+    <string name="observation_has_sounds">含有音频的观察记录</string>
+    <string name="go_to_my_location">转到我的当前位置</string>
+    <string name="change_geoprivacy">更改地理位置</string>
+    <string name="active_filters">使用中的筛选条件</string>
+    <string name="message_is_flagged">消息已标记</string>
+    <string name="user_is_muted">用户已被禁言</string>
+    <string name="cancel_multiple_obs_selection">取消选择多项观察记录</string>
+    <string name="delete_observations">删除观察记录</string>
+    <string name="clear_species_guess">清除物种猜测</string>
+    <string name="comment_count">评论次数</string>
+    <string name="id_count">鉴定次数</string>
+    <string name="observation_selected">已选择的观察记录</string>
+    <string name="share_observation">分享观察记录</string>
+    <string name="unknown_location">未知位置</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">关闭</string>
+    <string name="set_date2">设定日期</string>
+    <string name="project_selected">已选项目</string>
+    <string name="project_unselected">未选择的项目</string>
+    <string name="show_my_observations">显示我的观察记录</string>
+    <string name="play_pause_sound">播放或暂停声音</string>
+    <string name="california_academy_of_sciences_and_national_geographic">加州科学院和国家地理学院</string>
+    <string name="view_image">查看照片</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">通过评估</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">同意通过评估</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">未通过评估</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">不同意通过评估</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="other">删除 %1$d 个选定的观察</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="other">Sync %1$d selected observations</item>
+    </plurals>
+    <string name="add_media_evidence">Add media evidence</string>
+    <string name="remove_identification">Remove identification</string>
     <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
+    <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
 </resources>

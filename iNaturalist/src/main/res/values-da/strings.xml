@@ -1167,5 +1167,61 @@ og <a href="https://www.inaturalist.org/terms">Tjenestevilkår</a>.]]></string>
     <string name="default_observation_action">Standard observationshandling</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Vis valgmuligheder</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Feltværdi</string>
+    <string name="expand_annotation_to_agree_or_disagree">Udvid annotation for at udtrykke enighed eller uenighed</string>
+    <string name="delete_attribute_value">Slet attributværdi</string>
+    <string name="open_menu_for_more_options">Åbn menu for flere valgmuligheder</string>
+    <string name="california_academy_of_sciences">California Academy of Sciences</string>
+    <string name="national_geographic">National Geographic</string>
+    <string name="change_user_profile_photo">Skift brugerprofilfoto</string>
+    <string name="expand_list">Udvid liste</string>
+    <string name="change_map_layers">Skift kortlag (terræn kontra satellit)</string>
+    <string name="redo_observation_search">Gentag observationssøgning i dette kortområde</string>
+    <string name="view_observations_on_map">Vis observationer på kort</string>
+    <string name="view_observations_on_grid">Vis observations på gitter</string>
+    <string name="clear_text">Ryd tekst</string>
+    <string name="observation_has_sounds">Observation har lyde</string>
+    <string name="go_to_my_location">Gå til min aktuelle placering</string>
+    <string name="change_geoprivacy">Ændre geofortrolighed</string>
+    <string name="active_filters">Aktive filtre</string>
+    <string name="message_is_flagged">Besked har anmærkning</string>
+    <string name="user_is_muted">Bruger er tavsgjort</string>
+    <string name="cancel_multiple_obs_selection">Annullér flere observationsvalg</string>
+    <string name="delete_observations">Slet observationer</string>
+    <string name="clear_species_guess">Ryd gæt på art</string>
+    <string name="comment_count">Antal kommentarer</string>
+    <string name="id_count">Antal identifikationer</string>
+    <string name="observation_selected">Observation valgt</string>
+    <string name="share_observation">Del observation</string>
+    <string name="unknown_location">Ukendt placering</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Luk</string>
+    <string name="set_date2">Indstil dato</string>
+    <string name="project_selected">Projekt valgt</string>
+    <string name="project_unselected">Projekt fravalgt</string>
+    <string name="show_my_observations">Find mine observationer</string>
+    <string name="play_pause_sound">Afspil eller sæt lyd på pause</string>
+    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences og National Geographic</string>
+    <string name="view_image">Vis billede</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Bestået bedømmelser</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Bestået enighedsbedømmelser</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Består ikke bedømmelse</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Bestået uenighedsbedømmelser</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Slet %1$d valgt observation</item>
+        <item quantity="other">Slet %1$d valgte observationer</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Synk %1$d valgt observation</item>
+        <item quantity="other">Synk %1$d valgte observationer</item>
+    </plurals>
+    <string name="add_media_evidence">Tilføj mediedokumentation</string>
+    <string name="remove_identification">Fjern identifikation</string>
     <string name="issue_with_updating_photos">Problemet med at opdatere fotos i denne observation er for nylig er blevet rettet. Log ud og ind igen, og problemet burde være forsvundet.</string>
+    <string name="app_version_copied_to_clipboard">App-version kopieret til udklipsholder</string>
 </resources>

@@ -1163,5 +1163,61 @@
     <string name="default_observation_action">Standardåtgärd för fynd</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Visa alternativ</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Fältvärde</string>
+    <string name="expand_annotation_to_agree_or_disagree">Visa anteckning för att hålla med eller inte</string>
+    <string name="delete_attribute_value">Radera egenskapens värde</string>
+    <string name="open_menu_for_more_options">Öppna menyn för fler alternativ</string>
+    <string name="california_academy_of_sciences">California Academy of Sciences</string>
+    <string name="national_geographic">National Geographic</string>
+    <string name="change_user_profile_photo">Byt profilbild</string>
+    <string name="expand_list">Expandera lista</string>
+    <string name="change_map_layers">Ändra kartlager (terräng vs. satellit)</string>
+    <string name="redo_observation_search">Gör om fyndsök i detta kartområde</string>
+    <string name="view_observations_on_map">Visa fynd på kartan</string>
+    <string name="view_observations_on_grid">Visa fynd i rutnät</string>
+    <string name="clear_text">Rensa text</string>
+    <string name="observation_has_sounds">Fynd har ljud</string>
+    <string name="go_to_my_location">Gå till min nuvarande plats</string>
+    <string name="change_geoprivacy">Ändra koordinatsekretess</string>
+    <string name="active_filters">Aktiva filter</string>
+    <string name="message_is_flagged">Meddelandet är flaggat</string>
+    <string name="user_is_muted">Användare tystad</string>
+    <string name="cancel_multiple_obs_selection">Avbryt val av flera fynd</string>
+    <string name="delete_observations">Radera fynd</string>
+    <string name="clear_species_guess">Rensa artgissning</string>
+    <string name="comment_count">Antal kommentarer</string>
+    <string name="id_count">Antal bestämningar</string>
+    <string name="observation_selected">Fynd markerat</string>
+    <string name="share_observation">Dela fynd</string>
+    <string name="unknown_location">Okänd plats</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Stäng</string>
+    <string name="set_date2">Ställ in datum</string>
+    <string name="project_selected">Projekt markerat</string>
+    <string name="project_unselected">Projekt avmarkerat</string>
+    <string name="show_my_observations">Visa mina fynd</string>
+    <string name="play_pause_sound">Spela upp eller pausa ljud</string>
+    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences och National Geographic</string>
+    <string name="view_image">Visa bild</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Bedömd som godkänd</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Håll med om bedömning godkänd</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Klarar inte bedömning</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Håller inte med om bedömning godkänd</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Radera %1$d markerat fynd</item>
+        <item quantity="other">Radera %1$d markerade fynd</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Synka %1$d markerat fynd</item>
+        <item quantity="other">Synka %1$d markerade fynd</item>
+    </plurals>
+    <string name="add_media_evidence">Lägg till beläggmedia</string>
+    <string name="remove_identification">Ta bort bestämning</string>
     <string name="issue_with_updating_photos">Det gick inte att uppdatera bilderna i för detta fynd som nyligen har åtgärdats. Logga ut och logga in igen för att lösa problemet.</string>
+    <string name="app_version_copied_to_clipboard">Appversion kopierad till urklipp</string>
 </resources>
