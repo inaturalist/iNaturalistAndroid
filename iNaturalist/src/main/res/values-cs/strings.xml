@@ -1241,5 +1241,5 @@ a naše <a href="https://www.inaturalist.org/terms">Smluvní podmínky</a>.]]></
     <string name="add_media_evidence">Přidat mediální důkaz</string>
     <string name="remove_identification">Odebrat identifikaci</string>
     <string name="issue_with_updating_photos">Při aktualizaci fotografií tohoto pozorování došlo k chybě, která byla nedávno opravena. Pro vyřešení tohoto problému se prosím odhlaste a znovu přihlaste.</string>
-    <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
+    <string name="app_version_copied_to_clipboard">Verze aplikace byla zkopírována do schránky</string>
 </resources>

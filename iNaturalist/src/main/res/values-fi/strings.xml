@@ -1176,7 +1176,7 @@ Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen 
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Näytä vaihtoehdot</string>
     <!-- Placeholder text for an observation field value -->
-    <string name="field_value">Field Value</string>
+    <string name="field_value">Kentän arvo</string>
     <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
     <string name="delete_attribute_value">Delete attribute value</string>
     <string name="open_menu_for_more_options">Open menu for more options</string>

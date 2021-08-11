@@ -1115,10 +1115,10 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="default_photo_license">Varsayılan Fotoğraf Lisansı</string>
     <string name="default_sound_license">Varsayılan Ses Lisansı</string>
     <string name="change_existing_licenses">Mevcut Lisansları Değiştir</string>
-    <string name="change_licenses_for_existing_observations">Varolan gözlem, fotoğraf ve seslerin lisanslarını değiştir</string>
-    <string name="change_licenses_for_all_existing_observations">Varolan tüm gözlemlerin lisanslarını değiştir</string>
-    <string name="change_licenses_for_all_existing_photos">Varolan tüm fotoğrafların lisanslarını değiştir</string>
-    <string name="change_licenses_for_all_existing_sounds">Varolan tüm seslerin lisanslarını değiştir</string>
+    <string name="change_licenses_for_existing_observations">Mevcut gözlemlerin, fotoğrafların ve seslerin lisanslarını değiştir</string>
+    <string name="change_licenses_for_all_existing_observations">Mevcut tüm gözlemlerin lisanslarını değiştir</string>
+    <string name="change_licenses_for_all_existing_photos">Mevcut tüm fotoğrafların lisanslarını değiştir</string>
+    <string name="change_licenses_for_all_existing_sounds">Mevcut tüm seslerin lisanslarını değiştir</string>
     <string name="change_observation_licenses">Gözlem Lisansını Değiştir</string>
     <string name="change_photo_licenses">Fotoğraf Lisansını Değiştir</string>
     <string name="change_sound_licenses">Ses Lisansını Değiştir</string>

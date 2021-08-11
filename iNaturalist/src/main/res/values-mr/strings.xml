@@ -223,18 +223,18 @@
     <string name="could_not_retrieve_guide">Could not retrieve the guide details - probably a network error.</string>
     <string name="inat_support_email_subject">Help with iNaturalist (version %1$s - %2$s; user id - %3$s)</string>
     <string name="send_email">ईमेल पाठवा</string>
-    <string name="login_with">Log In with</string>
+    <string name="login_with">यासह लॉगइन करा</string>
     <string name="facebook">फेसबुक</string>
     <string name="gplus">गुगल</string>
     <string name="email">ईमेल</string>
-    <string name="sign_up_with">Sign Up with</string>
-    <string name="skip">Skip  ›</string>
+    <string name="sign_up_with">यासह साईन अप करा</string>
+    <string name="skip">गाळून पुढे जा</string>
     <string name="already_have_account">आधीच एक खाते आहे?</string>
-    <string name="log_in">Log In</string>
+    <string name="log_in">लॉग इन करा</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
-    <string name="sign_up">Sign Up</string>
+    <string name="sign_up">साइन अप करा</string>
     <!-- Title of the view used to sign up for a new account -->
-    <string name="sign_up_title">Sign Up</string>
+    <string name="sign_up_title">साइन अप करा</string>
     <string name="min_6_chars">कमीतकमी ६ अक्षरं  </string>
     <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data (recommended). <b>Learn More</b>]]></string>
     <string name="content_licensing">Content Licensing</string>
@@ -248,10 +248,10 @@
     <string name="could_not_register_user">Couldn\'t register user</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
     <string name="login_signup">Log In / Sign Up</string>
-    <string name="please_sign_in_via_settings_for_guides">You must be logged in to view your guides.</string>
-    <string name="please_sign_in_for_updates">You must be logged in to view your updates.</string>
+    <string name="please_sign_in_via_settings_for_guides">आपली मार्गदर्शके पाहण्यासाठी आपण लॉग इन असणे गरजेचे आहे.</string>
+    <string name="please_sign_in_for_updates">आपली अपडेट्स पाहण्यासाठी आपण लॉग इन असणे गरजेचे आहे.</string>
     <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="https://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
-    <string name="activity">Activity</string>
+    <string name="activity">गतिविधी</string>
     <!-- Label for a button to open the camera to take a new photo for an observation -->
     <string name="camera">फोटो घ्या</string>
     <!-- Label for a button to import an existing photo for an observation -->
@@ -270,7 +270,7 @@
     <string name="downloading_observations">निरीक्षणे डाउनलोड करत आहे</string>
     <string name="no_thanks">नको. धन्यवाद</string>
     <string name="turn_on">चालू करा</string>
-    <string name="introducing_auto_sync">Introducing Auto-Sync!</string>
+    <string name="introducing_auto_sync">सादर करीत आहोत स्वयं-समक्रमण!</string>
     <string name="turn_on_auto_sync">Turn on Auto-Sync in Settings and your observations will be automatically uploaded to iNaturalist.</string>
     <string name="automatic_upload">Automatic Upload (Auto Sync)</string>
     <string name="waiting_to_upload">Waiting to upload...</string>
@@ -347,21 +347,21 @@
     <string name="remove_photo">Remove Photo</string>
     <string name="name">नाव</string>
     <string name="tell_us_about_yourself">Tell us about yourself...</string>
-    <string name="view_profile">View Profile</string>
+    <string name="view_profile">प्रोफाइल बघा</string>
     <string name="are_you_sure_you_want_to_remove_photo">Are you sure you would like to remove your photo?</string>
-    <string name="updating_profile">Updating Profile...</string>
-    <string name="there_was_a_problem_updating_profile">There was a problem while updating your profile!</string>
-    <string name="there_was_a_problem_updating_profile_params">There was a problem while updating your profile: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
+    <string name="updating_profile">प्रोफाइल अपडेट करत आहे..</string>
+    <string name="there_was_a_problem_updating_profile">आपली प्रोफाइल अपडेट करताना अडचण येत आहे!</string>
+    <string name="there_was_a_problem_updating_profile_params">आपली प्रोफाइल अपडेट करताना अडचण येत आहे: %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[या नावाने लॉग इन केले आहे  <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
-    <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
-    <string name="log_out">Log Out</string>
+    <string name="currently_logged_in_as_html"><![CDATA[सध्या या नावाने लॉग इन केले आहे  <b>%1$s</b>]]></string>
+    <string name="log_out">लॉग आउट करा</string>
     <string name="not_logged_in">Not logged in</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
-    <string name="login_or_sign_up">Log In or Sign Up</string>
+    <string name="login_or_sign_up">लॉग इन किंवा साईन अप करा</string>
     <string name="auto_upload_description">Auto-upload new observations and edits to observations</string>
     <string name="language">भाषा</string>
-    <string name="version">Version</string>
+    <string name="version">आवृत्ती</string>
     <string name="inat_network">iNaturalist Network</string>
     <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
     <string name="more_info">अधिक माहिती</string>
@@ -414,7 +414,7 @@
     <string name="introducing_missions">Introducing Missions!</string>
     <string name="missions_onboarding_description">Missions are realtime recommendations of what to look for around you. This way you can discover species new to you! (Requires connectivity)</string>
     <string name="ok_got_it">Ok, got it!</string>
-    <string name="could_not_download_observations">Could not download latest observations - Connection problems. Try again later.</string>
+    <string name="could_not_download_observations">नवीनतम निरीक्षणे डाउनलोड करू शकत नाही - कनेक्शनमध्ये अडचण. थोड्यावेळाने पुन्हा प्रयत्न करा.</string>
     <string name="no_news_yet">No news yet. Stay tuned!</string>
     <string name="my_content">My Content</string>
     <string name="following">Following</string>
@@ -480,7 +480,7 @@
     <string name="view_children">View Children</string>
     <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
     <string name="taxon_has_no_photos">This taxon has no photos.</string>
-    <string name="terrain">Terrain</string>
+    <string name="terrain">भूभाग</string>
     <string name="filters">Filters</string>
     <string name="exploring_all">Exploring All</string>
     <string name="nearby">Nearby</string>
