@@ -36,7 +36,7 @@
     <string name="my_location">माझे स्थान</string>
     <string name="nearby_observations">परिसरातील निरीक्षणे</string>
     <string name="add">माहिती वाढवा </string>
-    <string name="view_on_inat">मीनिसर्गप्रेमी. ओ आर जी वर पहा </string>
+    <string name="view_on_inat">iNaturalist.org वर पहा  </string>
     <string name="reload">पुन्हा लोड करा </string>
     <string name="view_in_browser">ब्राउझरमध्ये पहा</string>
     <string name="add_observation">आणखी निरीक्षण नोंदवा </string>
@@ -44,9 +44,9 @@
     <string name="save">नोंदवा </string>
     <string name="no_observations_yet">अजून कोणतेही निरीक्षण नाही </string>
     <string name="or">किंव्वा </string>
-    <string name="signed_out">खातेपान  बंद करा </string>
-    <string name="username">उप नाम </string>
-    <string name="password">कळीचा शब्द </string>
+    <string name="signed_out">साइन आऊट करा</string>
+    <string name="username">वापरकर्ता नाव</string>
+    <string name="password">परवलीचा शब्द (पासवर्ड)</string>
     <string name="unknown">अज्ञात</string>
     <string name="unknown_species">अज्ञात प्रजाती</string>
     <string name="com_facebook_dialogloginactivity_ok_button">ठीक </string>
