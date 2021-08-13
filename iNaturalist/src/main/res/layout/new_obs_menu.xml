@@ -4,7 +4,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:gravity="center"
     android:paddingTop="18dp"
-    android:paddingBottom="7dp"
+    android:paddingBottom="18dp"
     android:layout_height="wrap_content">
     <LinearLayout
         android:orientation="horizontal"
@@ -112,7 +112,8 @@
         android:orientation="horizontal"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp">
 
         <LinearLayout
             android:id="@+id/record_sound_container"
