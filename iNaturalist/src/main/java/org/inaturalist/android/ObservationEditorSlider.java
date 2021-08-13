@@ -104,7 +104,6 @@ public class ObservationEditorSlider extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            Logger.error("AAA - get item " + position);
             mCursor.moveToPosition(position);
             Fragment fragment = new ObservationEditor();
             Observation obs = new Observation(mCursor);

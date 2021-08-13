@@ -5,7 +5,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -21,7 +20,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Trace;
@@ -63,8 +61,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -674,8 +670,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
                 // Show the comments/IDs for the observation
                 Uri uri = ContentUris.withAppendedId(Observation.CONTENT_URI, obsId);
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri, mContext, ObservationViewerActivity.class);
-                intent.putExtra(ObservationViewerActivity.SHOW_COMMENTS, true);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri, mContext, ObservationViewerSlider.class);
+                intent.putExtra(ObservationViewerFragment.SHOW_COMMENTS, true);
                 mContext.startActivity(intent);
             });
         }

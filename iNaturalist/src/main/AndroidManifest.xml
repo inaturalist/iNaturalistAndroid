@@ -76,7 +76,7 @@
             android:configChanges="orientation">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ObservationViewerActivity" />
+                android:value=".ObservationViewerSlider" />
         </activity>
         <activity
             android:name=".GuideDetails"
@@ -190,7 +190,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing"></activity>
         <activity
-            android:name=".ObservationViewerActivity"
+            android:name=".ObservationViewerSlider"
             android:configChanges="orientation">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>

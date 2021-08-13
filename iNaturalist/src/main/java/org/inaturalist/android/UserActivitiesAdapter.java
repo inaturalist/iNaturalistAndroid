@@ -312,17 +312,17 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                 if ((obs.user_login != null) && (obs.user_login.equals(mApp.currentUserLogin()))) {
                     // It's our own observation - allow editing it
                     Uri uri = obs.getUri();
-                    intent = new Intent(Intent.ACTION_VIEW, uri, mContext, ObservationViewerActivity.class);
+                    intent = new Intent(Intent.ACTION_VIEW, uri, mContext, ObservationViewerSlider.class);
                 } else {
                     // It's another user's observation - read only mode
-                    intent = new Intent(mContext, ObservationViewerActivity.class);
+                    intent = new Intent(mContext, ObservationViewerSlider.class);
                     intent.putExtra("observation", obs.toJSONObject().toString());
                     intent.putExtra("read_only", true);
                     intent.putExtra("reload", true);
                 }
 
-                intent.putExtra(ObservationViewerActivity.SHOW_COMMENTS, true);
-                intent.putExtra(ObservationViewerActivity.SCROLL_TO_COMMENTS_BOTTOM, true);
+                intent.putExtra(ObservationViewerFragment.SHOW_COMMENTS, true);
+                intent.putExtra(ObservationViewerFragment.SCROLL_TO_COMMENTS_BOTTOM, true);
 
                 mContext.startActivity(intent);
 

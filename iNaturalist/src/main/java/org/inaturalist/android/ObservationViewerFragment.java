@@ -13,15 +13,11 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -29,6 +25,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.ActionBar;
@@ -41,13 +39,12 @@ import android.util.Pair;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.TouchDelegate;
 import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
@@ -71,13 +68,11 @@ import com.ablanco.zoomy.ZoomListener;
 import com.ablanco.zoomy.Zoomy;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
-import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
-import com.cocosw.bottomsheet.BottomSheet;
 import com.evernote.android.state.State;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -87,9 +82,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.livefront.bridge.Bridge;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import org.json.JSONArray;
@@ -119,7 +111,7 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ObservationViewerActivity extends AppCompatActivity implements AnnotationsAdapter.OnAnnotationActions {
+public class ObservationViewerFragment extends Fragment implements AnnotationsAdapter.OnAnnotationActions {
     private static final int NEW_ID_REQUEST_CODE = 0x101;
     private static final int REQUEST_CODE_LOGIN = 0x102;
     private static final int REQUEST_CODE_EDIT_OBSERVATION = 0x103;
@@ -128,8 +120,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
     public static final int RESULT_FLAGGED_AS_CAPTIVE = 0x300;
     public static final int RESULT_OBSERVATION_CHANGED = 0x301;
+    public static final String OBS_URI = "obs_uri";
 
-    private static String TAG = "ObservationViewerActivity";
+    private static String TAG = "ObservationViewerFragment";
 
     public final static String SHOW_COMMENTS = "show_comments";
     public final static String SCROLL_TO_COMMENTS_BOTTOM = "scroll_to_comments_bottom";
@@ -186,6 +179,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     private ViewGroup mIncludedInProjectsContainer;
     private ProgressBar mLoadingPhotos;
     private ProgressBar mLoadingMap;
+
+    private View mRootView;
 
     private ObservationReceiver mObservationReceiver;
 
@@ -277,25 +272,13 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     private ViewGroup mMetadataObservationURLRow;
 
     @Override
-	protected void onStart() {
-		super.onStart();
-
-
-	}
-
-	@Override
-	protected void onStop() {
-		super.onStop();
-
-	}
-
-
-    @Override
     public void onAnnotationCollapsedExpanded() {
         // Annotation has been expanded / collapsed - resize the list to show it
         (new Handler()).postDelayed(new Runnable() {
             @Override
             public void run() {
+                if (getActivity() == null) return;
+
                 ActivityHelper.setListViewHeightBasedOnItems(mAnnotationsList);
                 mAnnotationsList.requestLayout();
             }
@@ -304,39 +287,39 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
     @Override
     public void onDeleteAnnotationValue(String uuid) {
-        Intent serviceIntent = new Intent(INaturalistService.ACTION_DELETE_ANNOTATION, null, ObservationViewerActivity.this, INaturalistService.class);
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_DELETE_ANNOTATION, null, getActivity(), INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.UUID, uuid);
-        ContextCompat.startForegroundService(this, serviceIntent);
+        ContextCompat.startForegroundService(getActivity(), serviceIntent);
     }
 
     @Override
     public void onAnnotationAgree(String uuid) {
-        Intent serviceIntent = new Intent(INaturalistService.ACTION_AGREE_ANNOTATION, null, ObservationViewerActivity.this, INaturalistService.class);
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_AGREE_ANNOTATION, null, getActivity(), INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.UUID, uuid);
-        ContextCompat.startForegroundService(this, serviceIntent);
+        ContextCompat.startForegroundService(getActivity(), serviceIntent);
     }
 
     @Override
     public void onAnnotationDisagree(String uuid) {
-        Intent serviceIntent = new Intent(INaturalistService.ACTION_DISAGREE_ANNOTATION, null, ObservationViewerActivity.this, INaturalistService.class);
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_DISAGREE_ANNOTATION, null, getActivity(), INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.UUID, uuid);
-        ContextCompat.startForegroundService(this, serviceIntent);
+        ContextCompat.startForegroundService(getActivity(), serviceIntent);
     }
 
     @Override
     public void onAnnotationVoteDelete(String uuid) {
-        Intent serviceIntent = new Intent(INaturalistService.ACTION_DELETE_ANNOTATION_VOTE, null, ObservationViewerActivity.this, INaturalistService.class);
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_DELETE_ANNOTATION_VOTE, null, getActivity(), INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.UUID, uuid);
-        ContextCompat.startForegroundService(this, serviceIntent);
+        ContextCompat.startForegroundService(getActivity(), serviceIntent);
     }
 
     @Override
     public void onSetAnnotationValue(int annotationId, int valueId) {
-        Intent serviceIntent = new Intent(INaturalistService.ACTION_SET_ANNOTATION_VALUE, null, ObservationViewerActivity.this, INaturalistService.class);
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_SET_ANNOTATION_VALUE, null, getActivity(), INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.ATTRIBUTE_ID, annotationId);
         serviceIntent.putExtra(INaturalistService.VALUE_ID, valueId);
         serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-        ContextCompat.startForegroundService(this, serviceIntent);
+        ContextCompat.startForegroundService(getActivity(), serviceIntent);
     }
 
     private class PhotosViewPagerAdapter extends PagerAdapter implements SoundPlayer.OnPlayerStatusChange {
@@ -364,9 +347,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     }
 
                     if (currentOp.photo_filename != null) {
-                        getContentResolver().update(ObservationPhoto.CONTENT_URI, cv, "photo_filename = '" + currentOp.photo_filename + "'", null);
+                        getActivity().getContentResolver().update(ObservationPhoto.CONTENT_URI, cv, "photo_filename = '" + currentOp.photo_filename + "'", null);
                     } else {
-                        getContentResolver().update(ObservationPhoto.CONTENT_URI, cv, "photo_url = '" + currentOp.photo_url + "'", null);
+                        getActivity().getContentResolver().update(ObservationPhoto.CONTENT_URI, cv, "photo_url = '" + currentOp.photo_url + "'", null);
                     }
 
                     currentPosition++;
@@ -376,12 +359,12 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         public PhotosViewPagerAdapter() {
             if (!mReadOnly && mObservation != null && mObservation.uuid != null) {
-                mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                mImageCursor = getActivity().getContentResolver().query(ObservationPhoto.CONTENT_URI,
                         ObservationPhoto.PROJECTION,
                         "(observation_uuid=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
                         new String[]{mObservation.uuid},
                         ObservationPhoto.DEFAULT_SORT_ORDER);
-                mSoundCursor = getContentResolver().query(ObservationSound.CONTENT_URI,
+                mSoundCursor = getActivity().getContentResolver().query(ObservationSound.CONTENT_URI,
                         ObservationSound.PROJECTION,
                         "(observation_uuid=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
                         new String[]{mObservation.uuid},
@@ -413,9 +396,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             ObservationPhoto op = new ObservationPhoto(mImageCursor);
             op.position = 0;
             if (op.photo_filename != null) {
-                getContentResolver().update(ObservationPhoto.CONTENT_URI, op.getContentValues(), "photo_filename = '" + op.photo_filename + "'", null);
+                getActivity().getContentResolver().update(ObservationPhoto.CONTENT_URI, op.getContentValues(), "photo_filename = '" + op.photo_filename + "'", null);
             } else {
-                getContentResolver().update(ObservationPhoto.CONTENT_URI, op.getContentValues(), "photo_url = '" + op.photo_url + "'", null);
+                getActivity().getContentResolver().update(ObservationPhoto.CONTENT_URI, op.getContentValues(), "photo_url = '" + op.photo_url + "'", null);
             }
 
             // Update the rest of the photos to be positioned afterwards
@@ -431,7 +414,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
-            ImageView imageView = new ImageView(ObservationViewerActivity.this);
+            ImageView imageView = new ImageView(getActivity());
             imageView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
@@ -469,7 +452,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
             if (sound != null) {
                 // Sound - show a sound player interface
-                SoundPlayer player = new SoundPlayer(ObservationViewerActivity.this, container, sound, this);
+                SoundPlayer player = new SoundPlayer(getActivity(), container, sound, this);
                 View view = player.getView();
                 ((ViewPager)container).addView(view, 0);
 
@@ -497,11 +480,11 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     thumbnailUrl = imageUrl.substring(0, imageUrl.lastIndexOf('/') + 1) + "small" + extension;
                 }
 
-                RequestBuilder thumbnailRequest = Glide.with(ObservationViewerActivity.this)
+                RequestBuilder thumbnailRequest = Glide.with(getActivity())
                         .load(thumbnailUrl);
 
 
-                Glide.with(ObservationViewerActivity.this)
+                Glide.with(getActivity())
                         .load(largeSizeUrl)
                         .thumbnail(thumbnailRequest)
                         .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.AUTOMATIC))
@@ -559,7 +542,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
             ((ViewPager)container).addView(imageView, 0);
 
-            new Zoomy.Builder(ObservationViewerActivity.this)
+            new Zoomy.Builder(getActivity())
                     .target(imageView)
                     .zoomListener(new ZoomListener() {
                         @Override
@@ -578,7 +561,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     .tapListener(new TapListener() {
                         @Override
                         public void onTap(View v) {
-                            Intent intent = new Intent(ObservationViewerActivity.this, ObservationPhotosViewer.class);
+                            Intent intent = new Intent(getActivity(), ObservationPhotosViewer.class);
                             intent.putExtra(ObservationPhotosViewer.CURRENT_PHOTO_INDEX, position);
 
                             if (!mReadOnly) {
@@ -642,7 +625,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         loadObservationIntoUI();
         refreshDataQuality();
@@ -654,7 +637,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         mAttributesReceiver = new AttributesReceiver();
         IntentFilter filter = new IntentFilter(INaturalistService.GET_ATTRIBUTES_FOR_TAXON_RESULT);
-        BaseFragmentActivity.safeRegisterReceiver(mAttributesReceiver, filter, ObservationViewerActivity.this);
+        BaseFragmentActivity.safeRegisterReceiver(mAttributesReceiver, filter, getActivity());
 
         mChangeAttributesReceiver = new ChangeAttributesReceiver();
         IntentFilter filter2 = new IntentFilter(INaturalistService.DELETE_ANNOTATION_RESULT);
@@ -662,70 +645,80 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         filter2.addAction(INaturalistService.DISAGREE_ANNOTATION_RESULT);
         filter2.addAction(INaturalistService.DELETE_ANNOTATION_VOTE_RESULT);
         filter2.addAction(INaturalistService.SET_ANNOTATION_VALUE_RESULT);
-        BaseFragmentActivity.safeRegisterReceiver(mChangeAttributesReceiver, filter2, ObservationViewerActivity.this);
+        BaseFragmentActivity.safeRegisterReceiver(mChangeAttributesReceiver, filter2, getActivity());
 
         mDownloadObservationReceiver = new DownloadObservationReceiver();
         IntentFilter filter3 = new IntentFilter(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION_RESULT);
-        BaseFragmentActivity.safeRegisterReceiver(mDownloadObservationReceiver, filter3, this);
+        BaseFragmentActivity.safeRegisterReceiver(mDownloadObservationReceiver, filter3, getActivity());
 
         mObservationSubscriptionsReceiver = new ObservationSubscriptionsReceiver();
         IntentFilter filter4 = new IntentFilter(INaturalistService.ACTION_GET_OBSERVATION_SUBSCRIPTIONS_RESULT);
-        BaseFragmentActivity.safeRegisterReceiver(mObservationSubscriptionsReceiver, filter4, this);
+        BaseFragmentActivity.safeRegisterReceiver(mObservationSubscriptionsReceiver, filter4, getActivity());
 
         mObservationFollowReceiver = new ObservationFollowReceiver();
         IntentFilter filter5 = new IntentFilter(INaturalistService.ACTION_FOLLOW_OBSERVATION_RESULT);
-        BaseFragmentActivity.safeRegisterReceiver(mObservationFollowReceiver, filter5, this);
+        BaseFragmentActivity.safeRegisterReceiver(mObservationFollowReceiver, filter5, getActivity());
 
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Bridge.restoreInstanceState(this, savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        Bridge.restoreInstanceState(getActivity(), savedInstanceState);
 
-        ActionBar actionBar = getSupportActionBar();
+        Bundle args = getArguments();
+        String uriString = args != null ? args.getString(OBS_URI) : getActivity().getIntent().getDataString();
+
+        setHasOptionsMenu(true);
+
+        ViewDataBinding views = DataBindingUtil.inflate(inflater, R.layout.observation_viewer, container, false);
+        mRootView = views.getRoot();
+
+        final Intent intent = getActivity().getIntent();
+
+
+        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
         actionBar.setLogo(R.drawable.ic_arrow_back);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(R.string.observation);
 
-        mApp = (INaturalistApp) getApplicationContext();
-        mApp.applyLocaleSettings(getBaseContext());
-        DataBindingUtil.setContentView(this, R.layout.observation_viewer);
-        mHelper = new ActivityHelper(this);
+        mApp = (INaturalistApp) getActivity().getApplicationContext();
+        mApp.applyLocaleSettings(getActivity().getBaseContext());
+        mHelper = new ActivityHelper(getActivity());
 
-        mMetadataObservationID = (TextView) findViewById(R.id.observation_id);
-        mMetadataObservationIDRow = (ViewGroup) findViewById(R.id.metadata_id_row);
-        mMetadataObservationUUID = (TextView) findViewById(R.id.observation_uuid);
-        mMetadataObservationURL = (TextView) findViewById(R.id.observation_url);
-        mMetadataObservationURLRow = (ViewGroup) findViewById(R.id.metadata_url_row);
+        mMetadataObservationID = (TextView) mRootView.findViewById(R.id.observation_id);
+        mMetadataObservationIDRow = (ViewGroup) mRootView.findViewById(R.id.metadata_id_row);
+        mMetadataObservationUUID = (TextView) mRootView.findViewById(R.id.observation_uuid);
+        mMetadataObservationURL = (TextView) mRootView.findViewById(R.id.observation_url);
+        mMetadataObservationURLRow = (ViewGroup) mRootView.findViewById(R.id.metadata_url_row);
 
         reloadObservation(savedInstanceState, false);
 
-        mAnnotationSection = (ViewGroup) findViewById(R.id.annotations_section);
-        mAnnotationsList = (ListView) findViewById(R.id.annotations_list);
-        mLoadingAnnotations = (ProgressBar) findViewById(R.id.loading_annotations);
-        mAnnotationsContent = (ViewGroup) findViewById(R.id.annotations_content);
+        mAnnotationSection = (ViewGroup) mRootView.findViewById(R.id.annotations_section);
+        mAnnotationsList = (ListView) mRootView.findViewById(R.id.annotations_list);
+        mLoadingAnnotations = (ProgressBar) mRootView.findViewById(R.id.loading_annotations);
+        mAnnotationsContent = (ViewGroup) mRootView.findViewById(R.id.annotations_content);
 
-        mAddCommentBackground = (View) findViewById(R.id.add_comment_background);
-        mAddCommentContainer = (ViewGroup) findViewById(R.id.add_comment_container);
-        mAddCommentDone = findViewById(R.id.add_comment_done);
-        mAddCommentText = (EditText) findViewById(R.id.add_comment_text);
-        mCommentMentions = new MentionsAutoComplete(ObservationViewerActivity.this, mAddCommentText);
+        mAddCommentBackground = (View) mRootView.findViewById(R.id.add_comment_background);
+        mAddCommentContainer = (ViewGroup) mRootView.findViewById(R.id.add_comment_container);
+        mAddCommentDone = mRootView.findViewById(R.id.add_comment_done);
+        mAddCommentText = (EditText) mRootView.findViewById(R.id.add_comment_text);
+        mCommentMentions = new MentionsAutoComplete(getActivity(), mAddCommentText);
 
-        mScrollView = (ScrollView) findViewById(R.id.scroll_view);
-        mUserName = (TextView) findViewById(R.id.user_name);
-        mObservedOn = (TextView) findViewById(R.id.observed_on);
-        mUserPic = (ImageView) findViewById(R.id.user_pic);
-        mPhotosViewPager = (ViewPager) findViewById(R.id.photos);
-        mIndicator = (CirclePageIndicator)findViewById(R.id.photos_indicator);
-        mSharePhoto = findViewById(R.id.share_photo);
-        mIdPic = (ImageView)findViewById(R.id.id_icon);
-        mIdName = (TextView) findViewById(R.id.id_name);
-        mTaxonicName = (TextView) findViewById(R.id.id_sub_name);
-        mIdRow = (ViewGroup) findViewById(R.id.id_row);
-        mTabHost = (TabHost) findViewById(android.R.id.tabhost);
-        ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.location_map)).getMapAsync(new OnMapReadyCallback() {
+        mScrollView = (ScrollView) mRootView.findViewById(R.id.scroll_view);
+        mUserName = (TextView) mRootView.findViewById(R.id.user_name);
+        mObservedOn = (TextView) mRootView.findViewById(R.id.observed_on);
+        mUserPic = (ImageView) mRootView.findViewById(R.id.user_pic);
+        mPhotosViewPager = (ViewPager) mRootView.findViewById(R.id.photos);
+        mIndicator = (CirclePageIndicator)mRootView.findViewById(R.id.photos_indicator);
+        mSharePhoto = mRootView.findViewById(R.id.share_photo);
+        mIdPic = (ImageView)mRootView.findViewById(R.id.id_icon);
+        mIdName = (TextView) mRootView.findViewById(R.id.id_name);
+        mTaxonicName = (TextView) mRootView.findViewById(R.id.id_sub_name);
+        mIdRow = (ViewGroup) mRootView.findViewById(R.id.id_row);
+        mTabHost = (TabHost) mRootView.findViewById(android.R.id.tabhost);
+        ((SupportMapFragment)getChildFragmentManager().findFragmentById(R.id.location_map)).getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 mMap = googleMap;
@@ -733,58 +726,58 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 setupMap();
             }
         });
-        mLocationMapContainer = (ViewGroup) findViewById(R.id.location_map_container);
-        mUnknownLocationContainer = (ViewGroup) findViewById(R.id.unknown_location_container);
-        mUnknownLocationIcon = (ImageView) findViewById(R.id.unknown_location);
-        mLocationText = (TextView) findViewById(R.id.location_text);
-        mLocationPrivate = (ImageView) findViewById(R.id.location_private);
-        mCasualGradeText = (TextView) findViewById(R.id.casual_grade_text);
-        mCasualGradeIcon = (ImageView) findViewById(R.id.casual_grade_icon);
-        mNeedsIdLine = (View) findViewById(R.id.needs_id_line);
-        mResearchGradeLine = (View) findViewById(R.id.research_grade_line);
-        mNeedsIdText = (TextView) findViewById(R.id.needs_id_text);
-        mNeedsIdIcon = (ImageView) findViewById(R.id.needs_id_icon);
-        mResearchGradeText = (TextView) findViewById(R.id.research_grade_text);
-        mResearchGradeIcon = (ImageView) findViewById(R.id.research_grade_icon);
-        mTipText = (TextView) findViewById(R.id.tip_text);
-        mDataQualityReason = (ViewGroup) findViewById(R.id.data_quality_reason);
-        mDataQualityGraph = (ViewGroup) findViewById(R.id.data_quality_graph);
-        mIncludedInProjects = (TextView) findViewById(R.id.included_in_projects);
-        mIncludedInProjectsContainer = (ViewGroup) findViewById(R.id.included_in_projects_container);
-        mActivityTabContainer = (ViewGroup) findViewById(R.id.activity_tab_content);
-        mInfoTabContainer = (ViewGroup) findViewById(R.id.info_tab_content);
-        mLoadingActivity = (ProgressBar) findViewById(R.id.loading_activity);
-        mCommentsIdsList = (ListView) findViewById(R.id.comment_id_list);
-        mActivityButtons = (ViewGroup) findViewById(R.id.activity_buttons);
-        mAddComment = findViewById(R.id.add_comment);
-        mAddId = findViewById(R.id.add_id);
-        mFavoritesTabContainer = (ViewGroup) findViewById(R.id.favorites_tab_content);
-        mLoadingFavs = (ProgressBar) findViewById(R.id.loading_favorites);
-        mFavoritesList = (ListView) findViewById(R.id.favorites_list);
-        mAddFavorite = (ViewGroup) findViewById(R.id.add_favorite);
-        mRemoveFavorite = (ViewGroup) findViewById(R.id.remove_favorite);
-        mNoFavsMessage = (TextView) findViewById(R.id.no_favs);
-        mNoActivityMessage = (TextView) findViewById(R.id.no_activity);
-        mNotesContainer = (ViewGroup) findViewById(R.id.notes_container);
-        mNotes = (TextView) findViewById(R.id.notes);
-        mLoginToAddCommentId = (TextView) findViewById(R.id.login_to_add_comment_id);
-        mActivitySignUp = (Button) findViewById(R.id.activity_sign_up);
-        mActivityLogin = (Button) findViewById(R.id.activity_login);
-        mActivityLoginSignUpButtons = (ViewGroup) findViewById(R.id.activity_login_signup);
-        mLoginToAddFave = (TextView) findViewById(R.id.login_to_add_fave);
-        mFavesSignUp = (Button) findViewById(R.id.faves_sign_up);
-        mFavesLogin = (Button) findViewById(R.id.faves_login);
-        mFavesLoginSignUpButtons = (ViewGroup) findViewById(R.id.faves_login_signup);
-        mSyncToAddCommentsIds = (TextView) findViewById(R.id.sync_to_add_comments_ids);
-        mSyncToAddFave = (TextView) findViewById(R.id.sync_to_add_fave);
-        mNoPhotosContainer = (ViewGroup) findViewById(R.id.no_photos);
-        mLocationLabelContainer = (ViewGroup) findViewById(R.id.location_label_container);
-        mIdPicBig = (ImageView) findViewById(R.id.id_icon_big);
-        mIdArrow = (ImageView) findViewById(R.id.id_arrow);
-        mPhotosContainer = (ViewGroup) findViewById(R.id.photos_container);
-        mLoadingPhotos = (ProgressBar) findViewById(R.id.loading_photos);
-        mLoadingMap = (ProgressBar) findViewById(R.id.loading_map);
-        mTaxonInactive = (ViewGroup) findViewById(R.id.taxon_inactive);
+        mLocationMapContainer = (ViewGroup) mRootView.findViewById(R.id.location_map_container);
+        mUnknownLocationContainer = (ViewGroup) mRootView.findViewById(R.id.unknown_location_container);
+        mUnknownLocationIcon = (ImageView) mRootView.findViewById(R.id.unknown_location);
+        mLocationText = (TextView) mRootView.findViewById(R.id.location_text);
+        mLocationPrivate = (ImageView) mRootView.findViewById(R.id.location_private);
+        mCasualGradeText = (TextView) mRootView.findViewById(R.id.casual_grade_text);
+        mCasualGradeIcon = (ImageView) mRootView.findViewById(R.id.casual_grade_icon);
+        mNeedsIdLine = (View) mRootView.findViewById(R.id.needs_id_line);
+        mResearchGradeLine = (View) mRootView.findViewById(R.id.research_grade_line);
+        mNeedsIdText = (TextView) mRootView.findViewById(R.id.needs_id_text);
+        mNeedsIdIcon = (ImageView) mRootView.findViewById(R.id.needs_id_icon);
+        mResearchGradeText = (TextView) mRootView.findViewById(R.id.research_grade_text);
+        mResearchGradeIcon = (ImageView) mRootView.findViewById(R.id.research_grade_icon);
+        mTipText = (TextView) mRootView.findViewById(R.id.tip_text);
+        mDataQualityReason = (ViewGroup) mRootView.findViewById(R.id.data_quality_reason);
+        mDataQualityGraph = (ViewGroup) mRootView.findViewById(R.id.data_quality_graph);
+        mIncludedInProjects = (TextView) mRootView.findViewById(R.id.included_in_projects);
+        mIncludedInProjectsContainer = (ViewGroup) mRootView.findViewById(R.id.included_in_projects_container);
+        mActivityTabContainer = (ViewGroup) mRootView.findViewById(R.id.activity_tab_content);
+        mInfoTabContainer = (ViewGroup) mRootView.findViewById(R.id.info_tab_content);
+        mLoadingActivity = (ProgressBar) mRootView.findViewById(R.id.loading_activity);
+        mCommentsIdsList = (ListView) mRootView.findViewById(R.id.comment_id_list);
+        mActivityButtons = (ViewGroup) mRootView.findViewById(R.id.activity_buttons);
+        mAddComment = mRootView.findViewById(R.id.add_comment);
+        mAddId = mRootView.findViewById(R.id.add_id);
+        mFavoritesTabContainer = (ViewGroup) mRootView.findViewById(R.id.favorites_tab_content);
+        mLoadingFavs = (ProgressBar) mRootView.findViewById(R.id.loading_favorites);
+        mFavoritesList = (ListView) mRootView.findViewById(R.id.favorites_list);
+        mAddFavorite = (ViewGroup) mRootView.findViewById(R.id.add_favorite);
+        mRemoveFavorite = (ViewGroup) mRootView.findViewById(R.id.remove_favorite);
+        mNoFavsMessage = (TextView) mRootView.findViewById(R.id.no_favs);
+        mNoActivityMessage = (TextView) mRootView.findViewById(R.id.no_activity);
+        mNotesContainer = (ViewGroup) mRootView.findViewById(R.id.notes_container);
+        mNotes = (TextView) mRootView.findViewById(R.id.notes);
+        mLoginToAddCommentId = (TextView) mRootView.findViewById(R.id.login_to_add_comment_id);
+        mActivitySignUp = (Button) mRootView.findViewById(R.id.activity_sign_up);
+        mActivityLogin = (Button) mRootView.findViewById(R.id.activity_login);
+        mActivityLoginSignUpButtons = (ViewGroup) mRootView.findViewById(R.id.activity_login_signup);
+        mLoginToAddFave = (TextView) mRootView.findViewById(R.id.login_to_add_fave);
+        mFavesSignUp = (Button) mRootView.findViewById(R.id.faves_sign_up);
+        mFavesLogin = (Button) mRootView.findViewById(R.id.faves_login);
+        mFavesLoginSignUpButtons = (ViewGroup) mRootView.findViewById(R.id.faves_login_signup);
+        mSyncToAddCommentsIds = (TextView) mRootView.findViewById(R.id.sync_to_add_comments_ids);
+        mSyncToAddFave = (TextView) mRootView.findViewById(R.id.sync_to_add_fave);
+        mNoPhotosContainer = (ViewGroup) mRootView.findViewById(R.id.no_photos);
+        mLocationLabelContainer = (ViewGroup) mRootView.findViewById(R.id.location_label_container);
+        mIdPicBig = (ImageView) mRootView.findViewById(R.id.id_icon_big);
+        mIdArrow = (ImageView) mRootView.findViewById(R.id.id_arrow);
+        mPhotosContainer = (ViewGroup) mRootView.findViewById(R.id.photos_container);
+        mLoadingPhotos = (ProgressBar) mRootView.findViewById(R.id.loading_photos);
+        mLoadingMap = (ProgressBar) mRootView.findViewById(R.id.loading_map);
+        mTaxonInactive = (ViewGroup) mRootView.findViewById(R.id.taxon_inactive);
 
 
         mMetadataObservationURL.setOnClickListener(v -> {
@@ -795,7 +788,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             mHelper.openUrlInBrowser(obsUrl);
         });
 
-        WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+        WindowManager wm = (WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mPhotosContainer.getLayoutParams();
         params.height = (int) (display.getHeight() * 0.37);
@@ -804,7 +797,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         View.OnClickListener onLogin = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ObservationViewerActivity.this, OnboardingActivity.class);
+                Intent intent = new Intent(getActivity(), OnboardingActivity.class);
                 intent.putExtra(OnboardingActivity.LOGIN, true);
 
                 startActivityForResult(intent, REQUEST_CODE_LOGIN);
@@ -813,12 +806,12 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         View.OnClickListener onSignUp = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(new Intent(ObservationViewerActivity.this, OnboardingActivity.class), REQUEST_CODE_LOGIN);
+                startActivityForResult(new Intent(getActivity(), OnboardingActivity.class), REQUEST_CODE_LOGIN);
             }
         };
 
         mActivityLogin.setOnClickListener(onLogin);
-		mActivitySignUp.setOnClickListener(onSignUp);
+        mActivitySignUp.setOnClickListener(onSignUp);
         mFavesLogin.setOnClickListener(onLogin);
         mFavesSignUp.setOnClickListener(onSignUp);
 
@@ -841,20 +834,28 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         // Mark observation updates as viewed
         if (mObservation != null && mObservation._synced_at != null) {
-            Intent serviceIntent = new Intent(INaturalistService.ACTION_VIEWED_UPDATE, null, this, INaturalistService.class);
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_VIEWED_UPDATE, null, getActivity(), INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-            ContextCompat.startForegroundService(this, serviceIntent);
+            ContextCompat.startForegroundService(getActivity(), serviceIntent);
         }
 
+        return mRootView;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     private void reloadObservation(Bundle savedInstanceState, boolean forceReload) {
 
-        Intent intent = getIntent();
+        Bundle args = getArguments();
+        String uriString = args != null ? args.getString(OBS_URI) : getActivity().getIntent().getDataString();
+        Intent intent = getActivity().getIntent();
 
 		if (savedInstanceState == null) {
 			// Do some setup based on the action being performed.
-			Uri uri = intent.getData();
+			Uri uri = uriString != null ? Uri.parse(uriString) : null;
 
 			if ((uri != null) && (uri.getScheme().equals("https"))) {
 			    // User clicked on an observation link (e.g. https://www.inaturalist.org/observations/1234)
@@ -874,12 +875,12 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         mObservation = new Observation(new BetterJSONObject(mObsJson));
                     } else {
                         Logger.tag(TAG).error("Invalid URL");
-                        finish();
+                        getActivity().finish();
                         return;
                     }
                 } else {
                     Logger.tag(TAG).error("Invalid URL");
-                    finish();
+                    getActivity().finish();
                     return;
                 }
             } else {
@@ -893,7 +894,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
                     if (obsJson == null) {
                         Logger.tag(TAG).error("Null URI from intent.getData");
-                        finish();
+                        getActivity().finish();
                         return;
                     }
 
@@ -903,7 +904,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         // See if this read-only observation is in fact our own observation (e.g. viewed from explore screen)
                         if (mObservation.user_login.toLowerCase().equals(mApp.currentUserLogin().toLowerCase())) {
                             // Our own observation
-                            Cursor c = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = ?", new String[]{String.valueOf(mObservation.id)}, Observation.DEFAULT_SORT_ORDER);
+                            Cursor c = getActivity().getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = ?", new String[]{String.valueOf(mObservation.id)}, Observation.DEFAULT_SORT_ORDER);
                             if (c.getCount() > 0) {
                                 // Observation available locally in the DB - just show/edit it
                                 mReadOnly = false;
@@ -914,9 +915,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                                 intent.setData(uri);
                             } else {
                                 // Observation not downloaded yet - download and save it
-                                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION, null, this, INaturalistService.class);
+                                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION, null, getActivity(), INaturalistService.class);
                                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                                ContextCompat.startForegroundService(this, serviceIntent);
+                                ContextCompat.startForegroundService(getActivity(), serviceIntent);
 
                                 mReadOnly = false;
                                 mReloadObs = true;
@@ -931,12 +932,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             }
 
         } else {
-            String obsUri = savedInstanceState.getString("mUri");
-            if (obsUri != null) {
-                mUri = Uri.parse(obsUri);
-            } else {
-                mUri = intent.getData();
-            }
+            mUri = Uri.parse(uriString);
         }
 
         if (mCursor != null) {
@@ -944,13 +940,13 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             mCursor = null;
         }
 
-        if ((!mReadOnly) && (mUri != null)) mCursor = getContentResolver().query(mUri, Observation.PROJECTION, null, null, null);
+        if ((!mReadOnly) && (mUri != null)) mCursor = getActivity().getContentResolver().query(mUri, Observation.PROJECTION, null, null, null);
 
         if ((mObservation == null) || (forceReload)) {
             if (!mReadOnly) {
                 if (mCursor == null || mCursor.getCount() == 0) {
                     Logger.tag(TAG).error("Cursor count is zero - finishing activity: " + mCursor);
-                    finish();
+                    getActivity().finish();
                     return;
                 }
 
@@ -962,14 +958,14 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             mObservationReceiver = new ObservationReceiver();
             IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
             Logger.tag(TAG).info("Registering ACTION_OBSERVATION_RESULT");
-            BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, this);
+            BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, getActivity());
 
             mLoadObsJson = true;
 
-            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, this, INaturalistService.class);
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, getActivity(), INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
             serviceIntent.putExtra(INaturalistService.GET_PROJECTS, true);
-            ContextCompat.startForegroundService(this, serviceIntent);
+            ContextCompat.startForegroundService(getActivity(), serviceIntent);
         }
 
         if (mObservation != null) {
@@ -1021,7 +1017,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     }
 
     private void refreshFavorites() {
-        SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        SharedPreferences pref = getActivity().getSharedPreferences("iNaturalistPreferences", Activity.MODE_PRIVATE);
         final String username = pref.getString("username", null);
 
         TabWidget tabWidget = mTabHost.getTabWidget();
@@ -1092,7 +1088,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             mRemoveFavorite.setVisibility(View.GONE);
         }
 
-        mFavoritesAdapter = new FavoritesAdapter(this, mFavorites);
+        mFavoritesAdapter = new FavoritesAdapter(getActivity(), mFavorites);
         mFavoritesList.setAdapter(mFavoritesAdapter);
 
         mRemoveFavorite.setOnClickListener(new OnClickListener() {
@@ -1100,9 +1096,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             public void onClick(View view) {
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_UNFAVE);
 
-                Intent serviceIntent = new Intent(INaturalistService.ACTION_REMOVE_FAVORITE, null, ObservationViewerActivity.this, INaturalistService.class);
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_REMOVE_FAVORITE, null, getActivity(), INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
+                ContextCompat.startForegroundService(getActivity(), serviceIntent);
 
                 mFavIndex = getFavoritedByUsername(username);
 
@@ -1126,11 +1122,11 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             public void onClick(View view) {
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_FAVE);
 
-                Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_FAVORITE, null, ObservationViewerActivity.this, INaturalistService.class);
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_FAVORITE, null, getActivity(), INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
+                ContextCompat.startForegroundService(getActivity(), serviceIntent);
 
-                SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+                SharedPreferences pref = getActivity().getSharedPreferences("iNaturalistPreferences", Activity.MODE_PRIVATE);
                 String username = pref.getString("username", null);
                 String userIconUrl = pref.getString("user_icon_url", null);
 
@@ -1157,7 +1153,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     }
 
     private void refreshActivity() {
-        SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        SharedPreferences pref = getActivity().getSharedPreferences("iNaturalistPreferences", Activity.MODE_PRIVATE);
         String username = pref.getString("username", null);
 
         mLoadingPhotos.setVisibility(View.GONE);
@@ -1200,8 +1196,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 }
             }
 
-            getContentResolver().update(mObservation.getUri(), cv, null, null);
-            Logger.tag(TAG).debug("ObservationViewerActivity - refreshActivity - update obs: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
+            getActivity().getContentResolver().update(mObservation.getUri(), cv, null, null);
+            Logger.tag(TAG).debug("ObservationViewerFragment - refreshActivity - update obs: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
         }
         mLoginToAddCommentId.setVisibility(View.GONE);
         mActivityLoginSignUpButtons.setVisibility(View.GONE);
@@ -1235,20 +1231,20 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             });
         }
 
-        mAdapter = new CommentsIdsAdapter(this, mObsJson != null ? new BetterJSONObject(mObsJson) : new BetterJSONObject(mObservation.toJSONObject()), mCommentsIds, mObservation.taxon_id == null ? 0 : mObservation.taxon_id , new CommentsIdsAdapter.OnIDAdded() {
+        mAdapter = new CommentsIdsAdapter(getActivity(), mObsJson != null ? new BetterJSONObject(mObsJson) : new BetterJSONObject(mObservation.toJSONObject()), mCommentsIds, mObservation.taxon_id == null ? 0 : mObservation.taxon_id , new CommentsIdsAdapter.OnIDAdded() {
             @Override
             public void onIdentificationAdded(BetterJSONObject taxon) {
                 try {
                     // After calling the added ID API - we'll refresh the comment/ID list
                     IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-                    BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, ObservationViewerActivity.this);
+                    BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, getActivity());
 
-                    Intent serviceIntent = new Intent(INaturalistService.ACTION_AGREE_ID, null, ObservationViewerActivity.this, INaturalistService.class);
+                    Intent serviceIntent = new Intent(INaturalistService.ACTION_AGREE_ID, null, getActivity(), INaturalistService.class);
                     mReloadTaxon = true;
                     serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                     serviceIntent.putExtra(INaturalistService.TAXON_ID, taxon.getJSONObject("taxon").getInt("id"));
                     serviceIntent.putExtra(INaturalistService.FROM_VISION, false);
-                    ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
+                    ContextCompat.startForegroundService(getActivity(), serviceIntent);
 
                     try {
                         JSONObject eventParams = new JSONObject();
@@ -1269,20 +1265,20 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             public void onIdentificationRemoved(BetterJSONObject taxon) {
                 // After calling the remove API - we'll refresh the comment/ID list
                 IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-                BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, ObservationViewerActivity.this);
+                BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, getActivity());
 
-                Intent serviceIntent = new Intent(INaturalistService.ACTION_REMOVE_ID, null, ObservationViewerActivity.this, INaturalistService.class);
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_REMOVE_ID, null, getActivity(), INaturalistService.class);
                 mReloadTaxon = true;
                 serviceIntent.putExtra(INaturalistService.IDENTIFICATION_ID, taxon.getInt("id"));
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
+                ContextCompat.startForegroundService(getActivity(), serviceIntent);
             }
 
             @Override
             public void onIdentificationUpdated(final BetterJSONObject id) {
                 // Set up the input
-                final EditText input = new EditText(ObservationViewerActivity.this);
-                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                final EditText input = new EditText(getActivity());
+                // Specify the type of input expected; getActivity(), for example, sets the input as a password, and will mask the text
                 input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
                 input.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT));
                 input.setText(id.getString("body"));
@@ -1291,8 +1287,10 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        if (getActivity() == null) return;
+
                         input.requestFocus();
-                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.showSoftInput(input, InputMethodManager.SHOW_IMPLICIT);
                     }
                 }, 100);
@@ -1306,14 +1304,14 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
                                 // After calling the update API - we'll refresh the comment/ID list
                                 IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-                                BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, ObservationViewerActivity.this);
+                                BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, getActivity());
 
-                                Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_ID, null, ObservationViewerActivity.this, INaturalistService.class);
+                                Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_ID, null, getActivity(), INaturalistService.class);
                                 serviceIntent.putExtra(INaturalistService.IDENTIFICATION_ID, id.getInt("id"));
                                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                                 serviceIntent.putExtra(INaturalistService.IDENTIFICATION_BODY, body);
                                 serviceIntent.putExtra(INaturalistService.TAXON_ID, id.getInt("taxon_id"));
-                                ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
+                                ContextCompat.startForegroundService(getActivity(), serviceIntent);
                             }
                         },
                         new DialogInterface.OnClickListener() {
@@ -1328,12 +1326,12 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             public void onIdentificationRestored(BetterJSONObject id) {
                 // After calling the restore ID API - we'll refresh the comment/ID list
                 IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-                BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, ObservationViewerActivity.this);
+                BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, getActivity());
 
-                Intent serviceIntent = new Intent(INaturalistService.ACTION_RESTORE_ID, null, ObservationViewerActivity.this, INaturalistService.class);
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_RESTORE_ID, null, getActivity(), INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.IDENTIFICATION_ID, id.getInt("id"));
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
+                ContextCompat.startForegroundService(getActivity(), serviceIntent);
             }
 
 
@@ -1341,19 +1339,19 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             public void onCommentRemoved(BetterJSONObject comment) {
                  // After calling the remove API - we'll refresh the comment/ID list
                 IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-                BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, ObservationViewerActivity.this);
+                BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, getActivity());
 
-                Intent serviceIntent = new Intent(INaturalistService.ACTION_DELETE_COMMENT, null, ObservationViewerActivity.this, INaturalistService.class);
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_DELETE_COMMENT, null, getActivity(), INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.COMMENT_ID, comment.getInt("id"));
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
+                ContextCompat.startForegroundService(getActivity(), serviceIntent);
             }
 
             @Override
             public void onCommentUpdated(final BetterJSONObject comment) {
                 // Set up the input
-                final EditText input = new EditText(ObservationViewerActivity.this);
-                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                final EditText input = new EditText(getActivity());
+                // Specify the type of input expected; getActivity(), for example, sets the input as a password, and will mask the text
                 input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
                 input.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT));
                 input.setText(comment.getString("body"));
@@ -1362,8 +1360,10 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        if (getActivity() == null) return;
+
                         input.requestFocus();
-                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.showSoftInput(input, InputMethodManager.SHOW_IMPLICIT);
                     }
                 }, 100);
@@ -1377,13 +1377,13 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
                                 // After calling the update API - we'll refresh the comment/ID list
                                 IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-                                BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, ObservationViewerActivity.this);
+                                BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, getActivity());
 
-                                Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_COMMENT, null, ObservationViewerActivity.this, INaturalistService.class);
+                                Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_COMMENT, null, getActivity(), INaturalistService.class);
                                 serviceIntent.putExtra(INaturalistService.COMMENT_ID, comment.getInt("id"));
                                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                                 serviceIntent.putExtra(INaturalistService.COMMENT_BODY, commentBody);
-                                ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
+                                ContextCompat.startForegroundService(getActivity(), serviceIntent);
                             }
                         },
                         new DialogInterface.OnClickListener() {
@@ -1399,7 +1399,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         mAddId.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ObservationViewerActivity.this, IdentificationActivity.class);
+                Intent intent = new Intent(getActivity(), IdentificationActivity.class);
                 intent.putExtra(IdentificationActivity.SUGGEST_ID, true);
                 intent.putExtra(IdentificationActivity.OBSERVATION_ID, mObservation.id);
                 intent.putExtra(IdentificationActivity.OBSERVATION_ID_INTERNAL, mObservation._id);
@@ -1439,8 +1439,10 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        if (getActivity() == null) return;
+
                         mAddCommentText.requestFocus();
-                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.showSoftInput(mAddCommentText, InputMethodManager.SHOW_IMPLICIT);
                     }
                 }, 100);
@@ -1457,10 +1459,10 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         String comment = mAddCommentText.getText().toString();
 
                         // Add the comment
-                        Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_COMMENT, null, ObservationViewerActivity.this, INaturalistService.class);
+                        Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_COMMENT, null, getActivity(), INaturalistService.class);
                         serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                         serviceIntent.putExtra(INaturalistService.COMMENT_BODY, comment);
-                        ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
+                        ContextCompat.startForegroundService(getActivity(), serviceIntent);
 
                         mCommentMentions.dismiss();
 
@@ -1469,14 +1471,14 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
                         // Refresh the comment/id list
                         IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-                        BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, ObservationViewerActivity.this);
+                        BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, getActivity());
 
                         mAddCommentContainer.setVisibility(View.GONE);
                         mAddCommentBackground.setVisibility(View.GONE);
 
                         // Hide keyboard
-                        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromWindow(mAddCommentText.getWindowToken(), 0);
                     }
                 });
@@ -1502,9 +1504,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 mCommentMentions.dismiss();
 
                 // Hide keyboard
-                getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                if (getCurrentFocus() != null) imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (getActivity().getCurrentFocus() != null) imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
             }
         }, new DialogInterface.OnClickListener() {
             @Override
@@ -1537,7 +1539,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                 @Override
                 public void onMapClick(LatLng latLng) {
-                    Intent intent = new Intent(ObservationViewerActivity.this, LocationDetailsActivity.class);
+                    Intent intent = new Intent(getActivity(), LocationDetailsActivity.class);
                     intent.putExtra(LocationDetailsActivity.OBSERVATION, mObservation);
                     intent.putExtra(LocationDetailsActivity.OBSERVATION_JSON, mObsJson);
                     intent.putExtra(LocationDetailsActivity.READ_ONLY, true);
@@ -1598,7 +1600,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     }
 
     private View createTabContent(int tabIconResource, int contentDescriptionResource) {
-        View view = LayoutInflater.from(this).inflate(R.layout.observation_viewer_tab, null);
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.observation_viewer_tab, null);
         TextView countText = (TextView) view.findViewById(R.id.count);
         ImageView tabIcon = (ImageView) view.findViewById(R.id.tab_icon);
         tabIcon.setContentDescription(getString(contentDescriptionResource));
@@ -1679,22 +1681,22 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     }
 
     private void addTab(TabHost tabHost, TabHost.TabSpec tabSpec) {
-        tabSpec.setContent(new MyTabFactory(this));
+        tabSpec.setContent(new MyTabFactory(getActivity()));
         tabHost.addTab(tabSpec);
     }
 
     private void getCommentIdList() {
         if ((mObservation != null) && (mObservation.id != null) && (mCommentsIds == null)) {
-            BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, this);
+            BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, getActivity());
             mObservationReceiver = new ObservationReceiver();
             IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
             Logger.tag(TAG).info("Registering ACTION_OBSERVATION_RESULT");
-            BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, this);
+            BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, getActivity());
 
-            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, this, INaturalistService.class);
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, getActivity(), INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
             serviceIntent.putExtra(INaturalistService.GET_PROJECTS, false);
-            ContextCompat.startForegroundService(this, serviceIntent);
+            ContextCompat.startForegroundService(getActivity(), serviceIntent);
 
             if (mReadOnly) {
                 // Show loading progress bars for the photo and map
@@ -1818,13 +1820,13 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             @Override
             public void onClick(View view) {
                 if (!isNetworkAvailable()) {
-                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity().getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 if (mObsJson != null) {
                     try {
-                        Intent intent = new Intent(ObservationViewerActivity.this, DataQualityAssessment.class);
+                        Intent intent = new Intent(getActivity(), DataQualityAssessment.class);
                         intent.putExtra(DataQualityAssessment.OBSERVATION, new BetterJSONObject(getMinimalObservation(new JSONObject(mObsJson))));
                         startActivity(intent);
                     } catch (JSONException e) {
@@ -1844,7 +1846,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         if (mReadOnly) {
             if (mObsJson == null) {
-                finish();
+                getActivity().finish();
                 return;
             }
 
@@ -1861,13 +1863,13 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 mUserName.setVisibility(View.VISIBLE);
             }
         } else {
-            SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+            SharedPreferences pref = getActivity().getSharedPreferences("iNaturalistPreferences", Activity.MODE_PRIVATE);
             String username = pref.getString("username", null);
             userIconUrl = pref.getString("user_icon_url", null);
             mUserName.setText(username);
 
             // Display the errors for the observation, if any
-            TextView errorsDescription = (TextView) findViewById(R.id.errors);
+            TextView errorsDescription = (TextView) mRootView.findViewById(R.id.errors);
             if (mObservation.id != null) {
                 JSONArray errors = mApp.getErrorsForObservation(mObservation.id != null ? mObservation.id : mObservation._id);
 
@@ -1925,7 +1927,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 @Override
                 public void onClick(View view) {
                     if (userObj == null) return;
-                    Intent intent = new Intent(ObservationViewerActivity.this, UserProfile.class);
+                    Intent intent = new Intent(getActivity(), UserProfile.class);
                     intent.putExtra("user", new BetterJSONObject(userObj));
                     startActivity(intent);
                 }
@@ -1986,7 +1988,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                                     // Show scientific name
                                     locationLabel = mTaxon.optString("name", "");;
                                 } else {
-                                    locationLabel = TaxonUtils.getTaxonName(ObservationViewerActivity.this, mTaxon);
+                                    locationLabel = TaxonUtils.getTaxonName(getActivity(), mTaxon);
                                 }
 
                                 double latitude = (mObservation.geoprivacy == null) || (mObservation.geoprivacy.equals("open")) ? mObservation.latitude : mObservation.private_latitude;
@@ -2000,7 +2002,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     }
                 };
 
-                PopupMenu popup = new PopupMenu(ObservationViewerActivity.this, mSharePhoto);
+                PopupMenu popup = new PopupMenu(getActivity(), mSharePhoto);
                 popup.getMenuInflater().inflate(R.menu.share_photo_menu, popup.getMenu());
                 if ((mObservation.latitude == null) || (mObservation.longitude == null)) {
                     // No latitude/longitude - Hide "Share Location" menu option
@@ -2033,7 +2035,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     return;
                 }
 
-                Intent intent = new Intent(ObservationViewerActivity.this, TaxonActivity.class);
+                Intent intent = new Intent(getActivity(), TaxonActivity.class);
                 intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(mTaxon));
                 intent.putExtra(TaxonActivity.OBSERVATION, mObsJson != null ? new BetterJSONObject(mObsJson) : new BetterJSONObject(mObservation.toJSONObject()));
                 startActivity(intent);
@@ -2090,10 +2092,10 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     if (mApp.getShowScientificNameFirst()) {
                         // Show scientific name first, before common name
                         TaxonUtils.setTaxonScientificName(mApp, mIdName, mTaxon);
-                        mTaxonicName.setText(TaxonUtils.getTaxonName(this, mTaxon));
+                        mTaxonicName.setText(TaxonUtils.getTaxonName(getActivity(), mTaxon));
                     } else {
                         TaxonUtils.setTaxonScientificName(mApp, mTaxonicName, mTaxon);
-                        mIdName.setText(TaxonUtils.getTaxonName(this, mTaxon));
+                        mIdName.setText(TaxonUtils.getTaxonName(getActivity(), mTaxon));
                     }
 
                 }
@@ -2119,7 +2121,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         if (!mReadOnly && (mProjects == null)) {
             // Get IDs of project-observations
             int obsId = (mObservation.id == null ? mObservation._id : mObservation.id);
-            Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI, ProjectObservation.PROJECTION,
+            Cursor c = getActivity().getContentResolver().query(ProjectObservation.CONTENT_URI, ProjectObservation.PROJECTION,
                     "(observation_id = " + obsId + ") AND ((is_deleted = 0) OR (is_deleted is NULL))",
                     null, ProjectObservation.DEFAULT_SORT_ORDER);
             mProjectIds = new ArrayList<Integer>();
@@ -2132,7 +2134,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
             mProjects = new ArrayList<BetterJSONObject>();
             for (int projectId : mProjectIds) {
-                c = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION,
+                c = getActivity().getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION,
                         "(id = " + projectId + ")", null, Project.DEFAULT_SORT_ORDER);
                 if (c.getCount() > 0) {
                     Project project = new Project(c);
@@ -2149,7 +2151,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         mIncludedInProjectsContainer.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ObservationViewerActivity.this, ObservationProjectsViewer.class);
+                Intent intent = new Intent(getActivity(), ObservationProjectsViewer.class);
                 intent.putExtra(ObservationProjectsViewer.PROJECTS, mProjects);
                 startActivity(intent);
             }
@@ -2189,13 +2191,18 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         JSONObject defaultPhoto = taxon.getJSONObject("default_photo");
                         final String imageUrl = defaultPhoto.getString("square_url");
 
-                        runOnUiThread(new Runnable() {
+                        // User switched to another obs in the meantime
+                        if (getActivity() == null) return;
+
+                        getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                if (getActivity() == null) return;
+
                                 mTaxonImage = imageUrl;
                                 UrlImageViewHelper.setUrlDrawable(mIdPic, mTaxonImage);
 
-                                mTaxonIdName = TaxonUtils.getTaxonName(ObservationViewerActivity.this, mTaxon);
+                                mTaxonIdName = TaxonUtils.getTaxonName(getActivity(), mTaxon);
                                 mTaxonScientificName = TaxonUtils.getTaxonScientificName(mApp, taxon);
                                 mTaxonRankLevel = taxon.optInt("rank_level", 0);
                                 mTaxonRank = taxon.optString("rank");
@@ -2286,7 +2293,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             }
 
             String timeFormatString;
-            if (DateFormat.is24HourFormat(getApplicationContext())) {
+            if (DateFormat.is24HourFormat(getActivity().getApplicationContext())) {
                 timeFormatString = getString(R.string.time_short_24_hour);
             } else {
                 timeFormatString = getString(R.string.time_short_12_hour);
@@ -2308,7 +2315,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 prepareToExit();
                 return true;
             case R.id.edit_observation:
-                intent = new Intent(Intent.ACTION_EDIT, mUri, this, ObservationEditorSlider.class);
+                intent = new Intent(Intent.ACTION_EDIT, mUri, getActivity(), ObservationEditorSlider.class);
                 if (mTaxon != null) mApp.setServiceResult(ObservationEditor.TAXON, mTaxon.toString());
                 if (mObsJson != null) intent.putExtra(ObservationEditor.OBSERVATION_JSON, mObsJson);
                 startActivityForResult(intent, REQUEST_CODE_EDIT_OBSERVATION);
@@ -2319,15 +2326,15 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 refreshMenu();
                 return true;
             case R.id.follow_observation:
-                Intent serviceIntent = new Intent(INaturalistService.ACTION_FOLLOW_OBSERVATION, null, ObservationViewerActivity.this, INaturalistService.class);
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_FOLLOW_OBSERVATION, null, getActivity(), INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
+                ContextCompat.startForegroundService(getActivity(), serviceIntent);
 
                 mFollowingObservation = true;
                 refreshMenu();
                 return true;
             case R.id.duplicate:
-                intent = new Intent(Intent.ACTION_EDIT, mUri, this, ObservationEditorSlider.class);
+                intent = new Intent(Intent.ACTION_EDIT, mUri, getActivity(), ObservationEditorSlider.class);
                 if (mObsJson != null) intent.putExtra(ObservationEditor.OBSERVATION_JSON, mObsJson);
                 intent.putExtra(ObservationEditor.DUPLICATE, true);
                 startActivity(intent);
@@ -2337,8 +2344,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         }
     }
 
-    @Override
-    public void onBackPressed() {
+    public void onBack() {
         if (mAddCommentContainer.getVisibility() == View.VISIBLE) {
             // Currently showing the add comment dialog
             discardAddComment();
@@ -2349,7 +2355,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
     private void prepareToExit() {
         if (!mFlagAsCaptive) {
-            finish();
+            getActivity().finish();
             return;
         }
 
@@ -2362,19 +2368,19 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                             // Local observation - just update the local DB instance
                             ContentValues cv = mObservation.getContentValues();
                             cv.put(Observation.CAPTIVE, true);
-                            int count = getContentResolver().update(mObservation.getUri(), cv, null, null);
-                            finish();
+                            int count = getActivity().getContentResolver().update(mObservation.getUri(), cv, null, null);
+                            getActivity().finish();
                             return;
                         }
 
                         // Flag as captive
-                        Intent serviceIntent = new Intent(INaturalistService.ACTION_FLAG_OBSERVATION_AS_CAPTIVE, null, ObservationViewerActivity.this, INaturalistService.class);
+                        Intent serviceIntent = new Intent(INaturalistService.ACTION_FLAG_OBSERVATION_AS_CAPTIVE, null, getActivity(), INaturalistService.class);
                         serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                        ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
+                        ContextCompat.startForegroundService(getActivity(), serviceIntent);
 
-                        Toast.makeText(getApplicationContext(), R.string.observation_flagged_as_captive, Toast.LENGTH_LONG).show();
-                        setResult(RESULT_FLAGGED_AS_CAPTIVE);
-                        finish();
+                        Toast.makeText(getActivity().getApplicationContext(), R.string.observation_flagged_as_captive, Toast.LENGTH_LONG).show();
+                        getActivity().setResult(RESULT_FLAGGED_AS_CAPTIVE);
+                        getActivity().finish();
                     }
                 },
                 new DialogInterface.OnClickListener() {
@@ -2386,13 +2392,11 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.observation_viewer_menu, menu);
         mMenu = menu;
+        inflater.inflate(R.menu.observation_viewer_menu, menu);
         refreshMenu();
-        
-        return true;
     }
     
     private void refreshMenu() {
@@ -2439,15 +2443,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     }
 
     @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-        return true;
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        Bridge.saveInstanceState(this, outState);
+        Bridge.saveInstanceState(getActivity(), outState);
     }
 
     private class ChangeAttributesReceiver extends BroadcastReceiver {
@@ -2461,14 +2459,14 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             mObservationReceiver = new ObservationReceiver();
             IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
             Logger.tag(TAG).info("Registering ACTION_OBSERVATION_RESULT");
-            BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, ObservationViewerActivity.this);
+            BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, getActivity());
 
             mLoadObsJson = true;
 
-            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, ObservationViewerActivity.this, INaturalistService.class);
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, getActivity(), INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
             serviceIntent.putExtra(INaturalistService.GET_PROJECTS, false);
-            ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
+            ContextCompat.startForegroundService(getActivity(), serviceIntent);
 	    }
 
 	}
@@ -2476,9 +2474,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 	private void refreshFollowStatus() {
         if (mObservation == null) return;
 
-        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION_SUBSCRIPTIONS, null, ObservationViewerActivity.this, INaturalistService.class);
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION_SUBSCRIPTIONS, null, getActivity(), INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-        ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
+        ContextCompat.startForegroundService(getActivity(), serviceIntent);
 
         mObservationSubscriptions = null;
         mFollowingObservation = false;
@@ -2516,7 +2514,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
             if (!success) {
                 mFollowingObservation = false;
-                Toast.makeText(getApplicationContext(), getString(
+                Toast.makeText(getActivity().getApplicationContext(), getString(
                         isFollowingObservation() ?
                                 R.string.could_not_unfollow_observation : R.string.could_not_follow_observation
                     ), Toast.LENGTH_LONG).show();
@@ -2579,7 +2577,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         public void onReceive(Context context, Intent intent) {
             Logger.tag(TAG).error("DownloadObservationReceiver - OBSERVATION_RESULT");
 
-            BaseFragmentActivity.safeUnregisterReceiver(mDownloadObservationReceiver, ObservationViewerActivity.this);
+            BaseFragmentActivity.safeUnregisterReceiver(mDownloadObservationReceiver, getActivity());
 
             boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
             Observation observation;
@@ -2668,7 +2666,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 mObservation = observation;
                 if (!mReadOnly) {
                     mUri = mObservation.getUri();
-                    getIntent().setData(mUri);
+                    getActivity().getIntent().setData(mUri);
                 }
             }
 
@@ -2698,8 +2696,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         ((mObservation.taxon_id != null) && (observation.taxon_id == null)) ||
                         (mObservation.taxon_id != observation.taxon_id)) {
 
-                    Logger.tag(TAG).debug("ObservationViewerActivity - ObservationReceiver: Updated taxon: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
-                    Logger.tag(TAG).debug("ObservationViewerActivity - ObservationReceiver: Updated taxon (new): " + observation.id + ":" + observation.preferred_common_name + ":" + observation.taxon_id);
+                    Logger.tag(TAG).debug("ObservationViewerFragment - ObservationReceiver: Updated taxon: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
+                    Logger.tag(TAG).debug("ObservationViewerFragment - ObservationReceiver: Updated taxon (new): " + observation.id + ":" + observation.preferred_common_name + ":" + observation.taxon_id);
 
                     mObservation.species_guess = observation.species_guess;
                     mObservation.taxon_id = observation.taxon_id;
@@ -2716,8 +2714,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 if (!mReadOnly) {
                     // Update observation's taxon in DB
                     ContentValues cv = mObservation.getContentValues();
-                    getContentResolver().update(mUri, cv, null, null);
-                    Logger.tag(TAG).debug("ObservationViewerActivity - ObservationReceiver - update obs: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
+                    getActivity().getContentResolver().update(mUri, cv, null, null);
+                    Logger.tag(TAG).debug("ObservationViewerFragment - ObservationReceiver - update obs: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
                 }
             }
             reloadPhotos();
@@ -2740,7 +2738,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 	    public void onReceive(Context context, Intent intent) {
             Logger.tag(TAG).error("ObservationReceiver - OBSERVATION_RESULT");
 
-            BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, ObservationViewerActivity.this);
+            BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, getActivity());
 
             mLoadingObservation = false;
 
@@ -2796,7 +2794,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         cv.put(Observation._SYNCED_AT, mObservation._synced_at.getTime());
                     }
 
-                    getContentResolver().update(mUri, cv, null, null);
+                    getActivity().getContentResolver().update(mUri, cv, null, null);
 
                     // Also update the observation's photo licenses
                     Observation obs = new Observation(new BetterJSONObject(obsJson));
@@ -2804,7 +2802,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         for (int i = 0; i < obs.photos.size(); i++) {
                             ObservationPhoto photo = obs.photos.get(i);
                             if ((photo.id != null) && (photo.license != null)) {
-                                Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI, ObservationPhoto.PROJECTION, "id = ?", new String[]{String.valueOf(photo.id)}, ObservationPhoto.DEFAULT_SORT_ORDER);
+                                Cursor c = getActivity().getContentResolver().query(ObservationPhoto.CONTENT_URI, ObservationPhoto.PROJECTION, "id = ?", new String[]{String.valueOf(photo.id)}, ObservationPhoto.DEFAULT_SORT_ORDER);
                                 if (c.getCount() > 0) {
                                     ObservationPhoto localPhoto = new ObservationPhoto(c);
                                     c.close();
@@ -2815,7 +2813,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                                         if (localPhoto._synced_at != null) {
                                             cv.put(ObservationPhoto._SYNCED_AT, localPhoto._synced_at.getTime());
                                         }
-                                        getContentResolver().update(localPhoto.getUri(), cv, null, null);
+                                        getActivity().getContentResolver().update(localPhoto.getUri(), cv, null, null);
                                     }
                                 } else {
                                     c.close();
@@ -2909,8 +2907,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     ((mObservation.taxon_id != null) && (observation.taxon_id == null)) ||
                     (mObservation.taxon_id != observation.taxon_id)) {
 
-                    Logger.tag(TAG).debug("ObservationViewerActivity - ObservationReceiver: Updated taxon: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
-                    Logger.tag(TAG).debug("ObservationViewerActivity - ObservationReceiver: Updated taxon (new): " + observation.id + ":" + observation.preferred_common_name + ":" + observation.taxon_id);
+                    Logger.tag(TAG).debug("ObservationViewerFragment - ObservationReceiver: Updated taxon: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
+                    Logger.tag(TAG).debug("ObservationViewerFragment - ObservationReceiver: Updated taxon (new): " + observation.id + ":" + observation.preferred_common_name + ":" + observation.taxon_id);
 
                     mObservation.species_guess = observation.species_guess;
                     mObservation.taxon_id = observation.taxon_id;
@@ -2927,8 +2925,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 if (!mReadOnly) {
                     // Update observation's taxon in DB
                     ContentValues cv = mObservation.getContentValues();
-                    getContentResolver().update(mUri, cv, null, null);
-                    Logger.tag(TAG).debug("ObservationViewerActivity - ObservationReceiver - update obs: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
+                    getActivity().getContentResolver().update(mUri, cv, null, null);
+                    Logger.tag(TAG).debug("ObservationViewerFragment - ObservationReceiver - update obs: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
                 }
 
                 // Get latest annotations since community taxon might have changed
@@ -2945,7 +2943,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 // See if this read-only observation is in fact our own observation (e.g. viewed from explore screen)
                 if (mObservation.user_login.toLowerCase().equals(mApp.currentUserLogin().toLowerCase())) {
                     // Our own observation
-                    Cursor c = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = ?", new String[]{String.valueOf(mObservation.id)}, Observation.DEFAULT_SORT_ORDER);
+                    Cursor c = getActivity().getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = ?", new String[]{String.valueOf(mObservation.id)}, Observation.DEFAULT_SORT_ORDER);
                     if (c.getCount() > 0) {
                         // Observation available locally in the DB - just show/edit it
                         mReadOnly = false;
@@ -2953,12 +2951,12 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         mObservation = new Observation(c);
                         mReloadObs = false;
                         mUri = mObservation.getUri();
-                        getIntent().setData(mUri);
+                        getActivity().getIntent().setData(mUri);
                     } else {
                         // Observation not downloaded yet - download and save it
-                        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION, null, ObservationViewerActivity.this, INaturalistService.class);
+                        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION, null, getActivity(), INaturalistService.class);
                         serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                        ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
+                        ContextCompat.startForegroundService(getActivity(), serviceIntent);
 
                         mReadOnly = false;
                         mReloadObs = true;
@@ -2984,6 +2982,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 	}
 
     private void downloadCommunityTaxon(boolean downloadFromOriginalObservation) {
+        if (getActivity() == null) return;
+
         JSONObject observation;
         try {
             observation = new JSONObject(mObsJson);
@@ -3006,8 +3006,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         if (taxonId == -1) {
             // No taxon - get the generic attributes (no taxon)
-            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_ATTRIBUTES_FOR_TAXON, null, ObservationViewerActivity.this, INaturalistService.class);
-            ContextCompat.startForegroundService(this, serviceIntent);
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_ATTRIBUTES_FOR_TAXON, null, getActivity(), INaturalistService.class);
+            ContextCompat.startForegroundService(getActivity(), serviceIntent);
             return;
         }
 
@@ -3021,9 +3021,11 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         if (taxon == null) {
             mAttributes = new SerializableJSONArray();
-            runOnUiThread(new Runnable() {
+            getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    if (getActivity() == null) return;
+
                     refreshAttributes();
                 }
             });
@@ -3034,11 +3036,13 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         Logger.tag(TAG).debug("downloadCommunityTaxon 2 - " + taxon.optInt("id"));
 
+        if (getActivity() == null) return;
+
         // Now that we have full taxon details, we can retrieve the annotations/attributes for that taxon
-        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_ATTRIBUTES_FOR_TAXON, null, ObservationViewerActivity.this, INaturalistService.class);
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_ATTRIBUTES_FOR_TAXON, null, getActivity(), INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.TAXON_ID, taxon.optInt("id"));
         serviceIntent.putExtra(INaturalistService.ANCESTORS, new SerializableJSONArray(taxon.optJSONArray("ancestor_ids")));
-        ContextCompat.startForegroundService(this, serviceIntent);
+        ContextCompat.startForegroundService(getActivity(), serviceIntent);
     }
 
     private void reloadPhotos() {
@@ -3081,7 +3085,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         }
 
         try {
-            mAnnotationsList.setAdapter(new AnnotationsAdapter(this, this, mObservation.toJSONObject(), mTaxonJson != null ? new JSONObject(mTaxonJson) : null, mAttributes.getJSONArray(), obsAnnotations));
+            mAnnotationsList.setAdapter(new AnnotationsAdapter(getActivity(), this, mObservation.toJSONObject(), mTaxonJson != null ? new JSONObject(mTaxonJson) : null, mAttributes.getJSONArray(), obsAnnotations));
         } catch (JSONException e) {
             Logger.tag(TAG).error(e);
         }
@@ -3101,6 +3105,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    if (getActivity() == null) return;
+
                     resizeFavList();
                 }
             }, 100);
@@ -3111,6 +3117,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                if (getActivity() == null) return;
+
                 setListViewHeightBasedOnItems(mFavoritesList);
             }
         }, 100);
@@ -3123,6 +3131,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    if (getActivity() == null) return;
+
                     resizeActivityList();
                 }
             }, 100);
@@ -3138,7 +3148,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             @Override
             public void onScroll(AbsListView absListView, int i, int i1, int i2) {
                 int height = setListViewHeightBasedOnItems(mCommentsIdsList);
-                View background = findViewById(R.id.comment_id_list_background);
+                View background = mRootView.findViewById(R.id.comment_id_list_background);
                 ViewGroup.LayoutParams params = background.getLayoutParams();
                 if (params.height != height) {
                     params.height = height;
@@ -3149,13 +3159,13 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         Logger.tag(TAG).debug("onActivityResult - " + requestCode + ":" + resultCode);
         if (requestCode == SHARE_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                // TODO - RESULT_OK is never returned + need to add "destination" param (what type of share was performed)
+            if (resultCode == Activity.RESULT_OK) {
+                // TODO - Activity.RESULT_OK is never returned + need to add "destination" param (what type of share was performed)
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_SHARE_FINISHED);
             } else {
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_SHARE_CANCELLED);
@@ -3165,12 +3175,13 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             if ((resultCode == ObservationEditor.RESULT_DELETED) || (resultCode == ObservationEditor.RESULT_RETURN_TO_OBSERVATION_LIST)) {
                 // User deleted the observation (or did a batch-edit)
                 Logger.tag(TAG).debug("onActivityResult - EDIT_OBS: Finish");
-                setResult(RESULT_OBSERVATION_CHANGED);
-                finish();
+                getActivity().setResult(RESULT_OBSERVATION_CHANGED);
+                getActivity().finish();
                 return;
-            } else if (resultCode == ObservationEditor.RESULT_REFRESH_OBS) {
-                // User made changes to observation - refresh the view
+            }
 
+            if (resultCode == ObservationEditor.RESULT_REFRESH_OBS) {
+                // User made changes to observation - refresh the view
                 reloadObservation(null, true);
 
                 reloadPhotos();
@@ -3185,10 +3196,10 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 refreshDataQuality();
                 refreshAttributes();
 
-                setResult(RESULT_OBSERVATION_CHANGED);
+                getActivity().setResult(RESULT_OBSERVATION_CHANGED);
             }
         } if (requestCode == NEW_ID_REQUEST_CODE) {
-    		if (resultCode == RESULT_OK) {
+    		if (resultCode == Activity.RESULT_OK) {
 
 
     			// Add the ID
@@ -3201,13 +3212,13 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     			checkForTaxonDisagreement(taxonId, taxonName, speciesGuess, new onDisagreement() {
                     @Override
                     public void onDisagreement(boolean disagreement) {
-                        Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_IDENTIFICATION, null, ObservationViewerActivity.this, INaturalistService.class);
+                        Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_IDENTIFICATION, null, getActivity(), INaturalistService.class);
                         serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                         serviceIntent.putExtra(INaturalistService.TAXON_ID, taxonId);
                         serviceIntent.putExtra(INaturalistService.IDENTIFICATION_BODY, idRemarks);
                         serviceIntent.putExtra(INaturalistService.DISAGREEMENT, disagreement);
                         serviceIntent.putExtra(INaturalistService.FROM_VISION, fromSuggestion);
-                        ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
+                        ContextCompat.startForegroundService(getActivity(), serviceIntent);
 
                         try {
                             JSONObject eventParams = new JSONObject();
@@ -3227,7 +3238,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         // Refresh the comment/id list
                         mReloadTaxon = true;
                         IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-                        BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, ObservationViewerActivity.this);
+                        BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, getActivity());
 
                     }
                 });
@@ -3243,14 +3254,14 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
             // Refresh the comment/id list
             IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-            BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, this);
-            Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, this, INaturalistService.class);
+            BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, getActivity());
+            Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, getActivity(), INaturalistService.class);
             serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
             serviceIntent2.putExtra(INaturalistService.GET_PROJECTS, false);
-            ContextCompat.startForegroundService(this, serviceIntent2);
+            ContextCompat.startForegroundService(getActivity(), serviceIntent2);
 
         } else if (requestCode == OBSERVATION_PHOTOS_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
+            if (resultCode == Activity.RESULT_OK) {
                 Integer setFirstPhotoIndex = data.getIntExtra(ObservationPhotosViewer.SET_DEFAULT_PHOTO_INDEX, -1);
                 Integer deletePhotoIndex = data.getIntExtra(ObservationPhotosViewer.DELETE_PHOTO_INDEX, -1);
                 Integer duplicatePhotoIndex = data.getIntExtra(ObservationPhotosViewer.DUPLICATE_PHOTO_INDEX, -1);
@@ -3336,7 +3347,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         }
 
         // Show disagreement dialog
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         ViewGroup dialogContent = (ViewGroup) inflater.inflate(R.layout.explicit_disagreement, null, false);
 
         TextView questionText = (TextView) dialogContent.findViewById(R.id.question);
@@ -3344,7 +3355,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         final RadioButton noDisagreemenRadioButton = (RadioButton) dialogContent.findViewById(R.id.no_disagreement);
 
         String taxonName = String.format("%s (%s)", name, scientificName);
-        String communityTaxonName = String.format("%s (%s)", TaxonUtils.getTaxonName(this, taxon.getJSONObject()), TaxonUtils.getTaxonScientificName(mApp, taxon.getJSONObject()));
+        String communityTaxonName = String.format("%s (%s)", TaxonUtils.getTaxonName(getActivity(), taxon.getJSONObject()), TaxonUtils.getTaxonScientificName(mApp, taxon.getJSONObject()));
 
         questionText.setText(Html.fromHtml(String.format(getString(R.string.do_you_think_this_could_be), communityTaxonName)));
         noDisagreemenRadioButton.setText(Html.fromHtml(String.format(getString(R.string.i_dont_know_but), taxonName)));
@@ -3417,15 +3428,15 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
 
-        BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, this);
-        BaseFragmentActivity.safeUnregisterReceiver(mAttributesReceiver, this);
-        BaseFragmentActivity.safeUnregisterReceiver(mChangeAttributesReceiver, this);
-        BaseFragmentActivity.safeUnregisterReceiver(mDownloadObservationReceiver, this);
-        BaseFragmentActivity.safeUnregisterReceiver(mObservationSubscriptionsReceiver, this);
-        BaseFragmentActivity.safeUnregisterReceiver(mObservationFollowReceiver, this);
+        BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, getActivity());
+        BaseFragmentActivity.safeUnregisterReceiver(mAttributesReceiver, getActivity());
+        BaseFragmentActivity.safeUnregisterReceiver(mChangeAttributesReceiver, getActivity());
+        BaseFragmentActivity.safeUnregisterReceiver(mDownloadObservationReceiver, getActivity());
+        BaseFragmentActivity.safeUnregisterReceiver(mObservationSubscriptionsReceiver, getActivity());
+        BaseFragmentActivity.safeUnregisterReceiver(mObservationFollowReceiver, getActivity());
 
         if (mPhotosAdapter != null) {
             mPhotosAdapter.pause();
@@ -3433,7 +3444,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     }
 
     private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
@@ -3454,7 +3465,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         Logger.tag(TAG).debug(String.format("Marking photo for deletion: %s", op.toString()));
         ContentValues cv = new ContentValues();
         cv.put(ObservationPhoto.IS_DELETED, 1);
-        int updateCount = getContentResolver().update(op.getUri(), cv, null, null);
+        int updateCount = getActivity().getContentResolver().update(op.getUri(), cv, null, null);
 
         reloadPhotos();
 
@@ -3481,7 +3492,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         // Copy file
         String photoUrl = op.photo_url;
         String photoFileName = op.photo_filename;
-        final File destFile = new File(getFilesDir(), UUID.randomUUID().toString() + ".jpeg");
+        final File destFile = new File(getActivity().getFilesDir(), UUID.randomUUID().toString() + ".jpeg");
 
         Logger.tag(TAG).info("Duplicate: " + op + ":" + photoFileName + ":" + photoUrl);
 
@@ -3492,13 +3503,13 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 addDuplicatedPhoto(op, destFile);
             } catch (IOException e) {
                 Logger.tag(TAG).error(e);
-                Toast.makeText(getApplicationContext(), getString(R.string.couldnt_duplicate_photo), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity().getApplicationContext(), getString(R.string.couldnt_duplicate_photo), Toast.LENGTH_SHORT).show();
                 return;
             }
 
         } else {
             // Online only - need to download it and then copy
-            Glide.with(this)
+            Glide.with(getActivity())
                     .asBitmap()
                     .load(photoUrl)
                     .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.AUTOMATIC))
@@ -3513,7 +3524,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                                 addDuplicatedPhoto(op, destFile);
                             } catch (Exception e) {
                                 Logger.tag(TAG).error(e);
-                                Toast.makeText(getApplicationContext(), getString(R.string.couldnt_duplicate_photo), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity().getApplicationContext(), getString(R.string.couldnt_duplicate_photo), Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -3524,7 +3535,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         @Override
                         public void onLoadFailed(@Nullable Drawable errorDrawable) {
                             Logger.tag(TAG).error("onLoadedFailed");
-                            Toast.makeText(getApplicationContext(), getString(R.string.couldnt_duplicate_photo), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.couldnt_duplicate_photo), Toast.LENGTH_SHORT).show();
                         }
                     });
         }
@@ -3537,7 +3548,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         if (createdUri == null) {
             Logger.tag(TAG).error("addDuplicatedPhoto - couldn't create duplicate OP");
-            Toast.makeText(getApplicationContext(), getString(R.string.couldnt_duplicate_photo), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.couldnt_duplicate_photo), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -3549,8 +3560,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
 
     private Uri createObservationPhotoForPhoto(Uri photoUri, int position, boolean isDuplicated) {
-        String path = FileUtils.getPath(this, photoUri);
-        String extension = FileUtils.getExtension(this, photoUri);
+        String path = FileUtils.getPath(getActivity(), photoUri);
+        String extension = FileUtils.getExtension(getActivity(), photoUri);
 
         if ((extension == null) && (path != null)) {
             int i = path.lastIndexOf('.');
@@ -3568,7 +3579,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         }
 
         // Resize photo to 2048x2048 max
-        String resizedPhoto = ImageUtils.resizeImage(this, path, photoUri, 2048);
+        String resizedPhoto = ImageUtils.resizeImage(getActivity(), path, photoUri, 2048);
 
         if (resizedPhoto == null) {
             return null;
@@ -3587,7 +3598,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         cv.put(ObservationPhoto.POSITION, position);
         cv.put(ObservationPhoto.OBSERVATION_UUID, mObservation.uuid);
 
-        return getContentResolver().insert(ObservationPhoto.CONTENT_URI, cv);
+        return getActivity().getContentResolver().insert(ObservationPhoto.CONTENT_URI, cv);
     }
 
 

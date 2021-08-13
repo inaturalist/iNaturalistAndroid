@@ -194,9 +194,9 @@ public class ObservationEditor extends Fragment {
     private ImageButton mViewOnInat;
     private TableLayout mProjectFieldsTable;
 
-    @State public ArrayList<String> mPhotosAndSoundsAdded;
-    @State public ArrayList<ObservationPhoto> mPhotosRemoved;
-    @State public ArrayList<ObservationSound> mSoundsRemoved;
+    @State public ArrayList<String> mPhotosAndSoundsAdded = new ArrayList<>();
+    @State public ArrayList<ObservationPhoto> mPhotosRemoved = new ArrayList<>();
+    @State public ArrayList<ObservationSound> mSoundsRemoved = new ArrayList<>();
 
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int COMMENTS_IDS_REQUEST_CODE = 101;
@@ -412,7 +412,12 @@ public class ObservationEditor extends Fragment {
                 mSoundsRemoved = new ArrayList<>();
             }
 
-            getActivity().setResult(Activity.RESULT_OK, (new Intent()).setAction(mUri.toString()));
+            Intent intent2 = new Intent();
+            Bundle bundle = new Bundle();
+            bundle.putString(OBS_URI, mUri.toString());
+            intent2.putExtras(bundle);
+
+            getActivity().setResult(Activity.RESULT_OK, intent2);
             getActivity().getIntent().setAction(Intent.ACTION_INSERT);
 
         } else if (savedInstanceState == null) {
@@ -442,7 +447,12 @@ public class ObservationEditor extends Fragment {
                             return mRootView;
                         }
 
-                        getActivity().setResult(Activity.RESULT_OK, (new Intent()).setAction(mUri.toString()));
+                        Intent intent2 = new Intent();
+                        Bundle bundle = new Bundle();
+                        bundle.putString(OBS_URI, mUri.toString());
+                        intent2.putExtras(bundle);
+
+                        getActivity().setResult(Activity.RESULT_OK, intent2);
                         getActivity().getIntent().setAction(Intent.ACTION_INSERT);
 
                         // Duplicate only certain properties of the observation
@@ -534,7 +544,12 @@ public class ObservationEditor extends Fragment {
                         getActivity().finish();
                         return mRootView;
                     }
-                    getActivity().setResult(Activity.RESULT_OK, (new Intent()).setAction(mUri.toString()));
+                    Intent intent2 = new Intent();
+                    Bundle bundle = new Bundle();
+                    bundle.putString(OBS_URI, mUri.toString());
+                    intent2.putExtras(bundle);
+
+                    getActivity().setResult(Activity.RESULT_OK, intent2);
                     getActivity().getIntent().setAction(Intent.ACTION_INSERT);
                     break;
                 case ObservationPhoto.OBSERVATION_PHOTOS_URI_CODE:
@@ -562,7 +577,13 @@ public class ObservationEditor extends Fragment {
 
                     updateImageOrientation(mFileUri);
                     createObservationPhotoForPhoto(mFileUri);
-                    getActivity().setResult(Activity.RESULT_OK, (new Intent()).setAction(mUri.toString()));
+
+                    Intent intent3 = new Intent();
+                    bundle = new Bundle();
+                    bundle.putString(OBS_URI, mUri.toString());
+                    intent3.putExtras(bundle);
+
+                    getActivity().setResult(Activity.RESULT_OK, intent3);
                     getActivity().getIntent().setAction(Intent.ACTION_INSERT);
                     mFileUri = null;
                     break;
@@ -766,7 +787,12 @@ public class ObservationEditor extends Fragment {
                                             returnToObsList();
                                         }
 
-                                        getActivity().setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_REFRESH_OBS);
+                                        Intent intent = new Intent();
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString(OBS_URI, mObservation.getUri().toString());
+                                        intent.putExtras(bundle);
+
+                                        getActivity().setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_REFRESH_OBS, intent);
                                         getActivity().finish();
                                     }
                                 }
@@ -799,7 +825,12 @@ public class ObservationEditor extends Fragment {
                         returnToObsList();
                     }
 
-                    getActivity().setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_REFRESH_OBS);
+                    Intent intent = new Intent();
+                    Bundle bundle = new Bundle();
+                    bundle.putString(OBS_URI, mObservation.getUri().toString());
+                    intent.putExtras(bundle);
+
+                    getActivity().setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_REFRESH_OBS, intent);
                     getActivity().finish();
                 }
             }
@@ -1158,7 +1189,12 @@ public class ObservationEditor extends Fragment {
                                 delete(true);
                             }
                         }
-                        getActivity().setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : Activity.RESULT_CANCELED);
+                        Intent intent2 = new Intent();
+                        Bundle bundle = new Bundle();
+                        bundle.putString(OBS_URI, mUri.toString());
+                        intent2.putExtras(bundle);
+
+                        getActivity().setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : Activity.RESULT_CANCELED, intent2);
                         getActivity().finish();
                     }
                 });
@@ -1447,9 +1483,14 @@ public class ObservationEditor extends Fragment {
                 returnToObsList();
             }
 
+            Intent intent2 = new Intent();
+            Bundle bundle = new Bundle();
+            bundle.putString(OBS_URI, mUri.toString());
+            intent2.putExtras(bundle);
+
             mCanceled = true;
             Logger.tag(TAG).debug("onBack 2 - " + mReturnToObservationList);
-            getActivity().setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : Activity.RESULT_CANCELED);
+            getActivity().setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : Activity.RESULT_CANCELED, intent2);
             getActivity().finish();
             return false;
         }
@@ -1467,9 +1508,14 @@ public class ObservationEditor extends Fragment {
                             returnToObsList();
                         }
 
+                        Intent intent2 = new Intent();
+                        Bundle bundle = new Bundle();
+                        bundle.putString(OBS_URI, mUri.toString());
+                        intent2.putExtras(bundle);
+
                         mCanceled = true;
                         revertPhotosAndSounds();
-                        getActivity().setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : Activity.RESULT_CANCELED);
+                        getActivity().setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : Activity.RESULT_CANCELED, intent2);
                         getActivity().finish();
                     }
                 },

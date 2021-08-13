@@ -15,15 +15,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import com.google.android.material.tabs.TabLayout;
-import androidx.core.app.ActivityCompat;
+
 import androidx.core.content.ContextCompat;
-import androidx.core.content.PermissionChecker;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.core.view.ViewCompat;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.ActionBar;
 
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -52,7 +50,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
-import com.google.android.gms.maps.model.TileOverlay;
 import com.google.android.gms.maps.model.TileOverlayOptions;
 import com.google.android.gms.maps.model.TileProvider;
 import com.google.android.gms.maps.model.UrlTileProvider;
@@ -1027,7 +1024,7 @@ public class ExploreActivity extends BaseFragmentActivity {
             public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
                 JSONObject item = (JSONObject) view.getTag();
 
-                Intent intent = new Intent(ExploreActivity.this, ObservationViewerActivity.class);
+                Intent intent = new Intent(ExploreActivity.this, ObservationViewerSlider.class);
                 intent.putExtra("observation", item.toString());
                 intent.putExtra("read_only", true);
                 intent.putExtra("reload", true);
@@ -1584,7 +1581,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                         // Found a matching observation
                         Logger.tag(TAG).debug("UTFGrid Observation: " + observation.toString());
 
-                        Intent intent = new Intent(ExploreActivity.this, ObservationViewerActivity.class);
+                        Intent intent = new Intent(ExploreActivity.this, ObservationViewerSlider.class);
 
                         if (observation.has("captive")) observation.remove("captive"); // Since "captive" in the UTFGrid is a string instead of a boolean
                         if (observation.has("private_location")) observation.remove("private_location"); // Since "private_location" in the UTFGrid is a weird format ("[object Object]") instead of an actual string
@@ -1636,7 +1633,7 @@ public class ExploreActivity extends BaseFragmentActivity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == VIEW_OBSERVATION_REQUEST_CODE) {
-			if (resultCode == ObservationViewerActivity.RESULT_FLAGGED_AS_CAPTIVE) {
+			if (resultCode == ObservationViewerFragment.RESULT_FLAGGED_AS_CAPTIVE) {
 				return;
 			}
 		} else if ((requestCode == SEARCH_REQUEST_CODE) || (requestCode == FILTERS_REQUEST_CODE)) {
