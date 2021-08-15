@@ -186,7 +186,7 @@
     <string name="text"><![CDATA[<b>Testo:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">La rete principale di iNaturalist. Premendo OK aggiungerai la tua app alla rete iNaturalist.</string>
-    <string name="alert_message_use_naturalista">NaturaLista è membro del Network iNaturalist in Mexico. Le istituzioni locali che supportano NaturaLista avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione solo per provare se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
+    <string name="alert_message_use_naturalista">NaturaLista è membro del Network iNaturalist in Mexico. Le istituzioni locali che supportano NaturaLista avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione come esperimento se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
     <string name="alert_message_use_naturewatchnz">iNaturalist NZ è membro del Network iNaturalist in Nuova Zelanda. Le istituzioni locali che supportano iNaturalist NZ avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione solo per provare se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist Canada è membro del Network iNaturalist in Canada. Le istituzioni locali che supportano iNaturalist Canada avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione solo per provare se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
     <string name="alert_message_use_naturalistacolombia">Naturalista è membro del Network iNaturalist in Colombia. Le istituzioni locali che supportano Naturalista avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione solo per provare se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
@@ -280,14 +280,14 @@
     <string name="observation">Osservazione</string>
     <string name="share">Condividi</string>
     <string name="unable_to_acquire_location">Impossibile acquisire la posizione</string>
-    <string name="casual_grade">Livello Casuale</string>
+    <string name="casual_grade">Livello informale</string>
     <string name="needs_id">Ha bisogno di ID</string>
     <string name="research_grade">Livello Ricerca</string>
     <string name="data_quality">Qualità del dato</string>
     <string name="casual_grade_add_location"><![CDATA[ Aggiungi una <b>posizione</b> per far progredire questa osservazione al livello "Ha bisogno ID". ]]></string>
     <string name="casual_grade_add_date"><![CDATA[ Aggiungi una <b>data</b> per far progredire questa osservazione al livello "Ha bisogno ID". ]]></string>
     <string name="casual_grade_add_photo"><![CDATA[ Aggiungi una <b>foto</b> per far progredire questa osservazione al livello "Ha bisogno ID". ]]></string>
-    <string name="casual_grade_captive"><![CDATA[ Osservazione è di livello Casuale perché è <b>in cattività/coltivata</b>. ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ Osservazione è di livello informale perché è <b>in cattività/coltivata</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ L\'osservazione ha bisogno di <b>ulteriori identificazioni</b> della community per raggiungere il "Livello Ricerca". ]]></string>
     <plurals name="included_in_projects">
         <item quantity="one">Inclusa in %1$d progetto</item>
@@ -746,7 +746,7 @@
     <string name="recent_evidence_of_an_organism">Recenti prove di un organismo</string>
     <string name="community_id_at_species_level_or_lower">ID della comunità a livello di specie o inferiore</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Sulla base delle prove, l\'ID della community può ancora essere confermato o migliorato?</string>
-    <string name="no_as_good_as_it_can_be">No, è buono come può essere</string>
+    <string name="no_as_good_as_it_can_be">No, è il meglio che si possa fare</string>
     <string name="seasonality">Stagionalità</string>
     <string name="verifiable">Verificabile</string>
     <string name="no_annotation">Nessuna annotazione</string>
@@ -874,7 +874,7 @@
     <string name="running_in_background_notfication">In esecuzione in background in modo da poter eseguire senza interruzioni</string>
     <string name="opt_out_of_community_taxon">Escludi il Taxon della Comunità</string>
     <string name="opt_in_to_community_taxon">Scegli il Taxon della Comunità</string>
-    <string name="opt_out_message">Escludendo il Taxon della Comunità associ forzatamente questa osservazione al taxon della tua identificazione attuale, non al taxon che deriva da tutte le identificazioni che sono state aggiunte a questa osservazione. Se abbastanza identificatori non sono d\'accordo con te, la tua osservazione diventerà Casuale. Escludilo solo se sei sicuro che la tua identificazione sia corretta e che altre identificazioni non siano sbagliate.</string>
+    <string name="opt_out_message">Escludendo il Taxon della Comunità associ forzatamente questa osservazione al taxon della tua identificazione attuale, non al taxon che deriva da tutte le identificazioni che sono state aggiunte a questa osservazione. Se abbastanza identificatori non sono d\'accordo con te, la tua osservazione diventerà Informale. Escludilo solo se sei sicuro che la tua identificazione sia corretta e che altre identificazioni non siano sbagliate.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
     <string name="permission_required">Autorizzazione Richiesta</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
@@ -1165,5 +1165,61 @@ le <a href="https://www.inaturalist.org/pages/community+guidelines">Linee Guida 
     <string name="default_observation_action">Azione Predefinita Osservazioni</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Mostra Opzioni</string>
-    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Valore del Campo</string>
+    <string name="expand_annotation_to_agree_or_disagree">Espandi l\'annotazione per concordare o non concordare</string>
+    <string name="delete_attribute_value">Elimina il valore dell\'attributo</string>
+    <string name="open_menu_for_more_options">Apri il menu per altre opzioni</string>
+    <string name="california_academy_of_sciences">California Academy of Sciences</string>
+    <string name="national_geographic">National Geographic</string>
+    <string name="change_user_profile_photo">Cambia l\'immagine del profilo utente</string>
+    <string name="expand_list">Espandi elenco</string>
+    <string name="change_map_layers">Cambia gli strati della mappa (terreno vs. satellite)</string>
+    <string name="redo_observation_search">Ripeti la ricerca delle osservazioni in questa area della mappa</string>
+    <string name="view_observations_on_map">Visualizza le osservazioni sulla mappa</string>
+    <string name="view_observations_on_grid">Visualizza le osservazioni sulla griglia</string>
+    <string name="clear_text">Cancella testo</string>
+    <string name="observation_has_sounds">L\'osservazione ha suoni</string>
+    <string name="go_to_my_location">Va alla mia posizione attuale</string>
+    <string name="change_geoprivacy">Cambia geoprivacy</string>
+    <string name="active_filters">Filtri attivi</string>
+    <string name="message_is_flagged">Il messaggio è contrassegnato</string>
+    <string name="user_is_muted">L\'utente è silenziato</string>
+    <string name="cancel_multiple_obs_selection">Annulla la selezione di osservazioni multiple</string>
+    <string name="delete_observations">Cancella osservazioni</string>
+    <string name="clear_species_guess">Cancella il suggerimento specie</string>
+    <string name="comment_count">Conteggio dei commenti</string>
+    <string name="id_count">Conteggio delle identificazioni</string>
+    <string name="observation_selected">Osservazione selezionata</string>
+    <string name="share_observation">Condividi osservazione</string>
+    <string name="unknown_location">Posizione sconosciuta</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Chiudi</string>
+    <string name="set_date2">Imposta data</string>
+    <string name="project_selected">Progetto Selezionato</string>
+    <string name="project_unselected">Progetto Deselezionato</string>
+    <string name="show_my_observations">Trova le mie osservazioni</string>
+    <string name="play_pause_sound">Riproduci o metti in pausa il suono</string>
+    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
+    <string name="view_image">Visualizza immagine</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Supera la verifica</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">D\'accordo sul superamento della verifica</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Non supera la verifica</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Non d\'accordo sul superamento della verifica</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Elimina %1$d osservazione selezionata</item>
+        <item quantity="other">Elimina %1$d osservazioni selezionate</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Sincronizza %1$d osservazione</item>
+        <item quantity="other">Sincronizza %1$d osservazioni</item>
+    </plurals>
+    <string name="add_media_evidence">Aggiungi prove multimediali</string>
+    <string name="remove_identification">Rimuovi l\'identificazione</string>
+    <string name="issue_with_updating_photos">Si è verificato un problema durante l\'aggiornamento delle foto in questa osservazione che è stata recentemente risolto. Per favore esci e accedi di nuovo per risolvere questo problema.</string>
+    <string name="app_version_copied_to_clipboard">Versione dell\'app copiata negli appunti</string>
 </resources>
