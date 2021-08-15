@@ -371,16 +371,15 @@
 
                 <TextView
                     android:id="@+id/observed_on"
-                    android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:layout_toRightOf="@id/time_icon"
-                    android:layout_toEndOf="@id/time_icon"
-                    android:layout_toStartOf="@id/time_observed_at"
-                    android:text="hello world"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/time_observed_at"
+                    android:layout_toEndOf="@id/time_icon"
+                    android:layout_toRightOf="@id/time_icon"
+                    android:text="hello world"
                     android:textDirection="locale"
-                    android:textSize="16sp"
-                    />
+                    android:textSize="16sp" />
 
 
             </RelativeLayout>
@@ -590,12 +589,11 @@
 
                     <TextView
                         android:id="@+id/location_visibility_description"
-                        android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="Location is open"
-                        android:textSize="16sp"
                         android:textColor="#000000"
-                        />
+                        android:textSize="16sp" />
                     <Spinner
                         android:id="@+id/geoprivacy"
                         android:visibility="gone"

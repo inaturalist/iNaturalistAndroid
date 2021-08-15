@@ -1146,9 +1146,9 @@ public class INaturalistApp extends MultiDexApplication {
     public String shortFormatDate(Timestamp date) {
         SimpleDateFormat f;
         if (Locale.getDefault().getCountry().equals("US")) {
-            f = new SimpleDateFormat("MMM d, yyyy");
+            f = new SimpleDateFormat("MMM d, yyyy", mLocale);
         } else {
-            f = SHORT_DATE_FORMAT;
+            f = new SimpleDateFormat("d MMM yyyy", mLocale);
         }
         return f.format(date);
     }

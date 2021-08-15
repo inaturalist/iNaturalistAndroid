@@ -1548,6 +1548,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
             mLocationMapContainer.setVisibility(View.VISIBLE);
             mUnknownLocationIcon.setVisibility(View.GONE);
+
             if (((mObservation.place_guess == null) || (mObservation.place_guess.length() == 0)) &&
                 ((mObservation.private_place_guess == null) || (mObservation.private_place_guess.length() == 0))) {
                 // No place guess - show coordinates instead
@@ -1566,7 +1567,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         mObservation.private_place_guess : mObservation.place_guess);
             }
 
-            mLocationText.setGravity(View.TEXT_ALIGNMENT_TEXT_END);
+            mLocationText.setGravity(View.TEXT_ALIGNMENT_TEXT_START);
 
             String geoprivacyField = mObservation.geoprivacy == null ? mObservation.taxon_geoprivacy : mObservation.geoprivacy;
 

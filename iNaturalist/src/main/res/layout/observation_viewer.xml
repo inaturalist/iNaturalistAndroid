@@ -774,6 +774,7 @@
                     android:layout_height="wrap_content"
                     android:text="San Francisco, CA with some very long text that is multi line"
                     android:layout_toStartOf="@id/location_private"
+                    android:textDirection="locale"
                     android:ellipsize="end"
                     android:lines="1"
                     android:textColor="#89000000"
