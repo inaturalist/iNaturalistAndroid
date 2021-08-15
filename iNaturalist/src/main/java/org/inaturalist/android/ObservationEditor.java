@@ -1225,6 +1225,10 @@ public class ObservationEditor extends Fragment {
     public void saveObservation() {
         uiToProjectFieldValues();
         save();
+
+        if (mObservation != null && mObservation._id != null) {
+            mApp.setIsObservationCurrentlyBeingEdited(mObservation._id, false);
+        }
     }
 
     private void editNextObservation(int direction) {
