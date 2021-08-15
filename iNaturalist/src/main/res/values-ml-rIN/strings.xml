@@ -122,17 +122,17 @@
     <string name="my_guides">താങ്കളുടെ</string>
     <string name="nearby_guides">Nearby</string>
     <string name="all_guides">എല്ലാം</string>
-    <string name="no_taxa">No taxa found for this guide!</string>
-    <string name="search_taxa">Search taxa...</string>
+    <string name="no_taxa">ഈ ഗൈഡുകൾക്കായി ടാക്‌സകളൊന്നും കണ്ടെത്തിയില്ല!</string>
+    <string name="search_taxa">തിരയുക ടാക്സ</string>
     <string name="no_internet_guides">ഗൈഡുകൾക്ക് ഒരു ഇന്റർനെറ്റ് കണക്ഷൻ ആവശ്യമാണ്</string>
     <string name="no_internet_projects">പ്രോജക്റ്റുകൾക്ക് ഇന്റർനെറ്റ് കണക്ഷൻ ആവശ്യമാണ്</string>
-    <string name="locale_gl">Galician</string>
-    <string name="locale_eu">Basque</string>
+    <string name="locale_gl">ഗലീഷ്യൻ</string>
+    <string name="locale_eu">ബാസ്‌ക്</string>
     <string name="use_device_language_settings">ഉപകരണ ഭാഷാ ക്രമീകരണങ്ങൾ ഉപയോഗിക്കുക</string>
     <string name="choose_location">ലൊക്കേഷൻ തിരഞ്ഞെടുക്കുക</string>
     <string name="done">ചെയ്‌തു</string>
-    <string name="please_sign_in_via_settings">You must be logged in to view projects you\'ve joined.</string>
-    <string name="contact_support">Contact Support</string>
+    <string name="please_sign_in_via_settings">നിങ്ങൾ ചേർന്ന പ്രോജക്റ്റുകൾ കാണുന്നതിന് നിങ്ങൾ ലോഗിൻ ചെയ്തിരിക്കണം.</string>
+    <string name="contact_support">കോൺ‌ടാക്റ്റ് പിന്തുണ</string>
     <string name="credits">Designed and built by iNaturalist.org with support from the California Academy of Sciences</string>
     <string name="leave_project">Leave Project</string>
     <string name="leave_project_confirmation">Are you sure you want to leave this project?</string>
@@ -1163,5 +1163,61 @@
     <string name="default_observation_action">Default Observation Action</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Show Options</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Field Value</string>
+    <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
+    <string name="delete_attribute_value">Delete attribute value</string>
+    <string name="open_menu_for_more_options">Open menu for more options</string>
+    <string name="california_academy_of_sciences">California Academy of Sciences</string>
+    <string name="national_geographic">National Geographic</string>
+    <string name="change_user_profile_photo">Change user profile photo</string>
+    <string name="expand_list">Expand list</string>
+    <string name="change_map_layers">Change map layers (terrain vs. satellite)</string>
+    <string name="redo_observation_search">Redo observation search in this map area</string>
+    <string name="view_observations_on_map">View observations on map</string>
+    <string name="view_observations_on_grid">View observations on grid</string>
+    <string name="clear_text">Clear text</string>
+    <string name="observation_has_sounds">Observation has sounds</string>
+    <string name="go_to_my_location">Go to my current location</string>
+    <string name="change_geoprivacy">Change geoprivacy</string>
+    <string name="active_filters">Active filters</string>
+    <string name="message_is_flagged">Message is flagged</string>
+    <string name="user_is_muted">User is muted</string>
+    <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
+    <string name="delete_observations">Delete observations</string>
+    <string name="clear_species_guess">Clear species guess</string>
+    <string name="comment_count">Comment count</string>
+    <string name="id_count">Identification count</string>
+    <string name="observation_selected">Observation selected</string>
+    <string name="share_observation">Share observation</string>
+    <string name="unknown_location">Unknown location</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Close</string>
+    <string name="set_date2">Set date</string>
+    <string name="project_selected">Project Selected</string>
+    <string name="project_unselected">Project Unselected</string>
+    <string name="show_my_observations">Show my observations</string>
+    <string name="play_pause_sound">Play or pause sound</string>
+    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
+    <string name="view_image">View image</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Assessment passes</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Agree assessment passes</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Does not pass assessment</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Disagree assessment passes</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Delete %1$d selected observation</item>
+        <item quantity="other">Delete %1$d selected observations</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Sync %1$d selected observation</item>
+        <item quantity="other">Sync %1$d selected observations</item>
+    </plurals>
+    <string name="add_media_evidence">Add media evidence</string>
+    <string name="remove_identification">Remove identification</string>
     <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
+    <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
 </resources>
