@@ -313,7 +313,7 @@ public class DataQualityAssessment extends AppCompatActivity implements DataQual
         metrics.add(new DataQualityItem(R.drawable.ic_id, R.string.has_id_supported_by_two_or_more, "id_supported", false));
         metrics.add(new DataQualityItem(R.drawable.calendar_check_o, R.string.date_is_accurate, "date", true));
         metrics.add(new DataQualityItem(R.drawable.bullseye, R.string.location_is_accurate, "location", true));
-        metrics.add(new DataQualityItem(R.drawable.arachnida_large, R.string.organism_is_wild, "wild", true));
+        metrics.add(new DataQualityItem(R.drawable.wild, R.string.organism_is_wild, "wild", true));
         metrics.add(new DataQualityItem(R.drawable.magnifying_glass, R.string.evidence_of_organism, "evidence", true));
         metrics.add(new DataQualityItem(R.drawable.clock_o, R.string.recent_evidence_of_an_organism, "recent", true));
         metrics.add(new DataQualityItem(R.drawable.leaf, R.string.community_id_at_species_level_or_lower, "community_id", false));
