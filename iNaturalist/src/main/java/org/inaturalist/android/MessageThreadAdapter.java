@@ -95,7 +95,7 @@ public class MessageThreadAdapter extends RecyclerView.Adapter<MessageThreadAdap
         Timestamp ts = message.getTimestamp("updated_at");
         Calendar cal = Calendar.getInstance(Locale.ENGLISH);
         cal.setTimeInMillis(ts.getTime());
-        holder.date.setText(DateFormat.format(mApp.isLayoutRTL() ? "d MMMM, yyyy HH:mm" : "MMMM d, yyyy hh:mma", cal));
+        holder.date.setText(DateFormat.format(mApp.getString(R.string.date_long_with_time), cal));
 
         HtmlUtils.fromHtml(holder.message, message.getString("body"));
 

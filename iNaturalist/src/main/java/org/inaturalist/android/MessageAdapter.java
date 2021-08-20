@@ -85,7 +85,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         Timestamp ts = message.getTimestamp("updated_at");
         Calendar cal = Calendar.getInstance(Locale.ENGLISH);
         cal.setTimeInMillis(ts.getTime());
-        holder.date.setText(DateFormat.format(mApp.isLayoutRTL() ? "d MMMM, yyyy HH:mm" : "MMMM d, yyyy hh:mma", cal));
+        holder.date.setText(DateFormat.format(mApp.getString(R.string.date_long_with_time), cal));
 
         String readAt = message.getString("read_at");
 

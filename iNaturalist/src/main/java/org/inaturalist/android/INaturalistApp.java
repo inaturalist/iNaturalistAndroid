@@ -1144,12 +1144,7 @@ public class INaturalistApp extends MultiDexApplication {
     public String formatDatetime(Timestamp date) { return DATETIME_FORMAT.format(date); }
     public String formatDatetimeISONoTimezone(Timestamp date) { return DATETIME_ISO_NO_TIMEZONE_FORMAT.format(date); }
     public String shortFormatDate(Timestamp date) {
-        SimpleDateFormat f;
-        if (Locale.getDefault().getCountry().equals("US")) {
-            f = new SimpleDateFormat("MMM d, yyyy", mLocale);
-        } else {
-            f = new SimpleDateFormat("d MMM yyyy", mLocale);
-        }
+        SimpleDateFormat f = new SimpleDateFormat(getString(R.string.date_long), mLocale);
         return f.format(date);
     }
     public String shortFormatTime(Timestamp date) { return SHORT_TIME_FORMAT.format(date); }

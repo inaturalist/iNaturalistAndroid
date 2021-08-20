@@ -1011,6 +1011,10 @@
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">MMM d, yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
     <string name="show_common_names">Show common names</string>
     <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
     <string name="email_must_look_like_email_address">Email must look like an email address</string>
