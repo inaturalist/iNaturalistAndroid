@@ -3837,7 +3837,7 @@ public class INaturalistService extends IntentService {
             params.add(new BasicNameValuePair("user[time_zone]", timezone));
         }
 
-        JSONArray response = post(HOST + "/users.json", params, false);
+        JSONArray response = request(HOST + "/users.json", "post", params, null, true, true, true);
         if (mResponseErrors != null) {
             // Couldn't create user
             try {
