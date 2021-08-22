@@ -15,6 +15,7 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:src="@drawable/ic_work_gray_24dp"
+        android:importantForAccessibility="no"
         android:layout_marginEnd="15dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
@@ -36,6 +37,7 @@
             android:layout_height="50dp"
             android:scaleType="fitXY"
             android:src="@drawable/ic_person_black_24dp"
+            android:importantForAccessibility="no"
             />
 
         <ProgressBar

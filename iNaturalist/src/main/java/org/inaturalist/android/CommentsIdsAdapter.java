@@ -31,6 +31,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.opengl.Visibility;
@@ -43,6 +44,7 @@ import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.TouchDelegate;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -54,6 +56,9 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 
 public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implements OnClickListener {
     private static String TAG = "CommentsIdsAdapter";
@@ -112,7 +117,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 	public View getView(final int position, View convertView, ViewGroup parent) { 
 		final Resources res = mContext.getResources();
 		LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		final View view = inflater.inflate(R.layout.comment_id_item_obs_viewer, parent, false);
+		final View view = DataBindingUtil.inflate(inflater, R.layout.comment_id_item_obs_viewer, parent, false).getRoot();
 		final BetterJSONObject item = mItems.get(position);
 
 		((INaturalistApp) mContext.getApplicationContext()).setStringResourceForView(view, R.id.id_agree_text, "agree_all_caps", "agree2");
@@ -174,7 +179,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				userPic.setAlpha(100);
             }
 
-			final ImageView moreMenu = (ImageView) view.findViewById(R.id.more_menu);
+			final View moreMenu = view.findViewById(R.id.more_menu);
 			final boolean isComment = item.getString("type").equals("comment");
 			final View loading = view.findViewById(R.id.loading);
 
@@ -591,17 +596,5 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
         intent.putExtra(TaxonActivity.OBSERVATION, mObservation);
         mContext.startActivity(intent);
 	}
-
-    private void copyToClipBoard(String text) {
-        int sdk = android.os.Build.VERSION.SDK_INT;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
-            android.content.ClipboardManager clipboard = (android.content.ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
-            android.content.ClipData clip = android.content.ClipData.newPlainText(text, text);
-            clipboard.setPrimaryClip(clip);
-        } else {
-            android.text.ClipboardManager clipboard = (android.text.ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
-            clipboard.setText(text);
-        }
-    }
 }
 

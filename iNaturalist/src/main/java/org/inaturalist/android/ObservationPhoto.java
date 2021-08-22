@@ -172,21 +172,6 @@ public class ObservationPhoto implements BaseColumns, Serializable {
     }
 
     public ObservationPhoto(BetterJSONObject o, ObservationPhoto parent) {
-        if (parent != null) {
-            // This is a special JSON response from the photo endpoint (PUT /photos/1234), so it contains
-            // only the inner photo JSON, not the ObservationPhoto details
-            this.updated_at = o.getTimestamp("updated_at");
-            this.created_at = o.getTimestamp("created_at");
-            this.id = parent.id;
-            this.observation_id = parent.observation_id;
-            this.photo_id = o.getInt("id");
-            this.position = o.getInt("position");
-            this.uuid = parent.uuid;
-            this.license = parent.license;
-
-            return;
-        }
-
         this._created_at = o.getTimestamp("_created_at");
         this._created_at_was = this._created_at;
         this._observation_id = o.getInteger("_observation_id");

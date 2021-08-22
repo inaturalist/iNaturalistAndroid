@@ -268,17 +268,18 @@ def validate_android_translations(options={}):
                 continue
             for item in plural:
                 item_key = item.get("quantity")
-                en_string = en_string_plurals[key][item_key]
+                en_string = en_string_plurals[key].get(item_key)
                 text = item.text
-                validate_translation(
-                    path,
-                    "{}.{}".format(key, item_key),
-                    text,
-                    en_string,
-                    errors,
-                    warnings,
-                    options
-                )
+                if text and en_string:
+                    validate_translation(
+                        path,
+                        "{}.{}".format(key, item_key),
+                        text,
+                        en_string,
+                        errors,
+                        warnings,
+                        options
+                    )
                 if text != en_string:
                     progress_counts[path] = (
                         progress_counts[path] + 1 if path in progress_counts else 0  # noqa: E501

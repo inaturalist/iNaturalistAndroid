@@ -309,8 +309,10 @@ public class ExploreActivity extends BaseFragmentActivity {
                     @Override
                     public void onPermissionGranted() {
                         mLoadingNextResults = new boolean[]{false, false, false, false};
-                        mObservationsMapMyLocation.setVisibility(View.VISIBLE);
-                        mObservationsMapMyLocation.performClick();
+                        if (mObservationsMapMyLocation != null) {
+                            mObservationsMapMyLocation.setVisibility(View.VISIBLE);
+                            mObservationsMapMyLocation.performClick();
+                        }
 
                         if (mObservationsMap != null) {
                             mObservationsMap.setMyLocationEnabled(true);

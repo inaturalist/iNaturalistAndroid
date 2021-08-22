@@ -8,6 +8,7 @@
     <ImageView
         android:id="@+id/title_bar_logo"
         android:layout_marginStart="10dp"
+        android:importantForAccessibility="no"
         android:layout_width="180dp"
         android:layout_height="40dp"
         android:layout_centerVertical="true"

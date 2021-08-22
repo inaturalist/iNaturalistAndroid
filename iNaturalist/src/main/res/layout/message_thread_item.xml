@@ -19,6 +19,7 @@
             android:layout_marginStart="18dp"
             android:layout_marginEnd="11dp"
             android:layout_centerVertical="true"
+            android:importantForAccessibility="no"
             />
 
         <ImageView
@@ -29,6 +30,7 @@
             android:layout_marginStart="11dp"
             android:layout_marginEnd="18dp"
             android:layout_centerVertical="true"
+            android:importantForAccessibility="no"
             />
 
         <LinearLayout

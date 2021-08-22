@@ -33,6 +33,7 @@
                 android:layout_height="220dp"
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"
+                android:importantForAccessibility="no"
                 />
 
             <androidx.appcompat.widget.Toolbar
@@ -279,6 +280,7 @@
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:src="@drawable/ic_open_in_new_black_24dp"
+                            android:importantForAccessibility="no"
                             />
                         <TextView
                             android:layout_width="wrap_content"

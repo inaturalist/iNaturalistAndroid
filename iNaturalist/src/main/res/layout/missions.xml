@@ -28,6 +28,7 @@
                     android:tint="#929292"
                     android:layout_centerInParent="true"
                     android:paddingBottom="20dp"
+                    android:importantForAccessibility="no"
                     />
 
                 <TextView
@@ -59,6 +60,7 @@
                     android:tint="#929292"
                     android:layout_centerInParent="true"
                     android:paddingBottom="40dp"
+                    android:importantForAccessibility="no"
                     />
 
                 <TextView

@@ -28,6 +28,7 @@
             android:tint="#ffffff"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
+            android:importantForAccessibility="no"
             />
     </RelativeLayout>
 

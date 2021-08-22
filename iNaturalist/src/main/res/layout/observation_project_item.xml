@@ -28,6 +28,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="11dp"
+            android:importantForAccessibility="no"
             />
 
         <RelativeLayout
@@ -46,6 +47,7 @@
                 android:src="@drawable/ic_work_black_24dp"
                 android:padding="2dp"
                 android:visibility="gone"
+                android:importantForAccessibility="no"
                 />
             <ImageView
                 android:id="@+id/project_pic_none"
@@ -56,6 +58,7 @@
                 android:tint="#ffffff"
                 android:padding="10dp"
                 android:visibility="visible"
+                android:importantForAccessibility="no"
                 />
 
             <TextView

@@ -160,7 +160,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                             // Ellipsize to 3 lines at the most
                             int endOfLastLine = activityDescription.getLayout().getLineEnd(2);
                             String descriptionNoBody = Html.fromHtml(String.format(mContext.getString(R.string.user_activity_comment), finalUserName, "", dateFormatted)).toString();
-                            int charsLeft = endOfLastLine - descriptionNoBody.length() - 3;
+                            int charsLeft = Math.max(endOfLastLine - descriptionNoBody.length() - 3, body.length());
                             String newDescription = String.format(mContext.getString(R.string.user_activity_comment), finalUserName, body.substring(0, charsLeft) + "...", dateFormatted);
                             activityDescription.setText(Html.fromHtml(newDescription));
                         }

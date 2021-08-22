@@ -82,6 +82,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/gavel"
+                        android:importantForAccessibility="no"
                         />
 
                     <TextView
@@ -115,6 +116,7 @@
                             android:layout_height="24dp"
                             android:src="@drawable/ic_check_box_outline_blank_white_24dp"
                             android:tint="#999999"
+                            android:importantForAccessibility="no"
                             />
 
                         <TextView
@@ -139,6 +141,7 @@
                             android:layout_height="24dp"
                             android:src="@drawable/ic_check_box_outline_blank_white_24dp"
                             android:tint="#999999"
+                            android:importantForAccessibility="no"
                             />
 
                         <TextView

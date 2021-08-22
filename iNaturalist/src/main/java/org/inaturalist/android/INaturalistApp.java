@@ -132,6 +132,18 @@ public class INaturalistApp extends MultiDexApplication {
     private GlobalExceptionHandler mFileLoggingTree;
     private long mAppStartTime;
 
+    private boolean mCalledStartForeground = false;
+
+    public boolean hasCalledStartForeground() {
+        return mCalledStartForeground;
+    }
+
+    public void setCalledStartForeground(boolean value) {
+        mCalledStartForeground = value;
+    }
+
+
+
     // The ID of the observation being currently synced
 
     public int getObservationIdBeingSynced() {

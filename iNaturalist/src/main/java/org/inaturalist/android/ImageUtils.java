@@ -22,6 +22,7 @@ import android.provider.MediaStore;
 import androidx.annotation.NonNull;
 import androidx.renderscript.Allocation;
 import androidx.renderscript.Element;
+import androidx.renderscript.RSInvalidStateException;
 import androidx.renderscript.RenderScript;
 import androidx.renderscript.ScriptIntrinsicBlur;
 
@@ -75,8 +76,17 @@ public class ImageUtils {
 
         Bitmap outputBitmap = Bitmap.createBitmap(image);
         final RenderScript renderScript = RenderScript.create(context);
-        Allocation tmpIn = Allocation.createFromBitmap(renderScript, image);
-        Allocation tmpOut = Allocation.createFromBitmap(renderScript, outputBitmap);
+        Allocation tmpIn;
+        Allocation tmpOut;
+
+        try {
+            tmpIn = Allocation.createFromBitmap(renderScript, image);
+            tmpOut = Allocation.createFromBitmap(renderScript, outputBitmap);
+        } catch (RSInvalidStateException exc) {
+            // This happens rarely when we there are hardware issues - just return the unblurred image
+            Logger.tag(TAG).error(exc);
+            return image;
+        }
 
         //Intrinsic Gausian blur filter
         ScriptIntrinsicBlur theIntrinsic = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript));
@@ -345,13 +355,17 @@ public class ImageUtils {
     }
 
 
+    public static String resizeImage(Context context, String path, Uri photoUri, int maxDimensions) {
+        return resizeImage(context, path, photoUri, maxDimensions, false);
+    }
     /**
      * Resizes an image to max size
      * @param path the path to the image filename (optional)
      * @param photoUri the original Uri of the image
+     * @param noLanczos if True, will not use Lanczos to resize image (but rather bilinear resampling)
      * @return the resized image - or original image if smaller than 2048x2048
      */
-    public static String resizeImage(Context context, String path, Uri photoUri, int maxDimensions) {
+    public static String resizeImage(Context context, String path, Uri photoUri, int maxDimensions, boolean noLanczos) {
         InputStream is = null;
         BitmapFactory.Options options = new BitmapFactory.Options();
 
@@ -409,7 +423,7 @@ public class ImageUtils {
             Bitmap resizedBitmap = BitmapFactory.decodeStream(is);
 
             if ((resizedBitmap != null) && ((newHeight != originalHeight) || (newWidth != originalWidth))) {
-                if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                if (!noLanczos && android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
                     // Resize bitmap using Lanczos algorithm (provides smoother/better results than the
                     // built-in Android resize methods)
                     try {
@@ -422,7 +436,7 @@ public class ImageUtils {
                 } else {
                     // The Smooth rescale library has issues with Older Android versions (causes crashes) - use
                     // built-in Android resizing
-                    resizedBitmap = Bitmap.createScaledBitmap(resizedBitmap, newWidth, newHeight, true);
+                    resizedBitmap = Bitmap.createScaledBitmap(resizedBitmap, newWidth, newHeight, !noLanczos);
                 }
             }
 

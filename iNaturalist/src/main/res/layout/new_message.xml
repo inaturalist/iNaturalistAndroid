@@ -22,6 +22,7 @@
         android:layout_marginStart="15dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:contentDescription="@string/send_a_message"
         android:tint="#ffffff" />
 
     <LinearLayout

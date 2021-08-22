@@ -27,6 +27,7 @@
             android:layout_weight=".4"
             android:layout_height="100dp"
             android:layout_gravity="center_vertical"
+            android:contentDescription="@string/choose_location"
             android:src="@drawable/crosshairs" />
         <View
             android:layout_width="0dp"
@@ -46,6 +47,7 @@
         android:layout_marginEnd="20dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:contentDescription="@string/change_map_layers"
         android:elevation="3dp"
         android:layout_width="50dp"
         android:layout_height="50dp" />
@@ -67,6 +69,7 @@
             android:padding="14dp"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:contentDescription="@string/go_to_my_location"
         />
         <ProgressBar
             android:id="@+id/my_location_progress"
@@ -85,6 +88,7 @@
         android:src="@drawable/ic_public_black_24dp"
         android:tint="#676767"
         android:padding="14dp"
+        android:contentDescription="@string/change_geoprivacy"
         android:layout_alignTop="@id/change_map_layers"
         android:layout_alignParentStart="true"
         android:layout_marginStart="15dp"
@@ -151,6 +155,7 @@
             android:tint="#61000000"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
+            android:contentDescription="@string/clear_text"
             />
         <EditText
             android:id="@+id/location_search"

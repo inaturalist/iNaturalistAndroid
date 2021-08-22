@@ -15,8 +15,9 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:paddingStart="8dp"
+        android:importantForAccessibility="no"
         />
-	
+
     <TextView
        android:id="@+id/project_name"
        android:layout_width="wrap_content"

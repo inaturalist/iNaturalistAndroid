@@ -22,7 +22,8 @@
                  android:scaleType="centerInside"
                  android:id="@+id/save"
                  android:background="@drawable/actionbar_btn"
-                 android:layout_alignParentEnd="true"
+			     android:contentDescription="@string/save"
+			     android:layout_alignParentEnd="true"
 		         android:layout_centerVertical="true" />
     
 

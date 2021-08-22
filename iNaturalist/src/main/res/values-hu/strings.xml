@@ -302,7 +302,7 @@
     <string name="delete_id_message">Biztosan visszavonod ezt a meghatározást?</string>
     <string name="delete_comment_message">Biztosan törölni szeretnéd ezt a hozzászólást?</string>
     <string name="comment">Hozzászólás</string>
-    <string name="suggest_id">Meghat. javaslat</string>
+    <string name="suggest_id">Meghatározás</string>
     <string name="update_comment">Hozzászólás módosítása</string>
     <string name="fave_this_observation">Kedvencként megjelölés</string>
     <string name="faved">Kedvenc</string>
@@ -659,6 +659,8 @@
     <string name="annotation_name_sex">Nem</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">Élő vagy élettelen</string>
+    <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <string name="annotation_name_evidence_of_presence">Megjelenési bizonyíték</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Virágzó</string>
     <!-- Adjective, having fruit -->
@@ -692,6 +694,18 @@
     <string name="annotation_value_dead">Élettelen</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Nem határozható meg</string>
+    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <string name="annotation_value_organism">Élőlény</string>
+    <!-- Evidence of Presence value when for bird feathers -->
+    <string name="annotation_value_feather">Toll</string>
+    <!-- Evidence of Presence value when for fecal remains -->
+    <string name="annotation_value_scat">Ürülék</string>
+    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <string name="annotation_value_track">Nyom</string>
+    <!-- Evidence of Presence value when for bones -->
+    <string name="annotation_value_bone">Csont</string>
+    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <string name="annotation_value_molt">Levedlett kültakaró</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">CSATLAKOZVA</string>
     <string name="nearby_projects_all_caps">KÖZELI</string>
@@ -958,7 +972,7 @@
     <string name="location_lat_lng">Hely: %1$f, %2$f</string>
     <string name="i_consent_process_personal_info"><![CDATA[Beleegyezem, hogy az iNaturalist korlátozott személyes információkat tároljon és dolgozzon fel rólam a fiókom kezelése érdekében. <b>További információ</b>]]></string>
     <string name="about_personal_information">A személyes információkról</string>
-    <string name="personal_information_notes"><![CDATA[We store personal information like usernames and email addresses in order to manage accounts on this site, and to comply with privacy laws, we need you to check this box to indicate that you consent to this use of personal information. To learn more about what information we collect and how we use it, please see our <a href="https://www.inaturalist.org/privacy">Privacy Policy</a> and our <a href="https://www.inaturalist.org/terms">Terms of Service</a>.]]></string>
+    <string name="personal_information_notes"><![CDATA[A személyes információkat, mint például felhasználóneveket és email címeket, az oldal működtetéséhez használjuk fel. Az adatvédelmi törvények értelmében e négyzet bejelölésével engedélyezed a személyes információid ecélú használatát. Az <a href="https://www.inaturalist.org/privacy">Adatvédelmi nyilatkozat</a> és a <a href="https://www.inaturalist.org/terms">Felhasználási feltételek</a> további részleteket tartalmaz a gyűjtött információk köréről és azok felhasználásáról.]]></string>
     <string name="i_agree_to_tos_and_privacy"><![CDATA[Egyetértek a <a href="https://www.inaturalist.org/terms">Felhasználási feltételekkel</a> és az <a href="https://www.inaturalist.org/privacy">Adatvédelmi nyilatkozattal</a>, és átolvastam a <a href="https://www.inaturalist.org/pages/community+guidelines">Közösségi irányelveket</a>.]]></string>
     <string name="privacy_policy">Adatvédelmi nyilatkozat</string>
     <string name="terms_of_service">Felhasználási feltételek</string>
@@ -1149,4 +1163,61 @@
     <string name="default_observation_action">Alapértelmezett megfigyeléstevékenység</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Beállítások megjelenítése</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Field Value</string>
+    <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
+    <string name="delete_attribute_value">Delete attribute value</string>
+    <string name="open_menu_for_more_options">Open menu for more options</string>
+    <string name="california_academy_of_sciences">California Academy of Sciences</string>
+    <string name="national_geographic">National Geographic</string>
+    <string name="change_user_profile_photo">Change user profile photo</string>
+    <string name="expand_list">Expand list</string>
+    <string name="change_map_layers">Change map layers (terrain vs. satellite)</string>
+    <string name="redo_observation_search">Redo observation search in this map area</string>
+    <string name="view_observations_on_map">View observations on map</string>
+    <string name="view_observations_on_grid">View observations on grid</string>
+    <string name="clear_text">Clear text</string>
+    <string name="observation_has_sounds">Observation has sounds</string>
+    <string name="go_to_my_location">Go to my current location</string>
+    <string name="change_geoprivacy">Change geoprivacy</string>
+    <string name="active_filters">Active filters</string>
+    <string name="message_is_flagged">Message is flagged</string>
+    <string name="user_is_muted">User is muted</string>
+    <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
+    <string name="delete_observations">Delete observations</string>
+    <string name="clear_species_guess">Clear species guess</string>
+    <string name="comment_count">Comment count</string>
+    <string name="id_count">Identification count</string>
+    <string name="observation_selected">Observation selected</string>
+    <string name="share_observation">Share observation</string>
+    <string name="unknown_location">Unknown location</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Close</string>
+    <string name="set_date2">Set date</string>
+    <string name="project_selected">Project Selected</string>
+    <string name="project_unselected">Project Unselected</string>
+    <string name="show_my_observations">Show my observations</string>
+    <string name="play_pause_sound">Play or pause sound</string>
+    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
+    <string name="view_image">View image</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Assessment passes</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Agree assessment passes</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Does not pass assessment</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Disagree assessment passes</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Delete %1$d selected observation</item>
+        <item quantity="other">Delete %1$d selected observations</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Sync %1$d selected observation</item>
+        <item quantity="other">Sync %1$d selected observations</item>
+    </plurals>
+    <string name="add_media_evidence">Add media evidence</string>
+    <string name="remove_identification">Remove identification</string>
+    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
+    <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
 </resources>

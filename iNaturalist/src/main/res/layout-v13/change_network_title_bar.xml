@@ -13,6 +13,7 @@
         android:layout_centerVertical="true"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
+        android:importantForAccessibility="no"
         android:src="@drawable/logo_text" />
 
 </RelativeLayout>

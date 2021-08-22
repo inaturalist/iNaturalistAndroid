@@ -91,6 +91,7 @@
              android:layout_alignParentEnd="true"
              android:layout_alignParentBottom="true"
              android:elevation="3dp"
+             android:contentDescription="@string/change_map_layers"
              android:layout_width="50dp"
              android:layout_height="50dp" />
 
@@ -168,6 +169,7 @@
                 android:layout_centerVertical="true"
                 android:src="@drawable/ic_refresh_black_48dp"
                 android:tint="@color/inatapptheme_color"
+                android:contentDescription="@string/redo_observation_search"
                 android:visibility="visible" />
         </RelativeLayout>
 
@@ -228,6 +230,7 @@
             android:layout_width="55dp"
             android:layout_height="50dp"
             android:src="@drawable/ic_map_black_48dp"
+            android:contentDescription="@string/view_observations_on_map"
             android:tint="#676767"
             android:padding="12dp"
             android:layout_marginEnd="-1dp"
@@ -239,6 +242,7 @@
             android:layout_width="55dp"
             android:layout_height="50dp"
             android:src="@drawable/ic_view_module_black_48dp"
+            android:contentDescription="@string/view_observations_on_grid"
             android:tint="#676767"
             android:padding="12dp"
             android:layout_marginStart="-1dp"

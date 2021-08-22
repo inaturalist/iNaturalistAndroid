@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#ffffff"
     android:layout_height="match_parent">
 
@@ -61,7 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <com.melnykov.fab.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/new_message"
         android:layout_width="70dp"
         android:layout_height="70dp"
@@ -73,8 +73,6 @@
         android:padding="14dp"
         android:src="@drawable/baseline_edit_white_24"
         android:scaleType="fitCenter"
-        fab:fab_colorNormal="@color/inatapptheme_color"
-        fab:fab_colorPressed="@color/inatapptheme_color_highlighted"
-        fab:fab_colorRipple="@color/inatapptheme_color_highlighted" />
+        app:backgroundTint="@color/inatapptheme_color" />
 
 </RelativeLayout>

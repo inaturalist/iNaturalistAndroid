@@ -17,6 +17,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -610,18 +611,33 @@ public class INaturalistService extends IntentService {
 
     @Override
     public void onCreate() {
-        super.onCreate();
-
         Logger.tag(TAG).info("Service onCreate");
-
-        startIntentForeground();
+        super.onCreate();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Logger.tag(TAG).info("Service onStartCommand");
 
-        startIntentForeground();
+        String action = intent.getAction();
+
+        // Only use the notification for actions for which their response is crucial (e.g. syncing)
+        // (but make sure we call it at least once)
+        mApp = (INaturalistApp) getApplicationContext();
+        Logger.tag(TAG).info("Should call startIntentForeground? " + mApp.hasCalledStartForeground() + ":" + action);
+
+        if (!mApp.hasCalledStartForeground() ||
+                Arrays.stream(new String[]{
+                    ACTION_DELETE_OBSERVATIONS, ACTION_DELETE_ACCOUNT, ACTION_FIRST_SYNC,
+                    ACTION_GET_AND_SAVE_OBSERVATION, ACTION_JOIN_PROJECT, ACTION_LEAVE_PROJECT,
+                    ACTION_PASSIVE_SYNC, ACTION_POST_MESSAGE, ACTION_PULL_OBSERVATIONS,
+                    ACTION_REDOWNLOAD_OBSERVATIONS_FOR_TAXON, ACTION_REFRESH_CURRENT_USER_SETTINGS,
+                    ACTION_REGISTER_USER, ACTION_REMOVE_OBSERVATION_FROM_PROJECT, ACTION_SYNC,
+                    ACTION_SYNC_JOINED_PROJECTS, ACTION_UPDATE_USER_DETAILS, ACTION_UPDATE_USER_NETWORK
+            }).anyMatch(action::contains)) {
+            mApp.setCalledStartForeground(true);
+            startIntentForeground();
+        }
 
         return super.onStartCommand(intent, flags, startId);
     }
@@ -1143,8 +1159,8 @@ public class INaturalistService extends IntentService {
                     // It's an online observation
                     taxonSuggestions = getTaxonSuggestions(obsUrl, latitude, longitude, observedOn, suggestionSource, placeId, taxonId, placeLat, placeLng, limit, page);
                 } else {
-                    // Local photo  - Resize photo to 299x299 max
-                    String resizedPhotoFilename = ImageUtils.resizeImage(this, obsFilename, null, 299);
+                    // Local photo  - Resize photo to 640x640 max, not using Lanczos
+                    String resizedPhotoFilename = ImageUtils.resizeImage(this, obsFilename, null, 640, true);
 
                     if (resizedPhotoFilename != null) {
                         taxonSuggestions = getTaxonSuggestions(resizedPhotoFilename, latitude, longitude, observedOn, suggestionSource, placeId, taxonId, placeLat, placeLng, limit, page);
@@ -1803,6 +1819,7 @@ public class INaturalistService extends IntentService {
                     projects = getJoinedProjectsOffline();
                 }
 
+                Logger.tag(TAG).debug("Joined projects offline: " + projects);
                 Intent reply = new Intent(ACTION_JOINED_PROJECTS_RESULT);
                 reply.putExtra(PROJECTS_RESULT, projects);
                 LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
@@ -3820,7 +3837,7 @@ public class INaturalistService extends IntentService {
             params.add(new BasicNameValuePair("user[time_zone]", timezone));
         }
 
-        JSONArray response = post(HOST + "/users.json", params, false);
+        JSONArray response = request(HOST + "/users.json", "post", params, null, true, true, true);
         if (mResponseErrors != null) {
             // Couldn't create user
             try {
@@ -4145,8 +4162,22 @@ public class INaturalistService extends IntentService {
                 try {
                     if (response == null || response.length() != 1) {
                         Logger.tag(TAG).debug("postPhotos: Failed updating " + op.id);
-                        c.close();
-                        throw new SyncFailedException();
+
+                        if ((mLastStatusCode != HttpStatus.SC_FORBIDDEN) && (mLastStatusCode != HttpStatus.SC_NOT_FOUND)) {
+                            c.close();
+                            throw new SyncFailedException();
+                        } else {
+                            // Sepcial handling for bug #1055 - don't fail the entire syncing, just skip this one
+                            Logger.tag(TAG).debug("postPhotos: Skipping to next photo");
+                            c.moveToNext();
+
+                            // Set errors for this obs - to notify the user that we couldn't upload the obs photos
+                            JSONArray errors = new JSONArray();
+                            errors.put(getString(R.string.issue_with_updating_photos));
+                            mApp.setErrorsForObservation(op.observation_id, 0, errors);
+
+                            continue;
+                        }
                     }
 
                     ArrayList<NameValuePair> params2 = op.getParams();
@@ -4165,7 +4196,7 @@ public class INaturalistService extends IntentService {
                     JSONObject json = response.getJSONObject(0);
                     BetterJSONObject j = new BetterJSONObject(json);
                     ObservationPhoto jsonObservationPhoto = new ObservationPhoto(j, op);
-                    Logger.tag(TAG).debug("postPhotos after put: " + j);
+                    Logger.tag(TAG).debug("postPhotos after put: " + j.getJSONObject());
                     Logger.tag(TAG).debug("postPhotos after put 2: " + jsonObservationPhoto);
                     op.merge(jsonObservationPhoto);
                     Logger.tag(TAG).debug("postPhotos after put 3 - merge: " + op);
@@ -7100,6 +7131,8 @@ public class INaturalistService extends IntentService {
     @Override
     public void onDestroy() {
         mIsStopped = true;
+        mApp.setCalledStartForeground(false);
+        Logger.tag(TAG).info("onDestroy");
         super.onDestroy();
     }
 

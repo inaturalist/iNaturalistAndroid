@@ -200,12 +200,12 @@ globālā iNaturalist tīkla.</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel ir daļa no iNaturalist tīkla Izraēlā. Vietējām organizācijām, kas atbalsta NaturaLista būs pieeja tavai e-pasta adresei un novērojumu faktiskajām koordinātām – tas ietver gan publikai apslēptās, gan privātās koordinātas. Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu. Vai vēlies pievienoties citam iNaturalist partnerim?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finland ir daļa no iNaturalist tīkla Somijā. Vietējām organizācijām, kas atbalsta NaturaLista būs pieeja tavai e-pasta adresei un novērojumu faktiskajām koordinātām – tas ietver gan publikai apslēptās, gan privātās koordinātas. Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu. Vai vēlies pievienoties citam iNaturalist partnerim?</string>
     <string name="alert_message_use_inaturalistcl">iNaturalist Chile ir daļa no iNaturalist tīkla Čīlē. Vietējām organizācijām, kas atbalsta iNaturalist Chile būs pieeja tavai e-pasta adresei un novērojumu faktiskajām koordinātām – tas ietver gan publikai apslēptās, gan privātās koordinātas. Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu. Vai vēlies pievienoties citam iNaturalist partnerim?</string>
-    <string name="alert_message_use_inaturalistgr">iNaturalist Greece is a member of the iNaturalist Network in Greece. Local institutions supporting iNaturalist Greece will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg is a member of the iNaturalist Network in Luxembourg. Local institutions supporting iNaturalist Luxembourg will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom is a member of the iNaturalist Network in United Kingdom. Local institutions supporting iNaturalist United Kingdom will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is a member of the iNaturalist Network in Costa Rica. Local institutions supporting Naturalista Costa Rica will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Greece ir daļa no iNaturalist tīkla Grieķijā. Vietējām organizācijām, kas atbalsta iNaturalist Greece būs pieeja tavai e-pasta adresei un novērojumu faktiskajām koordinātām – tas ietver gan publikai noslēptās, gan privātās koordinātas. Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu. Vai vēlies pievienoties citam iNaturalist partnerim?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg ir daļa no iNaturalist tīkla Luksemburgā. Vietējām organizācijām, kas atbalsta iNaturalist Luxembourg būs pieeja tavai e-pasta adresei un novērojumu faktiskajām koordinātām – tas ietver gan publikai noslēptās, gan privātās koordinātas. Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu. Vai vēlies pievienoties citam iNaturalist partnerim?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom ir daļa no iNaturalist tīkla Apvienotajā Karalistē. Vietējām organizācijām, kas atbalsta iNaturalist United Kingdom būs pieeja tavai e-pasta adresei un novērojumu faktiskajām koordinātām – tas ietver gan publikai apslēptās, gan privātās koordinātas. Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu. Vai vēlies pievienoties citam iNaturalist partnerim?</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica ir daļa no iNaturalist tīkla Kostarikā. Vietējām organizācijām, kas atbalsta Naturalista Costa Rica būs pieeja tavai e-pasta adresei un novērojumu faktiskajām koordinātām – tas ietver gan publikai apslēptās, gan privātās koordinātas. Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu. Vai vēlies pievienoties citam iNaturalist partnerim?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala ir daļa no iNaturalist tīkla Gvatemalā. Vietējām organizācijām, kas atbalsta iNaturalist Guatemala būs pieeja tavai e-pasta adresei un novērojumu faktiskajām koordinātām – tas ietver gan publikai apslēptās, gan privātās koordinātas. Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu. Vai vēlies pievienoties citam iNaturalist partnerim?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sweden ir daļa no iNaturalist tīkla Zviedrijā. Vietējām organizācijām, kas atbalsta iNaturalist Sweden būs pieeja tavai e-pasta adresei un novērojumu faktiskajām koordinātām – tas ietver gan publikai noslēptās, gan privātās koordinātas. Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu. Vai vēlies pievienoties citam iNaturalist partnerim?</string>
     <string name="editor">Redaktors</string>
     <string name="license">Licence</string>
     <string name="download_for_offline_use">Lejupielādēt bezsaistes lietošanai</string>
@@ -320,7 +320,7 @@ globālā iNaturalist tīkla.</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Sinhronizē novērojumu, lai pievienotu komentāru vai palīdzētu identificēt.</string>
     <!--  Label for a button to add an observation without a photo or a sound  -->
-    <string name="no_photo">Bez uzņēmuma</string>
+    <string name="no_photo">Nav fotogrāfiju </string>
     <string name="about_this_species">Sugas apraksts</string>
     <string name="view_on_wikipedia">Vikipēdijas raksts</string>
     <string name="photo"><![CDATA[Fotogrāfija: <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -357,11 +357,11 @@ globālā iNaturalist tīkla.</string>
     <string name="there_was_a_problem_updating_profile_params">Atjaunojot profila informāciju, radās problēma: %1$s</string>
     <string name="logged_in_as_html"><![CDATA[Pieslēdzies ar lietotājvārdu: <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
-    <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
+    <string name="currently_logged_in_as_html"><![CDATA[Pieslēdzies ar lietotājvārdu: <b>%1$s</b>]]></string>
     <string name="log_out">Iziet</string>
     <string name="not_logged_in">Neesi pieslēdzies</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
-    <string name="login_or_sign_up">Log In or Sign Up</string>
+    <string name="login_or_sign_up">Pieslēgties vai reģistrēties</string>
     <string name="auto_upload_description">Aktivizēt novērojumu un labojumu automātiskās augšupielādes funkciju.</string>
     <string name="language">Valoda</string>
     <string name="version">Versija</string>
@@ -467,7 +467,7 @@ globālā iNaturalist tīkla.</string>
     <string name="view_suggestions">Skatīt minējumus</string>
     <string name="species_search">Meklēt sugu</string>
     <string name="were_not_confident_enough">Neesam pietiekami pārliecināti, lai ieteiktu sugu, bet šie ir mūsu labākie minējumi:</string>
-    <string name="were_not_confident_enough_no_suggestions">We\'re not confident enough to make a recommendation.</string>
+    <string name="were_not_confident_enough_no_suggestions">Neesam pietiekami pārliecināti, lai ieteiktu sugu.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Visbiežāk novērotie indivīdi, kas atbilst izvēlētajiem filtriem:</string>
     <!-- Header for a list of suggested taxa -->
@@ -665,6 +665,8 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="annotation_name_sex">Dzimums</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">Dzīvs vai miris</string>
+    <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <string name="annotation_name_evidence_of_presence">Sastopamības pierādījumi</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Zied</string>
     <!-- Adjective, having fruit -->
@@ -698,6 +700,18 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="annotation_value_dead">Miris</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Nenosakāms</string>
+    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <string name="annotation_value_organism">Organisms</string>
+    <!-- Evidence of Presence value when for bird feathers -->
+    <string name="annotation_value_feather">Spalva</string>
+    <!-- Evidence of Presence value when for fecal remains -->
+    <string name="annotation_value_scat">Izkārnījumi</string>
+    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <string name="annotation_value_track">Nospiedumi</string>
+    <!-- Evidence of Presence value when for bones -->
+    <string name="annotation_value_bone">Kauli</string>
+    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <string name="annotation_value_molt">Nomesta āda</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">PIEVIENOTIE</string>
     <string name="nearby_projects_all_caps">TUVUMĀ</string>
@@ -758,12 +772,12 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="network_credit_inaturalistil"><![CDATA[Izraēla: University of Haifa, kas uztur iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Somija: Finnish Museum of Naturalist History (LUOMUS), kas uztur iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="network_credit_inaturalistcl"><![CDATA[Čīle: Ministerio del Medio Ambiente, kas atbild par iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>).]]></string>
-    <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
-    <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Grieķija: iSea, kas uztur iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Luksemburga: Luxembourg National Museum of Natural History (MnhnL), kas atbalsta iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Apvienotā Karaliste: National Biodiversity Network Trust, kas atbild par iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Kostarika: IComisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO), kas uztur Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Gvatemala: Consejo Nacional de Áreas Protegidas (CONAP), kas uztur iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Zviedrija: SLU Swedish Species Information Centre, kas uztur iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Atzīmēt visu kā skatītu</string>
     <string name="content_hidden">Slēpts saturs</string>
     <string name="show_hidden_content">Rādīt slēpto saturu</string>
@@ -1103,7 +1117,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="uuid">UUID</string>
     <!--  Universal Resource Locator  -->
     <string name="url">URL</string>
-    <string name="default_licenses">Default Licenses</string>
+    <string name="default_licenses">Noklusējuma licences</string>
     <string name="default_observation_license">Default Observation License</string>
     <string name="default_photo_license">Default Photo License</string>
     <string name="default_sound_license">Default Sound License</string>
@@ -1150,11 +1164,70 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="license_description_cc_by_nd">This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.</string>
     <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
     <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
-    <string name="invalid_photo">Photo format not supported</string>
+    <string name="invalid_photo">Foto formāts nav atbalstīts.</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">Suggestions based on observations and identifications provided by the iNaturalist community, including %1$s, %2$s, %3$s, and many others.</string>
     <!-- Preference to control what tapping on the action button does on My Observations -->
     <string name="default_observation_action">Default Observation Action</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
-    <string name="show_options">Show Options</string>
+    <string name="show_options">Rādīt iestatījumus</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Field Value</string>
+    <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
+    <string name="delete_attribute_value">Delete attribute value</string>
+    <string name="open_menu_for_more_options">Open menu for more options</string>
+    <string name="california_academy_of_sciences">California Academy of Sciences</string>
+    <string name="national_geographic">National Geographic</string>
+    <string name="change_user_profile_photo">Change user profile photo</string>
+    <string name="expand_list">Expand list</string>
+    <string name="change_map_layers">Change map layers (terrain vs. satellite)</string>
+    <string name="redo_observation_search">Redo observation search in this map area</string>
+    <string name="view_observations_on_map">View observations on map</string>
+    <string name="view_observations_on_grid">View observations on grid</string>
+    <string name="clear_text">Clear text</string>
+    <string name="observation_has_sounds">Observation has sounds</string>
+    <string name="go_to_my_location">Go to my current location</string>
+    <string name="change_geoprivacy">Change geoprivacy</string>
+    <string name="active_filters">Active filters</string>
+    <string name="message_is_flagged">Message is flagged</string>
+    <string name="user_is_muted">User is muted</string>
+    <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
+    <string name="delete_observations">Delete observations</string>
+    <string name="clear_species_guess">Clear species guess</string>
+    <string name="comment_count">Comment count</string>
+    <string name="id_count">Identification count</string>
+    <string name="observation_selected">Observation selected</string>
+    <string name="share_observation">Share observation</string>
+    <string name="unknown_location">Unknown location</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Close</string>
+    <string name="set_date2">Set date</string>
+    <string name="project_selected">Project Selected</string>
+    <string name="project_unselected">Project Unselected</string>
+    <string name="show_my_observations">Show my observations</string>
+    <string name="play_pause_sound">Play or pause sound</string>
+    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
+    <string name="view_image">View image</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Assessment passes</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Agree assessment passes</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Does not pass assessment</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Disagree assessment passes</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="zero">Delete %1$d selected observations</item>
+        <item quantity="one">Delete %1$d selected observation</item>
+        <item quantity="other">Delete %1$d selected observations</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="zero">Sync %1$d selected observations</item>
+        <item quantity="one">Sync %1$d selected observation</item>
+        <item quantity="other">Sync %1$d selected observations</item>
+    </plurals>
+    <string name="add_media_evidence">Add media evidence</string>
+    <string name="remove_identification">Remove identification</string>
+    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
+    <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
 </resources>

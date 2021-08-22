@@ -198,12 +198,12 @@
     <string name="alert_message_use_inaturalistil">iNaturalist Israel est membre du réseau iNaturalist en Israël. Les institutions locales soutenant iNaturalist Israël auront accès à votre adresse courriel et aux coordonnées GPS pour les observations qui sont masquées ou privées. Veuillez ne pas modifier votre affiliation de façon expérimentale si vous avez plus de 1000 observations. Souhaitez-vous changer votre affiliation?</string>
     <string name="alert_message_use_inaturalistfi">iNaturalist Finlande est membre du réseau iNaturalist en Finlande. Les institutions locales soutenant iNaturalist Finlande auront accès à votre adresse de courriel et auront accès aux véritables coordonnées pour les observations qui sont masquées ou privées au public. Veuillez ne pas modifier votre affiliation de façon expérimentale si vous avez plus de 1000 observations. Souhaitez-vous changer votre affiliation?</string>
     <string name="alert_message_use_inaturalistcl">iNaturalist Chili est membre du réseau iNaturalist au Chili. Les institutions locales soutenant iNaturalist Chili auront accès à votre adresse courriel et accès aux véritables coordonnées pour les observations qui sont masquées ou privées au public. Veuillez ne pas modifier votre affiliation de manière expérimentale si vous avez plus de 1000 observations. Souhaitez-vous changer votre affiliation?</string>
-    <string name="alert_message_use_inaturalistgr">iNaturalist Israel est membre du réseau iNaturalist en Israël. Les institutions locales soutenant iNaturalist Israël auront accès à votre adresse mail et aux coordonnées GPS pour les observations qui sont masquées ou privées. Veuillez ne pas modifier votre affiliation de façon expérimentale si vous avez plus de 1000 observations. Souhaitez-vous changer votre affiliation ?</string>
-    <string name="alert_message_use_inaturalistlu">iNaturalist Ecuador est membre du réseau iNaturalist en Équateur. Les institutions locales qui soutiennent iNaturalist Équateur auront accès à votre adresse e-mail et accès aux coordonnées réelles pour les observations masquées au public ou privées. Veuillez ne pas modifier votre affiliation expérimentalement si vous avez plus de 1000 observations. Souhaitez-vous modifier votre affiliation ?</string>
-    <string name="alert_message_use_inaturalistuk">iNaturalist Finlande est membre du réseau iNaturalist en Finlande. Les institutions locales soutenant iNaturalist Finlande auront accès à votre adresse de courriel et auront accès aux véritables coordonnées pour les observations qui sont masquées ou privées au public. Veuillez ne pas modifier votre affiliation de façon expérimentale si vous avez plus de 1000 observations. Souhaitez-vous changer votre affiliation ?</string>
-    <string name="alert_message_use_inaturalistcr">iNaturalist Costa Rica est membre du réseau iNaturalist au Costa Rica. Les institutions locales qui soutiennent iNaturalist Costa Rica auront accès à votre adresse e-mail et aux coordonnées exactes de vos observations masquées ou privées. Veuillez ne pas modifier votre affiliation arbitrairement si vous avez plus de 1000 observations. Souhaitez-vous changer d\'affiliation ?</string>
-    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala est membre du réseau iNaturalist au Guatemala. Les institutions locales qui soutiennent iNaturalist Guatemala auront accès à votre adresse e-mail et aux coordonnées exactes de vos observations masquées ou privées. Veuillez ne pas modifier votre affiliation arbitrairement si vous avez plus de 1000 observations. Souhaitez-vous changer d\'affiliation ?</string>
-    <string name="alert_message_use_inaturalistse">iNaturalist Suède est membre du réseau iNaturalist en Suède. Les institutions locales qui soutiennent iNaturalist Suède auront accès à votre adresse e-mail et aux coordonnées exactes de vos observations masquées ou privées. Veuillez ne pas modifier votre affiliation arbitrairement si vous avez plus de 1000 observations. Souhaitez-vous changer d\'affiliation ?</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Grèce est membre du réseau iNaturalist en Grèce. Les institutions locales qui soutiennent iNaturalist Grèce auront accès à votre adresse email ainsi qu\'aux coordonnées réelles en ce qui concerne les observations  obscurcies publiquement ou privées. S\'il vous plaît, veuillez ne pas changer  votre affiliation expérimentallement si vous avez plus que 1000 observations. Aimeriez-vous changer votre affiliation?  </string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg est membre du réseau iNaturalist au Luxembourg. Les institutions locales qui soutiennent iNaturalist Luxembourg auront accès à votre adresse email ainsi qu\'aux coordonnées réelles en ce qui concerne les observations  obscurcies publiquement ou privées. S\'il vous plaît, veuillez ne pas changer  votre affiliation expérimentallement si vous avez plus que 1000 observations. Aimeriez-vous changer votre affiliation?  </string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist Royaume Unis est membre du réseau iNaturalist au Royaume Unis. Les institutions locales qui soutiennent iNaturalist Royaume Unis auront accès à votre adresse email ainsi qu\'aux coordonnées réelles en ce qui concerne les observations  obscurcies publiquement ou privées. S\'il vous plaît, veuillez ne pas changer  votre affiliation expérimentallement si vous avez plus que 1000 observations. Aimeriez-vous changer votre affiliation?  </string>
+    <string name="alert_message_use_inaturalistcr">iNaturalist Costa Rica est membre du réseau iNaturalist au Costa Rica. Les institutions locales qui soutiennent iNaturalist Costa Rica, auront accès à votre adresse email ainsi qu\'aux coordonnées réelles en ce qui concerne les observations  obscurcies publiquement ou privées. S\'il vous plaît, veuillez ne pas changer  votre affiliation expérimentallement si vous avez plus que 1000 observations. Aimeriez-vous changer votre affiliation?  </string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala est membre du réseau iNaturalist au Guatemala. Les institutions locales qui soutiennent iNaturalist Guatemala, auront accès à votre adresse email ainsi qu\'aux coordonnées réelles en ce qui concerne les observations  obscurcies publiquement ou privées. S\'il vous plaît, veuillez ne pas changer  votre affiliation expérimentallement si vous avez plus que 1000 observations. Aimeriez-vous changer votre affiliation?  </string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Suède est membre du réseau iNaturalist en Suède. Les institutions locales qui soutiennent iNaturalist Suède, auront accès à votre adresse email ainsi qu\'aux coordonnées réelles en ce qui concerne les observations  obscurcies publiquement ou privées. S\'il vous plaît, veuillez ne pas changer  votre affiliation expérimentallement si vous avez plus que 1000 observations. Aimeriez-vous changer votre affiliation?  </string>
     <string name="editor">Éditeur</string>
     <string name="license">Licence</string>
     <string name="download_for_offline_use">Télécharger pour utilisation en mode hors connexion</string>
@@ -354,7 +354,7 @@
     <string name="there_was_a_problem_updating_profile_params">Un problème est survenu durant la mise à jour de votre profil: %1$s</string>
     <string name="logged_in_as_html"><![CDATA[Connecté en tant que <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
-    <string name="currently_logged_in_as_html"><![CDATA[Actuellement connecté en tant que <b>%1$s</b>]]></string>
+    <string name="currently_logged_in_as_html"><![CDATA[présentement connecté en tant que <b>%1$s</b>]]></string>
     <string name="log_out">Se déconnecter</string>
     <string name="not_logged_in">Vous n\'êtes pas connecté(e)</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
@@ -461,10 +461,10 @@
     <string name="more_info_on_inat">Plus d’informations sur iNaturalist.org</string>
     <string name="view_suggestions">Voir les propositions</string>
     <string name="species_search">Recherche d’espèces</string>
-    <string name="were_not_confident_enough">Nous ne sommes pas suffisamment sûrs pour faire une recommandation, mais voici nos meilleures suggestions:</string>
-    <string name="were_not_confident_enough_no_suggestions">Nous ne sommes pas assez confiants pour faire une recommandation.</string>
+    <string name="were_not_confident_enough">Nous ne sommes pas assez certains pour faire une recommandation, mais voici nos meilleures suggestions:</string>
+    <string name="were_not_confident_enough_no_suggestions">Nous ne sommes pas assez certains pour faire une recommandation.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
-    <string name="most_observed_options_matching_filters">Options les plus observées correspondant aux filtres</string>
+    <string name="most_observed_options_matching_filters">Les options les plus observées correspondant aux filtres:</string>
     <!-- Header for a list of suggested taxa -->
     <string name="top_suggestions">Meilleures suggestions</string>
     <string name="pretty_sure_rank">Nous sommes assez sûrs que c’est dans cette %1$s :</string>
@@ -556,7 +556,7 @@
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Délégation</string>
     <string name="apply_filters">Appliquer les filtres</string>
-    <string name="remove_filters">Supprimer les filtres</string>
+    <string name="remove_filters">Supprimer les Filtres</string>
     <string name="reset">Remettre à zéro</string>
     <string name="show_only_my_observations">Montrer uniquement mes observations</string>
     <string name="project">Projet</string>
@@ -659,6 +659,8 @@
     <string name="annotation_name_sex">Sexe</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">Vivant ou mort</string>
+    <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <string name="annotation_name_evidence_of_presence">Attestation de Présence</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Floraison</string>
     <!-- Adjective, having fruit -->
@@ -692,6 +694,18 @@
     <string name="annotation_value_dead">Mort</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Indéterminable</string>
+    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <string name="annotation_value_organism">Organisme</string>
+    <!-- Evidence of Presence value when for bird feathers -->
+    <string name="annotation_value_feather">Plume</string>
+    <!-- Evidence of Presence value when for fecal remains -->
+    <string name="annotation_value_scat">Excréments</string>
+    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <string name="annotation_value_track">Piste</string>
+    <!-- Evidence of Presence value when for bones -->
+    <string name="annotation_value_bone">Os</string>
+    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <string name="annotation_value_molt">Mue</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">JOINT</string>
     <string name="nearby_projects_all_caps">À PROXIMITÉ</string>
@@ -1155,4 +1169,61 @@ non, tant que le travail demeure inchangé et complet, et que vous êtes mention
     <string name="default_observation_action">Action d\'observation par défaut</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Afficher les options</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Valeur du champ</string>
+    <string name="expand_annotation_to_agree_or_disagree">Développer l\'annotation pour approuver ou rejeter</string>
+    <string name="delete_attribute_value">Supprimer la valeur de l\'attribut</string>
+    <string name="open_menu_for_more_options">Ouvrir le menu pour plus d\'options</string>
+    <string name="california_academy_of_sciences">California Academy of Sciences</string>
+    <string name="national_geographic">National Geographic</string>
+    <string name="change_user_profile_photo">Changer la photo du profil utilisateur</string>
+    <string name="expand_list">Développer la liste</string>
+    <string name="change_map_layers">Changer les couches de la carte (terrain ou satellite)</string>
+    <string name="redo_observation_search">Répéter la recherche d\'observation dans cette zone de la carte</string>
+    <string name="view_observations_on_map">Voir les observations sur la carte</string>
+    <string name="view_observations_on_grid">Voir les observations sur la grille</string>
+    <string name="clear_text">Effacer le texte</string>
+    <string name="observation_has_sounds">L\'observation a des sons.</string>
+    <string name="go_to_my_location">Aller à ma position actuelle</string>
+    <string name="change_geoprivacy">Modifier la géoconfidentialité</string>
+    <string name="active_filters">Filtres actifs</string>
+    <string name="message_is_flagged">Le message est signalé.</string>
+    <string name="user_is_muted">Le micro est désactivé.</string>
+    <string name="cancel_multiple_obs_selection">Annuler la sélection d\'observations multiples</string>
+    <string name="delete_observations">Supprimer les observations</string>
+    <string name="clear_species_guess">Effacer l\'espèce présumée</string>
+    <string name="comment_count">Nombre de commentaires</string>
+    <string name="id_count">Nombre d\'identifications</string>
+    <string name="observation_selected">Observation sélectionnée</string>
+    <string name="share_observation">Partager l’observation</string>
+    <string name="unknown_location">Emplacement inconnu</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Fermer</string>
+    <string name="set_date2">Définir la date</string>
+    <string name="project_selected">Projet sélectionné</string>
+    <string name="project_unselected">Projet non sélectionné</string>
+    <string name="show_my_observations">Montrer mes observations</string>
+    <string name="play_pause_sound">Lire le son ou le mettre en pause</string>
+    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences et National Geographic</string>
+    <string name="view_image">Voir l\'image</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Réussite de l\'évaluation</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">D\'accord, l\'évaluation est réussie</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Échec de l\'évaluation</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Pas d\'accord, échec de l\'évaluation</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Supprimer %1$d observation sélectionnée</item>
+        <item quantity="other">Supprimer %1$d observations sélectionnées</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Synchroniser %1$d observation sélectionnée</item>
+        <item quantity="other">Synchroniser %1$d observations sélectionnées</item>
+    </plurals>
+    <string name="add_media_evidence">Ajouter des médias</string>
+    <string name="remove_identification">Enlever l\'identification</string>
+    <string name="issue_with_updating_photos">Un problème de mise à jour des photos dans cette observation a récemment été corrigé. Veuillez vous déconnecter et vous reconnecter pour résoudre ce problème.</string>
+    <string name="app_version_copied_to_clipboard">Version de l\'application copiée au presse-papiers</string>
 </resources>

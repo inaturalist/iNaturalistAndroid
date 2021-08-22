@@ -19,6 +19,7 @@
             android:scaleType="fitCenter"
             android:layout_alignParentTop="true"
             android:layout_marginTop="40dp"
+            android:importantForAccessibility="no"
             />
     </RelativeLayout>
     <LinearLayout

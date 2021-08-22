@@ -38,7 +38,7 @@
     <string name="add">เพิ่ม</string>
     <string name="view_on_inat">ข้อมูลเพิ่มเติมใน iNaturalist.org</string>
     <string name="reload">โหลดใหม่</string>
-    <string name="view_in_browser">View in browser</string>
+    <string name="view_in_browser">เปิดในเบราว์เซอร์</string>
     <string name="add_observation">เพิ่มการสังเกต</string>
     <string name="take_picture">ถ่ายรูป</string>
     <string name="save">บันทึก</string>
@@ -200,9 +200,9 @@
     <string name="alert_message_use_inaturalistgr">iNaturalist Greece เป็นสมาชิกของเครือข่าย iNaturalist ในกรีซ สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Greece จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
     <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg เป็นสมาชิกของเครือข่าย iNaturalist ในลักเซมเบิร์ก สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Luxembourg จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่ปิดบังต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
     <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom เป็นสมาชิกของเครือข่าย iNaturalist ในสหราชอาณาจักร สถาบันในท้องถิ่นที่สนับสนุน iNaturalist สหราชอาณาจักรจะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่ปิดบังต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
-    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is a member of the iNaturalist Network in Costa Rica. Local institutions supporting Naturalista Costa Rica will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcr">iNaturalist Costa Rica เป็นสมาชิกของเครือข่าย iNaturalist ในคอสตาริกา สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Costa Rica จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala เป็นสมาชิกของเครือข่าย iNaturalist ในกัวเตมาลา สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Guatemala จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sweden เป็นสมาชิกของเครือข่าย iNaturalist ในสวีเดน สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Sweden จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
     <string name="editor">บรรณาธิการ</string>
     <string name="license">ใบอนุญาต</string>
     <string name="download_for_offline_use">ดาวน์โหลดเพื่อใช้งานออฟไลน์</string>
@@ -352,11 +352,11 @@
     <string name="there_was_a_problem_updating_profile_params">เกิดปัญหาขณะอัปเดตโปรไฟล์ของคุณ: %1$s</string>
     <string name="logged_in_as_html"><![CDATA[เข้าสู่ระบบในฐานะ <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
-    <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
+    <string name="currently_logged_in_as_html"><![CDATA[เข้าสู่ระบบแล้วในชื่อ <b>%1$s</b>]]></string>
     <string name="log_out">ออกจากระบบ</string>
     <string name="not_logged_in">ไม่ได้เข้าสู่ระบบ</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
-    <string name="login_or_sign_up">Log In or Sign Up</string>
+    <string name="login_or_sign_up">เข้าสู่ระบบ หรือ ลงทะเบียน</string>
     <string name="auto_upload_description">อัปโหลดการสังเกตใหม่และการแก้ไขข้อสังเกตโดยอัตโนมัติ</string>
     <string name="language">ภาษา</string>
     <string name="version">เวอร์ชัน</string>
@@ -458,7 +458,7 @@
     <string name="view_suggestions">ดูคำแนะนำ </string>
     <string name="species_search">ค้นหาสายพันธุ์</string>
     <string name="were_not_confident_enough">เราไม่มั่นใจพอที่จะให้คำแนะนำ แต่นี่คือคำแนะนำยอดนิยมของเรา:</string>
-    <string name="were_not_confident_enough_no_suggestions">We\'re not confident enough to make a recommendation.</string>
+    <string name="were_not_confident_enough_no_suggestions">เราไม่มั่นใจพอที่จะแนะนำได้</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">ตัวเลือกที่พบมากที่สุดตรงกับตัวกรอง:</string>
     <!-- Header for a list of suggested taxa -->
@@ -533,7 +533,7 @@
     <string name="commune">ปราชาคม</string>
     <string name="governorate">เขตปกครอง</string>
     <string name="prefecture">จังหวัด</string>
-    <string name="canton">Canton</string>
+    <string name="canton">ตำบล</string>
     <string name="republic">สาธารณรัฐ</string>
     <string name="division">หมวด</string>
     <string name="subdivision">หมวดย่อย</string>
@@ -544,7 +544,7 @@
     <string name="shire">มณฑล</string>
     <string name="prefecture_city">จังหวัดเมือง</string>
     <!-- Indonesian sub-sub-national place type -->
-    <string name="regency">Regency</string>
+    <string name="regency">เขต (รีเจนซี่)</string>
     <string name="constituency">เขตเลือกตั้ง</string>
     <string name="local_authority">เจ้าหน้าที่ท้องถิ่น</string>
     <!-- https://en.wikipedia.org/wiki/Poblacion -->
@@ -629,7 +629,7 @@
     <string name="project_observations">การสังเกตการณ์</string>
     <string name="project_species">สายพันธุ์</string>
     <string name="project_people">ผู้คน</string>
-    <string name="project_identifiers">ตัวบ่งชี้</string>
+    <string name="project_identifiers">ผู้จำแนก</string>
     <string name="got_it">เข้าใจแล้ว!</string>
     <string name="view_all">ดูทั้งหมด</string>
     <string name="observers">ผู้สังเกต</string>
@@ -655,6 +655,8 @@
     <string name="annotation_name_sex">เพศ</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">มีชีวิตหรือตาย</string>
+    <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <string name="annotation_name_evidence_of_presence">หลักฐานการปรากฏ</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">การออกดอก</string>
     <!-- Adjective, having fruit -->
@@ -688,6 +690,18 @@
     <string name="annotation_value_dead">ตาย</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">ไม่สามารถคาดการณ์ได้</string>
+    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <string name="annotation_value_organism">สิ่งมีชีวิต</string>
+    <!-- Evidence of Presence value when for bird feathers -->
+    <string name="annotation_value_feather">ขนนก</string>
+    <!-- Evidence of Presence value when for fecal remains -->
+    <string name="annotation_value_scat">มูล</string>
+    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <string name="annotation_value_track">รอย</string>
+    <!-- Evidence of Presence value when for bones -->
+    <string name="annotation_value_bone">กระดูก</string>
+    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <string name="annotation_value_molt">คราบ</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">เข้าร่วมแล้ว</string>
     <string name="nearby_projects_all_caps">ใกล้เคียง</string>
@@ -706,7 +720,7 @@
     <string name="observations_all_caps">การสังเกตการณ์</string>
     <string name="species_all_caps">สายพันธุ์</string>
     <string name="people_all_caps">ผู้คน</string>
-    <string name="identifiers_all_caps">ตัวบ่งชี้</string>
+    <string name="identifiers_all_caps">ผู้จำแนก</string>
     <string name="identifications_all_caps">การจำแนกบ่งชี้</string>
     <string name="news_all_caps">ข่าวสาร</string>
     <string name="got_it_all_caps">รับทราบ!</string>
@@ -749,9 +763,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[กรีซ: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[ลักเซมเบิร์ก: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[สหราชอาณาจักร: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[คอสตา ริก้า: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) สนับสนุน Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[กัวเตมาลา: Consejo Nacional de Áreas Protegidas (CONAP) สนับสนุน iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[สวีเดน: SLU Swedish Species Information Centre สนับสนุน iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">ทำเครื่องหมายทั้งหมดว่าดูแล้ว</string>
     <string name="content_hidden">เนื้อหาที่ซ่อนอยู่</string>
     <string name="show_hidden_content">แสดงเนื้อหาที่ซ่อนอยู่</string>
@@ -959,9 +973,9 @@
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
     <string name="deleted_user">ผู้ใช้ที่ถูกลบ</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short_this_year">MMM d</string>
+    <string name="date_short_this_year">d MMM</string>
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short">MM/dd/yy</string>
+    <string name="date_short">dd/MM/yy</string>
     <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
@@ -1093,7 +1107,7 @@
     <string name="default_observation_license">ใบอนุญาตการสังเกตการณ์เริ่มต้น</string>
     <string name="default_photo_license">สิทธิ์การใช้งานภาพถ่ายเริ่มต้น</string>
     <string name="default_sound_license">ใบอนุญาตใช้เสียงเริ่มต้น</string>
-    <string name="change_existing_licenses">Change Existing Licenses</string>
+    <string name="change_existing_licenses">เปลี่ยนใบอนุญาตสิทธิ์ที่มีอยู่</string>
     <string name="change_licenses_for_existing_observations">เปลี่ยนใบอนุญาตสำหรับการสังเกตการณ์ภาพถ่ายและเสียงที่มีอยู่</string>
     <string name="change_licenses_for_all_existing_observations">เปลี่ยนใบอนุญาตสำหรับการสังเกตการณ์ที่มีอยู่ทั้งหมด</string>
     <string name="change_licenses_for_all_existing_photos">เปลี่ยนใบอนุญาตสำหรับรูปภาพที่มีอยู่ทั้งหมด</string>
@@ -1112,7 +1126,7 @@
     <string name="existing_sound_licenses_have_been_updated">ใบอนุญาตเสียงที่มีอยู่ทั้งหมดถูกเปลี่ยนเป็น %1$s.</string>
     <string name="default_licenses_description"><![CDATA[การอนุญาตให้ใช้สิทธิ์เนื้อหาของคุณทำให้ทุกคนมีสิทธิ์ตามกฎหมายในการใช้งานโดยไม่ต้องขออนุญาตจากคุณหากพวกเขาปฏิบัติตามเงื่อนไขของใบอนุญาต นอกจากนี้ iNat ยังรวมเนื้อหาที่ได้รับอนุญาตครีเอทีฟคอมมอนส์ของคุณไว้ในที่เก็บถาวรที่อัปเดตเป็นประจำซึ่งจัดทำขึ้นสำหรับองค์กรพันธมิตรที่สนใจข้อมูลของเรา ตัวอย่างเช่นเรารวมบันทึก No Copyright (CC0), Attribution (CC BY) และ Attribution-NonCommercial (CC BY-NC) ไว้ในไฟล์เก็บถาวรที่เราสร้างขึ้นสำหรับ <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a> องค์กรระหว่างประเทศระหว่างรัฐบาลที่รวบรวมและแจกจ่ายข้อมูลความหลากหลายทางชีวภาพจากทั่วโลก]]></string>
     <string name="photo_license">ใบอนุญาตรูปถ่าย</string>
-    <string name="sound_license">Sound License</string>
+    <string name="sound_license">ใบอนุญาตสิทธิ์ในเสียง</string>
     <string name="edit_photo_license">แก้ไขใบอนุญาตรูปถ่าย</string>
     <string name="observation_license">ใบอนุญาตการสังเกตการณ์</string>
     <string name="edit_observation_license">แก้ไขใบอนุญาตการสังเกตการณ์</string>
@@ -1134,13 +1148,68 @@
     <string name="license_description_cc_by_nc_sa">ใบอนุญาตนี้อนุญาตให้ผู้อื่นรีมิกซ์ปรับแต่งและสร้างผลงานของคุณที่ไม่ใช่เชิงพาณิชย์ได้ตราบใดที่พวกเขาให้เครดิตคุณและอนุญาตการสร้างสรรค์ใหม่ของพวกเขาภายใต้เงื่อนไขที่เหมือนกัน</string>
     <string name="license_description_cc_by_nc_nd">ใบอนุญาตนี้มีข้อ จำกัด มากที่สุดในหกใบอนุญาตหลักโดยอนุญาตให้ผู้อื่นดาวน์โหลดผลงานของคุณและแบ่งปันกับผู้อื่นได้ตราบเท่าที่พวกเขาให้เครดิตคุณ แต่ไม่สามารถเปลี่ยนแปลงหรือใช้ในเชิงพาณิชย์ได้</string>
     <string name="license_description_cc_by_nd">ใบอนุญาตนี้อนุญาตให้แจกจ่ายซ้ำเชิงพาณิชย์และไม่ใช่เชิงพาณิชย์ได้ตราบเท่าที่มีการส่งต่อโดยไม่มีการเปลี่ยนแปลงและโดยรวมพร้อมเครดิตให้กับคุณ</string>
-    <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
+    <string name="license_description_cc_by_sa">ใบอนุญาตนี้อนุญาตให้ผู้อื่นสามารถรีมิกซ์ ดัดแปลง และสร้างต่อจากผลงานของคุณได้แม้เป็นการกระทำในเชิงพาณิชย์ ตราบใดที่พวกเขาให้เครดิตคุณและอนุญาตให้ใช้สิทธิ์การสร้างสรรค์ใหม่ของพวกเขาภายใต้เงื่อนไขเดียวกัน ใบอนุญาตนี้มักจะถูกเปรียบเทียบกับใบอนุญาตซอฟต์แวร์ฟรี และโอเพ่นซอร์ส \"copyleft\" งานใหม่ทั้งหมดที่มีพื้นฐานมาจากงานของคุณจะมีใบอนุญาตแบบเดียวกัน ดังนั้นอนุพันธ์ใดๆ จะอนุญาตให้ใช้ในเชิงพาณิชย์ได้เช่นกัน นี่คือใบอนุญาตที่ใช้โดย Wikipedia และเป็นที่แนะนำสำหรับเนื้อหาที่จะได้รับประโยชน์จากการรวมเนื้อหาจาก Wikipedia และโครงการที่ได้รับใบอนุญาตในแบบเดียวกัน</string>
     <string name="license_description_no_license">คุณยังคงมีลิขสิทธิ์เต็มรูปแบบในเนื้อหาของคุณนอกเหนือจากสิทธิ์ที่มอบให้กับ iNaturalist ในข้อกำหนดในการให้บริการของเรา</string>
     <string name="invalid_photo">ไม่รองรับรูปแบบภาพถ่าย</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
-    <string name="suggestions_based_on">Suggestions based on observations and identifications provided by the iNaturalist community, including %1$s, %2$s, %3$s, and many others.</string>
+    <string name="suggestions_based_on">ข้อเสนอแนะตามการสังเกตและการระบุโดยชุมชน iNaturalist รวมถึง %1$s, %2$s, %3$s, และอื่น ๆ อีกมากมาย</string>
     <!-- Preference to control what tapping on the action button does on My Observations -->
-    <string name="default_observation_action">Default Observation Action</string>
+    <string name="default_observation_action">การกระทำเริ่มต้นในการสังเกต</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
-    <string name="show_options">Show Options</string>
+    <string name="show_options">แสดงตัวเลือก</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Field Value</string>
+    <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
+    <string name="delete_attribute_value">Delete attribute value</string>
+    <string name="open_menu_for_more_options">Open menu for more options</string>
+    <string name="california_academy_of_sciences">California Academy of Sciences</string>
+    <string name="national_geographic">National Geographic</string>
+    <string name="change_user_profile_photo">Change user profile photo</string>
+    <string name="expand_list">Expand list</string>
+    <string name="change_map_layers">Change map layers (terrain vs. satellite)</string>
+    <string name="redo_observation_search">Redo observation search in this map area</string>
+    <string name="view_observations_on_map">View observations on map</string>
+    <string name="view_observations_on_grid">View observations on grid</string>
+    <string name="clear_text">Clear text</string>
+    <string name="observation_has_sounds">Observation has sounds</string>
+    <string name="go_to_my_location">Go to my current location</string>
+    <string name="change_geoprivacy">Change geoprivacy</string>
+    <string name="active_filters">Active filters</string>
+    <string name="message_is_flagged">Message is flagged</string>
+    <string name="user_is_muted">User is muted</string>
+    <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
+    <string name="delete_observations">Delete observations</string>
+    <string name="clear_species_guess">Clear species guess</string>
+    <string name="comment_count">Comment count</string>
+    <string name="id_count">Identification count</string>
+    <string name="observation_selected">Observation selected</string>
+    <string name="share_observation">แชร์การสังเกต</string>
+    <string name="unknown_location">ไม่ทราบแหล่ง</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Close</string>
+    <string name="set_date2">Set date</string>
+    <string name="project_selected">โปรเจคถูกเลือก</string>
+    <string name="project_unselected">Project Unselected</string>
+    <string name="show_my_observations">แสดงการสังเกตของฉัน</string>
+    <string name="play_pause_sound">Play or pause sound</string>
+    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
+    <string name="view_image">View image</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Assessment passes</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Agree assessment passes</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Does not pass assessment</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Disagree assessment passes</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="other">Delete %1$d selected observations</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="other">Sync %1$d selected observations</item>
+    </plurals>
+    <string name="add_media_evidence">Add media evidence</string>
+    <string name="remove_identification">Remove identification</string>
+    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
+    <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
 </resources>

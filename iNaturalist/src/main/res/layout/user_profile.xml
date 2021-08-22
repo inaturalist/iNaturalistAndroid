@@ -33,6 +33,7 @@
                 android:layout_height="220dp"
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"
+                android:importantForAccessibility="no"
                 />
 
             <View
@@ -66,6 +67,7 @@
                 android:layout_marginEnd="20dp"
                 app:layout_collapseMode="pin"
                 android:clickable="true"
+                android:contentDescription="@string/send_a_message"
                 />
 
             <LinearLayout
@@ -100,6 +102,7 @@
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
                         android:visibility="visible"
+                        android:importantForAccessibility="no"
                         android:src="@drawable/ic_person_white_24dp" />
                     <ImageView
                         android:layout_centerInParent="true"
@@ -110,6 +113,7 @@
                         android:layout_height="fill_parent"
                         android:adjustViewBounds="true"
                         android:scaleType="fitCenter"
+                        android:importantForAccessibility="no"
                         android:src="@drawable/ic_person_white_24dp" />
                 </RelativeLayout>
 

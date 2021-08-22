@@ -34,7 +34,7 @@
                 android:lines="2"
                 android:ellipsize="end"
                 android:gravity="start|center_vertical|top"
-                android:textSize="12dp"
+                android:textSize="12sp"
                 android:text="TextView" />
         </LinearLayout>
 
@@ -51,6 +51,7 @@
                 android:tint="#ffffff"
                 android:visibility="visible"
                 android:layout_centerInParent="true"
+                android:importantForAccessibility="no"
                 />
 
             <ImageView
@@ -61,6 +62,7 @@
                 android:scaleType="centerCrop"
                 android:visibility="gone"
                 android:layout_centerInParent="true"
+                android:importantForAccessibility="no"
                 />
         </RelativeLayout>
 

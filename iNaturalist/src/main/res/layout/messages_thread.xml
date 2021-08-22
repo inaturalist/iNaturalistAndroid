@@ -28,6 +28,7 @@
             android:paddingEnd="8dp"
             android:background="@drawable/circular_green_background"
             android:src="@drawable/ic_send_black_48dp"
+            android:contentDescription="@string/send_a_message"
             android:tint="#ffffff" />
 
 

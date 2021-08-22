@@ -9,6 +9,7 @@
         android:src="@drawable/muted"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
+        android:importantForAccessibility="no"
         />
 
 </RelativeLayout>

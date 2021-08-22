@@ -18,6 +18,7 @@
            android:layout_alignParentStart="true"
            android:layout_centerVertical="true"
            android:layout_marginEnd="5dp"
+           android:importantForAccessibility="no"
            android:src="@drawable/actionbar_back_indicator" />
 
         <LinearLayout
@@ -61,6 +62,7 @@
            android:layout_alignParentStart="true"
            android:layout_centerVertical="true"
            android:layout_marginEnd="16dp"
+           android:importantForAccessibility="no"
            android:alpha="0.54"
            android:src="@drawable/ic_species_guess_black_24dp" />
 

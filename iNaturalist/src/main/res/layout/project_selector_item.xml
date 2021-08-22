@@ -16,8 +16,9 @@
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:layout_marginEnd="5dp"
+        android:importantForAccessibility="no"
         />
-   
+
     <ImageView
         android:id="@+id/project_pic"
         android:layout_width="70dp"
@@ -26,8 +27,9 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:paddingStart="8dp"
+        android:importantForAccessibility="no"
         />
-	
+
     <TextView
        android:id="@+id/project_name"
        android:layout_width="wrap_content"

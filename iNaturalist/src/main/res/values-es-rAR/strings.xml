@@ -659,6 +659,8 @@
     <string name="annotation_name_sex">Sexo</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">Vivo o Muerto</string>
+    <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <string name="annotation_name_evidence_of_presence">Evidencia de presencia</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Floración</string>
     <!-- Adjective, having fruit -->
@@ -692,6 +694,18 @@
     <string name="annotation_value_dead">Muerto</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Indeterminado</string>
+    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <string name="annotation_value_organism">Organismo</string>
+    <!-- Evidence of Presence value when for bird feathers -->
+    <string name="annotation_value_feather">Plumas</string>
+    <!-- Evidence of Presence value when for fecal remains -->
+    <string name="annotation_value_scat">Excrementos</string>
+    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <string name="annotation_value_track">Huellas</string>
+    <!-- Evidence of Presence value when for bones -->
+    <string name="annotation_value_bone">Huesos</string>
+    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <string name="annotation_value_molt">Muda</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">UNIDO</string>
     <string name="nearby_projects_all_caps">CERCANO</string>
@@ -1153,4 +1167,61 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <string name="default_observation_action">Acción predeterminada en Mis observaciones</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Mostrar opciones</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Valor del Campo</string>
+    <string name="expand_annotation_to_agree_or_disagree">Expandir anotación para aceptar o estar en desacuerdo</string>
+    <string name="delete_attribute_value">Eliminar valor del atributo</string>
+    <string name="open_menu_for_more_options">Abrir menú para más opciones</string>
+    <string name="california_academy_of_sciences">National Academy of Science.</string>
+    <string name="national_geographic">National Geographic</string>
+    <string name="change_user_profile_photo">Cambiar foto de perfil de usuario</string>
+    <string name="expand_list">Expandir lista</string>
+    <string name="change_map_layers">Cambia las capas del mapa (terreno vs. satelital)</string>
+    <string name="redo_observation_search">Rehacer búsqueda de observaciones en este área del mapa</string>
+    <string name="view_observations_on_map">Ver observaciones en el mapa</string>
+    <string name="view_observations_on_grid">Ver observaciones en cuadrícula</string>
+    <string name="clear_text">Borrar texto</string>
+    <string name="observation_has_sounds">La observación tiene sonidos</string>
+    <string name="go_to_my_location">Ir a mi ubicación actual</string>
+    <string name="change_geoprivacy">Cambiar geoprivacidad</string>
+    <string name="active_filters">Filtros activos</string>
+    <string name="message_is_flagged">El mensaje tiene advertencia</string>
+    <string name="user_is_muted">Usuario silenciado</string>
+    <string name="cancel_multiple_obs_selection">Cancelar selección de observaciones múltiples</string>
+    <string name="delete_observations">Borrar observaciones</string>
+    <string name="clear_species_guess">Limpiar sugerencias de especies</string>
+    <string name="comment_count">Número de comentarios</string>
+    <string name="id_count">Número de identificaciones</string>
+    <string name="observation_selected">Observación seleccionada</string>
+    <string name="share_observation">Compartir observación</string>
+    <string name="unknown_location">Ubicación desconocida</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Cerrar</string>
+    <string name="set_date2">Establecer fecha</string>
+    <string name="project_selected">Proyecto seleccionado</string>
+    <string name="project_unselected">Proyecto no seleccionado</string>
+    <string name="show_my_observations">Mostrar mis observaciones</string>
+    <string name="play_pause_sound">Reproducir o pausar el sonido</string>
+    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences y National Geographic</string>
+    <string name="view_image">Ver imagen</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Pases de evaluación</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Aceptar pase de evaluación</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">No pasa la evaluación</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">En desacuerdo con el pase de evaluación</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Eliminar %1$d observación seleccionada</item>
+        <item quantity="other">Eliminar %1$d observaciones seleccionadas</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Sincronizar %1$d observación seleccionada</item>
+        <item quantity="other">Sincronizar %1$d observaciones seleccionadas</item>
+    </plurals>
+    <string name="add_media_evidence">Añadir evidencia multimedia</string>
+    <string name="remove_identification">Eliminar identificación</string>
+    <string name="issue_with_updating_photos">Hubo un problema al actualizar las fotos en esta observación que se ha corregido recientemente. Por favor, cierra la sesión y vuelve a iniciarla para resolver este problema.</string>
+    <string name="app_version_copied_to_clipboard">Versión de la App copiada al portapapeles</string>
 </resources>

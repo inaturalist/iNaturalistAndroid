@@ -20,6 +20,7 @@
         android:padding="5dp"
         android:tint="#ffffff"
         android:visibility="gone"
+        android:importantForAccessibility="no"
         />
 
     <ImageView
@@ -30,6 +31,7 @@
         android:layout_centerVertical="true"
         android:scaleType="fitXY"
         android:layout_marginEnd="9dp"
+        android:importantForAccessibility="no"
         android:src="@drawable/actionbar_back_indicator" />
 
     <LinearLayout

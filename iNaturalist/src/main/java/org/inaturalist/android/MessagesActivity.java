@@ -25,8 +25,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.evernote.android.state.State;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.livefront.bridge.Bridge;
-import com.melnykov.fab.FloatingActionButton;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.json.JSONArray;
