@@ -58,7 +58,7 @@ public class CompareSuggestionActivity extends AppCompatActivity {
     @State public int mObsId;
     @State(AndroidStateBundlers.BetterJSONObjectBundler.class) public BetterJSONObject mObservation;
     @State public int mSuggestionIndex;
-    @State public int mObservationPhotoPosition;
+    @State public int mObservationPhotoPosition = -1;
     @State public int mSuggestionPhotoPosition;
 
     private View mBackButton;
@@ -252,6 +252,10 @@ public class CompareSuggestionActivity extends AppCompatActivity {
         mObservationPhotosViewPager.setPadding(padding, padding, padding, padding);
 
         mObservationPhotosViewPager.setAdapter(adapter);
+
+        if (mObservationPhotoPosition == -1) {
+            mObservationPhotoPosition = mApp.isLayoutRTL() ? adapter.getCount() - 1 : 0;
+        }
 
         mObservationPhotosViewPager.setCurrentItem(mObservationPhotoPosition);
         mObservationPhotosIndicator.setViewPager(mObservationPhotosViewPager);

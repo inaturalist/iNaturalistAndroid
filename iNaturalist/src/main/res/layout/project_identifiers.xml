@@ -37,8 +37,8 @@
         android:layout_height="wrap_content"
         android:paddingTop="11dp"
         android:paddingBottom="8dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:background="#8A000000"
         android:textSize="12sp"
         android:textColor="#ffffff"
@@ -56,8 +56,8 @@
         android:background="#DCDCDC"
         android:layout_width="match_parent"
         android:layout_height="33dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp">
 
@@ -65,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:text="@string/rank"
             android:textSize="13sp" />
 
@@ -73,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:text="@string/identifications"
             android:textSize="13sp" />
 
@@ -95,7 +95,7 @@
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             />
 
 

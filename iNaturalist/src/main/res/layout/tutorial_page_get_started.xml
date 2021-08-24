@@ -37,8 +37,8 @@
         android:layout_height="0dp"
         android:layout_weight="0.35"
         android:layout_marginTop="20dp"
-        android:paddingLeft="32dp"
-        android:paddingRight="32dp"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
         >
 
         <Button
@@ -50,8 +50,8 @@
             android:layout_centerHorizontal="true"
             android:textColor="#ffffff"
             android:textSize="16sp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
             />
 
         <TextView

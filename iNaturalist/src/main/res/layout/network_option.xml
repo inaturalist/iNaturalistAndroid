@@ -13,7 +13,7 @@
 
     <LinearLayout
         android:orientation="vertical" android:layout_width="wrap_content"
-        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="3dp"
         android:layout_height="wrap_content">
         <TextView
@@ -32,6 +32,7 @@
             android:textColor="#8B8B8B"
             android:textSize="15sp"
             android:text="Sub Title"
+            android:textDirection="locale"
             />
 
     </LinearLayout>

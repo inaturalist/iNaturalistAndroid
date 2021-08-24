@@ -5309,7 +5309,7 @@ public class INaturalistService extends IntentService {
         String url = messageId == null ?
                 String.format("%s/messages?q=%s&box=%s&threads=%s&per_page=200",
                         API_HOST, searchQuery != null ? URLEncoder.encode(searchQuery) : "", box != null ? box : "inbox", groupByThreads) :
-                String.format("%s/messages/%d", API_HOST, messageId);
+                String.format(Locale.ENGLISH, "%s/messages/%d", API_HOST, messageId);
 
         JSONArray json = get(url);
 

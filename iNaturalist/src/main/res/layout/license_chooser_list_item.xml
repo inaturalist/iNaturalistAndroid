@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="28dp"
+        android:layout_marginStart="28dp"
         android:layout_toEndOf="@id/radio_button"
         android:orientation="vertical" >
 
@@ -50,7 +50,7 @@
                     android:textColor="#ffffff"
                     android:textStyle="bold"
                     android:background="@drawable/rounded_gbif"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginEnd="8dp"
                     />
                 <TextView
                     android:id="@+id/wikimedia"
