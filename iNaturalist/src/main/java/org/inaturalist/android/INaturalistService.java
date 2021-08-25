@@ -3,6 +3,7 @@ package org.inaturalist.android;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -19,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -32,6 +34,7 @@ import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.Predicate;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
@@ -4451,6 +4454,47 @@ public class INaturalistService extends IntentService {
         }
 
         c.close();
+
+        Logger.tag(TAG).info("clearOldCachedPhotos - Clearing by files in cache folder");
+
+        // Find all files in the cache folder that look like cached images (<uuid>.jpeg).
+        // For each one, see if there's an obs photo pointing to it - if non, it's safe to delete
+
+        FilenameFilter fileFilter = new FilenameFilter() {
+            public boolean accept(File dir, String name) {
+                return (name.endsWith(".jpeg") && name.length() == 41);
+            }
+        };
+
+        Collection<File> list = CollectionUtils.select(
+                Arrays.asList(getFilesDir().listFiles(fileFilter)),
+                new Predicate<File>() {
+                    @Override
+                    public boolean evaluate(File f) {
+                        if (f.isDirectory()) return false;
+
+                        String filePath = f.getAbsolutePath();
+                        Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI, new String[] { ObservationPhoto._ID },
+                                        "photo_filename = ?",
+                                new String[]{ filePath }, ObservationPhoto.DEFAULT_SORT_ORDER);
+                        int count = c.getCount();
+                        c.close();
+
+                        return count == 0;
+                    }
+                });
+
+        long total = 0;
+
+        if (list == null) return;
+
+        for (File f : list) {
+            total += f.length();
+            Logger.tag(TAG).debug("clearOldCachedPhotos - Removing File: " + f.getAbsoluteFile() + ": " + f.length());
+            f.delete();
+        }
+
+        Logger.tag(TAG).debug(String.format(Locale.ENGLISH, "clearOldCachedPhotos - Removed: %d bytes", total));
     }
 
     private String getGuideXML(Integer guideId) throws AuthenticationException {
