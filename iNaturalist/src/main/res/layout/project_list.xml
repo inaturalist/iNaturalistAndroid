@@ -47,8 +47,8 @@
             android:layout_height="50dp"
             android:text="@string/go_to_settings"
             android:layout_marginTop="30dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
             android:textColor="#ffffff"
             android:background="@drawable/circular_button_rounder"
             />
@@ -61,8 +61,8 @@
             android:layout_height="50dp"
             android:text="@string/login_signup"
             android:layout_marginTop="30dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
             />
     </LinearLayout>
       <ListView

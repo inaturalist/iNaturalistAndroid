@@ -6,8 +6,8 @@
     android:minHeight="80dp"
     android:orientation="vertical"
     android:gravity="center_vertical"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp"
     android:paddingBottom="10dp"
     android:clipToPadding="false">
 
@@ -60,14 +60,14 @@
         <TextView
             android:id="@+id/seekbar_value"
             android:text="32"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <SeekBar
             android:id="@+id/seekbar"
-            android:layout_toLeftOf="@id/seekbar_value"
+            android:layout_toStartOf="@id/seekbar_value"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.AppCompat.SeekBar.Discrete"

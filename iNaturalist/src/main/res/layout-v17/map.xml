@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="24dp"
                     android:scaleType="centerInside"
-                    android:layout_toLeftOf="@id/cancel_filters"
+                    android:layout_toStartOf="@id/cancel_filters"
                     android:layout_marginEnd="4dp"
                     android:layout_marginStart="8dp"
                     android:background="@android:color/transparent"

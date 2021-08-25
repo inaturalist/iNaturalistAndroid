@@ -11,10 +11,10 @@
         android:orientation="vertical">
         <TextView
             android:paddingTop="16dp"
-            android:paddingLeft="19dp"
-            android:paddingRight="19dp"
+            android:paddingStart="19dp"
+            android:paddingEnd="19dp"
             android:id="@+id/project_title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Project title"
             android:textSize="24sp"
@@ -26,8 +26,8 @@
             android:text="my description"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="10dp"
-            android:paddingLeft="19dp"
-            android:paddingRight="19dp"
+            android:paddingStart="19dp"
+            android:paddingEnd="19dp"
             android:textSize="14sp"
             android:textColor="#000000" />
 
@@ -50,8 +50,8 @@
                 android:text="@string/terms"
                 android:textSize="14sp"
                 android:textColor="@color/inatapptheme_color"
-                android:paddingLeft="19dp"
-                android:paddingRight="19dp"
+                android:paddingStart="19dp"
+                android:paddingEnd="19dp"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/project_terms"
@@ -60,8 +60,8 @@
                 android:text="my terms"
                 android:layout_marginTop="19dp"
                 android:layout_marginBottom="10dp"
-                android:paddingLeft="19dp"
-                android:paddingRight="19dp"
+                android:paddingStart="19dp"
+                android:paddingEnd="19dp"
                 android:textSize="14sp"
                 android:textColor="#000000" />
 
@@ -86,8 +86,8 @@
                 android:text="@string/observation_rules"
                 android:textSize="14sp"
                 android:textColor="@color/inatapptheme_color"
-                android:paddingLeft="19dp"
-                android:paddingRight="19dp"
+                android:paddingStart="19dp"
+                android:paddingEnd="19dp"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/project_rules"
@@ -96,8 +96,8 @@
                 android:text="my rules"
                 android:layout_marginTop="19dp"
                 android:layout_marginBottom="10dp"
-                android:paddingLeft="19dp"
-                android:paddingRight="19dp"
+                android:paddingStart="19dp"
+                android:paddingEnd="19dp"
                 android:textSize="14sp"
                 android:textColor="#000000" />
 
