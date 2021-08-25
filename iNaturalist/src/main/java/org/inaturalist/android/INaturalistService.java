@@ -627,14 +627,14 @@ public class INaturalistService extends IntentService {
         Logger.tag(TAG).info("Should call startIntentForeground? " + mApp.hasCalledStartForeground() + ":" + action);
 
         if (!mApp.hasCalledStartForeground() ||
-                Arrays.stream(new String[]{
+                Arrays.asList(new String[]{
                     ACTION_DELETE_OBSERVATIONS, ACTION_DELETE_ACCOUNT, ACTION_FIRST_SYNC,
                     ACTION_GET_AND_SAVE_OBSERVATION, ACTION_JOIN_PROJECT, ACTION_LEAVE_PROJECT,
                     ACTION_PASSIVE_SYNC, ACTION_POST_MESSAGE, ACTION_PULL_OBSERVATIONS,
                     ACTION_REDOWNLOAD_OBSERVATIONS_FOR_TAXON, ACTION_REFRESH_CURRENT_USER_SETTINGS,
                     ACTION_REGISTER_USER, ACTION_REMOVE_OBSERVATION_FROM_PROJECT, ACTION_SYNC,
                     ACTION_SYNC_JOINED_PROJECTS, ACTION_UPDATE_USER_DETAILS, ACTION_UPDATE_USER_NETWORK
-            }).anyMatch(action::contains)) {
+            }).contains(action)) {
             mApp.setCalledStartForeground(true);
             startIntentForeground();
         }
