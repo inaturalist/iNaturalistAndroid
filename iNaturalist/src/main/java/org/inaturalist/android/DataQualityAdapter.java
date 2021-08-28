@@ -131,7 +131,7 @@ class DataQualityAdapter extends ArrayAdapter<DataQualityItem> {
         }
 
 
-        agreeContainer.setOnClickListener(new View.OnClickListener() {
+        agreeIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!item.isVotable) return;
@@ -148,7 +148,7 @@ class DataQualityAdapter extends ArrayAdapter<DataQualityItem> {
             }
         });
 
-        disagreeContainer.setOnClickListener(new View.OnClickListener() {
+        disagreeIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!item.isVotable) return;

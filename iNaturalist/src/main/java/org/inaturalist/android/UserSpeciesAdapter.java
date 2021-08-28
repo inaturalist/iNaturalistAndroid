@@ -122,6 +122,12 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
             return view;
         }
 
+        View checkboxContainer = view.findViewById(R.id.checkbox_container);
+
+        if (mViewType == VIEW_TYPE_GRID) {
+            checkboxContainer.setVisibility(View.GONE);
+        }
+
         TextView speciesName = (TextView) view.findViewById(mViewType == VIEW_TYPE_LIST ? R.id.species_name : R.id.species_guess);
 
         // Get the taxon display name according to device locale

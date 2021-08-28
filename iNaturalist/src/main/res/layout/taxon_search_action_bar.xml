@@ -16,7 +16,8 @@
             android:padding="10dp"
             android:imeOptions="actionSearch"
             android:transitionName="search_taxon"
-	        android:hint="@string/enter_taxon_name">
+			android:textAlignment="viewStart"
+			android:hint="@string/enter_taxon_name">
 	        <requestFocus />   
     </EditText>
 

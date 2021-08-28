@@ -380,12 +380,12 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         ObservationPhoto.PROJECTION,
                         "(observation_uuid=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
                         new String[]{mObservation.uuid},
-                        ObservationPhoto.DEFAULT_SORT_ORDER);
+                        mApp.isLayoutRTL() ? ObservationPhoto.REVERSE_DEFAULT_SORT_ORDER : ObservationPhoto.DEFAULT_SORT_ORDER);
                 mSoundCursor = getContentResolver().query(ObservationSound.CONTENT_URI,
                         ObservationSound.PROJECTION,
                         "(observation_uuid=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
                         new String[]{mObservation.uuid},
-                        ObservationSound.DEFAULT_SORT_ORDER);
+                        mApp.isLayoutRTL() ? ObservationSound.REVERSE_DEFAULT_SORT_ORDER : ObservationSound.DEFAULT_SORT_ORDER);
 
                 mImageCursor.moveToFirst();
             }
@@ -1552,6 +1552,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
             mLocationMapContainer.setVisibility(View.VISIBLE);
             mUnknownLocationIcon.setVisibility(View.GONE);
+
             if (((mObservation.place_guess == null) || (mObservation.place_guess.length() == 0)) &&
                 ((mObservation.private_place_guess == null) || (mObservation.private_place_guess.length() == 0))) {
                 // No place guess - show coordinates instead
@@ -1570,7 +1571,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         mObservation.private_place_guess : mObservation.place_guess);
             }
 
-            mLocationText.setGravity(View.TEXT_ALIGNMENT_TEXT_END);
+            mLocationText.setGravity(View.TEXT_ALIGNMENT_TEXT_START);
 
             String geoprivacyField = mObservation.geoprivacy == null ? mObservation.taxon_geoprivacy : mObservation.geoprivacy;
 
@@ -3046,6 +3047,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         mPhotosAdapter = new PhotosViewPagerAdapter();
         mPhotosViewPager.setAdapter(mPhotosAdapter);
         mIndicator.setViewPager(mPhotosViewPager);
+
+        if (mApp.isLayoutRTL()) mPhotosViewPager.setCurrentItem(mPhotosAdapter.getCount() - 1);
     }
 
     private void refreshAttributes() {

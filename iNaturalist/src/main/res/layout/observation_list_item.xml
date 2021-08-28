@@ -192,6 +192,7 @@
         android:gravity="center_vertical"
         android:maxLines="1"
         android:text="@string/unknown"
+        android:textDirection="locale"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="@id/location_icon"
         app:layout_constraintHorizontal_bias="0"

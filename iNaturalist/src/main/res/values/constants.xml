@@ -61,6 +61,7 @@
 	<string-array name="language_values">
 		<item/>
 		<item>ar</item>
+		<item>be</item>
 		<item>bg</item>
 		<item>bs</item>
 		<item>ca</item>
@@ -124,6 +125,7 @@
 	<string-array name="language_names">
 		<item>@string/use_device_language_settings</item>
 		<item>عربى</item>
+		<item>беларуская мова</item>
 		<item>Български</item>
 		<item>Bosanski</item>
 		<item>Català</item>

@@ -201,9 +201,9 @@
     <string name="alert_message_use_inaturalistgr">iNaturalist Greece é un membro da Rede iNaturalist en Grecia. As institucións locais que apoian a iNaturalist Greece terán acceso ó teu enderezo de correo electrónico e acceso ás coordenadas verdadeiras de observacións que foron escurecidas públicamente ou privadas. Por favor, non mudes a túa afiliación experimentalmente se xa contas con máis de 1000 observacións. ¿Queres mudar a túa afiliación?</string>
     <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg é un membro da Rede iNaturalist en Luxemburgo. As institucións locais que apoian a iNaturalist Luxembourg terán acceso ó teu enderezo de correo electrónico e acceso ás coordenadas verdadeiras de observacións que foron escurecidas públicamente ou privadas. Por favor, non mudes a túa afiliación experimentalmente se xa contas con máis de 1000 observacións. ¿Queres mudar a túa afiliación?</string>
     <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom é un membro da Rede iNaturalist en Reino Unido. As institucións locais que apoian a iNaturalist United Kingdom terán acceso ó teu enderezo de correo electrónico e acceso ás coordenadas verdadeiras de observacións que foron escurecidas públicamente ou privadas. Por favor, non mudes a túa afiliación experimentalmente se xa contas con máis de 1000 observacións. ¿Queres mudar a túa afiliación?</string>
-    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is a member of the iNaturalist Network in Costa Rica. Local institutions supporting Naturalista Costa Rica will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica é un membro da Rede iNaturalist en Costa Rica. As institucións locais que apoian a iNaturalist Australia terán acceso ó teu enderezo de correo electrónico e acceso ás coordenadas verdadeiras de observacións que foron escurecidas públicamente ou privadas. Por favor, non mudes a túa afiliación experimentalmente se xa contas con máis de 1000 observacións. ¿Queres mudar a túa afiliación?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala é un membro da Rede iNaturalist en Guatemala. As institucións locais que apoian a iNaturalist Australia terán acceso ó teu enderezo de correo electrónico e acceso ás coordenadas verdadeiras de observacións que foron escurecidas públicamente ou privadas. Por favor, non mudes a túa afiliación experimentalmente se xa contas con máis de 1000 observacións. ¿Queres mudar a túa afiliación?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sweden é un membro da Rede iNaturalist en Suecia. As institucións locais que apoian a iNaturalist Greece terán acceso ó teu enderezo de correo electrónico e acceso ás coordenadas verdadeiras de observacións que foron escurecidas públicamente ou privadas. Por favor, non mudes a túa afiliación experimentalmente se xa contas con máis de 1000 observacións. ¿Queres mudar a túa afiliación?</string>
     <string name="editor">Editor</string>
     <string name="license">Licenza</string>
     <string name="download_for_offline_use">Descarga para uso fóra de liña</string>
@@ -660,7 +660,7 @@
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">Vivo ou Morto</string>
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
-    <string name="annotation_name_evidence_of_presence">Evidence of Presence</string>
+    <string name="annotation_name_evidence_of_presence">Proba de Presenza</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Florecendo</string>
     <!-- Adjective, having fruit -->
@@ -695,17 +695,17 @@
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Non pode ser determinado</string>
     <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
-    <string name="annotation_value_organism">Organism</string>
+    <string name="annotation_value_organism">Organismo</string>
     <!-- Evidence of Presence value when for bird feathers -->
-    <string name="annotation_value_feather">Feather</string>
+    <string name="annotation_value_feather">Pluma</string>
     <!-- Evidence of Presence value when for fecal remains -->
-    <string name="annotation_value_scat">Scat</string>
+    <string name="annotation_value_scat">Feces</string>
     <!-- Evidence of Presence value for impressions in the ground or snow -->
-    <string name="annotation_value_track">Track</string>
+    <string name="annotation_value_track">Pegadas</string>
     <!-- Evidence of Presence value when for bones -->
-    <string name="annotation_value_bone">Bone</string>
+    <string name="annotation_value_bone">Óso</string>
     <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
-    <string name="annotation_value_molt">Molt</string>
+    <string name="annotation_value_molt">Muda</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">ÓS QUE TE UNICHES</string>
     <string name="nearby_projects_all_caps">PRÓXIMOS</string>
@@ -768,9 +768,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea apoiando iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxemburgo: Luxembourg National Museum of Natural History (MnhnL) apoiando iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[Reino Unido: National Biodiversity Network Trust apoiando iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) apoiando Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) apoiando iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre apoiando iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Marcar todos como vistos</string>
     <string name="content_hidden">Contido Ocultado</string>
     <string name="show_hidden_content">Mostrar Contido Oculto</string>
@@ -1113,7 +1113,7 @@
     <string name="default_observation_license">Licenza da Observación Predeterminada</string>
     <string name="default_photo_license">Licenza da Foto Predeterminada</string>
     <string name="default_sound_license">Licenza de Son Predeterminada</string>
-    <string name="change_existing_licenses">Change Existing Licenses</string>
+    <string name="change_existing_licenses">Mudar Licenzas Existentes</string>
     <string name="change_licenses_for_existing_observations">Mudar licenzas para as observacións existentes, fotos e sons</string>
     <string name="change_licenses_for_all_existing_observations">Mudar licenzas para tódalas observacións existentes</string>
     <string name="change_licenses_for_all_existing_photos">Mudar licenzas para tódalas fotos existentes</string>
@@ -1132,7 +1132,7 @@
     <string name="existing_sound_licenses_have_been_updated">Tódalas licenzas de sons cambiáronse a %1$s.</string>
     <string name="default_licenses_description"><![CDATA[A Licenza do teu contido dalle a calquera o dereito legal de usalo sen pedir o teu consentimento, sempre que cumpra cós termos da licenza. Ademáis, iNat inclúe o teu contido con licenza Creative Commons en arquivos que se actualizan regularmente producidos por selectas organizacións socias interesadas nos nosos dados. Por exemplo, incluímos rexistros Sen Dereitos De Autor (CC0), Atribución (CC BY), e Atribución-Non Comercial (CC BY-NC) no arquivo que xeramos para a <a href="http://www.gbif.org/"> Global Biodiversity Information Facility</a> (GBIF), unha organización internacional e intergubernamental que compila e distribúe información sobre a biodiversidade de todo o mundo.]]></string>
     <string name="photo_license">Licenza da Foto</string>
-    <string name="sound_license">Sound License</string>
+    <string name="sound_license">Licenza para Sons</string>
     <string name="edit_photo_license">Editar Licenza da Foto</string>
     <string name="observation_license">Licenza de Observación</string>
     <string name="edit_observation_license">Editar Licenza de Observación</string>
@@ -1154,7 +1154,7 @@
     <string name="license_description_cc_by_nc_sa">Esta licenza permite que outras persoas combinen, axusten e constrúan a partir do teu traballo con fins non comerciais sempre e cando se te acredite e se dea licenza das novas creacións nos mesmos termos.</string>
     <string name="license_description_cc_by_nc_nd">Esta licenza é a máis restritiva das seis licenzas principais; só permite a outros descargar as túas obras e compartilas cos demais, sempre e cando se te acredite, pero non se poden modificar de ningún xeito nin empregalas con fins comerciais.</string>
     <string name="license_description_cc_by_nd">Esta licenza permite a redistribución, comercial e non comercial, sempre e cando se distribúa sen cambios e na súa totalidade, acreditada a ti.</string>
-    <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
+    <string name="license_description_cc_by_sa">Esta licenza permite que outros misturen, adapten ou se baseen no teu traballo para fins comerciais, sempre que te acrediten e que os termos das licenzas das súas novas creacións sexan idénticos. Esta licenza poderíase comparar con licenzas gratuítas e de código aberto \"copyleft\". Tódolos traballos novos baseados no teu terán a mesma licenza, así que calquera derivado poderá ser usado comercialmente. Esta é a licenza usada pola Wikipedia, e recoméndase para materiais que se beneficiarían se incorporasen contido da Wikipedia e outros proxectos con licenzas semellantes.</string>
     <string name="license_description_no_license">Mantés o teu dereito de autor completo sobre o teu contido, agás aqueles dereitos garantidos a iNaturalist nos nosos Termos de Servizo.</string>
     <string name="invalid_photo">Formato de foto non soportado</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
@@ -1163,5 +1163,61 @@
     <string name="default_observation_action">Acción da Observación Predeterminada</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Mostrar Accións</string>
-    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Valor de Campo</string>
+    <string name="expand_annotation_to_agree_or_disagree">Expandir anotación para concordar ou desacordar</string>
+    <string name="delete_attribute_value">Borrar valor de atributo</string>
+    <string name="open_menu_for_more_options">Abrir menú para máis opcións</string>
+    <string name="california_academy_of_sciences">California Academy of Sciences</string>
+    <string name="national_geographic">National Geographic</string>
+    <string name="change_user_profile_photo">Cambiar foto de perfil de usuario</string>
+    <string name="expand_list">Expandir lista</string>
+    <string name="change_map_layers">Cambiar capas do mapa (terreno vs. satelite)</string>
+    <string name="redo_observation_search">Refacer a busca de observacións neste área do mapa</string>
+    <string name="view_observations_on_map">Ver observacións no mapa</string>
+    <string name="view_observations_on_grid">Ver observacións na cuadrícula</string>
+    <string name="clear_text">Borrar texto</string>
+    <string name="observation_has_sounds">A observación ten sons</string>
+    <string name="go_to_my_location">Ir á miña localización actual</string>
+    <string name="change_geoprivacy">Cambiar xeoprivacidade</string>
+    <string name="active_filters">Filtros activos</string>
+    <string name="message_is_flagged">A mensaxe está marcada</string>
+    <string name="user_is_muted">O usuario está acalado</string>
+    <string name="cancel_multiple_obs_selection">Cancelar a selección múltiple de observacións</string>
+    <string name="delete_observations">Borrar observacións</string>
+    <string name="clear_species_guess">Limpar a suxestión de especie</string>
+    <string name="comment_count">Número de comentarios</string>
+    <string name="id_count">Número de identificacións</string>
+    <string name="observation_selected">Observación seleccionada</string>
+    <string name="share_observation">Compartir observación</string>
+    <string name="unknown_location">Ubicación descoñecida</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Pechar</string>
+    <string name="set_date2">Establecer data</string>
+    <string name="project_selected">Proxecto Seleccionado</string>
+    <string name="project_unselected">Proxecto Non Seleccionado</string>
+    <string name="show_my_observations">Motrar miñas observacións</string>
+    <string name="play_pause_sound">Reproducir ou pausar vídeo</string>
+    <string name="california_academy_of_sciences_and_national_geographic">Academia de Ciencias de California e National Geographic</string>
+    <string name="view_image">Ver imaxe</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Aprobación de avaliación</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Aceptar a aprobación da avaliación</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Non supera a avaliación</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">En desacordo cá aprobación da avaliación</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Delete %1$d selected observation</item>
+        <item quantity="other">Delete %1$d selected observations</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Sync %1$d selected observation</item>
+        <item quantity="other">Sync %1$d selected observations</item>
+    </plurals>
+    <string name="add_media_evidence">Engadir probas multimedia</string>
+    <string name="remove_identification">Eliminar identificación</string>
+    <string name="issue_with_updating_photos">Houbo un problema ó actualizar as fotos nesta observación que foi arranxado recentemente. Por favor, pecha e inicia a sesión de novo para resolver este tema.</string>
+    <string name="app_version_copied_to_clipboard">Versión da App copiada no portapapeis.</string>
 </resources>

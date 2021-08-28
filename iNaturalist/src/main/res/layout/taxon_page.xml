@@ -113,7 +113,7 @@
                     android:orientation="horizontal"
                     android:gravity="center_horizontal|center_vertical"
                     android:clickable="true"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"
                     >
                     <ImageView
                         android:layout_width="24dp"
@@ -128,7 +128,7 @@
                         android:text="@string/compare"
                         android:textSize="18sp"
                         android:textColor="#000000"
-                        android:paddingLeft="7dp"
+                        android:paddingStart="7dp"
                         />
                 </LinearLayout>
 
@@ -142,7 +142,7 @@
                     android:orientation="horizontal"
                     android:gravity="center_horizontal|center_vertical"
                     android:clickable="true"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     >
                     <ImageView
                         android:layout_width="24dp"
@@ -157,7 +157,7 @@
                         android:text="@string/select"
                         android:textSize="18sp"
                         android:textColor="#ffffff"
-                        android:paddingLeft="7dp"
+                        android:paddingStart="7dp"
                         />
                 </LinearLayout>
 
@@ -166,8 +166,8 @@
             <LinearLayout
                 android:background="#ffffff"
                 android:orientation="vertical"
-                android:paddingLeft="21dp"
-                android:paddingRight="21dp"
+                android:paddingStart="21dp"
+                android:paddingEnd="21dp"
                 android:paddingBottom="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -208,7 +208,7 @@
                         android:layout_height="20dp"
                         android:src="@drawable/ic_error_black_24dp"
                         android:tint="#C32417"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginEnd="5dp"
                         android:importantForAccessibility="no"
                         />
                     <TextView
@@ -240,8 +240,8 @@
                 android:orientation="vertical"
                 android:paddingTop="21dp"
                 android:paddingBottom="17dp"
-                android:paddingLeft="18dp"
-                android:paddingRight="18dp"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
                 android:background="#FFF4E4E2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -262,7 +262,7 @@
                     android:text="@string/conservation_source"
                     android:textSize="18sp"
                     android:textColor="#FFD32D06"
-                    android:drawableLeft="@drawable/ic_open_in_browser_black_24dp"
+                    android:drawableStart="@drawable/ic_open_in_browser_black_24dp"
                     android:drawableTint="#FFD32D06"
                     android:drawablePadding="4dp"
                     />
@@ -284,7 +284,7 @@
                     android:text="@string/map_of_observations"
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="24dp"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
                     />
 
                 <RelativeLayout
@@ -320,7 +320,7 @@
                     android:text="@string/seasonality"
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="24dp"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
                     />
 
                 <RelativeLayout
@@ -377,8 +377,8 @@
                         android:textColor="#8A000000"
                         android:text="@string/taxonomy"
                         android:layout_marginBottom="18dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_alignParentLeft="true"
+                        android:layout_marginStart="16dp"
+                        android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
                         />
 
@@ -389,9 +389,9 @@
                         android:layout_height="20dp"
                         android:src="@drawable/ic_info_black_24dp"
                         android:tint="#717171"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_alignParentTop="true"
-                        android:layout_marginRight="17dp"
+                        android:layout_marginEnd="17dp"
                         android:importantForAccessibility="no"
                         />
 
@@ -412,8 +412,8 @@
                     android:clickable="true"
                     android:layout_marginTop="25dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="17dp"
-                    android:layout_marginRight="17dp"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginEnd="17dp"
                     android:layout_height="48dp">
                     <ImageView
                         android:layout_width="24dp"
@@ -429,7 +429,7 @@
                         android:textColor="#000000"
                         android:textSize="18sp"
                         android:gravity="center"
-                        android:paddingLeft="7dp"
+                        android:paddingStart="7dp"
                         android:autoSizeTextType="uniform"
                         android:autoSizeMinTextSize="12sp"
                         android:autoSizeMaxTextSize="26sp"
@@ -446,8 +446,8 @@
                     android:clickable="true"
                     android:layout_marginTop="25dp"
                     android:layout_marginBottom="20dp"
-                    android:layout_marginLeft="17dp"
-                    android:layout_marginRight="17dp"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginEnd="17dp"
                     android:layout_height="48dp">
                     <ImageView
                         android:layout_width="24dp"
@@ -463,7 +463,7 @@
                         android:textColor="#000000"
                         android:textSize="18sp"
                         android:gravity="center"
-                        android:paddingLeft="7dp"
+                        android:paddingStart="7dp"
                         android:autoSizeTextType="uniform"
                         android:autoSizeMinTextSize="12sp"
                         android:autoSizeMaxTextSize="26sp"

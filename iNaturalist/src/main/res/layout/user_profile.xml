@@ -51,7 +51,7 @@
                 android:gravity="center_horizontal|bottom"
                 app:layout_collapseMode="pin"
                 android:fitsSystemWindows="false"
-                android:paddingRight="60dp"
+                android:paddingEnd="60dp"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
             <ImageView
@@ -62,9 +62,9 @@
                 android:background="@drawable/circular_button_white"
                 android:src="@drawable/icon_messages_menu_selected"
                 android:tint="@color/inatapptheme_color"
-                android:layout_gravity="right|top"
+                android:layout_gravity="end|top"
                 android:layout_marginTop="14dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
                 app:layout_collapseMode="pin"
                 android:clickable="true"
                 android:contentDescription="@string/send_a_message"
@@ -119,8 +119,8 @@
 
                 <RelativeLayout
                     android:paddingTop="40dp"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -231,8 +231,8 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/see_more_identifications"
             android:textColor="@drawable/circular_button_text"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
             android:textSize="16sp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
@@ -287,8 +287,8 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/see_more_species"
             android:textColor="@drawable/circular_button_text"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
             android:textSize="16sp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
@@ -346,8 +346,8 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/see_more_observations"
             android:textColor="@drawable/circular_button_text"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
             android:textSize="16sp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"

@@ -88,7 +88,7 @@
     <string name="no_projects">לא נמצאו פרויקטים!</string>
     <string name="no_guides">לא נמצאו מדריכים!</string>
     <string name="loading_projects">טוען פרויקטים...</string>
-    <string name="joined_projects">הצטרף/פה</string>
+    <string name="joined_projects">אליהם הצטרפתי</string>
     <string name="nearby_projects">בקרבת מקום</string>
     <!-- Tab title for the list of featured projects in the Projects screen -->
     <string name="featured_projects">נבחרים</string>
@@ -119,7 +119,7 @@
     <string name="delete_confirmation">האם את/ה בטוח/ה שברצונך למחוק תצפית זו?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">מדריכים</string>
-    <string name="my_guides">שלך</string>
+    <string name="my_guides">שלי</string>
     <string name="nearby_guides">בקרבת מקום</string>
     <string name="all_guides">הכל</string>
     <string name="no_taxa">לא נמצאב קבוצה עבור מדריך זה!</string>
@@ -258,7 +258,7 @@
     <string name="camera">צלם/י תמונה</string>
     <!-- Label for a button to import an existing photo for an observation -->
     <string name="upload_photo">בחר/י תמונה</string>
-    <string name="first">הראשון</string>
+    <string name="first">ראשון</string>
     <string name="make_first">שנו לראשון</string>
     <string name="notes">רשימות</string>
     <string name="location_is">מיקום הוא</string>
@@ -298,7 +298,7 @@
         <item quantity="other">כלול ב %1$d פרויקטים</item>
     </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy היא הגדרה של תצפית הקובעת איך יוצג המיקום (קו אורך וקו אורך). האפשרויות הן:<br/><b>פתוח</b> - קואורדינטות גלויות אלא אם הזן בסכנה. <br/><b>מוסתר</b> - הקואורדינטות נמצאות בנקודה רנדומלית בטווח של. 2 מעלות, בשטח שמכיל את הקואורדינטות האמיתיות, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. הקואורדינטות גלויות לך ולאחראי על הפרויקט. <br/><b>פרטי</b> - הקואורדינטות מוסתרות, הקואורדינטות גלויות לך ולאחראי על הפרויקט אליו הוספת את התצפיות. <br/><br/>Note that האחראים על הפרויקט תמיד יראו את המיקומים, לא תלוי ברמת הפרטיות, אם את/ה רוצים לשמור על הגישה למיקומים, בדקו היטב מי האחראים לפרוייקטים שאתם שותפים בם. ]]></string>
-    <string name="id_title">%1$s\'s מזהה • %2$s</string>
+    <string name="id_title">%1$s • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">מחק/י</string>
     <string name="delete_id">הסר/הסירי זיהוי</string>
@@ -715,14 +715,14 @@
     <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Molt</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
-    <string name="joined_projects_all_caps">הצטרפו</string>
+    <string name="joined_projects_all_caps">אליהם הצטרפתי</string>
     <string name="nearby_projects_all_caps">בקרבת מקום</string>
-    <string name="featured_projects_all_caps">תכונות</string>
+    <string name="featured_projects_all_caps">נבחרים</string>
     <!-- Text for a button or label that allows someone to join a project -->
     <string name="join_all_caps">הצטרפו</string>
-    <string name="my_guides_all_caps">שלך</string>
+    <string name="my_guides_all_caps">שלי</string>
     <string name="nearby_guides_all_caps">בקרבת מקום</string>
-    <string name="all_guides_all_caps">כל</string>
+    <string name="all_guides_all_caps">הכל</string>
     <string name="description_all_caps">תיאור</string>
     <string name="quantity_all_caps">כמות</string>
     <plurals name="observation_count_all_caps">
@@ -840,7 +840,7 @@
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
     <string name="ucrop_label_original">מקור</string>
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
-    <string name="ucrop_label_free">חינם</string>
+    <string name="ucrop_label_free">חופשי</string>
     <!-- Verb phrase, button label to edit an observation photo -->
     <string name="ucrop_label_edit_photo">ערוך תמונה</string>
     <string name="service_temporarily_unavailable">Service temporarily unavailable.</string>
@@ -991,13 +991,17 @@
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
     <string name="deleted_user">Deleted User</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short_this_year">MMM d</string>
+    <string name="date_short_this_year">d MMM</string>
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short">MM/dd/yy</string>
+    <string name="date_short">dd/MM/yy</string>
     <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">d MMM yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">d MMMM, yyyy HH:mm</string>
     <string name="show_common_names">הצג שמות נפוצים</string>
     <string name="show_common_names_description">השביתו אם ברצונכם להציג רק שמות מדעיים</string>
     <string name="email_must_look_like_email_address">חייב להראות כמו כתובת אימייל</string>
@@ -1175,5 +1179,65 @@
     <string name="default_observation_action">Default Observation Action</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Show Options</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Field Value</string>
+    <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
+    <string name="delete_attribute_value">Delete attribute value</string>
+    <string name="open_menu_for_more_options">Open menu for more options</string>
+    <string name="california_academy_of_sciences">California Academy of Sciences</string>
+    <string name="national_geographic">National Geographic</string>
+    <string name="change_user_profile_photo">Change user profile photo</string>
+    <string name="expand_list">Expand list</string>
+    <string name="change_map_layers">Change map layers (terrain vs. satellite)</string>
+    <string name="redo_observation_search">Redo observation search in this map area</string>
+    <string name="view_observations_on_map">View observations on map</string>
+    <string name="view_observations_on_grid">View observations on grid</string>
+    <string name="clear_text">Clear text</string>
+    <string name="observation_has_sounds">Observation has sounds</string>
+    <string name="go_to_my_location">Go to my current location</string>
+    <string name="change_geoprivacy">Change geoprivacy</string>
+    <string name="active_filters">Active filters</string>
+    <string name="message_is_flagged">Message is flagged</string>
+    <string name="user_is_muted">User is muted</string>
+    <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
+    <string name="delete_observations">Delete observations</string>
+    <string name="clear_species_guess">Clear species guess</string>
+    <string name="comment_count">Comment count</string>
+    <string name="id_count">Identification count</string>
+    <string name="observation_selected">Observation selected</string>
+    <string name="share_observation">Share observation</string>
+    <string name="unknown_location">Unknown location</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Close</string>
+    <string name="set_date2">Set date</string>
+    <string name="project_selected">Project Selected</string>
+    <string name="project_unselected">Project Unselected</string>
+    <string name="show_my_observations">Show my observations</string>
+    <string name="play_pause_sound">Play or pause sound</string>
+    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
+    <string name="view_image">View image</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Assessment passes</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Agree assessment passes</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Does not pass assessment</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Disagree assessment passes</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Delete %1$d selected observation</item>
+        <item quantity="two">Delete %1$d selected observations</item>
+        <item quantity="many">Delete %1$d selected observations</item>
+        <item quantity="other">Delete %1$d selected observations</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Sync %1$d selected observation</item>
+        <item quantity="two">Sync %1$d selected observations</item>
+        <item quantity="many">Sync %1$d selected observations</item>
+        <item quantity="other">Sync %1$d selected observations</item>
+    </plurals>
+    <string name="add_media_evidence">Add media evidence</string>
+    <string name="remove_identification">Remove identification</string>
     <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
+    <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
 </resources>

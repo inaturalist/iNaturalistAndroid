@@ -1116,12 +1116,12 @@ de <a href="https://www.inaturalist.org/pages/community+guidelines">gemeenschaps
     <string name="default_licenses">Standaardlicentie</string>
     <string name="default_observation_license">Standaard Waarnemingslicentie</string>
     <string name="default_photo_license">Standaard Fotolicentie</string>
-    <string name="default_sound_license">Standaard Opnamelicentie</string>
+    <string name="default_sound_license">Standaard Geluidslicentie</string>
     <string name="change_existing_licenses">Bestaande licenties wijzigen</string>
     <string name="change_licenses_for_existing_observations">Wijzig de licenties voor bestaande waarnemingen, foto\'s en geluiden</string>
-    <string name="change_licenses_for_all_existing_observations">Wijzig de licenties voor alle bestaande waarnemingen</string>
-    <string name="change_licenses_for_all_existing_photos">Wijzig de licenties voor alle bestaande waarnemingen</string>
-    <string name="change_licenses_for_all_existing_sounds">Wijzig de licenties voor alle bestaande geluiden</string>
+    <string name="change_licenses_for_all_existing_observations">Wijzig bestaande waarnemingslicenties</string>
+    <string name="change_licenses_for_all_existing_photos">Wijzig bestaande fotolicenties</string>
+    <string name="change_licenses_for_all_existing_sounds">Wijzig bestaande geluidslicenties</string>
     <string name="change_observation_licenses">Wijzig waarnemingslicenties</string>
     <string name="change_photo_licenses">Fotolicenties wijzigen</string>
     <string name="change_sound_licenses">Geluidslicenties wijzigen</string>
@@ -1168,5 +1168,61 @@ zonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van d
     <string name="default_observation_action">Standaard waarneming actie</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Toon Opties</string>
-    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Veldwaarde</string>
+    <string name="expand_annotation_to_agree_or_disagree">Annotatie uitbreiden om wel of niet akkoord te gaan</string>
+    <string name="delete_attribute_value">Kenmerkwaarde verwijderen</string>
+    <string name="open_menu_for_more_options">Menu openen voor meer opties</string>
+    <string name="california_academy_of_sciences">California Academy of Sciences</string>
+    <string name="national_geographic">National Geographic</string>
+    <string name="change_user_profile_photo">Wijzig profielfoto van gebruiker</string>
+    <string name="expand_list">Lijst uitvouwen</string>
+    <string name="change_map_layers">Wijzig kaartlaag (terrein vs. satelliet)</string>
+    <string name="redo_observation_search">Opnieuw zoeken naar waarneming in dit gebied</string>
+    <string name="view_observations_on_map">Toon waarnemingen op kaart</string>
+    <string name="view_observations_on_grid">Toon waarnemingen op raster</string>
+    <string name="clear_text">Tekst wissen</string>
+    <string name="observation_has_sounds">Waarneming heeft geluiden</string>
+    <string name="go_to_my_location">Ga naar mijn huidige locatie</string>
+    <string name="change_geoprivacy">Geoprivacy wijzigen</string>
+    <string name="active_filters">Actieve filters</string>
+    <string name="message_is_flagged">Bericht is gemarkeerd</string>
+    <string name="user_is_muted">Gebruiker is gedempt</string>
+    <string name="cancel_multiple_obs_selection">Annuleer meerdere waarnemingenselectie</string>
+    <string name="delete_observations">Waarnemingen verwijderen</string>
+    <string name="clear_species_guess">Soortengok verwijderen</string>
+    <string name="comment_count">Aantal reacties</string>
+    <string name="id_count">Determinaties aantal</string>
+    <string name="observation_selected">Geselecteerde waarneming</string>
+    <string name="share_observation">Deel waarneming</string>
+    <string name="unknown_location">Onbekende locatie</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Sluiten</string>
+    <string name="set_date2">Stel datum in</string>
+    <string name="project_selected">Geselecteerd project</string>
+    <string name="project_unselected">Niet geselecteerd project</string>
+    <string name="show_my_observations">Toon mijn waarnemingen</string>
+    <string name="play_pause_sound">Geluid afspelen of pauzeren</string>
+    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences en National Geographic</string>
+    <string name="view_image">Toon afbeelding</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Beoordeling geslaagd</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Overeenstemming beoordeling geslaagd</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Beoordeling niet geslaagd</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Geen overstemming Beoordeling geslaagd</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Verwijder %1$d geselecteerde waarneming</item>
+        <item quantity="other">Verwijder %1$d geselecteerde waarnemingen</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Synchroniseer %1$d geselecteerde waarneming</item>
+        <item quantity="other">Synchroniseer %1$d geselecteerde waarnemingen</item>
+    </plurals>
+    <string name="add_media_evidence">Mediabewijs toevoegen</string>
+    <string name="remove_identification">Determinatie verwijderen</string>
+    <string name="issue_with_updating_photos">Er is een fout opgetreden tijdens het bijwerken van de foto\'s in deze waarneming die onlangs zijn opgelost. Log alsjeblieft uit en log opnieuw in om dit probleem op te lossen.</string>
+    <string name="app_version_copied_to_clipboard">Versie van de app gekopieerd naar klembord</string>
 </resources>

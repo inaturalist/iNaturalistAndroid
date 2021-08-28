@@ -1163,5 +1163,61 @@
     <string name="default_observation_action">Acció per defecte per a les Observacions</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Mostrar opcions</string>
-    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Valor del camp</string>
+    <string name="expand_annotation_to_agree_or_disagree">Expandir anotació per acceptar-la o no.</string>
+    <string name="delete_attribute_value">Esborrar valor de l\'atribut</string>
+    <string name="open_menu_for_more_options">Obrir menú per a més opcions</string>
+    <string name="california_academy_of_sciences">California Academy of Sciences</string>
+    <string name="national_geographic">National Geographic</string>
+    <string name="change_user_profile_photo">Canvia la foto de perfil</string>
+    <string name="expand_list">Expandir llista</string>
+    <string name="change_map_layers">Canvia les capes del mapa (terreny o satèl·lit)</string>
+    <string name="redo_observation_search">Refer la cerca d\'observacions en aquesta àrea del mapa</string>
+    <string name="view_observations_on_map">Veure observacions en el mapa</string>
+    <string name="view_observations_on_grid">Veure observacions en una graella</string>
+    <string name="clear_text">Netejat el text</string>
+    <string name="observation_has_sounds">L\'observació té sons.</string>
+    <string name="go_to_my_location">Anar a la meva ubicació actual</string>
+    <string name="change_geoprivacy">Canvia la geoprivacitat</string>
+    <string name="active_filters">Filtres actius</string>
+    <string name="message_is_flagged">El missatge ha estat marcat</string>
+    <string name="user_is_muted">L\'usuari ha estat silenciat</string>
+    <string name="cancel_multiple_obs_selection">Cancel·lar la selecció múltiple d\'observacions</string>
+    <string name="delete_observations">Esborra observacions</string>
+    <string name="clear_species_guess">Neteja suggeriments d\'espècies</string>
+    <string name="comment_count">Nombre de comentaris</string>
+    <string name="id_count">Nombre d\'identificacions</string>
+    <string name="observation_selected">Observació seleccionada</string>
+    <string name="share_observation">Compartir observació</string>
+    <string name="unknown_location">Ubicació desconeguda</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Tancar</string>
+    <string name="set_date2">Estableix data</string>
+    <string name="project_selected">Projecte seleccionat</string>
+    <string name="project_unselected">Projecte no seleccionat</string>
+    <string name="show_my_observations">Mostra les meves observacions</string>
+    <string name="play_pause_sound">Reprodueix o atura el so</string>
+    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences і National Geographic</string>
+    <string name="view_image">Mostra la imatge</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Passis d\'avaluació</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Acceptar el passi d\'avaluació</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">No passa l\'avaluació</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">En desacord amb el passi d\'avaluació</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Eliminar %1$d observació seleccionada</item>
+        <item quantity="other">Eliminar %1$d observacions seleccionades</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Sincronitzar %1$d observació seleccionada</item>
+        <item quantity="other">Sincronitzar %1$d observacions seleccionades</item>
+    </plurals>
+    <string name="add_media_evidence">Afegeix altres mitjans multimèdia de prova</string>
+    <string name="remove_identification">Eliminar identificació</string>
+    <string name="issue_with_updating_photos">Va haber un problema durant l\'actualització de les fotos d\'aquesta observació que s\'ha corregit darrerament. Si us plau, tanca la sessió i inicia-la de nou per resoldre aquest problema</string>
+    <string name="app_version_copied_to_clipboard">Versió de l\'App copiada al porta-retalls</string>
 </resources>

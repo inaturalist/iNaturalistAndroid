@@ -1181,5 +1181,65 @@ a naše <a href="https://www.inaturalist.org/terms">Smluvní podmínky</a>.]]></
     <string name="default_observation_action">Výchozí akce pro pozorování</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Zobrazit možnosti</string>
-    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Hodnota pole</string>
+    <string name="expand_annotation_to_agree_or_disagree">K vyjádření souhlasu nebo nesouhlasu rozbalte anotaci</string>
+    <string name="delete_attribute_value">Odstranit hodnotu atributu</string>
+    <string name="open_menu_for_more_options">Pro více možností otevřete menu</string>
+    <string name="california_academy_of_sciences">Kalifornská akademie věd</string>
+    <string name="national_geographic">National Geographic</string>
+    <string name="change_user_profile_photo">Změnit profilovou fotografii</string>
+    <string name="expand_list">Rozbalit seznam</string>
+    <string name="change_map_layers">Změnit mapové vrstvy (terénní vs. satelitní)</string>
+    <string name="redo_observation_search">Znovu hledat pozorování v této oblasti mapy</string>
+    <string name="view_observations_on_map">Zobrazit pozorování v mapě</string>
+    <string name="view_observations_on_grid">Zobrazit pozorování v mřížce</string>
+    <string name="clear_text">Vymazat text</string>
+    <string name="observation_has_sounds">Pozorování má zvuky</string>
+    <string name="go_to_my_location">Přejít na mou aktuální polohu</string>
+    <string name="change_geoprivacy">Změnit Soukromí zeměpisné polohy</string>
+    <string name="active_filters">Aktivní filtry</string>
+    <string name="message_is_flagged">Zpráva je označena</string>
+    <string name="user_is_muted">Uživatel je umlčený</string>
+    <string name="cancel_multiple_obs_selection">Zrušit výběr více pozorování</string>
+    <string name="delete_observations">Odstranit pozorování</string>
+    <string name="clear_species_guess">Vyčistit odhad druhů</string>
+    <string name="comment_count">Počet komentářů</string>
+    <string name="id_count">Počet identifikací</string>
+    <string name="observation_selected">Pozorování vybráno</string>
+    <string name="share_observation">Sdílet pozorování</string>
+    <string name="unknown_location">Neznámá poloha</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Zavřít</string>
+    <string name="set_date2">Nastavit datum</string>
+    <string name="project_selected">Projekt byl vybrán</string>
+    <string name="project_unselected">Projekt byl odvybrán</string>
+    <string name="show_my_observations">Ukázat moje pozorování</string>
+    <string name="play_pause_sound">Přehrát nebo pozastavit zvuk</string>
+    <string name="california_academy_of_sciences_and_national_geographic">Kalifornská akademie věd a National Geographic</string>
+    <string name="view_image">Zobrazit obrázek</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Hodnocení kvality splněno</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Souhlasit se splněním kvality</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Hodnocení kvality nesplněno</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Nesouhlasit se splněním kvality</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Odstranit %1$d vybrané pozorování</item>
+        <item quantity="few">Odstranit %1$d vybraná pozorování</item>
+        <item quantity="many">Odstranit %1$d vybraných pozorování</item>
+        <item quantity="other">Odstranit %1$d vybraných pozorování</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Synchronizovat %1$d vybrané pozorování</item>
+        <item quantity="few">Synchronizovat %1$d vybraná pozorování</item>
+        <item quantity="many">Synchronizovat %1$d vybraných pozorování</item>
+        <item quantity="other">Synchronizovat %1$d vybraných pozorování</item>
+    </plurals>
+    <string name="add_media_evidence">Přidat mediální důkaz</string>
+    <string name="remove_identification">Odebrat identifikaci</string>
+    <string name="issue_with_updating_photos">Při aktualizaci fotografií tohoto pozorování došlo k chybě, která byla nedávno opravena. Pro vyřešení tohoto problému se prosím odhlaste a znovu přihlaste.</string>
+    <string name="app_version_copied_to_clipboard">Verze aplikace byla zkopírována do schránky</string>
 </resources>
