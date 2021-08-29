@@ -59,6 +59,8 @@ import com.google.maps.android.data.geojson.GeoJsonLayer;
 import com.google.maps.android.data.geojson.GeoJsonPolygon;
 import com.livefront.bridge.Bridge;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.Predicate;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -1025,7 +1027,11 @@ public class ExploreActivity extends BaseFragmentActivity {
                 JSONObject item = (JSONObject) view.getTag();
 
                 Intent intent = new Intent(ExploreActivity.this, ObservationViewerSlider.class);
-                intent.putExtra("observation", item.toString());
+                intent.putExtra("observation_results", new JSONArray(mResults[VIEW_TYPE_OBSERVATIONS]).toString());
+                intent.putExtra("observation_index", mResults[VIEW_TYPE_OBSERVATIONS].indexOf(item));
+                intent.putExtra("total_results", mTotalResults[VIEW_TYPE_OBSERVATIONS]);
+                intent.putExtra("results_page", mCurrentResultsPage[VIEW_TYPE_OBSERVATIONS]);
+                intent.putExtra("search_filters", mSearchFilters);
                 intent.putExtra("read_only", true);
                 intent.putExtra("reload", true);
                 startActivityForResult(intent, VIEW_OBSERVATION_REQUEST_CODE);

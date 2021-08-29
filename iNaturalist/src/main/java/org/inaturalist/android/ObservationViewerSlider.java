@@ -1,37 +1,55 @@
 package org.inaturalist.android;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.tinylog.Logger;
 
-import uk.co.senab.photoview.log.Logger;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class ObservationViewerSlider extends AppCompatActivity {
+    private static final String TAG = "ObservationViewerSlider";
     private ViewPager mPager;
     private ScreenSlidePagerAdapter mPagerAdapter;
 
     Map<Integer, Fragment> mFragmentsByPositions = new HashMap<>();
     int mLastPosition = 0;
 
+    private static final int OBS_RESULTS_BUFFER = 5;
+    private ActivityHelper mHelper;
+    private INaturalistApp mApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.obs_viewer_slider);
+
+        mHelper = new ActivityHelper(this);
+        mApp = (INaturalistApp) getApplicationContext();
 
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
@@ -83,6 +101,14 @@ public class ObservationViewerSlider extends AppCompatActivity {
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
         private Cursor mCursor;
         private boolean mIsReadOnly;
+        private List<JSONObject> mObsResults = null;
+        private boolean mLoadingNextResults = false;
+        private String mLatestSearchUuid = null;
+        private ExploreSearchFilters mSearchFilters;
+        private int mTotalResults;
+        private int mCurrentResultsPage;
+        private ExploreResultsReceiver mExploreResultsReceiver;
+
 
         public ScreenSlidePagerAdapter(FragmentManager fm) {
             super(fm);
@@ -103,6 +129,10 @@ public class ObservationViewerSlider extends AppCompatActivity {
 
 
             String obsJson = intent.getStringExtra("observation");
+            String obsResults = intent.getStringExtra("observation_results");
+            Integer obsIndex = intent.getIntExtra("observation_index", 0);
+            Integer totalResults = intent.getIntExtra("total_results", 0);
+            Integer resultsPage = intent.getIntExtra("results_page", 0);
             Integer obsId = null;
             boolean isExternalId = false;
 
@@ -122,7 +152,27 @@ public class ObservationViewerSlider extends AppCompatActivity {
                 c.close();
             }
 
-            if (mIsReadOnly) {
+            if (obsResults != null) {
+                mLastPosition = obsIndex;
+                try {
+                    JSONArray array = new JSONArray(obsResults);
+                    mObsResults = new ArrayList<>();
+                    for (int i = 0; i < array.length(); i++) {
+                        mObsResults.add(array.getJSONObject(i));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                mTotalResults = totalResults;
+                mCurrentResultsPage = resultsPage;
+                mSearchFilters = (ExploreSearchFilters) intent.getSerializableExtra("search_filters");
+
+                mExploreResultsReceiver = new ExploreResultsReceiver();
+                IntentFilter filter = new IntentFilter();
+                filter.addAction(INaturalistService.EXPLORE_GET_OBSERVATIONS_RESULT);
+                BaseFragmentActivity.safeRegisterReceiver(mExploreResultsReceiver, filter, ObservationViewerSlider.this);
+
+            } else if (mIsReadOnly) {
                 // Show only one observation (don't allow swiping)
                 mLastPosition = 0;
             } else if (!mIsReadOnly) {
@@ -169,7 +219,16 @@ public class ObservationViewerSlider extends AppCompatActivity {
         public Fragment getItem(int position) {
             Fragment fragment = new ObservationViewerFragment();
 
-            if (!mIsReadOnly) {
+            if (mObsResults != null) {
+                Bundle args = new Bundle();
+                args.putString(ObservationViewerFragment.OBSERVATION, mObsResults.get(position).toString());
+                fragment.setArguments(args);
+
+                if (position >= mObsResults.size() - OBS_RESULTS_BUFFER) {
+                    // Reaching the end of the result list - download the next page
+                    loadNextResultsPage();
+                }
+            } else if (!mIsReadOnly) {
                 Uri obsUri = getObsUriByPosition(position);
                 Bundle args = new Bundle();
                 args.putString(ObservationViewerFragment.OBS_URI, obsUri.toString());
@@ -182,7 +241,102 @@ public class ObservationViewerSlider extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return mIsReadOnly ? 1 : mCursor.getCount();
+            if (mObsResults != null) {
+                return mObsResults.size();
+            } else if (mIsReadOnly) {
+                return 1;
+            } else {
+                return mCursor.getCount();
+            }
+        }
+
+        private void loadNextResultsPage() {
+            if (!mLoadingNextResults && mObsResults.size() < mTotalResults) {
+                mLoadingNextResults = true;
+
+                String action = INaturalistService.ACTION_EXPLORE_GET_OBSERVATIONS;
+
+                Intent serviceIntent = new Intent(action, null, ObservationViewerSlider.this, INaturalistService.class);
+                serviceIntent.putExtra(INaturalistService.FILTERS, mSearchFilters);
+                serviceIntent.putExtra(INaturalistService.PAGE_NUMBER, mCurrentResultsPage + 1);
+                mLatestSearchUuid = UUID.randomUUID().toString();
+                serviceIntent.putExtra(INaturalistService.UUID, mLatestSearchUuid);
+                ContextCompat.startForegroundService(ObservationViewerSlider.this, serviceIntent);
+
+            }
+        }
+
+        private class ExploreResultsReceiver extends BroadcastReceiver {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Bundle extras = intent.getExtras();
+
+                String uuid = intent.getStringExtra(INaturalistService.UUID);
+
+                if ((uuid == null) || (mLatestSearchUuid == null)) {
+                    Logger.tag(TAG).debug("Null UUID or latest search UUID");
+                    return;
+                }
+
+                if (!mLatestSearchUuid.equals(uuid)) {
+                    Logger.tag(TAG).debug("UUID Mismatch %s - %s", uuid, mLatestSearchUuid);
+                    return;
+                }
+
+                mLoadingNextResults = false;
+
+                String error = extras.getString("error");
+                if (error != null) {
+                    mHelper.alert(String.format(getString(R.string.couldnt_load_results), error));
+                    return;
+                }
+
+                boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
+                BetterJSONObject resultsObject;
+                SerializableJSONArray resultsJSON;
+
+                if (isSharedOnApp) {
+                    resultsObject = (BetterJSONObject) mApp.getServiceResult(intent.getAction());
+                } else {
+                    resultsObject = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.RESULTS);
+                }
+
+                JSONArray results = null;
+                int totalResults = 0;
+
+                if (resultsObject != null) {
+                    resultsJSON = resultsObject.getJSONArray("results");
+                    Integer count = resultsObject.getInt("total_results");
+                    mCurrentResultsPage = resultsObject.getInt("page");
+                    if (count != null) {
+                        totalResults = count;
+                        results = resultsJSON.getJSONArray();
+                    }
+                }
+
+                if (results == null) {
+                    return;
+                }
+
+                ArrayList<JSONObject> resultsArray = new ArrayList<JSONObject>();
+
+                for (int i = 0; i < results.length(); i++) {
+                    try {
+                        JSONObject item = results.getJSONObject(i);
+                        resultsArray.add(item);
+                    } catch (JSONException e) {
+                        Logger.tag(TAG).error(e);
+                    }
+                }
+
+                // Paginated results - append to old ones
+                mObsResults.addAll(resultsArray);
+                mTotalResults = totalResults;
+
+                notifyDataSetChanged();
+            }
         }
     }
+
+
 }

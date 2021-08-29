@@ -825,7 +825,7 @@ public class INaturalistService extends IntentService {
                 // Reload the observation at the end (need to refresh comment/ID list)
                 JSONObject observationJson = getObservationJson(observationId, false, false);
 
-                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                Intent reply = new Intent(ACTION_OBSERVATION_RESULT + observationId);
                 if (observationJson != null) {
                     Observation observation = new Observation(new BetterJSONObject(observationJson));
                     reply.putExtra(OBSERVATION_RESULT, observation);
@@ -842,7 +842,7 @@ public class INaturalistService extends IntentService {
                 // Reload the observation at the end (need to refresh comment/ID list)
                 JSONObject observationJson = getObservationJson(observationId, false, false);
 
-                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                Intent reply = new Intent(ACTION_OBSERVATION_RESULT + observationId);
 
                 if (observationJson != null) {
                     Observation observation = new Observation(new BetterJSONObject(observationJson));
@@ -862,7 +862,7 @@ public class INaturalistService extends IntentService {
                 // Reload the observation at the end (need to refresh comment/ID list)
                 JSONObject observationJson = getObservationJson(observationId, false, false);
 
-                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                Intent reply = new Intent(ACTION_OBSERVATION_RESULT + observationId);
 
                 if (observationJson != null) {
                     Observation observation = new Observation(new BetterJSONObject(observationJson));
@@ -880,7 +880,7 @@ public class INaturalistService extends IntentService {
                 // Reload the observation at the end (need to refresh comment/ID list)
                 JSONObject observationJson = getObservationJson(observationId, false, false);
 
-                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                Intent reply = new Intent(ACTION_OBSERVATION_RESULT + observationId);
 
                 if (observationJson != null) {
                     Observation observation = new Observation(new BetterJSONObject(observationJson));
@@ -927,7 +927,7 @@ public class INaturalistService extends IntentService {
                 if (observationJson != null) {
                     Observation observation = new Observation(new BetterJSONObject(observationJson));
 
-                    Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                    Intent reply = new Intent(ACTION_OBSERVATION_RESULT + observationId);
                     reply.putExtra(OBSERVATION_RESULT, observation);
                     reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
                     LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
@@ -1549,7 +1549,7 @@ public class INaturalistService extends IntentService {
                 // Reload the observation at the end (need to refresh comment/ID list)
                 JSONObject observationJson = getObservationJson(observationId, false, false);
 
-                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                Intent reply = new Intent(ACTION_OBSERVATION_RESULT + observationId);
 
                 if (observationJson == null) {
                     reply.putExtra(OBSERVATION_RESULT, (Serializable)null);
@@ -1574,7 +1574,7 @@ public class INaturalistService extends IntentService {
                 if (observationJson != null) {
                     Observation observation = new Observation(new BetterJSONObject(observationJson));
 
-                    Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                    Intent reply = new Intent(ACTION_OBSERVATION_RESULT + observationId);
                     reply.putExtra(OBSERVATION_RESULT, observation);
                     reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
                     LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
@@ -1591,7 +1591,7 @@ public class INaturalistService extends IntentService {
                 if (observationJson != null) {
                     Observation observation = new Observation(new BetterJSONObject(observationJson));
 
-                    Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                    Intent reply = new Intent(ACTION_OBSERVATION_RESULT + observationId);
                     reply.putExtra(OBSERVATION_RESULT, observation);
                     reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
                     LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
@@ -1977,7 +1977,7 @@ public class INaturalistService extends IntentService {
                 boolean getProjects = intent.getExtras().getBoolean(GET_PROJECTS);
                 JSONObject observationJson = getObservationJson(id, false, getProjects);
 
-                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                Intent reply = new Intent(ACTION_OBSERVATION_RESULT + id);
 
                 synchronized (mObservationLock) {
                     String jsonString = observationJson != null ? observationJson.toString() : null;

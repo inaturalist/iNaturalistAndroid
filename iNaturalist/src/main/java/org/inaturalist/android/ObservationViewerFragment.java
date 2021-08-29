@@ -121,6 +121,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
     public static final int RESULT_FLAGGED_AS_CAPTIVE = 0x300;
     public static final int RESULT_OBSERVATION_CHANGED = 0x301;
     public static final String OBS_URI = "obs_uri";
+    public static final String OBSERVATION = "observation";
 
     private static String TAG = "ObservationViewerFragment";
 
@@ -851,9 +852,10 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
         Bundle args = getArguments();
         String uriString = args != null ? args.getString(OBS_URI) : getActivity().getIntent().getDataString();
+        String obsJson = args != null ? args.getString(OBSERVATION) : getActivity().getIntent().getStringExtra("observation");
         Intent intent = getActivity().getIntent();
 
-		if (savedInstanceState == null) {
+        if ((savedInstanceState == null) || (uriString == null)) {
 			// Do some setup based on the action being performed.
 			Uri uri = uriString != null ? Uri.parse(uriString) : null;
 
@@ -887,7 +889,6 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                 mShowComments = intent.getBooleanExtra(SHOW_COMMENTS, false);
                 mScrollToCommentsBottom = intent.getBooleanExtra(SCROLL_TO_COMMENTS_BOTTOM, false);
                 if (uri == null) {
-                    String obsJson = intent.getStringExtra("observation");
                     mReadOnly = intent.getBooleanExtra("read_only", false);
                     mReloadObs = intent.getBooleanExtra("reload", false);
                     mObsJson = obsJson;
@@ -956,7 +957,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
         if ((mObservation != null) && (mObsJson == null)) {
             mObservationReceiver = new ObservationReceiver();
-            IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+            IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT + mObservation.id);
             Logger.tag(TAG).info("Registering ACTION_OBSERVATION_RESULT");
             BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, getActivity());
 
@@ -1236,7 +1237,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             public void onIdentificationAdded(BetterJSONObject taxon) {
                 try {
                     // After calling the added ID API - we'll refresh the comment/ID list
-                    IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+                    IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT + mObservation.id);
                     BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, getActivity());
 
                     Intent serviceIntent = new Intent(INaturalistService.ACTION_AGREE_ID, null, getActivity(), INaturalistService.class);
@@ -1264,7 +1265,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             @Override
             public void onIdentificationRemoved(BetterJSONObject taxon) {
                 // After calling the remove API - we'll refresh the comment/ID list
-                IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+                IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT + mObservation.id);
                 BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, getActivity());
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_REMOVE_ID, null, getActivity(), INaturalistService.class);
@@ -1303,7 +1304,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                                 String body = input.getText().toString();
 
                                 // After calling the update API - we'll refresh the comment/ID list
-                                IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+                                IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT + mObservation.id);
                                 BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, getActivity());
 
                                 Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_ID, null, getActivity(), INaturalistService.class);
@@ -1325,7 +1326,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             @Override
             public void onIdentificationRestored(BetterJSONObject id) {
                 // After calling the restore ID API - we'll refresh the comment/ID list
-                IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+                IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT + mObservation.id);
                 BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, getActivity());
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_RESTORE_ID, null, getActivity(), INaturalistService.class);
@@ -1338,7 +1339,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             @Override
             public void onCommentRemoved(BetterJSONObject comment) {
                  // After calling the remove API - we'll refresh the comment/ID list
-                IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+                IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT + mObservation.id);
                 BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, getActivity());
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_DELETE_COMMENT, null, getActivity(), INaturalistService.class);
@@ -1376,7 +1377,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                                 String commentBody = input.getText().toString();
 
                                 // After calling the update API - we'll refresh the comment/ID list
-                                IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+                                IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT + mObservation.id);
                                 BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, getActivity());
 
                                 Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_COMMENT, null, getActivity(), INaturalistService.class);
@@ -1470,7 +1471,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                         refreshActivity();
 
                         // Refresh the comment/id list
-                        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+                        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT + mObservation.id);
                         BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, getActivity());
 
                         mAddCommentContainer.setVisibility(View.GONE);
@@ -1689,7 +1690,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
         if ((mObservation != null) && (mObservation.id != null) && (mCommentsIds == null)) {
             BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, getActivity());
             mObservationReceiver = new ObservationReceiver();
-            IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+            IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT + mObservation.id);
             Logger.tag(TAG).info("Registering ACTION_OBSERVATION_RESULT");
             BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, getActivity());
 
@@ -2457,7 +2458,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             // Re-download the observation JSON so we'll refresh the annotations
 
             mObservationReceiver = new ObservationReceiver();
-            IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+            IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT + mObservation.id);
             Logger.tag(TAG).info("Registering ACTION_OBSERVATION_RESULT");
             BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, getActivity());
 
@@ -3237,7 +3238,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
                         // Refresh the comment/id list
                         mReloadTaxon = true;
-                        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+                        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT + mObservation.id);
                         BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, getActivity());
 
                     }
@@ -3253,7 +3254,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             refreshFavorites();
 
             // Refresh the comment/id list
-            IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+            IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT + mObservation.id);
             BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, getActivity());
             Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, getActivity(), INaturalistService.class);
             serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
