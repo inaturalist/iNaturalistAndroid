@@ -415,7 +415,10 @@ public class ObservationEditor extends AppCompatActivity {
             setResult(RESULT_OK, (new Intent()).setAction(mUri.toString()));
             getIntent().setAction(Intent.ACTION_INSERT);
 
-        } else if (savedInstanceState == null) {
+        } else if ((savedInstanceState == null) ||
+                ((mUri == null) && (intent != null) && (intent.getData() != null))) {
+            Logger.tag(TAG).error("Insert 1b");
+
             // Do some setup based on the action being performed.
             Uri uri = intent.getData();
             if (uri == null) {
