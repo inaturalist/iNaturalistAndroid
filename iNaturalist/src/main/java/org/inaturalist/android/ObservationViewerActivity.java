@@ -29,6 +29,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.ActionBar;
@@ -691,7 +692,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         mApp = (INaturalistApp) getApplicationContext();
         mApp.applyLocaleSettings(getBaseContext());
-        DataBindingUtil.setContentView(this, R.layout.observation_viewer);
+        ViewDataBinding binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.observation_viewer, null, false);
+        setContentView(binding.getRoot());
+
         mHelper = new ActivityHelper(this);
 
         mMetadataObservationID = (TextView) findViewById(R.id.observation_id);

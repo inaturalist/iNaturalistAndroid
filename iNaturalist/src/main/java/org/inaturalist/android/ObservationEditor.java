@@ -96,6 +96,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
 import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.ActionBar;
@@ -352,7 +353,8 @@ public class ObservationEditor extends AppCompatActivity {
         mApp = (INaturalistApp) getApplicationContext();
         mApp.applyLocaleSettings(getBaseContext());
 
-        DataBindingUtil.setContentView(this, R.layout.observation_confirmation);
+        ViewDataBinding binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.observation_confirmation, null, false);
+        setContentView(binding.getRoot());
 
         setTitle(R.string.edit_observation);
 

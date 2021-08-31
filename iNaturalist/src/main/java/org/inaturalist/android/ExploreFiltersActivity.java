@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.DialogFragment;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -177,7 +178,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         mApp = (INaturalistApp) getApplicationContext();
         mApp.applyLocaleSettings(getBaseContext());
 
-        DataBindingUtil.setContentView(this, R.layout.explore_filters);
+        ViewDataBinding binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.explore_filters, null, false);
+        setContentView(binding.getRoot());
 
         Intent intent = getIntent();
 
