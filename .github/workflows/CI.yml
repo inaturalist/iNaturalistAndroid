@@ -14,7 +14,7 @@ jobs:
 
       - name: Copy config files
         run: |
-          cp iNaturalist/src/main/res/values/config.example.xml iNaturalist/src/main/res/values/config.xml
+          sed -E 's/<!-- *</</' iNaturalist/src/main/res/values/config.example.xml | sed -E 's/> *-->/>/' > iNaturalist/src/main/res/values/config.xml
           cp iNaturalist/google-services.example.json iNaturalist/google-services.json
 
       - name: run tests
