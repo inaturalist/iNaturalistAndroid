@@ -633,6 +633,7 @@
     <string name="project_observations">Beobachtungen</string>
     <string name="project_species">Arten</string>
     <string name="project_people">Personen</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Identifikatoren</string>
     <string name="got_it">Verstanden!</string>
     <string name="view_all">Alle anzeigen</string>
@@ -644,11 +645,11 @@
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
     <string name="disagree">Widersprechen</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
-    <string name="annotations">Anmerkungen</string>
+    <string name="annotations">Annotationen</string>
     <!-- Used when filtering observations with annotations -->
-    <string name="with_annotation">Mit Anmerkungen</string>
+    <string name="with_annotation">Mit Annotation</string>
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
-    <string name="annotation_name">Anmerkungsname</string>
+    <string name="annotation_name">Kategorie der Annotation</string>
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Keine</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
@@ -749,7 +750,7 @@
     <string name="no_as_good_as_it_can_be">Nein, es ist so gut wie es nur sein kann</string>
     <string name="seasonality">Jahreszeitliche Verteilung</string>
     <string name="verifiable">Verifizierbar</string>
-    <string name="no_annotation">Keine Anmerkungen</string>
+    <string name="no_annotation">Keine Annotation</string>
     <string name="donate_to_inaturalist">An iNaturalist spenden</string>
     <string name="prefers_scientific_name_first">Wissenschaftliche Namen zuerst</string>
     <string name="prefers_scientific_name_first_description">Wissenschaftliche Namen vor allgemeinen Namen anzeigen.</string>
@@ -987,6 +988,10 @@ und unsere <a href="https://www.inaturalist.org/terms">Geschäftsbedingungen</a>
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">d. MMM. yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">d. MMMM yyyy um hh:mma</string>
     <string name="show_common_names">Umgangssprachliche Namen anzeigen</string>
     <string name="show_common_names_description">Deaktiviere diese Option, wenn nur wissenschaftliche Namen angezeigt werden sollen.</string>
     <string name="email_must_look_like_email_address">E-Mail-Adresse muss im richtigen Format angegeben werden</string>
@@ -1170,11 +1175,9 @@ Facility</a> (GBIF) generieren: eine internationale, zwischenstaatliche Organisa
     <string name="show_options">Optionen anzeigen</string>
     <!-- Placeholder text for an observation field value -->
     <string name="field_value">Feldwert</string>
-    <string name="expand_annotation_to_agree_or_disagree">Anmerkung erweitern, um zuzustimmen oder abzulehnen</string>
+    <string name="expand_annotation_to_agree_or_disagree">Annotation erweitern, um zuzustimmen oder abzulehnen</string>
     <string name="delete_attribute_value">Attributwert löschen</string>
     <string name="open_menu_for_more_options">Menü für weitere Optionen öffnen</string>
-    <string name="california_academy_of_sciences">California Academy of Sciences</string>
-    <string name="national_geographic">National Geographic</string>
     <string name="change_user_profile_photo">Profilbild ändern</string>
     <string name="expand_list">Liste erweitern</string>
     <string name="change_map_layers">Kartenebenen ändern (Gelände vs. Satellit)</string>

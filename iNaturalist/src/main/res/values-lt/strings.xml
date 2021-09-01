@@ -641,6 +641,7 @@
     <string name="project_observations">Stebėjimai</string>
     <string name="project_species">Rūšys</string>
     <string name="project_people">Žmonės</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Identifikuotojai</string>
     <string name="got_it">Supratau!</string>
     <string name="view_all">Rodyti viską</string>
@@ -999,6 +1000,10 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">MMM d, yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
     <string name="show_common_names">Rodyti lietuviškus pavadinimus</string>
     <string name="show_common_names_description">Išjunkite, jeigu norite matyti tik mokslinius pavadinimus.</string>
     <string name="email_must_look_like_email_address">El. paštas turi atrodyti kaip el. pašto adresas</string>
@@ -1181,8 +1186,6 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <string name="expand_annotation_to_agree_or_disagree">Išplėsti anotaciją sutikri arba nesutikti</string>
     <string name="delete_attribute_value">Trinti požymį</string>
     <string name="open_menu_for_more_options">Atidaryti meniu, kad atsirastų daugiau parinkčių</string>
-    <string name="california_academy_of_sciences">Kalifornijos mokslų akademija</string>
-    <string name="national_geographic">„National Geographic“</string>
     <string name="change_user_profile_photo">Keisti naudotojo profilio nuotrauką</string>
     <string name="expand_list">Išplėsti sąrašą</string>
     <string name="change_map_layers">Keisti žemėlapio sluoksnius (reljefas ir palydovas)</string>

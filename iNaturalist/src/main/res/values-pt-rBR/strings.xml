@@ -633,6 +633,7 @@
     <string name="project_observations">Observações</string>
     <string name="project_species">Espécies</string>
     <string name="project_people">Pessoas</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Identificadores</string>
     <string name="got_it">Entendido!</string>
     <string name="view_all">Visualizar Tudo</string>
@@ -986,6 +987,10 @@
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">MMM d, yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
     <string name="show_common_names">Mostrar nomes comuns</string>
     <string name="show_common_names_description">Desabilite caso queira ver apenas nomes científicos.</string>
     <string name="email_must_look_like_email_address">O e-mail deve parecer um endereço de e-mail</string>
@@ -1004,7 +1009,7 @@
     <string name="only_view_nearby_suggestions">Apenas veja sugestões próximas</string>
     <string name="suggestions_source">Fonte das Sugestões</string>
     <string name="research_grade_observations">Nível de Pesquisa</string>
-    <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
+    <string name="visually_similar_description">O iNaturalist fornecerá sugestões com base em quão visualmente similares são as imagens das espécies observadas perto desta localização nesta época do ano.</string>
     <string name="research_grade_observations_description">Em vez de sugestões visualmente semelhantes, o iNaturalist irá sugerir espécies observadas em um lugar específico e dentro de um grupo taxonômico específico.</string>
     <string name="taxon">Taxonomia</string>
     <string name="place">Local:</string>
@@ -1022,50 +1027,50 @@
     <string name="pretty_sure_infraorder">Estamos bastante seguros de que está nesta infraordem:</string>
     <string name="pretty_sure_subterclass">Estamos bastante seguros de que está nesta subterclasse:</string>
     <string name="pretty_sure_parvorder">Estamos bastante seguros de que está nesta parvordem:</string>
-    <string name="pretty_sure_zoosection">We\'re pretty sure it\'s in this zoosection:</string>
+    <string name="pretty_sure_zoosection">Temos certeza de que está nessa ampliação:</string>
     <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
-    <string name="pretty_sure_superfamily">We\'re pretty sure it\'s in this superfamily:</string>
-    <string name="pretty_sure_epifamily">We\'re pretty sure it\'s in this epifamily:</string>
-    <string name="pretty_sure_family">We\'re pretty sure it\'s in this family:</string>
-    <string name="pretty_sure_subfamily">We\'re pretty sure it\'s in this subfamily:</string>
-    <string name="pretty_sure_supertribe">We\'re pretty sure it\'s in this supertribe:</string>
-    <string name="pretty_sure_tribe">We\'re pretty sure it\'s in this tribe:</string>
-    <string name="pretty_sure_subtribe">We\'re pretty sure it\'s in this subtribe:</string>
-    <string name="pretty_sure_genus">We\'re pretty sure it\'s in this genus:</string>
-    <string name="pretty_sure_genushybrid">We\'re pretty sure it\'s in this genushybrid:</string>
-    <string name="pretty_sure_subgenus">We\'re pretty sure it\'s in this subgenus:</string>
-    <string name="pretty_sure_section">We\'re pretty sure it\'s in this section:</string>
-    <string name="pretty_sure_subsection">We\'re pretty sure it\'s in this subsection:</string>
-    <string name="pretty_sure_complex">We\'re pretty sure it\'s in this complex:</string>
+    <string name="pretty_sure_superfamily">Temos certeza de que está nesta superfamília:</string>
+    <string name="pretty_sure_epifamily">Temos certeza de que está nesta epifamília:</string>
+    <string name="pretty_sure_family">Temos certeza que está nesta família:</string>
+    <string name="pretty_sure_subfamily">Temos certeza que está nesta subfamília:</string>
+    <string name="pretty_sure_supertribe">Temos certeza que está nesta supertribo:</string>
+    <string name="pretty_sure_tribe">Temos certeza que está nesta tribo:</string>
+    <string name="pretty_sure_subtribe">Temos certeza que está nesta subtribo:</string>
+    <string name="pretty_sure_genus">Temos certeza que está neste gênero:</string>
+    <string name="pretty_sure_genushybrid">Temos certeza que está neste gênero híbrido:</string>
+    <string name="pretty_sure_subgenus">Temos certeza que está neste subgênero:</string>
+    <string name="pretty_sure_section">Temos certeza que está nesta seção:</string>
+    <string name="pretty_sure_subsection">Temos certeza que está nesta subseção:</string>
+    <string name="pretty_sure_complex">Temos certeza que está neste complexo de espécies:</string>
     <!-- Singular -->
-    <string name="pretty_sure_species">We\'re pretty sure it\'s in this species:</string>
-    <string name="pretty_sure_hybrid">We\'re pretty sure it\'s in this hybrid:</string>
+    <string name="pretty_sure_species">Temos certeza de que é esta espécie:</string>
+    <string name="pretty_sure_hybrid">Temos certeza de que é este híbrido:</string>
     <!-- Singular -->
-    <string name="pretty_sure_subspecies">We\'re pretty sure it\'s in this subspecies:</string>
-    <string name="pretty_sure_variety">We\'re pretty sure it\'s in this variety:</string>
+    <string name="pretty_sure_subspecies">Temos certeza de que é esta subespécie:</string>
+    <string name="pretty_sure_variety">Temos certeza de que é esta variedade:</string>
     <string name="pretty_sure_form">Estamos bastante seguros de que está nesta forma:</string>
     <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
-    <string name="remove_date_observed">Remove date &amp; time observed</string>
-    <string name="remove_time_observed">Remove time observed</string>
+    <string name="remove_date_observed">Remover a data e hora da observação</string>
+    <string name="remove_time_observed">Remover hora da observação</string>
     <string name="remove_location">Remover localização</string>
-    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
-    <string name="share_location">Share Location</string>
-    <string name="share_hidden_location">Share Hidden Location</string>
+    <string name="are_you_sure_you_want_to_remove_date">Você tem certeza que quer remover a data e hora da observação?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Você tem certeza que quer remover a hora da observação? </string>
+    <string name="are_you_sure_you_want_to_remove_location">Você tem certeza que quer remover a localização? </string>
+    <string name="share_location">Compartilhar localização</string>
+    <string name="share_hidden_location">Compartilhar localização oculta</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
-    <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
-    <string name="sound_format_not_supported">That audio encoding is not supported by Android.</string>
-    <string name="view_observations">View Observations</string>
-    <string name="choose_this_option">Choose this option</string>
-    <string name="compare_observation_with_this_option">Compare observation with this option</string>
+    <string name="couldnt_duplicate_sound">Impossível duplicar som!</string>
+    <string name="sound_format_not_supported">Este formato de áudio não é compatível com Android.</string>
+    <string name="view_observations">Ver observações</string>
+    <string name="choose_this_option">Escolher esta opção</string>
+    <string name="compare_observation_with_this_option">Comparar observação com esta opção</string>
     <string name="go_back">Voltar</string>
     <string name="change_the_source_of_the_suggestions">Alterar a fonte das sugestões</string>
-    <string name="thumbnail_photo_for_suggested_taxon">Thumbnail photo for suggested taxon</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Miniatura de foto para táxon sugerido</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
     <string name="comments_ids_title">Comentários e identificações</string>
     <!-- Accessibility text for the faves tab on the observation detail view -->
-    <string name="faves">Faves</string>
+    <string name="faves">Favoritos</string>
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
     <string name="previous_option">Opção anterior</string>
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
@@ -1113,7 +1118,7 @@
     <string name="default_observation_license">Licença de Observação Padrão</string>
     <string name="default_photo_license">Licença de Foto Padrão</string>
     <string name="default_sound_license">Licença padrão de som</string>
-    <string name="change_existing_licenses">Change Existing Licenses</string>
+    <string name="change_existing_licenses">Alterar licenças existentes</string>
     <string name="change_licenses_for_existing_observations">Alterar licenças para observações, fotos e sons existentes</string>
     <string name="change_licenses_for_all_existing_observations">Alterar licenças para todas as observações existentes</string>
     <string name="change_licenses_for_all_existing_photos">Alterar licenças para todas as fotos existentes</string>
@@ -1156,56 +1161,54 @@
     <string name="license_description_cc_by_nd">Esta licença permite a redistribuição e o uso para fins comerciais e não comerciais, contanto que a obra seja redistribuída sem modificações e completa, e que os créditos sejam atribuídos ao autor.</string>
     <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
     <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
-    <string name="invalid_photo">Photo format not supported</string>
+    <string name="invalid_photo">Formato de foto não suportado</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">Suggestions based on observations and identifications provided by the iNaturalist community, including %1$s, %2$s, %3$s, and many others.</string>
     <!-- Preference to control what tapping on the action button does on My Observations -->
-    <string name="default_observation_action">Default Observation Action</string>
+    <string name="default_observation_action">Ação padrão de observação</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
-    <string name="show_options">Show Options</string>
+    <string name="show_options">Exibir Opções</string>
     <!-- Placeholder text for an observation field value -->
-    <string name="field_value">Field Value</string>
-    <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
-    <string name="delete_attribute_value">Delete attribute value</string>
-    <string name="open_menu_for_more_options">Open menu for more options</string>
-    <string name="california_academy_of_sciences">California Academy of Sciences</string>
-    <string name="national_geographic">National Geographic</string>
-    <string name="change_user_profile_photo">Change user profile photo</string>
-    <string name="expand_list">Expand list</string>
-    <string name="change_map_layers">Change map layers (terrain vs. satellite)</string>
-    <string name="redo_observation_search">Redo observation search in this map area</string>
-    <string name="view_observations_on_map">View observations on map</string>
-    <string name="view_observations_on_grid">View observations on grid</string>
-    <string name="clear_text">Clear text</string>
-    <string name="observation_has_sounds">Observation has sounds</string>
-    <string name="go_to_my_location">Go to my current location</string>
-    <string name="change_geoprivacy">Change geoprivacy</string>
-    <string name="active_filters">Active filters</string>
-    <string name="message_is_flagged">Message is flagged</string>
-    <string name="user_is_muted">User is muted</string>
-    <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
-    <string name="delete_observations">Delete observations</string>
-    <string name="clear_species_guess">Clear species guess</string>
-    <string name="comment_count">Comment count</string>
-    <string name="id_count">Identification count</string>
-    <string name="observation_selected">Observation selected</string>
-    <string name="share_observation">Share observation</string>
-    <string name="unknown_location">Unknown location</string>
+    <string name="field_value">Valor do campo</string>
+    <string name="expand_annotation_to_agree_or_disagree">Expandir anotação para concordar ou discordar</string>
+    <string name="delete_attribute_value">Excluir valor do atributo</string>
+    <string name="open_menu_for_more_options">Abrir menu para mais opções</string>
+    <string name="change_user_profile_photo">Alterar foto de perfil do usuário</string>
+    <string name="expand_list">Expandir lista</string>
+    <string name="change_map_layers">Alterar camadas do mapa (terreno vs. satélite)</string>
+    <string name="redo_observation_search">Refazer a pesquisa de observação nesta área do mapa</string>
+    <string name="view_observations_on_map">Ver observações no mapa</string>
+    <string name="view_observations_on_grid">Ver observações na grade</string>
+    <string name="clear_text">Limpar texto</string>
+    <string name="observation_has_sounds">Observação tem sons</string>
+    <string name="go_to_my_location">Ir para minha localização atual</string>
+    <string name="change_geoprivacy">Mude a geoprivacidade</string>
+    <string name="active_filters">Filtros ativos</string>
+    <string name="message_is_flagged">Mensagem sinalizada</string>
+    <string name="user_is_muted">Usuário silenciado</string>
+    <string name="cancel_multiple_obs_selection">Cancelar seleção de múltiplas observações</string>
+    <string name="delete_observations">Excluir observações</string>
+    <string name="clear_species_guess">Limpar sugestão de espécies</string>
+    <string name="comment_count">Contagem de comentários</string>
+    <string name="id_count">Contagem de identificação</string>
+    <string name="observation_selected">Observação selecionada</string>
+    <string name="share_observation">Compartilhar esta observação</string>
+    <string name="unknown_location">Localização desconhecida</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
-    <string name="close">Close</string>
-    <string name="set_date2">Set date</string>
-    <string name="project_selected">Project Selected</string>
-    <string name="project_unselected">Project Unselected</string>
-    <string name="show_my_observations">Show my observations</string>
-    <string name="play_pause_sound">Play or pause sound</string>
-    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
-    <string name="view_image">View image</string>
+    <string name="close">Fechar</string>
+    <string name="set_date2">Defina a data</string>
+    <string name="project_selected">projeto selecionado</string>
+    <string name="project_unselected">Projeto Não Selecionado</string>
+    <string name="show_my_observations">Mostras apenas as minhas observações</string>
+    <string name="play_pause_sound">Reproduzir ou pausar som</string>
+    <string name="california_academy_of_sciences_and_national_geographic">Academia de Ciências da Califórnia e National Geographic</string>
+    <string name="view_image">Visualizar imagem</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
-    <string name="assessment_passes">Assessment passes</string>
+    <string name="assessment_passes">Passos de avaliação</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
-    <string name="agree_assessment_passes">Agree assessment passes</string>
+    <string name="agree_assessment_passes">Concordo com avaliação</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
-    <string name="does_not_pass_assessment">Does not pass assessment</string>
+    <string name="does_not_pass_assessment">Não aprova a avaliação</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
     <string name="disagree_assessment_passes">Disagree assessment passes</string>
     <plurals name="delete_x_selected_observations">
@@ -1216,8 +1219,8 @@
         <item quantity="one">Sync %1$d selected observation</item>
         <item quantity="other">Sync %1$d selected observations</item>
     </plurals>
-    <string name="add_media_evidence">Add media evidence</string>
-    <string name="remove_identification">Remove identification</string>
-    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
+    <string name="add_media_evidence">Adicionar evidência de mídia</string>
+    <string name="remove_identification">Remover identificação</string>
+    <string name="issue_with_updating_photos">Houve um erro ao atualizar as fotos desta observação que foi recentemente corrigido. Por favor, saia e faça login novamente para resolver este problema.</string>
     <string name="app_version_copied_to_clipboard">Versão do aplicativo copiada para a área de transferência</string>
 </resources>
