@@ -627,8 +627,7 @@ public class ObservationEditor extends AppCompatActivity {
             }
         });
 
-
-        findViewById(R.id.is_captive).setOnClickListener(new OnClickListener() {
+        OnClickListener onIsCaptive = new OnClickListener() {
             @Override
             public void onClick(View view) {
                 mIsCaptive = !mIsCaptive;
@@ -643,7 +642,10 @@ public class ObservationEditor extends AppCompatActivity {
                 }
 
             }
-            });
+        };
+
+        findViewById(R.id.is_captive).setOnClickListener(onIsCaptive);
+        findViewById(R.id.is_captive_checkbox).setOnClickListener(onIsCaptive);
 
         mPhotoWarningContainer = findViewById(R.id.warning_multiple_photos);
         mPhotoWarningContainer.setVisibility(View.GONE);
