@@ -22,4 +22,4 @@ jobs:
         with:
           api-level: 29
           ndk: 22.1.7171670
-          script: ./gradlew connectedCheck
+          script: ./gradlew connectedCheck -x :smoothrescale:connectedDebugAndroidTest
