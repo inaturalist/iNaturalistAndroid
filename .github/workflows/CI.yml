@@ -12,8 +12,14 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
 
+      - name: Copy config files
+        run: |
+          cp iNaturalist/src/main/res/values/config.example.xml iNaturalist/src/main/res/values/config.xml
+          cp iNaturalist/google-services.example.json iNaturalist/google-services.json
+
       - name: run tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
+          ndk: 22.1.7171670
           script: ./gradlew connectedCheck
