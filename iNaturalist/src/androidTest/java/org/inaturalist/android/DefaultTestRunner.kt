@@ -1,9 +1,7 @@
 package org.inaturalist.android
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.preference.PreferenceManager
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.accessibility.AccessibilityChecks
 import androidx.test.espresso.base.DefaultFailureHandler
@@ -11,7 +9,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnitRunner
 import com.google.android.apps.common.testing.accessibility.framework.AccessibilityCheckResult
 
-class DefaultTestRunner: AndroidJUnitRunner() {
+class DefaultTestRunner : AndroidJUnitRunner() {
 
     override fun onCreate(arguments: Bundle?) {
         super.onCreate(arguments)
