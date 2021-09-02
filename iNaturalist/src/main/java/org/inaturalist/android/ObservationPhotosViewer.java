@@ -178,6 +178,9 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent data = new Intent();
                     data.putExtra(DELETE_PHOTO_INDEX, mViewPager.getCurrentItem());
+                    if (mReplacedPhotos.size() > 0) {
+                        data.putExtra(REPLACED_PHOTOS, replacedPhotosToString());
+                    }
                     setResult(RESULT_OK, data);
                     finish();
                 }
