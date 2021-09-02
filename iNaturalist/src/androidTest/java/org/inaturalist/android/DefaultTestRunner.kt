@@ -11,10 +11,6 @@ import com.google.android.apps.common.testing.accessibility.framework.Accessibil
 
 class DefaultTestRunner : AndroidJUnitRunner() {
 
-    override fun onCreate(arguments: Bundle?) {
-        super.onCreate(arguments)
-    }
-
     override fun onStart() {
         AccessibilityChecks
             .enable()
