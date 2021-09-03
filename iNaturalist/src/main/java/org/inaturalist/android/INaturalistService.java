@@ -6668,7 +6668,7 @@ public class INaturalistService extends IntentService {
 
                 // Add any new photos that were added remotely
                 ArrayList<Integer> observationPhotoIds = new ArrayList<Integer>();
-                ArrayList<Integer> existingObservationPhotoIds = new ArrayList<Integer>();
+                HashMap<Integer, ObservationPhoto> localPhotos = new HashMap<>();
                 Cursor pc = getContentResolver().query(
                         ObservationPhoto.CONTENT_URI,
                         ObservationPhoto.PROJECTION,
@@ -6678,12 +6678,12 @@ public class INaturalistService extends IntentService {
                 while (pc.isAfterLast() == false) {
                     int photoId = pc.getInt(pc.getColumnIndexOrThrow(ObservationPhoto.ID));
                     if (photoId != 0) {
-                        existingObservationPhotoIds.add(photoId);
+                        localPhotos.put(photoId, new ObservationPhoto(pc));
                     }
                     pc.moveToNext();
                 }
                 pc.close();
-                Logger.tag(TAG).debug("syncJson: Adding photos for obs " + observation.id + ":" + existingObservationPhotoIds.toString());
+                Logger.tag(TAG).debug("syncJson: Adding photos for obs " + observation.id + ":" + localPhotos.toString());
                 Logger.tag(TAG).debug("syncJson: JsonObservation: " + jsonObservation + ":" + jsonObservation.photos);
                 for (int j = 0; j < jsonObservation.photos.size(); j++) {
                     ObservationPhoto photo = jsonObservation.photos.get(j);
@@ -6695,8 +6695,18 @@ public class INaturalistService extends IntentService {
                     }
 
                     observationPhotoIds.add(photo.id);
-                    if (existingObservationPhotoIds.contains(photo.id)) {
-                        Logger.tag(TAG).debug("syncJson: photo " + photo.id + " has already been added, skipping...");
+                    if (localPhotos.containsKey(photo.id)) {
+                        ObservationPhoto localPhoto = localPhotos.get(photo.id);
+
+                        Logger.tag(TAG).debug("syncJson: photo " + photo.id + " has already been added");
+                        localPhoto.merge(photo, true);
+                        Logger.tag(TAG).debug("syncJson: merged: " + localPhoto.isDirty() + ":" + localPhoto);
+                        if (localPhoto.isDirty()) {
+                            ContentValues opcv = localPhoto.getContentValues();
+                            Logger.tag(TAG).debug("syncJson: Setting _SYNCED_AT - " + localPhoto.id + ":" + localPhoto._id + ":" + localPhoto._observation_id + ":" + localPhoto.observation_id + ":" + opcv);
+                            opcv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
+                            getContentResolver().update(localPhoto.getUri(), opcv, null, null);
+                        }
                         continue;
                     }
                     ContentValues opcv = photo.getContentValues();
