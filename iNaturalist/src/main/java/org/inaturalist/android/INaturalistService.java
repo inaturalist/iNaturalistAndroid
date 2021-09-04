@@ -4462,12 +4462,22 @@ public class INaturalistService extends IntentService {
 
         FilenameFilter fileFilter = new FilenameFilter() {
             public boolean accept(File dir, String name) {
-                return (name.endsWith(".jpeg") && name.length() == 41);
+                int extensionStart = name.indexOf(".");
+                if (extensionStart == -1) return false;
+                String nameNoExtension = name.substring(0, extensionStart);
+                return (
+                        (name.endsWith(".jpeg") || name.endsWith(".jpg") || name.endsWith(".heif") ||
+                        name.endsWith(".png") || name.endsWith(".png") || name.endsWith(".webp")) &&
+                        (nameNoExtension.length() == 36));
             }
         };
 
+        List<File> allCacheFiles = new ArrayList<>(Arrays.asList(getFilesDir().listFiles(fileFilter)));
+        allCacheFiles.addAll(Arrays.asList(getExternalCacheDir().listFiles(fileFilter)));
+        allCacheFiles.addAll(Arrays.asList(getCacheDir().listFiles(fileFilter)));
+
         Collection<File> list = CollectionUtils.select(
-                Arrays.asList(getFilesDir().listFiles(fileFilter)),
+                allCacheFiles,
                 new Predicate<File>() {
                     @Override
                     public boolean evaluate(File f) {
