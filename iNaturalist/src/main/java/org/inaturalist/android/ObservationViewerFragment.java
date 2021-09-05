@@ -112,11 +112,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ObservationViewerFragment extends Fragment implements AnnotationsAdapter.OnAnnotationActions {
-    private static final int NEW_ID_REQUEST_CODE = 0x101;
-    private static final int REQUEST_CODE_LOGIN = 0x102;
-    private static final int REQUEST_CODE_EDIT_OBSERVATION = 0x103;
-    private static final int SHARE_REQUEST_CODE = 0x104;
-    private static final int OBSERVATION_PHOTOS_REQUEST_CODE = 0x105;
+    public static final int NEW_ID_REQUEST_CODE = 0x101;
+    public static final int REQUEST_CODE_LOGIN = 0x102;
+    public static final int REQUEST_CODE_EDIT_OBSERVATION = 0x103;
+    public static final int SHARE_REQUEST_CODE = 0x104;
+    public static final int OBSERVATION_PHOTOS_REQUEST_CODE = 0x105;
 
     public static final int RESULT_FLAGGED_AS_CAPTIVE = 0x300;
     public static final int RESULT_OBSERVATION_CHANGED = 0x301;
@@ -571,7 +571,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                                 intent.putExtra(ObservationPhotosViewer.OBSERVATION_UUID, mObservation.uuid);
                                 intent.putExtra(ObservationPhotosViewer.IS_NEW_OBSERVATION, true);
                                 intent.putExtra(ObservationPhotosViewer.READ_ONLY, true); // Don't allow editing photos from this screen
-                                startActivityForResult(intent, OBSERVATION_PHOTOS_REQUEST_CODE);
+                                getActivity().startActivityForResult(intent, OBSERVATION_PHOTOS_REQUEST_CODE);
                             } else {
                                 try {
                                     JSONObject obs = ObservationUtils.getMinimalObservation(new JSONObject(mObsJson));
@@ -801,13 +801,13 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                 Intent intent = new Intent(getActivity(), OnboardingActivity.class);
                 intent.putExtra(OnboardingActivity.LOGIN, true);
 
-                startActivityForResult(intent, REQUEST_CODE_LOGIN);
+                getActivity().startActivityForResult(intent, REQUEST_CODE_LOGIN);
             }
         };
         View.OnClickListener onSignUp = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(new Intent(getActivity(), OnboardingActivity.class), REQUEST_CODE_LOGIN);
+                getActivity().startActivityForResult(new Intent(getActivity(), OnboardingActivity.class), REQUEST_CODE_LOGIN);
             }
         };
 
@@ -1427,7 +1427,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                     }
                 }
                 intent.putExtra(IdentificationActivity.OBSERVATION, mObsJson);
-                startActivityForResult(intent, NEW_ID_REQUEST_CODE);
+                getActivity().startActivityForResult(intent, NEW_ID_REQUEST_CODE);
             }
         });
 
@@ -1971,7 +1971,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                                 shareIntent.putExtra(Intent.EXTRA_TEXT, obsUrl);
 
                                 Intent chooserIntent = Intent.createChooser(shareIntent, getString(R.string.share));
-                                startActivityForResult(chooserIntent, SHARE_REQUEST_CODE);
+                                getActivity().startActivityForResult(chooserIntent, SHARE_REQUEST_CODE);
 
                                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_SHARE_STARTED);
                                 break;
@@ -2313,18 +2313,16 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
         Intent intent;
         switch (item.getItemId()) {
             case android.R.id.home:
-                prepareToExit();
+                getActivity().finish();
                 return true;
             case R.id.edit_observation:
                 intent = new Intent(Intent.ACTION_EDIT, mUri, getActivity(), ObservationEditorSlider.class);
                 if (mTaxon != null) mApp.setServiceResult(ObservationEditor.TAXON, mTaxon.toString());
                 if (mObsJson != null) intent.putExtra(ObservationEditor.OBSERVATION_JSON, mObsJson);
-                startActivityForResult(intent, REQUEST_CODE_EDIT_OBSERVATION);
+                getActivity().startActivityForResult(intent, REQUEST_CODE_EDIT_OBSERVATION);
                 return true;
             case R.id.flag_captive:
-                mFlagAsCaptive = !mFlagAsCaptive;
-                refreshDataQuality();
-                refreshMenu();
+                toggleFlagAsCaptive();
                 return true;
             case R.id.follow_observation:
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_FOLLOW_OBSERVATION, null, getActivity(), INaturalistService.class);
@@ -2350,27 +2348,25 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             // Currently showing the add comment dialog
             discardAddComment();
         } else {
-            prepareToExit();
+            getActivity().finish();
         }
     }
 
-    private void prepareToExit() {
-        if (!mFlagAsCaptive) {
-            getActivity().finish();
-            return;
-        }
-
+    private void toggleFlagAsCaptive() {
         // Ask the user if he really wants to mark observation as captive
         mHelper.confirm(getString(R.string.flag_as_captive), getString(R.string.are_you_sure_you_want_to_flag_as_captive),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        mFlagAsCaptive = !mFlagAsCaptive;
+                        refreshDataQuality();
+                        refreshMenu();
+
                         if (!mReadOnly) {
                             // Local observation - just update the local DB instance
                             ContentValues cv = mObservation.getContentValues();
                             cv.put(Observation.CAPTIVE, true);
                             int count = getActivity().getContentResolver().update(mObservation.getUri(), cv, null, null);
-                            getActivity().finish();
                             return;
                         }
 
@@ -2381,7 +2377,6 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
                         Toast.makeText(getActivity().getApplicationContext(), R.string.observation_flagged_as_captive, Toast.LENGTH_LONG).show();
                         getActivity().setResult(RESULT_FLAGGED_AS_CAPTIVE);
-                        getActivity().finish();
                     }
                 },
                 new DialogInterface.OnClickListener() {
@@ -3022,6 +3017,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
         if (taxon == null) {
             mAttributes = new SerializableJSONArray();
+            if (getActivity() == null) return;
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {

@@ -85,16 +85,33 @@ public class ObservationViewerSlider extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        String obsUri = data != null ? data.getStringExtra(ObservationEditor.OBS_URI) : null;
-        Uri currentObsUri = mPagerAdapter.getObsUriByPosition(mPager.getCurrentItem());
-        boolean shouldRefresh = (obsUri != null && !currentObsUri.toString().equals(obsUri));
+        int position = mPager.getCurrentItem();
+        Fragment fragment = mFragmentsByPositions.get(position);
 
-        if (shouldRefresh) {
-            // Moved back from obs editor into a different observation
-            mPager.setCurrentItem(mPagerAdapter.getObsPosition(Uri.parse(obsUri)), false);
-        } else {
-            super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            // Just pass through these types of activity results
+            case ObservationViewerFragment.OBSERVATION_PHOTOS_REQUEST_CODE:
+            case ObservationViewerFragment.REQUEST_CODE_LOGIN:
+            case ObservationViewerFragment.NEW_ID_REQUEST_CODE:
+            case ObservationViewerFragment.SHARE_REQUEST_CODE:
+                fragment.onActivityResult(requestCode, resultCode, data);
+                return;
+
+            case ObservationViewerFragment.REQUEST_CODE_EDIT_OBSERVATION:
+                String obsUri = data != null ? data.getStringExtra(ObservationEditor.OBS_URI) : null;
+                Uri currentObsUri = mPagerAdapter.getObsUriByPosition(mPager.getCurrentItem());
+                boolean shouldRefresh = (obsUri != null && !currentObsUri.toString().equals(obsUri));
+
+                if (shouldRefresh) {
+                    // Moved back from obs editor into a different observation
+                    mPager.setCurrentItem(mPagerAdapter.getObsPosition(Uri.parse(obsUri)), false);
+                } else {
+                    // Same observation - just pass through the activity result
+                    fragment.onActivityResult(requestCode, resultCode, data);
+                }
         }
+
+
     }
 
 
@@ -108,6 +125,8 @@ public class ObservationViewerSlider extends AppCompatActivity {
         private int mTotalResults;
         private int mCurrentResultsPage;
         private ExploreResultsReceiver mExploreResultsReceiver;
+        private GetAdditionalObsReceiver mGetAdditionalObsReceiver;
+        private boolean mNoMoreObsLeft = false;
 
 
         public ScreenSlidePagerAdapter(FragmentManager fm) {
@@ -177,20 +196,31 @@ public class ObservationViewerSlider extends AppCompatActivity {
                 mLastPosition = 0;
             } else if (!mIsReadOnly) {
                 mIsReadOnly = false;
-                SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", Activity.MODE_PRIVATE);
-                String login = prefs.getString("username", null);
-                String conditions = "(_synced_at IS NULL";
-                if (login != null) {
-                    conditions += " OR user_login = '" + login + "'";
-                }
-                conditions += ") AND (is_deleted = 0 OR is_deleted is NULL)"; // Don't show deleted observations
 
-                mCursor = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION,
-                        conditions, null, Observation.DEFAULT_SORT_ORDER);
+                refreshCursor();
 
                 // Find initial position according to the URI the activity was launched with
                 mLastPosition = isExternalId ? getObsPosition(obsId, true) : getObsPosition(getIntent().getData());
+
+                mGetAdditionalObsReceiver = new GetAdditionalObsReceiver();
+                IntentFilter filter = new IntentFilter();
+                filter.addAction(INaturalistService.ACTION_GET_ADDITIONAL_OBS_RESULT);
+                BaseFragmentActivity.safeRegisterReceiver(mGetAdditionalObsReceiver, filter, ObservationViewerSlider.this);
             }
+        }
+
+        private void refreshCursor() {
+            SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", Activity.MODE_PRIVATE);
+            String login = prefs.getString("username", null);
+            String conditions = "(_synced_at IS NULL";
+            if (login != null) {
+                conditions += " OR user_login = '" + login + "'";
+            }
+            conditions += ") AND (is_deleted = 0 OR is_deleted is NULL)"; // Don't show deleted observations
+
+            mCursor = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION,
+                    conditions, null, Observation.DEFAULT_SORT_ORDER);
+
         }
 
         public int getObsPosition(Uri uri) {
@@ -233,6 +263,11 @@ public class ObservationViewerSlider extends AppCompatActivity {
                 Bundle args = new Bundle();
                 args.putString(ObservationViewerFragment.OBS_URI, obsUri.toString());
                 fragment.setArguments(args);
+
+                if (position >= mCursor.getCount() - OBS_RESULTS_BUFFER) {
+                    // Reaching the end of the result list - download the next page
+                    loadNextResultsPage();
+                }
             }
 
             mFragmentsByPositions.put(position, fragment);
@@ -251,7 +286,14 @@ public class ObservationViewerSlider extends AppCompatActivity {
         }
 
         private void loadNextResultsPage() {
-            if (!mLoadingNextResults && mObsResults.size() < mTotalResults) {
+            if (!mApp.isNetworkAvailable()) return;
+
+            if ((mObsResults == null) && (!mLoadingNextResults && !mNoMoreObsLeft && mApp.loggedIn())) {
+                mLoadingNextResults = true;
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_ADDITIONAL_OBS, null, ObservationViewerSlider.this, INaturalistService.class);
+                ContextCompat.startForegroundService(ObservationViewerSlider.this, serviceIntent);
+
+            } else if ((mObsResults != null) && (!mLoadingNextResults && mObsResults.size() < mTotalResults)) {
                 mLoadingNextResults = true;
 
                 String action = INaturalistService.ACTION_EXPLORE_GET_OBSERVATIONS;
@@ -336,7 +378,28 @@ public class ObservationViewerSlider extends AppCompatActivity {
                 notifyDataSetChanged();
             }
         }
+
+        private class GetAdditionalObsReceiver extends BroadcastReceiver {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Bundle extras = intent.getExtras();
+
+                refreshCursor();
+                notifyDataSetChanged();
+
+                mLoadingNextResults = false;
+
+                if (extras != null) {
+                    int obsCount = extras.getInt(INaturalistService.OBSERVATION_COUNT);
+                    if (obsCount == 0) {
+                        // No more observations left to download
+                        mNoMoreObsLeft = true;
+                    }
+                }
+            }
+        }
     }
+
 
 
 }
