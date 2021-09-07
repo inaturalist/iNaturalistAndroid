@@ -23,3 +23,14 @@ jobs:
           api-level: 29
           ndk: 22.1.7171670
           script: ./gradlew connectedCheck -x :smoothrescale:connectedDebugAndroidTest
+  notify:
+    name: Notify Slack
+    needs: test
+    if: ${{ success() || failure() }}
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: iRoachie/slack-github-actions@v2.0.1
+        if: env.SLACK_WEBHOOK_URL != null
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_BUILDS_WEBHOOK_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
