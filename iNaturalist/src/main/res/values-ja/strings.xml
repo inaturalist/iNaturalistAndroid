@@ -323,7 +323,7 @@
     <string name="finding_current_location">現在地を取得しています…</string>
     <string name="flag_as_captive">飼育/栽培としてフラグ</string>
     <string name="observation_flagged_as_captive">観察記録は、飼育/栽培としてフラグが設定されました</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">この観察記録を飼育/栽培としてフラグを設定してもよろしいですか? (はいを押すと、観察記録ビューアー ウィンドウも閉じます)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">この観察記録を飼育/栽培としてフラグを設定してもよろしいですか? (はいを押すと、観察記録ビューアー ウィンドウも閉じます)</string>
     <string name="do_you_agree_to_the_following">以下に同意しますか?</string>
     <string name="terms">利用規約</string>
     <string name="observation_rules">観察ルール</string>

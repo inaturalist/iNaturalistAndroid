@@ -328,7 +328,7 @@ globālā iNaturalist tīkla.</string>
     <string name="finding_current_location">Meklē pašreizējo atrašanās vietu...</string>
     <string name="flag_as_captive">Atzīmēt kā nebrīvē vai kultivētu?</string>
     <string name="observation_flagged_as_captive">Pievienots hobija līmeņa novērojumiem, jo indivīds ir nebrīvē vai kultivēts.</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Vai tiešām vēlies pievienot novērojumam nebrīva vai kultivēta indivīda statusu? (Nospiežot \"Jā\", aizvērsies novērojuma logs.)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Vai tiešām vēlies pievienot novērojumam nebrīva vai kultivēta indivīda statusu? (Nospiežot \"Jā\", aizvērsies novērojuma logs.)</string>
     <string name="do_you_agree_to_the_following">Vai piekrīti noteikumiem?</string>
     <string name="terms">Noteikumi</string>
     <string name="observation_rules">Novērošanas noteikumi</string>

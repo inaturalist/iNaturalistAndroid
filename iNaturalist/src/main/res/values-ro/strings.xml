@@ -327,7 +327,7 @@
     <string name="finding_current_location">Se găsește locația actuală...</string>
     <string name="flag_as_captive">Marchează ca Captiv/Cultivat</string>
     <string name="observation_flagged_as_captive">Observația a fost marcată ca captivă/cultivată</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Ești sigur că vrei să marchezi această observație ca și captivă/cultivată? (Răspunsul afirmativ va închide fereastra cu această observație)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Ești sigur că vrei să marchezi această observație ca și captivă/cultivată? (Răspunsul afirmativ va închide fereastra cu această observație)</string>
     <string name="do_you_agree_to_the_following">Sunteți de acord cu următoarele?</string>
     <string name="terms">Termeni</string>
     <string name="observation_rules">Regulile observației</string>

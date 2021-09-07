@@ -330,7 +330,7 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="finding_current_location">Haetaan nykyistä sijaintia...</string>
     <string name="flag_as_captive">Liputa vangituksi/viljellyksi</string>
     <string name="observation_flagged_as_captive">Havainto liputettiin vangituksi/viljellyksi</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Haluatko varmasti liputtaa tämän havainnon vangituksi/viljellyksi (Vaihtoehdon kyllä painaminen sulkee myös havainnon katseluikkunan)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Haluatko varmasti liputtaa tämän havainnon vangituksi/viljellyksi (Vaihtoehdon kyllä painaminen sulkee myös havainnon katseluikkunan)</string>
     <string name="do_you_agree_to_the_following">Oletko samaa mieltä seuraavan kanssa?</string>
     <string name="terms">Ehdot</string>
     <string name="observation_rules">Havaintosäännöt</string>
