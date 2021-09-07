@@ -46,6 +46,7 @@ CROWDIN_TO_ANDROID_LOCALES = {
     # Long and complicated history of locale changes for Hebrew, so we just
     # copy this to all possibilities
     "he": ["iw", "iw-rIL", "he-rIL"],
+    "id": ["id", "in", "in-rID"],
     # Assume Portuguese in Portugal is the default Portuguese
     "pt-PT": ["pt", "pt-rPT"],
     "sv-SE": ["sv"],

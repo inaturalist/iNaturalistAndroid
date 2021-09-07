@@ -633,6 +633,7 @@
     <string name="project_observations">Gözlemler</string>
     <string name="project_species">Türler</string>
     <string name="project_people">Kişiler</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Tanımlayıcılar</string>
     <string name="got_it">Anladım!</string>
     <string name="view_all">Hepsini göster</string>
@@ -695,15 +696,15 @@
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Belirlenemiyor</string>
     <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
-    <string name="annotation_value_organism">Organism</string>
+    <string name="annotation_value_organism">Organizma</string>
     <!-- Evidence of Presence value when for bird feathers -->
-    <string name="annotation_value_feather">Feather</string>
+    <string name="annotation_value_feather">Tüy</string>
     <!-- Evidence of Presence value when for fecal remains -->
     <string name="annotation_value_scat">Scat</string>
     <!-- Evidence of Presence value for impressions in the ground or snow -->
-    <string name="annotation_value_track">Track</string>
+    <string name="annotation_value_track">İz</string>
     <!-- Evidence of Presence value when for bones -->
-    <string name="annotation_value_bone">Bone</string>
+    <string name="annotation_value_bone">Kemik</string>
     <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Molt</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
@@ -987,6 +988,10 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">MMM d, yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
     <string name="show_common_names">Yaygın adları göster</string>
     <string name="show_common_names_description">Sadece bilimsel isimleri görmek için devre dışı bırakın.</string>
     <string name="email_must_look_like_email_address">E-mailiniz, e-mail adresi gibi olmalı</string>
@@ -1170,38 +1175,36 @@ Ticari Olmayan Atfetme (CC BY-NC), gibi kayıtların  biyolojik çeşitlilik bil
     <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
     <string name="delete_attribute_value">Delete attribute value</string>
     <string name="open_menu_for_more_options">Daha fazla seçenek için menüyü aç</string>
-    <string name="california_academy_of_sciences">California Academy of Sciences</string>
-    <string name="national_geographic">National Geographic</string>
     <string name="change_user_profile_photo">Profil fotoğrafını değiştir</string>
     <string name="expand_list">Listeyi genişlet</string>
-    <string name="change_map_layers">Change map layers (terrain vs. satellite)</string>
+    <string name="change_map_layers">Harita katmanını değiştir (harita, uydu)</string>
     <string name="redo_observation_search">Redo observation search in this map area</string>
-    <string name="view_observations_on_map">View observations on map</string>
+    <string name="view_observations_on_map">Gözlemleri haritada görüntüle</string>
     <string name="view_observations_on_grid">View observations on grid</string>
     <string name="clear_text">Metni temizle</string>
-    <string name="observation_has_sounds">Observation has sounds</string>
+    <string name="observation_has_sounds">Gözlemde ses bulunuyor</string>
     <string name="go_to_my_location">Geçerli konumuma git</string>
-    <string name="change_geoprivacy">Change geoprivacy</string>
-    <string name="active_filters">Active filters</string>
+    <string name="change_geoprivacy">Coğrafi gizliliği değiştir</string>
+    <string name="active_filters">Aktif filtreler</string>
     <string name="message_is_flagged">Mesaj işaretlendi</string>
     <string name="user_is_muted">Kullanıcı susturuldu</string>
-    <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
+    <string name="cancel_multiple_obs_selection">Çoklu gözlem seçimini iptal et</string>
     <string name="delete_observations">Gözlemleri sil</string>
-    <string name="clear_species_guess">Clear species guess</string>
+    <string name="clear_species_guess">Tür tahminini temizle</string>
     <string name="comment_count">Yorum sayısı</string>
-    <string name="id_count">Identification count</string>
-    <string name="observation_selected">Observation selected</string>
+    <string name="id_count">Tanımlama sayısı</string>
+    <string name="observation_selected">Seçilen gözlem</string>
     <string name="share_observation">Gözlem paylaş</string>
     <string name="unknown_location">Bilinmeyen konum</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
-    <string name="close">Close</string>
+    <string name="close">Kapat</string>
     <string name="set_date2">Set date</string>
-    <string name="project_selected">Project Selected</string>
-    <string name="project_unselected">Project Unselected</string>
+    <string name="project_selected">Seçilen proje</string>
+    <string name="project_unselected">Proje Kaldırıldı</string>
     <string name="show_my_observations">Gözlemlerimi göster</string>
-    <string name="play_pause_sound">Play or pause sound</string>
-    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
-    <string name="view_image">View image</string>
+    <string name="play_pause_sound">Sesi durdur veya oynat</string>
+    <string name="california_academy_of_sciences_and_national_geographic">Kaliforniya Bilim Akademisi ve National Geographic</string>
+    <string name="view_image">Resmi görüntüle</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <string name="assessment_passes">Assessment passes</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
@@ -1219,7 +1222,7 @@ Ticari Olmayan Atfetme (CC BY-NC), gibi kayıtların  biyolojik çeşitlilik bil
         <item quantity="other">Seçilen %1$d gözlemi eşitle</item>
     </plurals>
     <string name="add_media_evidence">Add media evidence</string>
-    <string name="remove_identification">Remove identification</string>
+    <string name="remove_identification">Tanımlamayı kaldır</string>
     <string name="issue_with_updating_photos">Kısa süre önce düzeltilen bu gözlemdeki fotoğraflar, güncellenirken bir sorun oluştu. Bu sorunu çözmek için lütfen oturumunuzu kapatın ve tekrar oturum açın.</string>
     <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
 </resources>

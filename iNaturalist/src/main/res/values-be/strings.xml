@@ -634,13 +634,14 @@
     <string name="see_more_observations">Пабачыць больш назіранняў</string>
     <string name="see_more_species">Пабачыць больш відаў</string>
     <string name="see_more_identifications">Пабачыць больш вызначэнняў</string>
-    <string name="collection_and_umbrella_projects">Калекцыі ды парасонавыя праэкты</string>
+    <string name="collection_and_umbrella_projects">Калекцыйныя ды парасонавыя праекты</string>
     <string name="description">Апісанне</string>
     <string name="quantity">Колькасць</string>
     <string name="agree2">Згодны</string>
     <string name="project_observations">Назіранні</string>
     <string name="project_species">Віды</string>
     <string name="project_people">Людзі</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Ідэнтыфікатары</string>
     <string name="got_it">Зразумела!</string>
     <string name="view_all">Праглядзець усё</string>
@@ -998,6 +999,10 @@
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">d MMM yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time"> d MMMM yyyy hh:mma</string>
     <string name="show_common_names">Паказваць звычайныя назвы</string>
     <string name="show_common_names_description">Адключыць, калі вы хочаце бачыць толькі навуковыя назвы.</string>
     <string name="email_must_look_like_email_address">Email павіннен выглядаць як адрас электроннай пошты</string>
@@ -1180,8 +1185,6 @@
     <string name="expand_annotation_to_agree_or_disagree">Разгарнуць анатацыю, каб пагадзіцца альбо не пагадзіцца</string>
     <string name="delete_attribute_value">Выдаліць значэнне атрыбута</string>
     <string name="open_menu_for_more_options">Адчыніць меню для большай колькасці опцый</string>
-    <string name="california_academy_of_sciences">California Academy of Sciences</string>
-    <string name="national_geographic">National Geographic</string>
     <string name="change_user_profile_photo">Змяніць фота профіля карыстальніка</string>
     <string name="expand_list">Разгарнуць спіс</string>
     <string name="change_map_layers">Змяніць слой мапы (рэльеф/спадарожнік)</string>
@@ -1206,8 +1209,8 @@
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
     <string name="close">Зачыніць</string>
     <string name="set_date2">Усталяваць дату</string>
-    <string name="project_selected">Праэкт быў выбраны</string>
-    <string name="project_unselected">Выбар праэкта быў адменены</string>
+    <string name="project_selected">Праект быў выбраны</string>
+    <string name="project_unselected">Выбар праекта быў адменены</string>
     <string name="show_my_observations">Паказаць мае назіранні</string>
     <string name="play_pause_sound">Прайграць або прыпыніць гук</string>
     <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences і National Geographic</string>
