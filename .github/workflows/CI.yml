@@ -17,7 +17,7 @@ jobs:
           - 29 # Android 10, targetSdkVersion
           - 30 # Android 11, latest public release
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v2
 
       # Cache steps all from the example at https://github.com/ReactiveCircus/android-emulator-runner
@@ -38,7 +38,7 @@ jobs:
             ~/.android/adb*
           key: avd-${{ matrix.api-level }}
 
-      - name: create AVD and generate snapshot for caching
+      - name: Create AVD and generate snapshot for caching
         if: steps.avd-cache.outputs.cache-hit != 'true'
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -55,7 +55,7 @@ jobs:
           sed -E 's/<!-- *</</' iNaturalist/src/main/res/values/config.example.xml | sed -E 's/> *-->/>/' > iNaturalist/src/main/res/values/config.xml
           cp iNaturalist/google-services.example.json iNaturalist/google-services.json
 
-      - name: run tests
+      - name: Run instrumented tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
