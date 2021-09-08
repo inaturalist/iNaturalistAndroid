@@ -7,7 +7,15 @@ on:
   workflow_dispatch:
 jobs:
   test:
+    name: Instrumented Tests
     runs-on: macos-latest
+    strategy:
+      api-level:
+        - 23, # Android 5, minSdkVersion
+        - 27, # Android 8, has caused problems in the past
+        - 29, # Android 10, targetSdkVersion
+        - 30  # Android 11, latest public release
+      ]
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -20,7 +28,7 @@ jobs:
       - name: run tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 29
+          api-level: ${{ matrix.api-level }}
           ndk: 22.1.7171670
           script: ./gradlew connectedCheck -x :smoothrescale:connectedDebugAndroidTest
   notify:
