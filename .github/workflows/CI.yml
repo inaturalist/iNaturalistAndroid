@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 jobs:
   test:
-    name: Instrumented Tests
+    name: Instrumented Tests, SDK ${{ matrix.api-level }}
     runs-on: macos-latest
     strategy:
       matrix:
@@ -29,6 +29,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
+          target: google_apis
           ndk: 22.1.7171670
           script: ./gradlew connectedCheck -x :smoothrescale:connectedDebugAndroidTest
   notify:
