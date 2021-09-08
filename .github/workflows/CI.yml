@@ -46,6 +46,8 @@ jobs:
           force-avd-creation: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
+          target: google_apis
+          ndk: 22.1.7171670
           script: echo "Generated AVD snapshot for caching."
 
       - name: Copy iNat config files
