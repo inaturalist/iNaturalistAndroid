@@ -1470,6 +1470,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                         if (!oldCursor.isClosed()) oldCursor.close();
                     }
 
+                    if (mObservationListAdapter != null) {
+                        mObservationListAdapter.close();
+                    }
+                    if (mObservationGridAdapter != null) {
+                        mObservationGridAdapter.close();
+                    }
                     mObservationListAdapter = new ObservationCursorAdapter(ObservationListActivity.this, cursor);
                     mObservationGridAdapter = new ObservationCursorAdapter(ObservationListActivity.this, cursor, true, mObservationsGrid);
                     mObservationsGrid.setAdapter(mObservationGridAdapter);
