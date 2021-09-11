@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -221,6 +222,12 @@ public class ObservationViewerSlider extends AppCompatActivity {
             mCursor = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION,
                     conditions, null, Observation.DEFAULT_SORT_ORDER);
 
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            super.destroyItem(container, position, object);
+            mFragmentsByPositions.remove(position);
         }
 
         public int getObsPosition(Uri uri) {

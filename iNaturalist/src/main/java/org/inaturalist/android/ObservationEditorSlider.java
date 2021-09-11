@@ -1,6 +1,7 @@
 package org.inaturalist.android;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -72,10 +73,17 @@ public class ObservationEditorSlider extends AppCompatActivity {
 
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-        private final Cursor mCursor;
+        private Cursor mCursor = null;
 
         public ScreenSlidePagerAdapter(FragmentManager fm) {
             super(fm);
+
+            if ((getIntent().getAction() == Intent.ACTION_INSERT) ||
+                    (getIntent().getAction() == Intent.ACTION_SEND) ||
+                    (getIntent().getAction() == Intent.ACTION_SEND_MULTIPLE)) {
+                // New observation / share image to iNat
+                return;
+            }
 
             SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", Activity.MODE_PRIVATE);
             String login = prefs.getString("username", null);
@@ -104,11 +112,18 @@ public class ObservationEditorSlider extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            mCursor.moveToPosition(position);
             Fragment fragment = new ObservationEditor();
-            Observation obs = new Observation(mCursor);
+
             Bundle args = new Bundle();
-            args.putString(ObservationEditor.OBS_URI, obs.getUri().toString());
+            if (mCursor != null) {
+                mCursor.moveToPosition(position);
+                Observation obs = new Observation(mCursor);
+                args.putString(ObservationEditor.OBS_URI, obs.getUri().toString());
+            } else if ((getIntent().getAction() != Intent.ACTION_SEND) &&
+                    (getIntent().getAction() != Intent.ACTION_SEND_MULTIPLE)) {
+                args.putString(ObservationEditor.OBS_URI, getIntent().getData().toString());
+            }
+
             fragment.setArguments(args);
 
             mFragmentsByPositions.put(position, fragment);
@@ -117,7 +132,7 @@ public class ObservationEditorSlider extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return mCursor.getCount();
+            return mCursor != null ? mCursor.getCount() : 1;
         }
     }
 }
