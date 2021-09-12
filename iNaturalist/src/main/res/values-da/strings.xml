@@ -325,7 +325,7 @@
     <string name="finding_current_location">Finde nuværende placering...</string>
     <string name="flag_as_captive">Markér som fangenskab/dyrket</string>
     <string name="observation_flagged_as_captive">Observation markeret som fangenskab/dyrket</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Sikker på, at du vil markere denne observation som fangenskab/dyrket? (Tryk på Ja vil også lukke observationsvisningsvinduet)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Sikker på, at du vil markere denne observation som fangenskab/dyrket? (Tryk på Ja vil også lukke observationsvisningsvinduet)</string>
     <string name="do_you_agree_to_the_following">Accepterer du følgende?</string>
     <string name="terms">Vilkår</string>
     <string name="observation_rules">Observationsregler</string>

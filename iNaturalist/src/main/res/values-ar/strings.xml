@@ -334,7 +334,7 @@
     <string name="finding_current_location">جار تحديد الموقع..</string>
     <string name="flag_as_captive">ضع علامة مأسور/مهجن</string>
     <string name="observation_flagged_as_captive">تم وضع علامة مأسور/مهجن على الملحوظة</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">هل أنت متأكد من أنك تريد وضع علامة مأسور/مهجن على هذه الملحوظة  ؟ (باختيار نعم سيغلق أيضًا نافذة مشاهدة الملحوظة)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">هل أنت متأكد من أنك تريد وضع علامة مأسور/مهجن على هذه الملحوظة  ؟ (باختيار نعم سيغلق أيضًا نافذة مشاهدة الملحوظة)</string>
     <string name="do_you_agree_to_the_following">هل توافق على ما يلي؟</string>
     <string name="terms">الشروط</string>
     <string name="observation_rules">قواعد الملحوظة</string>

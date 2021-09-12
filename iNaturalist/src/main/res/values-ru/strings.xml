@@ -330,7 +330,7 @@
     <string name="finding_current_location">Поиск текущего местоположения...</string>
     <string name="flag_as_captive">Пометить как Captive/Cultivated (Находящееся в неволе/Культивируемое)</string>
     <string name="observation_flagged_as_captive">Наблюдение было помечено как Captive/Cultivated (Находящееся в неволе/Культивируемое)</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Вы уверены, что вы хотите пометить это наблюдение как Captive/Cultivated (Находящееся в неволе/Культивируемое)? (При нажатии Да будет также закрыто окно просмотра наблюдения)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Вы уверены, что вы хотите пометить это наблюдение как Captive/Cultivated (Находящееся в неволе/Культивируемое)? (При нажатии Да будет также закрыто окно просмотра наблюдения)</string>
     <string name="do_you_agree_to_the_following">Согласны ли вы со следующим?</string>
     <string name="terms">Условия</string>
     <string name="observation_rules">Правила наблюдений</string>

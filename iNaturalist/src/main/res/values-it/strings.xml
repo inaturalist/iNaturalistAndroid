@@ -325,7 +325,7 @@
     <string name="finding_current_location">Rilevamento della posizione...</string>
     <string name="flag_as_captive">Contrassegna come in cattività/coltivata</string>
     <string name="observation_flagged_as_captive">L\'osservazione è stata contrassegnata come in cattività/coltivata</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Sei sicuro di voler contrassegnare questa osservazione come in cattività/coltivata? (Premendo sì chiuderai la finestra d viisualizzazione)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Sei sicuro di voler contrassegnare questa osservazione come in cattività/coltivata? (Premendo sì chiuderai la finestra d viisualizzazione)</string>
     <string name="do_you_agree_to_the_following">Sei d\'accordo con ciò che segue?</string>
     <string name="terms">Termini</string>
     <string name="observation_rules">Regole per le osservazioni</string>

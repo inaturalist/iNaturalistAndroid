@@ -329,7 +329,7 @@
     <string name="finding_current_location">מאתר מיקום נוכחי...</string>
     <string name="flag_as_captive">סמן/סמני כמתורבת/בשבי</string>
     <string name="observation_flagged_as_captive">תצפית סומנה כמתורבתת/בשבי</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">האם אתם בטוחים שברצונכם לסמן תצפית זו כמתורבתת/בשבי? (לחיצה על כן, תסגור גם את חלון התצפית)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">האם אתם בטוחים שברצונכם לסמן תצפית זו כמתורבתת/בשבי? (לחיצה על כן, תסגור גם את חלון התצפית)</string>
     <string name="do_you_agree_to_the_following">האם את/ה מסכימה לדברים הבאים?</string>
     <string name="terms">תנאים</string>
     <string name="observation_rules">חוקי תצפית</string>

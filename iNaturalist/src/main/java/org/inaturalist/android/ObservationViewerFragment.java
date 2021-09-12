@@ -34,7 +34,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.text.Html;
 import android.text.InputType;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.util.Pair;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -2354,7 +2353,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
     private void toggleFlagAsCaptive() {
         // Ask the user if he really wants to mark observation as captive
-        mHelper.confirm(getString(R.string.flag_as_captive), getString(R.string.are_you_sure_you_want_to_flag_as_captive),
+        mHelper.confirm(getString(R.string.flag_as_captive), getString(R.string.are_you_sure_you_want_to_flag_as_captive_no_close),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

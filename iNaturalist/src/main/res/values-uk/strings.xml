@@ -341,7 +341,7 @@
     <string name="finding_current_location">Пошук місцерозташування...</string>
     <string name="flag_as_captive">Позначити як Поневолений / Культивований</string>
     <string name="observation_flagged_as_captive">Спостереження було позначено як Поневолений / Культивований</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Ви справді бажаєте позначити це спостереження як Поневолений / Культивований? (Після натискання \"Так\" вікно перегляду закриється)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Ви справді бажаєте позначити це спостереження як Поневолений / Культивований? (Після натискання \"Так\" вікно перегляду закриється)</string>
     <string name="do_you_agree_to_the_following">Чи згідні ви з наступним?</string>
     <string name="terms">Умови</string>
     <string name="observation_rules">Правила спостережень</string>

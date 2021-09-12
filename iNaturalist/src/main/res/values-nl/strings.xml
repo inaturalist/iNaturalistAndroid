@@ -325,7 +325,7 @@
     <string name="finding_current_location">Huidige locatie zoeken...</string>
     <string name="flag_as_captive">Markeren als in gevangenschap/gekweekt</string>
     <string name="observation_flagged_as_captive">Waarneming werd gemarkeerd als in gevangenschap/gekweekt</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Weet je zeker dat je deze waarneming wilt markeren als gevangen/gecultiveerd? (Als je op Ja drukt, wordt ook het waarnemingsvenster gesloten)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Weet je zeker dat je deze waarneming wilt markeren als gevangen/gecultiveerd? (Als je op Ja drukt, wordt ook het waarnemingsvenster gesloten)</string>
     <string name="do_you_agree_to_the_following">Bent u het eens met volgende?</string>
     <string name="terms">Voorwaarden</string>
     <string name="observation_rules">Waarnemingsregels</string>

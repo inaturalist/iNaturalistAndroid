@@ -329,7 +329,7 @@
     <string name="finding_current_location">Wyszukiwanie aktualnej lokalizacji...</string>
     <string name="flag_as_captive">Oznacz jako W niewoli / Hodowlane</string>
     <string name="observation_flagged_as_captive">Obserwacja oznaczona jako W niewoli / Uprawiany</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Czy napewno chcesz oznaczyć tą obserwację jako W niewoli / Uprawiany? (Zatwierdzenie spowoduje zamknięcie podglądu obserwacji)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Czy napewno chcesz oznaczyć tą obserwację jako W niewoli / Uprawiany? (Zatwierdzenie spowoduje zamknięcie podglądu obserwacji)</string>
     <string name="do_you_agree_to_the_following">Czy zgadzasz się z podanym?</string>
     <string name="terms">Warunki</string>
     <string name="observation_rules">Reguły obserwacji</string>
