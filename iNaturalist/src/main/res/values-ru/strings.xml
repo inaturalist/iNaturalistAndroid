@@ -642,6 +642,7 @@
     <string name="project_observations">Наблюдения</string>
     <string name="project_species">Виды</string>
     <string name="project_people">Участники</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Идентификаторы</string>
     <string name="got_it">Готово!</string>
     <string name="view_all">Просмотреть все</string>
@@ -999,6 +1000,10 @@
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">d MMM yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">d MMMM yyyy HH:mm</string>
     <string name="show_common_names">Показывать народные названия</string>
     <string name="show_common_names_description">Отключить, если вы хотите видеть научные имена.</string>
     <string name="email_must_look_like_email_address">Email должен выглядеть как адрес электронной почты</string>
@@ -1181,8 +1186,6 @@
     <string name="expand_annotation_to_agree_or_disagree">Развернуть аннотацию для согласия или несогласия</string>
     <string name="delete_attribute_value">Удалить значение атрибута</string>
     <string name="open_menu_for_more_options">Открыть меню для дополнительных опций</string>
-    <string name="california_academy_of_sciences">California Academy of Sciences</string>
-    <string name="national_geographic">National Geographic</string>
     <string name="change_user_profile_photo">Изменить фото профиля</string>
     <string name="expand_list">Развернуть список</string>
     <string name="change_map_layers">Изменить слои карты (рельеф/спутник)</string>

@@ -633,6 +633,7 @@
     <string name="project_observations">Observacions</string>
     <string name="project_species">Espècies</string>
     <string name="project_people">Persones</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Identificadors</string>
     <string name="got_it">Entesos!</string>
     <string name="view_all">Mostrar-ho tot</string>
@@ -986,6 +987,10 @@
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">d MMM, yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">d MMMM, yyyy hh:mma</string>
     <string name="show_common_names">Mostra noms vulgars</string>
     <string name="show_common_names_description">Desmarqueu si únicament voleu veure els noms científics</string>
     <string name="email_must_look_like_email_address">E-mail ha de tenir la forma d\'adreça de correu electrònic</string>
@@ -1168,8 +1173,6 @@
     <string name="expand_annotation_to_agree_or_disagree">Expandir anotació per acceptar-la o no.</string>
     <string name="delete_attribute_value">Esborrar valor de l\'atribut</string>
     <string name="open_menu_for_more_options">Obrir menú per a més opcions</string>
-    <string name="california_academy_of_sciences">California Academy of Sciences</string>
-    <string name="national_geographic">National Geographic</string>
     <string name="change_user_profile_photo">Canvia la foto de perfil</string>
     <string name="expand_list">Expandir llista</string>
     <string name="change_map_layers">Canvia les capes del mapa (terreny o satèl·lit)</string>

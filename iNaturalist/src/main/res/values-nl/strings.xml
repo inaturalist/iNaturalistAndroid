@@ -633,6 +633,7 @@
     <string name="project_observations">Waarnemingen</string>
     <string name="project_species">Soort</string>
     <string name="project_people">Personen</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Identificeerders</string>
     <string name="got_it">Ik snap het!</string>
     <string name="view_all">Alles bekijken</string>
@@ -990,6 +991,10 @@ de <a href="https://www.inaturalist.org/pages/community+guidelines">gemeenschaps
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">d MMM yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">d MMMM yyyy hh:mma</string>
     <string name="show_common_names">Algemene namen tonen</string>
     <string name="show_common_names_description">Schakel uit als je alleen wetenschappelijke namen wilt zien.</string>
     <string name="email_must_look_like_email_address">E-mail moet eruit zien als een e-mailadres</string>
@@ -1173,8 +1178,6 @@ zonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van d
     <string name="expand_annotation_to_agree_or_disagree">Annotatie uitbreiden om wel of niet akkoord te gaan</string>
     <string name="delete_attribute_value">Kenmerkwaarde verwijderen</string>
     <string name="open_menu_for_more_options">Menu openen voor meer opties</string>
-    <string name="california_academy_of_sciences">California Academy of Sciences</string>
-    <string name="national_geographic">National Geographic</string>
     <string name="change_user_profile_photo">Wijzig profielfoto van gebruiker</string>
     <string name="expand_list">Lijst uitvouwen</string>
     <string name="change_map_layers">Wijzig kaartlaag (terrein vs. satelliet)</string>

@@ -633,6 +633,7 @@
     <string name="project_observations">Observationer</string>
     <string name="project_species">Arter</string>
     <string name="project_people">Personer</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Identifikatorer</string>
     <string name="got_it">Forstået!</string>
     <string name="view_all">Vis alle</string>
@@ -990,6 +991,10 @@ og <a href="https://www.inaturalist.org/terms">Tjenestevilkår</a>.]]></string>
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">dd. MMM yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">dd. MMMM yyyy HH:mm</string>
     <string name="show_common_names">Vis almindelige navne</string>
     <string name="show_common_names_description">Deaktivér, hvis du kun ønsker de videnskabelige navne vist.</string>
     <string name="email_must_look_like_email_address">E-mail skal ligne en e-mailadresse</string>
@@ -1172,8 +1177,6 @@ og <a href="https://www.inaturalist.org/terms">Tjenestevilkår</a>.]]></string>
     <string name="expand_annotation_to_agree_or_disagree">Udvid annotation for at udtrykke enighed eller uenighed</string>
     <string name="delete_attribute_value">Slet attributværdi</string>
     <string name="open_menu_for_more_options">Åbn menu for flere valgmuligheder</string>
-    <string name="california_academy_of_sciences">California Academy of Sciences</string>
-    <string name="national_geographic">National Geographic</string>
     <string name="change_user_profile_photo">Skift brugerprofilfoto</string>
     <string name="expand_list">Udvid liste</string>
     <string name="change_map_layers">Skift kortlag (terræn kontra satellit)</string>

@@ -643,6 +643,7 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="project_observations">Havaintoa</string>
     <string name="project_species">Lajia</string>
     <string name="project_people">Ihmiset</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Tunnistajaa</string>
     <string name="got_it">Selvä!</string>
     <string name="view_all">Näytä kaikki</string>
@@ -996,6 +997,10 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh.mm a</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">MMM d, yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
     <string name="show_common_names">Näytä yleiskieliset nimet</string>
     <string name="show_common_names_description">Poista käytöstä, jos haluat nähdä vain tieteelliset nimet.</string>
     <string name="email_must_look_like_email_address">Täytyy näyttää sähköpostiosoitteelta</string>
@@ -1177,59 +1182,57 @@ Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen 
     <string name="show_options">Näytä vaihtoehdot</string>
     <!-- Placeholder text for an observation field value -->
     <string name="field_value">Kentän arvo</string>
-    <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
-    <string name="delete_attribute_value">Delete attribute value</string>
-    <string name="open_menu_for_more_options">Open menu for more options</string>
-    <string name="california_academy_of_sciences">California Academy of Sciences</string>
-    <string name="national_geographic">National Geographic</string>
-    <string name="change_user_profile_photo">Change user profile photo</string>
-    <string name="expand_list">Expand list</string>
-    <string name="change_map_layers">Change map layers (terrain vs. satellite)</string>
-    <string name="redo_observation_search">Redo observation search in this map area</string>
-    <string name="view_observations_on_map">View observations on map</string>
-    <string name="view_observations_on_grid">View observations on grid</string>
-    <string name="clear_text">Clear text</string>
-    <string name="observation_has_sounds">Observation has sounds</string>
-    <string name="go_to_my_location">Go to my current location</string>
-    <string name="change_geoprivacy">Change geoprivacy</string>
-    <string name="active_filters">Active filters</string>
-    <string name="message_is_flagged">Message is flagged</string>
-    <string name="user_is_muted">User is muted</string>
+    <string name="expand_annotation_to_agree_or_disagree">Laajenna huomautus sopimaan tai olemaan eri mieltä</string>
+    <string name="delete_attribute_value">Poista attribuutin arvo</string>
+    <string name="open_menu_for_more_options">Avaa valikko nähdäksesi lisää vaihtoehtoja</string>
+    <string name="change_user_profile_photo">Vaihda profiilikuva</string>
+    <string name="expand_list">Laajenna luettelo</string>
+    <string name="change_map_layers">Muuta karttatasoja (maasto vs. satelliitti)</string>
+    <string name="redo_observation_search">Tee uusi havaintohaku tällä kartta-alueella</string>
+    <string name="view_observations_on_map">Näytä havainnot kartalla</string>
+    <string name="view_observations_on_grid">Näytä havainnot ruudukossa</string>
+    <string name="clear_text">Tyhjennä teksti</string>
+    <string name="observation_has_sounds">Havainnossa on ääniä</string>
+    <string name="go_to_my_location">Siirry nykyiseen sijaintiini</string>
+    <string name="change_geoprivacy">Muuta sijainnin tietosuojaa.</string>
+    <string name="active_filters">Aktiiviset rajaukset</string>
+    <string name="message_is_flagged">Viesti on liputettu</string>
+    <string name="user_is_muted">Käyttäjä on mykistetty</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
-    <string name="delete_observations">Delete observations</string>
-    <string name="clear_species_guess">Clear species guess</string>
-    <string name="comment_count">Comment count</string>
-    <string name="id_count">Identification count</string>
-    <string name="observation_selected">Observation selected</string>
-    <string name="share_observation">Share observation</string>
-    <string name="unknown_location">Unknown location</string>
+    <string name="delete_observations">Poista havaintoja</string>
+    <string name="clear_species_guess">Tyhjennä lajiarvaus</string>
+    <string name="comment_count">Kommenttien lukumäärä</string>
+    <string name="id_count">Tunnistuksien määrä</string>
+    <string name="observation_selected">Havainto valittu</string>
+    <string name="share_observation">Jaa havainto</string>
+    <string name="unknown_location">Tuntematon sijainti</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
-    <string name="close">Close</string>
-    <string name="set_date2">Set date</string>
-    <string name="project_selected">Project Selected</string>
-    <string name="project_unselected">Project Unselected</string>
-    <string name="show_my_observations">Show my observations</string>
-    <string name="play_pause_sound">Play or pause sound</string>
+    <string name="close">Sulje</string>
+    <string name="set_date2">Aseta päivämäärä</string>
+    <string name="project_selected">Projekti valittu</string>
+    <string name="project_unselected">Projektia ei valittu</string>
+    <string name="show_my_observations">Näytä havaintoni</string>
+    <string name="play_pause_sound">Toista tai keskeytä ääni</string>
     <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
-    <string name="view_image">View image</string>
+    <string name="view_image">Näytä kuva</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
-    <string name="assessment_passes">Assessment passes</string>
+    <string name="assessment_passes">Arviointi läpäisee</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
-    <string name="agree_assessment_passes">Agree assessment passes</string>
+    <string name="agree_assessment_passes">Hyväksy arvioinnin läpäisy</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
-    <string name="does_not_pass_assessment">Does not pass assessment</string>
+    <string name="does_not_pass_assessment">Ei läpäise arviointia</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
-    <string name="disagree_assessment_passes">Disagree assessment passes</string>
+    <string name="disagree_assessment_passes">Kieltäydy hyväksymästä arviointi</string>
     <plurals name="delete_x_selected_observations">
-        <item quantity="one">Delete %1$d selected observation</item>
-        <item quantity="other">Delete %1$d selected observations</item>
+        <item quantity="one">Poista %1$d valittu havainto</item>
+        <item quantity="other">Poista %1$d valitut havainnot</item>
     </plurals>
     <plurals name="sync_x_selected_observations">
-        <item quantity="one">Sync %1$d selected observation</item>
-        <item quantity="other">Sync %1$d selected observations</item>
+        <item quantity="one">Synkronoi %1$d valittu havainto</item>
+        <item quantity="other">Synkronoi %1$d valitut havainnot</item>
     </plurals>
-    <string name="add_media_evidence">Add media evidence</string>
-    <string name="remove_identification">Remove identification</string>
+    <string name="add_media_evidence">Lisää mediatodiste</string>
+    <string name="remove_identification">Poista tunnistus</string>
     <string name="issue_with_updating_photos">Tämän havainnon valokuvien päivityksessä tapahtui ongelma, joka on hiljattain korjattu. Kirjaudu ulos ja kirjaudu uudelleen sisään ratkaistaksesi tämän ongelman.</string>
-    <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
+    <string name="app_version_copied_to_clipboard">Sovelluksen versio kopioitu leikepöydälle</string>
 </resources>
