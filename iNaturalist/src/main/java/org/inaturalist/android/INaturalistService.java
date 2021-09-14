@@ -622,11 +622,15 @@ public class INaturalistService extends IntentService {
     public int onStartCommand(Intent intent, int flags, int startId) {
         Logger.tag(TAG).info("Service onStartCommand");
 
-        String action = intent.getAction();
+        mApp = (INaturalistApp) getApplicationContext();
+
+        if (intent == null) {
+            return super.onStartCommand(intent, flags, startId);
+        }
 
         // Only use the notification for actions for which their response is crucial (e.g. syncing)
         // (but make sure we call it at least once)
-        mApp = (INaturalistApp) getApplicationContext();
+        String action = intent.getAction();
         Logger.tag(TAG).info("Should call startIntentForeground? " + mApp.hasCalledStartForeground() + ":" + action);
 
         if (!mApp.hasCalledStartForeground() ||
