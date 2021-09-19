@@ -2577,7 +2577,7 @@ public class ObservationEditor extends AppCompatActivity {
      
    
     private boolean saveProjects() {
-        if (mObservation._id == null) return;
+        if (mObservation._id == null) return false;
 
     	Boolean updatedProjects = false; // Indicates whether or not *any* projects were changed
         String joinedIds = StringUtils.join(mProjectIds, ",");
