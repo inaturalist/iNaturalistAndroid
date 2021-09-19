@@ -81,6 +81,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.livefront.bridge.Bridge;
+import com.squareup.picasso.Picasso;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import org.json.JSONArray;
@@ -627,6 +628,9 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
     @Override
     public void onResume() {
         super.onResume();
+
+        mHelper = new ActivityHelper(getActivity());
+
         loadObservationIntoUI();
         refreshDataQuality();
         refreshProjectList();
@@ -1901,17 +1905,13 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
         }
 
         if ((userIconUrl != null) && (userIconUrl.length() > 0)) {
-            UrlImageViewHelper.setUrlDrawable(mUserPic, userIconUrl, R.drawable.ic_account_circle_black_24dp, new UrlImageViewCallback() {
-                @Override
-                public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) { }
-
-                @Override
-                public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                    // Return a circular version of the profile picture
-                    Bitmap centerCrop = ImageUtils.centerCropBitmap(loadedBitmap);
-                    return ImageUtils.getCircleBitmap(centerCrop);
-                }
-            });
+            Picasso.with(getActivity())
+                    .load(userIconUrl)
+                    .placeholder(R.drawable.ic_account_circle_black_24dp)
+                    .fit()
+                    .centerCrop()
+                    .transform(new UserActivitiesAdapter.CircleTransform())
+                    .into(mUserPic);
         } else {
             mUserPic.setImageResource(R.drawable.ic_account_circle_black_24dp);
         }
@@ -3433,6 +3433,9 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
         BaseFragmentActivity.safeUnregisterReceiver(mDownloadObservationReceiver, getActivity());
         BaseFragmentActivity.safeUnregisterReceiver(mObservationSubscriptionsReceiver, getActivity());
         BaseFragmentActivity.safeUnregisterReceiver(mObservationFollowReceiver, getActivity());
+        if (mCommentMentions != null) mCommentMentions.remove();
+        if (mHelper != null) mHelper = null;
+        if (mAnnotationsList != null) mAnnotationsList.setAdapter(null);
 
         if (mPhotosAdapter != null) {
             mPhotosAdapter.pause();

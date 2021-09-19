@@ -41,15 +41,21 @@ public class ObservationViewerSlider extends AppCompatActivity {
     int mLastPosition = 0;
 
     private static final int OBS_RESULTS_BUFFER = 5;
-    private ActivityHelper mHelper;
     private INaturalistApp mApp;
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mPagerAdapter != null) {
+            mPagerAdapter.onPause();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.obs_viewer_slider);
 
-        mHelper = new ActivityHelper(this);
         mApp = (INaturalistApp) getApplicationContext();
 
         // Instantiate a ViewPager and a PagerAdapter.
@@ -128,6 +134,11 @@ public class ObservationViewerSlider extends AppCompatActivity {
         private ExploreResultsReceiver mExploreResultsReceiver;
         private GetAdditionalObsReceiver mGetAdditionalObsReceiver;
         private boolean mNoMoreObsLeft = false;
+
+        public void onPause() {
+            BaseFragmentActivity.safeUnregisterReceiver(mExploreResultsReceiver, ObservationViewerSlider.this);
+            BaseFragmentActivity.safeUnregisterReceiver(mGetAdditionalObsReceiver, ObservationViewerSlider.this);
+        }
 
 
         public ScreenSlidePagerAdapter(FragmentManager fm) {
@@ -336,7 +347,8 @@ public class ObservationViewerSlider extends AppCompatActivity {
 
                 String error = extras.getString("error");
                 if (error != null) {
-                    mHelper.alert(String.format(getString(R.string.couldnt_load_results), error));
+                    ActivityHelper helper = new ActivityHelper(ObservationViewerSlider.this);
+                    helper.alert(String.format(getString(R.string.couldnt_load_results), error));
                     return;
                 }
 
