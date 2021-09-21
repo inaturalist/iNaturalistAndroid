@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         api-level:
-          # - 23 # Android 5, minSdkVersion
+          - 23 # Android 5, minSdkVersion
           # - 27 # Android 8, has caused problems in the past
           - 29 # Android 10, targetSdkVersion
           # - 30 # Android 11, latest public release
