@@ -12,10 +12,10 @@ jobs:
     strategy:
       matrix:
         api-level:
-          - 23 # Android 5, minSdkVersion
-          - 27 # Android 8, has caused problems in the past
+          # - 23 # Android 5, minSdkVersion
+          # - 27 # Android 8, has caused problems in the past
           - 29 # Android 10, targetSdkVersion
-          - 30 # Android 11, latest public release
+          # - 30 # Android 11, latest public release
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -27,7 +27,7 @@ jobs:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: v1-gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
 
       - name: AVD cache
         uses: actions/cache@v2
@@ -36,13 +36,14 @@ jobs:
           path: |
             ~/.android/avd/*
             ~/.android/adb*
-          key: v1-avd-${{ matrix.api-level }}
+          key: avd-${{ matrix.api-level }}
 
       - name: Create AVD and generate snapshot for caching
         if: steps.avd-cache.outputs.cache-hit != 'true'
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
+          arch: x86_64
           force-avd-creation: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
