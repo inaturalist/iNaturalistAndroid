@@ -641,6 +641,7 @@
     <string name="project_observations">Pozorování</string>
     <string name="project_species">Druhy</string>
     <string name="project_people">Lidé</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Identifikátoři</string>
     <string name="got_it">Mám to!</string>
     <string name="view_all">Zobrazit vše</string>
@@ -1004,6 +1005,10 @@ a naše <a href="https://www.inaturalist.org/terms">Smluvní podmínky</a>.]]></
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mm a</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">d. MMM yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">d. MMMM yyyy HH:mm</string>
     <string name="show_common_names">Zobrazit obecné názvy</string>
     <string name="show_common_names_description">Zakázat, pokud chcete zobrazit pouze vědecké názvy.</string>
     <string name="email_must_look_like_email_address">E-mail musí vypadat jako e-mailová adresa</string>
@@ -1186,8 +1191,6 @@ a naše <a href="https://www.inaturalist.org/terms">Smluvní podmínky</a>.]]></
     <string name="expand_annotation_to_agree_or_disagree">K vyjádření souhlasu nebo nesouhlasu rozbalte anotaci</string>
     <string name="delete_attribute_value">Odstranit hodnotu atributu</string>
     <string name="open_menu_for_more_options">Pro více možností otevřete menu</string>
-    <string name="california_academy_of_sciences">Kalifornská akademie věd</string>
-    <string name="national_geographic">National Geographic</string>
     <string name="change_user_profile_photo">Změnit profilovou fotografii</string>
     <string name="expand_list">Rozbalit seznam</string>
     <string name="change_map_layers">Změnit mapové vrstvy (terénní vs. satelitní)</string>

@@ -622,11 +622,15 @@ public class INaturalistService extends IntentService {
     public int onStartCommand(Intent intent, int flags, int startId) {
         Logger.tag(TAG).info("Service onStartCommand");
 
-        String action = intent.getAction();
+        mApp = (INaturalistApp) getApplicationContext();
+
+        if (intent == null) {
+            return super.onStartCommand(intent, flags, startId);
+        }
 
         // Only use the notification for actions for which their response is crucial (e.g. syncing)
         // (but make sure we call it at least once)
-        mApp = (INaturalistApp) getApplicationContext();
+        String action = intent.getAction();
         Logger.tag(TAG).info("Should call startIntentForeground? " + mApp.hasCalledStartForeground() + ":" + action);
 
         if (!mApp.hasCalledStartForeground() ||
@@ -4462,12 +4466,22 @@ public class INaturalistService extends IntentService {
 
         FilenameFilter fileFilter = new FilenameFilter() {
             public boolean accept(File dir, String name) {
-                return (name.endsWith(".jpeg") && name.length() == 41);
+                int extensionStart = name.indexOf(".");
+                if (extensionStart == -1) return false;
+                String nameNoExtension = name.substring(0, extensionStart);
+                return (
+                        (name.endsWith(".jpeg") || name.endsWith(".jpg") || name.endsWith(".heif") ||
+                        name.endsWith(".png") || name.endsWith(".png") || name.endsWith(".webp")) &&
+                        (nameNoExtension.length() == 36));
             }
         };
 
+        List<File> allCacheFiles = new ArrayList<>(Arrays.asList(getFilesDir().listFiles(fileFilter)));
+        allCacheFiles.addAll(Arrays.asList(getExternalCacheDir().listFiles(fileFilter)));
+        allCacheFiles.addAll(Arrays.asList(getCacheDir().listFiles(fileFilter)));
+
         Collection<File> list = CollectionUtils.select(
-                Arrays.asList(getFilesDir().listFiles(fileFilter)),
+                allCacheFiles,
                 new Predicate<File>() {
                     @Override
                     public boolean evaluate(File f) {
@@ -6668,7 +6682,7 @@ public class INaturalistService extends IntentService {
 
                 // Add any new photos that were added remotely
                 ArrayList<Integer> observationPhotoIds = new ArrayList<Integer>();
-                ArrayList<Integer> existingObservationPhotoIds = new ArrayList<Integer>();
+                HashMap<Integer, ObservationPhoto> localPhotos = new HashMap<>();
                 Cursor pc = getContentResolver().query(
                         ObservationPhoto.CONTENT_URI,
                         ObservationPhoto.PROJECTION,
@@ -6678,12 +6692,12 @@ public class INaturalistService extends IntentService {
                 while (pc.isAfterLast() == false) {
                     int photoId = pc.getInt(pc.getColumnIndexOrThrow(ObservationPhoto.ID));
                     if (photoId != 0) {
-                        existingObservationPhotoIds.add(photoId);
+                        localPhotos.put(photoId, new ObservationPhoto(pc));
                     }
                     pc.moveToNext();
                 }
                 pc.close();
-                Logger.tag(TAG).debug("syncJson: Adding photos for obs " + observation.id + ":" + existingObservationPhotoIds.toString());
+                Logger.tag(TAG).debug("syncJson: Adding photos for obs " + observation.id + ":" + localPhotos.toString());
                 Logger.tag(TAG).debug("syncJson: JsonObservation: " + jsonObservation + ":" + jsonObservation.photos);
                 for (int j = 0; j < jsonObservation.photos.size(); j++) {
                     ObservationPhoto photo = jsonObservation.photos.get(j);
@@ -6695,8 +6709,18 @@ public class INaturalistService extends IntentService {
                     }
 
                     observationPhotoIds.add(photo.id);
-                    if (existingObservationPhotoIds.contains(photo.id)) {
-                        Logger.tag(TAG).debug("syncJson: photo " + photo.id + " has already been added, skipping...");
+                    if (localPhotos.containsKey(photo.id)) {
+                        ObservationPhoto localPhoto = localPhotos.get(photo.id);
+
+                        Logger.tag(TAG).debug("syncJson: photo " + photo.id + " has already been added");
+                        localPhoto.merge(photo, true);
+                        Logger.tag(TAG).debug("syncJson: merged: " + localPhoto.isDirty() + ":" + localPhoto);
+                        if (localPhoto.isDirty()) {
+                            ContentValues opcv = localPhoto.getContentValues();
+                            Logger.tag(TAG).debug("syncJson: Setting _SYNCED_AT - " + localPhoto.id + ":" + localPhoto._id + ":" + localPhoto._observation_id + ":" + localPhoto.observation_id + ":" + opcv);
+                            opcv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
+                            getContentResolver().update(localPhoto.getUri(), opcv, null, null);
+                        }
                         continue;
                     }
                     ContentValues opcv = photo.getContentValues();

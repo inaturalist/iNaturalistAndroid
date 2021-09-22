@@ -633,6 +633,7 @@
     <string name="project_observations">Megfigyelések</string>
     <string name="project_species">Fajok</string>
     <string name="project_people">Emberek</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Meghatározók</string>
     <string name="got_it">Rendben!</string>
     <string name="view_all">Összes</string>
@@ -986,6 +987,10 @@
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">MMM d, yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
     <string name="show_common_names">Közhasználatú nevek megjelenítése</string>
     <string name="show_common_names_description">Kapcsold ki, ha a tudományos neveket szeretnéd látni.</string>
     <string name="email_must_look_like_email_address">Az emailnek úgy kell kinéznie, mint egy email cím</string>
@@ -1168,8 +1173,6 @@
     <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
     <string name="delete_attribute_value">Delete attribute value</string>
     <string name="open_menu_for_more_options">Open menu for more options</string>
-    <string name="california_academy_of_sciences">California Academy of Sciences</string>
-    <string name="national_geographic">National Geographic</string>
     <string name="change_user_profile_photo">Change user profile photo</string>
     <string name="expand_list">Expand list</string>
     <string name="change_map_layers">Change map layers (terrain vs. satellite)</string>

@@ -478,6 +478,8 @@ public class ImageUtils {
             Logger.tag(TAG).error(e);
         } catch (IOException e) {
             Logger.tag(TAG).error(e);
+        } catch (SecurityException e) {
+            Logger.tag(TAG).error(e);
         }
 
         // Failed copying the image

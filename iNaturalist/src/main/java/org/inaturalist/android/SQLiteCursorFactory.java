@@ -10,6 +10,9 @@ import android.util.Log;
 
 import org.tinylog.Logger;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Implement the cursor factory in order to log the queries before returning 
  * the cursor
@@ -25,7 +28,7 @@ public class SQLiteCursorFactory implements CursorFactory {
     private static String lastQuery = null;
 
     public SQLiteCursorFactory() {
-    this.debugQueries = false;
+        this.debugQueries = false;
   }
 
     public SQLiteCursorFactory(boolean debugQueries) {
@@ -40,7 +43,10 @@ public class SQLiteCursorFactory implements CursorFactory {
                 lastQuery = currentQuery;
                 Logger.tag(TAG).debug(currentQuery);
             }
+
+            return new TrackingCursor(db, masterQuery, editTable, query);
+        } else {
+            return new SQLiteCursor(db, masterQuery, editTable, query);
         }
-        return new SQLiteCursor(db, masterQuery, editTable, query);
     }
 }

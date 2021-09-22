@@ -634,6 +634,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="project_observations">Observaciones</string>
     <string name="project_species">Especies</string>
     <string name="project_people">Personas</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Identificadores</string>
     <string name="got_it">¡Entendido!</string>
     <string name="view_all">Ver todos</string>
@@ -989,6 +990,10 @@ Más información de nuestra definición de \"contenido apropiado\" en las
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">d MMM, yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">d MMM, yyyy hh:mma</string>
     <string name="show_common_names">Muestra nombres comunes</string>
     <string name="show_common_names_description">Desactiva si solo deseas ver nombres científicos.</string>
     <string name="email_must_look_like_email_address">El correo electrónico debe ser una dirección de correo válida</string>
@@ -1171,8 +1176,6 @@ Más información de nuestra definición de \"contenido apropiado\" en las
     <string name="expand_annotation_to_agree_or_disagree">Expandir anotación para aceptar o estar en desacuerdo</string>
     <string name="delete_attribute_value">Eliminar valor de atributo</string>
     <string name="open_menu_for_more_options">Abrir menú para más opciones</string>
-    <string name="california_academy_of_sciences">Academia de Ciencias de California</string>
-    <string name="national_geographic">National Geographic</string>
     <string name="change_user_profile_photo">Cambiar foto de perfil de usuario</string>
     <string name="expand_list">Expandir lista</string>
     <string name="change_map_layers">Cambia las capas del mapa (terreno vs. satélite)</string>

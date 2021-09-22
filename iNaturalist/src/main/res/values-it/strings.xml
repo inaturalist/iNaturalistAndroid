@@ -633,6 +633,7 @@
     <string name="project_observations">Osservazioni</string>
     <string name="project_species">Specie</string>
     <string name="project_people">Persone</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Identificatori</string>
     <string name="got_it">Ok!</string>
     <string name="view_all">Tutto</string>
@@ -988,6 +989,10 @@ le <a href="https://www.inaturalist.org/pages/community+guidelines">Linee Guida 
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">d MMM, yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
     <string name="show_common_names">Mostra nomi comuni</string>
     <string name="show_common_names_description">Disabilita se vuoi vedere solo i nomi scientifici.</string>
     <string name="email_must_look_like_email_address">L\'email deve sembrare un indirizzo email</string>
@@ -1170,8 +1175,6 @@ le <a href="https://www.inaturalist.org/pages/community+guidelines">Linee Guida 
     <string name="expand_annotation_to_agree_or_disagree">Espandi l\'annotazione per concordare o non concordare</string>
     <string name="delete_attribute_value">Elimina il valore dell\'attributo</string>
     <string name="open_menu_for_more_options">Apri il menu per altre opzioni</string>
-    <string name="california_academy_of_sciences">California Academy of Sciences</string>
-    <string name="national_geographic">National Geographic</string>
     <string name="change_user_profile_photo">Cambia l\'immagine del profilo utente</string>
     <string name="expand_list">Espandi elenco</string>
     <string name="change_map_layers">Cambia gli strati della mappa (terreno vs. satellite)</string>
