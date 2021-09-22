@@ -14,6 +14,8 @@ jobs:
         api-level:
           - 23 # Android 5, minSdkVersion
           - 27 # Android 8, has caused problems in the past
+          # SDK 29 causes frequent problems with the emulator, not sure why.
+          # Hoping SDK 30 is close enough
           # - 29 # Android 10, targetSdkVersion
           - 30 # Android 11, latest public release
     steps:
