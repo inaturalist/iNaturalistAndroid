@@ -13,9 +13,9 @@ jobs:
       matrix:
         api-level:
           - 23 # Android 5, minSdkVersion
-          # - 27 # Android 8, has caused problems in the past
+          - 27 # Android 8, has caused problems in the past
           - 29 # Android 10, targetSdkVersion
-          # - 30 # Android 11, latest public release
+          - 30 # Android 11, latest public release
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -27,7 +27,7 @@ jobs:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: v3-gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
+          key: v4-gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
 
       - name: AVD cache
         uses: actions/cache@v2
@@ -36,7 +36,7 @@ jobs:
           path: |
             ~/.android/avd/*
             ~/.android/adb*
-          key: v3-avd-${{ matrix.api-level }}
+          key: v4-avd-${{ matrix.api-level }}
 
       - name: Create AVD and generate snapshot for caching
         if: steps.avd-cache.outputs.cache-hit != 'true'
