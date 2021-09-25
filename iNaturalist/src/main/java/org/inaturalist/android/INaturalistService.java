@@ -3089,7 +3089,7 @@ public class INaturalistService extends IntentService {
             c.moveToNext();
         }
 
-        c.close();
+        if (!c.isClosed()) c.close();
 
         // Next, add new project observations
         c = getContentResolver().query(ProjectObservation.CONTENT_URI,
@@ -3126,7 +3126,7 @@ public class INaturalistService extends IntentService {
             c.moveToNext();
         }
 
-        c.close();
+        if (!c.isClosed()) c.close();
 
         return true;
     }
