@@ -2557,6 +2557,8 @@ public class ObservationEditor extends AppCompatActivity {
      */
     
     private void saveProjectFields() {
+        if (mProjectFieldValues == null) return;
+        
         for (ProjectFieldValue fieldValue : mProjectFieldValues.values()) {
             if (fieldValue.value == null) {
                 continue;
