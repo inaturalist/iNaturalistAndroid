@@ -5029,7 +5029,7 @@ public class INaturalistService extends IntentService {
 
 
     public void flagObservationAsCaptive(int obsId) throws AuthenticationException {
-        post(String.format(Locale.ENGLISH, "%s/observations/%d/quality/wild.json?agree=false", HOST, obsId), (JSONObject) null);
+        post(String.format(Locale.ENGLISH, "%s/observations/%d/quality/wild", API_HOST, obsId), (JSONObject) null);
     }
 
     public void joinProject(int projectId) throws AuthenticationException {
