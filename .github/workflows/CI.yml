@@ -14,7 +14,9 @@ jobs:
         api-level:
           - 23 # Android 5, minSdkVersion
           - 27 # Android 8, has caused problems in the past
-          - 29 # Android 10, targetSdkVersion
+          # SDK 29 causes frequent problems with the emulator, not sure why.
+          # Hoping SDK 30 is close enough
+          # - 29 # Android 10, targetSdkVersion
           - 30 # Android 11, latest public release
     steps:
       - name: Checkout
@@ -48,6 +50,8 @@ jobs:
           disable-animations: false
           target: google_apis
           ndk: 22.1.7171670
+          # I think this might be a quick fix for intermittent build failures waiting for the emaultor to boot
+          emulator-build: 7425822
           script: echo "Generated AVD snapshot for caching."
 
       - name: Copy iNat config files
