@@ -288,6 +288,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 	protected void onStop() {
 		super.onStop();
 
+        if (mPhotosAdapter != null) {
+            mPhotosAdapter.close();
+        }
 	}
 
 
@@ -346,6 +349,16 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         private List<SoundPlayer> mPlayers = new ArrayList<>();
         private HashMap<Integer, Bitmap> mBitmaps = new HashMap<>();
+
+
+        public void close() {
+            if (mImageCursor != null) {
+                mImageCursor.close();
+            }
+            if (mSoundCursor != null) {
+                mSoundCursor.close();
+            }
+        }
 
         public void refreshPhotoPositions(Integer position, boolean doNotUpdate) {
             int currentPosition = position == null ? 0 : 1;
@@ -2395,10 +2408,10 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         getMenuInflater().inflate(R.menu.observation_viewer_menu, menu);
         mMenu = menu;
         refreshMenu();
-        
+
         return true;
     }
-    
+
     private void refreshMenu() {
         if (mMenu == null) return;
 
@@ -3047,6 +3060,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
     private void reloadPhotos() {
         mLoadingPhotos.setVisibility(View.GONE);
+        if (mPhotosAdapter != null) {
+            mPhotosAdapter.close();
+        }
         mPhotosAdapter = new PhotosViewPagerAdapter();
         mPhotosViewPager.setAdapter(mPhotosAdapter);
         mIndicator.setViewPager(mPhotosViewPager);
@@ -3437,6 +3453,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             mPhotosAdapter.pause();
         }
     }
+
 
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

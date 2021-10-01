@@ -627,8 +627,7 @@ public class ObservationEditor extends AppCompatActivity {
             }
         });
 
-
-        findViewById(R.id.is_captive).setOnClickListener(new OnClickListener() {
+        OnClickListener onIsCaptive = new OnClickListener() {
             @Override
             public void onClick(View view) {
                 mIsCaptive = !mIsCaptive;
@@ -643,7 +642,10 @@ public class ObservationEditor extends AppCompatActivity {
                 }
 
             }
-            });
+        };
+
+        findViewById(R.id.is_captive).setOnClickListener(onIsCaptive);
+        findViewById(R.id.is_captive_checkbox).setOnClickListener(onIsCaptive);
 
         mPhotoWarningContainer = findViewById(R.id.warning_multiple_photos);
         mPhotoWarningContainer.setVisibility(View.GONE);
@@ -1078,7 +1080,7 @@ public class ObservationEditor extends AppCompatActivity {
                 lon = mObservation.private_longitude == null ? mObservation.longitude : mObservation.private_longitude;
                 intent.putExtra(LocationChooserActivity.LONGITUDE, lon);
                 intent.putExtra(LocationChooserActivity.LATITUDE,  lat);
-                intent.putExtra(LocationChooserActivity.ACCURACY, (mObservation.positional_accuracy != null ? mObservation.positional_accuracy.doubleValue() : 0));
+                intent.putExtra(LocationChooserActivity.ACCURACY, (mObservation.positional_accuracy != null ? mObservation.positional_accuracy.doubleValue() : null));
                 intent.putExtra(LocationChooserActivity.ICONIC_TAXON_NAME, mObservation.iconic_taxon_name);
                 intent.putExtra(LocationChooserActivity.GEOPRIVACY, (String) mGeoprivacy.getSelectedItem());
 
@@ -1854,7 +1856,9 @@ public class ObservationEditor extends AppCompatActivity {
         if (mAccuracyView.getText() == null || mAccuracyView.getText().length() == 0) {
             mObservation.positional_accuracy = null;
         } else {
-            mObservation.positional_accuracy = ((Float) Float.parseFloat(mAccuracyView.getText().toString())).intValue();
+            // Round any accuracy less than 1 (but greater than zero) to 1
+            Float acc = ((Float) Float.parseFloat(mAccuracyView.getText().toString()));
+            mObservation.positional_accuracy = acc > 0 & acc < 1 ? 1 : acc.intValue();
         }
 
         List<String> values = Arrays.asList(getResources().getStringArray(R.array.geoprivacy_values));
@@ -2493,7 +2497,9 @@ public class ObservationEditor extends AppCompatActivity {
 
         if (location.hasAccuracy()) {
             mAccuracyView.setText(Float.toString(location.getAccuracy()));
-            mObservation.positional_accuracy = ((Float) location.getAccuracy()).intValue();
+            // Round any accuracy less than 1 (but greater than zero) to 1
+            Float acc = location.getAccuracy();
+            mObservation.positional_accuracy = acc > 0 & acc < 1 ? 1 : acc.intValue();
             findViewById(R.id.accuracy_prefix).setVisibility(View.VISIBLE);
             findViewById(R.id.accuracy).setVisibility(View.VISIBLE);
         } else {
@@ -2551,6 +2557,8 @@ public class ObservationEditor extends AppCompatActivity {
      */
     
     private void saveProjectFields() {
+        if (mProjectFieldValues == null) return;
+        
         for (ProjectFieldValue fieldValue : mProjectFieldValues.values()) {
             if (fieldValue.value == null) {
                 continue;
@@ -2571,6 +2579,8 @@ public class ObservationEditor extends AppCompatActivity {
      
    
     private boolean saveProjects() {
+        if (mObservation._id == null) return false;
+
     	Boolean updatedProjects = false; // Indicates whether or not *any* projects were changed
         String joinedIds = StringUtils.join(mProjectIds, ",");
         
@@ -2732,7 +2742,7 @@ public class ObservationEditor extends AppCompatActivity {
 
                 double longitude = data.getDoubleExtra(LocationChooserActivity.LONGITUDE, 0);
                 double latitude = data.getDoubleExtra(LocationChooserActivity.LATITUDE, 0);
-                double accuracy = data.getDoubleExtra(LocationChooserActivity.ACCURACY, 0);
+                double accuracy = data.getDoubleExtra(LocationChooserActivity.ACCURACY, -1);
                 String geoprivacy = data.getStringExtra(LocationChooserActivity.GEOPRIVACY);
                 String placeGuess = data.getStringExtra(LocationChooserActivity.PLACE_GUESS);
 
@@ -2743,7 +2753,10 @@ public class ObservationEditor extends AppCompatActivity {
 
                 mObservation.latitude = latitude;
                 mObservation.longitude = longitude;
-                mObservation.positional_accuracy = (int) Math.floor(accuracy);
+                if (accuracy != -1) {
+                    // Round any accuracy less than 1 (but greater than zero) to 1
+                    mObservation.positional_accuracy = accuracy > 0 & accuracy < 1 ? 1 : (int) Math.floor(accuracy);
+                }
 
                 mObservation.geoprivacy = geoprivacy;
                 updateObservationVisibilityDescription();
@@ -2758,7 +2771,7 @@ public class ObservationEditor extends AppCompatActivity {
 
                 mLatitudeView.setText(Double.toString(latitude));
                 mLongitudeView.setText(Double.toString(longitude));
-                mAccuracyView.setText(mObservation.positional_accuracy.toString());
+                mAccuracyView.setText(mObservation.positional_accuracy != null ? mObservation.positional_accuracy.toString() : "");
                 findViewById(R.id.coordinates).setVisibility(View.VISIBLE);
                 findViewById(R.id.accuracy_prefix).setVisibility(View.VISIBLE);
                 findViewById(R.id.accuracy).setVisibility(View.VISIBLE);
@@ -3554,7 +3567,9 @@ public class ObservationEditor extends AppCompatActivity {
                 if (directory != null) {
                     Rational value = directory.getRational(GpsDirectory.TAG_H_POSITIONING_ERROR);
                     if (value != null) {
-                        mObservation.positional_accuracy = value.intValue();
+                        // Round any accuracy less than 1 (but greater than zero) to 1
+                        Float acc = value.floatValue();
+                        mObservation.positional_accuracy = acc > 0 & acc < 1 ? 1 : acc.intValue();
                     }
                 }
 

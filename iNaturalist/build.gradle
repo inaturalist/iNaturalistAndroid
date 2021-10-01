@@ -140,7 +140,7 @@ dependencies {
     implementation 'com.github.livefront:bridge:v1.1.2'
     implementation 'com.evernote:android-state:1.4.1'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
-    implementation 'com.google.maps:google-maps-services:0.9.3'
+    implementation 'com.google.maps:google-maps-services:0.19.0'
     implementation 'com.google.android:flexbox:1.0.0'
     implementation 'org.slf4j:slf4j-simple:1.7.25'
     implementation 'org.tinylog:tinylog-api:2.0.0'

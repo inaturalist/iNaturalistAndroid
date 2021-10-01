@@ -248,6 +248,13 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         getPhotoInfo(true);
     }
 
+    public void close() {
+        Cursor c = getCursor();
+        if (c != null) {
+            c.close();
+        }
+    }
+
     private Cursor getNewCursor() {
         List<Object> results = getQuery(null);
         String conditions = (String) results.get(0);
