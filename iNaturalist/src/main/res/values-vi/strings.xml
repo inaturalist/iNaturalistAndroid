@@ -7,8 +7,6 @@
     <string name="ok">Đồng ý</string>
     <string name="cancel">Huỷ</string>
     <string name="loading">Đang tải...</string>
-    <string name="sync_required">Yêu cầu đồng bộ hoá</string>
-    <string name="sync_required_message">%1$d những lần quan sát, %2$d những hình ảnh để đồng bộ hóa</string>
     <string name="street">Đường </string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Vệ tinh</string>
@@ -32,7 +30,6 @@
     <string name="settings">Cài đặt</string>
     <string name="projects">Các dự án</string>
     <string name="delete_photo">Xóa ảnh</string>
-    <string name="menu">Menu</string>
     <string name="my_location">Vị trí của tôi</string>
     <string name="nearby_observations">Quan sát gần đây</string>
     <string name="add">Thêm</string>
@@ -226,9 +223,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Email</string>
-    <string name="sign_up_with">Đăng ký bằng</string>
     <string name="skip">Bỏ qua ›</string>
-    <string name="already_have_account">Bạn đã có tài khoản?</string>
     <string name="log_in">Đăng nhập</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Đăng ký</string>
@@ -350,7 +345,6 @@
     <string name="updating_profile">Đang cập nhật hồ sơ</string>
     <string name="there_was_a_problem_updating_profile">Có vấn đề xảy ra khi đang cập nhật hồ sơ của bạn!</string>
     <string name="there_was_a_problem_updating_profile_params">Có vấn đề xảy ra khi đang cập nhật hồ sơ của bạn: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Đăng nhập với tư cách là <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
     <string name="log_out">Đăng xuất</string>
@@ -467,14 +461,12 @@
     <string name="what_did_you_see">Bạn đã thấy gì?</string>
     <string name="suggest_species">Đề xuất loài</string>
     <string name="suggest_species_description">Đề xuất loài dựa trên sự tương đồng trực quan với hình ảnh.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Hình ảnh tương đồng</string>
     <string name="visually_similar_seen_nearby">Hình ảnh tương đồng / Được nhìn thấy ở gần đây</string>
     <string name="seen_nearby">Được nhìn thấy ở gần đây</string>
     <string name="enlarge">Phóng to</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Xem con cái</string>
-    <string name="invalid_photo_extension">Lỗi nhập ảnh: Chỉ có thể nhập các tệp ảnh có phần mở rộng JPG/JPEG/PNG</string>
     <string name="taxon_has_no_photos">Không có ảnh cho đơn vị phân loài này</string>
     <string name="terrain">Địa hình</string>
     <string name="filters">Bộ lọc</string>
@@ -592,7 +584,6 @@
     <string name="leave_comment">Để lại bình luận...</string>
     <string name="swipe">Vuốt</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Bạn chọn tài khoản Google nào?</string>
     <string name="potential_disagreement">Bất đồng quan điểm</string>
     <string name="do_you_think_this_could_be"><![CDATA[Liệu bằng chứng được cung cấp là đủ để xác nhận đây là <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -604,7 +595,7 @@
     <string name="must_be_connected_to_load_more_obs">Bạn phải kết nối với Internet mới tải thêm được các quan sát</string>
     <string name="inat_about_title">iNaturalist là một sáng kiến ​​chung của Viện hàn lâm Khoa học California và Hiệp hội Địa lý Quốc gia.</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -764,9 +755,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Đánh dấu tất cả là đã đọc</string>
     <string name="content_hidden">Ẩn nội dung</string>
     <string name="show_hidden_content">Hiển thị nội dung ẩn</string>
@@ -780,7 +771,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Ghi âm</string>
-    <string name="no_recorder_found">Không tìm thấy máy ghi âm mặc định!</string>
     <string name="couldnt_retrieve_sound">Không thể tìm thấy âm thanh từ máy ghi âm mặc định - hãy thử nhập âm thanh thay thế</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Chọn âm thanh</string>
@@ -1183,7 +1173,6 @@ Các bên thứ ba này bao gồm: <br/><ul><li>Google (<a href="https://analyti
     <string name="user_is_muted">User is muted</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
     <string name="delete_observations">Delete observations</string>
-    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Comment count</string>
     <string name="id_count">Identification count</string>
     <string name="observation_selected">Observation selected</string>

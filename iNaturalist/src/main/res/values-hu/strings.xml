@@ -7,8 +7,6 @@
     <string name="ok">OK</string>
     <string name="cancel">Mégse</string>
     <string name="loading">Betöltés...</string>
-    <string name="sync_required">Szinkronizálás szükséges</string>
-    <string name="sync_required_message">%1$d megfigyelés, %2$d szinkronizálandó fénykép</string>
     <string name="street">Utca</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Műhold</string>
@@ -32,7 +30,6 @@
     <string name="settings">Beállítások</string>
     <string name="projects">Projektek</string>
     <string name="delete_photo">Fénykép törlése</string>
-    <string name="menu">Menü</string>
     <string name="my_location">Saját pozíció</string>
     <string name="nearby_observations">Közeli megfigyelések</string>
     <string name="add">Hozzáadás</string>
@@ -227,9 +224,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-mail</string>
-    <string name="sign_up_with">Regisztráció a következővel:</string>
     <string name="skip">Kihagyás ›</string>
-    <string name="already_have_account">Már van fiókod?</string>
     <string name="log_in">Bejelentkezés</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Regisztráció</string>
@@ -317,7 +312,7 @@
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Megjegyzés írásához és meghatározáshoz szinkronizáld ezt a megfigyelést...</string>
     <!--  Label for a button to add an observation without a photo or a sound  -->
-    <string name="no_photo">Nem található médiafájl</string>
+    <string name="no_photo">Nincs média</string>
     <string name="about_this_species">A fajról</string>
     <string name="view_on_wikipedia">Wikipédia-szócikk</string>
     <string name="photo"><![CDATA[Fénykép: <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -352,7 +347,6 @@
     <string name="updating_profile">Profil frissítése...</string>
     <string name="there_was_a_problem_updating_profile">A profilod frissítése során hibába ütköztünk.</string>
     <string name="there_was_a_problem_updating_profile_params">A profilod frissítése során a következő hiba lépett fel: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[<b>%1$s</b>ként bejelentkezve]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Belépve <b>%1$s</b>-ként]]></string>
     <string name="log_out">Kijelentkezés</string>
@@ -442,7 +436,7 @@
     <string name="preparing">Előkészítés...</string>
     <string name="add_edit_remark">Jegyzet</string>
     <string name="restore">Visszaállítás</string>
-    <string name="compare">Összehasonlítás</string>
+    <string name="compare">Összehasonlít</string>
     <string name="select">Kiválasztás</string>
     <string name="source_wikipedia">(Forrás: Wikipedia)</string>
     <string name="conservation_source"><![CDATA[<b>Forrás:</b> <i>%1$s</i>]]></string>
@@ -471,14 +465,12 @@
     <string name="what_did_you_see">Mit láttál?</string>
     <string name="suggest_species">Javaslat fajra</string>
     <string name="suggest_species_description">Fajfelismerés a fényképek hasonlóságai alapján.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Kinézetre hasonló</string>
     <string name="visually_similar_seen_nearby">Kinézetre hasonló / Közelben található</string>
     <string name="seen_nearby">A közelben látták</string>
     <string name="enlarge">Nagyítás</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Gyermekek megtekintése</string>
-    <string name="invalid_photo_extension">Hiba: csak JPG, JPEG és PNG kiterjesztésű fényképfáljok importálhatók.</string>
     <string name="taxon_has_no_photos">Ehhez a taxonhoz nem tartoznak fényképek.</string>
     <string name="terrain">Terep</string>
     <string name="filters">Szűrők</string>
@@ -596,7 +588,6 @@
     <string name="leave_comment">Hozzászólás</string>
     <string name="swipe">Húzás</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Válassz Google-fiókot:</string>
     <string name="potential_disagreement">Lehetséges konfliktus</string>
     <string name="do_you_think_this_could_be"><![CDATA[Elégséges bizonyíték ez arra, hogy ez <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -608,7 +599,7 @@
     <string name="must_be_connected_to_load_more_obs">További megfigyelések betöltéséhez internetkapcsolat szükséges.</string>
     <string name="inat_about_title">Az iNaturalist a California Academy of Sciences és a National Geographic Society közös kezdeményezése.</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -653,7 +644,7 @@
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Nincs</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
-    <string name="annotation_name_plant_phenology">Növényfenológia</string>
+    <string name="annotation_name_plant_phenology">Fejlődési fázis</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Életszakasz</string>
     <!-- Noun, describes sex of the organism -->
@@ -764,14 +755,14 @@
     <string name="network_credit_inaturalistaustralia"><![CDATA[Ausztrália: az iNaturalist Australia támogatója az Atlas of Living Australia(<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
     <string name="network_credit_inaturalistecuador"><![CDATA[Equádor: az iNaturalist Ecuador támógatója az Instituto Nacional de Biodiversidad (INABIO)(<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Izrael: iNaturalist Israel támogatója: University of Haifa (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Natural History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Finnország: az iNaturalist Finland (<a href="https://inaturalist.laji.fi/">https://inaturalist.laji.fi</a>) támogatója a Finnish Museum of Naturalist History (LUOMUS).]]></string>
     <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
-    <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Luxemburg: az iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>) támogatója a Luxembourg National Museum of Natural History (MnhnL).]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Egyesült Királyság: az iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>) támogatója a National Biodiversity Network Trust.]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Mind megjelölése megtekintettként</string>
     <string name="content_hidden">Rejtett tartalom</string>
     <string name="show_hidden_content">Rejtett tartalom megjelenítése</string>
@@ -785,7 +776,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Hangrögzítés</string>
-    <string name="no_recorder_found">Nincs alapértelmezett hangfelvevő!</string>
     <string name="couldnt_retrieve_sound">A hang nem elérhető az alapértelmezett felvevőből. Próbáld inkább importálni.</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Hang kiválasztása</string>
@@ -988,9 +978,9 @@
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long">MMM d, yyyy</string>
+    <string name="date_long">yyyy. MMM d.</string>
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
+    <string name="date_long_with_time">yyyy. MMMM d. hh:mma</string>
     <string name="show_common_names">Közhasználatú nevek megjelenítése</string>
     <string name="show_common_names_description">Kapcsold ki, ha a tudományos neveket szeretnéd látni.</string>
     <string name="email_must_look_like_email_address">Az emailnek úgy kell kinéznie, mint egy email cím</string>
@@ -1126,15 +1116,15 @@
     <string name="change_observation_licenses">Megfigyelési licencek módosítása</string>
     <string name="change_photo_licenses">Fényképlicencek módosítása</string>
     <string name="change_sound_licenses">Hanglicencek módosítása</string>
-    <string name="change_licenses_for_observations_confirmation"><![CDATA[Change the licenses of <b>%1$d</b> existing observations to <b>%2$s</b>?]]></string>
-    <string name="change_licenses_for_photos_confirmation"><![CDATA[Change the licenses of existing photos to <b>%1$s</b>?]]></string>
-    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Change the licenses of existing sounds to <b>%1$s</b>?]]></string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[Valóban módosítod az eddigi megfigyelések licencét erről: <b>%1$d</b> erre: <b>%2$s</b>?]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[Valóban módosítod az eddigi fényképek licencét erre: <b>%1$s</b>?]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Valóban módosítod az eddigi hangok licencét erre: <b>%1$s</b>?]]></string>
     <string name="observation_licenses_updated">A megfigyelési licenc módosítva</string>
     <string name="photo_licenses_updated">Fényképlicencek módosítva</string>
     <string name="sound_licenses_updated">Hanglicencek módosítva</string>
-    <string name="existing_observation_licenses_have_been_updated">All existing observation licenses have been changed to %1$s.</string>
-    <string name="existing_photo_licenses_have_been_updated">All existing photo licenses have been changed to %1$s.</string>
-    <string name="existing_sound_licenses_have_been_updated">All existing sound licenses have been changed to %1$s.</string>
+    <string name="existing_observation_licenses_have_been_updated">Minden eddigi megfigyelés licence módosult erre: %1$s.</string>
+    <string name="existing_photo_licenses_have_been_updated">Minden eddigi fénykép licence módosult erre: %1$s.</string>
+    <string name="existing_sound_licenses_have_been_updated">Minden eddigi hang licence módosult erre: %1$s.</string>
     <string name="default_licenses_description"><![CDATA[Licensing your content gives anyone the legal right to use it without asking your permission if they abide by the terms of the license. In addition, iNat includes your Creative Commons-licensed content in regularly-updated archives produced for select partner organizations interested in our data. For example, we include No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC) records in the archive we generate for the <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, an international, inter-governmental organization that compiles and distributes biodiversity information from around the world.]]></string>
     <string name="photo_license">Fényképlicenc</string>
     <string name="sound_license">Hanglicenc</string>
@@ -1169,58 +1159,57 @@
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Beállítások megjelenítése</string>
     <!-- Placeholder text for an observation field value -->
-    <string name="field_value">Field Value</string>
+    <string name="field_value">Mezőérték</string>
     <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
-    <string name="delete_attribute_value">Delete attribute value</string>
-    <string name="open_menu_for_more_options">Open menu for more options</string>
-    <string name="change_user_profile_photo">Change user profile photo</string>
-    <string name="expand_list">Expand list</string>
-    <string name="change_map_layers">Change map layers (terrain vs. satellite)</string>
-    <string name="redo_observation_search">Redo observation search in this map area</string>
-    <string name="view_observations_on_map">View observations on map</string>
-    <string name="view_observations_on_grid">View observations on grid</string>
-    <string name="clear_text">Clear text</string>
-    <string name="observation_has_sounds">Observation has sounds</string>
-    <string name="go_to_my_location">Go to my current location</string>
-    <string name="change_geoprivacy">Change geoprivacy</string>
-    <string name="active_filters">Active filters</string>
-    <string name="message_is_flagged">Message is flagged</string>
-    <string name="user_is_muted">User is muted</string>
-    <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
-    <string name="delete_observations">Delete observations</string>
-    <string name="clear_species_guess">Clear species guess</string>
-    <string name="comment_count">Comment count</string>
-    <string name="id_count">Identification count</string>
-    <string name="observation_selected">Observation selected</string>
-    <string name="share_observation">Share observation</string>
-    <string name="unknown_location">Unknown location</string>
+    <string name="delete_attribute_value">Érték törlése</string>
+    <string name="open_menu_for_more_options">Menü megnyitása a további opciókért</string>
+    <string name="change_user_profile_photo">Profilfénykép módosítása</string>
+    <string name="expand_list">Lista kibontása</string>
+    <string name="change_map_layers">Térképnézet módosítása (domborzat vs. műholdkép)</string>
+    <string name="redo_observation_search">Megfigyelések újbóli keresése ezen a területen</string>
+    <string name="view_observations_on_map">Megfigyelések megtekintése térképen</string>
+    <string name="view_observations_on_grid">Megfigyelések megtekintése rácselrendezésben</string>
+    <string name="clear_text">Szöveg törlése</string>
+    <string name="observation_has_sounds">A megfigyeléshez tartozik hang</string>
+    <string name="go_to_my_location">Jelenlegi pozícióm</string>
+    <string name="change_geoprivacy">A pozíció láthatóságának módosítása</string>
+    <string name="active_filters">Aktív szűrők</string>
+    <string name="message_is_flagged">Az üzenet kifogásolhatóként megjelölve</string>
+    <string name="user_is_muted">A felhasználó némítva van</string>
+    <string name="cancel_multiple_obs_selection">Többszörös kiválasztás visszavonása</string>
+    <string name="delete_observations">Megfigyelések törlése</string>
+    <string name="comment_count">Hozzászólások száma</string>
+    <string name="id_count">Meghatározások száma</string>
+    <string name="observation_selected">Megfigyelés kijelölve</string>
+    <string name="share_observation">Megfigyelés megosztása</string>
+    <string name="unknown_location">Ismeretlen hely</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
-    <string name="close">Close</string>
-    <string name="set_date2">Set date</string>
-    <string name="project_selected">Project Selected</string>
-    <string name="project_unselected">Project Unselected</string>
-    <string name="show_my_observations">Show my observations</string>
-    <string name="play_pause_sound">Play or pause sound</string>
-    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
-    <string name="view_image">View image</string>
+    <string name="close">Bezárás</string>
+    <string name="set_date2">Dátum megadása</string>
+    <string name="project_selected">Kiválasztott projekt</string>
+    <string name="project_unselected">Projekt kiválasztása visszavonva</string>
+    <string name="show_my_observations">Megfigyeléseim megjelenítése</string>
+    <string name="play_pause_sound">Hang lejátszása vagy szüneteltetése</string>
+    <string name="california_academy_of_sciences_and_national_geographic">Kaliforniai Tudományos Akadémia és National Geographic</string>
+    <string name="view_image">Kép megjelenítése</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
-    <string name="assessment_passes">Assessment passes</string>
+    <string name="assessment_passes">Kiértékelés sikeres</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
-    <string name="agree_assessment_passes">Agree assessment passes</string>
+    <string name="agree_assessment_passes">Egyetértés a sikeres kiértékeléssel</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
-    <string name="does_not_pass_assessment">Does not pass assessment</string>
+    <string name="does_not_pass_assessment">A kiértékelés eredménye sikertelen</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
-    <string name="disagree_assessment_passes">Disagree assessment passes</string>
+    <string name="disagree_assessment_passes">Egyetértés a sikertelen kiértékeléssel</string>
     <plurals name="delete_x_selected_observations">
-        <item quantity="one">Delete %1$d selected observation</item>
-        <item quantity="other">Delete %1$d selected observations</item>
+        <item quantity="one">%1$d megfigyelés törlése</item>
+        <item quantity="other">%1$d megfigyelés törlése</item>
     </plurals>
     <plurals name="sync_x_selected_observations">
-        <item quantity="one">Sync %1$d selected observation</item>
-        <item quantity="other">Sync %1$d selected observations</item>
+        <item quantity="one">%1$d megfigyelés szinkronizálása</item>
+        <item quantity="other">%1$d megfigyelés szinkronizálása</item>
     </plurals>
-    <string name="add_media_evidence">Add media evidence</string>
-    <string name="remove_identification">Remove identification</string>
-    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
-    <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
+    <string name="add_media_evidence">Bizonyíték (média) hozzáadása</string>
+    <string name="remove_identification">Meghatározás eltávolítása</string>
+    <string name="issue_with_updating_photos">E megfigyelés fényképeinek frissítésével kapcsolatos hiba elhárult. Kérjük, a megoldáshoz jelentkezz ki, majd jelentkezz be újból. </string>
+    <string name="app_version_copied_to_clipboard">Verzió a vágólapra másolva</string>
 </resources>

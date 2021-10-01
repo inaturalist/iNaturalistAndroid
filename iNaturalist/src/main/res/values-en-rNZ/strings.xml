@@ -1,109 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="email_address">ईमेल पता</string>
-    <string name="delete_observation">प्रेक्षण हटाएं </string>
-    <string name="observation_deleted">प्रेक्षण हटा दिया गया </string>
-    <string name="species_guess_hint">प्रजातियों का नाम</string>
-    <string name="ok">ठीक</string>
-    <string name="cancel">रद्द करें</string>
-    <string name="loading">लोड हो रहा है...</string>
-    <string name="street">सड़क</string>
+    <string name="email_address">Email Address</string>
+    <string name="delete_observation">Delete observation</string>
+    <string name="observation_deleted">Observation deleted</string>
+    <string name="species_guess_hint">Species name</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="loading">Loading...</string>
+    <string name="street">Street</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
-    <string name="satellite">सैटेलाइट</string>
-    <string name="couldnt_load_nearby_observations">आस-पास के प्रेक्षण लोड नहीं किये जा सके: %1$s</string>
+    <string name="satellite">Satellite</string>
+    <string name="couldnt_load_nearby_observations">Couldn\'t load nearby observations: %1$s</string>
     <string name="username_invalid">Username or password was invalid, please sign in again.</string>
-    <string name="signing_in">साइन इन कर रहे हैं...</string>
-    <string name="signed_in">साइन इन किया है </string>
-    <string name="please_sign_in">कृपया साइन इन करें</string>
+    <string name="signing_in">Signing in...</string>
+    <string name="signed_in">Signed in!</string>
+    <string name="please_sign_in">Please sign in</string>
     <string name="please_sign_in_description">Please sign in to your iNaturalist account or sign up for a new one.</string>
     <string name="please_enable_location_services">Please enable location services in order to find your current location...</string>
-    <string name="go_to_settings">सेटिंग पर जाएँ</string>
+    <string name="go_to_settings">Go to Settings</string>
     <string name="photo_not_specified">Photo not specified</string>
-    <string name="set_date">दिनांक</string>
-    <string name="set_time">समय</string>
+    <string name="set_date">Date</string>
+    <string name="set_time">Time</string>
     <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
     <string name="something_went_wrong">Blast, something went wrong: %1$s</string>
-    <string name="edit">संपादित करें</string>
-    <string name="oh_no">अरे नहीं! %1$s</string>
-    <string name="observations">मेरे प्रेक्षण </string>
-    <string name="map">नक्शा</string>
-    <string name="settings">सेटिंग्स</string>
-    <string name="projects">परियोजनाएं</string>
-    <string name="delete_photo">फ़ोटो हटाएँ</string>
-    <string name="my_location">मेरा स्थान</string>
+    <string name="edit">Edit</string>
+    <string name="oh_no">Oh no! %1$s</string>
+    <string name="observations">My Observations</string>
+    <string name="map">Map</string>
+    <string name="settings">Settings</string>
+    <string name="projects">Projects</string>
+    <string name="delete_photo">Delete photo</string>
+    <string name="my_location">My Location</string>
     <string name="nearby_observations">Nearby Observations</string>
-    <string name="add">जोड़ें</string>
-    <string name="view_on_inat">iNaturalist.org पर देखें</string>
-    <string name="reload">रीलोड करें</string>
-    <string name="view_in_browser">ब्राउज़र में देखें</string>
-    <string name="add_observation">प्रेक्षण जोड़ें</string>
-    <string name="take_picture">तस्वीर खींचे</string>
-    <string name="save">सहेजें</string>
-    <string name="no_observations_yet">अब तक कोई प्रेक्षण नहीं!</string>
-    <string name="or">या</string>
-    <string name="signed_out">साइन आउट करें</string>
-    <string name="username">उपयोगकर्ता नाम</string>
-    <string name="password">पासवर्ड</string>
-    <string name="unknown">अज्ञात</string>
-    <string name="unknown_species">अज्ञात प्रजाति</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">ठीक</string>
-    <string name="com_facebook_loginview_log_out_button">लॉग आउट करें</string>
-    <string name="com_facebook_loginview_log_in_button">लॉग इन करें</string>
-    <string name="com_facebook_loginview_logged_in_as">%1$s के रूप में लॉग इन हैं</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">फेसबुक के साथ लॉगिन हैं</string>
-    <string name="com_facebook_loginview_log_out_action">लॉग आउट करें</string>
-    <string name="com_facebook_loginview_cancel_action">रद्द करें</string>
-    <string name="com_facebook_logo_content_description">Facebook लोगो</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">लॉग इन करें...</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">लॉग इन किया है</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">लॉग इन नहीं हैं</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d यहाँ थे</string>
+    <string name="add">Add</string>
+    <string name="view_on_inat">View on iNaturalist.org</string>
+    <string name="reload">Reload</string>
+    <string name="view_in_browser">View in browser</string>
+    <string name="add_observation">Add observation</string>
+    <string name="take_picture">Take picture</string>
+    <string name="save">Save</string>
+    <string name="no_observations_yet">No observations yet!</string>
+    <string name="or">or</string>
+    <string name="signed_out">Sign out</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="unknown">Unknown</string>
+    <string name="unknown_species">Unknown species</string>
+    <string name="com_facebook_dialogloginactivity_ok_button">OK</string>
+    <string name="com_facebook_loginview_log_out_button">Log Out</string>
+    <string name="com_facebook_loginview_log_in_button">Log In</string>
+    <string name="com_facebook_loginview_logged_in_as">Logged in as: %1$s</string>
+    <string name="com_facebook_loginview_logged_in_using_facebook">Logged in using Facebook</string>
+    <string name="com_facebook_loginview_log_out_action">Log Out</string>
+    <string name="com_facebook_loginview_cancel_action">Cancel</string>
+    <string name="com_facebook_logo_content_description">Facebook Logo</string>
+    <string name="com_facebook_usersettingsfragment_log_in_button">Log In&#8230;</string>
+    <string name="com_facebook_usersettingsfragment_logged_in">Logged In</string>
+    <string name="com_facebook_usersettingsfragment_not_logged_in">Not Logged In</string>
+    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d were here</string>
     <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d यहाँ थे</string>
-    <string name="com_facebook_picker_done_button_text">पूर्ण हुआ</string>
-    <string name="com_facebook_choose_friends">मित्र चुनें</string>
-    <string name="com_facebook_nearby">आस पास के</string>
-    <string name="com_facebook_loading">लोड हो रहा है...</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifest त्रुटि</string>
+    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d were here</string>
+    <string name="com_facebook_picker_done_button_text">Done</string>
+    <string name="com_facebook_choose_friends">Choose Friends</string>
+    <string name="com_facebook_nearby">Nearby</string>
+    <string name="com_facebook_loading">Loading...</string>
+    <string name="com_facebook_internet_permission_error_title">AndroidManifest Error</string>
     <string name="com_facebook_internet_permission_error_message">WebView login requires INTERNET permission</string>
-    <string name="com_facebook_requesterror_web_login">आपका Facebook खाता बंद है। जारी रखने के लिए कृपया facebook.com पर लॉग इन करें। </string>
+    <string name="com_facebook_requesterror_web_login">Your Facebook account is locked. Please log into www.facebook.com to continue.</string>
     <string name="com_facebook_requesterror_relogin">Please log into this app again to reconnect your Facebook account.</string>
     <string name="com_facebook_requesterror_password_changed">Your Facebook password has changed. Please log into this app again to reconnect your Facebook account.</string>
     <string name="com_facebook_requesterror_reconnect">Please log into this app again to reconnect your Facebook account.</string>
     <string name="com_facebook_requesterror_permissions">This app doesn’t have permission to do this. To change permissions, try logging into the app again.</string>
-    <string name="edit_observation">प्रेक्षण संपादित करें</string>
+    <string name="edit_observation">Edit Observation</string>
     <string name="discard_changes">Are you sure you want to discard unsaved changes?</string>
-    <string name="yes">हाँ</string>
-    <string name="no">नहीं</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
-    <string name="agree">सहमत हैं?</string>
+    <string name="agree">Agree?</string>
     <string name="no_comments">No comments/identifications yet</string>
-    <string name="add_comment">टिप्पणी जोड़ें</string>
-    <string name="add_id">पहचान जोड़ें</string>
-    <string name="remarks">टिप्पणीयाँ...</string>
-    <string name="enter_taxon_name">प्रजातियों का नाम</string>
-    <string name="no_projects">कोई परियोजना नहीं मिली!</string>
-    <string name="no_guides">कोई गाइड नहीं मिले!</string>
-    <string name="loading_projects">परियोजनाएं लोड हो रही हैं...</string>
-    <string name="joined_projects">शामिल हो गए</string>
-    <string name="nearby_projects">आस पास के</string>
+    <string name="add_comment">Add comment</string>
+    <string name="add_id">Add identification</string>
+    <string name="remarks">Remarks...</string>
+    <string name="enter_taxon_name">Species name</string>
+    <string name="no_projects">No projects found!</string>
+    <string name="no_guides">No guides found!</string>
+    <string name="loading_projects">Loading projects...</string>
+    <string name="joined_projects">Joined</string>
+    <string name="nearby_projects">Nearby</string>
     <!-- Tab title for the list of featured projects in the Projects screen -->
-    <string name="featured_projects">विशेष रुप से प्रदर्शित</string>
+    <string name="featured_projects">Featured</string>
     <!-- Verb, used as a label for actions like leaving a project -->
-    <string name="leave">छोड़ें</string>
-    <string name="join">शामिल हों</string>
+    <string name="leave">Leave</string>
+    <string name="join">Join</string>
     <string name="no_check_list">No Taxa in Check List!</string>
     <string name="failed_to_add_obs_to_project">Failed to add observation \'%1$s\' to project \'%2$s\': %3$s</string>
     <string name="invalid_project_field">Please enter a valid value for field \'%1s\'</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
-    <string name="select_projects">शामिल हुए परियोजनाओं में से चुनें</string>
+    <string name="select_projects">Select from Joined Projects</string>
     <string name="not_connected">You must be connected to the Internet in order to do that!</string>
-    <string name="search_projects">परियोजनाओं की खोज करें..</string>
+    <string name="search_projects">Search projects...</string>
     <string name="search_guides">Search guides...</string>
     <string name="save_observation">Save observation</string>
     <!-- Header for a description an individual guide -->
-    <string name="about_guide">हमारे बारे में</string>
-    <string name="about_guide_all_caps">के बारे में</string>
+    <string name="about_guide">About</string>
+    <string name="about_guide_all_caps">ABOUT</string>
     <!-- Header for a description an individual project -->
     <string name="about_project">About</string>
     <string name="about_project_all_caps">ABOUT</string>
@@ -116,30 +116,30 @@
     <string name="delete_confirmation">Are you sure you want to delete this observation?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">Guides</string>
-    <string name="my_guides">आपके</string>
+    <string name="my_guides">Yours</string>
     <string name="nearby_guides">Nearby</string>
-    <string name="all_guides">सब</string>
-    <string name="no_taxa">इस गाइड में कोई टेक्सा नहीं मिले!</string>
-    <string name="search_taxa">टेक्सा खोजें....</string>
-    <string name="no_internet_guides">गाइड के लिए इंटरनेट कनेक्शन की आवश्यकता है</string>
-    <string name="no_internet_projects">परियोजनाओं के लिए इंटरनेट कनेक्शन की आवश्यकता है</string>
-    <string name="locale_gl">गैलिशियन्</string>
+    <string name="all_guides">All</string>
+    <string name="no_taxa">No taxa found for this guide!</string>
+    <string name="search_taxa">Search taxa...</string>
+    <string name="no_internet_guides">Guides require an Internet connection</string>
+    <string name="no_internet_projects">Projects require an Internet connection</string>
+    <string name="locale_gl">Galician</string>
     <string name="locale_eu">Basque</string>
-    <string name="use_device_language_settings">डिवाइस भाषा सेटिंग्स का उपयोग करें</string>
-    <string name="choose_location">स्थान चुनें</string>
-    <string name="done">पूर्ण हुआ</string>
+    <string name="use_device_language_settings">Use device language settings</string>
+    <string name="choose_location">Choose Location</string>
+    <string name="done">Done</string>
     <string name="please_sign_in_via_settings">You must be logged in to view projects you\'ve joined.</string>
-    <string name="contact_support">सहायता के लिए संपर्क करें</string>
+    <string name="contact_support">Contact Support</string>
     <string name="credits">Designed and built by iNaturalist.org with support from the California Academy of Sciences</string>
     <string name="leave_project">Leave Project</string>
-    <string name="leave_project_confirmation">क्या आप सुनिश्चित हैं कि आप इस परियोजना को छोड़ना चाहते हैं?</string>
+    <string name="leave_project_confirmation">Are you sure you want to leave this project?</string>
     <string name="discard_location_changes">Are you sure you want to discard unsaved changes?</string>
-    <string name="edit_location">स्थान संपादित करें</string>
+    <string name="edit_location">Edit Location</string>
     <string name="edit_locality_notes">Edit Locality Notes</string>
-    <string name="get_current_location">वर्तमान स्थान प्राप्त करें</string>
+    <string name="get_current_location">Get current location</string>
     <string name="pull_to_refresh">Pull to refresh...</string>
     <string name="release_to_refresh">Release to refresh...</string>
-    <string name="refreshing">रेफ़रेश किया जा रहा है...</string>
+    <string name="refreshing">Refreshing...</string>
     <plurals name="sync_x_observations">
         <item quantity="one">Sync %1$d observation</item>
         <item quantity="other">Sync %1$d observations</item>
@@ -147,12 +147,12 @@
     <string name="sync_observations">Sync Observations</string>
     <string name="lets_get_started">Let\'s get started!</string>
     <string name="view_nearby_observations">View Nearby Observations</string>
-    <string name="skip_for_now">अभी के लिए छोड़ें</string>
+    <string name="skip_for_now">Skip for Now</string>
     <string-array name="tutorial_titles">
         <item></item>
-        <item>प्रेक्षण</item>
-        <item>साझा करें </item>
-        <item>सीखें</item>
+        <item>Observe</item>
+        <item>Share</item>
+        <item>Learn</item>
         <item>Contribute</item>
     </string-array>
     <string-array name="tutorial_descriptions">
@@ -163,24 +163,24 @@
         <item><![CDATA[<b>Research Grade</b> observations are shared with scientists working to better understand and protect nature.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
-        <item>खोलें</item>
+        <item>Open</item>
         <item>Obscured</item>
-        <item>निजी</item>
+        <item>Private</item>
     </string-array>
     <string name="alert_sign_out">Are you sure you want to sign out? This will delete all your observations on this device. It will not affect any observations you\'ve uploaded to iNaturalist.</string>
     <string name="alert_unsupported_media_type">Sorry, but there was a problem loading the photo from this source</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
     <string name="explore">Explore</string>
     <string name="restricted_to_current_map_area">Restricted to current map area</string>
-    <string name="search">खोजें</string>
-    <string name="details">विवरण</string>
+    <string name="search">Search</string>
+    <string name="details">Details</string>
     <string name="observation_photos">Observation Photos</string>
-    <string name="remove">हटाएं?</string>
+    <string name="remove">Remove?</string>
     <string name="no_observations_found">No observations found</string>
     <string name="license_none">None, all rights reserved</string>
     <string name="sources_and_attribution">Sources and Attribution</string>
-    <string name="photos"><![CDATA[<b>तस्वीरें:</b> %1$s]]></string>
-    <string name="text"><![CDATA[<b>टेक्स्ट:</b> %1$s]]></string>
+    <string name="photos"><![CDATA[<b>Photos:</b> %1$s]]></string>
+    <string name="text"><![CDATA[<b>Text:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">The main iNaturalist Network. Clicking OK will set your app as part of the global iNaturalist network.</string>
     <string name="alert_message_use_naturalista">NaturaLista is a member of the iNaturalist Network in Mexico. Local institutions supporting NaturaLista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
@@ -202,7 +202,7 @@
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editor</string>
-    <string name="license">License</string>
+    <string name="license">Licence</string>
     <string name="download_for_offline_use">Download for offline use</string>
     <string name="download_not_available">Download not available</string>
     <string name="guide_editor_must_enable_this_feature">Guide editor must enable this feature.</string>
@@ -233,7 +233,7 @@
     <string name="min_6_chars">Min. 6 characters</string>
     <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data (recommended). <b>Learn More</b>]]></string>
     <string name="content_licensing">Content Licensing</string>
-    <string name="content_licensing_description">Check this box if you want to apply a Creative Commons Attribution-NonCommercial license to your photos. You can choose a different license or remove the license later, but this is the best license for sharing with researchers.</string>
+    <string name="content_licensing_description">Check this box if you want to apply a Creative Commons Attribution-NonCommercial licence to your photos. You can choose a different licence or remove the licence later, but this is the best licence for sharing with researchers.</string>
     <!-- Try to keep this about the length of the English text -->
     <string name="username_or_email">Username or Email</string>
     <string name="forgot">Forgot?</string>
@@ -349,7 +349,7 @@
     <string name="there_was_a_problem_updating_profile_params">There was a problem while updating your profile: %1$s</string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
-    <string name="log_out">Log Out</string>
+    <string name="log_out">Log out</string>
     <string name="not_logged_in">Not logged in</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Log In or Sign Up</string>
@@ -357,7 +357,7 @@
     <string name="language">Language</string>
     <string name="version">Version</string>
     <string name="inat_network">iNaturalist Network</string>
-    <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
+    <string name="inat_network_description">The iNaturalist Network is a framework for localising the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
     <string name="more_info">More Info</string>
     <string name="select_network">Select Network Affiliation</string>
     <string name="help">Help</string>
@@ -432,7 +432,7 @@
         <item quantity="one">Syncing %1$d of %2$d observation...</item>
         <item quantity="other">Syncing %1$d of %2$d observations...</item>
     </plurals>
-    <string name="deleting_observations">Deleting observations...</string>
+    <string name="deleting_observations">Deleting Observations...</string>
     <string name="preparing">Preparing...</string>
     <string name="add_edit_remark">Add/Edit Remark</string>
     <string name="restore">Restore</string>
@@ -606,8 +606,8 @@
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
-    <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="https://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
-    <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
+    <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="http://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
+    <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localised, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organisations.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Credits</string>
     <string name="password_changed">The password the app uses no longer works - did you change your password on the website? Please enter the new one here</string>

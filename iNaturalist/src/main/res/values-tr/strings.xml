@@ -7,8 +7,6 @@
     <string name="ok">TAMAM</string>
     <string name="cancel">İptal</string>
     <string name="loading">Yükleniyor...</string>
-    <string name="sync_required">Eşitleme gerekli</string>
-    <string name="sync_required_message">%1$d gözlem, %2$d fotoğraf eşitlenecek</string>
     <string name="street">Sokak</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Uydu</string>
@@ -32,7 +30,6 @@
     <string name="settings">Ayarlar</string>
     <string name="projects">Projeler</string>
     <string name="delete_photo">Fotoğrafı sil</string>
-    <string name="menu">Menü</string>
     <string name="my_location">Konumum</string>
     <string name="nearby_observations">Yakın gözlemler</string>
     <string name="add">Ekle</string>
@@ -227,9 +224,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Eposta</string>
-    <string name="sign_up_with">Şununla kaydolun</string>
     <string name="skip">Atla ›</string>
-    <string name="already_have_account">Zaten bir hesabınız mı var?</string>
     <string name="log_in">Oturum Aç</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">ÜYE OL</string>
@@ -352,7 +347,6 @@
     <string name="updating_profile">Profiliniz Güncelleniyor...</string>
     <string name="there_was_a_problem_updating_profile">Profiliniz güncellenirken bir sorunla karşılaştık!</string>
     <string name="there_was_a_problem_updating_profile_params">Profiliniz güncellenirken bir sorunla karşılaştık: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[<b>%1$s</b> olarak giriş yapıldı]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Şu anki giriş kullanıcısı: <b>%1$s</b>]]></string>
     <string name="log_out">Çıkış yap</string>
@@ -471,14 +465,12 @@
     <string name="what_did_you_see">Ne gördünüz?</string>
     <string name="suggest_species">Tür Öner</string>
     <string name="suggest_species_description">Fotoğraflara benzer görsellere dayalı türler önerin.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Görsel Benzerlik</string>
     <string name="visually_similar_seen_nearby">Görsel Benzerlik / Yakında Görüldü</string>
     <string name="seen_nearby">Yakında Görüldü</string>
     <string name="enlarge">Genişlet</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Alt Sınıf Görünümü</string>
-    <string name="invalid_photo_extension">Fotoğraf(lar) alma hatası: Yalnızca JPG/JPEG/PNG uzantılı fotoğraflar alınabilir.</string>
     <string name="taxon_has_no_photos">Bu sınıfın fotoğrafları yok.</string>
     <string name="terrain">Arazi</string>
     <string name="filters">Filtreler</string>
@@ -596,7 +588,6 @@
     <string name="leave_comment">Yorum bırak...</string>
     <string name="swipe">Kaydır</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Hangi Google hesabı?</string>
     <string name="potential_disagreement">Olası Anlaşmazlık</string>
     <string name="do_you_think_this_could_be"><![CDATA[Bunun <b>%1$s</b> olduğunu doğrulamak için yeterli kanıt var mı?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -608,7 +599,7 @@
     <string name="must_be_connected_to_load_more_obs">Daha çok gözlem yüklemek için internete bağlı olmalısınız</string>
     <string name="inat_about_title">iNaturalist, California Bilimler Akademisi ve National Geographic Society tarafından ortak bir girişimdir.</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -769,9 +760,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Yunanistan: iSea iNaturalist Yunanistan\'ı destekliyor (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Lüksemburg: Lüksemburg Ulusal Tabiat Tarihi Müzesi (MnhnL) iNaturalist Lüksemburg\'u destekliyor (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[Birleşik Krallık: National Biodiversity Network Trust iNaturalist Birleşik Krallık\'ı destekliyor (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Kosta Rika: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO), Naturalista Kosta Rika\'yı destekliyor (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP), iNaturalist Guatemala\'yı destekliyor (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[İsveç: SLU Swedish Species Information Centre, iNaturalist İsveç\'i destekliyor (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Tümünü görüntülendi olarak işaretle</string>
     <string name="content_hidden">İçerik Gizlendi</string>
     <string name="show_hidden_content">Gizli İçeriği Göster</string>
@@ -785,7 +776,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Ses Kaydet</string>
-    <string name="no_recorder_found">Varsayılan ses kaydedici bulunamadı!</string>
     <string name="couldnt_retrieve_sound">Varsayılan kayıt aygıtından ses alınamadı - bunun yerine sesi almayı deneyin</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Ses Seç</string>
@@ -1190,7 +1180,6 @@ Ticari Olmayan Atfetme (CC BY-NC), gibi kayıtların  biyolojik çeşitlilik bil
     <string name="user_is_muted">Kullanıcı susturuldu</string>
     <string name="cancel_multiple_obs_selection">Çoklu gözlem seçimini iptal et</string>
     <string name="delete_observations">Gözlemleri sil</string>
-    <string name="clear_species_guess">Tür tahminini temizle</string>
     <string name="comment_count">Yorum sayısı</string>
     <string name="id_count">Tanımlama sayısı</string>
     <string name="observation_selected">Seçilen gözlem</string>

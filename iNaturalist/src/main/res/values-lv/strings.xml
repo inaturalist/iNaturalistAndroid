@@ -7,8 +7,6 @@
     <string name="ok">Labi</string>
     <string name="cancel">Atcelt</string>
     <string name="loading">Ielādē...</string>
-    <string name="sync_required">Nepieciešama datu sinhronizācija</string>
-    <string name="sync_required_message">%1$d novērojumi, %2$d attēli, kas jāsinhronizē</string>
     <string name="street">Karte</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satelīts</string>
@@ -32,7 +30,6 @@
     <string name="settings">Iestatījumi</string>
     <string name="projects">Projekti</string>
     <string name="delete_photo">Dzēst fotogrāfiju</string>
-    <string name="menu">Izvēlne</string>
     <string name="my_location">Mana atraš. vieta</string>
     <string name="nearby_observations">Tuvējie novērojumi</string>
     <string name="add">Pievienot</string>
@@ -229,9 +226,7 @@ globālā iNaturalist tīkla.</string>
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-pasts</string>
-    <string name="sign_up_with">Reģistrēties ar</string>
     <string name="skip">Izlaist  ›</string>
-    <string name="already_have_account">Tev jau ir konts?</string>
     <string name="log_in">Pieslēgšanās</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Reģistrēties</string>
@@ -355,7 +350,6 @@ globālā iNaturalist tīkla.</string>
     <string name="updating_profile">Atjauno profila informāciju...</string>
     <string name="there_was_a_problem_updating_profile">Atjaunojot profila informāciju, radās problēma.</string>
     <string name="there_was_a_problem_updating_profile_params">Atjaunojot profila informāciju, radās problēma: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Pieslēdzies ar lietotājvārdu: <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Pieslēdzies ar lietotājvārdu: <b>%1$s</b>]]></string>
     <string name="log_out">Iziet</string>
@@ -476,14 +470,12 @@ globālā iNaturalist tīkla.</string>
     <string name="what_did_you_see">Ko redzēji?</string>
     <string name="suggest_species">Ieteikt sugu</string>
     <string name="suggest_species_description">Ieteikt sugu, balstoties uz vizuālo līdzību fotogrāfijās.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Vizuāli līdzīgs</string>
     <string name="visually_similar_seen_nearby">Vizuāli līdzīgs vai redzēts tuvumā</string>
     <string name="seen_nearby">Redzēts tuvumā</string>
     <string name="enlarge">Palielināt</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Skatīt apakšgrupas</string>
-    <string name="invalid_photo_extension">Fotogrāfiju importēšanas kļūda: augšupielādēt iespējams tikai JPG, JPEG vai PNG failus.</string>
     <string name="taxon_has_no_photos">Šim taksonam nav fotogrāfiju.</string>
     <string name="terrain">Piekļuve</string>
     <string name="filters">Filtri</string>
@@ -602,7 +594,6 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="leave_comment">Pievienot komentāru</string>
     <string name="swipe">Novilkt</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Kurš Google konts?</string>
     <string name="potential_disagreement">Potenciālas domstarpības</string>
     <string name="do_you_think_this_could_be"><![CDATA[Vai ir pietiekami daudz datu, lai apstiprinātu, ka šis ir <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -614,7 +605,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="must_be_connected_to_load_more_obs">Lai ielādētu vēl novērojumus, nepieciešams interneta pieslēgums.</string>
     <string name="inat_about_title">iNaturalist.org ir California Academy of Sciences un National Geographic Society kopdarbs.</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -776,9 +767,9 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="network_credit_inaturalistgr"><![CDATA[Grieķija: iSea, kas uztur iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luksemburga: Luxembourg National Museum of Natural History (MnhnL), kas atbalsta iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[Apvienotā Karaliste: National Biodiversity Network Trust, kas atbild par iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Kostarika: IComisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO), kas uztur Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Gvatemala: Consejo Nacional de Áreas Protegidas (CONAP), kas uztur iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Zviedrija: SLU Swedish Species Information Centre, kas uztur iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Atzīmēt visu kā skatītu</string>
     <string name="content_hidden">Slēpts saturs</string>
     <string name="show_hidden_content">Rādīt slēpto saturu</string>
@@ -792,7 +783,6 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Ierakstīt audio</string>
-    <string name="no_recorder_found">Neizdevās savienoties ar ierīces mikrofonu!</string>
     <string name="couldnt_retrieve_sound">Neizdevās ierakstīt ar ierīces mikrofonu, labāk pamēģini augšupielādēt audiofailu!</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Izvēlēties audiofailu</string>
@@ -1196,7 +1186,6 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="user_is_muted">User is muted</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
     <string name="delete_observations">Delete observations</string>
-    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Comment count</string>
     <string name="id_count">Identification count</string>
     <string name="observation_selected">Observation selected</string>
