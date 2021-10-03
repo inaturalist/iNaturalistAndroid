@@ -7,8 +7,6 @@
     <string name="ok">OK</string>
     <string name="cancel">Avbryt</string>
     <string name="loading">Laster...</string>
-    <string name="sync_required">Synkronisering nødvendig</string>
-    <string name="sync_required_message">%1$d observasjoner, %2$d fotografier å synkronisere</string>
     <string name="street">Gate</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satellitt</string>
@@ -32,7 +30,6 @@
     <string name="settings">Innstillinger</string>
     <string name="projects">Prosjekter</string>
     <string name="delete_photo">Slett fotografi</string>
-    <string name="menu">Meny</string>
     <string name="my_location">Min posisjon</string>
     <string name="nearby_observations">Nære observasjoner</string>
     <string name="add">Legg til</string>
@@ -227,9 +224,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-post</string>
-    <string name="sign_up_with">Registrér deg med</string>
     <string name="skip">Hopp over  ›</string>
-    <string name="already_have_account">Har du allerede en konto?</string>
     <string name="log_in">Logg inn</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Bli med</string>
@@ -352,7 +347,6 @@
     <string name="updating_profile">Oppdaterer profil...</string>
     <string name="there_was_a_problem_updating_profile">Det oppsto et problem mens profilen din oppdaterte!</string>
     <string name="there_was_a_problem_updating_profile_params">Det oppsto et problem mens profilen din oppdaterte: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Logget inn som <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
     <string name="log_out">Logg ut</string>
@@ -471,14 +465,12 @@
     <string name="what_did_you_see">Hva så du?</string>
     <string name="suggest_species">Foreslå arter</string>
     <string name="suggest_species_description">Foreslå arter basert på visuelle likheter i bilder.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visuelt like</string>
     <string name="visually_similar_seen_nearby">Visuelt like / Sett i nærheten</string>
     <string name="seen_nearby">Sett i nærheten</string>
     <string name="enlarge">Forstørr</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Vis underordnede</string>
-    <string name="invalid_photo_extension">Feil under importering av bilde(r): Kan kun importere bilder med filtypene JPG/JPEG/PNG</string>
     <string name="taxon_has_no_photos">Denne takson har ingen bilder.</string>
     <string name="terrain">Terreng</string>
     <string name="filters">Filtre</string>
@@ -596,7 +588,6 @@
     <string name="leave_comment">Legg igjen en kommentar...</string>
     <string name="swipe">Sveip</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Hvilken Google-konto?</string>
     <string name="potential_disagreement">Potensiell uenighet</string>
     <string name="do_you_think_this_could_be"><![CDATA[Er det bevis nok til å bekrefte at dette er <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -608,7 +599,7 @@
     <string name="must_be_connected_to_load_more_obs">Du må være tilkoblet internett for å last opp flere observasjoner</string>
     <string name="inat_about_title">iNaturalist er et felles initiativ av California Academy of Sciences og National Geographic Society.</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -769,9 +760,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Hellas:  iSea støtter iNaturalist Hellas (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) støtter iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[Storbritannia: National Biodiversity Network Trust støtter iNaturalist Storbritannia (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Merk alle som lest</string>
     <string name="content_hidden">Innhold skjult</string>
     <string name="show_hidden_content">Vis skjult innhold</string>
@@ -785,7 +776,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Spill inn lyd</string>
-    <string name="no_recorder_found">Ingen standard lydopptaker funnet!</string>
     <string name="couldnt_retrieve_sound">Kunne ikke hente lyd fra standard lydopptaker - prøv å importere lyden i stedet</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Velg lyd</string>
@@ -1192,7 +1182,6 @@ mer om vår definisjon av \"passende\" i ofte stilte spørsmål.</string>
     <string name="user_is_muted">User is muted</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
     <string name="delete_observations">Delete observations</string>
-    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Comment count</string>
     <string name="id_count">Identification count</string>
     <string name="observation_selected">Observation selected</string>

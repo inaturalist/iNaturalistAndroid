@@ -7,8 +7,6 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancelar</string>
     <string name="loading">Cargando...</string>
-    <string name="sync_required">Requiere sincronización</string>
-    <string name="sync_required_message">%1$d observaciones, %2$d fotos para sincronizar</string>
     <string name="street">Calle</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satélite</string>
@@ -32,7 +30,6 @@
     <string name="settings">Configuración</string>
     <string name="projects">Proyectos</string>
     <string name="delete_photo">Borrar foto</string>
-    <string name="menu">Menú</string>
     <string name="my_location">Mi ubicación</string>
     <string name="nearby_observations">Observaciones cercanas</string>
     <string name="add">Añade</string>
@@ -227,9 +224,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Dirección de correo electrónico</string>
-    <string name="sign_up_with">Regístrate con</string>
     <string name="skip">Descarta ></string>
-    <string name="already_have_account">¿Ya tienes una cuenta?</string>
     <string name="log_in">Iniciar sesión</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Regístrate</string>
@@ -352,7 +347,6 @@
     <string name="updating_profile">Actualizando perfil...</string>
     <string name="there_was_a_problem_updating_profile">¡Hubo un problema mientras se actualizaban su perfil!</string>
     <string name="there_was_a_problem_updating_profile_params">Hubo un problema mientras se actualizaban su perfil: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Conectado como <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Conectado como <b>%1$s</b>]]></string>
     <string name="log_out">Cerrar Sesión</string>
@@ -471,14 +465,12 @@
     <string name="what_did_you_see">¿Qué has visto?</string>
     <string name="suggest_species">Sugiere especies</string>
     <string name="suggest_species_description">Sugerir la especie basándose en la similitud visual con fotos.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visualmente similar</string>
     <string name="visually_similar_seen_nearby">Visualmente similar / visto cerca</string>
     <string name="seen_nearby">Visto cerca</string>
     <string name="enlarge">Ampliar</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Ver hijos</string>
-    <string name="invalid_photo_extension">Error al importar foto(s): sólo puede importar archivos de fotos con extensiones JPEG/JPG/PNG</string>
     <string name="taxon_has_no_photos">Este taxón tiene no tiene fotos.</string>
     <string name="terrain">Terreno</string>
     <string name="filters">Filtros</string>
@@ -596,7 +588,6 @@
     <string name="leave_comment">Dejar un comentario...</string>
     <string name="swipe">Desliza</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">¿Qué cuenta de Google?</string>
     <string name="potential_disagreement">En desacuerdo potencial</string>
     <string name="do_you_think_this_could_be"><![CDATA[¿La evidencia proporcionada es suficiente para confirmar que esto es <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -608,7 +599,7 @@
     <string name="must_be_connected_to_load_more_obs">Debes estar conectado al internet para cargar más observaciones</string>
     <string name="inat_about_title">iNaturalist es una iniciativa conjunta por la Academia de Ciencias de California y la Sociedad Nacional Geográfica.</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -771,7 +762,7 @@
     <string name="network_credit_inaturalistuk"><![CDATA[Reino Unido: National Biodiversity Network Trust apoya a iNaturalist Reino Unido (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: La Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) apoya a Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: El Consejo Nacional de Áreas Protegidas (CONAP) apoya a iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Suecia: El Centro Sueco de Información sobre Especies (SLU) apoya a iNaturalist Suecia (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Suecia: El SLU, Centro Sueco de Información sobre Especies, apoya a iNaturalist Suecia (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Marcar todos como vistos</string>
     <string name="content_hidden">Contenido ocultado</string>
     <string name="show_hidden_content">Mostrar contenido ocultado</string>
@@ -785,7 +776,6 @@
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Grabar Sonido</string>
-    <string name="no_recorder_found">¡No se ha encontrado un grabador de sonido predeterminado!</string>
     <string name="couldnt_retrieve_sound">No se ha podido recuperar el sonido de la grabadora predeterminada - intente, en vez de eso, importar el sonido</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Elegir Sonido</string>
@@ -1192,7 +1182,6 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <string name="user_is_muted">Usuario silenciado</string>
     <string name="cancel_multiple_obs_selection">Cancelar selección de observaciones múltiples</string>
     <string name="delete_observations">Borrar observaciones</string>
-    <string name="clear_species_guess">Limpiar sugerencias de especies</string>
     <string name="comment_count">Número de comentarios</string>
     <string name="id_count">Número de identificaciones</string>
     <string name="observation_selected">Observación seleccionada</string>

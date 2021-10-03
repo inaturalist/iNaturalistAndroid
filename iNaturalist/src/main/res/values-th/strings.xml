@@ -7,8 +7,6 @@
     <string name="ok">ตกลง</string>
     <string name="cancel">ยกเลิก</string>
     <string name="loading">กำลังโหลด...</string>
-    <string name="sync_required">ต้องการซิงค์</string>
-    <string name="sync_required_message">%1$d การสังเกต %2$d รูปภาพที่จะซิงค์</string>
     <string name="street">ถนน</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">ดาวเทียม</string>
@@ -32,7 +30,6 @@
     <string name="settings">การตั้งค่า</string>
     <string name="projects">โครงการทั้งหมด</string>
     <string name="delete_photo">ลบรูปถ่าย</string>
-    <string name="menu">เมนู</string>
     <string name="my_location">ตำแหน่งที่ตั้งของฉัน</string>
     <string name="nearby_observations">การสังเกตการณ์ในบริเวณใกล้เคียง</string>
     <string name="add">เพิ่ม</string>
@@ -226,9 +223,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">อีเมล</string>
-    <string name="sign_up_with">สมัครใช้งานด้วย</string>
     <string name="skip">ข้าม</string>
-    <string name="already_have_account">มีบัญชีอยู่แล้ว?</string>
     <string name="log_in">เข้าสู่ระบบ</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">ลงทะเบียน</string>
@@ -350,7 +345,6 @@
     <string name="updating_profile">กำลังอัปเดตโปรไฟล์ ...</string>
     <string name="there_was_a_problem_updating_profile">เกิดปัญหาขณะอัปเดตโปรไฟล์ของคุณ!</string>
     <string name="there_was_a_problem_updating_profile_params">เกิดปัญหาขณะอัปเดตโปรไฟล์ของคุณ: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[เข้าสู่ระบบในฐานะ <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[เข้าสู่ระบบแล้วในชื่อ <b>%1$s</b>]]></string>
     <string name="log_out">ออกจากระบบ</string>
@@ -467,14 +461,12 @@
     <string name="what_did_you_see">คุณเห็นอะไร?</string>
     <string name="suggest_species">สายพันธุ์ที่ได้รับการแนะนำ</string>
     <string name="suggest_species_description">สายพันธุ์ที่แนะนำดำเนินการตามความคล้ายคลึงกันของภาพกับภาพถ่าย</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">ภาพที่คล้ายกัน</string>
     <string name="visually_similar_seen_nearby">ภาพที่คล้ายกัน / มองเห็นได้ในบริเวณใกล้เคียง</string>
     <string name="seen_nearby">เห็นในบริเวณใกล้เคียง</string>
     <string name="enlarge">ขยาย</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">ดูเด็ก ๆ</string>
-    <string name="invalid_photo_extension">เกิดข้อผิดพลาดในการนำเข้ารูปภาพ: สามารถนำเข้าไฟล์ภาพถ่ายที่มีนามสกุล JPG / JPEG / PNG / HEIC / HEIF เท่านั้น</string>
     <string name="taxon_has_no_photos">อนุกรมวิธานนี้ไม่มีรูปถ่าย</string>
     <string name="terrain">ภูมิประเทศ</string>
     <string name="filters">ตัวกรอง</string>
@@ -592,7 +584,6 @@
     <string name="leave_comment">ละทิ้งการแสดงความคิดเห็น...</string>
     <string name="swipe">ปัด</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">ด้วยบัญชี Google?</string>
     <string name="potential_disagreement">ความไม่เห็นด้วยที่อาจเกิดขึ้น</string>
     <string name="do_you_think_this_could_be"><![CDATA[มีหลักฐานเพียงพอที่จะยืนยันได้หรือไม่ <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -604,7 +595,7 @@
     <string name="must_be_connected_to_load_more_obs">คุณต้องเชื่อมต่อกับอินเทอร์เน็ตเพื่อโหลดข้อสังเกตเพิ่มเติม</string>
     <string name="inat_about_title">iNaturalist เป็นความคิดริเริ่มร่วมกันของ California Academy of Sciences และ National Geographic Society</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -764,9 +755,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[กรีซ: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[ลักเซมเบิร์ก: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[สหราชอาณาจักร: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[คอสตา ริก้า: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) สนับสนุน Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[กัวเตมาลา: Consejo Nacional de Áreas Protegidas (CONAP) สนับสนุน iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[สวีเดน: SLU Swedish Species Information Centre สนับสนุน iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">ทำเครื่องหมายทั้งหมดว่าดูแล้ว</string>
     <string name="content_hidden">เนื้อหาที่ซ่อนอยู่</string>
     <string name="show_hidden_content">แสดงเนื้อหาที่ซ่อนอยู่</string>
@@ -780,7 +771,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">บันทึกเสียง</string>
-    <string name="no_recorder_found">ไม่พบเครื่องบันทึกเสียงเริ่มต้น!</string>
     <string name="couldnt_retrieve_sound">ไม่สามารถดึงเสียงจากเครื่องบันทึกเริ่มต้นให้ลองนำเข้าเสียงแทน</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">เลือกเสียง</string>
@@ -1182,7 +1172,6 @@
     <string name="user_is_muted">User is muted</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
     <string name="delete_observations">Delete observations</string>
-    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Comment count</string>
     <string name="id_count">Identification count</string>
     <string name="observation_selected">Observation selected</string>

@@ -7,8 +7,6 @@
     <string name="ok">好的</string>
     <string name="cancel">取消</string>
     <string name="loading">載入</string>
-    <string name="sync_required">需要同步</string>
-    <string name="sync_required_message">%1$d 觀察記錄，%2$d 張照片同步</string>
     <string name="street">街道</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">衛星</string>
@@ -32,7 +30,6 @@
     <string name="settings">設定</string>
     <string name="projects">專案</string>
     <string name="delete_photo">刪除照片</string>
-    <string name="menu">選單</string>
     <string name="my_location">我的位置</string>
     <string name="nearby_observations">附近的觀察記錄</string>
     <string name="add">新增</string>
@@ -226,9 +223,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">電子郵件</string>
-    <string name="sign_up_with">透過以下方式註冊</string>
     <string name="skip">略過 ></string>
-    <string name="already_have_account">已經有帳號了嗎？</string>
     <string name="log_in">登入</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">註冊</string>
@@ -350,7 +345,6 @@
     <string name="updating_profile">更新個人資料中…</string>
     <string name="there_was_a_problem_updating_profile">更新您的個人資料時發生問題！</string>
     <string name="there_was_a_problem_updating_profile_params">更新您的個人資料時發生問題：%1$s</string>
-    <string name="logged_in_as_html"><![CDATA[已登入為 <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[現在登入為  <b>%1$s</b>]]></string>
     <string name="log_out">登出</string>
@@ -467,14 +461,12 @@
     <string name="what_did_you_see">您看到什麼？</string>
     <string name="suggest_species">建議的物種</string>
     <string name="suggest_species_description">針對照片中外觀相似度來建議物種。</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">外觀看起來很像</string>
     <string name="visually_similar_seen_nearby">視覺上相似/附近曾見過</string>
     <string name="seen_nearby">附近曾見過</string>
     <string name="enlarge">放大</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">查看子項目</string>
-    <string name="invalid_photo_extension">匯入照片時出錯： 只能匯入照片的副檔名為JPG/JPEG/PNG</string>
     <string name="taxon_has_no_photos">這分類群沒有照片。</string>
     <string name="terrain">地形</string>
     <string name="filters">篩選</string>
@@ -592,7 +584,6 @@
     <string name="leave_comment">留下評論...</string>
     <string name="swipe">滑動手勢</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">哪個 Google 帳戶？</string>
     <string name="potential_disagreement">可能的歧見</string>
     <string name="do_you_think_this_could_be"><![CDATA[是否提供了足夠的證據來確認這是 <b>%1$s</b>？]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -604,7 +595,7 @@
     <string name="must_be_connected_to_load_more_obs">您必須連接到網路才能載入更多的觀察記錄</string>
     <string name="inat_about_title">iNaturalist 是加州科學院(California Academy of Science)和國家地理學會(National Geographic Society)的共同計畫。</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -764,9 +755,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[希臘：iSea (Greece: iSea)支援 iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[盧森堡國家自然歷史博物館 (MnhnL) 支援 iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[英國：國家多樣性網路 (United Kingdom: National Biodiversity Network Trust) 支持 iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[哥斯大黎加：Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO; 國家生物多樣性管理委員會) 支持 Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[瓜地馬拉：Consejo Nacional de Áreas Protegidas (CONAP; 國家保護區委員會) 支持 iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[瑞典： SLU Swedish Species Information Centre (瑞典物種資訊中心) 支持 iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[哥斯大黎加：Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO; 國家生物多樣性管理委員會) 支持 Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[瓜地馬拉：Consejo Nacional de Áreas Protegidas (CONAP; 國家保護區委員會) 支持 iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[瑞典： SLU Swedish Species Information Centre (瑞典物種資訊中心) 支持 iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">標記為已讀</string>
     <string name="content_hidden">內容已隱藏</string>
     <string name="show_hidden_content">顯示隱藏內容</string>
@@ -780,7 +771,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">錄音</string>
-    <string name="no_recorder_found">找不到預設的錄音裝置！</string>
     <string name="couldnt_retrieve_sound">無法從預設的錄音裝置取得聲音—試著以匯入聲音來代替</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">選擇聲音檔</string>
@@ -982,9 +972,9 @@
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long">MMM d, yyyy</string>
+    <string name="date_long"> yyyy MMM d</string>
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
+    <string name="date_long_with_time">yyyy MMMM d hh:mma</string>
     <string name="show_common_names">顯示俗名</string>
     <string name="show_common_names_description">如果您只想檢視學名，請取消此選項</string>
     <string name="email_must_look_like_email_address">必須要看起來像電子郵件地址</string>
@@ -1182,7 +1172,6 @@
     <string name="user_is_muted">使用者已禁言</string>
     <string name="cancel_multiple_obs_selection">取消選擇多筆觀察紀錄</string>
     <string name="delete_observations">刪除觀察紀錄</string>
-    <string name="clear_species_guess">清除物種猜測</string>
     <string name="comment_count">評論次數</string>
     <string name="id_count">鑑定次數</string>
     <string name="observation_selected">已選擇的觀察紀錄</string>
