@@ -7,8 +7,6 @@
     <string name="ok">OK</string>
     <string name="cancel">Annulla</string>
     <string name="loading">Caricamento...</string>
-    <string name="sync_required">Sincronizz. necessaria</string>
-    <string name="sync_required_message">%1$d osservazioni, %2$d foto da sincronizzare</string>
     <string name="street">Via</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satellite</string>
@@ -32,7 +30,6 @@
     <string name="settings">Impostazioni</string>
     <string name="projects">Progetti</string>
     <string name="delete_photo">Elimina foto</string>
-    <string name="menu">Menu</string>
     <string name="my_location">La mia posizione</string>
     <string name="nearby_observations">Osservazioni nelle vicinanze</string>
     <string name="add">Aggiungi</string>
@@ -227,9 +224,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Email</string>
-    <string name="sign_up_with">Accedi con</string>
     <string name="skip">Salta ›</string>
-    <string name="already_have_account">Hai già un account?</string>
     <string name="log_in">Accedi</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Iscriviti</string>
@@ -352,7 +347,6 @@
     <string name="updating_profile">Aggiornamento del profilo...</string>
     <string name="there_was_a_problem_updating_profile">C\'era un problema durante l\'aggiornamento il tuo profilo!</string>
     <string name="there_was_a_problem_updating_profile_params">C\'era un problema durante l\'aggiornamento il tuo profilo: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Loggato come <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Attualmente collegato come <b>%1$s</b>]]></string>
     <string name="log_out">Esci</string>
@@ -471,14 +465,12 @@
     <string name="what_did_you_see">Cosa hai visto?</string>
     <string name="suggest_species">Suggerisci specie</string>
     <string name="suggest_species_description">Suggerisci una specie basandoti sulla somiglianza visiva delle foto.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visivamente simili</string>
     <string name="visually_similar_seen_nearby">Visivamente simili / visti nelle vicinanze</string>
     <string name="seen_nearby">Visto nelle vicinanze</string>
     <string name="enlarge">Ingrandisci</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Vedi figli</string>
-    <string name="invalid_photo_extension">Errore durante l\'importazione della(e) foto: puoi importare solo file di immagine con estensione JPG/JPEG/PNG</string>
     <string name="taxon_has_no_photos">Questo taxon non ha foto.</string>
     <string name="terrain">Terreno</string>
     <string name="filters">Filtri</string>
@@ -596,7 +588,6 @@
     <string name="leave_comment">Lascia un commento...</string>
     <string name="swipe">Scorri</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Seleziona un Account Google</string>
     <string name="potential_disagreement">Potenziale disaccordo</string>
     <string name="do_you_think_this_could_be"><![CDATA[La prova fornita è sufficiente per confermare che questa è <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -608,7 +599,7 @@
     <string name="must_be_connected_to_load_more_obs">È necessario essere connessi a Internet per caricare più osservazioni</string>
     <string name="inat_about_title">iNaturalist è un\'iniziativa congiunta della California Academy of Sciences e la National Geographic Society.</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -785,7 +776,6 @@
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">registra il suono</string>
-    <string name="no_recorder_found">Non è stato trovato alcun registratore audio predefinito!</string>
     <string name="couldnt_retrieve_sound">Non è stato possibile recuperare il suono dal registratore predefinito - prova una importazione del suono</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Scegli il suono</string>
@@ -1190,7 +1180,6 @@ le <a href="https://www.inaturalist.org/pages/community+guidelines">Linee Guida 
     <string name="user_is_muted">L\'utente è silenziato</string>
     <string name="cancel_multiple_obs_selection">Annulla la selezione di osservazioni multiple</string>
     <string name="delete_observations">Cancella osservazioni</string>
-    <string name="clear_species_guess">Cancella il suggerimento specie</string>
     <string name="comment_count">Conteggio dei commenti</string>
     <string name="id_count">Conteggio delle identificazioni</string>
     <string name="observation_selected">Osservazione selezionata</string>

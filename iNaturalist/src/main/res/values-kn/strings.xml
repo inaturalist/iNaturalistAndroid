@@ -7,8 +7,6 @@
     <string name="ok">ಓಕೆ</string>
     <string name="cancel">ರದ್ದುಗೊಳಿಸಿ</string>
     <string name="loading">ಸಜ್ಜುಗೊಳಿಸಲಾಗುತ್ತಿದೆ...</string>
-    <string name="sync_required">ಸಿಂಕ್‍ನ ಅಗತ್ಯವಿದೆ</string>
-    <string name="sync_required_message">ಸಿಂಕ್ ಆಗಲು %1$d ವೀಕ್ಷಣೆಗಳು %2$d ಚಿತ್ರಗಳು </string>
     <string name="street">ರಸ್ತೆ</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">ಉಪಗ್ರಹ</string>
@@ -32,7 +30,6 @@
     <string name="settings">ಸಂಯೋಜನೆಗಳು</string>
     <string name="projects">ಪ್ರಾಯೋಜನೆಗಳು</string>
     <string name="delete_photo">ಚಿತ್ರವನ್ನು ಅಳಿಸಿ </string>
-    <string name="menu">ಮೆನು</string>
     <string name="my_location">ನನ್ನ ಸ್ಥಳ</string>
     <string name="nearby_observations">ಹತ್ತಿರದ ವೀಕ್ಷಣೆಗಳು</string>
     <string name="add">ಸೇರಿಸಿ</string>
@@ -95,7 +92,7 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">ತೊರೆಯಿರಿ</string>
     <string name="join">ಸೇರಿರಿ</string>
-    <string name="no_check_list">No Taxa in Check List!</string>
+    <string name="no_check_list">ತಾಳೆಪಟ್ಟಿಯಲ್ಲಿ ಯಾವುದೇ ಜೀವಿವರ್ಗಗಳಿಲ್ಲ!</string>
     <string name="failed_to_add_obs_to_project">\'%1$s\' ವೀಕ್ಷಣೆಯನ್ನು \'%2$s\' ಪ್ರಾಯೋಜನೆಗೆ ಸೇರಿಸಲು ವಿಫಲವಾಗಿದೆ: %3$s</string>
     <string name="invalid_project_field">Please enter a valid value for field \'%1s\'</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
@@ -122,8 +119,8 @@
     <string name="my_guides">ನಿಮ್ಮ</string>
     <string name="nearby_guides">ಸಮೀಪದ</string>
     <string name="all_guides">ಎಲ್ಲಾ</string>
-    <string name="no_taxa">ಈ ಕೈಪಿಡಿಗೆ ಯಾವುದೇ ವರ್ಗೀಕರಣ ಕಂಡುಬಂದಿಲ್ಲ!</string>
-    <string name="search_taxa">Search taxa...</string>
+    <string name="no_taxa">ಈ ಕೈಪಿಡಿಗೆ ಯಾವುದೇ ಜೀವಿವರ್ಗಗಳು ಕಂಡುಬಂದಿಲ್ಲ!</string>
+    <string name="search_taxa">ಜೀವಿವರ್ಗಗಳನ್ನು ಹುಡುಕಿ...</string>
     <string name="no_internet_guides">ಕೈಪಿಡಿಗಳಿಗೆ ಅಂತರ್ಜಾಲ ಸಂಪರ್ಕದ ಅಗತ್ಯವಿದೆ</string>
     <string name="no_internet_projects">ಪ್ರಾಯೋಜನೆಗಳಿಗೆ ಅಂತರ್ಜಾಲ ಸಂಪರ್ಕದ ಅಗತ್ಯವಿದೆ</string>
     <string name="locale_gl">ಗ್ಯಾಲಿಶಿಯನ್</string>
@@ -142,7 +139,7 @@
     <string name="get_current_location">ಪ್ರಸ್ತುತ ಸ್ಥಳವನ್ನು ಪಡೆಯಿರಿ</string>
     <string name="pull_to_refresh">Pull to refresh...</string>
     <string name="release_to_refresh">Release to refresh...</string>
-    <string name="refreshing">Refreshing...</string>
+    <string name="refreshing">ಮರುಹೊಸದಾಗಿಸಲಾಗುತ್ತಿದೆ…</string>
     <plurals name="sync_x_observations">
         <item quantity="one">%1$d ವೀಕ್ಷಣೆಯನ್ನು ಸಿಂಕ್ ಮಾಡಿ</item>
         <item quantity="other">%1$d ವೀಕ್ಷಣೆಗಳನ್ನು ಸಿಂಕ್ ಮಾಡಿ</item>
@@ -210,13 +207,13 @@
     <string name="download_not_available">ಡೌನ್‍ಲೋಡ್  ಲಭ್ಯವಿಲ್ಲ</string>
     <string name="guide_editor_must_enable_this_feature">ಈ ವೈಶಿಷ್ಟ್ಯವನ್ನು ಕೈಪಿಡಿ ಸಂಪಾದಕರು ಸಕ್ರಿಯಗೊಳಿಸಬೇಕಾಗುತ್ತದೆ.</string>
     <string name="are_you_sure">ನಿಮಗೆ ಖಚಿತವೆ?</string>
-    <string name="download_guide_alert">This will download %1$s of data so you can use this guide even when you don\'t have Internet access.</string>
+    <string name="download_guide_alert">ಇದು %1$s ನಷ್ಟು ದತ್ತಾಂಶವನ್ನು ಡೌನ್‍ಲೋಡ್ ಮಾಡುತ್ತದೆ ಹಾಗಾಗಿ ನೀವು ಈ ಕೈಪಿಡಿಯನ್ನು ಅಂತರ್ಜಾಲದ ಸಂಪರ್ಕವಿಲ್ಲದಿದ್ದಾಗಲೂ ಸಹ ನೋಡಬಹುದಾಗಿದೆ.</string>
     <string name="download">ಡೌನ್‌ಲೋಡ್</string>
     <string name="failed_to_download_guide">ಕೈಪಿಡಿ ಡೌನ್‌ಲೋಡ್ ವಿಫಲವಾಗಿದೆ</string>
     <string name="internet_connection_seems_to_be_offline">ನಿಮ್ಮ ಅಂತರ್ಜಾಲ ಸಂಪರ್ಕವು ಆಫ್ಲೈನ್ ಆದಂತೆ ತೋರುತ್ತಿದೆ</string>
     <string name="downloading">ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ…</string>
-    <string name="extracting">Extracting...</string>
-    <string name="downloaded">Downloaded</string>
+    <string name="extracting">ಹೊರತೆಗೆಯಲಾಗುತ್ತಿದೆ...</string>
+    <string name="downloaded">ಡೌನ್‌ಲೋಡ್ ಆಗಿದೆ</string>
     <string name="delete_download">ಡೌನ್‍ಲೋಡ್‍ಗಳನ್ನು ಅಳಿಸಿ</string>
     <string name="re_download">ಮರು-ಡೌನ್‍ಲೋಡ್ ಮಾಡಿ</string>
     <string name="error">ದೋಷ</string>
@@ -227,9 +224,7 @@
     <string name="facebook">ಫೇಸ್‍‌ಬುಕ್</string>
     <string name="gplus">ಗೂಗಲ್</string>
     <string name="email">ಮಿಂಚೆ</string>
-    <string name="sign_up_with">ಇದರೊಂದಿಗೆ ನೋಂದಾಯಿಸಿ</string>
-    <string name="skip">Skip  ›</string>
-    <string name="already_have_account">ಈಗಾಗಲೇ ಒಂದು ಖಾತೆಯನ್ನು ಹೊಂದಿರುವಿರಾ?</string>
+    <string name="skip">ಹಾರಿಸಿ ></string>
     <string name="log_in">ಲಾಗಿನ್ ಆಗಿ</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">ನೋಂದಾಯಿಸಿ</string>
@@ -257,19 +252,19 @@
     <!-- Label for a button to import an existing photo for an observation -->
     <string name="upload_photo">ಚಿತ್ರವನ್ನು ಆರಿಸಿ</string>
     <string name="first">1ನೇ</string>
-    <string name="make_first">Make 1st</string>
+    <string name="make_first">1ನೇಯದನ್ನಾಗಿ ಮಾಡಿ</string>
     <string name="notes">ಟಿಪ್ಪಣಿಗಳು</string>
     <string name="location_is">Location is</string>
-    <string name="is_captive">It is captive or cultivated</string>
+    <string name="is_captive">ಇದು ಸೆರೆಯ ಜೀವಿ ಅಥವಾ ಪಳಗಿಸಿದ ಜೀವಿಯಾಗಿದೆ</string>
     <string name="location_visibility">ಸ್ಥಳ ಗೋಚರತೆ</string>
     <string name="set_location">ಸ್ಥಳ</string>
     <string name="coordinates_lat">ಅಕ್ಷಾಂಶ:</string>
     <string name="coordinates_lon">ರೇಖಾಂಶ:</string>
-    <string name="coordinates_acc">Acc. </string>
+    <string name="coordinates_acc">ಆರೋಹಣ</string>
     <string name="required">* ಅಗತ್ಯವಿದೆ</string>
     <string name="downloading_observations">ವೀಕ್ಷಣೆಗಳನ್ನು ಡೌನ್‍ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...</string>
     <string name="no_thanks">ಇಲ್ಲ ಧನ್ಯವಾದಗಳು</string>
-    <string name="turn_on">Turn On</string>
+    <string name="turn_on">ಟರ್ನ್ ಆನ್ ಮಾಡಿ</string>
     <string name="introducing_auto_sync">ಪರಿಚಯಿಸುತ್ತಿದ್ದೇವೆ ಸ್ವಯಂ-ಸಿಂಕ್!</string>
     <string name="turn_on_auto_sync">ಸಂಯೋಜನೆಗಳಲ್ಲಿ ಸ್ವಯಂ-ಸಿಂಕ್ ಅನ್ನು ಆನ್ ಮಾಡಿರಿ ಹಾಗೂ ನಿಮ್ಮೆಲ್ಲಾ ವೀಕ್ಷಣೆಗಳು ಸ್ವಯಂಚಾಲಿತವಾಗಿ iNaturalist ಗೆ ಅಪ್ಲೋಡ್ ಆಗುತ್ತವೆ.</string>
     <string name="automatic_upload">ಸ್ವಯಂಚಾಲಿತ ಅಪ್ಲೋಡ್ (ಸ್ವಯಂ ಸಿಂಕ್)</string>
@@ -279,7 +274,7 @@
     <string name="needs_your_attention">ನಿಮ್ಮ ಗಮನದ ಅಗತ್ಯವಿದೆ...</string>
     <string name="observation">ವೀಕ್ಷಣೆ</string>
     <string name="share">ಹಂಚಿಕೊಳ್ಳಿ</string>
-    <string name="unable_to_acquire_location">Unable to acquire location</string>
+    <string name="unable_to_acquire_location">ಸ್ಥಳವನ್ನು ಹುಡುಕಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
     <string name="casual_grade">ಸಾಂದರ್ಭಿಕ ದರ್ಜೆ</string>
     <string name="needs_id">ID ಅಗತ್ಯವಿದೆ</string>
     <string name="research_grade">ಸಂಶೋಧನಾ ದರ್ಜೆ</string>
@@ -287,7 +282,7 @@
     <string name="casual_grade_add_location"><![CDATA[ಈ ವೀಕ್ಷಣೆಯನ್ನು “ID ಅಗತ್ಯವಿದೆ” ಸ್ಥಿತಿಗೆ ಮುನ್ನೆಡೆಸಲು <b>ಸ್ಥಳ</b>ವನ್ನು ಸೇರಿಸಿ]]></string>
     <string name="casual_grade_add_date"><![CDATA[ಈ ವೀಕ್ಷಣೆಯನ್ನು “ID ಅಗತ್ಯವಿದೆ” ಸ್ಥಿತಿಗೆ ಮುನ್ನೆಡೆಸಲು <b>ದಿನಾಂಕ</b>ವನ್ನು ಸೇರಿಸಿ]]></string>
     <string name="casual_grade_add_photo"><![CDATA[ಈ ವೀಕ್ಷಣೆಯನ್ನು “ID ಅಗತ್ಯವಿದೆ” ಸ್ಥಿತಿಗೆ ಮುನ್ನೆಡೆಸಲು <b>ಚಿತ್ರ</b>ವನ್ನು ಸೇರಿಸಿ.]]></string>
-    <string name="casual_grade_captive"><![CDATA[ Observation is casual grade because it is <b>captive/cultivated</b>. ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ವೀಕ್ಷಣೆ ಸಾಂದರ್ಭಿಕವಾಗಿದೆ ಏಕೆಂದರೆ ಇದು <b>ಸೆರೆಯ ಜೀವಿ/ಪಳಗಿಸಿದ ಜೀವಿಯಾಗಿದೆ</b>.]]></string>
     <string name="needs_id_more_ids"><![CDATA[ಈ ವೀಕ್ಷಣೆಯನ್ನು “ಸಂಶೋಧನಾ ದರ್ಜೆ” ಸ್ಥಿತಿಗೆ ಮುನ್ನೆಡೆಸಲು ಸಮುದಾಯದಿಂದ <b>ಹೆಚ್ಚಿನ ಗುರುತಿಸುವಿಕೆ</b>ಗಳ ಅಗತ್ಯವಿದೆ.]]></string>
     <plurals name="included_in_projects">
         <item quantity="one">%1$d ಪ್ರಾಯೋಜನೆಯಲ್ಲಿ ಸೇರಿಸಲಾಗಿದೆ</item>
@@ -323,8 +318,8 @@
     <string name="photo"><![CDATA[ಚಿತ್ರ : <b><a href="%1$s">%2$s</a></b>]]></string>
     <string name="photo_attr"><![CDATA[ಚಿತ್ರ: <b>%1$s</b>]]></string>
     <string name="finding_current_location">ಪ್ರಸ್ತುತ ಸ್ಥಳವನ್ನು ಹುಡುಕಲಾಗುತ್ತಿದೆ...</string>
-    <string name="flag_as_captive">Flag as Captive/Cultivated</string>
-    <string name="observation_flagged_as_captive">Observation was flagged as captive/cultivated</string>
+    <string name="flag_as_captive"> ಸೆರೆಯ ಜೀವಿ/ಪಳಗಿಸಿದ ಜೀವಿ ಯಂತೆ ಪತಾಕೆಹಚ್ಚಿ</string>
+    <string name="observation_flagged_as_captive"> ವೀಕ್ಷಣೆಯನ್ನು ಸೆರೆಯ ಜೀವಿ/ಪಳಗಿಸಿದ ಜೀವಿ ಯಂತೆ ಪತಾಕೆಹಚ್ಚಲಾಗಿದೆ</string>
     <string name="are_you_sure_you_want_to_flag_as_captive">Are you sure you want to flag this observation as captive/cultivated? (Pressing yes will also close the observation viewer window)</string>
     <string name="do_you_agree_to_the_following">ನೀವು ಈ ಕೆಳಗಿನವುಗಳನ್ನು ಸಮ್ಮತಿಸುವಿರಾ?</string>
     <string name="terms">ನಿಯಮಗಳು</string>
@@ -352,7 +347,6 @@
     <string name="updating_profile">ಪರಿಚಯವನ್ನು ನವೀಕರಿಸಲಾಗುತ್ತಿದೆ...</string>
     <string name="there_was_a_problem_updating_profile">ನಿಮ್ಮ ಪರಿಚಯವನ್ನು ನವೀಕರಿಸುವಲ್ಲಿ ಏನೋ ತೊಂದರೆಯಾಗಿದೆ!</string>
     <string name="there_was_a_problem_updating_profile_params">ನಿಮ್ಮ ಪರಿಚಯವನ್ನು ನವೀಕರಿಸುವಲ್ಲಿ ಏನೋ ತೊಂದರೆಯಾಗಿದೆ : %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[<b>%1$s</b> ನಂತೆ ಲಾಗಿನ್ ಆಗಿದೆ]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[ಪ್ರಸ್ತುತ <b>%1$s</b> ನಂತೆ ಲಾಗಿನ್ ಆಗಿದೆ]]></string>
     <string name="log_out">ಲಾಗ್ ಔಟ್</string>
@@ -365,13 +359,13 @@
     <string name="inat_network">iNaturalist ಜಾಲ</string>
     <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
     <string name="more_info">ಹೆಚ್ಚಿನ ಮಾಹಿತಿ</string>
-    <string name="select_network">Select Network Affiliation</string>
+    <string name="select_network">ಜಾಲದ ಸಹಭಾಗಿತ್ವವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
     <string name="help">ಸಹಾಯ</string>
     <string name="stop">ನಿಲ್ಲಿಸಿ</string>
     <string name="resume">ಮುಂದುವರಿಸಿ</string>
     <string name="cleaning_up">ಸ್ವಚ್ಛಗೊಳಿಸಲಾಗುತ್ತಿದೆ...</string>
     <string name="syncing">ಸಿಂಕ್ ಆಗುತ್ತಿದೆ...</string>
-    <string name="syncing_observation_fields">Syncing observation fields...</string>
+    <string name="syncing_observation_fields">ವೀಕ್ಷಣೆಗಳ ಆವರಣಗಳನ್ನು ಸಿಂಕ್ ಮಾಡಲಾಗುತ್ತಿದೆ...</string>
     <string name="syncing_observations">ವೀಕ್ಷಣೆಗಳನ್ನು ಸಿಂಕ್ ಮಾಡಲಾಗುತ್ತಿದೆ...</string>
     <string name="syncing_paused">ವಿರಾಮಗೊಳಿಸಲಾಗಿದೆ</string>
     <string name="upload">ಅಪ್ಲೋಡ್ ಮಾಡಿ</string>
@@ -398,7 +392,7 @@
     <string name="fish">ಮೀನು</string>
     <string name="mollusks">ಮೃದ್ವಂಗಿಗಳು</string>
     <string name="protozoans">ಪ್ರೋಟೋಝೋವಾಗಳು</string>
-    <string name="chromista">Kelp, Diatoms, and Allies</string>
+    <string name="chromista">ಕಡಲಜೊಂಡು, ಕಲ್ಲುಪಾಚಿಗಳು ಮತ್ತು ಅಲ್ಲೀಗಳು</string>
     <string name="amphibians">ಉಭಯಚರಿಗಳು</string>
     <string name="fungi">ಶಿಲೀಂಧ್ರಗಳು</string>
     <string name="birds">ಹಕ್ಕಿಗಳು</string>
@@ -406,7 +400,7 @@
     <string name="no_connectivity">ಸಂಪರ್ಕವಿಲ್ಲ</string>
     <string name="no_recommended_missions">ಈ ಪ್ರದೇಶದಲ್ಲಿ ಯಾವುದೇ ಶಿಫಾರಸ್ಸುಗಳು ಇರುವಂತೆ ಕಾಣುತ್ತಿಲ್ಲ. ಹೊಸ ಸ್ಥಳಕ್ಕೆ ಸರಿಯಲು ಪ್ರಯತ್ನಿಸಿ.</string>
     <string name="what_to_look_for">ಏನನ್ನು ನಿರೀಕ್ಷಿಸಬಹುದು</string>
-    <string name="have_been_seen_here">Have Been Seen Here</string>
+    <string name="have_been_seen_here">ಇಲ್ಲಿ ಈ ಮೊದಲು ಕಂಡಿದ್ದವು</string>
     <string name="observe">ವೀಕ್ಷಿಸಿ</string>
     <string name="nearby_missions">Nearby Missions</string>
     <string name="searching_your_area">ನಿಮ್ಮ ಪ್ರದೇಶವನ್ನು ಹುಡುಕಲಾಗುತ್ತಿದೆ...</string>
@@ -471,15 +465,13 @@
     <string name="what_did_you_see">ನೀವು ಏನು ನೋಡಿದಿರಿ?</string>
     <string name="suggest_species">ಪ್ರಭೇಧವನ್ನು ಸೂಚಿಸಿ</string>
     <string name="suggest_species_description">ಚಿತ್ರಗಳ ದೃಶ್ಯಸಾಮ್ಯತೆಯ ಆಧಾರದ ಮೇಲೆ ಪ್ರಭೇಧವನ್ನು ಸೂಚಿಸಿ.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">ನೋಟದೋಲಿಕೆ</string>
     <string name="visually_similar_seen_nearby">ದೃಶ್ಯ ಸಾಮ್ಯತೆ / ಸಮೀಪದಲ್ಲಿ ವೀಕ್ಷಿಸಿದ್ದು</string>
     <string name="seen_nearby">ಸಮೀಪದಲ್ಲಿ ವೀಕ್ಷಿಸಲಾಗಿದೆ</string>
     <string name="enlarge">ಹಿಗ್ಗಿಸಿ</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">View Children</string>
-    <string name="invalid_photo_extension">ಚಿತ್ರ(ಗಳ)ವನ್ನು ಆಮದು ಮಾಡುವಲ್ಲಿ ದೋಷ : JPG/JPEG/PNG/HEIC/HEIF ವಿಸ್ತರಣೆಗಳಿರುವ ಚಿತ್ರಗಳನ್ನು ಮಾತ್ರ ಆಮದು ಮಾಡಿಕೊಳ್ಳಬಹುದು</string>
-    <string name="taxon_has_no_photos">ಈ ವರ್ಗೀಕರಣವು ಯಾವುದೇ ಚಿತ್ರವನ್ನು ಹೊಂದಿಲ್ಲ.</string>
+    <string name="taxon_has_no_photos">ಈ ಜೀವಿವರ್ಗವು ಯಾವುದೇ ಚಿತ್ರವನ್ನು ಹೊಂದಿಲ್ಲ.</string>
     <string name="terrain">ಭೂಪ್ರದೇಶ</string>
     <string name="filters">ಶೋಧಕಗಳು</string>
     <string name="exploring_all">ಎಲ್ಲವನ್ನೂ ಅನ್ವೇಷಿಸಿ</string>
@@ -489,13 +481,13 @@
     <string name="research_grade_initials">RG</string>
     <string name="taxon_search_hint">ಉದಾ. ಹಕ್ಕಿಗಳು, ಮೊನಾರ್ಕ್</string>
     <string name="location_search_hint">ಉದಾ. ಪಟ್ಟಣ, ರಾಜ್ಯ, ಪಾರ್ಕ್, ರಾಷ್ಟ್ರ...</string>
-    <string name="no_taxon">ಕ್ಷಮಿಸಿ, ವರ್ಗೀಕರಣ ಕಂಡುಬರಲಿಲ್ಲ</string>
-    <string name="please_select_taxon">Please select a valid taxon from the list (or clear the taxon field).</string>
+    <string name="no_taxon">ಕ್ಷಮಿಸಿ, ಜೀವಿವರ್ಗ ಕಂಡುಬರಲಿಲ್ಲ</string>
+    <string name="please_select_taxon">ದಯವಿಟ್ಟು ಮಾನ್ಯವಾದ ಒಂದು ಜೀವಿವರ್ಗವನ್ನು ಪಟ್ಟಿಯಿಂದ ಆರಿಸಿಕೊಳ್ಳಿ (ಅಥವಾ ಜೀವಿವರ್ಗದ ಆವರಣವನ್ನು ತೆರವುಗೊಳಿಸಿ).</string>
     <string name="sorry_no_location">ಕ್ಷಮಿಸಿ, ಸ್ಥಳ ಕಂಡುಬರಲಿಲ್ಲ</string>
-    <string name="location_not_found">The location or place you have searched is not in our database. Please choose a place from the list of options below the location search field or clear the search field.</string>
+    <string name="location_not_found">ನೀವು ಹುಡುಕುತ್ತಿರುವ ಸ್ಥಳ ಅಥವಾ ಪ್ರದೇಶ ನಮ್ಮ ಡೇಟಾಬೇಸಿನಲ್ಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಸ್ಥಳದ ಹುಡುಕಾಟ ಆವರಣದ ಕೆಳಗಿರುವ ಆಯ್ಕೆಗಳ ಪಟ್ಟಿಯಲ್ಲಿನ ಒಂದು ಸ್ಥಳವನ್ನು ಆರಿಸಿ ಅಥವಾ ಹುಡುಕಾಟದ ಆವರಣವನ್ನು ತೆರವುಗೊಳಿಸಿ.</string>
     <string name="undefined">ಅನಾಮಿಕ</string>
-    <string name="street_segment">Street Segment</string>
-    <string name="intersection">Intersection</string>
+    <string name="street_segment">ಬೀದಿಯ ಭಾಗ</string>
+    <string name="intersection">ಇಂಟರ್ ಸೆಕ್ಷನ್</string>
     <string name="town">ಪಟ್ಟಣ</string>
     <!-- As in a political administrative area, e.g. Hawaii in the United States -->
     <string name="state">ರಾಜ್ಯ</string>
@@ -505,12 +497,12 @@
     <string name="island">ದ್ವೀಪ</string>
     <string name="airport">ವಿಮಾನ ನಿಲ್ದಾಣ</string>
     <string name="drainage">ಕಾಲುವೆ</string>
-    <string name="land_feature">Land Feature</string>
+    <string name="land_feature">ಲ್ಯಾಂಡ್ ಫೀಚರ್</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="miscellaneous">ಇತರೆ</string>
     <string name="nationality">ರಾಷ್ಟ್ರೀಯತೆ</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
-    <string name="supername">Supername</string>
+    <string name="supername">ಸೂಪರ್ ನೇಮ್</string>
     <string name="point_of_interest">ಆಸಕ್ತಿಕರ ಅಂಶ</string>
     <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">ಪ್ರದೇಶ</string>
@@ -532,17 +524,17 @@
     <string name="municipality">ಪುರಸಭೆ</string>
     <string name="parish">ಪ್ಯಾರಿಷ್</string>
     <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
-    <string name="department_segment">Department Segment</string>
+    <string name="department_segment">ವಿಭಾಗದ ಭಾಗ</string>
     <string name="city_building">ಪಟ್ಟಣದ ಕಟ್ಟಡ</string>
     <string name="commune">ಸಮುದಾಯ</string>
-    <string name="governorate">Governorate</string>
+    <string name="governorate">ಗವರ್ನೊರೇಟ್</string>
     <string name="prefecture">ಪ್ರಾಂತ್ಯ</string>
     <string name="canton">ಕ್ಯಾಂಟನ್</string>
     <string name="republic">ಗಣರಾಜ್ಯ</string>
     <string name="division">ವಿಭಾಗ</string>
     <string name="subdivision">ಉಪವಿಭಾಗ</string>
     <!-- https://gadm.org place type, presumably describing an area larger than an individual property but smaller than a neighborhood -->
-    <string name="village_block">Village block</string>
+    <string name="village_block">ಹಳ್ಳಿ ಬ್ಲಾಕ್</string>
     <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
     <string name="sum">ಸಮ್</string>
     <string name="shire">ಶೈರ್</string>
@@ -554,7 +546,7 @@
     <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">ಪೊಬ್ಲಾಶಿಯನ್</string>
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
-    <string name="delegation">Delegation</string>
+    <string name="delegation">ನಿಯೋಗ</string>
     <string name="apply_filters">ಶೋಧಕಗಳನ್ನು ಅನ್ವಯಿಸಿ</string>
     <string name="remove_filters">ಶೋಧಕಗಳನ್ನು ತೆಗೆದುಹಾಕಿ</string>
     <string name="reset">ಮರುಹೊಂದಿಸಿ</string>
@@ -587,7 +579,7 @@
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
     <string name="date_week">%dವಾ</string>
     <string name="new_observation">ಹೊಸ ವೀಕ್ಷಣೆ</string>
-    <string name="inactive_taxon">ನಿಷ್ಕ್ರಿಯ ವರ್ಗೀಕರಣ</string>
+    <string name="inactive_taxon">ನಿಷ್ಕ್ರಿಯ ಜೀವಿವರ್ಗ</string>
     <string name="no_identifications_found">ಇತರೆ ವ್ಯಕ್ತಿಗಳ ವೀಕ್ಷಣೆಗಳಿಗೆ ನೀವು ಸಲಹೆ ನೀಡುವ ಗುರುತಿಸುವಿಕೆಗಳನ್ನು ಇಲ್ಲಿ ಅನುಸರಿಸಿ</string>
     <string name="no_species_found">ಇದು ನೀವು ಅತಿ ಹೆಚ್ಚಾಗಿ ವೀಕ್ಷಿಸಿದ ಪ್ರಭೇಧದ ಪಟ್ಟಿ.\n\n ನಿಮ್ಮ ಗಮನಕ್ಕೆ: ನಮ್ಮ ಭೂಮಿಯಲ್ಲಿ ಒಂದು ಅಂದಾಜಿನ ಪ್ರಕಾರ 9 ದಶಲಕ್ಷ ಪ್ರಭೇಧಗಳಿವೆ, ಆದ್ದರಿಂದ ಹೊರಬನ್ನಿ ಅಲ್ಲಿ ಇಲ್ಲಿ ಹುಡುಕಿ ಮತ್ತು ಅವುಗಳನ್ನು ಗಮನಿಸಿ.</string>
     <string name="make_an_observation">ವೀಕ್ಷಣೆಯೊಂದನ್ನು ಪ್ರಾರಂಭಿಸಿ</string>
@@ -596,7 +588,6 @@
     <string name="leave_comment">ಅಭಿಪ್ರಾಯವೊಂದನ್ನು ಬರೆಯಿರಿ...</string>
     <string name="swipe">ಸ್ವೈಪ್</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">ಯಾವ ಗೂಗಲ್ ಖಾತೆ?</string>
     <string name="potential_disagreement">ಸಂಭಾವ್ಯ ಭಿನ್ನಾಭಿಪ್ರಾಯ</string>
     <string name="do_you_think_this_could_be"><![CDATA[ಇದನ್ನು <b>%1$s</b> ಎಂದು ನಿರ್ಧರಿಸಲು ಸಾಕಷ್ಟು ಸಾಕ್ಷ್ಯಗಳನ್ನು ಒದಗಿಸಲಾಗಿದೆಯೇ?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -608,19 +599,19 @@
     <string name="must_be_connected_to_load_more_obs">ಇನ್ನೂ ಹೆಚ್ಚು ವೀಕ್ಷಣೆಗಳನ್ನು ತುಂಬಲು ನೀವು ಅಂತರ್ಜಾಲ ಸಂಪರ್ಕದಲ್ಲಿರಲೇಬೇಕು.</string>
     <string name="inat_about_title">iNaturalist ಕ್ಯಾಲಿಫೋರ್ನಿಯಾ ಅಕಾಡೆಮಿ ಆಫ್ ಸೈನ್ಸಸ್ ಮತ್ತು ನ್ಯಾಷನಲ್ ಜಿಯೋಗ್ರಾಫಿಕ್ ಸೊಸೈಟಿಯ ಜಂಟಿ ಪ್ರಯತ್ನ.</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
-    <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="http://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
+    <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="https://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">ಕೃತಜ್ಞತೆಗಳು</string>
     <string name="password_changed">ಆಪ್ ಬಳಸುತ್ತಿರುವ ಗುಪ್ತಪದ ಕೆಲಸ ಮಾಡುತ್ತಿಲ್ಲ - ನೀವೇನಾದರೂ ಜಾಲತಾಣದಲ್ಲಿ ಗುಪ್ತಪದ ಬದಲಿಸಿರುವಿರಾ? ದಯವಿಟ್ಟು ಹೊಸದೊಂದನ್ನು ಇಲ್ಲಿ ನಮೂದಿಸಿ.</string>
-    <string name="just_so_you_know">Just So You Know...</string>
+    <string name="just_so_you_know">ಸುಮ್ನೆ ಹಾಗೆ ನಿಮಗೆ ಗೊತ್ತಲ್ವಾ...</string>
     <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[%1$s ಕ್ಕೆ ಹೊಸಬರೇ? <b>ಈಗಲೇ ನೋಂದಾಯಿಸಿಕೊಳ್ಳಿ!</b>]]></string>
     <string name="see_more_observations">ಹೆಚ್ಚಿನ ವೀಕ್ಷಣೆಗಳನ್ನು ನೋಡಿ</string>
@@ -675,7 +666,7 @@
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">ವಯಸ್ಕ</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
-    <string name="annotation_value_teneral">Teneral</string>
+    <string name="annotation_value_teneral">ಟೆನೆರಲ್</string>
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
     <string name="annotation_value_pupa">ಪ್ಯೂಪಾ</string>
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
@@ -686,7 +677,7 @@
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
     <string name="annotation_value_juvenile">ಹದಿವಯಸ್ಕ</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
-    <string name="annotation_value_subimago">Subimago</string>
+    <string name="annotation_value_subimago">ಸಬ್ಇಮಾಗೋ</string>
     <string name="annotation_value_female">ಸ್ತ್ರೀ</string>
     <string name="annotation_value_male">ಪುರುಷ</string>
     <!-- Adjective, alive and shows no signs of imminent death -->
@@ -700,7 +691,7 @@
     <!-- Evidence of Presence value when for bird feathers -->
     <string name="annotation_value_feather">ಗರಿ</string>
     <!-- Evidence of Presence value when for fecal remains -->
-    <string name="annotation_value_scat">Scat</string>
+    <string name="annotation_value_scat">ಹಿಕ್ಕೆ</string>
     <!-- Evidence of Presence value for impressions in the ground or snow -->
     <string name="annotation_value_track">ಹೆಜ್ಜೆಗುರುತು</string>
     <!-- Evidence of Presence value when for bones -->
@@ -775,7 +766,7 @@
     <string name="mark_all_as_viewed">ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿದೆಯೆಂದು ಗುರುತಿಸಿ</string>
     <string name="content_hidden">ಮರೆಮಾಡಿದ ವಿಷಯಗಳು</string>
     <string name="show_hidden_content">ಮರೆಮಾಡಿದ ವಿಷಯಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ</string>
-    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
+    <string name="content_hidden_because">%2$s ರಲ್ಲಿ %1$s ಅವರಿಂದ ವಿಷಯವನ್ನು ಮರೆಮಾಡಲಾಗಿದೆ ಏಕೆಂದರೆ : \"%3$s\"</string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">ಸಹಾಯಕ್ಕಾಗಿ ಸಂಪರ್ಕಿಸಿ</a>]]></string>
     <string name="content">ವಸ್ತುವಿಷಯ</string>
     <string name="has_photos">ಚಿತ್ರಗಳನ್ನು ಹೊಂದಿದೆ</string>
@@ -785,8 +776,7 @@
     <string name="soundcloud">ಸೌಂಡ್‍ಕ್ಲೌಡ್</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">ಧ್ವನಿ ಮುದ್ರಿಸಿ</string>
-    <string name="no_recorder_found">ಯಾವುದೇ ನಿಯೋಜಿತ ಧ್ವನಿಮುದ್ರಕ ಕಂಡುಬಂದಿಲ್ಲ!</string>
-    <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
+    <string name="couldnt_retrieve_sound">ನಿಯೋಜಿತ ಧ್ವನಿಮುದ್ರಕದಿಂದ ಧ್ವನಿಯನ್ನು ತೆಗೆದುಕೊಳ್ಳಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ - ಬದಲಿಗೆ ಧ್ವನಿಯನ್ನು ಆಮದು ಮಾಡಲು ಪ್ರಯತ್ನಿಸಿ</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">ಧ್ವನಿಯನ್ನು ಆರಿಸಿ</string>
     <string name="multi_select_sound_description">ಒಂದು ಬಿಡಿ ಧ್ವನಿಯ ಮೇಲೆ ದೀರ್ಘವಾಗಿ ಒತ್ತುವುದರ ಮೂಲಕ ಅನೇಕ ಧ್ವನಿಗಳನ್ನು ಆಮದು ಮಾಡಿ</string>
@@ -817,7 +807,7 @@
     <!-- Verb, as in "Rotate this photo" -->
     <string name="ucrop_rotate">ತಿರುಗಿಸಿ</string>
     <!-- Verb, as in "Scale (resize) this photo" -->
-    <string name="ucrop_scale">Scale</string>
+    <string name="ucrop_scale">ಮಾಪನ</string>
     <!-- Verb, as in "Crop this photo" -->
     <string name="ucrop_crop">ಕ್ರಾಪ್ ಮಾಡಿ</string>
     <!-- Label for adjusting the brightness of an image -->
@@ -868,11 +858,11 @@
         <item quantity="one">ನೀವು ಈ %1$d ವೀಕ್ಷಣೆಯನ್ನು ಅಳಿಸಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</item>
         <item quantity="other">ನೀವು ಈ %1$d ವೀಕ್ಷಣೆಗಳನ್ನು ಅಳಿಸಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</item>
     </plurals>
-    <string name="future_observed_on_date_error">Your observation was created (and submitted) on %1$s, but you\'re trying to set an observation date that is later than that: %2$s</string>
+    <string name="future_observed_on_date_error">%1$s ರಂದು ನಿಮ್ಮ ವೀಕ್ಷಣೆಯನ್ನು ರಚಿಸಲಾಗಿದೆ (ಮತ್ತು ಸಲ್ಲಿಸಲಾಗಿದೆ), ಆದರೆ ನೀವು ಅದಕ್ಕಿಂತ ಆಚೆಗಿನ ವೀಕ್ಷಣಾ ದಿನಾಂಕವನ್ನು ಹೊಂದಿಸಲು ಪ್ರಯತ್ನಿಸುತ್ತಿರುವಿರಿ: %2$s</string>
     <string name="no_more_photos_allowed">ವೀಕ್ಷಣೆಗಳು ಕೇವಲ %1$d ಚಿತ್ರಗಳನ್ನು ಹೊಂದಿರಬಹುದು. ಇನ್ನೂ ಹೆಚ್ಚು ಚಿತ್ರಗಳನ್ನು ಸೇರಿಸಲು ನೀವು ಕೆಲವನ್ನು ತೆಗೆದುಹಾಕಬೇಕಾಗುತ್ತದೆ.</string>
-    <string name="warning_multiple_photos">If you\'re adding photos of different kinds of organisms to this observation, or the same kind at different places or times, you should remove those photos and add them as separate observations. An observation can only have %1$d photos.</string>
+    <string name="warning_multiple_photos">ನೀವು ಬೇರೆ ಬೇರೆ ರೀತಿಯ ಜೀವಿಗಳ ಅಥವಾ ವಿವಿಧ ಸ್ಥಳಗಳಲ್ಲಿ ಅಥವಾ ಸಮಯಗಳಲ್ಲಿ ಒಂದೇ ರೀತಿಯ ಚಿತ್ರಗಳನ್ನು ಈ ವೀಕ್ಷಣೆಗೆ ಸೇರಿಸುತ್ತಿದ್ದಲ್ಲಿ, ನೀವು ಆ ಚಿತ್ರಗಳನ್ನು ತೆಗೆದು ಪ್ರತ್ಯೇಕ ವೀಕ್ಷಣೆಗಳನ್ನಾಗಿ ಸೇರಿಸಿ. ಒಂದು ವೀಕ್ಷಣೆ ಕೇವಲ %1$d ಚಿತ್ರಗಳನ್ನು ಮಾತ್ರ ಹೊಂದಿರಬಹುದು. </string>
     <string name="choosing_specific_language_warning">ನಿಮ್ಮ ಖಾತೆಗೆ ನಿರ್ದಿಷ್ಟ ಭಾಷೆಯನ್ನು ಆರಿಸಿಕೊಳ್ಳಲು ನಿಮಗೆ ಅಂತರ್ಜಾಲದ ಸಂಪರ್ಕದ ಅಗತ್ಯವಿದೆ.</string>
-    <string name="running_in_background_notfication">Running in the background so we can run without interruption</string>
+    <string name="running_in_background_notfication">ಅಡೆತಡೆಯಿಲ್ಲದ ಚಾಲನೆಗಾಗಿ ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಚಾಲಿಸಲಾಗುತ್ತಿದೆ</string>
     <string name="opt_out_of_community_taxon">Opt out of the Community Taxon</string>
     <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
     <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
@@ -887,13 +877,13 @@
     <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="observation_list_item_iconic_pic_description">ವೀಕ್ಷಣೆಯ ವರ್ಗೀಕರಣೆಗಾಗಿ ಕಿರುಚಿತ್ರ</string>
+    <string name="observation_list_item_iconic_pic_description">ವೀಕ್ಷಣೆಯ ಜೀವಿವರ್ಗಕ್ಕಾಗಿ ಕಿರುಚಿತ್ರ</string>
     <!-- Description of a UI element for screen readers -->
     <string name="observation_list_item_obs_pic_description">ವೀಕ್ಷಣೆಗಾಗಿ ಕಿರುಚಿತ್ರ</string>
     <string name="messages">ಸಂದೇಶಗಳು</string>
     <string name="all_messages">ಎಲ್ಲಾ ಸಂದೇಶಗಳು</string>
     <string name="search_messages">ಸಂದೇಶಗಳನ್ನು ಹುಡುಕಿ</string>
-    <string name="no_messages">You currently have no messages. You can send a new message with the green button, or message them from their profile page.</string>
+    <string name="no_messages">ನಿಮಗೆ ಸಧ್ಯಕ್ಕೆ ಯಾವುದೇ ಸಂದೇಶಗಳಿಲ್ಲ. ನೀವು ಹಸಿರು ಗುಂಡಿಯನ್ನು ಒತ್ತುವ ಮೂಲಕ ಹೊಸ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಬಹುದು, ಅಥವಾ ಅವರ ಪರಿಚಯ ಪುಟದಿಂದ ಅವರಿಗೆ ಸಂದೇಶ ಕಳುಹಿಸಬಹುದು.</string>
     <string name="no_messages_found">ಯಾವುದೇ ಸಂದೇಶಗಳು ಕಂಡುಬಂದಿಲ್ಲ.</string>
     <string name="send_a_message">ಸಂದೇಶ ಕಳುಹಿಸಿ</string>
     <string name="sending_message">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ...</string>
@@ -909,15 +899,16 @@
     <string name="sorry">ಕ್ಷಮಿಸಿ</string>
     <string name="you_must_have_three_observations">ಅದನ್ನು ಮಾಡಲು ನೀವು ಮೂರು ಪರಿಶೀಲನಾರ್ಹ ವೀಕ್ಷಣೆಗಳನ್ನು ಅಥವಾ ಇತರರಿಗಾಗಿ ಮೂರು ಗುರುತಿಸುವಿಕೆಗಳನ್ನು ಹೊಂದಿರಬೇಕಾಗುತ್ತದೆ.</string>
     <string name="mute_this_user">ಈ ಬಳಕೆದಾರರನ್ನು ಮೌನವಾಗಿಸಿ</string>
-    <string name="unmute_this_user">Unmute this user</string>
+    <string name="unmute_this_user">ಈ ಬಳಕೆದಾರರ ಮೌನ ನೀಗಿಸಿ</string>
     <string name="flag_this_conversation">Flag this conversation</string>
     <string name="mute_this_user_question">ಈ ಬಳಕೆದಾರರನ್ನು ಮೌನವಾಗಿಸಬೇಕೆ?</string>
-    <string name="you_will_no_longer_receive_messages">You will no longer receive any notifications about activity from this user, including messages, comments, identifications, and mentions.</string>
+    <string name="you_will_no_longer_receive_messages">ಈ ಬಳಕೆದಾರರಿಂದ ಸಂದೇಶಗಳು, ಪ್ರತಿಕ್ರಿಯೆಗಳು, ಗುರುತಿಸುವಿಕೆಗಳು ಮತ್ತು ಉಲ್ಲೇಖಗಳನ್ನು ಒಳಗೊಂಡಂತೆ ಅವರ 
+ಚಟುವಟಿಕೆಗಳ ಬಗೆಗಿನ ಯಾವುದೇ ಅಧಿಸೂಚನೆಗಳನ್ನು ನೀವು ಇನ್ನೆಂದಿಗೂ ಸ್ವೀಕರಿಸಲಾರಿರಿ. </string>
     <string name="mute">ಮೌನವಾಗಿಸಿ</string>
     <string name="muting_user">ಬಳಕೆದಾರರನ್ನು ಮೌನವಾಗಿಸಿ...</string>
-    <string name="unmuting_user">Unmuting user...</string>
+    <string name="unmuting_user">ಬಳಕೆದಾರರ ಮೌನ ನೀಗಿಸುತ್ತಿದೆ...</string>
     <string name="failed_muting_user">ಬಳಕೆದಾರರನ್ನು ಮೌನವಾಗಿಸುವಲ್ಲಿ ವಿಫಲವಾಗಿದೆ!</string>
-    <string name="failed_unmuting_user">Failed unmuting user!</string>
+    <string name="failed_unmuting_user">ಬಳಕೆದಾರರ ಮೌನ ನೀಗಿಸುವಲ್ಲಿ ವಿಫಲವಾಗಿದೆ!</string>
     <string name="flag_conversation">Flag conversation</string>
     <string name="spam">ಸ್ಪ್ಯಾಮ್</string>
     <string name="commercial_solicitation">Commercial solicitation, links to nowhere, etc.</string>
@@ -932,31 +923,31 @@
     <string name="failed_flagging_conversation">Failed flagging conversation!</string>
     <string name="no_subject">ವಿಷಯ ಇಲ್ಲ</string>
     <string name="rank_state_of_matter">State of matter</string>
-    <string name="rank_kingdom">Kingdom</string>
-    <string name="rank_subkingdom">Subkingdom</string>
-    <string name="rank_phylum">Phylum</string>
-    <string name="rank_subphylum">Subphylum</string>
-    <string name="rank_superclass">Superclass</string>
-    <string name="rank_class">Class</string>
-    <string name="rank_subclass">Subclass</string>
-    <string name="rank_infraclass">Infraclass</string>
-    <string name="rank_superorder">Superorder</string>
-    <string name="rank_order">Order</string>
-    <string name="rank_suborder">Suborder</string>
-    <string name="rank_infraorder">Infraorder</string>
-    <string name="rank_subterclass">Subterclass</string>
+    <string name="rank_kingdom">ಸಾಮ್ರಾಜ್ಯ</string>
+    <string name="rank_subkingdom">ಉಪಸಾಮ್ರಾಜ್ಯ</string>
+    <string name="rank_phylum">ವಂಶ</string>
+    <string name="rank_subphylum">ಉಪವಂಶ</string>
+    <string name="rank_superclass">ಮೇಲ್ವರ್ಗ</string>
+    <string name="rank_class">ವರ್ಗ</string>
+    <string name="rank_subclass">ಉಪವರ್ಗ</string>
+    <string name="rank_infraclass">ನಿಮ್ನವರ್ಗ</string>
+    <string name="rank_superorder">ಉನ್ನತಗಣ</string>
+    <string name="rank_order">ಗಣ</string>
+    <string name="rank_suborder">ಉಪಗಣ</string>
+    <string name="rank_infraorder">ನಿಮ್ನಗಣ</string>
+    <string name="rank_subterclass">ಕೆಳವರ್ಗ</string>
     <string name="rank_parvorder">Parvorder</string>
-    <string name="rank_zoosection">Zoosection</string>
-    <string name="rank_zoosubsection">Zoosubsection</string>
-    <string name="rank_superfamily">Superfamily</string>
-    <string name="rank_epifamily">Epifamily</string>
+    <string name="rank_zoosection">ಝೂವಿಭಾಗ</string>
+    <string name="rank_zoosubsection">ಝೂಉಪವಿಭಾಗ</string>
+    <string name="rank_superfamily">ಮೇಲ್‍ಕುಟುಂಬ</string>
+    <string name="rank_epifamily">ಮಧ್ಯಮಕುಟುಂಬ</string>
     <string name="rank_family">ಕುಟುಂಬ</string>
     <string name="rank_subfamily">ಉಪಕುಟುಂಬ</string>
-    <string name="rank_supertribe">Supertribe</string>
+    <string name="rank_supertribe">ಉನ್ನತಬುಡಕಟ್ಟು</string>
     <string name="rank_tribe">ಬುಡಕಟ್ಟು</string>
     <string name="rank_subtribe">ಉಪಬುಡಕಟ್ಟು</string>
     <string name="rank_genus">ಪಂಗಡ</string>
-    <string name="rank_genushybrid">Genushybrid</string>
+    <string name="rank_genushybrid">ಕುಲಸಂಕರ</string>
     <string name="rank_subgenus">ಉಪಪಂಗಡ</string>
     <string name="rank_section">ವಿಭಾಗ</string>
     <string name="rank_subsection">ಉಪವಿಭಾಗ</string>
@@ -968,7 +959,7 @@
     <string name="rank_subspecies">ಉಪಪ್ರಭೇಧ</string>
     <string name="rank_variety">Variety</string>
     <string name="rank_form">Form</string>
-    <string name="rank_infrahybrid">Infrahybrid</string>
+    <string name="rank_infrahybrid">ನಿಮ್ನಸಂಕರ</string>
     <string name="rank_leaves">ಎಲೆಗಳು</string>
     <string name="location_lat_lng">ಸ್ಥಳ: %1$f, %2$f</string>
     <string name="i_consent_process_personal_info"><![CDATA[ನನ್ನ ಖಾತೆ ನಿರ್ವಹಣೆ ಸಲುವಾಗಿ ನನ್ನ ಬಗೆಗಿನ ಸೀಮಿತವಾದ ವೈಯಕ್ತಿಕ ಮಾಹಿತಿಯನ್ನು iNaturalist ಗೆ ಸಂಗ್ರಹಿಸುವುದಕ್ಕೆ ಮತ್ತು ಸಂಸ್ಕರಿಸುವುದಕ್ಕೆ ನಾನು ಸಮ್ಮತಿ ನೀಡುತ್ತೇನೆ. <b>ಹೆಚ್ಚು ತಿಳಿಯಿರಿ</b>]]></string>
@@ -1000,49 +991,49 @@
     <string name="switch_to_grid_view">ಗ್ರಿಡ್ ವೀಕ್ಷಣೆಗೆ ಬದಲಿಸಿ</string>
     <string name="switch_to_list_view">ಪಟ್ಟಿ ವೀಕ್ಷಣೆಗೆ ಬದಲಿಸಿ</string>
     <string name="remove_project_filter">ಪ್ರಾಯೋಜನೆ ಶೋಧಕವನ್ನು ತೆಗೆದುಹಾಕಿ</string>
-    <string name="remove_observer_filter">Remove observer filter</string>
+    <string name="remove_observer_filter">ವೀಕ್ಷಕರ ಶೋಧಕವನ್ನು ತೆಗೆದುಹಾಕಿ</string>
     <string name="filter_observations_by_an_exact_date">ನಿಗದಿತ ದಿನಾಂಕದಂತೆ ವೀಕ್ಷಣೆಗಳನ್ನು ಶೋಧಿಸಿ</string>
     <string name="filter_observations_by_a_date_range">ದಿನಾಂಕ ಶ್ರೇಣಿಯಂತೆ ವೀಕ್ಷಣೆಗಳನ್ನು ಶೋಧಿಸಿ</string>
     <string name="filter_observations_by_months">ತಿಂಗಳಿನಂತೆ ವೀಕ್ಷಣೆಗಳನ್ನು ಶೋಧಿಸಿ</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="include_suggestions_not_seen_nearby">Include suggestions not seen nearby</string>
-    <string name="only_view_nearby_suggestions">Only view nearby suggestions</string>
+    <string name="include_suggestions_not_seen_nearby">ಸಮೀಪದಲ್ಲಿ ಕಾಣದ ಸಲಹೆಗಳನ್ನು ಸೇರಿಸಿಕೊಳ್ಳಿ</string>
+    <string name="only_view_nearby_suggestions">ಸಮೀಪದ ಸಲಹೆಗಳನ್ನು ಮಾತ್ರ ವೀಕ್ಷಿಸಿ</string>
     <string name="suggestions_source">ಸಲಹೆಗಳ ಆಧಾರ</string>
     <string name="research_grade_observations">ಸಂಶೋಧನಾ ದರ್ಜೆಯ ವೀಕ್ಷಣೆಗಳು</string>
     <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
     <string name="research_grade_observations_description">ದೃಶ್ಯ ಸಾಮ್ಯತೆಯ ಸಲಹೆಗಳಿಗೆ ಬದಲಾಗಿ, iNaturalist ನಿರ್ದಿಷ್ಟ ಪ್ರದೇಶದಲ್ಲಿ ಮತ್ತು ನಿರ್ದಿಷ್ಟ ವರ್ಗೀಕರಣದ ಗುಂಪಿನೊಳಗೆ ವೀಕ್ಷಿಸಿದ ಪ್ರಭೇಧವನ್ನು ಸಲಹೆ ಮಾಡುತ್ತದೆ.</string>
-    <string name="taxon">ವರ್ಗೀಕರಣ:</string>
+    <string name="taxon">ಜೀವಿವರ್ಗ:</string>
     <string name="place">ಸ್ಥಳ:</string>
-    <string name="pretty_sure_kingdom">We\'re pretty sure it\'s in this kingdom:</string>
-    <string name="pretty_sure_subkingdom">We\'re pretty sure it\'s in this subkingdom:</string>
-    <string name="pretty_sure_phylum">We\'re pretty sure it\'s in this phylum:</string>
-    <string name="pretty_sure_subphylum">We\'re pretty sure it\'s in this subphylum:</string>
-    <string name="pretty_sure_superclass">We\'re pretty sure it\'s in this superclass:</string>
-    <string name="pretty_sure_class">We\'re pretty sure it\'s in this class:</string>
-    <string name="pretty_sure_subclass">We\'re pretty sure it\'s in this subclass:</string>
-    <string name="pretty_sure_infraclass">We\'re pretty sure it\'s in this infraclass:</string>
-    <string name="pretty_sure_superorder">We\'re pretty sure it\'s in this superorder:</string>
-    <string name="pretty_sure_order">We\'re pretty sure it\'s in this order:</string>
-    <string name="pretty_sure_suborder">We\'re pretty sure it\'s in this suborder:</string>
-    <string name="pretty_sure_infraorder">We\'re pretty sure it\'s in this infraorder:</string>
-    <string name="pretty_sure_subterclass">We\'re pretty sure it\'s in this subterclass:</string>
+    <string name="pretty_sure_kingdom">ಇದು ಈ  ಸಾಮ್ರಾಜ್ಯದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ:</string>
+    <string name="pretty_sure_subkingdom">ಇದು ಈ ಉಪಸಾಮ್ರಾಜ್ಯದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ:</string>
+    <string name="pretty_sure_phylum">ಇದು ಈ ಕುಲದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ:</string>
+    <string name="pretty_sure_subphylum">ಇದು ಈ ಉಪಕುಲದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ:</string>
+    <string name="pretty_sure_superclass">ಇದು ಈ ಮೇಲ್ವರ್ಗದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ:</string>
+    <string name="pretty_sure_class">ಇದು ಈ ವರ್ಗದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ:</string>
+    <string name="pretty_sure_subclass">ಇದು ಈ ಉಪವರ್ಗದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ:</string>
+    <string name="pretty_sure_infraclass">ಇದು ಈ ನಿಮ್ನವರ್ಗದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ:</string>
+    <string name="pretty_sure_superorder">ಇದು ಈ ಉನ್ನತಗಣದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ:</string>
+    <string name="pretty_sure_order">ಇದು ಈ ಗಣದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ:</string>
+    <string name="pretty_sure_suborder">ಇದು ಈ ಉಪಗಣದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ:</string>
+    <string name="pretty_sure_infraorder">ಇದು ಈ ನಿಮ್ನಗಣದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ:</string>
+    <string name="pretty_sure_subterclass">ಇದು ಈ ಕೆಳವರ್ಗದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ:</string>
     <string name="pretty_sure_parvorder">We\'re pretty sure it\'s in this parvorder:</string>
-    <string name="pretty_sure_zoosection">We\'re pretty sure it\'s in this zoosection:</string>
-    <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
-    <string name="pretty_sure_superfamily">We\'re pretty sure it\'s in this superfamily:</string>
-    <string name="pretty_sure_epifamily">We\'re pretty sure it\'s in this epifamily:</string>
+    <string name="pretty_sure_zoosection">ಇದು ಈ ಝೂವಿಭಾಗದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ:</string>
+    <string name="pretty_sure_zoosubsection">ಇದು ಈ ಝೂಉಪವಿಭಾಗದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ:</string>
+    <string name="pretty_sure_superfamily">ಇದು ಈ ಮೇಲ್‍ಕುಟುಂಬದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ:</string>
+    <string name="pretty_sure_epifamily">ಇದು ಈ ಮಧ್ಯಮಕುಟುಂಬದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ:</string>
     <string name="pretty_sure_family">ಇದು ಈ ಕುಟುಂಬದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ</string>
     <string name="pretty_sure_subfamily">ಇದು ಈ ಉಪಕುಟುಂಬದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ</string>
-    <string name="pretty_sure_supertribe">We\'re pretty sure it\'s in this supertribe:</string>
+    <string name="pretty_sure_supertribe">ಇದು ಈ ಉನ್ನತಬುಡಕಟ್ಟಿನಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ:</string>
     <string name="pretty_sure_tribe">ಇದು ಈ ಬುಡಕಟ್ಟಿನಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ</string>
     <string name="pretty_sure_subtribe">ಇದು ಈ  ಉಪಬುಡಕಟ್ಟಿನಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ</string>
     <string name="pretty_sure_genus">ಇದು ಈ ಪಂಗಡದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ</string>
-    <string name="pretty_sure_genushybrid">We\'re pretty sure it\'s in this genushybrid:</string>
+    <string name="pretty_sure_genushybrid">ಇದು ಈ ಕುಲಸಂಕರದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ:</string>
     <string name="pretty_sure_subgenus">ಇದು ಈ ಉಪಪಂಗಡದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ</string>
     <string name="pretty_sure_section">ಇದು ಈ ವಿಭಾಗದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ</string>
     <string name="pretty_sure_subsection">ಇದು ಈ ಉಪವಿಭಾಗದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ</string>
-    <string name="pretty_sure_complex">We\'re pretty sure it\'s in this complex:</string>
+    <string name="pretty_sure_complex">ಇದು ಈ ಸಂಕೀರ್ಣದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ:</string>
     <!-- Singular -->
     <string name="pretty_sure_species">ಇದು ಈ ಪ್ರಭೇಧದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ</string>
     <string name="pretty_sure_hybrid">ಇದು ಈ ಮಿಶ್ರತಳಿಯಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ</string>
@@ -1050,7 +1041,7 @@
     <string name="pretty_sure_subspecies">ಇದು ಈ ಉಪಪ್ರಭೇಧದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ</string>
     <string name="pretty_sure_variety">We\'re pretty sure it\'s in this variety:</string>
     <string name="pretty_sure_form">We\'re pretty sure it\'s in this form:</string>
-    <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
+    <string name="pretty_sure_infrahybrid">ಇದು ಈ ನಿಮ್ನಸಂಕರದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ:</string>
     <string name="remove_date_observed">ವೀಕ್ಷಿಸಿದ ದಿನಾಂಕ &amp; ಸಮಯವನ್ನು ತೆಗೆದುಹಾಕಿ</string>
     <string name="remove_time_observed">ವೀಕ್ಷಿಸಿದ ಸಮಯವನ್ನು ತೆಗೆದುಹಾಕಿ</string>
     <string name="remove_location">ಸ್ಥಳವನ್ನು ತೆಗೆದುಹಾಕಿ</string>
@@ -1061,13 +1052,13 @@
     <string name="share_hidden_location">ಮರೆಮಾಡಿದ ಸ್ಥಳ ಹಂಚಿಕೊಳ್ಳಿ</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">ಧ್ವನಿಯನ್ನು ನಕಲಿಸಲಾಗಲಿಲ್ಲ!</string>
-    <string name="sound_format_not_supported">That audio encoding is not supported by Android.</string>
+    <string name="sound_format_not_supported">ಆ ಧ್ವನಿ ಸಂಕೇತೀಕರಣ ಆಂಡ್ರಾಯಿಡ್ ನಿಂದ ಬೆಂಬಲಿತವಾಗಿಲ್ಲ.</string>
     <string name="view_observations">ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ</string>
     <string name="choose_this_option">ಈ ಆಯ್ಕೆಯನ್ನು ಆರಿಸಿ</string>
     <string name="compare_observation_with_this_option">ಈ ಆಯ್ಕೆಯ ಜೊತೆ ವೀಕ್ಷಣೆಯನ್ನು ಹೋಲಿಸಿ</string>
     <string name="go_back">ಹಿಂದಿರುಗಿ</string>
     <string name="change_the_source_of_the_suggestions">ಸಲಹೆಗಳ ಆಧಾರವನ್ನು ಬದಲಿಸಿ</string>
-    <string name="thumbnail_photo_for_suggested_taxon">ಸಲಹೆಮಾಡಿದ ವರ್ಗೀಕರಣಕ್ಕೆ ಕಿರುಚಿತ್ರ</string>
+    <string name="thumbnail_photo_for_suggested_taxon">ಸಲಹೆಮಾಡಿದ ಜೀವಿವರ್ಗಕ್ಕೆ ಕಿರುಚಿತ್ರ</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
     <string name="comments_ids_title">ಅಭಿಪ್ರಾಯಗಳು ಹಾಗೂ ಗುರುತಿಸುವಿಕೆಗಳು</string>
     <!-- Accessibility text for the faves tab on the observation detail view -->
@@ -1099,11 +1090,11 @@
     <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
     <string name="follow_this_observation">ಈ ವೀಕ್ಷಣೆಯನ್ನು ಅನುಸರಿಸಿ</string>
     <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
-    <string name="unfollow_this_observation">Unfollow this Observation</string>
+    <string name="unfollow_this_observation">ಈ ವೀಕ್ಷಣೆಯ ಅನುಸರಣೆ ನಿಲ್ಲಿಸಿ</string>
     <!-- Error message shown when an attempt to follow an observation fails -->
     <string name="could_not_follow_observation">ಈ ವೀಕ್ಷಣೆಯನ್ನು ಅನುಸರಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
     <!-- Error message shown when an attempt to unfollow an observation fails -->
-    <string name="could_not_unfollow_observation">Could not unfollow this observation</string>
+    <string name="could_not_unfollow_observation">ಈ ವೀಕ್ಷಣೆಯ ಅನುಸರಣೆಯನ್ನು ನಿಲ್ಲಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
     <!-- Label for a button to copy the coordinates of an observation -->
     <string name="copy_coordinates">ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ನಕಲಿಸಿ</string>
     <string name="coordinates_copied_to_clipboard">ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ಕ್ಲಿಪ್‍ಬೋರ್ಡ್‍ಗೆ ನಕಲಿಸಲಾಗಿದೆ</string>
@@ -1146,7 +1137,7 @@
     <string name="view_license">ಪರವಾನಿಗೆಯನ್ನು ವೀಕ್ಷಿಸಿ</string>
     <!-- License Names -->
     <string name="license_name_cc0">ಸಾರ್ವಜನಿಕ ಡೊಮೈನ್</string>
-    <string name="license_name_cc_by">Attribution</string>
+    <string name="license_name_cc_by">ಗುಣವಿಶೇಷಣ</string>
     <string name="license_name_cc_by_nc">Attribution-NonCommercial</string>
     <string name="license_name_cc_by_nc_sa">Attribution-NonCommercial-ShareAlike</string>
     <string name="license_name_cc_by_nc_nd">Attribution-NonCommercial-NoDerivs</string>
@@ -1155,13 +1146,13 @@
     <string name="license_name_no_license">ಎಲ್ಲಾ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಿದೆ</string>
     <!-- License Descriptions -->
     <string name="license_description_cc0">This license releases your work into the public domain, so others can copy, modify, distribute and perform your work, even for commercial purposes, all without asking permission or giving you credit. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.</string>
-    <string name="license_description_cc_by">This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation.</string>
+    <string name="license_description_cc_by">ಈ ಪರವಾನಿಗೆಯು ಎಲ್ಲಿಯವರೆಗೆ ನಿಮ್ಮ ಮೂಲ ರಚನೆಗೆ ಮನ್ನಣೆ ಇರಿಸುವರೋ ಅಲ್ಲಿವರೆಗೆ, ಇತರರು ವಿತರಿಸಲು, ರೀಮಿಕ್ಸ್ ಮಾಡಲು, ಸುಧಾರಿಸಲು ಹಾಗೂ ನಿಮ್ಮ ಕೆಲಸವನ್ನಾಧರಿಸಿ ಅಭಿವೃದ್ಢಿಸಲು, ವಾಣಿಜ್ಯೀಕರಣಕ್ಕೆ ಕೂಡ ಅನುಮತಿಸುತ್ತದೆ.</string>
     <string name="license_description_cc_by_nc">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
     <string name="license_description_cc_by_nc_sa">This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms.</string>
-    <string name="license_description_cc_by_nc_nd">This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can\'t change them in any way or use them commercially.</string>
+    <string name="license_description_cc_by_nc_nd">ಈ ಪರವಾನಿಗೆಯು 6 ಪ್ರಮುಖ ಪರವಾನಿಗೆಗಳಲ್ಲಿ ಅತಿಹೆಚ್ಚು ಕಟ್ಟುಪಾಡುಗಳನ್ನೊಂದಿದೆ. ಈ ಪರವಾನಿಗೆಯು ಎಲ್ಲಿಯವರೆಗೆ ನಿಮ್ಮ ಮೂಲ ರಚನೆಗೆ ಮನ್ನಣೆ ಇರಿಸುವರೋ ಅಲ್ಲಿವರೆಗೆ, ಇತರರು ನಿಮ್ಮ ಕೃತಿಗಳನ್ನು ಕೇವಲ ಡೌನ್‍ಲೋಡ್ ಮಾಡಲು ಮತ್ತು ಇತರರೊಡನೆ ಹಂಚಿಕೊಳ್ಳಲು ಮಾತ್ರ ಅನುಮತಿಸುತ್ತದೆ, ಆದರೆ ಅವರು ಅದನ್ನು ಯಾವುದೇ ರೀತಿ ಬದಲಿಸಲು ಅಥವಾ ಅವನ್ನು ವಾಣಿಜ್ಯ ಉದ್ದೇಶಗಳಿಗೆ ಬಳಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
     <string name="license_description_cc_by_nd">This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.</string>
     <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
-    <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
+    <string name="license_description_no_license">ನಮ್ಮ ಸೇವಾನಿಯಮಗಳನ್ವಯ iNaturalist ಗೆ ನೀಡಿರುವ ಹಕ್ಕುಗಳಷ್ಟೇ ಅಲ್ಲದೆ ನೀವು ನಿಮ್ಮ ವಿಷಯಗಳ ಮೇಲೆ ಸಂಪೂರ್ಣ ಹಕ್ಕುಸ್ವಾಮ್ಯಗಳನ್ನು ಹೊಂದಿರುತ್ತೀರಿ.</string>
     <string name="invalid_photo">ಚಿತ್ರದ ಮಾದರಿ ಬೆಂಬಲಿತವಿಲ್ಲ</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">ವೀಕ್ಷಣೆಗಳು ಮತ್ತು ಗುರುತಿಸುವಿಕೆಗಳ ಆಧಾರದ ಮೇಲೆ iNaturalist ಸಮುದಾಯ, %1$s, %2$s, %3$s ಹಾಗೂ ಇನ್ನಿತರನ್ನು ಒಳಗೊಂಡ ತಂಡವು ಸಲಹೆಗಳನ್ನು ಒದಗಿಸುತ್ತದೆ.</string>
@@ -1187,9 +1178,8 @@
     <string name="active_filters">ಸಕ್ರಿಯ ಶೋಧಕಗಳು</string>
     <string name="message_is_flagged">Message is flagged</string>
     <string name="user_is_muted">ಬಳಕೆದಾರರು ಮೌನವಾಗಿದ್ದಾರೆ</string>
-    <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
+    <string name="cancel_multiple_obs_selection">ಹಲವು ವೀಕ್ಷಣೆ ಆಯ್ಕೆಯನ್ನು ರದ್ದುಗೊಳಿಸಿ</string>
     <string name="delete_observations">ವೀಕ್ಷಣೆಗಳನ್ನು ಅಳಿಸಿ</string>
-    <string name="clear_species_guess">ಪ್ರಭೇಧದ ಊಹೆಯನ್ನು ತೆರವುಗೊಳಿಸಿ</string>
     <string name="comment_count">ಅಭಿಪ್ರಾಯಗಳ ಎಣಿಕೆ</string>
     <string name="id_count">ಗುರುತಿಸುವಿಕೆಗಳ ಎಣಿಕೆ</string>
     <string name="observation_selected">ಆರಿಸಿದ ವೀಕ್ಷಣೆ</string>
@@ -1199,17 +1189,17 @@
     <string name="close">ಮುಚ್ಚಿರಿ</string>
     <string name="set_date2">ದಿನಾಂಕ ಹೊಂದಿಸಿ</string>
     <string name="project_selected">ಪ್ರಾಯೋಜನೆಯನ್ನು ಆರಿಸಲಾಗಿದೆ</string>
-    <string name="project_unselected">Project Unselected</string>
+    <string name="project_unselected">ಪ್ರಾಯೋಜನೆಯನ್ನು ಆಯ್ಕೆಯಿಂದ ತೆಗೆಯಲಾಗಿದೆ</string>
     <string name="show_my_observations">ನನ್ನ ವೀಕ್ಷಣೆಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ</string>
     <string name="play_pause_sound">ಧ್ವನಿಯನ್ನು ಚಾಲಿಸಿ ಅಥವಾ ವಿರಾಮಗೊಳಿಸಿ</string>
     <string name="california_academy_of_sciences_and_national_geographic">ಕ್ಯಾಲಿಫೋರ್ನಿಯಾ ಅಕಾಡೆಮಿ ಆಫ್ ಸೈನ್ಸಸ್ ಮತ್ತು ನ್ಯಾಷನಲ್ ಜಿಯೋಗ್ರಾಫಿಕ್</string>
     <string name="view_image">ಚಿತ್ರವನ್ನು ವೀಕ್ಷಿಸಿ</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
-    <string name="assessment_passes">Assessment passes</string>
+    <string name="assessment_passes">ಮೌಲ್ಯಮಾಪನದಲ್ಲಿ ಉತ್ತೀರ್ಣವಾಗಿದೆ</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
     <string name="agree_assessment_passes">Agree assessment passes</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
-    <string name="does_not_pass_assessment">Does not pass assessment</string>
+    <string name="does_not_pass_assessment">ಮೌಲ್ಯಮಾಪನದಲ್ಲಿ ಉತ್ತೀರ್ಣವಾಗಿಲ್ಲ</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
     <string name="disagree_assessment_passes">Disagree assessment passes</string>
     <plurals name="delete_x_selected_observations">

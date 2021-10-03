@@ -7,8 +7,6 @@
     <string name="ok">Ок</string>
     <string name="cancel">Отмена</string>
     <string name="loading">Загрузка...</string>
-    <string name="sync_required">Требуется синхронизация</string>
-    <string name="sync_required_message">%1$d наблюдений, %2$d фото требуют синхронизации</string>
     <string name="street">Улица</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Спутник</string>
@@ -32,7 +30,6 @@
     <string name="settings">Настройки</string>
     <string name="projects">Проекты</string>
     <string name="delete_photo">Удалить фото</string>
-    <string name="menu">Меню</string>
     <string name="my_location">Мое местоположение</string>
     <string name="nearby_observations">Наблюдения рядом</string>
     <string name="add">Добавить</string>
@@ -229,9 +226,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Эл. почта</string>
-    <string name="sign_up_with">Зарегистрироваться с</string>
     <string name="skip">Пропустить ›</string>
-    <string name="already_have_account">Уже есть аккаунт?</string>
     <string name="log_in">Войти</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Регистрация</string>
@@ -357,7 +352,6 @@
     <string name="updating_profile">Обновление профиля...</string>
     <string name="there_was_a_problem_updating_profile">Возникла проблема при обновлении вашего профиля!</string>
     <string name="there_was_a_problem_updating_profile_params">Возникла проблема при обновлении вашего профиля: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Вы вошли в систему как <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Вы вошли как <b>%1$s</b>]]></string>
     <string name="log_out">Выход</string>
@@ -480,14 +474,12 @@
     <string name="what_did_you_see">Что Вы видели?</string>
     <string name="suggest_species">Предложить вид</string>
     <string name="suggest_species_description">Предложить вид на основе сходства с фотографиями.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Внешне похожий</string>
     <string name="visually_similar_seen_nearby">Визуально похожие / встречались поблизости</string>
     <string name="seen_nearby">Встречен поблизости</string>
     <string name="enlarge">Увеличить</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Дочерние таксоны</string>
-    <string name="invalid_photo_extension">Ошибка импорта фотографии(й): можно импортировать файлы только с расширениями JPG/JPEG/PNG</string>
     <string name="taxon_has_no_photos">Для этого таксона фотографии нет</string>
     <string name="terrain">Ландшафт</string>
     <string name="filters">Фильтры</string>
@@ -605,7 +597,6 @@
     <string name="leave_comment">Оставить комментарий...</string>
     <string name="swipe">Жесты</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Какая учетная запись Google?</string>
     <string name="potential_disagreement">Потенциальные разногласия</string>
     <string name="do_you_think_this_could_be"><![CDATA[Достаточно ли доказательств, подтверждающих это <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -617,7 +608,7 @@
     <string name="must_be_connected_to_load_more_obs">Для загрузки дополнительных наблюдений необходимо подключение к Интернету</string>
     <string name="inat_about_title">iNaturalist - совместная инициатива Калифорнийской академии наук и Национального географического общества.</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -780,9 +771,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Греция: iSea поддерживающий iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Люксембург: Национальный музей естественной истории Люксембурга (MNHNL) поддерживает iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[Великобритания: Национальный фонд сети по биоразнообразию, поддерживающий iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Коста-Рика: Национальная комиссия по управлению биоразнообразием (CONAGEBIO) поддерживает Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Гватемала: Национальный совет по охраняемым районам (CONAP) поддерживает iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Швеция: Шведский информационный центр по видам SLU поддерживает iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Коста-Рика: Национальная комиссия по управлению биоразнообразием (CONAGEBIO) поддерживает Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Гватемала: Национальный совет по охраняемым районам (CONAP) поддерживает iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Швеция: Шведский информационный центр по видам SLU поддерживает iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Пометить все как просмотренные</string>
     <string name="content_hidden">Скрытый контент</string>
     <string name="show_hidden_content">Показать скрытый контент</string>
@@ -796,7 +787,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Записать звук</string>
-    <string name="no_recorder_found">Не найдено устройство записи звука по умолчанию!</string>
     <string name="couldnt_retrieve_sound">Не удалось получить звук с устройства записи звука по умолчанию - попробуйте вместо этого импортировать звук</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Выберите звук</string>
@@ -1201,7 +1191,6 @@
     <string name="user_is_muted">Пользователь игнорируется</string>
     <string name="cancel_multiple_obs_selection">Отменить выбор нескольких наблюдений</string>
     <string name="delete_observations">Удалить наблюдения</string>
-    <string name="clear_species_guess">Отменить подсказки видов</string>
     <string name="comment_count">Количество комментариев</string>
     <string name="id_count">Число идентификаций</string>
     <string name="observation_selected">Наблюдение выбрано</string>

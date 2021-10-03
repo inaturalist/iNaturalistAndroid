@@ -7,8 +7,6 @@
     <string name="ok">OK</string>
     <string name="cancel">Anulează</string>
     <string name="loading">Se încarcă...</string>
-    <string name="sync_required">Sincronizare necesară</string>
-    <string name="sync_required_message">%1$d observații, %2$d fotografii de sincronizat</string>
     <string name="street">Stradă</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satelit</string>
@@ -32,7 +30,6 @@
     <string name="settings">Setări</string>
     <string name="projects">Proiecte</string>
     <string name="delete_photo">Șterge fotografia</string>
-    <string name="menu">Meniu</string>
     <string name="my_location">Locația mea</string>
     <string name="nearby_observations">Observări în apropiere</string>
     <string name="add">Adaugă</string>
@@ -228,9 +225,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Email</string>
-    <string name="sign_up_with">Înregistrare cu</string>
     <string name="skip">Sari ›</string>
-    <string name="already_have_account">Deja ai un cont?</string>
     <string name="log_in">Autentificare</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Înregistrare</string>
@@ -354,7 +349,6 @@
     <string name="updating_profile">Se actualizează profilul...</string>
     <string name="there_was_a_problem_updating_profile">A apărut o problemă în timp ce se actualiza profilul tău!</string>
     <string name="there_was_a_problem_updating_profile_params">A apărut o problemă în timp ce se actualiza profilul tău: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Autentificat ca<b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Autentificat ca  <b>%1$s</b>]]></string>
     <string name="log_out">Deconectare</string>
@@ -475,14 +469,12 @@
     <string name="what_did_you_see">Ce ai văzut?</string>
     <string name="suggest_species">Sugerează Specii</string>
     <string name="suggest_species_description">Sugerează specii bazate pe baza similarității cu celelalte imagini.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Similar vizuale</string>
     <string name="visually_similar_seen_nearby">Similar vizuale / Văzut în apropiere</string>
     <string name="seen_nearby">Văzut în apropiere</string>
     <string name="enlarge">Mărește</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Vezi copii</string>
-    <string name="invalid_photo_extension">Eroare la importarea imagini(lor): Se pot importa doar fișiere cu extensia JPG/JPEG/PNG</string>
     <string name="taxon_has_no_photos">Acest taxon nu are fotografii.</string>
     <string name="terrain">Teren</string>
     <string name="filters">Filtre</string>
@@ -600,7 +592,6 @@
     <string name="leave_comment">Adăugați un comentariu...</string>
     <string name="swipe">Glisați</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Care cont Google?</string>
     <string name="potential_disagreement">Posibile dezacorduri</string>
     <string name="do_you_think_this_could_be"><![CDATA[Este dovada furnizată suficientă pentru a confirma că este <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -612,7 +603,7 @@
     <string name="must_be_connected_to_load_more_obs">Trebuie să fiți conectat la internet pentru a încărca mai multe observații</string>
     <string name="inat_about_title">iNaturalist este o inițiativă comună a Academiei de Științe din California și a Societății Naționale Geografice.</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -774,9 +765,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Grecia: iSea sprijină iNaturalist Grecia (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxemburg: Muzeul național de istorie naturală din Luxemburg (MnhnL) sprijină iNaturalist Luxemburg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[Marea Britanie: National Biodiversity Network Trust sprijină iNaturalist Marea Britanie (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Bifează tot ca vizionat</string>
     <string name="content_hidden">Conținut ascuns</string>
     <string name="show_hidden_content">Arată conținut ascuns</string>
@@ -790,7 +781,6 @@
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Înregistrează sunet</string>
-    <string name="no_recorder_found">Nu a fost găsit un aparat de înregistrare prestabilit!</string>
     <string name="couldnt_retrieve_sound">Nu am putut recupera sunetul din aparatul de înregistrare prestabilit - încercați în schimb să încărcați sunetul</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Alegeți sunetul</string>
@@ -1194,7 +1184,6 @@
     <string name="user_is_muted">User is muted</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
     <string name="delete_observations">Delete observations</string>
-    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Comment count</string>
     <string name="id_count">Identification count</string>
     <string name="observation_selected">Observation selected</string>

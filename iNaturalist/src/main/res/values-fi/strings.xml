@@ -7,8 +7,6 @@
     <string name="ok">Ok</string>
     <string name="cancel">Peruuta</string>
     <string name="loading">Ladataan...</string>
-    <string name="sync_required">Synkronointia tarvitaan</string>
-    <string name="sync_required_message">%1$d havaintoa ja %2$d kuvaa synkronoitava</string>
     <string name="street">Katu</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satelliitti</string>
@@ -32,7 +30,6 @@
     <string name="settings">Asetukset</string>
     <string name="projects">Projektit</string>
     <string name="delete_photo">Poista kuva</string>
-    <string name="menu">Valikko</string>
     <string name="my_location">Sijaintini</string>
     <string name="nearby_observations">Lähellä olevat havainnot</string>
     <string name="add">Lisää</string>
@@ -227,9 +224,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Sähköposti</string>
-    <string name="sign_up_with">Rekisteröidy käyttäen</string>
     <string name="skip">Ohita ›</string>
-    <string name="already_have_account">Onko sinulla jo tili?</string>
     <string name="log_in">Kirjaudu sisään</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Rekisteröidy</string>
@@ -357,7 +352,6 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="updating_profile">Päivitetään profiilia...</string>
     <string name="there_was_a_problem_updating_profile">Virhe päivitettäessä profiiliasi!</string>
     <string name="there_was_a_problem_updating_profile_params">Virhe päivitettäessä profiiliasi: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Kirjautunut sisään nimellä <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
     <string name="log_out">Kirjaudu ulos</string>
@@ -476,14 +470,12 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="what_did_you_see">Mitä näit?</string>
     <string name="suggest_species">Ehdota lajia</string>
     <string name="suggest_species_description">Ehdota lajia perustuen visuaaliseen samankaltaisuuteen valokuvissa.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Näyttää samanlaiselta</string>
     <string name="visually_similar_seen_nearby">Näyttää samanlaiselta / nähty lähistöllä</string>
     <string name="seen_nearby">Nähty lähistöllä</string>
     <string name="enlarge">Suurenna</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Näytä alemmat taksonit</string>
-    <string name="invalid_photo_extension">Virhe tuodessa kuvaa/kuvia: Voidaan tuoda vain kuvatiedostoja JPG/JPEG/PNG päätteillä</string>
     <string name="taxon_has_no_photos">Tällä taksonilla ei ole kuvia.</string>
     <string name="terrain">Maasto</string>
     <string name="filters">Suodattimet</string>
@@ -601,7 +593,6 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="leave_comment">Jätä kommentti...</string>
     <string name="swipe">Pyyhkäise</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Mikä Google-tili?</string>
     <string name="potential_disagreement">Mahdollinen erimielisyys</string>
     <string name="do_you_think_this_could_be"><![CDATA[Onko todisteet riittäviä vahvistamaan, että tämä on <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -613,7 +604,7 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="must_be_connected_to_load_more_obs">Sinun on oltava yhteydessä Internetiin ladataksesi enemmän havaintoja</string>
     <string name="inat_about_title">iNaturalist on Kalifornian tiedeakatemian ja National Geographic Societyn yhteinen aloite.</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -779,9 +770,9 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Merkitse kaikki katsotuksi</string>
     <string name="content_hidden">Sisältö piilotettu</string>
     <string name="show_hidden_content">Näytä piilotettu sisältö</string>
@@ -795,7 +786,6 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Nauhoita ääntä</string>
-    <string name="no_recorder_found">Oletusäänentallenninta ei löytynyt!</string>
     <string name="couldnt_retrieve_sound">Ei voitu hakea äänitettä oletustallentimesta - kokeile sen sijasta importoida äänite</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Valitse ääni</string>
@@ -1019,7 +1009,7 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="only_view_nearby_suggestions">Only view nearby suggestions</string>
     <string name="suggestions_source">Suggestions Source</string>
     <string name="research_grade_observations">Research Grade Observations</string>
-    <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
+    <string name="visually_similar_description">iNaturalist antaa ehdotuksia perustuen kuvaan, vuodenaikaan ja paikkaan.</string>
     <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will suggest species observed in a specific place and within a specific taxonomic group.</string>
     <string name="taxon">Taksoni:</string>
     <string name="place">Paikka:</string>
@@ -1037,8 +1027,8 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="pretty_sure_infraorder">Olemme melko varmoja että tämä kuuluu infralahkoon </string>
     <string name="pretty_sure_subterclass">Olemme melko varmoja että tämä kuuluu subterclassiin </string>
     <string name="pretty_sure_parvorder">Olemme melko varmoja että tämä kuuluu parvolahkoon </string>
-    <string name="pretty_sure_zoosection">We\'re pretty sure it\'s in this zoosection:</string>
-    <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
+    <string name="pretty_sure_zoosection">Olemme melko varmoja että tämä kuuluu zoosektioon  </string>
+    <string name="pretty_sure_zoosubsection">Olemme melko varmoja että tämä kuuluu zooalasektioon </string>
     <string name="pretty_sure_superfamily">Olemme melko varmoja että tämä kuuluu yläheimoon </string>
     <string name="pretty_sure_epifamily">Olemme melko varmoja että tämä kuuluu epiheimoon </string>
     <string name="pretty_sure_family">Olemme melko varmoja että tämä kuuluu heimoon </string>
@@ -1059,7 +1049,7 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="pretty_sure_subspecies">Olemme melko varmoja että tämä kuuluu alalajiin </string>
     <string name="pretty_sure_variety">Olemme melko varmoja että tämä kuuluu variaatioon </string>
     <string name="pretty_sure_form">Olemme melko varmoja että tämä kuuluu muotoon </string>
-    <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
+    <string name="pretty_sure_infrahybrid">Olemme melko varmoja että tämä kuuluu infraristeymään </string>
     <string name="remove_date_observed">Poista havaintopäivä ja -aika</string>
     <string name="remove_time_observed">Poista havaintoaika</string>
     <string name="remove_location">Poista sijainti</string>
@@ -1200,7 +1190,6 @@ Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen 
     <string name="user_is_muted">Käyttäjä on mykistetty</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
     <string name="delete_observations">Poista havaintoja</string>
-    <string name="clear_species_guess">Tyhjennä lajiarvaus</string>
     <string name="comment_count">Kommenttien lukumäärä</string>
     <string name="id_count">Tunnistuksien määrä</string>
     <string name="observation_selected">Havainto valittu</string>

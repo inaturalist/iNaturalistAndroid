@@ -7,8 +7,6 @@
     <string name="ok">好的</string>
     <string name="cancel">取消</string>
     <string name="loading">载入</string>
-    <string name="sync_required">需要同步</string>
-    <string name="sync_required_message">%1$d 观察记录，%2$d 张照片同步</string>
     <string name="street">街道</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">卫星</string>
@@ -32,7 +30,6 @@
     <string name="settings">设定</string>
     <string name="projects">任务</string>
     <string name="delete_photo">删除照片</string>
-    <string name="menu">选单</string>
     <string name="my_location">我的位置</string>
     <string name="nearby_observations">附近的观察记录</string>
     <string name="add">新增</string>
@@ -226,9 +223,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">谷歌</string>
     <string name="email">电子邮件</string>
-    <string name="sign_up_with">透过以下方式注册</string>
     <string name="skip">略过 &gt;</string>
-    <string name="already_have_account">已经有帐号了吗？</string>
     <string name="log_in">登入</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">注册</string>
@@ -350,7 +345,6 @@
     <string name="updating_profile">更新个人资料中…</string>
     <string name="there_was_a_problem_updating_profile">更新您的个人资料时发生问题！</string>
     <string name="there_was_a_problem_updating_profile_params">更新您的个人资料时发生问题：%1$s</string>
-    <string name="logged_in_as_html"><![CDATA[已登入为 <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
     <string name="log_out">登出</string>
@@ -467,14 +461,12 @@
     <string name="what_did_you_see">您看到什么？</string>
     <string name="suggest_species">建议的物种</string>
     <string name="suggest_species_description">针对照片中外观相似度来建议物种。</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">外观看起来很像</string>
     <string name="visually_similar_seen_nearby">视觉上相似/附近曾见过</string>
     <string name="seen_nearby">附近曾见过</string>
     <string name="enlarge">放大</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">查看子项目</string>
-    <string name="invalid_photo_extension">汇入照片时出错： 只能汇入照片的副档名为JPG/JPEG/PNG</string>
     <string name="taxon_has_no_photos">这分类群没有照片。</string>
     <string name="terrain">地形</string>
     <string name="filters">搜索条件</string>
@@ -592,7 +584,6 @@
     <string name="leave_comment">添加评论...</string>
     <string name="swipe">滑动</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">哪一个 Google 账户？</string>
     <string name="potential_disagreement">潜在的分歧</string>
     <string name="do_you_think_this_could_be"><![CDATA[已有的证据是否可以确保这是<b>%1$s</b>？]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -604,7 +595,7 @@
     <string name="must_be_connected_to_load_more_obs">您必须连接到网络才能加载更多观察记录</string>
     <string name="inat_about_title">iNaturalist 是由美国加利福尼亚科学院以及美国国家地理共同发起的平台。</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -764,9 +755,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">全部标记为已读</string>
     <string name="content_hidden">内容已隐藏</string>
     <string name="show_hidden_content">显示隐藏内容</string>
@@ -780,7 +771,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">录音</string>
-    <string name="no_recorder_found">找不到预设的录音装置！</string>
     <string name="couldnt_retrieve_sound">无法从默认录音设备取得声音，请尝试导入声音</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">选择音频</string>
@@ -1184,7 +1174,6 @@
     <string name="user_is_muted">用户已被禁言</string>
     <string name="cancel_multiple_obs_selection">取消选择多项观察记录</string>
     <string name="delete_observations">删除观察记录</string>
-    <string name="clear_species_guess">清除物种猜测</string>
     <string name="comment_count">评论次数</string>
     <string name="id_count">鉴定次数</string>
     <string name="observation_selected">已选择的观察记录</string>
@@ -1216,5 +1205,5 @@
     <string name="add_media_evidence">Add media evidence</string>
     <string name="remove_identification">Remove identification</string>
     <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
-    <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
+    <string name="app_version_copied_to_clipboard">已复制应用版本</string>
 </resources>

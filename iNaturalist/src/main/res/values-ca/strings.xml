@@ -7,8 +7,6 @@
     <string name="ok">D\'acord</string>
     <string name="cancel">Cancel·la</string>
     <string name="loading">Carregant...</string>
-    <string name="sync_required">Requereix sincronització</string>
-    <string name="sync_required_message">%1$d observacions, %2$d fotos per sincronitzar</string>
     <string name="street">Carrer</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satèl·lit</string>
@@ -32,7 +30,6 @@
     <string name="settings">Configuració</string>
     <string name="projects">Projectes</string>
     <string name="delete_photo">Esborra foto</string>
-    <string name="menu">Menú</string>
     <string name="my_location">La meva ubicació</string>
     <string name="nearby_observations">Observacions properes</string>
     <string name="add">Afegeix</string>
@@ -227,9 +224,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Adreça electrònica</string>
-    <string name="sign_up_with">Inscriure\'s amb</string>
     <string name="skip">Salta ></string>
-    <string name="already_have_account">Ja teniu un compte?</string>
     <string name="log_in">Iniciar sessió</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Registra\'t</string>
@@ -352,7 +347,6 @@
     <string name="updating_profile">Actualitzant el perfil...</string>
     <string name="there_was_a_problem_updating_profile">Hi ha hagut un problema mentre actualitzàvem el vostre perfil!</string>
     <string name="there_was_a_problem_updating_profile_params">Hi ha hagut un problema mentre actualitzàvem el vostre perfil: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Sessió iniciada com <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Connectat com a <b>%1$s</b>]]></string>
     <string name="log_out">Surt</string>
@@ -471,14 +465,12 @@
     <string name="what_did_you_see">Què heu vist?</string>
     <string name="suggest_species">Suggerir espècies</string>
     <string name="suggest_species_description">Suggerir altres espècies basats en la seva semblança visual a fotografies.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visualment similar</string>
     <string name="visually_similar_seen_nearby">Visualment similar / vist a prop</string>
     <string name="seen_nearby">Vist a prop</string>
     <string name="enlarge">Augmenta</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Veure fills</string>
-    <string name="invalid_photo_extension">Error d\'importació de foto(s): només pot importar fitxers de fotos amb extensió JPEG/JPG/PNG</string>
     <string name="taxon_has_no_photos">Aquest tàxon no té fotos.</string>
     <string name="terrain">Terreny</string>
     <string name="filters">Filtres</string>
@@ -596,7 +588,6 @@
     <string name="leave_comment">Desar un comentari...</string>
     <string name="swipe">Llisca</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Quin és el compte de Google?</string>
     <string name="potential_disagreement">Desacord potencial</string>
     <string name="do_you_think_this_could_be"><![CDATA[És l\'evidència que oferiu suficient per confirmar que és <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -608,7 +599,7 @@
     <string name="must_be_connected_to_load_more_obs">Heu d\'estar connectat a internet per carregar més observacions</string>
     <string name="inat_about_title">iNaturalist és una iniciativa conjunta de l\'Acadèmia de Ciències de Califòrnia i la Societat Nacional Geogràfica.</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -769,9 +760,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Grècia: iSea dona suport  iNaturalist Grècia /<a href="https://greece.inaturalist.org">grece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxemburg: Luxembourg National Museum of Natural History (MnhnL) dona suport a iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[Regne Unit: National Biodiversity Network Trust dona suport a iNaturalist Regne Unit (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) dona suport a Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: la Comisión Nacional para la Gestión de la Biodiversida (CONAGEBIO) dona suport a Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: el Consejo Nacional de Áreas Protegidas (CONAP) dóna suport a iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Suècia: el SLU Swedish Species Information Centre dona suport a iNaturalist Suècia (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Suècia: el SLU, Swedish Species Information Centre, dona suport a iNaturalist Suècia (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Marca tot com a vist</string>
     <string name="content_hidden">Contingut amagat</string>
     <string name="show_hidden_content">Mostra Contingut Amagat</string>
@@ -785,7 +776,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Gravar So</string>
-    <string name="no_recorder_found">No s\'ha trobat gravadora per defecte!</string>
     <string name="couldnt_retrieve_sound">No s\'ha pogut recuperar cap so de la gravadora per defecte - proveu d\'importar el so</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Triar So</string>
@@ -1188,7 +1178,6 @@
     <string name="user_is_muted">L\'usuari ha estat silenciat</string>
     <string name="cancel_multiple_obs_selection">Cancel·lar la selecció múltiple d\'observacions</string>
     <string name="delete_observations">Esborra observacions</string>
-    <string name="clear_species_guess">Neteja suggeriments d\'espècies</string>
     <string name="comment_count">Nombre de comentaris</string>
     <string name="id_count">Nombre d\'identificacions</string>
     <string name="observation_selected">Observació seleccionada</string>
