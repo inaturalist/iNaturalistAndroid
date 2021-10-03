@@ -25,6 +25,7 @@ public class ObservationEditorSlider extends AppCompatActivity {
 
     Map<Integer, Fragment> mFragmentsByPositions = new HashMap<>();
     int mLastPosition = 0;
+    private INaturalistApp mApp;
 
 
     @Override
@@ -37,6 +38,8 @@ public class ObservationEditorSlider extends AppCompatActivity {
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
         mPager.setCurrentItem(mLastPosition);
+
+        mApp = (INaturalistApp) getApplicationContext();
 
         mPager.clearOnPageChangeListeners();
         mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -134,5 +137,10 @@ public class ObservationEditorSlider extends AppCompatActivity {
         public int getCount() {
             return mCursor != null ? mCursor.getCount() : 1;
         }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        mApp.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

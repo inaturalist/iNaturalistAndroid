@@ -175,8 +175,9 @@ public class ObservationViewerSlider extends AppCompatActivity {
                 isExternalId = true;
             }
 
-            if (obsId != null) {
-                Cursor c = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = ?", new String[]{String.valueOf(obsId)}, Observation.DEFAULT_SORT_ORDER);
+            String currentUser = mApp.currentUserLogin();
+            if ((obsId != null) && (currentUser != null)) {
+                Cursor c = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = ? and user_login = ?", new String[]{String.valueOf(obsId), currentUser}, Observation.DEFAULT_SORT_ORDER);
                 if (c.getCount() > 0) {
                     mIsReadOnly = false;
                 }
@@ -331,6 +332,8 @@ public class ObservationViewerSlider extends AppCompatActivity {
             public void onReceive(Context context, Intent intent) {
                 Bundle extras = intent.getExtras();
 
+                Logger.tag(TAG).debug("ExploreResultsReceiver - ObservationViewerSlider");
+
                 String uuid = intent.getStringExtra(INaturalistService.UUID);
 
                 if ((uuid == null) || (mLatestSearchUuid == null)) {
@@ -351,6 +354,7 @@ public class ObservationViewerSlider extends AppCompatActivity {
                     helper.alert(String.format(getString(R.string.couldnt_load_results), error));
                     return;
                 }
+                Logger.tag(TAG).debug("ExploreResultsReceiver - ObservationViewerSlider - loading results");
 
                 boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
                 BetterJSONObject resultsObject;
@@ -389,6 +393,8 @@ public class ObservationViewerSlider extends AppCompatActivity {
                         Logger.tag(TAG).error(e);
                     }
                 }
+
+                Logger.tag(TAG).debug("ExploreResultsReceiver - ObservationViewerSlider - refreshing results: " + resultsArray.size());
 
                 // Paginated results - append to old ones
                 mObsResults.addAll(resultsArray);
