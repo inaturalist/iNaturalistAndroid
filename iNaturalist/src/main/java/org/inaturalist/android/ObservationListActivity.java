@@ -1937,6 +1937,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         if (triggerSync) {
             // Trigger another sync if needed, since the user added/changed an observation
+            mObservationListAdapter.onObservationChanged();
+            mObservationGridAdapter.onObservationChanged();
             triggerSyncIfNeeded();
         }
     }
