@@ -3159,6 +3159,12 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
         super.onActivityResult(requestCode, resultCode, data);
 
         Logger.tag(TAG).debug("onActivityResult - " + requestCode + ":" + resultCode);
+
+        if (mHelper == null) {
+            Logger.tag(TAG).debug("onActivityResult - mHelper is null");
+            return;
+        }
+
         if (requestCode == SHARE_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 // TODO - Activity.RESULT_OK is never returned + need to add "destination" param (what type of share was performed)

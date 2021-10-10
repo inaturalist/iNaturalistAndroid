@@ -51,6 +51,16 @@ public class ObservationViewerSlider extends AppCompatActivity {
         }
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (mPagerAdapter != null) {
+            mPagerAdapter.onResume();
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,6 +151,23 @@ public class ObservationViewerSlider extends AppCompatActivity {
         }
 
 
+        public void onResume() {
+            if (mSearchFilters != null) {
+                mExploreResultsReceiver = new ExploreResultsReceiver();
+                IntentFilter filter = new IntentFilter();
+                filter.addAction(INaturalistService.EXPLORE_GET_OBSERVATIONS_RESULT);
+                BaseFragmentActivity.safeRegisterReceiver(mExploreResultsReceiver, filter, ObservationViewerSlider.this);
+            }
+
+            if (!mIsReadOnly) {
+                mGetAdditionalObsReceiver = new GetAdditionalObsReceiver();
+                IntentFilter filter = new IntentFilter();
+                filter.addAction(INaturalistService.ACTION_GET_ADDITIONAL_OBS_RESULT);
+                BaseFragmentActivity.safeRegisterReceiver(mGetAdditionalObsReceiver, filter, ObservationViewerSlider.this);
+            }
+        }
+
+
         public ScreenSlidePagerAdapter(FragmentManager fm) {
             super(fm);
 
@@ -208,8 +235,6 @@ public class ObservationViewerSlider extends AppCompatActivity {
                 // Show only one observation (don't allow swiping)
                 mLastPosition = 0;
             } else if (!mIsReadOnly) {
-                mIsReadOnly = false;
-
                 refreshCursor();
 
                 // Find initial position according to the URI the activity was launched with

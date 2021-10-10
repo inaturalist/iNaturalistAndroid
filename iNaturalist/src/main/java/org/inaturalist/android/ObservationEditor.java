@@ -2670,6 +2670,9 @@ public class ObservationEditor extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        Logger.tag(TAG).debug("onActivityResult: " + requestCode + ":" + resultCode + ":" + data);
+
         (new Handler()).postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -3429,6 +3432,8 @@ public class ObservationEditor extends Fragment {
     }
 
     private Uri createObservationPhotoForPhoto(Uri photoUri, int position, boolean isDuplicated) {
+        Logger.tag(TAG).debug("createObservationPhotoForPhoto: " + photoUri + ":" + position + ":" + isDuplicated);
+
         mPhotosChanged = true;
 
         if (photoUri == null) {
@@ -3902,6 +3907,7 @@ public class ObservationEditor extends Fragment {
 
     private void addDuplicatedPhoto(ObservationPhoto originalPhoto, File duplicatedPhotoFile, boolean refreshPositions) {
         // Create new photo observation with the duplicated photo file
+        Logger.tag(TAG).error("addDuplicatedPhoto - " + originalPhoto);
 
         Uri createdUri = createObservationPhotoForPhoto(Uri.fromFile(duplicatedPhotoFile), originalPhoto.position, false);
 
