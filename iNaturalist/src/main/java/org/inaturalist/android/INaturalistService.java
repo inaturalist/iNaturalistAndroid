@@ -4477,8 +4477,12 @@ public class INaturalistService extends IntentService {
         };
 
         List<File> allCacheFiles = new ArrayList<>(Arrays.asList(getFilesDir().listFiles(fileFilter)));
-        allCacheFiles.addAll(Arrays.asList(getExternalCacheDir().listFiles(fileFilter)));
-        allCacheFiles.addAll(Arrays.asList(getCacheDir().listFiles(fileFilter)));
+        if (getExternalCacheDir() != null) {
+            allCacheFiles.addAll(Arrays.asList(getExternalCacheDir().listFiles(fileFilter)));
+        }
+        if (getCacheDir() != null) {
+            allCacheFiles.addAll(Arrays.asList(getCacheDir().listFiles(fileFilter)));
+        }
 
         Collection<File> list = CollectionUtils.select(
                 allCacheFiles,
