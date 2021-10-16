@@ -63,6 +63,7 @@
                 >
                 <ImageButton android:src="@drawable/ic_action_remove"
                     android:id="@+id/cancel_filters"
+                    android:contentDescription="@string/remove_filters"
                     android:layout_height="wrap_content"
                     android:layout_width="24dp"
                     android:scaleType="centerInside"
@@ -74,10 +75,11 @@
 
                 <ImageButton android:src="@drawable/ic_info_white_24dp"
                     android:id="@+id/project_info"
+                    android:contentDescription="@string/active_filters"
                     android:layout_height="wrap_content"
                     android:layout_width="24dp"
                     android:scaleType="centerInside"
-                    android:layout_toLeftOf="@id/cancel_filters"
+                    android:layout_toStartOf="@id/cancel_filters"
                     android:layout_marginEnd="4dp"
                     android:layout_marginStart="8dp"
                     android:background="@android:color/transparent"
@@ -89,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#FFFFFF"
                     android:text="Named 'bobobo' and seen by 'coco' in places named 'shlomo' and some more text"
-                    android:textSize="13dp"
+                    android:textSize="13sp"
                     android:layout_centerVertical="true"
                     android:layout_toStartOf="@id/cancel_filters"
                     />
@@ -116,6 +118,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:background="@android:color/transparent"
+                    android:importantForAccessibility="no"
                     android:layout_centerVertical="true" />
 
                 <TextView
@@ -124,7 +127,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
                     android:text="@string/restricted_to_current_map_area"
-                    android:textSize="13dp"
+                    android:textSize="13sp"
                     android:layout_centerVertical="true"
                     android:layout_toStartOf="@id/cancel_restrict_to_current_map"
                     />

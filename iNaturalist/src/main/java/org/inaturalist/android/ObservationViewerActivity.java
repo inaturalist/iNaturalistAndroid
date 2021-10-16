@@ -15,6 +15,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
@@ -27,6 +28,8 @@ import android.os.Handler;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.ActionBar;
@@ -40,10 +43,12 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.TouchDelegate;
 import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
@@ -194,9 +199,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     private ListView mCommentsIdsList;
     private ProgressBar mLoadingActivity;
     private CommentsIdsAdapter mAdapter;
-    private ViewGroup mAddId;
+    private View mAddId;
     private ViewGroup mActivityButtons;
-    private ViewGroup mAddComment;
+    private View mAddComment;
     private ViewGroup mFavoritesTabContainer;
     private ProgressBar mLoadingFavs;
     private ListView mFavoritesList;
@@ -283,6 +288,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 	protected void onStop() {
 		super.onStop();
 
+        if (mPhotosAdapter != null) {
+            mPhotosAdapter.close();
+        }
 	}
 
 
@@ -342,6 +350,16 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         private List<SoundPlayer> mPlayers = new ArrayList<>();
         private HashMap<Integer, Bitmap> mBitmaps = new HashMap<>();
 
+
+        public void close() {
+            if (mImageCursor != null) {
+                mImageCursor.close();
+            }
+            if (mSoundCursor != null) {
+                mSoundCursor.close();
+            }
+        }
+
         public void refreshPhotoPositions(Integer position, boolean doNotUpdate) {
             int currentPosition = position == null ? 0 : 1;
             int count = mImageCursor.getCount();
@@ -376,12 +394,12 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         ObservationPhoto.PROJECTION,
                         "(observation_uuid=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
                         new String[]{mObservation.uuid},
-                        ObservationPhoto.DEFAULT_SORT_ORDER);
+                        mApp.isLayoutRTL() ? ObservationPhoto.REVERSE_DEFAULT_SORT_ORDER : ObservationPhoto.DEFAULT_SORT_ORDER);
                 mSoundCursor = getContentResolver().query(ObservationSound.CONTENT_URI,
                         ObservationSound.PROJECTION,
                         "(observation_uuid=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
                         new String[]{mObservation.uuid},
-                        ObservationSound.DEFAULT_SORT_ORDER);
+                        mApp.isLayoutRTL() ? ObservationSound.REVERSE_DEFAULT_SORT_ORDER : ObservationSound.DEFAULT_SORT_ORDER);
 
                 mImageCursor.moveToFirst();
             }
@@ -582,7 +600,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                                 intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID_INTERNAL, mObservation._id);
                                 intent.putExtra(ObservationPhotosViewer.OBSERVATION_UUID, mObservation.uuid);
                                 intent.putExtra(ObservationPhotosViewer.IS_NEW_OBSERVATION, true);
-                                intent.putExtra(ObservationPhotosViewer.READ_ONLY, false);
+                                intent.putExtra(ObservationPhotosViewer.READ_ONLY, true); // Don't allow editing photos from this screen
                                 startActivityForResult(intent, OBSERVATION_PHOTOS_REQUEST_CODE);
                             } else {
                                 try {
@@ -687,7 +705,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         mApp = (INaturalistApp) getApplicationContext();
         mApp.applyLocaleSettings(getBaseContext());
-        setContentView(R.layout.observation_viewer);
+        ViewDataBinding binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.observation_viewer, null, false);
+        setContentView(binding.getRoot());
+
         mHelper = new ActivityHelper(this);
 
         mMetadataObservationID = (TextView) findViewById(R.id.observation_id);
@@ -752,8 +772,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         mLoadingActivity = (ProgressBar) findViewById(R.id.loading_activity);
         mCommentsIdsList = (ListView) findViewById(R.id.comment_id_list);
         mActivityButtons = (ViewGroup) findViewById(R.id.activity_buttons);
-        mAddComment = (ViewGroup) findViewById(R.id.add_comment);
-        mAddId = (ViewGroup) findViewById(R.id.add_id);
+        mAddComment = findViewById(R.id.add_comment);
+        mAddId = findViewById(R.id.add_id);
         mFavoritesTabContainer = (ViewGroup) findViewById(R.id.favorites_tab_content);
         mLoadingFavs = (ProgressBar) findViewById(R.id.loading_favorites);
         mFavoritesList = (ListView) findViewById(R.id.favorites_list);
@@ -905,7 +925,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                                 mReadOnly = false;
                                 c.moveToFirst();
                                 mObservation = new Observation(c);
-                                mReloadObs = false;
+                                mReloadObs = true;
                                 uri = mObservation.getUri();
                                 intent.setData(uri);
                             } else {
@@ -1548,6 +1568,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
             mLocationMapContainer.setVisibility(View.VISIBLE);
             mUnknownLocationIcon.setVisibility(View.GONE);
+
             if (((mObservation.place_guess == null) || (mObservation.place_guess.length() == 0)) &&
                 ((mObservation.private_place_guess == null) || (mObservation.private_place_guess.length() == 0))) {
                 // No place guess - show coordinates instead
@@ -1566,7 +1587,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         mObservation.private_place_guess : mObservation.place_guess);
             }
 
-            mLocationText.setGravity(View.TEXT_ALIGNMENT_TEXT_END);
+            mLocationText.setGravity(View.TEXT_ALIGNMENT_TEXT_START);
 
             String geoprivacyField = mObservation.geoprivacy == null ? mObservation.taxon_geoprivacy : mObservation.geoprivacy;
 
@@ -1853,6 +1874,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 }
                 mUserName.setText(userObj.optString("login"));
                 mUserPic.setVisibility(View.VISIBLE);
+                BindingAdapterUtils.increaseTouch(mUserPic, 80);
                 mUserName.setVisibility(View.VISIBLE);
             }
         } else {
@@ -2386,10 +2408,10 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         getMenuInflater().inflate(R.menu.observation_viewer_menu, menu);
         mMenu = menu;
         refreshMenu();
-        
+
         return true;
     }
-    
+
     private void refreshMenu() {
         if (mMenu == null) return;
 
@@ -2776,7 +2798,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             if ((!mReadOnly) && (mObservation != null)) {
                 if (
                         ((mObservation.license == null) && (observation.license != null)) ||
-                        ((!mObservation.license.equals(observation.license)) && (observation.updated_at.after(mObservation.updated_at)))
+                        ((mObservation.license != null) && (observation.license != null) && (!mObservation.license.equals(observation.license)) && (observation.updated_at.after(mObservation.updated_at)))
                     ) {
                     // Update observation license from server - this happens either when:
                     // A) This observation has no license set locally (older app version), or;
@@ -3038,9 +3060,14 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
     private void reloadPhotos() {
         mLoadingPhotos.setVisibility(View.GONE);
+        if (mPhotosAdapter != null) {
+            mPhotosAdapter.close();
+        }
         mPhotosAdapter = new PhotosViewPagerAdapter();
         mPhotosViewPager.setAdapter(mPhotosAdapter);
         mIndicator.setViewPager(mPhotosViewPager);
+
+        if (mApp.isLayoutRTL()) mPhotosViewPager.setCurrentItem(mPhotosAdapter.getCount() - 1);
     }
 
     private void refreshAttributes() {
@@ -3426,6 +3453,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             mPhotosAdapter.pause();
         }
     }
+
 
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

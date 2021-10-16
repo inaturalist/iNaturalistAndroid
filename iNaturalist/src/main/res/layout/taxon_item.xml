@@ -10,9 +10,10 @@
         android:src="@drawable/iconic_taxon_unknown"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:paddingRight="10dp"
+        android:paddingEnd="10dp"
+        android:importantForAccessibility="no"
         />
-	
+
     <Button
            android:id="@+id/add_observation"
            android:layout_width="wrap_content"

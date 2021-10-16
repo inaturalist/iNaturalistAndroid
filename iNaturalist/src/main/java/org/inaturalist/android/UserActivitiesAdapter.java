@@ -160,7 +160,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                             // Ellipsize to 3 lines at the most
                             int endOfLastLine = activityDescription.getLayout().getLineEnd(2);
                             String descriptionNoBody = Html.fromHtml(String.format(mContext.getString(R.string.user_activity_comment), finalUserName, "", dateFormatted)).toString();
-                            int charsLeft = endOfLastLine - descriptionNoBody.length() - 3;
+                            int charsLeft = Math.max(endOfLastLine - descriptionNoBody.length() - 3, body.length());
                             String newDescription = String.format(mContext.getString(R.string.user_activity_comment), finalUserName, body.substring(0, charsLeft) + "...", dateFormatted);
                             activityDescription.setText(Html.fromHtml(newDescription));
                         }
@@ -281,20 +281,24 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
             // Show first photo
             ObservationPhoto op = new ObservationPhoto(opc);
             RequestCreator rc;
-            if (op.photo_url != null) {
-                // Online photo
-                rc = Picasso.with(mContext).
-                        load(op.photo_url);
+            if ((op.photo_url == null) && (op.photo_filename == null)) {
+                obsPic.setImageDrawable(iconicTaxonDrawable);
             } else {
-                // Offline photo
-                rc = Picasso.with(mContext).
-                        load(new File(op.photo_filename));
+                if (op.photo_url != null) {
+                    // Online photo
+                    rc = Picasso.with(mContext).
+                            load(op.photo_url);
+                } else {
+                    // Offline photo
+                    rc = Picasso.with(mContext).
+                            load(new File(op.photo_filename));
+                }
+                rc.
+                        placeholder(iconicTaxonDrawable).
+                        fit().
+                        centerCrop().
+                        into(obsPic);
             }
-            rc.
-                    placeholder(iconicTaxonDrawable).
-                    fit().
-                    centerCrop().
-                    into(obsPic);
         }
         opc.close();
 

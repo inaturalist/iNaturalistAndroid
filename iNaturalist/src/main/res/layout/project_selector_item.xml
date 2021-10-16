@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:padding="7dp"
-    android:paddingRight="10dp"
+    android:paddingEnd="10dp"
     >
     
     <ImageView
@@ -16,8 +16,9 @@
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:layout_marginEnd="5dp"
+        android:importantForAccessibility="no"
         />
-   
+
     <ImageView
         android:id="@+id/project_pic"
         android:layout_width="70dp"
@@ -25,9 +26,10 @@
         android:src="@drawable/actionbar_back_indicator"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:paddingLeft="8dp"
+        android:paddingStart="8dp"
+        android:importantForAccessibility="no"
         />
-	
+
     <TextView
        android:id="@+id/project_name"
        android:layout_width="wrap_content"

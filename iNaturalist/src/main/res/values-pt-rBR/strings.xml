@@ -7,8 +7,6 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancelar</string>
     <string name="loading">Carregando...</string>
-    <string name="sync_required">Sincronização necessária</string>
-    <string name="sync_required_message">%1$d observações %2$d fotos para sincronizar</string>
     <string name="street">Rua</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satélite</string>
@@ -32,7 +30,6 @@
     <string name="settings">Configurações</string>
     <string name="projects">Projetos</string>
     <string name="delete_photo">Excluir foto</string>
-    <string name="menu">Menu</string>
     <string name="my_location">Minha Localização</string>
     <string name="nearby_observations">Observações nas proximidades</string>
     <string name="add">Adicionar</string>
@@ -198,9 +195,12 @@
     <string name="alert_message_use_inaturalistil">iNaturalist Israel é um membro da Rede iNaturalist em Israel. Instituições locais que apoiam o iNaturalist Israel terão acesso ao seu endereço de e-mail e às reais coordenadas de observações obscurecidas ou privadas do público. Por favor, não altere sua afiliação experimentalmente se tiver mais de 1000 observações. Deseja mudar sua afiliação?</string>
     <string name="alert_message_use_inaturalistfi">O iNaturalist Finlândia é um membro da rede iNaturalist na Finlândia. Instituições locais que apoiam o iNaturalist Finlândia terão acesso ao seu endereço de e-mail e acesso às coordenadas verdadeiras para observações que são publicamente obscurecidas ou privadas. Por favor, não altere experimentalmente sua afiliação se você tiver mais de 1000 observações. Você gostaria de mudar sua afiliação?</string>
     <string name="alert_message_use_inaturalistcl">O iNaturalist Chile é um membro da rede iNaturalist no Chile. Instituições locais que apoiam o iNaturalist Chile terão acesso ao seu endereço de e-mail e acesso às coordenadas verdadeiras para observações que são publicamente obscurecidas ou privadas. Por favor, não altere experimentalmente sua afiliação se você tiver mais de 1000 observações. Você gostaria de mudar sua afiliação?</string>
-    <string name="alert_message_use_inaturalistgr">iNaturalist Greece is a member of the iNaturalist Network in Greece. Local institutions supporting iNaturalist Greece will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg is a member of the iNaturalist Network in Luxembourg. Local institutions supporting iNaturalist Luxembourg will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom is a member of the iNaturalist Network in United Kingdom. Local institutions supporting iNaturalist United Kingdom will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Grécia é um membro da Rede iNaturalist na Grécia. Instituições locais que apoiam o iNaturalist Grécia terão acesso ao seu endereço de e-mail e às reais coordenadas de observações obscurecidas ou privadas do público. Por favor, não altere sua afiliação experimentalmente se você tiver mais de 1000 observações. Deseja mudar sua afiliação?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxemburgo é um membro da Rede iNaturalist em Luxemburgo. Instituições locais que apoiam o iNaturalist Luxemburgo terão acesso ao seu endereço de e-mail e às reais coordenadas de observações obscurecidas ou privadas do público. Por favor, não altere sua afiliação experimentalmente se você tiver mais de 1000 observações. Deseja mudar sua afiliação?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist Reino Unido é um membro da Rede iNaturalist no Reino Unido. Instituições locais que apoiam o iNaturalist Reino Unido terão acesso ao seu endereço de e-mail e às reais coordenadas de observações obscurecidas ou privadas do público. Por favor, não altere sua afiliação experimentalmente se você tiver mais de 1000 observações. Deseja mudar sua afiliação?</string>
+    <string name="alert_message_use_inaturalistcr">iNaturalist Costa Rica é um membro da Rede iNaturalist na Costa Rica. Instituições locais que apoiam o iNaturalist Costa Rica terão acesso ao seu endereço de e-mail e às reais coordenadas de observações obscurecidas ou privadas do público. Por favor, não altere sua afiliação experimentalmente se você tiver mais de 1000 observações. Deseja mudar sua afiliação?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala é um membro da Rede iNaturalist no Guatemala. Instituições locais que apoiam o iNaturalist Guatemala terão acesso ao seu endereço de e-mail e às reais coordenadas de observações obscurecidas ou privadas do público. Por favor, não altere sua afiliação experimentalmente se você tiver mais de 1000 observações. Deseja mudar sua afiliação?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Suécia é um membro da Rede iNaturalist na Suécia. Instituições locais que apoiam o iNaturalist Suécia terão acesso ao seu endereço de e-mail e às reais coordenadas de observações obscurecidas ou privadas do público. Por favor, não altere sua afiliação experimentalmente se você tiver mais de 1000 observações. Deseja mudar sua afiliação?</string>
     <string name="editor">Editor</string>
     <string name="license">Licença</string>
     <string name="download_for_offline_use">Download para uso offline</string>
@@ -224,9 +224,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-mail</string>
-    <string name="sign_up_with">Cadastre-se com</string>
     <string name="skip">Pular ›</string>
-    <string name="already_have_account">Já possui uma conta?</string>
     <string name="log_in">Entrar</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Inscrever-se</string>
@@ -349,7 +347,6 @@
     <string name="updating_profile">Atualizando o perfil...</string>
     <string name="there_was_a_problem_updating_profile">Houve um erro ao atualizar o seu perfil!</string>
     <string name="there_was_a_problem_updating_profile_params">Houve um erro ao atualizar o seu perfil: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Conectado como <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Atualmente conectado como <b>%1$s</b>]]></string>
     <string name="log_out">Sair</string>
@@ -395,7 +392,7 @@
     <string name="fish">Peixes</string>
     <string name="mollusks">Moluscos</string>
     <string name="protozoans">Protozoários</string>
-    <string name="chromista">Kelp, Diatoms, and Allies</string>
+    <string name="chromista">algas, diatomáceas e similares</string>
     <string name="amphibians">Anfíbios</string>
     <string name="fungi">Fungos</string>
     <string name="birds">Aves</string>
@@ -468,14 +465,12 @@
     <string name="what_did_you_see">O que você viu?</string>
     <string name="suggest_species">Sugerir espécie</string>
     <string name="suggest_species_description">Sugerir espécies com base na semelhança visual às fotos</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visualmente Similar</string>
     <string name="visually_similar_seen_nearby">Visualmente Similar / visto nas proximidades</string>
     <string name="seen_nearby">Visto nas proximidades</string>
     <string name="enlarge">Ampliar</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Ver Subcategorias</string>
-    <string name="invalid_photo_extension">Erro ao importar foto(s): É possível importar fotos apenas com extensões JPG/JPEG/PNG</string>
     <string name="taxon_has_no_photos">Este táxon não tem fotos.</string>
     <string name="terrain">Terreno</string>
     <string name="filters">Filtros</string>
@@ -593,7 +588,6 @@
     <string name="leave_comment">Deixe um comentário...</string>
     <string name="swipe">Deslizar</string>
     <string name="swipe_indicator">></string>
-    <string name="select_google_account">Qual conta do Google?</string>
     <string name="potential_disagreement">Possível desacordo</string>
     <string name="do_you_think_this_could_be"><![CDATA[A evidência fornecida é suficiente para confirmar que se trata de <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -605,7 +599,7 @@
     <string name="must_be_connected_to_load_more_obs">Você precisa de conexão com a Internet para carregar mais observações</string>
     <string name="inat_about_title">iNaturalist é uma iniciativa conjunta da Academia de Ciências da Califórnia e da Sociedade Geográfica Nacional.</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -630,6 +624,7 @@
     <string name="project_observations">Observações</string>
     <string name="project_species">Espécies</string>
     <string name="project_people">Pessoas</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Identificadores</string>
     <string name="got_it">Entendido!</string>
     <string name="view_all">Visualizar Tudo</string>
@@ -656,6 +651,8 @@
     <string name="annotation_name_sex">Sexo</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">Vivo ou Morto</string>
+    <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <string name="annotation_name_evidence_of_presence">Evidência de Presença</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Florido</string>
     <!-- Adjective, having fruit -->
@@ -689,6 +686,18 @@
     <string name="annotation_value_dead">Morto</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Indeterminado</string>
+    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <string name="annotation_value_organism">Organismo</string>
+    <!-- Evidence of Presence value when for bird feathers -->
+    <string name="annotation_value_feather">Pena</string>
+    <!-- Evidence of Presence value when for fecal remains -->
+    <string name="annotation_value_scat">Excrementos</string>
+    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <string name="annotation_value_track">Rastrear</string>
+    <!-- Evidence of Presence value when for bones -->
+    <string name="annotation_value_bone">Osso</string>
+    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <string name="annotation_value_molt">Molt</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">A QUE ADERIU</string>
     <string name="nearby_projects_all_caps">NAS PROXIMIDADES</string>
@@ -748,9 +757,12 @@
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa apoiando o iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finlândia: Finnish Museum of Natural History (LUOMUS) apoiando o iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministério do Meio Ambiente apoiando o iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
-    <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
-    <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Grécia: iSea apoia iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Luxemburgo: Museu Nacional de História Natural de Luxembrugo apoia iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Reino Unido: Rede Nacional de Biodiversidade apoia iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Marcar todos como visto</string>
     <string name="content_hidden">Conteúdo oculto</string>
     <string name="show_hidden_content">Mostrar conteúdo oculto</string>
@@ -764,7 +776,6 @@
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Gravar som</string>
-    <string name="no_recorder_found">Nenhum gravador de som padrão encontrado!</string>
     <string name="couldnt_retrieve_sound">Não foi possível recuperar o som do gravador padrão - tente importar o som</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Escolha o som</string>
@@ -966,10 +977,14 @@
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">MMM d, yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
     <string name="show_common_names">Mostrar nomes comuns</string>
-    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
+    <string name="show_common_names_description">Desabilite caso queira ver apenas nomes científicos.</string>
     <string name="email_must_look_like_email_address">O e-mail deve parecer um endereço de e-mail</string>
-    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
+    <string name="username_must_begin_with">Nome de usuário deve começar com uma letra, não conter espaços e usar apenas letras, números, traços e sublinhados</string>
     <string name="password_too_short">A senha deve ter pelo menos seis caracteres</string>
     <string name="switch_to_grid_view">Mudar para exibição em grade</string>
     <string name="switch_to_list_view">Alternar para visualização em lista</string>
@@ -984,7 +999,7 @@
     <string name="only_view_nearby_suggestions">Apenas veja sugestões próximas</string>
     <string name="suggestions_source">Fonte das Sugestões</string>
     <string name="research_grade_observations">Nível de Pesquisa</string>
-    <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
+    <string name="visually_similar_description">O iNaturalist fornecerá sugestões com base em quão visualmente similares são as imagens das espécies observadas perto desta localização nesta época do ano.</string>
     <string name="research_grade_observations_description">Em vez de sugestões visualmente semelhantes, o iNaturalist irá sugerir espécies observadas em um lugar específico e dentro de um grupo taxonômico específico.</string>
     <string name="taxon">Taxonomia</string>
     <string name="place">Local:</string>
@@ -995,57 +1010,57 @@
     <string name="pretty_sure_superclass">Nós temos certeza de que está nesta superclasse:</string>
     <string name="pretty_sure_class">Nós temos certeza de que está nesta classe:</string>
     <string name="pretty_sure_subclass">Nós temos certeza de que está nessa subclasse:</string>
-    <string name="pretty_sure_infraclass">We\'re pretty sure it\'s in this infraclass:</string>
-    <string name="pretty_sure_superorder">We\'re pretty sure it\'s in this superorder:</string>
-    <string name="pretty_sure_order">We\'re pretty sure it\'s in this order:</string>
-    <string name="pretty_sure_suborder">We\'re pretty sure it\'s in this suborder:</string>
-    <string name="pretty_sure_infraorder">We\'re pretty sure it\'s in this infraorder:</string>
-    <string name="pretty_sure_subterclass">We\'re pretty sure it\'s in this subterclass:</string>
-    <string name="pretty_sure_parvorder">We\'re pretty sure it\'s in this parvorder:</string>
-    <string name="pretty_sure_zoosection">We\'re pretty sure it\'s in this zoosection:</string>
+    <string name="pretty_sure_infraclass">Estamos bastante seguros de que está nesta infraclasse:</string>
+    <string name="pretty_sure_superorder">Estamos bastante seguros de que está nesta superordem:</string>
+    <string name="pretty_sure_order">Estamos bastante seguros de que está nesta ordem:</string>
+    <string name="pretty_sure_suborder">Estamos bastante seguros de que está nesta sub-ordem:</string>
+    <string name="pretty_sure_infraorder">Estamos bastante seguros de que está nesta infraordem:</string>
+    <string name="pretty_sure_subterclass">Estamos bastante seguros de que está nesta subterclasse:</string>
+    <string name="pretty_sure_parvorder">Estamos bastante seguros de que está nesta parvordem:</string>
+    <string name="pretty_sure_zoosection">Temos certeza de que está nessa ampliação:</string>
     <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
-    <string name="pretty_sure_superfamily">We\'re pretty sure it\'s in this superfamily:</string>
-    <string name="pretty_sure_epifamily">We\'re pretty sure it\'s in this epifamily:</string>
-    <string name="pretty_sure_family">We\'re pretty sure it\'s in this family:</string>
-    <string name="pretty_sure_subfamily">We\'re pretty sure it\'s in this subfamily:</string>
-    <string name="pretty_sure_supertribe">We\'re pretty sure it\'s in this supertribe:</string>
-    <string name="pretty_sure_tribe">We\'re pretty sure it\'s in this tribe:</string>
-    <string name="pretty_sure_subtribe">We\'re pretty sure it\'s in this subtribe:</string>
-    <string name="pretty_sure_genus">We\'re pretty sure it\'s in this genus:</string>
-    <string name="pretty_sure_genushybrid">We\'re pretty sure it\'s in this genushybrid:</string>
-    <string name="pretty_sure_subgenus">We\'re pretty sure it\'s in this subgenus:</string>
-    <string name="pretty_sure_section">We\'re pretty sure it\'s in this section:</string>
-    <string name="pretty_sure_subsection">We\'re pretty sure it\'s in this subsection:</string>
-    <string name="pretty_sure_complex">We\'re pretty sure it\'s in this complex:</string>
+    <string name="pretty_sure_superfamily">Temos certeza de que está nesta superfamília:</string>
+    <string name="pretty_sure_epifamily">Temos certeza de que está nesta epifamília:</string>
+    <string name="pretty_sure_family">Temos certeza que está nesta família:</string>
+    <string name="pretty_sure_subfamily">Temos certeza que está nesta subfamília:</string>
+    <string name="pretty_sure_supertribe">Temos certeza que está nesta supertribo:</string>
+    <string name="pretty_sure_tribe">Temos certeza que está nesta tribo:</string>
+    <string name="pretty_sure_subtribe">Temos certeza que está nesta subtribo:</string>
+    <string name="pretty_sure_genus">Temos certeza que está neste gênero:</string>
+    <string name="pretty_sure_genushybrid">Temos certeza que está neste gênero híbrido:</string>
+    <string name="pretty_sure_subgenus">Temos certeza que está neste subgênero:</string>
+    <string name="pretty_sure_section">Temos certeza que está nesta seção:</string>
+    <string name="pretty_sure_subsection">Temos certeza que está nesta subseção:</string>
+    <string name="pretty_sure_complex">Temos certeza que está neste complexo de espécies:</string>
     <!-- Singular -->
-    <string name="pretty_sure_species">We\'re pretty sure it\'s in this species:</string>
-    <string name="pretty_sure_hybrid">We\'re pretty sure it\'s in this hybrid:</string>
+    <string name="pretty_sure_species">Temos certeza de que é esta espécie:</string>
+    <string name="pretty_sure_hybrid">Temos certeza de que é este híbrido:</string>
     <!-- Singular -->
-    <string name="pretty_sure_subspecies">We\'re pretty sure it\'s in this subspecies:</string>
-    <string name="pretty_sure_variety">We\'re pretty sure it\'s in this variety:</string>
-    <string name="pretty_sure_form">We\'re pretty sure it\'s in this form:</string>
+    <string name="pretty_sure_subspecies">Temos certeza de que é esta subespécie:</string>
+    <string name="pretty_sure_variety">Temos certeza de que é esta variedade:</string>
+    <string name="pretty_sure_form">Estamos bastante seguros de que está nesta forma:</string>
     <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
-    <string name="remove_date_observed">Remove date &amp; time observed</string>
-    <string name="remove_time_observed">Remove time observed</string>
+    <string name="remove_date_observed">Remover a data e hora da observação</string>
+    <string name="remove_time_observed">Remover hora da observação</string>
     <string name="remove_location">Remover localização</string>
-    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
-    <string name="share_location">Share Location</string>
-    <string name="share_hidden_location">Share Hidden Location</string>
+    <string name="are_you_sure_you_want_to_remove_date">Você tem certeza que quer remover a data e hora da observação?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Você tem certeza que quer remover a hora da observação? </string>
+    <string name="are_you_sure_you_want_to_remove_location">Você tem certeza que quer remover a localização? </string>
+    <string name="share_location">Compartilhar localização</string>
+    <string name="share_hidden_location">Compartilhar localização oculta</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
-    <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
-    <string name="sound_format_not_supported">That audio encoding is not supported by Android.</string>
-    <string name="view_observations">View Observations</string>
-    <string name="choose_this_option">Choose this option</string>
-    <string name="compare_observation_with_this_option">Compare observation with this option</string>
+    <string name="couldnt_duplicate_sound">Impossível duplicar som!</string>
+    <string name="sound_format_not_supported">Este formato de áudio não é compatível com Android.</string>
+    <string name="view_observations">Ver observações</string>
+    <string name="choose_this_option">Escolher esta opção</string>
+    <string name="compare_observation_with_this_option">Comparar observação com esta opção</string>
     <string name="go_back">Voltar</string>
     <string name="change_the_source_of_the_suggestions">Alterar a fonte das sugestões</string>
-    <string name="thumbnail_photo_for_suggested_taxon">Thumbnail photo for suggested taxon</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Miniatura de foto para táxon sugerido</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
     <string name="comments_ids_title">Comentários e identificações</string>
     <!-- Accessibility text for the faves tab on the observation detail view -->
-    <string name="faves">Faves</string>
+    <string name="faves">Favoritos</string>
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
     <string name="previous_option">Opção anterior</string>
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
@@ -1093,6 +1108,7 @@
     <string name="default_observation_license">Licença de Observação Padrão</string>
     <string name="default_photo_license">Licença de Foto Padrão</string>
     <string name="default_sound_license">Licença padrão de som</string>
+    <string name="change_existing_licenses">Alterar licenças existentes</string>
     <string name="change_licenses_for_existing_observations">Alterar licenças para observações, fotos e sons existentes</string>
     <string name="change_licenses_for_all_existing_observations">Alterar licenças para todas as observações existentes</string>
     <string name="change_licenses_for_all_existing_photos">Alterar licenças para todas as fotos existentes</string>
@@ -1107,34 +1123,93 @@
     <string name="photo_licenses_updated">Licenças Fotográficas Atualizadas</string>
     <string name="sound_licenses_updated">Licenças de Som Atualizadas</string>
     <string name="existing_observation_licenses_have_been_updated">Todas as licenças de observação existentes foram alteradas para %1$s.</string>
-    <string name="existing_photo_licenses_have_been_updated">All existing photo licenses have been changed to %1$s.</string>
-    <string name="existing_sound_licenses_have_been_updated">All existing sound licenses have been changed to %1$s.</string>
+    <string name="existing_photo_licenses_have_been_updated">Todas as licenças existentes de fotos foram alteradas para %1$s.</string>
+    <string name="existing_sound_licenses_have_been_updated">Todas as licenças de som existentes foram alteradas para %1$s.</string>
     <string name="default_licenses_description"><![CDATA[Licensing your content gives anyone the legal right to use it without asking your permission if they abide by the terms of the license. In addition, iNat includes your Creative Commons-licensed content in regularly-updated archives produced for select partner organizations interested in our data. For example, we include No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC) records in the archive we generate for the <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, an international, inter-governmental organization that compiles and distributes biodiversity information from around the world.]]></string>
-    <string name="photo_license">Photo License</string>
-    <string name="edit_photo_license">Edit Photo License</string>
-    <string name="observation_license">Observation License</string>
-    <string name="edit_observation_license">Edit Observation License</string>
-    <string name="about_licenses">About Licenses</string>
-    <string name="view_license">View License</string>
+    <string name="photo_license">Licença da Foto</string>
+    <string name="sound_license">Licença do som</string>
+    <string name="edit_photo_license">Editar Licença da Foto</string>
+    <string name="observation_license">Licença da Observação</string>
+    <string name="edit_observation_license">Editar Licença da Observação</string>
+    <string name="about_licenses">Sobre as licenças</string>
+    <string name="view_license">Ver licença</string>
     <!-- License Names -->
-    <string name="license_name_cc0">Public Domain</string>
-    <string name="license_name_cc_by">Attribution</string>
-    <string name="license_name_cc_by_nc">Attribution-NonCommercial</string>
-    <string name="license_name_cc_by_nc_sa">Attribution-NonCommercial-ShareAlike</string>
-    <string name="license_name_cc_by_nc_nd">Attribution-NonCommercial-NoDerivs</string>
-    <string name="license_name_cc_by_nd">Attribution-NoDerivs</string>
-    <string name="license_name_cc_by_sa">Attribution-ShareAlike</string>
-    <string name="license_name_no_license">All rights reserved</string>
+    <string name="license_name_cc0">Domínio público</string>
+    <string name="license_name_cc_by">Atribuição</string>
+    <string name="license_name_cc_by_nc">Atribuição-Não Comercial</string>
+    <string name="license_name_cc_by_nc_sa">Atribuição-Não Comercial-CompartilhaIgual</string>
+    <string name="license_name_cc_by_nc_nd">Atribuição-NãoComercial-SemDerivações</string>
+    <string name="license_name_cc_by_nd">Atribuição-SemDerivações</string>
+    <string name="license_name_cc_by_sa">Atribuição-CompartilhaIgual</string>
+    <string name="license_name_no_license">Todos os direitos reservados</string>
     <!-- License Descriptions -->
-    <string name="license_description_cc0">This license releases your work into the public domain, so others can copy, modify, distribute and perform your work, even for commercial purposes, all without asking permission or giving you credit. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.</string>
-    <string name="license_description_cc_by">This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation.</string>
-    <string name="license_description_cc_by_nc">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
-    <string name="license_description_cc_by_nc_sa">This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms.</string>
-    <string name="license_description_cc_by_nc_nd">This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can\'t change them in any way or use them commercially.</string>
-    <string name="license_description_cc_by_nd">This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.</string>
-    <string name="license_description_cc_by_sa">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
+    <string name="license_description_cc0">Esta licença libera a sua obra em domínio público, de modo que outros podem copiar, modificar, distribuir e levar a termo o seu trabalho, inclusive com finalidade comercial, sem pedir permissão, ou dar-lhe crédito. Esta é a licença mais livre das que se oferecem. Recomendado para uma máxima difusão e uso dos materiais licenciados.</string>
+    <string name="license_description_cc_by">Esta licença permite que outros distribuam, remixem, adaptem ou criem obras derivadas, mesmo que para uso com fins comerciais, contanto que seja dado crédito pela criação original.</string>
+    <string name="license_description_cc_by_nc">Esta licença permite que outros remixem, adaptem, e criem obras derivadas sobre a obra licenciada, sendo vedado o uso com fins comerciais. As novas obras devem conter menção ao autor nos créditos e também não podem ser usadas com fins comerciais, porém as obras derivadas não precisam ser licenciadas sob os mesmos termos desta licença.</string>
+    <string name="license_description_cc_by_nc_sa">Esta licença permite que outros remixem, adaptem e criem obras derivadas sobre a obra original, desde que com fins não comerciais e contanto que atribuam crédito ao autor e licenciem as novas criações sob os mesmos parâmetros. Outros podem fazer o download ou redistribuir a obra da mesma forma que na licença anterior, mas eles também podem traduzir, fazer remixes e elaborar novas histórias com base na obra original. Toda nova obra feita a partir desta deverá ser licenciada com a mesma licença, de modo que qualquer obra derivada, por natureza, não poderá ser usada para fins comerciais.</string>
+    <string name="license_description_cc_by_nc_nd">Esta licença é a mais restritiva dentre as nossas seis licenças principais, permitindo redistribuição. Ela é comumente chamada “propaganda grátis” pois permite que outros façam download das obras licenciadas e as compartilhem, contanto que mencionem o autor, mas sem poder modificar a obra de nenhuma forma, nem utilizá-la para fins comerciais.</string>
+    <string name="license_description_cc_by_nd">Esta licença permite a redistribuição e o uso para fins comerciais e não comerciais, contanto que a obra seja redistribuída sem modificações e completa, e que os créditos sejam atribuídos ao autor.</string>
+    <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
     <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
-    <string name="invalid_photo">Photo format not supported</string>
+    <string name="invalid_photo">Formato de foto não suportado</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">Suggestions based on observations and identifications provided by the iNaturalist community, including %1$s, %2$s, %3$s, and many others.</string>
+    <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">Ação padrão de observação</string>
+    <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">Exibir Opções</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Valor do campo</string>
+    <string name="expand_annotation_to_agree_or_disagree">Expandir anotação para concordar ou discordar</string>
+    <string name="delete_attribute_value">Excluir valor do atributo</string>
+    <string name="open_menu_for_more_options">Abrir menu para mais opções</string>
+    <string name="change_user_profile_photo">Alterar foto de perfil do usuário</string>
+    <string name="expand_list">Expandir lista</string>
+    <string name="change_map_layers">Alterar camadas do mapa (terreno vs. satélite)</string>
+    <string name="redo_observation_search">Refazer a pesquisa de observação nesta área do mapa</string>
+    <string name="view_observations_on_map">Ver observações no mapa</string>
+    <string name="view_observations_on_grid">Ver observações na grade</string>
+    <string name="clear_text">Limpar texto</string>
+    <string name="observation_has_sounds">Observação tem sons</string>
+    <string name="go_to_my_location">Ir para minha localização atual</string>
+    <string name="change_geoprivacy">Mude a geoprivacidade</string>
+    <string name="active_filters">Filtros ativos</string>
+    <string name="message_is_flagged">Mensagem sinalizada</string>
+    <string name="user_is_muted">Usuário silenciado</string>
+    <string name="cancel_multiple_obs_selection">Cancelar seleção de múltiplas observações</string>
+    <string name="delete_observations">Excluir observações</string>
+    <string name="comment_count">Contagem de comentários</string>
+    <string name="id_count">Contagem de identificação</string>
+    <string name="observation_selected">Observação selecionada</string>
+    <string name="share_observation">Compartilhar esta observação</string>
+    <string name="unknown_location">Localização desconhecida</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Fechar</string>
+    <string name="set_date2">Defina a data</string>
+    <string name="project_selected">projeto selecionado</string>
+    <string name="project_unselected">Projeto Não Selecionado</string>
+    <string name="show_my_observations">Mostras apenas as minhas observações</string>
+    <string name="play_pause_sound">Reproduzir ou pausar som</string>
+    <string name="california_academy_of_sciences_and_national_geographic">Academia de Ciências da Califórnia e National Geographic</string>
+    <string name="view_image">Visualizar imagem</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Passos de avaliação</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Concordo com avaliação</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Não aprova a avaliação</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Disagree assessment passes</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Delete %1$d selected observation</item>
+        <item quantity="other">Delete %1$d selected observations</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Sync %1$d selected observation</item>
+        <item quantity="other">Sync %1$d selected observations</item>
+    </plurals>
+    <string name="add_media_evidence">Adicionar evidência de mídia</string>
+    <string name="remove_identification">Remover identificação</string>
+    <string name="issue_with_updating_photos">Houve um erro ao atualizar as fotos desta observação que foi recentemente corrigido. Por favor, saia e faça login novamente para resolver este problema.</string>
+    <string name="app_version_copied_to_clipboard">Versão do aplicativo copiada para a área de transferência</string>
 </resources>

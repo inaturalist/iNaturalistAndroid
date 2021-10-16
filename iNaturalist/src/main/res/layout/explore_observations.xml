@@ -26,8 +26,8 @@
         android:layout_height="wrap_content"
         android:paddingTop="11dp"
         android:paddingBottom="8dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:background="#8A000000"
         android:textSize="12sp"
         android:textColor="#ffffff"
@@ -51,7 +51,7 @@
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             />
 
 
@@ -91,6 +91,7 @@
              android:layout_alignParentEnd="true"
              android:layout_alignParentBottom="true"
              android:elevation="3dp"
+             android:contentDescription="@string/change_map_layers"
              android:layout_width="50dp"
              android:layout_height="50dp" />
 
@@ -116,8 +117,8 @@
              android:layout_height="wrap_content"
              android:paddingTop="11dp"
              android:paddingBottom="8dp"
-             android:paddingLeft="16dp"
-             android:paddingRight="16dp"
+             android:paddingStart="16dp"
+             android:paddingEnd="16dp"
              android:background="#8A000000"
              android:textSize="12sp"
              android:textColor="#ffffff"
@@ -131,8 +132,8 @@
             android:id="@+id/redo_search"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginTop="14dp"
             android:background="@drawable/circular_button_white_with_border"
             android:layout_below="@id/map_filter_bar"
@@ -154,8 +155,8 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:indeterminate="true"
-                android:layout_marginRight="5dp"
-                android:layout_toLeftOf="@id/redo_search_text"
+                android:layout_marginEnd="5dp"
+                android:layout_toStartOf="@id/redo_search_text"
                 android:layout_centerVertical="true"
                 android:visibility="gone" />
 
@@ -163,11 +164,12 @@
                 android:id="@+id/redo_search_icon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginRight="5dp"
-                android:layout_toLeftOf="@id/redo_search_text"
+                android:layout_marginEnd="5dp"
+                android:layout_toStartOf="@id/redo_search_text"
                 android:layout_centerVertical="true"
                 android:src="@drawable/ic_refresh_black_48dp"
                 android:tint="@color/inatapptheme_color"
+                android:contentDescription="@string/redo_observation_search"
                 android:visibility="visible" />
         </RelativeLayout>
 
@@ -197,8 +199,8 @@
     <org.inaturalist.android.GridViewExtended
         android:id="@+id/observations_grid"
         android:paddingTop="5dp"
-        android:paddingLeft="1dp"
-        android:paddingRight="1dp"
+        android:paddingStart="1dp"
+        android:paddingEnd="1dp"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
@@ -228,9 +230,10 @@
             android:layout_width="55dp"
             android:layout_height="50dp"
             android:src="@drawable/ic_map_black_48dp"
+            android:contentDescription="@string/view_observations_on_map"
             android:tint="#676767"
             android:padding="12dp"
-            android:layout_marginRight="-1dp"
+            android:layout_marginEnd="-1dp"
             android:elevation="3dp"
             />
         <ImageView
@@ -239,9 +242,10 @@
             android:layout_width="55dp"
             android:layout_height="50dp"
             android:src="@drawable/ic_view_module_black_48dp"
+            android:contentDescription="@string/view_observations_on_grid"
             android:tint="#676767"
             android:padding="12dp"
-            android:layout_marginLeft="-1dp"
+            android:layout_marginStart="-1dp"
             android:elevation="3dp"
             />
     </LinearLayout>

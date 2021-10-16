@@ -6,8 +6,8 @@
     android:minHeight="72dp"
     android:orientation="horizontal"
     android:paddingTop="7dp"
-    android:paddingLeft="7dp"
-    android:paddingRight="0dp"
+    android:paddingStart="7dp"
+    android:paddingEnd="0dp"
     android:paddingBottom="0dp"
     >
 
@@ -17,7 +17,7 @@
         android:layout_height="72dp"
         android:layout_width="fill_parent"
         android:layout_alignParentTop="true"
-        android:paddingRight="10dp"
+        android:paddingEnd="10dp"
         >
         <ImageView
             android:id="@+id/user_pic"
@@ -25,17 +25,18 @@
             android:layout_height="48dp"
             android:src="@drawable/ic_account_circle_black_48dp"
             android:visibility="gone"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="11dp"
+            android:layout_marginStart="11dp"
+            android:importantForAccessibility="no"
             />
 
         <RelativeLayout
             android:clickable="true"
             android:id="@+id/project_pic_container"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="11dp"
+            android:layout_marginStart="11dp"
             android:background="@drawable/project_border"
             android:layout_width="48dp"
             android:layout_height="48dp">
@@ -46,6 +47,7 @@
                 android:src="@drawable/ic_work_black_24dp"
                 android:padding="2dp"
                 android:visibility="gone"
+                android:importantForAccessibility="no"
                 />
             <ImageView
                 android:id="@+id/project_pic_none"
@@ -56,6 +58,7 @@
                 android:tint="#ffffff"
                 android:padding="10dp"
                 android:visibility="visible"
+                android:importantForAccessibility="no"
                 />
 
             <TextView
@@ -64,13 +67,13 @@
                 android:layout_height="18dp"
                 android:text="i"
                 android:textAlignment="center"
-                android:layout_marginRight="1dp"
+                android:layout_marginEnd="1dp"
                 android:layout_marginBottom="1dp"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
                 android:background="#cecece"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 />
         </RelativeLayout>
 
@@ -80,10 +83,11 @@
             android:layout_height="wrap_content"
             style="@android:style/TextAppearance.Medium"
             android:text="some project name with very lonsome project name with very longgsome project name with very long"
-            android:layout_toRightOf="@id/project_pic_container"
+            android:layout_toEndOf="@id/project_pic_container"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="4dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="4dp"
+            android:textAlignment="viewStart"
             android:maxLines="2"
             android:ellipsize="end"
             />
@@ -93,8 +97,8 @@
         android:layout_width="fill_parent"
         android:layout_height="1px"
         android:background="#dfdfdf"
-        android:layout_marginLeft="76dp"
+        android:layout_marginStart="76dp"
         android:layout_alignParentBottom="true"
-        android:paddingRight="0dp"
+        android:paddingEnd="0dp"
         />
 </RelativeLayout>

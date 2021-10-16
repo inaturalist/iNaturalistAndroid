@@ -39,7 +39,7 @@
             android:textStyle="bold"
             android:textColor="@color/inatapptheme_color"
             android:text="@string/swipe"
-            android:layout_marginRight="6dp"
+            android:layout_marginEnd="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView

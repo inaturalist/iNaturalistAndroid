@@ -7,8 +7,6 @@
     <string name="ok">Гаразд</string>
     <string name="cancel">Скасувати</string>
     <string name="loading">Завантаження...</string>
-    <string name="sync_required">Необхідна синхронізація</string>
-    <string name="sync_required_message">Потребують синхронізації: спостережень - %1$d, фотографій - %2$d</string>
     <string name="street">Вулиця</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Супутник</string>
@@ -32,7 +30,6 @@
     <string name="settings">Налаштування</string>
     <string name="projects">Проєкти</string>
     <string name="delete_photo">Видалити фото</string>
-    <string name="menu">Меню</string>
     <string name="my_location">Моє розташування</string>
     <string name="nearby_observations">Спостереження поблизу</string>
     <string name="add">Додати</string>
@@ -212,9 +209,12 @@
 Чи хочете ви змінити вашу мережеву приналежність?</string>
     <string name="alert_message_use_inaturalistcl">iNaturalist Chile є частиною мережі iNuturalist у Чилі. Місцеві організації, що підтримують iNaturalist Chile, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
 Чи хочете ви змінити вашу мережеву приналежність?</string>
-    <string name="alert_message_use_inaturalistgr">iNaturalist Greece is a member of the iNaturalist Network in Greece. Local institutions supporting iNaturalist Greece will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg is a member of the iNaturalist Network in Luxembourg. Local institutions supporting iNaturalist Luxembourg will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom is a member of the iNaturalist Network in United Kingdom. Local institutions supporting iNaturalist United Kingdom will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Greece є частиною мережі iNaturalist у Греції. Місцеві організації, що підтримують iNaturalist Greece, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які є публічно прихованими або приватними. Якщо ви маєте понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. Чи хочете ви змінити вашу мережеву приналежність?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg є частиною мережі iNaturalist у Люксембурзі. Місцеві організації, що підтримують iNaturalist Luxembourg, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які є публічно прихованими або приватними. Якщо ви маєте понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. Чи хочете ви змінити вашу мережеву приналежність?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom є частиною мережі iNaturalist у Сполученому Королівстві. Місцеві організації, що підтримують iNaturalist United Kingdom, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які є публічно прихованими або приватними. Якщо у вас є понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. Чи хочете ви змінити вашу мережеву приналежність?</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica є частиною мережі iNaturalist у Коста Риці. Місцеві організації, що підтримують Naturalista Costa Rica, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які є публічно прихованими або приватними. Якщо у вас є понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. Чи хочете ви змінити вашу мережеву приналежність?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala є частиною мережі iNaturalist у Гватемалі. Місцеві організації, що підтримують iNaturalist Guatemala, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які є публічно прихованими або приватними. Якщо у вас є понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. Чи хочете ви змінити вашу мережеву приналежність?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sweden є частиною мережі iNaturalist у Швеції. Місцеві організації, що підтримують iNaturalist Sweden, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які є публічно прихованими або приватними. Якщо у вас є понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. Чи хочете ви змінити вашу мережеву приналежність?</string>
     <string name="editor">Редактор</string>
     <string name="license">Ліцензія</string>
     <string name="download_for_offline_use">Завантажено для використання в автономному режимі</string>
@@ -238,9 +238,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Email</string>
-    <string name="sign_up_with">Зареєструватися через</string>
     <string name="skip">Пропустити  ›</string>
-    <string name="already_have_account">Вже маєте обліковий запис?</string>
     <string name="log_in">Увійти</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Зареєструватися</string>
@@ -330,7 +328,7 @@
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Синхронізуйте спостереження, щоб мати змогу залишити коментар або запропонувати ідентифікацію...</string>
     <!--  Label for a button to add an observation without a photo or a sound  -->
-    <string name="no_photo">No Media</string>
+    <string name="no_photo">Брак медіа</string>
     <string name="about_this_species">Про цей вид</string>
     <string name="view_on_wikipedia">Стаття на Вікіпедії</string>
     <string name="photo"><![CDATA[Фото: <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -365,13 +363,12 @@
     <string name="updating_profile">Оновлення профілю...</string>
     <string name="there_was_a_problem_updating_profile">Під час оновлення профілю сталася помилка!</string>
     <string name="there_was_a_problem_updating_profile_params">Під час оновлення профілю сталася помилка: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Увійшли як: <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
-    <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
+    <string name="currently_logged_in_as_html"><![CDATA[Ви увійшли як <b>%1$s</b>]]></string>
     <string name="log_out">Вийти</string>
     <string name="not_logged_in">Вхід не здійснено</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
-    <string name="login_or_sign_up">Log In or Sign Up</string>
+    <string name="login_or_sign_up">Увійдіть або зареєструйтесь</string>
     <string name="auto_upload_description">Автоматично відвантажувати нові спостереження та зміни до існуючих</string>
     <string name="language">Мова</string>
     <string name="version">Версія</string>
@@ -411,7 +408,7 @@
     <string name="fish">Риби</string>
     <string name="mollusks">Молюски</string>
     <string name="protozoans">Найпростіші</string>
-    <string name="chromista">Kelp, Diatoms, and Allies</string>
+    <string name="chromista">Ламінарієві, Діатомеї та споріднені</string>
     <string name="amphibians">Земноводні</string>
     <string name="fungi">Гриби</string>
     <string name="birds">Птахи</string>
@@ -478,24 +475,22 @@
     <string name="more_info_on_inat">Детальніше на iNaturalist.org</string>
     <string name="view_suggestions">Подивитись пропозиції</string>
     <string name="species_search">Пошук видів</string>
-    <string name="were_not_confident_enough">We\'re not confident enough to make a recommendation, but here are our top suggestions:</string>
+    <string name="were_not_confident_enough">Ми недостатньо впевнені, аби щось рекомендувати, але ось наші найкращі пропозиції:</string>
     <string name="were_not_confident_enough_no_suggestions">Ми недостатньо впевнені, щоб рекомендувати.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
-    <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
+    <string name="most_observed_options_matching_filters">Найчастіше спостережувані варіанти, що відповідають фільтрам:</string>
     <!-- Header for a list of suggested taxa -->
     <string name="top_suggestions">Кращі пропозиції</string>
     <string name="pretty_sure_rank">Ми впевнені, що це %1$s:</string>
     <string name="what_did_you_see">Що ви бачите?</string>
     <string name="suggest_species">Запропонувати вид</string>
     <string name="suggest_species_description">Запропонувати вид на основі схожості з фото.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Візуально схожі</string>
     <string name="visually_similar_seen_nearby">Візуально схожі / Зустрічалися поблизу</string>
     <string name="seen_nearby">Зустрічалися поблизу</string>
     <string name="enlarge">Збільшити</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Показати підцарства</string>
-    <string name="invalid_photo_extension">Помилка імпортування фото: можна імпортувати лише файли з розширенням JPG, JPEG, PNG</string>
     <string name="taxon_has_no_photos">Цей таксон немає фотографій.</string>
     <string name="terrain">Ландшафт</string>
     <string name="filters">Фільтри</string>
@@ -573,7 +568,7 @@
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Делегування</string>
     <string name="apply_filters">Застосувати фільтри</string>
-    <string name="remove_filters">Remove Filters</string>
+    <string name="remove_filters">Прибрати фільтри</string>
     <string name="reset">Скинути</string>
     <string name="show_only_my_observations">Показувати лише мої спостереження</string>
     <string name="project">Проект</string>
@@ -613,7 +608,6 @@
     <string name="leave_comment">Залишити коментар...</string>
     <string name="swipe">Гортайте</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Який обліковий запис Google?</string>
     <string name="potential_disagreement">Потенційні розбіжності</string>
     <string name="do_you_think_this_could_be"><![CDATA[Чи достатньо доказів, що підтверджують це <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -625,7 +619,7 @@
     <string name="must_be_connected_to_load_more_obs">Щоб завантажити більше спостережень ви повинні підключитися до інтернету</string>
     <string name="inat_about_title">iNaturalist це спільна ініціатива Каліфорнійської академії наук та Національного географічного товариства.</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -650,6 +644,7 @@
     <string name="project_observations">Спостереження</string>
     <string name="project_species">Види</string>
     <string name="project_people">Люди</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Ідентифікатори</string>
     <string name="got_it">Зрозуміло!</string>
     <string name="view_all">Переглянути все</string>
@@ -676,6 +671,8 @@
     <string name="annotation_name_sex">Стать</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">Живий або мертвий</string>
+    <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <string name="annotation_name_evidence_of_presence">Доказ присутності</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Цвітіння</string>
     <!-- Adjective, having fruit -->
@@ -709,6 +706,18 @@
     <string name="annotation_value_dead">Мертвий</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Неможливо визначити</string>
+    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <string name="annotation_value_organism">Організм</string>
+    <!-- Evidence of Presence value when for bird feathers -->
+    <string name="annotation_value_feather">Пір\'я</string>
+    <!-- Evidence of Presence value when for fecal remains -->
+    <string name="annotation_value_scat">Послід</string>
+    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <string name="annotation_value_track">Сліди</string>
+    <!-- Evidence of Presence value when for bones -->
+    <string name="annotation_value_bone">Кістка</string>
+    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <string name="annotation_value_molt">Линяння</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">ПРИЄДНАЛИСЯ ДО</string>
     <string name="nearby_projects_all_caps">НЕПОДАЛІК</string>
@@ -770,9 +779,12 @@
     <string name="network_credit_inaturalistil"><![CDATA[Ізраїль: Хайфський університет підтримує iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Фінляндія: Фінський природознавчий музей (LUOMUS) підтримує iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
     <string name="network_credit_inaturalistcl"><![CDATA[Чилі: Міністерство навколишнього середовища підтримує iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
-    <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
-    <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Греція: iSea підтримує iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Люксембург: Національний природничий музей Люксембургу (MnhnL) підтримує iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Сполучене Королівство: National Biodiversity Network Trust підтримує iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Коста-Рика: Comisión Nacional para la Gestión de la Biodisidad (CONAGEBIO) підтримує Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Гватемала: Consejo Nacional de Áreas Protegidas (CONAP) пітримує iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Швеція: SLU Шведський центр інформації щодо видів підтримує iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Помітити всі як переглянуті</string>
     <string name="content_hidden">Прихований вміст</string>
     <string name="show_hidden_content">Показувати прихований вміст</string>
@@ -786,8 +798,7 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Записати звук</string>
-    <string name="no_recorder_found">Чи не знайдено пристрій запису звуку за замовчуванням!</string>
-    <string name="couldnt_retrieve_sound">Не вдалося отримати звук із основного записувача - спробуйте натомість звук імпортувати</string>
+    <string name="couldnt_retrieve_sound">Не вдалося отримати звук із основного записувача. Натомість спробуйте імпортувати звук.</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Оберіть звук</string>
     <string name="multi_select_sound_description">Імпорт декількох аудіо шляхом довгого натискання на одне аудіо</string>
@@ -992,6 +1003,10 @@
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">МММ д, рррр</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">ММММ д, рррр гг:хх</string>
     <string name="show_common_names"> Показати звичайні назви</string>
     <string name="show_common_names_description">Вимкніть, якщо ви бажаєте бачити тільки наукові назви</string>
     <string name="email_must_look_like_email_address">Email має виглядати як адреса електронної пошти</string>
@@ -1006,12 +1021,12 @@
     <string name="filter_observations_by_months">Фільтрувати спостереження за місяцями</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="include_suggestions_not_seen_nearby">Include suggestions not seen nearby</string>
+    <string name="include_suggestions_not_seen_nearby">Включно з пропозиціями, які не спостерігали поблизу</string>
     <string name="only_view_nearby_suggestions">Переглянути лише пропозиції поблизу</string>
     <string name="suggestions_source">Джерела пропозицій</string>
     <string name="research_grade_observations">Дослідницький клас спостережень</string>
-    <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
-    <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will suggest species observed in a specific place and within a specific taxonomic group.</string>
+    <string name="visually_similar_description">iNaturalist надасть пропозиції, засновані на тому, наскільки візуально схожими є зображення для видів, які спостерігали поблизу цього місця в цей період року.</string>
+    <string name="research_grade_observations_description">Замість візуально схожих пропозицій, iNaturalist пропонуватиме види, які спостерігали в певному місці та в межах певної таксономічної групи.</string>
     <string name="taxon">Таксон:</string>
     <string name="place">Розташування:</string>
     <string name="pretty_sure_kingdom">Ми майже впевнені, що це відноситься до царства:</string>
@@ -1031,26 +1046,26 @@
     <string name="pretty_sure_zoosection">Ми майже впевнені, що це відноситься до зоосекції:</string>
     <string name="pretty_sure_zoosubsection">Ми майже впевнені, що це відноситься до зоопідсекції:</string>
     <string name="pretty_sure_superfamily">Ми майже впевнені, що це відноситься до надродини:</string>
-    <string name="pretty_sure_epifamily">We\'re pretty sure it\'s in this epifamily:</string>
-    <string name="pretty_sure_family">We\'re pretty sure it\'s in this family:</string>
-    <string name="pretty_sure_subfamily">We\'re pretty sure it\'s in this subfamily:</string>
-    <string name="pretty_sure_supertribe">We\'re pretty sure it\'s in this supertribe:</string>
-    <string name="pretty_sure_tribe">We\'re pretty sure it\'s in this tribe:</string>
-    <string name="pretty_sure_subtribe">We\'re pretty sure it\'s in this subtribe:</string>
-    <string name="pretty_sure_genus">We\'re pretty sure it\'s in this genus:</string>
-    <string name="pretty_sure_genushybrid">We\'re pretty sure it\'s in this genushybrid:</string>
-    <string name="pretty_sure_subgenus">We\'re pretty sure it\'s in this subgenus:</string>
-    <string name="pretty_sure_section">We\'re pretty sure it\'s in this section:</string>
-    <string name="pretty_sure_subsection">We\'re pretty sure it\'s in this subsection:</string>
-    <string name="pretty_sure_complex">We\'re pretty sure it\'s in this complex:</string>
+    <string name="pretty_sure_epifamily">Ми майже впевнені, що це належить до надродини:</string>
+    <string name="pretty_sure_family">Ми майже впевнені, що це належить до родини:</string>
+    <string name="pretty_sure_subfamily">Ми майже впевнені, що це належить до підродини:</string>
+    <string name="pretty_sure_supertribe">Ми майже впевнені, що це належить до надряду:</string>
+    <string name="pretty_sure_tribe">Ми майже впевнені, що це належить до триби:</string>
+    <string name="pretty_sure_subtribe">Ми майже впевнені, що це належить до підтриби:</string>
+    <string name="pretty_sure_genus">Ми майже впевнені, що це належить до роду:</string>
+    <string name="pretty_sure_genushybrid">Ми майже впевнені, що це належить до родового гібриду:</string>
+    <string name="pretty_sure_subgenus">Ми майже впевнені, що це належить до підроду:</string>
+    <string name="pretty_sure_section">Ми майже впевнені, що це належить до секції:</string>
+    <string name="pretty_sure_subsection">Ми майже впевнені, що це належить до підсекції:</string>
+    <string name="pretty_sure_complex">Ми майже впевнені, що це належить до комплексу:</string>
     <!-- Singular -->
-    <string name="pretty_sure_species">We\'re pretty sure it\'s in this species:</string>
-    <string name="pretty_sure_hybrid">We\'re pretty sure it\'s in this hybrid:</string>
+    <string name="pretty_sure_species">Ми майже впевнені, що це належить до виду:</string>
+    <string name="pretty_sure_hybrid">Ми майже впевнені, що це належить до гібриду:</string>
     <!-- Singular -->
-    <string name="pretty_sure_subspecies">We\'re pretty sure it\'s in this subspecies:</string>
-    <string name="pretty_sure_variety">We\'re pretty sure it\'s in this variety:</string>
-    <string name="pretty_sure_form">We\'re pretty sure it\'s in this form:</string>
-    <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
+    <string name="pretty_sure_subspecies">Ми майже впевнені, що це належить до підвиду:</string>
+    <string name="pretty_sure_variety">Ми майже впевнені, що це належить до різновиду:</string>
+    <string name="pretty_sure_form">Ми майже впевнені, що це належить до форми:</string>
+    <string name="pretty_sure_infrahybrid">Ми майже впевнені, що це належить до інфрагібриду:</string>
     <string name="remove_date_observed">Видалити дату та час спостереження</string>
     <string name="remove_time_observed">Видаляти час спостереження</string>
     <string name="remove_location">Видалити розташування</string>
@@ -1058,109 +1073,173 @@
     <string name="are_you_sure_you_want_to_remove_time">Ви впевнені, що хочете видалити час спостереження?</string>
     <string name="are_you_sure_you_want_to_remove_location">Ви впевнені, що хочете видалити розташування?</string>
     <string name="share_location">Поділитися розташуванням</string>
-    <string name="share_hidden_location">Share Hidden Location</string>
+    <string name="share_hidden_location">Поділитися прихованим розташуванням</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Не вдалося продублювати звук!</string>
-    <string name="sound_format_not_supported">That audio encoding is not supported by Android.</string>
-    <string name="view_observations">View Observations</string>
-    <string name="choose_this_option">Choose this option</string>
-    <string name="compare_observation_with_this_option">Compare observation with this option</string>
-    <string name="go_back">Go back</string>
-    <string name="change_the_source_of_the_suggestions">Change the source of the suggestions</string>
-    <string name="thumbnail_photo_for_suggested_taxon">Thumbnail photo for suggested taxon</string>
+    <string name="sound_format_not_supported">Це кодування аудіофайлів не підтримується Android.</string>
+    <string name="view_observations">Переглянути спостереження</string>
+    <string name="choose_this_option">Обрати цей варіант</string>
+    <string name="compare_observation_with_this_option">Порівняти спостереження з цим варіантом</string>
+    <string name="go_back">Назад</string>
+    <string name="change_the_source_of_the_suggestions">Змінити джерело пропозицій</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Мініатюра зображення для запропонованого таксону</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
-    <string name="comments_ids_title">Comments and Identifications</string>
+    <string name="comments_ids_title">Коментарі та визначення</string>
     <!-- Accessibility text for the faves tab on the observation detail view -->
-    <string name="faves">Faves</string>
+    <string name="faves">Уподобані</string>
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
-    <string name="previous_option">Previous Option</string>
+    <string name="previous_option">Попередній варіант</string>
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
-    <string name="next_option">Next Option</string>
-    <string name="no_observations_yet2">No observations yet.</string>
-    <string name="no_species_yet">No species yet.</string>
-    <string name="no_identifications_yet">No identifications yet.</string>
-    <string name="sort_by">Sort By</string>
+    <string name="next_option">Наступний варіант</string>
+    <string name="no_observations_yet2">Поки що спостережень немає.</string>
+    <string name="no_species_yet">Поки що видів немає.</string>
+    <string name="no_identifications_yet">Поки що немає визначень.</string>
+    <string name="sort_by">Сортувати за</string>
     <string-array name="explore_order_by_items">
-        <item>Date Added</item>
-        <item>Date Observed</item>
-        <item>Date Updated</item>
+        <item>Дата додавання</item>
+        <item>Дата спостереження</item>
+        <item>Дата оновлення</item>
         <!--<item>Faves</item>-->
-        <item>Random</item>
+        <item>Випадковий вибір</item>
     </string-array>
     <string-array name="explore_order_items">
-        <item>Descending</item>
-        <item>Ascending</item>
+        <item>За спаданням</item>
+        <item>За зростанням</item>
     </string-array>
     <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
     See explore_order_by_items and explore_order_items keys !-->
-    <string name="sorted_by_full">Sorted by %1$s (%2$s)</string>
+    <string name="sorted_by_full">Відсортовано за %1$s (%2$s)</string>
     <!-- Label for an observation search filter to exclude your own observations -->
-    <string name="hide_my_observations">Hide My Observations</string>
+    <string name="hide_my_observations">Приховати мої спостереження</string>
     <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
-    <string name="follow_this_observation">Follow this Observation</string>
+    <string name="follow_this_observation">Стежити за цим спостереженням</string>
     <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
-    <string name="unfollow_this_observation">Unfollow this Observation</string>
+    <string name="unfollow_this_observation">Не стежити за цим спостереженням</string>
     <!-- Error message shown when an attempt to follow an observation fails -->
-    <string name="could_not_follow_observation">Could not follow this observation</string>
+    <string name="could_not_follow_observation">Не вдалося відстежити це спостереження</string>
     <!-- Error message shown when an attempt to unfollow an observation fails -->
-    <string name="could_not_unfollow_observation">Could not unfollow this observation</string>
+    <string name="could_not_unfollow_observation">Не вдалося припинити відстежувати це спостереження</string>
     <!-- Label for a button to copy the coordinates of an observation -->
-    <string name="copy_coordinates">Copy coordinates</string>
-    <string name="coordinates_copied_to_clipboard">Coordinates copied to clipboard</string>
+    <string name="copy_coordinates">Копіювати координати</string>
+    <string name="coordinates_copied_to_clipboard">Координати скопійовані в буфер обміну</string>
     <!--  Title of a section on the observation detail view that displays minor metadata  -->
-    <string name="metadata">Metadata</string>
+    <string name="metadata">Метадані</string>
     <!--  iNat observation identifier  -->
     <string name="id">ID</string>
     <!--  iNat observation Universally Unique Identifier  -->
     <string name="uuid">UUID</string>
     <!--  Universal Resource Locator  -->
     <string name="url">URL</string>
-    <string name="default_licenses">Default Licenses</string>
-    <string name="default_observation_license">Default Observation License</string>
-    <string name="default_photo_license">Default Photo License</string>
-    <string name="default_sound_license">Default Sound License</string>
-    <string name="change_licenses_for_existing_observations">Change licenses for existing observations, photos and sounds</string>
-    <string name="change_licenses_for_all_existing_observations">Change licenses for all existing observations</string>
-    <string name="change_licenses_for_all_existing_photos">Change licenses for all existing photos</string>
-    <string name="change_licenses_for_all_existing_sounds">Change licenses for all existing sounds</string>
-    <string name="change_observation_licenses">Change Observation Licenses</string>
-    <string name="change_photo_licenses">Change Photo Licenses</string>
-    <string name="change_sound_licenses">Change Sound Licenses</string>
-    <string name="change_licenses_for_observations_confirmation"><![CDATA[Change the licenses of <b>%1$d</b> existing observations to <b>%2$s</b>?]]></string>
-    <string name="change_licenses_for_photos_confirmation"><![CDATA[Change the licenses of existing photos to <b>%1$s</b>?]]></string>
-    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Change the licenses of existing sounds to <b>%1$s</b>?]]></string>
-    <string name="observation_licenses_updated">Observation Licenses Updated</string>
-    <string name="photo_licenses_updated">Photo Licenses Updated</string>
-    <string name="sound_licenses_updated">Sound Licenses Updated</string>
-    <string name="existing_observation_licenses_have_been_updated">All existing observation licenses have been changed to %1$s.</string>
-    <string name="existing_photo_licenses_have_been_updated">All existing photo licenses have been changed to %1$s.</string>
-    <string name="existing_sound_licenses_have_been_updated">All existing sound licenses have been changed to %1$s.</string>
-    <string name="default_licenses_description"><![CDATA[Licensing your content gives anyone the legal right to use it without asking your permission if they abide by the terms of the license. In addition, iNat includes your Creative Commons-licensed content in regularly-updated archives produced for select partner organizations interested in our data. For example, we include No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC) records in the archive we generate for the <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, an international, inter-governmental organization that compiles and distributes biodiversity information from around the world.]]></string>
-    <string name="photo_license">Photo License</string>
-    <string name="edit_photo_license">Edit Photo License</string>
+    <string name="default_licenses">Типові ліцензії</string>
+    <string name="default_observation_license">Типова ліцензія на спостереження</string>
+    <string name="default_photo_license">Типова ліцензія на фото</string>
+    <string name="default_sound_license">Типова ліцензія на аудіо</string>
+    <string name="change_existing_licenses">Змінити чинну ліцензію</string>
+    <string name="change_licenses_for_existing_observations">Змінити ліцензії для наявних спостережень, фото і звуків</string>
+    <string name="change_licenses_for_all_existing_observations">Змінити ліцензії для всіх наявних спостережень</string>
+    <string name="change_licenses_for_all_existing_photos">Змінити ліцензії для всіх наявних фото</string>
+    <string name="change_licenses_for_all_existing_sounds">Змінити ліцензії для всіх наявних звукозаписів</string>
+    <string name="change_observation_licenses">Змінити ліцензії спостережень</string>
+    <string name="change_photo_licenses">Змінити ліцензії фото</string>
+    <string name="change_sound_licenses">Змінити ліцензії звукозаписів</string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[Змінити ліцензію <b>%1$d</b> наявного спостереження на <b>%2$s</b>?]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[Змінити ліцензії наявних фото на <b>%1$s</b>?]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Змінити ліцензії наявних звукозаписів на <b>%1$s</b>?]]></string>
+    <string name="observation_licenses_updated">Ліцензії спостережень оновлено</string>
+    <string name="photo_licenses_updated">Ліцензії фото оновлено</string>
+    <string name="sound_licenses_updated">Ліцензії звукозаписів оновлено</string>
+    <string name="existing_observation_licenses_have_been_updated">Всі наявні ліцензії спостережень були змінені на %1$s.</string>
+    <string name="existing_photo_licenses_have_been_updated">Всі наявні ліцензії фото були змінені на %1$s.</string>
+    <string name="existing_sound_licenses_have_been_updated">Всі наявні ліцензії звукозаписів були змінені на %1$s.</string>
+    <string name="default_licenses_description"><![CDATA[Ліцензування вашого доробку дає усім законне право використовувати його без запиту вашого дозволу, за умови, що вони дотримуються умов ліцензії. Крім того, iNat долучає ваш доробок, ліцензований Creative Commons, до регулярно оновлюваних архівів, які створюються для деяких партнерських організацій, які цікавляться нашими даними. Наприклад, ми включаємо записи, ліцензовані як "Без авторського права" (CC0), "Із зазначенням авторства" (CC BY) та "Із зазначенням авторства - некомерційна" (CC BY-NC) в архів, який ми створюємо для <a href="http://www.gbif.org/"> Глобальної інформаційної системи з біорізноманіття</a> (GBIF) - міжнародної міжурядової організації, яка збирає та поширює інформацію про біорізноманіття з усього світу.]]></string>
+    <string name="photo_license">Ліцензія фото</string>
+    <string name="sound_license">Ліцензія звукозаписів</string>
+    <string name="edit_photo_license">Редагувати ліцензію фото</string>
     <string name="observation_license">Ліцензія спостереження</string>
     <string name="edit_observation_license">Редагувати ліцензію спостереження</string>
     <string name="about_licenses">Про ліцензії</string>
     <string name="view_license">Переглянути ліцензію</string>
     <!-- License Names -->
     <string name="license_name_cc0">Суспільне надбання</string>
-    <string name="license_name_cc_by">Attribution</string>
-    <string name="license_name_cc_by_nc">Attribution-NonCommercial</string>
-    <string name="license_name_cc_by_nc_sa">Attribution-NonCommercial-ShareAlike</string>
-    <string name="license_name_cc_by_nc_nd">Attribution-NonCommercial-NoDerivs</string>
-    <string name="license_name_cc_by_nd">Attribution-NoDerivs</string>
-    <string name="license_name_cc_by_sa">Attribution-ShareAlike</string>
+    <string name="license_name_cc_by">Із зазначенням авторства</string>
+    <string name="license_name_cc_by_nc">Із зазначенням авторства - некомерційна</string>
+    <string name="license_name_cc_by_nc_sa">Із зазначенням авторства - некомерційна - розповсюдження на тих самих умовах</string>
+    <string name="license_name_cc_by_nc_nd">Із зазначенням авторства - некомерційна - без похідних творів</string>
+    <string name="license_name_cc_by_nd">Із зазначенням авторства - без похідних творів</string>
+    <string name="license_name_cc_by_sa">Із зазначенням автора - Розповсюдження на тих самих умовах</string>
     <string name="license_name_no_license">Всі права захищені</string>
     <!-- License Descriptions -->
-    <string name="license_description_cc0">This license releases your work into the public domain, so others can copy, modify, distribute and perform your work, even for commercial purposes, all without asking permission or giving you credit. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.</string>
-    <string name="license_description_cc_by">This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation.</string>
-    <string name="license_description_cc_by_nc">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
-    <string name="license_description_cc_by_nc_sa">This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms.</string>
-    <string name="license_description_cc_by_nc_nd">This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can\'t change them in any way or use them commercially.</string>
-    <string name="license_description_cc_by_nd">This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.</string>
-    <string name="license_description_cc_by_sa">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
-    <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
+    <string name="license_description_cc0">Ця ліцензія робить вашу роботу загальним надбанням, відтак інші можуть копіювати, змінювати, поширювати і виконувати вашу роботу, навіть для комерційних цілей, не питаючи вашого дозволу та не посилаючись на вас. Це найліберальніша серед запропонованих ліцензій. Рекомендується для максимального поширення і використання ліцензованих матеріалів.</string>
+    <string name="license_description_cc_by">Ця ліцензія дозволяє іншим розповсюджувати, редагувати, вносити зміни, і брати за основу для своїх продуктів вашу працю, навіть для використання з комерційною метою, за умови зазначення вашого авторства.</string>
+    <string name="license_description_cc_by_nc">Ця ліцензія дозволяє іншим редагувати, вносити зміни, і брати за основу для своїх творів вашу працю (за умови некомерційного використання), і хоча в похідних творах ви повинні бути зазначені як автор оригінальної праці, і вони повинні бути некомерційними, автори похідних творів не зобов\'язані ліцензувати свої твори на тих самих умовах, що й ваш твір.</string>
+    <string name="license_description_cc_by_nc_sa">Ця ліцензія дозволяє іншим редагувати, вносити зміни, і брати за основу для своїх творів вашу працю некомерційним чином допоки автори похідних творів вказують вас як автора оригіналу і ліцензують свої твори на тих самих умовах.</string>
+    <string name="license_description_cc_by_nc_nd">Ця ліцензія надає користувачам найменший обсяг прав, дозволяючи їм тільки скачувати ваші твори і ділитися ними з іншими поки вони зазначають ваше авторство, але ваш твір не дозволяється використовувати в комерційних цілях або якимось чином змінювати.</string>
+    <string name="license_description_cc_by_nd">Ця ліцензія дозволяє розповсюдження, комерційне і некомерційне, допоки твір передається цілим і в незмінному вигляді, та з зазначенням вашого авторства.</string>
+    <string name="license_description_cc_by_sa">Ця ліцензія дозволяє іншим редагувати, адаптувати й використовувати за основу у своїх творах вашу роботу навіть для комерційних цілей, допоки вони посилаються на вас як автора і ліцензують свої нові твори на ідентичних умовах. Цю ліцензію часто порівнюють з ліцензіями «copyleft» на вільні програми з відкритим вихідним кодом. Всі нові твори на основі вашої праці будуть мати однакову ліцензію, тому будь-які похідні також дозволятимуть комерційне використання. Це ліцензія, яка використовується Вікіпедією, і рекомендується для матеріалів, які будуть отримувати вигоду від включення вмісту з Вікіпедії й аналогічно ліцензованих проєктів.</string>
+    <string name="license_description_no_license">Ви зберігаєте повні авторські права на ваш вміст, окрім тих, які передано iNaturalist згідно з нашими Умовами надання послуг.</string>
     <string name="invalid_photo">Формат фото не підтримується</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">Пропозиції, засновані на спостереженнях та ідентифікаціях, які надаються спільнотою iNaturalist, включаючи %1$s, %2$s, %3$s та багато інших.</string>
+    <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">Типова дія над спостереженням</string>
+    <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">Показати варіанти</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Значення поля</string>
+    <string name="expand_annotation_to_agree_or_disagree">Розгорніть анотацію, щоб погодитись або не погодитись</string>
+    <string name="delete_attribute_value">Видалити значення атрибута</string>
+    <string name="open_menu_for_more_options">Відкрити меню додаткових опцій</string>
+    <string name="change_user_profile_photo">Змінити фото профілю</string>
+    <string name="expand_list">Розгорнути список</string>
+    <string name="change_map_layers">Змінити шар мапи (рельєф - супутник)</string>
+    <string name="redo_observation_search">Повторно виконати пошук спостережень у цій області мапи</string>
+    <string name="view_observations_on_map">Переглянути спостереження на мапі</string>
+    <string name="view_observations_on_grid">Переглянути спостереження за сіткою</string>
+    <string name="clear_text">Видалити текст</string>
+    <string name="observation_has_sounds">Спостереження має звуки</string>
+    <string name="go_to_my_location">Перейти до мого поточного розташування</string>
+    <string name="change_geoprivacy">Змінити налаштування конфіденційності геоданих</string>
+    <string name="active_filters">Активні фільтри</string>
+    <string name="message_is_flagged">Повідомлення позначено прапорцем</string>
+    <string name="user_is_muted">Користувача заглушено</string>
+    <string name="cancel_multiple_obs_selection">Скасувати вибір декількох спостережень</string>
+    <string name="delete_observations">Видалити спостереження</string>
+    <string name="comment_count">Кількість коментарів</string>
+    <string name="id_count">Кількість визначень</string>
+    <string name="observation_selected">Спостереження вибрано</string>
+    <string name="share_observation">Поділитися спостереженням</string>
+    <string name="unknown_location">Невідоме місцерозташування</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Закрити</string>
+    <string name="set_date2">Встановити дату</string>
+    <string name="project_selected">Проєкт вибрано</string>
+    <string name="project_unselected">Проєкт не вибрано</string>
+    <string name="show_my_observations">Показати мої спостереження</string>
+    <string name="play_pause_sound">Відтворити або призупинити звукозапис</string>
+    <string name="california_academy_of_sciences_and_national_geographic">Каліфорнійська академія наук і Національне географічне товариство</string>
+    <string name="view_image">Показати зображення</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Пройшло оцінку</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Погодитися з оцінкою</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Не проходять оцінку</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Не погодитися з оцінкою</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Видалити %1$d обране спостереження</item>
+        <item quantity="few">Видалити %1$d обрані спостереження</item>
+        <item quantity="many">Видалити %1$d обраних спостережень</item>
+        <item quantity="other">Видалити %1$d обраних спостережень</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Синхронізувати %1$d обране спостереження</item>
+        <item quantity="few">Синхронізувати %1$d вибрані спостереження</item>
+        <item quantity="many">Синхронізувати %1$d вибраних спостережень</item>
+        <item quantity="other">Синхронізувати %1$d вибраних спостережень</item>
+    </plurals>
+    <string name="add_media_evidence">Додати документальні свідчення</string>
+    <string name="remove_identification">Видалити визначення</string>
+    <string name="issue_with_updating_photos">При оновленні фото в цьому спостереженні виникла помилка, яку нещодавно було виправлено. Будь ласка, вийдіть і увійдіть в систему знову, щоб розв\'язати цю проблему.</string>
+    <string name="app_version_copied_to_clipboard">Версія додатку скопійована до буферу обміну</string>
 </resources>

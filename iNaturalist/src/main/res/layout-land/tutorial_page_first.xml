@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="32dp"
-    android:paddingRight="32dp"
+    android:paddingStart="32dp"
+    android:paddingEnd="32dp"
     android:background="#EFEFEF"
     android:orientation="vertical" >
 
@@ -16,6 +16,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:scaleType="fitCenter"
+        android:contentDescription="@string/app_title"
         android:src="@drawable/slide_logo" />
 
     <TextView
@@ -48,5 +49,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="26dp"
         android:scaleType="fitStart"
+        android:contentDescription="@string/california_academy_of_sciences_and_national_geographic"
         android:src="@drawable/slide_branding" />
 </RelativeLayout>

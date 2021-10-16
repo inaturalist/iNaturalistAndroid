@@ -103,7 +103,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
 	@State public double mLongitude;
 	private boolean mZoomToLocation = false;
 	private LocationManager mLocationManager;
-	@State public double mAccuracy;
+	@State public Double mAccuracy;
     private ActivityHelper mHelper;
     @State public String mIconicTaxonName;
     private ImageView mObservationsMapMyLocation;
@@ -124,6 +124,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
     private TextView mActionBarLatitude;
     private TextView mActionBarLongtitude;
     private TextView mActionBarAccuracy;
+    private TextView mActionBarAccuracyPrefix;
     private Handler mHandler;
     private AutocompleteSessionToken mAutoCompleteToken;
     private PlacesClient mPlacesClient;
@@ -169,7 +170,8 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         if (savedInstanceState == null) {
             mLongitude = getIntent().getDoubleExtra(LONGITUDE, 0);
             mLatitude = getIntent().getDoubleExtra(LATITUDE, 0);
-            mAccuracy = getIntent().getDoubleExtra(ACCURACY, 0);
+            mAccuracy = getIntent().getDoubleExtra(ACCURACY, -1);
+            if (mAccuracy == -1) mAccuracy = null;
             mIconicTaxonName = getIntent().getStringExtra(ICONIC_TAXON_NAME);
             mPlaceGuess = getIntent().getStringExtra(PLACE_GUESS);
 
@@ -193,6 +195,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         mActionBarLatitude = (TextView) actionBar.getCustomView().findViewById(R.id.latitude);
         mActionBarLongtitude = (TextView) actionBar.getCustomView().findViewById(R.id.longitude);
         mActionBarAccuracy = (TextView) actionBar.getCustomView().findViewById(R.id.accuracy);
+        mActionBarAccuracyPrefix = (TextView) actionBar.getCustomView().findViewById(R.id.accuracy_prefix);
         mActionBarGeoprivacy = (TextView) actionBar.getCustomView().findViewById(R.id.geoprivacy);
 
         refreshActionBar();
@@ -515,7 +518,14 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         mActionBarPlaceGuess.setText(mGeodecodingPlaceName ? getString(R.string.loading) : ((mPlaceGuess == null || mPlaceGuess.length() == 0) ? getString(R.string.location) : mPlaceGuess));
         mActionBarLatitude.setText(String.format("%.2f", mLatitude));
         mActionBarLongtitude.setText(String.format("%.2f", mLongitude));
-        mActionBarAccuracy.setText(String.format("%d", (int)mAccuracy));
+        if (mAccuracy == null) {
+            mActionBarAccuracy.setVisibility(View.GONE);
+            mActionBarAccuracyPrefix.setVisibility(View.GONE);
+        } else {
+            mActionBarAccuracy.setText(String.format("%d", mAccuracy.intValue()));
+            mActionBarAccuracy.setVisibility(View.VISIBLE);
+            mActionBarAccuracyPrefix.setVisibility(View.VISIBLE);
+        }
         mActionBarGeoprivacy.setText(String.format(getString(R.string.geoprivacy_with_value), mGeoprivacySpinner.getSelectedItem()));
     }
 
@@ -623,8 +633,8 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
             // Make enough room for the accuracy circle
             LatLngBounds.Builder builder = new LatLngBounds.Builder();
             LatLng center = new LatLng(mLatitude, mLongitude);
-            LatLng rightPoint = computeOffset(center, mAccuracy, 90);
-            LatLng leftPoint = computeOffset(center, mAccuracy, 270);
+            LatLng rightPoint = computeOffset(center, mAccuracy != null ? mAccuracy : 0, 90);
+            LatLng leftPoint = computeOffset(center, mAccuracy != null ? mAccuracy : 0, 270);
             builder.include(center);
             builder.include(leftPoint);
             builder.include(rightPoint);
@@ -647,7 +657,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
 
             if (mZoomToLocation) {
                 if (mMap != null) {
-                    new Handler().postDelayed(() -> mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, (int) (screenWidth * 0.3)), callback), 100);
+                    new Handler().postDelayed(() -> mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, (int) ((isPortrait ? screenWidth : screenHeight) * 0.3)), callback), 100);
                 }
         		mZoomToLocation = false;
         	} else {
@@ -748,7 +758,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         if ((mOriginalZoom == null) || (!mOriginalZoom.equals(mMap.getCameraPosition().zoom))) {
             float[] results = new float[3];
             Location.distanceBetween(leftSide.latitude, leftSide.longitude, rightSide.latitude, rightSide.longitude, results);
-            mAccuracy = results[0];
+            mAccuracy = Double.valueOf(results[0]);
             Logger.tag(TAG).info("Meters per radius = " + mAccuracy);
         }
 
@@ -777,7 +787,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
 
                 bundle.putDouble(LATITUDE, mLatitude);
                 bundle.putDouble(LONGITUDE, mLongitude);
-                bundle.putDouble(ACCURACY, mAccuracy);
+                if (mAccuracy != null) bundle.putDouble(ACCURACY, mAccuracy);
                 int position = mGeoprivacySpinner.getSelectedItemPosition();
                 bundle.putString(GEOPRIVACY, (String) values.get(position == -1 ? 0 : position));
                 bundle.putString(PLACE_GUESS, mPlaceGuess);
@@ -1128,11 +1138,12 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
 
         // Calculate zoom level based on accuracy
 
-        mAccuracy = location.getAccuracy();
+        mAccuracy = Double.valueOf(location.getAccuracy());
 
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         int screenWidth = metrics.widthPixels;
+        int screenHeight = metrics.heightPixels;
 
         // Make enough room for the accuracy circle
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
@@ -1144,7 +1155,9 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         builder.include(rightPoint);
         LatLngBounds bounds = builder.build();
 
-        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, (int) (screenWidth * 0.3)),
+        boolean isPortrait = (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT);
+
+        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, (int) ((isPortrait ? screenWidth : screenHeight) * 0.3)),
                 1000,
                 new GoogleMap.CancelableCallback() {
                     @Override

@@ -1,618 +1,647 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="#F2F2F2"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+    </data>
 
-    <LinearLayout
-        android:id="@+id/apply_filters_container"
-        android:orientation="horizontal"
+    <RelativeLayout
+        xmlns:bind="http://schemas.android.com/apk/res-auto"
+        android:background="#F2F2F2"
         android:layout_width="match_parent"
-        android:layout_alignParentBottom="true"
-        android:background="#ffffff"
-        android:gravity="center"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:layout_height="58dp">
-        <Button
-            android:id="@+id/apply_filters"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:textColor="#ffffff"
-            android:background="@drawable/circular_button"
-            android:text="@string/apply_filters"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp" />
-    </LinearLayout>
-
-
-    <ScrollView
-        android:layout_alignParentTop="true"
-        android:layout_above="@id/apply_filters_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:orientation="vertical"
+            android:id="@+id/apply_filters_container"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_height="58dp">
+            <Button
+                android:id="@+id/apply_filters"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:textColor="#ffffff"
+                android:background="@drawable/circular_button"
+                android:text="@string/apply_filters"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp" />
+        </LinearLayout>
+
+
+        <ScrollView
+            android:layout_alignParentTop="true"
+            android:layout_above="@id/apply_filters_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:background="#E7E7E7"
-                android:id="@+id/taxonic_icons"
-                android:paddingStart="6dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:ignore="RtlSymmetry" />
-
-            <RelativeLayout
-                android:id="@+id/show_my_observations"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <View
-                    android:id="@+id/show_my_observations_checkbox"
-                    android:background="@drawable/inat_checkbox"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@id/show_my_observations_checkbox"
-                    android:text="@string/show_only_my_observations"
-                    android:layout_alignParentStart="true"
-                    android:textSize="16sp"
-                    android:textColor="#000000"
-                    android:labelFor="@id/show_my_observations_checkbox"
-                    />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/hide_my_observations"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <View
-                    android:id="@+id/hide_my_observations_checkbox"
-                    android:background="@drawable/inat_checkbox"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@id/hide_my_observations_checkbox"
-                    android:text="@string/hide_my_observations"
-                    android:layout_alignParentStart="true"
-                    android:textSize="16sp"
-                    android:textColor="#000000"
-                    android:labelFor="@id/hide_my_observations_checkbox"
-                    />
-
-            </RelativeLayout>
-
-
-            <RelativeLayout
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/project_pic"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentStart="true"
-                    android:src="@drawable/ic_work_black_24dp"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:importantForAccessibility="no"
-                    />
-
-                <ImageView
-                    android:id="@+id/clear_project"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_clear_white_48dp"
-                    android:tint="#61000000"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentEnd="true"
-                    android:contentDescription="@string/remove_project_filter"
-                    />
-                <TextView
-                    android:id="@+id/project_name"
-                    android:hint="@string/project"
-                    android:textSize="16sp"
-                    android:lines="1"
-                    android:ellipsize="end"
-                    android:textColor="#000000"
-                    android:layout_toEndOf="@id/project_pic"
-                    android:layout_toStartOf="@id/clear_project"
-                    android:layout_marginStart="10dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginBottom="20dp"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:background="#E7E7E7"
+                    android:id="@+id/taxonic_icons"
+                    android:paddingStart="6dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    />
+                    tools:ignore="RtlSymmetry" />
 
-                <View
-                    android:background="#61000000"
-                    android:layout_alignParentBottom="true"
+                <RelativeLayout
+                    android:id="@+id/show_my_observations"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/user_pic"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentStart="true"
-                    android:src="@drawable/ic_person_black_24dp"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:importantForAccessibility="no"
-                    />
-
-                <ImageView
-                    android:id="@+id/clear_user"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_clear_white_48dp"
-                    android:tint="#61000000"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentEnd="true"
-                    android:contentDescription="@string/remove_observer_filter"
-                    />
-                <TextView
-                    android:id="@+id/user_name"
-                    android:hint="@string/user"
-                    android:textSize="16sp"
-                    android:lines="1"
-                    android:ellipsize="end"
-                    android:layout_toEndOf="@id/user_pic"
-                    android:layout_toStartOf="@id/clear_user"
-                    android:layout_marginStart="10dp"
-                    android:textColor="#000000"
-                    android:layout_centerVertical="true"
-                    android:layout_marginBottom="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-
-                <View
-                    android:background="#61000000"
-                    android:layout_alignParentBottom="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp" />
-
-            </RelativeLayout>
-
-            <View
-                android:layout_marginTop="25dp"
-                android:layout_marginBottom="20dp"
-                android:background="#1F000000"
-                android:layout_width="match_parent"
-                android:layout_height="1dp" />
-
-            <TextView
-                android:text="@string/quality_grade"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#61000000"
-                android:layout_marginBottom="10dp"
-                android:layout_marginStart="16dp"
-                />
-
-            <RelativeLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <View
-                    android:id="@+id/research_grade_checkbox"
-                    android:background="@drawable/inat_checkbox"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@id/research_grade_checkbox"
-                    android:text="@string/research_grade"
-                    android:layout_alignParentStart="true"
-                    android:textSize="16sp"
-                    android:textColor="#000000"
-                    android:labelFor="@id/research_grade_checkbox"
-                    />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <View
-                    android:id="@+id/needs_id_checkbox"
-                    android:background="@drawable/inat_checkbox"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@id/needs_id_checkbox"
-                    android:text="@string/needs_id"
-                    android:layout_alignParentStart="true"
-                    android:textSize="16sp"
-                    android:textColor="#000000"
-                    android:labelFor="@id/needs_id_checkbox"
-                    />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <View
-                    android:id="@+id/casual_grade_checkbox"
-                    android:background="@drawable/inat_checkbox"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@id/casual_grade_checkbox"
-                    android:text="@string/casual_grade"
-                    android:layout_alignParentStart="true"
-                    android:textSize="16sp"
-                    android:textColor="#000000"
-                    android:labelFor="@id/casual_grade_checkbox"
-                    />
-
-            </RelativeLayout>
-
-            <View
-                android:layout_marginTop="25dp"
-                android:layout_marginBottom="20dp"
-                android:background="#1F000000"
-                android:layout_width="match_parent"
-                android:layout_height="1dp" />
-
-            <TextView
-                android:text="@string/content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#61000000"
-                android:layout_marginBottom="10dp"
-                android:layout_marginStart="16dp"
-                />
-
-
-            <RelativeLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <View
-                    android:id="@+id/has_photos_checkbox"
-                    android:background="@drawable/inat_checkbox"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@id/has_photos_checkbox"
-                    android:labelFor="@id/has_photos_checkbox"
-                    android:text="@string/has_photos"
-                    android:textColor="#000000"
-                    android:textSize="16sp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <View
-                    android:id="@+id/has_sounds_checkbox"
-                    android:background="@drawable/inat_checkbox"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@id/has_sounds_checkbox"
-                    android:text="@string/has_sounds"
-                    android:layout_alignParentStart="true"
-                    android:textSize="16sp"
-                    android:textColor="#000000"
-                    android:labelFor="@id/has_sounds_checkbox"
-                    />
-
-            </RelativeLayout>
-
-
-            <View
-                android:layout_marginTop="25dp"
-                android:layout_marginBottom="20dp"
-                android:background="#1F000000"
-                android:layout_width="match_parent"
-                android:layout_height="1dp" />
-
-            <TextView
-                android:text="@string/date_observed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#61000000"
-                android:layout_marginBottom="10dp"
-                android:layout_marginStart="16dp"
-                />
-
-            <RadioGroup
-                android:id="@+id/dates"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-
-                <LinearLayout
-                    android:orientation="horizontal" android:layout_width="wrap_content"
-                    android:layout_marginBottom="10dp"
                     android:layout_height="wrap_content">
-                    <RadioButton
-                        android:id="@+id/option_date_any"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        />
+
+                    <CheckBox
+                        android:id="@+id/show_my_observations_checkbox"
+                        android:checked="false"
+                        android:button="@drawable/custom_checkbox_gray_border"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp" />
 
                     <TextView
-                        android:id="@+id/date_any"
+                        android:id="@+id/show_my_observations_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@id/show_my_observations_checkbox"
+                        android:text="@string/show_only_my_observations"
+                        android:layout_alignParentStart="true"
+                        android:textSize="16sp"
                         android:textColor="#000000"
+                        android:labelFor="@id/show_my_observations_checkbox"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/hide_my_observations"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:id="@+id/hide_my_observations_checkbox"
+                        android:button="@drawable/custom_checkbox_gray_border"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp" />
+
+                    <TextView
+                        android:id="@+id/hide_my_observations_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@id/hide_my_observations_checkbox"
+                        android:text="@string/hide_my_observations"
+                        android:layout_alignParentStart="true"
                         android:textSize="16sp"
-                        android:text="@string/any"
-                        android:layout_marginStart="12dp"
-                        android:labelFor="@id/option_date_any"
+                        android:textColor="#000000"
+                        android:labelFor="@id/hide_my_observations_checkbox"
                         />
-                </LinearLayout>
 
-                <LinearLayout
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal" android:layout_width="match_parent"
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <RadioButton
-                        android:id="@+id/option_date_exact"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/filter_observations_by_an_exact_date"
+
+                    <ImageView
+                        android:id="@+id/project_pic"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:src="@drawable/ic_work_black_24dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:importantForAccessibility="no"
                         />
 
-                    <Spinner
-                        android:id="@+id/date_exact"
+                    <ImageButton
+                        android:id="@+id/clear_project"
+                        bind:increaseTouch='@{80}'
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_clear_white_48dp"
+                        android:tint="#61000000"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:contentDescription="@string/remove_project_filter"
+                        android:background="@android:color/transparent"
+                        android:scaleType="fitCenter"
+                        />
+                    <TextView
+                        android:id="@+id/project_name"
+                        android:hint="@string/project"
+                        android:textSize="16sp"
+                        android:lines="1"
+                        android:ellipsize="end"
+                        android:textDirection="locale"
+                        android:textColor="#000000"
+                        android:layout_toEndOf="@id/project_pic"
+                        android:layout_toStartOf="@id/clear_project"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="20dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        />
 
-                </LinearLayout>
+                    <View
+                        android:background="#61000000"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp" />
 
-                <LinearLayout
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal" android:layout_width="match_parent"
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <RadioButton
-                        android:id="@+id/option_date_min_max"
+
+                    <ImageView
+                        android:id="@+id/user_pic"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:src="@drawable/ic_person_black_24dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:importantForAccessibility="no"
+                        />
+
+                    <ImageButton
+                        android:id="@+id/clear_user"
+                        bind:increaseTouch='@{80}'
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_clear_white_48dp"
+                        android:tint="#61000000"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:contentDescription="@string/remove_observer_filter"
+                        android:background="@android:color/transparent"
+                        android:scaleType="fitCenter"
+                        />
+                    <TextView
+                        android:id="@+id/user_name"
+                        android:hint="@string/user"
+                        android:textSize="16sp"
+                        android:lines="1"
+                        android:ellipsize="end"
+                        android:textDirection="locale"
+                        android:layout_toEndOf="@id/user_pic"
+                        android:layout_toStartOf="@id/clear_user"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:textColor="#000000"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+
+                    <View
+                        android:background="#61000000"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="#1F000000"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp" />
+
+                <TextView
+                    android:text="@string/quality_grade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#61000000"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="16dp"
+                    />
+
+                <RelativeLayout
+                    android:id="@+id/research_grade"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:id="@+id/research_grade_checkbox"
+                        android:button="@drawable/custom_checkbox_gray_border"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp" />
+
+                    <TextView
+                        android:id="@+id/research_grade_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:contentDescription="@string/filter_observations_by_a_date_range"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@id/research_grade_checkbox"
+                        android:text="@string/research_grade"
+                        android:layout_alignParentStart="true"
+                        android:textSize="16sp"
+                        android:textColor="#000000"
+                        android:labelFor="@id/research_grade_checkbox"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/needs_id"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:id="@+id/needs_id_checkbox"
+                        android:button="@drawable/custom_checkbox_gray_border"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp" />
+
+                    <TextView
+                        android:id="@+id/needs_id_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@id/needs_id_checkbox"
+                        android:text="@string/needs_id"
+                        android:layout_alignParentStart="true"
+                        android:textSize="16sp"
+                        android:textColor="#000000"
+                        android:labelFor="@id/needs_id_checkbox"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/casual_grade"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:id="@+id/casual_grade_checkbox"
+                        android:button="@drawable/custom_checkbox_gray_border"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp" />
+
+                    <TextView
+                        android:id="@+id/casual_grade_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@id/casual_grade_checkbox"
+                        android:text="@string/casual_grade"
+                        android:layout_alignParentStart="true"
+                        android:textSize="16sp"
+                        android:textColor="#000000"
+                        android:labelFor="@id/casual_grade_checkbox"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="#1F000000"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp" />
+
+                <TextView
+                    android:text="@string/content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#61000000"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="16dp"
+                    />
+
+
+                <RelativeLayout
+                    android:id="@+id/has_photos"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:id="@+id/has_photos_checkbox"
+                        android:button="@drawable/custom_checkbox_gray_border"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp" />
+
+                    <TextView
+                        android:id="@+id/has_photos_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@id/has_photos_checkbox"
+                        android:labelFor="@id/has_photos_checkbox"
+                        android:text="@string/has_photos"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/has_sounds"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:id="@+id/has_sounds_checkbox"
+                        android:button="@drawable/custom_checkbox_gray_border"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp" />
+
+                    <TextView
+                        android:id="@+id/has_sounds_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@id/has_sounds_checkbox"
+                        android:text="@string/has_sounds"
+                        android:layout_alignParentStart="true"
+                        android:textSize="16sp"
+                        android:textColor="#000000"
+                        android:labelFor="@id/has_sounds_checkbox"
+                        />
+
+                </RelativeLayout>
+
+
+                <View
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="#1F000000"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp" />
+
+                <TextView
+                    android:text="@string/date_observed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#61000000"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="16dp"
+                    />
+
+                <RadioGroup
+                    android:id="@+id/dates"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout
+                        android:orientation="horizontal" android:layout_width="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:id="@+id/option_date_any"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            />
+
+                        <TextView
+                            android:id="@+id/date_any"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#000000"
+                            android:textSize="16sp"
+                            android:text="@string/any"
+                            android:layout_marginStart="12dp"
+                            android:labelFor="@id/option_date_any"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal" android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:id="@+id/option_date_exact"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/filter_observations_by_an_exact_date"
+                            />
+
+                        <Spinner
+                            android:id="@+id/date_exact"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal" android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:id="@+id/option_date_min_max"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/filter_observations_by_a_date_range"
+                            />
+
+                        <Spinner
+                            android:id="@+id/date_min"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.4"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textSize="16sp"
+                            android:textColor="#8A000000"
+                            android:text="@string/to"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <Spinner
+                            android:id="@+id/date_max"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.4"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal" android:layout_width="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:id="@+id/option_date_months"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/filter_observations_by_months"
+                            />
+
+                        <Spinner
+                            android:id="@+id/date_months"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+
+                </RadioGroup>
+
+                <View
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="#1F000000"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp" />
+
+
+                <TextView
+                    android:text="@string/sort_by"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#61000000"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="16dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="15dp"
+                    >
+
+                    <Spinner
+                        android:id="@+id/sort_by_property"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/explore_order_by_items"
+                        android:entryValues="@array/explore_order_by_values"
+                        />
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="1dp"
                         />
 
                     <Spinner
-                        android:id="@+id/date_min"
+                        android:id="@+id/sort_by_order"
                         android:layout_width="0dp"
-                        android:layout_weight="0.4"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/explore_order_items"
+                        android:entryValues="@array/explore_order_values"
+                        />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="#1F000000"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp" />
+
+                <TextView
+                    android:text="@string/with_annotation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#61000000"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="16dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="15dp"
+                    >
+                    <Spinner
+                        android:id="@+id/annotation_name"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:textSize="16sp"
-                        android:textColor="#8A000000"
-                        android:text="@string/to"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <Spinner
-                        android:id="@+id/date_max"
-                        android:layout_width="0dp"
-                        android:layout_weight="0.4"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal" android:layout_width="match_parent"
-                    android:layout_marginBottom="10dp"
-                    android:layout_height="wrap_content">
-                    <RadioButton
-                        android:id="@+id/option_date_months"
+                        android:id="@+id/annotation_equal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:contentDescription="@string/filter_observations_by_months"
+                        android:text="@string/equals_sign"
+                        android:textSize="16sp"
+                        android:textColor="#000000"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_gravity="center_vertical"
                         />
 
                     <Spinner
-                        android:id="@+id/date_months"
-                        android:layout_width="match_parent"
+                        android:id="@+id/annotation_value"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
 
-            </RadioGroup>
-
-            <View
-                android:layout_marginTop="25dp"
-                android:layout_marginBottom="20dp"
-                android:background="#1F000000"
-                android:layout_width="match_parent"
-                android:layout_height="1dp" />
-
-
-            <TextView
-                android:text="@string/sort_by"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#61000000"
-                android:layout_marginBottom="10dp"
-                android:layout_marginStart="16dp"
-                />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="15dp"
-                >
-
-                <Spinner
-                    android:id="@+id/sort_by_property"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/explore_order_by_items"
-                    android:entryValues="@array/explore_order_by_values"
-                    />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="1dp"
-                    />
-
-                <Spinner
-                    android:id="@+id/sort_by_order"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/explore_order_items"
-                    android:entryValues="@array/explore_order_values"
-                    />
-
             </LinearLayout>
+        </ScrollView>
 
-            <View
-                android:layout_marginTop="25dp"
-                android:layout_marginBottom="20dp"
-                android:background="#1F000000"
-                android:layout_width="match_parent"
-                android:layout_height="1dp" />
-
-            <TextView
-                android:text="@string/with_annotation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#61000000"
-                android:layout_marginBottom="10dp"
-                android:layout_marginStart="16dp"
-                />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="15dp"
-                >
-                <Spinner
-                    android:id="@+id/annotation_name"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/annotation_equal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/equals_sign"
-                    android:textSize="16sp"
-                    android:textColor="#000000"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_gravity="center_vertical"
-                    />
-
-                <Spinner
-                    android:id="@+id/annotation_value"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-    </ScrollView>
-
-</RelativeLayout>
+    </RelativeLayout>
+</layout>

@@ -9,8 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="16dp"
-        android:paddingLeft="19dp"
-        android:paddingRight="19dp"
+        android:paddingStart="19dp"
+        android:paddingEnd="19dp"
         android:paddingBottom="10dp">
 
 
@@ -34,6 +34,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_account_circle_black_24dp"
+                android:importantForAccessibility="no"
                 />
 
             <TextView
@@ -44,7 +45,7 @@
                 android:textSize="12sp"
                 android:textColor="#808080"
                 android:textStyle="bold"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 />
 
         </LinearLayout>

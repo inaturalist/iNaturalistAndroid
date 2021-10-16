@@ -67,10 +67,8 @@ public class ObservationPhotoEditor extends AppCompatActivity implements UCropFr
         mHelper = new ActivityHelper(this);
 
         Intent intent = getIntent();
-        if (savedInstanceState == null) {
-            String uri = intent.getStringExtra(PHOTO_URI);
-            editPhoto(Uri.parse(uri));
-        }
+        String uri = intent.getStringExtra(PHOTO_URI);
+        editPhoto(Uri.parse(uri));
     }
 
     private void editPhoto(Uri sourceUri) {
@@ -95,7 +93,7 @@ public class ObservationPhotoEditor extends AppCompatActivity implements UCropFr
         options.setShowCropGrid(false);
         options.setActiveControlsWidgetColor(Color.parseColor("#74AC00"));
         options.setRootViewBackgroundColor(Color.parseColor("#FFFFFF"));
-        options.setToolbarCancelDrawable(R.drawable.ic_arrow_back_white_24dp);
+        options.setToolbarCancelDrawable(R.drawable.ic_arrow_back_white);
 
         uCrop = uCrop.withOptions(options);
 

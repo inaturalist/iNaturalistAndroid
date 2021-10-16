@@ -7,8 +7,6 @@
     <string name="ok">OK</string>
     <string name="cancel">Otkaži</string>
     <string name="loading">Učitavanje...</string>
-    <string name="sync_required">Potrebna sinhronizacija</string>
-    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
     <string name="street">Ulica</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satelit</string>
@@ -32,7 +30,6 @@
     <string name="settings">Postavke</string>
     <string name="projects">Projekti</string>
     <string name="delete_photo">Izbriši fotografiju</string>
-    <string name="menu">Meni</string>
     <string name="my_location">Moja lokacija</string>
     <string name="nearby_observations">Obližnje opservacije</string>
     <string name="add">Dodaj</string>
@@ -202,6 +199,9 @@
     <string name="alert_message_use_inaturalistgr">iNaturalist Greece is a member of the iNaturalist Network in Greece. Local institutions supporting iNaturalist Greece will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg is a member of the iNaturalist Network in Luxembourg. Local institutions supporting iNaturalist Luxembourg will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom is a member of the iNaturalist Network in United Kingdom. Local institutions supporting iNaturalist United Kingdom will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is a member of the iNaturalist Network in Costa Rica. Local institutions supporting Naturalista Costa Rica will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editor</string>
     <string name="license">Licenca</string>
     <string name="download_for_offline_use">Download for offline use</string>
@@ -225,9 +225,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Email</string>
-    <string name="sign_up_with">Registruj se sa</string>
     <string name="skip">Preskoči  ›</string>
-    <string name="already_have_account">Već imate račun?</string>
     <string name="log_in">Prijavi se</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Registruj se</string>
@@ -351,7 +349,6 @@
     <string name="updating_profile">Ažuriranje profila...</string>
     <string name="there_was_a_problem_updating_profile">Došlo je do problema prilikom ažuriranja vašeg profila!</string>
     <string name="there_was_a_problem_updating_profile_params">Došlo je do problema prilikom ažuriranja vašeg profila!: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Prijavljen kao <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
     <string name="log_out">Odjava</string>
@@ -472,14 +469,12 @@
     <string name="what_did_you_see">Šta ste vidjeli?</string>
     <string name="suggest_species">Predloži vrstu</string>
     <string name="suggest_species_description">Suggest species based on visual similarity to photos.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Vizuelno slični</string>
     <string name="visually_similar_seen_nearby">Vizuelno slični / Viđeno u okolini</string>
     <string name="seen_nearby">Viđeno u okolini</string>
     <string name="enlarge">Povećaj</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Vidi mladunčad</string>
-    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
     <string name="taxon_has_no_photos">This taxon has no photos.</string>
     <string name="terrain">Teren</string>
     <string name="filters">Filteri</string>
@@ -597,7 +592,6 @@
     <string name="leave_comment">Ostavite komentar...</string>
     <string name="swipe">Prevucite</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Koji Google račun?</string>
     <string name="potential_disagreement">Potencijalno neslaganje</string>
     <string name="do_you_think_this_could_be"><![CDATA[Da li su pruženi dokazi dovoljni da potvrde da je ovo <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -609,14 +603,14 @@
     <string name="must_be_connected_to_load_more_obs">Morate biti povezani na Internet da biste učitali više opservacija</string>
     <string name="inat_about_title">iNaturalist je zajednička inicijativa California Academy of Sciences i National Geographic Society.</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
-    <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="http://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
+    <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="https://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Credits</string>
@@ -634,6 +628,7 @@
     <string name="project_observations">Opservacija</string>
     <string name="project_species">Vrste</string>
     <string name="project_people">Ljudi</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Identifiers</string>
     <string name="got_it">Got it!</string>
     <string name="view_all">Vidi sve</string>
@@ -660,6 +655,8 @@
     <string name="annotation_name_sex">Spol</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">Živo ili mrtvo</string>
+    <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <string name="annotation_name_evidence_of_presence">Evidence of Presence</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Cvjetanje</string>
     <!-- Adjective, having fruit -->
@@ -693,6 +690,18 @@
     <string name="annotation_value_dead">Mrtvo</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Ne može se utvrditi</string>
+    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <string name="annotation_value_organism">Organism</string>
+    <!-- Evidence of Presence value when for bird feathers -->
+    <string name="annotation_value_feather">Feather</string>
+    <!-- Evidence of Presence value when for fecal remains -->
+    <string name="annotation_value_scat">Scat</string>
+    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <string name="annotation_value_track">Track</string>
+    <!-- Evidence of Presence value when for bones -->
+    <string name="annotation_value_bone">Bone</string>
+    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <string name="annotation_value_molt">Molt</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">JOINED</string>
     <string name="nearby_projects_all_caps">Obližnji</string>
@@ -756,6 +765,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Mark all as viewed</string>
     <string name="content_hidden">Content Hidden</string>
     <string name="show_hidden_content">Show Hidden Content</string>
@@ -769,7 +781,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Snimite zvuk</string>
-    <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Choose Sound</string>
@@ -972,6 +983,10 @@
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">MMM d, yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
     <string name="show_common_names">Show common names</string>
     <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
     <string name="email_must_look_like_email_address">Email must look like an email address</string>
@@ -1099,7 +1114,8 @@
     <string name="default_observation_license">Default Observation License</string>
     <string name="default_photo_license">Default Photo License</string>
     <string name="default_sound_license">Default Sound License</string>
-    <string name="change_licenses_for_existing_observations">Change licenses for existing observations, photos and sounds</string>
+    <string name="change_existing_licenses">Change Existing Licenses</string>
+    <string name="change_licenses_for_existing_observations">Change licenses for existing observations, photos, and sounds</string>
     <string name="change_licenses_for_all_existing_observations">Change licenses for all existing observations</string>
     <string name="change_licenses_for_all_existing_photos">Change licenses for all existing photos</string>
     <string name="change_licenses_for_all_existing_sounds">Change licenses for all existing sounds</string>
@@ -1117,6 +1133,7 @@
     <string name="existing_sound_licenses_have_been_updated">All existing sound licenses have been changed to %1$s.</string>
     <string name="default_licenses_description"><![CDATA[Licensing your content gives anyone the legal right to use it without asking your permission if they abide by the terms of the license. In addition, iNat includes your Creative Commons-licensed content in regularly-updated archives produced for select partner organizations interested in our data. For example, we include No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC) records in the archive we generate for the <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, an international, inter-governmental organization that compiles and distributes biodiversity information from around the world.]]></string>
     <string name="photo_license">Photo License</string>
+    <string name="sound_license">Sound License</string>
     <string name="edit_photo_license">Edit Photo License</string>
     <string name="observation_license">Observation License</string>
     <string name="edit_observation_license">Edit Observation License</string>
@@ -1138,9 +1155,69 @@
     <string name="license_description_cc_by_nc_sa">This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms.</string>
     <string name="license_description_cc_by_nc_nd">This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can\'t change them in any way or use them commercially.</string>
     <string name="license_description_cc_by_nd">This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.</string>
-    <string name="license_description_cc_by_sa">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
+    <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
     <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
     <string name="invalid_photo">Photo format not supported</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">Suggestions based on observations and identifications provided by the iNaturalist community, including %1$s, %2$s, %3$s, and many others.</string>
+    <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">Default Observation Action</string>
+    <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">Show Options</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Field Value</string>
+    <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
+    <string name="delete_attribute_value">Delete attribute value</string>
+    <string name="open_menu_for_more_options">Open menu for more options</string>
+    <string name="change_user_profile_photo">Change user profile photo</string>
+    <string name="expand_list">Expand list</string>
+    <string name="change_map_layers">Change map layers (terrain vs. satellite)</string>
+    <string name="redo_observation_search">Redo observation search in this map area</string>
+    <string name="view_observations_on_map">View observations on map</string>
+    <string name="view_observations_on_grid">View observations on grid</string>
+    <string name="clear_text">Clear text</string>
+    <string name="observation_has_sounds">Observation has sounds</string>
+    <string name="go_to_my_location">Go to my current location</string>
+    <string name="change_geoprivacy">Change geoprivacy</string>
+    <string name="active_filters">Active filters</string>
+    <string name="message_is_flagged">Message is flagged</string>
+    <string name="user_is_muted">User is muted</string>
+    <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
+    <string name="delete_observations">Delete observations</string>
+    <string name="comment_count">Comment count</string>
+    <string name="id_count">Identification count</string>
+    <string name="observation_selected">Observation selected</string>
+    <string name="share_observation">Share observation</string>
+    <string name="unknown_location">Unknown location</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Close</string>
+    <string name="set_date2">Set date</string>
+    <string name="project_selected">Project Selected</string>
+    <string name="project_unselected">Project Unselected</string>
+    <string name="show_my_observations">Show my observations</string>
+    <string name="play_pause_sound">Play or pause sound</string>
+    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
+    <string name="view_image">View image</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Assessment passes</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Agree assessment passes</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Does not pass assessment</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Disagree assessment passes</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Delete %1$d selected observation</item>
+        <item quantity="few">Delete %1$d selected observations</item>
+        <item quantity="other">Delete %1$d selected observations</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Sync %1$d selected observation</item>
+        <item quantity="few">Sync %1$d selected observations</item>
+        <item quantity="other">Sync %1$d selected observations</item>
+    </plurals>
+    <string name="add_media_evidence">Add media evidence</string>
+    <string name="remove_identification">Remove identification</string>
+    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
+    <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
 </resources>

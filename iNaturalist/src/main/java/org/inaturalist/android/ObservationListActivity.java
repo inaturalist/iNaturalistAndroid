@@ -263,7 +263,14 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         if (mMultiSelectionMode && mSyncingTopBar != null) {
             mSyncingTopBar.setVisibility(View.GONE);
 
-            mMultiSelectionObsCount.setText(String.valueOf(mObsIdsToSync.size()));
+            int count = mObsIdsToSync.size();
+            mMultiSelectionObsCount.setText(String.valueOf(count));
+
+            View deleteMultiObs = getSupportActionBar().getCustomView().findViewById(R.id.delete);
+            deleteMultiObs.setContentDescription(getResources().getQuantityString(R.plurals.delete_x_selected_observations, count, count));
+
+            View uploadMultiObs = getSupportActionBar().getCustomView().findViewById(R.id.sync);
+            uploadMultiObs.setContentDescription(getResources().getQuantityString(R.plurals.sync_x_selected_observations, count, count));
             return;
         }
 
@@ -698,6 +705,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 }
             }
         }
+
+        if (mObservationListAdapter != null) mObservationListAdapter.onObservationChanged();
+        if (mObservationGridAdapter != null) mObservationGridAdapter.onObservationChanged();
     }
 
     // Checks to see if there are any observations that have the "old" way of saving photos
@@ -1463,6 +1473,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                         if (!oldCursor.isClosed()) oldCursor.close();
                     }
 
+                    if (mObservationListAdapter != null) {
+                        mObservationListAdapter.close();
+                    }
+                    if (mObservationGridAdapter != null) {
+                        mObservationGridAdapter.close();
+                    }
                     mObservationListAdapter = new ObservationCursorAdapter(ObservationListActivity.this, cursor);
                     mObservationGridAdapter = new ObservationCursorAdapter(ObservationListActivity.this, cursor, true, mObservationsGrid);
                     mObservationsGrid.setAdapter(mObservationGridAdapter);

@@ -106,7 +106,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
     private Button mViewSuggestionsNotNearByButton;
     private PhotosViewPagerAdapter mPhotosAdapter;
     @State public Observation mObservation;
-    @State public int mPhotoPosition;
+    @State public int mPhotoPosition = -1;
     @State public String mSuggestionSource = INaturalistService.SUGGESTION_SOURCE_VISUAL;
     private ImageView mSuggestionSourceButton;
     private RadioGroup mSuggestionSources;
@@ -609,6 +609,9 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
         mPhotosAdapter = new PhotosViewPagerAdapter(this, new Observation(new BetterJSONObject(mObservationJson)), mObservationJson);
         mPhotosViewPager.setAdapter(mPhotosAdapter);
         mIndicator.setViewPager(mPhotosViewPager);
+        if (mPhotoPosition == -1) {
+            mPhotoPosition = mApp.isLayoutRTL() ? mPhotosAdapter.getCount() - 1 : 0;
+        }
         mPhotosViewPager.setCurrentItem(mPhotoPosition);
         mPhotosViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -847,7 +850,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
             mViewSuggestionsNotNearByButton.setText(R.string.only_view_nearby_suggestions);
         } else {
             // Show only results both vision_score and frequency_score, then sort by combined_score
-            CollectionUtils.filter(sortedSuggestions, suggestion -> (suggestion.getJSONObject("source_details").optDouble("frequency_score") > 0) && (suggestion.getJSONObject("source_details").optDouble("vision_score") > 0.3) );
+            CollectionUtils.filter(sortedSuggestions, suggestion -> (suggestion.getJSONObject("source_details").optDouble("frequency_score") > 0) && (suggestion.getJSONObject("source_details").optDouble("vision_score") > 0) );
             if (sortedSuggestions.size() == 0) {
                 // Special case - no nearby results
                 sortedSuggestions = new ArrayList<>(mTaxonSuggestions);

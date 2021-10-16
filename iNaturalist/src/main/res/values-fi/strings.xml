@@ -7,8 +7,6 @@
     <string name="ok">Ok</string>
     <string name="cancel">Peruuta</string>
     <string name="loading">Ladataan...</string>
-    <string name="sync_required">Synkronointia tarvitaan</string>
-    <string name="sync_required_message">%1$d havaintoa ja %2$d kuvaa synkronoitava</string>
     <string name="street">Katu</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satelliitti</string>
@@ -32,7 +30,6 @@
     <string name="settings">Asetukset</string>
     <string name="projects">Projektit</string>
     <string name="delete_photo">Poista kuva</string>
-    <string name="menu">Valikko</string>
     <string name="my_location">Sijaintini</string>
     <string name="nearby_observations">Lähellä olevat havainnot</string>
     <string name="add">Lisää</string>
@@ -201,6 +198,9 @@
     <string name="alert_message_use_inaturalistgr">iNaturalist Greece is a member of the iNaturalist Network in Greece. Local institutions supporting iNaturalist Greece will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg is a member of the iNaturalist Network in Luxembourg. Local institutions supporting iNaturalist Luxembourg will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom is a member of the iNaturalist Network in United Kingdom. Local institutions supporting iNaturalist United Kingdom will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica on iNaturalist-verkoston jäsen Costa Ricassa. Naturalistan kanssa yhteistyössä olevat organisaatiot näkevät sähköpostiosoitteesi sekä kaikkien havaintojesi tarkat koordinaatit, myös karkeistettujen ja yksityisten havaintojen. Ole hyvä äläkä vaihda kotiverkostoasi vain testataksesi tätä, jos sinulla on yli 1000 havaintoa. Haluatko vaihtaa kotiverkostoasi?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala on iNaturalist-verkoston jäsen Guatemalassa. iNaruralist Guatemalan kanssa yhteistyössä olevat organisaatiot näkevät sähköpostiosoitteesi sekä kaikkien havaintojesi tarkat koordinaatit, myös karkeistettujen ja yksityisten havaintojen. Ole hyvä äläkä vaihda kotiverkostoasi vain testataksesi tätä, jos sinulla on yli 1000 havaintoa. Haluatko vaihtaa kotiverkostoasi?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sweden on iNaturalist-verkoston jäsen Ruotsissa. iNaruralist Swedenin kanssa yhteistyössä olevat organisaatiot näkevät sähköpostiosoitteesi sekä kaikkien havaintojesi tarkat koordinaatit, myös karkeistettujen ja yksityisten havaintojen. Ole hyvä äläkä vaihda kotiverkostoasi vain testataksesi tätä, jos sinulla on yli 1000 havaintoa. Haluatko vaihtaa kotiverkostoasi?</string>
     <string name="editor">Editori</string>
     <string name="license">Lisenssi</string>
     <string name="download_for_offline_use">Lataa offline-käyttöön</string>
@@ -224,9 +224,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Sähköposti</string>
-    <string name="sign_up_with">Rekisteröidy käyttäen</string>
     <string name="skip">Ohita ›</string>
-    <string name="already_have_account">Onko sinulla jo tili?</string>
     <string name="log_in">Kirjaudu sisään</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Rekisteröidy</string>
@@ -354,7 +352,6 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="updating_profile">Päivitetään profiilia...</string>
     <string name="there_was_a_problem_updating_profile">Virhe päivitettäessä profiiliasi!</string>
     <string name="there_was_a_problem_updating_profile_params">Virhe päivitettäessä profiiliasi: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Kirjautunut sisään nimellä <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
     <string name="log_out">Kirjaudu ulos</string>
@@ -463,24 +460,22 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="more_info_on_inat">Lisää tietoja iNaturalist.org:issa</string>
     <string name="view_suggestions">Paina tästä niin näet ehdotuksia</string>
     <string name="species_search">Lajihaku</string>
-    <string name="were_not_confident_enough">We\'re not confident enough to make a recommendation, but here are our top suggestions:</string>
-    <string name="were_not_confident_enough_no_suggestions">We\'re not confident enough to make a recommendation.</string>
+    <string name="were_not_confident_enough">Emme ole tarpeeksi varmoja tehdäksemme suositusta, mutta tässä ovat parhaat ehdotukset: </string>
+    <string name="were_not_confident_enough_no_suggestions">Emme ole tarpeeksi varmoja tehdäksemme suositusta. </string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
     <!-- Header for a list of suggested taxa -->
-    <string name="top_suggestions">Top suggestions</string>
+    <string name="top_suggestions">Osuvimmat ehdotukset</string>
     <string name="pretty_sure_rank">Olemme melko varmoja, että %1$s on tämä:</string>
     <string name="what_did_you_see">Mitä näit?</string>
     <string name="suggest_species">Ehdota lajia</string>
     <string name="suggest_species_description">Ehdota lajia perustuen visuaaliseen samankaltaisuuteen valokuvissa.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Näyttää samanlaiselta</string>
     <string name="visually_similar_seen_nearby">Näyttää samanlaiselta / nähty lähistöllä</string>
     <string name="seen_nearby">Nähty lähistöllä</string>
     <string name="enlarge">Suurenna</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Näytä alemmat taksonit</string>
-    <string name="invalid_photo_extension">Virhe tuodessa kuvaa/kuvia: Voidaan tuoda vain kuvatiedostoja JPG/JPEG/PNG päätteillä</string>
     <string name="taxon_has_no_photos">Tällä taksonilla ei ole kuvia.</string>
     <string name="terrain">Maasto</string>
     <string name="filters">Suodattimet</string>
@@ -598,7 +593,6 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="leave_comment">Jätä kommentti...</string>
     <string name="swipe">Pyyhkäise</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Mikä Google-tili?</string>
     <string name="potential_disagreement">Mahdollinen erimielisyys</string>
     <string name="do_you_think_this_could_be"><![CDATA[Onko todisteet riittäviä vahvistamaan, että tämä on <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -610,7 +604,7 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="must_be_connected_to_load_more_obs">Sinun on oltava yhteydessä Internetiin ladataksesi enemmän havaintoja</string>
     <string name="inat_about_title">iNaturalist on Kalifornian tiedeakatemian ja National Geographic Societyn yhteinen aloite.</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -640,6 +634,7 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="project_observations">Havaintoa</string>
     <string name="project_species">Lajia</string>
     <string name="project_people">Ihmiset</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Tunnistajaa</string>
     <string name="got_it">Selvä!</string>
     <string name="view_all">Näytä kaikki</string>
@@ -666,6 +661,8 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="annotation_name_sex">Sukupuoli</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">Elävä tai kuollut</string>
+    <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <string name="annotation_name_evidence_of_presence">Todiste läsnäolosta</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Kukkiminen</string>
     <!-- Adjective, having fruit -->
@@ -699,6 +696,18 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="annotation_value_dead">Kuollut</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Ei voida tunnistaa</string>
+    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <string name="annotation_value_organism">Eliö</string>
+    <!-- Evidence of Presence value when for bird feathers -->
+    <string name="annotation_value_feather">Sulka</string>
+    <!-- Evidence of Presence value when for fecal remains -->
+    <string name="annotation_value_scat">Jätös</string>
+    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <string name="annotation_value_track">Jälki</string>
+    <!-- Evidence of Presence value when for bones -->
+    <string name="annotation_value_bone">Luu</string>
+    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <string name="annotation_value_molt">Nahka</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">LIITYTTY</string>
     <string name="nearby_projects_all_caps">LÄHELLÄ</string>
@@ -761,6 +770,9 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Merkitse kaikki katsotuksi</string>
     <string name="content_hidden">Sisältö piilotettu</string>
     <string name="show_hidden_content">Näytä piilotettu sisältö</string>
@@ -774,7 +786,6 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Nauhoita ääntä</string>
-    <string name="no_recorder_found">Oletusäänentallenninta ei löytynyt!</string>
     <string name="couldnt_retrieve_sound">Ei voitu hakea äänitettä oletustallentimesta - kokeile sen sijasta importoida äänite</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Valitse ääni</string>
@@ -976,6 +987,10 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh.mm a</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">MMM d, yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
     <string name="show_common_names">Näytä yleiskieliset nimet</string>
     <string name="show_common_names_description">Poista käytöstä, jos haluat nähdä vain tieteelliset nimet.</string>
     <string name="email_must_look_like_email_address">Täytyy näyttää sähköpostiosoitteelta</string>
@@ -990,51 +1005,51 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="filter_observations_by_months">Suodata havaintoja kuukausittain</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="include_suggestions_not_seen_nearby">Include suggestions not seen nearby</string>
+    <string name="include_suggestions_not_seen_nearby">Anna ehdotuksia myös lajeista, joita ei ole havaittu lähistöllä</string>
     <string name="only_view_nearby_suggestions">Only view nearby suggestions</string>
     <string name="suggestions_source">Suggestions Source</string>
     <string name="research_grade_observations">Research Grade Observations</string>
-    <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
+    <string name="visually_similar_description">iNaturalist antaa ehdotuksia perustuen kuvaan, vuodenaikaan ja paikkaan.</string>
     <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will suggest species observed in a specific place and within a specific taxonomic group.</string>
     <string name="taxon">Taksoni:</string>
     <string name="place">Paikka:</string>
-    <string name="pretty_sure_kingdom">We\'re pretty sure it\'s in this kingdom:</string>
-    <string name="pretty_sure_subkingdom">We\'re pretty sure it\'s in this subkingdom:</string>
-    <string name="pretty_sure_phylum">We\'re pretty sure it\'s in this phylum:</string>
-    <string name="pretty_sure_subphylum">We\'re pretty sure it\'s in this subphylum:</string>
-    <string name="pretty_sure_superclass">We\'re pretty sure it\'s in this superclass:</string>
-    <string name="pretty_sure_class">We\'re pretty sure it\'s in this class:</string>
-    <string name="pretty_sure_subclass">We\'re pretty sure it\'s in this subclass:</string>
-    <string name="pretty_sure_infraclass">We\'re pretty sure it\'s in this infraclass:</string>
-    <string name="pretty_sure_superorder">We\'re pretty sure it\'s in this superorder:</string>
-    <string name="pretty_sure_order">We\'re pretty sure it\'s in this order:</string>
-    <string name="pretty_sure_suborder">We\'re pretty sure it\'s in this suborder:</string>
-    <string name="pretty_sure_infraorder">We\'re pretty sure it\'s in this infraorder:</string>
-    <string name="pretty_sure_subterclass">We\'re pretty sure it\'s in this subterclass:</string>
-    <string name="pretty_sure_parvorder">We\'re pretty sure it\'s in this parvorder:</string>
-    <string name="pretty_sure_zoosection">We\'re pretty sure it\'s in this zoosection:</string>
-    <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
-    <string name="pretty_sure_superfamily">We\'re pretty sure it\'s in this superfamily:</string>
-    <string name="pretty_sure_epifamily">We\'re pretty sure it\'s in this epifamily:</string>
-    <string name="pretty_sure_family">We\'re pretty sure it\'s in this family:</string>
-    <string name="pretty_sure_subfamily">We\'re pretty sure it\'s in this subfamily:</string>
-    <string name="pretty_sure_supertribe">We\'re pretty sure it\'s in this supertribe:</string>
-    <string name="pretty_sure_tribe">We\'re pretty sure it\'s in this tribe:</string>
-    <string name="pretty_sure_subtribe">We\'re pretty sure it\'s in this subtribe:</string>
-    <string name="pretty_sure_genus">We\'re pretty sure it\'s in this genus:</string>
-    <string name="pretty_sure_genushybrid">We\'re pretty sure it\'s in this genushybrid:</string>
-    <string name="pretty_sure_subgenus">We\'re pretty sure it\'s in this subgenus:</string>
-    <string name="pretty_sure_section">We\'re pretty sure it\'s in this section:</string>
-    <string name="pretty_sure_subsection">We\'re pretty sure it\'s in this subsection:</string>
-    <string name="pretty_sure_complex">We\'re pretty sure it\'s in this complex:</string>
+    <string name="pretty_sure_kingdom">Olemme melko varmoja että tämä kuuluu kuntaan </string>
+    <string name="pretty_sure_subkingdom">Olemme melko varmoja että tämä kuuluu alakuntaan </string>
+    <string name="pretty_sure_phylum">Olemme melko varmoja että tämä kuuluu pääjaksoon </string>
+    <string name="pretty_sure_subphylum">Olemme melko varmoja että tämä kuuluu alapääjaksoon </string>
+    <string name="pretty_sure_superclass">Olemme melko varmoja että tämä kuuluu yläluokkaan </string>
+    <string name="pretty_sure_class">Olemme melko varmoja että tämä kuuluu luokkaan </string>
+    <string name="pretty_sure_subclass">Olemme melko varmoja että tämä kuuluu alaluokkaan </string>
+    <string name="pretty_sure_infraclass">Olemme melko varmoja että tämä kuuluu infraluokkaan </string>
+    <string name="pretty_sure_superorder">Olemme melko varmoja että tämä kuuluu ylälahkoon </string>
+    <string name="pretty_sure_order">Olemme melko varmoja että tämä kuuluu lahkoon </string>
+    <string name="pretty_sure_suborder">Olemme melko varmoja että tämä kuuluu alalahkoon </string>
+    <string name="pretty_sure_infraorder">Olemme melko varmoja että tämä kuuluu infralahkoon </string>
+    <string name="pretty_sure_subterclass">Olemme melko varmoja että tämä kuuluu subterclassiin </string>
+    <string name="pretty_sure_parvorder">Olemme melko varmoja että tämä kuuluu parvolahkoon </string>
+    <string name="pretty_sure_zoosection">Olemme melko varmoja että tämä kuuluu zoosektioon  </string>
+    <string name="pretty_sure_zoosubsection">Olemme melko varmoja että tämä kuuluu zooalasektioon </string>
+    <string name="pretty_sure_superfamily">Olemme melko varmoja että tämä kuuluu yläheimoon </string>
+    <string name="pretty_sure_epifamily">Olemme melko varmoja että tämä kuuluu epiheimoon </string>
+    <string name="pretty_sure_family">Olemme melko varmoja että tämä kuuluu heimoon </string>
+    <string name="pretty_sure_subfamily">Olemme melko varmoja että tämä kuuluu alaheimoon </string>
+    <string name="pretty_sure_supertribe">Olemme melko varmoja että tämä kuuluu ylätribukseen</string>
+    <string name="pretty_sure_tribe">Olemme melko varmoja että tämä kuuluu tribukseen </string>
+    <string name="pretty_sure_subtribe">Olemme melko varmoja että tämä kuuluu alatribukseen </string>
+    <string name="pretty_sure_genus">Olemme melko varmoja että tämä kuuluu sukuun </string>
+    <string name="pretty_sure_genushybrid">Olemme melko varmoja että tämä kuuluu sukuristeymään </string>
+    <string name="pretty_sure_subgenus">Olemme melko varmoja että tämä kuuluu alasukuun </string>
+    <string name="pretty_sure_section">Olemme melko varmoja että tämä kuuluu sektioon </string>
+    <string name="pretty_sure_subsection">Olemme melko varmoja että tämä kuuluu alasektioon</string>
+    <string name="pretty_sure_complex">Olemme melko varmoja että tämä kuuluu kompleksiin </string>
     <!-- Singular -->
-    <string name="pretty_sure_species">We\'re pretty sure it\'s in this species:</string>
-    <string name="pretty_sure_hybrid">We\'re pretty sure it\'s in this hybrid:</string>
+    <string name="pretty_sure_species">Olemme melko varmoja että tämä kuuluu lajiin </string>
+    <string name="pretty_sure_hybrid">Olemme melko varmoja että tämä kuuluu risteymään</string>
     <!-- Singular -->
-    <string name="pretty_sure_subspecies">We\'re pretty sure it\'s in this subspecies:</string>
-    <string name="pretty_sure_variety">We\'re pretty sure it\'s in this variety:</string>
-    <string name="pretty_sure_form">We\'re pretty sure it\'s in this form:</string>
-    <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
+    <string name="pretty_sure_subspecies">Olemme melko varmoja että tämä kuuluu alalajiin </string>
+    <string name="pretty_sure_variety">Olemme melko varmoja että tämä kuuluu variaatioon </string>
+    <string name="pretty_sure_form">Olemme melko varmoja että tämä kuuluu muotoon </string>
+    <string name="pretty_sure_infrahybrid">Olemme melko varmoja että tämä kuuluu infraristeymään </string>
     <string name="remove_date_observed">Poista havaintopäivä ja -aika</string>
     <string name="remove_time_observed">Poista havaintoaika</string>
     <string name="remove_location">Poista sijainti</string>
@@ -1063,17 +1078,17 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="no_observations_yet2">No observations yet.</string>
     <string name="no_species_yet">No species yet.</string>
     <string name="no_identifications_yet">No identifications yet.</string>
-    <string name="sort_by">Sort By</string>
+    <string name="sort_by">Järjestys</string>
     <string-array name="explore_order_by_items">
-        <item>Date Added</item>
-        <item>Date Observed</item>
-        <item>Date Updated</item>
+        <item>Lisäyspäivämäärä</item>
+        <item>Havaintopäivämäärä</item>
+        <item>Päivityspäiväys</item>
         <!--<item>Faves</item>-->
         <item>Satunnainen</item>
     </string-array>
     <string-array name="explore_order_items">
-        <item>Descending</item>
-        <item>Ascending</item>
+        <item>Laskeva</item>
+        <item>Nouseva</item>
     </string-array>
     <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
     See explore_order_by_items and explore_order_items keys !-->
@@ -1103,6 +1118,7 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="default_observation_license">Oletuslisenssi havainnoille</string>
     <string name="default_photo_license">Oletuslisenssi kuville</string>
     <string name="default_sound_license">Oletuslisenssi äänille</string>
+    <string name="change_existing_licenses">Vaihda olemassa olevat lisenssit</string>
     <string name="change_licenses_for_existing_observations">Vaihda tallennettujen havaintojen, valokuvien ja äänien lisenssi</string>
     <string name="change_licenses_for_all_existing_observations">Vaihda kaikkien tallennettujen havaintojen lisenssi</string>
     <string name="change_licenses_for_all_existing_photos">Vaihda kaikkien valokuvien lisenssi</string>
@@ -1123,6 +1139,7 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
 (CC BY-NC) -lisensoidut tiedot arkistoon, jonka toimitamme <a href="http://www.gbif.org/">Global Biodiversity Information
 Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen ja jakaa tietoa luonnon monimuotoisuudesta ympäri maailmaa.]]></string>
     <string name="photo_license">Kuvien lisensointi</string>
+    <string name="sound_license">Äänilisenssi</string>
     <string name="edit_photo_license">Muuta valokuvien lisenssiä</string>
     <string name="observation_license">Havaintojen lisenssi</string>
     <string name="edit_observation_license">Muuta havaintojen lisenssiä</string>
@@ -1144,9 +1161,67 @@ Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen 
     <string name="license_description_cc_by_nc_sa">Tämä lisenssi antaa muille oikeuden muokata ja käyttää pohjana teostasi ei-kaupallisessa tarkoituksessa, kunhan nimesi mainitaan alkuperäisen teoksen tekijänä ja uusi teos lisensoidaan tällä samalla lisenssillä.</string>
     <string name="license_description_cc_by_nc_nd">Tämä lisenssi on kuudesta tärkeimmästä lisenssistä rajoittavin. Se antaa muille oikeuden tallentaa ja jakaa teostasi sillä edellytyksellä, että nimesi mainitaan jakamisen yhteydessä. Muilla ei ole oikeutta muokata teostasi millään tavalla eikä käyttää sitä kaupallisiin tarkoituksiin.</string>
     <string name="license_description_cc_by_nd">Tämä lisenssi sallii kaupallisen ja epäkaupallisen uudelleenjakelun kunhan se esitetään muokkaamatta ja kokonaisena sekä sinut tekijänä mainittuna.</string>
-    <string name="license_description_cc_by_sa">Tämä lisenssi antaa muille oikeuden muokata ja käyttää pohjana teostasi ei-kaupallisessa tarkoituksessa. Vaikka nimesi on mainittava uuden teoksen esittämisen yhteydessä ja esittämisen on oltava ei-kaupallinen, uutta teosta ei tarvitse lisensoida samoilla ehdoilla kuin alkupeäistä.</string>
+    <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
     <string name="license_description_no_license">Säilytät täydet tekijänoikeudet sisältöösi, lukuun ottamatta käyttöehdoissa määriteltyjä iNaturalistille myönnettyjä oikeuksia.</string>
     <string name="invalid_photo">Kuvaformaattia ei tueta</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
-    <string name="suggestions_based_on">Suggestions based on observations and identifications provided by the iNaturalist community, including %1$s, %2$s, %3$s, and many others.</string>
+    <string name="suggestions_based_on">Ehdotukset perustuvat iNaturalist-yhteisön havaintoihin ja tunnistuksiin muun muassa käyttäjiltä  %1$s, %2$s, %3$s ja monilta muilta.</string>
+    <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">Havainnon oletustoiminto</string>
+    <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">Näytä vaihtoehdot</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Kentän arvo</string>
+    <string name="expand_annotation_to_agree_or_disagree">Laajenna huomautus sopimaan tai olemaan eri mieltä</string>
+    <string name="delete_attribute_value">Poista attribuutin arvo</string>
+    <string name="open_menu_for_more_options">Avaa valikko nähdäksesi lisää vaihtoehtoja</string>
+    <string name="change_user_profile_photo">Vaihda profiilikuva</string>
+    <string name="expand_list">Laajenna luettelo</string>
+    <string name="change_map_layers">Muuta karttatasoja (maasto vs. satelliitti)</string>
+    <string name="redo_observation_search">Tee uusi havaintohaku tällä kartta-alueella</string>
+    <string name="view_observations_on_map">Näytä havainnot kartalla</string>
+    <string name="view_observations_on_grid">Näytä havainnot ruudukossa</string>
+    <string name="clear_text">Tyhjennä teksti</string>
+    <string name="observation_has_sounds">Havainnossa on ääniä</string>
+    <string name="go_to_my_location">Siirry nykyiseen sijaintiini</string>
+    <string name="change_geoprivacy">Muuta sijainnin tietosuojaa.</string>
+    <string name="active_filters">Aktiiviset rajaukset</string>
+    <string name="message_is_flagged">Viesti on liputettu</string>
+    <string name="user_is_muted">Käyttäjä on mykistetty</string>
+    <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
+    <string name="delete_observations">Poista havaintoja</string>
+    <string name="comment_count">Kommenttien lukumäärä</string>
+    <string name="id_count">Tunnistuksien määrä</string>
+    <string name="observation_selected">Havainto valittu</string>
+    <string name="share_observation">Jaa havainto</string>
+    <string name="unknown_location">Tuntematon sijainti</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Sulje</string>
+    <string name="set_date2">Aseta päivämäärä</string>
+    <string name="project_selected">Projekti valittu</string>
+    <string name="project_unselected">Projektia ei valittu</string>
+    <string name="show_my_observations">Näytä havaintoni</string>
+    <string name="play_pause_sound">Toista tai keskeytä ääni</string>
+    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
+    <string name="view_image">Näytä kuva</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Arviointi läpäisee</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Hyväksy arvioinnin läpäisy</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Ei läpäise arviointia</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Kieltäydy hyväksymästä arviointi</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Poista %1$d valittu havainto</item>
+        <item quantity="other">Poista %1$d valitut havainnot</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Synkronoi %1$d valittu havainto</item>
+        <item quantity="other">Synkronoi %1$d valitut havainnot</item>
+    </plurals>
+    <string name="add_media_evidence">Lisää mediatodiste</string>
+    <string name="remove_identification">Poista tunnistus</string>
+    <string name="issue_with_updating_photos">Tämän havainnon valokuvien päivityksessä tapahtui ongelma, joka on hiljattain korjattu. Kirjaudu ulos ja kirjaudu uudelleen sisään ratkaistaksesi tämän ongelman.</string>
+    <string name="app_version_copied_to_clipboard">Sovelluksen versio kopioitu leikepöydälle</string>
 </resources>

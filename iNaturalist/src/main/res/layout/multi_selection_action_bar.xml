@@ -6,20 +6,22 @@
 
 	<ImageView android:src="@drawable/baseline_close_black_24"
 		android:id="@+id/exit"
+		android:contentDescription="@string/cancel_multiple_obs_selection"
 		android:layout_height="24dp"
 		android:layout_width="24dp"
-        android:layout_marginLeft="0dp"
-        android:layout_alignParentLeft="true"
+        android:layout_marginStart="0dp"
+        android:layout_alignParentStart="true"
 		android:layout_centerVertical="true" />
 
 
 	<ImageView android:src="@drawable/ic_delete_black_24dp"
 		android:id="@+id/delete"
+		android:contentDescription="@string/delete_observations"
 		android:tint="#74AC00"
 		android:layout_height="24dp"
 		android:layout_width="24dp"
-		android:layout_marginRight="10dp"
-		android:layout_alignParentRight="true"
+		android:layout_marginEnd="10dp"
+		android:layout_alignParentEnd="true"
 		android:layout_centerVertical="true" />
 
 	<ImageView android:src="@drawable/baseline_cloud_upload_black_24"
@@ -27,8 +29,9 @@
 		android:tint="#74AC00"
 		android:layout_height="24dp"
 		android:layout_width="24dp"
-		android:layout_toLeftOf="@id/delete"
-		android:layout_marginRight="20dp"
+		android:layout_toStartOf="@id/delete"
+		android:layout_marginEnd="20dp"
+		android:contentDescription="@string/sync_observations"
 		android:layout_centerVertical="true" />
 
 
@@ -37,10 +40,10 @@
 		android:layout_height="wrap_content"
 		android:layout_width="wrap_content"
 		android:text="123"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:textSize="20sp"
 		android:textColor="#000000"
-        android:layout_toRightOf="@id/exit"
+        android:layout_toEndOf="@id/exit"
 		android:layout_centerVertical="true"
 		/>
     

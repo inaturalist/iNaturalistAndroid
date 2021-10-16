@@ -6,8 +6,8 @@
     android:minHeight="72dp"
     android:orientation="horizontal"
     android:paddingTop="7dp"
-    android:paddingLeft="7dp"
-    android:paddingRight="0dp"
+    android:paddingStart="7dp"
+    android:paddingEnd="0dp"
     android:paddingBottom="0dp"
     >
 
@@ -16,13 +16,13 @@
         android:layout_height="72dp"
         android:layout_width="fill_parent"
         android:layout_alignParentTop="true"
-        android:paddingRight="10dp"
+        android:paddingEnd="10dp"
         >
         <RelativeLayout
             android:id="@+id/project_selected"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_width="20dp"
             android:layout_height="20dp">
             <ImageView
@@ -33,6 +33,7 @@
                 android:background="#74ac00"
                 android:tint="#ffffff"
                 android:visibility="gone"
+                android:contentDescription="@string/project_selected"
                 />
             <ImageView
                 android:id="@+id/project_unselected_icon"
@@ -40,6 +41,7 @@
                 android:layout_height="fill_parent"
                 android:src="@drawable/ic_check_box_white_24dp"
                 android:background="@drawable/border"
+                android:contentDescription="@string/project_unselected"
                 />
 
             <ImageView
@@ -49,15 +51,16 @@
                 android:src="@drawable/ic_check_circle_black_24dp"
                 android:tint="@color/inatapptheme_color"
                 android:visibility="gone"
+                android:contentDescription="@string/project_selected"
                 />
         </RelativeLayout>
 
         <RelativeLayout
             android:clickable="true"
             android:id="@+id/project_pic_container"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="11dp"
+            android:layout_marginStart="11dp"
             android:background="@drawable/project_border"
             android:layout_width="48dp"
             android:layout_height="48dp">
@@ -67,6 +70,7 @@
                 android:layout_height="fill_parent"
                 android:src="@drawable/ic_work_black_24dp"
                 android:padding="2dp"
+                android:importantForAccessibility="no"
                 />
             <ImageView
                 android:id="@+id/project_pic_none"
@@ -77,6 +81,7 @@
                 android:tint="#ffffff"
                 android:padding="10dp"
                 android:visibility="gone"
+                android:importantForAccessibility="no"
                 />
 
             <TextView
@@ -85,13 +90,13 @@
                 android:layout_height="18dp"
                 android:text="i"
                 android:textAlignment="center"
-                android:layout_marginRight="1dp"
+                android:layout_marginEnd="1dp"
                 android:layout_marginBottom="1dp"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
                 android:background="#cecece"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 />
         </RelativeLayout>
 
@@ -101,13 +106,14 @@
             android:layout_height="wrap_content"
             style="@android:style/TextAppearance.Medium"
             android:text="some project name with very lonsome project name with very longgsome project name with very long"
-            android:layout_toRightOf="@id/project_pic_container"
-            android:layout_toLeftOf="@id/project_selected"
+            android:layout_toEndOf="@id/project_pic_container"
+            android:layout_toStartOf="@id/project_selected"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="4dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="4dp"
             android:maxLines="2"
             android:ellipsize="end"
+            android:textAlignment="viewStart"
             />
     </RelativeLayout>
     <TableLayout
@@ -116,7 +122,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/project_top_container"
         android:layout_marginTop="10dp"
-        android:paddingRight="10dp"
+        android:paddingEnd="10dp"
         android:visibility="gone"
         android:stretchColumns="*" >
     </TableLayout>
@@ -129,15 +135,15 @@
         android:text="@string/required"
         android:textColor="#e5059a"
         android:visibility="gone"
-        android:paddingRight="10dp"
+        android:paddingEnd="10dp"
         />
 
     <View
         android:layout_width="fill_parent"
         android:layout_height="1px"
         android:background="#dfdfdf"
-        android:layout_marginLeft="76dp"
+        android:layout_marginStart="76dp"
         android:layout_alignParentBottom="true"
-        android:paddingRight="0dp"
+        android:paddingEnd="0dp"
         />
 </RelativeLayout>

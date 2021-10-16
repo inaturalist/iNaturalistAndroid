@@ -7,9 +7,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.DialogFragment;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +32,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -76,8 +82,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
 
     private RecyclerView mTaxonicIcons;
     private Button mApplyFilters;
-    private View mShowMyObservationsCheckbox;
-    private View mHideMyObservationsCheckbox;
+    private CheckBox mShowMyObservationsCheckbox;
+    private CheckBox mHideMyObservationsCheckbox;
     private ViewGroup mShowMyObservationsRow;
     private ViewGroup mHideMyObservationsRow;
     private ImageView mProjectPic;
@@ -86,11 +92,16 @@ public class ExploreFiltersActivity extends AppCompatActivity {
     private ImageView mUserPic;
     private TextView mUserName;
     private ImageView mClearUser;
-    private View mResearchGradeCheckbox;
-    private View mNeedsIdCheckbox;
-    private View mCasualGradeCheckbox;
-    private View mHasPhotosCheckbox;
-    private View mHasSoundsCheckbox;
+    private CheckBox mResearchGradeCheckbox;
+    private View mResearchGradeContainer;
+    private CheckBox mNeedsIdCheckbox;
+    private View mNeedsIdContainer;
+    private CheckBox mCasualGradeCheckbox;
+    private View mCasualGradeContainer;
+    private CheckBox mHasPhotosCheckbox;
+    private View mHasPhotos;
+    private CheckBox mHasSoundsCheckbox;
+    private View mHasSounds;
     private RadioButton mOptionDateAny;
     private RadioButton mOptionDateExact;
     private Spinner mDateExact;
@@ -108,6 +119,13 @@ public class ExploreFiltersActivity extends AppCompatActivity {
     @State public SerializableJSONArray mAllAnnotations;
     private Spinner mSortByProperty;
     private Spinner mSortByOrder;
+    private TextView mShowMyObservationsLabel;
+    private TextView mHideMyObservationsLabel;
+    private TextView mResearchGradeLabel;
+    private TextView mNeedsIdLabel;
+    private TextView mCasualGradeLabel;
+    private TextView mHasPhotosLabel;
+    private TextView mHasSoundsLabel;
 
 
     @Override
@@ -160,7 +178,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         mApp = (INaturalistApp) getApplicationContext();
         mApp.applyLocaleSettings(getBaseContext());
 
-        setContentView(R.layout.explore_filters);
+        ViewDataBinding binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.explore_filters, null, false);
+        setContentView(binding.getRoot());
 
         Intent intent = getIntent();
 
@@ -173,21 +192,33 @@ public class ExploreFiltersActivity extends AppCompatActivity {
 
         mApplyFilters = (Button) findViewById(R.id.apply_filters);
         mTaxonicIcons = (RecyclerView) findViewById(R.id.taxonic_icons);
-        mShowMyObservationsCheckbox = (View) findViewById(R.id.show_my_observations_checkbox);
+        mShowMyObservationsCheckbox = findViewById(R.id.show_my_observations_checkbox);
         mShowMyObservationsRow = (ViewGroup) findViewById(R.id.show_my_observations);
-        mHideMyObservationsCheckbox = (View) findViewById(R.id.hide_my_observations_checkbox);
+        mShowMyObservationsLabel = (TextView) findViewById(R.id.show_my_observations_label);
+        mHideMyObservationsCheckbox = findViewById(R.id.hide_my_observations_checkbox);
         mHideMyObservationsRow = (ViewGroup) findViewById(R.id.hide_my_observations);
+        mHideMyObservationsLabel = (TextView) findViewById(R.id.hide_my_observations_label);
         mProjectPic = (ImageView) findViewById(R.id.project_pic);
         mProjectName = (TextView) findViewById(R.id.project_name);
         mClearProject = (ImageView) findViewById(R.id.clear_project);
         mUserPic = (ImageView) findViewById(R.id.user_pic);
         mUserName = (TextView) findViewById(R.id.user_name);
         mClearUser = (ImageView) findViewById(R.id.clear_user);
-        mResearchGradeCheckbox = (View) findViewById(R.id.research_grade_checkbox);
-        mNeedsIdCheckbox = (View) findViewById(R.id.needs_id_checkbox);
-        mCasualGradeCheckbox = (View) findViewById(R.id.casual_grade_checkbox);
-        mHasPhotosCheckbox = (View) findViewById(R.id.has_photos_checkbox);
-        mHasSoundsCheckbox = (View) findViewById(R.id.has_sounds_checkbox);
+        mResearchGradeCheckbox = findViewById(R.id.research_grade_checkbox);
+        mResearchGradeContainer = (View) findViewById(R.id.research_grade);
+        mResearchGradeLabel = findViewById(R.id.research_grade_label);
+        mNeedsIdCheckbox = findViewById(R.id.needs_id_checkbox);
+        mNeedsIdContainer = (View) findViewById(R.id.needs_id);
+        mNeedsIdLabel = findViewById(R.id.needs_id_label);
+        mCasualGradeCheckbox = findViewById(R.id.casual_grade_checkbox);
+        mCasualGradeContainer = (View) findViewById(R.id.casual_grade);
+        mCasualGradeLabel = findViewById(R.id.casual_grade_label);
+        mHasPhotosCheckbox = findViewById(R.id.has_photos_checkbox);
+        mHasPhotos = (View) findViewById(R.id.has_photos);
+        mHasPhotosLabel = findViewById(R.id.has_photos_label);
+        mHasSoundsCheckbox = findViewById(R.id.has_sounds_checkbox);
+        mHasSounds = (View) findViewById(R.id.has_sounds);
+        mHasSoundsLabel = findViewById(R.id.has_sounds_label);
         mOptionDateAny = (RadioButton) findViewById(R.id.option_date_any);
         mOptionDateExact = (RadioButton) findViewById(R.id.option_date_exact);
         mOptionDateMinMax = (RadioButton) findViewById(R.id.option_date_min_max);
@@ -260,16 +291,14 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         final String currentUsername = prefs.getString("username", null);
         final String currentUserIconUrl = prefs.getString("user_icon_url", null);
 
-        mShowMyObservationsCheckbox.setOnClickListener(new View.OnClickListener() {
+        mShowMyObservationsCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (mSearchFilters == null) return;
 
-                view.setSelected(!view.isSelected());
-
-                if (view.isSelected()) {
+                if (isChecked) {
                     // Show my observations
-                    mHideMyObservationsCheckbox.setSelected(false);
+                    mHideMyObservationsCheckbox.setChecked(false);
                     mSearchFilters.hideObservationsUserId = null;
 
                     try {
@@ -288,7 +317,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
             }
         });
 
-        mShowMyObservationsRow.setOnClickListener(new View.OnClickListener() {
+        mShowMyObservationsLabel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mShowMyObservationsCheckbox.performClick();
@@ -298,18 +327,16 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         mShowMyObservationsRow.setVisibility(currentUsername == null ? View.GONE : View.VISIBLE);
 
 
-        mHideMyObservationsCheckbox.setOnClickListener(new View.OnClickListener() {
+        mHideMyObservationsCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (mSearchFilters == null) return;
 
-                view.setSelected(!view.isSelected());
-
-                if (view.isSelected()) {
+                if (isChecked) {
                     // Hide my observations
                     mSearchFilters.hideObservationsUserId = mApp.currentUserId();
                     mSearchFilters.user = null;
-                    mShowMyObservationsCheckbox.setSelected(false);
+                    mShowMyObservationsCheckbox.setChecked(false);
                 } else {
                     mSearchFilters.hideObservationsUserId = null;
                 }
@@ -318,7 +345,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
             }
         });
 
-        mHideMyObservationsRow.setOnClickListener(new View.OnClickListener() {
+        mHideMyObservationsLabel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mHideMyObservationsCheckbox.performClick();
@@ -335,18 +362,22 @@ public class ExploreFiltersActivity extends AppCompatActivity {
                 if (mSearchFilters == null) return;
 
                 String qualityGrade;
+                CheckBox checkbox;
 
-                if (view == mResearchGradeCheckbox) {
+                if (view == mResearchGradeLabel) {
                     qualityGrade = ExploreSearchFilters.QUALITY_GRADE_RESEARCH;
-                } else if (view == mNeedsIdCheckbox) {
+                    checkbox = mResearchGradeCheckbox;
+                } else if (view == mNeedsIdLabel) {
                     qualityGrade = ExploreSearchFilters.QUALITY_GRADE_NEEDS_ID;
+                    checkbox = mNeedsIdCheckbox;
                 } else {
                     qualityGrade = ExploreSearchFilters.QUALITY_GRADE_CASUAL;
+                    checkbox = mCasualGradeCheckbox;
                 }
 
-                view.setSelected(!view.isSelected());
+                checkbox.setChecked(!checkbox.isChecked());
 
-                if (view.isSelected()) {
+                if (checkbox.isChecked()) {
                     mSearchFilters.qualityGrade.add(qualityGrade);
                 } else {
                     mSearchFilters.qualityGrade.remove(qualityGrade);
@@ -356,31 +387,67 @@ public class ExploreFiltersActivity extends AppCompatActivity {
             }
         };
 
-        mResearchGradeCheckbox.setOnClickListener(onDataQualityCheckbox);
-        mNeedsIdCheckbox.setOnClickListener(onDataQualityCheckbox);
-        mCasualGradeCheckbox.setOnClickListener(onDataQualityCheckbox);
+        mResearchGradeLabel.setOnClickListener(onDataQualityCheckbox);
+        mNeedsIdLabel.setOnClickListener(onDataQualityCheckbox);
+        mCasualGradeLabel.setOnClickListener(onDataQualityCheckbox);
 
-        mHasPhotosCheckbox.setOnClickListener(new View.OnClickListener() {
+        CompoundButton.OnCheckedChangeListener onDataQualityCheckboxChange = new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton view, boolean isChecked) {
+                String qualityGrade;
+
+                if (view == mResearchGradeCheckbox) {
+                    qualityGrade = ExploreSearchFilters.QUALITY_GRADE_RESEARCH;
+                } else if (view == mNeedsIdCheckbox) {
+                    qualityGrade = ExploreSearchFilters.QUALITY_GRADE_NEEDS_ID;
+                } else {
+                    qualityGrade = ExploreSearchFilters.QUALITY_GRADE_CASUAL;
+                }
+
+                if (isChecked) {
+                    mSearchFilters.qualityGrade.add(qualityGrade);
+                } else {
+                    mSearchFilters.qualityGrade.remove(qualityGrade);
+                }
+            }
+        };
+        mResearchGradeCheckbox.setOnCheckedChangeListener(onDataQualityCheckboxChange);
+        mNeedsIdCheckbox.setOnCheckedChangeListener(onDataQualityCheckboxChange);
+        mCasualGradeCheckbox.setOnCheckedChangeListener(onDataQualityCheckboxChange);
+
+        mHasPhotosLabel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mSearchFilters == null) return;
 
-                view.setSelected(!view.isSelected());
+                mHasPhotosCheckbox.setChecked(!mHasPhotosCheckbox.isChecked());
 
-                mSearchFilters.hasPhotos = view.isSelected();
+                mSearchFilters.hasPhotos = mHasPhotosCheckbox.isChecked();
                 refreshViewState();
             }
         });
+        mHasPhotosCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mSearchFilters.hasPhotos = isChecked;
+            }
+        });
 
-        mHasSoundsCheckbox.setOnClickListener(new View.OnClickListener() {
+        mHasSoundsLabel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mSearchFilters == null) return;
 
-                view.setSelected(!view.isSelected());
+                mHasSoundsCheckbox.setChecked(!mHasSoundsCheckbox.isChecked());
 
-                mSearchFilters.hasSounds = view.isSelected();
+                mSearchFilters.hasSounds = mHasSoundsCheckbox.isChecked();
                 refreshViewState();
+            }
+        });
+        mHasSoundsCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mSearchFilters.hasSounds = isChecked;
             }
         });
 
@@ -688,6 +755,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
             mProjectPic.setColorFilter(Color.parseColor("#5D5D5D"));
         } else {
             mClearProject.setVisibility(View.VISIBLE);
+            BindingAdapterUtils.increaseTouch(mClearProject, 80);
             mProjectName.setText(mSearchFilters.project.optString("title"));
             mProjectPic.setColorFilter(null);
 
@@ -703,9 +771,9 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         }
 
         if (mSearchFilters.hideObservationsUserId == null) {
-            mHideMyObservationsCheckbox.setSelected(false);
+            mHideMyObservationsCheckbox.setChecked(false);
         } else {
-            mHideMyObservationsCheckbox.setSelected(true);
+            mHideMyObservationsCheckbox.setChecked(true);
         }
 
         if (mSearchFilters.user == null) {
@@ -713,9 +781,10 @@ public class ExploreFiltersActivity extends AppCompatActivity {
             mUserName.setText("");
             mUserPic.setImageResource(R.drawable.ic_account_circle_black_48dp);
             mUserPic.setColorFilter(Color.parseColor("#5D5D5D"));
-            mShowMyObservationsCheckbox.setSelected(false);
+            mShowMyObservationsCheckbox.setChecked(false);
         } else {
             mClearUser.setVisibility(View.VISIBLE);
+            BindingAdapterUtils.increaseTouch(mClearUser, 80);
             mUserName.setText(mSearchFilters.user.optString("login"));
             mUserPic.setColorFilter(null);
 
@@ -734,18 +803,18 @@ public class ExploreFiltersActivity extends AppCompatActivity {
 
             String filterUser = mSearchFilters.user.optString("login");
             if ((mApp.currentUserLogin() != null) && (filterUser.equals(mApp.currentUserLogin()))) {
-                mShowMyObservationsCheckbox.setSelected(true);
+                mShowMyObservationsCheckbox.setChecked(true);
             } else {
-                mShowMyObservationsCheckbox.setSelected(false);
+                mShowMyObservationsCheckbox.setChecked(false);
             }
         }
 
-        mResearchGradeCheckbox.setSelected(mSearchFilters.qualityGrade.contains(ExploreSearchFilters.QUALITY_GRADE_RESEARCH));
-        mNeedsIdCheckbox.setSelected(mSearchFilters.qualityGrade.contains(ExploreSearchFilters.QUALITY_GRADE_NEEDS_ID));
-        mCasualGradeCheckbox.setSelected(mSearchFilters.qualityGrade.contains(ExploreSearchFilters.QUALITY_GRADE_CASUAL));
+        mResearchGradeCheckbox.setChecked(mSearchFilters.qualityGrade.contains(ExploreSearchFilters.QUALITY_GRADE_RESEARCH));
+        mNeedsIdCheckbox.setChecked(mSearchFilters.qualityGrade.contains(ExploreSearchFilters.QUALITY_GRADE_NEEDS_ID));
+        mCasualGradeCheckbox.setChecked(mSearchFilters.qualityGrade.contains(ExploreSearchFilters.QUALITY_GRADE_CASUAL));
 
-        mHasPhotosCheckbox.setSelected(mSearchFilters.hasPhotos);
-        mHasSoundsCheckbox.setSelected(mSearchFilters.hasSounds);
+        mHasPhotosCheckbox.setChecked(mSearchFilters.hasPhotos);
+        mHasSoundsCheckbox.setChecked(mSearchFilters.hasSounds);
 
         mOptionDateAny.setChecked(false);
         mOptionDateExact.setChecked(false);
@@ -954,7 +1023,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
                     if (mApp.loggedIn()) {
                         if ((mSearchFilters.user != null) && (mSearchFilters.user.optString("login").equals(mApp.currentUserLogin()))) {
                             // User selected his own username
-                            mHideMyObservationsCheckbox.setSelected(false);
+                            mHideMyObservationsCheckbox.setChecked(false);
                             mSearchFilters.hideObservationsUserId = null;
                         }
                     }

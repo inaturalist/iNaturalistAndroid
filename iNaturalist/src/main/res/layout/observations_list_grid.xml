@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/people_container"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -112,8 +112,8 @@
                 android:numColumns="3"
                 android:verticalSpacing="3dp"
                 android:horizontalSpacing="3dp"
-                android:paddingLeft="1dp"
-                android:paddingRight="1dp"
+                android:paddingStart="1dp"
+                android:paddingEnd="1dp"
                 android:stretchMode="columnWidth"
                 android:gravity="center"
                 android:orientation="vertical"/>
@@ -141,6 +141,7 @@
             android:tint="#9A9A9A"
             android:src="@drawable/unknown_large"
             android:scaleType="fitCenter"
+            android:importantForAccessibility="no"
             />
 
         <TextView
@@ -152,12 +153,13 @@
             android:layout_below="@id/empty_icon"
             android:textSize="18sp"
             android:textColor="#8a000000"
-            android:paddingLeft="42dp"
-            android:paddingRight="42dp"
+            android:paddingStart="42dp"
+            android:paddingEnd="42dp"
             android:layout_marginTop="40dp"
             android:text="@string/no_observations_yet" />
 
-        <com.melnykov.fab.FloatingActionButton
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_observation"
             android:layout_width="70dp"
             android:layout_height="70dp"
@@ -168,11 +170,10 @@
             android:layout_marginEnd="16dp"
             android:padding="14dp"
             android:src="@drawable/ic_add_white_24dp"
+            app:backgroundTint="@color/inatapptheme_color"
+            android:contentDescription="@string/add_observation"
             android:scaleType="fitCenter"
-            android:visibility="gone"
-            fab:fab_colorNormal="@color/inatapptheme_color"
-            fab:fab_colorPressed="@color/inatapptheme_color_highlighted"
-            fab:fab_colorRipple="@color/inatapptheme_color_highlighted" />
+            android:visibility="gone" />
 
 
         <TextView
@@ -200,8 +201,8 @@
             android:text="@string/see_more_observations"
             android:visibility="gone"
             android:textColor="@drawable/circular_button_text"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
             android:textSize="16sp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
@@ -217,8 +218,8 @@
         android:background="#74AC00"
         android:layout_width="fill_parent"
         android:paddingBottom="14dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:paddingTop="12dp"
         android:visibility="gone"
         android:layout_height="wrap_content">
@@ -232,6 +233,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginEnd="16dp"
             android:tint="#ffffff"
+            android:importantForAccessibility="no"
             />
 
         <TextView

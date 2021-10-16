@@ -64,7 +64,7 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
 
     private Button mJoinLeaveProject;
 
-    @State public String mViewType;
+    @State public String mViewType = VIEW_TYPE_OBSERVATIONS;
 
     private INaturalistApp mApp;
     @State(AndroidStateBundlers.BetterJSONObjectBundler.class) public BetterJSONObject mProject;

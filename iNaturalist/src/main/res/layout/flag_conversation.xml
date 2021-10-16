@@ -9,8 +9,8 @@
         android:layout_height="wrap_content">
         <RadioGroup
             android:id="@+id/flag_types"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
             <!-- Content will be added dynamically -->
@@ -36,18 +36,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="40dp"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="15dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/rounded_white_borders_background"
             android:inputType="textMultiLine|textCapSentences"
-            android:paddingLeft="17dp"
-            android:paddingRight="15dp"
+            android:paddingStart="17dp"
+            android:paddingEnd="15dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:minLines="5"
             android:maxLines="5"
             android:gravity="top"
+            android:hint="@string/why_are_you_flagging_this_item"
             />
 
     </LinearLayout>

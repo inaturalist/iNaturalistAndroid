@@ -13,7 +13,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:gravity="center_vertical"
         android:layout_centerVertical="true"
-        android:paddingLeft="6dip"
+        android:paddingStart="6dip"
         android:minHeight="?android:attr/listPreferredItemHeight" />
 
     <ImageView
@@ -23,6 +23,7 @@
         android:minHeight="?android:attr/listPreferredItemHeight"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
+        android:importantForAccessibility="no"
         android:src="@drawable/right_arrow_black" />
 
 </RelativeLayout>

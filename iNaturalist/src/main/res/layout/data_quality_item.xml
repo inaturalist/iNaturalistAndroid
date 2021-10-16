@@ -21,8 +21,9 @@
                 android:id="@+id/icon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:scaleType="fitCenter"
+                android:importantForAccessibility="no"
                 android:src="@drawable/actinopterygii_large" />
 
             <TextView
@@ -45,19 +46,24 @@
 
             <ImageView
                 android:id="@+id/agree_prefix"
+                android:contentDescription="@string/assessment_passes"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
                 android:layout_gravity="center_vertical"
                 android:tint="@color/inatapptheme_color"
                 android:src="@drawable/ic_check_black_24dp" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/agree_icon"
+                android:contentDescription="@string/agree_assessment_passes"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center_vertical"
                 android:tint="#C3C3C3"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:padding="0dp"
                 android:src="@drawable/baseline_thumb_up_black_36" />
 
             <TextView
@@ -68,7 +74,7 @@
                 android:textSize="13sp"
                 android:tint="#C3C3C3"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 />
 
         </LinearLayout>
@@ -82,19 +88,24 @@
             android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/disagree_prefix"
+                android:contentDescription="@string/does_not_pass_assessment"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
                 android:layout_gravity="center_vertical"
                 android:tint="#FF0000"
                 android:src="@drawable/ic_close_black_48dp" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/disagree_icon"
+                android:contentDescription="@string/disagree_assessment_passes"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:tint="#C3C3C3"
                 android:layout_gravity="center_vertical"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:padding="0dp"
                 android:src="@drawable/baseline_thumb_down_black_36" />
 
             <TextView
@@ -105,7 +116,7 @@
                 android:textSize="13sp"
                 android:tint="#C3C3C3"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 />
 
         </LinearLayout>

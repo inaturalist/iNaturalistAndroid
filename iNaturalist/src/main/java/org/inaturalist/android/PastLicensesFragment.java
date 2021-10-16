@@ -41,8 +41,11 @@ public class PastLicensesFragment extends PreferenceFragmentCompat {
         StrictMode.setVmPolicy(newBuilder.build());
 
         mChangePastLicensesForObservations = getPreferenceManager().findPreference("change_licenses_for_all_existing_observations");
+        mChangePastLicensesForObservations.setSingleLineTitle(false);
         mChangePastLicensesForPhotos = getPreferenceManager().findPreference("change_licenses_for_all_existing_photos");
+        mChangePastLicensesForPhotos.setSingleLineTitle(false);
         mChangePastLicensesForSounds = getPreferenceManager().findPreference("change_licenses_for_all_existing_sounds");
+        mChangePastLicensesForSounds.setSingleLineTitle(false);
 
         mChangePastLicensesForObservations.setOnPreferenceClickListener(preference -> {
             LicenseUtils.showLicenseChooser(getActivity(), R.string.observation_license, null, license -> {

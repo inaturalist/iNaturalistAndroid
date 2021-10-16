@@ -60,14 +60,14 @@ class PhotosViewPagerAdapter extends PagerAdapter {
                         ObservationPhoto.PROJECTION,
                         "(observation_uuid=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
                         new String[]{mObservation.uuid},
-                        ObservationPhoto.DEFAULT_SORT_ORDER);
+                        mApp.isLayoutRTL() ? ObservationPhoto.REVERSE_DEFAULT_SORT_ORDER : ObservationPhoto.DEFAULT_SORT_ORDER);
             } else if (mApp.loggedIn()) {
                 if (mObservation.user_login.toLowerCase().equals(mApp.currentUserLogin().toLowerCase())) {
                     mImageCursor = mContext.getContentResolver().query(ObservationPhoto.CONTENT_URI,
                             ObservationPhoto.PROJECTION,
                             "(observation_id=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
                             new String[]{String.valueOf(mObservation.id)},
-                            ObservationPhoto.DEFAULT_SORT_ORDER);
+                            mApp.isLayoutRTL() ? ObservationPhoto.REVERSE_DEFAULT_SORT_ORDER : ObservationPhoto.DEFAULT_SORT_ORDER);
                 }
             }
 

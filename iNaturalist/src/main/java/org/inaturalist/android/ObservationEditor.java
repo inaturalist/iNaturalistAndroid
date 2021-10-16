@@ -95,6 +95,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.ActionBar;
@@ -119,6 +121,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -350,9 +353,10 @@ public class ObservationEditor extends AppCompatActivity {
         mApp = (INaturalistApp) getApplicationContext();
         mApp.applyLocaleSettings(getBaseContext());
 
-        setContentView(R.layout.observation_confirmation);
+        ViewDataBinding binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.observation_confirmation, null, false);
+        setContentView(binding.getRoot());
 
-        setTitle(R.string.details);
+        setTitle(R.string.edit_observation);
 
         if (mHelper == null) {
             mHelper = new ActivityHelper(this);
@@ -413,7 +417,10 @@ public class ObservationEditor extends AppCompatActivity {
             setResult(RESULT_OK, (new Intent()).setAction(mUri.toString()));
             getIntent().setAction(Intent.ACTION_INSERT);
 
-        } else if (savedInstanceState == null) {
+        } else if ((savedInstanceState == null) ||
+                ((mUri == null) && (intent != null) && (intent.getData() != null))) {
+            Logger.tag(TAG).error("Insert 1b");
+
             // Do some setup based on the action being performed.
             Uri uri = intent.getData();
             if (uri == null) {
@@ -620,18 +627,11 @@ public class ObservationEditor extends AppCompatActivity {
             }
         });
 
-
-        findViewById(R.id.is_captive_checkbox).setOnClickListener(new OnClickListener() {
+        OnClickListener onIsCaptive = new OnClickListener() {
             @Override
             public void onClick(View view) {
                 mIsCaptive = !mIsCaptive;
-                if (mIsCaptive) {
-                    findViewById(R.id.is_captive_on_icon).setVisibility(View.VISIBLE);
-                    findViewById(R.id.is_captive_off_icon).setVisibility(View.GONE);
-                } else {
-                    findViewById(R.id.is_captive_on_icon).setVisibility(View.GONE);
-                    findViewById(R.id.is_captive_off_icon).setVisibility(View.VISIBLE);
-                }
+                ((CheckBox)findViewById(R.id.is_captive_checkbox)).setChecked(mIsCaptive);
 
                 try {
                     JSONObject eventParams = new JSONObject();
@@ -642,7 +642,10 @@ public class ObservationEditor extends AppCompatActivity {
                 }
 
             }
-            });
+        };
+
+        findViewById(R.id.is_captive).setOnClickListener(onIsCaptive);
+        findViewById(R.id.is_captive_checkbox).setOnClickListener(onIsCaptive);
 
         mPhotoWarningContainer = findViewById(R.id.warning_multiple_photos);
         mPhotoWarningContainer.setVisibility(View.GONE);
@@ -956,7 +959,7 @@ public class ObservationEditor extends AppCompatActivity {
         View takePhoto;
 
         mTopActionBar.setLogo(R.drawable.ic_arrow_back);
-        mTopActionBar.setTitle(getString(R.string.details));
+        mTopActionBar.setTitle(getString(R.string.edit_observation));
         mTakePhotoButton = findViewById(R.id.take_photo);
 
         mTakePhotoButton.setOnClickListener(new OnClickListener() {
@@ -1077,7 +1080,7 @@ public class ObservationEditor extends AppCompatActivity {
                 lon = mObservation.private_longitude == null ? mObservation.longitude : mObservation.private_longitude;
                 intent.putExtra(LocationChooserActivity.LONGITUDE, lon);
                 intent.putExtra(LocationChooserActivity.LATITUDE,  lat);
-                intent.putExtra(LocationChooserActivity.ACCURACY, (mObservation.positional_accuracy != null ? mObservation.positional_accuracy.doubleValue() : 0));
+                intent.putExtra(LocationChooserActivity.ACCURACY, (mObservation.positional_accuracy != null ? mObservation.positional_accuracy.doubleValue() : null));
                 intent.putExtra(LocationChooserActivity.ICONIC_TAXON_NAME, mObservation.iconic_taxon_name);
                 intent.putExtra(LocationChooserActivity.GEOPRIVACY, (String) mGeoprivacy.getSelectedItem());
 
@@ -1344,6 +1347,9 @@ public class ObservationEditor extends AppCompatActivity {
 
         galleryIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
         galleryIntent.putExtra(MediaStore.EXTRA_OUTPUT, mFileUri);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            galleryIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        }
         this.startActivityForResult(galleryIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
 
         // In case a new/existing photo was taken - make sure we won't retake it in case the activity pauses/resumes.
@@ -1683,14 +1689,16 @@ public class ObservationEditor extends AppCompatActivity {
         		}
         	}
 
-        	if (mObservation != null) {
+        	if (mObservation != null && mObservation._id != null) {
                 mApp.setIsObservationCurrentlyBeingEdited(mObservation._id, false);
             }
         }
     }
     
     private void uiToProjectFieldValues() {
-        int obsId = (mObservation.id == null ? mObservation._id : mObservation.id);
+        Integer obsId = (mObservation.id == null ? mObservation._id : mObservation.id);
+
+        if (obsId == null) return;
 
         for (int fieldId : mProjectFieldValues.keySet()) {
             ProjectFieldValue fieldValue = mProjectFieldValues.get(fieldId);
@@ -1848,7 +1856,9 @@ public class ObservationEditor extends AppCompatActivity {
         if (mAccuracyView.getText() == null || mAccuracyView.getText().length() == 0) {
             mObservation.positional_accuracy = null;
         } else {
-            mObservation.positional_accuracy = ((Float) Float.parseFloat(mAccuracyView.getText().toString())).intValue();
+            // Round any accuracy less than 1 (but greater than zero) to 1
+            Float acc = ((Float) Float.parseFloat(mAccuracyView.getText().toString()));
+            mObservation.positional_accuracy = acc > 0 & acc < 1 ? 1 : acc.intValue();
         }
 
         List<String> values = Arrays.asList(getResources().getStringArray(R.array.geoprivacy_values));
@@ -1982,13 +1992,7 @@ public class ObservationEditor extends AppCompatActivity {
         }
 
         mIsCaptive = mObservation.captive != null && mObservation.captive;
-        if (mIsCaptive) {
-            findViewById(R.id.is_captive_on_icon).setVisibility(View.VISIBLE);
-            findViewById(R.id.is_captive_off_icon).setVisibility(View.GONE);
-        } else {
-            findViewById(R.id.is_captive_on_icon).setVisibility(View.GONE);
-            findViewById(R.id.is_captive_off_icon).setVisibility(View.VISIBLE);
-        }
+        ((CheckBox)findViewById(R.id.is_captive_checkbox)).setChecked(mIsCaptive);
 
         mLocationGuess.setInputType(InputType.TYPE_TEXT_FLAG_CAP_WORDS);
 
@@ -2426,6 +2430,8 @@ public class ObservationEditor extends AppCompatActivity {
                     }
                 } catch (IOException e) {
                     Logger.tag(TAG).error(e);
+                } catch (IllegalArgumentException e) {
+                    Logger.tag(TAG).error(e);
                 }
             }
         })).start();
@@ -2491,7 +2497,9 @@ public class ObservationEditor extends AppCompatActivity {
 
         if (location.hasAccuracy()) {
             mAccuracyView.setText(Float.toString(location.getAccuracy()));
-            mObservation.positional_accuracy = ((Float) location.getAccuracy()).intValue();
+            // Round any accuracy less than 1 (but greater than zero) to 1
+            Float acc = location.getAccuracy();
+            mObservation.positional_accuracy = acc > 0 & acc < 1 ? 1 : acc.intValue();
             findViewById(R.id.accuracy_prefix).setVisibility(View.VISIBLE);
             findViewById(R.id.accuracy).setVisibility(View.VISIBLE);
         } else {
@@ -2549,6 +2557,8 @@ public class ObservationEditor extends AppCompatActivity {
      */
     
     private void saveProjectFields() {
+        if (mProjectFieldValues == null) return;
+        
         for (ProjectFieldValue fieldValue : mProjectFieldValues.values()) {
             if (fieldValue.value == null) {
                 continue;
@@ -2569,6 +2579,8 @@ public class ObservationEditor extends AppCompatActivity {
      
    
     private boolean saveProjects() {
+        if (mObservation._id == null) return false;
+
     	Boolean updatedProjects = false; // Indicates whether or not *any* projects were changed
         String joinedIds = StringUtils.join(mProjectIds, ",");
         
@@ -2633,6 +2645,9 @@ public class ObservationEditor extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        Logger.tag(TAG).debug("onActivityResult: " + requestCode + ":" + resultCode + ":" + data);
+
         (new Handler()).postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -2730,7 +2745,7 @@ public class ObservationEditor extends AppCompatActivity {
 
                 double longitude = data.getDoubleExtra(LocationChooserActivity.LONGITUDE, 0);
                 double latitude = data.getDoubleExtra(LocationChooserActivity.LATITUDE, 0);
-                double accuracy = data.getDoubleExtra(LocationChooserActivity.ACCURACY, 0);
+                double accuracy = data.getDoubleExtra(LocationChooserActivity.ACCURACY, -1);
                 String geoprivacy = data.getStringExtra(LocationChooserActivity.GEOPRIVACY);
                 String placeGuess = data.getStringExtra(LocationChooserActivity.PLACE_GUESS);
 
@@ -2741,7 +2756,10 @@ public class ObservationEditor extends AppCompatActivity {
 
                 mObservation.latitude = latitude;
                 mObservation.longitude = longitude;
-                mObservation.positional_accuracy = (int) Math.floor(accuracy);
+                if (accuracy != -1) {
+                    // Round any accuracy less than 1 (but greater than zero) to 1
+                    mObservation.positional_accuracy = accuracy > 0 & accuracy < 1 ? 1 : (int) Math.floor(accuracy);
+                }
 
                 mObservation.geoprivacy = geoprivacy;
                 updateObservationVisibilityDescription();
@@ -2756,7 +2774,7 @@ public class ObservationEditor extends AppCompatActivity {
 
                 mLatitudeView.setText(Double.toString(latitude));
                 mLongitudeView.setText(Double.toString(longitude));
-                mAccuracyView.setText(mObservation.positional_accuracy.toString());
+                mAccuracyView.setText(mObservation.positional_accuracy != null ? mObservation.positional_accuracy.toString() : "");
                 findViewById(R.id.coordinates).setVisibility(View.VISIBLE);
                 findViewById(R.id.accuracy_prefix).setVisibility(View.VISIBLE);
                 findViewById(R.id.accuracy).setVisibility(View.VISIBLE);
@@ -3392,6 +3410,8 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private Uri createObservationPhotoForPhoto(Uri photoUri, int position, boolean isDuplicated) {
+        Logger.tag(TAG).debug("createObservationPhotoForPhoto: " + photoUri + ":" + position + ":" + isDuplicated);
+
         mPhotosChanged = true;
 
         if (photoUri == null) {
@@ -3425,6 +3445,9 @@ public class ObservationEditor extends AppCompatActivity {
             return null;
         }
 
+        // Save original-sized copy of the photo (so when cropping, we'll crop from the original sized photo)
+        String originalSizePhoto = ImageUtils.resizeImage(this, path, isDuplicated ? null : photoUri, Integer.MAX_VALUE);
+
         ObservationPhoto op = new ObservationPhoto();
 
         op.uuid = UUID.randomUUID().toString();
@@ -3433,7 +3456,7 @@ public class ObservationEditor extends AppCompatActivity {
         cv.put(ObservationPhoto._OBSERVATION_ID, mObservation._id);
         cv.put(ObservationPhoto.OBSERVATION_ID, mObservation.id);
         cv.put(ObservationPhoto.PHOTO_FILENAME, resizedPhoto);
-        cv.put(ObservationPhoto.ORIGINAL_PHOTO_FILENAME, path);
+        cv.put(ObservationPhoto.ORIGINAL_PHOTO_FILENAME, originalSizePhoto);
         cv.put(ObservationPhoto.POSITION, position);
         cv.put(ObservationPhoto.OBSERVATION_UUID, mObservation.uuid);
         cv.put(ObservationPhoto.LICENSE, mApp.getDefaultPhotoLicense().value);
@@ -3549,7 +3572,9 @@ public class ObservationEditor extends AppCompatActivity {
                 if (directory != null) {
                     Rational value = directory.getRational(GpsDirectory.TAG_H_POSITIONING_ERROR);
                     if (value != null) {
-                        mObservation.positional_accuracy = value.intValue();
+                        // Round any accuracy less than 1 (but greater than zero) to 1
+                        Float acc = value.floatValue();
+                        mObservation.positional_accuracy = acc > 0 & acc < 1 ? 1 : acc.intValue();
                     }
                 }
 
@@ -3586,7 +3611,9 @@ public class ObservationEditor extends AppCompatActivity {
                 if (datetime == null) {
                     datetime = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_DATE_TIME);
                 }
-            } else {
+            }
+
+            if ((exif == null) || (datetime == null)) {
                 // Try using built-in EXIF library instead
                 String date = orgExif.getAttribute(ExifInterface.TAG_GPS_DATESTAMP);
                 String time = orgExif.getAttribute(ExifInterface.TAG_GPS_TIMESTAMP);
@@ -3860,6 +3887,7 @@ public class ObservationEditor extends AppCompatActivity {
 
     private void addDuplicatedPhoto(ObservationPhoto originalPhoto, File duplicatedPhotoFile, boolean refreshPositions) {
         // Create new photo observation with the duplicated photo file
+        Logger.tag(TAG).error("addDuplicatedPhoto - " + originalPhoto);
 
         Uri createdUri = createObservationPhotoForPhoto(Uri.fromFile(duplicatedPhotoFile), originalPhoto.position, false);
 
@@ -4422,6 +4450,8 @@ public class ObservationEditor extends AppCompatActivity {
 
     
     private void refreshProjectFields() {
+        if ((mObservation == null) || (mObservation.id == null && mObservation._id == null)) return;
+
         ProjectFieldViewer.getProjectFields(this, mProjectIds, (mObservation.id == null ? mObservation._id : mObservation.id), new ProjectFieldViewer.ProjectFieldsResults() {
             @Override
             public void onProjectFieldsResults(ArrayList projectFields, HashMap<Integer, ProjectFieldValue> projectValues) {

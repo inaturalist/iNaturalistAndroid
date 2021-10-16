@@ -7,8 +7,6 @@
     <string name="ok">好的</string>
     <string name="cancel">取消</string>
     <string name="loading">载入</string>
-    <string name="sync_required">需要同步</string>
-    <string name="sync_required_message">%1$d 观察记录，%2$d 张照片同步</string>
     <string name="street">街道</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">卫星</string>
@@ -32,7 +30,6 @@
     <string name="settings">设定</string>
     <string name="projects">任务</string>
     <string name="delete_photo">删除照片</string>
-    <string name="menu">选单</string>
     <string name="my_location">我的位置</string>
     <string name="nearby_observations">附近的观察记录</string>
     <string name="add">新增</string>
@@ -200,6 +197,9 @@
     <string name="alert_message_use_inaturalistgr">iNaturalist Greece is a member of the iNaturalist Network in Greece. Local institutions supporting iNaturalist Greece will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg is a member of the iNaturalist Network in Luxembourg. Local institutions supporting iNaturalist Luxembourg will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom is a member of the iNaturalist Network in United Kingdom. Local institutions supporting iNaturalist United Kingdom will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is a member of the iNaturalist Network in Costa Rica. Local institutions supporting Naturalista Costa Rica will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">编辑</string>
     <string name="license">授权</string>
     <string name="download_for_offline_use">下载供离线使用</string>
@@ -223,9 +223,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">谷歌</string>
     <string name="email">电子邮件</string>
-    <string name="sign_up_with">透过以下方式注册</string>
     <string name="skip">略过 &gt;</string>
-    <string name="already_have_account">已经有帐号了吗？</string>
     <string name="log_in">登入</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">注册</string>
@@ -347,13 +345,12 @@
     <string name="updating_profile">更新个人资料中…</string>
     <string name="there_was_a_problem_updating_profile">更新您的个人资料时发生问题！</string>
     <string name="there_was_a_problem_updating_profile_params">更新您的个人资料时发生问题：%1$s</string>
-    <string name="logged_in_as_html"><![CDATA[已登入为 <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
     <string name="log_out">登出</string>
     <string name="not_logged_in">未登入</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
-    <string name="login_or_sign_up">Log In or Sign Up</string>
+    <string name="login_or_sign_up">登录或注册</string>
     <string name="auto_upload_description">自动上传新的观察和编辑过的观察记录</string>
     <string name="language">语言</string>
     <string name="version">版本</string>
@@ -464,14 +461,12 @@
     <string name="what_did_you_see">您看到什么？</string>
     <string name="suggest_species">建议的物种</string>
     <string name="suggest_species_description">针对照片中外观相似度来建议物种。</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">外观看起来很像</string>
     <string name="visually_similar_seen_nearby">视觉上相似/附近曾见过</string>
     <string name="seen_nearby">附近曾见过</string>
     <string name="enlarge">放大</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">查看子项目</string>
-    <string name="invalid_photo_extension">汇入照片时出错： 只能汇入照片的副档名为JPG/JPEG/PNG</string>
     <string name="taxon_has_no_photos">这分类群没有照片。</string>
     <string name="terrain">地形</string>
     <string name="filters">搜索条件</string>
@@ -589,7 +584,6 @@
     <string name="leave_comment">添加评论...</string>
     <string name="swipe">滑动</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">哪一个 Google 账户？</string>
     <string name="potential_disagreement">潜在的分歧</string>
     <string name="do_you_think_this_could_be"><![CDATA[已有的证据是否可以确保这是<b>%1$s</b>？]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -601,7 +595,7 @@
     <string name="must_be_connected_to_load_more_obs">您必须连接到网络才能加载更多观察记录</string>
     <string name="inat_about_title">iNaturalist 是由美国加利福尼亚科学院以及美国国家地理共同发起的平台。</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -626,6 +620,7 @@
     <string name="project_observations">观察资料</string>
     <string name="project_species">物种</string>
     <string name="project_people">人员</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">鉴定者</string>
     <string name="got_it">明白！</string>
     <string name="view_all">检视全部</string>
@@ -652,6 +647,8 @@
     <string name="annotation_name_sex">性别</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">活体或死亡</string>
+    <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <string name="annotation_name_evidence_of_presence">物种出现的证据</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">开花阶段</string>
     <!-- Adjective, having fruit -->
@@ -685,6 +682,18 @@
     <string name="annotation_value_dead">死亡</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">无法确认</string>
+    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <string name="annotation_value_organism">生物</string>
+    <!-- Evidence of Presence value when for bird feathers -->
+    <string name="annotation_value_feather">羽毛</string>
+    <!-- Evidence of Presence value when for fecal remains -->
+    <string name="annotation_value_scat">排泄物</string>
+    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <string name="annotation_value_track">足迹</string>
+    <!-- Evidence of Presence value when for bones -->
+    <string name="annotation_value_bone">骨骼</string>
+    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <string name="annotation_value_molt">蜕皮</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">已加入</string>
     <string name="nearby_projects_all_caps">周边</string>
@@ -746,6 +755,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">全部标记为已读</string>
     <string name="content_hidden">内容已隐藏</string>
     <string name="show_hidden_content">显示隐藏内容</string>
@@ -759,7 +771,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">录音</string>
-    <string name="no_recorder_found">找不到预设的录音装置！</string>
     <string name="couldnt_retrieve_sound">无法从默认录音设备取得声音，请尝试导入声音</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">选择音频</string>
@@ -962,6 +973,10 @@
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">MMM d, yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
     <string name="show_common_names">显示常用名</string>
     <string name="show_common_names_description">如果您只想查看学名，请禁用此功能。</string>
     <string name="email_must_look_like_email_address">电子邮箱必须是电子邮件的格式</string>
@@ -1089,6 +1104,7 @@
     <string name="default_observation_license">默认观察授权</string>
     <string name="default_photo_license">默认照片协议</string>
     <string name="default_sound_license">默认声音协议</string>
+    <string name="change_existing_licenses">Change Existing Licenses</string>
     <string name="change_licenses_for_existing_observations">更改现有观察、照片和声音的授权</string>
     <string name="change_licenses_for_all_existing_observations">更改所有现有观察的授权</string>
     <string name="change_licenses_for_all_existing_photos">更改所有现有照片的授权</string>
@@ -1107,6 +1123,7 @@
     <string name="existing_sound_licenses_have_been_updated">所有现有的声音授权已更改为 %1$s。</string>
     <string name="default_licenses_description"><![CDATA[Licensing your content gives anyone the legal right to use it without asking your permission if they abide by the terms of the license. In addition, iNat includes your Creative Commons-licensed content in regularly-updated archives produced for select partner organizations interested in our data. For example, we include No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC) records in the archive we generate for the <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, an international, inter-governmental organization that compiles and distributes biodiversity information from around the world.]]></string>
     <string name="photo_license">照片授权</string>
+    <string name="sound_license">声音的授权</string>
     <string name="edit_photo_license">编辑照片授权</string>
     <string name="observation_license">观察授权</string>
     <string name="edit_observation_license">编辑观察授权</string>
@@ -1114,13 +1131,13 @@
     <string name="view_license">查看授权</string>
     <!-- License Names -->
     <string name="license_name_cc0">公有领域</string>
-    <string name="license_name_cc_by">Attribution</string>
-    <string name="license_name_cc_by_nc">Attribution-NonCommercial</string>
-    <string name="license_name_cc_by_nc_sa">Attribution-NonCommercial-ShareAlike</string>
-    <string name="license_name_cc_by_nc_nd">Attribution-NonCommercial-NoDerivs</string>
-    <string name="license_name_cc_by_nd">Attribution-NoDerivs</string>
-    <string name="license_name_cc_by_sa">Attribution-ShareAlike</string>
-    <string name="license_name_no_license">All rights reserved</string>
+    <string name="license_name_cc_by">署名</string>
+    <string name="license_name_cc_by_nc">署名-非商业性使用</string>
+    <string name="license_name_cc_by_nc_sa">署名-非商业性使用-相同方式共享</string>
+    <string name="license_name_cc_by_nc_nd">署名-非商业性使用-禁止修改</string>
+    <string name="license_name_cc_by_nd">署名-禁止演绎</string>
+    <string name="license_name_cc_by_sa">署名-相同方式共享</string>
+    <string name="license_name_no_license">保留所有权利</string>
     <!-- License Descriptions -->
     <string name="license_description_cc0">This license releases your work into the public domain, so others can copy, modify, distribute and perform your work, even for commercial purposes, all without asking permission or giving you credit. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.</string>
     <string name="license_description_cc_by">This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation.</string>
@@ -1128,9 +1145,65 @@
     <string name="license_description_cc_by_nc_sa">This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms.</string>
     <string name="license_description_cc_by_nc_nd">This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can\'t change them in any way or use them commercially.</string>
     <string name="license_description_cc_by_nd">This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.</string>
-    <string name="license_description_cc_by_sa">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
+    <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
     <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
     <string name="invalid_photo">不支持的照片格式</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">Suggestions based on observations and identifications provided by the iNaturalist community, including %1$s, %2$s, %3$s, and many others.</string>
+    <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">Default Observation Action</string>
+    <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">显示选项</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">字段值</string>
+    <string name="expand_annotation_to_agree_or_disagree">展开注释以选择同意或不同意</string>
+    <string name="delete_attribute_value">删除属性值</string>
+    <string name="open_menu_for_more_options">打开菜单以获取更多选项</string>
+    <string name="change_user_profile_photo">更改个人资料照片</string>
+    <string name="expand_list">展开列表</string>
+    <string name="change_map_layers">更改地图图层(地形 vs. 卫星)</string>
+    <string name="redo_observation_search">在此地图区域重新搜索观察记录</string>
+    <string name="view_observations_on_map">在地图上查看观察记录</string>
+    <string name="view_observations_on_grid">在网格上查看观察记录</string>
+    <string name="clear_text">清除文本</string>
+    <string name="observation_has_sounds">含有音频的观察记录</string>
+    <string name="go_to_my_location">转到我的当前位置</string>
+    <string name="change_geoprivacy">更改地理位置</string>
+    <string name="active_filters">使用中的筛选条件</string>
+    <string name="message_is_flagged">消息已标记</string>
+    <string name="user_is_muted">用户已被禁言</string>
+    <string name="cancel_multiple_obs_selection">取消选择多项观察记录</string>
+    <string name="delete_observations">删除观察记录</string>
+    <string name="comment_count">评论次数</string>
+    <string name="id_count">鉴定次数</string>
+    <string name="observation_selected">已选择的观察记录</string>
+    <string name="share_observation">分享观察记录</string>
+    <string name="unknown_location">未知位置</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">关闭</string>
+    <string name="set_date2">设定日期</string>
+    <string name="project_selected">已选项目</string>
+    <string name="project_unselected">未选择的项目</string>
+    <string name="show_my_observations">显示我的观察记录</string>
+    <string name="play_pause_sound">播放或暂停声音</string>
+    <string name="california_academy_of_sciences_and_national_geographic">加州科学院和国家地理学院</string>
+    <string name="view_image">查看照片</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">通过评估</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">同意通过评估</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">未通过评估</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">不同意通过评估</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="other">删除 %1$d 个选定的观察</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="other">Sync %1$d selected observations</item>
+    </plurals>
+    <string name="add_media_evidence">Add media evidence</string>
+    <string name="remove_identification">Remove identification</string>
+    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
+    <string name="app_version_copied_to_clipboard">已复制应用版本</string>
 </resources>

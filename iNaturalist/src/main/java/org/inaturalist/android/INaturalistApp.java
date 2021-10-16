@@ -75,6 +75,7 @@ import android.os.Handler;
 import android.os.LocaleList;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.text.TextUtilsCompat;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 import androidx.core.app.ActivityCompat;
@@ -92,6 +93,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import static androidx.core.view.ViewCompat.LAYOUT_DIRECTION_RTL;
 
 public class INaturalistApp extends MultiDexApplication {
     private final static String TAG = "INAT: Application";
@@ -128,6 +131,18 @@ public class INaturalistApp extends MultiDexApplication {
     private GoogleApiClient mGoogleApiClient;
     private GlobalExceptionHandler mFileLoggingTree;
     private long mAppStartTime;
+
+    private boolean mCalledStartForeground = false;
+
+    public boolean hasCalledStartForeground() {
+        return mCalledStartForeground;
+    }
+
+    public void setCalledStartForeground(boolean value) {
+        mCalledStartForeground = value;
+    }
+
+
 
     // The ID of the observation being currently synced
 
@@ -1141,12 +1156,7 @@ public class INaturalistApp extends MultiDexApplication {
     public String formatDatetime(Timestamp date) { return DATETIME_FORMAT.format(date); }
     public String formatDatetimeISONoTimezone(Timestamp date) { return DATETIME_ISO_NO_TIMEZONE_FORMAT.format(date); }
     public String shortFormatDate(Timestamp date) {
-        SimpleDateFormat f;
-        if (Locale.getDefault().getCountry().equals("US")) {
-            f = new SimpleDateFormat("MMM d, yyyy");
-        } else {
-            f = SHORT_DATE_FORMAT;
-        }
+        SimpleDateFormat f = new SimpleDateFormat(getString(R.string.date_long), mLocale);
         return f.format(date);
     }
     public String shortFormatTime(Timestamp date) { return SHORT_TIME_FORMAT.format(date); }
@@ -1372,4 +1382,7 @@ public class INaturalistApp extends MultiDexApplication {
         return isLowMemory;
     }
 
+    public boolean isLayoutRTL() {
+        return TextUtilsCompat.getLayoutDirectionFromLocale(getResources().getConfiguration().locale) == LAYOUT_DIRECTION_RTL;
+    }
 }

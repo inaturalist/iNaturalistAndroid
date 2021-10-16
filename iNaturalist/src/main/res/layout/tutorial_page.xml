@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="32dp"
-    android:paddingRight="32dp"
+    android:paddingStart="32dp"
+    android:paddingEnd="32dp"
     android:background="#EFEFEF"
     android:orientation="vertical" >
 
@@ -19,6 +19,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:layout_marginTop="38dp"
+            android:importantForAccessibility="no"
             android:scaleType="fitCenter" />
     </RelativeLayout>
     <LinearLayout

@@ -61,6 +61,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
     public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.google.observation_photo";
     public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.google.observation_photo";
     public static final String DEFAULT_SORT_ORDER = "position ASC, id ASC, _id ASC";
+    public static final String REVERSE_DEFAULT_SORT_ORDER = "position DESC, id DESC, _id DESC";
     public static final String _CREATED_AT = "_created_at";
     public static final String _OBSERVATION_ID = "_observation_id";
     public static final String _PHOTO_ID = "_photo_id";
@@ -171,21 +172,6 @@ public class ObservationPhoto implements BaseColumns, Serializable {
     }
 
     public ObservationPhoto(BetterJSONObject o, ObservationPhoto parent) {
-        if (parent != null) {
-            // This is a special JSON response from the photo endpoint (PUT /photos/1234), so it contains
-            // only the inner photo JSON, not the ObservationPhoto details
-            this.updated_at = o.getTimestamp("updated_at");
-            this.created_at = o.getTimestamp("created_at");
-            this.id = parent.id;
-            this.observation_id = parent.observation_id;
-            this.photo_id = o.getInt("id");
-            this.position = o.getInt("position");
-            this.uuid = parent.uuid;
-            this.license = parent.license;
-
-            return;
-        }
-
         this._created_at = o.getTimestamp("_created_at");
         this._created_at_was = this._created_at;
         this._observation_id = o.getInteger("_observation_id");
@@ -288,14 +274,18 @@ public class ObservationPhoto implements BaseColumns, Serializable {
     }
 
     public void merge(ObservationPhoto observation_photo) {
-        if (observation_photo.updated_at != null && this._updated_at.before(observation_photo.updated_at)) {
+        merge(observation_photo, false);
+    }
+
+    public void merge(ObservationPhoto observation_photo, boolean forceOverwrite) {
+        if (forceOverwrite || (observation_photo.updated_at != null && this._updated_at.before(observation_photo.updated_at))) {
             // overwrite
-            this.created_at = observation_photo.created_at;
+            if (observation_photo.created_at != null) this.created_at = observation_photo.created_at;
             this.id = observation_photo.id;
             this.observation_id = observation_photo.observation_id;
             this.photo_id = observation_photo.photo_id;
             this.position = observation_photo.position;
-            this.updated_at = observation_photo.updated_at;
+            if (observation_photo.updated_at != null) this.updated_at = observation_photo.updated_at;
             this.uuid = observation_photo.uuid;
             this.license = observation_photo.license;
 

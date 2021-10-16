@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.databinding.DataBindingUtil;
+
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
@@ -249,7 +251,7 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
 
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.annotation, parent, false);
+            view = DataBindingUtil.inflate(inflater, R.layout.annotation, parent, false).getRoot();
         } else {
             view = convertView;
         }

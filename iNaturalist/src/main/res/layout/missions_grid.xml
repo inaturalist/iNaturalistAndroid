@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="#F5F5F5"
     android:paddingTop="16dp"
-    android:paddingLeft="16dp"
+    android:paddingStart="16dp"
     android:paddingBottom="16dp"
-    android:paddingRight="9dp"
+    android:paddingEnd="9dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -55,6 +55,7 @@
             android:tint="#929292"
             android:layout_centerInParent="true"
             android:paddingBottom="40dp"
+            android:importantForAccessibility="no"
             />
 
         <TextView

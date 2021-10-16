@@ -3,6 +3,7 @@ package org.inaturalist.android;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -17,7 +18,9 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -31,6 +34,7 @@ import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.Predicate;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
@@ -606,18 +610,37 @@ public class INaturalistService extends IntentService {
 
     @Override
     public void onCreate() {
-        super.onCreate();
-
         Logger.tag(TAG).info("Service onCreate");
-
-        startIntentForeground();
+        super.onCreate();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Logger.tag(TAG).info("Service onStartCommand");
 
-        startIntentForeground();
+        mApp = (INaturalistApp) getApplicationContext();
+
+        if (intent == null) {
+            return super.onStartCommand(intent, flags, startId);
+        }
+
+        // Only use the notification for actions for which their response is crucial (e.g. syncing)
+        // (but make sure we call it at least once)
+        String action = intent.getAction();
+        Logger.tag(TAG).info("Should call startIntentForeground? " + mApp.hasCalledStartForeground() + ":" + action);
+
+        if (!mApp.hasCalledStartForeground() ||
+                Arrays.asList(new String[]{
+                    ACTION_DELETE_OBSERVATIONS, ACTION_DELETE_ACCOUNT, ACTION_FIRST_SYNC,
+                    ACTION_GET_AND_SAVE_OBSERVATION, ACTION_JOIN_PROJECT, ACTION_LEAVE_PROJECT,
+                    ACTION_PASSIVE_SYNC, ACTION_POST_MESSAGE, ACTION_PULL_OBSERVATIONS,
+                    ACTION_REDOWNLOAD_OBSERVATIONS_FOR_TAXON, ACTION_REFRESH_CURRENT_USER_SETTINGS,
+                    ACTION_REGISTER_USER, ACTION_SYNC,
+                    ACTION_SYNC_JOINED_PROJECTS, ACTION_UPDATE_USER_DETAILS, ACTION_UPDATE_USER_NETWORK
+            }).contains(action)) {
+            mApp.setCalledStartForeground(true);
+            startIntentForeground();
+        }
 
         return super.onStartCommand(intent, flags, startId);
     }
@@ -1139,8 +1162,8 @@ public class INaturalistService extends IntentService {
                     // It's an online observation
                     taxonSuggestions = getTaxonSuggestions(obsUrl, latitude, longitude, observedOn, suggestionSource, placeId, taxonId, placeLat, placeLng, limit, page);
                 } else {
-                    // Local photo  - Resize photo to 299x299 max
-                    String resizedPhotoFilename = ImageUtils.resizeImage(this, obsFilename, null, 299);
+                    // Local photo  - Resize photo to 640x640 max, not using Lanczos
+                    String resizedPhotoFilename = ImageUtils.resizeImage(this, obsFilename, null, 640, true);
 
                     if (resizedPhotoFilename != null) {
                         taxonSuggestions = getTaxonSuggestions(resizedPhotoFilename, latitude, longitude, observedOn, suggestionSource, placeId, taxonId, placeLat, placeLng, limit, page);
@@ -1789,6 +1812,7 @@ public class INaturalistService extends IntentService {
                     projects = getJoinedProjectsOffline();
                 }
 
+                Logger.tag(TAG).debug("Joined projects offline: " + projects);
                 Intent reply = new Intent(ACTION_JOINED_PROJECTS_RESULT);
                 reply.putExtra(PROJECTS_RESULT, projects);
                 LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
@@ -3030,7 +3054,7 @@ public class INaturalistService extends IntentService {
             c.moveToNext();
         }
 
-        c.close();
+        if (!c.isClosed()) c.close();
 
         // Next, add new project observations
         c = getContentResolver().query(ProjectObservation.CONTENT_URI,
@@ -3069,7 +3093,7 @@ public class INaturalistService extends IntentService {
             c.moveToNext();
         }
 
-        c.close();
+        if (!c.isClosed()) c.close();
 
         return true;
     }
@@ -3749,7 +3773,7 @@ public class INaturalistService extends IntentService {
             params.add(new BasicNameValuePair("user[time_zone]", timezone));
         }
 
-        JSONArray response = post(HOST + "/users.json", params, false);
+        JSONArray response = request(HOST + "/users.json", "post", params, null, true, true, true);
         if (mResponseErrors != null) {
             // Couldn't create user
             try {
@@ -4082,8 +4106,22 @@ public class INaturalistService extends IntentService {
                 try {
                     if (response == null || response.length() != 1) {
                         Logger.tag(TAG).debug("postPhotos: Failed updating " + op.id);
-                        c.close();
-                        throw new SyncFailedException();
+
+                        if ((mLastStatusCode != HttpStatus.SC_FORBIDDEN) && (mLastStatusCode != HttpStatus.SC_NOT_FOUND)) {
+                            c.close();
+                            throw new SyncFailedException();
+                        } else {
+                            // Sepcial handling for bug #1055 - don't fail the entire syncing, just skip this one
+                            Logger.tag(TAG).debug("postPhotos: Skipping to next photo");
+                            c.moveToNext();
+
+                            // Set errors for this obs - to notify the user that we couldn't upload the obs photos
+                            JSONArray errors = new JSONArray();
+                            errors.put(getString(R.string.issue_with_updating_photos));
+                            mApp.setErrorsForObservation(op.observation_id, 0, errors);
+
+                            continue;
+                        }
                     }
 
                     JSONObject params2 = new JSONObject();
@@ -4104,7 +4142,7 @@ public class INaturalistService extends IntentService {
                     JSONObject json = response.getJSONObject(0);
                     BetterJSONObject j = new BetterJSONObject(json);
                     ObservationPhoto jsonObservationPhoto = new ObservationPhoto(j, op);
-                    Logger.tag(TAG).debug("postPhotos after put: " + j);
+                    Logger.tag(TAG).debug("postPhotos after put: " + j.getJSONObject());
                     Logger.tag(TAG).debug("postPhotos after put 2: " + jsonObservationPhoto);
                     op.merge(jsonObservationPhoto);
                     Logger.tag(TAG).debug("postPhotos after put 3 - merge: " + op);
@@ -4358,6 +4396,61 @@ public class INaturalistService extends IntentService {
         }
 
         c.close();
+
+        Logger.tag(TAG).info("clearOldCachedPhotos - Clearing by files in cache folder");
+
+        // Find all files in the cache folder that look like cached images (<uuid>.jpeg).
+        // For each one, see if there's an obs photo pointing to it - if non, it's safe to delete
+
+        FilenameFilter fileFilter = new FilenameFilter() {
+            public boolean accept(File dir, String name) {
+                int extensionStart = name.indexOf(".");
+                if (extensionStart == -1) return false;
+                String nameNoExtension = name.substring(0, extensionStart);
+                return (
+                        (name.endsWith(".jpeg") || name.endsWith(".jpg") || name.endsWith(".heif") ||
+                        name.endsWith(".png") || name.endsWith(".png") || name.endsWith(".webp")) &&
+                        (nameNoExtension.length() == 36));
+            }
+        };
+
+        List<File> allCacheFiles = new ArrayList<>(Arrays.asList(getFilesDir().listFiles(fileFilter)));
+        if (getExternalCacheDir() != null) {
+            allCacheFiles.addAll(Arrays.asList(getExternalCacheDir().listFiles(fileFilter)));
+        }
+        if (getCacheDir() != null) {
+            allCacheFiles.addAll(Arrays.asList(getCacheDir().listFiles(fileFilter)));
+        }
+
+        Collection<File> list = CollectionUtils.select(
+                allCacheFiles,
+                new Predicate<File>() {
+                    @Override
+                    public boolean evaluate(File f) {
+                        if (f.isDirectory()) return false;
+
+                        String filePath = f.getAbsolutePath();
+                        Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI, new String[] { ObservationPhoto._ID },
+                                        "photo_filename = ?",
+                                new String[]{ filePath }, ObservationPhoto.DEFAULT_SORT_ORDER);
+                        int count = c.getCount();
+                        c.close();
+
+                        return count == 0;
+                    }
+                });
+
+        long total = 0;
+
+        if (list == null) return;
+
+        for (File f : list) {
+            total += f.length();
+            Logger.tag(TAG).debug("clearOldCachedPhotos - Removing File: " + f.getAbsoluteFile() + ": " + f.length());
+            f.delete();
+        }
+
+        Logger.tag(TAG).debug(String.format(Locale.ENGLISH, "clearOldCachedPhotos - Removed: %d bytes", total));
     }
 
     private String getGuideXML(Integer guideId) throws AuthenticationException {
@@ -5216,7 +5309,7 @@ public class INaturalistService extends IntentService {
         String url = messageId == null ?
                 String.format("%s/messages?q=%s&box=%s&threads=%s&per_page=200",
                         API_HOST, searchQuery != null ? URLEncoder.encode(searchQuery) : "", box != null ? box : "inbox", groupByThreads) :
-                String.format("%s/messages/%d", API_HOST, messageId);
+                String.format(Locale.ENGLISH, "%s/messages/%d", API_HOST, messageId);
 
         JSONArray json = get(url);
 
@@ -6531,7 +6624,7 @@ public class INaturalistService extends IntentService {
 
                 // Add any new photos that were added remotely
                 ArrayList<Integer> observationPhotoIds = new ArrayList<Integer>();
-                ArrayList<Integer> existingObservationPhotoIds = new ArrayList<Integer>();
+                HashMap<Integer, ObservationPhoto> localPhotos = new HashMap<>();
                 Cursor pc = getContentResolver().query(
                         ObservationPhoto.CONTENT_URI,
                         ObservationPhoto.PROJECTION,
@@ -6541,12 +6634,12 @@ public class INaturalistService extends IntentService {
                 while (pc.isAfterLast() == false) {
                     int photoId = pc.getInt(pc.getColumnIndexOrThrow(ObservationPhoto.ID));
                     if (photoId != 0) {
-                        existingObservationPhotoIds.add(photoId);
+                        localPhotos.put(photoId, new ObservationPhoto(pc));
                     }
                     pc.moveToNext();
                 }
                 pc.close();
-                Logger.tag(TAG).debug("syncJson: Adding photos for obs " + observation.id + ":" + existingObservationPhotoIds.toString());
+                Logger.tag(TAG).debug("syncJson: Adding photos for obs " + observation.id + ":" + localPhotos.toString());
                 Logger.tag(TAG).debug("syncJson: JsonObservation: " + jsonObservation + ":" + jsonObservation.photos);
                 for (int j = 0; j < jsonObservation.photos.size(); j++) {
                     ObservationPhoto photo = jsonObservation.photos.get(j);
@@ -6558,8 +6651,18 @@ public class INaturalistService extends IntentService {
                     }
 
                     observationPhotoIds.add(photo.id);
-                    if (existingObservationPhotoIds.contains(photo.id)) {
-                        Logger.tag(TAG).debug("syncJson: photo " + photo.id + " has already been added, skipping...");
+                    if (localPhotos.containsKey(photo.id)) {
+                        ObservationPhoto localPhoto = localPhotos.get(photo.id);
+
+                        Logger.tag(TAG).debug("syncJson: photo " + photo.id + " has already been added");
+                        localPhoto.merge(photo, true);
+                        Logger.tag(TAG).debug("syncJson: merged: " + localPhoto.isDirty() + ":" + localPhoto);
+                        if (localPhoto.isDirty()) {
+                            ContentValues opcv = localPhoto.getContentValues();
+                            Logger.tag(TAG).debug("syncJson: Setting _SYNCED_AT - " + localPhoto.id + ":" + localPhoto._id + ":" + localPhoto._observation_id + ":" + localPhoto.observation_id + ":" + opcv);
+                            opcv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
+                            getContentResolver().update(localPhoto.getUri(), opcv, null, null);
+                        }
                         continue;
                     }
                     ContentValues opcv = photo.getContentValues();
@@ -7038,6 +7141,8 @@ public class INaturalistService extends IntentService {
     @Override
     public void onDestroy() {
         mIsStopped = true;
+        mApp.setCalledStartForeground(false);
+        Logger.tag(TAG).info("onDestroy");
         super.onDestroy();
     }
 

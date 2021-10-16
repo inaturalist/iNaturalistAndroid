@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_marginBottom="0dp"
+        android:contentDescription="@string/app_title"
         android:gravity="center"
         android:src="@drawable/logo_text" >
     </ImageView>
@@ -19,8 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:paddingBottom="10dp"
         android:paddingTop="0dp"
         android:layout_marginTop="0dp"
@@ -60,7 +61,7 @@
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:visibility="gone"
             android:text="@string/sync_observations" />
 </LinearLayout>

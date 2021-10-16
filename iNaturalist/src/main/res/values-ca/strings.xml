@@ -7,8 +7,6 @@
     <string name="ok">D\'acord</string>
     <string name="cancel">Cancel·la</string>
     <string name="loading">Carregant...</string>
-    <string name="sync_required">Requereix sincronització</string>
-    <string name="sync_required_message">%1$d observacions, %2$d fotos per sincronitzar</string>
     <string name="street">Carrer</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satèl·lit</string>
@@ -32,7 +30,6 @@
     <string name="settings">Configuració</string>
     <string name="projects">Projectes</string>
     <string name="delete_photo">Esborra foto</string>
-    <string name="menu">Menú</string>
     <string name="my_location">La meva ubicació</string>
     <string name="nearby_observations">Observacions properes</string>
     <string name="add">Afegeix</string>
@@ -201,6 +198,9 @@
     <string name="alert_message_use_inaturalistgr">iNaturalist Grècia és membre de la Xarxa iNaturalist a Grècia. Les institucions locals que donen suport a iNaturalist Grècia tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
     <string name="alert_message_use_inaturalistlu">iNaturalist Luxemburg és membre de la Xarxa iNaturalist a Luxemburg. Les institucions locals que donen suport a iNaturalist Luxemburg tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
     <string name="alert_message_use_inaturalistuk">iNaturalist Regne Unit és membre de la xarxa iNaturalist al Regne Unit. Les institucions locals que donen suport a iNaturalist Regne Unit tindran accés a la teva adreça de correu electrònic i a les coordenades reals de les teves observacions encara que estiguin públicament enfosquides o siguin privades. Per favor, no canviïs de forma experimental la teva afiliació si tens més de 1000 observacions. Vols canviar la teva afiliació?</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica és membre de la Xarxa iNaturalist a Costa RIca. Les institucions locals que donen suport a Naturalista Costa Rica tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala és membre de la Xarxa iNaturalist a Guatemala. Les institucions locals que donen suport a iNaturalist Guatemala tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Suècia és membre de la Xarxa iNaturalist a Suècia. Les institucions locals que donen suport a iNaturalist Suècia tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
     <string name="editor">Editor</string>
     <string name="license">Llicència</string>
     <string name="download_for_offline_use">Descarregar per a ús fora de línia</string>
@@ -224,9 +224,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Adreça electrònica</string>
-    <string name="sign_up_with">Inscriure\'s amb</string>
     <string name="skip">Salta ></string>
-    <string name="already_have_account">Ja teniu un compte?</string>
     <string name="log_in">Iniciar sessió</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Registra\'t</string>
@@ -349,7 +347,6 @@
     <string name="updating_profile">Actualitzant el perfil...</string>
     <string name="there_was_a_problem_updating_profile">Hi ha hagut un problema mentre actualitzàvem el vostre perfil!</string>
     <string name="there_was_a_problem_updating_profile_params">Hi ha hagut un problema mentre actualitzàvem el vostre perfil: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Sessió iniciada com <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Connectat com a <b>%1$s</b>]]></string>
     <string name="log_out">Surt</string>
@@ -468,14 +465,12 @@
     <string name="what_did_you_see">Què heu vist?</string>
     <string name="suggest_species">Suggerir espècies</string>
     <string name="suggest_species_description">Suggerir altres espècies basats en la seva semblança visual a fotografies.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visualment similar</string>
     <string name="visually_similar_seen_nearby">Visualment similar / vist a prop</string>
     <string name="seen_nearby">Vist a prop</string>
     <string name="enlarge">Augmenta</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Veure fills</string>
-    <string name="invalid_photo_extension">Error d\'importació de foto(s): només pot importar fitxers de fotos amb extensió JPEG/JPG/PNG</string>
     <string name="taxon_has_no_photos">Aquest tàxon no té fotos.</string>
     <string name="terrain">Terreny</string>
     <string name="filters">Filtres</string>
@@ -593,7 +588,6 @@
     <string name="leave_comment">Desar un comentari...</string>
     <string name="swipe">Llisca</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Quin és el compte de Google?</string>
     <string name="potential_disagreement">Desacord potencial</string>
     <string name="do_you_think_this_could_be"><![CDATA[És l\'evidència que oferiu suficient per confirmar que és <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -605,7 +599,7 @@
     <string name="must_be_connected_to_load_more_obs">Heu d\'estar connectat a internet per carregar més observacions</string>
     <string name="inat_about_title">iNaturalist és una iniciativa conjunta de l\'Acadèmia de Ciències de Califòrnia i la Societat Nacional Geogràfica.</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -630,6 +624,7 @@
     <string name="project_observations">Observacions</string>
     <string name="project_species">Espècies</string>
     <string name="project_people">Persones</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Identificadors</string>
     <string name="got_it">Entesos!</string>
     <string name="view_all">Mostrar-ho tot</string>
@@ -656,6 +651,8 @@
     <string name="annotation_name_sex">Sexe</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">Viu o Mort</string>
+    <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <string name="annotation_name_evidence_of_presence">Evidència de presència</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Floració</string>
     <!-- Adjective, having fruit -->
@@ -689,6 +686,18 @@
     <string name="annotation_value_dead">Mort</string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">No es pot determinar</string>
+    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <string name="annotation_value_organism">Organisme</string>
+    <!-- Evidence of Presence value when for bird feathers -->
+    <string name="annotation_value_feather">Plomes</string>
+    <!-- Evidence of Presence value when for fecal remains -->
+    <string name="annotation_value_scat">Excrements</string>
+    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <string name="annotation_value_track">Petjades</string>
+    <!-- Evidence of Presence value when for bones -->
+    <string name="annotation_value_bone">Ossos</string>
+    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <string name="annotation_value_molt">Muda</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">UNIT</string>
     <string name="nearby_projects_all_caps">PROPER</string>
@@ -751,6 +760,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Grècia: iSea dona suport  iNaturalist Grècia /<a href="https://greece.inaturalist.org">grece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxemburg: Luxembourg National Museum of Natural History (MnhnL) dona suport a iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[Regne Unit: National Biodiversity Network Trust dona suport a iNaturalist Regne Unit (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: la Comisión Nacional para la Gestión de la Biodiversida (CONAGEBIO) dona suport a Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: el Consejo Nacional de Áreas Protegidas (CONAP) dóna suport a iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Suècia: el SLU, Swedish Species Information Centre, dona suport a iNaturalist Suècia (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Marca tot com a vist</string>
     <string name="content_hidden">Contingut amagat</string>
     <string name="show_hidden_content">Mostra Contingut Amagat</string>
@@ -764,7 +776,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Gravar So</string>
-    <string name="no_recorder_found">No s\'ha trobat gravadora per defecte!</string>
     <string name="couldnt_retrieve_sound">No s\'ha pogut recuperar cap so de la gravadora per defecte - proveu d\'importar el so</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Triar So</string>
@@ -966,6 +977,10 @@
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">d MMM, yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">d MMMM, yyyy hh:mma</string>
     <string name="show_common_names">Mostra noms vulgars</string>
     <string name="show_common_names_description">Desmarqueu si únicament voleu veure els noms científics</string>
     <string name="email_must_look_like_email_address">E-mail ha de tenir la forma d\'adreça de correu electrònic</string>
@@ -1093,6 +1108,7 @@
     <string name="default_observation_license">Llicència a les vostres observacions predeterminades:</string>
     <string name="default_photo_license">Llicència a les vostres fotos predeterminades:</string>
     <string name="default_sound_license">Llicències de sons predeterminades</string>
+    <string name="change_existing_licenses">Canvia les Llicències actuals</string>
     <string name="change_licenses_for_existing_observations">Canviar les llicències de les observacions, fotos i sons existents</string>
     <string name="change_licenses_for_all_existing_observations">Canviar les llicències de totes les observacions existents</string>
     <string name="change_licenses_for_all_existing_photos">Canviar les llicències de totes les fotografies existents</string>
@@ -1111,6 +1127,7 @@
     <string name="existing_sound_licenses_have_been_updated">Totes les llicències dels sons actuals han estat canviades a %1$s.</string>
     <string name="default_licenses_description"><![CDATA[Llicenciar els vostres continguts atorga qualsevol altre el dret a utilitzar-los sense demanar permís si atenen a les condicions de la llicència. iNat inclou els vostres continguts amb llicencia Creative Commons en arxius actualitzats periòdicament produïts per determinades organitzacions associades interessades en les nostres dades. Per exemple, incloem registres No Copyright (CC0), Reconeixement (CC BY) i Reconeixement-No Comercial (CC BY-NC) a l\'arxiu que generem pel <a href="https://www.gbif.org/"> Global Biodiversity Information Facility (GBIF) </a>, una organització internacional intergovernamental que recopila i distribueix informació sobre biodiversitat de tot el món.]]></string>
     <string name="photo_license">Llicència de la foto</string>
+    <string name="sound_license">Llicències dels sons</string>
     <string name="edit_photo_license">Edita la llicència de la foto</string>
     <string name="observation_license">Llicència de l\'observació</string>
     <string name="edit_observation_license">Edita la llicència de l\'observació</string>
@@ -1132,9 +1149,67 @@
     <string name="license_description_cc_by_nc_sa">Aquesta llicència permet a altres persones remesclar, modificar i adaptar el vostre treball de manera no comercial, sempre que us ho reconeguin i llicenciïn les seves noves creacions en els mateixos termes.</string>
     <string name="license_description_cc_by_nc_nd">Aquesta llicència és la més restrictiva de les sis llicències principals, només permet als altres descarregar les vostres obres i compartir-les amb altres sempre que us reconeguin l\'autoria, però no les poden canviar ni utilitzar-les comercialment.</string>
     <string name="license_description_cc_by_nd">Aquesta llicència permet la redistribució, comercial i no comercial, sempre que es distribueixi sense canvis i íntegrament, amb els crèdits a vosaltres.</string>
-    <string name="license_description_cc_by_sa">Aquesta llicència permet a altres persones remesclar, modificar i adaptar el vostre treball de forma no comercial i, tot i que les seves noves obres també us han de reconèixer i no ser comercials, no tenen per què llicenciar les seves obres derivades en els mateixos termes.</string>
+    <string name="license_description_cc_by_sa">Aquesta llicència permet a tercers mesclar la teva obra, adaptar-la i basar-se en ella, fins i tot amb finalitats comercials, sempre que facin referencia a la teva autoria i que llicenciïn les seves creacions amb les mateixes condicions. Aquest llicència sovint es comparada amb el \"copyleft\" de les llicències de software lliure i gratuït. Totes les obres que es basin en la teva tindran la mateixa llicència, per això, qualsevol obra derivada també permetrà el seu ús comercial. Aquesta és la llicència que utilitza Viquipèdia, i es recomana per a materials que es podrien beneficiar d\'incorporar contingut de la Viquipèdia i d\'altres projectes amb llicències semblants.</string>
     <string name="license_description_no_license">Manteniu tots els drets sobre el vostre contingut,a més dels drets concedits a iNaturalist en les nostres Condicions de Servei.</string>
     <string name="invalid_photo">Format de fotografia no suportat</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">Suggeriments basats en observacions i identificacions aportades per la comunitat d\'iNaturalist, incloent-hi %1$s, %2$s i %3$s, entre altres.</string>
+    <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">Acció per defecte per a les Observacions</string>
+    <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">Mostrar opcions</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Valor del camp</string>
+    <string name="expand_annotation_to_agree_or_disagree">Expandir anotació per acceptar-la o no.</string>
+    <string name="delete_attribute_value">Esborrar valor de l\'atribut</string>
+    <string name="open_menu_for_more_options">Obrir menú per a més opcions</string>
+    <string name="change_user_profile_photo">Canvia la foto de perfil</string>
+    <string name="expand_list">Expandir llista</string>
+    <string name="change_map_layers">Canvia les capes del mapa (terreny o satèl·lit)</string>
+    <string name="redo_observation_search">Refer la cerca d\'observacions en aquesta àrea del mapa</string>
+    <string name="view_observations_on_map">Veure observacions en el mapa</string>
+    <string name="view_observations_on_grid">Veure observacions en una graella</string>
+    <string name="clear_text">Netejat el text</string>
+    <string name="observation_has_sounds">L\'observació té sons.</string>
+    <string name="go_to_my_location">Anar a la meva ubicació actual</string>
+    <string name="change_geoprivacy">Canvia la geoprivacitat</string>
+    <string name="active_filters">Filtres actius</string>
+    <string name="message_is_flagged">El missatge ha estat marcat</string>
+    <string name="user_is_muted">L\'usuari ha estat silenciat</string>
+    <string name="cancel_multiple_obs_selection">Cancel·lar la selecció múltiple d\'observacions</string>
+    <string name="delete_observations">Esborra observacions</string>
+    <string name="comment_count">Nombre de comentaris</string>
+    <string name="id_count">Nombre d\'identificacions</string>
+    <string name="observation_selected">Observació seleccionada</string>
+    <string name="share_observation">Compartir observació</string>
+    <string name="unknown_location">Ubicació desconeguda</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Tancar</string>
+    <string name="set_date2">Estableix data</string>
+    <string name="project_selected">Projecte seleccionat</string>
+    <string name="project_unselected">Projecte no seleccionat</string>
+    <string name="show_my_observations">Mostra les meves observacions</string>
+    <string name="play_pause_sound">Reprodueix o atura el so</string>
+    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences і National Geographic</string>
+    <string name="view_image">Mostra la imatge</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Passis d\'avaluació</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Acceptar el passi d\'avaluació</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">No passa l\'avaluació</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">En desacord amb el passi d\'avaluació</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Eliminar %1$d observació seleccionada</item>
+        <item quantity="other">Eliminar %1$d observacions seleccionades</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Sincronitzar %1$d observació seleccionada</item>
+        <item quantity="other">Sincronitzar %1$d observacions seleccionades</item>
+    </plurals>
+    <string name="add_media_evidence">Afegeix altres mitjans multimèdia de prova</string>
+    <string name="remove_identification">Eliminar identificació</string>
+    <string name="issue_with_updating_photos">Va haber un problema durant l\'actualització de les fotos d\'aquesta observació que s\'ha corregit darrerament. Si us plau, tanca la sessió i inicia-la de nou per resoldre aquest problema</string>
+    <string name="app_version_copied_to_clipboard">Versió de l\'App copiada al porta-retalls</string>
 </resources>

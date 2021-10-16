@@ -25,8 +25,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.evernote.android.state.State;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.livefront.bridge.Bridge;
-import com.melnykov.fab.FloatingActionButton;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.json.JSONArray;
@@ -119,9 +119,12 @@ public class MessagesActivity extends BaseFragmentActivity implements MessageAda
                 mCurrentSearchString = s.toString();
                 mStartTime = System.currentTimeMillis();
 
-                mSearch.setCompoundDrawablesWithIntrinsicBounds(0, 0,
-                        mCurrentSearchString.length() > 0 ? R.drawable.bs_ic_clear_light : R.drawable.ic_fa_search,
-                        0);
+                int drawableRes = mCurrentSearchString.length() > 0 ? R.drawable.bs_ic_clear_light : R.drawable.ic_fa_search;
+                if (mApp.isLayoutRTL()) {
+                    mSearch.setCompoundDrawablesWithIntrinsicBounds(drawableRes, 0, 0, 0);
+                } else {
+                    mSearch.setCompoundDrawablesWithIntrinsicBounds(0, 0, drawableRes, 0);
+                }
 
                 new Handler().postDelayed(new Runnable() {
                     @Override

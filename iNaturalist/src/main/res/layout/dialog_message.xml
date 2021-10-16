@@ -10,6 +10,7 @@
         android:text="Some title"
         android:padding="10dp"
         android:layout_width="fill_parent"
+        android:textDirection="locale"
         android:layout_height="wrap_content" />
 
 </ScrollView>

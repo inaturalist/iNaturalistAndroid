@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 
@@ -9,6 +10,7 @@
         android:layout_height="fill_parent"
         android:src="@drawable/signup_background_3_blurred"
         android:scaleType="fitXY"
+        android:importantForAccessibility="no"
         />
 
     <RelativeLayout
@@ -31,10 +33,11 @@
             android:id="@+id/back"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/login_signup_back_button"
+            android:src="@drawable/ic_arrow_backward_white"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginTop="25dp"
+            android:contentDescription="@string/go_back"
             />
     </RelativeLayout>
 
@@ -75,11 +78,13 @@
                 android:id="@+id/email_icon"
                 android:focusable="true"
                 android:clickable="true"
+                android:importantForAccessibility="no"
                 />
 
             <EditText
                 android:id="@+id/email"
                 android:textCursorDrawable="@drawable/cursor_white"
+                android:textDirection="locale"
                 android:background="@android:color/transparent"
                 android:layout_width="fill_parent"
                 android:layout_centerVertical="true"
@@ -91,6 +96,7 @@
                 android:textSize="18sp"
                 android:gravity="center_vertical"
                 android:inputType="textEmailAddress"
+                android:textAlignment="viewStart"
                 android:lines="1"
                 android:layout_height="match_parent" />
 
@@ -112,11 +118,13 @@
                 android:id="@+id/password_icon"
                 android:focusable="true"
                 android:clickable="true"
+                android:importantForAccessibility="no"
                 />
 
             <EditText
                 android:id="@+id/password"
                 android:textCursorDrawable="@drawable/cursor_white"
+                android:textDirection="locale"
                 android:background="@android:color/transparent"
                 android:layout_width="fill_parent"
                 android:layout_centerVertical="true"
@@ -128,6 +136,7 @@
                 android:textSize="18sp"
                 android:gravity="center_vertical"
                 android:inputType="textPassword"
+                android:textAlignment="viewStart"
                 android:lines="1"
                 android:layout_height="match_parent" />
 
@@ -162,11 +171,13 @@
                 android:id="@+id/username_icon"
                 android:focusable="true"
                 android:clickable="true"
+                android:importantForAccessibility="no"
                 />
 
             <EditText
                 android:id="@+id/username"
                 android:textCursorDrawable="@drawable/cursor_white"
+                android:textDirection="locale"
                 android:background="@android:color/transparent"
                 android:layout_width="fill_parent"
                 android:layout_centerVertical="true"
@@ -177,6 +188,7 @@
                 android:textColorHint="#66ffffff"
                 android:textSize="18sp"
                 android:gravity="center_vertical"
+                android:textAlignment="viewStart"
                 android:inputType="text"
                 android:lines="1"
                 android:layout_height="match_parent" />
@@ -194,19 +206,20 @@
                 android:layout_width="fill_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_height="40dp">
-                <ImageView
+                <CheckBox
                     android:layout_width="45dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/checkbox"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_check_box_white_24dp"
+                    android:button="@drawable/custom_checkbox_white"
                     />
                 <TextView
                     android:id="@+id/checkbox_description"
                     android:layout_gravity="center_vertical"
                     android:text="@string/use_my_license"
+                    android:labelFor="@id/checkbox"
                     android:textColor="#aaffffff"
-                    android:textSize="13dp"
+                    android:textSize="13sp"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -217,19 +230,20 @@
                 android:layout_width="fill_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_height="wrap_content">
-                <ImageView
+                <CheckBox
                     android:layout_width="45dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/checkbox2"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_check_box_outline_blank_white_24dp"
+                    android:button="@drawable/custom_checkbox_white"
                     />
                 <TextView
                     android:id="@+id/checkbox_description2"
                     android:layout_gravity="center_vertical"
                     android:text="@string/i_consent_process_personal_info"
+                    android:labelFor="@id/checkbox2"
                     android:textColor="#aaffffff"
-                    android:textSize="13dp"
+                    android:textSize="13sp"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -240,20 +254,21 @@
                 android:layout_width="fill_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_height="wrap_content">
-                <ImageView
+                <CheckBox
                     android:layout_width="45dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/checkbox3"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_check_box_outline_blank_white_24dp"
+                    android:button="@drawable/custom_checkbox_white"
                     />
                 <TextView
                     android:clickable="true"
                     android:id="@+id/checkbox_description3"
                     android:layout_gravity="center_vertical"
                     android:text="@string/i_agree_to_tos_and_privacy"
+                    android:labelFor="@id/checkbox3"
                     android:textColor="#aaffffff"
-                    android:textSize="13dp"
+                    android:textSize="13sp"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -280,8 +295,8 @@
             android:text="@string/sign_up"
             android:textColor="@drawable/circular_button_text"
             android:layout_marginTop="20dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
             android:textSize="16sp"
             android:layout_height="40dp" />
     </LinearLayout>
@@ -330,6 +345,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/facebook_button_icon"
                 android:layout_marginStart="3dp"
+                android:importantForAccessibility="no"
                 />
 
             <View
@@ -372,6 +388,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/gplus_button_icon"
                 android:layout_marginStart="3dp"
+                android:importantForAccessibility="no"
                 />
 
             <View
@@ -405,7 +422,7 @@
         android:paddingBottom="17dp"
         android:lines="2"
         android:textColor="#aaffffff"
-        android:textSize="13dp"
+        android:textSize="13sp"
         android:layout_width="fill_parent"
         android:layout_alignParentBottom="true"
         android:layout_height="wrap_content" />
@@ -413,6 +430,8 @@
 
     <EditText
         android:id="@+id/hide_focus"
+        tools:ignore="LabelFor"
+        android:importantForAccessibility="no"
         android:layout_width="0dp"
         android:layout_height="0dp" />
 

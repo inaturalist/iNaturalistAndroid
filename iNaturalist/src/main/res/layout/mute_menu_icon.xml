@@ -8,7 +8,8 @@
         android:layout_height="28dp"
         android:src="@drawable/muted"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:importantForAccessibility="no"
         />
 
 </RelativeLayout>
