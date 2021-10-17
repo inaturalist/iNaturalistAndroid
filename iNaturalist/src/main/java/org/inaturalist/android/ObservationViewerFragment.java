@@ -3160,10 +3160,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
         Logger.tag(TAG).debug("onActivityResult - " + requestCode + ":" + resultCode);
 
-        if (mHelper == null) {
-            Logger.tag(TAG).debug("onActivityResult - mHelper is null");
-            return;
-        }
+        mHelper = new ActivityHelper(getActivity());
 
         if (requestCode == SHARE_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
