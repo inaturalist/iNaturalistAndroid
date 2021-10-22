@@ -114,7 +114,9 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
             // Viewed or not?
             view.setBackgroundResource(item.getBoolean("viewed") ? R.drawable.activity_item_background : R.drawable.activity_unviewed_item_background );
 
-            if (item.getString("notifier_type").equals("Identification")) {
+            boolean isMention = item.getString("notification").equals("mention");
+
+            if (!isMention && item.getString("notifier_type").equals("Identification")) {
                 // Identification
 
                 final JSONObject identification = item.getJSONObject("identification");
@@ -132,8 +134,8 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                 final String description = String.format(mContext.getString(R.string.user_activity_id), userName, id, dateFormatted);
                 activityDescription.setText(Html.fromHtml(description));
 
-            } else if (item.getString("notifier_type").equals("Comment")) {
-                // Comment
+            } else if (isMention || item.getString("notifier_type").equals("Comment")) {
+                // Comment (or user has been mentioned)
 
                 JSONObject comment = item.getJSONObject("comment");
                 user = comment.getJSONObject("user");
@@ -141,7 +143,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                 userIconUrl = user.optString("icon_url", null);
                 final String body = comment.getString("body");
 
-                final String description = String.format(mContext.getString(R.string.user_activity_comment), userName, body, dateFormatted);
+                final String description = String.format(mContext.getString(isMention ? R.string.user_activity_mention : R.string.user_activity_comment), userName, body, dateFormatted);
                 activityDescription.setText(Html.fromHtml(description));
 
                 ViewTreeObserver viewTreeObserver = activityDescription.getViewTreeObserver();
@@ -160,7 +162,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                             // Ellipsize to 3 lines at the most
                             int endOfLastLine = activityDescription.getLayout().getLineEnd(2);
                             String descriptionNoBody = Html.fromHtml(String.format(mContext.getString(R.string.user_activity_comment), finalUserName, "", dateFormatted)).toString();
-                            int charsLeft = endOfLastLine - descriptionNoBody.length() - 3;
+                            int charsLeft = Math.max(endOfLastLine - descriptionNoBody.length() - 3, body.length());
                             String newDescription = String.format(mContext.getString(R.string.user_activity_comment), finalUserName, body.substring(0, charsLeft) + "...", dateFormatted);
                             activityDescription.setText(Html.fromHtml(newDescription));
                         }

@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -127,7 +128,8 @@ public class ExploreSearchActivity extends AppCompatActivity {
         mApp = (INaturalistApp) getApplicationContext();
         mApp.applyLocaleSettings(getBaseContext());
 
-        DataBindingUtil.setContentView(this, R.layout.explore_search);
+        ViewDataBinding binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.explore_search, null, false);
+        setContentView(binding.getRoot());
 
         Intent intent = getIntent();
 

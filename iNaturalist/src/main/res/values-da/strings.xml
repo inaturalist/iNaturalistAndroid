@@ -7,8 +7,6 @@
     <string name="ok">OK</string>
     <string name="cancel">Annullér</string>
     <string name="loading">Indlæser...</string>
-    <string name="sync_required">Synk nødvendig</string>
-    <string name="sync_required_message">%1$d observationer, %2$d fotoer at synkronisere</string>
     <string name="street">Gade</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satellit</string>
@@ -32,7 +30,6 @@
     <string name="settings">Indstillinger</string>
     <string name="projects">Projekter</string>
     <string name="delete_photo">Slet foto</string>
-    <string name="menu">Menu</string>
     <string name="my_location">Min placering</string>
     <string name="nearby_observations">Nærliggende observationer</string>
     <string name="add">Tilføj</string>
@@ -186,24 +183,24 @@
     <string name="text"><![CDATA[<b>Tekst:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">Overordnet iNaturalist-netværk. Ved at klikke OK vil din app blive en del af det globale iNaturalist-netværk.</string>
-    <string name="alert_message_use_naturalista">NaturaLista er medlem af iNaturalist Network i Mexico. Lokale institutioner, som støtter NaturaLista, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
-    <string name="alert_message_use_naturewatchnz">iNaturalist NZ er medlem af iNaturalist Network i New Zealand. Lokale institutioner, som støtter iNaturalist NZ, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
-    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada er medlem af iNaturalist Network i Canada. Lokale institutioner, som støtter iNaturalist Canada, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
-    <string name="alert_message_use_naturalistacolombia">Naturalista er medlem af iNaturalist Network i Colombia. Lokale institutioner, som støtter Naturalista, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4All er medlem af iNaturalist Network i Portugal. Lokale institutioner, som støtter Biodiversity4All, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
-    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá er medlem af iNaturalist Network i Panama. Lokale institutioner, som støtter iNaturalist Panamá, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
-    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador er medlem af iNaturalist Network i Ecuador. Lokale institutioner, som støtter iNaturalist Ecuador, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
-    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australien er medlem af iNaturalist Network i Australien. Lokale institutioner, som støtter Naturalist Australien, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
-    <string name="alert_message_use_argentinat">ArgentiNat er medlem af iNaturalist Network i Argentina. Lokale institutioner, som støtter NaturaLista, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Isreal er medlem af iNaturalist Network i Isreal. Lokale institutioner, som støtter Naturalist Australien, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
-    <string name="alert_message_use_inaturalistfi">iNaturalist Finland er medlem af iNaturalist Network i Finland. Lokale institutioner, som støtter iNaturalist Finland, har adgang til din e-mailadresse samt til de sande koordinater for observationer, som er offentligt skjult eller private. Skift venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du skifte din tilknytning?</string>
-    <string name="alert_message_use_inaturalistcl">iNaturalist Chile er medlem af iNaturalist Network i Chile. Lokale institutioner, som støtter iNaturalist Finland, har adgang til din e-mailadresse samt til de sande koordinater for observationer, som er offentligt skjult eller private. Skift venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du skifte din tilknytning?</string>
-    <string name="alert_message_use_inaturalistgr">iNaturalist Grækenland er medlem af iNaturalist Network i Grækenland. Lokale institutioner, som støtter Naturalist Grækenland, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
-    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg er medlem af iNaturalist Network i Luxembourg. Lokale institutioner, som støtter Naturalist Luxembourg, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
-    <string name="alert_message_use_inaturalistuk">iNaturalist Storbrittanien er medlem af iNaturalist Network i Storbrittanien. Lokale institutioner, som støtter Naturalist Storbrittanien, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
-    <string name="alert_message_use_inaturalistcr">iNaturalist Costa Rica er medlem af iNaturalist Network i Costa Rica. Lokale institutioner, som støtter Naturalist Costa Rica, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
-    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala er medlem af iNaturalist Network i Guatemala. Lokale institutioner, som støtter Naturalist Guatemala, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
-    <string name="alert_message_use_inaturalistse">iNaturalist Sverige er medlem af iNaturalist Network i Sverige. Lokale institutioner, som støtter Naturalist Sverige, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_naturalista">NaturaLista er medlem af iNaturalist Network i Mexico. Lokale institutioner, som supporterer NaturaLista, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZ er medlem af iNaturalist Network i New Zealand. Lokale institutioner, som supporterer iNaturalist NZ, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada er medlem af iNaturalist Network i Canada. Lokale institutioner, som supporterer iNaturalist Canada, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_naturalistacolombia">Naturalista er medlem af iNaturalist Network i Colombia. Lokale institutioner, som supporterer Naturalista, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All er medlem af iNaturalist Network i Portugal. Lokale institutioner, som supporterer Biodiversity4All, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá er medlem af iNaturalist Network i Panama. Lokale institutioner, som supporterer iNaturalist Panamá, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador er medlem af iNaturalist Network i Ecuador. Lokale institutioner, som supporterer iNaturalist Ecuador, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australien er medlem af iNaturalist Network i Australien. Lokale institutioner, som supporterer Naturalist Australien, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat er medlem af iNaturalist Network i Argentina. Lokale institutioner, som supporterer NaturaLista, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Isreal er medlem af iNaturalist Network i Isreal. Lokale institutioner, som supporterer Naturalist Australien, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland er medlem af iNaturalist Network i Finland. Lokale institutioner, som supporterer iNaturalist Finland, har adgang til din e-mailadresse samt til de sande koordinater for observationer, som er offentligt skjult eller private. Skift venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du skifte din tilknytning?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile er medlem af iNaturalist Network i Chile. Lokale institutioner, som supporterer iNaturalist Finland, har adgang til din e-mailadresse samt til de sande koordinater for observationer, som er offentligt skjult eller private. Skift venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du skifte din tilknytning?</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Grækenland er medlem af iNaturalist Network i Grækenland. Lokale institutioner, som supporterer Naturalist Grækenland, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg er medlem af iNaturalist Network i Luxembourg. Lokale institutioner, som supporterer Naturalist Luxembourg, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist Storbrittanien er medlem af iNaturalist Network i Storbrittanien. Lokale institutioner, som supporterer Naturalist Storbrittanien, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistcr">iNaturalist Costa Rica er medlem af iNaturalist Network i Costa Rica. Lokale institutioner, som supporterer Naturalist Costa Rica, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala er medlem af iNaturalist Network i Guatemala. Lokale institutioner, som supporterer Naturalist Guatemala, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sverige er medlem af iNaturalist Network i Sverige. Lokale institutioner, som supporterer Naturalist Sverige, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
     <string name="editor">Redaktør</string>
     <string name="license">Licens</string>
     <string name="download_for_offline_use">Download til offlinebrug</string>
@@ -227,9 +224,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-mail</string>
-    <string name="sign_up_with">Tilmeld med</string>
     <string name="skip">Overspring ›</string>
-    <string name="already_have_account">Har allerede en konto?</string>
     <string name="log_in">Log ind</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Tilmeld</string>
@@ -352,7 +347,6 @@
     <string name="updating_profile">Opdaterer profil...</string>
     <string name="there_was_a_problem_updating_profile">Et problem opstod under opdatering af din profil!</string>
     <string name="there_was_a_problem_updating_profile_params">Et problem opstod under opdatering af din profil: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Logget ind som <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Pt. logget ind som <b>%1$s</b>]]></string>
     <string name="log_out">Log ud</string>
@@ -471,14 +465,12 @@
     <string name="what_did_you_see">Hvad så du?</string>
     <string name="suggest_species">Foreslå arter</string>
     <string name="suggest_species_description">Foreslå arter baseret på visuelle ligheder med fotos.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visuelt sammenfald</string>
     <string name="visually_similar_seen_nearby">Visuelt sammenfald/Observeret i nærheden</string>
     <string name="seen_nearby">Observeret i nærheden</string>
     <string name="enlarge">Forstør</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Se underordnede</string>
-    <string name="invalid_photo_extension">Fejl under import af foto(-s): Kan kun importere fotofiltyperne JPG/JPEG/PNG</string>
     <string name="taxon_has_no_photos">Denne takson har ingen fotos.</string>
     <string name="terrain">Terræn</string>
     <string name="filters">Filtre</string>
@@ -596,7 +588,6 @@
     <string name="leave_comment">Skriv en kommentar...</string>
     <string name="swipe">Stryg</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Hvilken Google-konto?</string>
     <string name="potential_disagreement">Potentiel uenighed</string>
     <string name="do_you_think_this_could_be"><![CDATA[Er der dokumentation nok til at bekræfte, at dette er <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -608,7 +599,7 @@
     <string name="must_be_connected_to_load_more_obs">Du skal have Internetforbindelse for at indlæse flere observationer</string>
     <string name="inat_about_title">iNaturalist er et fælles initiativ fra California Academy of Sciences og National Geographic Society.</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -633,6 +624,7 @@
     <string name="project_observations">Observationer</string>
     <string name="project_species">Arter</string>
     <string name="project_people">Personer</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Identifikatorer</string>
     <string name="got_it">Forstået!</string>
     <string name="view_all">Vis alle</string>
@@ -764,13 +756,13 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) understøtter iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa understøtter iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finsk Museum for Naturalist Historik (LUOMUS) understøtter iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
-    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente støtter iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporterer iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
     <string name="network_credit_inaturalistgr"><![CDATA[Grækenland: iSea understøtter iNaturalist Grækenland (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg Nationale Naturhistoriske Museum (MnhnL) understøtter iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[Storbrittanien: National Biodiversity Network Trust understøtter iNaturalist Storbrittanien (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: National Commission for Biodiversitetshåndtering (CONAGEBIO), der støtter Naturalista Costa Rica (<a href="costarica.inaturalist.org"> costarica.inaturalist.org </a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Nationalt Råd for Beskyttede Områder (CONAP), der støtter iNaturalist Guatemala (<a href="guatemala.inaturalist.org"> guatemala.inaturalist.org </a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Sverige: SLU Svensk Artsinformation Center, der støtter iNaturalist Sverige (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) understøtter Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) understøtter iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre understøtter iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Markér alle som set</string>
     <string name="content_hidden">Indhold skjult</string>
     <string name="show_hidden_content">Vis Skjult Indhold</string>
@@ -784,7 +776,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Optag lyd</string>
-    <string name="no_recorder_found">Ingen standardlydoptager fundet!</string>
     <string name="couldnt_retrieve_sound">Kunne ikke hente lyd fra standardlydoptager - prøv i stedet at importere lyden</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Vælg lyd</string>
@@ -990,6 +981,10 @@ og <a href="https://www.inaturalist.org/terms">Tjenestevilkår</a>.]]></string>
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">dd. MMM yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">dd. MMMM yyyy HH:mm</string>
     <string name="show_common_names">Vis almindelige navne</string>
     <string name="show_common_names_description">Deaktivér, hvis du kun ønsker de videnskabelige navne vist.</string>
     <string name="email_must_look_like_email_address">E-mail skal ligne en e-mailadresse</string>
@@ -1167,5 +1162,58 @@ og <a href="https://www.inaturalist.org/terms">Tjenestevilkår</a>.]]></string>
     <string name="default_observation_action">Standard observationshandling</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Vis valgmuligheder</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Feltværdi</string>
+    <string name="expand_annotation_to_agree_or_disagree">Udvid annotation for at udtrykke enighed eller uenighed</string>
+    <string name="delete_attribute_value">Slet attributværdi</string>
+    <string name="open_menu_for_more_options">Åbn menu for flere valgmuligheder</string>
+    <string name="change_user_profile_photo">Skift brugerprofilfoto</string>
+    <string name="expand_list">Udvid liste</string>
+    <string name="change_map_layers">Skift kortlag (terræn kontra satellit)</string>
+    <string name="redo_observation_search">Gentag observationssøgning i dette kortområde</string>
+    <string name="view_observations_on_map">Vis observationer på kort</string>
+    <string name="view_observations_on_grid">Vis observations på gitter</string>
+    <string name="clear_text">Ryd tekst</string>
+    <string name="observation_has_sounds">Observation har lyde</string>
+    <string name="go_to_my_location">Gå til min aktuelle placering</string>
+    <string name="change_geoprivacy">Ændre geofortrolighed</string>
+    <string name="active_filters">Aktive filtre</string>
+    <string name="message_is_flagged">Besked har anmærkning</string>
+    <string name="user_is_muted">Bruger er tavsgjort</string>
+    <string name="cancel_multiple_obs_selection">Annullér flere observationsvalg</string>
+    <string name="delete_observations">Slet observationer</string>
+    <string name="comment_count">Antal kommentarer</string>
+    <string name="id_count">Antal identifikationer</string>
+    <string name="observation_selected">Observation valgt</string>
+    <string name="share_observation">Del observation</string>
+    <string name="unknown_location">Ukendt placering</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Luk</string>
+    <string name="set_date2">Indstil dato</string>
+    <string name="project_selected">Projekt valgt</string>
+    <string name="project_unselected">Projekt fravalgt</string>
+    <string name="show_my_observations">Find mine observationer</string>
+    <string name="play_pause_sound">Afspil eller sæt lyd på pause</string>
+    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences og National Geographic</string>
+    <string name="view_image">Vis billede</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Bestået bedømmelser</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Bestået enighedsbedømmelser</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Består ikke bedømmelse</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Bestået uenighedsbedømmelser</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Slet %1$d valgt observation</item>
+        <item quantity="other">Slet %1$d valgte observationer</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Synk %1$d valgt observation</item>
+        <item quantity="other">Synk %1$d valgte observationer</item>
+    </plurals>
+    <string name="add_media_evidence">Tilføj mediedokumentation</string>
+    <string name="remove_identification">Fjern identifikation</string>
     <string name="issue_with_updating_photos">Problemet med at opdatere fotos i denne observation er for nylig er blevet rettet. Log ud og ind igen, og problemet burde være forsvundet.</string>
+    <string name="app_version_copied_to_clipboard">App-version kopieret til udklipsholder</string>
 </resources>

@@ -7,8 +7,6 @@
     <string name="ok">OK</string>
     <string name="cancel">Avbryt</string>
     <string name="loading">Laddar…...</string>
-    <string name="sync_required">Synkronisering krävs</string>
-    <string name="sync_required_message">%1$d fynd, %2$d bilder att synkronisera</string>
     <string name="street">Gatuadress</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satellit</string>
@@ -32,7 +30,6 @@
     <string name="settings">Inställningar</string>
     <string name="projects">Projekt</string>
     <string name="delete_photo">Radera foto</string>
-    <string name="menu">Meny</string>
     <string name="my_location">Min plats</string>
     <string name="nearby_observations">Närliggande fynd</string>
     <string name="add">Lägg till</string>
@@ -227,9 +224,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-post</string>
-    <string name="sign_up_with">Gå med genom</string>
     <string name="skip">Hoppa över ›</string>
-    <string name="already_have_account">Har du redan ett konto?</string>
     <string name="log_in">Logga in</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Gå med</string>
@@ -352,7 +347,6 @@
     <string name="updating_profile">Uppdaterar profil...</string>
     <string name="there_was_a_problem_updating_profile">Ett problem uppstod när din profil uppdaterades!</string>
     <string name="there_was_a_problem_updating_profile_params">Ett problem uppstod när din profil uppdaterades: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Inloggad som <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[För närvarande inloggad som <b>%1$s</b>]]></string>
     <string name="log_out">Logga ut</string>
@@ -471,14 +465,12 @@
     <string name="what_did_you_see">Vad såg du?</string>
     <string name="suggest_species">Föreslå arter</string>
     <string name="suggest_species_description">Föreslå arter baserat på visuell likhet med bilder.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visuellt liknande</string>
     <string name="visually_similar_seen_nearby">Visuellt liknande / Sett i närheten</string>
     <string name="seen_nearby">Sett i närheten</string>
     <string name="enlarge">Förstora</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Visa underliggande</string>
-    <string name="invalid_photo_extension">Fel vid bildimport: Kan endast importera bilder med ändelsen JPG/JPEG/PNG</string>
     <string name="taxon_has_no_photos">Detta taxon har inga bilder.</string>
     <string name="terrain">Terräng</string>
     <string name="filters">Filter</string>
@@ -596,7 +588,6 @@
     <string name="leave_comment">Lämna en kommentar...</string>
     <string name="swipe">Svep</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Vilket Google-konto?</string>
     <string name="potential_disagreement">Möjlig oenighet</string>
     <string name="do_you_think_this_could_be"><![CDATA[Finns det tillräckligt med bevis för att bekräfta att detta är <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -608,7 +599,7 @@
     <string name="must_be_connected_to_load_more_obs">Du måste vara ansluten till internet för att ladda fler fynd</string>
     <string name="inat_about_title">iNaturalist är ett gemensamt initiativ från California Academy of Sciences och National Geographic Society.</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -633,6 +624,7 @@
     <string name="project_observations">Fynd</string>
     <string name="project_species">Arter</string>
     <string name="project_people">Deltagare</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Identifierare</string>
     <string name="got_it">Jag fattar!</string>
     <string name="view_all">Visa alla</string>
@@ -768,9 +760,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Grekland: iSea stöder iNaturalist Grekland (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxemburg: Naturhistoriska riksmuseet i Luxemburg (MnhnL) stöder iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[Storbritannien: National Biodiversity Network Trust stöder iNaturalist Storbritannien (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) stödjer Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) stödjer iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Sverige: SLU Artdatabanken stödjer iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) som stöder Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) som stöder iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sverige: SLU Artdatabanken som stöder iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Markera alla som lästa</string>
     <string name="content_hidden">Dolt innehåll</string>
     <string name="show_hidden_content">Visa dolt innehåll</string>
@@ -784,7 +776,6 @@
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Spela in ljud</string>
-    <string name="no_recorder_found">Ingen standardljudinspelare hittades!</string>
     <string name="couldnt_retrieve_sound">Kunde inte hämta ljud från standardinspelaren - försök importera ljudet istället</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Välj ljud</string>
@@ -986,6 +977,10 @@
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">dd MMM yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">d MMMM yyyy HH:mm</string>
     <string name="show_common_names">Visa vardagliga namn</string>
     <string name="show_common_names_description">Inaktivera om du bara vill se vetenskapliga namn.</string>
     <string name="email_must_look_like_email_address">E-post måste se ut som en e-postadress</string>
@@ -1163,5 +1158,58 @@
     <string name="default_observation_action">Standardåtgärd för fynd</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Visa alternativ</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Fältvärde</string>
+    <string name="expand_annotation_to_agree_or_disagree">Visa anteckning för att hålla med eller inte</string>
+    <string name="delete_attribute_value">Radera egenskapens värde</string>
+    <string name="open_menu_for_more_options">Öppna menyn för fler alternativ</string>
+    <string name="change_user_profile_photo">Byt profilbild</string>
+    <string name="expand_list">Expandera lista</string>
+    <string name="change_map_layers">Ändra kartlager (terräng vs. satellit)</string>
+    <string name="redo_observation_search">Gör om fyndsök i detta kartområde</string>
+    <string name="view_observations_on_map">Visa fynd på kartan</string>
+    <string name="view_observations_on_grid">Visa fynd i rutnät</string>
+    <string name="clear_text">Rensa text</string>
+    <string name="observation_has_sounds">Fynd har ljud</string>
+    <string name="go_to_my_location">Gå till min nuvarande plats</string>
+    <string name="change_geoprivacy">Ändra koordinatsekretess</string>
+    <string name="active_filters">Aktiva filter</string>
+    <string name="message_is_flagged">Meddelandet är flaggat</string>
+    <string name="user_is_muted">Användare tystad</string>
+    <string name="cancel_multiple_obs_selection">Avbryt val av flera fynd</string>
+    <string name="delete_observations">Radera fynd</string>
+    <string name="comment_count">Antal kommentarer</string>
+    <string name="id_count">Antal bestämningar</string>
+    <string name="observation_selected">Fynd markerat</string>
+    <string name="share_observation">Dela fynd</string>
+    <string name="unknown_location">Okänd plats</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Stäng</string>
+    <string name="set_date2">Ställ in datum</string>
+    <string name="project_selected">Projekt markerat</string>
+    <string name="project_unselected">Projekt avmarkerat</string>
+    <string name="show_my_observations">Visa mina fynd</string>
+    <string name="play_pause_sound">Spela upp eller pausa ljud</string>
+    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences och National Geographic</string>
+    <string name="view_image">Visa bild</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Bedömd som godkänd</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Håll med om bedömning godkänd</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Klarar inte bedömning</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Håller inte med om bedömning godkänd</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Radera %1$d markerat fynd</item>
+        <item quantity="other">Radera %1$d markerade fynd</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Synka %1$d markerat fynd</item>
+        <item quantity="other">Synka %1$d markerade fynd</item>
+    </plurals>
+    <string name="add_media_evidence">Lägg till beläggmedia</string>
+    <string name="remove_identification">Ta bort bestämning</string>
     <string name="issue_with_updating_photos">Det gick inte att uppdatera bilderna i för detta fynd som nyligen har åtgärdats. Logga ut och logga in igen för att lösa problemet.</string>
+    <string name="app_version_copied_to_clipboard">Appversion kopierad till urklipp</string>
 </resources>

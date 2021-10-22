@@ -112,8 +112,8 @@
                 android:numColumns="3"
                 android:verticalSpacing="3dp"
                 android:horizontalSpacing="3dp"
-                android:paddingLeft="1dp"
-                android:paddingRight="1dp"
+                android:paddingStart="1dp"
+                android:paddingEnd="1dp"
                 android:stretchMode="columnWidth"
                 android:gravity="center"
                 android:orientation="vertical"/>
@@ -153,8 +153,8 @@
             android:layout_below="@id/empty_icon"
             android:textSize="18sp"
             android:textColor="#8a000000"
-            android:paddingLeft="42dp"
-            android:paddingRight="42dp"
+            android:paddingStart="42dp"
+            android:paddingEnd="42dp"
             android:layout_marginTop="40dp"
             android:text="@string/no_observations_yet" />
 
@@ -201,8 +201,8 @@
             android:text="@string/see_more_observations"
             android:visibility="gone"
             android:textColor="@drawable/circular_button_text"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
             android:textSize="16sp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
@@ -218,8 +218,8 @@
         android:background="#74AC00"
         android:layout_width="fill_parent"
         android:paddingBottom="14dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:paddingTop="12dp"
         android:visibility="gone"
         android:layout_height="wrap_content">

@@ -7,8 +7,6 @@
     <string name="ok">ठीक आहे </string>
     <string name="cancel">रद्द करा </string>
     <string name="loading">येत आहे .. </string>
-    <string name="sync_required">जुळणी आवश्यक </string>
-    <string name="sync_required_message">समक्रमित करण्यासाठी %1$d निरीक्षणे, %2$d छायाचित्रे</string>
     <string name="street">रस्ता </string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">उपग्रह</string>
@@ -32,11 +30,10 @@
     <string name="settings">सेटिंग्ज </string>
     <string name="projects">प्रकल्प</string>
     <string name="delete_photo">छायाचित्र काढून टाका </string>
-    <string name="menu">मेनू </string>
     <string name="my_location">माझे स्थान</string>
     <string name="nearby_observations">परिसरातील निरीक्षणे</string>
     <string name="add">माहिती वाढवा </string>
-    <string name="view_on_inat">मीनिसर्गप्रेमी. ओ आर जी वर पहा </string>
+    <string name="view_on_inat">iNaturalist.org वर पहा  </string>
     <string name="reload">पुन्हा लोड करा </string>
     <string name="view_in_browser">ब्राउझरमध्ये पहा</string>
     <string name="add_observation">आणखी निरीक्षण नोंदवा </string>
@@ -44,9 +41,9 @@
     <string name="save">नोंदवा </string>
     <string name="no_observations_yet">अजून कोणतेही निरीक्षण नाही </string>
     <string name="or">किंव्वा </string>
-    <string name="signed_out">खातेपान  बंद करा </string>
-    <string name="username">उप नाम </string>
-    <string name="password">कळीचा शब्द </string>
+    <string name="signed_out">साइन आऊट करा</string>
+    <string name="username">वापरकर्ता नाव</string>
+    <string name="password">परवलीचा शब्द (पासवर्ड)</string>
     <string name="unknown">अज्ञात</string>
     <string name="unknown_species">अज्ञात प्रजाती</string>
     <string name="com_facebook_dialogloginactivity_ok_button">ठीक </string>
@@ -223,18 +220,16 @@
     <string name="could_not_retrieve_guide">Could not retrieve the guide details - probably a network error.</string>
     <string name="inat_support_email_subject">Help with iNaturalist (version %1$s - %2$s; user id - %3$s)</string>
     <string name="send_email">ईमेल पाठवा</string>
-    <string name="login_with">Log In with</string>
+    <string name="login_with">यासह लॉगइन करा</string>
     <string name="facebook">फेसबुक</string>
     <string name="gplus">गुगल</string>
     <string name="email">ईमेल</string>
-    <string name="sign_up_with">Sign Up with</string>
-    <string name="skip">Skip  ›</string>
-    <string name="already_have_account">आधीच एक खाते आहे?</string>
-    <string name="log_in">Log In</string>
+    <string name="skip">गाळून पुढे जा</string>
+    <string name="log_in">लॉग इन करा</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
-    <string name="sign_up">Sign Up</string>
+    <string name="sign_up">साइन अप करा</string>
     <!-- Title of the view used to sign up for a new account -->
-    <string name="sign_up_title">Sign Up</string>
+    <string name="sign_up_title">साइन अप करा</string>
     <string name="min_6_chars">कमीतकमी ६ अक्षरं  </string>
     <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data (recommended). <b>Learn More</b>]]></string>
     <string name="content_licensing">Content Licensing</string>
@@ -248,10 +243,10 @@
     <string name="could_not_register_user">Couldn\'t register user</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
     <string name="login_signup">Log In / Sign Up</string>
-    <string name="please_sign_in_via_settings_for_guides">You must be logged in to view your guides.</string>
-    <string name="please_sign_in_for_updates">You must be logged in to view your updates.</string>
+    <string name="please_sign_in_via_settings_for_guides">आपली मार्गदर्शके पाहण्यासाठी आपण लॉग इन असणे गरजेचे आहे.</string>
+    <string name="please_sign_in_for_updates">आपली अपडेट्स पाहण्यासाठी आपण लॉग इन असणे गरजेचे आहे.</string>
     <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="https://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
-    <string name="activity">Activity</string>
+    <string name="activity">गतिविधी</string>
     <!-- Label for a button to open the camera to take a new photo for an observation -->
     <string name="camera">फोटो घ्या</string>
     <!-- Label for a button to import an existing photo for an observation -->
@@ -270,7 +265,7 @@
     <string name="downloading_observations">निरीक्षणे डाउनलोड करत आहे</string>
     <string name="no_thanks">नको. धन्यवाद</string>
     <string name="turn_on">चालू करा</string>
-    <string name="introducing_auto_sync">Introducing Auto-Sync!</string>
+    <string name="introducing_auto_sync">सादर करीत आहोत स्वयं-समक्रमण!</string>
     <string name="turn_on_auto_sync">Turn on Auto-Sync in Settings and your observations will be automatically uploaded to iNaturalist.</string>
     <string name="automatic_upload">Automatic Upload (Auto Sync)</string>
     <string name="waiting_to_upload">Waiting to upload...</string>
@@ -347,21 +342,20 @@
     <string name="remove_photo">Remove Photo</string>
     <string name="name">नाव</string>
     <string name="tell_us_about_yourself">Tell us about yourself...</string>
-    <string name="view_profile">View Profile</string>
+    <string name="view_profile">प्रोफाइल बघा</string>
     <string name="are_you_sure_you_want_to_remove_photo">Are you sure you would like to remove your photo?</string>
-    <string name="updating_profile">Updating Profile...</string>
-    <string name="there_was_a_problem_updating_profile">There was a problem while updating your profile!</string>
-    <string name="there_was_a_problem_updating_profile_params">There was a problem while updating your profile: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
+    <string name="updating_profile">प्रोफाइल अपडेट करत आहे..</string>
+    <string name="there_was_a_problem_updating_profile">आपली प्रोफाइल अपडेट करताना अडचण येत आहे!</string>
+    <string name="there_was_a_problem_updating_profile_params">आपली प्रोफाइल अपडेट करताना अडचण येत आहे: %1$s</string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
-    <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
-    <string name="log_out">Log Out</string>
+    <string name="currently_logged_in_as_html"><![CDATA[सध्या या नावाने लॉग इन केले आहे  <b>%1$s</b>]]></string>
+    <string name="log_out">लॉग आउट करा</string>
     <string name="not_logged_in">Not logged in</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
-    <string name="login_or_sign_up">Log In or Sign Up</string>
+    <string name="login_or_sign_up">लॉग इन किंवा साईन अप करा</string>
     <string name="auto_upload_description">Auto-upload new observations and edits to observations</string>
     <string name="language">भाषा</string>
-    <string name="version">Version</string>
+    <string name="version">आवृत्ती</string>
     <string name="inat_network">iNaturalist Network</string>
     <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
     <string name="more_info">अधिक माहिती</string>
@@ -414,7 +408,7 @@
     <string name="introducing_missions">Introducing Missions!</string>
     <string name="missions_onboarding_description">Missions are realtime recommendations of what to look for around you. This way you can discover species new to you! (Requires connectivity)</string>
     <string name="ok_got_it">Ok, got it!</string>
-    <string name="could_not_download_observations">Could not download latest observations - Connection problems. Try again later.</string>
+    <string name="could_not_download_observations">नवीनतम निरीक्षणे डाउनलोड करू शकत नाही - कनेक्शनमध्ये अडचण. थोड्यावेळाने पुन्हा प्रयत्न करा.</string>
     <string name="no_news_yet">No news yet. Stay tuned!</string>
     <string name="my_content">My Content</string>
     <string name="following">Following</string>
@@ -471,16 +465,14 @@
     <string name="what_did_you_see">What did you see?</string>
     <string name="suggest_species">Suggest Species</string>
     <string name="suggest_species_description">Suggest species based on visual similarity to photos.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visually Similar</string>
     <string name="visually_similar_seen_nearby">Visually Similar / Seen Nearby</string>
     <string name="seen_nearby">Seen Nearby</string>
     <string name="enlarge">Enlarge</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">View Children</string>
-    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
     <string name="taxon_has_no_photos">This taxon has no photos.</string>
-    <string name="terrain">Terrain</string>
+    <string name="terrain">भूभाग</string>
     <string name="filters">Filters</string>
     <string name="exploring_all">Exploring All</string>
     <string name="nearby">Nearby</string>
@@ -596,7 +588,6 @@
     <string name="leave_comment">Leave a comment...</string>
     <string name="swipe">Swipe</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Which Google Account?</string>
     <string name="potential_disagreement">Potential Disagreement</string>
     <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -608,14 +599,14 @@
     <string name="must_be_connected_to_load_more_obs">You must be connected to the Internet to load more observations</string>
     <string name="inat_about_title">iNaturalist is a joint initiative by the California Academy of Sciences and the National Geographic Society.</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
-    <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="http://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
+    <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="https://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Credits</string>
@@ -633,6 +624,7 @@
     <string name="project_observations">Observations</string>
     <string name="project_species">Species</string>
     <string name="project_people">People</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Identifiers</string>
     <string name="got_it">Got it!</string>
     <string name="view_all">View All</string>
@@ -768,9 +760,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Mark all as viewed</string>
     <string name="content_hidden">Content Hidden</string>
     <string name="show_hidden_content">Show Hidden Content</string>
@@ -784,7 +776,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Record Sound</string>
-    <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Choose Sound</string>
@@ -986,6 +977,10 @@
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">MMM d, yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
     <string name="show_common_names">Show common names</string>
     <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
     <string name="email_must_look_like_email_address">Email must look like an email address</string>
@@ -1114,7 +1109,7 @@
     <string name="default_photo_license">Default Photo License</string>
     <string name="default_sound_license">Default Sound License</string>
     <string name="change_existing_licenses">Change Existing Licenses</string>
-    <string name="change_licenses_for_existing_observations">Change licenses for existing observations, photos and sounds</string>
+    <string name="change_licenses_for_existing_observations">Change licenses for existing observations, photos, and sounds</string>
     <string name="change_licenses_for_all_existing_observations">Change licenses for all existing observations</string>
     <string name="change_licenses_for_all_existing_photos">Change licenses for all existing photos</string>
     <string name="change_licenses_for_all_existing_sounds">Change licenses for all existing sounds</string>
@@ -1163,5 +1158,58 @@
     <string name="default_observation_action">Default Observation Action</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">पर्याय दाखवा </string>
-    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Field Value</string>
+    <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
+    <string name="delete_attribute_value">Delete attribute value</string>
+    <string name="open_menu_for_more_options">Open menu for more options</string>
+    <string name="change_user_profile_photo">Change user profile photo</string>
+    <string name="expand_list">Expand list</string>
+    <string name="change_map_layers">Change map layers (terrain vs. satellite)</string>
+    <string name="redo_observation_search">Redo observation search in this map area</string>
+    <string name="view_observations_on_map">View observations on map</string>
+    <string name="view_observations_on_grid">View observations on grid</string>
+    <string name="clear_text">Clear text</string>
+    <string name="observation_has_sounds">Observation has sounds</string>
+    <string name="go_to_my_location">Go to my current location</string>
+    <string name="change_geoprivacy">Change geoprivacy</string>
+    <string name="active_filters">Active filters</string>
+    <string name="message_is_flagged">Message is flagged</string>
+    <string name="user_is_muted">User is muted</string>
+    <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
+    <string name="delete_observations">Delete observations</string>
+    <string name="comment_count">Comment count</string>
+    <string name="id_count">Identification count</string>
+    <string name="observation_selected">Observation selected</string>
+    <string name="share_observation">Share observation</string>
+    <string name="unknown_location">Unknown location</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Close</string>
+    <string name="set_date2">Set date</string>
+    <string name="project_selected">Project Selected</string>
+    <string name="project_unselected">Project Unselected</string>
+    <string name="show_my_observations">Show my observations</string>
+    <string name="play_pause_sound">Play or pause sound</string>
+    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
+    <string name="view_image">View image</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Assessment passes</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Agree assessment passes</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Does not pass assessment</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Disagree assessment passes</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Delete %1$d selected observation</item>
+        <item quantity="other">Delete %1$d selected observations</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Sync %1$d selected observation</item>
+        <item quantity="other">Sync %1$d selected observations</item>
+    </plurals>
+    <string name="add_media_evidence">Add media evidence</string>
+    <string name="remove_identification">Remove identification</string>
+    <string name="issue_with_updating_photos">ह्या निरीक्षणामधील छायाचित्रे अद्यतनित करण्यात एक समस्या आली होती,  ज्याची दुरुस्ती करण्यात आलेली आहे. कृपया, ह्या समस्येचे निराकरण करण्यासाठी तुम्ही साइन आउट करून पुन्हा साइन इन करा.</string>
+    <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
 </resources>

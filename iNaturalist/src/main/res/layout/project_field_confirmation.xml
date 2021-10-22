@@ -12,7 +12,7 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:paddingRight="10dp"
+        android:paddingEnd="10dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
@@ -35,7 +35,7 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:paddingRight="10dp"
+        android:paddingEnd="10dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 

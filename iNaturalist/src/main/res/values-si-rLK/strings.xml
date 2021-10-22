@@ -7,8 +7,6 @@
     <string name="ok">හරි</string>
     <string name="cancel">අවලංගු කරන්න</string>
     <string name="loading">පූරණය වෙමින් පවතී...</string>
-    <string name="sync_required">සමමුහුර්ත කිරීම අවශ්‍යයි</string>
-    <string name="sync_required_message">සමමුහුර්ත කිරීමට නිරීක්ෂණ %1$d ක්, ඡායාරූප %2$d ක්</string>
     <string name="street">වීදිය</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">චන්ද්‍රිකා</string>
@@ -32,7 +30,6 @@
     <string name="settings">සැකසුම්</string>
     <string name="projects">ව්‍යාපෘති</string>
     <string name="delete_photo">ඡායාරූපය මකන්න</string>
-    <string name="menu">මෙනුව</string>
     <string name="my_location">මගේ ස්ථානය</string>
     <string name="nearby_observations">අසල ඇති නිරීක්ෂණ</string>
     <string name="add">එකතු කරන්න</string>
@@ -227,9 +224,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">විද්‍යුත් තැපෑල</string>
-    <string name="sign_up_with">මෙය සමඟ ලියාපදිංචි වන්න</string>
     <string name="skip">මඟහරින්න  ›</string>
-    <string name="already_have_account">දැනටමත් ගිණුමක් තිබේද?</string>
     <string name="log_in">ඇතුල් වන්න</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">ලියාපදිංචි වන්න</string>
@@ -352,7 +347,6 @@
     <string name="updating_profile">පැතිකඩ යාවත්කාලීන කරමින්...</string>
     <string name="there_was_a_problem_updating_profile">ඔබගේ පැතිකඩ යාවත්කාලීන කිරීමේදී ගැටළුවක් ඇති විය!</string>
     <string name="there_was_a_problem_updating_profile_params">ඔබගේ පැතිකඩ යාවත්කාලීන කිරීමේදී ගැටළුවක් ඇති විය: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[ඇතුල් වී ඇත්තේ මෙලෙසිනි <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
     <string name="log_out">ඉවත් වෙන්න</string>
@@ -471,14 +465,12 @@
     <string name="what_did_you_see">ඔබ මොනවද දුටුවේ?</string>
     <string name="suggest_species">විශේෂයන් යෝජනා කරන්න</string>
     <string name="suggest_species_description">ඡායාරූප වලට දෘශ්‍ය සමානතාවය මත පදනම්ව විශේෂයන් යෝජනා කරන්න.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">දෘශ්‍යමය වශයෙන් සමාන</string>
     <string name="visually_similar_seen_nearby">දෘශ්‍යමය වශයෙන් සමාන / අසල දැක ඇති</string>
     <string name="seen_nearby">අසල දැක ඇති</string>
     <string name="enlarge">විශාල කරන්න</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">දාරකයන් බලන්න</string>
-    <string name="invalid_photo_extension">ඡායාරූප(ය) ආයාත කිරීමේදී ඇති වූ දෝෂයකි: ඡායාරූප ගොනු ආයාත කළ හැක්කේ JPG/JPEG/PNG දිගු සමඟ පමණි</string>
     <string name="taxon_has_no_photos">මෙම තක්සෝනයට ඡායාරූප නොමැත.</string>
     <string name="terrain">බිම් පෙදෙස</string>
     <string name="filters">පෙරහන්</string>
@@ -596,7 +588,6 @@
     <string name="leave_comment">අදහස් දැක්වීමක් තබන්න...</string>
     <string name="swipe">ස්වයිප් කරන්න</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">කුමන Google ගිණුමද?</string>
     <string name="potential_disagreement">භව්‍ය එකඟ නොවීමක්</string>
     <string name="do_you_think_this_could_be"><![CDATA[මෙය <b>%1$s</b> බව සනාථ කිරීමට සපයා ඇති සාක්ෂි ප්‍රමාණවත්ද?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -608,7 +599,7 @@
     <string name="must_be_connected_to_load_more_obs">තවත් නිරීක්ෂණ පූරණය කිරීම සඳහා ඔබ අන්තර්ජාලයට සම්බන්ධ වී සිටිය යුතුය</string>
     <string name="inat_about_title">iNaturalist යනු California Academy of Sciences සහ National Geographic Society හි ඒකාබද්ධ මුලපිරීමකි.</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -633,6 +624,7 @@
     <string name="project_observations">නිරීක්ෂණ</string>
     <string name="project_species">විශේෂය</string>
     <string name="project_people">පුද්ගලයන්</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">හඳුනාගත්තන්</string>
     <string name="got_it">තේරුම් ගත්තා!</string>
     <string name="view_all">සියල්ල බලන්න</string>
@@ -768,9 +760,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">සියල්ල බලා ඇති ලෙස ලකුණු කරන්න</string>
     <string name="content_hidden">අන්තර්ගතය සඟවා ඇත</string>
     <string name="show_hidden_content">සැඟවුණු අන්තර්ගතය පෙන්වන්න</string>
@@ -784,7 +776,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">ශබ්දය පටිගත කරන්න</string>
-    <string name="no_recorder_found">පෙරනිමි ශබ්ද පටිගත කිරීමේ යන්ත්‍රයක් හමු නොවීය!</string>
     <string name="couldnt_retrieve_sound">පෙරනිමි රෙකෝඩරයෙන් ශබ්දය ලබා ගත නොහැකි විය - ඒ වෙනුවට ශබ්දය ආයාත කිරීමට උත්සාහ කරන්න</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">ශබ්දය තෝරන්න</string>
@@ -986,6 +977,10 @@
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">MMM d, yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
     <string name="show_common_names">ව්‍යවහාරයෙහි පවතින නම් පෙන්වන්න</string>
     <string name="show_common_names_description">ඔබට විද්‍යාත්මක නම් පමණක් බැලීමට අවශ්‍ය නම් අක්‍රිය කරන්න.</string>
     <string name="email_must_look_like_email_address">විද්‍යුත් තැපෑල විද්‍යුත් තැපැල් ලිපිනයක් මෙන් විය යුතුය</string>
@@ -1114,7 +1109,7 @@
     <string name="default_photo_license">Default Photo License</string>
     <string name="default_sound_license">Default Sound License</string>
     <string name="change_existing_licenses">Change Existing Licenses</string>
-    <string name="change_licenses_for_existing_observations">Change licenses for existing observations, photos and sounds</string>
+    <string name="change_licenses_for_existing_observations">Change licenses for existing observations, photos, and sounds</string>
     <string name="change_licenses_for_all_existing_observations">Change licenses for all existing observations</string>
     <string name="change_licenses_for_all_existing_photos">Change licenses for all existing photos</string>
     <string name="change_licenses_for_all_existing_sounds">Change licenses for all existing sounds</string>
@@ -1163,5 +1158,58 @@
     <string name="default_observation_action">Default Observation Action</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Show Options</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Field Value</string>
+    <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
+    <string name="delete_attribute_value">Delete attribute value</string>
+    <string name="open_menu_for_more_options">Open menu for more options</string>
+    <string name="change_user_profile_photo">Change user profile photo</string>
+    <string name="expand_list">Expand list</string>
+    <string name="change_map_layers">Change map layers (terrain vs. satellite)</string>
+    <string name="redo_observation_search">Redo observation search in this map area</string>
+    <string name="view_observations_on_map">View observations on map</string>
+    <string name="view_observations_on_grid">View observations on grid</string>
+    <string name="clear_text">Clear text</string>
+    <string name="observation_has_sounds">Observation has sounds</string>
+    <string name="go_to_my_location">Go to my current location</string>
+    <string name="change_geoprivacy">Change geoprivacy</string>
+    <string name="active_filters">Active filters</string>
+    <string name="message_is_flagged">Message is flagged</string>
+    <string name="user_is_muted">User is muted</string>
+    <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
+    <string name="delete_observations">Delete observations</string>
+    <string name="comment_count">Comment count</string>
+    <string name="id_count">Identification count</string>
+    <string name="observation_selected">Observation selected</string>
+    <string name="share_observation">Share observation</string>
+    <string name="unknown_location">Unknown location</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Close</string>
+    <string name="set_date2">Set date</string>
+    <string name="project_selected">Project Selected</string>
+    <string name="project_unselected">Project Unselected</string>
+    <string name="show_my_observations">Show my observations</string>
+    <string name="play_pause_sound">Play or pause sound</string>
+    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
+    <string name="view_image">View image</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Assessment passes</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Agree assessment passes</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Does not pass assessment</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Disagree assessment passes</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Delete %1$d selected observation</item>
+        <item quantity="other">Delete %1$d selected observations</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Sync %1$d selected observation</item>
+        <item quantity="other">Sync %1$d selected observations</item>
+    </plurals>
+    <string name="add_media_evidence">Add media evidence</string>
+    <string name="remove_identification">Remove identification</string>
     <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
+    <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
 </resources>

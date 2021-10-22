@@ -25,7 +25,7 @@ import android.text.TextUtils;
 public class ObservationProvider extends ContentProvider {
     private static final String TAG = "ObservationProvider";
     private static final String DATABASE_NAME = "inaturalist.db";
-    private static final int DATABASE_VERSION = 22;
+    private static final int DATABASE_VERSION = 23;
     private static final SQLiteCursorFactory sFactory;
     public static final UriMatcher URI_MATCHER;
 
@@ -149,6 +149,10 @@ public class ObservationProvider extends ContentProvider {
                 // New license column for observation photo
                 addColumnIfNotExists(db, ObservationPhoto.TABLE_NAME, "license", "TEXT DEFAULT NULL");
             }
+            if (oldVersion < 23) {
+                // New ID column for project observation
+                addColumnIfNotExists(db, ProjectObservation.TABLE_NAME, "id", "INTEGER DEFAULT NULL");
+            }
         }
 
         // Adds a new column to a table if doesn't exist already
@@ -270,6 +274,9 @@ public class ObservationProvider extends ContentProvider {
         // Get the database and run the query
         SQLiteDatabase db = mOpenHelper.getReadableDatabase();
         Cursor c = qb.query(db, projection, selection, selectionArgs, null, null, orderBy);
+        if (c instanceof  TrackingCursor) {
+            ((TrackingCursor)c).setSelectionArgs(selectionArgs);
+        }
 
         // Tell the cursor what uri to watch, so it knows when its source data changes
         c.setNotificationUri(getContext().getContentResolver(), uri);

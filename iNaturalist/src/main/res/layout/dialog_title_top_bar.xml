@@ -8,6 +8,7 @@
         android:layout_width="fill_parent"
         android:layout_height="2dp"
         android:background="@color/inatapptheme_color"
+        android:textAlignment="viewStart"
         />
 
 </LinearLayout>

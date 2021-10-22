@@ -178,6 +178,9 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent data = new Intent();
                     data.putExtra(DELETE_PHOTO_INDEX, mViewPager.getCurrentItem());
+                    if (mReplacedPhotos.size() > 0) {
+                        data.putExtra(REPLACED_PHOTOS, replacedPhotosToString());
+                    }
                     setResult(RESULT_OK, data);
                     finish();
                 }
@@ -356,6 +359,8 @@ public class ObservationPhotosViewer extends AppCompatActivity {
     }
 
     public static class IdPicsPagerAdapter extends PagerAdapter {
+        private INaturalistApp mApp = null;
+
         public static interface OnZoomListener {
             void onZoomedIn();
             void onZoomOriginal();
@@ -396,6 +401,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
             mObservationId = observationId;
             mInternalObservationId = _observationId;
             mObservationUUID = uuid;
+            mApp = (INaturalistApp)activity.getApplication();
 
             if (mObservationUUID == null) {
                 Logger.tag(TAG).error("UUID is null!");
@@ -406,7 +412,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                     ObservationPhoto.PROJECTION,
                     "(observation_uuid=?) AND ((is_deleted = 0) OR (is_deleted IS NULL))",
                     new String[]{mObservationUUID},
-                    ObservationPhoto.DEFAULT_SORT_ORDER);
+                    mApp.isLayoutRTL() ? ObservationPhoto.REVERSE_DEFAULT_SORT_ORDER : ObservationPhoto.DEFAULT_SORT_ORDER);
 
             imageCursor.moveToFirst();
 

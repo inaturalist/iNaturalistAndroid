@@ -436,7 +436,7 @@ public class ImageUtils {
                 } else {
                     // The Smooth rescale library has issues with Older Android versions (causes crashes) - use
                     // built-in Android resizing
-                    resizedBitmap = Bitmap.createScaledBitmap(resizedBitmap, newWidth, newHeight, true);
+                    resizedBitmap = Bitmap.createScaledBitmap(resizedBitmap, newWidth, newHeight, !noLanczos);
                 }
             }
 
@@ -477,6 +477,8 @@ public class ImageUtils {
         } catch (FileNotFoundException e) {
             Logger.tag(TAG).error(e);
         } catch (IOException e) {
+            Logger.tag(TAG).error(e);
+        } catch (SecurityException e) {
             Logger.tag(TAG).error(e);
         }
 

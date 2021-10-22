@@ -6,8 +6,8 @@
     android:orientation="horizontal"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
-    android:paddingLeft="15dp"
-    android:paddingRight="15dp">
+    android:paddingStart="15dp"
+    android:paddingEnd="15dp">
 
     <TextView
         android:layout_width="0dp"

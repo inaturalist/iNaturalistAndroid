@@ -38,6 +38,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.TimeZone;
 import java.util.UUID;
 
@@ -102,6 +103,7 @@ import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -186,6 +188,8 @@ public class ObservationEditor extends Fragment {
     @State public boolean mChoseNewPhoto = false;
     @State public boolean mChoseNewSound = false;
     private List<Uri> mSharePhotos = null;
+
+    @State public HashMap<Integer, Integer> mOriginalPhotoPositions = null;
 
     private TaxonReceiver mTaxonReceiver;
 
@@ -355,7 +359,6 @@ public class ObservationEditor extends Fragment {
         mApp.applyLocaleSettings(getActivity().getBaseContext());
 
         getActivity().setTitle(R.string.edit_observation);
-
         if (mHelper == null) {
             mHelper = new ActivityHelper(getActivity());
         }
@@ -420,7 +423,10 @@ public class ObservationEditor extends Fragment {
             getActivity().setResult(Activity.RESULT_OK, intent2);
             getActivity().getIntent().setAction(Intent.ACTION_INSERT);
 
-        } else if (savedInstanceState == null) {
+        } else if ((savedInstanceState == null) ||
+                ((mUri == null) && (intent != null) && (intent.getData() != null))) {
+            Logger.tag(TAG).error("Insert 1b");
+
             // Do some setup based on the action being performed.
             Uri uriInternal = Uri.parse(getArguments().getString(OBS_URI));
             if (uriInternal == null) {
@@ -643,8 +649,7 @@ public class ObservationEditor extends Fragment {
             }
         });
 
-
-        mRootView.findViewById(R.id.is_captive).setOnClickListener(new OnClickListener() {
+        OnClickListener onIsCaptive = new OnClickListener() {
             @Override
             public void onClick(View view) {
                 mIsCaptive = !mIsCaptive;
@@ -659,7 +664,10 @@ public class ObservationEditor extends Fragment {
                 }
 
             }
-        });
+        };
+
+        mRootView.findViewById(R.id.is_captive).setOnClickListener(onIsCaptive);
+        mRootView.findViewById(R.id.is_captive_checkbox).setOnClickListener(onIsCaptive);
 
         mPhotoWarningContainer = mRootView.findViewById(R.id.warning_multiple_photos);
         mPhotoWarningContainer.setVisibility(View.GONE);
@@ -718,6 +726,29 @@ public class ObservationEditor extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         mGallery.setLayoutManager(layoutManager);
         mGallery.addItemDecoration(new MarginItemDecoration((int) mHelper.dpToPx(5)));
+
+        ItemTouchHelper.SimpleCallback itemTouchCallback = new ItemTouchHelper.SimpleCallback(
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT | ItemTouchHelper.START | ItemTouchHelper.END, 0) {
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                GalleryCursorAdapter adapter = (GalleryCursorAdapter) recyclerView.getAdapter();
+                int from = viewHolder.getAdapterPosition();
+                int to = target.getAdapterPosition();
+                adapter.moveItem(from, to);
+                adapter.notifyItemMoved(from, to);
+
+                return true;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+            }
+        };
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemTouchCallback);
+        itemTouchHelper.attachToRecyclerView(mGallery);
+
         mLatitudeView = (TextView) mRootView.findViewById(R.id.latitude);
         mLongitudeView = (TextView) mRootView.findViewById(R.id.longitude);
         mAccuracyView = (TextView) mRootView.findViewById(R.id.accuracy);
@@ -1104,7 +1135,7 @@ public class ObservationEditor extends Fragment {
                 lon = mObservation.private_longitude == null ? mObservation.longitude : mObservation.private_longitude;
                 intent.putExtra(LocationChooserActivity.LONGITUDE, lon);
                 intent.putExtra(LocationChooserActivity.LATITUDE,  lat);
-                intent.putExtra(LocationChooserActivity.ACCURACY, (mObservation.positional_accuracy != null ? mObservation.positional_accuracy.doubleValue() : 0));
+                intent.putExtra(LocationChooserActivity.ACCURACY, (mObservation.positional_accuracy != null ? mObservation.positional_accuracy.doubleValue() : null));
                 intent.putExtra(LocationChooserActivity.ICONIC_TAXON_NAME, mObservation.iconic_taxon_name);
                 intent.putExtra(LocationChooserActivity.GEOPRIVACY, (String) mGeoprivacy.getSelectedItem());
 
@@ -1562,7 +1593,19 @@ public class ObservationEditor extends Fragment {
         // Restore the positions of all photos
     	updateImagesAndSounds();
         GalleryCursorAdapter adapter = (GalleryCursorAdapter) mGallery.getAdapter();
-        adapter.refreshPhotoPositions(null, true);
+        Cursor c = adapter.getCursor();
+
+        c.moveToPosition(0);
+
+        do {
+            ObservationPhoto currentOp = new ObservationPhoto(c);
+            currentOp.position = mOriginalPhotoPositions.get(currentOp._id);
+            ContentValues cv = currentOp.getContentValues();
+            if (currentOp._synced_at != null) {
+                cv.put(ObservationPhoto._SYNCED_AT, currentOp._synced_at.getTime());
+            }
+            getActivity().getContentResolver().update(ObservationPhoto.CONTENT_URI, cv, "_id = ?", new String[] { String.valueOf(currentOp._id) });
+        } while (c.moveToNext());
     }
 
 
@@ -1889,7 +1932,9 @@ public class ObservationEditor extends Fragment {
         if (mAccuracyView.getText() == null || mAccuracyView.getText().length() == 0) {
             mObservation.positional_accuracy = null;
         } else {
-            mObservation.positional_accuracy = ((Float) Float.parseFloat(mAccuracyView.getText().toString())).intValue();
+            // Round any accuracy less than 1 (but greater than zero) to 1
+            Float acc = ((Float) Float.parseFloat(mAccuracyView.getText().toString()));
+            mObservation.positional_accuracy = acc > 0 & acc < 1 ? 1 : acc.intValue();
         }
 
         List<String> values = Arrays.asList(getResources().getStringArray(R.array.geoprivacy_values));
@@ -2528,7 +2573,9 @@ public class ObservationEditor extends Fragment {
 
         if (location.hasAccuracy()) {
             mAccuracyView.setText(Float.toString(location.getAccuracy()));
-            mObservation.positional_accuracy = ((Float) location.getAccuracy()).intValue();
+            // Round any accuracy less than 1 (but greater than zero) to 1
+            Float acc = location.getAccuracy();
+            mObservation.positional_accuracy = acc > 0 & acc < 1 ? 1 : acc.intValue();
             mRootView.findViewById(R.id.accuracy_prefix).setVisibility(View.VISIBLE);
             mRootView.findViewById(R.id.accuracy).setVisibility(View.VISIBLE);
         } else {
@@ -2586,6 +2633,8 @@ public class ObservationEditor extends Fragment {
      */
     
     private void saveProjectFields() {
+        if (mProjectFieldValues == null) return;
+        
         for (ProjectFieldValue fieldValue : mProjectFieldValues.values()) {
             if (fieldValue.value == null) {
                 continue;
@@ -2606,6 +2655,8 @@ public class ObservationEditor extends Fragment {
      
    
     private boolean saveProjects() {
+        if (mObservation._id == null) return false;
+
     	Boolean updatedProjects = false; // Indicates whether or not *any* projects were changed
         String joinedIds = StringUtils.join(mProjectIds, ",");
         
@@ -2770,7 +2821,7 @@ public class ObservationEditor extends Fragment {
 
                 double longitude = data.getDoubleExtra(LocationChooserActivity.LONGITUDE, 0);
                 double latitude = data.getDoubleExtra(LocationChooserActivity.LATITUDE, 0);
-                double accuracy = data.getDoubleExtra(LocationChooserActivity.ACCURACY, 0);
+                double accuracy = data.getDoubleExtra(LocationChooserActivity.ACCURACY, -1);
                 String geoprivacy = data.getStringExtra(LocationChooserActivity.GEOPRIVACY);
                 String placeGuess = data.getStringExtra(LocationChooserActivity.PLACE_GUESS);
 
@@ -2781,7 +2832,10 @@ public class ObservationEditor extends Fragment {
 
                 mObservation.latitude = latitude;
                 mObservation.longitude = longitude;
-                mObservation.positional_accuracy = (int) Math.floor(accuracy);
+                if (accuracy != -1) {
+                    // Round any accuracy less than 1 (but greater than zero) to 1
+                    mObservation.positional_accuracy = accuracy > 0 & accuracy < 1 ? 1 : (int) Math.floor(accuracy);
+                }
 
                 mObservation.geoprivacy = geoprivacy;
                 updateObservationVisibilityDescription();
@@ -2796,7 +2850,7 @@ public class ObservationEditor extends Fragment {
 
                 mLatitudeView.setText(Double.toString(latitude));
                 mLongitudeView.setText(Double.toString(longitude));
-                mAccuracyView.setText(mObservation.positional_accuracy.toString());
+                mAccuracyView.setText(mObservation.positional_accuracy != null ? mObservation.positional_accuracy.toString() : "");
                 mRootView.findViewById(R.id.coordinates).setVisibility(View.VISIBLE);
                 mRootView.findViewById(R.id.accuracy_prefix).setVisibility(View.VISIBLE);
                 mRootView.findViewById(R.id.accuracy).setVisibility(View.VISIBLE);
@@ -3594,7 +3648,9 @@ public class ObservationEditor extends Fragment {
                 if (directory != null) {
                     Rational value = directory.getRational(GpsDirectory.TAG_H_POSITIONING_ERROR);
                     if (value != null) {
-                        mObservation.positional_accuracy = value.intValue();
+                        // Round any accuracy less than 1 (but greater than zero) to 1
+                        Float acc = value.floatValue();
+                        mObservation.positional_accuracy = acc > 0 & acc < 1 ? 1 : acc.intValue();
                     }
                 }
 
@@ -4118,6 +4174,16 @@ public class ObservationEditor extends Fragment {
         mImageCursor.moveToFirst();
     	mSoundCursor.moveToFirst();
         mGallery.setAdapter(new GalleryCursorAdapter(getActivity(), mImageCursor, mSoundCursor));
+        if (mOriginalPhotoPositions == null) {
+            // Save original photo positions
+            mOriginalPhotoPositions = new HashMap<>();
+            mImageCursor.moveToFirst();
+            do {
+                ObservationPhoto currentOp = new ObservationPhoto(mImageCursor);
+                mOriginalPhotoPositions.put(currentOp._id, currentOp.position);
+            } while (mImageCursor.moveToNext());
+            mImageCursor.moveToFirst();
+        }
 
         if (mImageCursor.getCount() >= MAX_PHOTOS_PER_OBSERVATION) {
             mTakePhotoButton.setAlpha(0.1f);
@@ -4135,23 +4201,14 @@ public class ObservationEditor extends Fragment {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public ViewGroup mRootView;
-        public View isFirst;
-        public View isFirstOn;
-        public View isFirstOff;
-        public View isFirstText;
+        public ViewGroup rootView;
         public ImageView imageView;
 
         public ViewHolder(@NonNull View view, int viewType) {
             super(view);
 
             imageView = view.findViewById(viewType == GalleryCursorAdapter.VIEW_TYPE_SOUND ? R.id.observation_sound : R.id.observation_photo);
-            isFirst = view.findViewById(R.id.observation_is_first);
-            isFirstOn = view.findViewById(R.id.is_first_on);
-            isFirstOff = view.findViewById(R.id.is_first_off);
-            isFirstText = view.findViewById(R.id.is_first_text);
-
-            mRootView = (ViewGroup) view;
+            rootView = (ViewGroup) view;
         }
     }
 
@@ -4167,6 +4224,7 @@ public class ObservationEditor extends Fragment {
             outRect.right = mMargin;
         }
     }
+
 
     public class GalleryCursorAdapter extends RecyclerView.Adapter<ViewHolder> {
         private static final int MIN_SAMPLE_SIZE_COMPRESSION = 8;
@@ -4209,6 +4267,26 @@ public class ObservationEditor extends Fragment {
 
             ViewHolder vh = new ViewHolder(v, viewType);
             return vh;
+        }
+
+        public void moveItem(int from, int to) {
+            int originalPosition = mGalleryCursor.getPosition();
+
+            mGalleryCursor.moveToPosition(from);
+            ObservationPhoto currentOp = new ObservationPhoto(mGalleryCursor);
+            currentOp.position = to;
+            ContentValues cv = currentOp.getContentValues();
+            getActivity().getContentResolver().update(ObservationPhoto.CONTENT_URI, cv, "_id = ?", new String[] { String.valueOf(currentOp._id) });
+
+            mGalleryCursor.moveToPosition(to);
+            currentOp = new ObservationPhoto(mGalleryCursor);
+            currentOp.position = from;
+            cv = currentOp.getContentValues();
+            getActivity().getContentResolver().update(ObservationPhoto.CONTENT_URI, cv, "_id = ?", new String[] { String.valueOf(currentOp._id) });
+
+            mGalleryCursor.moveToPosition(originalPosition);
+
+            mPhotosChanged = true;
         }
 
 
@@ -4296,18 +4374,6 @@ public class ObservationEditor extends Fragment {
                 }
             }
 
-            View isFirst = holder.isFirst;
-
-            if (position == 0) {
-                holder.isFirstOn.setVisibility(View.VISIBLE);
-                holder.isFirstOff.setVisibility(View.GONE);
-                holder.isFirstText.setVisibility(View.VISIBLE);
-            } else {
-                holder.isFirstOn.setVisibility(View.GONE);
-                holder.isFirstOff.setVisibility(View.VISIBLE);
-                holder.isFirstText.setVisibility(View.GONE);
-            }
-
             imageView.setOnClickListener(view -> {
                 Intent intent = new Intent(getActivity(), ObservationPhotosViewer.class);
                 intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID, mObservation.id);
@@ -4318,18 +4384,6 @@ public class ObservationEditor extends Fragment {
                 startActivityForResult(intent, OBSERVATION_PHOTOS_REQUEST_CODE);
 
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_VIEW_HIRES_PHOTO);
-            });
-
-            isFirst.setTag(new Integer(position));
-            isFirst.setOnClickListener(view -> {
-                Integer position1 = (Integer) view.getTag();
-                String photoId = getItemIdString(position1);
-
-                if ((mFirstPositionPhotoId == null) || (!mFirstPositionPhotoId.equals(photoId))) {
-                    setAsFirstPhoto(position1);
-
-                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_NEW_DEFAULT_PHOTO);
-                }
             });
         }
 

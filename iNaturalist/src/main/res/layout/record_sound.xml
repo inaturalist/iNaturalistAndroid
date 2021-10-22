@@ -39,8 +39,8 @@
     <TextView
         android:id="@+id/stop_recording"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="48dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="48dp"
         android:layout_marginBottom="45dp"
         android:textSize="20sp"
         android:textColor="#ffffff"

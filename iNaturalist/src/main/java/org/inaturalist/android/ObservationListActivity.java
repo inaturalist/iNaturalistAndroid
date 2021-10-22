@@ -705,6 +705,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 }
             }
         }
+
+        if (mObservationListAdapter != null) mObservationListAdapter.onObservationChanged();
+        if (mObservationGridAdapter != null) mObservationGridAdapter.onObservationChanged();
     }
 
     // Checks to see if there are any observations that have the "old" way of saving photos
@@ -1470,6 +1473,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                         if (!oldCursor.isClosed()) oldCursor.close();
                     }
 
+                    if (mObservationListAdapter != null) {
+                        mObservationListAdapter.close();
+                    }
+                    if (mObservationGridAdapter != null) {
+                        mObservationGridAdapter.close();
+                    }
                     mObservationListAdapter = new ObservationCursorAdapter(ObservationListActivity.this, cursor);
                     mObservationGridAdapter = new ObservationCursorAdapter(ObservationListActivity.this, cursor, true, mObservationsGrid);
                     mObservationsGrid.setAdapter(mObservationGridAdapter);

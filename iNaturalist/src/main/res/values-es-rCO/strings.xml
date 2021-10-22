@@ -7,8 +7,6 @@
     <string name="ok">Ok</string>
     <string name="cancel">Cancelar</string>
     <string name="loading">Cargando...</string>
-    <string name="sync_required">Requiere sincronización</string>
-    <string name="sync_required_message">%1$d observaciones, %2$d fotos para sincronizar</string>
     <string name="street">Calle</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satélite</string>
@@ -32,7 +30,6 @@
     <string name="settings">Configuración</string>
     <string name="projects">Proyectos</string>
     <string name="delete_photo">Borrar foto</string>
-    <string name="menu">Menu</string>
     <string name="my_location">Mi ubicación</string>
     <string name="nearby_observations">Observaciones cercanas</string>
     <string name="add">Agregar</string>
@@ -227,9 +224,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Dirección de correo electrónico</string>
-    <string name="sign_up_with">Regístrate con</string>
     <string name="skip">Descarta ></string>
-    <string name="already_have_account">¿Ya tienes una cuenta?</string>
     <string name="log_in">Iniciar sesión</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Regístrate</string>
@@ -352,7 +347,6 @@
     <string name="updating_profile">Actualizando perfil...</string>
     <string name="there_was_a_problem_updating_profile">¡Hubo un problema mientras se actualizaban su perfil!</string>
     <string name="there_was_a_problem_updating_profile_params">Hubo un problema mientras se actualizaban su perfil: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Conectado como <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Conectado como <b>%1$s</b>]]></string>
     <string name="log_out">Cerrar Sesión</string>
@@ -471,14 +465,12 @@
     <string name="what_did_you_see">¿Qué viste?</string>
     <string name="suggest_species">Sugiere especies</string>
     <string name="suggest_species_description">Sugerir la especie basándose en la similitud visual con fotos.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visualmente similar</string>
     <string name="visually_similar_seen_nearby">Visualmente similar / visto cerca</string>
     <string name="seen_nearby">Visto cerca</string>
     <string name="enlarge">Ampliar</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Ver hijos</string>
-    <string name="invalid_photo_extension">Error al importar foto(s): sólo puede importar archivos de fotos con extensiones JPEG/JPG/PNG</string>
     <string name="taxon_has_no_photos">Este taxón tiene no tiene fotos.</string>
     <string name="terrain">Terreno</string>
     <string name="filters">Filtros</string>
@@ -596,7 +588,6 @@
     <string name="leave_comment">Dejar un comentario...</string>
     <string name="swipe">Desliza</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">¿Qué cuenta de Google?</string>
     <string name="potential_disagreement">En desacuerdo potencial</string>
     <string name="do_you_think_this_could_be"><![CDATA[¿La evidencia proporcionada es suficiente para confirmar que esto es <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -608,7 +599,7 @@
     <string name="must_be_connected_to_load_more_obs">Debes estar conectado al internet para cargar más observaciones</string>
     <string name="inat_about_title">iNaturalist es una iniciativa conjunta de la Academia de Ciencias de California y la National Geographic Society.</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -633,6 +624,7 @@
     <string name="project_observations">Observaciones</string>
     <string name="project_species">Especies</string>
     <string name="project_people">Personas</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Identificadores</string>
     <string name="got_it">¡Entendido!</string>
     <string name="view_all">Ver todos</string>
@@ -770,7 +762,7 @@
     <string name="network_credit_inaturalistuk"><![CDATA[Reino Unido: National Biodiversity Network Trust apoya a iNaturalist Reino Unido (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: La Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) apoya a Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: El Consejo Nacional de Áreas Protegidas (CONAP) apoya a iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Suecia: El Centro Sueco de Información sobre Especies (SLU) apoya a iNaturalist Suecia (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Suecia: El SLU, Centro Sueco de Información sobre Especies, apoya a iNaturalist Suecia (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Marcar todos como vistos</string>
     <string name="content_hidden">Contenido ocultado</string>
     <string name="show_hidden_content">Mostrar contenido ocultado</string>
@@ -784,7 +776,6 @@
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Grabar Sonido</string>
-    <string name="no_recorder_found">¡No se ha encontrado un grabador de sonido predeterminado!</string>
     <string name="couldnt_retrieve_sound">No se ha podido recuperar el sonido de la grabadora predeterminada - intente, en vez de eso, importar el sonido</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Elegir Sonido</string>
@@ -990,6 +981,10 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">d MMM, yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">d MMM, yyyy hh:mma</string>
     <string name="show_common_names">Mostrar nombres comunes</string>
     <string name="show_common_names_description">Desactivar si solo desea ver nombres científicos.</string>
     <string name="email_must_look_like_email_address">El correo electrónico debe ser una dirección de correo válida</string>
@@ -1167,5 +1162,58 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <string name="default_observation_action">Acción predeterminada en Mis observaciones</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Mostrar opciones</string>
-    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Valor del Campo</string>
+    <string name="expand_annotation_to_agree_or_disagree">Expandir anotación para aceptar o estar en desacuerdo</string>
+    <string name="delete_attribute_value">Eliminar valor del atributo</string>
+    <string name="open_menu_for_more_options">Abrir menú para más opciones</string>
+    <string name="change_user_profile_photo">Cambiar foto de perfil de usuario</string>
+    <string name="expand_list">Expandir lista</string>
+    <string name="change_map_layers">Cambia las capas del mapa (terreno vs. satelital)</string>
+    <string name="redo_observation_search">Rehacer búsqueda de observaciones en este área del mapa</string>
+    <string name="view_observations_on_map">Ver observaciones en el mapa</string>
+    <string name="view_observations_on_grid">Ver observaciones en cuadrícula</string>
+    <string name="clear_text">Borrar texto</string>
+    <string name="observation_has_sounds">La observación tiene sonidos</string>
+    <string name="go_to_my_location">Ir a mi ubicación actual</string>
+    <string name="change_geoprivacy">Cambiar geoprivacidad</string>
+    <string name="active_filters">Filtros activos</string>
+    <string name="message_is_flagged">El mensaje tiene advertencia</string>
+    <string name="user_is_muted">Usuario silenciado</string>
+    <string name="cancel_multiple_obs_selection">Cancelar selección de observaciones múltiples</string>
+    <string name="delete_observations">Borrar observaciones</string>
+    <string name="comment_count">Número de comentarios</string>
+    <string name="id_count">Número de identificaciones</string>
+    <string name="observation_selected">Observación seleccionada</string>
+    <string name="share_observation">Compartir observación</string>
+    <string name="unknown_location">Ubicación desconocida</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Cerrar</string>
+    <string name="set_date2">Establecer fecha</string>
+    <string name="project_selected">Proyecto seleccionado</string>
+    <string name="project_unselected">Proyecto no seleccionado</string>
+    <string name="show_my_observations">Mostrar mis observaciones</string>
+    <string name="play_pause_sound">Reproducir o pausar el sonido</string>
+    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences y National Geographic</string>
+    <string name="view_image">Ver imagen</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Pases de evaluación</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Aceptar pase de evaluación</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">No pasa la evaluación</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">En desacuerdo con el pase de evaluación</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Eliminar %1$d observación seleccionada</item>
+        <item quantity="other">Eliminar %1$d observaciones seleccionadas</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Sincronizar %1$d observación seleccionada</item>
+        <item quantity="other">Sincronizar %1$d observaciones seleccionadas</item>
+    </plurals>
+    <string name="add_media_evidence">Añadir evidencia multimedia</string>
+    <string name="remove_identification">Eliminar identificación</string>
+    <string name="issue_with_updating_photos">Hubo un problema al actualizar las fotos en esta observación que se ha corregido recientemente. Por favor, cierra la sesión y vuelve a iniciarla para resolver este problema.</string>
+    <string name="app_version_copied_to_clipboard">Versión de la App copiada al portapapeles</string>
 </resources>

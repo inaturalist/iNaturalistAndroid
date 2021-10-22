@@ -272,6 +272,16 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
     private TextView mMetadataObservationURL;
     private ViewGroup mMetadataObservationURLRow;
 
+	@Override
+	public void onStop() {
+		super.onStop();
+
+        if (mPhotosAdapter != null) {
+            mPhotosAdapter.close();
+        }
+	}
+
+
     @Override
     public void onAnnotationCollapsedExpanded() {
         // Annotation has been expanded / collapsed - resize the list to show it
@@ -330,6 +340,16 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
         private List<SoundPlayer> mPlayers = new ArrayList<>();
         private HashMap<Integer, Bitmap> mBitmaps = new HashMap<>();
 
+
+        public void close() {
+            if (mImageCursor != null) {
+                mImageCursor.close();
+            }
+            if (mSoundCursor != null) {
+                mSoundCursor.close();
+            }
+        }
+
         public void refreshPhotoPositions(Integer position, boolean doNotUpdate) {
             int currentPosition = position == null ? 0 : 1;
             int count = mImageCursor.getCount();
@@ -364,12 +384,12 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                         ObservationPhoto.PROJECTION,
                         "(observation_uuid=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
                         new String[]{mObservation.uuid},
-                        ObservationPhoto.DEFAULT_SORT_ORDER);
+                        mApp.isLayoutRTL() ? ObservationPhoto.REVERSE_DEFAULT_SORT_ORDER : ObservationPhoto.DEFAULT_SORT_ORDER);
                 mSoundCursor = getActivity().getContentResolver().query(ObservationSound.CONTENT_URI,
                         ObservationSound.PROJECTION,
                         "(observation_uuid=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
                         new String[]{mObservation.uuid},
-                        ObservationSound.DEFAULT_SORT_ORDER);
+                        mApp.isLayoutRTL() ? ObservationSound.REVERSE_DEFAULT_SORT_ORDER : ObservationSound.DEFAULT_SORT_ORDER);
 
                 mImageCursor.moveToFirst();
             }
@@ -689,6 +709,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
         mApp = (INaturalistApp) getActivity().getApplicationContext();
         mApp.applyLocaleSettings(getActivity().getBaseContext());
+
         mHelper = new ActivityHelper(getActivity());
 
         mMetadataObservationID = (TextView) mRootView.findViewById(R.id.observation_id);
@@ -1558,6 +1579,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
             mLocationMapContainer.setVisibility(View.VISIBLE);
             mUnknownLocationIcon.setVisibility(View.GONE);
+
             if (((mObservation.place_guess == null) || (mObservation.place_guess.length() == 0)) &&
                 ((mObservation.private_place_guess == null) || (mObservation.private_place_guess.length() == 0))) {
                 // No place guess - show coordinates instead
@@ -1576,7 +1598,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                         mObservation.private_place_guess : mObservation.place_guess);
             }
 
-            mLocationText.setGravity(View.TEXT_ALIGNMENT_TEXT_END);
+            mLocationText.setGravity(View.TEXT_ALIGNMENT_TEXT_START);
 
             String geoprivacyField = mObservation.geoprivacy == null ? mObservation.taxon_geoprivacy : mObservation.geoprivacy;
 
@@ -2393,7 +2415,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
         inflater.inflate(R.menu.observation_viewer_menu, menu);
         refreshMenu();
     }
-    
+
     private void refreshMenu() {
         if (mMenu == null) return;
 
@@ -3043,9 +3065,14 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
     private void reloadPhotos() {
         mLoadingPhotos.setVisibility(View.GONE);
+        if (mPhotosAdapter != null) {
+            mPhotosAdapter.close();
+        }
         mPhotosAdapter = new PhotosViewPagerAdapter();
         mPhotosViewPager.setAdapter(mPhotosAdapter);
         mIndicator.setViewPager(mPhotosViewPager);
+
+        if (mApp.isLayoutRTL()) mPhotosViewPager.setCurrentItem(mPhotosAdapter.getCount() - 1);
     }
 
     private void refreshAttributes() {
@@ -3444,6 +3471,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             mPhotosAdapter.pause();
         }
     }
+
 
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);

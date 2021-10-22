@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="50dp"
-    android:layout_height="75dp">
-
+    android:orientation="vertical" android:layout_width="wrap_content" android:minWidth="50dp"
+    android:layout_height="50dp">
     <ImageButton
         android:id="@+id/observation_photo"
         android:layout_height="50dp"
@@ -13,47 +12,4 @@
         android:background="#5D5B5E"
         android:contentDescription="@string/view_image"
         />
-
-    <RelativeLayout
-        android:id="@+id/observation_is_first"
-        android:layout_marginTop="7dp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/is_first_on"
-            android:layout_width="19dp"
-            android:layout_height="19dp"
-            android:src="@drawable/ic_check_circle_black_24dp"
-            android:background="#00ffffff"
-            android:tint="#74ac00"
-            android:visibility="visible"
-            android:layout_centerVertical="true"
-            android:scaleType="fitXY"
-            android:importantForAccessibility="no"
-            />
-        <ImageView
-            android:id="@+id/is_first_off"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:background="@drawable/circular_border"
-            android:visibility="visible"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="2dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="3dp"
-            android:scaleType="fitXY"
-            android:importantForAccessibility="no"
-            />
-
-        <TextView
-            android:id="@+id/is_first_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="25dp"
-            android:layout_marginStart="25dp"
-            android:text="@string/first"
-            />
-    </RelativeLayout>
-
 </LinearLayout>

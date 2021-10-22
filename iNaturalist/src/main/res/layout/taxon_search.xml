@@ -24,7 +24,7 @@
 	<TextView
         android:id="@android:id/empty"
         android:text="@string/no_results_found"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:textSize="18sp"
         android:textColor="#89000000"

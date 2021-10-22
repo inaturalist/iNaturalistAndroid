@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="email_address">Eposta Adresi</string>
+    <string name="email_address">E-posta Adresi</string>
     <string name="delete_observation">Gözlemi sil</string>
     <string name="observation_deleted">Gözlem silindi</string>
     <string name="species_guess_hint">Tür adı...</string>
     <string name="ok">TAMAM</string>
     <string name="cancel">İptal</string>
     <string name="loading">Yükleniyor...</string>
-    <string name="sync_required">Eşitleme gerekli</string>
-    <string name="sync_required_message">%1$d gözlem, %2$d fotoğraf eşitlenecek</string>
     <string name="street">Sokak</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Uydu</string>
@@ -32,7 +30,6 @@
     <string name="settings">Ayarlar</string>
     <string name="projects">Projeler</string>
     <string name="delete_photo">Fotoğrafı sil</string>
-    <string name="menu">Menü</string>
     <string name="my_location">Konumum</string>
     <string name="nearby_observations">Yakın gözlemler</string>
     <string name="add">Ekle</string>
@@ -201,9 +198,9 @@
     <string name="alert_message_use_inaturalistgr">iNaturalist Yunanistan, Yunanistan\'daki iNaturalist Ağı üyesidir. iNaturalist Yunanistan\'ı destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamu tarafından gizlenmiş veya özel gözlemler için gerçek koordinatlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
     <string name="alert_message_use_inaturalistlu">iNaturalist Lüksemburg, Lüksemburg\'daki iNaturalist Ağı üyesidir. iNaturalist Lüksemburg\'u destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamu tarafından gizlenmiş veya özel gözlemler için gerçek koordinatlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
     <string name="alert_message_use_inaturalistuk">iNaturalist Birleşik Krallık, Birleşik Krallık\'taki iNaturalist Ağı üyesidir. iNaturalist Birleşik Krallık’ı destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamu tarafından gizlenmiş veya özel gözlemlerin gerçek koordinatlarına erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
-    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is a member of the iNaturalist Network in Costa Rica. Local institutions supporting Naturalista Costa Rica will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Kosta Rika, Kosta Rika\'daki iNaturalist Network üyesidir. Naturalista Kosta Rika’yı destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamu tarafından gizlenmiş veya özel gözlemler için gerçek koordinatlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala, Guatemala\'daki iNaturalist Network üyesidir. iNaturalist Guatemala’yı destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamu tarafından gizlenmiş veya özel gözlemler için gerçek koordinatlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist İsveç, İsveç\'teki iNaturalist Network üyesidir. iNaturalist İsveç\'i destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamu tarafından gizlenmiş veya özel gözlemler için gerçek koordinatlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
     <string name="editor">Düzenleyici</string>
     <string name="license">Lisans</string>
     <string name="download_for_offline_use">Çevrimdışı kullanım için indir</string>
@@ -227,9 +224,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Eposta</string>
-    <string name="sign_up_with">Şununla kaydolun</string>
     <string name="skip">Atla ›</string>
-    <string name="already_have_account">Zaten bir hesabınız mı var?</string>
     <string name="log_in">Oturum Aç</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">ÜYE OL</string>
@@ -352,7 +347,6 @@
     <string name="updating_profile">Profiliniz Güncelleniyor...</string>
     <string name="there_was_a_problem_updating_profile">Profiliniz güncellenirken bir sorunla karşılaştık!</string>
     <string name="there_was_a_problem_updating_profile_params">Profiliniz güncellenirken bir sorunla karşılaştık: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[<b>%1$s</b> olarak giriş yapıldı]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Şu anki giriş kullanıcısı: <b>%1$s</b>]]></string>
     <string name="log_out">Çıkış yap</string>
@@ -471,14 +465,12 @@
     <string name="what_did_you_see">Ne gördünüz?</string>
     <string name="suggest_species">Tür Öner</string>
     <string name="suggest_species_description">Fotoğraflara benzer görsellere dayalı türler önerin.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Görsel Benzerlik</string>
     <string name="visually_similar_seen_nearby">Görsel Benzerlik / Yakında Görüldü</string>
     <string name="seen_nearby">Yakında Görüldü</string>
     <string name="enlarge">Genişlet</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Alt Sınıf Görünümü</string>
-    <string name="invalid_photo_extension">Fotoğraf(lar) alma hatası: Yalnızca JPG/JPEG/PNG uzantılı fotoğraflar alınabilir.</string>
     <string name="taxon_has_no_photos">Bu sınıfın fotoğrafları yok.</string>
     <string name="terrain">Arazi</string>
     <string name="filters">Filtreler</string>
@@ -596,7 +588,6 @@
     <string name="leave_comment">Yorum bırak...</string>
     <string name="swipe">Kaydır</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Hangi Google hesabı?</string>
     <string name="potential_disagreement">Olası Anlaşmazlık</string>
     <string name="do_you_think_this_could_be"><![CDATA[Bunun <b>%1$s</b> olduğunu doğrulamak için yeterli kanıt var mı?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -608,7 +599,7 @@
     <string name="must_be_connected_to_load_more_obs">Daha çok gözlem yüklemek için internete bağlı olmalısınız</string>
     <string name="inat_about_title">iNaturalist, California Bilimler Akademisi ve National Geographic Society tarafından ortak bir girişimdir.</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -633,6 +624,7 @@
     <string name="project_observations">Gözlemler</string>
     <string name="project_species">Türler</string>
     <string name="project_people">Kişiler</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Tanımlayıcılar</string>
     <string name="got_it">Anladım!</string>
     <string name="view_all">Hepsini göster</string>
@@ -695,15 +687,15 @@
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Belirlenemiyor</string>
     <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
-    <string name="annotation_value_organism">Organism</string>
+    <string name="annotation_value_organism">Organizma</string>
     <!-- Evidence of Presence value when for bird feathers -->
-    <string name="annotation_value_feather">Feather</string>
+    <string name="annotation_value_feather">Tüy</string>
     <!-- Evidence of Presence value when for fecal remains -->
     <string name="annotation_value_scat">Scat</string>
     <!-- Evidence of Presence value for impressions in the ground or snow -->
-    <string name="annotation_value_track">Track</string>
+    <string name="annotation_value_track">İz</string>
     <!-- Evidence of Presence value when for bones -->
-    <string name="annotation_value_bone">Bone</string>
+    <string name="annotation_value_bone">Kemik</string>
     <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Molt</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
@@ -768,9 +760,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Yunanistan: iSea iNaturalist Yunanistan\'ı destekliyor (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Lüksemburg: Lüksemburg Ulusal Tabiat Tarihi Müzesi (MnhnL) iNaturalist Lüksemburg\'u destekliyor (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[Birleşik Krallık: National Biodiversity Network Trust iNaturalist Birleşik Krallık\'ı destekliyor (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Tümünü görüntülendi olarak işaretle</string>
     <string name="content_hidden">İçerik Gizlendi</string>
     <string name="show_hidden_content">Gizli İçeriği Göster</string>
@@ -784,7 +776,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Ses Kaydet</string>
-    <string name="no_recorder_found">Varsayılan ses kaydedici bulunamadı!</string>
     <string name="couldnt_retrieve_sound">Varsayılan kayıt aygıtından ses alınamadı - bunun yerine sesi almayı deneyin</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Ses Seç</string>
@@ -987,6 +978,10 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">MMM d, yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
     <string name="show_common_names">Yaygın adları göster</string>
     <string name="show_common_names_description">Sadece bilimsel isimleri görmek için devre dışı bırakın.</string>
     <string name="email_must_look_like_email_address">E-mailiniz, e-mail adresi gibi olmalı</string>
@@ -1114,11 +1109,11 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="default_observation_license">Varsayılan Gözlem Lisansı</string>
     <string name="default_photo_license">Varsayılan Fotoğraf Lisansı</string>
     <string name="default_sound_license">Varsayılan Ses Lisansı</string>
-    <string name="change_existing_licenses">Change Existing Licenses</string>
-    <string name="change_licenses_for_existing_observations">Varolan gözlem, fotoğraf ve seslerin lisanslarını değiştir</string>
-    <string name="change_licenses_for_all_existing_observations">Varolan tüm gözlemlerin lisanslarını değiştir</string>
-    <string name="change_licenses_for_all_existing_photos">Varolan tüm fotoğrafların lisanslarını değiştir</string>
-    <string name="change_licenses_for_all_existing_sounds">Varolan tüm seslerin lisanslarını değiştir</string>
+    <string name="change_existing_licenses">Mevcut Lisansları Değiştir</string>
+    <string name="change_licenses_for_existing_observations">Mevcut gözlemlerin, fotoğrafların ve seslerin lisanslarını değiştir</string>
+    <string name="change_licenses_for_all_existing_observations">Mevcut tüm gözlemlerin lisanslarını değiştir</string>
+    <string name="change_licenses_for_all_existing_photos">Mevcut tüm fotoğrafların lisanslarını değiştir</string>
+    <string name="change_licenses_for_all_existing_sounds">Mevcut tüm seslerin lisanslarını değiştir</string>
     <string name="change_observation_licenses">Gözlem Lisansını Değiştir</string>
     <string name="change_photo_licenses">Fotoğraf Lisansını Değiştir</string>
     <string name="change_sound_licenses">Ses Lisansını Değiştir</string>
@@ -1134,7 +1129,7 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="default_licenses_description"><![CDATA[İçeriğini lisanslamak, lisansın şartlarına dayanarak iznin sorulmadan kullanma hakkını yasal olarak verir. Ayrıca, iNat, Creative Commons lisanslı içeriğini, verilerimizle ilgilenen belirli ortak kuruluşlar için üretilen ve düzenli olarak güncellenen arşivlere dahil eder. Örneğin, Telif Hakkı Yok (CC0), Atfetme (CC BY), ve
 Ticari Olmayan Atfetme (CC BY-NC), gibi kayıtların  biyolojik çeşitlilik bilgisini dünyanın dört bir yanında derleyen ve dağıtan <a href="http://www.gbif.org/">Küresel Biyoçeşitlilik Danışma Tesisi</a> (GBIF),  uluslararası, hükümetler arası organizasyonlar için ürettiğimiz arşive dahil ediyoruz.]]></string>
     <string name="photo_license">Fotoğraf Lisansı</string>
-    <string name="sound_license">Sound License</string>
+    <string name="sound_license">Ses Lisansı</string>
     <string name="edit_photo_license">Fotoğraf Lisansını Düzenle</string>
     <string name="observation_license">Gözlem Lisansı</string>
     <string name="edit_observation_license">Gözlem Lisansını Düzenle</string>
@@ -1165,5 +1160,58 @@ Ticari Olmayan Atfetme (CC BY-NC), gibi kayıtların  biyolojik çeşitlilik bil
     <string name="default_observation_action">Varsayılan Gözlem Hareketi</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Seçenekleri Göster</string>
-    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Field Value</string>
+    <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
+    <string name="delete_attribute_value">Delete attribute value</string>
+    <string name="open_menu_for_more_options">Daha fazla seçenek için menüyü aç</string>
+    <string name="change_user_profile_photo">Profil fotoğrafını değiştir</string>
+    <string name="expand_list">Listeyi genişlet</string>
+    <string name="change_map_layers">Harita katmanını değiştir (harita, uydu)</string>
+    <string name="redo_observation_search">Redo observation search in this map area</string>
+    <string name="view_observations_on_map">Gözlemleri haritada görüntüle</string>
+    <string name="view_observations_on_grid">View observations on grid</string>
+    <string name="clear_text">Metni temizle</string>
+    <string name="observation_has_sounds">Gözlemde ses bulunuyor</string>
+    <string name="go_to_my_location">Geçerli konumuma git</string>
+    <string name="change_geoprivacy">Coğrafi gizliliği değiştir</string>
+    <string name="active_filters">Aktif filtreler</string>
+    <string name="message_is_flagged">Mesaj işaretlendi</string>
+    <string name="user_is_muted">Kullanıcı susturuldu</string>
+    <string name="cancel_multiple_obs_selection">Çoklu gözlem seçimini iptal et</string>
+    <string name="delete_observations">Gözlemleri sil</string>
+    <string name="comment_count">Yorum sayısı</string>
+    <string name="id_count">Tanımlama sayısı</string>
+    <string name="observation_selected">Seçilen gözlem</string>
+    <string name="share_observation">Gözlem paylaş</string>
+    <string name="unknown_location">Bilinmeyen konum</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Kapat</string>
+    <string name="set_date2">Set date</string>
+    <string name="project_selected">Seçilen proje</string>
+    <string name="project_unselected">Proje Kaldırıldı</string>
+    <string name="show_my_observations">Gözlemlerimi göster</string>
+    <string name="play_pause_sound">Sesi durdur veya oynat</string>
+    <string name="california_academy_of_sciences_and_national_geographic">Kaliforniya Bilim Akademisi ve National Geographic</string>
+    <string name="view_image">Resmi görüntüle</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Assessment passes</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Agree assessment passes</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Does not pass assessment</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Disagree assessment passes</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Seçilen %1$d gözlemi sil</item>
+        <item quantity="other">Seçilen %1$d gözlemi sil</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Seçilen %1$d gözlemi eşitle</item>
+        <item quantity="other">Seçilen %1$d gözlemi eşitle</item>
+    </plurals>
+    <string name="add_media_evidence">Add media evidence</string>
+    <string name="remove_identification">Tanımlamayı kaldır</string>
+    <string name="issue_with_updating_photos">Kısa süre önce düzeltilen bu gözlemdeki fotoğraflar, güncellenirken bir sorun oluştu. Bu sorunu çözmek için lütfen oturumunuzu kapatın ve tekrar oturum açın.</string>
+    <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
 </resources>

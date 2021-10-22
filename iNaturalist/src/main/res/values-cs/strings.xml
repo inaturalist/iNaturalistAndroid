@@ -7,8 +7,6 @@
     <string name="ok">OK</string>
     <string name="cancel">Zrušit</string>
     <string name="loading">Načítání...</string>
-    <string name="sync_required">Vyžaduje synchronizaci</string>
-    <string name="sync_required_message">%1$d pozorování, %2$d fotografií k synchronizaci</string>
     <string name="street">Ulice</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satelitní</string>
@@ -32,7 +30,6 @@
     <string name="settings">Nastavení</string>
     <string name="projects">Projekty</string>
     <string name="delete_photo">Odstranit fotografii</string>
-    <string name="menu">Menu</string>
     <string name="my_location">Moje poloha</string>
     <string name="nearby_observations">Blízká pozorování</string>
     <string name="add">Přidat</string>
@@ -229,9 +226,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Email</string>
-    <string name="sign_up_with">Registrovat se pomocí</string>
     <string name="skip">Přeskočit  ›</string>
-    <string name="already_have_account">Máte již účet?</string>
     <string name="log_in">Přihlásit se</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Registrovat se</string>
@@ -356,7 +351,6 @@
     <string name="updating_profile">Aktualizace profilu...</string>
     <string name="there_was_a_problem_updating_profile">Při aktualizaci profilu došlo k chybě!</string>
     <string name="there_was_a_problem_updating_profile_params">Při aktualizaci vašeho profilu došlo k chybě: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Přihlášen jako <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Aktuálně přihlášen/a jako <b>%1$s</b>]]></string>
     <string name="log_out">Odhlásit se</string>
@@ -479,14 +473,12 @@
     <string name="what_did_you_see">Co jste viděli?</string>
     <string name="suggest_species">Navrhnout druhy</string>
     <string name="suggest_species_description">Navrhovat druhy podle vizuální podobnosti s fotkami.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Vizuálně podobné</string>
     <string name="visually_similar_seen_nearby">Vizuálně podobné / viděno v okolí</string>
     <string name="seen_nearby">Viděno v okolí</string>
     <string name="enlarge">Zvětšit</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Zobrazit děti</string>
-    <string name="invalid_photo_extension">Chyba při importu fotek: Umožňuje importovat pouze fotky s příponami JPG / JPEG / PNG</string>
     <string name="taxon_has_no_photos">Tento taxon nemá žádné fotografie.</string>
     <string name="terrain">Terén</string>
     <string name="filters">Filtry</string>
@@ -604,7 +596,6 @@
     <string name="leave_comment">Přidat komentář...</string>
     <string name="swipe">Táhnout prstem</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Který Google účet?</string>
     <string name="potential_disagreement">Potenciální neshoda</string>
     <string name="do_you_think_this_could_be"><![CDATA[Jsou důkazy dostatečně potvrzující, že je to <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -616,7 +607,7 @@
     <string name="must_be_connected_to_load_more_obs">Pro nahrání více pozorování musíte být připojen/a k internetu</string>
     <string name="inat_about_title">iNaturalist je společná iniciativa California Academy of Sciences a National Geographic Society.</string>
     <!--
-        Prunciation of people's names (as approved by the people in question):
+        Pronunciation of people's names (as approved by the people in question):
 
         Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
         Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
@@ -641,6 +632,7 @@
     <string name="project_observations">Pozorování</string>
     <string name="project_species">Druhy</string>
     <string name="project_people">Lidé</string>
+    <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Identifikátoři</string>
     <string name="got_it">Mám to!</string>
     <string name="view_all">Zobrazit vše</string>
@@ -778,9 +770,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Řecko: iSea podporuje Řecko iNaturalist (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Lucembursko: Lucemburské Národní muzeum historie přírody (MnhnL) podporuje iNaturalist Luxembourg (inaturalist.lu).]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[Spojené království: Nadační fond Národní sítě pro biologickou rozmanitost podporuje iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>).]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Kostarika: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO)  podporuje Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) podporuje iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Švédsko: SLU Swedish Species Information Centre podporuje iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Kostarika: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) podporující Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) podporující iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Švédsko: Švédské centrum pro informace o druzích SLU podporující iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Označit vše za prohlédnuté</string>
     <string name="content_hidden">Skrytý obsah</string>
     <string name="show_hidden_content">Zobrazit skrytý obsah</string>
@@ -794,7 +786,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Nahrát zvuk</string>
-    <string name="no_recorder_found">Nebyl nalezen žádný výchozí zvukový záznam!</string>
     <string name="couldnt_retrieve_sound">Z výchozího rekordéru nelze načíst zvuk - zkuste místo toho importovat zvuk</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Vybrat zvuk</string>
@@ -1004,6 +995,10 @@ a naše <a href="https://www.inaturalist.org/terms">Smluvní podmínky</a>.]]></
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mm a</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">d. MMM yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">d. MMMM yyyy HH:mm</string>
     <string name="show_common_names">Zobrazit obecné názvy</string>
     <string name="show_common_names_description">Zakázat, pokud chcete zobrazit pouze vědecké názvy.</string>
     <string name="email_must_look_like_email_address">E-mail musí vypadat jako e-mailová adresa</string>
@@ -1181,5 +1176,62 @@ a naše <a href="https://www.inaturalist.org/terms">Smluvní podmínky</a>.]]></
     <string name="default_observation_action">Výchozí akce pro pozorování</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Zobrazit možnosti</string>
-    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Hodnota pole</string>
+    <string name="expand_annotation_to_agree_or_disagree">K vyjádření souhlasu nebo nesouhlasu rozbalte anotaci</string>
+    <string name="delete_attribute_value">Odstranit hodnotu atributu</string>
+    <string name="open_menu_for_more_options">Pro více možností otevřete menu</string>
+    <string name="change_user_profile_photo">Změnit profilovou fotografii</string>
+    <string name="expand_list">Rozbalit seznam</string>
+    <string name="change_map_layers">Změnit mapové vrstvy (terénní vs. satelitní)</string>
+    <string name="redo_observation_search">Znovu hledat pozorování v této oblasti mapy</string>
+    <string name="view_observations_on_map">Zobrazit pozorování v mapě</string>
+    <string name="view_observations_on_grid">Zobrazit pozorování v mřížce</string>
+    <string name="clear_text">Vymazat text</string>
+    <string name="observation_has_sounds">Pozorování má zvuky</string>
+    <string name="go_to_my_location">Přejít na mou aktuální polohu</string>
+    <string name="change_geoprivacy">Změnit Soukromí zeměpisné polohy</string>
+    <string name="active_filters">Aktivní filtry</string>
+    <string name="message_is_flagged">Zpráva je označena</string>
+    <string name="user_is_muted">Uživatel je umlčený</string>
+    <string name="cancel_multiple_obs_selection">Zrušit výběr více pozorování</string>
+    <string name="delete_observations">Odstranit pozorování</string>
+    <string name="comment_count">Počet komentářů</string>
+    <string name="id_count">Počet identifikací</string>
+    <string name="observation_selected">Pozorování vybráno</string>
+    <string name="share_observation">Sdílet pozorování</string>
+    <string name="unknown_location">Neznámá poloha</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Zavřít</string>
+    <string name="set_date2">Nastavit datum</string>
+    <string name="project_selected">Projekt byl vybrán</string>
+    <string name="project_unselected">Projekt byl odvybrán</string>
+    <string name="show_my_observations">Ukázat moje pozorování</string>
+    <string name="play_pause_sound">Přehrát nebo pozastavit zvuk</string>
+    <string name="california_academy_of_sciences_and_national_geographic">Kalifornská akademie věd a National Geographic</string>
+    <string name="view_image">Zobrazit obrázek</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Hodnocení kvality splněno</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Souhlasit se splněním kvality</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Hodnocení kvality nesplněno</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Nesouhlasit se splněním kvality</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Odstranit %1$d vybrané pozorování</item>
+        <item quantity="few">Odstranit %1$d vybraná pozorování</item>
+        <item quantity="many">Odstranit %1$d vybraných pozorování</item>
+        <item quantity="other">Odstranit %1$d vybraných pozorování</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Synchronizovat %1$d vybrané pozorování</item>
+        <item quantity="few">Synchronizovat %1$d vybraná pozorování</item>
+        <item quantity="many">Synchronizovat %1$d vybraných pozorování</item>
+        <item quantity="other">Synchronizovat %1$d vybraných pozorování</item>
+    </plurals>
+    <string name="add_media_evidence">Přidat mediální důkaz</string>
+    <string name="remove_identification">Odebrat identifikaci</string>
+    <string name="issue_with_updating_photos">Při aktualizaci fotografií tohoto pozorování došlo k chybě, která byla nedávno opravena. Pro vyřešení tohoto problému se prosím odhlaste a znovu přihlaste.</string>
+    <string name="app_version_copied_to_clipboard">Verze aplikace byla zkopírována do schránky</string>
 </resources>

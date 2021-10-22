@@ -1,0 +1,1207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="email_address">Alamat Email</string>
+    <string name="delete_observation">Hapus pengamatan</string>
+    <string name="observation_deleted">Pengamatan telah dihapus</string>
+    <string name="species_guess_hint">Nama spesies</string>
+    <string name="ok">OKE</string>
+    <string name="cancel">Batalkan</string>
+    <string name="loading">Memuat...</string>
+    <string name="street">Alamat</string>
+    <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
+    <string name="satellite">Satelit</string>
+    <string name="couldnt_load_nearby_observations">Tidak dapat memuat pengamatan terdekat: %1$s</string>
+    <string name="username_invalid">Nama pengguna atau kata sandi salah, silakan masuk lagi.</string>
+    <string name="signing_in">Masuk...</string>
+    <string name="signed_in">Berhasil masuk!</string>
+    <string name="please_sign_in">Harap mendaftar dulu</string>
+    <string name="please_sign_in_description">Silakan masuk ke akun iNaturalist Anda atau membuat akun baru.</string>
+    <string name="please_enable_location_services">Tolong aktifkan layanan lokasi untuk menemukan lokasi Anda saat ini...</string>
+    <string name="go_to_settings">Pergi ke Pengaturan</string>
+    <string name="photo_not_specified">Foto tidak ditentukan</string>
+    <string name="set_date">Tanggal</string>
+    <string name="set_time">Waktu</string>
+    <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
+    <string name="something_went_wrong">Oh tidak, ada yang tidak beres: %1$s</string>
+    <string name="edit">Ubah</string>
+    <string name="oh_no">Oh tidak! %1$s</string>
+    <string name="observations">Pengamatan Saya</string>
+    <string name="map">Peta</string>
+    <string name="settings">Pengaturan</string>
+    <string name="projects">Proyek</string>
+    <string name="delete_photo">Hapus foto</string>
+    <string name="my_location">Lokasi Saya</string>
+    <string name="nearby_observations">Pengamatan Terdekat</string>
+    <string name="add">Tambahkan</string>
+    <string name="view_on_inat">Lihat di iNaturalist.org</string>
+    <string name="reload">Muat ulang</string>
+    <string name="view_in_browser">Lihat di browser</string>
+    <string name="add_observation">Tambah pengamatan</string>
+    <string name="take_picture">Ambil gambar</string>
+    <string name="save">Simpan</string>
+    <string name="no_observations_yet">Belum ada pengamatan!</string>
+    <string name="or">atau</string>
+    <string name="signed_out">Keluar</string>
+    <string name="username">Nama Pengguna</string>
+    <string name="password">Kata Sandi</string>
+    <string name="unknown">Tidak Diketahui</string>
+    <string name="unknown_species">Spesies tidak diketahui</string>
+    <string name="com_facebook_dialogloginactivity_ok_button">OKE</string>
+    <string name="com_facebook_loginview_log_out_button">Keluar</string>
+    <string name="com_facebook_loginview_log_in_button">Masuk</string>
+    <string name="com_facebook_loginview_logged_in_as">Masuk sebagai: %1$s</string>
+    <string name="com_facebook_loginview_logged_in_using_facebook">Berhasil masuk menggunakan Facebook</string>
+    <string name="com_facebook_loginview_log_out_action">Keluar</string>
+    <string name="com_facebook_loginview_cancel_action">Batalkan</string>
+    <string name="com_facebook_logo_content_description">Logo Facebook</string>
+    <string name="com_facebook_usersettingsfragment_log_in_button">Masuk&#8230;</string>
+    <string name="com_facebook_usersettingsfragment_logged_in">Berhasil Masuk</string>
+    <string name="com_facebook_usersettingsfragment_not_logged_in">Tidak Berhasil Masuk</string>
+    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d ada di sini</string>
+    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
+    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d ada di sini</string>
+    <string name="com_facebook_picker_done_button_text">Selesai</string>
+    <string name="com_facebook_choose_friends">Pilih Teman</string>
+    <string name="com_facebook_nearby">Dekat</string>
+    <string name="com_facebook_loading">Memuat...</string>
+    <string name="com_facebook_internet_permission_error_title">Kesalahan AndroidManifest</string>
+    <string name="com_facebook_internet_permission_error_message">Masuk dengan WebView memerlukan izin INTERNET</string>
+    <string name="com_facebook_requesterror_web_login">Akun Facebook Anda terkunci. Silahkan login ke www.facebook.com untuk melanjutkan.</string>
+    <string name="com_facebook_requesterror_relogin">Silahkan masuk ke aplikasi ini lagi untuk menyambungkan kembali akun Facebook Anda.</string>
+    <string name="com_facebook_requesterror_password_changed">Sandi Facebook Anda telah berubah. Silakan masuk ke aplikasi ini lagi untuk menyambungkan kembali akun Facebook Anda.</string>
+    <string name="com_facebook_requesterror_reconnect">Silakan masuk ke aplikasi ini lagi untuk menyambungkan kembali akun Facebook Anda.</string>
+    <string name="com_facebook_requesterror_permissions">Aplikasi ini tidak memiliki izin untuk melakukannya. Untuk mengubah izin akses, silakan mencoba untuk masuk ke aplikasi lagi.</string>
+    <string name="edit_observation">Ubah Pengamatan</string>
+    <string name="discard_changes">Apakah Anda yakin Anda ingin membuang perubahan yang belum disimpan?</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
+    <string name="agree">Setuju?</string>
+    <string name="no_comments">Belum ada komentar/identifikasi</string>
+    <string name="add_comment">Tambahkan Komentar</string>
+    <string name="add_id">Tambahkan identifikasi</string>
+    <string name="remarks">Komentar...</string>
+    <string name="enter_taxon_name">Nama spesies</string>
+    <string name="no_projects">Tidak ada proyek yang ditemukan!</string>
+    <string name="no_guides">Tidak ada panduan yang ditemukan!</string>
+    <string name="loading_projects">Memuat proyek...</string>
+    <string name="joined_projects">Tergabung</string>
+    <string name="nearby_projects">Dekat</string>
+    <!-- Tab title for the list of featured projects in the Projects screen -->
+    <string name="featured_projects">Sorotan</string>
+    <!-- Verb, used as a label for actions like leaving a project -->
+    <string name="leave">Keluar</string>
+    <string name="join">Gabung</string>
+    <string name="no_check_list">Taksa Tidak Ditemukan di Daftar Centang!</string>
+    <string name="failed_to_add_obs_to_project">Gagal untuk menambahkan pengamatan \'%1$s\' untuk proyek \'%2$s\': %3$s</string>
+    <string name="invalid_project_field">Masukkan nilai yang sah untuk kolom \'%1s\'</string>
+    <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
+    <string name="select_projects">Pilih dari Proyek-proyek Tergabung</string>
+    <string name="not_connected">Anda harus terhubung ke Internet untuk melakukan itu!</string>
+    <string name="search_projects">Cari proyek...</string>
+    <string name="search_guides">Cari panduan...</string>
+    <string name="save_observation">Simpan pengamatan</string>
+    <!-- Header for a description an individual guide -->
+    <string name="about_guide">Tentang</string>
+    <string name="about_guide_all_caps">TENTANG</string>
+    <!-- Header for a description an individual project -->
+    <string name="about_project">Tentang</string>
+    <string name="about_project_all_caps">TENTANG</string>
+    <string name="about_this_app">Tentang</string>
+    <string name="about_taxon_short">Tentang</string>
+    <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
+    <string name="geoprivacy">Geoprivasi</string>
+    <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
+    <string name="geoprivacy_with_value">Geoprivasi: %1$s</string>
+    <string name="delete_confirmation">Apakah Anda yakin Anda ingin menghapus pengamatan ini?</string>
+    <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
+    <string name="guides">Panduan</string>
+    <string name="my_guides">Milik Anda</string>
+    <string name="nearby_guides">Dekat</string>
+    <string name="all_guides">Semuanya</string>
+    <string name="no_taxa">Tidak ada taksa yang ditemukan dalam panduan ini!</string>
+    <string name="search_taxa">Cari taksa...</string>
+    <string name="no_internet_guides">Panduan memerlukan koneksi Internet</string>
+    <string name="no_internet_projects">Proyek memerlukan koneksi Internet</string>
+    <string name="locale_gl">Bahasa Galisia</string>
+    <string name="locale_eu">Bahasa Basque</string>
+    <string name="use_device_language_settings">Gunakan pengaturan bahasa dari perangkat Anda</string>
+    <string name="choose_location">Pilih Lokasi</string>
+    <string name="done">Selesai</string>
+    <string name="please_sign_in_via_settings">Anda harus masuk untuk melihat proyek-proyek yang Anda ikuti.</string>
+    <string name="contact_support">Hubungi Bantuan</string>
+    <string name="credits">Dirancang dan dibangun oleh iNaturalist.org dengan dukungan dari California Academy of Sciences</string>
+    <string name="leave_project">Tinggalkan Proyek</string>
+    <string name="leave_project_confirmation">Apakah Anda yakin Anda ingin meninggalkan proyek ini?</string>
+    <string name="discard_location_changes">Apakah Anda yakin Anda ingin membuang perubahan yang belum disimpan?</string>
+    <string name="edit_location">Ubah Lokasi</string>
+    <string name="edit_locality_notes">Ubah Catatan Lokalitas</string>
+    <string name="get_current_location">Dapatkan lokasi saat ini</string>
+    <string name="pull_to_refresh">Tarik untuk menyegarkan...</string>
+    <string name="release_to_refresh">Lepas untuk menyegarkan...</string>
+    <string name="refreshing">Menyegarkan...</string>
+    <plurals name="sync_x_observations">
+        <item quantity="other">Sinkronisasi %1$d pengamatan</item>
+    </plurals>
+    <string name="sync_observations">Sinkronisasi Pengamatan</string>
+    <string name="lets_get_started">Ayo mulai!</string>
+    <string name="view_nearby_observations">Lihat Pengamatan Di Sekitar</string>
+    <string name="skip_for_now">Lewati untuk Sekarang</string>
+    <string-array name="tutorial_titles">
+        <item></item>
+        <item>Amati</item>
+        <item>Bagikan</item>
+        <item>Pelajari</item>
+        <item>Kontribusi</item>
+    </string-array>
+    <string-array name="tutorial_descriptions">
+        <item>Jelajahi dan Terhubung dengan Alam</item>
+        <item>Pergilah keluar! Temukan sesuatu yang liar, lalu ambillah foto yang jelas dan memenuhi bingkai foto.</item>
+        <item>Bagikan pengamatan Anda dengan komunitas iNaturalist.</item>
+        <item>Periksa kembali untuk komentar dan identifikasi pada pengamatan Anda!</item>
+        <item><![CDATA[Observasi <b>Kelas Riset</b> dibagikan dengan para ilmuwan yang bekerja untuk lebih memahami dan melindungi alam.]]></item>
+    </string-array>
+    <string-array name="geoprivacy_items">
+        <item>Terbuka</item>
+        <item>Dikaburkan</item>
+        <item>Pribadi</item>
+    </string-array>
+    <string name="alert_sign_out">Apakah Anda yakin Anda ingin keluar? Ini akan menghapus semua pengamatan Anda pada perangkat ini. Tindakan ini tidak akan memengaruhi pengamatan-pengamatan yang telah Anda unggah ke iNaturalist.</string>
+    <string name="alert_unsupported_media_type">Maaf, tetapi ada masalah saat memuat foto dari sumber ini</string>
+    <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
+    <string name="explore">Jelajahi</string>
+    <string name="restricted_to_current_map_area">Dibatasi hanya untuk area peta saat ini</string>
+    <string name="search">Cari</string>
+    <string name="details">Rincian</string>
+    <string name="observation_photos">Foto-foto Pengamatan</string>
+    <string name="remove">Hapus?</string>
+    <string name="no_observations_found">Pengamatan tidak ditemukan</string>
+    <string name="license_none">Tidak ada, semua hak dilindungi</string>
+    <string name="sources_and_attribution">Sumber dan atribusi</string>
+    <string name="photos"><![CDATA[<b>Foto:</b> %1$s]]></string>
+    <string name="text"><![CDATA[<b>Teks:</b> %1$s]]></string>
+    <!-- The dialog content asking the user to switch to another iNat network -->
+    <string name="alert_message_use_inaturalist">Jaringan utama iNaturalist. Mengeklik OKE akan mengatur aplikasi Anda sebagai bagian dari jaringan global iNaturalist.</string>
+    <string name="alert_message_use_naturalista">NaturaLista adalah anggota iNaturalist Network di Meksiko. Institusi lokal yang mendukung NaturaLista akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZ adalah anggota Jaringan iNaturalist di Selandia Baru. Institusi lokal yang mendukung iNaturalist NZ akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada adalah anggota Jaringan iNaturalist di Kanada. Institusi lokal yang mendukung iNaturalist Kanada akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
+    <string name="alert_message_use_naturalistacolombia">Naturalista adalah anggota Jaringan iNaturalist di Kolombia. Institusi lokal yang mendukung Naturalista akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All adalah anggota Jaringan iNaturalist di Portugal. Institusi lokal yang mendukung Biodiversity4All akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá adalah anggota Jaringan iNaturalist di Panama. Institusi lokal yang mendukung iNaturalist Panamá akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador adalah anggota Jaringan iNaturalist di Ekuador. Institusi lokal yang mendukung iNaturalist Ecuador akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia adalah anggota Jaringan iNaturalist di Australia. Institusi lokal yang mendukung iNaturalist Australia akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat adalah anggota Jaringan iNaturalist di Argentina. Institusi lokal yang mendukung ArgentiNat akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel adalah anggota iNaturalist Network di Israel. Institusi lokal yang mendukung iNaturalist Israel akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland adalah anggota iNaturalist Network di Finlandia. Institusi lokal yang mendukung iNaturalist Finland akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile adalah anggota iNaturalist Network di Chile. Institusi lokal yang mendukung iNaturalist Chile akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan dengan geoprivacy yang diatur \"dikaburkan\" atau \"pribadi\". Harap jangan mengubah afiliasi Anda untuk coba-coba jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Yunani adalah anggota jaringan iNaturalist di Yunani. Institusi lokal yang mendukung iNaturalist Yunani akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum maupun pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luksemburg adalah anggota jaringan iNaturalist di Luksemburg. Institusi lokal yang mendukung iNaturalist Luksemburg akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum maupun pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist Inggris adalah anggota jaringan iNaturalist di Inggris. Institusi lokal yang mendukung iNaturalist Inggris akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum maupun pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Kosta Rika adalah anggota jaringan iNaturalist di Kosta Rika. Institusi lokal yang mendukung Naturalista Kosta Rika akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum maupun pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala adalah anggota jaringan iNaturalist di Guatemala. Institusi lokal yang mendukung iNaturalist Guatemala akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum maupun pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Swedia adalah anggota jaringan iNaturalist di Swedia. Institusi lokal yang mendukung iNaturalist Swedia akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum maupun pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
+    <string name="editor">Editor</string>
+    <string name="license">Lisensi</string>
+    <string name="download_for_offline_use">Unduh untuk penggunaan luring</string>
+    <string name="download_not_available">Unduhan tidak tersedia</string>
+    <string name="guide_editor_must_enable_this_feature">Editor panduan harus mengaktifkan fitur ini.</string>
+    <string name="are_you_sure">Anda yakin?</string>
+    <string name="download_guide_alert">Ini akan mengunduh %1$s data sehingga Anda dapat menggunakan panduan ini bahkan ketika Anda tidak memiliki akses Internet.</string>
+    <string name="download">Unduh</string>
+    <string name="failed_to_download_guide">Gagal untuk mengunduh panduan</string>
+    <string name="internet_connection_seems_to_be_offline">Saat ini sedang tidak ada akses Internet.</string>
+    <string name="downloading">Mengunduh...</string>
+    <string name="extracting">Mengekstrak...</string>
+    <string name="downloaded">Diunduh</string>
+    <string name="delete_download">Hapus unduhan</string>
+    <string name="re_download">Unduh ulang</string>
+    <string name="error">Kesalahan</string>
+    <string name="could_not_retrieve_guide">Tidak dapat mengambil rincian panduan - mungkin ada kesalahan jaringan.</string>
+    <string name="inat_support_email_subject">Bantuan dengan iNaturalist (versi %1$s - %2$s; id pengguna - %3$s)</string>
+    <string name="send_email">Kirim email...</string>
+    <string name="login_with">Masuk dengan</string>
+    <string name="facebook">Facebook</string>
+    <string name="gplus">Google</string>
+    <string name="email">Email</string>
+    <string name="skip">Lewati ›</string>
+    <string name="log_in">Masuk</string>
+    <!-- Second person imperative, usually a label on a button to sign up for a new account -->
+    <string name="sign_up">Daftar</string>
+    <!-- Title of the view used to sign up for a new account -->
+    <string name="sign_up_title">Daftar</string>
+    <string name="min_6_chars">Minimal 6 karakter</string>
+    <string name="use_my_license"><![CDATA[Ya, lisensikan konten saya sehingga para ilmuwan dapat menggunakan data saya. <b>Pelajari lebih lanjut</b>]]></string>
+    <string name="content_licensing">Lisensi Konten</string>
+    <string name="content_licensing_description">Centang kotak ini jika Anda ingin membuat lisensi Creative Commons Atribusi-NonKomersial untuk foto Anda. Nantinya, Anda dapat memilih lisensi yang berbeda atau menghapus lisensi, tetapi ini adalah lisensi terbaik untuk berbagi dengan para peneliti.</string>
+    <!-- Try to keep this about the length of the English text -->
+    <string name="username_or_email">Nama Pengguna atau Email</string>
+    <string name="forgot">Lupa?</string>
+    <string name="or_login_with">Atau Masuk dengan:</string>
+    <string name="registering">Mendaftar...</string>
+    <string name="recommended_next_step">Langkah Berikutnya Yang Direkomendasikan</string>
+    <string name="could_not_register_user">Tidak bisa mendaftarkan pengguna</string>
+    <!-- Short label for a button in the side bar, not much more than 16 characters -->
+    <string name="login_signup">Masuk / Daftar</string>
+    <string name="please_sign_in_via_settings_for_guides">Anda harus masuk untuk melihat panduan Anda.</string>
+    <string name="please_sign_in_for_updates">Anda harus masuk untuk melihat kabar Anda.</string>
+    <string name="by_using_inat_terms"><![CDATA[Dengan menggunakan iNaturalist Anda menyetujui<b><a href="https://www.inaturalist.org/pages/terms">Ketentuan Layanan</a></b> dan <b><a href="https://www.inaturalist.org/pages/privacy">Kebijakan Privasi</a></b>]]></string>
+    <string name="activity">Aktivitas</string>
+    <!-- Label for a button to open the camera to take a new photo for an observation -->
+    <string name="camera">Ambil Gambar</string>
+    <!-- Label for a button to import an existing photo for an observation -->
+    <string name="upload_photo">Pilih Gambar</string>
+    <string name="first">Ke-1</string>
+    <string name="make_first">Jadikan ke-1</string>
+    <string name="notes">Catatan</string>
+    <string name="location_is">Lokasinya adalah</string>
+    <string name="is_captive">Ini dipelihara atau dibudidayakan</string>
+    <string name="location_visibility">Visibilitas Lokasi</string>
+    <string name="set_location">Lokasi</string>
+    <string name="coordinates_lat">Lin:</string>
+    <string name="coordinates_lon">Buj:</string>
+    <string name="coordinates_acc">Aku. </string>
+    <string name="required">* Diperlukan</string>
+    <string name="downloading_observations">Mengunduh pengamatan...</string>
+    <string name="no_thanks">Tidak, Terima Kasih</string>
+    <string name="turn_on">Nyalakan</string>
+    <string name="introducing_auto_sync">Memperkenalkan Sinkronisasi Otomatis!</string>
+    <string name="turn_on_auto_sync">Aktifkan Sinkronisasi Otomatis dalam Pengaturan dan pengamatan Anda akan secara otomatis diunggah ke iNaturalist.</string>
+    <string name="automatic_upload">Unggah Otomatis (Sinkronisasi Otomatis)</string>
+    <string name="waiting_to_upload">Menunggu untuk mengunggah...</string>
+    <string name="uploading">Mengunggah...</string>
+    <string name="failed_to_add_to_project">Gagal untuk ditambahkan ke proyek \'%1$s\': %2$s</string>
+    <string name="needs_your_attention">Membutuhkan perhatian Anda...</string>
+    <string name="observation">Pengamatan</string>
+    <string name="share">Bagikan</string>
+    <string name="unable_to_acquire_location">Tidak dapat memperoleh lokasi</string>
+    <string name="casual_grade">Kelas Kasual</string>
+    <string name="needs_id">Butuh ID</string>
+    <string name="research_grade">Kelas Riset</string>
+    <string name="data_quality">Kualitas Data</string>
+    <string name="casual_grade_add_location"><![CDATA[ Tambahkan <b>lokasi</b> untuk memajukan status pengamatan ini menjadi "Butuh ID". ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ Tambahkan <b>tanggal</b> untuk memajukan status pengamatan ini menjadi "Butuh ID". ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[ Tambahkan <b>foto</b> untuk memajukan status pengamatan ini menjadi "Butuh ID". ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ Pengamatan adalah kelas kasual karena <b>dipelihara/dibudidayakan</b>. ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ Pengamatan membutuhkan <b>lebih banyak identifikasi</b> dari komunitas supaya statusnya menjadi "Kelas Riset". ]]></string>
+    <plurals name="included_in_projects">
+        <item quantity="other">Dimasukkan ke dalam %1$d proyek</item>
+    </plurals>
+    <string name="geoprivacy_explanation"><![CDATA[ Geoprivasi adalah sebuah pengaturan yang bisa kamu terapkan pada pengamatan yang akan mengontrol bagaimana koordinat ruang (garis lintang dan garis bujur) ditampilkan. Berikut adalah pilihannya:<br/><b>terbuka</b> - Semua orang dapat melihat koordinatnya kecuali taksonnya berstatus terancam. <br/><b>dikaburkan</b> - Koordinat publik ditampilkan sebagai titik acak dalam jangkauan area 0.2 kali 0.2 derajat yang mengandung koordinat sebenarnya, yang berarti area ketidakpastiannya sekitar 22x22 km persegi di ekuator, akan semakin menurun jika semakin dekat dengan kutub. Koordinat sebenarnya hanya dapat dilihat oleh dirimu sendiri dan kurator dari proyek yang ditambahkan pengamatannya olehmu. <br/><b>pribadi</b> - Koordinat disembunyikan dari peta publik, koordinat sebenarnya hanya dapat dilihat oleh dirimu sendiri dan kurator dari proyek yang ditambahkan pengamatannya olehmu. <br/><br/>Ingat bahwa kurator dari proyek-proyek individu dapat melihat koordinat kapan saja tanpa dipengaruhi pengaturan geoprivasimu, jadi jika kamu khawatir akan orang-orang yang dapat mengakses koordinatmu, pastikan kamu dapat memercayai kurator dari proyek yang kamu ikuti.]]></string>
+    <string name="id_title"> ID %1$s • %2$s</string>
+    <string name="comment_title">%1$s • %2$s</string>
+    <string name="delete">Hapus</string>
+    <string name="delete_id">Tarik identifikasi</string>
+    <string name="delete_comment">Hapus Komentar</string>
+    <string name="delete_id_message">Apakah Anda yakin Anda ingin menghapus identifikasi ini?</string>
+    <string name="delete_comment_message">Apakah Anda yakin ingin menghapus komentar ini?</string>
+    <string name="comment">Komentar</string>
+    <string name="suggest_id">Sarankan ID</string>
+    <string name="update_comment">Perbarui Komentar</string>
+    <string name="fave_this_observation">Favoritkan Pengamatan Ini</string>
+    <string name="faved">Difavoritkan</string>
+    <string name="be_the_first_to_fave_this_obs">Jadilah yang pertama untuk memfavoritkan pengamatan ini...</string>
+    <string name="leave_a_comment">Tinggalkan komentar atau sarankan identifikasi...</string>
+    <string name="location_coords">Lin: %1$s Buj: %2$s Aku. %3$s</string>
+    <string name="location_coords_no_acc">Lin: %1$s Buj: %2$s</string>
+    <string name="location">Lokasi</string>
+    <string name="login_in_to_add_comments_ids">Masuk atau Daftar untuk meninggalkan komentar atau menyarankan identifikasi...</string>
+    <string name="login_in_to_fav">Masuk atau Daftar untuk melihat favorit atau memfavoritkan pengamatan ini...</string>
+    <string name="sync_obs_to_see_favs">Sinkronkan pengamatan ini untuk melihat favorit...</string>
+    <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
+    <string name="sync_obs_to_add_comments_ids">Sinkronkan pengamatan ini untuk meninggalkan komentar atau menyarankan identifikasi...</string>
+    <!--  Label for a button to add an observation without a photo or a sound  -->
+    <string name="no_photo">Tanpa Media</string>
+    <string name="about_this_species">Tentang Spesies ini</string>
+    <string name="view_on_wikipedia">Artikel Wikipedia</string>
+    <string name="photo"><![CDATA[Foto: <b><a href="%1$s">%2$s</a></b>]]></string>
+    <string name="photo_attr"><![CDATA[Foto: <b>%1$s</b>]]></string>
+    <string name="finding_current_location">Menemukan lokasi saat ini...</string>
+    <string name="flag_as_captive">Tandai sebagai Dipelihara/Dibudidayakan</string>
+    <string name="observation_flagged_as_captive">Pengamatan telah ditandai sebagai dipelihara/dibudidayakan</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive">Apakah Anda yakin Anda ingin menandai pengamatan ini sebagai dipelihara/dibudidayakan? (Menekan ya juga akan menutup tampilan jendela pengamatan)</string>
+    <string name="do_you_agree_to_the_following">Apakah Anda setuju?</string>
+    <string name="terms">Ketentuan</string>
+    <string name="observation_rules">Aturan Pengamatan</string>
+    <string name="couldnt_load_project_details">Tidak dapat memuat rincian proyek: %1$s</string>
+    <string name="no_people_found">Tidak ada orang yang ditemukan</string>
+    <string name="rank">Urutan</string>
+    <string name="identifications">Identifikasi</string>
+    <string name="no_news_found">Tidak ada berita yang ditemukan</string>
+    <string name="news">Berita</string>
+    <string name="article">Artikel</string>
+    <string name="couldnt_load_project_news">Tidak dapat memuat berita proyek: %1$s</string>
+    <string name="couldnt_load_user_details">Tidak dapat memuat rincian pengguna: %1$s</string>
+    <string name="more_bio"><![CDATA[<b><font color="#ffffff">Lainnya »</font></b>]]></string>
+    <string name="no_location">Tidak Ada Lokasi</string>
+    <string name="add_to_projects">Tambahkan ke proyek</string>
+    <string name="are_you_sure_you_want_to_save_obs_without_coords">Apakah Anda yakin untuk menyimpan pengamatan tanpa koordinat apapun?</string>
+    <string name="users_identification">ID %1$s: %2$s</string>
+    <string name="edit_profile">Ubah Profil</string>
+    <string name="remove_photo">Hapus Foto</string>
+    <string name="name">Nama</string>
+    <string name="tell_us_about_yourself">Ceritakan tentang diri Anda...</string>
+    <string name="view_profile">Lihat Profil</string>
+    <string name="are_you_sure_you_want_to_remove_photo">Apakah Anda yakin ingin menghapus foto Anda?</string>
+    <string name="updating_profile">Memperbarui Profil...</string>
+    <string name="there_was_a_problem_updating_profile">Ada masalah saat memperbarui profil Anda!</string>
+    <string name="there_was_a_problem_updating_profile_params">Ada masalah saat memperbarui profil Anda: %1$s</string>
+    <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
+    <string name="currently_logged_in_as_html"><![CDATA[Masuk sebagai <b>%1$s</b>]]></string>
+    <string name="log_out">Keluar</string>
+    <string name="not_logged_in">Belum masuk</string>
+    <!-- Prompt to log in to your account or sign up for a new account -->
+    <string name="login_or_sign_up">Masuk atau Daftar</string>
+    <string name="auto_upload_description">Unggah otomatis pengamatan baru dan perubahan pada pengamatan</string>
+    <string name="language">Bahasa</string>
+    <string name="version">Versi</string>
+    <string name="inat_network">Jaringan iNaturalist</string>
+    <string name="inat_network_description">Jaringan iNaturalist adalah kerangka kerja untuk melokalisasi komunitas iNaturalist. Situs jaringan didukung oleh institusi-institusi lokal yang telah menandatangani perjanjian dengan iNaturalist untuk mendorong penggunaan lokal dan memberi manfaat bagi keanekaragaman hayati lokal.</string>
+    <string name="more_info">Informasi Selengkapnya</string>
+    <string name="select_network">Pilih Afiliasi Jaringan</string>
+    <string name="help">Bantuan</string>
+    <string name="stop">Berhenti</string>
+    <string name="resume">Lanjutkan</string>
+    <string name="cleaning_up">Membersihkan...</string>
+    <string name="syncing">Menyinkronkan...</string>
+    <string name="syncing_observation_fields">Sinkronisasi bidang pengamatan...</string>
+    <string name="syncing_observations">Menyinkronkan pengamatan...</string>
+    <string name="syncing_paused">Ditunda</string>
+    <string name="upload">Unggah</string>
+    <string name="search_observations">Cari Pengamatan...</string>
+    <string name="withdraw">Tarik Kembali</string>
+    <!-- Dialog title for when you are updating the description of an identification -->
+    <string name="update_id_description">Perbarui Deskripsi Identifikasi</string>
+    <string name="your_identification">ID Anda: %1$s</string>
+    <string name="onboarding_species_name">Beri nama organisme yang Anda lihat jika Anda bisa, walaupun itu hanya sekadar \"serangga\" atau \"burung\", atau Anda boleh mengosongkannya saja. Orang lain mungkin dapat membantu Anda mengidentifikasinya!</string>
+    <string name="upload_complete">Unggahan Selesai!</string>
+    <string name="onboarding_upload_description">Segeralah kembali untuk memeriksa identifikasi dan komentar di pengamatan Anda.</string>
+    <string name="importing_photos">Mengimpor foto...</string>
+    <string name="multi_select_description">Impor beberapa foto dengan menekan lama pada suatu foto</string>
+    <string name="preparing_photo">Mempersiapkan foto...</string>
+    <string name="recommended_for_you">Disarankan untuk Anda</string>
+    <string name="missions">Misi</string>
+    <string name="browse_by_category">Jelajahi Menurut Kategori</string>
+    <string name="couldnt_load_recommended_missions">Tidak dapat memuat misi yang direkomendasikan: %1$s</string>
+    <string name="plants">Tanaman</string>
+    <string name="mammals">Mamalia</string>
+    <string name="insects">Serangga</string>
+    <string name="reptiles">Reptil</string>
+    <string name="animals">Hewan</string>
+    <string name="fish">Ikan</string>
+    <string name="mollusks">Moluska</string>
+    <string name="protozoans">Protozoa</string>
+    <string name="chromista">Rumput Laut, Diatom, dan Sekutunya</string>
+    <string name="amphibians">Amfibi</string>
+    <string name="fungi">Jamur</string>
+    <string name="birds">Burung</string>
+    <string name="arachnids">Arakhnida</string>
+    <string name="no_connectivity">Tidak Ada Koneksi</string>
+    <string name="no_recommended_missions">Tampaknya tidak ada rekomendasi di daerah ini. Coba pindah ke lokasi baru.</string>
+    <string name="what_to_look_for">Apa Yang Harus Dicari</string>
+    <string name="have_been_seen_here">Telah Terlihat Di Sini</string>
+    <string name="observe">Amati</string>
+    <string name="nearby_missions">Misi Dekat</string>
+    <string name="searching_your_area">Mencari daerah Anda...</string>
+    <string name="expanding_your_search_area">Perluas area pencarian Anda...</string>
+    <string name="introducing_missions">Memperkenalkan Misi!</string>
+    <string name="missions_onboarding_description">Misi adalah rekomendasi waktu yang aktual untuk apa yang harus dicari di sekitar Anda. Dengan cara ini, Anda dapat menemukan spesies yang baru untuk Anda! (Memerlukan konektivitas)</string>
+    <string name="ok_got_it">Baik, saya mengerti!</string>
+    <string name="could_not_download_observations">Tidak dapat mengunduh pengamatan terbaru - Masalah koneksi. Coba lagi nanti.</string>
+    <string name="no_news_yet">Belum ada kabar. Tetap nantikan!</string>
+    <string name="my_content">Konten Saya</string>
+    <string name="following">Mengikuti</string>
+    <string name="no_updates_yet">Belum ada pembaruan. Tetap nantikan!</string>
+    <string name="you_will_only_receive_updates_when_creating">(Anda hanya akan menerima kabar setelah Anda membuat pengamatan)</string>
+    <string name="you_will_only_receive_updates_when_following">(Anda hanya akan menerima kabar setelah Anda mengikuti pengamatan)</string>
+    <string name="user_activity_id"><![CDATA[<b>%1$s</b> menyarankan ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_comment"><![CDATA[<b>%1$s</b> berkomentar: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="deleted_photos_from_cache_error">Sepertinya Anda menghapus foto dengan membersihkan tembolok aplikasi sebelum mengunggah. Anda perlu menambahkan fotonya kembali ke pengamatan Anda dari galeri Anda. Ke depannya, pastikan Anda telah mengunggah semua foto Anda sebelum membersihkan tembolok aplikasi.</string>
+    <!--
+        Label for the number of new notifications you might have. This specific string is used in
+        the side drawer next to the Activity menu item when you have new activity on your own
+        content.
+    -->
+    <plurals name="new_activities">
+        <item quantity="other">%1s baru</item>
+    </plurals>
+    <string name="no_results_found">Tidak Ada Hasil Yang Ditemukan...</string>
+    <plurals name="syncing_x_out_of_y_observations">
+        <item quantity="other">Menyinkronkan %1$d dari %2$d pengamatan...</item>
+    </plurals>
+    <string name="deleting_observations">Menghapus pengamatan...</string>
+    <string name="preparing">Mempersiapkan...</string>
+    <string name="add_edit_remark">Tambah/Ubah Komentar</string>
+    <string name="restore">Pulihkan</string>
+    <string name="compare">Bandingkan</string>
+    <string name="select">Pilih</string>
+    <string name="source_wikipedia">(Sumber: Wikipedia)</string>
+    <string name="conservation_source"><![CDATA[<b>Sumber:</b> <i>%1$s</i>]]></string>
+    <string name="conservation_status_least_concern">Berisiko rendah</string>
+    <string name="conservation_status_near_threatened">Hampir terancam</string>
+    <string name="conservation_status_vulnerable">Rentan</string>
+    <string name="conservation_status_endangered">Terancam</string>
+    <string name="conservation_status_critically_endangered">Kritis</string>
+    <string name="conservation_status_extinct_in_the_wild">Punah di alam liar</string>
+    <string name="conservation_status_extinct">Punah</string>
+    <string name="map_of_observations">Peta Pengamatan</string>
+    <string name="taxonomy">Taksonomi</string>
+    <string name="about_this_section">Tentang Bagian ini</string>
+    <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
+    <string name="taxonomy_info">Berikut adalah tautan menuju induk-induk dari takson ini. Mereka disusun dari yang lebih kasar ke yang lebih halus. Gunakan tautan ini untuk bergerak ke atas atau ke bawah Pohon Kehidupan. Misalnya, jika Anda tidak tahu apa organismenya, tapi tahu apa pengelompokannya, tekanlah sebuah takson dari daftar untuk melihat lebih banyak informasi tentangnya.</string>
+    <string name="more_info_on_inat">Info Lainnya di iNaturalist.org</string>
+    <string name="view_suggestions">Lihat Saran</string>
+    <string name="species_search">Cari Spesies</string>
+    <string name="were_not_confident_enough">Kami tidak cukup percaya diri untuk membuat rekomendasi, namun berikut adalah usulan-usalan terbaik dari kami:</string>
+    <string name="were_not_confident_enough_no_suggestions">Kami tidak sepenuhnya yakin untuk membuat rekomendasi.</string>
+    <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
+    <string name="most_observed_options_matching_filters">Pilihan yang paling banyak diamati yang sesuai dengan saringan:</string>
+    <!-- Header for a list of suggested taxa -->
+    <string name="top_suggestions">Usulan utama</string>
+    <string name="pretty_sure_rank">Kami cukup yakin ini ada di %1$s:</string>
+    <string name="what_did_you_see">Apa yang Anda lihat?</string>
+    <string name="suggest_species">Sarankan Spesies</string>
+    <string name="suggest_species_description">Sarankan spesies berdasarkan kesamaan visual dengan foto.</string>
+    <string name="visually_similar">Serupa Secara Visual</string>
+    <string name="visually_similar_seen_nearby">Serupa Secara Visual / Terlihat Di Sekitar</string>
+    <string name="seen_nearby">Terlihat Di Sekitar</string>
+    <string name="enlarge">Perbesar</string>
+    <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
+    <string name="view_children">Lihat Anak</string>
+    <string name="taxon_has_no_photos">Takson ini tidak memiliki foto.</string>
+    <string name="terrain">Medan</string>
+    <string name="filters">Saringan</string>
+    <string name="exploring_all">Jelajahi Semua</string>
+    <string name="nearby">Terdekat</string>
+    <string name="couldnt_load_results">Tidak dapat memuat hasil: %1$s</string>
+    <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
+    <string name="research_grade_initials">KR</string>
+    <string name="taxon_search_hint">misalnya burung, kupu-kupu raja</string>
+    <string name="location_search_hint">misalnya kota, provinsi, taman, negara...</string>
+    <string name="no_taxon">Maaf, takson tidak ditemukan</string>
+    <string name="please_select_taxon">Silakan pilih jenis/takson yang valid dari daftar (atau bersihkan bidang takson).</string>
+    <string name="sorry_no_location">Maaf, lokasi tidak ditemukan</string>
+    <string name="location_not_found">Lokasi atau tempat yang Anda cari tidak ada di dalam database kami. Silakan memilih tempat dari daftar pilihan di bawah kolom pencarian atau bersihkan kolom pencarian.</string>
+    <string name="undefined">Tidak terdefinisi</string>
+    <string name="street_segment">Segmen Jalan</string>
+    <string name="intersection">Persimpangan</string>
+    <string name="town">Kota</string>
+    <!-- As in a political administrative area, e.g. Hawaii in the United States -->
+    <string name="state">Negara Bagian</string>
+    <string name="county">County</string>
+    <string name="local_administrative_area">Daerah Administratif Lokal</string>
+    <string name="country">Negara</string>
+    <string name="island">Pulau</string>
+    <string name="airport">Bandara</string>
+    <string name="drainage">Drainase</string>
+    <string name="land_feature">Fitur Daratan</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
+    <string name="miscellaneous">Lain-lain</string>
+    <string name="nationality">Kebangsaan</string>
+    <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
+    <string name="supername">Nama Super</string>
+    <string name="point_of_interest">Titik Yang Menarik</string>
+    <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
+    <string name="region">Wilayah</string>
+    <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
+    <string name="colloquial">Bahasa Sehari-hari</string>
+    <string name="zone">Zona</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
+    <string name="historical_state">Negara Bagian Bersejarah</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
+    <string name="historical_county">Daerah Bersejarah</string>
+    <string name="continent">Benua</string>
+    <string name="estate">Estat</string>
+    <string name="historical_town">Kota Bersejarah</string>
+    <string name="aggregate">Agregat</string>
+    <string name="open_space">Ruang Terbuka</string>
+    <string name="territory">Wilayah</string>
+    <string name="district">Distrik</string>
+    <string name="province">Provinsi</string>
+    <string name="municipality">Kotamadya</string>
+    <string name="parish">Parish</string>
+    <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
+    <string name="department_segment">Bagian Departemen</string>
+    <string name="city_building">Bangunan Kota</string>
+    <string name="commune">Komune</string>
+    <string name="governorate">Gubernurat</string>
+    <string name="prefecture">Prefektur</string>
+    <string name="canton">Kanton</string>
+    <string name="republic">Republik</string>
+    <string name="division">Divisi</string>
+    <string name="subdivision">Subdivisi</string>
+    <!-- https://gadm.org place type, presumably describing an area larger than an individual property but smaller than a neighborhood -->
+    <string name="village_block">Kampung/Desa</string>
+    <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
+    <string name="sum">Sum</string>
+    <string name="shire">Shire</string>
+    <string name="prefecture_city">Prefektur Kota</string>
+    <!-- Indonesian sub-sub-national place type -->
+    <string name="regency">Kabupaten</string>
+    <string name="constituency">Daerah Pemilihan</string>
+    <string name="local_authority">Otoritas Lokal</string>
+    <!-- https://en.wikipedia.org/wiki/Poblacion -->
+    <string name="poblacion">Poblacion</string>
+    <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
+    <string name="delegation">Perwakilan</string>
+    <string name="apply_filters">Terapkan Saringan</string>
+    <string name="remove_filters">Copot Saringan</string>
+    <string name="reset">Atur Ulang</string>
+    <string name="show_only_my_observations">Hanya Tunjukkan Pengamatan Saya</string>
+    <string name="project">Proyek</string>
+    <string name="user">Pengguna</string>
+    <string name="search_users">Cari Pengguna...</string>
+    <string name="quality_grade">Tingkat Kualitas</string>
+    <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
+    <string name="date_observed">Tanggal Pengamatan</string>
+    <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
+    <string name="any">Apa saja</string>
+    <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
+    <string name="to">hingga</string>
+    <string name="exact_date">Tanggal Pasti</string>
+    <string name="start">Mulai</string>
+    <string name="end">Selesai</string>
+    <string name="months">Bulan</string>
+    <string name="choose_months">Pilih bulan</string>
+    <string name="map_area">Area Peta</string>
+    <string name="global">Global</string>
+    <!-- As in redo search in the current map area -->
+    <string name="search_map_area">Cari Area Peta</string>
+    <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
+    <string name="date_minute">%dm</string>
+    <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
+    <string name="date_hour">%dj</string>
+    <!-- Compact form of "X days ago", so "3 days ago" would be "3d" -->
+    <string name="date_day">%dhr</string>
+    <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
+    <string name="date_week">%dmg</string>
+    <string name="new_observation">Pengamatan Baru</string>
+    <string name="inactive_taxon">Takson Yang Tidak Aktif</string>
+    <string name="no_identifications_found">Lacak identifikasi yang Anda sarankan untuk pengamatan-pengamatan orang lain di sini.</string>
+    <string name="no_species_found">Ini adalah daftar spesies yang paling banyak Anda amati.\n\nFYI: Diperkirakan ada 9 juta spesies di planet ini, jadi pergilah keluar dan amati mereka!</string>
+    <string name="make_an_observation">Buat pengamatan</string>
+    <string name="no_observations_found_new">Pengamatan adalah catatan pertemuan Anda dengan organisme individu pada waktu dan lokasi tertentu.</string>
+    <string name="discard_comment">Apakah Anda yakin ingin membuang komentar ini?</string>
+    <string name="leave_comment">Tinggalkan komentar...</string>
+    <string name="swipe">Geser</string>
+    <string name="swipe_indicator">›</string>
+    <string name="potential_disagreement">Potensi Ketidaksetujuan</string>
+    <string name="do_you_think_this_could_be"><![CDATA[Apakah bukti-bukti yang disediakan cukup untuk mengonfirmasi bahwa ini adalah <b>%1$s</b>?]]></string>
+    <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
+    <string name="i_dont_know_but"><![CDATA[Saya kurang tahu tapi saya yakin ini adalah <b>%1$s</b>.]]></string>
+    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Tidak, tapi itu adalah anggota dari <b>%1$s</b>.]]></string>
+    <string name="submit">Kirimkan</string>
+    <string name="change_password">Ubah Kata Sandi</string>
+    <string name="search_projects_youve_joined">Cari proyek yang Anda sudah tergabung di dalamnya...</string>
+    <string name="must_be_connected_to_load_more_obs">Anda harus terhubung ke Internet untuk memuat lebih banyak pengamatan</string>
+    <string name="inat_about_title">iNaturalist adalah inisiatif gabungan dari California Academy of Sciences dan National Geographic Society.</string>
+    <!--
+        Pronunciation of people's names (as approved by the people in question):
+
+        Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
+        Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
+        Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
+        Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
+    -->
+    <string name="inat_credits"><![CDATA[iNaturalist ada berkat setiap orang yang berpartisipasi dalam komunitas kami. Orang-orang yang membangun perangkat lunak, mendesain antarmuka, memelihara infrastruktur kami, mendukung komunitas, dan menumbuhkan kolaborasi ialah Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, dan Ken-ichi Ueda.<br/><br/> CalTech dan Cornell Tech membantu mengembangkan sistem penglihatan komputer yang menyarankan identifikasi dari foto. Kami berterima kasih kepada Grant Van Horn, Serge Belongie, dan Pietro Perona yang telah memajukan penelitian penglihatan komputer. Informasi lebih lanjut dapat ditemukan di <a href="http://www.visipedia.org"> visipedia.org </a>. Kami berterima kasih juga secara khusus kepada NVIDIA untuk bantuan tambahan.]]></string>
+    <string name="inat_credits_networks_pre"><![CDATA[Jaringan iNaturalist internasional mendukung situs web iNaturalist yang terlokalisir, terintegrasi penuh, di negara-negara berikut, berkat dukungan dari organisasi mitra terkait.]]></string>
+    <string name="inat_credits_post"><![CDATA[iNaturalist juga sangat berterima kasih kepada pengembang sumber terbuka yang telah menyediakan begitu banyak perangkat lunak yang kami andalkan setiap hari. Lihat <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a>untuk kontribusi sumber terbuka.<br/>Kami berterima kasih atas bantuan terjemahan yang disediakan oleh sukarelawan di komunitas crowdin.com, khususnya Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, dan katunchik. <br/> Tempat IUCN kategori II disediakan oleh IUCN dan UNEP-WCMC (2015), Basis Data Dunia tentang Kawasan Yang Dilindungi (WDPA) [On-line], [11/2014], Cambridge, Inggris: UNEP-WCMC. Tersedia di: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
+    <string name="credits_title">Kredit</string>
+    <string name="password_changed">Kata sandi yang digunakan aplikasi tidak lagi bekerja - Apakah Anda mengubah sandi di situs web? Masukkan kata sandi yang baru di sini</string>
+    <string name="just_so_you_know">Hanya Mengingatkan...</string>
+    <string name="ask_for_g_plus_permissions">Google mewajibkan kami untuk meminta izin untuk mengakses kontak untuk menggunakan Google Account Anda, meskipun kami tidak mengakses kontak Anda untuk alasan apapun. Jika Anda menolak izin ini, Anda harus mendaftar atau masuk dengan nama pengguna dan kata sandi.</string>
+    <string name="new_to_inat_sign_up_now"><![CDATA[Baru di %1$s? <b>Daftar sekarang!</b>]]></string>
+    <string name="see_more_observations">Lihat lebih banyak pengamatan</string>
+    <string name="see_more_species">Lihat lebih banyak spesies</string>
+    <string name="see_more_identifications">Lihat lebih banyak identifikasi</string>
+    <string name="collection_and_umbrella_projects">Proyek Koleksi dan Proyek Payung</string>
+    <string name="description">Keterangan</string>
+    <string name="quantity">Jumlah</string>
+    <string name="agree2">Setuju</string>
+    <string name="project_observations">Pengamatan</string>
+    <string name="project_species">Spesies</string>
+    <string name="project_people">Orang-orang</string>
+    <!-- People who added identifications to observations in a project -->
+    <string name="project_identifiers">Pengidentifikasi</string>
+    <string name="got_it">Mengerti!</string>
+    <string name="view_all">Lihat Semua</string>
+    <string name="observers">Pengamat</string>
+    <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
+    <string name="attribute">Atribut</string>
+    <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
+    <string name="value">Nilai</string>
+    <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
+    <string name="disagree">Tidak Setuju</string>
+    <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
+    <string name="annotations">Catatan</string>
+    <!-- Used when filtering observations with annotations -->
+    <string name="with_annotation">Dengan Catatan</string>
+    <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
+    <string name="annotation_name">Nama Anotasi</string>
+    <!-- Annotation value for when no annotation has been chosen -->
+    <string name="none">Tidak Ada</string>
+    <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
+    <string name="annotation_name_plant_phenology">Fenologi Tumbuhan</string>
+    <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
+    <string name="annotation_name_life_stage">Tahap Kehidupan</string>
+    <!-- Noun, describes sex of the organism -->
+    <string name="annotation_name_sex">Jenis Kelamin</string>
+    <!-- Attribute that describes whether the organism is alive or dead -->
+    <string name="annotation_name_alive_or_dead">Hidup atau Mati</string>
+    <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <string name="annotation_name_evidence_of_presence">Bukti Keberadaan</string>
+    <!-- Adjective, having open flowers -->
+    <string name="annotation_value_flowering">Berbunga</string>
+    <!-- Adjective, having fruit -->
+    <string name="annotation_value_fruiting">Berbuah</string>
+    <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_budding">Berkuncup</string>
+    <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_budding">Bunga Berkuncup</string>
+    <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_evidence_of_flowering">Tidak Ada Indikasi Berbunga</string>
+    <!-- Adjective describing the life stage where an individual can reproduce -->
+    <string name="annotation_value_adult">Dewasa</string>
+    <!-- Adjective describing the odonate life stage between nymph and adult -->
+    <string name="annotation_value_teneral">Teneral</string>
+    <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
+    <string name="annotation_value_pupa">Kepompong</string>
+    <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
+    <string name="annotation_value_nymph">Nimfa</string>
+    <!-- Noun for the arthropod life stage between egg and adult -->
+    <string name="annotation_value_larva">Larva</string>
+    <string name="annotation_value_egg">Telur</string>
+    <!-- Life stage before adulthood, could work as a noun or an adjective -->
+    <string name="annotation_value_juvenile">Remaja</string>
+    <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
+    <string name="annotation_value_subimago">Subimago</string>
+    <string name="annotation_value_female">Perempuan</string>
+    <string name="annotation_value_male">Laki-laki</string>
+    <!-- Adjective, alive and shows no signs of imminent death -->
+    <string name="annotation_value_alive">Hidup</string>
+    <!-- Adjective, dead or shows signs of imminent death -->
+    <string name="annotation_value_dead">Mati</string>
+    <!-- Value for when the value of the attribute cannot be determined -->
+    <string name="annotation_value_cannot_be_determined">Tidak Dapat Ditentukan</string>
+    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <string name="annotation_value_organism">Organisme</string>
+    <!-- Evidence of Presence value when for bird feathers -->
+    <string name="annotation_value_feather">Bulu</string>
+    <!-- Evidence of Presence value when for fecal remains -->
+    <string name="annotation_value_scat">Tahi</string>
+    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <string name="annotation_value_track">Jejak</string>
+    <!-- Evidence of Presence value when for bones -->
+    <string name="annotation_value_bone">Tulang</string>
+    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <string name="annotation_value_molt">Kulit</string>
+    <!-- Text for a label for a list of projects the viewer has joined -->
+    <string name="joined_projects_all_caps">TERGABUNG</string>
+    <string name="nearby_projects_all_caps">TERDEKAT</string>
+    <string name="featured_projects_all_caps">UNGGULAN</string>
+    <!-- Text for a button or label that allows someone to join a project -->
+    <string name="join_all_caps">GABUNG</string>
+    <string name="my_guides_all_caps">MILIKMU</string>
+    <string name="nearby_guides_all_caps">TERDEKAT</string>
+    <string name="all_guides_all_caps">SEMUA</string>
+    <string name="description_all_caps">DESKRIPSI</string>
+    <string name="quantity_all_caps">JUMLAH</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="other">%1$s PENGAMATAN</item>
+    </plurals>
+    <string name="agree_all_caps">SETUJU</string>
+    <string name="observations_all_caps">PENGAMATAN</string>
+    <string name="species_all_caps">SPESIES</string>
+    <string name="people_all_caps">ORANG-ORANG</string>
+    <string name="identifiers_all_caps">PENGIDENTIFIKASI</string>
+    <string name="identifications_all_caps">IDENTIFIKASI</string>
+    <string name="news_all_caps">BERITA</string>
+    <string name="got_it_all_caps">MENGERTI!</string>
+    <string name="view_all_all_caps">LIHAT SEMUA</string>
+    <string name="new_all_caps">BARU</string>
+    <string name="observers_all_caps">PENGAMAT</string>
+    <string name="observations_regular">Pengamatan</string>
+    <string name="data_quality_assessment">Penilaian Kualitas Data</string>
+    <string name="research_grade_qualification">Kualifikasi Kelas Riset</string>
+    <string name="date_specified">Tanggal diberikan</string>
+    <string name="location_specified">Lokasi ditetapkan</string>
+    <string name="has_photos_or_sounds">Memiliki foto atau suara</string>
+    <string name="has_id_supported_by_two_or_more">Memiliki ID yang didukung oleh dua atau lebih</string>
+    <string name="date_is_accurate">Tanggal akurat</string>
+    <string name="location_is_accurate">Lokasi akurat</string>
+    <string name="organism_is_wild">Organisme itu liar</string>
+    <string name="evidence_of_organism">Bukti organisme</string>
+    <string name="recent_evidence_of_an_organism">Bukti terbaru dari suatu organisme</string>
+    <string name="community_id_at_species_level_or_lower">ID komunitas di tingkat spesies atau lebih rendah</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Berdasarkan bukti, apakah ID Komunitas masih dapat dikonfirmasi atau ditingkatkan?</string>
+    <string name="no_as_good_as_it_can_be">Tidak, ini sudah yang terbaik</string>
+    <string name="seasonality">Musim</string>
+    <string name="verifiable">Dapat Diverifikasi</string>
+    <string name="no_annotation">Tidak Ada Catatan</string>
+    <string name="donate_to_inaturalist">Donasi ke iNaturalist</string>
+    <string name="prefers_scientific_name_first">Tunjukkan nama ilmiah dulu</string>
+    <string name="prefers_scientific_name_first_description">Tampilkan nama ilmiah di depan nama umum.</string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[Kanada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, dan Parks Canada mengoperasikan iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[Kolombia: Instituto Humboldt mengoperasikan Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalista"><![CDATA[Meksiko: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) yang mengoperasikan NaturaLista (<a href="https://naturalista.mx"> NaturaLista.mx</a>)]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[Selandia Baru: New Zealand Biodiversity Recording Network mengoperasikan iNaturalist NZ - Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
+    <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos yang mengoperasikan Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente yang mengoperasikan iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina mendukung ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia mendukung iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Ekuador: Instituto Nacional de Biodiversidad (INABIO) mendukung iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa mendukung iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Finlandia: Finnish Museum of Naturalist History (LUOMUS) mendukung iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chili: Ministerio del Medio Ambiente mendukung iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Yunani: iSea mendukung iNaturalist Yunani (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Luksemburg: Museum Sejarah Alam Nasional Luksemburg (MnhnL) mendukung iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Inggris: National Biodiversity Network Trust mendukung iNaturalist Inggris (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Kosta Rika: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) mendukung Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Nacional de Áreas Protegidas (CONAP) mendukung iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Swedia: SLU Swedish Species Information Centre mendukung iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="mark_all_as_viewed">Tandai semua sudah dilihat</string>
+    <string name="content_hidden">Konten Tersembunyi</string>
+    <string name="show_hidden_content">Tampilkan Konten Tersembunyi</string>
+    <string name="content_hidden_because">Konten disembunyikan oleh @%1$s pada %2$s karena: \"%3$s\"</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Hubungi Dukungan</a>]]></string>
+    <string name="content">Konten</string>
+    <string name="has_photos">Memiliki Foto</string>
+    <string name="has_sounds">Memiliki Suara</string>
+    <string name="could_not_play_sound">Tidak dapat memutar suara - mungkin masalah jaringan</string>
+    <string name="cant_play_soundcloud"><![CDATA[Untuk mendengarkan suara Soundcloud, lihat <a href="%1$s">situs web</a>.]]></string>
+    <string name="soundcloud">Soundcloud</string>
+    <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
+    <string name="record_sound">Rekam Suara</string>
+    <string name="couldnt_retrieve_sound">Tidak dapat mengambil suara dari perekam bawaan - coba impor suara sebagai gantinya</string>
+    <!-- Label for a button to import an existing sound for an observation -->
+    <string name="upload_sound">Pilih Suara</string>
+    <string name="multi_select_sound_description">Impor banyak suara dengan menekan lama pada suatu suara</string>
+    <string name="alert_unsupported_audio_type">Maaf, tetapi ada masalah saat memuat suara dari sumber ini</string>
+    <string name="invalid_audio_extension">Kesalahan saat mengimpor suara: Hanya dapat mengimpor file suara dengan ekstensi WAV/MP3/AMR</string>
+    <string name="importing_sounds">Mengimpor suara...</string>
+    <string name="observation_sound">Suara Pengamatan</string>
+    <string name="deleted_sounds_from_cache_error">Sepertinya Anda menghapus suara dengan membersihkan cache aplikasi sebelum mengunggah. Anda perlu menambahkan suara kembali ke pengamatan Anda dari galeri Anda. Di masa mendatang, pastikan Anda telah mengunggah semua suara Anda sebelum membersihkan cache aplikasi.</string>
+    <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
+    <string name="seconds">%1$.1f detik</string>
+    <string name="clear_all_debug_logs">Kosongkan Semua Log Debug</string>
+    <string name="clears_up_storage_room_on_your_phone">Membersihkan ruang penyimpanan di ponsel Anda</string>
+    <string name="number_of_days_to_store_logs">Jumlah hari untuk menyimpan log</string>
+    <string name="send_debug_logs_from_start_date">Kirim Log Debug Dari Tanggal Mulai</string>
+    <string name="send_debug_logs_by_email">Kirim log debug melalui email (dari tanggal mulai yang ditentukan)</string>
+    <string name="debug_settings">Pengaturan Debug</string>
+    <string name="are_you_sure_you_want_to_delete_logs">Apakah Anda yakin ingin menghapus semua log debug? Hanya tekan \'Ya\' jika Anda ingin membersihkan ruang penyimpanan untuk ponsel Anda</string>
+    <string name="no_log_files_found">Tidak ditemukan file log untuk rentang tanggal itu - coba tanggal sebelumnya?</string>
+    <string name="choose_pinned_location">Pilih Lokasi Yang Disematkan</string>
+    <string name="pin_current_location">Sematkan Lokasi Saat Ini</string>
+    <string name="location_pinned_successfully">Lokasi Saat Ini Berhasil Disematkan</string>
+    <string name="delete_this_pinned_location">Hapus lokasi yang disematkan ini?</string>
+    <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
+    <string name="duplicate">Duplikat</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
+    <string name="couldnt_duplicate_photo">Tidak dapat menduplikasi foto!</string>
+    <string name="couldnt_edit_photo">Tidak dapat mengedit foto!</string>
+    <!-- Verb, as in "Rotate this photo" -->
+    <string name="ucrop_rotate">Putar</string>
+    <!-- Verb, as in "Scale (resize) this photo" -->
+    <string name="ucrop_scale">Ubah ukuran</string>
+    <!-- Verb, as in "Crop this photo" -->
+    <string name="ucrop_crop">Potong</string>
+    <!-- Label for adjusting the brightness of an image -->
+    <string name="ucrop_brightness">Kecerahan</string>
+    <!-- Label for adjusting the contrast of an image -->
+    <string name="ucrop_contrast">Kontras</string>
+    <!-- Label for adjusting the saturation of an image -->
+    <string name="ucrop_saturation">Saturasi</string>
+    <!-- Label for adjusting the sharpness of an image -->
+    <string name="ucrop_sharpness">Ketajaman</string>
+    <!-- Label for image cropping mode that maintains the original aspect ratio -->
+    <string name="ucrop_label_original">Orisinal</string>
+    <!-- Label for image cropping mode that has no limits on the aspect ratio -->
+    <string name="ucrop_label_free">Bebas</string>
+    <!-- Verb phrase, button label to edit an observation photo -->
+    <string name="ucrop_label_edit_photo">Edit Foto</string>
+    <string name="service_temporarily_unavailable">Layanan sementara ini tidak tersedia.</string>
+    <string name="please_try_again_in_a_few_hours">Silakan coba lagi dalam beberapa saat.</string>
+    <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
+    <string name="please_try_again_in_x">Silahkan coba lagi dalam %1$d %2$s.</string>
+    <string name="hours">jam</string>
+    <string name="minutes">menit</string>
+    <string name="seconds_value">detik</string>
+    <string name="shop_the_inat_store">Belanja di iNat Store</string>
+    <string name="delete_your_account">Hapus Akun Anda</string>
+    <string name="delete_account_message"><![CDATA[Dengan menghapus akun Anda, Anda akan menghapus: <br/><br/><ul><li> Semua pengamatan Anda, termasuk pekerjaan semua orang yang telah membantu Anda dengan identifikasi.</li><li> Semua identifikasi yang Anda tambahkan ke pengamatan orang lain, yang berpotensi akan memengaruhi kualitas data dari pengamatan tersebut.</li><li> Semua komentar yang Anda tambahkan.</li></ul><br/>Selanjutnya, tindakan ini tidak dapat diurungkan. Jika nanti Anda berubah pikiran, Anda tidak akan mendapatkan konten itu kembali.<br/><br/>Jika layanan ini menghasilkan terlalu banyak pemberitahuan, pertimbangkan untuk <a href="https://www.inaturalist.org/users/edit"> mengubah pengaturan Anda di situs web</a> untuk mematikan pemberitahuan tertentu atau berhenti menerima email dari kami. Jika Anda mengalami masalah dengan orang tertentu, pertimbangkan untuk <a href="https://www.inaturalist.org/users/edit">meredam mereka</a> alih-alih menghapus akun Anda.<br/><br/>Jika Anda masih yakin Anda ingin menghapus akun Anda, masukkan <b>\"%1$s\"</b> pada formulir di bawah ini dan klik tombol untuk menghapus akun Anda dan semua data Anda.]]></string>
+    <string name="your_account_has_been_deleted">Akun anda telah dihapus</string>
+    <string name="you_must_enter_username_in_the_form_to_delete_account">Anda harus memasukkan \'%1$s\' di formulir untuk menghapus akun Anda</string>
+    <!-- Second person hint text asking the user to enter their username -->
+    <string name="type_your_username">Ketik nama pengguna Anda</string>
+    <string name="error_deleting_account">Terjadi kesalahan saat menghapus akun Anda - periksa koneksi Internet Anda</string>
+    <string name="verify_your_password">Verifikasi Kata Sandi Anda</string>
+    <string name="third_party_data_sharing">Pembagian Data Dengan Pihak Ketiga</string>
+    <string name="disable_third_party_data_sharing">Nonaktifkan Pembagian Data Dengan Pihak Ketiga</string>
+    <string name="do_not_collect_third_party_data">Jangan ambil data stabilitas dan pemakaian menggunakan layanan pihak ketiga</string>
+    <string name="enabled">Diaktifkan</string>
+    <string name="disabled">Dinonaktifkan</string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[Kami menggunakan berbagai layanan pihak ketiga untuk memantau stabilitas dan mendiagnosis bug dan kesalahan pada perangkat lunak kami. Pihak-pihak ketiga tersebut di antaranya meliputi:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="third_party_data_sharing_notes2"><![CDATA[Informasi yang kami bagi dengan pihak-pihak ketiga tersebut meliputi:<br/><ul><li>Alamat IP (Yang bisa digunakan untuk menentukan lokasi hingga resolusi tingkat kota, dan melacak Anda di berbagai situs web dan jasa; perlu diketahui bahwa kami telah mengaktifkan <a href="https://support.google.com/analytics/answer/2763052">Anonimisasi IP</a> pada Google Analytics dan sepengetahuan kami, <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> tidak merekam alamat IP)</li><li>Detail browser, seperti pembuat, model, dan versi</li><li>Detail crash, seperti baris kode apa yang menyebabkan crash</li><li>Detail perangkat, seperti pembuat dan model dari telepon genggam</li></ul>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b>Layanan-layanan pihak ketiga tersebut memberikan keuntungan yang besar bagi kami</b> dalam pemeliharaan stabilitas dan kegunaan iNaturalist mengetahui jumlah staf kami relatif sedikit. Pada perangkat telepon genggam, tidak ada cara lain bagi kami untuk mendapat wawasan mengenai masalah-masalah karena perangkat lunak berjalan pada perangkat-perangkat yang tidak dapat kami kontrol. Terkadang kami pun tidak sadar masalah-masalah tersebut terjadi sebelum kami melihatnya melalui data yang disediakan oleh pihak ketiga tersebut. <b>Dengan membagikan informasi ini, Anda membantu kami melayani Anda dan seluruh komunitas iNaturalist.</b>]]></string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[Ingat bahwa pilihan ini hanya berlaku untuk data analytics dan crash yang secara eksplisit kami kirimkan ke perusahaan-perusahaan tersebut. Semua server-server iNaturalist disediakan dan dihosting oleh Microsoft, semua gambar-gambar iNaturalist dihosting oleh Amazon, dan hampir semua peta-peta iNaturalist disediakan oleh Google, yang berarti tiap kali Anda melihat suatu pengamatan di iNaturalist, Anda terkoneksi dengan layanan-layanan yang diberikan oleh perusahaan-perusahaan tersebut dan setidaknya mengekspos alamat IP Anda kepada mereka (untuk aplikasi iPhone kami menggunakan peta dari Apple). iNaturalist mungkin tidak dapat ada tanpa layanan-layanan yang perusahaan-perusahaan tersebut sediakan dan meskipun kami dapat membatasi jumlah dan jenis data yang Anda bagikan dengan mereka ketika menggunakan iNat, kami tidak dapat sepenuhnya menghentikan aliran data.]]></string>
+    <string name="common_names_place"><![CDATA[Daerah nama umum: <b>%1$s</b>]]></string>
+    <string name="tap_to_prioritize_common_names">Ketuk untuk memprioritaskan nama umum dari daerah tertentu.</string>
+    <string name="search_places">Cari Daerah</string>
+    <string name="restart_app">Mulai Ulang Aplikasi</string>
+    <string name="disable_third_party_sharing_restart">Untuk segera menonaktifkan pembagian data dengan pihak ketiga, aplikasi harus dimulai ulang.</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="other">Apakah Anda yakin Anda ingin menghapus %1$d pengamatan ini?</item>
+    </plurals>
+    <string name="future_observed_on_date_error">Pengamatan Anda telah dibuat (dan diunggah) pada %1$s, tapi Anda hendak menyetel tanggal pengamatan setelah tanggal tersebut: %2$s</string>
+    <string name="no_more_photos_allowed">Pengamatan hanya dapat memiliki maksimal %1$d foto. Untuk menambah lebih banyak, Anda harus menghapus beberapa dulu.</string>
+    <string name="warning_multiple_photos">Jika Anda menambahkan foto-foto organisme dengan jenis yang berbeda-beda untuk pengamatan ini, atau jenis yang sama pada tempat atau waktu yang berbeda, Anda sebaiknya menghapus foto tersebut dan mengunggahnya sebagai pengamatan terpisah. Satu pengamatan hanya dapat memiliki maksimal %1$d foto.</string>
+    <string name="choosing_specific_language_warning">Memilih suatu bahasa untuk akun Anda membutuhkan koneksi internet</string>
+    <string name="running_in_background_notfication">Sedang berjalan di latar belakang supaya kami dapat berjalan tanpa interupsi</string>
+    <string name="opt_out_of_community_taxon">Tidak turut serta Takson Komunitas</string>
+    <string name="opt_in_to_community_taxon">Turut serta Takson Komunitas</string>
+    <string name="opt_out_message">Tidak turut serta Takson Komunitas akan memaksa pengamatan ini untuk diasosiasikan dengan takson dari identifikasi Anda sekarang, tidak berdasarkan takson dari semua identifikasi-identifikasi yang telah ditambahkan pada pengamatan ini. Jika banyak pengidentifikasi tidak setuju dengan Anda, maka pengamatan Anda akan menjadi Kasual. Anda sebaiknya hanya tidak turut apabila Anda sangat yakin identifikasi Anda benar dan identifikasi lain salah.</string>
+    <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
+    <string name="permission_required">Izin Dibutuhkan</string>
+    <!-- Message displayed when the user tries to perform an action that requires location permission -->
+    <string name="to_access_your_location">Anda harus memberikan izin akses lokasi kepada aplikasi ini untuk mengakses lokasi Anda.</string>
+    <!-- Dialog title when displaying a message that an action is not permitted -->
+    <string name="forbidden">Dilarang</string>
+    <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
+    <string name="app_you_shared_blocked">Aplikasi yang Anda pakai untuk membagikan foto ini menciptakan foto yang tidak layak untuk pengamatan karena mereka tidak merepresentasikan bukti dari pengalaman Anda dengan organisme lain, karena aplikasi tersebut berisi merek yang tidak pantas atau konten komersial, atau melanggar Ketentuan Layanan kami dengan cara lainnya.</string>
+    <!-- Description of a UI element for screen readers -->
+    <string name="list_observation_checkbox_description">Kotak centang untuk menyeleksi observasi di mode multi-pilih</string>
+    <!-- Description of a UI element for screen readers -->
+    <string name="observation_list_item_iconic_pic_description">Foto keluku untuk takson pengamatan</string>
+    <!-- Description of a UI element for screen readers -->
+    <string name="observation_list_item_obs_pic_description">Foto keluku untuk pengamatan</string>
+    <string name="messages">Pesan</string>
+    <string name="all_messages">Semua Pesan</string>
+    <string name="search_messages">Cari Pesan</string>
+    <string name="no_messages">Saat ini, Anda tidak memiliki pesan. Anda dapat mengirim pesan baru dengan tombol hijau, atau mengirim pesan kepada orang lain dari halaman profil mereka.</string>
+    <string name="no_messages_found">Pesan tidak ditemukan</string>
+    <string name="send_a_message">Kirim sebuah pesan</string>
+    <string name="sending_message">Mengirim pesan...</string>
+    <string name="could_not_send_message">Tidak dapat mengirim pesan: %1$s</string>
+    <string name="subject">Subjek</string>
+    <string name="body">Isi</string>
+    <string name="type_your_message_here">Ketik pesan Anda di sini</string>
+    <string name="new_message_to">Pesan Baru kepada %1$s</string>
+    <string name="who_would_you_like_to_send_a_message_to">Kepada siapa Anda ingin mengirim pesan?</string>
+    <string name="new_message">Pesan Baru</string>
+    <string name="search_for_inaturalist_users">Cari pengguna iNaturalist</string>
+    <string name="please_sign_in_for_messages">Anda harus masuk untuk melihat pesan Anda.</string>
+    <string name="sorry">Maaf</string>
+    <string name="you_must_have_three_observations">Anda harus sudah memiliki tiga observasi yang dapat diverifikasi atau tiga identifikasi terhadap pengguna lain untuk dapat melakukan hal tersebut.</string>
+    <string name="mute_this_user">Redam pengguna ini</string>
+    <string name="unmute_this_user">Suarakan pengguna ini</string>
+    <string name="flag_this_conversation">Tandai percakapan ini</string>
+    <string name="mute_this_user_question">Redam pengguna ini?</string>
+    <string name="you_will_no_longer_receive_messages">Anda tidak akan lagi mendapat notifikasi apapun tentang aktivitas dari pengguna ini, termasuk pesan, komentar, identifikasi, dan sebutan.</string>
+    <string name="mute">Redam</string>
+    <string name="muting_user">Meredam pengguna...</string>
+    <string name="unmuting_user">Menyuarakan pengguna...</string>
+    <string name="failed_muting_user">Gagal meredam pengguna!</string>
+    <string name="failed_unmuting_user">Gagal menyuarakan pengguna!</string>
+    <string name="flag_conversation">Tandai percakapan</string>
+    <string name="spam">Spam</string>
+    <string name="commercial_solicitation">Iklan, tautan ke mana-mana, dll</string>
+    <string name="offensive_inappropriate">Ofensif/Tidak pantas</string>
+    <string name="misleading_or_illegal_content">Konten menyesatkan atau ilegal, ejekan rasial atau etnis, dsb. Untuk definisi lebih jelas tentang hal \"tidak pantas\", silakan lihat FAQ.</string>
+    <string name="other">Lainnya</string>
+    <string name="some_other_reason">Beberapa alasan lain yang Anda dapat jelaskan di bawah.</string>
+    <string name="continue_text">Lanjutkan</string>
+    <string name="why_are_you_flagging_this_item">Mengapa Anda menandai hal ini?</string>
+    <string name="thank_you_for_submitting_the_flag">Terima kasih telah mengirim tanda!</string>
+    <string name="flagging_conversation">Menandai percakapan...</string>
+    <string name="failed_flagging_conversation">Gagal menandai percakapan!</string>
+    <string name="no_subject">Tidak Ada Subjek</string>
+    <string name="rank_state_of_matter">Wujud materi</string>
+    <string name="rank_kingdom">Kerajaan</string>
+    <string name="rank_subkingdom">Subkerajaan</string>
+    <string name="rank_phylum">Filum</string>
+    <string name="rank_subphylum">Subfilum</string>
+    <string name="rank_superclass">Superkelas</string>
+    <string name="rank_class">Kelas</string>
+    <string name="rank_subclass">Subkelas</string>
+    <string name="rank_infraclass">Infrakelas</string>
+    <string name="rank_superorder">Superordo</string>
+    <string name="rank_order">Ordo</string>
+    <string name="rank_suborder">Subordo</string>
+    <string name="rank_infraorder">Infraordo</string>
+    <string name="rank_subterclass">Subterkelas</string>
+    <string name="rank_parvorder">Parvordo</string>
+    <string name="rank_zoosection">Zooseksi</string>
+    <string name="rank_zoosubsection">Zoosubseksi</string>
+    <string name="rank_superfamily">Superfamili</string>
+    <string name="rank_epifamily">Epifamili</string>
+    <string name="rank_family">Famili</string>
+    <string name="rank_subfamily">Subfamili</string>
+    <string name="rank_supertribe">Supersuku</string>
+    <string name="rank_tribe">Suku</string>
+    <string name="rank_subtribe">Subsuku</string>
+    <string name="rank_genus">Genus</string>
+    <string name="rank_genushybrid">Genushibrida</string>
+    <string name="rank_subgenus">Subgenus</string>
+    <string name="rank_section">Seksi</string>
+    <string name="rank_subsection">subseksi</string>
+    <string name="rank_complex">Kompleks</string>
+    <!-- Singular -->
+    <string name="rank_species">Spesies</string>
+    <string name="rank_hybrid">Hibrida</string>
+    <!-- Singular -->
+    <string name="rank_subspecies">Subspesies</string>
+    <string name="rank_variety">Varietas</string>
+    <string name="rank_form">Bentuk</string>
+    <string name="rank_infrahybrid">Infrahibrida</string>
+    <string name="rank_leaves">Daun</string>
+    <string name="location_lat_lng">Lokasi: %1$f, %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[Saya mengizinkan iNaturalist untuk menyimpan dan memproses sebagian informasi pribadi saya demi pengelolaan akun saya. <b>Pelajari lebih lanjut</b>]]></string>
+    <string name="about_personal_information">Tentang Informasi Pribadi</string>
+    <string name="personal_information_notes"><![CDATA[Kami menyimpan informasi pribadi seperti nama pengguna dan alamat email untuk mengelola akun-akun di situs ini, dan untuk mematuhi undang-undang privasi, kami meminta Anda untuk mencentang kotak ini untuk menunjukkan bahwa Anda mengizinkan penggunaan informasi pribadi ini. Untuk mempelajari lebih lanjut tentang informasi apa yang kami kumpulkan dan bagaimana kami menggunakannya, Anda bisa melihat <a href="https://www.inaturalist.org/privacy">Kebijakan Privasi</a> dan  <a href="https://www.inaturalist.org/terms">Syarat dan Ketentuan Layanan</a> kami.]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[Saya menyetujui <a href="https://www.inaturalist.org/terms">Syarat dan Ketentuan Layanan</a> dan <a href="https://www.inaturalist.org/privacy">Kebijakan Privasi</a>, dan saya telah membaca <a href="https://www.inaturalist.org/pages/community+guidelines">Pedoman Komunitas</a>.]]></string>
+    <string name="privacy_policy">Kebijakan Privasi</string>
+    <string name="terms_of_service">Persyaratan Layanan</string>
+    <!-- Placeholder text shown in place of a username when the user has been deleted -->
+    <string name="deleted_user">Pengguna Terhapus</string>
+    <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short_this_year">d MMM</string>
+    <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short">dd/MM/yy</string>
+    <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_24_hour">HH:mm</string>
+    <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">d MMM, yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time">d MMMM, yyyy HH:mm</string>
+    <string name="show_common_names">Tunjukkan nama umum</string>
+    <string name="show_common_names_description">Matikan jika Anda hanya ingin melihat nama ilmiah.</string>
+    <string name="email_must_look_like_email_address">Email harus terlihat seperti alamat email</string>
+    <string name="username_must_begin_with">Nama pengguna harus dimulai dengan huruf, tanpa spasi, dan hanya diperbolehkan menggunakan huruf, angka, tanda hubung,  dan garis bawah</string>
+    <string name="password_too_short">Panjang sandi minimal 6 karakter</string>
+    <string name="switch_to_grid_view">Beralih ke tampilan grid</string>
+    <string name="switch_to_list_view">Beralih ke tampilan daftar</string>
+    <string name="remove_project_filter">Hapus saringan proyek</string>
+    <string name="remove_observer_filter">Hapus saringan pengamat</string>
+    <string name="filter_observations_by_an_exact_date">Saring pengamatan berdasarkan tanggal tepatnya</string>
+    <string name="filter_observations_by_a_date_range">Saring pengamatan berdasarkan rentang tanggal</string>
+    <string name="filter_observations_by_months">Saring pengamatan berdasarkan bulan</string>
+    <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
+    <string name="equals_sign">=</string>
+    <string name="include_suggestions_not_seen_nearby">Sertakan usulan yang tidak ditemukan di dekatnya</string>
+    <string name="only_view_nearby_suggestions">Hanya tampilkan usulan yang ditemui di sekitar</string>
+    <string name="suggestions_source">Sumber Usulan</string>
+    <string name="research_grade_observations">Pengamatan Kelas Riset</string>
+    <string name="visually_similar_description">iNaturalist akan menampilkan pilihan usulan yang didasari oleh kemiripan visual gambar dengan spesies-spesies yang telah diamati di dekat lokasi ini.</string>
+    <string name="research_grade_observations_description">Alih-alih mengusulkan berdasarkan tingkat kemiripan visual, iNaturalist akan mengusulkan spesies yang telah diamati pada suatu tempat dan termasuk di dalam suatu kelompok taksonomik tertentu.</string>
+    <string name="taxon">Takson:</string>
+    <string name="place">Tempat:</string>
+    <string name="pretty_sure_kingdom">Kami cukup yakin ini termasuk kerajaan:</string>
+    <string name="pretty_sure_subkingdom">Kami cukup yakin ini termasuk subkerajaan:</string>
+    <string name="pretty_sure_phylum">Kami cukup yakin ini termasuk filum:</string>
+    <string name="pretty_sure_subphylum">Kami cukup yakin ini termasuk subfilum:</string>
+    <string name="pretty_sure_superclass">Kami cukup yakin ini termasuk superkelas:</string>
+    <string name="pretty_sure_class">Kami cukup yakin ini termasuk kelas:</string>
+    <string name="pretty_sure_subclass">Kami cukup yakin ini termasuk subkelas:</string>
+    <string name="pretty_sure_infraclass">Kami cukup yakin ini termasuk infrakelas:</string>
+    <string name="pretty_sure_superorder">Kami cukup yakin ini termasuk superordo:</string>
+    <string name="pretty_sure_order">Kami cukup yakin ini termasuk ordo:</string>
+    <string name="pretty_sure_suborder">Kami cukup yakin ini termasuk subordo:</string>
+    <string name="pretty_sure_infraorder">Kami cukup yakin ini termasuk infraordo:</string>
+    <string name="pretty_sure_subterclass">Kami cukup yakin ini termasuk subterkelas:</string>
+    <string name="pretty_sure_parvorder">Kami cukup yakin ini termasuk parvordo:</string>
+    <string name="pretty_sure_zoosection">Kami cukup yakin ini termasuk zooseksi:</string>
+    <string name="pretty_sure_zoosubsection">Kami cukup yakin ini termasuk zoosubseksi:</string>
+    <string name="pretty_sure_superfamily">Kami cukup yakin ini termasuk superfamili:</string>
+    <string name="pretty_sure_epifamily">Kami cukup yakin ini termasuk epifamili:</string>
+    <string name="pretty_sure_family">Kami cukup yakin ini termasuk famili:</string>
+    <string name="pretty_sure_subfamily">Kami cukup yakin ini termasuk subfamili:</string>
+    <string name="pretty_sure_supertribe">Kami cukup yakin ini termasuk supersuku:</string>
+    <string name="pretty_sure_tribe">Kami cukup yakin ini termasuk suku:</string>
+    <string name="pretty_sure_subtribe">Kami cukup yakin ini termasuk subsuku:</string>
+    <string name="pretty_sure_genus">Kami cukup yakin ini termasuk genus:</string>
+    <string name="pretty_sure_genushybrid">Kami cukup yakin ini termasuk genushibrida:</string>
+    <string name="pretty_sure_subgenus">Kami cukup yakin ini termasuk subgenus:</string>
+    <string name="pretty_sure_section">Kami cukup yakin ini termasuk seksi:</string>
+    <string name="pretty_sure_subsection">Kami cukup yakin ini termasuk subseksi:</string>
+    <string name="pretty_sure_complex">Kami cukup yakin ini termasuk kompleks:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_species">Kami cukup yakin ini termasuk spesies:</string>
+    <string name="pretty_sure_hybrid">Kami cukup yakin ini termasuk hibrida:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_subspecies">Kami cukup yakin ini termasuk subspesies:</string>
+    <string name="pretty_sure_variety">Kami cukup yakin ini termasuk varietas:</string>
+    <string name="pretty_sure_form">Kami cukup yakin ini termasuk bentuk:</string>
+    <string name="pretty_sure_infrahybrid">Kami cukup yakin ini termasuk infrahibrida:</string>
+    <string name="remove_date_observed">Hapus tanggal &amp; waktu pengamatan</string>
+    <string name="remove_time_observed">Hapus waktu pengamatan</string>
+    <string name="remove_location">Hapus lokasi</string>
+    <string name="are_you_sure_you_want_to_remove_date">Apakah Anda yakin Anda ingin menghapus tanggal &amp; waktu pengamatan?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Apakah Anda yakin Anda ingin menghapus waktu pengamatan?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Apakah Anda yakin Anda ingin menghapus lokasi ini?</string>
+    <string name="share_location">Bagi Lokasi</string>
+    <string name="share_hidden_location">Bagi Lokasi Tersembunyi</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
+    <string name="couldnt_duplicate_sound">Tidak dapat menduplikasi suara!</string>
+    <string name="sound_format_not_supported">Tipe pengodean suara ini tidak didukung Android.</string>
+    <string name="view_observations">Lihat Pengamatan</string>
+    <string name="choose_this_option">Pilih opsi ini</string>
+    <string name="compare_observation_with_this_option">Bandingkan pengamatan dengan pilihan ini</string>
+    <string name="go_back">Kembali</string>
+    <string name="change_the_source_of_the_suggestions">Ubah sumber usulan</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Foto keluku untuk takson yang diusulkan</string>
+    <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
+    <string name="comments_ids_title">Komentar dan Identifikasi</string>
+    <!-- Accessibility text for the faves tab on the observation detail view -->
+    <string name="faves">Favorit</string>
+    <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
+    <string name="previous_option">Pilihan Sebelumnya</string>
+    <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string name="next_option">Pilihan Selanjutnya</string>
+    <string name="no_observations_yet2">Belum ada observasi lainnya.</string>
+    <string name="no_species_yet">Belum ada spesies lainnya.</string>
+    <string name="no_identifications_yet">Belum ada identifikasi lainnya.</string>
+    <string name="sort_by">Urutkan Berdasarkan</string>
+    <string-array name="explore_order_by_items">
+        <item>Tanggal Ditambahkan</item>
+        <item>Tanggal Observasi</item>
+        <item>Tanggal Diperbarui</item>
+        <!--<item>Faves</item>-->
+        <item>Acak</item>
+    </string-array>
+    <string-array name="explore_order_items">
+        <item>Turun</item>
+        <item>Naik</item>
+    </string-array>
+    <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
+    See explore_order_by_items and explore_order_items keys !-->
+    <string name="sorted_by_full">Diurutkan berdasarkan %1$s (%2$s)</string>
+    <!-- Label for an observation search filter to exclude your own observations -->
+    <string name="hide_my_observations">Sembunyikan Pengamatan Saya</string>
+    <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
+    <string name="follow_this_observation">Ikuti Pengamatan Ini</string>
+    <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
+    <string name="unfollow_this_observation">Berhenti Mengikuti Pengamatan Ini</string>
+    <!-- Error message shown when an attempt to follow an observation fails -->
+    <string name="could_not_follow_observation">Tidak dapat mengikuti pengamatan ini</string>
+    <!-- Error message shown when an attempt to unfollow an observation fails -->
+    <string name="could_not_unfollow_observation">Tidak dapat berhenti mengikuti pengamatan ini</string>
+    <!-- Label for a button to copy the coordinates of an observation -->
+    <string name="copy_coordinates">Salin koordinat</string>
+    <string name="coordinates_copied_to_clipboard">Koordinat tersalin ke papan klip</string>
+    <!--  Title of a section on the observation detail view that displays minor metadata  -->
+    <string name="metadata">Metadata</string>
+    <!--  iNat observation identifier  -->
+    <string name="id">ID</string>
+    <!--  iNat observation Universally Unique Identifier  -->
+    <string name="uuid">IDUU</string>
+    <!--  Universal Resource Locator  -->
+    <string name="url">URL</string>
+    <string name="default_licenses">Lisensi Bawaan</string>
+    <string name="default_observation_license">Lisensi Pengamatan Bawaan</string>
+    <string name="default_photo_license">Lisensi Foto Bawaan</string>
+    <string name="default_sound_license">Lisensi Suara Bawaan</string>
+    <string name="change_existing_licenses">Ubah Lisensi Yang Ada</string>
+    <string name="change_licenses_for_existing_observations">Ubah lisensi pengamatan, foto, dan suara yang ada</string>
+    <string name="change_licenses_for_all_existing_observations">Ubah lisensi untuk semua pengamatan yang ada</string>
+    <string name="change_licenses_for_all_existing_photos">Ubah lisensi untuk semua foto yang ada</string>
+    <string name="change_licenses_for_all_existing_sounds">Ubah lisensi untuk semua suara yang ada</string>
+    <string name="change_observation_licenses">Ubah Lisensi Pengamatan</string>
+    <string name="change_photo_licenses">Ubah Lisensi Foto</string>
+    <string name="change_sound_licenses">Ubah Lisensi Suara</string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[Ubah lisensi <b>%1$d</b> pengamatan yang ada menjadi <b>%2$s</b>?]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[Ubah lisensi foto yang ada menjadi <b>%1$s</b>?]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Ubah lisensi suara yang ada menjadi <b>%1$s</b>?]]></string>
+    <string name="observation_licenses_updated">Lisensi Pengamatan Diperbarui</string>
+    <string name="photo_licenses_updated">Lisensi Foto Diperbarui</string>
+    <string name="sound_licenses_updated">Lisensi Suara Diperbarui</string>
+    <string name="existing_observation_licenses_have_been_updated">Semua lisensi pengamatan yang ada telah diubah menjadi %1$s.</string>
+    <string name="existing_photo_licenses_have_been_updated">Semua lisensi foto yang ada telah diubah menjadi %1$s.</string>
+    <string name="existing_sound_licenses_have_been_updated">Semua lisensi suara yang ada telah diubah menjadi %1$s.</string>
+    <string name="default_licenses_description"><![CDATA[Dengan menerapkan lisensi pada konten-konten Anda, Anda memberikan kuasa hukum kepada siapa saja tanpa perlu menanyakan izin kepada Anda jika mereka mengikuti syarat-syarat yang tertera pada lisensi tersebut. iNat menyimpan konten Anda yang dilisensi dengan Creative Commons di arsip yang terus diperbarui yang dibuat untuk organisasi mitra tertentu yang tertarik dengan data kami. Sebagai contoh, kami memasukkan catatan Tanpa Hak Cipta (CC0), Atribusi (CC BY), dan Atribusi-NonKomersial (CC BY-NC) di dalam arsip yang kami hasilkan dari <a href="https://www.gbif.org/">Fasilitas Informasi Keanekaragaman Hayati Global</a>, sebuah organisasi internasional dan interpemerintahan yang mengumpulkan dan mendistribusikan informasi keanekaragaman hayati dari seluruh dunia]]></string>
+    <string name="photo_license">Lisensi Foto</string>
+    <string name="sound_license">Lisensi Suara</string>
+    <string name="edit_photo_license">Ubah Lisensi Foto</string>
+    <string name="observation_license">Lisensi Pengamatan</string>
+    <string name="edit_observation_license">Ubah Lisensi Pengamatan</string>
+    <string name="about_licenses">Tentang Lisensi</string>
+    <string name="view_license">Lihat Lisensi</string>
+    <!-- License Names -->
+    <string name="license_name_cc0">Ranah Publik</string>
+    <string name="license_name_cc_by">Atribusi</string>
+    <string name="license_name_cc_by_nc">Atribusi-NonKomersial</string>
+    <string name="license_name_cc_by_nc_sa">Atribusi-NonKomersial-BerbagiSerupa</string>
+    <string name="license_name_cc_by_nc_nd">Atribusi-NonKomersial-TanpaTurunan</string>
+    <string name="license_name_cc_by_nd">Atribusi-TanpaTurunan</string>
+    <string name="license_name_cc_by_sa">Atribusi-BerbagiSerupa</string>
+    <string name="license_name_no_license">Hak cipta dilindungi undang-undang</string>
+    <!-- License Descriptions -->
+    <string name="license_description_cc0">Lisensi ini merilis pekerjaan Anda kepada domain publik, sehingga orang lain dapat menyalin, memodifikasi, mendistribusikan dan melakukan pekerjaan Anda, bahkan dapat dipakai pula untuk tujuan komersial, tanpa perlu meminta izin atau memberikan penghargaan. Ini adalah lisensi paling akomodatif yang ditawarkan. Direkomendasikan untuk penyebaran seluas-luasnya dan penggunaan bahan-bahan berlisensi.</string>
+    <string name="license_description_cc_by">Lisensi ini mengizinkan orang lain untuk mendistribusikan, mencampur, mengubah, dan membuat karya berdasarkan pekerjaan Anda, bahkan dapat memakainya secara komersial, selama mereka memberikan kredit kepada Anda untuk karya asli Anda.</string>
+    <string name="license_description_cc_by_nc">Lisensi ini mengizinkan orang lain mencampur, mengubah, dan membuat karya berdasarkan pekerjaan Anda untuk kebutuhan nonkomersial, dan meskipun karya-karya baru mereka harus mengakui Anda sebagai pembuatnya dan digunakan untuk kebutuhan nonkomersial, mereka tidak harus mengajukan lisensi untuk karya turunan mereka dengan persyaratan yang sama dengan ciptaan aslinya.</string>
+    <string name="license_description_cc_by_nc_sa">Lisensi ini mengizinkan orang lain untuk mencampur, mengubah, dan membuat karya berdasarkan pekerjaan Anda untuk kebutuhan nonkomersial selama mereka memberikan kredit kepada Anda untuk karya asli Anda dan membuat lisensi untuk karya-karya turunan mereka dengan persyaratan yang serupa dengan ciptaan aslinya.</string>
+    <string name="license_description_cc_by_nc_nd">Lisensi ini merupakan yang paling ketat dari keenam lisensi utama, karena hanya mengizinkan orang lain untuk mengubduh karya-karya Anda dan membagikannya dengan orang lain selama mereka memberikan kredit kepada Anda, tetapi mereka tidak boleh mengubahnya dengan cara apapun maupun menggunakannya secara komersial.</string>
+    <string name="license_description_cc_by_nd">Lisensi ini mengizinkan penyebarluasan ulang, baik untuk kepentingan komersial maupun nonkomersial, selama bentuk ciptaan tidak diubah dan tetap utuh, dengan menyertakan pemberian kredit kepada Anda.</string>
+    <string name="license_description_cc_by_sa">Lisensi ini mengizinkan orang lain mencampur, mengadaptasi, dan membuat karya berdasarkan karya Anda, bahkan untuk kepentingan komersial, selama mereka memberikan kredit kepada Anda untuk karya asli Anda dan membuat lisensi untuk karya-karya turunan mereka dengan persyaratan yang serupa dengan ciptaan aslinya. Lisensi ini sering dibandingkan dengan lisensi perangkat lunak bebas dan sumber terbuka \"copyleft\". Semua karya baru yang didasarkan pada karya Anda akan memiliki lisensi yang sama, sehingga karya turunan apapun akan mengizinkan juga penggunaan untuk kepentingan komersial. Lisensi ini adalah lisensi yang digunakan oleh Wikipedia, dan direkomendasikan untuk materi-materi yang akan memberikan manfaat jika menggunakan konten dari Wikipedia atau proyek-proyek berlisensi serupa.</string>
+    <string name="license_description_no_license">Anda memiliki hak cipta penuh atas konten Anda selain hak-hak cipta lainnya yang diizinkan untuk iNaturalist pada Syarat dan Ketentuan Layanan.</string>
+    <string name="invalid_photo">Format foto tidak didukung</string>
+    <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
+    <string name="suggestions_based_on">Rekomendasi berdasarkan pengamatan dan identifikasi yang diberikan oleh komunitas iNaturalist, termasuk %1$s, %2$s, %3$s, dan lain-lain.</string>
+    <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">Tindakan Pengamatan Standar</string>
+    <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">Tampilkan Pilihan</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Nilai Kolom</string>
+    <string name="expand_annotation_to_agree_or_disagree">Kembangkan catatan untuk setuju atau tidak setuju</string>
+    <string name="delete_attribute_value">Hapus nilai atribut</string>
+    <string name="open_menu_for_more_options">Buka menu untuk melihat pilihan-pilihan lainnya</string>
+    <string name="change_user_profile_photo">Ubah foto profil pengguna</string>
+    <string name="expand_list">Kembangkan daftar</string>
+    <string name="change_map_layers">Ubah jenis peta (medan vs. satelit)</string>
+    <string name="redo_observation_search">Ulang pencarian pengamatan di area peta ini</string>
+    <string name="view_observations_on_map">Lihat pengamatan di peta</string>
+    <string name="view_observations_on_grid">Lihat pengamatan di grid</string>
+    <string name="clear_text">Hapus teks</string>
+    <string name="observation_has_sounds">Pengamatan memiliki suara</string>
+    <string name="go_to_my_location">Lihat lokasi saya saat ini</string>
+    <string name="change_geoprivacy">Ubah geoprivasi</string>
+    <string name="active_filters">Saringan aktif</string>
+    <string name="message_is_flagged">Pesan ditandai</string>
+    <string name="user_is_muted">Pengguna diredam</string>
+    <string name="cancel_multiple_obs_selection">Batalkan pilihan pengamatan jamak</string>
+    <string name="delete_observations">Hapus pengamatan</string>
+    <string name="comment_count">Jumlah komentar</string>
+    <string name="id_count">Jumlah identifikasi</string>
+    <string name="observation_selected">Pengamatan yang dipilih</string>
+    <string name="share_observation">Bagikan pengamatan</string>
+    <string name="unknown_location">Lokasi tidak diketahui</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Tutup</string>
+    <string name="set_date2">Atur tanggal</string>
+    <string name="project_selected">Proyek yang Dipilih</string>
+    <string name="project_unselected">Proyek yang Tidak Dipilih</string>
+    <string name="show_my_observations">Tunjukkan pengamatan saya</string>
+    <string name="play_pause_sound">Putar atau jeda suara</string>
+    <string name="california_academy_of_sciences_and_national_geographic">Akademi Sains Kalifornia dan National Geographic</string>
+    <string name="view_image">Lihat gambar</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Lolos penilaian</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Setuju untuk meloloskan peniliaian</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Tidak lolos penilaian</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Tidak setuju untuk meloloskan penilaian</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="other">Hapus %1$d pengamatan yang dipilih</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="other">Sinkronkan %1$d pengamatan yang dipilih</item>
+    </plurals>
+    <string name="add_media_evidence">Tambahkan bukti media</string>
+    <string name="remove_identification">Hapus identifikasi</string>
+    <string name="issue_with_updating_photos">Terdapat masalah ketika mengubah foto untuk pengamatan ini yang baru saja diperbaiki. Harap keluar dari akun dan silakan mencoba untuk masuk lagi agar isu ini dapat diselesaikan.</string>
+    <string name="app_version_copied_to_clipboard">Versi aplikasi tersalin ke papan klip</string>
+</resources>
