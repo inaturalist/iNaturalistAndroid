@@ -6445,8 +6445,9 @@ public class INaturalistService extends IntentService {
 
 
         FormBody.Builder requestBodyBuilder = new FormBody.Builder()
-                .add("format", "json")
-                .add("client_id", INaturalistApp.getAppContext().getString(R.string.oauth_client_id));
+                .add("frmat", "json")
+                .add("client_id", INaturalistApp.getAppContext().getString(R.string.oauth_client_id))
+                .add("client_secret", INaturalistApp.getAppContext().getString(R.string.oauth_client_secret));
 
         if (authType == LoginType.FACEBOOK) {
             grantType = "facebook";
@@ -6461,7 +6462,6 @@ public class INaturalistService extends IntentService {
         if (authType == LoginType.OAUTH_PASSWORD) {
             requestBodyBuilder.add("password", oauth2Token);
             requestBodyBuilder.add("username", username);
-            requestBodyBuilder.add("client_secret", INaturalistApp.getAppContext().getString(R.string.oauth_client_secret));
         } else {
             requestBodyBuilder.add("assertion", oauth2Token);
         }
