@@ -1595,17 +1595,19 @@ public class ObservationEditor extends Fragment {
         GalleryCursorAdapter adapter = (GalleryCursorAdapter) mGallery.getAdapter();
         Cursor c = adapter.getCursor();
 
-        c.moveToPosition(0);
+        if (c.getCount() > 0) {
+            c.moveToPosition(0);
 
-        do {
-            ObservationPhoto currentOp = new ObservationPhoto(c);
-            currentOp.position = mOriginalPhotoPositions.get(currentOp._id);
-            ContentValues cv = currentOp.getContentValues();
-            if (currentOp._synced_at != null) {
-                cv.put(ObservationPhoto._SYNCED_AT, currentOp._synced_at.getTime());
-            }
-            getActivity().getContentResolver().update(ObservationPhoto.CONTENT_URI, cv, "_id = ?", new String[] { String.valueOf(currentOp._id) });
-        } while (c.moveToNext());
+            do {
+                ObservationPhoto currentOp = new ObservationPhoto(c);
+                currentOp.position = mOriginalPhotoPositions.get(currentOp._id);
+                ContentValues cv = currentOp.getContentValues();
+                if (currentOp._synced_at != null) {
+                    cv.put(ObservationPhoto._SYNCED_AT, currentOp._synced_at.getTime());
+                }
+                getActivity().getContentResolver().update(ObservationPhoto.CONTENT_URI, cv, "_id = ?", new String[]{String.valueOf(currentOp._id)});
+            } while (c.moveToNext());
+        }
     }
 
 
@@ -4177,12 +4179,14 @@ public class ObservationEditor extends Fragment {
         if (mOriginalPhotoPositions == null) {
             // Save original photo positions
             mOriginalPhotoPositions = new HashMap<>();
-            mImageCursor.moveToFirst();
-            do {
-                ObservationPhoto currentOp = new ObservationPhoto(mImageCursor);
-                mOriginalPhotoPositions.put(currentOp._id, currentOp.position);
-            } while (mImageCursor.moveToNext());
-            mImageCursor.moveToFirst();
+            if (mImageCursor.getCount() > 0) {
+                mImageCursor.moveToFirst();
+                do {
+                    ObservationPhoto currentOp = new ObservationPhoto(mImageCursor);
+                    mOriginalPhotoPositions.put(currentOp._id, currentOp.position);
+                } while (mImageCursor.moveToNext());
+                mImageCursor.moveToFirst();
+            }
         }
 
         if (mImageCursor.getCount() >= MAX_PHOTOS_PER_OBSERVATION) {
