@@ -8,11 +8,12 @@ import android.database.sqlite.SQLiteQuery;
 
 import org.tinylog.Logger;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 public class TrackingCursor extends SQLiteCursor {
-    private static List<TrackingCursor> openCursors = new LinkedList<>();
+    private static List<TrackingCursor> openCursors = Collections.synchronizedList(new LinkedList<>());
     private String[] mSelectionArgs;
     public String query;
 
@@ -20,11 +21,15 @@ public class TrackingCursor extends SQLiteCursor {
                           String editTable, SQLiteQuery query) {
         super(db, driver, editTable, query);
         this.query = query.toString();
-        openCursors.add(this);
+        synchronized (openCursors) {
+            openCursors.add(this);
+        }
     }
 
     public void close() {
-        openCursors.remove(this);
+        synchronized (openCursors) {
+            openCursors.remove(this);
+        }
     }
 
     public void setSelectionArgs(String[] selectionArgs) {
