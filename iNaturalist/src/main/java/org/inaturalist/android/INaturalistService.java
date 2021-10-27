@@ -4414,7 +4414,10 @@ public class INaturalistService extends IntentService {
             }
         };
 
-        List<File> allCacheFiles = new ArrayList<>(Arrays.asList(getFilesDir().listFiles(fileFilter)));
+        List<File> allCacheFiles = new ArrayList<>();
+        if (getFilesDir() != null) {
+            allCacheFiles.addAll(Arrays.asList(getFilesDir().listFiles(fileFilter)));
+        }
         if (getExternalCacheDir() != null) {
             allCacheFiles.addAll(Arrays.asList(getExternalCacheDir().listFiles(fileFilter)));
         }
