@@ -7,6 +7,8 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancelar</string>
     <string name="loading">Carregando...</string>
+    <string name="sync_required">Sincronização necessária</string>
+    <string name="sync_required_message">%1$d observações, %2$d fotos para sincronizar</string>
     <string name="street">Rua</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satélite</string>
@@ -30,6 +32,7 @@
     <string name="settings">Configurações</string>
     <string name="projects">Projetos</string>
     <string name="delete_photo">Excluir foto</string>
+    <string name="menu">Menu</string>
     <string name="my_location">Minha Localização</string>
     <string name="nearby_observations">Observações nas proximidades</string>
     <string name="add">Adicionar</string>
@@ -224,7 +227,9 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-mail</string>
+    <string name="sign_up_with">Cadastrar-se com</string>
     <string name="skip">Pular ›</string>
+    <string name="already_have_account">Já possui uma conta?</string>
     <string name="log_in">Entrar</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Inscrever-se</string>
@@ -347,6 +352,7 @@
     <string name="updating_profile">Atualizando o perfil...</string>
     <string name="there_was_a_problem_updating_profile">Houve um erro ao atualizar o seu perfil!</string>
     <string name="there_was_a_problem_updating_profile_params">Houve um erro ao atualizar o seu perfil: %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[Conectado como <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Atualmente conectado como <b>%1$s</b>]]></string>
     <string name="log_out">Sair</string>
@@ -465,12 +471,14 @@
     <string name="what_did_you_see">O que você viu?</string>
     <string name="suggest_species">Sugerir espécie</string>
     <string name="suggest_species_description">Sugerir espécies com base na semelhança visual às fotos</string>
+    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visualmente Similar</string>
     <string name="visually_similar_seen_nearby">Visualmente Similar / visto nas proximidades</string>
     <string name="seen_nearby">Visto nas proximidades</string>
     <string name="enlarge">Ampliar</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Ver Subcategorias</string>
+    <string name="invalid_photo_extension">Erro ao importar foto(s): É possível importar somente fotos com extensões JPG/JPEG/PNG/HEIC/HEIF</string>
     <string name="taxon_has_no_photos">Este táxon não tem fotos.</string>
     <string name="terrain">Terreno</string>
     <string name="filters">Filtros</string>
@@ -588,6 +596,7 @@
     <string name="leave_comment">Deixe um comentário...</string>
     <string name="swipe">Deslizar</string>
     <string name="swipe_indicator">></string>
+    <string name="select_google_account">Qual conta do Google?</string>
     <string name="potential_disagreement">Possível desacordo</string>
     <string name="do_you_think_this_could_be"><![CDATA[A evidência fornecida é suficiente para confirmar que se trata de <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -760,9 +769,9 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Grécia: iSea apoia iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxemburgo: Museu Nacional de História Natural de Luxembrugo apoia iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[Reino Unido: Rede Nacional de Biodiversidade apoia iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comissão Nacional para a Gestão da Biodiversidade (CONAGEBIO) apoiando Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Conselho Nacional de Áreas Protegidas (CONAP) apoiando iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Suécia: SLU Centro de Informações Sueco apoiando iNaturalist Suécia (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="mark_all_as_viewed">Marcar todos como visto</string>
     <string name="content_hidden">Conteúdo oculto</string>
     <string name="show_hidden_content">Mostrar conteúdo oculto</string>
@@ -776,6 +785,7 @@
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Gravar som</string>
+    <string name="no_recorder_found">Nenhum gravador de som padrão encontrado!</string>
     <string name="couldnt_retrieve_sound">Não foi possível recuperar o som do gravador padrão - tente importar o som</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Escolha o som</string>
@@ -1018,7 +1028,7 @@
     <string name="pretty_sure_subterclass">Estamos bastante seguros de que está nesta subterclasse:</string>
     <string name="pretty_sure_parvorder">Estamos bastante seguros de que está nesta parvordem:</string>
     <string name="pretty_sure_zoosection">Temos certeza de que está nessa ampliação:</string>
-    <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
+    <string name="pretty_sure_zoosubsection">Temos certeza de que está nesta subseção do zoológico:</string>
     <string name="pretty_sure_superfamily">Temos certeza de que está nesta superfamília:</string>
     <string name="pretty_sure_epifamily">Temos certeza de que está nesta epifamília:</string>
     <string name="pretty_sure_family">Temos certeza que está nesta família:</string>
@@ -1039,7 +1049,7 @@
     <string name="pretty_sure_subspecies">Temos certeza de que é esta subespécie:</string>
     <string name="pretty_sure_variety">Temos certeza de que é esta variedade:</string>
     <string name="pretty_sure_form">Estamos bastante seguros de que está nesta forma:</string>
-    <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
+    <string name="pretty_sure_infrahybrid">Temos certeza de que está neste infra-híbrido:</string>
     <string name="remove_date_observed">Remover a data e hora da observação</string>
     <string name="remove_time_observed">Remover hora da observação</string>
     <string name="remove_location">Remover localização</string>
@@ -1116,16 +1126,16 @@
     <string name="change_observation_licenses">Alterar licenças de observação</string>
     <string name="change_photo_licenses">Alterar licenças fotográficas</string>
     <string name="change_sound_licenses">Alterar Licenças de Som</string>
-    <string name="change_licenses_for_observations_confirmation"><![CDATA[Change the licenses of <b>%1$d</b> existing observations to <b>%2$s</b>?]]></string>
-    <string name="change_licenses_for_photos_confirmation"><![CDATA[Change the licenses of existing photos to <b>%1$s</b>?]]></string>
-    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Change the licenses of existing sounds to <b>%1$s</b>?]]></string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[Mudar as licenças de <b>%1$d</b> observações existentes para <b>%2$s</b>?]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[Mudar as licenças das fotos existentes para <b>%1$s</b>?]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Mudar as licenças dos sons existentes para <b>%1$s</b>?]]></string>
     <string name="observation_licenses_updated">Licença de Observação Atualizada</string>
     <string name="photo_licenses_updated">Licenças Fotográficas Atualizadas</string>
     <string name="sound_licenses_updated">Licenças de Som Atualizadas</string>
     <string name="existing_observation_licenses_have_been_updated">Todas as licenças de observação existentes foram alteradas para %1$s.</string>
     <string name="existing_photo_licenses_have_been_updated">Todas as licenças existentes de fotos foram alteradas para %1$s.</string>
     <string name="existing_sound_licenses_have_been_updated">Todas as licenças de som existentes foram alteradas para %1$s.</string>
-    <string name="default_licenses_description"><![CDATA[Licensing your content gives anyone the legal right to use it without asking your permission if they abide by the terms of the license. In addition, iNat includes your Creative Commons-licensed content in regularly-updated archives produced for select partner organizations interested in our data. For example, we include No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC) records in the archive we generate for the <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, an international, inter-governmental organization that compiles and distributes biodiversity information from around the world.]]></string>
+    <string name="default_licenses_description"><![CDATA[Licenciar seu conteúdo concede a qualquer pessoa o direito legal de usá-lo sem pedir sua permissão, caso cumpra os termos da licença. Além disso, o iNat inclui seu conteúdo licenciado como Creative Commons em arquivos atualizados regularmente produzidos para organizações parceiras selecionadas interessadas em nossos dados. Por exemplo, incluímos registros Sem Copyright (CC0), Atribuição (CC BY) e Atribuição-não comercial (CC BY-NC) no arquivo que geramos para o <a href = "https://www.gbif.org/"> Instalação Global de Informações sobre Biodiversidade (GBIF) </a>, uma organização internacional intergovernamental que compila e distribui informações sobre biodiversidade em todo o mundo.]]></string>
     <string name="photo_license">Licença da Foto</string>
     <string name="sound_license">Licença do som</string>
     <string name="edit_photo_license">Editar Licença da Foto</string>
@@ -1149,11 +1159,11 @@
     <string name="license_description_cc_by_nc_sa">Esta licença permite que outros remixem, adaptem e criem obras derivadas sobre a obra original, desde que com fins não comerciais e contanto que atribuam crédito ao autor e licenciem as novas criações sob os mesmos parâmetros. Outros podem fazer o download ou redistribuir a obra da mesma forma que na licença anterior, mas eles também podem traduzir, fazer remixes e elaborar novas histórias com base na obra original. Toda nova obra feita a partir desta deverá ser licenciada com a mesma licença, de modo que qualquer obra derivada, por natureza, não poderá ser usada para fins comerciais.</string>
     <string name="license_description_cc_by_nc_nd">Esta licença é a mais restritiva dentre as nossas seis licenças principais, permitindo redistribuição. Ela é comumente chamada “propaganda grátis” pois permite que outros façam download das obras licenciadas e as compartilhem, contanto que mencionem o autor, mas sem poder modificar a obra de nenhuma forma, nem utilizá-la para fins comerciais.</string>
     <string name="license_description_cc_by_nd">Esta licença permite a redistribuição e o uso para fins comerciais e não comerciais, contanto que a obra seja redistribuída sem modificações e completa, e que os créditos sejam atribuídos ao autor.</string>
-    <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
-    <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
+    <string name="license_description_cc_by_sa">Esta licença permite que outros remixem, adaptem e desenvolvam seu trabalho, mesmo para fins comerciais, contanto que eles creditem a você e licenciem suas novas criações sob os mesmos termos. Esta licença é freqüentemente comparada às licenças de software livre e de código aberto “copyleft”. Todos os novos trabalhos baseados no seu terão a mesma licença, portanto, quaisquer derivados também permitirão o uso comercial. Esta é a licença usada pela Wikipedia e é recomendada para materiais que se beneficiariam com a incorporação de conteúdo da Wikipedia e projetos licenciados de forma semelhante.</string>
+    <string name="license_description_no_license">Você retém todos os direitos autorais sobre o seu conteúdo, exceto os direitos concedidos ao iNaturalist em nossos Termos de Serviço.</string>
     <string name="invalid_photo">Formato de foto não suportado</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
-    <string name="suggestions_based_on">Suggestions based on observations and identifications provided by the iNaturalist community, including %1$s, %2$s, %3$s, and many others.</string>
+    <string name="suggestions_based_on">Sugestões baseadas em observações e identificações fornecidas pela comunidade iNaturalist, incluindo %1$s, %2$s, %3$s e muitos outros.</string>
     <!-- Preference to control what tapping on the action button does on My Observations -->
     <string name="default_observation_action">Ação padrão de observação</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
@@ -1178,6 +1188,7 @@
     <string name="user_is_muted">Usuário silenciado</string>
     <string name="cancel_multiple_obs_selection">Cancelar seleção de múltiplas observações</string>
     <string name="delete_observations">Excluir observações</string>
+    <string name="clear_species_guess">Limpar sugestão de espécies</string>
     <string name="comment_count">Contagem de comentários</string>
     <string name="id_count">Contagem de identificação</string>
     <string name="observation_selected">Observação selecionada</string>
@@ -1199,14 +1210,14 @@
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
     <string name="does_not_pass_assessment">Não aprova a avaliação</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
-    <string name="disagree_assessment_passes">Disagree assessment passes</string>
+    <string name="disagree_assessment_passes">Discordo das aprovações na avaliação</string>
     <plurals name="delete_x_selected_observations">
-        <item quantity="one">Delete %1$d selected observation</item>
-        <item quantity="other">Delete %1$d selected observations</item>
+        <item quantity="one">Deletar %1$d observação selecionada</item>
+        <item quantity="other">Deletar %1$d observações selecionadas</item>
     </plurals>
     <plurals name="sync_x_selected_observations">
-        <item quantity="one">Sync %1$d selected observation</item>
-        <item quantity="other">Sync %1$d selected observations</item>
+        <item quantity="one">Sincronizar %1$d observação selecionada</item>
+        <item quantity="other">Sincronizar %1$d observações selecionadas</item>
     </plurals>
     <string name="add_media_evidence">Adicionar evidência de mídia</string>
     <string name="remove_identification">Remover identificação</string>

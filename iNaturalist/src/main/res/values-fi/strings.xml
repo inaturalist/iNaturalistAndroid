@@ -7,6 +7,8 @@
     <string name="ok">Ok</string>
     <string name="cancel">Peruuta</string>
     <string name="loading">Ladataan...</string>
+    <string name="sync_required">Sync required</string>
+    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
     <string name="street">Katu</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satelliitti</string>
@@ -30,6 +32,7 @@
     <string name="settings">Asetukset</string>
     <string name="projects">Projektit</string>
     <string name="delete_photo">Poista kuva</string>
+    <string name="menu">Menu</string>
     <string name="my_location">Sijaintini</string>
     <string name="nearby_observations">Lähellä olevat havainnot</string>
     <string name="add">Lisää</string>
@@ -224,7 +227,9 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Sähköposti</string>
+    <string name="sign_up_with">Sign Up with</string>
     <string name="skip">Ohita ›</string>
+    <string name="already_have_account">Already have an account?</string>
     <string name="log_in">Kirjaudu sisään</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Rekisteröidy</string>
@@ -352,6 +357,7 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="updating_profile">Päivitetään profiilia...</string>
     <string name="there_was_a_problem_updating_profile">Virhe päivitettäessä profiiliasi!</string>
     <string name="there_was_a_problem_updating_profile_params">Virhe päivitettäessä profiiliasi: %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
     <string name="log_out">Kirjaudu ulos</string>
@@ -470,12 +476,14 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="what_did_you_see">Mitä näit?</string>
     <string name="suggest_species">Ehdota lajia</string>
     <string name="suggest_species_description">Ehdota lajia perustuen visuaaliseen samankaltaisuuteen valokuvissa.</string>
+    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Näyttää samanlaiselta</string>
     <string name="visually_similar_seen_nearby">Näyttää samanlaiselta / nähty lähistöllä</string>
     <string name="seen_nearby">Nähty lähistöllä</string>
     <string name="enlarge">Suurenna</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Näytä alemmat taksonit</string>
+    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
     <string name="taxon_has_no_photos">Tällä taksonilla ei ole kuvia.</string>
     <string name="terrain">Maasto</string>
     <string name="filters">Suodattimet</string>
@@ -593,6 +601,7 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="leave_comment">Jätä kommentti...</string>
     <string name="swipe">Pyyhkäise</string>
     <string name="swipe_indicator">›</string>
+    <string name="select_google_account">Which Google Account?</string>
     <string name="potential_disagreement">Mahdollinen erimielisyys</string>
     <string name="do_you_think_this_could_be"><![CDATA[Onko todisteet riittäviä vahvistamaan, että tämä on <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -786,6 +795,7 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Nauhoita ääntä</string>
+    <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">Ei voitu hakea äänitettä oletustallentimesta - kokeile sen sijasta importoida äänite</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Valitse ääni</string>
@@ -1006,7 +1016,7 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
     <string name="include_suggestions_not_seen_nearby">Anna ehdotuksia myös lajeista, joita ei ole havaittu lähistöllä</string>
-    <string name="only_view_nearby_suggestions">Only view nearby suggestions</string>
+    <string name="only_view_nearby_suggestions">Näytä vain ehdotukset lajeista, jotka on havaittu lähistöllä</string>
     <string name="suggestions_source">Suggestions Source</string>
     <string name="research_grade_observations">Research Grade Observations</string>
     <string name="visually_similar_description">iNaturalist antaa ehdotuksia perustuen kuvaan, vuodenaikaan ja paikkaan.</string>
@@ -1190,6 +1200,7 @@ Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen 
     <string name="user_is_muted">Käyttäjä on mykistetty</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
     <string name="delete_observations">Poista havaintoja</string>
+    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Kommenttien lukumäärä</string>
     <string name="id_count">Tunnistuksien määrä</string>
     <string name="observation_selected">Havainto valittu</string>

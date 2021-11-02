@@ -7,6 +7,8 @@
     <string name="ok">OK</string>
     <string name="cancel">Abbrechen</string>
     <string name="loading">Ladevorgang...</string>
+    <string name="sync_required">Sync erforderlich</string>
+    <string name="sync_required_message">%1$d Beobachtungen, %2$d Fotos zu synchronisieren </string>
     <string name="street">Straße</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satellit</string>
@@ -30,6 +32,7 @@
     <string name="settings">Einstellungen</string>
     <string name="projects">Projekte</string>
     <string name="delete_photo">Bild löschen</string>
+    <string name="menu">Menü</string>
     <string name="my_location">Mein Standort</string>
     <string name="nearby_observations">Beobachtungen in der Nähe</string>
     <string name="add">Hinzufügen</string>
@@ -224,7 +227,9 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-Mail</string>
+    <string name="sign_up_with">Registrieren mit</string>
     <string name="skip">Überspringen ›</string>
+    <string name="already_have_account">Hast du bereits einen Account?</string>
     <string name="log_in">Einloggen</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Registrieren</string>
@@ -347,6 +352,7 @@
     <string name="updating_profile">Profil wird aktualisiert...</string>
     <string name="there_was_a_problem_updating_profile">Es gab ein Problem beim Aktualisieren deines Profils!</string>
     <string name="there_was_a_problem_updating_profile_params">Es gab ein Problem beim Aktualisieren deines Profils: %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[Angemeldet als <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Derzeit angemeldet als <b>%1$s</b>]]></string>
     <string name="log_out">Abmelden</string>
@@ -465,12 +471,14 @@
     <string name="what_did_you_see">Was hast du gefunden?</string>
     <string name="suggest_species">Art vorschlagen</string>
     <string name="suggest_species_description"> Vom Algorithmus eine Art vorschlagen lassen, basierend auf visuellen Vergleichen anderer Fotos </string>
+    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Aussehen ähnlich</string>
     <string name="visually_similar_seen_nearby">Aussehen ähnlich / Gesehen in der Nähe</string>
     <string name="seen_nearby">In der Nähe gesehen</string>
     <string name="enlarge">Vergrößern</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">weitere Taxa anzeigen</string>
+    <string name="invalid_photo_extension">Fehler beim Importieren des/der Fotos: Nur Dateien mit JPG/JPEG/PNG/HEIC/HEIF-Endung können importiert werden</string>
     <string name="taxon_has_no_photos">Von diesem Taxon existiert kein Foto.</string>
     <string name="terrain">Gelände</string>
     <string name="filters">Filter</string>
@@ -564,7 +572,7 @@
     <string name="exact_date">Genaues Datum</string>
     <string name="start">Start</string>
     <string name="end">Ende</string>
-    <string name="months">Monate</string>
+    <string name="months">Monat(e)</string>
     <string name="choose_months">Monat(e) auswählen</string>
     <string name="map_area">Kartengebiet</string>
     <string name="global">Weltweit</string>
@@ -588,6 +596,7 @@
     <string name="leave_comment">Kommentar hinzufügen...</string>
     <string name="swipe">Wischen</string>
     <string name="swipe_indicator">›</string>
+    <string name="select_google_account">Google-Konto auswählen</string>
     <string name="potential_disagreement">Möglicher Widerspruch</string>
     <string name="do_you_think_this_could_be"><![CDATA[Möchtest du der Bestimmung \'<b>%1$s</b>\' widersprechen?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -776,6 +785,7 @@
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Tonaufnahme starten</string>
+    <string name="no_recorder_found">Kein Standard-Tonaufnahmegerät gefunden!</string>
     <string name="couldnt_retrieve_sound">Die Tonaufnahme konnte nicht vom Standardgerät abgerufen werden - versuchen Sie stattdessen, das Geräusch zu importieren.</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Tonaufnahme auswählen</string>
@@ -981,7 +991,7 @@ und unsere <a href="https://www.inaturalist.org/terms">Geschäftsbedingungen</a>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long">d. MMM yyyy</string>
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long_with_time">d. MMMM yyyy um hh:mma</string>
+    <string name="date_long_with_time">d. MMMM yyyy  HH:mm</string>
     <string name="show_common_names">Umgangssprachliche Namen anzeigen</string>
     <string name="show_common_names_description">Deaktiviere diese Option, wenn nur wissenschaftliche Namen angezeigt werden sollen.</string>
     <string name="email_must_look_like_email_address">E-Mail-Adresse muss im richtigen Format angegeben werden</string>
@@ -1183,6 +1193,7 @@ Facility</a> (GBIF) generieren: eine internationale, zwischenstaatliche Organisa
     <string name="user_is_muted">Benutzer ist stummgeschaltet</string>
     <string name="cancel_multiple_obs_selection">Auswahl mehrerer Beobachtungen aufheben</string>
     <string name="delete_observations">Beobachtungen löschen</string>
+    <string name="clear_species_guess">Vermutung zur Art entfernen</string>
     <string name="comment_count">Anzahl der Kommentare</string>
     <string name="id_count">Anzahl an Bestimmungen</string>
     <string name="observation_selected">Beobachtung ausgewählt</string>

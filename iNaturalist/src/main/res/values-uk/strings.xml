@@ -7,6 +7,8 @@
     <string name="ok">Гаразд</string>
     <string name="cancel">Скасувати</string>
     <string name="loading">Завантаження...</string>
+    <string name="sync_required">Sync required</string>
+    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
     <string name="street">Вулиця</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Супутник</string>
@@ -30,6 +32,7 @@
     <string name="settings">Налаштування</string>
     <string name="projects">Проєкти</string>
     <string name="delete_photo">Видалити фото</string>
+    <string name="menu">Menu</string>
     <string name="my_location">Моє розташування</string>
     <string name="nearby_observations">Спостереження поблизу</string>
     <string name="add">Додати</string>
@@ -238,7 +241,9 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Email</string>
+    <string name="sign_up_with">Sign Up with</string>
     <string name="skip">Пропустити  ›</string>
+    <string name="already_have_account">Already have an account?</string>
     <string name="log_in">Увійти</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Зареєструватися</string>
@@ -363,6 +368,7 @@
     <string name="updating_profile">Оновлення профілю...</string>
     <string name="there_was_a_problem_updating_profile">Під час оновлення профілю сталася помилка!</string>
     <string name="there_was_a_problem_updating_profile_params">Під час оновлення профілю сталася помилка: %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Ви увійшли як <b>%1$s</b>]]></string>
     <string name="log_out">Вийти</string>
@@ -485,12 +491,14 @@
     <string name="what_did_you_see">Що ви бачите?</string>
     <string name="suggest_species">Запропонувати вид</string>
     <string name="suggest_species_description">Запропонувати вид на основі схожості з фото.</string>
+    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Візуально схожі</string>
     <string name="visually_similar_seen_nearby">Візуально схожі / Зустрічалися поблизу</string>
     <string name="seen_nearby">Зустрічалися поблизу</string>
     <string name="enlarge">Збільшити</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Показати підцарства</string>
+    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
     <string name="taxon_has_no_photos">Цей таксон немає фотографій.</string>
     <string name="terrain">Ландшафт</string>
     <string name="filters">Фільтри</string>
@@ -608,6 +616,7 @@
     <string name="leave_comment">Залишити коментар...</string>
     <string name="swipe">Гортайте</string>
     <string name="swipe_indicator">›</string>
+    <string name="select_google_account">Which Google Account?</string>
     <string name="potential_disagreement">Потенційні розбіжності</string>
     <string name="do_you_think_this_could_be"><![CDATA[Чи достатньо доказів, що підтверджують це <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -798,6 +807,7 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Записати звук</string>
+    <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">Не вдалося отримати звук із основного записувача. Натомість спробуйте імпортувати звук.</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Оберіть звук</string>
@@ -1204,6 +1214,7 @@
     <string name="user_is_muted">Користувача заглушено</string>
     <string name="cancel_multiple_obs_selection">Скасувати вибір декількох спостережень</string>
     <string name="delete_observations">Видалити спостереження</string>
+    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Кількість коментарів</string>
     <string name="id_count">Кількість визначень</string>
     <string name="observation_selected">Спостереження вибрано</string>

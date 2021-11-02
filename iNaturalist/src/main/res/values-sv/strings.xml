@@ -7,6 +7,8 @@
     <string name="ok">OK</string>
     <string name="cancel">Avbryt</string>
     <string name="loading">Laddar…...</string>
+    <string name="sync_required">Synkning krävs</string>
+    <string name="sync_required_message">%1$d fynd, %2$d bilder att synka</string>
     <string name="street">Gatuadress</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satellit</string>
@@ -30,6 +32,7 @@
     <string name="settings">Inställningar</string>
     <string name="projects">Projekt</string>
     <string name="delete_photo">Radera foto</string>
+    <string name="menu">Meny</string>
     <string name="my_location">Min plats</string>
     <string name="nearby_observations">Närliggande fynd</string>
     <string name="add">Lägg till</string>
@@ -224,7 +227,9 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-post</string>
+    <string name="sign_up_with">Registrera dig med</string>
     <string name="skip">Hoppa över ›</string>
+    <string name="already_have_account">Har du redan ett konto?</string>
     <string name="log_in">Logga in</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Gå med</string>
@@ -347,6 +352,7 @@
     <string name="updating_profile">Uppdaterar profil...</string>
     <string name="there_was_a_problem_updating_profile">Ett problem uppstod när din profil uppdaterades!</string>
     <string name="there_was_a_problem_updating_profile_params">Ett problem uppstod när din profil uppdaterades: %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[Inloggad som <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[För närvarande inloggad som <b>%1$s</b>]]></string>
     <string name="log_out">Logga ut</string>
@@ -465,12 +471,14 @@
     <string name="what_did_you_see">Vad såg du?</string>
     <string name="suggest_species">Föreslå arter</string>
     <string name="suggest_species_description">Föreslå arter baserat på visuell likhet med bilder.</string>
+    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visuellt liknande</string>
     <string name="visually_similar_seen_nearby">Visuellt liknande / Sett i närheten</string>
     <string name="seen_nearby">Sett i närheten</string>
     <string name="enlarge">Förstora</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Visa underliggande</string>
+    <string name="invalid_photo_extension">Fel vid bildimport: Kan endast importera bilder med ändelsen JPG/JPEG/PNG/HEIC/HEIF</string>
     <string name="taxon_has_no_photos">Detta taxon har inga bilder.</string>
     <string name="terrain">Terräng</string>
     <string name="filters">Filter</string>
@@ -588,6 +596,7 @@
     <string name="leave_comment">Lämna en kommentar...</string>
     <string name="swipe">Svep</string>
     <string name="swipe_indicator">›</string>
+    <string name="select_google_account">Vilket Google-konto?</string>
     <string name="potential_disagreement">Möjlig oenighet</string>
     <string name="do_you_think_this_could_be"><![CDATA[Finns det tillräckligt med bevis för att bekräfta att detta är <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -776,6 +785,7 @@
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Spela in ljud</string>
+    <string name="no_recorder_found">Ingen standardljudinspelare hittades!</string>
     <string name="couldnt_retrieve_sound">Kunde inte hämta ljud från standardinspelaren - försök importera ljudet istället</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Välj ljud</string>
@@ -1178,6 +1188,7 @@
     <string name="user_is_muted">Användare tystad</string>
     <string name="cancel_multiple_obs_selection">Avbryt val av flera fynd</string>
     <string name="delete_observations">Radera fynd</string>
+    <string name="clear_species_guess">Rensa artgissning</string>
     <string name="comment_count">Antal kommentarer</string>
     <string name="id_count">Antal bestämningar</string>
     <string name="observation_selected">Fynd markerat</string>

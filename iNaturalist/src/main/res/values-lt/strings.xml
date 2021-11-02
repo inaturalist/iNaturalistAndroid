@@ -7,6 +7,8 @@
     <string name="ok">Gerai</string>
     <string name="cancel">Atšaukti</string>
     <string name="loading">Kraunama...</string>
+    <string name="sync_required">Sync required</string>
+    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
     <string name="street">Gatvė</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Palydovas</string>
@@ -30,6 +32,7 @@
     <string name="settings">Nustatymai</string>
     <string name="projects">Projektai</string>
     <string name="delete_photo">Ištrinti nuotrauką</string>
+    <string name="menu">Menu</string>
     <string name="my_location">Mano vieta</string>
     <string name="nearby_observations">Stebėjimai netoliese</string>
     <string name="add">Pridėti</string>
@@ -226,7 +229,9 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">El. paštas</string>
+    <string name="sign_up_with">Sign Up with</string>
     <string name="skip">Praleisti  ›</string>
+    <string name="already_have_account">Already have an account?</string>
     <string name="log_in">Prisijungti</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Registruotis</string>
@@ -351,6 +356,7 @@
     <string name="updating_profile">Naujinamas profilis...</string>
     <string name="there_was_a_problem_updating_profile">Iškilo problema naujinant profilį!</string>
     <string name="there_was_a_problem_updating_profile_params">Iškilo problema naujinant profilį! %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Šiuo metu prisijungę kaip <b>%1$s</b>]]></string>
     <string name="log_out">Atsijungti</string>
@@ -473,12 +479,14 @@
     <string name="what_did_you_see">Ką pamatėte?</string>
     <string name="suggest_species">Siūlyti rūšį</string>
     <string name="suggest_species_description">Siūlyti rūšį pagal vizualinius panašumus nuotraukose.</string>
+    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Vizualiai panašus</string>
     <string name="visually_similar_seen_nearby">Vizualiai panašus / pastebėtas netoliese</string>
     <string name="seen_nearby">Pastebėtas netoliese</string>
     <string name="enlarge">Padidinti</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Žiūrėti žemesnius taksonus</string>
+    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
     <string name="taxon_has_no_photos">Šis taksonas neturi nuotraukų.</string>
     <string name="terrain">Reljefas</string>
     <string name="filters">Filtrai</string>
@@ -596,6 +604,7 @@
     <string name="leave_comment">Palikti komentarą...</string>
     <string name="swipe">Braukti</string>
     <string name="swipe_indicator">›</string>
+    <string name="select_google_account">Which Google Account?</string>
     <string name="potential_disagreement">Galimas nesutarimas</string>
     <string name="do_you_think_this_could_be"><![CDATA[Ar yra pateikta pakankamai įrodymų, kad čia yra <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -786,6 +795,7 @@
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Įrašyti garsą</string>
+    <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">Nepavyko gauti garso iš numatytojo įrašytuvo - pabandykite importuoti garsą</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Pasirinkti garsą</string>
@@ -1191,6 +1201,7 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <string name="user_is_muted">Naudotojas yra nutildytas</string>
     <string name="cancel_multiple_obs_selection">Atšaukti kelių stebėjimų parinktį</string>
     <string name="delete_observations">Trinti stebėjimus</string>
+    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Komentarų skaičius</string>
     <string name="id_count">Identifikavimo skaičius</string>
     <string name="observation_selected">Stebėjimas parinktas</string>

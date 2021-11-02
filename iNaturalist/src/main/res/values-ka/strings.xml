@@ -7,6 +7,8 @@
     <string name="ok">კარგი</string>
     <string name="cancel">გაუქმება</string>
     <string name="loading">იტვირთება...</string>
+    <string name="sync_required">Sync required</string>
+    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
     <string name="street">ქუჩა</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">სატელიტი</string>
@@ -30,6 +32,7 @@
     <string name="settings">პარამეტრები</string>
     <string name="projects">პროექტები</string>
     <string name="delete_photo">ფოტოს წაშლა</string>
+    <string name="menu">Menu</string>
     <string name="my_location">ჩემი ადგილმდებარეობა</string>
     <string name="nearby_observations">შორიახლო დაკვირვებები</string>
     <string name="add">დამატ.</string>
@@ -224,7 +227,9 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">ელფოსტა</string>
+    <string name="sign_up_with">Sign Up with</string>
     <string name="skip">გამოტოვება  ›</string>
+    <string name="already_have_account">Already have an account?</string>
     <string name="log_in">შესვლა</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">რეგისტრაცია</string>
@@ -347,6 +352,7 @@
     <string name="updating_profile">პროფილის განახლება...</string>
     <string name="there_was_a_problem_updating_profile">თქვენი პროფილის განახლებისას შეცდომა მოხდა!</string>
     <string name="there_was_a_problem_updating_profile_params">თქვენი პროფილის განახლებისას შეცდომა მოხდა: %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
     <string name="log_out">გამოსვლა</string>
@@ -465,12 +471,14 @@
     <string name="what_did_you_see">რა დაინახეთ?</string>
     <string name="suggest_species">Suggest Species</string>
     <string name="suggest_species_description">Suggest species based on visual similarity to photos.</string>
+    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">ვიზუალურად მსგავსი</string>
     <string name="visually_similar_seen_nearby">ვიზუალურად მსგავსი / ნანახია შორიახლო</string>
     <string name="seen_nearby">ნანახია შორიახლო</string>
     <string name="enlarge">გადიდება</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">View Children</string>
+    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
     <string name="taxon_has_no_photos">ამ ტაქსონს არ აქვს ფოტოები.</string>
     <string name="terrain">რელიეფი</string>
     <string name="filters">ფილტრები</string>
@@ -588,6 +596,7 @@
     <string name="leave_comment">დატოვეთ კომენტარი...</string>
     <string name="swipe">გასრიალება</string>
     <string name="swipe_indicator">›</string>
+    <string name="select_google_account">Which Google Account?</string>
     <string name="potential_disagreement">Potential Disagreement</string>
     <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -776,6 +785,7 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Record Sound</string>
+    <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Choose Sound</string>
@@ -1178,6 +1188,7 @@
     <string name="user_is_muted">User is muted</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
     <string name="delete_observations">Delete observations</string>
+    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Comment count</string>
     <string name="id_count">Identification count</string>
     <string name="observation_selected">Observation selected</string>

@@ -7,6 +7,8 @@
     <string name="ok">אישור</string>
     <string name="cancel">ביטול</string>
     <string name="loading">טוען...</string>
+    <string name="sync_required">Sync required</string>
+    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
     <string name="street">רחוב</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">לווין</string>
@@ -30,6 +32,7 @@
     <string name="settings">הגדרות</string>
     <string name="projects">פרויקטים</string>
     <string name="delete_photo">מחיקת תמונה</string>
+    <string name="menu">Menu</string>
     <string name="my_location">המיקום שלי</string>
     <string name="nearby_observations">תצפיות באיזור</string>
     <string name="add">הוספה</string>
@@ -226,7 +229,9 @@
     <string name="facebook">פייסבוק</string>
     <string name="gplus">גוגל</string>
     <string name="email">דוא\"ל</string>
+    <string name="sign_up_with">Sign Up with</string>
     <string name="skip">דלג/י ›</string>
+    <string name="already_have_account">Already have an account?</string>
     <string name="log_in">התחבר/י</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">הירשם/י</string>
@@ -351,6 +356,7 @@
     <string name="updating_profile">עדכון פרופיל...</string>
     <string name="there_was_a_problem_updating_profile">אירעה בעיה בעת עדכון הפרופיל שלך!</string>
     <string name="there_was_a_problem_updating_profile_params">אירעה בעיה בעת עדכון הפרופיל שלך!: %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
     <string name="log_out">יציאה</string>
@@ -473,12 +479,14 @@
     <string name="what_did_you_see">מה ראית?</string>
     <string name="suggest_species">הציעו מינים</string>
     <string name="suggest_species_description">הציעו מינים המבוסס על דמיון חזותי לתמונות.</string>
+    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">דומה חזותית</string>
     <string name="visually_similar_seen_nearby">דומה חזותית / נראה בקרבת מקום</string>
     <string name="seen_nearby">נראה בקרבת מקום</string>
     <string name="enlarge">הגדל</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">הראה ילדים (תת מינים)</string>
+    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
     <string name="taxon_has_no_photos">לזן זה אין תמונות.</string>
     <string name="terrain">שטח</string>
     <string name="filters">מסננים</string>
@@ -596,6 +604,7 @@
     <string name="leave_comment">השאר תגובה...</string>
     <string name="swipe">החלקה</string>
     <string name="swipe_indicator">‹</string>
+    <string name="select_google_account">Which Google Account?</string>
     <string name="potential_disagreement">מחלוקת אפשרית</string>
     <string name="do_you_think_this_could_be"><![CDATA[האם הראיות מספיקות לקבוע שזה <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -786,6 +795,7 @@
     <string name="soundcloud">סאונדקלאוד</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">הקלט קול</string>
+    <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">לא ניתן לאחזר קבצי קול ממהמקליט שמהווה ברירת המחדל - במקום, נסה לייבא את קובץ הקול </string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">בחר צליל</string>
@@ -1190,6 +1200,7 @@
     <string name="user_is_muted">User is muted</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
     <string name="delete_observations">Delete observations</string>
+    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Comment count</string>
     <string name="id_count">Identification count</string>
     <string name="observation_selected">Observation selected</string>
