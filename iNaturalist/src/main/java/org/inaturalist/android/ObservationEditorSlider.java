@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ObservationEditorSlider extends AppCompatActivity {
+    private static final String TAG = "ObservationEditorSlider";
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
 
@@ -127,6 +128,7 @@ public class ObservationEditorSlider extends AppCompatActivity {
                 args.putString(ObservationEditor.OBS_URI, getIntent().getData().toString());
             }
 
+            Logger.tag(TAG).error("getItem: " + position + ": " + args.getString(ObservationEditor.OBS_URI));
             fragment.setArguments(args);
 
             mFragmentsByPositions.put(position, fragment);

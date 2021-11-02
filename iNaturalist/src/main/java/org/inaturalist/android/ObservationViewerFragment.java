@@ -2755,6 +2755,8 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 	    public void onReceive(Context context, Intent intent) {
             Logger.tag(TAG).error("ObservationReceiver - OBSERVATION_RESULT");
 
+            if (getActivity() == null) return;
+
             BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, getActivity());
 
             mLoadingObservation = false;

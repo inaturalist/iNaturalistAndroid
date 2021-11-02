@@ -425,7 +425,7 @@ public class ObservationEditor extends Fragment {
 
         } else if ((savedInstanceState == null) ||
                 ((mUri == null) && (intent != null) && (intent.getData() != null))) {
-            Logger.tag(TAG).error("Insert 1b");
+            Logger.tag(TAG).error("Insert 1b: " + mUri);
 
             // Do some setup based on the action being performed.
             Uri uriInternal = Uri.parse(getArguments().getString(OBS_URI));
@@ -434,6 +434,8 @@ public class ObservationEditor extends Fragment {
                 getActivity().finish();
                 return mRootView;
             }
+            Logger.tag(TAG).error("Insert 1c: " + uriInternal);
+
             mDuplicate = intent.getBooleanExtra(DUPLICATE, false);
 
             switch (ObservationProvider.URI_MATCHER.match(uriInternal)) {
