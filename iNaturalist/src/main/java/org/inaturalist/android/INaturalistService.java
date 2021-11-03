@@ -1795,6 +1795,22 @@ public class INaturalistService extends IntentService {
                 SerializableJSONArray projects = null;
                 if (mCredentials != null) {
                     projects = getJoinedProjects();
+
+                    if (projects != null) {
+                        JSONArray arr = projects.getJSONArray();
+                        for (int i = 0; i < arr.length(); i++) {
+                            JSONObject jsonProject = arr.optJSONObject(i);
+                            try {
+                                jsonProject.put("joined", true);
+                                jsonProject.put("icon_url", jsonProject.optString("icon"));
+                                arr.put(i, jsonProject);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        projects = new SerializableJSONArray(arr);
+                    }
                 }
 
                 Intent reply = new Intent(ACTION_JOINED_PROJECTS_RESULT);
@@ -1812,7 +1828,7 @@ public class INaturalistService extends IntentService {
                     projects = getJoinedProjectsOffline();
                 }
 
-                Logger.tag(TAG).debug("Joined projects offline: " + projects);
+                Logger.tag(TAG).debug("Joined projects offline: " + projects.getJSONArray().toString());
                 Intent reply = new Intent(ACTION_JOINED_PROJECTS_RESULT);
                 reply.putExtra(PROJECTS_RESULT, projects);
                 LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
