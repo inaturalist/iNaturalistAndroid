@@ -7,6 +7,8 @@
     <string name="ok">Ок</string>
     <string name="cancel">Отмена</string>
     <string name="loading">Загрузка...</string>
+    <string name="sync_required">Требуется синхронизация</string>
+    <string name="sync_required_message">%1$d наблюдений, %2$d фото требуют синхронизации</string>
     <string name="street">Улица</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Спутник</string>
@@ -30,6 +32,7 @@
     <string name="settings">Настройки</string>
     <string name="projects">Проекты</string>
     <string name="delete_photo">Удалить фото</string>
+    <string name="menu">Меню</string>
     <string name="my_location">Мое местоположение</string>
     <string name="nearby_observations">Наблюдения рядом</string>
     <string name="add">Добавить</string>
@@ -226,7 +229,9 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Эл. почта</string>
+    <string name="sign_up_with">Войти через</string>
     <string name="skip">Пропустить ›</string>
+    <string name="already_have_account">Уже есть аккаунт?</string>
     <string name="log_in">Войти</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Регистрация</string>
@@ -352,6 +357,7 @@
     <string name="updating_profile">Обновление профиля...</string>
     <string name="there_was_a_problem_updating_profile">Возникла проблема при обновлении вашего профиля!</string>
     <string name="there_was_a_problem_updating_profile_params">Возникла проблема при обновлении вашего профиля: %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[Вы вошли как <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Вы вошли как <b>%1$s</b>]]></string>
     <string name="log_out">Выход</string>
@@ -436,10 +442,10 @@
     </plurals>
     <string name="no_results_found">Результаты не найдены...</string>
     <plurals name="syncing_x_out_of_y_observations">
-        <item quantity="one">Синхронизируется %1$d из%2$d наблюдение</item>
-        <item quantity="few">Синхронизируется %1$d из%2$d наблюдения</item>
-        <item quantity="many">Синхронизируется %1$d из%2$d наблюдений</item>
-        <item quantity="other">Синхронизируется %1$d из%2$d наблюдений</item>
+        <item quantity="one">Синхронизируется %1$d из %2$d наблюдения</item>
+        <item quantity="few">Синхронизация %1$d из %2$d наблюдений...</item>
+        <item quantity="many">Синхронизация %1$d из %2$d наблюдений...</item>
+        <item quantity="other">Синхронизация %1$d из %2$d наблюдений...</item>
     </plurals>
     <string name="deleting_observations">Удаление наблюдений...</string>
     <string name="preparing">Идет подготовка...</string>
@@ -474,12 +480,14 @@
     <string name="what_did_you_see">Что Вы видели?</string>
     <string name="suggest_species">Предложить вид</string>
     <string name="suggest_species_description">Предложить вид на основе сходства с фотографиями.</string>
+    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Внешне похожий</string>
     <string name="visually_similar_seen_nearby">Визуально похожие / встречались поблизости</string>
     <string name="seen_nearby">Встречен поблизости</string>
     <string name="enlarge">Увеличить</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Дочерние таксоны</string>
+    <string name="invalid_photo_extension">Ошибка импорта фото: можно импортировать файлы только с расширениями JPG/JPEG/PNG/HEIC/HEIF</string>
     <string name="taxon_has_no_photos">Для этого таксона фотографии нет</string>
     <string name="terrain">Ландшафт</string>
     <string name="filters">Фильтры</string>
@@ -597,6 +605,7 @@
     <string name="leave_comment">Оставить комментарий...</string>
     <string name="swipe">Жесты</string>
     <string name="swipe_indicator">›</string>
+    <string name="select_google_account">Какой аккаунт Google?</string>
     <string name="potential_disagreement">Потенциальные разногласия</string>
     <string name="do_you_think_this_could_be"><![CDATA[Достаточно ли доказательств, подтверждающих это <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -787,6 +796,7 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Записать звук</string>
+    <string name="no_recorder_found">Не найдено устройство записи звука по умолчанию!</string>
     <string name="couldnt_retrieve_sound">Не удалось получить звук с устройства записи звука по умолчанию - попробуйте вместо этого импортировать звук</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Выберите звук</string>
@@ -1191,6 +1201,7 @@
     <string name="user_is_muted">Пользователь игнорируется</string>
     <string name="cancel_multiple_obs_selection">Отменить выбор нескольких наблюдений</string>
     <string name="delete_observations">Удалить наблюдения</string>
+    <string name="clear_species_guess">Очистить подсказки видов</string>
     <string name="comment_count">Количество комментариев</string>
     <string name="id_count">Число идентификаций</string>
     <string name="observation_selected">Наблюдение выбрано</string>

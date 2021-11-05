@@ -7,6 +7,8 @@
     <string name="ok">OK</string>
     <string name="cancel">Ofbriechen</string>
     <string name="loading">Lueden...</string>
+    <string name="sync_required">Synchronisatioun neidesch</string>
+    <string name="sync_required_message">%1$d Observatiounen, %2$d Fotoen ze synchroniseiren</string>
     <string name="street">Strooss</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satellit</string>
@@ -30,6 +32,7 @@
     <string name="settings">Astellungen</string>
     <string name="projects">Projeten</string>
     <string name="delete_photo">Foto läschen</string>
+    <string name="menu">Menü</string>
     <string name="my_location">Mäi Standuert</string>
     <string name="nearby_observations">Observatiounen nobäi</string>
     <string name="add">Derbäisetzen</string>
@@ -224,7 +227,9 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-Mail</string>
+    <string name="sign_up_with">Registreiren mat</string>
     <string name="skip">Iwwersprangen  ›</string>
+    <string name="already_have_account">Dir hutt schon een Konto?</string>
     <string name="log_in">Aloggen</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Sech umellen</string>
@@ -347,6 +352,7 @@
     <string name="updating_profile">Profil gëtt aktualiséiert...</string>
     <string name="there_was_a_problem_updating_profile">Et gouf ee Problem beim Aktualiséiere vun Ärem Profil</string>
     <string name="there_was_a_problem_updating_profile_params">Et gouf ee Problem beim Aktualiséiere vun Ärem Profil: %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[Ageloggt als <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
     <string name="log_out">Ausloggen</string>
@@ -465,12 +471,14 @@
     <string name="what_did_you_see">Wat hutt Dir gesinn?</string>
     <string name="suggest_species">Aart suggeréieren</string>
     <string name="suggest_species_description">Suggestioun vun Aarte baséierend ob visueller Ähnlechkeet.</string>
+    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visuell Änlech</string>
     <string name="visually_similar_seen_nearby">Visuell änlech / Nobäi gesinn</string>
     <string name="seen_nearby">Nobäi gesinn</string>
     <string name="enlarge">Vergréisseren</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Kanner uweisen</string>
+    <string name="invalid_photo_extension">Feeler beim Importéiere vu Foto(en): Kann nëmme Fotoen am Format JPG/JPEG/PNG/HEIC/HEIF importéieren</string>
     <string name="taxon_has_no_photos">Dësen Taxon huet keng Fotoen.</string>
     <string name="terrain">Terrain</string>
     <string name="filters">Filteren</string>
@@ -588,6 +596,7 @@
     <string name="leave_comment">Kommentar hannerloossen...</string>
     <string name="swipe">Wëschen</string>
     <string name="swipe_indicator">›</string>
+    <string name="select_google_account">Wéi een Google-Konto?</string>
     <string name="potential_disagreement">Potentiellen Desaccord</string>
     <string name="do_you_think_this_could_be"><![CDATA[Ass genuch Evidenz do dass dëst  <b>%1$s</b> ass?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -776,6 +785,7 @@
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Geräisch ophuelen</string>
+    <string name="no_recorder_found">Kee standard Sound-Recorder fonnt!</string>
     <string name="couldnt_retrieve_sound">Konnt keen Sound vum standard Recorder kreien - probéiert den Sound z\'importéieren</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Sound wielen</string>
@@ -1178,6 +1188,7 @@
     <string name="user_is_muted">User is muted</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
     <string name="delete_observations">Delete observations</string>
+    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Comment count</string>
     <string name="id_count">Identification count</string>
     <string name="observation_selected">Observation selected</string>

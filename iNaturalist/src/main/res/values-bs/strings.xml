@@ -7,6 +7,8 @@
     <string name="ok">OK</string>
     <string name="cancel">Otkaži</string>
     <string name="loading">Učitavanje...</string>
+    <string name="sync_required">Sync required</string>
+    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
     <string name="street">Ulica</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satelit</string>
@@ -30,6 +32,7 @@
     <string name="settings">Postavke</string>
     <string name="projects">Projekti</string>
     <string name="delete_photo">Izbriši fotografiju</string>
+    <string name="menu">Menu</string>
     <string name="my_location">Moja lokacija</string>
     <string name="nearby_observations">Obližnje opservacije</string>
     <string name="add">Dodaj</string>
@@ -225,7 +228,9 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Email</string>
+    <string name="sign_up_with">Sign Up with</string>
     <string name="skip">Preskoči  ›</string>
+    <string name="already_have_account">Already have an account?</string>
     <string name="log_in">Prijavi se</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Registruj se</string>
@@ -349,6 +354,7 @@
     <string name="updating_profile">Ažuriranje profila...</string>
     <string name="there_was_a_problem_updating_profile">Došlo je do problema prilikom ažuriranja vašeg profila!</string>
     <string name="there_was_a_problem_updating_profile_params">Došlo je do problema prilikom ažuriranja vašeg profila!: %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
     <string name="log_out">Odjava</string>
@@ -469,12 +475,14 @@
     <string name="what_did_you_see">Šta ste vidjeli?</string>
     <string name="suggest_species">Predloži vrstu</string>
     <string name="suggest_species_description">Suggest species based on visual similarity to photos.</string>
+    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Vizuelno slični</string>
     <string name="visually_similar_seen_nearby">Vizuelno slični / Viđeno u okolini</string>
     <string name="seen_nearby">Viđeno u okolini</string>
     <string name="enlarge">Povećaj</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Vidi mladunčad</string>
+    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
     <string name="taxon_has_no_photos">This taxon has no photos.</string>
     <string name="terrain">Teren</string>
     <string name="filters">Filteri</string>
@@ -592,6 +600,7 @@
     <string name="leave_comment">Ostavite komentar...</string>
     <string name="swipe">Prevucite</string>
     <string name="swipe_indicator">›</string>
+    <string name="select_google_account">Which Google Account?</string>
     <string name="potential_disagreement">Potencijalno neslaganje</string>
     <string name="do_you_think_this_could_be"><![CDATA[Da li su pruženi dokazi dovoljni da potvrde da je ovo <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -781,6 +790,7 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Snimite zvuk</string>
+    <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Choose Sound</string>
@@ -1184,6 +1194,7 @@
     <string name="user_is_muted">User is muted</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
     <string name="delete_observations">Delete observations</string>
+    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Comment count</string>
     <string name="id_count">Identification count</string>
     <string name="observation_selected">Observation selected</string>

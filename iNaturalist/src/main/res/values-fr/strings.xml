@@ -7,6 +7,8 @@
     <string name="ok">OK</string>
     <string name="cancel">Annuler</string>
     <string name="loading">Chargement...</string>
+    <string name="sync_required">Synchronisation nécessaire</string>
+    <string name="sync_required_message">%1$d observations, %2$d photos à synchroniser</string>
     <string name="street">Rue</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satellite</string>
@@ -30,6 +32,7 @@
     <string name="settings">Paramètres</string>
     <string name="projects">Projets</string>
     <string name="delete_photo">Supprimer la photo</string>
+    <string name="menu">Menu</string>
     <string name="my_location">Ma position</string>
     <string name="nearby_observations">Observations à proximité</string>
     <string name="add">Ajouter</string>
@@ -224,7 +227,9 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Mail</string>
+    <string name="sign_up_with">S\'inscrire avec</string>
     <string name="skip">Ignorer  ›</string>
+    <string name="already_have_account">Avez-vous déjà un compte ?</string>
     <string name="log_in">Se connecter</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">S\'inscrire</string>
@@ -347,6 +352,7 @@
     <string name="updating_profile">Mise à jour du profil...</string>
     <string name="there_was_a_problem_updating_profile">Un problème est survenu durant la mise à jour de votre profil !</string>
     <string name="there_was_a_problem_updating_profile_params">Un problème est survenu durant la mise à jour de votre profil: %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[Connecté en tant que <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Actuellement connecté en tant que <b>%1$s</b>]]></string>
     <string name="log_out">Se déconnecter</string>
@@ -465,12 +471,14 @@
     <string name="what_did_you_see">Qu’avez-vous vu ?</string>
     <string name="suggest_species">Suggérer des espèces</string>
     <string name="suggest_species_description">Suggérer des espèces à partir d\'une comparaison visuelle des photos.</string>
+    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visuellement similaire</string>
     <string name="visually_similar_seen_nearby">Visuellement similaire / Vu à proximité</string>
     <string name="seen_nearby">Vu à proximité</string>
     <string name="enlarge">Agrandir</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Voir les enfants</string>
+    <string name="invalid_photo_extension">Erreur lors de l\'importation : seuls les fichiers photo qui ont l\'extension JPG, JPEG, PNG, HEIC ou HEIF peuvent être importés.</string>
     <string name="taxon_has_no_photos">Ce taxon n’a pas de photos.</string>
     <string name="terrain">Terrain</string>
     <string name="filters">Filtres</string>
@@ -588,6 +596,7 @@
     <string name="leave_comment">Ajouter un commentaire...</string>
     <string name="swipe">Faire glisser</string>
     <string name="swipe_indicator">›</string>
+    <string name="select_google_account">Quel compte Google ?</string>
     <string name="potential_disagreement">Désaccord potentiel</string>
     <string name="do_you_think_this_could_be"><![CDATA[Les données fournies sont-elles suffisantes pour confirmer que c\'est bien <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -776,6 +785,7 @@
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Enregistrer un son</string>
+    <string name="no_recorder_found">Aucun magnétophone par défaut trouvé!</string>
     <string name="couldnt_retrieve_sound">Impossible de récupérer le son de l\'enregistreur par défaut - essayez plutôt d\'importer le son</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Choisir un son</string>
@@ -1188,6 +1198,7 @@ non, tant que le travail demeure inchangé et complet, et que vous êtes mention
     <string name="user_is_muted">Le micro est désactivé.</string>
     <string name="cancel_multiple_obs_selection">Annuler la sélection d\'observations multiples</string>
     <string name="delete_observations">Supprimer les observations</string>
+    <string name="clear_species_guess">Effacer l\'espèce suggérée</string>
     <string name="comment_count">Nombre de commentaires</string>
     <string name="id_count">Nombre d\'identifications</string>
     <string name="observation_selected">Observation sélectionnée</string>

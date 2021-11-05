@@ -7,6 +7,8 @@
     <string name="ok">OK</string>
     <string name="cancel">Annullér</string>
     <string name="loading">Indlæser...</string>
+    <string name="sync_required">Synk kræves</string>
+    <string name="sync_required_message">%1$d observationer, %2$d fotos at synke</string>
     <string name="street">Gade</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satellit</string>
@@ -30,6 +32,7 @@
     <string name="settings">Indstillinger</string>
     <string name="projects">Projekter</string>
     <string name="delete_photo">Slet foto</string>
+    <string name="menu">Menu</string>
     <string name="my_location">Min placering</string>
     <string name="nearby_observations">Nærliggende observationer</string>
     <string name="add">Tilføj</string>
@@ -224,7 +227,9 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-mail</string>
+    <string name="sign_up_with">Tilmeld med</string>
     <string name="skip">Overspring ›</string>
+    <string name="already_have_account">Har allerede en konto?</string>
     <string name="log_in">Log ind</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Tilmeld</string>
@@ -335,7 +340,7 @@
     <string name="couldnt_load_user_details">Kunne ikke indlæse brugerdetaljer: %1$s</string>
     <string name="more_bio"><![CDATA[<b><font color="#ffffff">Mere »</font></b>]]></string>
     <string name="no_location">Ingen placering</string>
-    <string name="add_to_projects">Føj til projekt(-er)</string>
+    <string name="add_to_projects">Føj til projekt(er)</string>
     <string name="are_you_sure_you_want_to_save_obs_without_coords">Sikker på, at du vil gemme observationen uden koordinatoplysninger?</string>
     <string name="users_identification">%1$ss ID: %2$s</string>
     <string name="edit_profile">Redigér profil</string>
@@ -347,6 +352,7 @@
     <string name="updating_profile">Opdaterer profil...</string>
     <string name="there_was_a_problem_updating_profile">Et problem opstod under opdatering af din profil!</string>
     <string name="there_was_a_problem_updating_profile_params">Et problem opstod under opdatering af din profil: %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[Logget ind som <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Pt. logget ind som <b>%1$s</b>]]></string>
     <string name="log_out">Log ud</string>
@@ -376,8 +382,8 @@
     <string name="your_identification">Din ID: %1$s</string>
     <string name="onboarding_species_name">Betegn, hvad du så, hvis du kan, selvom det blot er \"insekt\" eller \"fugl\", eller lad blot dette være tomt. Andre kan hjælpe dig med at identificere det!</string>
     <string name="upload_complete">Upload fuldført!</string>
-    <string name="onboarding_upload_description">Vend snart tilbage for at tjekke identifikationer og kommentarer på din(-e) observation(-er).</string>
-    <string name="importing_photos">Importerer foto(-s)...</string>
+    <string name="onboarding_upload_description">Vend snart tilbage for at tjekke identifikationer og kommentarer på din(e) observation(er).</string>
+    <string name="importing_photos">Importerer foto(s)...</string>
     <string name="multi_select_description">Importér flere fotos vha. et langt-tryk på ét enkelt foto</string>
     <string name="preparing_photo">Klargør foto...</string>
     <string name="recommended_for_you">Anbefalet til dig</string>
@@ -465,12 +471,14 @@
     <string name="what_did_you_see">Hvad så du?</string>
     <string name="suggest_species">Foreslå arter</string>
     <string name="suggest_species_description">Foreslå arter baseret på visuelle ligheder med fotos.</string>
+    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visuelt sammenfald</string>
     <string name="visually_similar_seen_nearby">Visuelt sammenfald/Observeret i nærheden</string>
     <string name="seen_nearby">Observeret i nærheden</string>
     <string name="enlarge">Forstør</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Se underordnede</string>
+    <string name="invalid_photo_extension">Fotoimportfejl: Kun filtyperne JPG/JPEG/PNG/HEIC/HEIF kan importeres</string>
     <string name="taxon_has_no_photos">Denne takson har ingen fotos.</string>
     <string name="terrain">Terræn</string>
     <string name="filters">Filtre</string>
@@ -565,7 +573,7 @@
     <string name="start">Start</string>
     <string name="end">Slut</string>
     <string name="months">Måneder</string>
-    <string name="choose_months">Vælg måned(-er)</string>
+    <string name="choose_months">Vælg måned(er)</string>
     <string name="map_area">Kortområde</string>
     <string name="global">Globalt</string>
     <!-- As in redo search in the current map area -->
@@ -588,6 +596,7 @@
     <string name="leave_comment">Skriv en kommentar...</string>
     <string name="swipe">Stryg</string>
     <string name="swipe_indicator">›</string>
+    <string name="select_google_account">Hvilken Google-konto?</string>
     <string name="potential_disagreement">Potentiel uenighed</string>
     <string name="do_you_think_this_could_be"><![CDATA[Er der dokumentation nok til at bekræfte, at dette er <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -776,13 +785,14 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Optag lyd</string>
+    <string name="no_recorder_found">Ingen standardlydoptager fundet!</string>
     <string name="couldnt_retrieve_sound">Kunne ikke hente lyd fra standardlydoptager - prøv i stedet at importere lyden</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Vælg lyd</string>
     <string name="multi_select_sound_description">Importér multiple lyde med et lang tryk på én enkelt lyd</string>
     <string name="alert_unsupported_audio_type">Beklager, der var et problem med at indlæse lyden fra denne kilde</string>
-    <string name="invalid_audio_extension">Fejl under lydimport: Kan kun importere filer af typerne WAV/MP3/AMR</string>
-    <string name="importing_sounds">Importerer lyd(-e)...</string>
+    <string name="invalid_audio_extension">Lydimportfejl: Kun filtyperne WAV/MP3/AMR kan importeres</string>
+    <string name="importing_sounds">Importerer lyd(e)...</string>
     <string name="observation_sound">Observationslyd</string>
     <string name="deleted_sounds_from_cache_error">Det ser ud til, at du slettede en lyd ved at tømme app-cachen før upload. Du er nødt til igen at føje lyden til din observation fra galleriet. Sørg fremadrettet for at have uploadet alle dine lyde, inden app-cachen tømmes.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
@@ -1182,6 +1192,7 @@ og <a href="https://www.inaturalist.org/terms">Tjenestevilkår</a>.]]></string>
     <string name="user_is_muted">Bruger er tavsgjort</string>
     <string name="cancel_multiple_obs_selection">Annullér flere observationsvalg</string>
     <string name="delete_observations">Slet observationer</string>
+    <string name="clear_species_guess">Ryd gæt på art</string>
     <string name="comment_count">Antal kommentarer</string>
     <string name="id_count">Antal identifikationer</string>
     <string name="observation_selected">Observation valgt</string>

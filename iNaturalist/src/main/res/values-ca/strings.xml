@@ -7,6 +7,8 @@
     <string name="ok">D\'acord</string>
     <string name="cancel">Cancel·la</string>
     <string name="loading">Carregant...</string>
+    <string name="sync_required">Cal sincronitzar</string>
+    <string name="sync_required_message">%1$d observacions, %2$d fotos per sincronitzar</string>
     <string name="street">Carrer</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satèl·lit</string>
@@ -30,6 +32,7 @@
     <string name="settings">Configuració</string>
     <string name="projects">Projectes</string>
     <string name="delete_photo">Esborra foto</string>
+    <string name="menu">Menú</string>
     <string name="my_location">La meva ubicació</string>
     <string name="nearby_observations">Observacions properes</string>
     <string name="add">Afegeix</string>
@@ -224,7 +227,9 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Adreça electrònica</string>
+    <string name="sign_up_with">Inscriure\'s amb</string>
     <string name="skip">Salta ></string>
+    <string name="already_have_account">Ja teniu un compte?</string>
     <string name="log_in">Iniciar sessió</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Registra\'t</string>
@@ -347,6 +352,7 @@
     <string name="updating_profile">Actualitzant el perfil...</string>
     <string name="there_was_a_problem_updating_profile">Hi ha hagut un problema mentre actualitzàvem el vostre perfil!</string>
     <string name="there_was_a_problem_updating_profile_params">Hi ha hagut un problema mentre actualitzàvem el vostre perfil: %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[Sessió iniciada com <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Connectat com a <b>%1$s</b>]]></string>
     <string name="log_out">Surt</string>
@@ -465,12 +471,14 @@
     <string name="what_did_you_see">Què heu vist?</string>
     <string name="suggest_species">Suggerir espècies</string>
     <string name="suggest_species_description">Suggerir altres espècies basats en la seva semblança visual a fotografies.</string>
+    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visualment similar</string>
     <string name="visually_similar_seen_nearby">Visualment similar / vist a prop</string>
     <string name="seen_nearby">Vist a prop</string>
     <string name="enlarge">Augmenta</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Veure fills</string>
+    <string name="invalid_photo_extension">Error d\'importació de foto(s): Només pot importar fitxers de fotografies amb les extensions JPG/JPEG/PNG/HEIC/HEIF</string>
     <string name="taxon_has_no_photos">Aquest tàxon no té fotos.</string>
     <string name="terrain">Terreny</string>
     <string name="filters">Filtres</string>
@@ -588,6 +596,7 @@
     <string name="leave_comment">Desar un comentari...</string>
     <string name="swipe">Llisca</string>
     <string name="swipe_indicator">›</string>
+    <string name="select_google_account">Quin compte de Google?</string>
     <string name="potential_disagreement">Desacord potencial</string>
     <string name="do_you_think_this_could_be"><![CDATA[És l\'evidència que oferiu suficient per confirmar que és <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -776,6 +785,7 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Gravar So</string>
+    <string name="no_recorder_found">No s\'ha trobat gravadora per defecte!</string>
     <string name="couldnt_retrieve_sound">No s\'ha pogut recuperar cap so de la gravadora per defecte - proveu d\'importar el so</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Triar So</string>
@@ -1178,6 +1188,7 @@
     <string name="user_is_muted">L\'usuari ha estat silenciat</string>
     <string name="cancel_multiple_obs_selection">Cancel·lar la selecció múltiple d\'observacions</string>
     <string name="delete_observations">Esborra observacions</string>
+    <string name="clear_species_guess">Neteja els suggeriments d\'espècies</string>
     <string name="comment_count">Nombre de comentaris</string>
     <string name="id_count">Nombre d\'identificacions</string>
     <string name="observation_selected">Observació seleccionada</string>

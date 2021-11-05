@@ -7,6 +7,8 @@
     <string name="ok">OK</string>
     <string name="cancel">Zrušit</string>
     <string name="loading">Načítání...</string>
+    <string name="sync_required">Vyžaduje synchronizaci</string>
+    <string name="sync_required_message">%1$d pozorování, %2$d fotografií k synchronizaci</string>
     <string name="street">Ulice</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satelitní</string>
@@ -30,6 +32,7 @@
     <string name="settings">Nastavení</string>
     <string name="projects">Projekty</string>
     <string name="delete_photo">Odstranit fotografii</string>
+    <string name="menu">Nabídka</string>
     <string name="my_location">Moje poloha</string>
     <string name="nearby_observations">Blízká pozorování</string>
     <string name="add">Přidat</string>
@@ -165,9 +168,9 @@
         <item><![CDATA[<b>Výzkumný stupeň</b> pozorování jsou sdíleny s vědci, kteří pracují na lepším pochopení a ochraně přírody.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
-        <item>Otevřít</item>
-        <item>Skryté</item>
-        <item>Soukromé</item>
+        <item>Otevřená</item>
+        <item>Skrytá</item>
+        <item>Soukromá</item>
     </string-array>
     <string name="alert_sign_out">Jste si jisti, že chcete se odhlásit? Tímto odstraníte všechna vaše pozorování uložená v tomto zařízení. Nebude to však mít vliv na žádná pozorování, která jste již odeslali na iNaturalist.</string>
     <string name="alert_unsupported_media_type">Omlouváme se, ale je zde problém s nahráním fotografie z tohoto zdroje</string>
@@ -226,7 +229,9 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Email</string>
+    <string name="sign_up_with">Registrovat se pomocí</string>
     <string name="skip">Přeskočit  ›</string>
+    <string name="already_have_account">Již máte účet?</string>
     <string name="log_in">Přihlásit se</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Registrovat se</string>
@@ -351,6 +356,7 @@
     <string name="updating_profile">Aktualizace profilu...</string>
     <string name="there_was_a_problem_updating_profile">Při aktualizaci profilu došlo k chybě!</string>
     <string name="there_was_a_problem_updating_profile_params">Při aktualizaci vašeho profilu došlo k chybě: %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[Přihlášen jako <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Aktuálně přihlášen/a jako <b>%1$s</b>]]></string>
     <string name="log_out">Odhlásit se</string>
@@ -473,12 +479,14 @@
     <string name="what_did_you_see">Co jste viděli?</string>
     <string name="suggest_species">Navrhnout druhy</string>
     <string name="suggest_species_description">Navrhovat druhy podle vizuální podobnosti s fotkami.</string>
+    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Vizuálně podobné</string>
     <string name="visually_similar_seen_nearby">Vizuálně podobné / viděno v okolí</string>
     <string name="seen_nearby">Viděno v okolí</string>
     <string name="enlarge">Zvětšit</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Zobrazit děti</string>
+    <string name="invalid_photo_extension">Chyba při importu fotografií: Lze importovat pouze obrázky s příponami JPG/JPEG/PNG/HEIC/HEIF</string>
     <string name="taxon_has_no_photos">Tento taxon nemá žádné fotografie.</string>
     <string name="terrain">Terén</string>
     <string name="filters">Filtry</string>
@@ -596,6 +604,7 @@
     <string name="leave_comment">Přidat komentář...</string>
     <string name="swipe">Táhnout prstem</string>
     <string name="swipe_indicator">›</string>
+    <string name="select_google_account">Který Google účet?</string>
     <string name="potential_disagreement">Potenciální neshoda</string>
     <string name="do_you_think_this_could_be"><![CDATA[Jsou důkazy dostatečně potvrzující, že je to <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -786,6 +795,7 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Nahrát zvuk</string>
+    <string name="no_recorder_found">Nebyl nalezen žádný výchozí zvukový záznam!</string>
     <string name="couldnt_retrieve_sound">Z výchozího rekordéru nelze načíst zvuk - zkuste místo toho importovat zvuk</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Vybrat zvuk</string>
@@ -1196,6 +1206,7 @@ a naše <a href="https://www.inaturalist.org/terms">Smluvní podmínky</a>.]]></
     <string name="user_is_muted">Uživatel je umlčený</string>
     <string name="cancel_multiple_obs_selection">Zrušit výběr více pozorování</string>
     <string name="delete_observations">Odstranit pozorování</string>
+    <string name="clear_species_guess">Vyčistit odhad druhů</string>
     <string name="comment_count">Počet komentářů</string>
     <string name="id_count">Počet identifikací</string>
     <string name="observation_selected">Pozorování vybráno</string>
