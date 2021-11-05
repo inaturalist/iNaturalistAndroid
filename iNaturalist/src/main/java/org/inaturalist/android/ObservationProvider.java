@@ -30,7 +30,7 @@ public class ObservationProvider extends ContentProvider {
     public static final UriMatcher URI_MATCHER;
 
     static {
-        sFactory = new SQLiteCursorFactory(BuildConfig.DEBUG);
+        sFactory = new SQLiteCursorFactory(true);
         URI_MATCHER = new UriMatcher(UriMatcher.NO_MATCH);
         URI_MATCHER.addURI(Observation.AUTHORITY, "observations", Observation.OBSERVATIONS_URI_CODE);
         URI_MATCHER.addURI(Observation.AUTHORITY, "observations/#", Observation.OBSERVATION_ID_URI_CODE);
