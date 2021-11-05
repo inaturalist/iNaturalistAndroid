@@ -7,6 +7,8 @@
     <string name="ok">TAMAM</string>
     <string name="cancel">İptal</string>
     <string name="loading">Yükleniyor...</string>
+    <string name="sync_required">Senkronizasyon gerekli</string>
+    <string name="sync_required_message">Senkronize edilmesi gereken %1$d gözlem ve %2$d fotoğraf</string>
     <string name="street">Sokak</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Uydu</string>
@@ -30,6 +32,7 @@
     <string name="settings">Ayarlar</string>
     <string name="projects">Projeler</string>
     <string name="delete_photo">Fotoğrafı sil</string>
+    <string name="menu">Menü</string>
     <string name="my_location">Konumum</string>
     <string name="nearby_observations">Yakın gözlemler</string>
     <string name="add">Ekle</string>
@@ -224,7 +227,9 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Eposta</string>
+    <string name="sign_up_with">Şununla birlikte kayıt olun</string>
     <string name="skip">Atla ›</string>
+    <string name="already_have_account">Zaten hesabınız var mı?</string>
     <string name="log_in">Oturum Aç</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">ÜYE OL</string>
@@ -347,6 +352,7 @@
     <string name="updating_profile">Profiliniz Güncelleniyor...</string>
     <string name="there_was_a_problem_updating_profile">Profiliniz güncellenirken bir sorunla karşılaştık!</string>
     <string name="there_was_a_problem_updating_profile_params">Profiliniz güncellenirken bir sorunla karşılaştık: %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[<b>%1$s</b> olarak giriş yapıldı]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Şu anki giriş kullanıcısı: <b>%1$s</b>]]></string>
     <string name="log_out">Çıkış yap</string>
@@ -465,12 +471,14 @@
     <string name="what_did_you_see">Ne gördünüz?</string>
     <string name="suggest_species">Tür Öner</string>
     <string name="suggest_species_description">Fotoğraflara benzer görsellere dayalı türler önerin.</string>
+    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Görsel Benzerlik</string>
     <string name="visually_similar_seen_nearby">Görsel Benzerlik / Yakında Görüldü</string>
     <string name="seen_nearby">Yakında Görüldü</string>
     <string name="enlarge">Genişlet</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Alt Sınıf Görünümü</string>
+    <string name="invalid_photo_extension">Fotoğrafları yüklerken bir hata oluştu. Sadece JPG/JPEG/PNG/HEIC/HEIF uzantılı dosyaları yükleyebilirsiniz.</string>
     <string name="taxon_has_no_photos">Bu sınıfın fotoğrafları yok.</string>
     <string name="terrain">Arazi</string>
     <string name="filters">Filtreler</string>
@@ -588,6 +596,7 @@
     <string name="leave_comment">Yorum bırak...</string>
     <string name="swipe">Kaydır</string>
     <string name="swipe_indicator">›</string>
+    <string name="select_google_account">Hangi Google hesabı?</string>
     <string name="potential_disagreement">Olası Anlaşmazlık</string>
     <string name="do_you_think_this_could_be"><![CDATA[Bunun <b>%1$s</b> olduğunu doğrulamak için yeterli kanıt var mı?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -652,7 +661,7 @@
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">Canlı ya da Ölü</string>
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
-    <string name="annotation_name_evidence_of_presence">Evidence of Presence</string>
+    <string name="annotation_name_evidence_of_presence">Organizmanın varlığının kanıtı</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Çiçekli</string>
     <!-- Adjective, having fruit -->
@@ -691,13 +700,13 @@
     <!-- Evidence of Presence value when for bird feathers -->
     <string name="annotation_value_feather">Tüy</string>
     <!-- Evidence of Presence value when for fecal remains -->
-    <string name="annotation_value_scat">Scat</string>
+    <string name="annotation_value_scat">Dışkı</string>
     <!-- Evidence of Presence value for impressions in the ground or snow -->
     <string name="annotation_value_track">İz</string>
     <!-- Evidence of Presence value when for bones -->
     <string name="annotation_value_bone">Kemik</string>
     <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
-    <string name="annotation_value_molt">Molt</string>
+    <string name="annotation_value_molt">Değişen deri veya dökülmüş tüy</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">KATILDIĞIN</string>
     <string name="nearby_projects_all_caps">YAKINDAKİ</string>
@@ -776,6 +785,7 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Ses Kaydet</string>
+    <string name="no_recorder_found">Varsayılan bir ses kaydedici bulunamadı!</string>
     <string name="couldnt_retrieve_sound">Varsayılan kayıt aygıtından ses alınamadı - bunun yerine sesi almayı deneyin</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Ses Seç</string>
@@ -1161,16 +1171,16 @@ Ticari Olmayan Atfetme (CC BY-NC), gibi kayıtların  biyolojik çeşitlilik bil
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Seçenekleri Göster</string>
     <!-- Placeholder text for an observation field value -->
-    <string name="field_value">Field Value</string>
-    <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
-    <string name="delete_attribute_value">Delete attribute value</string>
+    <string name="field_value">Alan Değeri</string>
+    <string name="expand_annotation_to_agree_or_disagree">Katılmak veya katılmamak için dipnotu genişlet</string>
+    <string name="delete_attribute_value">Nitelik değerini sil</string>
     <string name="open_menu_for_more_options">Daha fazla seçenek için menüyü aç</string>
     <string name="change_user_profile_photo">Profil fotoğrafını değiştir</string>
     <string name="expand_list">Listeyi genişlet</string>
     <string name="change_map_layers">Harita katmanını değiştir (harita, uydu)</string>
-    <string name="redo_observation_search">Redo observation search in this map area</string>
+    <string name="redo_observation_search">Bu harita alanında gözlem aramasını yeniden yap</string>
     <string name="view_observations_on_map">Gözlemleri haritada görüntüle</string>
-    <string name="view_observations_on_grid">View observations on grid</string>
+    <string name="view_observations_on_grid">Gözlemleri kare şeklinde göster</string>
     <string name="clear_text">Metni temizle</string>
     <string name="observation_has_sounds">Gözlemde ses bulunuyor</string>
     <string name="go_to_my_location">Geçerli konumuma git</string>
@@ -1180,6 +1190,7 @@ Ticari Olmayan Atfetme (CC BY-NC), gibi kayıtların  biyolojik çeşitlilik bil
     <string name="user_is_muted">Kullanıcı susturuldu</string>
     <string name="cancel_multiple_obs_selection">Çoklu gözlem seçimini iptal et</string>
     <string name="delete_observations">Gözlemleri sil</string>
+    <string name="clear_species_guess">Tür tahminini temizle</string>
     <string name="comment_count">Yorum sayısı</string>
     <string name="id_count">Tanımlama sayısı</string>
     <string name="observation_selected">Seçilen gözlem</string>
@@ -1187,7 +1198,7 @@ Ticari Olmayan Atfetme (CC BY-NC), gibi kayıtların  biyolojik çeşitlilik bil
     <string name="unknown_location">Bilinmeyen konum</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
     <string name="close">Kapat</string>
-    <string name="set_date2">Set date</string>
+    <string name="set_date2">Tarih ayarla</string>
     <string name="project_selected">Seçilen proje</string>
     <string name="project_unselected">Proje Kaldırıldı</string>
     <string name="show_my_observations">Gözlemlerimi göster</string>
@@ -1210,8 +1221,8 @@ Ticari Olmayan Atfetme (CC BY-NC), gibi kayıtların  biyolojik çeşitlilik bil
         <item quantity="one">Seçilen %1$d gözlemi eşitle</item>
         <item quantity="other">Seçilen %1$d gözlemi eşitle</item>
     </plurals>
-    <string name="add_media_evidence">Add media evidence</string>
+    <string name="add_media_evidence">Fotoğraf veya video kanıtı ekleyin</string>
     <string name="remove_identification">Tanımlamayı kaldır</string>
     <string name="issue_with_updating_photos">Kısa süre önce düzeltilen bu gözlemdeki fotoğraflar, güncellenirken bir sorun oluştu. Bu sorunu çözmek için lütfen oturumunuzu kapatın ve tekrar oturum açın.</string>
-    <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
+    <string name="app_version_copied_to_clipboard">Uygulama sürümü panoya kopyalandı</string>
 </resources>

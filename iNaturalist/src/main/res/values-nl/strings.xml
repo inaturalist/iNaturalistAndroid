@@ -7,6 +7,8 @@
     <string name="ok">OK</string>
     <string name="cancel">Annuleer</string>
     <string name="loading">Laden...</string>
+    <string name="sync_required">Sync vereist</string>
+    <string name="sync_required_message">%1$d waarnemingen, %2$d foto\'s nog te synchroniseren</string>
     <string name="street">Straat</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satelliet</string>
@@ -30,6 +32,7 @@
     <string name="settings">Instellingen</string>
     <string name="projects">Projecten</string>
     <string name="delete_photo">Foto verwijderen</string>
+    <string name="menu">Menu</string>
     <string name="my_location">Mijn locatie</string>
     <string name="nearby_observations">Waarnemingen in de buurt</string>
     <string name="add">Toevoegen</string>
@@ -224,7 +227,9 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-mail</string>
+    <string name="sign_up_with">Registreren met</string>
     <string name="skip">Sla over ›</string>
+    <string name="already_have_account">Heb je al een account?</string>
     <string name="log_in">Inloggen</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Registreren</string>
@@ -347,6 +352,7 @@
     <string name="updating_profile">Profiel bijwerken...</string>
     <string name="there_was_a_problem_updating_profile">Er is een probleem opgetreden tijdens het bijwerken van uw profiel!</string>
     <string name="there_was_a_problem_updating_profile_params">Er is een probleem opgetreden tijdens het bijwerken van uw profiel: %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[Ingelogd als <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Momenteel ingelogd als <b>%1$s</b>]]></string>
     <string name="log_out">Uitloggen</string>
@@ -465,12 +471,14 @@
     <string name="what_did_you_see">Wat heb je waargenomen?</string>
     <string name="suggest_species">Soort suggereren</string>
     <string name="suggest_species_description">Stel soorten voor gebaseerd op visuele gelijkenis met andere foto\'s.</string>
+    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Op het oog vergelijkbaar</string>
     <string name="visually_similar_seen_nearby">Visueel vergelijkbaar / gezien in de buurt</string>
     <string name="seen_nearby">In de buurt waargenomen</string>
     <string name="enlarge">Vergroten</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Toon kinderen</string>
+    <string name="invalid_photo_extension">Fout bij importeren foto(s): kan alleen foto\'s importeren met de extensies JPG/JPEG/PNG/HEIC/HEIF </string>
     <string name="taxon_has_no_photos">Dit taxon heeft geen foto\'s.</string>
     <string name="terrain">Terrein</string>
     <string name="filters">Filters</string>
@@ -588,6 +596,7 @@
     <string name="leave_comment">Laat een bericht achter...</string>
     <string name="swipe">Vegen</string>
     <string name="swipe_indicator">›</string>
+    <string name="select_google_account">Welke Google Account?</string>
     <string name="potential_disagreement">Potentiële onenigheid</string>
     <string name="do_you_think_this_could_be"><![CDATA[Is het bewijs genoeg om te bevestigen dit <b>%1$s</b> is?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -776,6 +785,7 @@
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Geluid opnemen</string>
+    <string name="no_recorder_found">Geen standaard geluidsrecorder gevonden!</string>
     <string name="couldnt_retrieve_sound">Kon geluid niet ophalen van standaard recorder - probeer het geluid in plaats daarvan te importeren</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Kies geluid</string>
@@ -1183,6 +1193,7 @@ zonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van d
     <string name="user_is_muted">Gebruiker is gedempt</string>
     <string name="cancel_multiple_obs_selection">Annuleer meerdere waarnemingenselectie</string>
     <string name="delete_observations">Waarnemingen verwijderen</string>
+    <string name="clear_species_guess">Verwijder soortengok</string>
     <string name="comment_count">Aantal reacties</string>
     <string name="id_count">Determinaties aantal</string>
     <string name="observation_selected">Geselecteerde waarneming</string>

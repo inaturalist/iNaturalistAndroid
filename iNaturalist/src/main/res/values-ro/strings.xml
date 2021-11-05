@@ -7,6 +7,8 @@
     <string name="ok">OK</string>
     <string name="cancel">Anulează</string>
     <string name="loading">Se încarcă...</string>
+    <string name="sync_required">Sync required</string>
+    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
     <string name="street">Stradă</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satelit</string>
@@ -30,6 +32,7 @@
     <string name="settings">Setări</string>
     <string name="projects">Proiecte</string>
     <string name="delete_photo">Șterge fotografia</string>
+    <string name="menu">Menu</string>
     <string name="my_location">Locația mea</string>
     <string name="nearby_observations">Observări în apropiere</string>
     <string name="add">Adaugă</string>
@@ -225,7 +228,9 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Email</string>
+    <string name="sign_up_with">Sign Up with</string>
     <string name="skip">Sari ›</string>
+    <string name="already_have_account">Already have an account?</string>
     <string name="log_in">Autentificare</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Înregistrare</string>
@@ -349,6 +354,7 @@
     <string name="updating_profile">Se actualizează profilul...</string>
     <string name="there_was_a_problem_updating_profile">A apărut o problemă în timp ce se actualiza profilul tău!</string>
     <string name="there_was_a_problem_updating_profile_params">A apărut o problemă în timp ce se actualiza profilul tău: %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Autentificat ca  <b>%1$s</b>]]></string>
     <string name="log_out">Deconectare</string>
@@ -469,12 +475,14 @@
     <string name="what_did_you_see">Ce ai văzut?</string>
     <string name="suggest_species">Sugerează Specii</string>
     <string name="suggest_species_description">Sugerează specii bazate pe baza similarității cu celelalte imagini.</string>
+    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Similar vizuale</string>
     <string name="visually_similar_seen_nearby">Similar vizuale / Văzut în apropiere</string>
     <string name="seen_nearby">Văzut în apropiere</string>
     <string name="enlarge">Mărește</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Vezi copii</string>
+    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
     <string name="taxon_has_no_photos">Acest taxon nu are fotografii.</string>
     <string name="terrain">Teren</string>
     <string name="filters">Filtre</string>
@@ -592,6 +600,7 @@
     <string name="leave_comment">Adăugați un comentariu...</string>
     <string name="swipe">Glisați</string>
     <string name="swipe_indicator">›</string>
+    <string name="select_google_account">Which Google Account?</string>
     <string name="potential_disagreement">Posibile dezacorduri</string>
     <string name="do_you_think_this_could_be"><![CDATA[Este dovada furnizată suficientă pentru a confirma că este <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -781,6 +790,7 @@
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Înregistrează sunet</string>
+    <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">Nu am putut recupera sunetul din aparatul de înregistrare prestabilit - încercați în schimb să încărcați sunetul</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Alegeți sunetul</string>
@@ -1184,6 +1194,7 @@
     <string name="user_is_muted">User is muted</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
     <string name="delete_observations">Delete observations</string>
+    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Comment count</string>
     <string name="id_count">Identification count</string>
     <string name="observation_selected">Observation selected</string>

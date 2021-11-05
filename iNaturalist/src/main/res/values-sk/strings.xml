@@ -7,6 +7,8 @@
     <string name="ok">OK</string>
     <string name="cancel">Zrušiť</string>
     <string name="loading">Nahrávam...</string>
+    <string name="sync_required">Sync required</string>
+    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
     <string name="street">Ulica</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satelit</string>
@@ -30,6 +32,7 @@
     <string name="settings">Nastavenia</string>
     <string name="projects">Projekty</string>
     <string name="delete_photo">Odstrániť fotografiu</string>
+    <string name="menu">Menu</string>
     <string name="my_location">Moja poloha</string>
     <string name="nearby_observations">Pozorovania v mojej blízkosti</string>
     <string name="add">Pridať</string>
@@ -112,7 +115,7 @@
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Geosúkromie</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
-    <string name="geoprivacy_with_value">Geoprivacy: %1$s</string>
+    <string name="geoprivacy_with_value">Geosúkromie: %1$s</string>
     <string name="delete_confirmation">Naozaj chcete odstrániť toto pozorovanie?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">Sprievodcovia</string>
@@ -226,7 +229,9 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-mail</string>
+    <string name="sign_up_with">Sign Up with</string>
     <string name="skip">Preskočiť ›</string>
+    <string name="already_have_account">Already have an account?</string>
     <string name="log_in">Prihlásiť sa</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Registrovať sa</string>
@@ -351,6 +356,7 @@
     <string name="updating_profile">Aktualizuje sa profil...</string>
     <string name="there_was_a_problem_updating_profile">Vyskytol sa problém pri aktualizácii profilu!</string>
     <string name="there_was_a_problem_updating_profile_params">Vyskytol sa problém pri aktualizácii profilu: %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Aktuálne prihlásený ako <b>%1$s</b>]]></string>
     <string name="log_out">Odhlásenie</string>
@@ -473,12 +479,14 @@
     <string name="what_did_you_see">Čo ste videli?</string>
     <string name="suggest_species">Návrhy druhov</string>
     <string name="suggest_species_description">Zobrazí návrhy druhov podľa vizuálnej podobnosti s fotografiami.</string>
+    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Vizuálne podobné</string>
     <string name="visually_similar_seen_nearby">Vizuálne podobné / videné blízko</string>
     <string name="seen_nearby">Videné blízko</string>
     <string name="enlarge">Zväčšiť</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Pozri nižšiu úroveň</string>
+    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
     <string name="taxon_has_no_photos">Tento taxón nemá žiadne fotky.</string>
     <string name="terrain">Terén</string>
     <string name="filters">Filtre</string>
@@ -596,6 +604,7 @@
     <string name="leave_comment">Pridajte komentár...</string>
     <string name="swipe">Potiahnite</string>
     <string name="swipe_indicator">›</string>
+    <string name="select_google_account">Which Google Account?</string>
     <string name="potential_disagreement">Potencionálny nesúhlas</string>
     <string name="do_you_think_this_could_be"><![CDATA[Je predložený dôkaz dostatočný na potvrdenie, že toto je <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -617,7 +626,7 @@
     <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="https://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
-    <string name="credits_title">Credits</string>
+    <string name="credits_title">Poďakovania</string>
     <string name="password_changed">Heslo, ktoré aplikácia používa, už nefunguje - zmenili ste heslo na webových stránkach? Zadajte prosím nové</string>
     <string name="just_so_you_know">Len aby ste vedeli...</string>
     <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
@@ -658,7 +667,7 @@
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Pohlavie</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
-    <string name="annotation_name_alive_or_dead">mŕtvy alebo živý</string>
+    <string name="annotation_name_alive_or_dead">Mŕtvy alebo živý</string>
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
     <string name="annotation_name_evidence_of_presence">Dôkaz prítomnosti</string>
     <!-- Adjective, having open flowers -->
@@ -718,10 +727,10 @@
     <string name="description_all_caps">DESCRIPTION</string>
     <string name="quantity_all_caps">QTY</string>
     <plurals name="observation_count_all_caps">
-        <item quantity="one">%1$s OBSERVATION</item>
-        <item quantity="few">%1$s OBSERVATIONS</item>
-        <item quantity="many">%1$s OBSERVATIONS</item>
-        <item quantity="other">%1$s OBSERVATIONS</item>
+        <item quantity="one">%1$s POZOROVANIE</item>
+        <item quantity="few">%1$s POZOROVANIA</item>
+        <item quantity="many">%1$s POZOROVANÍ</item>
+        <item quantity="other">%1$s POZOROVANIA</item>
     </plurals>
     <string name="agree_all_caps">SÚHLAS</string>
     <string name="observations_all_caps">POZOROVANIA</string>
@@ -786,6 +795,7 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Nahrať zvuk</string>
+    <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Vybrať zvuk</string>
@@ -874,7 +884,7 @@
     <string name="no_more_photos_allowed">Observations can only have %1$d photos. To add more you will need to remove some.</string>
     <string name="warning_multiple_photos">If you\'re adding photos of different kinds of organisms to this observation, or the same kind at different places or times, you should remove those photos and add them as separate observations. An observation can only have %1$d photos.</string>
     <string name="choosing_specific_language_warning">Choosing a specific language for your account requires an Internet connection</string>
-    <string name="running_in_background_notfication">Running in the background so we can run without interruption</string>
+    <string name="running_in_background_notfication">Aplikácia beží na pozadí, aby sme mohli pracovať bez prerušenia</string>
     <string name="opt_out_of_community_taxon">Opt out of the Community Taxon</string>
     <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
     <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
@@ -976,9 +986,9 @@
     <string name="i_consent_process_personal_info"><![CDATA[I consent to allow iNaturalist to store and process limited kinds of personal information about me in order to manage my account. <b>Learn More</b>]]></string>
     <string name="about_personal_information">About Personal Information</string>
     <string name="personal_information_notes"><![CDATA[We store personal information like usernames and email addresses in order to manage accounts on this site, and to comply with privacy laws, we need you to check this box to indicate that you consent to this use of personal information. To learn more about what information we collect and how we use it, please see our <a href="https://www.inaturalist.org/privacy">Privacy Policy</a> and our <a href="https://www.inaturalist.org/terms">Terms of Service</a>.]]></string>
-    <string name="i_agree_to_tos_and_privacy"><![CDATA[I agree to the <a href="https://www.inaturalist.org/terms">Terms of Service</a> and <a href="https://www.inaturalist.org/privacy">Privacy Policy</a>, and I have reviewed the <a href="https://www.inaturalist.org/pages/community+guidelines">Community Guidelines</a>.]]></string>
-    <string name="privacy_policy">Privacy Policy</string>
-    <string name="terms_of_service">Terms of Service</string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[Súhlasím s <a href="https://www.inaturalist.org/terms">podmienkami používania</a> a<a href="https://www.inaturalist.org/privacy">ochranou osobných údajov</a> a preskúmal/a som <a href="https://www.inaturalist.org/pages/community+guidelines">pokyny pre komunitu</a>.]]></string>
+    <string name="privacy_policy">Zásady ochrany osobných údajov</string>
+    <string name="terms_of_service">Podmienky používania</string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
     <string name="deleted_user">Deleted User</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
@@ -1080,23 +1090,23 @@
     <string name="no_observations_yet2">Zatiaľ žiadne pozorovania.</string>
     <string name="no_species_yet">No species yet.</string>
     <string name="no_identifications_yet">No identifications yet.</string>
-    <string name="sort_by">Sort By</string>
+    <string name="sort_by">Zoradiť podľa</string>
     <string-array name="explore_order_by_items">
-        <item>Date Added</item>
+        <item>Dátum pridania</item>
         <item>Date Observed</item>
         <item>Date Updated</item>
         <!--<item>Faves</item>-->
         <item>Random</item>
     </string-array>
     <string-array name="explore_order_items">
-        <item>Descending</item>
+        <item>Zostupne</item>
         <item>Ascending</item>
     </string-array>
     <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
     See explore_order_by_items and explore_order_items keys !-->
-    <string name="sorted_by_full">Sorted by %1$s (%2$s)</string>
+    <string name="sorted_by_full">Zoradené podľa %1$s (%2$s)</string>
     <!-- Label for an observation search filter to exclude your own observations -->
-    <string name="hide_my_observations">Hide My Observations</string>
+    <string name="hide_my_observations">Skry moje pozorovania</string>
     <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
     <string name="follow_this_observation">Sledovať toto pozorovanie</string>
     <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
@@ -1184,12 +1194,13 @@
     <string name="clear_text">Clear text</string>
     <string name="observation_has_sounds">Observation has sounds</string>
     <string name="go_to_my_location">Go to my current location</string>
-    <string name="change_geoprivacy">Change geoprivacy</string>
+    <string name="change_geoprivacy">Zmeniť geosúkromie</string>
     <string name="active_filters">Active filters</string>
     <string name="message_is_flagged">Message is flagged</string>
     <string name="user_is_muted">User is muted</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
     <string name="delete_observations">Vymazať pozorovania</string>
+    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Comment count</string>
     <string name="id_count">Identification count</string>
     <string name="observation_selected">Observation selected</string>
@@ -1200,7 +1211,7 @@
     <string name="set_date2">Set date</string>
     <string name="project_selected">Project Selected</string>
     <string name="project_unselected">Project Unselected</string>
-    <string name="show_my_observations">Show my observations</string>
+    <string name="show_my_observations">Zobraz moje pozorovania</string>
     <string name="play_pause_sound">Play or pause sound</string>
     <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
     <string name="view_image">View image</string>
@@ -1213,16 +1224,16 @@
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
     <string name="disagree_assessment_passes">Disagree assessment passes</string>
     <plurals name="delete_x_selected_observations">
-        <item quantity="one">Delete %1$d selected observation</item>
-        <item quantity="few">Delete %1$d selected observations</item>
-        <item quantity="many">Delete %1$d selected observations</item>
-        <item quantity="other">Delete %1$d selected observations</item>
+        <item quantity="one">Vymaž %1$d vybrané pozorovanie </item>
+        <item quantity="few">Vymaž %1$d vybrané pozorovania </item>
+        <item quantity="many">Vymaž %1$d vybraných pozorovaní</item>
+        <item quantity="other">Vymaž %1$d vybrané pozorovania </item>
     </plurals>
     <plurals name="sync_x_selected_observations">
-        <item quantity="one">Sync %1$d selected observation</item>
-        <item quantity="few">Sync %1$d selected observations</item>
-        <item quantity="many">Sync %1$d selected observations</item>
-        <item quantity="other">Sync %1$d selected observations</item>
+        <item quantity="one">Synchronizuj %1$d vybrané pozorovanie </item>
+        <item quantity="few">Synchronizuj %1$d vybrané pozorovania </item>
+        <item quantity="many">Synchronizuj %1$d vybraných pozorovaní</item>
+        <item quantity="other">Synchronizuj %1$d vybrané pozorovania</item>
     </plurals>
     <string name="add_media_evidence">Add media evidence</string>
     <string name="remove_identification">Remove identification</string>

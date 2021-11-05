@@ -7,6 +7,8 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancelar</string>
     <string name="loading">A carregar...</string>
+    <string name="sync_required">Sync required</string>
+    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
     <string name="street">Rua</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satélite</string>
@@ -30,6 +32,7 @@
     <string name="settings">Definições</string>
     <string name="projects">Projetos</string>
     <string name="delete_photo">Eliminar foto</string>
+    <string name="menu">Menu</string>
     <string name="my_location">A minha Localização</string>
     <string name="nearby_observations">Observações nas Proximidades</string>
     <string name="add">Adicionar</string>
@@ -224,7 +227,9 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Email</string>
+    <string name="sign_up_with">Sign Up with</string>
     <string name="skip">Passar  ›</string>
+    <string name="already_have_account">Already have an account?</string>
     <string name="log_in">Iniciar sessão</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Registar-se</string>
@@ -347,6 +352,7 @@
     <string name="updating_profile">A atualizar o Perfil...</string>
     <string name="there_was_a_problem_updating_profile">Houve um problema ao atualizar o seu perfil!</string>
     <string name="there_was_a_problem_updating_profile_params">Houve um problema ao atualizar o seu perfil: %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
     <string name="log_out">Sair</string>
@@ -465,12 +471,14 @@
     <string name="what_did_you_see">O que viu?</string>
     <string name="suggest_species">Sugerir Espécie(s)</string>
     <string name="suggest_species_description">Sugerir espécie(s) com base na semelhança visual com fotos.</string>
+    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Semelhante Visualmente</string>
     <string name="visually_similar_seen_nearby">Semelhante visualmente / Visto nas Proximidades</string>
     <string name="seen_nearby">Visto nas Proximidades</string>
     <string name="enlarge">Ampliar</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Ver Táxons Inferiores</string>
+    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
     <string name="taxon_has_no_photos">Este táxon não tem fotos.</string>
     <string name="terrain">Terreno</string>
     <string name="filters">Filtros de pesquisa</string>
@@ -588,6 +596,7 @@
     <string name="leave_comment">Deixe um comentário...</string>
     <string name="swipe">Deslize</string>
     <string name="swipe_indicator">›</string>
+    <string name="select_google_account">Which Google Account?</string>
     <string name="potential_disagreement">Desacordo Potencial</string>
     <string name="do_you_think_this_could_be"><![CDATA[A prova fornecida é suficiente para confirmar que se trata de <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -778,6 +787,7 @@ nossa comunidade de código aberto]]></string>
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Gravar Som</string>
+    <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">Não foi possível recuperar o som do gravador padrão - tente importar o som em vez disso</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Escolher Som</string>
@@ -1180,6 +1190,7 @@ nossa comunidade de código aberto]]></string>
     <string name="user_is_muted">User is muted</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
     <string name="delete_observations">Delete observations</string>
+    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Comment count</string>
     <string name="id_count">Identification count</string>
     <string name="observation_selected">Observation selected</string>

@@ -582,7 +582,7 @@
     <string name="start">Start</string>
     <string name="end">End</string>
     <string name="months">Months</string>
-    <string name="choose_months">Choose months(s)</string>
+    <string name="choose_months">Choose month(s)</string>
     <string name="map_area">Map Area</string>
     <string name="global">Global</string>
     <!-- As in redo search in the current map area -->
@@ -947,6 +947,7 @@
     <string name="flagging_conversation">Flagging conversation...</string>
     <string name="failed_flagging_conversation">Failed flagging conversation!</string>
     <string name="no_subject">No Subject</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_state_of_matter">State of matter</string>
     <string name="rank_kingdom">Kingdom</string>
     <string name="rank_subkingdom">Subkingdom</string>
