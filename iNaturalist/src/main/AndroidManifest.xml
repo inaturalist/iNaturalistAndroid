@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.inaturalist.android"
     android:installLocation="auto"
-    android:versionCode="517"
-    android:versionName="1.25.2">
+    android:versionCode="518"
+    android:versionName="1.25.3">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
