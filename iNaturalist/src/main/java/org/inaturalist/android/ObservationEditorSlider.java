@@ -106,11 +106,10 @@ public class ObservationEditorSlider extends AppCompatActivity {
             mCursor.moveToFirst();
             do {
                 Long obsId = mCursor.getLong(mCursor.getColumnIndexOrThrow(Observation._ID));
-                if (obsId == initialObsId) {
+                if (obsId.equals(initialObsId)) {
                     break;
                 }
             } while (mCursor.moveToNext());
-
             mLastPosition = mCursor.getPosition();
         }
 
