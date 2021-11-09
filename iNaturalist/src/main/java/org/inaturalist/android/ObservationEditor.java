@@ -739,6 +739,7 @@ public class ObservationEditor extends Fragment {
                 int to = target.getAdapterPosition();
                 adapter.moveItem(from, to);
                 adapter.notifyItemMoved(from, to);
+                updateImagesAndSounds(false);
 
                 return true;
             }
@@ -1731,8 +1732,6 @@ public class ObservationEditor extends Fragment {
         }
         return true;
     }
-
-    @State public String big = new String(new char[1_000_000]);
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -4163,8 +4162,11 @@ public class ObservationEditor extends Fragment {
         	Logger.tag(TAG).error("Couldn't update image orientation for path: " + uri);
         }
     }
-
     protected void updateImagesAndSounds() {
+        updateImagesAndSounds(true);
+    }
+
+    protected void updateImagesAndSounds(boolean createNewAdapter) {
         mImageCursor = getActivity().getContentResolver().query(ObservationPhoto.CONTENT_URI,
                 ObservationPhoto.PROJECTION,
                 "(observation_uuid=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
@@ -4177,7 +4179,11 @@ public class ObservationEditor extends Fragment {
                 ObservationSound.DEFAULT_SORT_ORDER);
         mImageCursor.moveToFirst();
     	mSoundCursor.moveToFirst();
-        mGallery.setAdapter(new GalleryCursorAdapter(getActivity(), mImageCursor, mSoundCursor));
+    	if (createNewAdapter) {
+            mGallery.setAdapter(new GalleryCursorAdapter(getActivity(), mImageCursor, mSoundCursor));
+        } else {
+            ((GalleryCursorAdapter) mGallery.getAdapter()).refreshCursors(mImageCursor, mSoundCursor);
+        }
         if (mOriginalPhotoPositions == null) {
             // Save original photo positions
             mOriginalPhotoPositions = new HashMap<>();
@@ -4249,6 +4255,11 @@ public class ObservationEditor extends Fragment {
 
         public GalleryCursorAdapter(Context c, Cursor cur, Cursor soundCur) {
             mContext = c;
+            mGalleryCursor = cur;
+            mSoundCursor = soundCur;
+        }
+
+        public void refreshCursors(Cursor cur, Cursor soundCur) {
             mGalleryCursor = cur;
             mSoundCursor = soundCur;
         }
