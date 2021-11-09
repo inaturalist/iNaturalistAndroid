@@ -90,7 +90,7 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
 
         @Override
         public void onReceive(Context context, Intent intent) {
-        	SerializableJSONArray serializableArray = (SerializableJSONArray) mApp.getServiceResult(INaturalistService.ACTION_JOINED_PROJECTS_RESULT);
+            SerializableJSONArray serializableArray = (SerializableJSONArray) intent.getSerializableExtra(INaturalistService.PROJECTS_RESULT);
             JSONArray projectList = new JSONArray();
             
             if (serializableArray != null) {
@@ -351,7 +351,7 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
         IntentFilter filter = new IntentFilter(INaturalistService.ACTION_JOINED_PROJECTS_RESULT);
         BaseFragmentActivity.safeRegisterReceiver(mProjectReceiver, filter, this);
 
-        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_JOINED_PROJECTS_ONLINE, null, ProjectSelectorActivity.this, INaturalistService.class);
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_JOINED_PROJECTS, null, ProjectSelectorActivity.this, INaturalistService.class);
         ContextCompat.startForegroundService(this, serviceIntent);
     }
 

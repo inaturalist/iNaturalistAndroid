@@ -3334,24 +3334,9 @@ public class INaturalistService extends IntentService {
 
         JSONArray arr = projects.getJSONArray();
 
-        // Retrieve all currently-joined project IDs
-        List<Integer> projectIds = new ArrayList<Integer>();
-        HashMap<Integer, JSONObject> projectByIds = new HashMap<Integer, JSONObject>();
-        for (int i = 0; i < arr.length(); i++) {
-            try {
-                JSONObject jsonProject = arr.getJSONObject(i);
-                int id = jsonProject.getInt("id");
-                projectIds.add(id);
-                projectByIds.put(id, jsonProject);
-            } catch (JSONException exc) {
-                Logger.tag(TAG).error(exc);
-            }
-        }
-
-
-        // Check which projects were un-joined and remove them locally
+        // Delete all projects first
         try {
-            int count = getContentResolver().delete(Project.CONTENT_URI, "id not in (" + StringUtils.join(projectIds, ',') + ")", null);
+            int count = getContentResolver().delete(Project.CONTENT_URI, null, null);
         } catch (Exception exc) {
             Logger.tag(TAG).error(exc);
             throw new SyncFailedException();
@@ -3359,18 +3344,11 @@ public class INaturalistService extends IntentService {
 
         // Add any newly-joined projects
 
-        for (Map.Entry<Integer, JSONObject> entry : projectByIds.entrySet()) {
-            int id = entry.getKey();
-            JSONObject jsonProject = entry.getValue();
-
-            Cursor c = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = ?", new String[]{String.valueOf(id)}, null);
-
-            if (c.getCount() == 0) {
-                Project project = new Project(new BetterJSONObject(jsonProject));
-                ContentValues cv = project.getContentValues();
-                getContentResolver().insert(Project.CONTENT_URI, cv);
-            }
-            c.close();
+        for (int i = 0; i < arr.length(); i++) {
+            JSONObject jsonProject = arr.optJSONObject(i);
+            Project project = new Project(new BetterJSONObject(jsonProject));
+            ContentValues cv = project.getContentValues();
+            getContentResolver().insert(Project.CONTENT_URI, cv);
         }
 
         return true;
