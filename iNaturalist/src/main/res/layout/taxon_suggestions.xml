@@ -53,7 +53,7 @@
             android:contentDescription="@string/change_the_source_of_the_suggestions" />
 
 
-        <com.viewpagerindicator.CirclePageIndicator
+        <org.inaturalist.android.FixedCirclePageIndicator
             android:id="@+id/photos_indicator"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
