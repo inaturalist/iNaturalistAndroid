@@ -105,6 +105,8 @@ public class ObservationViewerSlider extends AppCompatActivity {
         int position = mPager.getCurrentItem();
         Fragment fragment = mFragmentsByPositions.get(position);
 
+        if (fragment == null) return;
+
         switch (requestCode) {
             // Just pass through these types of activity results
             case ObservationViewerFragment.OBSERVATION_PHOTOS_REQUEST_CODE:
