@@ -747,6 +747,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 mMap = googleMap;
+                if (mHelper == null) mHelper = new ActivityHelper(getActivity());
 
                 setupMap();
             }
@@ -1575,6 +1576,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             // Add the marker
             mMap.clear();
 
+            if (mHelper == null) mHelper = new ActivityHelper(getActivity());
             mHelper.addMapPosition(mMap, mObservation, mObsJson != null ? new BetterJSONObject(mObsJson) : null);
 
             mLocationMapContainer.setVisibility(View.VISIBLE);
