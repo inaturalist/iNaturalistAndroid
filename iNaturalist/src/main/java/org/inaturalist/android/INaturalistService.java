@@ -5362,7 +5362,7 @@ public class INaturalistService extends IntentService {
         if (ensureCredentials() == false) {
             return null;
         }
-        String url = API_HOST + "/users/" + Uri.encode(mLogin) + "/projects";
+        String url = API_HOST + "/users/" + Uri.encode(mLogin) + "/projects?per_page=250";
 
         JSONArray json = get(url, true);
         JSONArray finalJson = new JSONArray();
