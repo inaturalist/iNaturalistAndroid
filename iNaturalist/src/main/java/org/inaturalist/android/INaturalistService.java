@@ -5362,29 +5362,39 @@ public class INaturalistService extends IntentService {
         if (ensureCredentials() == false) {
             return null;
         }
-        String url = API_HOST + "/users/" + Uri.encode(mLogin) + "/projects?per_page=250";
 
-        JSONArray json = get(url, true);
+        int totalResults;
+        int projectsDownloaded = 0;
+        int page = 1;
         JSONArray finalJson = new JSONArray();
 
-        if (json == null) {
-            return null;
-        }
+        do {
+            String url = API_HOST + "/users/" + Uri.encode(mLogin) + "/projects?per_page=100&page=" + page;
+            JSONArray json = get(url, true);
 
-        JSONArray results = json.optJSONObject(0).optJSONArray("results");
-        for (int i = 0; i < results.length(); i++) {
-            try {
-                JSONObject project = results.getJSONObject(i);
-                project.put("joined", true);
-                finalJson.put(project);
-
-                // Save project fields
-                addProjectFields(project.getJSONArray("project_observation_fields"), project.optInt("id"));
-
-            } catch (JSONException e) {
-                Logger.tag(TAG).error(e);
+            if (json == null) {
+                return new SerializableJSONArray(finalJson);
             }
-        }
+
+            totalResults = json.optJSONObject(0).optInt("total_results");
+            JSONArray results = json.optJSONObject(0).optJSONArray("results");
+            projectsDownloaded += results.length();
+            page++;
+
+            for (int i = 0; i < results.length(); i++) {
+                try {
+                    JSONObject project = results.getJSONObject(i);
+                    project.put("joined", true);
+                    finalJson.put(project);
+
+                    // Save project fields
+                    addProjectFields(project.getJSONArray("project_observation_fields"), project.optInt("id"));
+
+                } catch (JSONException e) {
+                    Logger.tag(TAG).error(e);
+                }
+            }
+        } while (projectsDownloaded < totalResults);
 
         return new SerializableJSONArray(finalJson);
     }
