@@ -119,7 +119,7 @@ public class ObservationViewerSlider extends AppCompatActivity {
             case ObservationViewerFragment.REQUEST_CODE_EDIT_OBSERVATION:
                 String obsUri = data != null ? data.getStringExtra(ObservationEditor.OBS_URI) : null;
                 Uri currentObsUri = mPagerAdapter.getObsUriByPosition(mPager.getCurrentItem());
-                boolean shouldRefresh = (obsUri != null && !currentObsUri.toString().equals(obsUri));
+                boolean shouldRefresh = (obsUri != null && currentObsUri != null && !currentObsUri.toString().equals(obsUri));
 
                 if (shouldRefresh) {
                     // Moved back from obs editor into a different observation
@@ -286,6 +286,8 @@ public class ObservationViewerSlider extends AppCompatActivity {
         }
 
         public Uri getObsUriByPosition(int position) {
+            if (mCursor == null) return null;
+
             mCursor.moveToPosition(position);
             Observation obs = new Observation(mCursor);
             return obs.getUri();
@@ -307,8 +309,10 @@ public class ObservationViewerSlider extends AppCompatActivity {
             } else if (!mIsReadOnly) {
                 Uri obsUri = getObsUriByPosition(position);
                 Bundle args = new Bundle();
-                args.putString(ObservationViewerFragment.OBS_URI, obsUri.toString());
-                fragment.setArguments(args);
+                if (obsUri != null) {
+                    args.putString(ObservationViewerFragment.OBS_URI, obsUri.toString());
+                    fragment.setArguments(args);
+                }
 
                 if (position >= mCursor.getCount() - OBS_RESULTS_BUFFER) {
                     // Reaching the end of the result list - download the next page
