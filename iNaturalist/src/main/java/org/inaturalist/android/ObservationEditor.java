@@ -2730,6 +2730,8 @@ public class ObservationEditor extends Fragment {
         (new Handler()).postDelayed(new Runnable() {
             @Override
             public void run() {
+                if (getActivity() == null) return;
+
                 ((EditText) mSpeciesGuessTextView).clearFocus();
                 mDescriptionTextView.clearFocus();
 
