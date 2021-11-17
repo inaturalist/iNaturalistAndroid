@@ -197,7 +197,7 @@ public class ObservationViewerSlider extends AppCompatActivity {
             boolean isExternalId = false;
 
             if (uri != null) {
-                obsId = Integer.valueOf(uri.getLastPathSegment());
+                obsId = Integer.valueOf(uri.getLastPathSegment().replaceAll("[\\D]", ""));
             } else if (obsJson != null) {
                 BetterJSONObject obs = new BetterJSONObject(obsJson);
                 obsId = obs.getInt("id");
