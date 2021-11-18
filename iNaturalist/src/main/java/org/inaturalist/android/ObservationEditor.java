@@ -3225,6 +3225,8 @@ public class ObservationEditor extends Fragment {
     }
 
     private void prepareCapturedPhoto(Uri selectedImageUri) {
+        if (mCapturedPhotoFilePath == null) return;
+
         // Make a copy of the image into the phone's camera folder
         String path = mCapturedPhotoFilePath;
         String copyPath = null;
