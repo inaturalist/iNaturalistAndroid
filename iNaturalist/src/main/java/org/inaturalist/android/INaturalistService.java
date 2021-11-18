@@ -1828,7 +1828,9 @@ public class INaturalistService extends IntentService {
                     projects = getJoinedProjectsOffline();
                 }
 
-                Logger.tag(TAG).debug("Joined projects offline: " + projects.getJSONArray().toString());
+                if (projects != null) {
+                    Logger.tag(TAG).debug("Joined projects offline: " + projects.getJSONArray().toString());
+                }
                 Intent reply = new Intent(ACTION_JOINED_PROJECTS_RESULT);
                 reply.putExtra(PROJECTS_RESULT, projects);
                 LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
