@@ -608,6 +608,10 @@ public class ObservationEditor extends Fragment {
             mSoundsRemoved = new ArrayList<>();
         } else {
             if (mUri == null) {
+                if (getArguments().getString(OBS_URI) == null) {
+                    Logger.tag(TAG).error("ObsUri is null!");
+                    return mRootView;
+                }
                 mUri = Uri.parse(getArguments().getString(OBS_URI));
             }
         }
