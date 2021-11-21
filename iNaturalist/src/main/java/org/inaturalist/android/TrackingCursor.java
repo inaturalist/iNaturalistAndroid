@@ -40,7 +40,7 @@ public class TrackingCursor extends SQLiteCursor {
                 });
 
                 List<TrackingCursor> toRemove = new LinkedList();
-                for (int i = 0; i < Math.min(20, openCursors.size()); i++) {
+                for (int i = 0; i < Math.max(20, openCursors.size() - 100); i++) {
                     Logger.tag("TrackingCursor").debug("Closing Open Cursor: " + openCursors.get(i).dateAdded + ": " + openCursors.get(i).query);
                     openCursors.get(i).close();
                     toRemove.add(openCursors.get(i));
