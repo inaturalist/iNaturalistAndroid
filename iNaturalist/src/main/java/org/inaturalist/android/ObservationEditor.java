@@ -3369,6 +3369,8 @@ public class ObservationEditor extends Fragment {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                if (getActivity() == null) return;
+
                 int position = ((GalleryCursorAdapter)mGallery.getAdapter()).getPhotoCount();
                 boolean errorImporting = false;
                 mPhotoImported = true;
