@@ -2479,12 +2479,13 @@ public class ObservationEditor extends Fragment {
         (new Thread(new Runnable() {
             @Override
             public void run() {
+                if (getActivity() == null) return;
 
                 Geocoder geocoder = new Geocoder(getActivity().getApplicationContext(), Locale.getDefault());
                 try {
                     final StringBuilder location = new StringBuilder();
                     List<Address> addresses = geocoder.getFromLocation(mObservation.latitude, mObservation.longitude, 10);
-                    if((null != addresses) && (addresses.size() > 0)) {
+                    if ((null != addresses) && (addresses.size() > 0) && (getActivity() != null)) {
                         for (Address address : addresses) {
                             if (address.getThoroughfare() == null) {
                                 for (int i = 0; i <= address.getMaxAddressLineIndex(); i++) {
