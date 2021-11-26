@@ -1967,14 +1967,11 @@ public class INaturalistService extends IntentService {
                 JSONObject observationJson = getObservationJson(id, false, getProjects);
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT + id);
+                String jsonString = observationJson != null ? observationJson.toString() : null;
+                Observation observation = observationJson == null ? null : new Observation(new BetterJSONObject(jsonString));
 
-                synchronized (mObservationLock) {
-                    String jsonString = observationJson != null ? observationJson.toString() : null;
-                    Observation observation = observationJson == null ? null : new Observation(new BetterJSONObject(jsonString));
-
-                    mApp.setServiceResult(ACTION_OBSERVATION_RESULT, observation);
-                    mApp.setServiceResult(OBSERVATION_JSON_RESULT, observationJson != null ? jsonString : null);
-                }
+                mApp.setServiceResult(ACTION_OBSERVATION_RESULT + id, observation);
+                mApp.setServiceResult(OBSERVATION_JSON_RESULT + id, observationJson != null ? jsonString : null);
                 reply.putExtra(IS_SHARED_ON_APP, true);
                 LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
 

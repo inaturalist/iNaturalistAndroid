@@ -2601,9 +2601,9 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
             Observation observation;
             if (isSharedOnApp) {
-                observation = (Observation) mApp.getServiceResult(INaturalistService.ACTION_OBSERVATION_RESULT);
+                observation = (Observation) mApp.getServiceResult(INaturalistService.ACTION_OBSERVATION_RESULT + mObservation.id);
             } else {
-                observation = (Observation) intent.getSerializableExtra(INaturalistService.OBSERVATION_RESULT);
+                observation = (Observation) intent.getSerializableExtra(INaturalistService.OBSERVATION_RESULT + mObservation.id);
             }
 
             if (mObservation == null) {
@@ -2691,9 +2691,9 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
             if (mReloadObs || mLoadObsJson) {
                 if (isSharedOnApp) {
-                    mObsJson = (String) mApp.getServiceResult(INaturalistService.OBSERVATION_JSON_RESULT);
+                    mObsJson = (String) mApp.getServiceResult(INaturalistService.OBSERVATION_JSON_RESULT + mObservation.id);
                 } else {
-                    mObsJson = intent.getStringExtra(INaturalistService.OBSERVATION_JSON_RESULT);
+                    mObsJson = intent.getStringExtra(INaturalistService.OBSERVATION_JSON_RESULT + mObservation.id);
                 }
 
                 if (mTaxonJson == null) {
@@ -2766,9 +2766,9 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
             Observation observation;
             if (isSharedOnApp) {
-                observation = (Observation) mApp.getServiceResult(INaturalistService.ACTION_OBSERVATION_RESULT);
+                observation = (Observation) mApp.getServiceResult(INaturalistService.ACTION_OBSERVATION_RESULT + mObservation.id);
             } else {
-                observation = (Observation) intent.getSerializableExtra(INaturalistService.OBSERVATION_RESULT);
+                observation = (Observation) intent.getSerializableExtra(INaturalistService.OBSERVATION_RESULT + mObservation.id);
             }
 
             if (mObservation == null) {
@@ -2792,9 +2792,9 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
             String obsJson;
             if (isSharedOnApp) {
-                obsJson = (String) mApp.getServiceResult(INaturalistService.OBSERVATION_JSON_RESULT);
+                obsJson = (String) mApp.getServiceResult(INaturalistService.OBSERVATION_JSON_RESULT + mObservation.id);
             } else {
-                obsJson = intent.getStringExtra(INaturalistService.OBSERVATION_JSON_RESULT);
+                obsJson = intent.getStringExtra(INaturalistService.OBSERVATION_JSON_RESULT + mObservation.id);
             }
 
             if ((!mReadOnly) && (mObservation != null)) {
