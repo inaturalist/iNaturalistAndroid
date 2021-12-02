@@ -1404,7 +1404,8 @@ public class ObservationEditor extends Fragment {
 
         // Temp file for the photo
         // Huawei phones don't work with getExternalCacheDir (getUriForFile crashes)
-        mCapturedPhotoFile = new File(getActivity().getCacheDir(), UUID.randomUUID().toString() + ".jpeg");
+        // We add an extra extention, so it won't be accidently deleted by the clearOldCachedPhotos mechanism in the mean time
+        mCapturedPhotoFile = new File(getActivity().getCacheDir(), UUID.randomUUID().toString() + "do_not_delete.jpeg");
         mCapturedPhotoFilePath = mCapturedPhotoFile.getAbsolutePath();
         Logger.tag(TAG).debug("mCapturedPhotoFile = " + mCapturedPhotoFilePath);
         mFileUri = FileProvider.getUriForFile(getActivity(), BuildConfig.APPLICATION_ID + ".fileProvider", mCapturedPhotoFile);

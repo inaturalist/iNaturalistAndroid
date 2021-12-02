@@ -4403,6 +4403,7 @@ public class INaturalistService extends IntentService {
                 return (
                         (name.endsWith(".jpeg") || name.endsWith(".jpg") || name.endsWith(".heif") ||
                         name.endsWith(".png") || name.endsWith(".png") || name.endsWith(".webp")) &&
+                        (!name.endsWith(".do_not_delete.jpeg")) &&
                         (nameNoExtension.length() == 36));
             }
         };
