@@ -2768,7 +2768,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             if (isSharedOnApp) {
                 observation = (Observation) mApp.getServiceResult(INaturalistService.ACTION_OBSERVATION_RESULT + mObservation.id);
             } else {
-                observation = (Observation) intent.getSerializableExtra(INaturalistService.OBSERVATION_RESULT + mObservation.id);
+                observation = (Observation) intent.getSerializableExtra(INaturalistService.OBSERVATION_RESULT);
             }
 
             if (mObservation == null) {
