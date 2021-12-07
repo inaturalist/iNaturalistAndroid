@@ -7,8 +7,8 @@
     <string name="ok">Gerai</string>
     <string name="cancel">Atšaukti</string>
     <string name="loading">Kraunama...</string>
-    <string name="sync_required">Sync required</string>
-    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
+    <string name="sync_required">Reikalinga sinchronizacija</string>
+    <string name="sync_required_message">%1$d stebėjimai, %2$d nuotraukos sinchronizuoti</string>
     <string name="street">Gatvė</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Palydovas</string>
@@ -32,7 +32,7 @@
     <string name="settings">Nustatymai</string>
     <string name="projects">Projektai</string>
     <string name="delete_photo">Ištrinti nuotrauką</string>
-    <string name="menu">Menu</string>
+    <string name="menu">Meniu</string>
     <string name="my_location">Mano vieta</string>
     <string name="nearby_observations">Stebėjimai netoliese</string>
     <string name="add">Pridėti</string>
@@ -229,9 +229,9 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">El. paštas</string>
-    <string name="sign_up_with">Sign Up with</string>
+    <string name="sign_up_with">Prisijungti su</string>
     <string name="skip">Praleisti  ›</string>
-    <string name="already_have_account">Already have an account?</string>
+    <string name="already_have_account">Jau turite paskyrą?</string>
     <string name="log_in">Prisijungti</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Registruotis</string>
@@ -604,7 +604,7 @@
     <string name="leave_comment">Palikti komentarą...</string>
     <string name="swipe">Braukti</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Which Google Account?</string>
+    <string name="select_google_account">Kuri Google paskyra?</string>
     <string name="potential_disagreement">Galimas nesutarimas</string>
     <string name="do_you_think_this_could_be"><![CDATA[Ar yra pateikta pakankamai įrodymų, kad čia yra <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -669,7 +669,7 @@
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">Gyvas ar miręs</string>
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
-    <string name="annotation_name_evidence_of_presence">Evidence of Presence</string>
+    <string name="annotation_name_evidence_of_presence">Organizmo buvimo įrodymai</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Žydi</string>
     <!-- Adjective, having fruit -->
@@ -704,17 +704,17 @@
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Negali būti nustatyta</string>
     <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
-    <string name="annotation_value_organism">Organism</string>
+    <string name="annotation_value_organism">organizmas</string>
     <!-- Evidence of Presence value when for bird feathers -->
-    <string name="annotation_value_feather">Feather</string>
+    <string name="annotation_value_feather">Plunksna</string>
     <!-- Evidence of Presence value when for fecal remains -->
-    <string name="annotation_value_scat">Scat</string>
+    <string name="annotation_value_scat">Išmatos</string>
     <!-- Evidence of Presence value for impressions in the ground or snow -->
-    <string name="annotation_value_track">Track</string>
+    <string name="annotation_value_track">Pėdsakai</string>
     <!-- Evidence of Presence value when for bones -->
-    <string name="annotation_value_bone">Bone</string>
+    <string name="annotation_value_bone">Kaulas</string>
     <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
-    <string name="annotation_value_molt">Molt</string>
+    <string name="annotation_value_molt">Išnara</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">PRISIJUNGTA</string>
     <string name="nearby_projects_all_caps">NETOLIESE</string>
@@ -795,7 +795,7 @@
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Įrašyti garsą</string>
-    <string name="no_recorder_found">No default sound recorder found!</string>
+    <string name="no_recorder_found">Neaptiktas numatytas garso įrašytuvas!</string>
     <string name="couldnt_retrieve_sound">Nepavyko gauti garso iš numatytojo įrašytuvo - pabandykite importuoti garsą</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Pasirinkti garsą</string>
@@ -995,7 +995,7 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_short_this_year">MMM d</string>
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short">MM/dd/mm</string>
+    <string name="date_short">MM/dd/yy</string>
     <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
@@ -1142,22 +1142,22 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <string name="change_licenses_for_observations_confirmation"><![CDATA[Change the licenses of <b>%1$d</b> existing observations to <b>%2$s</b>?]]></string>
     <string name="change_licenses_for_photos_confirmation"><![CDATA[Change the licenses of existing photos to <b>%1$s</b>?]]></string>
     <string name="change_licenses_for_sounds_confirmation"><![CDATA[Change the licenses of existing sounds to <b>%1$s</b>?]]></string>
-    <string name="observation_licenses_updated">Observation Licenses Updated</string>
-    <string name="photo_licenses_updated">Photo Licenses Updated</string>
-    <string name="sound_licenses_updated">Sound Licenses Updated</string>
+    <string name="observation_licenses_updated">Stebėjimo licencijos atnaujintos</string>
+    <string name="photo_licenses_updated">Nuotraukos licencijos atnaujintos</string>
+    <string name="sound_licenses_updated">Garso licencijos atnaujintos</string>
     <string name="existing_observation_licenses_have_been_updated">All existing observation licenses have been changed to %1$s.</string>
     <string name="existing_photo_licenses_have_been_updated">All existing photo licenses have been changed to %1$s.</string>
     <string name="existing_sound_licenses_have_been_updated">All existing sound licenses have been changed to %1$s.</string>
     <string name="default_licenses_description"><![CDATA[Licensing your content gives anyone the legal right to use it without asking your permission if they abide by the terms of the license. In addition, iNat includes your Creative Commons-licensed content in regularly-updated archives produced for select partner organizations interested in our data. For example, we include No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC) records in the archive we generate for the <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, an international, inter-governmental organization that compiles and distributes biodiversity information from around the world.]]></string>
     <string name="photo_license">Nuotraukos licencija</string>
-    <string name="sound_license">Sound License</string>
+    <string name="sound_license">Garso licencija</string>
     <string name="edit_photo_license">Redaguoti nuotraukos licenciją</string>
     <string name="observation_license">Stebėjimo licencija</string>
     <string name="edit_observation_license">Redaguoti stebėjimo licenciją</string>
     <string name="about_licenses">Apie licencijas</string>
     <string name="view_license">Žiūrėti licenciją</string>
     <!-- License Names -->
-    <string name="license_name_cc0">Public Domain</string>
+    <string name="license_name_cc0">Viešo naudojimo</string>
     <string name="license_name_cc_by">Attribution</string>
     <string name="license_name_cc_by_nc">Attribution-NonCommercial</string>
     <string name="license_name_cc_by_nc_sa">Attribution-NonCommercial-ShareAlike</string>
@@ -1201,7 +1201,7 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <string name="user_is_muted">Naudotojas yra nutildytas</string>
     <string name="cancel_multiple_obs_selection">Atšaukti kelių stebėjimų parinktį</string>
     <string name="delete_observations">Trinti stebėjimus</string>
-    <string name="clear_species_guess">Clear species guess</string>
+    <string name="clear_species_guess">Trinti rūšies spėjimą</string>
     <string name="comment_count">Komentarų skaičius</string>
     <string name="id_count">Identifikavimo skaičius</string>
     <string name="observation_selected">Stebėjimas parinktas</string>

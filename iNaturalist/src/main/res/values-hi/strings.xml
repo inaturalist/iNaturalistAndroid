@@ -7,8 +7,8 @@
     <string name="ok">ठीक</string>
     <string name="cancel">रद्द करें</string>
     <string name="loading">लोड हो रहा है...</string>
-    <string name="sync_required">Sync required</string>
-    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
+    <string name="sync_required">सिंक की आवश्यकता है</string>
+    <string name="sync_required_message">%1$d अवलोकन, सिंक करने के लिए %2$d फ़ोटो</string>
     <string name="street">सड़क</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">सैटेलाइट</string>

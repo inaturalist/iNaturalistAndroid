@@ -7,8 +7,8 @@
     <string name="ok">კარგი</string>
     <string name="cancel">გაუქმება</string>
     <string name="loading">იტვირთება...</string>
-    <string name="sync_required">Sync required</string>
-    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
+    <string name="sync_required">საჭიროა სინქრონიზაცია</string>
+    <string name="sync_required_message">%1$d დაკვირვება, %2$d სურათი სინქრონიზაციისთვის</string>
     <string name="street">ქუჩა</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">სატელიტი</string>
@@ -18,7 +18,7 @@
     <string name="signed_in">შესული ხართ!</string>
     <string name="please_sign_in">გთხოვთ შედით</string>
     <string name="please_sign_in_description">გთხოვთ, შედით თქვენს iNaturalist-ის ანგარიშზე ან შექმენით ახალი.</string>
-    <string name="please_enable_location_services">Please enable location services in order to find your current location...</string>
+    <string name="please_enable_location_services">გთხოვთ ჩართოთ ლოკაციის სერვისები რათა მოიძებნოს თქვენი ამჟამინდელი ადგილმდებარეობა</string>
     <string name="go_to_settings">პარამეტრების გახსნა</string>
     <string name="photo_not_specified">ფოტო არაა მითითებული</string>
     <string name="set_date">თარიღი</string>
@@ -32,7 +32,7 @@
     <string name="settings">პარამეტრები</string>
     <string name="projects">პროექტები</string>
     <string name="delete_photo">ფოტოს წაშლა</string>
-    <string name="menu">Menu</string>
+    <string name="menu">მენიუ</string>
     <string name="my_location">ჩემი ადგილმდებარეობა</string>
     <string name="nearby_observations">შორიახლო დაკვირვებები</string>
     <string name="add">დამატ.</string>
@@ -60,9 +60,9 @@
     <string name="com_facebook_usersettingsfragment_log_in_button">შესვლა&#8230;</string>
     <string name="com_facebook_usersettingsfragment_logged_in">შესული ხართ</string>
     <string name="com_facebook_usersettingsfragment_not_logged_in">არ ხართ შესული</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d were here</string>
+    <string name="com_facebook_placepicker_subtitle_format">%1$s•%2$,d იყვნენ აქ</string>
     <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d were here</string>
+    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d იყო აქ</string>
     <string name="com_facebook_picker_done_button_text">მზადაა</string>
     <string name="com_facebook_choose_friends">შეარჩიეთ მეგობრები</string>
     <string name="com_facebook_nearby">ახლოს</string>
@@ -82,7 +82,7 @@
     <string name="agree">ეთანხმებით?</string>
     <string name="no_comments">No comments/identifications yet</string>
     <string name="add_comment">კომენტარის დამატება</string>
-    <string name="add_id">Add identification</string>
+    <string name="add_id">დაამატეთ იდენთიფიკაცია</string>
     <string name="remarks">შენიშვნები...</string>
     <string name="enter_taxon_name">სახეობის სახელი</string>
     <string name="no_projects">პროექტები არ მოიძებნა!</string>
@@ -132,7 +132,7 @@
     <string name="choose_location">აირჩიეთ ადგილმდებარეობა</string>
     <string name="done">მზადაა</string>
     <string name="please_sign_in_via_settings">შესული უნდა იყოთ, რომ ნახოთ პროექტები რომლის წევრიც ხართ.</string>
-    <string name="contact_support">Contact Support</string>
+    <string name="contact_support">დაუკავშირდით დახმარების სამსახურს</string>
     <string name="credits">შექმნილი iNaturalist.org-ის მიერ კალიფორნიის მეცნიერებათა აკადემიის მხარდაჭერით</string>
     <string name="leave_project">პროექტის მიტოვება</string>
     <string name="leave_project_confirmation">დარწმუნებული ხართ, რომ გინდათ ამ პროექტის მიტოვება?</string>
@@ -385,19 +385,19 @@
     <string name="onboarding_upload_description">Check back soon for identifications and comments on your observation(s).</string>
     <string name="importing_photos">ფოტო(ები)ს იმპორტი...</string>
     <string name="multi_select_description">Import multiple photos by long-pressing on a single photo</string>
-    <string name="preparing_photo">Preparing photo...</string>
+    <string name="preparing_photo">ფოტო მზადდება...</string>
     <string name="recommended_for_you">რეკომენდებული თქვენთვის</string>
     <string name="missions">მისიები</string>
-    <string name="browse_by_category">Browse By Category</string>
+    <string name="browse_by_category">ნახვა კატეგორიების მიხედვით</string>
     <string name="couldnt_load_recommended_missions">რეკომენდებული მისიები ვერ ჩამოიტვირთა: %1$s</string>
     <string name="plants">მცენარეები</string>
     <string name="mammals">ძუძუმწოვრები</string>
     <string name="insects">მწერები</string>
     <string name="reptiles">რეპტილიები</string>
-    <string name="animals">Animals</string>
+    <string name="animals">ცხოველები</string>
     <string name="fish">თევზი</string>
     <string name="mollusks">მოლუსკები</string>
-    <string name="protozoans">Protozoans</string>
+    <string name="protozoans">პროტოზოები</string>
     <string name="chromista">Kelp, Diatoms, and Allies</string>
     <string name="amphibians">ამფიბიები</string>
     <string name="fungi">სოკოები</string>
@@ -416,7 +416,7 @@
     <string name="ok_got_it">კაი, გასაგებია!</string>
     <string name="could_not_download_observations">Could not download latest observations - Connection problems. Try again later.</string>
     <string name="no_news_yet">სიახლე არ არის. ჯერ!</string>
-    <string name="my_content">My Content</string>
+    <string name="my_content">ჩემი კონტენტი</string>
     <string name="following">Following</string>
     <string name="no_updates_yet">განახლება ჯერ არ არის. ხაზზე იყავით!</string>
     <string name="you_will_only_receive_updates_when_creating">(You will only receive updates once you\'ve created observations)</string>
@@ -433,7 +433,7 @@
         <item quantity="one">%1s new</item>
         <item quantity="other">%1s new</item>
     </plurals>
-    <string name="no_results_found">No Results Found...</string>
+    <string name="no_results_found">შედეგები ვერ მოიძებნა.</string>
     <plurals name="syncing_x_out_of_y_observations">
         <item quantity="one">Syncing %1$d of %2$d observation...</item>
         <item quantity="other">Syncing %1$d of %2$d observations...</item>
@@ -451,7 +451,7 @@
     <string name="conservation_status_vulnerable">მოწყვლადი</string>
     <string name="conservation_status_endangered">გადაშენების პირას</string>
     <string name="conservation_status_critically_endangered">Critically endangered</string>
-    <string name="conservation_status_extinct_in_the_wild">Extinct in the wild</string>
+    <string name="conservation_status_extinct_in_the_wild">გადაშენებულია ველურ ბუნებაში</string>
     <string name="conservation_status_extinct">გადაშენებული</string>
     <string name="map_of_observations">დაკვირვებების რუკა</string>
     <string name="taxonomy">ტაქსონომია</string>
@@ -466,7 +466,7 @@
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
     <!-- Header for a list of suggested taxa -->
-    <string name="top_suggestions">Top suggestions</string>
+    <string name="top_suggestions">მთავარი შემოთავაზებები</string>
     <string name="pretty_sure_rank">We\'re pretty sure it\'s in this %1$s:</string>
     <string name="what_did_you_see">რა დაინახეთ?</string>
     <string name="suggest_species">Suggest Species</string>
@@ -491,7 +491,7 @@
     <string name="location_search_hint">e.g. city, state, park, country...</string>
     <string name="no_taxon">უკაცრავად, ტაქსონი არ მოიძებნა</string>
     <string name="please_select_taxon">Please select a valid taxon from the list (or clear the taxon field).</string>
-    <string name="sorry_no_location">Sorry, location not found</string>
+    <string name="sorry_no_location">ბოდიში, ადგილმდებარეობა არ მოიძებნა</string>
     <string name="location_not_found">The location or place you have searched is not in our database. Please choose a place from the list of options below the location search field or clear the search field.</string>
     <string name="undefined">Undefined</string>
     <string name="street_segment">Street Segment</string>
@@ -526,21 +526,21 @@
     <string name="historical_town">ისტორიული ქალაქი</string>
     <string name="aggregate">Aggregate</string>
     <string name="open_space">Open Space</string>
-    <string name="territory">Territory</string>
+    <string name="territory">ტერიტორია</string>
     <string name="district">უბანი</string>
     <string name="province">პროვინცია</string>
     <string name="municipality">მუნიციპალიტეტი</string>
     <string name="parish">Parish</string>
     <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
     <string name="department_segment">Department Segment</string>
-    <string name="city_building">City Building</string>
+    <string name="city_building">ქალაქის მშენებლობა</string>
     <string name="commune">თემი</string>
     <string name="governorate">Governorate</string>
     <string name="prefecture">Prefecture</string>
     <string name="canton">კანტონი</string>
     <string name="republic">რესპუბლიკა</string>
     <string name="division">განყოფილება</string>
-    <string name="subdivision">Subdivision</string>
+    <string name="subdivision">ქვედანაყოფი</string>
     <!-- https://gadm.org place type, presumably describing an area larger than an individual property but smaller than a neighborhood -->
     <string name="village_block">Village block</string>
     <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
@@ -555,13 +555,13 @@
     <string name="poblacion">Poblacion</string>
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegation</string>
-    <string name="apply_filters">Apply Filters</string>
-    <string name="remove_filters">Remove Filters</string>
+    <string name="apply_filters">ფილტრების გამოყენება</string>
+    <string name="remove_filters">ფილტრების წაშლა</string>
     <string name="reset">ჩამოყრა</string>
     <string name="show_only_my_observations">მხოლოდ ჩემი დაკვირვებები მაჩვენე</string>
     <string name="project">პროექტი</string>
     <string name="user">მომხ.</string>
-    <string name="search_users">Search Users...</string>
+    <string name="search_users">მომხმარებლების ძებნა...</string>
     <string name="quality_grade">Quality Grade</string>
     <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
     <string name="date_observed">Date Observed</string>
@@ -569,7 +569,7 @@
     <string name="any">რაიმე</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
     <string name="to">–</string>
-    <string name="exact_date">Exact Date</string>
+    <string name="exact_date">ზუსტი თარიღი</string>
     <string name="start">დაწყება</string>
     <string name="end">ბოლო</string>
     <string name="months">თვეები</string>
@@ -590,13 +590,13 @@
     <string name="inactive_taxon">არააქტიური ტაქსონი</string>
     <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
     <string name="no_species_found">This is a list of the species you have observed the most.\n\nFYI: There\'s an estimated 9 million species on the planet, so get out there and observe them!</string>
-    <string name="make_an_observation">Make an observation</string>
+    <string name="make_an_observation">დაკვირვების შექმნა</string>
     <string name="no_observations_found_new">Observations are records of your encounters with individual organisms at particular times and locations.</string>
     <string name="discard_comment">ნამდვილად გსურთ ამ კომენტარის გაუქმება?</string>
     <string name="leave_comment">დატოვეთ კომენტარი...</string>
     <string name="swipe">გასრიალება</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Which Google Account?</string>
+    <string name="select_google_account">Google-ის რომელი ანგარიში?</string>
     <string name="potential_disagreement">Potential Disagreement</string>
     <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -624,7 +624,7 @@
     <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
     <string name="see_more_observations">მეტი დაკვირვებების ნახვა</string>
-    <string name="see_more_species">See more species</string>
+    <string name="see_more_species">მეტი სახეობების ნახვა</string>
     <string name="see_more_identifications">See more identifications</string>
     <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
     <string name="description">აღწერა</string>
@@ -634,7 +634,7 @@
     <string name="project_species">სახეობა</string>
     <string name="project_people">ადამიანები</string>
     <!-- People who added identifications to observations in a project -->
-    <string name="project_identifiers">Identifiers</string>
+    <string name="project_identifiers">იდენთიფიკატორები</string>
     <string name="got_it">გასაგებია!</string>
     <string name="view_all">ყველას ნახვა</string>
     <string name="observers">Observers</string>
@@ -643,9 +643,9 @@
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
     <string name="value">მონაცემი</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
-    <string name="disagree">Disagree</string>
+    <string name="disagree">არ ვეთანხმები</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
-    <string name="annotations">Annotations</string>
+    <string name="annotations">ანოტაცია</string>
     <!-- Used when filtering observations with annotations -->
     <string name="with_annotation">With Annotation</string>
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
@@ -704,7 +704,7 @@
     <!-- Evidence of Presence value for impressions in the ground or snow -->
     <string name="annotation_value_track">Track</string>
     <!-- Evidence of Presence value when for bones -->
-    <string name="annotation_value_bone">Bone</string>
+    <string name="annotation_value_bone">ძვალი</string>
     <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Molt</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
@@ -716,7 +716,7 @@
     <string name="my_guides_all_caps">თქვენი</string>
     <string name="nearby_guides_all_caps">შორიახლოს</string>
     <string name="all_guides_all_caps">ყველა</string>
-    <string name="description_all_caps">DESCRIPTION</string>
+    <string name="description_all_caps">აღწერა</string>
     <string name="quantity_all_caps">რაოდ.</string>
     <plurals name="observation_count_all_caps">
         <item quantity="one">%1$s OBSERVATION</item>
@@ -740,7 +740,7 @@
     <string name="location_specified">მდებარეობა მითითებულია</string>
     <string name="has_photos_or_sounds">Has photos or sounds</string>
     <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
-    <string name="date_is_accurate">Date is accurate</string>
+    <string name="date_is_accurate">თარიღი ზუსტია</string>
     <string name="location_is_accurate">მდებარეობა ზუსტია</string>
     <string name="organism_is_wild">Organism is wild</string>
     <string name="evidence_of_organism">Evidence of organism</string>
@@ -750,7 +750,7 @@
     <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
     <string name="seasonality">Seasonality</string>
     <string name="verifiable">Verifiable</string>
-    <string name="no_annotation">No Annotation</string>
+    <string name="no_annotation">ანოტაცია არ აქვს</string>
     <string name="donate_to_inaturalist">Donate to iNaturalist</string>
     <string name="prefers_scientific_name_first">Show scientific names first</string>
     <string name="prefers_scientific_name_first_description">Show scientific names before common names.</string>
@@ -847,9 +847,9 @@
     <string name="your_account_has_been_deleted">Your account has been deleted</string>
     <string name="you_must_enter_username_in_the_form_to_delete_account">You must enter \'%1$s\' in the form to delete your account</string>
     <!-- Second person hint text asking the user to enter their username -->
-    <string name="type_your_username">Type your username</string>
+    <string name="type_your_username">ჩაწერეთ თქვენი მომხმარებლის სახელი</string>
     <string name="error_deleting_account">There was an error deleting your account - please check your Internet connection</string>
-    <string name="verify_your_password">Verify Your Password</string>
+    <string name="verify_your_password">პაროლის დამოწმება</string>
     <string name="third_party_data_sharing">Third-party Data Sharing</string>
     <string name="disable_third_party_data_sharing">Disable Third-party Data Sharing</string>
     <string name="do_not_collect_third_party_data">Do not collect stability and usage data using third-party services</string>
@@ -861,8 +861,8 @@
     <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
     <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
-    <string name="search_places">Search Places</string>
-    <string name="restart_app">Restart App</string>
+    <string name="search_places">ადგილების ძიება</string>
+    <string name="restart_app">აპლიკაციის გადატვირთვა</string>
     <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
         <item quantity="one">Are you sure you want to delete this %1$d observation?</item>
