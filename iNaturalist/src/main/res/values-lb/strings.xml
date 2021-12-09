@@ -317,7 +317,7 @@
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Sync this observation in order to leave a comment or suggest an identification...</string>
     <!--  Label for a button to add an observation without a photo or a sound  -->
-    <string name="no_photo">No Media</string>
+    <string name="no_photo">Keng Medien</string>
     <string name="about_this_species">Iwwert dës Aart</string>
     <string name="view_on_wikipedia">Wikipedia-Artikel</string>
     <string name="photo"><![CDATA[Foto: <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -371,7 +371,7 @@
     <string name="resume">Weiderfueren</string>
     <string name="cleaning_up">Raumt op...</string>
     <string name="syncing">Synchronisatioun...</string>
-    <string name="syncing_observation_fields">Syncing observation fields...</string>
+    <string name="syncing_observation_fields">Observatioune gi synchroniséiert...</string>
     <string name="syncing_observations">Observatioune gi synchroniséiert...</string>
     <string name="syncing_paused">Pauséieren</string>
     <string name="upload">Eroplueden</string>
@@ -466,7 +466,7 @@
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
     <!-- Header for a list of suggested taxa -->
-    <string name="top_suggestions">Top suggestions</string>
+    <string name="top_suggestions">Top Virschléi</string>
     <string name="pretty_sure_rank">Mir sinn zimmlech sécher et ass an dësem %1$s:</string>
     <string name="what_did_you_see">Wat hutt Dir gesinn?</string>
     <string name="suggest_species">Aart suggeréieren</string>
@@ -861,7 +861,7 @@
     <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
     <string name="common_names_place"><![CDATA[Lokalitéit fir déi allgemeng Nimm: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Auswiele fir Allgemeng-Nimm vun enger gewësser Platz ze preferéieren.</string>
-    <string name="search_places">Search Places</string>
+    <string name="search_places">Locatitéit Siichen</string>
     <string name="restart_app">App neistarten</string>
     <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
@@ -952,7 +952,7 @@
     <string name="rank_epifamily">Epifamill</string>
     <string name="rank_family">Famill</string>
     <string name="rank_subfamily">Ënnerfamill</string>
-    <string name="rank_supertribe">Supertribue</string>
+    <string name="rank_supertribe">Supertribus</string>
     <string name="rank_tribe">Tribus</string>
     <string name="rank_subtribe">Ënnertribus</string>
     <string name="rank_genus">Gattung</string>
@@ -1013,42 +1013,42 @@
     <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will suggest species observed in a specific place and within a specific taxonomic group.</string>
     <string name="taxon">Taxon:</string>
     <string name="place">Plaz:</string>
-    <string name="pretty_sure_kingdom">We\'re pretty sure it\'s in this kingdom:</string>
-    <string name="pretty_sure_subkingdom">We\'re pretty sure it\'s in this subkingdom:</string>
-    <string name="pretty_sure_phylum">We\'re pretty sure it\'s in this phylum:</string>
-    <string name="pretty_sure_subphylum">We\'re pretty sure it\'s in this subphylum:</string>
-    <string name="pretty_sure_superclass">We\'re pretty sure it\'s in this superclass:</string>
-    <string name="pretty_sure_class">We\'re pretty sure it\'s in this class:</string>
-    <string name="pretty_sure_subclass">We\'re pretty sure it\'s in this subclass:</string>
-    <string name="pretty_sure_infraclass">We\'re pretty sure it\'s in this infraclass:</string>
-    <string name="pretty_sure_superorder">We\'re pretty sure it\'s in this superorder:</string>
-    <string name="pretty_sure_order">We\'re pretty sure it\'s in this order:</string>
-    <string name="pretty_sure_suborder">We\'re pretty sure it\'s in this suborder:</string>
-    <string name="pretty_sure_infraorder">We\'re pretty sure it\'s in this infraorder:</string>
+    <string name="pretty_sure_kingdom">Mir si zimmlech sécher datt et an dësem Räich ass:</string>
+    <string name="pretty_sure_subkingdom">Mir si zimmlech sécher datt et an dësem Ënnerräich ass:</string>
+    <string name="pretty_sure_phylum">Mir si zimmlech sécher datt et an dësem Stamm ass:</string>
+    <string name="pretty_sure_subphylum">Mir si zimmlech sécher datt et an dësem Ënnerstamm ass:</string>
+    <string name="pretty_sure_superclass">Mir si zimmlech sécher datt et an dëser Iwerklass ass:</string>
+    <string name="pretty_sure_class">Mir si zimmlech sécher datt et an dëser Klass ass:</string>
+    <string name="pretty_sure_subclass">Mir si zimmlech sécher datt et an dëser Ënnerklass ass:</string>
+    <string name="pretty_sure_infraclass">Mir si zimmlech sécher datt et an dëser Infraklass ass:</string>
+    <string name="pretty_sure_superorder">Mir si zimmlech sécher datt et an dëser Iweruerdnung ass:</string>
+    <string name="pretty_sure_order">Mir si zimmlech sécher datt et an dëser Uerdnung ass:</string>
+    <string name="pretty_sure_suborder">Mir si zimmlech sécher datt et an dëser Ënneruerdnung ass:</string>
+    <string name="pretty_sure_infraorder">Mir si zimmlech sécher datt et an dëser Indrauerdnung ass:</string>
     <string name="pretty_sure_subterclass">We\'re pretty sure it\'s in this subterclass:</string>
     <string name="pretty_sure_parvorder">We\'re pretty sure it\'s in this parvorder:</string>
     <string name="pretty_sure_zoosection">We\'re pretty sure it\'s in this zoosection:</string>
     <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
     <string name="pretty_sure_superfamily">We\'re pretty sure it\'s in this superfamily:</string>
     <string name="pretty_sure_epifamily">We\'re pretty sure it\'s in this epifamily:</string>
-    <string name="pretty_sure_family">We\'re pretty sure it\'s in this family:</string>
+    <string name="pretty_sure_family">Mir si zimmlech sécher datt et an dëser Famill ass:</string>
     <string name="pretty_sure_subfamily">We\'re pretty sure it\'s in this subfamily:</string>
     <string name="pretty_sure_supertribe">We\'re pretty sure it\'s in this supertribe:</string>
-    <string name="pretty_sure_tribe">We\'re pretty sure it\'s in this tribe:</string>
-    <string name="pretty_sure_subtribe">We\'re pretty sure it\'s in this subtribe:</string>
-    <string name="pretty_sure_genus">We\'re pretty sure it\'s in this genus:</string>
+    <string name="pretty_sure_tribe">Mir si zimmlech sécher datt et an dësem Tribus ass:</string>
+    <string name="pretty_sure_subtribe">Mir si zimmlech sécher datt et an dësem Ënnertribus ass:</string>
+    <string name="pretty_sure_genus">Mir si zimmlech sécher datt et an dëser Gattung ass:</string>
     <string name="pretty_sure_genushybrid">We\'re pretty sure it\'s in this genushybrid:</string>
-    <string name="pretty_sure_subgenus">We\'re pretty sure it\'s in this subgenus:</string>
-    <string name="pretty_sure_section">We\'re pretty sure it\'s in this section:</string>
+    <string name="pretty_sure_subgenus">Mir si zimmlech sécher datt et an dëser Ënnergattung ass:</string>
+    <string name="pretty_sure_section">Mir si zimmlech sécher datt et an dëser Sektioun ass:</string>
     <string name="pretty_sure_subsection">We\'re pretty sure it\'s in this subsection:</string>
-    <string name="pretty_sure_complex">We\'re pretty sure it\'s in this complex:</string>
+    <string name="pretty_sure_complex">Mir si zimmlech sécher datt et an dësem Komplex ass:</string>
     <!-- Singular -->
-    <string name="pretty_sure_species">We\'re pretty sure it\'s in this species:</string>
-    <string name="pretty_sure_hybrid">We\'re pretty sure it\'s in this hybrid:</string>
+    <string name="pretty_sure_species">Mir si zimmlech sécher datt et an dëser Aart ass:</string>
+    <string name="pretty_sure_hybrid">Mir si zimmlech sécher datt et an dësem Hybrid ass:</string>
     <!-- Singular -->
     <string name="pretty_sure_subspecies">We\'re pretty sure it\'s in this subspecies:</string>
-    <string name="pretty_sure_variety">We\'re pretty sure it\'s in this variety:</string>
-    <string name="pretty_sure_form">We\'re pretty sure it\'s in this form:</string>
+    <string name="pretty_sure_variety">Mir si zimmlech sécher datt et an dëser Varietéit ass:</string>
+    <string name="pretty_sure_form">Mir si zimmlech sécher datt et an dëser Form ass:</string>
     <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
     <string name="remove_date_observed">Remove date &amp; time observed</string>
     <string name="remove_time_observed">Remove time observed</string>
@@ -1072,7 +1072,7 @@
     <!-- Accessibility text for the faves tab on the observation detail view -->
     <string name="faves">Favoriséiert</string>
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
-    <string name="previous_option">Previous Option</string>
+    <string name="previous_option">Vireg Observatioun</string>
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
     <string name="next_option">Nächst Optioun</string>
     <string name="no_observations_yet2">Nach keng Observatiounen.</string>
@@ -1080,8 +1080,8 @@
     <string name="no_identifications_yet">Nach keng Bestëmmungen</string>
     <string name="sort_by">Sortéieren no</string>
     <string-array name="explore_order_by_items">
-        <item>Date Added</item>
-        <item>Date Observed</item>
+        <item>Datum derbäigesat</item>
+        <item>Datum observéiert</item>
         <item>Datum aktualiséiert</item>
         <!--<item>Faves</item>-->
         <item>Zoufälleg</item>
@@ -1104,7 +1104,7 @@
     <!-- Error message shown when an attempt to unfollow an observation fails -->
     <string name="could_not_unfollow_observation">Could not unfollow this observation</string>
     <!-- Label for a button to copy the coordinates of an observation -->
-    <string name="copy_coordinates">Copy coordinates</string>
+    <string name="copy_coordinates">Koordinaten kopéieren</string>
     <string name="coordinates_copied_to_clipboard">Coordinates copied to clipboard</string>
     <!--  Title of a section on the observation detail view that displays minor metadata  -->
     <string name="metadata">Metadaten</string>
@@ -1138,10 +1138,10 @@
     <string name="default_licenses_description"><![CDATA[Licensing your content gives anyone the legal right to use it without asking your permission if they abide by the terms of the license. In addition, iNat includes your Creative Commons-licensed content in regularly-updated archives produced for select partner organizations interested in our data. For example, we include No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC) records in the archive we generate for the <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, an international, inter-governmental organization that compiles and distributes biodiversity information from around the world.]]></string>
     <string name="photo_license">Fotolizenz</string>
     <string name="sound_license">Sound Lizenzen</string>
-    <string name="edit_photo_license">Edit Photo License</string>
+    <string name="edit_photo_license">Fotolizenz beaarbechten</string>
     <string name="observation_license">Observation License</string>
-    <string name="edit_observation_license">Edit Observation License</string>
-    <string name="about_licenses">About Licenses</string>
+    <string name="edit_observation_license">Lizenz vun der Observatioun editéieren</string>
+    <string name="about_licenses">Iwwer Lizenzen</string>
     <string name="view_license">Lizenz weisen</string>
     <!-- License Names -->
     <string name="license_name_cc0">Domaine public</string>
@@ -1179,11 +1179,11 @@
     <string name="redo_observation_search">Redo observation search in this map area</string>
     <string name="view_observations_on_map">View observations on map</string>
     <string name="view_observations_on_grid">View observations on grid</string>
-    <string name="clear_text">Clear text</string>
+    <string name="clear_text">Text läschen</string>
     <string name="observation_has_sounds">Observation has sounds</string>
     <string name="go_to_my_location">Go to my current location</string>
     <string name="change_geoprivacy">Change geoprivacy</string>
-    <string name="active_filters">Active filters</string>
+    <string name="active_filters">Aktiv Filteren</string>
     <string name="message_is_flagged">Message is flagged</string>
     <string name="user_is_muted">User is muted</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
@@ -1191,7 +1191,7 @@
     <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Comment count</string>
     <string name="id_count">Identification count</string>
-    <string name="observation_selected">Observation selected</string>
+    <string name="observation_selected">Observatioun ausgewielt</string>
     <string name="share_observation">Share observation</string>
     <string name="unknown_location">Unknown location</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
@@ -1199,10 +1199,10 @@
     <string name="set_date2">Datum definéieren</string>
     <string name="project_selected">Project Selected</string>
     <string name="project_unselected">Project Unselected</string>
-    <string name="show_my_observations">Show my observations</string>
+    <string name="show_my_observations">Är Observatiounen weisen</string>
     <string name="play_pause_sound">Play or pause sound</string>
     <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
-    <string name="view_image">View image</string>
+    <string name="view_image">Bild ukucken</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <string name="assessment_passes">Assessment passes</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->

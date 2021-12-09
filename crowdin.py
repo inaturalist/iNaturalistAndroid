@@ -89,6 +89,9 @@ def import_crowdin_for_android(zip_path, options={}):
         if options.locale and options.locale not in path:
             continue
         crowdin_locale = extless_basename(path)
+        # Skip non-android directories
+        if "fbt" in crowdin_locale or "i18n" in crowdin_locale:
+            continue
         locale, *sublocale = crowdin_locale.split("-")
         sublocale = None if len(sublocale) == 0 else sublocale[0]
         android_locale = locale

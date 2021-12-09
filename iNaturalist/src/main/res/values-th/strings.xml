@@ -957,7 +957,7 @@
     <string name="rank_complex">Complex</string>
     <!-- Singular -->
     <string name="rank_species">สายพันธุ์</string>
-    <string name="rank_hybrid">Hybrid</string>
+    <string name="rank_hybrid">ลูกผสม</string>
     <!-- Singular -->
     <string name="rank_subspecies">ชนิดย่อย (Subspecies)</string>
     <string name="rank_variety">ความหลากหลาย</string>
@@ -1167,7 +1167,7 @@
     <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
     <string name="delete_attribute_value">Delete attribute value</string>
     <string name="open_menu_for_more_options">Open menu for more options</string>
-    <string name="change_user_profile_photo">Change user profile photo</string>
+    <string name="change_user_profile_photo">เปลี่ยนรูปโปรไฟล์ของคุณ</string>
     <string name="expand_list">Expand list</string>
     <string name="change_map_layers">Change map layers (terrain vs. satellite)</string>
     <string name="redo_observation_search">Redo observation search in this map area</string>

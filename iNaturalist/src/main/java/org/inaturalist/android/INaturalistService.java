@@ -6452,7 +6452,7 @@ public class INaturalistService extends IntentService {
 
 
         FormBody.Builder requestBodyBuilder = new FormBody.Builder()
-                .add("frmat", "json")
+                .add("format", "json")
                 .add("client_id", INaturalistApp.getAppContext().getString(R.string.oauth_client_id))
                 .add("client_secret", INaturalistApp.getAppContext().getString(R.string.oauth_client_secret));
 

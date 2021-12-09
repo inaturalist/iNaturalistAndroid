@@ -7,8 +7,8 @@
     <string name="ok">ಓಕೆ</string>
     <string name="cancel">ರದ್ದುಗೊಳಿಸಿ</string>
     <string name="loading">ಸಜ್ಜುಗೊಳಿಸಲಾಗುತ್ತಿದೆ...</string>
-    <string name="sync_required">Sync required</string>
-    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
+    <string name="sync_required">ಸಿಂಕ್‍ನ ಅಗತ್ಯವಿದೆ</string>
+    <string name="sync_required_message">ಸಿಂಕ್ ಆಗಲು %1$d ವೀಕ್ಷಣೆಗಳು %2$d ಚಿತ್ರಗಳು </string>
     <string name="street">ರಸ್ತೆ</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">ಉಪಗ್ರಹ</string>
@@ -32,7 +32,7 @@
     <string name="settings">ಸಂಯೋಜನೆಗಳು</string>
     <string name="projects">ಪ್ರಾಯೋಜನೆಗಳು</string>
     <string name="delete_photo">ಚಿತ್ರವನ್ನು ಅಳಿಸಿ </string>
-    <string name="menu">Menu</string>
+    <string name="menu">ಮೆನು</string>
     <string name="my_location">ನನ್ನ ಸ್ಥಳ</string>
     <string name="nearby_observations">ಹತ್ತಿರದ ವೀಕ್ಷಣೆಗಳು</string>
     <string name="add">ಸೇರಿಸಿ</string>
@@ -227,9 +227,9 @@
     <string name="facebook">ಫೇಸ್‍‌ಬುಕ್</string>
     <string name="gplus">ಗೂಗಲ್</string>
     <string name="email">ಮಿಂಚೆ</string>
-    <string name="sign_up_with">Sign Up with</string>
+    <string name="sign_up_with">ಇದರೊಂದಿಗೆ ನೋಂದಾಯಿಸಿ</string>
     <string name="skip">ಹಾರಿಸಿ ></string>
-    <string name="already_have_account">Already have an account?</string>
+    <string name="already_have_account">ಈಗಾಗಲೇ ಒಂದು ಖಾತೆಯನ್ನು ಹೊಂದಿರುವಿರಾ?</string>
     <string name="log_in">ಲಾಗಿನ್ ಆಗಿ</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">ನೋಂದಾಯಿಸಿ</string>
@@ -352,7 +352,7 @@
     <string name="updating_profile">ಪರಿಚಯವನ್ನು ನವೀಕರಿಸಲಾಗುತ್ತಿದೆ...</string>
     <string name="there_was_a_problem_updating_profile">ನಿಮ್ಮ ಪರಿಚಯವನ್ನು ನವೀಕರಿಸುವಲ್ಲಿ ಏನೋ ತೊಂದರೆಯಾಗಿದೆ!</string>
     <string name="there_was_a_problem_updating_profile_params">ನಿಮ್ಮ ಪರಿಚಯವನ್ನು ನವೀಕರಿಸುವಲ್ಲಿ ಏನೋ ತೊಂದರೆಯಾಗಿದೆ : %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
+    <string name="logged_in_as_html"><![CDATA[<b>%1$s</b> ನಂತೆ ಲಾಗಿನ್ ಆಗಿದೆ]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[ಪ್ರಸ್ತುತ <b>%1$s</b> ನಂತೆ ಲಾಗಿನ್ ಆಗಿದೆ]]></string>
     <string name="log_out">ಲಾಗ್ ಔಟ್</string>
@@ -478,7 +478,7 @@
     <string name="enlarge">ಹಿಗ್ಗಿಸಿ</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">View Children</string>
-    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
+    <string name="invalid_photo_extension">ಚಿತ್ರ(ಗಳ)ವನ್ನು ಆಮದು ಮಾಡುವಲ್ಲಿ ದೋಷ : JPG/JPEG/PNG/HEIC/HEIF ವಿಸ್ತರಣೆಗಳಿರುವ ಚಿತ್ರಗಳನ್ನು ಮಾತ್ರ ಆಮದು ಮಾಡಿಕೊಳ್ಳಬಹುದು</string>
     <string name="taxon_has_no_photos">ಈ ಜೀವಿವರ್ಗವು ಯಾವುದೇ ಚಿತ್ರವನ್ನು ಹೊಂದಿಲ್ಲ.</string>
     <string name="terrain">ಭೂಪ್ರದೇಶ</string>
     <string name="filters">ಶೋಧಕಗಳು</string>
@@ -596,7 +596,7 @@
     <string name="leave_comment">ಅಭಿಪ್ರಾಯವೊಂದನ್ನು ಬರೆಯಿರಿ...</string>
     <string name="swipe">ಸ್ವೈಪ್</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Which Google Account?</string>
+    <string name="select_google_account">ಯಾವ ಗೂಗಲ್ ಖಾತೆ?</string>
     <string name="potential_disagreement">ಸಂಭಾವ್ಯ ಭಿನ್ನಾಭಿಪ್ರಾಯ</string>
     <string name="do_you_think_this_could_be"><![CDATA[ಇದನ್ನು <b>%1$s</b> ಎಂದು ನಿರ್ಧರಿಸಲು ಸಾಕಷ್ಟು ಸಾಕ್ಷ್ಯಗಳನ್ನು ಒದಗಿಸಲಾಗಿದೆಯೇ?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -785,7 +785,7 @@
     <string name="soundcloud">ಸೌಂಡ್‍ಕ್ಲೌಡ್</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">ಧ್ವನಿ ಮುದ್ರಿಸಿ</string>
-    <string name="no_recorder_found">No default sound recorder found!</string>
+    <string name="no_recorder_found">ಯಾವುದೇ ನಿಯೋಜಿತ ಧ್ವನಿಮುದ್ರಕ ಕಂಡುಬಂದಿಲ್ಲ!</string>
     <string name="couldnt_retrieve_sound">ನಿಯೋಜಿತ ಧ್ವನಿಮುದ್ರಕದಿಂದ ಧ್ವನಿಯನ್ನು ತೆಗೆದುಕೊಳ್ಳಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ - ಬದಲಿಗೆ ಧ್ವನಿಯನ್ನು ಆಮದು ಮಾಡಲು ಪ್ರಯತ್ನಿಸಿ</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">ಧ್ವನಿಯನ್ನು ಆರಿಸಿ</string>
@@ -1190,7 +1190,7 @@
     <string name="user_is_muted">ಬಳಕೆದಾರರು ಮೌನವಾಗಿದ್ದಾರೆ</string>
     <string name="cancel_multiple_obs_selection">ಹಲವು ವೀಕ್ಷಣೆ ಆಯ್ಕೆಯನ್ನು ರದ್ದುಗೊಳಿಸಿ</string>
     <string name="delete_observations">ವೀಕ್ಷಣೆಗಳನ್ನು ಅಳಿಸಿ</string>
-    <string name="clear_species_guess">Clear species guess</string>
+    <string name="clear_species_guess">ಪ್ರಭೇದದ ಊಹೆಯನ್ನು ತೆರವುಗೊಳಿಸಿ</string>
     <string name="comment_count">ಅಭಿಪ್ರಾಯಗಳ ಎಣಿಕೆ</string>
     <string name="id_count">ಗುರುತಿಸುವಿಕೆಗಳ ಎಣಿಕೆ</string>
     <string name="observation_selected">ಆರಿಸಿದ ವೀಕ್ಷಣೆ</string>
