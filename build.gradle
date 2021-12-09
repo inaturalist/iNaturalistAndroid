@@ -3,7 +3,6 @@ buildscript {
     repositories {
         google()
         jcenter()
-        maven { url "http://dl.bintray.com/populov/maven" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.1'
@@ -17,7 +16,6 @@ buildscript {
 allprojects {
     repositories {
         google()
-        maven { url "http://dl.bintray.com/populov/maven" }
         jcenter()
         maven { url 'https://jitpack.io' }
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
