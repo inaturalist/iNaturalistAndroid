@@ -3004,6 +3004,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
     private void downloadCommunityTaxon(boolean downloadFromOriginalObservation) {
         if (getActivity() == null) return;
+        if (mObsJson == null) return;
 
         JSONObject observation;
         try {
