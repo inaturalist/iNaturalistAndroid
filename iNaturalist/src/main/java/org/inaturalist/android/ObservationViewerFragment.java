@@ -2794,7 +2794,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             if (isSharedOnApp) {
                 obsJson = (String) mApp.getServiceResult(INaturalistService.OBSERVATION_JSON_RESULT + mObservation.id);
             } else {
-                obsJson = intent.getStringExtra(INaturalistService.OBSERVATION_JSON_RESULT + mObservation.id);
+                obsJson = intent.getStringExtra(INaturalistService.OBSERVATION_JSON_RESULT);
             }
 
             if ((!mReadOnly) && (mObservation != null)) {
