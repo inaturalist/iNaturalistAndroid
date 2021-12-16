@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.inaturalist.android"
     android:installLocation="auto"
-    android:versionCode="511"
-    android:versionName="1.23.22">
+    android:versionCode="526"
+    android:versionName="1.25.11">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -76,7 +76,7 @@
             android:configChanges="orientation">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ObservationViewerActivity" />
+                android:value=".ObservationViewerSlider" />
         </activity>
         <activity
             android:name=".GuideDetails"
@@ -103,7 +103,7 @@
             android:configChanges="orientation"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowActionBar="false">
-            <intent-filter>
+            <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
@@ -190,9 +190,9 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing"></activity>
         <activity
-            android:name=".ObservationViewerActivity"
+            android:name=".ObservationViewerSlider"
             android:configChanges="orientation">
-            <intent-filter>
+            <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
@@ -462,7 +462,7 @@
             </intent-filter>
         </activity-alias>
         <activity
-            android:name=".ObservationEditor"
+            android:name=".ObservationEditorSlider"
             android:configChanges="orientation"
             android:label="iNaturalist"
             android:theme="@style/iNatAppThemeCustomActionBar">
@@ -668,7 +668,7 @@
             android:name=".MessagesThreadActivity"
             android:configChanges="orientation">
 
-            <intent-filter>
+            <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>

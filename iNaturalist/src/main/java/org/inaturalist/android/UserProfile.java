@@ -18,7 +18,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import android.text.Html;
+
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -200,7 +200,7 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
             @Override
             public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
                 JSONObject item = (JSONObject) view.getTag();
-                Intent intent = new Intent(UserProfile.this, ObservationViewerActivity.class);
+                Intent intent = new Intent(UserProfile.this, ObservationViewerSlider.class);
                 intent.putExtra("observation", item.toString());
                 intent.putExtra("read_only", true);
                 intent.putExtra("reload", true);
@@ -709,7 +709,7 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         JSONObject item = (JSONObject) view.getTag();
-                        Intent intent = new Intent(UserProfile.this, ObservationViewerActivity.class);
+                        Intent intent = new Intent(UserProfile.this, ObservationViewerSlider.class);
                         intent.putExtra("observation", item.optJSONObject("observation").toString());
                         intent.putExtra("read_only", true);
                         intent.putExtra("reload", true);

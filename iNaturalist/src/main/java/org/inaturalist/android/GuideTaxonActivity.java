@@ -381,7 +381,7 @@ public class GuideTaxonActivity extends AppCompatActivity {
             return true;
         case R.id.add_taxon:
         	// Add a new observation with the specified taxon
-        	Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, this, ObservationEditor.class);
+        	Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, this, ObservationEditorSlider.class);
             if (mGuideTaxon) {
                 intent.putExtra(ObservationEditor.SPECIES_GUESS, String.format("%s (%s)", mGuideTaxonXml.getDisplayName(), mGuideTaxonXml.getName()));
             } else {

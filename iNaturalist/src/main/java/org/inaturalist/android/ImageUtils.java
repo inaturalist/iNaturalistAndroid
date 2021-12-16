@@ -23,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.renderscript.Allocation;
 import androidx.renderscript.Element;
 import androidx.renderscript.RSInvalidStateException;
+import androidx.renderscript.RSRuntimeException;
 import androidx.renderscript.RenderScript;
 import androidx.renderscript.ScriptIntrinsicBlur;
 
@@ -75,26 +76,30 @@ public class ImageUtils {
         if (null == image) return null;
 
         Bitmap outputBitmap = Bitmap.createBitmap(image);
-        final RenderScript renderScript = RenderScript.create(context);
         Allocation tmpIn;
         Allocation tmpOut;
 
         try {
+            final RenderScript renderScript = RenderScript.create(context);
             tmpIn = Allocation.createFromBitmap(renderScript, image);
             tmpOut = Allocation.createFromBitmap(renderScript, outputBitmap);
+
+            //Intrinsic Gausian blur filter
+            ScriptIntrinsicBlur theIntrinsic = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript));
+            theIntrinsic.setRadius(BLUR_RADIUS);
+            theIntrinsic.setInput(tmpIn);
+            theIntrinsic.forEach(tmpOut);
+            tmpOut.copyTo(outputBitmap);
+            return outputBitmap;
         } catch (RSInvalidStateException exc) {
             // This happens rarely when we there are hardware issues - just return the unblurred image
             Logger.tag(TAG).error(exc);
             return image;
+        } catch (RSRuntimeException exc) {
+            // This happens rarely when it's an unsupported processor - just return the unblurred image
+            Logger.tag(TAG).error(exc);
+            return image;
         }
-
-        //Intrinsic Gausian blur filter
-        ScriptIntrinsicBlur theIntrinsic = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript));
-        theIntrinsic.setRadius(BLUR_RADIUS);
-        theIntrinsic.setInput(tmpIn);
-        theIntrinsic.forEach(tmpOut);
-        tmpOut.copyTo(outputBitmap);
-        return outputBitmap;
     }
 
     /**

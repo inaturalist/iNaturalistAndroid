@@ -383,6 +383,7 @@ public class ProjectFieldViewer {
             if (mFieldValue.value != null) {
                 int position = mSpinnerAdapter.getPosition(mFieldValue.value);
                 if (position != -1) {
+                    mValue = mFieldValue.value;
                     mSpinner.setSelection(position);
                 }
             }

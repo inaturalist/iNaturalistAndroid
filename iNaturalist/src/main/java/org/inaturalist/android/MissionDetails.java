@@ -18,7 +18,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import android.text.Html;
+
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -240,7 +240,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
             public void onClick(View view) {
                 // Show the observation editor screen with the taxon already pre-filled
                 BetterJSONObject taxon = new BetterJSONObject(mMission.getJSONObject("taxon"));
-                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, MissionDetails.this, ObservationEditor.class);
+                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, MissionDetails.this, ObservationEditorSlider.class);
                 mApp.setServiceResult(ObservationEditor.TAXON, taxon.getJSONObject().toString());
                 startActivity(intent);
 
@@ -590,7 +590,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
                 public void onClick(View view) {
                     // Load the observation details screen
                     JSONObject item = (JSONObject) view.getTag();
-                    Intent intent = new Intent(MissionDetails.this, ObservationViewerActivity.class);
+                    Intent intent = new Intent(MissionDetails.this, ObservationViewerSlider.class);
                     intent.putExtra("observation", item.toString());
                     intent.putExtra("read_only", true);
                     intent.putExtra("reload", true);

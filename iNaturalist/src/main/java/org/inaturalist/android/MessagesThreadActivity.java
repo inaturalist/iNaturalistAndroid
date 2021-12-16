@@ -226,7 +226,7 @@ public class MessagesThreadActivity extends AppCompatActivity {
 
     private void loadThread() {
         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_MESSAGES, null, this, INaturalistService.class);
-        serviceIntent.putExtra(INaturalistService.MESSAGE_ID, mMessage.getInt("id"));
+        serviceIntent.putExtra(INaturalistService.MESSAGE_ID, mMessage.getJSONObject().optInt("id"));
         ContextCompat.startForegroundService(this, serviceIntent);
     }
 

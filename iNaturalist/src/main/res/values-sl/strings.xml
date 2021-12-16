@@ -329,7 +329,7 @@
     <string name="finding_current_location">Iščem trenutno lokacijo ...</string>
     <string name="flag_as_captive">Označi kot »V ujetništvu/gojena«</string>
     <string name="observation_flagged_as_captive">Opazovanje je bilo označeno kot »v ujetništvu/gojena«</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Ste prepričani, da želite to opazovanje označiti kot »v ujetništvu/gojena«? (Če boste izbrali »Da«, boste tudi zaprli okno pregledovalnika opazovanj.)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Ste prepričani, da želite to opazovanje označiti kot »v ujetništvu/gojena«? (Če boste izbrali »Da«, boste tudi zaprli okno pregledovalnika opazovanj.)</string>
     <string name="do_you_agree_to_the_following">Ali privoljujete v naslednje?</string>
     <string name="terms">Pogoji</string>
     <string name="observation_rules">Pravila opazovanja</string>

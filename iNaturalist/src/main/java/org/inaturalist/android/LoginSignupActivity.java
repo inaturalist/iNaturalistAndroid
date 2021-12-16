@@ -417,10 +417,10 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
         loginWithFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mFacebookLoginButton = new LoginButton(LoginSignupActivity.this);
-                mFacebookLoginButton.setLayoutParams(new RelativeLayout.LayoutParams(0, 0));
                 FacebookSdk.setApplicationId(getString(R.string.facebook_app_id));
                 FacebookSdk.sdkInitialize(getApplicationContext());
+                mFacebookLoginButton = new LoginButton(LoginSignupActivity.this);
+                mFacebookLoginButton.setLayoutParams(new RelativeLayout.LayoutParams(0, 0));
 
                 mSignInTask = new SignInTask(LoginSignupActivity.this, LoginSignupActivity.this, mFacebookLoginButton, mVerifyPassword);
                 mFacebookLoginButton.performClick();

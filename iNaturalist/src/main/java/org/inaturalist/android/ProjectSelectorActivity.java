@@ -90,7 +90,7 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
 
         @Override
         public void onReceive(Context context, Intent intent) {
-        	SerializableJSONArray serializableArray = (SerializableJSONArray) intent.getSerializableExtra(INaturalistService.PROJECTS_RESULT);
+            SerializableJSONArray serializableArray = (SerializableJSONArray) intent.getSerializableExtra(INaturalistService.PROJECTS_RESULT);
             JSONArray projectList = new JSONArray();
             
             if (serializableArray != null) {

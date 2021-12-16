@@ -14,7 +14,8 @@ import android.util.Log;
 
 public class ProjectObservation implements BaseColumns, Serializable {
     public static final String TAG = "ProjectObservation";
-    
+
+    public Integer id;
     public Integer _id;
     public Integer project_id;
     public Integer observation_id;
@@ -37,6 +38,7 @@ public class ProjectObservation implements BaseColumns, Serializable {
     public static final String OBSERVATION_ID = "observation_id";
     public static final String IS_NEW = "is_new";
     public static final String IS_DELETED = "is_deleted";
+    public static final String ID = "id";
 
 
     public static final String[] PROJECTION = new String[] {
@@ -44,7 +46,8 @@ public class ProjectObservation implements BaseColumns, Serializable {
         ProjectObservation.PROJECT_ID,
         ProjectObservation.OBSERVATION_ID,
         ProjectObservation.IS_DELETED,
-        ProjectObservation.IS_NEW
+        ProjectObservation.IS_NEW,
+        ProjectObservation.ID
     };
 
     static {
@@ -54,6 +57,7 @@ public class ProjectObservation implements BaseColumns, Serializable {
         PROJECTION_MAP.put(ProjectObservation.OBSERVATION_ID, ProjectObservation.OBSERVATION_ID);
         PROJECTION_MAP.put(ProjectObservation.IS_DELETED, ProjectObservation.IS_DELETED);
         PROJECTION_MAP.put(ProjectObservation.IS_NEW, ProjectObservation.IS_NEW);
+        PROJECTION_MAP.put(ProjectObservation.ID, ProjectObservation.ID);
     }
 
     public ProjectObservation() {}
@@ -67,6 +71,7 @@ public class ProjectObservation implements BaseColumns, Serializable {
         this.observation_id = bc.getInt(OBSERVATION_ID);
         this.is_deleted = bc.getBoolean(IS_DELETED);
         this.is_new = bc.getBoolean(IS_NEW);
+        this.id = bc.getInt(ID);
     }
 
     public ProjectObservation(BetterJSONObject o) {
@@ -74,6 +79,7 @@ public class ProjectObservation implements BaseColumns, Serializable {
         this.observation_id = o.getInt("observation_id");
         this.is_deleted = false;
         this.is_new = false;
+        this.id = o.getInt("id");
     }
     
     @Override
@@ -96,6 +102,7 @@ public class ProjectObservation implements BaseColumns, Serializable {
         cv.put(OBSERVATION_ID, observation_id);
         cv.put(IS_DELETED, is_deleted);
         cv.put(IS_NEW, is_new);
+        cv.put(ID, id);
 
         return cv;
     }
@@ -107,6 +114,7 @@ public class ProjectObservation implements BaseColumns, Serializable {
                 + "observation_id INTEGER,"
                 + "is_deleted INTEGER,"
                 + "is_new INTEGER, "
+                + "id INTEGER, "
                 + "UNIQUE(project_id, observation_id) ON CONFLICT REPLACE"
                 + ");";
     }

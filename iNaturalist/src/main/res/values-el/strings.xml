@@ -325,7 +325,7 @@
     <string name="finding_current_location">Εντοπισμός τρέχουσας τοποθεσίας...</string>
     <string name="flag_as_captive">Επισήμανση ως αιχμαλωτισμένο/καλλιεργούμενο</string>
     <string name="observation_flagged_as_captive">Η παρατήρηση έχει επισημανθεί ως σε αιχμαλωσία / καλλιεργούμενο</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Είστε βέβαιοι ότι θέλετε να επισημάνετε αυτήν την παρατήρηση ως αιχμαλωσία / καλλιέργεια; (Πατώντας ναι θα κλείσει το παράθυρο προβολής παρατήρησης)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Είστε βέβαιοι ότι θέλετε να επισημάνετε αυτήν την παρατήρηση ως αιχμαλωσία / καλλιέργεια; (Πατώντας ναι θα κλείσει το παράθυρο προβολής παρατήρησης)</string>
     <string name="do_you_agree_to_the_following">Συμφωνείς με τα εξής;</string>
     <string name="terms">Όροι</string>
     <string name="observation_rules">Κανόνες παρατήρησης</string>

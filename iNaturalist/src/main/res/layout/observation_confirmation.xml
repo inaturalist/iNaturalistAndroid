@@ -15,7 +15,7 @@
             android:background="#ffffff"
             android:id="@+id/main_content"
             >
-            <org.inaturalist.android.SwipeableLinearLayout
+            <LinearLayout
                 android:id="@+id/swipeable_layout"
                 android:paddingBottom="100dp"
                 android:orientation="vertical" android:layout_width="match_parent"
@@ -59,7 +59,7 @@
                         xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:layout_marginStart="10dp"
                         android:layout_width="match_parent"
-                        android:layout_height="75dp"
+                        android:layout_height="50dp"
                         android:drawSelectorOnTop="false"
                         tools:context=".ObservationEditor"
                         />
@@ -693,7 +693,7 @@
                     android:layout_marginStart="64dp"
                     />
 
-            </org.inaturalist.android.SwipeableLinearLayout>
+            </LinearLayout>
         </ScrollView>
 
 

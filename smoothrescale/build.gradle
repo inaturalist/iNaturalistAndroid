@@ -28,6 +28,7 @@ android {
                 'APP_BUILD_SCRIPT=src/main/jni/Android.mk',
                 'NDK_APPLICATION_MK=src/main/jni/Application.mk'
     }
+    ndkVersion '22.1.7171670'
 
     tasks.withType(JavaCompile) {
         compileTask -> compileTask.dependsOn ndkBuild

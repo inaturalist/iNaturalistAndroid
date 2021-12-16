@@ -5,7 +5,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -21,7 +20,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Trace;
@@ -63,8 +61,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -146,6 +142,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         @Override
         public void onReceive(Context context, Intent intent) {
             Bundle extras = intent.getExtras();
+
+            Logger.tag(TAG).info("GetAdditionalObsReceiver");
 
             refreshCursor();
             refreshPhotoInfo();
@@ -245,6 +243,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         Cursor oldCursor = swapCursor(newCursor);
         if ((oldCursor != null) && (!oldCursor.isClosed())) oldCursor.close();
 
+        Logger.tag(TAG).info("refershCursor");
         getPhotoInfo(true);
     }
 
@@ -268,6 +267,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
      * Retrieves photo ids and orientations for photos associated with the listed observations.
      */
     public void getPhotoInfo(boolean loadFromCache) {
+        Logger.tag(TAG).info("getPhotoInfo - " + loadFromCache);
+
         if (loadFromCache) loadPhotoInfo();
 
         Cursor c = getNewCursor();
@@ -375,6 +376,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     }
 
     public void refreshPhotoInfo() {
+        Logger.tag(TAG).info("refreshPhotoInfo");
         mPhotoInfo = new HashMap<>();
         mHasSounds = new HashMap<>();
         getPhotoInfo(false);
@@ -447,6 +449,43 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         } finally {
             Trace.endSection();
         }
+    }
+
+    private Map<Long, Boolean> mIsSyncNeededForObs = new HashMap<>();
+
+    private boolean isSyncNeededForObs(Long obsId) {
+        if (mIsSyncNeededForObs.containsKey(obsId)) {
+            return mIsSyncNeededForObs.get(obsId);
+        }
+
+        boolean syncNeeded = false;
+
+        Cursor opc = mContext.getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                new String[]{
+                        ObservationPhoto._ID,
+                        ObservationPhoto._OBSERVATION_ID,
+                        ObservationPhoto._PHOTO_ID,
+                        ObservationPhoto.PHOTO_URL,
+                        ObservationPhoto._UPDATED_AT,
+                        ObservationPhoto._SYNCED_AT
+                },
+                "(_observation_id = ?) AND ((photo_url IS NULL AND _synced_at IS NULL) OR (_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL))",
+                new String[]{String.valueOf(obsId)},
+                ObservationPhoto._ID);
+        if (opc != null) {
+            if (opc.getCount() > 0) {
+                syncNeeded = true;
+            }
+            opc.close();
+        }
+
+        mIsSyncNeededForObs.put(obsId, syncNeeded);
+        return syncNeeded;
+    }
+
+    public void onObservationChanged() {
+        // Observation was modified - clear the cache
+        mIsSyncNeededForObs.clear();
     }
 
     // TODO This uses INVISIBLE in multiple locations where we should be using GONE
@@ -681,8 +720,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
                 // Show the comments/IDs for the observation
                 Uri uri = ContentUris.withAppendedId(Observation.CONTENT_URI, obsId);
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri, mContext, ObservationViewerActivity.class);
-                intent.putExtra(ObservationViewerActivity.SHOW_COMMENTS, true);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri, mContext, ObservationViewerSlider.class);
+                intent.putExtra(ObservationViewerFragment.SHOW_COMMENTS, true);
                 mContext.startActivity(intent);
             });
         }
@@ -721,27 +760,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         if (!syncNeeded) {
             // See if it's an existing observation with a new photo or an updated photo
-
-            Cursor opc = mContext.getContentResolver().query(ObservationPhoto.CONTENT_URI,
-                    new String[]{
-                            ObservationPhoto._ID,
-                            ObservationPhoto._OBSERVATION_ID,
-                            ObservationPhoto._PHOTO_ID,
-                            ObservationPhoto.PHOTO_URL,
-                            ObservationPhoto._UPDATED_AT,
-                            ObservationPhoto._SYNCED_AT
-                    },
-                    "(_observation_id = ?) AND ((photo_url IS NULL AND _synced_at IS NULL) OR (_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL))",
-                    new String[] { String.valueOf(obsId) },
-                    ObservationPhoto._ID);
-            if (opc != null) {
-                if (opc.getCount() > 0) {
-                    syncNeeded = true;
-                    Logger.tag(TAG).debug("getView %d: %s: Sync needed - new/updated photos: %d",
-                            position, speciesGuessValue, opc.getCount());
-                }
-                opc.close();
-            }
+            syncNeeded = isSyncNeededForObs(obsId);
         }
         Trace.endSection();
 
@@ -1208,43 +1227,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         }
         Trace.endSection();
     }
-
-    @SuppressLint("DefaultLocale")
-    private JSONObject getObservationJson(int id) {
-        URL url;
-        try {
-            url = new URL(String.format("%s/observations/%d.json?locale=%s", INaturalistService.HOST, id, mApp.getLanguageCodeForAPI()));
-        } catch (MalformedURLException e) {
-            Logger.tag(TAG).error(e);
-            return null;
-        }
-
-
-        JSONObject json = null;
-
-        try {
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            InputStreamReader in = new InputStreamReader(conn.getInputStream());
-
-            // Load the results into a StringBuilder
-            int read;
-            char[] buff = new char[1024];
-            StringBuilder result = new StringBuilder();
-
-            while ((read = in.read(buff)) != -1) {
-                result.append(buff, 0, read);
-            }
-
-            json = new JSONObject(result.toString());
-
-            conn.disconnect();
-        } catch (IOException | JSONException e) {
-            Logger.tag(TAG).error(e);
-        }
-
-        return json;
-    }
-
 
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {

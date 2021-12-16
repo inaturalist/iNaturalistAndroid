@@ -325,7 +325,7 @@
     <string name="finding_current_location">වත්මන් ස්ථානය සොයා ගනිමින්...</string>
     <string name="flag_as_captive">අල්ලාගත්/වගා කළ ලෙස සලකුණු කරන්න</string>
     <string name="observation_flagged_as_captive">නිරීක්‍ෂණය අල්ලාගත්/වගා කළ ලෙස සලකුණු කර ඇත</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">මෙම නිරීක්‍ෂණය අල්ලාගත්/වගා කළ බවට සලකුණු කිරීමට ඔබට අවශ්‍ය බව ඔබට විශ්වාසද? (ඔව් එබීමෙන් නිරීක්ෂණ නරඹන්නාගේ කවුළුව ද වැසෙනු ඇත)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">මෙම නිරීක්‍ෂණය අල්ලාගත්/වගා කළ බවට සලකුණු කිරීමට ඔබට අවශ්‍ය බව ඔබට විශ්වාසද? (ඔව් එබීමෙන් නිරීක්ෂණ නරඹන්නාගේ කවුළුව ද වැසෙනු ඇත)</string>
     <string name="do_you_agree_to_the_following">ඔබ පහත සඳහන් දේට එකඟද?</string>
     <string name="terms">කොන්දේසි</string>
     <string name="observation_rules">නිරීක්ෂණ නීති</string>

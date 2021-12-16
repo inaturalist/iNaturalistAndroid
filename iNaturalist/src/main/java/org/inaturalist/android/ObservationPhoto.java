@@ -243,7 +243,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
 
     @Override
     public String toString() {
-        return "ObservationPhoto(id: " + id + ", _id: " + _id + ", photo_url: " + photo_url + ", photo_filename: " + photo_filename + ", photo_id: " + photo_id + ", uuid: " + uuid + ", obs_id: " + observation_id + ", _obs_id: " + _observation_id + "; obs_uuid: " + observation_uuid + ")";
+        return "ObservationPhoto(id: " + id + ", _id: " + _id + ", position:" + position + ", license: " + license + ", photo_url: " + photo_url + ", photo_filename: " + photo_filename + ", photo_id: " + photo_id + ", uuid: " + uuid + ", obs_id: " + observation_id + ", _obs_id: " + _observation_id + "; obs_uuid: " + observation_uuid + ")";
     }
 
     public JSONObject toJSONObject() {

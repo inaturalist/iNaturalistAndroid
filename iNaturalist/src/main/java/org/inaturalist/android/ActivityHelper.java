@@ -24,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -77,7 +78,12 @@ public class ActivityHelper {
             }
         });
         AlertDialog alert = builder.create();
-        alert.show();
+        try {
+            alert.show();
+        } catch (WindowManager.BadTokenException exc) {
+            // Can happen if an Activity triggers an AsyncTask that tries to display a dialog when it is finished, but the user navigates back from the Activity before the task is completed.
+            exc.printStackTrace();
+        }
     }
 
     public void alert(int title, int msg) {

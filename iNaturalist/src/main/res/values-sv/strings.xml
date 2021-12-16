@@ -325,7 +325,7 @@
     <string name="finding_current_location">Letar efter din plats...</string>
     <string name="flag_as_captive">Markera som I fångenskap/Odlad</string>
     <string name="observation_flagged_as_captive">Fynd har markerats som i fångenskap/odlat</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Är du säker du vill markera detta fynd som i fångenskap/odlat? (Trycker du på Ja kommer fyndfönstret att stängas)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Är du säker du vill markera detta fynd som i fångenskap/odlat? (Trycker du på Ja kommer fyndfönstret att stängas)</string>
     <string name="do_you_agree_to_the_following">Håller du med om följande?</string>
     <string name="terms">Villkor</string>
     <string name="observation_rules">Fyndregler</string>

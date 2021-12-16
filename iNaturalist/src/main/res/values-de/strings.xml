@@ -325,7 +325,7 @@
     <string name="finding_current_location">Suche nach aktuellen Standort...</string>
     <string name="flag_as_captive">Als \"in Haltung/kultiviert\" markieren</string>
     <string name="observation_flagged_as_captive">Beobachtung wurde als \"in Haltung/kultiviert\" markiert</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Bist du sicher, dass du diese Beobachtung als \"in Haltung/kultiviert\" markieren möchtest? (Durch Drücken von \"Ja\" wird auch das Beobachtungsfenster geschlossen)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Bist du sicher, dass du diese Beobachtung als \"in Haltung/kultiviert\" markieren möchtest? (Durch Drücken von \"Ja\" wird auch das Beobachtungsfenster geschlossen)</string>
     <string name="do_you_agree_to_the_following">Stimmst du dem Folgenden zu?</string>
     <string name="terms">Bedingungen</string>
     <string name="observation_rules">Regeln für Beobachtungen</string>

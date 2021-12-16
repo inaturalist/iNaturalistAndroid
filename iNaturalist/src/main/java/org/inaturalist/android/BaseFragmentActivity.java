@@ -304,29 +304,29 @@ public class BaseFragmentActivity extends AppCompatActivity {
             // Assume it's the default observation action
             if (defaultAction.equals(INaturalistApp.DEFAULT_ACTION_TAKE_PHOTO)) {
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_SHUTTER);
-                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
+                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditorSlider.class);
                 intent.putExtra(ObservationEditor.TAKE_PHOTO, true);
                 startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
 
             } else if (defaultAction.equals(INaturalistApp.DEFAULT_ACTION_CHOOSE_IMAGE)) {
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_LIBRARY_START);
-                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
+                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditorSlider.class);
                 intent.putExtra(ObservationEditor.CHOOSE_PHOTO, true);
                 startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
 
             } else if (defaultAction.equals(INaturalistApp.DEFAULT_ACTION_RECORD_SOUND)) {
-                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
+                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditorSlider.class);
                 intent.putExtra(ObservationEditor.RECORD_SOUND, true);
                 startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
 
             } else if (defaultAction.equals(INaturalistApp.DEFAULT_ACTION_CHOOSE_SOUND)) {
-                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
+                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditorSlider.class);
                 intent.putExtra(ObservationEditor.CHOOSE_SOUND, true);
                 startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
 
             } else if (defaultAction.equals(INaturalistApp.DEFAULT_ACTION_NO_MEDIA)) {
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_NO_PHOTO);
-                startActivityForResult(new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class), REQUEST_CODE_OBSERVATION_EDIT);
+                startActivityForResult(new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditorSlider.class), REQUEST_CODE_OBSERVATION_EDIT);
             }
             return;
         }
@@ -360,7 +360,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 mBottomSheetDialog.dismiss();
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_SHUTTER);
 
-                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
+                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditorSlider.class);
                 intent.putExtra(ObservationEditor.TAKE_PHOTO, true);
                 startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
             }
@@ -374,7 +374,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 mBottomSheetDialog.dismiss();
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_LIBRARY_START);
 
-                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
+                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditorSlider.class);
                 intent.putExtra(ObservationEditor.CHOOSE_PHOTO, true);
                 startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
             }
@@ -386,7 +386,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
             public void onClick(View view) {
                 mSelectedBottomGrid = true;
                 mBottomSheetDialog.dismiss();
-                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
+                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditorSlider.class);
                 intent.putExtra(ObservationEditor.RECORD_SOUND, true);
                 startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
             }
@@ -398,7 +398,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
             public void onClick(View view) {
                 mSelectedBottomGrid = true;
                 mBottomSheetDialog.dismiss();
-                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
+                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditorSlider.class);
                 intent.putExtra(ObservationEditor.CHOOSE_SOUND, true);
                 startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
             }
@@ -411,7 +411,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 mSelectedBottomGrid = true;
                 mBottomSheetDialog.dismiss();
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_NO_PHOTO);
-                startActivityForResult(new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class), REQUEST_CODE_OBSERVATION_EDIT);
+                startActivityForResult(new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditorSlider.class), REQUEST_CODE_OBSERVATION_EDIT);
             }
         });
 

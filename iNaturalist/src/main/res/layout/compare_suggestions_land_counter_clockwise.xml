@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-            <com.viewpagerindicator.CirclePageIndicator
+            <org.inaturalist.android.FixedCirclePageIndicator
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/observation_photos_indicator"
                 android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_height="match_parent" />
 
-            <com.viewpagerindicator.CirclePageIndicator
+            <org.inaturalist.android.FixedCirclePageIndicator
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/taxon_photos_indicator"
                 android:layout_height="wrap_content"

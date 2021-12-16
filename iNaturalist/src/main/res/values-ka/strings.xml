@@ -325,7 +325,7 @@
     <string name="finding_current_location">მიმდინარე ადგილმდებარეობის პოვნა...</string>
     <string name="flag_as_captive">Flag as Captive/Cultivated</string>
     <string name="observation_flagged_as_captive">Observation was flagged as captive/cultivated</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Are you sure you want to flag this observation as captive/cultivated? (Pressing yes will also close the observation viewer window)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated? (Pressing yes will also close the observation viewer window)</string>
     <string name="do_you_agree_to_the_following">Do you agree to the following?</string>
     <string name="terms">პირობები</string>
     <string name="observation_rules">დაკვირვების წესები</string>

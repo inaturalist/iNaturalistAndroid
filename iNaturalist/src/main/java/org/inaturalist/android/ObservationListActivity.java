@@ -705,6 +705,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 }
             }
         }
+
+        if (mObservationListAdapter != null) mObservationListAdapter.onObservationChanged();
+        if (mObservationGridAdapter != null) mObservationGridAdapter.onObservationChanged();
     }
 
     // Checks to see if there are any observations that have the "old" way of saving photos
@@ -1185,7 +1188,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                     OnItemClickListener onIdentificationsClick = (adapterView, view, i, l) -> {
                         JSONObject item = (JSONObject) view.getTag();
-                        Intent intent = new Intent(ObservationListActivity.this, ObservationViewerActivity.class);
+                        Intent intent = new Intent(ObservationListActivity.this, ObservationViewerSlider.class);
                         intent.putExtra("observation", item.optJSONObject("observation").toString());
                         intent.putExtra("read_only", true);
                         intent.putExtra("reload", true);
@@ -1341,7 +1344,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                         } else {
                             if ((!mObservationListAdapter.isLocked(uri)) || (mObservationListAdapter.isLocked(uri) && !mApp.getIsSyncing())) {
                                 // Launch activity to view/edit the currently selected item
-                                startActivityForResult(new Intent(Intent.ACTION_VIEW, uri, ObservationListActivity.this, ObservationViewerActivity.class), REQUEST_CODE_OBSERVATION_VIEWER);
+                                startActivityForResult(new Intent(Intent.ACTION_VIEW, uri, ObservationListActivity.this, ObservationViewerSlider.class), REQUEST_CODE_OBSERVATION_VIEWER);
 
                                 try {
                                     JSONObject eventParams = new JSONObject();
@@ -1924,7 +1927,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         boolean triggerSync = false;
         if (requestCode == REQUEST_CODE_OBSERVATION_VIEWER) {
-            if (resultCode == ObservationViewerActivity.RESULT_OBSERVATION_CHANGED) {
+            if (resultCode == ObservationViewerFragment.RESULT_OBSERVATION_CHANGED) {
                 // Updated an existing obs
                 triggerSync = true;
             }

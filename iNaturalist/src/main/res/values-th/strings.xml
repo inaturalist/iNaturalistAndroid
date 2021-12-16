@@ -323,7 +323,7 @@
     <string name="finding_current_location">กำลังค้นหาตำแหน่งของคุณ ...</string>
     <string name="flag_as_captive">ตั้งค่าสถานะเป็น เพาะเลี้ยง / เพาะปลูก</string>
     <string name="observation_flagged_as_captive">การสังเกตการณ์ถูกตั้งค่าสถานะเป็น เพาะเลี้ยง / เพาะปลูก</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">คุณแน่ใจหรือไม่ว่าต้องการตั้งค่าสถานะข้อสังเกตนี้ว่าเป็นเพาะเลี้ยง / เพาะปลูก? (การกดใช่จะปิดหน้าต่างโปรแกรมดูการสังเกตการณ์ด้วย)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">คุณแน่ใจหรือไม่ว่าต้องการตั้งค่าสถานะข้อสังเกตนี้ว่าเป็นเพาะเลี้ยง / เพาะปลูก? (การกดใช่จะปิดหน้าต่างโปรแกรมดูการสังเกตการณ์ด้วย)</string>
     <string name="do_you_agree_to_the_following">คุณเห็นด้วยกับสิ่งต่อไปนี้หรือไม่?</string>
     <string name="terms">ข้อตกลง</string>
     <string name="observation_rules">กฎการสังเกตการณ์</string>

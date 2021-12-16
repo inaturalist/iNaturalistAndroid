@@ -786,7 +786,7 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
                         @Override
                         public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
                             JSONObject item = (JSONObject) view.getTag();
-                            Intent intent = new Intent(ProjectDetails.this, ObservationViewerActivity.class);
+                            Intent intent = new Intent(ProjectDetails.this, ObservationViewerSlider.class);
                             intent.putExtra("observation", item.toString());
                             intent.putExtra("read_only", true);
                             intent.putExtra("reload", true);

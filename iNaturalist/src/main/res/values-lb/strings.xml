@@ -325,7 +325,7 @@
     <string name="finding_current_location">Finding current location...</string>
     <string name="flag_as_captive">Als Gefaangen/Kultivéiert markeiren</string>
     <string name="observation_flagged_as_captive">Observatioun ass als gefaangen/kultivéiert markéiert ginn</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Are you sure you want to flag this observation as captive/cultivated? (Pressing yes will also close the observation viewer window)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated? (Pressing yes will also close the observation viewer window)</string>
     <string name="do_you_agree_to_the_following">Stemm dir dem Folgenden zou?</string>
     <string name="terms">Termen</string>
     <string name="observation_rules">Observatiouns  Regelen</string>

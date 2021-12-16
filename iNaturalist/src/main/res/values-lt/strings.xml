@@ -329,7 +329,7 @@
     <string name="finding_current_location">Ieškoma jūsų vieta...</string>
     <string name="flag_as_captive">Pažymėti kaip naminį/kultivuojamą</string>
     <string name="observation_flagged_as_captive">Stebėjimas buvo pažymėtas kaip naminis/kultivuojamas</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Ar tikrai norite pažymėti šį stebėjimą kaip naminį/kultivuojamą? (Paspaudę „taip“ taip pat uždarysite stebėjimo langą)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Ar tikrai norite pažymėti šį stebėjimą kaip naminį/kultivuojamą? (Paspaudę „taip“ taip pat uždarysite stebėjimo langą)</string>
     <string name="do_you_agree_to_the_following">Ar sutinkate su teiginiu?</string>
     <string name="terms">Sąlygos</string>
     <string name="observation_rules">Stebėjimų taisyklės</string>

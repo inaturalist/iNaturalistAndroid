@@ -325,7 +325,7 @@
     <string name="finding_current_location">Otsin praegust asukohta...</string>
     <string name="flag_as_captive">Määra vangistatuks / kultiveerituks</string>
     <string name="observation_flagged_as_captive">Vaatlus määratud vangistatuks / kultiveerituks</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Oled sa kindel, et soovid määrata vaatlust vangistatuks / kultiveerituks? (Vajutades \"jah\" suled sa ka vaatlusakna)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Oled sa kindel, et soovid määrata vaatlust vangistatuks / kultiveerituks? (Vajutades \"jah\" suled sa ka vaatlusakna)</string>
     <string name="do_you_agree_to_the_following">Nõustud sa järgnevaga?</string>
     <string name="terms">Tingimused</string>
     <string name="observation_rules">Vaatlusreeglid</string>

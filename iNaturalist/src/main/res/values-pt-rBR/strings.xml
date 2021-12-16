@@ -325,7 +325,7 @@
     <string name="finding_current_location">Buscando sua localização...</string>
     <string name="flag_as_captive">Sinalizar como cativo/cultivado</string>
     <string name="observation_flagged_as_captive">Observação sinalizada como cativo/cultivado</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Tem certeza que deseja sinalizar esta observação como em cativeiro ou cultivado? (Pressionar sim também irá fechar a janela de visualização desta observação)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Tem certeza que deseja sinalizar esta observação como em cativeiro ou cultivado? (Pressionar sim também irá fechar a janela de visualização desta observação)</string>
     <string name="do_you_agree_to_the_following">Você concorda com o seguinte?</string>
     <string name="terms">Termos</string>
     <string name="observation_rules">Regras de Observação</string>

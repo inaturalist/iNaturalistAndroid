@@ -323,7 +323,7 @@
     <string name="finding_current_location">搜寻您所在的位置...</string>
     <string name="flag_as_captive">设为圈养/栽培旗标</string>
     <string name="observation_flagged_as_captive">观察记录被标记为捕捉/栽培</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">您确定你要标记这笔观察记录为圈养或栽培吗？ （点选「是的」将关闭观察检视视窗）</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">您确定你要标记这笔观察记录为圈养或栽培吗？ （点选「是的」将关闭观察检视视窗）</string>
     <string name="do_you_agree_to_the_following">你同意以下吗？</string>
     <string name="terms">使用条款</string>
     <string name="observation_rules">观察记录的规则</string>

@@ -144,7 +144,7 @@ public class MissionDetailsMapActivity extends AppCompatActivity {
                         // Show the observation viewer screen for the marker
                         JSONObject o = mMarkerObservations.get(marker.getId());
 
-                        Intent intent = new Intent(MissionDetailsMapActivity.this, ObservationViewerActivity.class);
+                        Intent intent = new Intent(MissionDetailsMapActivity.this, ObservationViewerSlider.class);
                         intent.putExtra("observation", o.toString());
                         intent.putExtra("read_only", true);
                         startActivity(intent);

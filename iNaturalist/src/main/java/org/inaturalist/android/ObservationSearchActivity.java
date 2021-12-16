@@ -210,7 +210,7 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
             // Offline result
             Uri uri = ContentUris.withAppendedId(Observation.CONTENT_URI, id);
             if ((!((ObservationCursorAdapter)mObservationsAdapter).isLocked(uri)) || (((ObservationCursorAdapter)mObservationsAdapter).isLocked(uri) && !mApp.getIsSyncing())) {
-                startActivity(new Intent(Intent.ACTION_VIEW, uri, this, ObservationViewerActivity.class));
+                startActivity(new Intent(Intent.ACTION_VIEW, uri, this, ObservationViewerSlider.class));
             }
         } else {
             // Online result - download it locally (to our app DB) so the user can edit it
@@ -224,7 +224,7 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
                 long internalObsId = c.getLong(c.getColumnIndex(Observation._ID));
                 c.close();
                 Uri uri = ContentUris.withAppendedId(Observation.CONTENT_URI, internalObsId);
-                startActivity(new Intent(Intent.ACTION_VIEW, uri, this, ObservationViewerActivity.class));
+                startActivity(new Intent(Intent.ACTION_VIEW, uri, this, ObservationViewerSlider.class));
 
                 return;
             }
@@ -234,7 +234,7 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
             // Observation hasn't been previously downloaded locally - add it to the local app DB
             Uri newObs = saveObservationLocally(item);
 
-            startActivity(new Intent(Intent.ACTION_VIEW, newObs, this, ObservationViewerActivity.class));
+            startActivity(new Intent(Intent.ACTION_VIEW, newObs, this, ObservationViewerSlider.class));
         }
     }
 

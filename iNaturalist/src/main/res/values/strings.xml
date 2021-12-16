@@ -328,7 +328,7 @@
     <string name="finding_current_location">Finding current location...</string>
     <string name="flag_as_captive">Flag as Captive/Cultivated</string>
     <string name="observation_flagged_as_captive">Observation was flagged as captive/cultivated</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Are you sure you want to flag this observation as captive/cultivated? (Pressing yes will also close the observation viewer window)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
     <string name="do_you_agree_to_the_following">Do you agree to the following?</string>
     <string name="terms">Terms</string>
     <string name="observation_rules">Observation Rules</string>
@@ -425,6 +425,7 @@
     <string name="you_will_only_receive_updates_when_following">(You will only receive updates once you\'re following observations)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> suggested an ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> commented: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">It looks like you deleted a photo by clearing the app cache before uploading. You will need to add the photo back to your observation from your gallery. In the future, please make sure you have uploaded all your photos before clearing the app cache.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -581,7 +582,7 @@
     <string name="start">Start</string>
     <string name="end">End</string>
     <string name="months">Months</string>
-    <string name="choose_months">Choose months(s)</string>
+    <string name="choose_months">Choose month(s)</string>
     <string name="map_area">Map Area</string>
     <string name="global">Global</string>
     <!-- As in redo search in the current map area -->
@@ -946,6 +947,7 @@
     <string name="flagging_conversation">Flagging conversation...</string>
     <string name="failed_flagging_conversation">Failed flagging conversation!</string>
     <string name="no_subject">No Subject</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_state_of_matter">State of matter</string>
     <string name="rank_kingdom">Kingdom</string>
     <string name="rank_subkingdom">Subkingdom</string>

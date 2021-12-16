@@ -329,7 +329,7 @@
     <string name="finding_current_location">Установяване на текущото местоположение...</string>
     <string name="flag_as_captive">Маркирай като недив</string>
     <string name="observation_flagged_as_captive">Наблюдението беше маркирано като недиво</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Сигурни ли сте, че искате да маркирате наблюдението като недиво? (Ако изберете Да, ще се затвори прозореца за разглеждане на наблюдения)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Сигурни ли сте, че искате да маркирате наблюдението като недиво? (Ако изберете Да, ще се затвори прозореца за разглеждане на наблюдения)</string>
     <string name="do_you_agree_to_the_following">Съгласни ли сте със следното?</string>
     <string name="terms">Условия</string>
     <string name="observation_rules">Правила за наблюдения</string>

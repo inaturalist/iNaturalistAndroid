@@ -329,7 +329,7 @@
     <string name="finding_current_location">Zistenie polohy...</string>
     <string name="flag_as_captive">Označiť ako v zajatí/v kultivácii</string>
     <string name="observation_flagged_as_captive">Pozorovanie bolo označené ako v zajatí/v kultivácii</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Naozaj chcete označiť toto pozorovanie ako v zajatí/v kultivácii? (Stlačením Áno sa zatvorí okno zobrazenia pozorovania)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Naozaj chcete označiť toto pozorovanie ako v zajatí/v kultivácii? (Stlačením Áno sa zatvorí okno zobrazenia pozorovania)</string>
     <string name="do_you_agree_to_the_following">Súhlasíte s nasledovným?</string>
     <string name="terms">Podmienky použitia</string>
     <string name="observation_rules">Pravidlá pozorovaní</string>

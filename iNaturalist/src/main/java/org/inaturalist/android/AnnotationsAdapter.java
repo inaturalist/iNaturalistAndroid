@@ -44,7 +44,6 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
     private static final String TAG = "AnnotationsAdapter";
     private final INaturalistApp mApp;
     private final OnAnnotationActions mOnAnnonationsActions;
-    private final ActivityHelper mHelper;
     private final JSONObject mObservation;
     private Context mContext;
 
@@ -122,7 +121,6 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
         mObservation = observation;
         mOnAnnonationsActions = onAnnonationActions;
         mApp = (INaturalistApp) mContext.getApplicationContext();
-        mHelper = new ActivityHelper(mContext);
 
         mAttributeValuesAdded = new HashMap<>();
 
@@ -341,7 +339,8 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
                     public void onClick(View view) {
                         String[] values = valuesToDisplay.toArray(new String[valuesToDisplay.size()]);
 
-                        mHelper.selection(fieldName, values, new DialogInterface.OnClickListener() {
+                        ActivityHelper helper = new ActivityHelper(mContext);
+                        helper.selection(fieldName, values, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int position) {
                                 int valueId = valuesIdsToDisplay.get(position);

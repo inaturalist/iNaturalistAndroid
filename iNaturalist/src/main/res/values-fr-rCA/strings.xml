@@ -325,7 +325,7 @@
     <string name="finding_current_location">Détection de la position actuelle...</string>
     <string name="flag_as_captive">Marquer comme captif/cultivé</string>
     <string name="observation_flagged_as_captive">L\'observation a été signalée comme captif/cultivé</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Êtes-vous sûr de que vouloir signaler cette observation comme captif/cultivé ? (En appuyant sur Oui l\'onglet de visualisation de l\'observation se fermera)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Êtes-vous sûr de que vouloir signaler cette observation comme captif/cultivé ? (En appuyant sur Oui l\'onglet de visualisation de l\'observation se fermera)</string>
     <string name="do_you_agree_to_the_following">Êtes-vous d’accord avec ce qui suit ?</string>
     <string name="terms">Termes</string>
     <string name="observation_rules">Règles au sujet des observations</string>

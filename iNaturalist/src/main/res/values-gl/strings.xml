@@ -325,7 +325,7 @@
     <string name="finding_current_location">Atopando a localización actual...</string>
     <string name="flag_as_captive">Marcar como Cativo/Cultivado</string>
     <string name="observation_flagged_as_captive">A observación marcouse como cativo/cultivado</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">¿Seguro que queres marcar esta observación como cativa/cultivada? (Ó calcar en sí, tamén se pechará a fiestra do visor de observación)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">¿Seguro que queres marcar esta observación como cativa/cultivada? (Ó calcar en sí, tamén se pechará a fiestra do visor de observación)</string>
     <string name="do_you_agree_to_the_following">¿Concordas có seguinte?</string>
     <string name="terms">Termos</string>
     <string name="observation_rules">Regras de Observación</string>
