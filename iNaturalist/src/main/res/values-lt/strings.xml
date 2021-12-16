@@ -356,7 +356,7 @@
     <string name="updating_profile">Naujinamas profilis...</string>
     <string name="there_was_a_problem_updating_profile">Iškilo problema naujinant profilį!</string>
     <string name="there_was_a_problem_updating_profile_params">Iškilo problema naujinant profilį! %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
+    <string name="logged_in_as_html"><![CDATA[Prisijungta kaip <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Šiuo metu prisijungę kaip <b>%1$s</b>]]></string>
     <string name="log_out">Atsijungti</string>
@@ -486,7 +486,7 @@
     <string name="enlarge">Padidinti</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Žiūrėti žemesnius taksonus</string>
-    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
+    <string name="invalid_photo_extension">Klaida įkeliant nuotrauką(-as): Galima įkelti tik nuotraukas su JPG/JPEG/PNG/HEIC/HEIF plėtiniais</string>
     <string name="taxon_has_no_photos">Šis taksonas neturi nuotraukų.</string>
     <string name="terrain">Reljefas</string>
     <string name="filters">Filtrai</string>
