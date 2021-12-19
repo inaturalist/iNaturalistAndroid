@@ -56,10 +56,6 @@ android {
         checkReleaseBuilds false
     }
 
-    dexOptions {
-        javaMaxHeapSize "4g"
-    }
-
     defaultConfig {
         applicationId "org.inaturalist.android"
         minSdkVersion 23
