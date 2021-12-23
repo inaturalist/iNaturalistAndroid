@@ -149,6 +149,10 @@
                     android:host="*.inaturalist.se"
                     android:pathPattern="/people/.*"
                     android:scheme="https"/>
+                <data
+                    android:host="*.naturalista.uy"
+                    android:pathPattern="/people/.*"
+                    android:scheme="https"/>
             </intent-filter>
 
         </activity>
@@ -236,6 +240,10 @@
                     android:scheme="https"/>
                 <data
                     android:host="*.inaturalist.se"
+                    android:pathPattern="/observations/.*"
+                    android:scheme="https"/>
+                <data
+                    android:host="*.naturalista.uy"
                     android:pathPattern="/observations/.*"
                     android:scheme="https"/>
             </intent-filter>
@@ -456,6 +464,17 @@
             android:configChanges="orientation"
             android:enabled="false"
             android:label="@string/network_inaturalistse">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name=".ObservationListActivity.naturalistauy"
+            android:targetActivity=".ObservationListActivity"
+            android:configChanges="orientation"
+            android:enabled="false"
+            android:label="@string/network_naturalistauy">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -712,6 +731,10 @@
                     android:scheme="https"/>
                 <data
                     android:host="*.inaturalist.se"
+                    android:pathPattern="/messages/.*"
+                    android:scheme="https"/>
+                <data
+                    android:host="*.naturalista.uy"
                     android:pathPattern="/messages/.*"
                     android:scheme="https"/>
             </intent-filter>
