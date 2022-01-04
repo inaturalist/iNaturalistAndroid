@@ -3258,9 +3258,11 @@ public class ObservationEditor extends Fragment {
             mCameraPhotos.add(copyPath);
         }
 
-        // Delete original photo (before resize)
-        File f = new File(path);
-        f.delete();
+        if ((copyPath != null) && (!copyPath.equals(path))) {
+            // Delete original photo (before resize)
+            File f = new File(path);
+            f.delete();
+        }
 
         if (createdUri == null) {
             getActivity().runOnUiThread(new Runnable() {
