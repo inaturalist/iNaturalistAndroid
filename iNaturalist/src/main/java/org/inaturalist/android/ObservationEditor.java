@@ -1808,6 +1808,10 @@ public class ObservationEditor extends Fragment {
             if (!mCursor.isClosed()) mCursor.close();
             mCursor = null;
         }
+        if (mUri == null) {
+            Logger.tag(TAG).error("initObservation - mUri is null");
+            return;
+        }
 
         mCursor = getActivity().getContentResolver().query(mUri, Observation.PROJECTION, null, null, null);
 
