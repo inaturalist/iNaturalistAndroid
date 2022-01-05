@@ -373,6 +373,7 @@ Many people have contributed translations to the iNaturalist Android app over th
 * [pbraun](https://crowdin.com/profile/pbraun)
 
 ## Macedonian (`mk`)
+* [Bojan Rantasa (Rante)](https://crowdin.com/profile/Rante)
 * [kmartin62](https://crowdin.com/profile/kmartin62)
 
 ## Malay

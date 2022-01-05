@@ -7,8 +7,6 @@
     <string name="ok">Гаразд</string>
     <string name="cancel">Скасувати</string>
     <string name="loading">Завантаження...</string>
-    <string name="sync_required">Sync required</string>
-    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
     <string name="street">Вулиця</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Супутник</string>
@@ -32,7 +30,6 @@
     <string name="settings">Налаштування</string>
     <string name="projects">Проєкти</string>
     <string name="delete_photo">Видалити фото</string>
-    <string name="menu">Menu</string>
     <string name="my_location">Моє розташування</string>
     <string name="nearby_observations">Спостереження поблизу</string>
     <string name="add">Додати</string>
@@ -218,6 +215,7 @@
     <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica є частиною мережі iNaturalist у Коста Риці. Місцеві організації, що підтримують Naturalista Costa Rica, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які є публічно прихованими або приватними. Якщо у вас є понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. Чи хочете ви змінити вашу мережеву приналежність?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala є частиною мережі iNaturalist у Гватемалі. Місцеві організації, що підтримують iNaturalist Guatemala, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які є публічно прихованими або приватними. Якщо у вас є понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. Чи хочете ви змінити вашу мережеву приналежність?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden є частиною мережі iNaturalist у Швеції. Місцеві організації, що підтримують iNaturalist Sweden, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які є публічно прихованими або приватними. Якщо у вас є понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. Чи хочете ви змінити вашу мережеву приналежність?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Редактор</string>
     <string name="license">Ліцензія</string>
     <string name="download_for_offline_use">Завантажено для використання в автономному режимі</string>
@@ -241,9 +239,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Email</string>
-    <string name="sign_up_with">Sign Up with</string>
     <string name="skip">Пропустити  ›</string>
-    <string name="already_have_account">Already have an account?</string>
     <string name="log_in">Увійти</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Зареєструватися</string>
@@ -341,7 +337,7 @@
     <string name="finding_current_location">Пошук місцерозташування...</string>
     <string name="flag_as_captive">Позначити як Поневолений / Культивований</string>
     <string name="observation_flagged_as_captive">Спостереження було позначено як Поневолений / Культивований</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Ви справді бажаєте позначити це спостереження як Поневолений / Культивований? (Після натискання \"Так\" вікно перегляду закриється)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
     <string name="do_you_agree_to_the_following">Чи згідні ви з наступним?</string>
     <string name="terms">Умови</string>
     <string name="observation_rules">Правила спостережень</string>
@@ -368,7 +364,6 @@
     <string name="updating_profile">Оновлення профілю...</string>
     <string name="there_was_a_problem_updating_profile">Під час оновлення профілю сталася помилка!</string>
     <string name="there_was_a_problem_updating_profile_params">Під час оновлення профілю сталася помилка: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Ви увійшли як <b>%1$s</b>]]></string>
     <string name="log_out">Вийти</string>
@@ -439,6 +434,7 @@
     <string name="you_will_only_receive_updates_when_following">(Ви отримуватимете оновлення лише тоді, коли ви будете підписані на спостереження)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> запропонував ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> прокоментував: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Схоже, ви видалили фото під час очищення кешу програми до того, як відвантажили його. Вам потрібно заново додати його до вашого спостереження із вашої галереї. Надалі, будь ласка, переконуйтеся, що ви відвантажили всі свої фотографії, перш ніж очистити кеш програми.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -491,14 +487,12 @@
     <string name="what_did_you_see">Що ви бачите?</string>
     <string name="suggest_species">Запропонувати вид</string>
     <string name="suggest_species_description">Запропонувати вид на основі схожості з фото.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Візуально схожі</string>
     <string name="visually_similar_seen_nearby">Візуально схожі / Зустрічалися поблизу</string>
     <string name="seen_nearby">Зустрічалися поблизу</string>
     <string name="enlarge">Збільшити</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Показати підцарства</string>
-    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
     <string name="taxon_has_no_photos">Цей таксон немає фотографій.</string>
     <string name="terrain">Ландшафт</string>
     <string name="filters">Фільтри</string>
@@ -593,7 +587,7 @@
     <string name="start">Початок</string>
     <string name="end">Закінчення</string>
     <string name="months">Місяці</string>
-    <string name="choose_months">Оберіть місяць(-і)</string>
+    <string name="choose_months">Choose month(s)</string>
     <string name="map_area">Мапа ділянки</string>
     <string name="global">Загальні</string>
     <!-- As in redo search in the current map area -->
@@ -616,7 +610,6 @@
     <string name="leave_comment">Залишити коментар...</string>
     <string name="swipe">Гортайте</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Which Google Account?</string>
     <string name="potential_disagreement">Потенційні розбіжності</string>
     <string name="do_you_think_this_could_be"><![CDATA[Чи достатньо доказів, що підтверджують це <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -794,6 +787,7 @@
     <string name="network_credit_inaturalistcr"><![CDATA[Коста-Рика: Comisión Nacional para la Gestión de la Biodisidad (CONAGEBIO) підтримує Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Гватемала: Consejo Nacional de Áreas Protegidas (CONAP) пітримує iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Швеція: SLU Шведський центр інформації щодо видів підтримує iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">Помітити всі як переглянуті</string>
     <string name="content_hidden">Прихований вміст</string>
     <string name="show_hidden_content">Показувати прихований вміст</string>
@@ -807,7 +801,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Записати звук</string>
-    <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">Не вдалося отримати звук із основного записувача. Натомість спробуйте імпортувати звук.</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Оберіть звук</string>
@@ -957,6 +950,7 @@
     <string name="flagging_conversation">Розмова позначається...</string>
     <string name="failed_flagging_conversation">Не вдалося позначити розмову!</string>
     <string name="no_subject">Без теми</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_state_of_matter">Форма</string>
     <string name="rank_kingdom">Царство</string>
     <string name="rank_subkingdom">Підцарство</string>
@@ -1214,7 +1208,6 @@
     <string name="user_is_muted">Користувача заглушено</string>
     <string name="cancel_multiple_obs_selection">Скасувати вибір декількох спостережень</string>
     <string name="delete_observations">Видалити спостереження</string>
-    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Кількість коментарів</string>
     <string name="id_count">Кількість визначень</string>
     <string name="observation_selected">Спостереження вибрано</string>

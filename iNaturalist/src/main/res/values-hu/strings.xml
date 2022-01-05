@@ -7,8 +7,6 @@
     <string name="ok">OK</string>
     <string name="cancel">Mégse</string>
     <string name="loading">Betöltés...</string>
-    <string name="sync_required">Sync required</string>
-    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
     <string name="street">Utca</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Műhold</string>
@@ -32,7 +30,6 @@
     <string name="settings">Beállítások</string>
     <string name="projects">Projektek</string>
     <string name="delete_photo">Fénykép törlése</string>
-    <string name="menu">Menu</string>
     <string name="my_location">Saját pozíció</string>
     <string name="nearby_observations">Közeli megfigyelések</string>
     <string name="add">Hozzáadás</string>
@@ -204,6 +201,7 @@
     <string name="alert_message_use_inaturalistcr">Az iNaturalist Costa Rica az costa ricai iNaturalist Network tagja. Az iNaturalist Costa Rica helyi intézményi támogatói hozzáférhetnek az emailcímedhez és a megfigyeléseid pontos, egyébként fedett vagy privát koordinátáihoz. Kérjük, hogy próbaképpen ne módosíts a partneri beállításokon, ha 1000-nél több megfigyelésed van. Szeretnéd módosítani a partneri beállításaidat?</string>
     <string name="alert_message_use_inaturalistgt">Az iNaturalist Guatemala a guatemalai iNaturalist Network tagja. Az iNaturalist Guatemalai helyi intézményi támogatói hozzáférhetnek az emailcímedhez és a megfigyeléseid pontos, egyébként fedett vagy privát koordinátáihoz. Kérjük, hogy próbaképpen ne módosíts a partneri beállításokon, ha 1000-nél több megfigyelésed van. Szeretnéd módosítani a partneri beállításaidat?</string>
     <string name="alert_message_use_inaturalistse">Az iNaturlaist Sweden a svédországi iNaturalist Network tagja. Az iNaturalist Sweden helyi intézményi támogatói hozzáférhetnek az emailcímedhez és a megfigyeléseid pontos, egyébként fedett vagy privát koordinátáihoz. Kérjük, hogy próbaképpen ne módosíts a partneri beállításokon, ha 1000-nél több megfigyelésed van. Szeretnéd módosítani a partneri beállításaidat?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Szerkesztő</string>
     <string name="license">Licensz</string>
     <string name="download_for_offline_use">Letöltés kapcsolat nélküli használatra</string>
@@ -227,9 +225,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-mail</string>
-    <string name="sign_up_with">Sign Up with</string>
     <string name="skip">Kihagyás ›</string>
-    <string name="already_have_account">Already have an account?</string>
     <string name="log_in">Bejelentkezés</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Regisztráció</string>
@@ -325,7 +321,7 @@
     <string name="finding_current_location">Aktuális hely keresése...</string>
     <string name="flag_as_captive">Megjelölés fogságban/kultiváltként</string>
     <string name="observation_flagged_as_captive">A megfigyelés fogságban/kultiváltként megjelölve</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Biztosan megjelölöd ezt a megfigyelést fogságban/kultiváltként? (Az igenre koppintással bezárod a megfigyelés megtekintése képernyőt)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
     <string name="do_you_agree_to_the_following">Egyetértesz a következővel?</string>
     <string name="terms">Feltételek</string>
     <string name="observation_rules">A megfigyelés szabályai</string>
@@ -352,7 +348,6 @@
     <string name="updating_profile">Profil frissítése...</string>
     <string name="there_was_a_problem_updating_profile">A profilod frissítése során hibába ütköztünk.</string>
     <string name="there_was_a_problem_updating_profile_params">A profilod frissítése során a következő hiba lépett fel: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Belépve <b>%1$s</b>-ként]]></string>
     <string name="log_out">Kijelentkezés</string>
@@ -423,6 +418,7 @@
     <string name="you_will_only_receive_updates_when_following">(Csak megfigyelések követése után kapsz frissítéseket)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> meghatározása: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> hozzászólt: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Úgy tűnik, a fékyépet törölted a gyorsítótárból a feltöltés előtt. Újból add hozzá a fényképet a gallériádból a megfigyeléshez. A jövőben csak minden fénykép feltöltése után töröld az alkalmazás gyorsítótárát.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -471,14 +467,12 @@
     <string name="what_did_you_see">Mit láttál?</string>
     <string name="suggest_species">Javaslat fajra</string>
     <string name="suggest_species_description">Fajfelismerés a fényképek hasonlóságai alapján.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Kinézetre hasonló</string>
     <string name="visually_similar_seen_nearby">Kinézetre hasonló / Közelben található</string>
     <string name="seen_nearby">A közelben látták</string>
     <string name="enlarge">Nagyítás</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Gyermekek megtekintése</string>
-    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
     <string name="taxon_has_no_photos">Ehhez a taxonhoz nem tartoznak fényképek.</string>
     <string name="terrain">Terep</string>
     <string name="filters">Szűrők</string>
@@ -573,7 +567,7 @@
     <string name="start">Kezdete</string>
     <string name="end">Vége</string>
     <string name="months">Hónapok</string>
-    <string name="choose_months">Hónap(ok) kiválasztása</string>
+    <string name="choose_months">Choose month(s)</string>
     <string name="map_area">Térképtartomány</string>
     <string name="global">Globális</string>
     <!-- As in redo search in the current map area -->
@@ -596,7 +590,6 @@
     <string name="leave_comment">Hozzászólás</string>
     <string name="swipe">Húzás</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Which Google Account?</string>
     <string name="potential_disagreement">Lehetséges konfliktus</string>
     <string name="do_you_think_this_could_be"><![CDATA[Elégséges bizonyíték ez arra, hogy ez <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -772,6 +765,7 @@
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">Mind megjelölése megtekintettként</string>
     <string name="content_hidden">Rejtett tartalom</string>
     <string name="show_hidden_content">Rejtett tartalom megjelenítése</string>
@@ -785,7 +779,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Hangrögzítés</string>
-    <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">A hang nem elérhető az alapértelmezett felvevőből. Próbáld inkább importálni.</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Hang kiválasztása</string>
@@ -931,6 +924,7 @@
     <string name="flagging_conversation">Társalgás bejelentése</string>
     <string name="failed_flagging_conversation">A társalgás bejelentése sikertelen!</string>
     <string name="no_subject">Nincs tárgy</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_state_of_matter">Entitás</string>
     <string name="rank_kingdom">Ország</string>
     <string name="rank_subkingdom">Alország</string>
@@ -1188,7 +1182,6 @@
     <string name="user_is_muted">A felhasználó némítva van</string>
     <string name="cancel_multiple_obs_selection">Többszörös kiválasztás visszavonása</string>
     <string name="delete_observations">Megfigyelések törlése</string>
-    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Hozzászólások száma</string>
     <string name="id_count">Meghatározások száma</string>
     <string name="observation_selected">Megfigyelés kijelölve</string>

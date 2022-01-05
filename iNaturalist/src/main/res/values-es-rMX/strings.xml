@@ -7,8 +7,6 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancela</string>
     <string name="loading">Cargando...</string>
-    <string name="sync_required">Sincronización requerida</string>
-    <string name="sync_required_message">%1$d observaciones, %2$d fotos para sincronizar</string>
     <string name="street">Calle</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satélite</string>
@@ -32,7 +30,6 @@
     <string name="settings">Configuración</string>
     <string name="projects">Proyectos</string>
     <string name="delete_photo">Elimina foto</string>
-    <string name="menu">Menú</string>
     <string name="my_location">Mi ubicación</string>
     <string name="nearby_observations">Observaciones cercanas</string>
     <string name="add">Añade</string>
@@ -205,6 +202,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="alert_message_use_inaturalistcr">iNaturalist Costa Rica es miembro de la red iNaturalist en Costa Rica. Las instituciones locales que apoyan a Naturalista Costa Rica tendrán acceso a tu dirección de correo electrónico y a las coordenadas reales de tus observaciones aunque estén públicamente oscurecidas o sean privadas. No cambies experimentalmente tu afiliación si tienes más de 1000 observaciones. ¿Deseas cambiar tu afiliación?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala es miembro de la red iNaturalist en Guatemala. Las instituciones locales que apoyan a iNaturalist Guatemala tendrán acceso a tu dirección de correo electrónico y a las coordenadas reales de tus observaciones aunque estén públicamente oscurecidas o sean privadas. No cambies experimentalmente tu afiliación si tienes más de 1000 observaciones. ¿Deseas cambiar tu afiliación?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Suecia es miembro de la red iNaturalist en Suecia. Las instituciones locales que apoyan a iNaturalist Suecia tendrán acceso a tu dirección de correo electrónico y a las coordenadas reales de tus observaciones aunque estén públicamente oscurecidas o sean privadas. No cambies experimentalmente tu afiliación si tienes más de 1000 observaciones. ¿Deseas cambiar tu afiliación?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay es miembro de la red iNaturalist en Uruguay. Las instituciones locales que apoyan a Naturalista Uruguay tendrán acceso a tu dirección de correo electrónico y a las coordenadas reales de tus observaciones aunque estén públicamente oscurecidas o sean privadas. Por favor, no cambies experimentalmente tu afiliación si tienes más de 1000 observaciones. ¿Deseas cambiar tu afiliación?</string>
     <string name="editor">Editor</string>
     <string name="license">Licencia</string>
     <string name="download_for_offline_use">Descarga para uso fuera de línea</string>
@@ -228,9 +226,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Correo electrónico</string>
-    <string name="sign_up_with">Regístrate con</string>
     <string name="skip">Omite</string>
-    <string name="already_have_account">¿Ya tienes una cuenta?</string>
     <string name="log_in">Inicia sesión</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Regístrate</string>
@@ -326,7 +322,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="finding_current_location">Buscando localización actual...</string>
     <string name="flag_as_captive">Marca como en cautiverio/cultivado</string>
     <string name="observation_flagged_as_captive">Observación marcada como cautiverio/cultivada</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">¿Estás seguro que deseas marcar esta observación como cautiverio/cultivada? (Presionando \"sí\" también se cerrará la ventana del visor de observación)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">¿Estás seguro de que quieres marcar esta observación como cautiva/cultivada?</string>
     <string name="do_you_agree_to_the_following">¿Estás de acuerdo con lo siguiente?</string>
     <string name="terms">Condiciones</string>
     <string name="observation_rules">Reglas de observación</string>
@@ -353,7 +349,6 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="updating_profile">Actualizando perfil...</string>
     <string name="there_was_a_problem_updating_profile">¡Hubo un problema mientras se actualizaba tu perfil!</string>
     <string name="there_was_a_problem_updating_profile_params">Hubo un problema mientras se actualizaba tu perfil: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Sesión iniciada como <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Conectado como <b>%1$s</b>]]></string>
     <string name="log_out">Cerrar la sesión</string>
@@ -424,6 +419,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="you_will_only_receive_updates_when_following">(Recibirás actualizaciones cuando hayas subido observaciones)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> sugirió un ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> comentó: "%2$s" <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> te ha mencionado: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Parece que has eliminado una foto al limpiar la caché de la aplicación antes de subirla. Necesitarás volver a agregar la foto a tu observación de la galería. En el futuro, por favor, asegúrate que han subido todas tus fotos antes de eliminar la caché de la aplicación.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -472,14 +468,12 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="what_did_you_see">¿Qué viste?</string>
     <string name="suggest_species">Sugiere especies</string>
     <string name="suggest_species_description">Sugiere la especie basándose en la similitud visual con fotos.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visualmente similar</string>
     <string name="visually_similar_seen_nearby">Visualmente similar / visto cerca</string>
     <string name="seen_nearby">Visto en las cercanías</string>
     <string name="enlarge">Ampliar</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Ver taxa inferiores</string>
-    <string name="invalid_photo_extension">Error importando foto(s): Solo se pueden importar archivos de fotos con extensiones JPG/JPEG/PNG/HEIC/HEIF</string>
     <string name="taxon_has_no_photos">Este taxón tiene no tiene fotos.</string>
     <string name="terrain">Terreno</string>
     <string name="filters">Filtros</string>
@@ -574,7 +568,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="start">Empieza</string>
     <string name="end">Termina</string>
     <string name="months">Meses</string>
-    <string name="choose_months">Selecciona un mes (es)</string>
+    <string name="choose_months">Elige el mes(es)</string>
     <string name="map_area">Mapa del área</string>
     <string name="global">Global</string>
     <!-- As in redo search in the current map area -->
@@ -597,7 +591,6 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="leave_comment">Deja un comentario...</string>
     <string name="swipe">Desliza</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">¿Cuál cuenta de Google?</string>
     <string name="potential_disagreement">Desacuerdo potencial</string>
     <string name="do_you_think_this_could_be"><![CDATA[¿La evidencia proporcionada es suficiente para confirmar que esto es <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -773,6 +766,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) apoyando a Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) apoyando a iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Suecia: SLU Centro Suizo de Información de Especies apoyando a iNaturalist Suecia(<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA y Biodiversidata apoyan a Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">Marca todas como revisadas</string>
     <string name="content_hidden">Contenido oculto</string>
     <string name="show_hidden_content">Muestra contenido oculto</string>
@@ -786,7 +780,6 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Graba audio</string>
-    <string name="no_recorder_found">¡No se encontró grabadora de sonido predeterminada!</string>
     <string name="couldnt_retrieve_sound">No se pudo recuperar el audio de la grabadora predeterminada - intenta importar el audio en su lugar</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Elege sonido</string>
@@ -934,6 +927,7 @@ Más información de nuestra definición de \"contenido apropiado\" en las
     <string name="flagging_conversation">Denunciando conversación...</string>
     <string name="failed_flagging_conversation">¡Error al denunciar la conversación!</string>
     <string name="no_subject">Sin asunto</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_state_of_matter">Estado de la materia</string>
     <string name="rank_kingdom">Reino</string>
     <string name="rank_subkingdom">Subreino</string>
@@ -1191,7 +1185,6 @@ Más información de nuestra definición de \"contenido apropiado\" en las
     <string name="user_is_muted">Usuario silenciado</string>
     <string name="cancel_multiple_obs_selection">Cancelar selección de observaciones múltiples</string>
     <string name="delete_observations">Borrar observaciones</string>
-    <string name="clear_species_guess">Limpiar sugerencia de especie</string>
     <string name="comment_count">Número de comentarios</string>
     <string name="id_count">Número de identificaciones</string>
     <string name="observation_selected">Observación seleccionada</string>

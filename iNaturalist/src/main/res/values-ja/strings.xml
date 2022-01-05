@@ -7,8 +7,6 @@
     <string name="ok">OK</string>
     <string name="cancel">キャンセル</string>
     <string name="loading">読み込み中です...</string>
-    <string name="sync_required">Sync required</string>
-    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
     <string name="street">地図</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">衛星画像</string>
@@ -32,7 +30,6 @@
     <string name="settings">設定</string>
     <string name="projects">プロジェクト</string>
     <string name="delete_photo">写真の削除</string>
-    <string name="menu">Menu</string>
     <string name="my_location">現在地</string>
     <string name="nearby_observations">近隣の観察記録</string>
     <string name="add">追加</string>
@@ -203,6 +200,7 @@
     <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is a member of the iNaturalist Network in Costa Rica. Local institutions supporting Naturalista Costa Rica will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">編集者</string>
     <string name="license">ライセンス</string>
     <string name="download_for_offline_use">オフラインでも使用できるようにダウンロードする</string>
@@ -226,9 +224,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">メールアドレス</string>
-    <string name="sign_up_with">Sign Up with</string>
     <string name="skip">スキップ ›</string>
-    <string name="already_have_account">Already have an account?</string>
     <string name="log_in">ログイン</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">新規登録</string>
@@ -323,7 +319,7 @@
     <string name="finding_current_location">現在地を取得しています…</string>
     <string name="flag_as_captive">飼育/栽培としてフラグ</string>
     <string name="observation_flagged_as_captive">観察記録は、飼育/栽培としてフラグが設定されました</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">この観察記録を飼育/栽培としてフラグを設定してもよろしいですか? (はいを押すと、観察記録ビューアー ウィンドウも閉じます)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
     <string name="do_you_agree_to_the_following">以下に同意しますか?</string>
     <string name="terms">利用規約</string>
     <string name="observation_rules">観察ルール</string>
@@ -350,7 +346,6 @@
     <string name="updating_profile">プロフィールを更新しています...</string>
     <string name="there_was_a_problem_updating_profile">プロフィールの更新中に問題が発生しました!</string>
     <string name="there_was_a_problem_updating_profile_params">プロフィールの更新中に問題が発生しました: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[現在、 <b>%1$sとしてログインしています</b>]]></string>
     <string name="log_out">ログアウト</string>
@@ -421,6 +416,7 @@
     <string name="you_will_only_receive_updates_when_following">(観察記録をフォローすると、新着情報のみ受け取ります)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> 提案 ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> コメント: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">アップロードする前に、アプリのキャッシュを消去して、写真を削除したようです。観察記録に戻ってギャラリーから写真を追加する必要があります。今後は、アプリのキャッシュを消去する前に、すべての写真をアップロードしていることを確認してください。</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -467,14 +463,12 @@
     <string name="what_did_you_see">何を見ましたか？</string>
     <string name="suggest_species">種の提案</string>
     <string name="suggest_species_description">写真のような視覚的類似性に基づき種を提案します。</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">視覚的に類似</string>
     <string name="visually_similar_seen_nearby">視覚的に類似 / 近くで見られた</string>
     <string name="seen_nearby">近くで見られた</string>
     <string name="enlarge">拡大する</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">子の表示</string>
-    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
     <string name="taxon_has_no_photos">この分類群には、写真がありません。</string>
     <string name="terrain">地形</string>
     <string name="filters">フィルター</string>
@@ -569,7 +563,7 @@
     <string name="start">開始</string>
     <string name="end">終了</string>
     <string name="months">月</string>
-    <string name="choose_months">月を選択</string>
+    <string name="choose_months">Choose month(s)</string>
     <string name="map_area">地図表示エリア</string>
     <string name="global">グローバル</string>
     <!-- As in redo search in the current map area -->
@@ -592,7 +586,6 @@
     <string name="leave_comment">Leave a comment...</string>
     <string name="swipe">Swipe</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Which Google Account?</string>
     <string name="potential_disagreement">Potential Disagreement</string>
     <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -767,6 +760,7 @@
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">Mark all as viewed</string>
     <string name="content_hidden">Content Hidden</string>
     <string name="show_hidden_content">Show Hidden Content</string>
@@ -780,7 +774,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Record Sound</string>
-    <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Choose Sound</string>
@@ -925,6 +918,7 @@
     <string name="flagging_conversation">Flagging conversation...</string>
     <string name="failed_flagging_conversation">Failed flagging conversation!</string>
     <string name="no_subject">No Subject</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_state_of_matter">State of matter</string>
     <string name="rank_kingdom">Kingdom</string>
     <string name="rank_subkingdom">Subkingdom</string>
@@ -1182,7 +1176,6 @@
     <string name="user_is_muted">User is muted</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
     <string name="delete_observations">Delete observations</string>
-    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Comment count</string>
     <string name="id_count">Identification count</string>
     <string name="observation_selected">Observation selected</string>

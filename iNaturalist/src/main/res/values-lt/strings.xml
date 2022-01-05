@@ -7,8 +7,6 @@
     <string name="ok">Gerai</string>
     <string name="cancel">Atšaukti</string>
     <string name="loading">Kraunama...</string>
-    <string name="sync_required">Reikalinga sinchronizacija</string>
-    <string name="sync_required_message">%1$d stebėjimai, %2$d nuotraukos sinchronizuoti</string>
     <string name="street">Gatvė</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Palydovas</string>
@@ -32,7 +30,6 @@
     <string name="settings">Nustatymai</string>
     <string name="projects">Projektai</string>
     <string name="delete_photo">Ištrinti nuotrauką</string>
-    <string name="menu">Meniu</string>
     <string name="my_location">Mano vieta</string>
     <string name="nearby_observations">Stebėjimai netoliese</string>
     <string name="add">Pridėti</string>
@@ -206,6 +203,7 @@
     <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is a member of the iNaturalist Network in Costa Rica. Local institutions supporting Naturalista Costa Rica will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay yra Urugvajaus iNaturalist tinklo narys. Vietinės institucijos, remiančios Naturalista Uruguay, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
     <string name="editor">Redaktorius</string>
     <string name="license">Licencija</string>
     <string name="download_for_offline_use">Atsisiųsti naudojimui atsijungus nuo tinklo</string>
@@ -229,9 +227,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">El. paštas</string>
-    <string name="sign_up_with">Prisijungti su</string>
     <string name="skip">Praleisti  ›</string>
-    <string name="already_have_account">Jau turite paskyrą?</string>
     <string name="log_in">Prisijungti</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Registruotis</string>
@@ -329,7 +325,7 @@
     <string name="finding_current_location">Ieškoma jūsų vieta...</string>
     <string name="flag_as_captive">Pažymėti kaip naminį/kultivuojamą</string>
     <string name="observation_flagged_as_captive">Stebėjimas buvo pažymėtas kaip naminis/kultivuojamas</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Ar tikrai norite pažymėti šį stebėjimą kaip naminį/kultivuojamą? (Paspaudę „taip“ taip pat uždarysite stebėjimo langą)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Ar tikrai norite pažymėti šį stebėjimą kaip naminį/kultivuojamą?</string>
     <string name="do_you_agree_to_the_following">Ar sutinkate su teiginiu?</string>
     <string name="terms">Sąlygos</string>
     <string name="observation_rules">Stebėjimų taisyklės</string>
@@ -356,7 +352,6 @@
     <string name="updating_profile">Naujinamas profilis...</string>
     <string name="there_was_a_problem_updating_profile">Iškilo problema naujinant profilį!</string>
     <string name="there_was_a_problem_updating_profile_params">Iškilo problema naujinant profilį! %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Prisijungta kaip <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Šiuo metu prisijungę kaip <b>%1$s</b>]]></string>
     <string name="log_out">Atsijungti</string>
@@ -427,6 +422,7 @@
     <string name="you_will_only_receive_updates_when_following">(Gausite naujienas tik tada, kai seksite stebėjimus)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> pasiūlė ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> paliko komentarą: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> paminėjo jus: &ldquo;%2$s&rdquo;<font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Panašu, kad ištrynėte nuotrauką iš talpyklos dar nespėjus jos užkrauti. Jums teks į stebėjimą nuotrauką įkelti iš galerijos. Ateityje, prieš išvalant talpyklą, įsitikinkite, kad visos nuotraukos buvo užkrautos.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -479,14 +475,12 @@
     <string name="what_did_you_see">Ką pamatėte?</string>
     <string name="suggest_species">Siūlyti rūšį</string>
     <string name="suggest_species_description">Siūlyti rūšį pagal vizualinius panašumus nuotraukose.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Vizualiai panašus</string>
     <string name="visually_similar_seen_nearby">Vizualiai panašus / pastebėtas netoliese</string>
     <string name="seen_nearby">Pastebėtas netoliese</string>
     <string name="enlarge">Padidinti</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Žiūrėti žemesnius taksonus</string>
-    <string name="invalid_photo_extension">Klaida įkeliant nuotrauką(-as): Galima įkelti tik nuotraukas su JPG/JPEG/PNG/HEIC/HEIF plėtiniais</string>
     <string name="taxon_has_no_photos">Šis taksonas neturi nuotraukų.</string>
     <string name="terrain">Reljefas</string>
     <string name="filters">Filtrai</string>
@@ -581,7 +575,7 @@
     <string name="start">Pradžia</string>
     <string name="end">Pabaiga</string>
     <string name="months">Mėnesiai</string>
-    <string name="choose_months">Pasirinkti mėnesį(-ius)</string>
+    <string name="choose_months">Pasirinkite mėnesį(-ius)</string>
     <string name="map_area">Žemėlapio sritis</string>
     <string name="global">Globalus</string>
     <!-- As in redo search in the current map area -->
@@ -604,7 +598,6 @@
     <string name="leave_comment">Palikti komentarą...</string>
     <string name="swipe">Braukti</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Kuri Google paskyra?</string>
     <string name="potential_disagreement">Galimas nesutarimas</string>
     <string name="do_you_think_this_could_be"><![CDATA[Ar yra pateikta pakankamai įrodymų, kad čia yra <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -782,6 +775,7 @@
     <string name="network_credit_inaturalistcr"><![CDATA[Kosta Rika: Nacionalinė bioįvairovės valdymo komisija (Comisión Nacional para la Gestión de la Biodiversidad, CONAGEBIO), remianti  Kosta Rikos gamtos mokslus (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Gvatemala: Nacionalinė saugomų teritorijų taryba (Consejo Nacional de Áreas Protegidas, CONAP), remianti „iNaturalist Guatemala“ (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Švedija: SLU Švedijos informacinis rūšių centras, remiantis „iNaturalist Sweden“ (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Urugvajus: JULANA ir Biodiversidata remia Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">Pažymėti visus kaip peržiūrėtus</string>
     <string name="content_hidden">Turinys paslėptas</string>
     <string name="show_hidden_content">Rodyti paslėptą turinį</string>
@@ -795,7 +789,6 @@
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Įrašyti garsą</string>
-    <string name="no_recorder_found">Neaptiktas numatytas garso įrašytuvas!</string>
     <string name="couldnt_retrieve_sound">Nepavyko gauti garso iš numatytojo įrašytuvo - pabandykite importuoti garsą</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Pasirinkti garsą</string>
@@ -944,6 +937,7 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <string name="flagging_conversation">Pažymimas pokalbis...</string>
     <string name="failed_flagging_conversation">Nepavyko pažymėti pokalbio!</string>
     <string name="no_subject">Nėra temos</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_state_of_matter">Agregatinė būsena</string>
     <string name="rank_kingdom">Karalystė</string>
     <string name="rank_subkingdom">Pokaralystė</string>
@@ -1201,7 +1195,6 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <string name="user_is_muted">Naudotojas yra nutildytas</string>
     <string name="cancel_multiple_obs_selection">Atšaukti kelių stebėjimų parinktį</string>
     <string name="delete_observations">Trinti stebėjimus</string>
-    <string name="clear_species_guess">Trinti rūšies spėjimą</string>
     <string name="comment_count">Komentarų skaičius</string>
     <string name="id_count">Identifikavimo skaičius</string>
     <string name="observation_selected">Stebėjimas parinktas</string>

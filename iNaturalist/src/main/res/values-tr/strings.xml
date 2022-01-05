@@ -7,8 +7,6 @@
     <string name="ok">TAMAM</string>
     <string name="cancel">İptal</string>
     <string name="loading">Yükleniyor...</string>
-    <string name="sync_required">Senkronizasyon gerekli</string>
-    <string name="sync_required_message">Senkronize edilmesi gereken %1$d gözlem ve %2$d fotoğraf</string>
     <string name="street">Sokak</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Uydu</string>
@@ -32,7 +30,6 @@
     <string name="settings">Ayarlar</string>
     <string name="projects">Projeler</string>
     <string name="delete_photo">Fotoğrafı sil</string>
-    <string name="menu">Menü</string>
     <string name="my_location">Konumum</string>
     <string name="nearby_observations">Yakın gözlemler</string>
     <string name="add">Ekle</string>
@@ -204,6 +201,7 @@
     <string name="alert_message_use_inaturalistcr">Naturalista Kosta Rika, Kosta Rika\'daki iNaturalist Network üyesidir. Naturalista Kosta Rika’yı destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamu tarafından gizlenmiş veya özel gözlemler için gerçek koordinatlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala, Guatemala\'daki iNaturalist Network üyesidir. iNaturalist Guatemala’yı destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamu tarafından gizlenmiş veya özel gözlemler için gerçek koordinatlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist İsveç, İsveç\'teki iNaturalist Network üyesidir. iNaturalist İsveç\'i destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamu tarafından gizlenmiş veya özel gözlemler için gerçek koordinatlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Düzenleyici</string>
     <string name="license">Lisans</string>
     <string name="download_for_offline_use">Çevrimdışı kullanım için indir</string>
@@ -227,9 +225,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Eposta</string>
-    <string name="sign_up_with">Şununla birlikte kayıt olun</string>
     <string name="skip">Atla ›</string>
-    <string name="already_have_account">Zaten hesabınız var mı?</string>
     <string name="log_in">Oturum Aç</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">ÜYE OL</string>
@@ -325,7 +321,7 @@
     <string name="finding_current_location">Geçerli konumunuz bulunuyor...</string>
     <string name="flag_as_captive">Kısıtlanmış/Ekili olarak işaretle</string>
     <string name="observation_flagged_as_captive">Gözlem kısıtlanmış/ekili olarak işaretlendi</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Bu gözlemi kısıtlanmış/ekili olarak işaretlemek istediğinizden emin misiniz? (Evet düğmesine basıldığında gözlem görüntüleme penceresi de kapanır)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
     <string name="do_you_agree_to_the_following">Aşağıdakileri kabul ediyor musun?</string>
     <string name="terms">Şartlar</string>
     <string name="observation_rules">Gözlem Kuralları</string>
@@ -352,7 +348,6 @@
     <string name="updating_profile">Profiliniz Güncelleniyor...</string>
     <string name="there_was_a_problem_updating_profile">Profiliniz güncellenirken bir sorunla karşılaştık!</string>
     <string name="there_was_a_problem_updating_profile_params">Profiliniz güncellenirken bir sorunla karşılaştık: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[<b>%1$s</b> olarak giriş yapıldı]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Şu anki giriş kullanıcısı: <b>%1$s</b>]]></string>
     <string name="log_out">Çıkış yap</string>
@@ -423,6 +418,7 @@
     <string name="you_will_only_receive_updates_when_following">(Yalnızca gözlemleri takip ettiğinizde, güncelleme alacaksınız)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> önerdiği kimlik: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> yorum yaptı: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Yüklemeden önce uygulama önbelleği temizleyerek bir fotoğraf silmiş gibi görünüyor. Fotoğrafını Galeriden gözleme geri eklemeniz gerekecektir. Gelecekte, lütfen Uygulama önbelleğini temizlemeden önce tüm fotoğraflarınızı yüklediğiniz emin olun.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -471,14 +467,12 @@
     <string name="what_did_you_see">Ne gördünüz?</string>
     <string name="suggest_species">Tür Öner</string>
     <string name="suggest_species_description">Fotoğraflara benzer görsellere dayalı türler önerin.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Görsel Benzerlik</string>
     <string name="visually_similar_seen_nearby">Görsel Benzerlik / Yakında Görüldü</string>
     <string name="seen_nearby">Yakında Görüldü</string>
     <string name="enlarge">Genişlet</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Alt Sınıf Görünümü</string>
-    <string name="invalid_photo_extension">Fotoğrafları yüklerken bir hata oluştu. Sadece JPG/JPEG/PNG/HEIC/HEIF uzantılı dosyaları yükleyebilirsiniz.</string>
     <string name="taxon_has_no_photos">Bu sınıfın fotoğrafları yok.</string>
     <string name="terrain">Arazi</string>
     <string name="filters">Filtreler</string>
@@ -573,7 +567,7 @@
     <string name="start">Başlangıç</string>
     <string name="end">Bitiş</string>
     <string name="months">Aylar</string>
-    <string name="choose_months">Ay(ları) seçin</string>
+    <string name="choose_months">Choose month(s)</string>
     <string name="map_area">Harita alanı</string>
     <string name="global">Küresel</string>
     <!-- As in redo search in the current map area -->
@@ -596,7 +590,6 @@
     <string name="leave_comment">Yorum bırak...</string>
     <string name="swipe">Kaydır</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Hangi Google hesabı?</string>
     <string name="potential_disagreement">Olası Anlaşmazlık</string>
     <string name="do_you_think_this_could_be"><![CDATA[Bunun <b>%1$s</b> olduğunu doğrulamak için yeterli kanıt var mı?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -772,6 +765,7 @@
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">Tümünü görüntülendi olarak işaretle</string>
     <string name="content_hidden">İçerik Gizlendi</string>
     <string name="show_hidden_content">Gizli İçeriği Göster</string>
@@ -785,7 +779,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Ses Kaydet</string>
-    <string name="no_recorder_found">Varsayılan bir ses kaydedici bulunamadı!</string>
     <string name="couldnt_retrieve_sound">Varsayılan kayıt aygıtından ses alınamadı - bunun yerine sesi almayı deneyin</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Ses Seç</string>
@@ -932,6 +925,7 @@ Bir gözlem yalnızca %1$d fotoğraf içerebilir.</string>
     <string name="flagging_conversation">Konuşma işaretleniyor...</string>
     <string name="failed_flagging_conversation">Konuşma işaretleme başarısız!</string>
     <string name="no_subject">Konu Yok</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_state_of_matter">İçeriğin durumu</string>
     <string name="rank_kingdom">Alem</string>
     <string name="rank_subkingdom">Alt Alem</string>
@@ -1190,7 +1184,6 @@ Ticari Olmayan Atfetme (CC BY-NC), gibi kayıtların  biyolojik çeşitlilik bil
     <string name="user_is_muted">Kullanıcı susturuldu</string>
     <string name="cancel_multiple_obs_selection">Çoklu gözlem seçimini iptal et</string>
     <string name="delete_observations">Gözlemleri sil</string>
-    <string name="clear_species_guess">Tür tahminini temizle</string>
     <string name="comment_count">Yorum sayısı</string>
     <string name="id_count">Tanımlama sayısı</string>
     <string name="observation_selected">Seçilen gözlem</string>

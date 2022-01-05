@@ -7,8 +7,6 @@
     <string name="ok">OK</string>
     <string name="cancel">Zrušiť</string>
     <string name="loading">Nahrávam...</string>
-    <string name="sync_required">Sync required</string>
-    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
     <string name="street">Ulica</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satelit</string>
@@ -32,7 +30,6 @@
     <string name="settings">Nastavenia</string>
     <string name="projects">Projekty</string>
     <string name="delete_photo">Odstrániť fotografiu</string>
-    <string name="menu">Menu</string>
     <string name="my_location">Moja poloha</string>
     <string name="nearby_observations">Pozorovania v mojej blízkosti</string>
     <string name="add">Pridať</string>
@@ -188,24 +185,25 @@
     <string name="text"><![CDATA[<b>Text:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">Hlavná stránka iNaturalist siete. Kliknutím OK sa táto aplikácia stane súčasťou globálnej siete iNaturalist.</string>
-    <string name="alert_message_use_naturalista">NaturaLista is a member of the iNaturalist Network in Mexico. Local institutions supporting NaturaLista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturewatchnz">iNaturalist NZ is a member of the iNaturalist Network in New Zealand. Local institutions supporting iNaturalist NZ will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Local institutions supporting iNaturalist Canada will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Local institutions supporting Naturalista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4All is a member of the iNaturalist Network in Portugal. Local institutions supporting Biodiversity4All will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá is a member of the iNaturalist Network in Panama. Local institutions supporting iNaturalist Panamá will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador is a member of the iNaturalist Network in Ecuador. Local institutions supporting iNaturalist Ecuador will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia is a member of the iNaturalist Network in Australia. Local institutions supporting iNaturalist Australia will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_argentinat">ArgentiNat is a member of the iNaturalist Network in Argentina. Local institutions supporting ArgentiNat will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistfi">iNaturalist Finland is a member of the iNaturalist Network in Finland. Local institutions supporting iNaturalist Finland will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistgr">iNaturalist Greece is a member of the iNaturalist Network in Greece. Local institutions supporting iNaturalist Greece will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg is a member of the iNaturalist Network in Luxembourg. Local institutions supporting iNaturalist Luxembourg will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom is a member of the iNaturalist Network in United Kingdom. Local institutions supporting iNaturalist United Kingdom will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is a member of the iNaturalist Network in Costa Rica. Local institutions supporting Naturalista Costa Rica will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalista">NaturaLista je členom siete iNaturalist v Mexiku. Miestne inštitúcie podporujúce NaturaListu získajú prístup k Vašej emailovej adrese a ku skutočným súradniciam pozorovaní, ktoré sú súkromné alebo skryté pre verejnosť. Prosím, nemeňte Vaše pridruženie, ak máte viac ako 1000 pozorovaní. Chceli by ste zmeniť Vaše pridruženie?</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZ je členom siete iNaturalist na Novom Zélande. Miestne inštitúcie podporujúce iNaturalist NZ získajú prístup k Vašej emailovej adrese a ku skutočným súradniciam pozorovaní, ktoré sú súkromné alebo skryté pre verejnosť. Prosím, nemeňte Vaše pridruženie, ak máte viac ako 1000 pozorovaní. Chceli by ste zmeniť Vaše pridruženie?</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada je členom siete iNaturalist v Kanade. Miestne inštitúcie podporujúce iNaturalist Canada získajú prístup k Vašej emailovej adrese a ku skutočným súradniciam pozorovaní, ktoré sú súkromné alebo skryté pre verejnosť. Prosím, nemeňte Vaše pridruženie, ak máte viac ako 1000 pozorovaní. Chceli by ste zmeniť Vaše pridruženie</string>
+    <string name="alert_message_use_naturalistacolombia">Naturalista je členom siete iNaturalist v Kolumbii. Miestne inštitúcie podporujúce Naturalistu získajú prístup k Vašej emailovej adrese a ku skutočným súradniciam pozorovaní, ktoré sú súkromné alebo skryté pre verejnosť. Prosím, nemeňte Vaše pridruženie, ak máte viac ako 1000 pozorovaní. Chceli by ste zmeniť Vaše pridruženie?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All je členom siete iNaturalist v Portugalsku. Miestne inštitúcie podporujúce Biodiversity4All získajú prístup k Vašej emailovej adrese a ku skutočným súradniciam pozorovaní, ktoré sú súkromné alebo skryté pre verejnosť. Prosím, nemeňte Vaše pridruženie, ak máte viac ako 1000 pozorovaní. Chceli by ste zmeniť Vaše pridruženie?</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá je členom siete iNaturalist v Paname. Miestne inštitúcie podporujúce iNaturalist Panamá získajú prístup k Vašej emailovej adrese a ku skutočným súradniciam pozorovaní, ktoré sú súkromné alebo skryté pre verejnosť. Prosím, nemeňte Vaše pridruženie, ak máte viac ako 1000 pozorovaní. Chceli by ste zmeniť Vaše pridruženie?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador je členom siete iNaturalist v Ekvádore. Miestne inštitúcie podporujúce iNaturalist Ecuador získajú prístup k Vašej emailovej adrese a ku skutočným súradniciam pozorovaní, ktoré sú súkromné alebo skryté pre verejnosť. Prosím, nemeňte Vaše pridruženie, ak máte viac ako 1000 pozorovaní. Chceli by ste zmeniť Vaše pridruženie?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia je členom siete iNaturalist v Austrálii. Miestne inštitúcie podporujúce iNaturalist Australia získajú prístup k Vašej emailovej adrese a ku skutočným súradniciam pozorovaní, ktoré sú súkromné alebo skryté pre verejnosť. Prosím, nemeňte Vaše pridruženie, ak máte viac ako 1000 pozorovaní. Chceli by ste zmeniť Vaše pridruženie?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat je členom siete iNaturalist v Argentíne. Miestne inštitúcie podporujúce ArgentiNat získajú prístup k Vašej emailovej adrese a ku skutočným súradniciam pozorovaní, ktoré sú súkromné alebo skryté pre verejnosť. Prosím, nemeňte Vaše pridruženie, ak máte viac ako 1000 pozorovaní. Chceli by ste zmeniť Vaše pridruženie?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel je členom siete iNaturalist v Izraeli. Miestne inštitúcie podporujúce iNaturalist Israel získajú prístup k Vašej emailovej adrese a ku skutočným súradniciam pozorovaní, ktoré sú súkromné alebo skryté pre verejnosť. Prosím, nemeňte Vaše pridruženie, ak máte viac ako 1000 pozorovaní. Chceli by ste zmeniť Vaše pridruženie?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland je členom siete iNaturalist vo Fínsku. Miestne inštitúcie podporujúce iNaturalist Finland získajú prístup k Vašej emailovej adrese a ku skutočným súradniciam pozorovaní, ktoré sú súkromné alebo skryté pre verejnosť. Prosím, nemeňte Vaše pridruženie, ak máte viac ako 1000 pozorovaní. Chceli by ste zmeniť Vaše pridruženie?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile je členom siete iNaturalist v Čile. Miestne inštitúcie podporujúce iNaturalist Chile získajú prístup k Vašej emailovej adrese a ku skutočným súradniciam pozorovaní, ktoré sú súkromné alebo skryté pre verejnosť. Prosím, nemeňte Vaše pridruženie, ak máte viac ako 1000 pozorovaní. Chceli by ste zmeniť Vaše pridruženie?</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Greece je členom siete iNaturalist v Grécku. Miestne inštitúcie podporujúce iNaturalist Greece získajú prístup k Vašej emailovej adrese a ku skutočným súradniciam pozorovaní, ktoré sú súkromné alebo skryté pre verejnosť. Prosím, nemeňte Vaše pridruženie, ak máte viac ako 1000 pozorovaní. Chceli by ste zmeniť Vaše pridruženie?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg je členom siete iNaturalist v Luxembursku. Miestne inštitúcie podporujúce iNaturalist Luxembourg získajú prístup k Vašej emailovej adrese a ku skutočným súradniciam pozorovaní, ktoré sú súkromné alebo skryté pre verejnosť. Prosím, nemeňte Vaše pridruženie, ak máte viac ako 1000 pozorovaní. Chceli by ste zmeniť Vaše pridruženie?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom je členom siete iNaturalist v Spojenom Kráľovstve. Miestne inštitúcie podporujúce iNaturalist United Kingdom získajú prístup k Vašej emailovej adrese a ku skutočným súradniciam pozorovaní, ktoré sú súkromné alebo skryté pre verejnosť. Prosím, nemeňte Vaše pridruženie, ak máte viac ako 1000 pozorovaní. Chceli by ste zmeniť Vaše pridruženie?</string>
+    <string name="alert_message_use_inaturalistcr">iNaturalist Costa Rica je členom siete iNaturalist v Kostarike. Miestne inštitúcie podporujúce iNaturalist Costa Rica získajú prístup k Vašej emailovej adrese a ku skutočným súradniciam pozorovaní, ktoré sú súkromné alebo skryté pre verejnosť. Prosím, nemeňte Vaše pridruženie, ak máte viac ako 1000 pozorovaní. Chceli by ste zmeniť Vaše pridruženie?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala je členom siete iNaturalist v Guatemale. Miestne inštitúcie podporujúce iNaturalist Guatemala získajú prístup k Vašej emailovej adrese a ku skutočným súradniciam pozorovaní, ktoré sú súkromné alebo skryté pre verejnosť. Prosím, nemeňte Vaše pridruženie, ak máte viac ako 1000 pozorovaní. Chceli by ste zmeniť Vaše pridruženie?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sweden je členom siete iNaturalist vo Švédsku. Miestne inštitúcie podporujúce iNaturalist Sweden získajú prístup k Vašej emailovej adrese a ku skutočným súradniciam pozorovaní, ktoré sú súkromné alebo skryté pre verejnosť. Prosím, nemeňte Vaše pridruženie, ak máte viac ako 1000 pozorovaní. Chceli by ste zmeniť Vaše pridruženie?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editor</string>
     <string name="license">Licencia</string>
     <string name="download_for_offline_use">Na stiahnutie pre použitie v režime offline</string>
@@ -229,16 +227,14 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-mail</string>
-    <string name="sign_up_with">Sign Up with</string>
     <string name="skip">Preskočiť ›</string>
-    <string name="already_have_account">Already have an account?</string>
     <string name="log_in">Prihlásiť sa</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Registrovať sa</string>
     <!-- Title of the view used to sign up for a new account -->
-    <string name="sign_up_title">Sign Up</string>
+    <string name="sign_up_title">Zaregistrovať sa</string>
     <string name="min_6_chars">Minimálne 6 znakov</string>
-    <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data (recommended). <b>Learn More</b>]]></string>
+    <string name="use_my_license"><![CDATA[Áno, povoľte môj obsah, aby mohli vedci použiť moje údaje (odporúča sa). <b>Zistite viac</b>]]></string>
     <string name="content_licensing">Licensovanie obsahu</string>
     <string name="content_licensing_description">Začiarknite toto políčko, ak chcete použiť Create Commons Attribution-NonCommercial licenciu pre vaše fotografie. Môžete vybrať rôzne licencie alebo odobrať licenciu neskôr, ale toto je najlepšia licencia pre zdieľanie s výskumnými pracovníkmi.</string>
     <!-- Try to keep this about the length of the English text -->
@@ -329,7 +325,7 @@
     <string name="finding_current_location">Zistenie polohy...</string>
     <string name="flag_as_captive">Označiť ako v zajatí/v kultivácii</string>
     <string name="observation_flagged_as_captive">Pozorovanie bolo označené ako v zajatí/v kultivácii</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Naozaj chcete označiť toto pozorovanie ako v zajatí/v kultivácii? (Stlačením Áno sa zatvorí okno zobrazenia pozorovania)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
     <string name="do_you_agree_to_the_following">Súhlasíte s nasledovným?</string>
     <string name="terms">Podmienky použitia</string>
     <string name="observation_rules">Pravidlá pozorovaní</string>
@@ -356,20 +352,19 @@
     <string name="updating_profile">Aktualizuje sa profil...</string>
     <string name="there_was_a_problem_updating_profile">Vyskytol sa problém pri aktualizácii profilu!</string>
     <string name="there_was_a_problem_updating_profile_params">Vyskytol sa problém pri aktualizácii profilu: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Aktuálne prihlásený ako <b>%1$s</b>]]></string>
     <string name="log_out">Odhlásenie</string>
     <string name="not_logged_in">Nie ste prihlásený</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
-    <string name="login_or_sign_up">Log In or Sign Up</string>
+    <string name="login_or_sign_up">Prihlásiť sa alebo zaregistrovať</string>
     <string name="auto_upload_description">Automatické posielanie nových pozorovaní a úprav pozorovaní</string>
     <string name="language">Jazyk</string>
     <string name="version">Verzia</string>
     <string name="inat_network">iNaturalist sieť</string>
-    <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
+    <string name="inat_network_description">Sieť iNaturalist je štruktúra pre lokalizovanie komunity iNaturalistu. Miestne inštitúcie, ktoré podpísali dohodu s iNaturalistom, podporujú webové stránky, aby povzbudili k jeho miestnemu využívaniu a pomáhali miestnej biodiverzite.</string>
     <string name="more_info">Viac informácií</string>
-    <string name="select_network">Select Network Affiliation</string>
+    <string name="select_network">Vyberte pridruženie k sieti iNaturalist</string>
     <string name="help">Pomoc</string>
     <string name="stop">Ukončiť</string>
     <string name="resume">Obnoviť</string>
@@ -384,7 +379,7 @@
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Aktualizovať opis identifikácie</string>
     <string name="your_identification">Vaše ID: %1$s</string>
-    <string name="onboarding_species_name">Name what you saw if you can, even if that\'s just \"insect\" or \"bird,\" or just leave this blank. Others may help you identify it!</string>
+    <string name="onboarding_species_name">Ak môžete, pomenujte, čo ste videli, aj keď to bude len „hmyz“ alebo „vták“, alebo proste nechajte toto pole prázdne. Iní vám pomôžu s identifikáciou!</string>
     <string name="upload_complete">Nahrávanie dokončené!</string>
     <string name="onboarding_upload_description">Vráť sa skoro a pozri identifikácie a komentáre k pozorovaniu (niam).</string>
     <string name="importing_photos">Import fotografie (í)...</string>
@@ -398,11 +393,11 @@
     <string name="mammals">Cicavce</string>
     <string name="insects">Hmyz</string>
     <string name="reptiles">Plazy</string>
-    <string name="animals">Animals</string>
+    <string name="animals">Zvieratá</string>
     <string name="fish">Ryby</string>
     <string name="mollusks">Mäkkýše</string>
-    <string name="protozoans">Protozoans</string>
-    <string name="chromista">Kelp, Diatoms, and Allies</string>
+    <string name="protozoans">Prvoky</string>
+    <string name="chromista">Chaluhy, rozsievky a príbuzné rody</string>
     <string name="amphibians">Obojživelníky</string>
     <string name="fungi">Huby</string>
     <string name="birds">Vtáky</string>
@@ -427,6 +422,7 @@
     <string name="you_will_only_receive_updates_when_following">(Budete získavať aktualizácie až potom ako budete sledovať pozorovania)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> navrhol ID:%2$s<font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> komentoval: &ldquo;%2$s&rdquo;<font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Zdá sa, že ste odstránili fotografiu vymazaním vyrovnávacej pamäte aplikácií pred jej nahranim.  Budete musieť pridať fotografiu späť do svojho pozorovania z vašej galérie. Nabudúce sa uistite, že ste nahrali všetky fotografie pred vymazaním vyrovnávacej pamäte aplikácie.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -434,17 +430,17 @@
         content.
     -->
     <plurals name="new_activities">
-        <item quantity="one">%1s new</item>
-        <item quantity="few">%1s new</item>
-        <item quantity="many">%1s new</item>
-        <item quantity="other">%1s new</item>
+        <item quantity="one">%1s nová</item>
+        <item quantity="few">%1s nové</item>
+        <item quantity="many">%1s nových</item>
+        <item quantity="other">%1s nové</item>
     </plurals>
     <string name="no_results_found">Neboli nájdené žiadne výsledky...</string>
     <plurals name="syncing_x_out_of_y_observations">
-        <item quantity="one">Syncing %1$d of %2$d observation...</item>
-        <item quantity="few">Syncing %1$d of %2$d observations...</item>
-        <item quantity="many">Syncing %1$d of %2$d observations...</item>
-        <item quantity="other">Syncing %1$d of %2$d observations...</item>
+        <item quantity="one">Synchronizujem %1$d z %2$d pozorovania...</item>
+        <item quantity="few">Synchronizujem %1$d z %2$d pozorovaní...</item>
+        <item quantity="many">Synchronizujem %1$d z %2$d pozorovaní...</item>
+        <item quantity="other">Synchronizujem %1$d z %2$d pozorovaní...</item>
     </plurals>
     <string name="deleting_observations">Mažem pozorovania...</string>
     <string name="preparing">Pripravuje sa...</string>
@@ -469,24 +465,22 @@
     <string name="more_info_on_inat">Viac informácií na iNaturalist.org</string>
     <string name="view_suggestions">Pozrite návrhy</string>
     <string name="species_search">Vyhľadávanie druhov</string>
-    <string name="were_not_confident_enough">We\'re not confident enough to make a recommendation, but here are our top suggestions:</string>
-    <string name="were_not_confident_enough_no_suggestions">We\'re not confident enough to make a recommendation.</string>
+    <string name="were_not_confident_enough">Nie sme si natoľko istí, aby sme ponúkli odporúčanie, ale tu sú naše najlepšie návrhy:</string>
+    <string name="were_not_confident_enough_no_suggestions">Nie sme si natoľko istí, aby sme ponúkli odporúčanie.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
-    <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
+    <string name="most_observed_options_matching_filters">Najčastejšie pozorované možnosti zodpovedajúce filtrom:</string>
     <!-- Header for a list of suggested taxa -->
     <string name="top_suggestions">Najlepšie návrhy</string>
     <string name="pretty_sure_rank">Sme si celkom istý, že je to v %1$s:</string>
     <string name="what_did_you_see">Čo ste videli?</string>
     <string name="suggest_species">Návrhy druhov</string>
     <string name="suggest_species_description">Zobrazí návrhy druhov podľa vizuálnej podobnosti s fotografiami.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Vizuálne podobné</string>
     <string name="visually_similar_seen_nearby">Vizuálne podobné / videné blízko</string>
     <string name="seen_nearby">Videné blízko</string>
     <string name="enlarge">Zväčšiť</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Pozri nižšiu úroveň</string>
-    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
     <string name="taxon_has_no_photos">Tento taxón nemá žiadne fotky.</string>
     <string name="terrain">Terén</string>
     <string name="filters">Filtre</string>
@@ -533,39 +527,39 @@
     <string name="estate">Majetok</string>
     <string name="historical_town">Historické mesto</string>
     <string name="aggregate">Agregát</string>
-    <string name="open_space">Open Space</string>
+    <string name="open_space">Otvorený priestor</string>
     <string name="territory">Obvody</string>
     <string name="district">Okres</string>
     <string name="province">Provincia</string>
-    <string name="municipality">Municipality</string>
-    <string name="parish">Parish</string>
+    <string name="municipality">Obec</string>
+    <string name="parish">Farnosť</string>
     <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
-    <string name="department_segment">Department Segment</string>
-    <string name="city_building">City Building</string>
-    <string name="commune">Commune</string>
-    <string name="governorate">Governorate</string>
-    <string name="prefecture">Prefecture</string>
-    <string name="canton">Canton</string>
-    <string name="republic">Republic</string>
-    <string name="division">Division</string>
-    <string name="subdivision">Subdivision</string>
+    <string name="department_segment">Časť oddelenia</string>
+    <string name="city_building">Mestská budova</string>
+    <string name="commune">Obec</string>
+    <string name="governorate">Správny celok</string>
+    <string name="prefecture">Prefektúra</string>
+    <string name="canton">Kantón</string>
+    <string name="republic">Republika</string>
+    <string name="division">Divízia</string>
+    <string name="subdivision">Subdivízia</string>
     <!-- https://gadm.org place type, presumably describing an area larger than an individual property but smaller than a neighborhood -->
-    <string name="village_block">Village block</string>
+    <string name="village_block">Časť obce</string>
     <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
-    <string name="sum">Sum</string>
-    <string name="shire">Shire</string>
-    <string name="prefecture_city">Prefecture City</string>
+    <string name="sum">Suma</string>
+    <string name="shire">Grófstvo</string>
+    <string name="prefecture_city">Mestská prefektúra</string>
     <!-- Indonesian sub-sub-national place type -->
-    <string name="regency">Regency</string>
-    <string name="constituency">Constituency</string>
-    <string name="local_authority">Local Authority</string>
+    <string name="regency">Regentstvo</string>
+    <string name="constituency">Obvod</string>
+    <string name="local_authority">Miestny úrad</string>
     <!-- https://en.wikipedia.org/wiki/Poblacion -->
-    <string name="poblacion">Poblacion</string>
+    <string name="poblacion">Centrum mesta</string>
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
-    <string name="delegation">Delegation</string>
+    <string name="delegation">Delegácia</string>
     <string name="apply_filters">Aplikovať filtre</string>
-    <string name="remove_filters">Remove Filters</string>
-    <string name="reset">Reset</string>
+    <string name="remove_filters">Odstrániť filtre</string>
+    <string name="reset">Obnoviť</string>
     <string name="show_only_my_observations">Zobraz iba moje pozorovania</string>
     <string name="project">Projekt</string>
     <string name="user">Používateľ</string>
@@ -581,9 +575,9 @@
     <string name="start">Začiatok</string>
     <string name="end">Koniec</string>
     <string name="months">Mesiace</string>
-    <string name="choose_months">Vyber mesiac(e)</string>
+    <string name="choose_months">Choose month(s)</string>
     <string name="map_area">Oblasť mapy</string>
-    <string name="global">Global</string>
+    <string name="global">Globálne</string>
     <!-- As in redo search in the current map area -->
     <string name="search_map_area">Prehľadajte oblasť</string>
     <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
@@ -596,25 +590,24 @@
     <string name="date_week">%dt</string>
     <string name="new_observation">Nové pozorovanie</string>
     <string name="inactive_taxon">Neaktívny taxón</string>
-    <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
-    <string name="no_species_found">This is a list of the species you have observed the most.\n\nFYI: There\'s an estimated 9 million species on the planet, so get out there and observe them!</string>
+    <string name="no_identifications_found">Sledovanie identifikácií, ktoré navrhujete pre pozorovania iných ľudí tu.</string>
+    <string name="no_species_found">Toto je zoznam druhov, ktoré ste pozorovali najviac.\n\nMimochodom, na Zemi sa nachádza približne 9 miliónov druhov, takže choďte von a pozorujte ich!</string>
     <string name="make_an_observation">Vytvoriť pozorovanie</string>
     <string name="no_observations_found_new">Pozorovania sú záznamy vašich stretnutí s individuálnymi organizmami v konkrétnych časoch a miestach.</string>
     <string name="discard_comment">Naozaj chcete zahodiť tento komentár?</string>
     <string name="leave_comment">Pridajte komentár...</string>
     <string name="swipe">Potiahnite</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Which Google Account?</string>
     <string name="potential_disagreement">Potencionálny nesúhlas</string>
     <string name="do_you_think_this_could_be"><![CDATA[Je predložený dôkaz dostatočný na potvrdenie, že toto je <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
-    <string name="i_dont_know_but"><![CDATA[I don\'t know but I\'m sure this is <b>%1$s</b>.]]></string>
-    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
+    <string name="i_dont_know_but"><![CDATA[Neviem, ale som si istý, že je to <b>%1$s</b>.]]></string>
+    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Nie, ale patrí do <b>%1$s</b>.]]></string>
     <string name="submit">Odoslať</string>
     <string name="change_password">Zmena hesla</string>
     <string name="search_projects_youve_joined">Prehľadajte projekty, na ktorých participujete...</string>
     <string name="must_be_connected_to_load_more_obs">Musíte byť pripojený na internet aby ste načítali viac pozorovaní</string>
-    <string name="inat_about_title">iNaturalist is a joint initiative by the California Academy of Sciences and the National Geographic Society.</string>
+    <string name="inat_about_title">iNaturalist je spoločná iniciatíva California Academy of Sciences a National Geographic Society.</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -623,17 +616,18 @@
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
-    <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="https://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
-    <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
-    <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
+    <string name="inat_credits"><![CDATA[iNaturalist existuje vďaka každému jednému človeku, ktorý je súčasťou našej komunity. Ľudia, ktorí vytvárajú softvér, navrhujú prostredie, udržiavajú našu infraštruktúru, podporujú komunitu a pestujú spoluprácu, sú Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard a Ken-ichi Ueda.<br/><br/>CalTech a Cornell Tech pomohli vyvinúť systém počítačového videnia, ktorý navrhuje identifikácie podľa fotografií. Ďakujeme Grantovi Van Hornovi, Sergeovi Belongieovi a Pietrovi Peronovi za pokrok v oblasti výskumu počítačového videnia. Viac informácií nájdete na <a href="https://www.visipedia.org">visipedia.org</a>. Zvláštne poďakovanie patrí spoločnosti NVIDIA za ďalšiu pomoc.]]></string>
+    <string name="inat_credits_networks_pre"><![CDATA[Medzinárodná sieť iNaturalist podporuje lokalizované, plne integrované webové stránky založené na iNaturalist v nasledujúcich krajinách vďaka podpore pridružených partnerských organizácií.]]></string>
+    <string name="inat_credits_post"><![CDATA[iNaturalist je tiež veľmi vďačný vývojárom s otvoreným kódom, ktorí poskytli softvér, na ktorý sa dnes každý deň spoliehame. Príspevky s otvoreným kódom nájdete na stránke <a href="https://github.com/inaturalist/iNaturalistAndroid"> https://github.com/inaturalist/iNaturalistAndroid </a>. <br/> Sme vďační za pomoc s prekladmi poskytovanú dobrovoľníkmi v komunite crowdin.com, najmä Eduardovi Martínezovi, Lin Cheng-Taovi, KestrelLamovi, cgalindovi, vilseskogovi, NCAA, ldacoste, radane, Mykolovi Puchalskému, danieleseglie a katunchikovi. <br/> Miesta IUCN kategórie II poskytované IUCN a UNEP-WCMC (2015), Svetová databáza chránených území (WDPA) [On-line], [11/2014], Cambridge, Spojené Kráľovstvo: UNEP-WCMC. Dostupné na adrese: <a href="http://www.protectedplanet.net"> 
+www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Poďakovania</string>
     <string name="password_changed">Heslo, ktoré aplikácia používa, už nefunguje - zmenili ste heslo na webových stránkach? Zadajte prosím nové</string>
     <string name="just_so_you_know">Len aby ste vedeli...</string>
-    <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
-    <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
+    <string name="ask_for_g_plus_permissions">Google od nás požaduje, aby sme si od vás vyžiadali prístup k vašim kontaktom, aby sme mohli používať váš účet Google, aj keď zo žiadneho dôvodu nemáme prístup k vašim kontaktom. Ak zamietnete toto povolenie, budete sa musieť zaregistrovať alebo prihlásiť pomocou vášho používateľského mena a hesla.</string>
+    <string name="new_to_inat_sign_up_now"><![CDATA[Ste noví v %1$s? <b>Zaregistrujte sa teraz!</b>]]></string>
     <string name="see_more_observations">Pozri viac pozorovaní</string>
     <string name="see_more_species">Pozri viac druhov</string>
-    <string name="see_more_identifications">See more identifications</string>
+    <string name="see_more_identifications">Pozrite sa na viac identifikácií</string>
     <string name="collection_and_umbrella_projects">Kolekcie a projekty Umbrella</string>
     <string name="description">Popis</string>
     <string name="quantity">Počet</string>
@@ -706,26 +700,26 @@
     <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
     <string name="annotation_value_organism">Organizmus</string>
     <!-- Evidence of Presence value when for bird feathers -->
-    <string name="annotation_value_feather">Feather</string>
+    <string name="annotation_value_feather">Perie</string>
     <!-- Evidence of Presence value when for fecal remains -->
     <string name="annotation_value_scat">Výkal</string>
     <!-- Evidence of Presence value for impressions in the ground or snow -->
     <string name="annotation_value_track">Stopa</string>
     <!-- Evidence of Presence value when for bones -->
-    <string name="annotation_value_bone">Bone</string>
+    <string name="annotation_value_bone">Kosť</string>
     <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Časť z tela</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">PRIDAL SA</string>
     <string name="nearby_projects_all_caps">BLÍZKO</string>
-    <string name="featured_projects_all_caps">FEATURED</string>
+    <string name="featured_projects_all_caps">VYBRANÉ</string>
     <!-- Text for a button or label that allows someone to join a project -->
-    <string name="join_all_caps">JOIN</string>
-    <string name="my_guides_all_caps">YOURS</string>
-    <string name="nearby_guides_all_caps">NEARBY</string>
-    <string name="all_guides_all_caps">ALL</string>
-    <string name="description_all_caps">DESCRIPTION</string>
-    <string name="quantity_all_caps">QTY</string>
+    <string name="join_all_caps">PRIPOJIŤ SA</string>
+    <string name="my_guides_all_caps">VAŠE</string>
+    <string name="nearby_guides_all_caps">V OKOLÍ</string>
+    <string name="all_guides_all_caps">VŠETKY</string>
+    <string name="description_all_caps">POPIS</string>
+    <string name="quantity_all_caps">Množ.</string>
     <plurals name="observation_count_all_caps">
         <item quantity="one">%1$s POZOROVANIE</item>
         <item quantity="few">%1$s POZOROVANIA</item>
@@ -735,13 +729,13 @@
     <string name="agree_all_caps">SÚHLAS</string>
     <string name="observations_all_caps">POZOROVANIA</string>
     <string name="species_all_caps">DRUHY</string>
-    <string name="people_all_caps">PEOPLE</string>
-    <string name="identifiers_all_caps">IDENTIFIERS</string>
-    <string name="identifications_all_caps">IDENTIFICATIONS</string>
-    <string name="news_all_caps">NEWS</string>
-    <string name="got_it_all_caps">GOT IT!</string>
-    <string name="view_all_all_caps">VIEW ALL</string>
-    <string name="new_all_caps">NEW</string>
+    <string name="people_all_caps">ĽUDIA</string>
+    <string name="identifiers_all_caps">IDENTIFIKÁTORI</string>
+    <string name="identifications_all_caps">IDENTIFIKÁCIE</string>
+    <string name="news_all_caps">NOVINKY</string>
+    <string name="got_it_all_caps">CHÁPEM!</string>
+    <string name="view_all_all_caps">ZOBRAZIŤ VŠETKO</string>
+    <string name="new_all_caps">NOVÉ</string>
     <string name="observers_all_caps">POZOROVATELIA</string>
     <string name="observations_regular">Pozorovania</string>
     <string name="data_quality_assessment">Posúdenie kvality dát</string>
@@ -764,343 +758,344 @@
     <string name="donate_to_inaturalist">Prispejte na iNaturalist</string>
     <string name="prefers_scientific_name_first">Zobraziť najprv vedecké názvy</string>
     <string name="prefers_scientific_name_first_description">Zobrazí vedecké názvy pred bežnými názvami.</string>
-    <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, and Parks Canada operating iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
-    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
-    <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) operating NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
-    <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network operating iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
-    <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
-    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
-    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
-    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Natural History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
-    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
-    <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
-    <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[Kanada: Canadian Wildlife Federation, Royal Ontario Museum, NatureServe Canada a Parks Canada prevádzkujúce iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[Kolumbia: Instituto Humboldt prevádzkujúci Naturalistu (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalista"><![CDATA[Mexiko: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) prevádzkujúca NaturaListu (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[Nový Zéland: New Zealand Biodiversity Recording Network prevádzkujúci iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
+    <string name="network_credit_biodiversity4all"><![CDATA[Portugalsko: Associação Biodiversidade Para Todos prevádzkujúca Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente prevádzkujúce iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Argentína: Fundación Vida Silvestre Argentina podporujúca ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Austrália: Atlas of Living Australia podporujúci iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Ekvádor: Instituto Nacional de Biodiversidad (INABIO) podporujúci iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Izrael: Haifská univerzita podporujúca iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Fínsko: Finnish Museum of Natural History (LUOMUS) podporujúce iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Čile: Ministerio del Medio Ambiente podporujúce iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Grécko: iSea podporujúce iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Luxembursko: Luxembourg National Museum of Natural History (MnhnL) podporujúce iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Spojené Kráľovstvo: National Biodiversity Network Trust podporujúci iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Kostarika: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) podporujúca Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) podporujúci iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Švédsko: SLU Swedish Species Information Centre podporujúce iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">Označiť všetko ako videné</string>
     <string name="content_hidden">Obsah skrytý</string>
     <string name="show_hidden_content">Zobraziť skrytý obsah</string>
     <string name="content_hidden_because">Obsah skryl @%1$s v %2$s, pretože: \"%3$s\" </string>
-    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Kontaktovať podporu</a>]]></string>
     <string name="content">Obsah</string>
     <string name="has_photos">Má fotky</string>
     <string name="has_sounds">Má zvuky</string>
-    <string name="could_not_play_sound">Couldn\'t play sound - probably a network issue</string>
-    <string name="cant_play_soundcloud"><![CDATA[To listen to Soundcloud sounds, view the <a href="%1$s">website</a>.]]></string>
+    <string name="could_not_play_sound">Nemožno prehrať zvuk – pravdepodobne problém so sieťou</string>
+    <string name="cant_play_soundcloud"><![CDATA[Ak si chcete vypočuť zvuky zo Soundcloudu, choďte na <a href="%1$s">stránku</a>.]]></string>
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Nahrať zvuk</string>
-    <string name="no_recorder_found">No default sound recorder found!</string>
-    <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
+    <string name="couldnt_retrieve_sound">Nemožno načítať zvuk z predvoleného nahrávača – skúste namiesto toho importovať zvuk</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Vybrať zvuk</string>
-    <string name="multi_select_sound_description">Import multiple sounds by long-pressing on a single sound</string>
-    <string name="alert_unsupported_audio_type">Sorry, but there was a problem loading the sound from this source</string>
-    <string name="invalid_audio_extension">Error importing sound(s): Can only import sound files with WAV/MP3/AMR extensions</string>
-    <string name="importing_sounds">Importing sound(s)...</string>
-    <string name="observation_sound">Observation Sound</string>
-    <string name="deleted_sounds_from_cache_error">It looks like you deleted a sound by clearing the app cache before uploading. You will need to add the sound back to your observation from your gallery. In the future, please make sure you have uploaded all your sounds before clearing the app cache.</string>
+    <string name="multi_select_sound_description">Importujte viac zvukov dlhým stlačením jediného zvuku</string>
+    <string name="alert_unsupported_audio_type">Bohužiaľ, počas načítania zvuku z tohto zdroja sa vyskytol problém</string>
+    <string name="invalid_audio_extension">Chyba pri importe zvuku (zvukov): môžete importovať iba súbory WAV/MP3/AMR</string>
+    <string name="importing_sounds">Importujem zvuk/y...</string>
+    <string name="observation_sound">Zvuk pozorovania</string>
+    <string name="deleted_sounds_from_cache_error">Vyzerá to, že ste zmazali zvuk vyčistením vyrovnávacej pamäte aplikácie pred nahratím. Zvuk budete musieť pridať späť do svojho pozorovania z galérie. Nabudúce sa pred vymazaním vyrovnávacej pamäte aplikácie uistite, že ste nahrali všetky zvuky.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
-    <string name="seconds">%1$.1f sec</string>
-    <string name="clear_all_debug_logs">Clear All Debug Logs</string>
-    <string name="clears_up_storage_room_on_your_phone">Clears up storage room on your phone</string>
-    <string name="number_of_days_to_store_logs">Number of days to store logs</string>
-    <string name="send_debug_logs_from_start_date">Send Debug Logs From Start Date</string>
-    <string name="send_debug_logs_by_email">Send debug logs by email (from specified start date)</string>
-    <string name="debug_settings">Debug Settings</string>
-    <string name="are_you_sure_you_want_to_delete_logs">Are you sure you want to delete all debug logs? Only press \'Yes\' if you want clear up storage room for your phone</string>
-    <string name="no_log_files_found">No log files found for that date range - try earlier date?</string>
-    <string name="choose_pinned_location">Choose Pinned Location</string>
-    <string name="pin_current_location">Pin Current Location</string>
-    <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
-    <string name="delete_this_pinned_location">Delete this pinned location?</string>
+    <string name="seconds">%1$.1f s</string>
+    <string name="clear_all_debug_logs">Vymazať všetky protokoly ladenia</string>
+    <string name="clears_up_storage_room_on_your_phone">Vymaže úložisko vo vašom telefóne</string>
+    <string name="number_of_days_to_store_logs">Počet dní pre uloženie protokolov</string>
+    <string name="send_debug_logs_from_start_date">Odoslať protokoly ladenia od dátumu zahájenia</string>
+    <string name="send_debug_logs_by_email">Odoslať protokoly ladenia emailom (od konkrétneho dátumu zahájenia)</string>
+    <string name="debug_settings">Nastavenia ladenia</string>
+    <string name="are_you_sure_you_want_to_delete_logs">Naozaj chcete zmazať všetky protokoly ladenia? Stlačte „Áno“ iba, ak si prajete vyčistiť úložisko vášho telefónu</string>
+    <string name="no_log_files_found">Pre dané časové obdobie sa nenašli žiadne súbory – skúsiť skorší dátum?</string>
+    <string name="choose_pinned_location">Vybrať pripojenú polohu</string>
+    <string name="pin_current_location">Pripojiť súčasnú polohu</string>
+    <string name="location_pinned_successfully">Aktuálna poloha sa úspešne pripojila</string>
+    <string name="delete_this_pinned_location">Zmazať túto pripojenú polohu?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">Duplikovať</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_photo">Fotografiu sa nepodarilo duplikovať!</string>
-    <string name="couldnt_edit_photo">Couldn\'t edit photo!</string>
+    <string name="couldnt_edit_photo">Fotku nemožno upraviť!</string>
     <!-- Verb, as in "Rotate this photo" -->
-    <string name="ucrop_rotate">Rotate</string>
+    <string name="ucrop_rotate">Otočiť</string>
     <!-- Verb, as in "Scale (resize) this photo" -->
-    <string name="ucrop_scale">Scale</string>
+    <string name="ucrop_scale">Škálovať</string>
     <!-- Verb, as in "Crop this photo" -->
-    <string name="ucrop_crop">Crop</string>
+    <string name="ucrop_crop">Orezať</string>
     <!-- Label for adjusting the brightness of an image -->
-    <string name="ucrop_brightness">Brightness</string>
+    <string name="ucrop_brightness">Jas</string>
     <!-- Label for adjusting the contrast of an image -->
-    <string name="ucrop_contrast">Contrast</string>
+    <string name="ucrop_contrast">Kontrast</string>
     <!-- Label for adjusting the saturation of an image -->
-    <string name="ucrop_saturation">Saturation</string>
+    <string name="ucrop_saturation">Sýtosť</string>
     <!-- Label for adjusting the sharpness of an image -->
-    <string name="ucrop_sharpness">Sharpness</string>
+    <string name="ucrop_sharpness">Ostrosť</string>
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
-    <string name="ucrop_label_original">Original</string>
+    <string name="ucrop_label_original">Pôvodné</string>
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
-    <string name="ucrop_label_free">Free</string>
+    <string name="ucrop_label_free">Voľné</string>
     <!-- Verb phrase, button label to edit an observation photo -->
-    <string name="ucrop_label_edit_photo">Edit Photo</string>
-    <string name="service_temporarily_unavailable">Service temporarily unavailable.</string>
-    <string name="please_try_again_in_a_few_hours">Please try again in a few hours.</string>
+    <string name="ucrop_label_edit_photo">Upraviť fotku</string>
+    <string name="service_temporarily_unavailable">Služba je dočasne nedostupná.</string>
+    <string name="please_try_again_in_a_few_hours">Skúste to, prosím, znova o pár hodín.</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
-    <string name="please_try_again_in_x">Please try again in %1$d %2$s.</string>
-    <string name="hours">hours</string>
-    <string name="minutes">minutes</string>
-    <string name="seconds_value">seconds</string>
-    <string name="shop_the_inat_store">Shop the iNat Store</string>
+    <string name="please_try_again_in_x">Skúste to, prosím, znova o %1$d %2$s.</string>
+    <string name="hours">hodín</string>
+    <string name="minutes">minút</string>
+    <string name="seconds_value">sekúnd</string>
+    <string name="shop_the_inat_store">Nakupujte v iNat Store</string>
     <string name="delete_your_account">Odstrániť účet</string>
-    <string name="delete_account_message"><![CDATA[By deleting your account you will remove:<br/><br/><ul><li> All of your observations, including the work of the all the people who have helped you out with identifications.</li><li> All of the identifications you\'ve added to the observations of other people, which will potentially affect the data quality of those observations.</li><li> All of the comments you\'ve added.</li></ul><br/>Furthermore, this action cannot be undone. If you change your mind later, you aren\'t getting any of that content back.<br/><br/>If this service generates too many notifications, consider <a href="https://www.inaturalist.org/users/edit">editing your settings on the website</a> to opt out of certain notifications or stop receiving email from us. If you\'re having trouble with a specific person, consider <a href="https://www.inaturalist.org/users/edit">muting them</a> instead of deleting your account.<br/><br/>If you\'re still sure you want to delete your account, enter <b>\"%1$s\"</b> in the form below and click the button to delete your account and all your data.]]></string>
-    <string name="your_account_has_been_deleted">Your account has been deleted</string>
-    <string name="you_must_enter_username_in_the_form_to_delete_account">You must enter \'%1$s\' in the form to delete your account</string>
+    <string name="delete_account_message"><![CDATA[Odstránením účtu odstránite: <br/><br/><ul><li> Všetky pozorovania vrátane práce všetkých ľudí, ktorí vám pomohli s identifikáciou.</li><li> Všetky identifikácie, ktoré ste pridali do pozorovaní iných ľudí a ktoré môžu prípadne ovplyvniť kvalitu údajov týchto pozorovaní.</li><li> Všetky komentáre, ktoré ste pridali.</li></ul><br/>Táto akcia sa už nedá vrátiť späť. Aj keď neskôr zmeníte názor, nebudete už môcť získať nič z tohto obsahu.<br/><br/>Ak táto služba generuje príliš veľa oznámení, skúste <a href="https://www.inaturalist.org/users/edit">upraviť nastavenia na webových stránkach</a>, aby ste prestali dostávať určité oznámenia alebo emaily. Ak máte problém s konkrétnou osobou, môžete ju namiesto odstraňovania svojho účtu <a href="https://www.inaturalist.org/users/edit">zablokovať</a>.<br/><br/>Ak stále trváte na tom, že chcete odstrániť svoj účet, zadajte <b>\"%1$s\"</b> vo formulári nižšie a kliknite na tlačidlo pre zmazanie vášho účtu a všetkých vašich údajov.]]></string>
+    <string name="your_account_has_been_deleted">Váš účet bol odstránený</string>
+    <string name="you_must_enter_username_in_the_form_to_delete_account">Pre odstránenie účtu musíte zadať „%1$s“ do formulára</string>
     <!-- Second person hint text asking the user to enter their username -->
     <string name="type_your_username">Napíšte svoje užívateľské meno</string>
-    <string name="error_deleting_account">There was an error deleting your account - please check your Internet connection</string>
-    <string name="verify_your_password">Verify Your Password</string>
+    <string name="error_deleting_account">Pri odstraňovaní vášho účtu došlo k chybe – skontrolujte, prosím, internetové pripojenie</string>
+    <string name="verify_your_password">Overiť heslo</string>
     <string name="third_party_data_sharing">Zdieľanie dát treťou stranou</string>
-    <string name="disable_third_party_data_sharing">Disable Third-party Data Sharing</string>
-    <string name="do_not_collect_third_party_data">Do not collect stability and usage data using third-party services</string>
-    <string name="enabled">Enabled</string>
-    <string name="disabled">Disabled</string>
-    <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third-party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
-    <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
-    <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third-party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
-    <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
+    <string name="disable_third_party_data_sharing">Zakázať odosielanie dát tretím stranám</string>
+    <string name="do_not_collect_third_party_data">Nezhromažďovať údaje o stabilite a používaní pomocou služieb tretích strán</string>
+    <string name="enabled">Povolené</string>
+    <string name="disabled">Zakázané</string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[Pre monitorovanie stability a diagnostiku chýb a problémov s naším softvérom používame rôzne služby tretích strán. K týmto tretím stranám patria:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="third_party_data_sharing_notes2"><![CDATA[Informácie, o ktoré sa delíme s týmito tretími stranami, zahŕňajú:<br/><ul><li> IP adresy (pomocou ktorých možno odvodiť polohu na úrovni mesta a sledovať vás na rôznych webstránkach a službách; všimnite si, že sme povolili <a href="https://support.google.com/analytics/answer/2763052">anonymizáciu IP</a> v Google Analytics a <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a>, pokiaľ nám je známe, nezaznamenáva IP adresu)</li><li>Podrobnosti o prehliadači ako značka, model a verzia</li><li>Podrobnosti o pádoch softvéru, ako presne to, ktorý riadok kódu spôsobil pád</li><li>Podrobnosti o zariadení ako značka a model mobilného telefónu</li></ul>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b>Tieto služby tretích strán nám poskytujú obrovskú hodnotu</b> pre zachovanie stability a použiteľnosti iNaturalistu s naším relatívne malým počtom zamestnancov. Na mobilných zariadeniach neexistuje takmer žiadny iný spôsob, ako nahliadnuť do problémov, ktoré sa vyskytujú, keďže softvér beží na zariadeniach, ktoré nekontrolujeme. Občas si ani nie sme vedomí toho, že k takým problémom dochádza, kým ich neuvidíme v údajoch, ktoré nám tieto služby poskytujú. <b>Poskytovaním týchto informácií nám pomáhate slúžiť vám a celej komunite iNaturalistu.</b>]]></string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[Všimnite si, že táto možnosť sa týka iba analytických údajov a údajov o zlyhaní, ktoré týmto spoločnostiam výslovne zasielame. Všetky servery iNaturalistu poskytuje a hostí Microsoft, všetky obrázky iNaturalistu hostí Amazon a takmer všetky mapy iNaturalistu obsluhuje Google, čo znamená, že vždy, keď si pozriete nejaké pozorovanie na iNaturaliste, pripájate sa k službám, ktoré poskytujú tieto spoločnosti a vystavujete im prinajmenšom svoju IP adresu (v aplikácii pre iPhone používame Mapy od Applu). iNaturalist by pravdepodobne neexistoval bez služieb, ktoré tieto spoločnosti poskytujú a kým dokážeme limitovať množstvo a typ údajov, ktoré im poskytujete počas používania iNatu, nedokážeme zastaviť tok všetkých údajov.]]></string>
     <string name="common_names_place"><![CDATA[Miesto bežných názvov: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Klepnutím nastavíte prioritu bežných názvov z konkrétneho miesta.</string>
-    <string name="search_places">Search Places</string>
-    <string name="restart_app">Restart App</string>
-    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
+    <string name="search_places">Vyhľadať miesta</string>
+    <string name="restart_app">Reštartovať aplikáciu</string>
+    <string name="disable_third_party_sharing_restart">Ak chcete okamžite zakázať zdieľanie dát s tretími stranami, treba reštartovať aplikáciu.</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
-        <item quantity="one">Are you sure you want to delete this %1$d observation?</item>
-        <item quantity="few">Are you sure you want to delete these %1$d observations?</item>
-        <item quantity="many">Are you sure you want to delete these %1$d observations?</item>
-        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+        <item quantity="one">Naozaj chcete odstrániť toto %1$d pozorovanie?</item>
+        <item quantity="few">Naozaj chcete odstrániť tieto %1$d pozorovania?</item>
+        <item quantity="many">Naozaj chcete odstrániť týchto %1$d pozorovaní?</item>
+        <item quantity="other">Naozaj chcete odstrániť týchto %1$d pozorovaní?</item>
     </plurals>
-    <string name="future_observed_on_date_error">Your observation was created (and submitted) on %1$s, but you\'re trying to set an observation date that is later than that: %2$s</string>
-    <string name="no_more_photos_allowed">Observations can only have %1$d photos. To add more you will need to remove some.</string>
-    <string name="warning_multiple_photos">If you\'re adding photos of different kinds of organisms to this observation, or the same kind at different places or times, you should remove those photos and add them as separate observations. An observation can only have %1$d photos.</string>
-    <string name="choosing_specific_language_warning">Choosing a specific language for your account requires an Internet connection</string>
+    <string name="future_observed_on_date_error">Vaše pozorovanie bolo vytvorené (a odoslané) dňa %1$s, ale snažíte sa nastaviť dátum pozorovania na neskôr ako %2$s</string>
+    <string name="no_more_photos_allowed">Pozorovania môžu mať len %1$d fotiek. Ak chcete pridať ďalšie, musíte niektoré odstrániť.</string>
+    <string name="warning_multiple_photos">Ak do tohto pozorovania pridávate fotky rôznych druhov organizmov alebo toho istého druhu na inom mieste či v inom čase, mali by ste tieto fotky vymazať a pridať ich ako samostatné pozorovania. Jedno pozorovanie môže obsahovať iba %1$d fotiek.</string>
+    <string name="choosing_specific_language_warning">Výber konkrétneho jazyka pre váš účet vyžaduje pripojenie na internet.</string>
     <string name="running_in_background_notfication">Aplikácia beží na pozadí, aby sme mohli pracovať bez prerušenia</string>
-    <string name="opt_out_of_community_taxon">Opt out of the Community Taxon</string>
-    <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
-    <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
+    <string name="opt_out_of_community_taxon">Odhlásiť sa z komunitného taxónu</string>
+    <string name="opt_in_to_community_taxon">Prihlásiť sa ku komunitnému taxónu</string>
+    <string name="opt_out_message">Po odhlásení z komunitného taxónu sa musí toto pozorovanie priradiť k taxónu z vášho aktuálneho pozorovania, nie taxónu odvodeného od všetkých identifikácií pridaných do tohto pozorovania. Ak s vami nesúhlasí dostatok identifikátorov, vaše pozorovanie sa stane bežným. Mali by ste sa odhlasovať iba, ak ste si istý, že vaša identifikácia je správna a iné identifikácie sú nesprávne.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
-    <string name="permission_required">Permission Required</string>
+    <string name="permission_required">Vyžaduje sa oprávnenie</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
-    <string name="to_access_your_location">To access your location you must grant location access permission to this app.</string>
+    <string name="to_access_your_location">Pre prístup k vašej polohe musíte tejto aplikácii udeliť povolenie na prístup k polohe.</string>
     <!-- Dialog title when displaying a message that an action is not permitted -->
-    <string name="forbidden">Forbidden</string>
+    <string name="forbidden">Zakázané</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
-    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
+    <string name="app_you_shared_blocked">Aplikácia, z ktorej ste zdieľali, vytvára fotografie nevhodné pre pozorovania, pretože nepredstavujú dôkaz o vašom stretnutí s iným organizmom, pretože obsahujú nevhodný obchodný alebo komerčný obsah, alebo pretože iným spôsobom porušujú naše Podmienky.</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <string name="list_observation_checkbox_description">Začiarkavacie políčko pre výber pozorovania v režime viacnásobného výberu</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <string name="observation_list_item_iconic_pic_description">Náhľad pozorovaného taxónu</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
+    <string name="observation_list_item_obs_pic_description">Náhľad pozorovania</string>
     <string name="messages">Správy</string>
     <string name="all_messages">Všetky správy</string>
     <string name="search_messages">Vyhľadať správy</string>
     <string name="no_messages">V súčasnosti nemáte správy. Novú správu môžete odoslať zeleným tlačidlom alebo odoslať správu z profilovej stránky užívateľa.</string>
     <string name="no_messages_found">Neboli nájdené žiadne správy.</string>
-    <string name="send_a_message">Send a message</string>
-    <string name="sending_message">Sending message...</string>
-    <string name="could_not_send_message">Couldn\'t send message: %1$s</string>
+    <string name="send_a_message">Odoslať správu</string>
+    <string name="sending_message">Správa sa odosiela...</string>
+    <string name="could_not_send_message">Správu nebolo možné odoslať: %1$s</string>
     <string name="subject">Predmet</string>
     <string name="body">Text správy</string>
     <string name="type_your_message_here">Sem napíšte svoju správu</string>
     <string name="new_message_to">Nová správa pre %1$s</string>
-    <string name="who_would_you_like_to_send_a_message_to">Who would you like to send a message to?</string>
+    <string name="who_would_you_like_to_send_a_message_to">Komu by ste chceli poslať správu?</string>
     <string name="new_message">Nová správa</string>
-    <string name="search_for_inaturalist_users">Search for iNaturalist users</string>
+    <string name="search_for_inaturalist_users">Vyhľadávanie používateľov iNaturalistu</string>
     <string name="please_sign_in_for_messages">Pre zobrazenie správ musíte byť prihlásený.</string>
-    <string name="sorry">Sorry</string>
+    <string name="sorry">Ľutujeme</string>
     <string name="you_must_have_three_observations">Musíte mať tri overené pozorovania alebo tri identifikácie pre ostatných aby ste to mohli urobiť.</string>
-    <string name="mute_this_user">Mute this user</string>
-    <string name="unmute_this_user">Unmute this user</string>
-    <string name="flag_this_conversation">Flag this conversation</string>
-    <string name="mute_this_user_question">Mute this user?</string>
+    <string name="mute_this_user">Stlmiť tohto používateľa</string>
+    <string name="unmute_this_user">Zrušiť stlmenie tohto používateľa</string>
+    <string name="flag_this_conversation">Nahlásiť túto konverzáciu</string>
+    <string name="mute_this_user_question">Stlmiť tohto používateľa?</string>
     <string name="you_will_no_longer_receive_messages">Od tohto používateľa už nebudete dostávať žiadne oznámenia o aktivite vrátane správ, komentárov, identifikácií a zmienok.</string>
-    <string name="mute">Mute</string>
-    <string name="muting_user">Muting user...</string>
-    <string name="unmuting_user">Unmuting user...</string>
-    <string name="failed_muting_user">Failed muting user!</string>
-    <string name="failed_unmuting_user">Failed unmuting user!</string>
-    <string name="flag_conversation">Flag conversation</string>
+    <string name="mute">Stlmiť</string>
+    <string name="muting_user">Stišujem používateľa...</string>
+    <string name="unmuting_user">Ruším zablokovanie používateľa...</string>
+    <string name="failed_muting_user">Používateľa sa nepodarilo zablokovať!</string>
+    <string name="failed_unmuting_user">Nepodarilo sa zrušiť zablokovanie používateľa!</string>
+    <string name="flag_conversation">Nahlásiť konverzáciu</string>
     <string name="spam">Spam</string>
-    <string name="commercial_solicitation">Commercial solicitation, links to nowhere, etc.</string>
-    <string name="offensive_inappropriate">Offensive/Inappropriate</string>
-    <string name="misleading_or_illegal_content">Misleading or illegal content, racial or ethnic slurs, etc. For more on our definition of \"appropriate,\" see the FAQ.</string>
-    <string name="other">Other</string>
-    <string name="some_other_reason">Some other reason you can explain.</string>
+    <string name="commercial_solicitation">Komerčná žiadosť, neplatné odkazy atď.</string>
+    <string name="offensive_inappropriate">Útočné/nevhodné</string>
+    <string name="misleading_or_illegal_content">Zavádzajúci alebo nelegálny obsah, rasové alebo etnické napádanie atď. Podrobnosti k našej definícii toho, čo je \"vhodné\", nájdete vo FAQ.</string>
+    <string name="other">Iné</string>
+    <string name="some_other_reason">Iný dôvod, ktorý môžete vysvetliť.</string>
     <string name="continue_text">Pokračovať</string>
-    <string name="why_are_you_flagging_this_item">Why are you flagging this item?</string>
-    <string name="thank_you_for_submitting_the_flag">Thank you for submitting the flag!</string>
-    <string name="flagging_conversation">Flagging conversation...</string>
-    <string name="failed_flagging_conversation">Failed flagging conversation!</string>
+    <string name="why_are_you_flagging_this_item">Prečo nahlasujete túto položku?</string>
+    <string name="thank_you_for_submitting_the_flag">Ďakujeme za odoslanie hlásenia!</string>
+    <string name="flagging_conversation">Konverzácia sa nahlasuje...</string>
+    <string name="failed_flagging_conversation">Konverzáciu sa nepodarilo nahlásiť!</string>
     <string name="no_subject">Žiadny predmet</string>
-    <string name="rank_state_of_matter">State of matter</string>
-    <string name="rank_kingdom">Kingdom</string>
-    <string name="rank_subkingdom">Subkingdom</string>
-    <string name="rank_phylum">Phylum</string>
-    <string name="rank_subphylum">Subphylum</string>
-    <string name="rank_superclass">Superclass</string>
-    <string name="rank_class">Class</string>
-    <string name="rank_subclass">Subclass</string>
-    <string name="rank_infraclass">Infraclass</string>
-    <string name="rank_superorder">Superorder</string>
-    <string name="rank_order">Order</string>
-    <string name="rank_suborder">Suborder</string>
-    <string name="rank_infraorder">Infraorder</string>
-    <string name="rank_subterclass">Subterclass</string>
-    <string name="rank_parvorder">Parvorder</string>
-    <string name="rank_zoosection">Zoosection</string>
-    <string name="rank_zoosubsection">Zoosubsection</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
+    <string name="rank_state_of_matter">Stav veci</string>
+    <string name="rank_kingdom">Ríša</string>
+    <string name="rank_subkingdom">Podríša</string>
+    <string name="rank_phylum">Kmeň</string>
+    <string name="rank_subphylum">Podkmeň</string>
+    <string name="rank_superclass">Nadtrieda</string>
+    <string name="rank_class">Trieda</string>
+    <string name="rank_subclass">Podtrieda</string>
+    <string name="rank_infraclass">Infratrieda</string>
+    <string name="rank_superorder">Nadrad</string>
+    <string name="rank_order">Rad</string>
+    <string name="rank_suborder">Podrad</string>
+    <string name="rank_infraorder">Infrarad</string>
+    <string name="rank_subterclass">Subtertrieda</string>
+    <string name="rank_parvorder">Parvrad</string>
+    <string name="rank_zoosection">Zoosekcia</string>
+    <string name="rank_zoosubsection">Zoopodsekcia</string>
     <string name="rank_superfamily">Nadčeľaď</string>
     <string name="rank_epifamily">Epičeľaď</string>
     <string name="rank_family">Čeľaď</string>
     <string name="rank_subfamily">Podčeľaď</string>
-    <string name="rank_supertribe">Supertribe</string>
-    <string name="rank_tribe">Tribe</string>
-    <string name="rank_subtribe">Subtribe</string>
+    <string name="rank_supertribe">Nadtribus</string>
+    <string name="rank_tribe">Tribus</string>
+    <string name="rank_subtribe">Podtribus</string>
     <string name="rank_genus">Rod</string>
     <string name="rank_genushybrid">Hybridný rod</string>
     <string name="rank_subgenus">Podrod</string>
-    <string name="rank_section">Section</string>
-    <string name="rank_subsection">subsection</string>
-    <string name="rank_complex">Complex</string>
+    <string name="rank_section">Sekcia</string>
+    <string name="rank_subsection">Podsekcia</string>
+    <string name="rank_complex">Komplex</string>
     <!-- Singular -->
-    <string name="rank_species">Species</string>
-    <string name="rank_hybrid">Hybrid</string>
+    <string name="rank_species">Druh</string>
+    <string name="rank_hybrid">Kríženec</string>
     <!-- Singular -->
-    <string name="rank_subspecies">Subspecies</string>
-    <string name="rank_variety">Variety</string>
-    <string name="rank_form">Form</string>
-    <string name="rank_infrahybrid">Infrahybrid</string>
-    <string name="rank_leaves">Leaves</string>
-    <string name="location_lat_lng">Location: %1$f, %2$f</string>
-    <string name="i_consent_process_personal_info"><![CDATA[I consent to allow iNaturalist to store and process limited kinds of personal information about me in order to manage my account. <b>Learn More</b>]]></string>
-    <string name="about_personal_information">About Personal Information</string>
-    <string name="personal_information_notes"><![CDATA[We store personal information like usernames and email addresses in order to manage accounts on this site, and to comply with privacy laws, we need you to check this box to indicate that you consent to this use of personal information. To learn more about what information we collect and how we use it, please see our <a href="https://www.inaturalist.org/privacy">Privacy Policy</a> and our <a href="https://www.inaturalist.org/terms">Terms of Service</a>.]]></string>
+    <string name="rank_subspecies">Poddruh</string>
+    <string name="rank_variety">Varieta</string>
+    <string name="rank_form">Forma</string>
+    <string name="rank_infrahybrid">Infrakríženec</string>
+    <string name="rank_leaves">Listy</string>
+    <string name="location_lat_lng">Poloha: %1$f, %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[Súhlasím s tým, že umožňujem iNaturalistu v obmedzenej miere ukladať a spracovávať moje osobné údaje za účelom správy môjho účtu. <b>Viac informácií</b>]]></string>
+    <string name="about_personal_information">O osobných údajoch</string>
+    <string name="personal_information_notes"><![CDATA[Osobné údaje ako používateľské mená a emailové adresy ukladáme kvôli spravovaniu účtov na tejto stránke. V súlade so zákonmi na ochranu súkromia musíte začiarknuť toto políčko, aby ste potvrdili, že súhlasíte s použitím týchto osobných údajov. Ak sa chcete dozvedieť viac o tom, aké informácie zbierame a ako s nimi nakladáme, pozrite sa na naše <a href="https://www.inaturalist.org/privacy">Zásady ochrany osobných údajov</a> a naše <a href="https://www.inaturalist.org/terms">Zmluvné podmienky</a>.]]></string>
     <string name="i_agree_to_tos_and_privacy"><![CDATA[Súhlasím s <a href="https://www.inaturalist.org/terms">podmienkami používania</a> a<a href="https://www.inaturalist.org/privacy">ochranou osobných údajov</a> a preskúmal/a som <a href="https://www.inaturalist.org/pages/community+guidelines">pokyny pre komunitu</a>.]]></string>
     <string name="privacy_policy">Zásady ochrany osobných údajov</string>
     <string name="terms_of_service">Podmienky používania</string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
-    <string name="deleted_user">Deleted User</string>
+    <string name="deleted_user">Odstránený používateľ</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short_this_year">MMM d</string>
+    <string name="date_short_this_year">d. MMM</string>
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short">MM/dd/yy</string>
+    <string name="date_short">dd.MM.yy</string>
     <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="time_short_24_hour">HH:mm</string>
+    <string name="time_short_24_hour">HH.mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="time_short_12_hour">hh:mma</string>
+    <string name="time_short_12_hour">hh:mm a</string>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long">MMM d, yyyy</string>
+    <string name="date_long">d. MMM yyyy</string>
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
+    <string name="date_long_with_time">d. MMMM yyyy HH:mm</string>
     <string name="show_common_names">Zobraziť bežné mená</string>
     <string name="show_common_names_description">Vypnite, ak chcete zobraziť iba vedecké názvy.</string>
-    <string name="email_must_look_like_email_address">Email must look like an email address</string>
-    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
-    <string name="password_too_short">Password must be at least six characters long</string>
-    <string name="switch_to_grid_view">Switch to grid view</string>
-    <string name="switch_to_list_view">Switch to list view</string>
-    <string name="remove_project_filter">Remove project filter</string>
-    <string name="remove_observer_filter">Remove observer filter</string>
+    <string name="email_must_look_like_email_address">Email musí vyzerať ako emailová adresa</string>
+    <string name="username_must_begin_with">Používateľské meno sa musí začínať písmenom, neobsahovať žiadne medzery a musí pozostávať iba z písmen, čísel, pomlčiek a podčiarkovníkov</string>
+    <string name="password_too_short">Heslo musí mať dĺžku aspoň 6 znakov</string>
+    <string name="switch_to_grid_view">Prepnúť na zobrazenie mriežky</string>
+    <string name="switch_to_list_view">Prepnúť na zobrazenie zoznamu</string>
+    <string name="remove_project_filter">Odstrániť filter projektu</string>
+    <string name="remove_observer_filter">Odobrať filter pozorovateľov</string>
     <string name="filter_observations_by_an_exact_date">Filtrujte pozorovania podľa presného dátumu</string>
     <string name="filter_observations_by_a_date_range">Filtrujte pozorovania podľa rozsahu dátumov</string>
     <string name="filter_observations_by_months">Filtrujte pozorovania podľa mesiacov</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
     <string name="include_suggestions_not_seen_nearby">Zahrnúť návrhy, ktoré v neboli v blízkosti videné</string>
-    <string name="only_view_nearby_suggestions">Only view nearby suggestions</string>
+    <string name="only_view_nearby_suggestions">Zobraziť iba návrhy z okolia</string>
     <string name="suggestions_source">Zdroje návrhov</string>
     <string name="research_grade_observations">Pozorovania s potvrdeným určením</string>
     <string name="visually_similar_description">iNaturalist poskytne návrhy na základe toho, ako sú obrázky vizuálne podobné obrázkom druhov pozorovaných v blízkosti tohto miesta v tomto ročnom období.</string>
     <string name="research_grade_observations_description">Namiesto vizuálne podobných návrhov iNaturalist navrhne druhy pozorované na konkrétnom mieste a v rámci konkrétnej taxonomickej skupiny.</string>
-    <string name="taxon">Taxon:</string>
-    <string name="place">Place:</string>
-    <string name="pretty_sure_kingdom">We\'re pretty sure it\'s in this kingdom:</string>
-    <string name="pretty_sure_subkingdom">We\'re pretty sure it\'s in this subkingdom:</string>
-    <string name="pretty_sure_phylum">We\'re pretty sure it\'s in this phylum:</string>
-    <string name="pretty_sure_subphylum">We\'re pretty sure it\'s in this subphylum:</string>
-    <string name="pretty_sure_superclass">We\'re pretty sure it\'s in this superclass:</string>
-    <string name="pretty_sure_class">We\'re pretty sure it\'s in this class:</string>
-    <string name="pretty_sure_subclass">We\'re pretty sure it\'s in this subclass:</string>
-    <string name="pretty_sure_infraclass">We\'re pretty sure it\'s in this infraclass:</string>
-    <string name="pretty_sure_superorder">We\'re pretty sure it\'s in this superorder:</string>
-    <string name="pretty_sure_order">We\'re pretty sure it\'s in this order:</string>
-    <string name="pretty_sure_suborder">We\'re pretty sure it\'s in this suborder:</string>
-    <string name="pretty_sure_infraorder">We\'re pretty sure it\'s in this infraorder:</string>
-    <string name="pretty_sure_subterclass">We\'re pretty sure it\'s in this subterclass:</string>
-    <string name="pretty_sure_parvorder">We\'re pretty sure it\'s in this parvorder:</string>
-    <string name="pretty_sure_zoosection">We\'re pretty sure it\'s in this zoosection:</string>
-    <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
+    <string name="taxon">Taxón:</string>
+    <string name="place">Miesto:</string>
+    <string name="pretty_sure_kingdom">Sme si celkom istí, že je to v tejto ríši:</string>
+    <string name="pretty_sure_subkingdom">Sme si celkom istí, že je to v tejto podríši:</string>
+    <string name="pretty_sure_phylum">Sme si celkom istí, že je to v tomto kmeni:</string>
+    <string name="pretty_sure_subphylum">Sme si celkom istí, že je to v tomto podkmeni:</string>
+    <string name="pretty_sure_superclass">Sme si celkom istí, že je to v tejto nadtriede:</string>
+    <string name="pretty_sure_class">Sme si celkom istí, že je to v tejto triede:</string>
+    <string name="pretty_sure_subclass">Sme si celkom istí, že je to v tejto podtriede:</string>
+    <string name="pretty_sure_infraclass">Sme si celkom istí, že je to v tejto infratriede:</string>
+    <string name="pretty_sure_superorder">Sme si celkom istí, že je to v tomto nadrade:</string>
+    <string name="pretty_sure_order">Sme si celkom istí, že je to v tomto rade:</string>
+    <string name="pretty_sure_suborder">Sme si celkom istí, že je to v tomto podrade:</string>
+    <string name="pretty_sure_infraorder">Sme si celkom istí, že je to v tomto infrarade:</string>
+    <string name="pretty_sure_subterclass">Sme si celkom istí, že je to v tejto subtertriede:</string>
+    <string name="pretty_sure_parvorder">Sme si celkom istí, že je to v tomto parvrade:</string>
+    <string name="pretty_sure_zoosection">Sme si celkom istí, že je to v tejto zoosekcii:</string>
+    <string name="pretty_sure_zoosubsection">Sme si celkom istí, že je to v tejto zoopodsekcii:</string>
     <string name="pretty_sure_superfamily">Sme si celkom istý, že je to v tejto nadčeľadi:</string>
     <string name="pretty_sure_epifamily">Sme si celkom istý, že je to v tejto epičeľadi:</string>
     <string name="pretty_sure_family">Sme si celkom istý, že je to v tejto čeľadi:</string>
     <string name="pretty_sure_subfamily">Sme si celkom istý, že je to v tejto podčeľadi:</string>
-    <string name="pretty_sure_supertribe">We\'re pretty sure it\'s in this supertribe:</string>
-    <string name="pretty_sure_tribe">We\'re pretty sure it\'s in this tribe:</string>
-    <string name="pretty_sure_subtribe">We\'re pretty sure it\'s in this subtribe:</string>
+    <string name="pretty_sure_supertribe">Sme si celkom istí, že je to v tomto nadtribuse:</string>
+    <string name="pretty_sure_tribe">Sme si celkom istí, že je to v tomto tribuse:</string>
+    <string name="pretty_sure_subtribe">Sme si celkom istí, že je to v tomto podtribuse:</string>
     <string name="pretty_sure_genus">Sme si celkom istý, že je to v tomto rode:</string>
     <string name="pretty_sure_genushybrid">Sme si celkom istý, že je to v tomto hybridnom rode:</string>
     <string name="pretty_sure_subgenus">Sme si celkom istý, že je to v tomto podrode:</string>
-    <string name="pretty_sure_section">We\'re pretty sure it\'s in this section:</string>
-    <string name="pretty_sure_subsection">We\'re pretty sure it\'s in this subsection:</string>
-    <string name="pretty_sure_complex">We\'re pretty sure it\'s in this complex:</string>
+    <string name="pretty_sure_section">Sme si celkom istí, že je to v tejto sekcii:</string>
+    <string name="pretty_sure_subsection">Sme si celkom istí, že je to v tejto podsekcii:</string>
+    <string name="pretty_sure_complex">Sme si celkom istí, že je to v tomto komplexe:</string>
     <!-- Singular -->
-    <string name="pretty_sure_species">We\'re pretty sure it\'s in this species:</string>
-    <string name="pretty_sure_hybrid">We\'re pretty sure it\'s in this hybrid:</string>
+    <string name="pretty_sure_species">Sme si celkom istí, že je to v tomto druhu:</string>
+    <string name="pretty_sure_hybrid">Sme si celkom istí, že je to v tomto hybride:</string>
     <!-- Singular -->
-    <string name="pretty_sure_subspecies">We\'re pretty sure it\'s in this subspecies:</string>
-    <string name="pretty_sure_variety">We\'re pretty sure it\'s in this variety:</string>
-    <string name="pretty_sure_form">We\'re pretty sure it\'s in this form:</string>
-    <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
-    <string name="remove_date_observed">Remove date &amp; time observed</string>
-    <string name="remove_time_observed">Remove time observed</string>
-    <string name="remove_location">Remove location</string>
-    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
+    <string name="pretty_sure_subspecies">Sme si celkom istí, že je to v tomto poddruhu:</string>
+    <string name="pretty_sure_variety">Sme si celkom istí, že je to v tejto variete:</string>
+    <string name="pretty_sure_form">Sme si celkom istí, že je to v tejto forme:</string>
+    <string name="pretty_sure_infrahybrid">Sme si celkom istí, že je to v tomto infrahybride:</string>
+    <string name="remove_date_observed">Odstrániť dátum &amp; čas pozorovania</string>
+    <string name="remove_time_observed">Odstrániť čas pozorovania</string>
+    <string name="remove_location">Odstrániť polohu</string>
+    <string name="are_you_sure_you_want_to_remove_date">Naozaj chcete odstrániť dátum pozorovania?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Naozaj chcete odstrániť čas pozorovania?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Naozaj chcete odstrániť polohu pozorovania?</string>
     <string name="share_location">Zdieľanie polohy</string>
     <string name="share_hidden_location">Zdieľanie skytej polohy</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Zvuk sa nepodarilo duplikovať!</string>
-    <string name="sound_format_not_supported">That audio encoding is not supported by Android.</string>
+    <string name="sound_format_not_supported">Android nepodporuje toto kódovanie zvuku.</string>
     <string name="view_observations">Zobraziť pozorovania</string>
-    <string name="choose_this_option">Choose this option</string>
-    <string name="compare_observation_with_this_option">Compare observation with this option</string>
-    <string name="go_back">Go back</string>
-    <string name="change_the_source_of_the_suggestions">Change the source of the suggestions</string>
-    <string name="thumbnail_photo_for_suggested_taxon">Thumbnail photo for suggested taxon</string>
+    <string name="choose_this_option">Vyberte túto možnosť</string>
+    <string name="compare_observation_with_this_option">Porovnajte pozorovanie s touto možnosťou</string>
+    <string name="go_back">Späť</string>
+    <string name="change_the_source_of_the_suggestions">Zmeniť zdroj návrhov</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Náhľad navrhovaného taxónu</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
     <string name="comments_ids_title">Komentáre a určenia</string>
     <!-- Accessibility text for the faves tab on the observation detail view -->
     <string name="faves">Obľúbené</string>
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
-    <string name="previous_option">Previous Option</string>
+    <string name="previous_option">Predošlá možnosť</string>
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
-    <string name="next_option">Next Option</string>
+    <string name="next_option">Ďalšia možnosť</string>
     <string name="no_observations_yet2">Zatiaľ žiadne pozorovania.</string>
-    <string name="no_species_yet">No species yet.</string>
-    <string name="no_identifications_yet">No identifications yet.</string>
+    <string name="no_species_yet">Zatiaľ žiadne druhy.</string>
+    <string name="no_identifications_yet">Zatiaľ žiadne identifikácie.</string>
     <string name="sort_by">Zoradiť podľa</string>
     <string-array name="explore_order_by_items">
         <item>Dátum pridania</item>
-        <item>Date Observed</item>
-        <item>Date Updated</item>
+        <item>Dátum pozorovania</item>
+        <item>Dátum aktualizácie</item>
         <!--<item>Faves</item>-->
-        <item>Random</item>
+        <item>Náhodne</item>
     </string-array>
     <string-array name="explore_order_items">
         <item>Zostupne</item>
-        <item>Ascending</item>
+        <item>Vzostupne</item>
     </string-array>
     <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
     See explore_order_by_items and explore_order_items keys !-->
@@ -1116,8 +1111,8 @@
     <!-- Error message shown when an attempt to unfollow an observation fails -->
     <string name="could_not_unfollow_observation">Toto pozorovanie nebolo možné prestať sledovať</string>
     <!-- Label for a button to copy the coordinates of an observation -->
-    <string name="copy_coordinates">Copy coordinates</string>
-    <string name="coordinates_copied_to_clipboard">Coordinates copied to clipboard</string>
+    <string name="copy_coordinates">Kopírovať súradnice</string>
+    <string name="coordinates_copied_to_clipboard">Súradnice skopírované do schránky</string>
     <!--  Title of a section on the observation detail view that displays minor metadata  -->
     <string name="metadata">Metadáta</string>
     <!--  iNat observation identifier  -->
@@ -1130,50 +1125,50 @@
     <string name="default_observation_license">Štandardná licencia pozorovania</string>
     <string name="default_photo_license">Štandardná fotografická licencia</string>
     <string name="default_sound_license">Štandardná licenca pre zvuk</string>
-    <string name="change_existing_licenses">Change Existing Licenses</string>
-    <string name="change_licenses_for_existing_observations">Change licenses for existing observations, photos, and sounds</string>
-    <string name="change_licenses_for_all_existing_observations">Change licenses for all existing observations</string>
-    <string name="change_licenses_for_all_existing_photos">Change licenses for all existing photos</string>
-    <string name="change_licenses_for_all_existing_sounds">Change licenses for all existing sounds</string>
-    <string name="change_observation_licenses">Change Observation Licenses</string>
-    <string name="change_photo_licenses">Change Photo Licenses</string>
-    <string name="change_sound_licenses">Change Sound Licenses</string>
-    <string name="change_licenses_for_observations_confirmation"><![CDATA[Change the licenses of <b>%1$d</b> existing observations to <b>%2$s</b>?]]></string>
-    <string name="change_licenses_for_photos_confirmation"><![CDATA[Change the licenses of existing photos to <b>%1$s</b>?]]></string>
-    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Change the licenses of existing sounds to <b>%1$s</b>?]]></string>
-    <string name="observation_licenses_updated">Observation Licenses Updated</string>
-    <string name="photo_licenses_updated">Photo Licenses Updated</string>
-    <string name="sound_licenses_updated">Sound Licenses Updated</string>
-    <string name="existing_observation_licenses_have_been_updated">All existing observation licenses have been changed to %1$s.</string>
-    <string name="existing_photo_licenses_have_been_updated">All existing photo licenses have been changed to %1$s.</string>
-    <string name="existing_sound_licenses_have_been_updated">All existing sound licenses have been changed to %1$s.</string>
-    <string name="default_licenses_description"><![CDATA[Licensing your content gives anyone the legal right to use it without asking your permission if they abide by the terms of the license. In addition, iNat includes your Creative Commons-licensed content in regularly-updated archives produced for select partner organizations interested in our data. For example, we include No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC) records in the archive we generate for the <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, an international, inter-governmental organization that compiles and distributes biodiversity information from around the world.]]></string>
-    <string name="photo_license">Photo License</string>
-    <string name="sound_license">Sound License</string>
-    <string name="edit_photo_license">Edit Photo License</string>
-    <string name="observation_license">Observation License</string>
-    <string name="edit_observation_license">Edit Observation License</string>
-    <string name="about_licenses">About Licenses</string>
-    <string name="view_license">View License</string>
+    <string name="change_existing_licenses">Zmeniť existujúce licencie</string>
+    <string name="change_licenses_for_existing_observations">Zmieniť licencie pre existujúce pozorovania, fotky a zvuky</string>
+    <string name="change_licenses_for_all_existing_observations">Zmeniť licencie pre všetky existujúce pozorovania</string>
+    <string name="change_licenses_for_all_existing_photos">Zmeniť licencie pre všetky existujúce fotky</string>
+    <string name="change_licenses_for_all_existing_sounds">Zmeniť licencie pre všetky existujúce zvuky</string>
+    <string name="change_observation_licenses">Zmeniť licencie pozorovaní</string>
+    <string name="change_photo_licenses">Zmeniť licencie fotografií</string>
+    <string name="change_sound_licenses">Zmeniť licencie zvukov</string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[Zmeniť licencie <b>%1$d</b> existujúcich pozorovaní na <b>%2$s</b>?]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[Zmeniť licencie existujúcich fotiek na <b>%1$s</b>?]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Zmeniť licencie existujúcich zvukov na <b>%1$s</b>?]]></string>
+    <string name="observation_licenses_updated">Licencie pozorovaní aktualizované</string>
+    <string name="photo_licenses_updated">Licencie fotografií aktualizované</string>
+    <string name="sound_licenses_updated">Licencie zvukov aktualizované</string>
+    <string name="existing_observation_licenses_have_been_updated">Všetky existujúce licencie pozorovaní sa zmenili na %1$s.</string>
+    <string name="existing_photo_licenses_have_been_updated">Všetky existujúce licencie fotografií sa zmenili na %1$s.</string>
+    <string name="existing_sound_licenses_have_been_updated">Všetky existujúce licencie zvukov sa zmenili na %1$s.</string>
+    <string name="default_licenses_description"><![CDATA[Licencovanie vášho obsahu dáva komukoľvek zákonné právo používať ho bez toho, aby vás o to musel požiadať, pokiaľ dodržiava podmienky licencie. Okrem toho iNat zahŕňa váš obsah s licenciou Creative Commons do pravidelne aktualizovaných archívov vytvorených pre vybrané partnerské organizácie, ktoré sa zaujímajú o naše dáta. Napríklad do archívu, ktorý vytvárame pre medzinárodnú medzivládnu organizáciu <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, ktorá zhromažďuje a distribuuje informácie o biodiverzite z celého sveta, zahrnieme záznamy No Copyright (CC0), Attribution (CC BY) a Attribution-NonCommercial (CC BY-NC).]]></string>
+    <string name="photo_license">Licencia fotografie</string>
+    <string name="sound_license">Zvuková licencia</string>
+    <string name="edit_photo_license">Upraviť licenciu fotografie</string>
+    <string name="observation_license">Licencia pozorovania</string>
+    <string name="edit_observation_license">Upraviť licenciu pozorovania</string>
+    <string name="about_licenses">O licenciách</string>
+    <string name="view_license">Zobraziť licenciu</string>
     <!-- License Names -->
-    <string name="license_name_cc0">Public Domain</string>
-    <string name="license_name_cc_by">Attribution</string>
-    <string name="license_name_cc_by_nc">Attribution-NonCommercial</string>
-    <string name="license_name_cc_by_nc_sa">Attribution-NonCommercial-ShareAlike</string>
-    <string name="license_name_cc_by_nc_nd">Attribution-NonCommercial-NoDerivs</string>
-    <string name="license_name_cc_by_nd">Attribution-NoDerivs</string>
-    <string name="license_name_cc_by_sa">Attribution-ShareAlike</string>
-    <string name="license_name_no_license">All rights reserved</string>
+    <string name="license_name_cc0">Voľné dielo</string>
+    <string name="license_name_cc_by">Uvedenie autora</string>
+    <string name="license_name_cc_by_nc">S uvedením autora - nekomerčné</string>
+    <string name="license_name_cc_by_nc_sa">S uvedením autora - nekomerčné - zdieľanie</string>
+    <string name="license_name_cc_by_nc_nd">S uvedením autora - nekomerčné - bez odvodených diel</string>
+    <string name="license_name_cc_by_nd">S uvedením autora - bez odvodených diel</string>
+    <string name="license_name_cc_by_sa">S uvedením autora - zdieľanie</string>
+    <string name="license_name_no_license">Všetky práva vyhradné</string>
     <!-- License Descriptions -->
-    <string name="license_description_cc0">This license releases your work into the public domain, so others can copy, modify, distribute and perform your work, even for commercial purposes, all without asking permission or giving you credit. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.</string>
-    <string name="license_description_cc_by">This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation.</string>
-    <string name="license_description_cc_by_nc">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
-    <string name="license_description_cc_by_nc_sa">This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms.</string>
-    <string name="license_description_cc_by_nc_nd">This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can\'t change them in any way or use them commercially.</string>
-    <string name="license_description_cc_by_nd">This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.</string>
-    <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
-    <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
-    <string name="invalid_photo">Photo format not supported</string>
+    <string name="license_description_cc0">Táto licencia umožní uvoľnenie vášho diela do verejného priestoru a ostatní budú môcť vaše dielo kopírovať, upravovať, šíriť a predkladať, a to aj pre komerčné účely, bez nutnosti žiadať vás o povolenie a uvedenia zdroja. Toto je najširšia poskytovaná licencia. Odporúča sa pre maximálne šírenie a využívanie príslušných materiálov.</string>
+    <string name="license_description_cc_by">Táto licencia umožňuje ostatným šíriť, kombinovať, upravovať a spracovávať vaše dielo, a to aj pre komerčné účely, a sú povinní vás uviesť ako pôvodného autora.</string>
+    <string name="license_description_cc_by_nc">Táto licencia umožňuje ostatným šíriť, kombinovať, upravovať a spracovávať vaše dielo na nekomerčné účely, pričom nové diela vás musia uvádzať ako autora a musia byť nekomerčné, odvodené diela však nepodliehajú licencii za rovnakých podmienok.</string>
+    <string name="license_description_cc_by_nc_sa">Táto licencia umožní ostatným upravovať Vaše dielo a zároveň ho používať ako podklad pre ich ďalšie práce. Tieto práce však budú môcť byť využité len nekomerčne, a to pod podmienkou, že Vás uvedú ako autora a takisto bude použitá rovnaká licencia.</string>
+    <string name="license_description_cc_by_nc_nd">Táto licencia je zo šiestich možných najreštriktívnejšia. Umožňuje ostatným len stiahnuť si vaše dielo a zdieľať ho s ostatnými len za podmienok, že vás uvedú ako autora. Nebudú ho však môcť akokoľvek zmeniť alebo komerčne používať.</string>
+    <string name="license_description_cc_by_nd">Táto licencia umožňuje komerčné a nekomerčné šírenie, musí však byť zachované dielo ako celok s uvedením autora.</string>
+    <string name="license_description_cc_by_sa">Táto licencia umožňuje ostatným remixovať, upravovať a stavať na vašom diele aj na komerčné účely, pokiaľ vás uvedú a poskytnú licenciu na svoje nové diela za rovnakých podmienok. Táto licencia sa často prirovnáva k licenciám \"copyleft\" slobodného a otvoreného softvéru. Všetky nové diela založené na vašom diele budú mať rovnakú licenciu, takže všetky odvodeniny budú môcť byť použité aj na komerčné účely. Túto licenciu používa Wikipédia a odporúča sa pre materiály, ktoré by mali prospech zo začlenenia obsahu z Wikipédie a podobne licencovaných projektov.</string>
+    <string name="license_description_no_license">Ponechávate si všetky autorské práva na váš obsah okrem práv udelených iNaturalistu v našich Zmluvných podmienkach.</string>
+    <string name="invalid_photo">Tento formát fotografií sa nepodporuje</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">Návrhy založené na pozorovaniach a identifikáciách poskytnutých komunitou iNaturalist, vrátane %1$s, %2$s, %3$s a mnohých ďalších.</string>
     <!-- Preference to control what tapping on the action button does on My Observations -->
@@ -1181,48 +1176,47 @@
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Ukázať možnosti</string>
     <!-- Placeholder text for an observation field value -->
-    <string name="field_value">Field Value</string>
-    <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
-    <string name="delete_attribute_value">Delete attribute value</string>
-    <string name="open_menu_for_more_options">Open menu for more options</string>
-    <string name="change_user_profile_photo">Change user profile photo</string>
-    <string name="expand_list">Expand list</string>
-    <string name="change_map_layers">Change map layers (terrain vs. satellite)</string>
-    <string name="redo_observation_search">Redo observation search in this map area</string>
+    <string name="field_value">Hodnota poľa</string>
+    <string name="expand_annotation_to_agree_or_disagree">Pre vyjadrenie súhlasu alebo nesúhlasu rozbaľte anotáciu</string>
+    <string name="delete_attribute_value">Odstrániť hodnotu atribútu</string>
+    <string name="open_menu_for_more_options">Pre viac možností otvorte menu</string>
+    <string name="change_user_profile_photo">Zmeniť profilovú fotku</string>
+    <string name="expand_list">Rozbaliť zoznam</string>
+    <string name="change_map_layers">Zmeniť mapovú vrstvu (terénna vs. satelitná)</string>
+    <string name="redo_observation_search">Znovu vyhľadať pozorovania v tejto oblasti mapy</string>
     <string name="view_observations_on_map">Zobraziť pozorovania na mape</string>
     <string name="view_observations_on_grid">Zobraziť pozorovania v mriežke</string>
-    <string name="clear_text">Clear text</string>
-    <string name="observation_has_sounds">Observation has sounds</string>
-    <string name="go_to_my_location">Go to my current location</string>
+    <string name="clear_text">Vymazať text</string>
+    <string name="observation_has_sounds">Pozorovanie obsahuje zvuky</string>
+    <string name="go_to_my_location">Ísť na moju aktuálnu polohu</string>
     <string name="change_geoprivacy">Zmeniť geosúkromie</string>
-    <string name="active_filters">Active filters</string>
-    <string name="message_is_flagged">Message is flagged</string>
-    <string name="user_is_muted">User is muted</string>
-    <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
+    <string name="active_filters">Aktívne filtre</string>
+    <string name="message_is_flagged">Správa je nahlásená</string>
+    <string name="user_is_muted">Používateľ je stlmený</string>
+    <string name="cancel_multiple_obs_selection">Zrušiť výber viacerých pozorovaní</string>
     <string name="delete_observations">Vymazať pozorovania</string>
-    <string name="clear_species_guess">Clear species guess</string>
-    <string name="comment_count">Comment count</string>
-    <string name="id_count">Identification count</string>
-    <string name="observation_selected">Observation selected</string>
-    <string name="share_observation">Share observation</string>
-    <string name="unknown_location">Unknown location</string>
+    <string name="comment_count">Počet komentárov</string>
+    <string name="id_count">Počet identifikácií</string>
+    <string name="observation_selected">Pozorovanie vybraté</string>
+    <string name="share_observation">Zdieľať pozorovanie</string>
+    <string name="unknown_location">Neznáma poloha</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
-    <string name="close">Close</string>
-    <string name="set_date2">Set date</string>
-    <string name="project_selected">Project Selected</string>
-    <string name="project_unselected">Project Unselected</string>
+    <string name="close">Zavrieť</string>
+    <string name="set_date2">Nastaviť dátum</string>
+    <string name="project_selected">Projekt vybratý</string>
+    <string name="project_unselected">Výber projektu zrušený</string>
     <string name="show_my_observations">Zobraz moje pozorovania</string>
-    <string name="play_pause_sound">Play or pause sound</string>
+    <string name="play_pause_sound">Spustiť alebo pozastaviť zvuk</string>
     <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
-    <string name="view_image">View image</string>
+    <string name="view_image">Zobraziť obrázok</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
-    <string name="assessment_passes">Assessment passes</string>
+    <string name="assessment_passes">Spĺňa hodnotenie kvality</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
-    <string name="agree_assessment_passes">Agree assessment passes</string>
+    <string name="agree_assessment_passes">Súhlasiť so splnením kvality</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
-    <string name="does_not_pass_assessment">Does not pass assessment</string>
+    <string name="does_not_pass_assessment">Nespĺňa hodnotenie kvality</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
-    <string name="disagree_assessment_passes">Disagree assessment passes</string>
+    <string name="disagree_assessment_passes">Nesúhlasiť so splnením kvality</string>
     <plurals name="delete_x_selected_observations">
         <item quantity="one">Vymaž %1$d vybrané pozorovanie </item>
         <item quantity="few">Vymaž %1$d vybrané pozorovania </item>
@@ -1235,8 +1229,8 @@
         <item quantity="many">Synchronizuj %1$d vybraných pozorovaní</item>
         <item quantity="other">Synchronizuj %1$d vybrané pozorovania</item>
     </plurals>
-    <string name="add_media_evidence">Add media evidence</string>
-    <string name="remove_identification">Remove identification</string>
-    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
-    <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
+    <string name="add_media_evidence">Pridať mediálny dôkaz</string>
+    <string name="remove_identification">Odstrániť identifikáciu</string>
+    <string name="issue_with_updating_photos">Pri aktualizácii fotiek v tomto pozorovaní sa vyskytol problém, ktorý bol nedávno opravený. Pre vyriešenie problému sa, prosím, odhláste a znovu prihláste.</string>
+    <string name="app_version_copied_to_clipboard">Verzia aplikácie sa skopírovala do schránky</string>
 </resources>

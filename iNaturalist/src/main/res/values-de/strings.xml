@@ -7,8 +7,6 @@
     <string name="ok">OK</string>
     <string name="cancel">Abbrechen</string>
     <string name="loading">Ladevorgang...</string>
-    <string name="sync_required">Sync erforderlich</string>
-    <string name="sync_required_message">%1$d Beobachtungen, %2$d Fotos zu synchronisieren </string>
     <string name="street">Straße</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satellit</string>
@@ -32,7 +30,6 @@
     <string name="settings">Einstellungen</string>
     <string name="projects">Projekte</string>
     <string name="delete_photo">Bild löschen</string>
-    <string name="menu">Menü</string>
     <string name="my_location">Mein Standort</string>
     <string name="nearby_observations">Beobachtungen in der Nähe</string>
     <string name="add">Hinzufügen</string>
@@ -204,6 +201,7 @@
     <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica ist Mitglied des iNaturalist Netzwerks in Costa Rica. Lokale Institutionen, die Naturalista Costa Rica unterstützen, werden Zugang zu Ihrer E-Mail-Adresse und Zugang zu den wahren Koordinaten für öffentliche oder private Beobachtungen haben. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1000 Beobachtungen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala ist Mitglied des iNaturalist Netzwerkes in Guatemala. Lokale Institutionen, die iNaturalist Guatemala unterstützen, werden Zugang zu Ihrer E-Mail-Adresse und Zugang zu den wahren Koordinaten für öffentliche oder private Beobachtungen haben. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1000 Beobachtungen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Schweden ist Mitglied des iNaturalist-Netzwerks in Schweden. Lokale Institutionen, die iNaturalist Schweden unterstützen, haben Zugriff auf deine E-Mail-Adresse und Zugriff auf die wahren Koordinaten für Beobachtungen, die öffentlich verdeckt oder privat sind. Bitte ändere deine Zugehörigkeit nicht experimentell, falls du mehr als 1000 Beobachtungen hast. Möchtest du deine Zugehörigkeit ändern?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay ist Mitglied des iNaturalist-Netzwerks. Lokale Institutionen, die Naturalista Uruguay unterstützen, werden Zugang zu deiner E-Mail-Adresse und zu den wahren Koordinaten für verdeckte oder private Beobachtungen haben. Bitte ändere deine Zugehörigkeit nicht experimentell, falls du mehr als 1000 Beobachtungen haben solltest. Möchtest du deine Zugehörigkeit ändern?</string>
     <string name="editor">Editor</string>
     <string name="license">Lizenz</string>
     <string name="download_for_offline_use">Herunterladen für Offline Verwendung</string>
@@ -227,9 +225,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-Mail</string>
-    <string name="sign_up_with">Registrieren mit</string>
     <string name="skip">Überspringen ›</string>
-    <string name="already_have_account">Hast du bereits einen Account?</string>
     <string name="log_in">Einloggen</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Registrieren</string>
@@ -325,7 +321,7 @@
     <string name="finding_current_location">Suche nach aktuellen Standort...</string>
     <string name="flag_as_captive">Als \"in Haltung/kultiviert\" markieren</string>
     <string name="observation_flagged_as_captive">Beobachtung wurde als \"in Haltung/kultiviert\" markiert</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Bist du sicher, dass du diese Beobachtung als \"in Haltung/kultiviert\" markieren möchtest? (Durch Drücken von \"Ja\" wird auch das Beobachtungsfenster geschlossen)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Bist du sicher, dass du diese Beobachtung als \"in Gefangenschaft/kultiviert\" markieren möchtest?</string>
     <string name="do_you_agree_to_the_following">Stimmst du dem Folgenden zu?</string>
     <string name="terms">Bedingungen</string>
     <string name="observation_rules">Regeln für Beobachtungen</string>
@@ -352,7 +348,6 @@
     <string name="updating_profile">Profil wird aktualisiert...</string>
     <string name="there_was_a_problem_updating_profile">Es gab ein Problem beim Aktualisieren deines Profils!</string>
     <string name="there_was_a_problem_updating_profile_params">Es gab ein Problem beim Aktualisieren deines Profils: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Angemeldet als <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Derzeit angemeldet als <b>%1$s</b>]]></string>
     <string name="log_out">Abmelden</string>
@@ -386,7 +381,7 @@
     <string name="importing_photos">Importiere Foto(s)...</string>
     <string name="multi_select_description">Importiere mehrere Fotos durch langes Drücken auf ein einzelnes Foto</string>
     <string name="preparing_photo">Foto vorbereiten...</string>
-    <string name="recommended_for_you">Für dich empfohlen</string>
+    <string name="recommended_for_you">In der Nähe zu finden</string>
     <string name="missions">Missionen</string>
     <string name="browse_by_category">Suche nach Kategorie</string>
     <string name="couldnt_load_recommended_missions">Konnte vorgeschlagene Missionen nicht laden: %1$s</string>
@@ -404,15 +399,15 @@
     <string name="birds">Vögel</string>
     <string name="arachnids">Spinnentiere</string>
     <string name="no_connectivity">Keine Verbindung</string>
-    <string name="no_recommended_missions">Hier scheint es keine Empfehlungen zu geben. Versuche es woanders erneut.</string>
-    <string name="what_to_look_for">Wonach du suchen kannst</string>
-    <string name="have_been_seen_here">Wurden hier gesehen</string>
+    <string name="no_recommended_missions">Für das Gebiet wurde nichts gefunden. Erkunde doch mal andere Regionen.</string>
+    <string name="what_to_look_for">Halte Ausschau nach:</string>
+    <string name="have_been_seen_here">Wurde hier beobachtet:</string>
     <string name="observe">Beobachten</string>
-    <string name="nearby_missions">Missionen in der Nähe</string>
-    <string name="searching_your_area">In der Nähe suchen...</string>
-    <string name="expanding_your_search_area">Erweitere den Suchbereich...</string>
+    <string name="nearby_missions">Andere Vorschläge aus deiner Nähe</string>
+    <string name="searching_your_area">Vorschläge aus der Nähe werden gesucht...</string>
+    <string name="expanding_your_search_area">Suchbereich wird erweitert...</string>
     <string name="introducing_missions">Neu: Missionen!</string>
-    <string name="missions_onboarding_description">Missionen sind Echtzeitvorschläge, nach was du in deiner Nähe suchen kannst. So kannst du neue Spezies entdecken! (Benötigt Internetverbindung)</string>
+    <string name="missions_onboarding_description">Bei \'Missionen\' wird dir vorgeschlagen, nach was du in deiner Nähe suchen kannst. So kannst du neue Arten entdecken! (benötigt Internetverbindung)</string>
     <string name="ok_got_it">OK, verstanden!</string>
     <string name="could_not_download_observations">Konnte neueste Beobachtungen nicht herunterladen - Verbindungsproblem. Versuch es später noch einmal.</string>
     <string name="no_news_yet">Noch keine Neuigkeiten. Bleib dran!</string>
@@ -423,6 +418,7 @@
     <string name="you_will_only_receive_updates_when_following">(Du wirst erst Updates erhalten, wenn du Beobachtungen folgst)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> hat eine ID vorgeschlagen: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> hat kommentiert: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> hat dich erwähnt: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Es scheint dass du ein Foto durch das Leeren des App-Caches vor dem Upload gelöscht hast. Bitte füge das Foto erneut zu deiner Beobachtung aus der Galerie hinzu. Achte in Zukunft darauf, dass alle Fotos hochgeladen wurden, bevor du den App-Cache leerst.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -471,14 +467,12 @@
     <string name="what_did_you_see">Was hast du gefunden?</string>
     <string name="suggest_species">Art vorschlagen</string>
     <string name="suggest_species_description"> Vom Algorithmus eine Art vorschlagen lassen, basierend auf visuellen Vergleichen anderer Fotos </string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Aussehen ähnlich</string>
     <string name="visually_similar_seen_nearby">Aussehen ähnlich / Gesehen in der Nähe</string>
     <string name="seen_nearby">In der Nähe gesehen</string>
     <string name="enlarge">Vergrößern</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">weitere Taxa anzeigen</string>
-    <string name="invalid_photo_extension">Fehler beim Importieren des/der Fotos: Nur Dateien mit JPG/JPEG/PNG/HEIC/HEIF-Endung können importiert werden</string>
     <string name="taxon_has_no_photos">Von diesem Taxon existiert kein Foto.</string>
     <string name="terrain">Gelände</string>
     <string name="filters">Filter</string>
@@ -596,7 +590,6 @@
     <string name="leave_comment">Kommentar hinzufügen...</string>
     <string name="swipe">Wischen</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Google-Konto auswählen</string>
     <string name="potential_disagreement">Möglicher Widerspruch</string>
     <string name="do_you_think_this_could_be"><![CDATA[Möchtest du der Bestimmung \'<b>%1$s</b>\' widersprechen?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -772,6 +765,7 @@
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) unterstützt Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) unterstützt iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Schweden: SLU Schwedisches Arteninformationszentrum unterstützt iNaturalist Schweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA und Biodiversidata unterstützen Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">Alle als „angesehen” kennzeichnen</string>
     <string name="content_hidden">Inhalt ausgeblendet</string>
     <string name="show_hidden_content">Ausgeblendeten Inhalt anzeigen</string>
@@ -785,7 +779,6 @@
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Tonaufnahme starten</string>
-    <string name="no_recorder_found">Kein Standard-Tonaufnahmegerät gefunden!</string>
     <string name="couldnt_retrieve_sound">Die Tonaufnahme konnte nicht vom Standardgerät abgerufen werden - versuchen Sie stattdessen, das Geräusch zu importieren.</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Tonaufnahme auswählen</string>
@@ -931,6 +924,7 @@
     <string name="flagging_conversation">Unterhaltung wird gemeldet…</string>
     <string name="failed_flagging_conversation">Meldung der Unterhaltung fehlgeschlagen!</string>
     <string name="no_subject">Kein Betreff</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_state_of_matter">eingeordnet als</string>
     <string name="rank_kingdom">Reich</string>
     <string name="rank_subkingdom">Unterreich</string>
@@ -1193,7 +1187,6 @@ Facility</a> (GBIF) generieren: eine internationale, zwischenstaatliche Organisa
     <string name="user_is_muted">Benutzer ist stummgeschaltet</string>
     <string name="cancel_multiple_obs_selection">Auswahl mehrerer Beobachtungen aufheben</string>
     <string name="delete_observations">Beobachtungen löschen</string>
-    <string name="clear_species_guess">Vermutung zur Art entfernen</string>
     <string name="comment_count">Anzahl der Kommentare</string>
     <string name="id_count">Anzahl an Bestimmungen</string>
     <string name="observation_selected">Beobachtung ausgewählt</string>

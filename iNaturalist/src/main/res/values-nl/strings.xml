@@ -7,8 +7,6 @@
     <string name="ok">OK</string>
     <string name="cancel">Annuleer</string>
     <string name="loading">Laden...</string>
-    <string name="sync_required">Sync vereist</string>
-    <string name="sync_required_message">%1$d waarnemingen, %2$d foto\'s nog te synchroniseren</string>
     <string name="street">Straat</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satelliet</string>
@@ -32,7 +30,6 @@
     <string name="settings">Instellingen</string>
     <string name="projects">Projecten</string>
     <string name="delete_photo">Foto verwijderen</string>
-    <string name="menu">Menu</string>
     <string name="my_location">Mijn locatie</string>
     <string name="nearby_observations">Waarnemingen in de buurt</string>
     <string name="add">Toevoegen</string>
@@ -204,6 +201,7 @@
     <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is lid van het iNaturalist Network in Costa Rica. Lokale instellingen die Naturalista Costa Rica ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstjeblieft niet experimenteel je lidmaatschap als jij meer dan 1000 waarnemingen hebt. Wil jij jouw lidmaatschap wijzigen?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is lid van het iNaturalist Network in Guatemala. Lokale instellingen die iNaturalist Guatemala ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel je lidmaatschap als jij meer dan 1000 waarnemingen hebt. Wil jij jouw lidmaatschap wijzigen?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Zweden is lid van het iNaturalist Network in Zweden. Lokale instellingen die iNaturalist Zweden ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel jouw lidmaatschap als jij meer dan 1000 waarnemingen hebt. Wil jij jouw lidmaatschap wijzigen?</string>
+    <string name="alert_message_use_naturalistauy">iNaturalist Uruguay is lid van het iNaturalist Network in Uruguay. Lokale instellingen die iNaturalist Uruguay ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of privé zijn. Verander niet experimenteel je lidmaatschap als je meer dan 1000 waarnemingen hebt. Wil jij jouw lidmaatschap wijzigen?</string>
     <string name="editor">Redacteur</string>
     <string name="license">Licentie</string>
     <string name="download_for_offline_use">Downloaden voor offline gebruik</string>
@@ -227,9 +225,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-mail</string>
-    <string name="sign_up_with">Registreren met</string>
     <string name="skip">Sla over ›</string>
-    <string name="already_have_account">Heb je al een account?</string>
     <string name="log_in">Inloggen</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Registreren</string>
@@ -325,7 +321,7 @@
     <string name="finding_current_location">Huidige locatie zoeken...</string>
     <string name="flag_as_captive">Markeren als in gevangenschap/gekweekt</string>
     <string name="observation_flagged_as_captive">Waarneming werd gemarkeerd als in gevangenschap/gekweekt</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Weet je zeker dat je deze waarneming wilt markeren als gevangen/gecultiveerd? (Als je op Ja drukt, wordt ook het waarnemingsvenster gesloten)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Weet je zeker dat je deze waarneming wilt markeren als in gevangenschap/gecultiveerd?</string>
     <string name="do_you_agree_to_the_following">Bent u het eens met volgende?</string>
     <string name="terms">Voorwaarden</string>
     <string name="observation_rules">Waarnemingsregels</string>
@@ -352,7 +348,6 @@
     <string name="updating_profile">Profiel bijwerken...</string>
     <string name="there_was_a_problem_updating_profile">Er is een probleem opgetreden tijdens het bijwerken van uw profiel!</string>
     <string name="there_was_a_problem_updating_profile_params">Er is een probleem opgetreden tijdens het bijwerken van uw profiel: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Ingelogd als <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Momenteel ingelogd als <b>%1$s</b>]]></string>
     <string name="log_out">Uitloggen</string>
@@ -423,6 +418,7 @@
     <string name="you_will_only_receive_updates_when_following">(Je wordt alleen op de hoogte gehouden als je waarnemingen volgt)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> heeft een ID voorgesteld: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> heeft gereageerd: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> heeft je genoemd: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Het lijkt erop dat u een foto hebt verwijderd door het cachegeheugen van de app wissen voordat u deze hebt ge upload. U moet de foto opnieuw toevoegen aan uw waarneming van uw galerij. Controleer in het vervolg eerst dat u al uw foto\'s hebt geüpload vóórdat u het cachegeheugen van de app wist.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -471,14 +467,12 @@
     <string name="what_did_you_see">Wat heb je waargenomen?</string>
     <string name="suggest_species">Soort suggereren</string>
     <string name="suggest_species_description">Stel soorten voor gebaseerd op visuele gelijkenis met andere foto\'s.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Op het oog vergelijkbaar</string>
     <string name="visually_similar_seen_nearby">Visueel vergelijkbaar / gezien in de buurt</string>
     <string name="seen_nearby">In de buurt waargenomen</string>
     <string name="enlarge">Vergroten</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Toon kinderen</string>
-    <string name="invalid_photo_extension">Fout bij importeren foto(s): kan alleen foto\'s importeren met de extensies JPG/JPEG/PNG/HEIC/HEIF </string>
     <string name="taxon_has_no_photos">Dit taxon heeft geen foto\'s.</string>
     <string name="terrain">Terrein</string>
     <string name="filters">Filters</string>
@@ -573,7 +567,7 @@
     <string name="start">Begin</string>
     <string name="end">Einde</string>
     <string name="months">Maanden</string>
-    <string name="choose_months">Kies maanden (s)</string>
+    <string name="choose_months">Kies maand(en)</string>
     <string name="map_area">Gebied van de kaart</string>
     <string name="global">Wereldwijd</string>
     <!-- As in redo search in the current map area -->
@@ -596,7 +590,6 @@
     <string name="leave_comment">Laat een bericht achter...</string>
     <string name="swipe">Vegen</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Welke Google Account?</string>
     <string name="potential_disagreement">Potentiële onenigheid</string>
     <string name="do_you_think_this_could_be"><![CDATA[Is het bewijs genoeg om te bevestigen dit <b>%1$s</b> is?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -772,6 +765,7 @@
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) steunt Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) steunt iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Zweden: SLU Swedish Species Information Centre steunt iNaturalist Zweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA en Biodiversidata ondersteunen Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">Markeer alle berichten als gelezen</string>
     <string name="content_hidden">Inhoud verborgen</string>
     <string name="show_hidden_content">Toon verborgen inhoud</string>
@@ -785,7 +779,6 @@
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Geluid opnemen</string>
-    <string name="no_recorder_found">Geen standaard geluidsrecorder gevonden!</string>
     <string name="couldnt_retrieve_sound">Kon geluid niet ophalen van standaard recorder - probeer het geluid in plaats daarvan te importeren</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Kies geluid</string>
@@ -931,6 +924,7 @@
     <string name="flagging_conversation">Gesprek markeren...</string>
     <string name="failed_flagging_conversation">Het markeren van gesprek is mislukt!</string>
     <string name="no_subject">Geen Onderwerp</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_state_of_matter">Toestand van de materie</string>
     <string name="rank_kingdom">Rijk</string>
     <string name="rank_subkingdom">Subrijk</string>
@@ -1193,7 +1187,6 @@ zonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van d
     <string name="user_is_muted">Gebruiker is gedempt</string>
     <string name="cancel_multiple_obs_selection">Annuleer meerdere waarnemingenselectie</string>
     <string name="delete_observations">Waarnemingen verwijderen</string>
-    <string name="clear_species_guess">Verwijder soortengok</string>
     <string name="comment_count">Aantal reacties</string>
     <string name="id_count">Determinaties aantal</string>
     <string name="observation_selected">Geselecteerde waarneming</string>

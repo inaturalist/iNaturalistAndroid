@@ -7,8 +7,6 @@
     <string name="ok">OK</string>
     <string name="cancel">Annulla</string>
     <string name="loading">Caricamento...</string>
-    <string name="sync_required">Sincronizz. necessaria</string>
-    <string name="sync_required_message">%1$d osservazioni, %2$d foto da sincronizzare</string>
     <string name="street">Via</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satellite</string>
@@ -32,7 +30,6 @@
     <string name="settings">Impostazioni</string>
     <string name="projects">Progetti</string>
     <string name="delete_photo">Elimina foto</string>
-    <string name="menu">Menu</string>
     <string name="my_location">La mia posizione</string>
     <string name="nearby_observations">Osservazioni nelle vicinanze</string>
     <string name="add">Aggiungi</string>
@@ -204,6 +201,7 @@
     <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica è membro del Network iNaturalist in Costa Rica. Le istituzioni locali che supportano Naturalista Costa Rica avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione solo per provare se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala è membro del Network iNaturalist in Guatemala. Le istituzioni locali che supportano iNaturalist Guatemala avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione solo per provare se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Svezia è membro del Network iNaturalist in Svezia. Le istituzioni locali che supportano iNaturalist Svezia avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione come esperimento se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editor</string>
     <string name="license">Licenza</string>
     <string name="download_for_offline_use">Scarica per uso non in linea</string>
@@ -227,9 +225,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Email</string>
-    <string name="sign_up_with">Accedi con</string>
     <string name="skip">Salta ›</string>
-    <string name="already_have_account">Hai già un account?</string>
     <string name="log_in">Accedi</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Iscriviti</string>
@@ -325,7 +321,7 @@
     <string name="finding_current_location">Rilevamento della posizione...</string>
     <string name="flag_as_captive">Contrassegna come in cattività/coltivata</string>
     <string name="observation_flagged_as_captive">L\'osservazione è stata contrassegnata come in cattività/coltivata</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Sei sicuro di voler contrassegnare questa osservazione come in cattività/coltivata? (Premendo sì chiuderai la finestra d viisualizzazione)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
     <string name="do_you_agree_to_the_following">Sei d\'accordo con ciò che segue?</string>
     <string name="terms">Termini</string>
     <string name="observation_rules">Regole per le osservazioni</string>
@@ -352,7 +348,6 @@
     <string name="updating_profile">Aggiornamento del profilo...</string>
     <string name="there_was_a_problem_updating_profile">C\'era un problema durante l\'aggiornamento il tuo profilo!</string>
     <string name="there_was_a_problem_updating_profile_params">C\'era un problema durante l\'aggiornamento il tuo profilo: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Loggato come <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Attualmente collegato come <b>%1$s</b>]]></string>
     <string name="log_out">Esci</string>
@@ -423,6 +418,7 @@
     <string name="you_will_only_receive_updates_when_following">(Riceverai aggiornamenti solo quando avrai iniziato a seguire le osservazioni)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> ha suggerito una ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> ha commentato: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Sembra che tu abbia eliminato una foto cancellando la cache dell\'app prima di caricare. Sarà necessario aggiungere successivamente l\'immagine alla tua osservazione dalla tua galleria. In futuro, assicurati di aver caricato tutte le tue foto prima di cancellare la cache dell\'applicazione.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -471,14 +467,12 @@
     <string name="what_did_you_see">Cosa hai visto?</string>
     <string name="suggest_species">Suggerisci specie</string>
     <string name="suggest_species_description">Suggerisci una specie basandoti sulla somiglianza visiva delle foto.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visivamente simili</string>
     <string name="visually_similar_seen_nearby">Visivamente simili / visti nelle vicinanze</string>
     <string name="seen_nearby">Visto nelle vicinanze</string>
     <string name="enlarge">Ingrandisci</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Vedi figli</string>
-    <string name="invalid_photo_extension">Errore durante l\'importazione della(e) foto: puoi importare solo file di immagine con estensione JPG/JPEG/PNG/HEIC/HEIF</string>
     <string name="taxon_has_no_photos">Questo taxon non ha foto.</string>
     <string name="terrain">Terreno</string>
     <string name="filters">Filtri</string>
@@ -573,7 +567,7 @@
     <string name="start">Inizio</string>
     <string name="end">Fine</string>
     <string name="months">Mesi</string>
-    <string name="choose_months">Scegli mese(i)</string>
+    <string name="choose_months">Choose month(s)</string>
     <string name="map_area">Area Mappa</string>
     <string name="global">Globale</string>
     <!-- As in redo search in the current map area -->
@@ -596,7 +590,6 @@
     <string name="leave_comment">Lascia un commento...</string>
     <string name="swipe">Scorri</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Quale Account Google?</string>
     <string name="potential_disagreement">Potenziale disaccordo</string>
     <string name="do_you_think_this_could_be"><![CDATA[La prova fornita è sufficiente per confermare che questa è <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -772,6 +765,7 @@
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporta Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporta iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Svezia: SLU Swedish Species Information Centre supporta iNaturalist Svezia (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">Segna tutti come visti</string>
     <string name="content_hidden">Contenuto Nascosto</string>
     <string name="show_hidden_content">Mostra il contenuto nascosto</string>
@@ -785,7 +779,6 @@
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">registra il suono</string>
-    <string name="no_recorder_found">Non è stato trovato alcun registratore audio predefinito!</string>
     <string name="couldnt_retrieve_sound">Non è stato possibile recuperare il suono dal registratore predefinito - prova una importazione del suono</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Scegli il suono</string>
@@ -931,6 +924,7 @@
     <string name="flagging_conversation">Segnalando la conversazione...</string>
     <string name="failed_flagging_conversation">Impossibile segnalare la conversazione!</string>
     <string name="no_subject">Nessun Oggetto</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_state_of_matter">Stato della materia</string>
     <string name="rank_kingdom">Regno</string>
     <string name="rank_subkingdom">Sottoregno</string>
@@ -1190,7 +1184,6 @@ le <a href="https://www.inaturalist.org/pages/community+guidelines">Linee Guida 
     <string name="user_is_muted">L\'utente è silenziato</string>
     <string name="cancel_multiple_obs_selection">Annulla la selezione di osservazioni multiple</string>
     <string name="delete_observations">Cancella osservazioni</string>
-    <string name="clear_species_guess">Cancella il suggerimento specie</string>
     <string name="comment_count">Conteggio dei commenti</string>
     <string name="id_count">Conteggio delle identificazioni</string>
     <string name="observation_selected">Osservazione selezionata</string>

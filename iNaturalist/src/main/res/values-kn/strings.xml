@@ -7,8 +7,6 @@
     <string name="ok">ಓಕೆ</string>
     <string name="cancel">ರದ್ದುಗೊಳಿಸಿ</string>
     <string name="loading">ಸಜ್ಜುಗೊಳಿಸಲಾಗುತ್ತಿದೆ...</string>
-    <string name="sync_required">ಸಿಂಕ್‍ನ ಅಗತ್ಯವಿದೆ</string>
-    <string name="sync_required_message">ಸಿಂಕ್ ಆಗಲು %1$d ವೀಕ್ಷಣೆಗಳು %2$d ಚಿತ್ರಗಳು </string>
     <string name="street">ರಸ್ತೆ</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">ಉಪಗ್ರಹ</string>
@@ -32,7 +30,6 @@
     <string name="settings">ಸಂಯೋಜನೆಗಳು</string>
     <string name="projects">ಪ್ರಾಯೋಜನೆಗಳು</string>
     <string name="delete_photo">ಚಿತ್ರವನ್ನು ಅಳಿಸಿ </string>
-    <string name="menu">ಮೆನು</string>
     <string name="my_location">ನನ್ನ ಸ್ಥಳ</string>
     <string name="nearby_observations">ಹತ್ತಿರದ ವೀಕ್ಷಣೆಗಳು</string>
     <string name="add">ಸೇರಿಸಿ</string>
@@ -204,6 +201,7 @@
     <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is a member of the iNaturalist Network in Costa Rica. Local institutions supporting Naturalista Costa Rica will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">ಸಂಪಾದಕ</string>
     <string name="license">ಪರವಾನಗಿ</string>
     <string name="download_for_offline_use">ಆಫ್‍ಲೈನ್ ಬಳಕೆಗಾಗಿ ಡೌನ್‍ಲೋಡ್ ಮಾಡಿ</string>
@@ -227,9 +225,7 @@
     <string name="facebook">ಫೇಸ್‍‌ಬುಕ್</string>
     <string name="gplus">ಗೂಗಲ್</string>
     <string name="email">ಮಿಂಚೆ</string>
-    <string name="sign_up_with">ಇದರೊಂದಿಗೆ ನೋಂದಾಯಿಸಿ</string>
     <string name="skip">ಹಾರಿಸಿ ></string>
-    <string name="already_have_account">ಈಗಾಗಲೇ ಒಂದು ಖಾತೆಯನ್ನು ಹೊಂದಿರುವಿರಾ?</string>
     <string name="log_in">ಲಾಗಿನ್ ಆಗಿ</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">ನೋಂದಾಯಿಸಿ</string>
@@ -325,7 +321,7 @@
     <string name="finding_current_location">ಪ್ರಸ್ತುತ ಸ್ಥಳವನ್ನು ಹುಡುಕಲಾಗುತ್ತಿದೆ...</string>
     <string name="flag_as_captive"> ಸೆರೆಯ ಜೀವಿ/ಪಳಗಿಸಿದ ಜೀವಿ ಯಂತೆ ಪತಾಕೆಹಚ್ಚಿ</string>
     <string name="observation_flagged_as_captive"> ವೀಕ್ಷಣೆಯನ್ನು ಸೆರೆಯ ಜೀವಿ/ಪಳಗಿಸಿದ ಜೀವಿ ಯಂತೆ ಪತಾಕೆಹಚ್ಚಲಾಗಿದೆ</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Are you sure you want to flag this observation as captive/cultivated? (Pressing yes will also close the observation viewer window)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
     <string name="do_you_agree_to_the_following">ನೀವು ಈ ಕೆಳಗಿನವುಗಳನ್ನು ಸಮ್ಮತಿಸುವಿರಾ?</string>
     <string name="terms">ನಿಯಮಗಳು</string>
     <string name="observation_rules">ವೀಕ್ಷಣೆಯ ನಿಯಮಗಳು</string>
@@ -352,7 +348,6 @@
     <string name="updating_profile">ಪರಿಚಯವನ್ನು ನವೀಕರಿಸಲಾಗುತ್ತಿದೆ...</string>
     <string name="there_was_a_problem_updating_profile">ನಿಮ್ಮ ಪರಿಚಯವನ್ನು ನವೀಕರಿಸುವಲ್ಲಿ ಏನೋ ತೊಂದರೆಯಾಗಿದೆ!</string>
     <string name="there_was_a_problem_updating_profile_params">ನಿಮ್ಮ ಪರಿಚಯವನ್ನು ನವೀಕರಿಸುವಲ್ಲಿ ಏನೋ ತೊಂದರೆಯಾಗಿದೆ : %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[<b>%1$s</b> ನಂತೆ ಲಾಗಿನ್ ಆಗಿದೆ]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[ಪ್ರಸ್ತುತ <b>%1$s</b> ನಂತೆ ಲಾಗಿನ್ ಆಗಿದೆ]]></string>
     <string name="log_out">ಲಾಗ್ ಔಟ್</string>
@@ -423,6 +418,7 @@
     <string name="you_will_only_receive_updates_when_following">(ನೀವು ವೀಕ್ಷಣೆಗಳನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿದ ನಂತರ ನೀವು ನವೀಕರಣಗಳನ್ನು ಪಡೆಯುವಿರಿ)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> ಅವರು ID ಯೊಂದನ್ನು ಸಲಹೆ ಮಾಡಿದ್ದಾರೆ : %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">It looks like you deleted a photo by clearing the app cache before uploading. You will need to add the photo back to your observation from your gallery. In the future, please make sure you have uploaded all your photos before clearing the app cache.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -471,14 +467,12 @@
     <string name="what_did_you_see">ನೀವು ಏನು ನೋಡಿದಿರಿ?</string>
     <string name="suggest_species">ಪ್ರಭೇಧವನ್ನು ಸೂಚಿಸಿ</string>
     <string name="suggest_species_description">ಚಿತ್ರಗಳ ದೃಶ್ಯಸಾಮ್ಯತೆಯ ಆಧಾರದ ಮೇಲೆ ಪ್ರಭೇಧವನ್ನು ಸೂಚಿಸಿ.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">ನೋಟದೋಲಿಕೆ</string>
     <string name="visually_similar_seen_nearby">ದೃಶ್ಯ ಸಾಮ್ಯತೆ / ಸಮೀಪದಲ್ಲಿ ವೀಕ್ಷಿಸಿದ್ದು</string>
     <string name="seen_nearby">ಸಮೀಪದಲ್ಲಿ ವೀಕ್ಷಿಸಲಾಗಿದೆ</string>
     <string name="enlarge">ಹಿಗ್ಗಿಸಿ</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">View Children</string>
-    <string name="invalid_photo_extension">ಚಿತ್ರ(ಗಳ)ವನ್ನು ಆಮದು ಮಾಡುವಲ್ಲಿ ದೋಷ : JPG/JPEG/PNG/HEIC/HEIF ವಿಸ್ತರಣೆಗಳಿರುವ ಚಿತ್ರಗಳನ್ನು ಮಾತ್ರ ಆಮದು ಮಾಡಿಕೊಳ್ಳಬಹುದು</string>
     <string name="taxon_has_no_photos">ಈ ಜೀವಿವರ್ಗವು ಯಾವುದೇ ಚಿತ್ರವನ್ನು ಹೊಂದಿಲ್ಲ.</string>
     <string name="terrain">ಭೂಪ್ರದೇಶ</string>
     <string name="filters">ಶೋಧಕಗಳು</string>
@@ -573,7 +567,7 @@
     <string name="start">ಆರಂಭಿಸಿ</string>
     <string name="end">ಇಲ್ಲಿಯವರೆಗೆ</string>
     <string name="months">ತಿಂಗಳುಗಳು</string>
-    <string name="choose_months">ತಿಂಗಳು ಆಯ್ಕೆಮಾಡಿ</string>
+    <string name="choose_months">Choose month(s)</string>
     <string name="map_area">ಭೂಪಟ ಪ್ರದೇಶ</string>
     <string name="global">ಜಾಗತಿಕ</string>
     <!-- As in redo search in the current map area -->
@@ -596,7 +590,6 @@
     <string name="leave_comment">ಅಭಿಪ್ರಾಯವೊಂದನ್ನು ಬರೆಯಿರಿ...</string>
     <string name="swipe">ಸ್ವೈಪ್</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">ಯಾವ ಗೂಗಲ್ ಖಾತೆ?</string>
     <string name="potential_disagreement">ಸಂಭಾವ್ಯ ಭಿನ್ನಾಭಿಪ್ರಾಯ</string>
     <string name="do_you_think_this_could_be"><![CDATA[ಇದನ್ನು <b>%1$s</b> ಎಂದು ನಿರ್ಧರಿಸಲು ಸಾಕಷ್ಟು ಸಾಕ್ಷ್ಯಗಳನ್ನು ಒದಗಿಸಲಾಗಿದೆಯೇ?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -772,6 +765,7 @@
     <string name="network_credit_inaturalistcr"><![CDATA[ಕೊಸ್ಟರಿಕಾ: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[ಗ್ವಾಟೆಮಾಲಾ:Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[ಸ್ವೀಡನ್: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿದೆಯೆಂದು ಗುರುತಿಸಿ</string>
     <string name="content_hidden">ಮರೆಮಾಡಿದ ವಿಷಯಗಳು</string>
     <string name="show_hidden_content">ಮರೆಮಾಡಿದ ವಿಷಯಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ</string>
@@ -785,7 +779,6 @@
     <string name="soundcloud">ಸೌಂಡ್‍ಕ್ಲೌಡ್</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">ಧ್ವನಿ ಮುದ್ರಿಸಿ</string>
-    <string name="no_recorder_found">ಯಾವುದೇ ನಿಯೋಜಿತ ಧ್ವನಿಮುದ್ರಕ ಕಂಡುಬಂದಿಲ್ಲ!</string>
     <string name="couldnt_retrieve_sound">ನಿಯೋಜಿತ ಧ್ವನಿಮುದ್ರಕದಿಂದ ಧ್ವನಿಯನ್ನು ತೆಗೆದುಕೊಳ್ಳಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ - ಬದಲಿಗೆ ಧ್ವನಿಯನ್ನು ಆಮದು ಮಾಡಲು ಪ್ರಯತ್ನಿಸಿ</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">ಧ್ವನಿಯನ್ನು ಆರಿಸಿ</string>
@@ -932,6 +925,7 @@
     <string name="flagging_conversation">Flagging conversation...</string>
     <string name="failed_flagging_conversation">Failed flagging conversation!</string>
     <string name="no_subject">ವಿಷಯ ಇಲ್ಲ</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_state_of_matter">State of matter</string>
     <string name="rank_kingdom">ಸಾಮ್ರಾಜ್ಯ</string>
     <string name="rank_subkingdom">ಉಪಸಾಮ್ರಾಜ್ಯ</string>
@@ -1190,7 +1184,6 @@
     <string name="user_is_muted">ಬಳಕೆದಾರರು ಮೌನವಾಗಿದ್ದಾರೆ</string>
     <string name="cancel_multiple_obs_selection">ಹಲವು ವೀಕ್ಷಣೆ ಆಯ್ಕೆಯನ್ನು ರದ್ದುಗೊಳಿಸಿ</string>
     <string name="delete_observations">ವೀಕ್ಷಣೆಗಳನ್ನು ಅಳಿಸಿ</string>
-    <string name="clear_species_guess">ಪ್ರಭೇದದ ಊಹೆಯನ್ನು ತೆರವುಗೊಳಿಸಿ</string>
     <string name="comment_count">ಅಭಿಪ್ರಾಯಗಳ ಎಣಿಕೆ</string>
     <string name="id_count">ಗುರುತಿಸುವಿಕೆಗಳ ಎಣಿಕೆ</string>
     <string name="observation_selected">ಆರಿಸಿದ ವೀಕ್ಷಣೆ</string>

@@ -7,8 +7,6 @@
     <string name="ok">OK</string>
     <string name="cancel">Annullér</string>
     <string name="loading">Indlæser...</string>
-    <string name="sync_required">Synk kræves</string>
-    <string name="sync_required_message">%1$d observationer, %2$d fotos at synke</string>
     <string name="street">Gade</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satellit</string>
@@ -32,7 +30,6 @@
     <string name="settings">Indstillinger</string>
     <string name="projects">Projekter</string>
     <string name="delete_photo">Slet foto</string>
-    <string name="menu">Menu</string>
     <string name="my_location">Min placering</string>
     <string name="nearby_observations">Nærliggende observationer</string>
     <string name="add">Tilføj</string>
@@ -204,6 +201,7 @@
     <string name="alert_message_use_inaturalistcr">iNaturalist Costa Rica er medlem af iNaturalist Network i Costa Rica. Lokale institutioner, som supporterer Naturalist Costa Rica, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala er medlem af iNaturalist Network i Guatemala. Lokale institutioner, som supporterer Naturalist Guatemala, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sverige er medlem af iNaturalist Network i Sverige. Lokale institutioner, som supporterer Naturalist Sverige, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay er medlem af iNaturalist Network i Uruguay. Lokale institutioner, som støtter Naturalista Uruguay, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
     <string name="editor">Redaktør</string>
     <string name="license">Licens</string>
     <string name="download_for_offline_use">Download til offlinebrug</string>
@@ -227,9 +225,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-mail</string>
-    <string name="sign_up_with">Tilmeld med</string>
     <string name="skip">Overspring ›</string>
-    <string name="already_have_account">Har allerede en konto?</string>
     <string name="log_in">Log ind</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Tilmeld</string>
@@ -325,7 +321,7 @@
     <string name="finding_current_location">Finde nuværende placering...</string>
     <string name="flag_as_captive">Markér som fangenskab/dyrket</string>
     <string name="observation_flagged_as_captive">Observation markeret som fangenskab/dyrket</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Sikker på, at du vil markere denne observation som fangenskab/dyrket? (Tryk på Ja vil også lukke observationsvisningsvinduet)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Sikker på, at du vil markere denne observation som fangenskab/dyrket?</string>
     <string name="do_you_agree_to_the_following">Accepterer du følgende?</string>
     <string name="terms">Vilkår</string>
     <string name="observation_rules">Observationsregler</string>
@@ -352,7 +348,6 @@
     <string name="updating_profile">Opdaterer profil...</string>
     <string name="there_was_a_problem_updating_profile">Et problem opstod under opdatering af din profil!</string>
     <string name="there_was_a_problem_updating_profile_params">Et problem opstod under opdatering af din profil: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Logget ind som <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Pt. logget ind som <b>%1$s</b>]]></string>
     <string name="log_out">Log ud</string>
@@ -423,6 +418,7 @@
     <string name="you_will_only_receive_updates_when_following">(Du vil kun modtage opdateringer, når du følger observationer)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> foreslog en ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> kommenterede: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> nævnte dig: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Ser ud til, at du slettede et foto inden upload ved at rydde app\'ens cache. Du skal føje fotoet til din observation igen fra dit Galleri. Tjek fremadrettet, at du har uploadet alle dine fotos, inden du evt. rydder app-cachen.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -471,14 +467,12 @@
     <string name="what_did_you_see">Hvad så du?</string>
     <string name="suggest_species">Foreslå arter</string>
     <string name="suggest_species_description">Foreslå arter baseret på visuelle ligheder med fotos.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visuelt sammenfald</string>
     <string name="visually_similar_seen_nearby">Visuelt sammenfald/Observeret i nærheden</string>
     <string name="seen_nearby">Observeret i nærheden</string>
     <string name="enlarge">Forstør</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Se underordnede</string>
-    <string name="invalid_photo_extension">Fotoimportfejl: Kun filtyperne JPG/JPEG/PNG/HEIC/HEIF kan importeres</string>
     <string name="taxon_has_no_photos">Denne takson har ingen fotos.</string>
     <string name="terrain">Terræn</string>
     <string name="filters">Filtre</string>
@@ -596,7 +590,6 @@
     <string name="leave_comment">Skriv en kommentar...</string>
     <string name="swipe">Stryg</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Hvilken Google-konto?</string>
     <string name="potential_disagreement">Potentiel uenighed</string>
     <string name="do_you_think_this_could_be"><![CDATA[Er der dokumentation nok til at bekræfte, at dette er <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -772,6 +765,7 @@
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) understøtter Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) understøtter iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre understøtter iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA og Biodiversidata supporterer Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">Markér alle som set</string>
     <string name="content_hidden">Indhold skjult</string>
     <string name="show_hidden_content">Vis Skjult Indhold</string>
@@ -785,7 +779,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Optag lyd</string>
-    <string name="no_recorder_found">Ingen standardlydoptager fundet!</string>
     <string name="couldnt_retrieve_sound">Kunne ikke hente lyd fra standardlydoptager - prøv i stedet at importere lyden</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Vælg lyd</string>
@@ -931,6 +924,7 @@
     <string name="flagging_conversation">Sætter flag ved samtale...</string>
     <string name="failed_flagging_conversation">Kunne ikke sætte flag ved samtale!</string>
     <string name="no_subject">Intet emne</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_state_of_matter">Materietilstand</string>
     <string name="rank_kingdom">Rige</string>
     <string name="rank_subkingdom">Underrige</string>
@@ -1192,7 +1186,6 @@ og <a href="https://www.inaturalist.org/terms">Tjenestevilkår</a>.]]></string>
     <string name="user_is_muted">Bruger er tavsgjort</string>
     <string name="cancel_multiple_obs_selection">Annullér flere observationsvalg</string>
     <string name="delete_observations">Slet observationer</string>
-    <string name="clear_species_guess">Ryd gæt på art</string>
     <string name="comment_count">Antal kommentarer</string>
     <string name="id_count">Antal identifikationer</string>
     <string name="observation_selected">Observation valgt</string>

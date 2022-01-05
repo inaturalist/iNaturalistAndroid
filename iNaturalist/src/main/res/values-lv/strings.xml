@@ -7,8 +7,6 @@
     <string name="ok">Labi</string>
     <string name="cancel">Atcelt</string>
     <string name="loading">Ielādē...</string>
-    <string name="sync_required">Sync required</string>
-    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
     <string name="street">Karte</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satelīts</string>
@@ -32,7 +30,6 @@
     <string name="settings">Iestatījumi</string>
     <string name="projects">Projekti</string>
     <string name="delete_photo">Dzēst fotogrāfiju</string>
-    <string name="menu">Menu</string>
     <string name="my_location">Mana atraš. vieta</string>
     <string name="nearby_observations">Tuvējie novērojumi</string>
     <string name="add">Pievienot</string>
@@ -206,6 +203,7 @@ globālā iNaturalist tīkla.</string>
     <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica ir daļa no iNaturalist tīkla Kostarikā. Vietējām organizācijām, kas atbalsta Naturalista Costa Rica būs pieeja tavai e-pasta adresei un novērojumu faktiskajām koordinātām – tas ietver gan publikai apslēptās, gan privātās koordinātas. Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu. Vai vēlies pievienoties citam iNaturalist partnerim?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala ir daļa no iNaturalist tīkla Gvatemalā. Vietējām organizācijām, kas atbalsta iNaturalist Guatemala būs pieeja tavai e-pasta adresei un novērojumu faktiskajām koordinātām – tas ietver gan publikai apslēptās, gan privātās koordinātas. Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu. Vai vēlies pievienoties citam iNaturalist partnerim?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden ir daļa no iNaturalist tīkla Zviedrijā. Vietējām organizācijām, kas atbalsta iNaturalist Sweden būs pieeja tavai e-pasta adresei un novērojumu faktiskajām koordinātām – tas ietver gan publikai noslēptās, gan privātās koordinātas. Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu. Vai vēlies pievienoties citam iNaturalist partnerim?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Redaktors</string>
     <string name="license">Licence</string>
     <string name="download_for_offline_use">Lejupielādēt bezsaistes lietošanai</string>
@@ -229,9 +227,7 @@ globālā iNaturalist tīkla.</string>
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-pasts</string>
-    <string name="sign_up_with">Sign Up with</string>
     <string name="skip">Izlaist  ›</string>
-    <string name="already_have_account">Already have an account?</string>
     <string name="log_in">Pieslēgšanās</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Reģistrēties</string>
@@ -252,7 +248,7 @@ globālā iNaturalist tīkla.</string>
     <string name="login_signup">Pieslēgties vai reģistrēties</string>
     <string name="please_sign_in_via_settings_for_guides">Pieslēdzies, lai apskatītu savus padomus.</string>
     <string name="please_sign_in_for_updates">Pieslēdzies, lai apskatītu jaunumus.</string>
-    <string name="by_using_inat_terms"><![CDATA[Izmantojot iNaturalist, tu piekrīti <b><a href="https://www.inaturalist.org/pages/terms">lietošanas noteikumiem</a></b> un <b><a href="https://www.inaturalist.org/pages/privacy">privātuma politikai.</a></b>]]></string>
+    <string name="by_using_inat_terms"><![CDATA[Izmantojot iNat, tu piekrīti <b><a href="https://www.inaturalist.org/pages/terms">noteik.</a></b> un <b><a href="https://www.inaturalist.org/pages/privacy">priv. politikai.</a></b>]]></string>
     <string name="activity">Paziņojumi</string>
     <!-- Label for a button to open the camera to take a new photo for an observation -->
     <string name="camera">Uzņemt fotogrāfiju</string>
@@ -328,7 +324,7 @@ globālā iNaturalist tīkla.</string>
     <string name="finding_current_location">Meklē pašreizējo atrašanās vietu...</string>
     <string name="flag_as_captive">Atzīmēt kā nebrīvē vai kultivētu?</string>
     <string name="observation_flagged_as_captive">Pievienots hobija līmeņa novērojumiem, jo indivīds ir nebrīvē vai kultivēts.</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Vai tiešām vēlies pievienot novērojumam nebrīva vai kultivēta indivīda statusu? (Nospiežot \"Jā\", aizvērsies novērojuma logs.)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
     <string name="do_you_agree_to_the_following">Vai piekrīti noteikumiem?</string>
     <string name="terms">Noteikumi</string>
     <string name="observation_rules">Novērošanas noteikumi</string>
@@ -355,7 +351,6 @@ globālā iNaturalist tīkla.</string>
     <string name="updating_profile">Atjauno profila informāciju...</string>
     <string name="there_was_a_problem_updating_profile">Atjaunojot profila informāciju, radās problēma.</string>
     <string name="there_was_a_problem_updating_profile_params">Atjaunojot profila informāciju, radās problēma: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Pieslēdzies ar lietotājvārdu: <b>%1$s</b>]]></string>
     <string name="log_out">Iziet</string>
@@ -416,7 +411,7 @@ globālā iNaturalist tīkla.</string>
     <string name="expanding_your_search_area">Paplašina meklēšanas apgabalu...</string>
     <string name="introducing_missions">Iepazīstinām ar misijām!</string>
     <string name="missions_onboarding_description">Misijās atrodami aktualizēti ieteikumi savas apkārtnes izzināšanai. Šādi iespējams iepazīt jaunas sugas. (Nepieciešams interneta pieslēgums)</string>
-    <string name="ok_got_it">Skaidrs!</string>
+    <string name="ok_got_it">Aizvērt</string>
     <string name="could_not_download_observations">Neizdevās lejupielādēt jaunākos novērojumus savienojuma problēmu dēļ. Mēģini vēlreiz nedaudz vēlāk!</string>
     <string name="no_news_yet">Vēl nav ziņu. Pārbaudi vēlreiz nedaudz vēlāk!</string>
     <string name="my_content">Mans saturs</string>
@@ -426,6 +421,7 @@ globālā iNaturalist tīkla.</string>
     <string name="you_will_only_receive_updates_when_following">(Jaunumus saņemsi tikai tad, kad sekosi kādam novērojumam.)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> ieteica ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> komentēja: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Fotogrāfija izdzēsās, jo iztīrīji lietotnes kešatmiņu pirms augšupielādes. Pievieno novērojumam fotogrāfiju no jauna, izvēloties to no galerijas! Turpmāk, lūdzu, pārliecinies, vai visas fotogrāfijas ir augšupielādētas pirms lietotnes kešatmiņas iztīrīšanas!</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -473,17 +469,15 @@ globālā iNaturalist tīkla.</string>
     <!-- Header for a list of suggested taxa -->
     <string name="top_suggestions">Labākie minējumi</string>
     <string name="pretty_sure_rank">Esam diezgan pārliecināti, ka organisms pieder šai kategorijai: %1$s</string>
-    <string name="what_did_you_see">Ko redzēji?</string>
+    <string name="what_did_you_see">Kas tas bija?</string>
     <string name="suggest_species">Ieteikt sugu</string>
     <string name="suggest_species_description">Ieteikt sugu, balstoties uz vizuālo līdzību fotogrāfijās.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Vizuāli līdzīgs</string>
     <string name="visually_similar_seen_nearby">Vizuāli līdzīgs vai redzēts tuvumā</string>
     <string name="seen_nearby">Redzēts tuvumā</string>
     <string name="enlarge">Palielināt</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Skatīt apakšgrupas</string>
-    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
     <string name="taxon_has_no_photos">Šim taksonam nav fotogrāfiju.</string>
     <string name="terrain">Piekļuve</string>
     <string name="filters">Filtri</string>
@@ -579,7 +573,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="start">Sākums</string>
     <string name="end">Beigas</string>
     <string name="months">Mēneši</string>
-    <string name="choose_months">Izvēlēties mēnesi</string>
+    <string name="choose_months">Choose month(s)</string>
     <string name="map_area">Kartes nogabals</string>
     <string name="global">Globāli</string>
     <!-- As in redo search in the current map area -->
@@ -595,14 +589,13 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="new_observation">Jauns novērojums</string>
     <string name="inactive_taxon">Neaktīvs taksons</string>
     <string name="no_identifications_found">Seko līdzi savām un citu lietotāju novērojumu identifikācijām šeit.</string>
-    <string name="no_species_found">Šajā sarakstā apkopotas tevis visvairāk novērotās sugas.\n\nUz zemes ir apmēram deviņi miljoni sugu, tāpēc labāk ej ārā un atrodi kādu no tām!</string>
+    <string name="no_species_found">Sarakstā apkopotas tavas visnovērotākās sugas.\n\nUz zemes ir apmēram deviņi miljoni sugu, tāpēc ej ārā un atrodi kādu no tām!</string>
     <string name="make_an_observation">Pievienot novērojumu</string>
     <string name="no_observations_found_new">Novērojumi ir ieraksti par sastapšanos ar individuāliem organismiem noteiktā laikā un vietā.</string>
     <string name="discard_comment">Vai tiešām vēlies dzēst šo komentāru?</string>
     <string name="leave_comment">Pievienot komentāru</string>
     <string name="swipe">Novilkt</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Which Google Account?</string>
     <string name="potential_disagreement">Potenciālas domstarpības</string>
     <string name="do_you_think_this_could_be"><![CDATA[Vai ir pietiekami daudz datu, lai apstiprinātu, ka šis ir <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -641,7 +634,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="project_people">Lietotāji</string>
     <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Identificētāji</string>
-    <string name="got_it">Skaidrs!</string>
+    <string name="got_it">Aizvērt</string>
     <string name="view_all">Apskatīt visu</string>
     <string name="observers">Novērotāji</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
@@ -736,7 +729,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="identifiers_all_caps">IDENTIFICĒTĀJI</string>
     <string name="identifications_all_caps">IDENTIFIKĀCIJAS</string>
     <string name="news_all_caps">ZIŅAS</string>
-    <string name="got_it_all_caps">SKAIDRS!</string>
+    <string name="got_it_all_caps">Aizvērt</string>
     <string name="view_all_all_caps">SKATĪT VISU</string>
     <string name="new_all_caps">JAUNS</string>
     <string name="observers_all_caps">NOVĒROTĀJI</string>
@@ -779,6 +772,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">Atzīmēt visu kā skatītu</string>
     <string name="content_hidden">Slēpts saturs</string>
     <string name="show_hidden_content">Rādīt slēpto saturu</string>
@@ -792,7 +786,6 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Ierakstīt audio</string>
-    <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">Neizdevās ierakstīt ar ierīces mikrofonu, labāk pamēģini augšupielādēt audiofailu!</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Izvēlēties audiofailu</string>
@@ -916,10 +909,10 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="please_sign_in_for_messages">Pieslēdzies, lai apskatītu ziņas.</string>
     <string name="sorry">Atvainojamies</string>
     <string name="you_must_have_three_observations">Lai to izdarītu, tev jabūt trīs pierādāmiem novērojumiem vai trīs citu lietotāju novērojumu identifikācijām.</string>
-    <string name="mute_this_user">Atspējot paziņojumus par lietotāju</string>
-    <string name="unmute_this_user">Iespējo paziņojumus par lietotāju</string>
+    <string name="mute_this_user">Apklusināt lietotāju</string>
+    <string name="unmute_this_user">Atcelt lietotāja apklusināšanu</string>
     <string name="flag_this_conversation">Atzīmēt sarunu ar karodziņu</string>
-    <string name="mute_this_user_question">Atspējot paziņojumus par lietotāju?</string>
+    <string name="mute_this_user_question">Apklusināt lietotāju?</string>
     <string name="you_will_no_longer_receive_messages">Vairs nesaņemsi paziņojumus par šī lietotāja darbībām, tai skaitā ziņas, komentārus, identifikācijas un pieminēšanu.</string>
     <string name="mute">Atspējot paziņojumus</string>
     <string name="muting_user">Atspējo paziņojumus par lietotāju...</string>
@@ -939,6 +932,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="flagging_conversation">Sarunai tiek pievienots karodziņš...</string>
     <string name="failed_flagging_conversation">Neizdevās sarunai pievienot karodziņu.</string>
     <string name="no_subject">Nav temata</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_state_of_matter">Agregātstāvoklis</string>
     <string name="rank_kingdom">Valsts</string>
     <string name="rank_subkingdom">Apakšvalsts</string>
@@ -979,10 +973,10 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="rank_infrahybrid">Infrahibrīds</string>
     <string name="rank_leaves">Lapas</string>
     <string name="location_lat_lng">Atrašanās vieta: %1$f, %2$f</string>
-    <string name="i_consent_process_personal_info"><![CDATA[Es ļauju iNaturalist glabāt un apstrādāt ierobežota veida informāciju par mani, lai nodrošinātu mana konta darbību. <b>Uzzināt vairāk</b>]]></string>
+    <string name="i_consent_process_personal_info"><![CDATA[Ļauju iNat glabāt un apstrādāt informāciju par mani, lai nodrošinātu konta darbību. <b>Uzzināt vairāk</b>]]></string>
     <string name="about_personal_information">Vairāk par personīgo informāciju</string>
     <string name="personal_information_notes"><![CDATA[Mēs uzglabājam tādu personīgo informāciju kā lietotājvārdi un e-pasta adreses, lai nodrošinātu kontu darbību un izpildītu privātuma likumu prasības. Lūdzam atzīmēt šo lodziņu, lai piekristu personīgās informācijas izmantošanai. Lai uzzinātu vairāk par datu veidiem un to pielietojumu, skatīt: <a href="https://www.inaturalist.org/privacy">Privātuma politiku</a> un <a href="https://www.inaturalist.org/terms">Lietošanas noteikumus</a>.]]></string>
-    <string name="i_agree_to_tos_and_privacy"><![CDATA[Piekrītu <a href="https://www.inaturalist.org/terms">lietošanas noteikumiem</a> un <a href="https://www.inaturalist.org/privacy">privātuma politikai</a> un esmu iepazinies ar <a href="https://www.inaturalist.org/pages/community+guidelines">kopienas vadlīnijām</a>.]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[Piekrītu <a href="https://www.inaturalist.org/terms">noteikumiem</a> un <a href="https://www.inaturalist.org/privacy">priv. politikai</a>, kā arī esmu iepazinies ar <a href="https://www.inaturalist.org/pages/community+guidelines">vadlīnijām</a>.]]></string>
     <string name="privacy_policy">Privātuma politika</string>
     <string name="terms_of_service">Lietošanas noteikumi</string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
@@ -1193,10 +1187,9 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="change_geoprivacy">Change geoprivacy</string>
     <string name="active_filters">Active filters</string>
     <string name="message_is_flagged">Message is flagged</string>
-    <string name="user_is_muted">User is muted</string>
+    <string name="user_is_muted">Lietotājs apklusināts</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
     <string name="delete_observations">Delete observations</string>
-    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Comment count</string>
     <string name="id_count">Identification count</string>
     <string name="observation_selected">Observation selected</string>

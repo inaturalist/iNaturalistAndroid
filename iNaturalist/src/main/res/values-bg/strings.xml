@@ -7,8 +7,6 @@
     <string name="ok">OK</string>
     <string name="cancel">Отказ</string>
     <string name="loading">Зареждане...</string>
-    <string name="sync_required">Sync required</string>
-    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
     <string name="street">Улица</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Сателит</string>
@@ -32,7 +30,6 @@
     <string name="settings">Настройки</string>
     <string name="projects">Проекти</string>
     <string name="delete_photo">Изтрий снимка</string>
-    <string name="menu">Menu</string>
     <string name="my_location">Моето местоположение</string>
     <string name="nearby_observations">Наблюдения наблизо</string>
     <string name="add">Добави</string>
@@ -204,6 +201,7 @@
     <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is a member of the iNaturalist Network in Costa Rica. Local institutions supporting Naturalista Costa Rica will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Редактор</string>
     <string name="license">Лиценз</string>
     <string name="download_for_offline_use">Изтегли за извънмрежов достъп</string>
@@ -227,9 +225,7 @@
     <string name="facebook">Фейсбук</string>
     <string name="gplus">Google</string>
     <string name="email">Имейл</string>
-    <string name="sign_up_with">Sign Up with</string>
     <string name="skip">Пропусни  ›</string>
-    <string name="already_have_account">Already have an account?</string>
     <string name="log_in">Влизане</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Регистриране</string>
@@ -329,7 +325,7 @@
     <string name="finding_current_location">Установяване на текущото местоположение...</string>
     <string name="flag_as_captive">Маркирай като недив</string>
     <string name="observation_flagged_as_captive">Наблюдението беше маркирано като недиво</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Сигурни ли сте, че искате да маркирате наблюдението като недиво? (Ако изберете Да, ще се затвори прозореца за разглеждане на наблюдения)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
     <string name="do_you_agree_to_the_following">Съгласни ли сте със следното?</string>
     <string name="terms">Условия</string>
     <string name="observation_rules">Правила за наблюдения</string>
@@ -356,7 +352,6 @@
     <string name="updating_profile">Обновяване на профила...</string>
     <string name="there_was_a_problem_updating_profile">Възникна проблем при обновяването на профила Ви!</string>
     <string name="there_was_a_problem_updating_profile_params">Възникна проблем при обновяването на профила Ви: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
     <string name="log_out">Излизане</string>
@@ -427,6 +422,7 @@
     <string name="you_will_only_receive_updates_when_following">(Ще получавате новости само когато следвате наблюдения)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> предложи разп.: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> коментира: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Изглежда сте изтрили снимка, като сте изчистили кеша на приложението преди да бъде качена. Трябва наново да добавите снимката към наблюдението от Вашето устройство. В бъдеще Ви молим да се уверете, че всички снимки са качени преди да изтриете кеша.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -475,14 +471,12 @@
     <string name="what_did_you_see">Какво наблюдавахте?</string>
     <string name="suggest_species">Предлагай видове</string>
     <string name="suggest_species_description">Предлагай видове въз основа на визуалното им сходство със снимките.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Визуално подобен</string>
     <string name="visually_similar_seen_nearby">Визуално подобен / Видян наблизо</string>
     <string name="seen_nearby">Видяно наоколо</string>
     <string name="enlarge">Увеличи</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Виж подтаксони</string>
-    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
     <string name="taxon_has_no_photos">Този таксон няма снимки.</string>
     <string name="terrain">Терен</string>
     <string name="filters">Филтри</string>
@@ -577,7 +571,7 @@
     <string name="start">Начало</string>
     <string name="end">Край</string>
     <string name="months">Месеци</string>
-    <string name="choose_months">Избери месец(и)</string>
+    <string name="choose_months">Choose month(s)</string>
     <string name="map_area">Обсег на карта</string>
     <string name="global">Глобално</string>
     <!-- As in redo search in the current map area -->
@@ -601,7 +595,6 @@
     <string name="leave_comment">Оставете коментар...</string>
     <string name="swipe">Плъзни</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Which Google Account?</string>
     <string name="potential_disagreement">Потенциално несъгласие</string>
     <string name="do_you_think_this_could_be"><![CDATA[Наличните свидетелства достатъчни ли са за да се потвърди, че това е <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -780,6 +773,7 @@ CalTech и Cornell Tech помогнаха при разработката на 
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">Маркирай всичко като прегледано</string>
     <string name="content_hidden">Скрито съдържание</string>
     <string name="show_hidden_content">Покажи скритото съдържание</string>
@@ -793,7 +787,6 @@ CalTech и Cornell Tech помогнаха при разработката на 
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Запиши звук</string>
-    <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">Неуспешно получаване на звука от звукозаписната програма. Опитайте вместо това да импортирате звука</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Изберете звук</string>
@@ -951,6 +944,7 @@ CalTech и Cornell Tech помогнаха при разработката на 
     <string name="flagging_conversation">Маркиране на разговор...</string>
     <string name="failed_flagging_conversation">Неуспешно маркиране на разговора!</string>
     <string name="no_subject">Без наслов</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_state_of_matter">Форма на материята</string>
     <string name="rank_kingdom">Царство</string>
     <string name="rank_subkingdom">Подцарство</string>
@@ -1208,7 +1202,6 @@ CalTech и Cornell Tech помогнаха при разработката на 
     <string name="user_is_muted">User is muted</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
     <string name="delete_observations">Delete observations</string>
-    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Comment count</string>
     <string name="id_count">Identification count</string>
     <string name="observation_selected">Observation selected</string>

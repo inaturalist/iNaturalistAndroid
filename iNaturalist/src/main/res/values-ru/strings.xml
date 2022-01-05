@@ -7,8 +7,6 @@
     <string name="ok">Ок</string>
     <string name="cancel">Отмена</string>
     <string name="loading">Загрузка...</string>
-    <string name="sync_required">Требуется синхронизация</string>
-    <string name="sync_required_message">%1$d наблюдений, %2$d фото требуют синхронизации</string>
     <string name="street">Улица</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Спутник</string>
@@ -32,7 +30,6 @@
     <string name="settings">Настройки</string>
     <string name="projects">Проекты</string>
     <string name="delete_photo">Удалить фото</string>
-    <string name="menu">Меню</string>
     <string name="my_location">Мое местоположение</string>
     <string name="nearby_observations">Наблюдения рядом</string>
     <string name="add">Добавить</string>
@@ -206,6 +203,7 @@
     <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica - это член сети iNaturalist Network в Коста-Рике. Местные организации, поддерживающие Naturalista Costa Rica, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala - это член сети iNaturalist Network в Гватемале. Местные организации, поддерживающие iNaturalist Guatemala, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden - это член сети iNaturalist Network в Швеции. Местные организации, поддерживающие iNaturalist Sweden, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay - это член сети iNaturalist Network в Уругвае. Местные организации, поддерживающие Naturalista Uruguay, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
     <string name="editor">Редактор</string>
     <string name="license">Лицензия</string>
     <string name="download_for_offline_use">Загрузить для использования в автономном режиме</string>
@@ -229,9 +227,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Эл. почта</string>
-    <string name="sign_up_with">Войти через</string>
     <string name="skip">Пропустить ›</string>
-    <string name="already_have_account">Уже есть аккаунт?</string>
     <string name="log_in">Войти</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Регистрация</string>
@@ -330,7 +326,7 @@
     <string name="finding_current_location">Поиск текущего местоположения...</string>
     <string name="flag_as_captive">Пометить как Captive/Cultivated (Находящееся в неволе/Культивируемое)</string>
     <string name="observation_flagged_as_captive">Наблюдение было помечено как Captive/Cultivated (Находящееся в неволе/Культивируемое)</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Вы уверены, что вы хотите пометить это наблюдение как Captive/Cultivated (Находящееся в неволе/Культивируемое)? (При нажатии Да будет также закрыто окно просмотра наблюдения)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Вы уверены, что хотите отметить это наблюдение как В неволе / Культивируемое?</string>
     <string name="do_you_agree_to_the_following">Согласны ли вы со следующим?</string>
     <string name="terms">Условия</string>
     <string name="observation_rules">Правила наблюдений</string>
@@ -357,7 +353,6 @@
     <string name="updating_profile">Обновление профиля...</string>
     <string name="there_was_a_problem_updating_profile">Возникла проблема при обновлении вашего профиля!</string>
     <string name="there_was_a_problem_updating_profile_params">Возникла проблема при обновлении вашего профиля: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Вы вошли как <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Вы вошли как <b>%1$s</b>]]></string>
     <string name="log_out">Выход</string>
@@ -428,6 +423,7 @@
     <string name="you_will_only_receive_updates_when_following">(Вы будете получать обновления только тогда, когда будете отслеживать наблюдения)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> предложил ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> оставил комментарий: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> упомянул вас: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Похоже, что вы удалили фотографию, очистив кэш приложения перед загрузкой. Вам будет нужно добавить фотографию обратно в ваши наблюдения из вашей галереи. В будущем, пожалуйста, убедитесь, что вы загрузили все ваши фото перед очисткой кэша приложения.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -480,14 +476,12 @@
     <string name="what_did_you_see">Что Вы видели?</string>
     <string name="suggest_species">Предложить вид</string>
     <string name="suggest_species_description">Предложить вид на основе сходства с фотографиями.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Внешне похожий</string>
     <string name="visually_similar_seen_nearby">Визуально похожие / встречались поблизости</string>
     <string name="seen_nearby">Встречен поблизости</string>
     <string name="enlarge">Увеличить</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Дочерние таксоны</string>
-    <string name="invalid_photo_extension">Ошибка импорта фото: можно импортировать файлы только с расширениями JPG/JPEG/PNG/HEIC/HEIF</string>
     <string name="taxon_has_no_photos">Для этого таксона фотографии нет</string>
     <string name="terrain">Ландшафт</string>
     <string name="filters">Фильтры</string>
@@ -582,7 +576,7 @@
     <string name="start">Запуск</string>
     <string name="end">Окончание</string>
     <string name="months">Месяцев</string>
-    <string name="choose_months">Выберите месяцы (s)</string>
+    <string name="choose_months">Выберите месяц(ы)</string>
     <string name="map_area">Карта области</string>
     <string name="global">Общее</string>
     <!-- As in redo search in the current map area -->
@@ -605,7 +599,6 @@
     <string name="leave_comment">Оставить комментарий...</string>
     <string name="swipe">Жесты</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Какой аккаунт Google?</string>
     <string name="potential_disagreement">Потенциальные разногласия</string>
     <string name="do_you_think_this_could_be"><![CDATA[Достаточно ли доказательств, подтверждающих это <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -783,6 +776,7 @@
     <string name="network_credit_inaturalistcr"><![CDATA[Коста-Рика: Национальная комиссия по управлению биоразнообразием (CONAGEBIO) поддерживает Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Гватемала: Национальный совет по охраняемым районам (CONAP) поддерживает iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Швеция: Шведский информационный центр по видам SLU поддерживает iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Уругвай: гражданская ассоциация Уругвая (JULANA) и Уругвайский консорциум данных о биоразнообразии (Biodiversidata) обеспечивают работу Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>) (NaturaLista.mx).]]></string>
     <string name="mark_all_as_viewed">Пометить все как просмотренные</string>
     <string name="content_hidden">Скрытый контент</string>
     <string name="show_hidden_content">Показать скрытый контент</string>
@@ -796,7 +790,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Записать звук</string>
-    <string name="no_recorder_found">Не найдено устройство записи звука по умолчанию!</string>
     <string name="couldnt_retrieve_sound">Не удалось получить звук с устройства записи звука по умолчанию - попробуйте вместо этого импортировать звук</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Выберите звук</string>
@@ -944,6 +937,7 @@
     <string name="flagging_conversation">Обсуждение помечается...</string>
     <string name="failed_flagging_conversation">Не удалось пометить обсуждение!</string>
     <string name="no_subject">Нет темы</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_state_of_matter">Форма</string>
     <string name="rank_kingdom">Царство</string>
     <string name="rank_subkingdom">Подцарство</string>
@@ -1201,7 +1195,6 @@
     <string name="user_is_muted">Пользователь игнорируется</string>
     <string name="cancel_multiple_obs_selection">Отменить выбор нескольких наблюдений</string>
     <string name="delete_observations">Удалить наблюдения</string>
-    <string name="clear_species_guess">Очистить подсказки видов</string>
     <string name="comment_count">Количество комментариев</string>
     <string name="id_count">Число идентификаций</string>
     <string name="observation_selected">Наблюдение выбрано</string>
