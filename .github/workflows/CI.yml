@@ -20,10 +20,10 @@ jobs:
           - 30 # Android 11, latest public release
     steps:
       - name: TEST
-        with:
-          script: |
-            echo "JAVA_HOME: $JAVA_HOME"
-            echo "JAVA_HOME_11_X64: $JAVA_HOME_11_X64"
+        run: |
+          echo "JAVA_HOME: $JAVA_HOME"
+          echo "JAVA_HOME_11_X64: $JAVA_HOME_11_X64"
+
       - name: Checkout
         uses: actions/checkout@v2
 
