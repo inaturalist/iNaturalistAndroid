@@ -9,6 +9,8 @@ jobs:
   test:
     name: Instrumented Tests, SDK ${{ matrix.api-level }}
     runs-on: macos-11
+    env:
+      JAVA_HOME: $JAVA_HOME_11_X64
     strategy:
       matrix:
         api-level:
