@@ -5074,6 +5074,7 @@ public class INaturalistService extends IntentService {
             try {
                 BetterJSONObject jsonField = new BetterJSONObject(jsonFields.getJSONObject(i));
                 ProjectField field = new ProjectField(jsonField);
+                field.project_id = projectId;
                 projectFields.add(field);
             } catch (JSONException e) {
                 Logger.tag(TAG).error(e);
