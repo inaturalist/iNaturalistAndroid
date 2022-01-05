@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.inaturalist.android"
     android:installLocation="auto"
-    android:versionCode="526"
-    android:versionName="1.25.11">
+    android:versionCode="529"
+    android:versionName="1.25.14">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -146,7 +146,11 @@
                     android:pathPattern="/people/.*"
                     android:scheme="https"/>
                 <data
-                    android:host="*.naturalist.se"
+                    android:host="*.inaturalist.se"
+                    android:pathPattern="/people/.*"
+                    android:scheme="https"/>
+                <data
+                    android:host="*.naturalista.uy"
                     android:pathPattern="/people/.*"
                     android:scheme="https"/>
             </intent-filter>
@@ -235,7 +239,11 @@
                     android:pathPattern="/observations/.*"
                     android:scheme="https"/>
                 <data
-                    android:host="*.naturalist.se"
+                    android:host="*.inaturalist.se"
+                    android:pathPattern="/observations/.*"
+                    android:scheme="https"/>
+                <data
+                    android:host="*.naturalista.uy"
                     android:pathPattern="/observations/.*"
                     android:scheme="https"/>
             </intent-filter>
@@ -456,6 +464,17 @@
             android:configChanges="orientation"
             android:enabled="false"
             android:label="@string/network_inaturalistse">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name=".ObservationListActivity.naturalistauy"
+            android:targetActivity=".ObservationListActivity"
+            android:configChanges="orientation"
+            android:enabled="false"
+            android:label="@string/network_naturalistauy">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -711,7 +730,11 @@
                     android:pathPattern="/messages/.*"
                     android:scheme="https"/>
                 <data
-                    android:host="*.naturalist.se"
+                    android:host="*.inaturalist.se"
+                    android:pathPattern="/messages/.*"
+                    android:scheme="https"/>
+                <data
+                    android:host="*.naturalista.uy"
                     android:pathPattern="/messages/.*"
                     android:scheme="https"/>
             </intent-filter>

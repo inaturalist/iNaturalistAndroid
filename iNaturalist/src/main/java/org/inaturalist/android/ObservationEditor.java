@@ -3508,6 +3508,9 @@ public class ObservationEditor extends Fragment {
         if (photoUri == null) {
             return null;
         }
+        if (getActivity() == null) {
+            return null;
+        }
 
         String path = FileUtils.getPath(getActivity(), photoUri);
         String extension = FileUtils.getExtension(getActivity(), photoUri);
