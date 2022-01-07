@@ -88,6 +88,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.os.StrictMode;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
@@ -321,7 +322,7 @@ public class ObservationEditor extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Bridge.restoreInstanceState(getActivity(), savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         setHasOptionsMenu(true);
 
@@ -1747,8 +1748,9 @@ public class ObservationEditor extends Fragment {
 
 
         super.onSaveInstanceState(outState);
-        Bridge.saveInstanceState(getActivity(), outState);
+        Bridge.saveInstanceState(this, outState);
     }
+
 
     @Override
     public void onPause() {

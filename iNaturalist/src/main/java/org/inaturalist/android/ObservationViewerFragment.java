@@ -688,7 +688,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Bridge.restoreInstanceState(getActivity(), savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         Bundle args = getArguments();
         String uriString = args != null ? args.getString(OBS_URI) : getActivity().getIntent().getDataString();
@@ -2464,7 +2464,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        Bridge.saveInstanceState(getActivity(), outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
     private class ChangeAttributesReceiver extends BroadcastReceiver {
