@@ -189,7 +189,7 @@ public class ObservationViewerSlider extends AppCompatActivity {
 
 
             String obsJson = intent.getStringExtra("observation");
-            String obsResults = intent.getStringExtra("observation_results");
+            String obsResults = (String) mApp.getServiceResult("observation_results");
             Integer obsIndex = intent.getIntExtra("observation_index", 0);
             Integer totalResults = intent.getIntExtra("total_results", 0);
             Integer resultsPage = intent.getIntExtra("results_page", 0);

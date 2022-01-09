@@ -1027,7 +1027,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                 JSONObject item = (JSONObject) view.getTag();
 
                 Intent intent = new Intent(ExploreActivity.this, ObservationViewerSlider.class);
-                intent.putExtra("observation_results", new JSONArray(mResults[VIEW_TYPE_OBSERVATIONS]).toString());
+                mApp.setServiceResult("observation_results", new JSONArray(mResults[VIEW_TYPE_OBSERVATIONS]).toString());
                 intent.putExtra("observation_index", mResults[VIEW_TYPE_OBSERVATIONS].indexOf(item));
                 intent.putExtra("total_results", mTotalResults[VIEW_TYPE_OBSERVATIONS]);
                 intent.putExtra("results_page", mCurrentResultsPage[VIEW_TYPE_OBSERVATIONS]);
@@ -1639,7 +1639,8 @@ public class ExploreActivity extends BaseFragmentActivity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == VIEW_OBSERVATION_REQUEST_CODE) {
-			if (resultCode == ObservationViewerFragment.RESULT_FLAGGED_AS_CAPTIVE) {
+            mApp.setServiceResult("observation_results", null);
+            if (resultCode == ObservationViewerFragment.RESULT_FLAGGED_AS_CAPTIVE) {
 				return;
 			}
 		} else if ((requestCode == SEARCH_REQUEST_CODE) || (requestCode == FILTERS_REQUEST_CODE)) {
