@@ -7,8 +7,6 @@
     <string name="ok">Ok</string>
     <string name="cancel">Peruuta</string>
     <string name="loading">Ladataan...</string>
-    <string name="sync_required">Sync required</string>
-    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
     <string name="street">Katu</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satelliitti</string>
@@ -32,7 +30,6 @@
     <string name="settings">Asetukset</string>
     <string name="projects">Projektit</string>
     <string name="delete_photo">Poista kuva</string>
-    <string name="menu">Menu</string>
     <string name="my_location">Sijaintini</string>
     <string name="nearby_observations">Lähellä olevat havainnot</string>
     <string name="add">Lisää</string>
@@ -204,6 +201,7 @@
     <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica on iNaturalist-verkoston jäsen Costa Ricassa. Naturalistan kanssa yhteistyössä olevat organisaatiot näkevät sähköpostiosoitteesi sekä kaikkien havaintojesi tarkat koordinaatit, myös karkeistettujen ja yksityisten havaintojen. Ole hyvä äläkä vaihda kotiverkostoasi vain testataksesi tätä, jos sinulla on yli 1000 havaintoa. Haluatko vaihtaa kotiverkostoasi?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala on iNaturalist-verkoston jäsen Guatemalassa. iNaruralist Guatemalan kanssa yhteistyössä olevat organisaatiot näkevät sähköpostiosoitteesi sekä kaikkien havaintojesi tarkat koordinaatit, myös karkeistettujen ja yksityisten havaintojen. Ole hyvä äläkä vaihda kotiverkostoasi vain testataksesi tätä, jos sinulla on yli 1000 havaintoa. Haluatko vaihtaa kotiverkostoasi?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden on iNaturalist-verkoston jäsen Ruotsissa. iNaruralist Swedenin kanssa yhteistyössä olevat organisaatiot näkevät sähköpostiosoitteesi sekä kaikkien havaintojesi tarkat koordinaatit, myös karkeistettujen ja yksityisten havaintojen. Ole hyvä äläkä vaihda kotiverkostoasi vain testataksesi tätä, jos sinulla on yli 1000 havaintoa. Haluatko vaihtaa kotiverkostoasi?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay on iNaturalist-verkoston jäsen Uruguayssa. Naturalista Uruguayn kanssa yhteistyössä olevat organisaatiot näkevät sähköpostiosoitteesi sekä kaikkien havaintojesi tarkat koordinaatit, myös karkeistettujen ja yksityisten havaintojen. Ole hyvä äläkä vaihda kotiverkostoasi vain testataksesi tätä, jos sinulla on yli 1000 havaintoa. Haluatko vaihtaa kotiverkostoasi?</string>
     <string name="editor">Editori</string>
     <string name="license">Lisenssi</string>
     <string name="download_for_offline_use">Lataa offline-käyttöön</string>
@@ -227,9 +225,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Sähköposti</string>
-    <string name="sign_up_with">Sign Up with</string>
     <string name="skip">Ohita ›</string>
-    <string name="already_have_account">Already have an account?</string>
     <string name="log_in">Kirjaudu sisään</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Rekisteröidy</string>
@@ -330,7 +326,7 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="finding_current_location">Haetaan nykyistä sijaintia...</string>
     <string name="flag_as_captive">Liputa vangituksi/viljellyksi</string>
     <string name="observation_flagged_as_captive">Havainto liputettiin vangituksi/viljellyksi</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Haluatko varmasti liputtaa tämän havainnon vangituksi/viljellyksi (Vaihtoehdon kyllä painaminen sulkee myös havainnon katseluikkunan)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Oletko varma, että haluat merkitä tämän havainnon vangituksi/viljellyksi?</string>
     <string name="do_you_agree_to_the_following">Oletko samaa mieltä seuraavan kanssa?</string>
     <string name="terms">Ehdot</string>
     <string name="observation_rules">Havaintosäännöt</string>
@@ -357,7 +353,6 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="updating_profile">Päivitetään profiilia...</string>
     <string name="there_was_a_problem_updating_profile">Virhe päivitettäessä profiiliasi!</string>
     <string name="there_was_a_problem_updating_profile_params">Virhe päivitettäessä profiiliasi: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
     <string name="log_out">Kirjaudu ulos</string>
@@ -428,6 +423,7 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="you_will_only_receive_updates_when_following">(Saat päivityksiä vain, kun ensit seuraat havaintoja)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> ehdotti tunnistusta: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> kommentoi: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mainitsi sinut: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Näyttää siltä, että poistit valokuvan tyhjentämällä sovelluksen välimuistin ennen tallentamista. Sinun on lisättävä kuva takaisin havaintoosi galleristasi. Tulevaisuudessa, varmista, että olet tallentanut kaikki valokuvasi ennen sovelluksen välimuistin tyhjentämistä.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -476,14 +472,12 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="what_did_you_see">Mitä näit?</string>
     <string name="suggest_species">Ehdota lajia</string>
     <string name="suggest_species_description">Ehdota lajia perustuen visuaaliseen samankaltaisuuteen valokuvissa.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Näyttää samanlaiselta</string>
     <string name="visually_similar_seen_nearby">Näyttää samanlaiselta / nähty lähistöllä</string>
     <string name="seen_nearby">Nähty lähistöllä</string>
     <string name="enlarge">Suurenna</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Näytä alemmat taksonit</string>
-    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
     <string name="taxon_has_no_photos">Tällä taksonilla ei ole kuvia.</string>
     <string name="terrain">Maasto</string>
     <string name="filters">Suodattimet</string>
@@ -601,7 +595,6 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="leave_comment">Jätä kommentti...</string>
     <string name="swipe">Pyyhkäise</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Which Google Account?</string>
     <string name="potential_disagreement">Mahdollinen erimielisyys</string>
     <string name="do_you_think_this_could_be"><![CDATA[Onko todisteet riittäviä vahvistamaan, että tämä on <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -782,6 +775,7 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">Merkitse kaikki katsotuksi</string>
     <string name="content_hidden">Sisältö piilotettu</string>
     <string name="show_hidden_content">Näytä piilotettu sisältö</string>
@@ -795,7 +789,6 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Nauhoita ääntä</string>
-    <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">Ei voitu hakea äänitettä oletustallentimesta - kokeile sen sijasta importoida äänite</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Valitse ääni</string>
@@ -941,6 +934,7 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="flagging_conversation">Liputetaan keskustelua...</string>
     <string name="failed_flagging_conversation">Keskustelun liputtaminen epäonnistui!</string>
     <string name="no_subject">Ei aihetta</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_state_of_matter">Olomuoto</string>
     <string name="rank_kingdom">Kunta</string>
     <string name="rank_subkingdom">Alakunta</string>
@@ -1200,7 +1194,6 @@ Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen 
     <string name="user_is_muted">Käyttäjä on mykistetty</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
     <string name="delete_observations">Poista havaintoja</string>
-    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Kommenttien lukumäärä</string>
     <string name="id_count">Tunnistuksien määrä</string>
     <string name="observation_selected">Havainto valittu</string>

@@ -7,8 +7,6 @@
     <string name="ok">OK</string>
     <string name="cancel">Anulează</string>
     <string name="loading">Se încarcă...</string>
-    <string name="sync_required">Sincronizare necesară</string>
-    <string name="sync_required_message">%1$d observații, %2$d fotografii de sincronizat</string>
     <string name="street">Stradă</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satelit</string>
@@ -32,7 +30,6 @@
     <string name="settings">Setări</string>
     <string name="projects">Proiecte</string>
     <string name="delete_photo">Șterge fotografia</string>
-    <string name="menu">Meniu</string>
     <string name="my_location">Locația mea</string>
     <string name="nearby_observations">Observări în apropiere</string>
     <string name="add">Adaugă</string>
@@ -205,6 +202,7 @@
     <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica este membru al rețelei iNaturalist din Costa Rica. Instituțiile locale care sprijină iNaturalist Costa Rica vor avea acces la adresa dvs. de e-mail și la coordonatele adevărate ale observațiilor care sunt ascunse public sau private. Vă rugăm să nu modificați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala este membru al rețelei iNaturalist din Guatemala. Instituțiile locale care sprijină iNaturalist Guatemala vor avea acces la adresa dvs. de e-mail și la coordonatele adevărate ale observațiilor care sunt ascunse public sau private. Vă rugăm să nu modificați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Suedia este membru al rețelei iNaturalist din Suedia. Instituțiile locale care sprijină iNaturalist Suedia vor avea acces la adresa dvs. de e-mail și la coordonatele adevărate ale observațiilor care sunt ascunse public sau private. Vă rugăm să nu modificați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editor</string>
     <string name="license">Licență</string>
     <string name="download_for_offline_use">Descarcă pentru utilizare offline</string>
@@ -228,9 +226,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Email</string>
-    <string name="sign_up_with">Înregistrează-te cu</string>
     <string name="skip">Sari ›</string>
-    <string name="already_have_account">Ai deja un cont?</string>
     <string name="log_in">Autentificare</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Înregistrare</string>
@@ -327,7 +323,7 @@
     <string name="finding_current_location">Se găsește locația actuală...</string>
     <string name="flag_as_captive">Marchează ca Captiv/Cultivat</string>
     <string name="observation_flagged_as_captive">Observația a fost marcată ca captivă/cultivată</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Ești sigur că vrei să marchezi această observație ca și captivă/cultivată? (Răspunsul afirmativ va închide fereastra cu această observație)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
     <string name="do_you_agree_to_the_following">Sunteți de acord cu următoarele?</string>
     <string name="terms">Termeni</string>
     <string name="observation_rules">Regulile observației</string>
@@ -354,7 +350,6 @@
     <string name="updating_profile">Se actualizează profilul...</string>
     <string name="there_was_a_problem_updating_profile">A apărut o problemă în timp ce se actualiza profilul tău!</string>
     <string name="there_was_a_problem_updating_profile_params">A apărut o problemă în timp ce se actualiza profilul tău: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Conectat <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Autentificat ca  <b>%1$s</b>]]></string>
     <string name="log_out">Deconectare</string>
@@ -425,6 +420,7 @@
     <string name="you_will_only_receive_updates_when_following">(Vei primi actualizări după ce ai urmat observații)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> a sugerat un ID: %2$s<font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> a comentat: &ldquo;%2$s&rdquo;<font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Se pare că ai șters o poză înainte să o încarci, în timp ce eliberai memoria cache. Va trebui să adaugi poza din observația ta, din galeria proprie. În viitor, asigură-te că ai încărcat toate pozele, înainte să eliberezi cache-ul aplicației.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -475,14 +471,12 @@
     <string name="what_did_you_see">Ce ai văzut?</string>
     <string name="suggest_species">Sugerează Specii</string>
     <string name="suggest_species_description">Sugerează specii bazate pe baza similarității cu celelalte imagini.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Similar vizuale</string>
     <string name="visually_similar_seen_nearby">Similar vizuale / Văzut în apropiere</string>
     <string name="seen_nearby">Văzut în apropiere</string>
     <string name="enlarge">Mărește</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Vezi copii</string>
-    <string name="invalid_photo_extension">Eroare la importarea fotografiilor: se pot importa doar fișierele foto cu extensiile JPG/JPEG/PNG/HEIC/HEIF</string>
     <string name="taxon_has_no_photos">Acest taxon nu are fotografii.</string>
     <string name="terrain">Teren</string>
     <string name="filters">Filtre</string>
@@ -577,7 +571,7 @@
     <string name="start">Început</string>
     <string name="end">Final</string>
     <string name="months">Luni</string>
-    <string name="choose_months">Alege lună(i)</string>
+    <string name="choose_months">Choose month(s)</string>
     <string name="map_area">Zona hărții</string>
     <string name="global">Global</string>
     <!-- As in redo search in the current map area -->
@@ -600,7 +594,6 @@
     <string name="leave_comment">Adăugați un comentariu...</string>
     <string name="swipe">Glisați</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Care cont Google?</string>
     <string name="potential_disagreement">Posibile dezacorduri</string>
     <string name="do_you_think_this_could_be"><![CDATA[Este dovada furnizată suficientă pentru a confirma că este <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -777,6 +770,7 @@
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) sprijină Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) sprijină iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre suportă iNaturalist Suedia(<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">Bifează tot ca vizionat</string>
     <string name="content_hidden">Conținut ascuns</string>
     <string name="show_hidden_content">Arată conținut ascuns</string>
@@ -790,7 +784,6 @@
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Înregistrează sunet</string>
-    <string name="no_recorder_found">Nu a fost găsit niciun înregistrator de sunet implicit!</string>
     <string name="couldnt_retrieve_sound">Nu am putut recupera sunetul din aparatul de înregistrare prestabilit - încercați în schimb să încărcați sunetul</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Alegeți sunetul</string>
@@ -937,6 +930,7 @@
     <string name="flagging_conversation">Semnalăm conversația...</string>
     <string name="failed_flagging_conversation">Nu am putut semnala conversația!</string>
     <string name="no_subject">Fără Subiect</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_state_of_matter">Starea materiei</string>
     <string name="rank_kingdom">Regn</string>
     <string name="rank_subkingdom">Subregn</string>
@@ -1194,7 +1188,6 @@
     <string name="user_is_muted">Utilizatorul este amuțit</string>
     <string name="cancel_multiple_obs_selection">Anulează selecția de observații multiple</string>
     <string name="delete_observations">Șterge observațiile</string>
-    <string name="clear_species_guess">Șterge speciile sugerate</string>
     <string name="comment_count">Număr de comentarii</string>
     <string name="id_count">Număr de identificări</string>
     <string name="observation_selected">Observație selectată</string>

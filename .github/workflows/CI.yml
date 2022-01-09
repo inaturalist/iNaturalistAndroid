@@ -8,7 +8,9 @@ on:
 jobs:
   test:
     name: Instrumented Tests, SDK ${{ matrix.api-level }}
-    runs-on: macos-latest
+    runs-on: macos-11
+    env:
+      JAVA_HOME: $JAVA_HOME_11_X64
     strategy:
       matrix:
         api-level:
@@ -19,6 +21,11 @@ jobs:
           # - 29 # Android 10, targetSdkVersion
           - 30 # Android 11, latest public release
     steps:
+      - name: TEST
+        run: |
+          echo "JAVA_HOME: $JAVA_HOME"
+          echo "JAVA_HOME_11_X64: $JAVA_HOME_11_X64"
+
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -38,7 +45,7 @@ jobs:
           path: |
             ~/.android/avd/*
             ~/.android/adb*
-          key: avd-${{ matrix.api-level }}
+          key: avd-${{ matrix.api-level }}-20220105-1
 
       - name: Create AVD and generate snapshot for caching
         if: steps.avd-cache.outputs.cache-hit != 'true'

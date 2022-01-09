@@ -7,8 +7,6 @@
     <string name="ok">OK</string>
     <string name="cancel">Ofbriechen</string>
     <string name="loading">Lueden...</string>
-    <string name="sync_required">Synchronisatioun neidesch</string>
-    <string name="sync_required_message">%1$d Observatiounen, %2$d Fotoen ze synchroniseiren</string>
     <string name="street">Strooss</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satellit</string>
@@ -32,7 +30,6 @@
     <string name="settings">Astellungen</string>
     <string name="projects">Projeten</string>
     <string name="delete_photo">Foto läschen</string>
-    <string name="menu">Menü</string>
     <string name="my_location">Mäi Standuert</string>
     <string name="nearby_observations">Observatiounen nobäi</string>
     <string name="add">Derbäisetzen</string>
@@ -204,6 +201,7 @@
     <string name="alert_message_use_inaturalistcr">iNaturalist Costa Rica ass Member vum iNaturalist Netzwierk a Costa Rica. Lokal Institutiounen déi iNaturalist Costa Rica ënnerstëtzen hunn Zougang zu Ärer E-Mail Adress an zu de richtege Koordinate fir Observatiounen déi ëffentlech verstoppt oder privat sinn. W.e.g. ännert net experimentell Är Zougehéieregkeet wann Dir méi wéi 1000 Observatiounen hutt. Wëll Dir Är Zougehéieregkeet änneren?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala ass Member vum iNaturalist Netzwierk a Guatemala. Lokal Institutiounen déi iNaturalist Guatemala ënnerstëtzen hunn Zougang zu Ärer E-Mail Adress an zu de richtege Koordinate fir Observatiounen déi ëffentlech verstoppt oder privat sinn. W.e.g. ännert net experimentell Är Zougehéieregkeet wann Dir méi wéi 1000 Observatiounen hutt. Wëll Dir Är Zougehéieregkeet änneren?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Schweden ass Member vum iNaturalist Netzwierk a Schweden. Lokal Institutiounen déi iNaturalist Schweden ënnerstëtzen hunn Zougang zu Ärer E-Mail Adress an zu de richtege Koordinate fir Observatiounen déi ëffentlech verstoppt oder privat sinn. W.e.g. ännert net experimentell Är Zougehéieregkeet wann Dir méi wéi 1000 Observatiounen hutt. Wëll Dir Är Zougehéieregkeet änneren?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay ass Member vum iNaturalist Netzwierk a Uruguay. Lokal Institutiounen déi Naturalista Uruguay ënnerstëtzen hunn Zougang zu Ärer E-Mail Adress an zu de richtege Koordinate fir Observatiounen déi ëffentlech verstoppt oder privat sinn. W.e.g. ännert net experimentell Är Zougehéieregkeet wann Dir méi wéi 1000 Observatiounen hutt. Wëll Dir Är Zougehéieregkeet änneren?</string>
     <string name="editor">Editeur</string>
     <string name="license">Lizenz</string>
     <string name="download_for_offline_use">Erofluede fir offline Notzung</string>
@@ -227,9 +225,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-Mail</string>
-    <string name="sign_up_with">Registreiren mat</string>
     <string name="skip">Iwwersprangen  ›</string>
-    <string name="already_have_account">Dir hutt schon een Konto?</string>
     <string name="log_in">Aloggen</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Sech umellen</string>
@@ -325,7 +321,7 @@
     <string name="finding_current_location">Finding current location...</string>
     <string name="flag_as_captive">Als Gefaangen/Kultivéiert markeiren</string>
     <string name="observation_flagged_as_captive">Observatioun ass als gefaangen/kultivéiert markéiert ginn</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated? (Pressing yes will also close the observation viewer window)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Sidd Dir sécher datt Dir dës Observatioun als gefaangen/kultivéiert wëllt markéieren?</string>
     <string name="do_you_agree_to_the_following">Stemm dir dem Folgenden zou?</string>
     <string name="terms">Termen</string>
     <string name="observation_rules">Observatiouns  Regelen</string>
@@ -352,7 +348,6 @@
     <string name="updating_profile">Profil gëtt aktualiséiert...</string>
     <string name="there_was_a_problem_updating_profile">Et gouf ee Problem beim Aktualiséiere vun Ärem Profil</string>
     <string name="there_was_a_problem_updating_profile_params">Et gouf ee Problem beim Aktualiséiere vun Ärem Profil: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Ageloggt als <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
     <string name="log_out">Ausloggen</string>
@@ -423,6 +418,7 @@
     <string name="you_will_only_receive_updates_when_following">(Dir kritt nëmmen Updates wann Dir Observatiounen followed)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> suggeréiert d´ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> huet kommenteiert: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> huet Iech erwähnt: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">It looks like you deleted a photo by clearing the app cache before uploading. You will need to add the photo back to your observation from your gallery. In the future, please make sure you have uploaded all your photos before clearing the app cache.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -471,14 +467,12 @@
     <string name="what_did_you_see">Wat hutt Dir gesinn?</string>
     <string name="suggest_species">Aart suggeréieren</string>
     <string name="suggest_species_description">Suggestioun vun Aarte baséierend ob visueller Ähnlechkeet.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visuell Änlech</string>
     <string name="visually_similar_seen_nearby">Visuell änlech / Nobäi gesinn</string>
     <string name="seen_nearby">Nobäi gesinn</string>
     <string name="enlarge">Vergréisseren</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Kanner uweisen</string>
-    <string name="invalid_photo_extension">Feeler beim Importéiere vu Foto(en): Kann nëmme Fotoen am Format JPG/JPEG/PNG/HEIC/HEIF importéieren</string>
     <string name="taxon_has_no_photos">Dësen Taxon huet keng Fotoen.</string>
     <string name="terrain">Terrain</string>
     <string name="filters">Filteren</string>
@@ -596,7 +590,6 @@
     <string name="leave_comment">Kommentar hannerloossen...</string>
     <string name="swipe">Wëschen</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Wéi een Google-Konto?</string>
     <string name="potential_disagreement">Potentiellen Desaccord</string>
     <string name="do_you_think_this_could_be"><![CDATA[Ass genuch Evidenz do dass dëst  <b>%1$s</b> ass?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -772,6 +765,7 @@
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) ënnerstëtzt Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) ënnerstëtzt iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Schweden: SLU Swedish Species Information Centre ënnerstëtzt iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA an Biodiversidata ënnerstëtzen Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">All als gekuckt markéieren</string>
     <string name="content_hidden">Contenu verstoppt</string>
     <string name="show_hidden_content">Verstoppten Contenu weisen</string>
@@ -785,7 +779,6 @@
     <string name="soundcloud">SoundCloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Geräisch ophuelen</string>
-    <string name="no_recorder_found">Kee standard Sound-Recorder fonnt!</string>
     <string name="couldnt_retrieve_sound">Konnt keen Sound vum standard Recorder kreien - probéiert den Sound z\'importéieren</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Sound wielen</string>
@@ -931,6 +924,7 @@
     <string name="flagging_conversation">Flagging conversation...</string>
     <string name="failed_flagging_conversation">Failed flagging conversation!</string>
     <string name="no_subject">Kee Sujet</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_state_of_matter">State of matter</string>
     <string name="rank_kingdom">Räich</string>
     <string name="rank_subkingdom">Ënnerräich</string>
@@ -1188,7 +1182,6 @@
     <string name="user_is_muted">User is muted</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
     <string name="delete_observations">Delete observations</string>
-    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Comment count</string>
     <string name="id_count">Identification count</string>
     <string name="observation_selected">Observatioun ausgewielt</string>

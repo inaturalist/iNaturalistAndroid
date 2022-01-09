@@ -7,8 +7,6 @@
     <string name="ok">OKE</string>
     <string name="cancel">Batalkan</string>
     <string name="loading">Memuat...</string>
-    <string name="sync_required">Sinkronisasi diperlukan</string>
-    <string name="sync_required_message">%1$d pengamatan, %2$d foto untuk disinkronisasi</string>
     <string name="street">Alamat</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satelit</string>
@@ -32,7 +30,6 @@
     <string name="settings">Pengaturan</string>
     <string name="projects">Proyek</string>
     <string name="delete_photo">Hapus foto</string>
-    <string name="menu">Menu</string>
     <string name="my_location">Lokasi Saya</string>
     <string name="nearby_observations">Pengamatan Terdekat</string>
     <string name="add">Tambahkan</string>
@@ -203,6 +200,7 @@
     <string name="alert_message_use_inaturalistcr">Naturalista Kosta Rika adalah anggota jaringan iNaturalist di Kosta Rika. Institusi lokal yang mendukung Naturalista Kosta Rika akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum maupun pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala adalah anggota jaringan iNaturalist di Guatemala. Institusi lokal yang mendukung iNaturalist Guatemala akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum maupun pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Swedia adalah anggota jaringan iNaturalist di Swedia. Institusi lokal yang mendukung iNaturalist Swedia akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum maupun pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay adalah anggota Jaringan iNaturalist di Uruguay. Institusi lokal yang mendukung Naturalista Uruguay akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
     <string name="editor">Editor</string>
     <string name="license">Lisensi</string>
     <string name="download_for_offline_use">Unduh untuk penggunaan luring</string>
@@ -226,9 +224,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Email</string>
-    <string name="sign_up_with">Daftar dengan</string>
     <string name="skip">Lewati ›</string>
-    <string name="already_have_account">Sudah memiliki akun?</string>
     <string name="log_in">Masuk</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Daftar</string>
@@ -323,7 +319,7 @@
     <string name="finding_current_location">Menemukan lokasi saat ini...</string>
     <string name="flag_as_captive">Tandai sebagai Dipelihara/Dibudidayakan</string>
     <string name="observation_flagged_as_captive">Pengamatan telah ditandai sebagai dipelihara/dibudidayakan</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Apakah Anda yakin Anda ingin menandai pengamatan ini sebagai dipelihara/dibudidayakan? (Menekan ya juga akan menutup tampilan jendela pengamatan)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Apakah Anda yakin Anda ingin menandai pengamatan ini sebagai peliharaan/budidaya?</string>
     <string name="do_you_agree_to_the_following">Apakah Anda setuju?</string>
     <string name="terms">Ketentuan</string>
     <string name="observation_rules">Aturan Pengamatan</string>
@@ -350,7 +346,6 @@
     <string name="updating_profile">Memperbarui Profil...</string>
     <string name="there_was_a_problem_updating_profile">Ada masalah saat memperbarui profil Anda!</string>
     <string name="there_was_a_problem_updating_profile_params">Ada masalah saat memperbarui profil Anda: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Masuk sebagai <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Masuk sebagai <b>%1$s</b>]]></string>
     <string name="log_out">Keluar</string>
@@ -421,6 +416,7 @@
     <string name="you_will_only_receive_updates_when_following">(Anda hanya akan menerima kabar setelah Anda mengikuti pengamatan)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> menyarankan ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> berkomentar: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> menyebut Anda: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Sepertinya Anda menghapus foto dengan membersihkan tembolok aplikasi sebelum mengunggah. Anda perlu menambahkan fotonya kembali ke pengamatan Anda dari galeri Anda. Ke depannya, pastikan Anda telah mengunggah semua foto Anda sebelum membersihkan tembolok aplikasi.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -467,14 +463,12 @@
     <string name="what_did_you_see">Apa yang Anda lihat?</string>
     <string name="suggest_species">Sarankan Spesies</string>
     <string name="suggest_species_description">Sarankan spesies berdasarkan kesamaan visual dengan foto.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Serupa Secara Visual</string>
     <string name="visually_similar_seen_nearby">Serupa Secara Visual / Terlihat Di Sekitar</string>
     <string name="seen_nearby">Terlihat Di Sekitar</string>
     <string name="enlarge">Perbesar</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Lihat Anak</string>
-    <string name="invalid_photo_extension">Kesalahan mengimpor foto: Hanya dapat mengimpor foto dengan ekstensi JPG/JPEG/PNG/HEIC/HEIF</string>
     <string name="taxon_has_no_photos">Takson ini tidak memiliki foto.</string>
     <string name="terrain">Medan</string>
     <string name="filters">Saringan</string>
@@ -592,7 +586,6 @@
     <string name="leave_comment">Tinggalkan komentar...</string>
     <string name="swipe">Geser</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Akun Google yang mana?</string>
     <string name="potential_disagreement">Potensi Ketidaksetujuan</string>
     <string name="do_you_think_this_could_be"><![CDATA[Apakah bukti-bukti yang disediakan cukup untuk mengonfirmasi bahwa ini adalah <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -767,6 +760,7 @@
     <string name="network_credit_inaturalistcr"><![CDATA[Kosta Rika: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) mendukung Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Nacional de Áreas Protegidas (CONAP) mendukung iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Swedia: SLU Swedish Species Information Centre mendukung iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA dan Biodiversidata mendukung Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">Tandai semua sudah dilihat</string>
     <string name="content_hidden">Konten Tersembunyi</string>
     <string name="show_hidden_content">Tampilkan Konten Tersembunyi</string>
@@ -780,7 +774,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Rekam Suara</string>
-    <string name="no_recorder_found">Tidak ada perekam suara bawaan yang ditemukan!</string>
     <string name="couldnt_retrieve_sound">Tidak dapat mengambil suara dari perekam bawaan - coba impor suara sebagai gantinya</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Pilih Suara</string>
@@ -925,6 +918,7 @@
     <string name="flagging_conversation">Menandai percakapan...</string>
     <string name="failed_flagging_conversation">Gagal menandai percakapan!</string>
     <string name="no_subject">Tidak Ada Subjek</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_state_of_matter">Wujud materi</string>
     <string name="rank_kingdom">Kerajaan</string>
     <string name="rank_subkingdom">Subkerajaan</string>
@@ -1182,7 +1176,6 @@
     <string name="user_is_muted">Pengguna diredam</string>
     <string name="cancel_multiple_obs_selection">Batalkan pilihan pengamatan jamak</string>
     <string name="delete_observations">Hapus pengamatan</string>
-    <string name="clear_species_guess">Hapus tebakan spesies</string>
     <string name="comment_count">Jumlah komentar</string>
     <string name="id_count">Jumlah identifikasi</string>
     <string name="observation_selected">Pengamatan yang dipilih</string>

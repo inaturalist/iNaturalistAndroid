@@ -7,8 +7,6 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancelar</string>
     <string name="loading">Cargando...</string>
-    <string name="sync_required">Sync required</string>
-    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
     <string name="street">Rúa</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satélite</string>
@@ -32,7 +30,6 @@
     <string name="settings">Configuración</string>
     <string name="projects">Proxectos</string>
     <string name="delete_photo">Borrar foto</string>
-    <string name="menu">Menu</string>
     <string name="my_location">A miña localización</string>
     <string name="nearby_observations">Observacións próximas</string>
     <string name="add">Engadir</string>
@@ -204,6 +201,7 @@
     <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica é un membro da Rede iNaturalist en Costa Rica. As institucións locais que apoian a iNaturalist Australia terán acceso ó teu enderezo de correo electrónico e acceso ás coordenadas verdadeiras de observacións que foron escurecidas públicamente ou privadas. Por favor, non mudes a túa afiliación experimentalmente se xa contas con máis de 1000 observacións. ¿Queres mudar a túa afiliación?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala é un membro da Rede iNaturalist en Guatemala. As institucións locais que apoian a iNaturalist Australia terán acceso ó teu enderezo de correo electrónico e acceso ás coordenadas verdadeiras de observacións que foron escurecidas públicamente ou privadas. Por favor, non mudes a túa afiliación experimentalmente se xa contas con máis de 1000 observacións. ¿Queres mudar a túa afiliación?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden é un membro da Rede iNaturalist en Suecia. As institucións locais que apoian a iNaturalist Greece terán acceso ó teu enderezo de correo electrónico e acceso ás coordenadas verdadeiras de observacións que foron escurecidas públicamente ou privadas. Por favor, non mudes a túa afiliación experimentalmente se xa contas con máis de 1000 observacións. ¿Queres mudar a túa afiliación?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editor</string>
     <string name="license">Licenza</string>
     <string name="download_for_offline_use">Descarga para uso fóra de liña</string>
@@ -227,9 +225,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Correo</string>
-    <string name="sign_up_with">Sign Up with</string>
     <string name="skip">Saltar  ›</string>
-    <string name="already_have_account">Already have an account?</string>
     <string name="log_in">Iniciar Sesión</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Rexístrate</string>
@@ -325,7 +321,7 @@
     <string name="finding_current_location">Atopando a localización actual...</string>
     <string name="flag_as_captive">Marcar como Cativo/Cultivado</string>
     <string name="observation_flagged_as_captive">A observación marcouse como cativo/cultivado</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">¿Seguro que queres marcar esta observación como cativa/cultivada? (Ó calcar en sí, tamén se pechará a fiestra do visor de observación)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
     <string name="do_you_agree_to_the_following">¿Concordas có seguinte?</string>
     <string name="terms">Termos</string>
     <string name="observation_rules">Regras de Observación</string>
@@ -352,7 +348,6 @@
     <string name="updating_profile">Actualizando o Perfil...</string>
     <string name="there_was_a_problem_updating_profile">¡Houbo un problema mentres se actualizaba o teu perfil!</string>
     <string name="there_was_a_problem_updating_profile_params">Houbo un problema mentres se actualizaba o teu perfil: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Sesión iniciada como <b>%1$s</b>]]></string>
     <string name="log_out">Pechar Sesión</string>
@@ -423,6 +418,7 @@
     <string name="you_will_only_receive_updates_when_following">(Só recibirás actualizacións cando seguires observacións)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> suxeríu unha ID: %2$s<font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> comentou: &ldquo;%2$s&rdquo;<font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Semella que borraches unha foto ó limpar a caché da aplicción antes de subila. Terás que engadir a foto outra vez á observación dende a túa galería. No futuro, por favor, asegúrate de que subiches tódalas túas fotos antes de limpar a caché da aplicación.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -471,14 +467,12 @@
     <string name="what_did_you_see">¿Que viches?</string>
     <string name="suggest_species">Suxerir Especie(s)</string>
     <string name="suggest_species_description">Suxestión de especies baseada en semellanzas visuales a fotos.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visualmente Semellante</string>
     <string name="visually_similar_seen_nearby">Visualmente Semellante / Visto á Volta</string>
     <string name="seen_nearby">Visto á Volta</string>
     <string name="enlarge">Agrandar</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Ver Descendentes</string>
-    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
     <string name="taxon_has_no_photos">Este taxon non ten fotos.</string>
     <string name="terrain">Terreo</string>
     <string name="filters">Filtros</string>
@@ -573,7 +567,7 @@
     <string name="start">Inicio</string>
     <string name="end">Fin</string>
     <string name="months">Meses</string>
-    <string name="choose_months">Escoller mes(es)</string>
+    <string name="choose_months">Choose month(s)</string>
     <string name="map_area">Área do Mapa</string>
     <string name="global">Global</string>
     <!-- As in redo search in the current map area -->
@@ -596,7 +590,6 @@
     <string name="leave_comment">Deixa un comentario...</string>
     <string name="swipe">Pasar</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Which Google Account?</string>
     <string name="potential_disagreement">Desacordo Potencial</string>
     <string name="do_you_think_this_could_be"><![CDATA[¿A proba aportada é suficiente para confirmar que isto é <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -769,9 +762,10 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea apoiando iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxemburgo: Luxembourg National Museum of Natural History (MnhnL) apoiando iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[Reino Unido: National Biodiversity Network Trust apoiando iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) apoiando Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) apoiando iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre apoiando iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">Marcar todos como vistos</string>
     <string name="content_hidden">Contido Ocultado</string>
     <string name="show_hidden_content">Mostrar Contido Oculto</string>
@@ -785,7 +779,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Gravar Son</string>
-    <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">Non se puideron recuperar sons da gravadora predeterminada - No canto, tenta importar os sons</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Escoller Son</string>
@@ -931,6 +924,7 @@
     <string name="flagging_conversation">Marcando conversa...</string>
     <string name="failed_flagging_conversation">¡Erro ó marcar a conversa!</string>
     <string name="no_subject">Sen Asunto</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_state_of_matter">Estado da materia</string>
     <string name="rank_kingdom">Reino</string>
     <string name="rank_subkingdom">Subreino</string>
@@ -988,9 +982,9 @@
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long">MMM d, yyyy</string>
+    <string name="date_long">d MMM yyyy</string>
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
+    <string name="date_long_with_time">d MMMM, yyyy hh:mma</string>
     <string name="show_common_names">Mostrar nomes comúns</string>
     <string name="show_common_names_description">Desactivar se só queres ver os nomes científicos.</string>
     <string name="email_must_look_like_email_address">O email débese parecer a un enderezo de correo electrónico</string>
@@ -1188,7 +1182,6 @@
     <string name="user_is_muted">O usuario está acalado</string>
     <string name="cancel_multiple_obs_selection">Cancelar a selección múltiple de observacións</string>
     <string name="delete_observations">Borrar observacións</string>
-    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Número de comentarios</string>
     <string name="id_count">Número de identificacións</string>
     <string name="observation_selected">Observación seleccionada</string>
@@ -1212,12 +1205,12 @@
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
     <string name="disagree_assessment_passes">En desacordo cá aprobación da avaliación</string>
     <plurals name="delete_x_selected_observations">
-        <item quantity="one">Delete %1$d selected observation</item>
-        <item quantity="other">Delete %1$d selected observations</item>
+        <item quantity="one">Borrar %1$d observación seleccionada</item>
+        <item quantity="other">Borrar %1$d observacións seleccionadas</item>
     </plurals>
     <plurals name="sync_x_selected_observations">
-        <item quantity="one">Sync %1$d selected observation</item>
-        <item quantity="other">Sync %1$d selected observations</item>
+        <item quantity="one">Sincronizar %1$d observación seleccionada</item>
+        <item quantity="other">Sincronizar %1$d observacións seleccionadas</item>
     </plurals>
     <string name="add_media_evidence">Engadir probas multimedia</string>
     <string name="remove_identification">Eliminar identificación</string>

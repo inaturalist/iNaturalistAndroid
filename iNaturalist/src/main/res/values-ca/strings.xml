@@ -7,8 +7,6 @@
     <string name="ok">D\'acord</string>
     <string name="cancel">Cancel·la</string>
     <string name="loading">Carregant...</string>
-    <string name="sync_required">Cal sincronitzar</string>
-    <string name="sync_required_message">%1$d observacions, %2$d fotos per sincronitzar</string>
     <string name="street">Carrer</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satèl·lit</string>
@@ -32,7 +30,6 @@
     <string name="settings">Configuració</string>
     <string name="projects">Projectes</string>
     <string name="delete_photo">Esborra foto</string>
-    <string name="menu">Menú</string>
     <string name="my_location">La meva ubicació</string>
     <string name="nearby_observations">Observacions properes</string>
     <string name="add">Afegeix</string>
@@ -204,6 +201,7 @@
     <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica és membre de la Xarxa iNaturalist a Costa RIca. Les institucions locals que donen suport a Naturalista Costa Rica tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala és membre de la Xarxa iNaturalist a Guatemala. Les institucions locals que donen suport a iNaturalist Guatemala tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Suècia és membre de la Xarxa iNaturalist a Suècia. Les institucions locals que donen suport a iNaturalist Suècia tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguai és membre de la Xarxa iNaturalist a Uruguai. Les Institucions locals que donen suport a Naturalista Uruguai tenen accés a la vostra adreça de correu electrònic i a les coordenades reals de les observacions encara que siguin enfosquides o privades. Si us plau, no canvieu experimentalment la vostra afiliació si teniu més de 1000 observacions. Voleu canviar la vostra afiliació?</string>
     <string name="editor">Editor</string>
     <string name="license">Llicència</string>
     <string name="download_for_offline_use">Descarregar per a ús fora de línia</string>
@@ -227,9 +225,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Adreça electrònica</string>
-    <string name="sign_up_with">Inscriure\'s amb</string>
     <string name="skip">Salta ></string>
-    <string name="already_have_account">Ja teniu un compte?</string>
     <string name="log_in">Iniciar sessió</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Registra\'t</string>
@@ -325,7 +321,7 @@
     <string name="finding_current_location">Cercant la ubicació actual...</string>
     <string name="flag_as_captive">Marcar com captiu/cultivat</string>
     <string name="observation_flagged_as_captive">Observació marcada com captiu/cultivat</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Esteu segur que voleu marcar aquesta observació com captiu/cultivat? (Si preneu Sí també tancareu la finestra de visualització de l\'observació)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Esteu segurs de què voleu marcar aquesta observació com a captiva/cultivada?</string>
     <string name="do_you_agree_to_the_following">Esteu d\'acord amb el següent?</string>
     <string name="terms">Condicions</string>
     <string name="observation_rules">Regles d\'observació</string>
@@ -352,7 +348,6 @@
     <string name="updating_profile">Actualitzant el perfil...</string>
     <string name="there_was_a_problem_updating_profile">Hi ha hagut un problema mentre actualitzàvem el vostre perfil!</string>
     <string name="there_was_a_problem_updating_profile_params">Hi ha hagut un problema mentre actualitzàvem el vostre perfil: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Sessió iniciada com <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Connectat com a <b>%1$s</b>]]></string>
     <string name="log_out">Surt</string>
@@ -423,6 +418,7 @@
     <string name="you_will_only_receive_updates_when_following">(Únicament rebreu actualitzacions quan seguiu observacions)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> ha suggerit una Identificació: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> ha comentat: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> us ha esmentat: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Sembla que heu suprimit una foto al buidar la memòria cau abans de pujar-la. Haureu de tornar a afegir la foto a l\'observació des de la galeria. En el futur, si us plau, assegureu-vos que heu penjat totes les seves fotos abans de netejar la memòria cau de l\'aplicació.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -471,14 +467,12 @@
     <string name="what_did_you_see">Què heu vist?</string>
     <string name="suggest_species">Suggerir espècies</string>
     <string name="suggest_species_description">Suggerir altres espècies basats en la seva semblança visual a fotografies.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visualment similar</string>
     <string name="visually_similar_seen_nearby">Visualment similar / vist a prop</string>
     <string name="seen_nearby">Vist a prop</string>
     <string name="enlarge">Augmenta</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Veure fills</string>
-    <string name="invalid_photo_extension">Error d\'importació de foto(s): Només pot importar fitxers de fotografies amb les extensions JPG/JPEG/PNG/HEIC/HEIF</string>
     <string name="taxon_has_no_photos">Aquest tàxon no té fotos.</string>
     <string name="terrain">Terreny</string>
     <string name="filters">Filtres</string>
@@ -596,7 +590,6 @@
     <string name="leave_comment">Desar un comentari...</string>
     <string name="swipe">Llisca</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Quin compte de Google?</string>
     <string name="potential_disagreement">Desacord potencial</string>
     <string name="do_you_think_this_could_be"><![CDATA[És l\'evidència que oferiu suficient per confirmar que és <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -772,6 +765,7 @@
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: la Comisión Nacional para la Gestión de la Biodiversida (CONAGEBIO) dona suport a Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: el Consejo Nacional de Áreas Protegidas (CONAP) dóna suport a iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Suècia: el SLU, Swedish Species Information Centre, dona suport a iNaturalist Suècia (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguai: JULANA i Biodiversidata donen suport a Naturalista Uruguai (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">Marca tot com a vist</string>
     <string name="content_hidden">Contingut amagat</string>
     <string name="show_hidden_content">Mostra Contingut Amagat</string>
@@ -785,7 +779,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Gravar So</string>
-    <string name="no_recorder_found">No s\'ha trobat gravadora per defecte!</string>
     <string name="couldnt_retrieve_sound">No s\'ha pogut recuperar cap so de la gravadora per defecte - proveu d\'importar el so</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Triar So</string>
@@ -931,6 +924,7 @@
     <string name="flagging_conversation">Marcant conversa...</string>
     <string name="failed_flagging_conversation">Error al marcar la conversa!</string>
     <string name="no_subject">Sense assumpte</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_state_of_matter">Estat de l\'assumpte</string>
     <string name="rank_kingdom">Regne</string>
     <string name="rank_subkingdom">Subregne</string>
@@ -1188,7 +1182,6 @@
     <string name="user_is_muted">L\'usuari ha estat silenciat</string>
     <string name="cancel_multiple_obs_selection">Cancel·lar la selecció múltiple d\'observacions</string>
     <string name="delete_observations">Esborra observacions</string>
-    <string name="clear_species_guess">Neteja els suggeriments d\'espècies</string>
     <string name="comment_count">Nombre de comentaris</string>
     <string name="id_count">Nombre d\'identificacions</string>
     <string name="observation_selected">Observació seleccionada</string>

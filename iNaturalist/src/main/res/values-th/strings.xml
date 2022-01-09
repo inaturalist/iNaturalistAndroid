@@ -7,8 +7,6 @@
     <string name="ok">ตกลง</string>
     <string name="cancel">ยกเลิก</string>
     <string name="loading">กำลังโหลด...</string>
-    <string name="sync_required">Sync required</string>
-    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
     <string name="street">ถนน</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">ดาวเทียม</string>
@@ -32,7 +30,6 @@
     <string name="settings">การตั้งค่า</string>
     <string name="projects">โครงการทั้งหมด</string>
     <string name="delete_photo">ลบรูปถ่าย</string>
-    <string name="menu">Menu</string>
     <string name="my_location">ตำแหน่งที่ตั้งของฉัน</string>
     <string name="nearby_observations">การสังเกตการณ์ในบริเวณใกล้เคียง</string>
     <string name="add">เพิ่ม</string>
@@ -203,6 +200,7 @@
     <string name="alert_message_use_inaturalistcr">iNaturalist Costa Rica เป็นสมาชิกของเครือข่าย iNaturalist ในคอสตาริกา สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Costa Rica จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala เป็นสมาชิกของเครือข่าย iNaturalist ในกัวเตมาลา สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Guatemala จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden เป็นสมาชิกของเครือข่าย iNaturalist ในสวีเดน สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Sweden จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">บรรณาธิการ</string>
     <string name="license">ใบอนุญาต</string>
     <string name="download_for_offline_use">ดาวน์โหลดเพื่อใช้งานออฟไลน์</string>
@@ -226,9 +224,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">อีเมล</string>
-    <string name="sign_up_with">Sign Up with</string>
     <string name="skip">ข้าม</string>
-    <string name="already_have_account">Already have an account?</string>
     <string name="log_in">เข้าสู่ระบบ</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">ลงทะเบียน</string>
@@ -323,7 +319,7 @@
     <string name="finding_current_location">กำลังค้นหาตำแหน่งของคุณ ...</string>
     <string name="flag_as_captive">ตั้งค่าสถานะเป็น เพาะเลี้ยง / เพาะปลูก</string>
     <string name="observation_flagged_as_captive">การสังเกตการณ์ถูกตั้งค่าสถานะเป็น เพาะเลี้ยง / เพาะปลูก</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">คุณแน่ใจหรือไม่ว่าต้องการตั้งค่าสถานะข้อสังเกตนี้ว่าเป็นเพาะเลี้ยง / เพาะปลูก? (การกดใช่จะปิดหน้าต่างโปรแกรมดูการสังเกตการณ์ด้วย)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
     <string name="do_you_agree_to_the_following">คุณเห็นด้วยกับสิ่งต่อไปนี้หรือไม่?</string>
     <string name="terms">ข้อตกลง</string>
     <string name="observation_rules">กฎการสังเกตการณ์</string>
@@ -350,7 +346,6 @@
     <string name="updating_profile">กำลังอัปเดตโปรไฟล์ ...</string>
     <string name="there_was_a_problem_updating_profile">เกิดปัญหาขณะอัปเดตโปรไฟล์ของคุณ!</string>
     <string name="there_was_a_problem_updating_profile_params">เกิดปัญหาขณะอัปเดตโปรไฟล์ของคุณ: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[เข้าสู่ระบบแล้วในชื่อ <b>%1$s</b>]]></string>
     <string name="log_out">ออกจากระบบ</string>
@@ -421,6 +416,7 @@
     <string name="you_will_only_receive_updates_when_following">(คุณจะได้รับการอัปเดตเมื่อคุณติดตามการสังเกตเท่านั้น)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> แนะนำ ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> แสดงความคิดเห็น: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">ดูเหมือนว่าคุณลบรูปภาพโดยล้างแคชของแอพก่อนที่จะอัปโหลด คุณจะต้องเพิ่มรูปภาพกลับไปที่การสังเกตจากแกลเลอรีของคุณ ในอนาคตโปรดตรวจสอบให้แน่ใจว่าคุณได้อัปโหลดรูปภาพทั้งหมดของคุณก่อนที่จะล้างแคชของแอป</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -467,14 +463,12 @@
     <string name="what_did_you_see">คุณเห็นอะไร?</string>
     <string name="suggest_species">สายพันธุ์ที่ได้รับการแนะนำ</string>
     <string name="suggest_species_description">สายพันธุ์ที่แนะนำดำเนินการตามความคล้ายคลึงกันของภาพกับภาพถ่าย</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">ภาพที่คล้ายกัน</string>
     <string name="visually_similar_seen_nearby">ภาพที่คล้ายกัน / มองเห็นได้ในบริเวณใกล้เคียง</string>
     <string name="seen_nearby">เห็นในบริเวณใกล้เคียง</string>
     <string name="enlarge">ขยาย</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">ดูเด็ก ๆ</string>
-    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
     <string name="taxon_has_no_photos">อนุกรมวิธานนี้ไม่มีรูปถ่าย</string>
     <string name="terrain">ภูมิประเทศ</string>
     <string name="filters">ตัวกรอง</string>
@@ -592,7 +586,6 @@
     <string name="leave_comment">ละทิ้งการแสดงความคิดเห็น...</string>
     <string name="swipe">ปัด</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Which Google Account?</string>
     <string name="potential_disagreement">ความไม่เห็นด้วยที่อาจเกิดขึ้น</string>
     <string name="do_you_think_this_could_be"><![CDATA[มีหลักฐานเพียงพอที่จะยืนยันได้หรือไม่ <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -767,6 +760,7 @@
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">ทำเครื่องหมายทั้งหมดว่าดูแล้ว</string>
     <string name="content_hidden">เนื้อหาที่ซ่อนอยู่</string>
     <string name="show_hidden_content">แสดงเนื้อหาที่ซ่อนอยู่</string>
@@ -780,7 +774,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">บันทึกเสียง</string>
-    <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">ไม่สามารถดึงเสียงจากเครื่องบันทึกเริ่มต้นให้ลองนำเข้าเสียงแทน</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">เลือกเสียง</string>
@@ -925,6 +918,7 @@
     <string name="flagging_conversation">ปักหมุดการสนทนานี้</string>
     <string name="failed_flagging_conversation">ปักหมุดการสนทนานี้ล้มเหลว</string>
     <string name="no_subject">ไม่มีหัวเรื่อง</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_state_of_matter">สถานะของสาร</string>
     <string name="rank_kingdom">อาณาจักร</string>
     <string name="rank_subkingdom">อาณาจักรย่อย</string>
@@ -939,9 +933,9 @@
     <string name="rank_suborder">อันดับย่อย (Suborder)</string>
     <string name="rank_infraorder">อันดับใหญ่ (Infraorder)</string>
     <string name="rank_subterclass">Subterclass</string>
-    <string name="rank_parvorder">Parvorder</string>
-    <string name="rank_zoosection">Zoosection</string>
-    <string name="rank_zoosubsection">Zoosubsection</string>
+    <string name="rank_parvorder">อนุอันดับ</string>
+    <string name="rank_zoosection">ส่วน</string>
+    <string name="rank_zoosubsection">ส่วนย่อย</string>
     <string name="rank_superfamily">วงศ์ใหญ่ (Superfamily)</string>
     <string name="rank_epifamily">อันดับระหว่างครอบครัว (Epifamily)</string>
     <string name="rank_family">วงศ์ (Family)</string>
@@ -950,11 +944,11 @@
     <string name="rank_tribe">เผ่า (Tribe)</string>
     <string name="rank_subtribe">เผ่าย่อย (Subtribe)</string>
     <string name="rank_genus">สกุล (Genus)</string>
-    <string name="rank_genushybrid">Genushybrid</string>
+    <string name="rank_genushybrid">สกุลผสม</string>
     <string name="rank_subgenus">สกุลย่อย (Subgenus)</string>
     <string name="rank_section">ส่วน (Automatic Translation)</string>
     <string name="rank_subsection">ส่วนย่อย</string>
-    <string name="rank_complex">Complex</string>
+    <string name="rank_complex">ชนิดเชิงซ้อน</string>
     <!-- Singular -->
     <string name="rank_species">สายพันธุ์</string>
     <string name="rank_hybrid">ลูกผสม</string>
@@ -962,7 +956,7 @@
     <string name="rank_subspecies">ชนิดย่อย (Subspecies)</string>
     <string name="rank_variety">ความหลากหลาย</string>
     <string name="rank_form">รูปแบบ</string>
-    <string name="rank_infrahybrid">Infrahybrid</string>
+    <string name="rank_infrahybrid">ลูกผสมฐาน</string>
     <string name="rank_leaves">ใบไม้</string>
     <string name="location_lat_lng">ตำแหน่งที่ตั้ง: %1$f, %2$f</string>
     <string name="i_consent_process_personal_info"><![CDATA[ฉันยินยอมให้ iNaturalist จัดเก็บและประมวลผลข้อมูลส่วนบุคคลที่ จำกัด เกี่ยวกับตัวฉันเพื่อจัดการบัญชีของฉัน <b>เรียนรู้เพิ่มเติม</b>]]></string>
@@ -982,9 +976,9 @@
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long">MMM d, yyyy</string>
+    <string name="date_long">d MMM yyyy</string>
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
+    <string name="date_long_with_time">d MMMM yyyy HH:mm</string>
     <string name="show_common_names">แสดงชื่อสามัญ</string>
     <string name="show_common_names_description">ปิดใช้งานหากคุณต้องการดูชื่อวิทยาศาสตร์เท่านั้น</string>
     <string name="email_must_look_like_email_address">อีเมลต้องมีลักษณะเหมือนที่อยู่อีเมล</string>
@@ -1020,11 +1014,11 @@
     <string name="pretty_sure_suborder">เราค่อนข้างมั่นใจว่าอยู่ในกลุ่มอันดับย่อยนี้:</string>
     <string name="pretty_sure_infraorder">เราค่อนข้างมั่นใจว่าอยู่ในกลุ่มอันดับย่อยระหว่างครอบครัวนี้:</string>
     <string name="pretty_sure_subterclass">We\'re pretty sure it\'s in this subterclass:</string>
-    <string name="pretty_sure_parvorder">We\'re pretty sure it\'s in this parvorder:</string>
-    <string name="pretty_sure_zoosection">We\'re pretty sure it\'s in this zoosection:</string>
-    <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
+    <string name="pretty_sure_parvorder">เราค่อนข้างแน่ใจว่าอยู่ในอนุอันดับนี้:</string>
+    <string name="pretty_sure_zoosection">เราค่อนข้างแน่ใจว่าอยู่ในส่วนนี้:</string>
+    <string name="pretty_sure_zoosubsection">เราค่อนข้างแน่ใจว่าอยู่ในส่วนย่อยนี้:</string>
     <string name="pretty_sure_superfamily">เราค่อนข้างแน่ใจว่ามันอยู่ในวงศ์ใหญ่นี้:</string>
-    <string name="pretty_sure_epifamily">We\'re pretty sure it\'s in this epifamily:</string>
+    <string name="pretty_sure_epifamily">เราค่อนข้างแน่ใจว่าอยู่ในวงศ์บนนี้:</string>
     <string name="pretty_sure_family">เราค่อนข้างแน่ใจว่ามันอยู่ในวงศ์นี้:</string>
     <string name="pretty_sure_subfamily">เราค่อนข้างแน่ใจว่ามันอยู่ในวงศ์ย่อยนี้:</string>
     <string name="pretty_sure_supertribe">เราค่อนข้างแน่ใจว่ามันอยู่ในเผ่าใหญ่นี้:</string>
@@ -1033,17 +1027,17 @@
     <string name="pretty_sure_genus">เราค่อนข้างแน่ใจว่ามันอยู่ในสกุลนี้:</string>
     <string name="pretty_sure_genushybrid">เราค่อนข้างแน่ใจว่ามันอยู่ในสกุลผสมนี้:</string>
     <string name="pretty_sure_subgenus">เราค่อนข้างแน่ใจว่ามันอยู่ในสกุลย่อยนี้:</string>
-    <string name="pretty_sure_section">We\'re pretty sure it\'s in this section:</string>
-    <string name="pretty_sure_subsection">We\'re pretty sure it\'s in this subsection:</string>
-    <string name="pretty_sure_complex">We\'re pretty sure it\'s in this complex:</string>
+    <string name="pretty_sure_section">เราค่อนข้างแน่ใจว่าอยู่ในส่วนนี้:</string>
+    <string name="pretty_sure_subsection">เราค่อนข้างแน่ใจว่าอยู่ในส่วนย่อยนี้:</string>
+    <string name="pretty_sure_complex">เราค่อนข้างแน่ใจว่าอยู่ในชนิดเชิงซ้อนนี้:</string>
     <!-- Singular -->
     <string name="pretty_sure_species">เราค่อนข้างแน่ใจว่ามันอยู่ในชนิดนี้:</string>
-    <string name="pretty_sure_hybrid">We\'re pretty sure it\'s in this hybrid:</string>
+    <string name="pretty_sure_hybrid">เราค่อนข้างแน่ใจว่าอยู่ในลูกผสมนี้:</string>
     <!-- Singular -->
     <string name="pretty_sure_subspecies">เราค่อนข้างแน่ใจว่ามันอยู่ในชนิดย่อยนี้:</string>
     <string name="pretty_sure_variety">เราค่อนข้างแน่ใจว่ามันอยู่ในสายพันธุ์นี้:</string>
     <string name="pretty_sure_form">เราค่อนข้างแน่ใจว่ามันอยู่ในรูปแบบนี้:</string>
-    <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
+    <string name="pretty_sure_infrahybrid">เราค่อนข้างแน่ใจว่าอยู่ในลูกผสมฐานนี้:</string>
     <string name="remove_date_observed">นำวันที่ &amp; เวลาของการสังเกตออก</string>
     <string name="remove_time_observed">ลบเวลาที่สังเกต</string>
     <string name="remove_location">เอาตำแหน่งออก</string>
@@ -1163,26 +1157,25 @@
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">แสดงตัวเลือก</string>
     <!-- Placeholder text for an observation field value -->
-    <string name="field_value">Field Value</string>
+    <string name="field_value">ข้อมูลภาคสนาม</string>
     <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
     <string name="delete_attribute_value">Delete attribute value</string>
-    <string name="open_menu_for_more_options">Open menu for more options</string>
+    <string name="open_menu_for_more_options">เปิดเมนูเพื่อดูตัวเลือกเพิ่มเติม</string>
     <string name="change_user_profile_photo">เปลี่ยนรูปโปรไฟล์ของคุณ</string>
-    <string name="expand_list">Expand list</string>
-    <string name="change_map_layers">Change map layers (terrain vs. satellite)</string>
+    <string name="expand_list">ขยายรายการ</string>
+    <string name="change_map_layers">เปลี่ยนชั้นข้อมูลแผนที่ (ภูมิประเทศ กับ ดาวเทียม)</string>
     <string name="redo_observation_search">Redo observation search in this map area</string>
     <string name="view_observations_on_map">View observations on map</string>
     <string name="view_observations_on_grid">View observations on grid</string>
     <string name="clear_text">Clear text</string>
-    <string name="observation_has_sounds">Observation has sounds</string>
-    <string name="go_to_my_location">Go to my current location</string>
-    <string name="change_geoprivacy">Change geoprivacy</string>
-    <string name="active_filters">Active filters</string>
-    <string name="message_is_flagged">Message is flagged</string>
+    <string name="observation_has_sounds">การสังเกตมีเสียง</string>
+    <string name="go_to_my_location">ไปที่ตำแหน่งปัจจุบันของฉัน</string>
+    <string name="change_geoprivacy">เปลี่ยนความเป็นส่วนตัวของพิกัด</string>
+    <string name="active_filters">ตัวกรองที่ใช้งานอยู่</string>
+    <string name="message_is_flagged">ข้อความได้รับรายงานแล้ว</string>
     <string name="user_is_muted">User is muted</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
     <string name="delete_observations">Delete observations</string>
-    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Comment count</string>
     <string name="id_count">Identification count</string>
     <string name="observation_selected">Observation selected</string>
@@ -1212,7 +1205,7 @@
         <item quantity="other">Sync %1$d selected observations</item>
     </plurals>
     <string name="add_media_evidence">Add media evidence</string>
-    <string name="remove_identification">Remove identification</string>
+    <string name="remove_identification">ลบการระบุ</string>
     <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
     <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
 </resources>

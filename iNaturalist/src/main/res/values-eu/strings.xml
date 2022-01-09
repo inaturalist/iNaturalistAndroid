@@ -7,8 +7,6 @@
     <string name="ok">ADOS</string>
     <string name="cancel">Utzi</string>
     <string name="loading">Kargatzen...</string>
-    <string name="sync_required">Sync required</string>
-    <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
     <string name="street">Kalea</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satelitea</string>
@@ -32,7 +30,6 @@
     <string name="settings">Ezarpenak</string>
     <string name="projects">Proiektuak</string>
     <string name="delete_photo">Argazkia ezabatu</string>
-    <string name="menu">Menu</string>
     <string name="my_location">Nire kokapena</string>
     <string name="nearby_observations">Ohar hurbilak</string>
     <string name="add">Gehitu</string>
@@ -204,6 +201,7 @@
     <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is a member of the iNaturalist Network in Costa Rica. Local institutions supporting Naturalista Costa Rica will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editorea</string>
     <string name="license">Lizentzia</string>
     <string name="download_for_offline_use">Download for offline use</string>
@@ -227,9 +225,7 @@
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Eposta</string>
-    <string name="sign_up_with">Sign Up with</string>
     <string name="skip">Saltatu ›</string>
-    <string name="already_have_account">Already have an account?</string>
     <string name="log_in">Saioa hasi</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Izena eman</string>
@@ -325,7 +321,7 @@
     <string name="finding_current_location">Finding current location...</string>
     <string name="flag_as_captive">Flag as Captive/Cultivated</string>
     <string name="observation_flagged_as_captive">Observation was flagged as captive/cultivated</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated? (Pressing yes will also close the observation viewer window)</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
     <string name="do_you_agree_to_the_following">Do you agree to the following?</string>
     <string name="terms">Terms</string>
     <string name="observation_rules">Observation Rules</string>
@@ -352,7 +348,6 @@
     <string name="updating_profile">Updating Profile...</string>
     <string name="there_was_a_problem_updating_profile">There was a problem while updating your profile!</string>
     <string name="there_was_a_problem_updating_profile_params">There was a problem while updating your profile: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
     <string name="log_out">Log Out</string>
@@ -423,6 +418,7 @@
     <string name="you_will_only_receive_updates_when_following">(You will only receive updates once you\'re following observations)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> suggested an ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> commented: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">It looks like you deleted a photo by clearing the app cache before uploading. You will need to add the photo back to your observation from your gallery. In the future, please make sure you have uploaded all your photos before clearing the app cache.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -471,14 +467,12 @@
     <string name="what_did_you_see">What did you see?</string>
     <string name="suggest_species">Suggest Species</string>
     <string name="suggest_species_description">Suggest species based on visual similarity to photos.</string>
-    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visually Similar</string>
     <string name="visually_similar_seen_nearby">Visually Similar / Seen Nearby</string>
     <string name="seen_nearby">Seen Nearby</string>
     <string name="enlarge">Enlarge</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">View Children</string>
-    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG/HEIC/HEIF extensions</string>
     <string name="taxon_has_no_photos">This taxon has no photos.</string>
     <string name="terrain">Terrain</string>
     <string name="filters">Filters</string>
@@ -573,7 +567,7 @@
     <string name="start">Start</string>
     <string name="end">End</string>
     <string name="months">Months</string>
-    <string name="choose_months">Choose months(s)</string>
+    <string name="choose_months">Choose month(s)</string>
     <string name="map_area">Map Area</string>
     <string name="global">Global</string>
     <!-- As in redo search in the current map area -->
@@ -596,7 +590,6 @@
     <string name="leave_comment">Leave a comment...</string>
     <string name="swipe">Swipe</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Which Google Account?</string>
     <string name="potential_disagreement">Potential Disagreement</string>
     <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
@@ -772,6 +765,7 @@
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">Mark all as viewed</string>
     <string name="content_hidden">Content Hidden</string>
     <string name="show_hidden_content">Show Hidden Content</string>
@@ -785,7 +779,6 @@
     <string name="soundcloud">Soundcloud</string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <string name="record_sound">Record Sound</string>
-    <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Choose Sound</string>
@@ -931,6 +924,7 @@
     <string name="flagging_conversation">Flagging conversation...</string>
     <string name="failed_flagging_conversation">Failed flagging conversation!</string>
     <string name="no_subject">No Subject</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
     <string name="rank_state_of_matter">State of matter</string>
     <string name="rank_kingdom">Kingdom</string>
     <string name="rank_subkingdom">Subkingdom</string>
@@ -1188,7 +1182,6 @@
     <string name="user_is_muted">User is muted</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
     <string name="delete_observations">Delete observations</string>
-    <string name="clear_species_guess">Clear species guess</string>
     <string name="comment_count">Comment count</string>
     <string name="id_count">Identification count</string>
     <string name="observation_selected">Observation selected</string>
