@@ -3300,6 +3300,8 @@ public class ObservationEditor extends Fragment {
                 mDescriptionTextView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        if (getActivity() == null) return;
+
                         mDescriptionTextView.requestFocus();
                         InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.showSoftInput(mDescriptionTextView, InputMethodManager.SHOW_IMPLICIT);
