@@ -9,8 +9,8 @@ jobs:
   test:
     name: Instrumented Tests, SDK ${{ matrix.api-level }}
     runs-on: macos-11
-    env:
-      JAVA_HOME: $JAVA_HOME_11_X64
+#    env:
+#      JAVA_HOME: $JAVA_HOME_11_X64
     strategy:
       matrix:
         api-level:
@@ -48,12 +48,12 @@ jobs:
 #          key: avd-${{ matrix.api-level }}-20220105-1
 
       - name: Create AVD and generate snapshot for caching
-        if: steps.avd-cache.outputs.cache-hit != 'true'
+#        if: steps.avd-cache.outputs.cache-hit != 'true'
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
           force-avd-creation: true
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+#          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
           target: google_apis
           ndk: 22.1.7171670
