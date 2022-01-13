@@ -9,11 +9,10 @@ jobs:
   test:
     name: Instrumented Tests, SDK ${{ matrix.api-level }}
     runs-on: macos-11
-#    env:
-#      JAVA_HOME: $JAVA_HOME_11_X64
     strategy:
       matrix:
         api-level:
+          # TODO - enable 23/27
           #- 23 # Android 5, minSdkVersion
           #- 27 # Android 8, has caused problems in the past
           # SDK 29 causes frequent problems with the emulator, not sure why.
@@ -60,6 +59,19 @@ jobs:
           # I think this might be a quick fix for intermittent build failures waiting for the emaultor to boot
           emulator-build: 7425822
           script: echo "Generated AVD snapshot for caching."
+
+      - name: CHECK_ENV1
+        run: |
+          echo "JAVA_HOME: $JAVA_HOME"
+          echo "JAVA_HOME_11_X64: $JAVA_HOME_11_X64"
+      - name: Set Java 11
+        run: |
+          echo "JAVA_HOME=$JAVA_HOME_11_X64" >> $GITHUB_ENV
+      - name: CHECK_ENV2
+        run: |
+          echo "JAVA_HOME: $JAVA_HOME"
+          echo "JAVA_HOME_11_X64: $JAVA_HOME_11_X64"
+
 
       - name: Copy iNat config files
         run: |
