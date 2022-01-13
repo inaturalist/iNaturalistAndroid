@@ -31,6 +31,10 @@
         android:glEsVersion="0x00020000"
         android:required="true" />
 
+    <queries>
+        <package android:name="com.google.android.apps.maps" />
+    </queries>
+
     <application
         android:name=".INaturalistApp"
         tools:replace="android:label"
