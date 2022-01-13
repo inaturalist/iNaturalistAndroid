@@ -9,8 +9,6 @@ jobs:
   test:
     name: Instrumented Tests, SDK ${{ matrix.api-level }}
     runs-on: macos-11
-    env:
-      JAVA_HOME: $JAVA_HOME_11_X64
     strategy:
       matrix:
         api-level:
@@ -21,11 +19,6 @@ jobs:
           # - 29 # Android 10, targetSdkVersion
           - 30 # Android 11, latest public release
     steps:
-      - name: TEST
-        run: |
-          echo "JAVA_HOME: $JAVA_HOME"
-          echo "JAVA_HOME_11_X64: $JAVA_HOME_11_X64"
-
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -52,7 +45,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
-          force-avd-creation: false
+          force-avd-creation: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
           target: google_apis
@@ -60,7 +53,9 @@ jobs:
           # I think this might be a quick fix for intermittent build failures waiting for the emaultor to boot
           emulator-build: 7425822
           script: echo "Generated AVD snapshot for caching."
-
+      - name: Set Java 11
+        run: |
+          echo "JAVA_HOME=$JAVA_HOME_11_X64" >> $GITHUB_ENV
       - name: Copy iNat config files
         run: |
           sed -E 's/<!-- *</</' iNaturalist/src/main/res/values/config.example.xml | sed -E 's/> *-->/>/' > iNaturalist/src/main/res/values/config.xml
