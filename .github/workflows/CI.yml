@@ -12,67 +12,50 @@ jobs:
     strategy:
       matrix:
         api-level:
-          # TODO - enable 23/27
-          #- 23 # Android 5, minSdkVersion
-          #- 27 # Android 8, has caused problems in the past
+          - 23 # Android 5, minSdkVersion
+          - 27 # Android 8, has caused problems in the past
           # SDK 29 causes frequent problems with the emulator, not sure why.
           # Hoping SDK 30 is close enough
           # - 29 # Android 10, targetSdkVersion
           - 30 # Android 11, latest public release
     steps:
-      - name: TEST
-        run: |
-          echo "JAVA_HOME: $JAVA_HOME"
-          echo "JAVA_HOME_11_X64: $JAVA_HOME_11_X64"
-
       - name: Checkout
         uses: actions/checkout@v2
 
       # Cache steps all from the example at https://github.com/ReactiveCircus/android-emulator-runner
-#      - name: Gradle cache
-#        uses: actions/cache@v2
-#        with:
-#          path: |
-#            ~/.gradle/caches
-#            ~/.gradle/wrapper
-#          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
+      - name: Gradle cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
 
-#      - name: AVD cache
-#        uses: actions/cache@v2
-#        id: avd-cache
-#        with:
-#          path: |
-#            ~/.android/avd/*
-#            ~/.android/adb*
-#          key: avd-${{ matrix.api-level }}-20220105-1
+      - name: AVD cache
+        uses: actions/cache@v2
+        id: avd-cache
+        with:
+          path: |
+            ~/.android/avd/*
+            ~/.android/adb*
+          key: avd-${{ matrix.api-level }}-20220105-1
 
       - name: Create AVD and generate snapshot for caching
-#        if: steps.avd-cache.outputs.cache-hit != 'true'
+        if: steps.avd-cache.outputs.cache-hit != 'true'
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
           force-avd-creation: true
-#          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
           target: google_apis
           ndk: 22.1.7171670
           # I think this might be a quick fix for intermittent build failures waiting for the emaultor to boot
           emulator-build: 7425822
           script: echo "Generated AVD snapshot for caching."
-
-      - name: CHECK_ENV1
-        run: |
-          echo "JAVA_HOME: $JAVA_HOME"
-          echo "JAVA_HOME_11_X64: $JAVA_HOME_11_X64"
       - name: Set Java 11
         run: |
           echo "JAVA_HOME=$JAVA_HOME_11_X64" >> $GITHUB_ENV
-      - name: CHECK_ENV2
-        run: |
-          echo "JAVA_HOME: $JAVA_HOME"
-          echo "JAVA_HOME_11_X64: $JAVA_HOME_11_X64"
-
-
       - name: Copy iNat config files
         run: |
           sed -E 's/<!-- *</</' iNaturalist/src/main/res/values/config.example.xml | sed -E 's/> *-->/>/' > iNaturalist/src/main/res/values/config.xml
