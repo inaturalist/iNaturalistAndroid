@@ -1024,6 +1024,8 @@ public class ExploreActivity extends BaseFragmentActivity {
         mObservationsGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
+                if (mResults[VIEW_TYPE_OBSERVATIONS] == null) return;
+
                 JSONObject item = (JSONObject) view.getTag();
 
                 Intent intent = new Intent(ExploreActivity.this, ObservationViewerSlider.class);
