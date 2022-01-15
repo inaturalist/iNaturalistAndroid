@@ -137,7 +137,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
             } else if (isMention || item.getString("notifier_type").equals("Comment")) {
                 // Comment (or user has been mentioned)
 
-                JSONObject comment = item.getJSONObject("comment");
+                JSONObject comment = item.has("comment") ? item.getJSONObject("comment") : item.getJSONObject("identification");
                 user = comment.getJSONObject("user");
                 userName = user.getString("login");
                 userIconUrl = user.optString("icon_url", null);
