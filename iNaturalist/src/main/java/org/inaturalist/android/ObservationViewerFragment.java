@@ -401,6 +401,8 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
         @Override
         public int getCount() {
+            if (mObservation == null) return 0;
+            
             return mReadOnly ?
                     (mObservation.photos.size() + mObservation.sounds.size()) :
                     (mImageCursor != null ? mImageCursor.getCount() : 0) +
