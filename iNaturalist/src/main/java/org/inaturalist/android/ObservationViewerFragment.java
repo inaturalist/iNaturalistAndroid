@@ -402,7 +402,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
         @Override
         public int getCount() {
             if (mObservation == null) return 0;
-            
+
             return mReadOnly ?
                     (mObservation.photos.size() + mObservation.sounds.size()) :
                     (mImageCursor != null ? mImageCursor.getCount() : 0) +
@@ -2800,7 +2800,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                 obsJson = intent.getStringExtra(INaturalistService.OBSERVATION_JSON_RESULT);
             }
 
-            if ((!mReadOnly) && (mObservation != null)) {
+            if ((!mReadOnly) && (mObservation != null) && (mUri != null)) {
                 if (
                         ((mObservation.license == null) && (observation.license != null)) ||
                         ((mObservation.license != null) && (observation.license != null) && (!mObservation.license.equals(observation.license)) && (observation.updated_at.after(mObservation.updated_at)))
@@ -2946,7 +2946,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
                 mReloadTaxon = false;
 
-                if (!mReadOnly) {
+                if (!mReadOnly && mUri != null) {
                     // Update observation's taxon in DB
                     ContentValues cv = mObservation.getContentValues();
                     getActivity().getContentResolver().update(mUri, cv, null, null);
