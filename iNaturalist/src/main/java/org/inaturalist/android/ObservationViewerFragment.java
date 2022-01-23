@@ -78,7 +78,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.livefront.bridge.Bridge;
 import com.squareup.picasso.Picasso;
@@ -2362,6 +2361,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                 intent = new Intent(Intent.ACTION_EDIT, mUri, getActivity(), ObservationEditorSlider.class);
                 if (mObsJson != null) intent.putExtra(ObservationEditor.OBSERVATION_JSON, mObsJson);
                 intent.putExtra(ObservationEditor.DUPLICATE, true);
+                intent.putExtra(ObservationEditor.DUPLICATED_URI, mUri.toString());
                 startActivity(intent);
                 return true;
             default:

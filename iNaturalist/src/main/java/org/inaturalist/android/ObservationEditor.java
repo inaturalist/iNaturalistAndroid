@@ -222,6 +222,7 @@ public class ObservationEditor extends Fragment {
     public static final String TAXON = "taxon";
     public static final String OBSERVATION_JSON = "observation_json";
     public static final String DUPLICATE = "duplicate";
+    public static final String DUPLICATED_URI = "duplicated_uri";
 
     private List<ProjectFieldViewer> mProjectFieldViewers;
     private Spinner mGeoprivacy;
@@ -438,6 +439,12 @@ public class ObservationEditor extends Fragment {
             Logger.tag(TAG).error("Insert 1c: " + uriInternal);
 
             mDuplicate = intent.getBooleanExtra(DUPLICATE, false);
+            if (mDuplicate) {
+                Uri duplicatedUri = Uri.parse(intent.getStringExtra(DUPLICATED_URI));
+                if (!duplicatedUri.equals(uriInternal)) {
+                    mDuplicate = false;
+                }
+            }
 
             switch (ObservationProvider.URI_MATCHER.match(uriInternal)) {
                 case Observation.OBSERVATION_ID_URI_CODE:
