@@ -2409,6 +2409,9 @@ public class ObservationEditor extends Fragment {
         if (mLocationListener != null) {
             return;
         }
+        if (getActivity() == null) {
+            return;
+        }
 
         mLocationProgressView.setVisibility(View.VISIBLE);
         mFindingCurrentLocation.setVisibility(View.VISIBLE);
