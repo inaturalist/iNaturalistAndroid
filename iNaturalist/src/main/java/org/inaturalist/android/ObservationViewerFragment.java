@@ -2818,29 +2818,31 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                         cv.put(Observation._SYNCED_AT, mObservation._synced_at.getTime());
                     }
 
-                    getActivity().getContentResolver().update(mUri, cv, null, null);
+                    if (mUri != null) {
+                        getActivity().getContentResolver().update(mUri, cv, null, null);
 
-                    // Also update the observation's photo licenses
-                    Observation obs = new Observation(new BetterJSONObject(obsJson));
-                    if (obs.photos != null) {
-                        for (int i = 0; i < obs.photos.size(); i++) {
-                            ObservationPhoto photo = obs.photos.get(i);
-                            if ((photo.id != null) && (photo.license != null)) {
-                                Cursor c = getActivity().getContentResolver().query(ObservationPhoto.CONTENT_URI, ObservationPhoto.PROJECTION, "id = ?", new String[]{String.valueOf(photo.id)}, ObservationPhoto.DEFAULT_SORT_ORDER);
-                                if (c.getCount() > 0) {
-                                    ObservationPhoto localPhoto = new ObservationPhoto(c);
-                                    c.close();
-                                    if (localPhoto.license == null) {
-                                        Logger.tag(TAG).debug(String.format("Setting observation photo %d license to %s", photo.id, observation.license));
-                                        cv = new ContentValues();
-                                        cv.put(ObservationPhoto.LICENSE, photo.license);
-                                        if (localPhoto._synced_at != null) {
-                                            cv.put(ObservationPhoto._SYNCED_AT, localPhoto._synced_at.getTime());
+                        // Also update the observation's photo licenses
+                        Observation obs = new Observation(new BetterJSONObject(obsJson));
+                        if (obs.photos != null) {
+                            for (int i = 0; i < obs.photos.size(); i++) {
+                                ObservationPhoto photo = obs.photos.get(i);
+                                if ((photo.id != null) && (photo.license != null)) {
+                                    Cursor c = getActivity().getContentResolver().query(ObservationPhoto.CONTENT_URI, ObservationPhoto.PROJECTION, "id = ?", new String[]{String.valueOf(photo.id)}, ObservationPhoto.DEFAULT_SORT_ORDER);
+                                    if (c.getCount() > 0) {
+                                        ObservationPhoto localPhoto = new ObservationPhoto(c);
+                                        c.close();
+                                        if (localPhoto.license == null) {
+                                            Logger.tag(TAG).debug(String.format("Setting observation photo %d license to %s", photo.id, observation.license));
+                                            cv = new ContentValues();
+                                            cv.put(ObservationPhoto.LICENSE, photo.license);
+                                            if (localPhoto._synced_at != null) {
+                                                cv.put(ObservationPhoto._SYNCED_AT, localPhoto._synced_at.getTime());
+                                            }
+                                            getActivity().getContentResolver().update(localPhoto.getUri(), cv, null, null);
                                         }
-                                        getActivity().getContentResolver().update(localPhoto.getUri(), cv, null, null);
+                                    } else {
+                                        c.close();
                                     }
-                                } else {
-                                    c.close();
                                 }
                             }
                         }
