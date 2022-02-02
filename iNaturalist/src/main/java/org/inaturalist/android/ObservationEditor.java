@@ -3558,6 +3558,9 @@ public class ObservationEditor extends Fragment {
         if (resizedPhoto == null) {
             return null;
         }
+        if (getActivity() == null) {
+            return null;
+        }
 
         // Save original-sized copy of the photo (so when cropping, we'll crop from the original sized photo)
         String originalSizePhoto = ImageUtils.resizeImage(getActivity(), path, isDuplicated ? null : photoUri, Integer.MAX_VALUE);
