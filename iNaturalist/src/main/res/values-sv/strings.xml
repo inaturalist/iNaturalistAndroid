@@ -201,7 +201,7 @@
     <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica är medlem i iNaturalist-nätverket i Costa Rica. Lokala institutioner som stödjer Naturalista Costa Rica kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för fynd som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 observationer. Vill du ändra din anknytning?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala är medlem i iNaturalist-nätverket i Guatemala. Lokala institutioner som stöder iNaturalist Guatemala kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för fynd som är offentligt diffuserade eller privata. Vänligen ändra inte din anknytning experimentellt om du har mer än 1000 fynd. Vill du ändra din anknytning?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden är medlem i iNaturalist-nätverket i Sverige. Lokala institutioner som stödjer iNaturalist Sweden kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för fynd som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 fynd. Vill du ändra din tillhörighet?</string>
-    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay är medlem i iNaturalist-nätverket i Uruguay. Lokala institutioner som stödjer Naturalista Uruguay kommer att ha tillgång till din e-postadress och tillgång till de exakta koordinaterna för fynd som är offentligt diffuserade eller privata. Vänligen ändra inte din tillhörighet experimentellt om du har mer än 1000 fynd. Vill du ändra din tillhörighet?</string>
     <string name="editor">Redigerare</string>
     <string name="license">Programvarulicens</string>
     <string name="download_for_offline_use">Ladda ner för användning offline</string>
@@ -321,7 +321,7 @@
     <string name="finding_current_location">Letar efter din plats...</string>
     <string name="flag_as_captive">Markera som I fångenskap/Odlad</string>
     <string name="observation_flagged_as_captive">Fynd har markerats som i fångenskap/odlat</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Är du säker på att du vill flagga detta fynd som i fångenskap/odlad?</string>
     <string name="do_you_agree_to_the_following">Håller du med om följande?</string>
     <string name="terms">Villkor</string>
     <string name="observation_rules">Fyndregler</string>
@@ -418,7 +418,7 @@
     <string name="you_will_only_receive_updates_when_following">(Du kommer bara få uppdateringar när du väl följer fynd)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> föreslog en bestämning: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> kommenterade: &ldquo;%2$ss&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> nämnde dig: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Det ser ut som du raderade en bild genom att du rensade cacheminnet i appen innan du laddade upp fyndet. Du måste lägga till bilden igen till ditt fynd från ditt bildgalleri. I framtiden, kontrollera att du har laddat upp alla dina bilder innan du rensar cacheminnet i appen.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -567,7 +567,7 @@
     <string name="start">Start</string>
     <string name="end">Slut</string>
     <string name="months">Månader</string>
-    <string name="choose_months">Choose month(s)</string>
+    <string name="choose_months">Välj månad(er)</string>
     <string name="map_area">Områdeskarta</string>
     <string name="global">Globalt</string>
     <!-- As in redo search in the current map area -->
@@ -765,7 +765,7 @@
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) som stöder Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) som stöder iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Sverige: SLU Artdatabanken som stöder iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
-    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA och Biodiversidata som stöder Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">Markera alla som lästa</string>
     <string name="content_hidden">Dolt innehåll</string>
     <string name="show_hidden_content">Visa dolt innehåll</string>
