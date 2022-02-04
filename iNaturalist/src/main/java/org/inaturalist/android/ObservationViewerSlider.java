@@ -190,7 +190,7 @@ public class ObservationViewerSlider extends AppCompatActivity {
 
             String obsJson = intent.getStringExtra("observation");
             String obsResults = (String) mApp.getServiceResult("observation_results");
-            Integer obsIndex = intent.getIntExtra("observation_index", 0);
+            Integer obsIndex = intent.getIntExtra("observation_index", -1);
             Integer totalResults = intent.getIntExtra("total_results", 0);
             Integer resultsPage = intent.getIntExtra("results_page", 0);
             Integer obsId = null;
@@ -213,7 +213,7 @@ public class ObservationViewerSlider extends AppCompatActivity {
                 c.close();
             }
 
-            if (obsResults != null) {
+            if ((obsResults != null) && (obsIndex > -1)) {
                 mLastPosition = obsIndex;
                 try {
                     JSONArray array = new JSONArray(obsResults);
