@@ -3195,6 +3195,8 @@ public class ObservationEditor extends Fragment {
         Uri createdUri = createObservationSoundForSound(Uri.fromFile(destFile));
 
         if (createdUri == null) {
+            if (getActivity() == null) return;
+
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -3207,6 +3209,8 @@ public class ObservationEditor extends Fragment {
         if (mPhotosAndSoundsAdded != null) {
             mPhotosAndSoundsAdded.add(createdUri.toString());
         }
+
+        if (getActivity() == null) return;
 
         getActivity().runOnUiThread(new Runnable() {
             @Override
@@ -3281,6 +3285,8 @@ public class ObservationEditor extends Fragment {
         }
 
         if (createdUri == null) {
+            if (getActivity() == null) return;
+
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -3291,6 +3297,7 @@ public class ObservationEditor extends Fragment {
             return;
         }
 
+        if (getActivity() == null) return;
 
         getActivity().runOnUiThread(new Runnable() {
             @Override
