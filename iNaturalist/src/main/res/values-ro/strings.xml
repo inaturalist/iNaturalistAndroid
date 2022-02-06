@@ -202,7 +202,7 @@
     <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica este membru al rețelei iNaturalist din Costa Rica. Instituțiile locale care sprijină iNaturalist Costa Rica vor avea acces la adresa dvs. de e-mail și la coordonatele adevărate ale observațiilor care sunt ascunse public sau private. Vă rugăm să nu modificați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala este membru al rețelei iNaturalist din Guatemala. Instituțiile locale care sprijină iNaturalist Guatemala vor avea acces la adresa dvs. de e-mail și la coordonatele adevărate ale observațiilor care sunt ascunse public sau private. Vă rugăm să nu modificați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Suedia este membru al rețelei iNaturalist din Suedia. Instituțiile locale care sprijină iNaturalist Suedia vor avea acces la adresa dvs. de e-mail și la coordonatele adevărate ale observațiilor care sunt ascunse public sau private. Vă rugăm să nu modificați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
-    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay este membru al rețelei iNaturalist din Uruguay. Instituțiile locale care sprijină Naturalista Uruguay vor avea acces la adresa dvs. de e-mail și la coordonatele reale pentru observațiile ascunse obscure sau private pentru public. Vă rugăm să nu vă schimbați în mod experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
     <string name="editor">Editor</string>
     <string name="license">Licență</string>
     <string name="download_for_offline_use">Descarcă pentru utilizare offline</string>
@@ -323,7 +323,7 @@
     <string name="finding_current_location">Se găsește locația actuală...</string>
     <string name="flag_as_captive">Marchează ca Captiv/Cultivat</string>
     <string name="observation_flagged_as_captive">Observația a fost marcată ca captivă/cultivată</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Sunteți sigur că doriți să marcați această observație ca fiind captivă/cultivată?</string>
     <string name="do_you_agree_to_the_following">Sunteți de acord cu următoarele?</string>
     <string name="terms">Termeni</string>
     <string name="observation_rules">Regulile observației</string>
@@ -420,7 +420,7 @@
     <string name="you_will_only_receive_updates_when_following">(Vei primi actualizări după ce ai urmat observații)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> a sugerat un ID: %2$s<font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> a comentat: &ldquo;%2$s&rdquo;<font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> v-a menționat: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Se pare că ai șters o poză înainte să o încarci, în timp ce eliberai memoria cache. Va trebui să adaugi poza din observația ta, din galeria proprie. În viitor, asigură-te că ai încărcat toate pozele, înainte să eliberezi cache-ul aplicației.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -571,7 +571,7 @@
     <string name="start">Început</string>
     <string name="end">Final</string>
     <string name="months">Luni</string>
-    <string name="choose_months">Choose month(s)</string>
+    <string name="choose_months">Alegeți luna (lunile)</string>
     <string name="map_area">Zona hărții</string>
     <string name="global">Global</string>
     <!-- As in redo search in the current map area -->
@@ -770,7 +770,7 @@
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) sprijină Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) sprijină iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre suportă iNaturalist Suedia(<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
-    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA și Biodiversidata care sprijină Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">Bifează tot ca vizionat</string>
     <string name="content_hidden">Conținut ascuns</string>
     <string name="show_hidden_content">Arată conținut ascuns</string>

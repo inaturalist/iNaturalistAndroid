@@ -280,10 +280,10 @@
     <string name="needs_id">Determinatie vereist</string>
     <string name="research_grade">Onderzoekskwaliteit</string>
     <string name="data_quality">Gegevenskwaliteit</string>
-    <string name="casual_grade_add_location"><![CDATA[ Voeg een <b>locatie</b> toe om deze waarneming te upgraden naar "Needs ID" status. ]]></string>
-    <string name="casual_grade_add_date"><![CDATA[ Voeg een <b>datum</b> toe om deze waarneming te upgraden naar "Needs ID" status. ]]></string>
-    <string name="casual_grade_add_photo"><![CDATA[ Voeg een <b>foto</b> toe om deze waarneming te upgraden naar "Needs ID" status. ]]></string>
-    <string name="casual_grade_captive"><![CDATA[ Waarneming krijgt \'casual grade\' omdat ze <b>in gevangenschap/gekweekt</b> heeft. ]]></string>
+    <string name="casual_grade_add_location"><![CDATA[ Voeg een <b>locatie</b> toe om deze waarneming te upgraden naar "ID nodig" status. ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ Voeg een <b>datum</b> toe om deze waarneming te upgraden naar "ID nodig" status. ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[ Voeg een <b>foto</b> toe om deze waarneming te upgraden naar "ID nodig" status. ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ Waarneming krijgt de status \'onvolledig\' omdat ze <b>in gevangenschap/gekweekt</b> is. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ Waarneming heeft <b>meer determinaties</b> nodig van de gemeenschap om de onderzoekskwaliteit te bereiken. ]]></string>
     <plurals name="included_in_projects">
         <item quantity="one">Opgenomen in %1$d project</item>

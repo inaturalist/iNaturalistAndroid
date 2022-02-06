@@ -201,7 +201,7 @@
     <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica è membro del Network iNaturalist in Costa Rica. Le istituzioni locali che supportano Naturalista Costa Rica avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione solo per provare se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala è membro del Network iNaturalist in Guatemala. Le istituzioni locali che supportano iNaturalist Guatemala avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione solo per provare se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Svezia è membro del Network iNaturalist in Svezia. Le istituzioni locali che supportano iNaturalist Svezia avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione come esperimento se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
-    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista è membro del Network iNaturalist in Colombia. Le istituzioni locali che supportano Naturalista Uruguay avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione come prova se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
     <string name="editor">Editor</string>
     <string name="license">Licenza</string>
     <string name="download_for_offline_use">Scarica per uso non in linea</string>
@@ -321,7 +321,7 @@
     <string name="finding_current_location">Rilevamento della posizione...</string>
     <string name="flag_as_captive">Contrassegna come in cattività/coltivata</string>
     <string name="observation_flagged_as_captive">L\'osservazione è stata contrassegnata come in cattività/coltivata</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Sei sicuro di voler contrassegnare questa osservazione come in cattività/coltivata?</string>
     <string name="do_you_agree_to_the_following">Sei d\'accordo con ciò che segue?</string>
     <string name="terms">Termini</string>
     <string name="observation_rules">Regole per le osservazioni</string>
@@ -418,7 +418,7 @@
     <string name="you_will_only_receive_updates_when_following">(Riceverai aggiornamenti solo quando avrai iniziato a seguire le osservazioni)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> ha suggerito una ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> ha commentato: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> ti ha menzionato: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Sembra che tu abbia eliminato una foto cancellando la cache dell\'app prima di caricare. Sarà necessario aggiungere successivamente l\'immagine alla tua osservazione dalla tua galleria. In futuro, assicurati di aver caricato tutte le tue foto prima di cancellare la cache dell\'applicazione.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -567,7 +567,7 @@
     <string name="start">Inizio</string>
     <string name="end">Fine</string>
     <string name="months">Mesi</string>
-    <string name="choose_months">Choose month(s)</string>
+    <string name="choose_months">Scegli mese(i)</string>
     <string name="map_area">Area Mappa</string>
     <string name="global">Globale</string>
     <!-- As in redo search in the current map area -->
@@ -765,7 +765,7 @@
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporta Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporta iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Svezia: SLU Swedish Species Information Centre supporta iNaturalist Svezia (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
-    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA e Biodiversidata sostengono Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">Segna tutti come visti</string>
     <string name="content_hidden">Contenuto Nascosto</string>
     <string name="show_hidden_content">Mostra il contenuto nascosto</string>
