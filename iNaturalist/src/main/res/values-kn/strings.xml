@@ -418,7 +418,7 @@
     <string name="you_will_only_receive_updates_when_following">(ನೀವು ವೀಕ್ಷಣೆಗಳನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿದ ನಂತರ ನೀವು ನವೀಕರಣಗಳನ್ನು ಪಡೆಯುವಿರಿ)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> ಅವರು ID ಯೊಂದನ್ನು ಸಲಹೆ ಮಾಡಿದ್ದಾರೆ : %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b>ನಿಮ್ಮನ್ನು ಉಲ್ಲೇಖಿಸಿದ್ದಾರೆ: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">It looks like you deleted a photo by clearing the app cache before uploading. You will need to add the photo back to your observation from your gallery. In the future, please make sure you have uploaded all your photos before clearing the app cache.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -567,7 +567,7 @@
     <string name="start">ಆರಂಭಿಸಿ</string>
     <string name="end">ಇಲ್ಲಿಯವರೆಗೆ</string>
     <string name="months">ತಿಂಗಳುಗಳು</string>
-    <string name="choose_months">Choose month(s)</string>
+    <string name="choose_months">ತಿಂಗಳು(ಗಳ)ನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
     <string name="map_area">ಭೂಪಟ ಪ್ರದೇಶ</string>
     <string name="global">ಜಾಗತಿಕ</string>
     <!-- As in redo search in the current map area -->
@@ -765,7 +765,7 @@
     <string name="network_credit_inaturalistcr"><![CDATA[ಕೊಸ್ಟರಿಕಾ: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[ಗ್ವಾಟೆಮಾಲಾ:Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[ಸ್ವೀಡನ್: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
-    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[ಉರುಗ್ವೆ: ನ್ಯಾಚುರಲಿಸ್ಟಾ ಉರುಗ್ವೆಯನ್ನು JULANA ಮತ್ತು Biodiversidata ಅವರು ಬೆಂಬಲಿಸುತ್ತಿದ್ದಾರೆ ((<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿದೆಯೆಂದು ಗುರುತಿಸಿ</string>
     <string name="content_hidden">ಮರೆಮಾಡಿದ ವಿಷಯಗಳು</string>
     <string name="show_hidden_content">ಮರೆಮಾಡಿದ ವಿಷಯಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ</string>
