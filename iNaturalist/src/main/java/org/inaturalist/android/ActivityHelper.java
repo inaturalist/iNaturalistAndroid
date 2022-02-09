@@ -698,6 +698,8 @@ public class ActivityHelper {
     // Forcefully opens a URL in the user's browser (even if iNaturalist is defined to open such URL -
     // e.g. https://www.inaturalist.org/observations/1234)
     public void openUrlInBrowser(String url) {
+        Logger.tag(TAG).debug("openUrlInBrowser: " + url);
+
         ArrayList<String> packageNames = new ArrayList<>(Arrays.asList(BROWSER_PACKAGE_NAMES));
 
         // Find out package name of default browser
@@ -711,6 +713,8 @@ public class ActivityHelper {
 
         packageNames.add(""); // So if we've reached this last item (meaning, couldn't find a default browser) - we'll just open it in our app
 
+        Logger.tag(TAG).debug("openUrlInBrowser - package names: " + packageNames);
+
         // Use the explicit browser package name (so we won't open iNaturalist)
 
         // Try different package names until reaching one that works
@@ -722,12 +726,15 @@ public class ActivityHelper {
                 i.setPackage(packageName);
             }
 
+            Logger.tag(TAG).debug("openUrlInBrowser - trying package: " + packageName + ": " + i);
+
             try {
                 mContext.startActivity(i);
                 // If we've reached this far - this means we've successfully found a browser to handle this URL
                 break;
             } catch (ActivityNotFoundException exc) {
                 Logger.tag(TAG).error("Couldn't open URL for package: " + packageName);
+                Logger.tag(TAG).error(exc);
             }
         }
     }
