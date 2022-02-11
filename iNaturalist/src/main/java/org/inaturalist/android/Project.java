@@ -88,7 +88,7 @@ public class Project implements BaseColumns, Serializable {
         this.id = o.getInt("id");
         this.title = o.getString("title");
         this.description = o.getString("description");
-        this.icon_url = o.getString("icon_url");
+        this.icon_url = o.has("icon_url") ? o.getString("icon_url") : o.getString("icon");
         this.project_type = o.getString("project_type");
 
         try {
