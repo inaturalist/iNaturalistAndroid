@@ -1873,6 +1873,8 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
     private void loadObservationIntoUI() {
         String userIconUrl = null;
 
+        if (mObservation == null) return;
+
         if (mReadOnly) {
             if (mObsJson == null) {
                 getActivity().finish();
