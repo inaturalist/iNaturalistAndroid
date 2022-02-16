@@ -3585,6 +3585,10 @@ public class ObservationEditor extends Fragment {
         cv.put(ObservationPhoto.OBSERVATION_UUID, mObservation.uuid);
         cv.put(ObservationPhoto.LICENSE, mApp.getDefaultPhotoLicense().value);
 
+        if (getActivity() == null) {
+            return null;
+        }
+
         return getActivity().getContentResolver().insert(ObservationPhoto.CONTENT_URI, cv);
     }
 
