@@ -97,6 +97,7 @@ public class ProjectField implements BaseColumns, Serializable {
             this.project_id = o.getInt("project_id");
             
             if (o.has("observation_field")) {
+                this.field_id = o.getJSONObject("observation_field").getInt("id");
                 this.name = o.getJSONObject("observation_field").getString("name");
                 this.description = o.getJSONObject("observation_field").getString("description");
                 this.data_type = o.getJSONObject("observation_field").getString("datatype");
