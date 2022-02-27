@@ -912,6 +912,8 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        Logger.tag(TAG).debug("onActivityResult: " + requestCode + ":" + resultCode);
+
         if (requestCode == TAXON_SEARCH_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 // Copy results from taxon search directly back to the caller (e.g. observation editor)

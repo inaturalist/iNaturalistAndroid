@@ -752,6 +752,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
                 bundle.putBoolean(TaxonSearchActivity.IS_CUSTOM, false);
                 bundle.putInt(TaxonSearchActivity.TAXON_ID, taxon.optInt("id"));
 
+                Logger.tag(TAG).debug("On select taxon: " + bundle);
                 intent.putExtras(bundle);
                 setResult(RESULT_OK, intent);
                 finish();
