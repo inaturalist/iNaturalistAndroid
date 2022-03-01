@@ -868,7 +868,7 @@
     <string name="running_in_background_notfication">Verwerking vindt op de achtergrond plaats zodat het zonder onderbreking kan worden uitgevoerd</string>
     <string name="opt_out_of_community_taxon">Afmelden voor het gemeenschapstaxon</string>
     <string name="opt_in_to_community_taxon">het gemeenschapstaxon toestaan</string>
-    <string name="opt_out_message">Door het weigeren van het gemeenschapstaxon zal deze waarneming geassocieerd worden met het taxon op basis van je huidige determinatie en dus niet een taxon worden dat is afgeleid van alle determinaties die aan deze waarneming zijn toegevoegd. Als genoeg determinatoren het niet met je eens zijn zal jouw waarneming Casual worden. Je moet je het alleen weigeren als je er zeker van bent dat jouw determinatie correct is en de andere determinaties onjuist zijn.</string>
+    <string name="opt_out_message">Door het weigeren van het gemeenschapstaxon zal deze waarneming geassocieerd worden met het taxon op basis van je huidige determinatie en dus niet een taxon worden dat is afgeleid van alle determinaties die aan deze waarneming zijn toegevoegd. Als genoeg determinatoren het niet met je eens zijn zal jouw waarneming Onvolledig worden. Je moet dit alleen weigeren als je er zeker van bent dat jouw determinatie correct is en de andere determinaties onjuist zijn.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
     <string name="permission_required">Toestemming vereist</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->

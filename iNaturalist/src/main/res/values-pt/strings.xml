@@ -418,7 +418,7 @@
     <string name="you_will_only_receive_updates_when_following">(Só irá receber atualizações depois de seguir observações)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> sugeriu a identificação: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> comentou: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mencionou-o: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Como limpou o cache da aplicação antes de carregar o ficheiro, eliminou uma foto. Precisa de adicionar novamente a foto à sua observação a partir da galeria. De futuro, por favor verifique que carregou todas as fotos antes de limpar a cache da aplicação.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -458,7 +458,7 @@
     <string name="view_suggestions">Ver Sugestões</string>
     <string name="species_search">Procurar Espécies</string>
     <string name="were_not_confident_enough">Não temos confiança suficiente para fazer uma recomendação, mas aqui estão as nossas melhores sugestões.</string>
-    <string name="were_not_confident_enough_no_suggestions">We\'re not confident enough to make a recommendation.</string>
+    <string name="were_not_confident_enough_no_suggestions">Não temos confiança suficiente para fazer uma recomendação.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Opções mais observadas que correspondem aos filtros:</string>
     <!-- Header for a list of suggested taxa -->
@@ -567,7 +567,7 @@
     <string name="start">Início</string>
     <string name="end">Fim</string>
     <string name="months">Meses</string>
-    <string name="choose_months">Choose month(s)</string>
+    <string name="choose_months">Escolher mês(es)</string>
     <string name="map_area">Área do Mapa</string>
     <string name="global">Mundial</string>
     <!-- As in redo search in the current map area -->
@@ -656,7 +656,7 @@ nossa comunidade de código aberto]]></string>
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">Vivo ou morto</string>
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
-    <string name="annotation_name_evidence_of_presence">Evidence of Presence</string>
+    <string name="annotation_name_evidence_of_presence">Evidência de Presença</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Floração</string>
     <!-- Adjective, having fruit -->
@@ -691,17 +691,17 @@ nossa comunidade de código aberto]]></string>
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Não pode ser determinado</string>
     <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
-    <string name="annotation_value_organism">Organism</string>
+    <string name="annotation_value_organism">Organismo</string>
     <!-- Evidence of Presence value when for bird feathers -->
-    <string name="annotation_value_feather">Feather</string>
+    <string name="annotation_value_feather">Pena</string>
     <!-- Evidence of Presence value when for fecal remains -->
     <string name="annotation_value_scat">Scat</string>
     <!-- Evidence of Presence value for impressions in the ground or snow -->
-    <string name="annotation_value_track">Track</string>
+    <string name="annotation_value_track">Pegada</string>
     <!-- Evidence of Presence value when for bones -->
-    <string name="annotation_value_bone">Bone</string>
+    <string name="annotation_value_bone">Osso</string>
     <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
-    <string name="annotation_value_molt">Molt</string>
+    <string name="annotation_value_molt">Muda</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">A QUE ADERIU</string>
     <string name="nearby_projects_all_caps">NAS PROXIMIDADES</string>
@@ -946,24 +946,24 @@ nossa comunidade de código aberto]]></string>
     <string name="rank_zoosubsection">Zoosubsecção</string>
     <string name="rank_superfamily">Superfamília</string>
     <string name="rank_epifamily">Epifamily</string>
-    <string name="rank_family">Family</string>
-    <string name="rank_subfamily">Subfamily</string>
+    <string name="rank_family">Família</string>
+    <string name="rank_subfamily">Subfamília</string>
     <string name="rank_supertribe">Supertribe</string>
     <string name="rank_tribe">Tribe</string>
     <string name="rank_subtribe">Subtribe</string>
-    <string name="rank_genus">Genus</string>
+    <string name="rank_genus">Género</string>
     <string name="rank_genushybrid">Genushybrid</string>
-    <string name="rank_subgenus">Subgenus</string>
+    <string name="rank_subgenus">Subgénero</string>
     <string name="rank_section">Section</string>
     <string name="rank_subsection">subsection</string>
     <string name="rank_complex">Complex</string>
     <!-- Singular -->
-    <string name="rank_species">Species</string>
-    <string name="rank_hybrid">Hybrid</string>
+    <string name="rank_species">Espécie</string>
+    <string name="rank_hybrid">Híbrido</string>
     <!-- Singular -->
-    <string name="rank_subspecies">Subspecies</string>
-    <string name="rank_variety">Variety</string>
-    <string name="rank_form">Form</string>
+    <string name="rank_subspecies">Subespécie</string>
+    <string name="rank_variety">Variedade</string>
+    <string name="rank_form">Forma</string>
     <string name="rank_infrahybrid">Infrahybrid</string>
     <string name="rank_leaves">Leaves</string>
     <string name="location_lat_lng">Location: %1$f, %2$f</string>
@@ -976,15 +976,15 @@ nossa comunidade de código aberto]]></string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
     <string name="deleted_user">Deleted User</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short_this_year">MMM d</string>
+    <string name="date_short_this_year">d MMM</string>
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short">MM/dd/yy</string>
+    <string name="date_short">dd/MM/yy</string>
     <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long">MMM d, yyyy</string>
+    <string name="date_long">d MMM yyyy</string>
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
     <string name="show_common_names">Show common names</string>

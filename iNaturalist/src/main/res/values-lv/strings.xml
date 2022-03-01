@@ -61,7 +61,7 @@
     <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
     <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d bija šeit</string>
     <string name="com_facebook_picker_done_button_text">Gatavs</string>
-    <string name="com_facebook_choose_friends">Izvēlēties draugus</string>
+    <string name="com_facebook_choose_friends">Atlasīt draugus</string>
     <string name="com_facebook_nearby">Tuvumā</string>
     <string name="com_facebook_loading">Ielādē...</string>
     <string name="com_facebook_internet_permission_error_title">AndroidManifest kļūda</string>
@@ -96,7 +96,7 @@
     <string name="failed_to_add_obs_to_project">Neizdevās pievienot novērojumu \'%1$s\' projektam \'%2$s\': %3$s</string>
     <string name="invalid_project_field">Lūdzu, ievadi laukam piemērotus datus \'%1s\'</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
-    <string name="select_projects">Izvēlēties no aktīvajiem projektiem</string>
+    <string name="select_projects">Atlasīt no aktīvajiem projektiem</string>
     <string name="not_connected">Šīs darbības veikšanai nepieciešams interneta pieslēgums.</string>
     <string name="search_projects">Meklēt projektus</string>
     <string name="search_guides">Meklēt padomus</string>
@@ -126,7 +126,7 @@
     <string name="locale_gl">Galisiešu valoda</string>
     <string name="locale_eu">Basku valoda</string>
     <string name="use_device_language_settings">Izmantot ierīces valodas iestatījumus</string>
-    <string name="choose_location">Izvēlēties atrašanās vietu</string>
+    <string name="choose_location">Norādīt atrašanās vietu</string>
     <string name="done">Gatavs</string>
     <string name="please_sign_in_via_settings">Pieslēdzies, lai apskatītu projektus, kuros esi iesaistījies.</string>
     <string name="contact_support">Sazināties ar atbalsta dienestu</string>
@@ -253,7 +253,7 @@ globālā iNaturalist tīkla.</string>
     <!-- Label for a button to open the camera to take a new photo for an observation -->
     <string name="camera">Uzņemt fotogrāfiju</string>
     <!-- Label for a button to import an existing photo for an observation -->
-    <string name="upload_photo">Izvēlēties fotogrāfiju</string>
+    <string name="upload_photo">Atlasīt fotogrāfiju</string>
     <string name="first">1.</string>
     <string name="make_first">Novietot sākumā</string>
     <string name="notes">Piezīmes</string>
@@ -444,7 +444,7 @@ globālā iNaturalist tīkla.</string>
     <string name="add_edit_remark">Pievienot/labot komentāru</string>
     <string name="restore">Atjaunot</string>
     <string name="compare">Salīdzināt</string>
-    <string name="select">Izvēlēties</string>
+    <string name="select">Atlasīt</string>
     <string name="source_wikipedia">(Avots: Vikipēdija)</string>
     <string name="conservation_source"><![CDATA[<b>Avots:</b> <i>%1$s</i>]]></string>
     <string name="conservation_status_least_concern">Zems risks</string>
@@ -788,7 +788,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="record_sound">Ierakstīt audio</string>
     <string name="couldnt_retrieve_sound">Neizdevās ierakstīt ar ierīces mikrofonu, labāk pamēģini augšupielādēt audiofailu!</string>
     <!-- Label for a button to import an existing sound for an observation -->
-    <string name="upload_sound">Izvēlēties audiofailu</string>
+    <string name="upload_sound">Atlasīt audiofailu</string>
     <string name="multi_select_sound_description">Paturi pirkstu uz audiofaila, lai augšupielādētu vairākus failus reizē.</string>
     <string name="alert_unsupported_audio_type">Lādējot audiofailu no šī avota, radās kļūda.</string>
     <string name="invalid_audio_extension">Kļūda audiofailu ielādē: augšupielādēt iespējams tikai failus WAV, MP3 un AMR formātā.</string>
@@ -860,7 +860,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="third_party_data_sharing_notes3"><![CDATA[<b>Trešo pušu pakalpojumi mums ir nepieciešami, lai</b> ar mūsu salīdzinoši mazo darbinieku skaitu nodrošinātu lietotnes darbības stabilitāti un lietojamību. Ar citām metodēm mobilo ierīču programmatūras nepilnības gandrīz nav iespējams pamanīt, jo šīs ierīces mēs nekontrolējam. Zināmos gadījumos šādas problēmas nav iespējams pamanīt kamēr neesam saņēmuši trešo pušu pakalpojumu datus par nepilnībām programmatūrā. <b> Daloties ar šo informāciju, lietotāji palīdz mums strādāt lietotāju un visas iNaturalist kopienas labā.</b>]]></string>
     <string name="third_party_data_sharing_notes4"><![CDATA[Jāņem vērā, ka šī funkcija ietver tikai šiem pakalpojumu sniedzējiem nosūtītos analīžu un avāriju datus. Visus iNaturalist serverus nodrošina un uztur Microsoft, visas iNaturalist fotogrāfijas uzglabā Amazon un gandrīz visas iNaturalist kartes nodrošina Google – lietotājam apskatot iNaturalist novērojumus, ierīce ik reizi pieslēgsies šo uzņēmumu pakalpojumiem un atklās viņiem vismaz lietotāja IP adresi un, iespējams, arī citus datus (iPhone ierīcēs tiek izmantotas Apple Maps kartes). Visticamāk, iNaturalist nepastāvētu bez šo uzņēmumu pakalpojumiem. Mēs cenšamies ierobežot šiem uzņēmumiem pieejamo iNat lietotāju datu dažādību un daudzumu, bet šo datu plūsmu pavisam nav iespējams apturēt.]]></string>
     <string name="common_names_place"><![CDATA[Tautā pieņemtais vietvārds: <b>%1$s</b>]]></string>
-    <string name="tap_to_prioritize_common_names">Izvēlēties tautā pieņemtos nosaukumus no kādas noteiktas vietas.</string>
+    <string name="tap_to_prioritize_common_names">Rādīt tautā pieņemtos nosaukumus no noteiktas vietas.</string>
     <string name="search_places">Meklēt vietas</string>
     <string name="restart_app">Restartēt lietotni</string>
     <string name="disable_third_party_sharing_restart">Lietotne jārestartē, lai nekavējoties atspējotu datu koplietošanu ar trešajām pusēm.</string>
@@ -875,7 +875,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="choosing_specific_language_warning">Lai izvēlētos konta valodu, nepieciešams interneta pieslēgums.</string>
     <string name="running_in_background_notfication">Darbojas fonā, lai funkcionētu bez pārtraukumiem.</string>
     <string name="opt_out_of_community_taxon">Atteikties no kopienas taksona</string>
-    <string name="opt_in_to_community_taxon">Izvēlēties kopienas taksonu</string>
+    <string name="opt_in_to_community_taxon">Atlasīt kopienas taksonu</string>
     <string name="opt_out_message">Atsakoties no kopienas noteiktā taksona, novērojumam tiks piešķirts tavas identifikācijas taksons, nevis tas, kas piešķirts balstoties uz visām novērojumam pievienotajām identifikācijām kopā.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
     <string name="permission_required">Nepieciešama atļauja</string>

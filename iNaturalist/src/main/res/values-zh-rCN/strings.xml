@@ -347,7 +347,7 @@
     <string name="there_was_a_problem_updating_profile">更新您的个人资料时发生问题！</string>
     <string name="there_was_a_problem_updating_profile_params">更新您的个人资料时发生问题：%1$s</string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
-    <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
+    <string name="currently_logged_in_as_html"><![CDATA[目前已经以 <b>%1$s</b> 身份登录。]]></string>
     <string name="log_out">登出</string>
     <string name="not_logged_in">未登入</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
@@ -416,7 +416,7 @@
     <string name="you_will_only_receive_updates_when_following">一旦您已上传观察记录就会收到更新的资讯。</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b>建议了物种辨认：%2$s<font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b>作出了回应：“%2$s”<font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> 提到了您： &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">看起来您在上传前清除了 App 的快取而删除了一张照片。您需要从您的照片库中重新加回此照片至您的观察记录。之后当您清理 App 快取时请确定您已经上传了所有照片。</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -454,7 +454,7 @@
     <string name="view_suggestions">查看建议</string>
     <string name="species_search">物种搜寻</string>
     <string name="were_not_confident_enough">我们信心不足以致于无法提出对此物种的建议，但这是我们10笔最佳建议。</string>
-    <string name="were_not_confident_enough_no_suggestions">We\'re not confident enough to make a recommendation.</string>
+    <string name="were_not_confident_enough_no_suggestions">我们无法提供合适的建议</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">符合筛选条件中最多观察的选项</string>
     <!-- Header for a list of suggested taxa -->
@@ -563,7 +563,7 @@
     <string name="start">开始</string>
     <string name="end">结尾</string>
     <string name="months">月份</string>
-    <string name="choose_months">Choose month(s)</string>
+    <string name="choose_months">选择月份</string>
     <string name="map_area">地图区域</string>
     <string name="global">全球的</string>
     <!-- As in redo search in the current map area -->
@@ -1064,7 +1064,7 @@
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
     <string name="previous_option">上一个选项</string>
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
-    <string name="next_option">Next Option</string>
+    <string name="next_option">下一个</string>
     <string name="no_observations_yet2">还没有观察记录</string>
     <string name="no_species_yet">还没有物种。</string>
     <string name="no_identifications_yet">还没有鉴定。</string>
@@ -1108,7 +1108,7 @@
     <string name="default_observation_license">默认观察授权</string>
     <string name="default_photo_license">默认照片协议</string>
     <string name="default_sound_license">默认声音协议</string>
-    <string name="change_existing_licenses">Change Existing Licenses</string>
+    <string name="change_existing_licenses">更改已存在的授权</string>
     <string name="change_licenses_for_existing_observations">更改现有观察、照片和声音的授权</string>
     <string name="change_licenses_for_all_existing_observations">更改所有现有观察的授权</string>
     <string name="change_licenses_for_all_existing_photos">更改所有现有照片的授权</string>
@@ -1204,10 +1204,10 @@
         <item quantity="other">删除 %1$d 个选定的观察</item>
     </plurals>
     <plurals name="sync_x_selected_observations">
-        <item quantity="other">Sync %1$d selected observations</item>
+        <item quantity="other">同步 %1$d 个选定的观察</item>
     </plurals>
     <string name="add_media_evidence">Add media evidence</string>
-    <string name="remove_identification">Remove identification</string>
-    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
+    <string name="remove_identification">删除身份证明</string>
+    <string name="issue_with_updating_photos">最近已修复更新该记录中的照片时出现的问题。 请退出登录并重新登录以解决这个问题。</string>
     <string name="app_version_copied_to_clipboard">已复制应用版本</string>
 </resources>

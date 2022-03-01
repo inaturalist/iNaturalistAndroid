@@ -569,13 +569,13 @@
     <!-- As in redo search in the current map area -->
     <string name="search_map_area">ค้นหาจากศูนย์กลางของแผนที่</string>
     <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
-    <string name="date_minute">%dเดือน</string>
+    <string name="date_minute">%d นาที</string>
     <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
-    <string name="date_hour">%dชม.</string>
+    <string name="date_hour">%d ชม.</string>
     <!-- Compact form of "X days ago", so "3 days ago" would be "3d" -->
-    <string name="date_day">%dวัน</string>
+    <string name="date_day">%d วัน</string>
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
-    <string name="date_week">%dสัปดาห์</string>
+    <string name="date_week">%d สัปดาห์</string>
     <string name="new_observation">การสังเกตใหม่</string>
     <string name="inactive_taxon">Taxon ที่ไม่มีความเคลื่อนไหว</string>
     <string name="no_identifications_found">ติดตามการจำแนกที่คุณแนะนำให้กับการสังเกตของผู้อื่นที่นี่</string>
