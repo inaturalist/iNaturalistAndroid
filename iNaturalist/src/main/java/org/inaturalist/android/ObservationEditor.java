@@ -3443,6 +3443,7 @@ public class ObservationEditor extends Fragment {
                 }
 
                 final boolean finalErrorImporting = errorImporting;
+                if (getActivity() == null) return;
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
