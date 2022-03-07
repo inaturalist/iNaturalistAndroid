@@ -695,7 +695,7 @@
     <!-- Evidence of Presence value when for fecal remains -->
     <string name="annotation_value_scat">Excrementos</string>
     <!-- Evidence of Presence value for impressions in the ground or snow -->
-    <string name="annotation_value_track">Rastrear</string>
+    <string name="annotation_value_track">Rastro</string>
     <!-- Evidence of Presence value when for bones -->
     <string name="annotation_value_bone">Osso</string>
     <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->

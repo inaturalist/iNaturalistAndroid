@@ -322,7 +322,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="finding_current_location">Buscando localización actual...</string>
     <string name="flag_as_captive">Marca como en cautiverio/cultivado</string>
     <string name="observation_flagged_as_captive">Observación marcada como cautiverio/cultivada</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">¿Estás seguro de que quieres marcar esta observación como cautiva/cultivada?</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">¿Estás seguro de que quieres marcar esta observación como En Cautiverio/Cultivada?</string>
     <string name="do_you_agree_to_the_following">¿Estás de acuerdo con lo siguiente?</string>
     <string name="terms">Condiciones</string>
     <string name="observation_rules">Reglas de observación</string>
