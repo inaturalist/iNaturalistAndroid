@@ -331,6 +331,8 @@ def validate_android_translations(options={}):
             print(f"rm {path}")
 
 
+
+
 def find_unused_keys(options={}):
     en_tree = ET.parse("iNaturalist/src/main/res/values/strings.xml")
     keys = set()
@@ -347,11 +349,18 @@ def find_unused_keys(options={}):
             print("Checking {}".format(key))
         else:
             print("\rChecking {0:{1}}".format(key, 100), end="\r", flush=True)
+        patterns = "|".join((
+            f"R\.(string|array|plurals)\.{key}($|[^A-z0-9_])",
+            f"@(string|array|plurals)[\.\/]{key}($|[^A-z0-9_])",
+            f"setStringResourceForView.*\"{key}\"",
+            f"getStringResourceByName.*\"{key}\"",
+            f"createTabContent.*\"{key}\""
+        ))
         result = run(
             [
                 "egrep",
                 "-r",
-                "(R\.(string|array|plurals)\.|@(string|array|plurals)\/){}".format(key),
+                f"({patterns})",
                 "./iNaturalist/src/main/"
             ],
             stdout=PIPE
