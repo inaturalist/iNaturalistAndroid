@@ -4994,7 +4994,7 @@ public class INaturalistService extends IntentService {
         double lat = location.getLatitude();
         double lon = location.getLongitude();
 
-        String url = API_HOST + String.format(Locale.ENGLISH, "/projects?lat=%s&lng=%s&order_by=distance", lat, lon);
+        String url = API_HOST + String.format(Locale.ENGLISH, "/projects?per_page=100&spam=false&lat=%s&lng=%s&order_by=distance", lat, lon);
 
         Logger.tag(TAG).error(url);
 
