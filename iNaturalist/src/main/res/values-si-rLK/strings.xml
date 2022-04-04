@@ -130,7 +130,6 @@
     <string name="done">සිදු කළා</string>
     <string name="please_sign_in_via_settings">ඔබ සම්බන්ධ වූ ව්‍යාපෘති බැලීමට ඔබ ඇතුල් වී සිටිය යුතුය.</string>
     <string name="contact_support">උදවු සදහා සම්බන්ධ වෙන්න</string>
-    <string name="credits">California Academy of Sciences හි සහාය ඇතිව iNaturalist.org විසින් නිර්මාණය කර ගොඩනඟන ලදි</string>
     <string name="leave_project">ව්‍යාපෘතියෙන් ඉවත් වන්න</string>
     <string name="leave_project_confirmation">ඔබට මෙම ව්‍යාපෘතියෙන් ඉවත් වීමට අවශ්‍ය බව ඔබට විශ්වාසද?</string>
     <string name="discard_location_changes">සුරකින නොලද වෙනස්කම් ඉවත දැමීමට ඔබට අවශ්‍ය යැයි ඔබට විශ්වාසද?</string>
@@ -175,7 +174,6 @@
     <string name="search">සොයන්න</string>
     <string name="details">සවිස්තර</string>
     <string name="observation_photos">නිරීක්ෂණ ඡායාරූප</string>
-    <string name="remove">ඉවත් කරන්නද?</string>
     <string name="no_observations_found">නිරීක්ෂණ කිසිවක් හමු නොවීය</string>
     <string name="license_none">කිසිවක් නැත, සියලුම හිමිකම් ඇවිරිණි</string>
     <string name="sources_and_attribution">ප්‍රභවයන් සහ ආරෝපණය</string>
@@ -209,7 +207,6 @@
     <string name="guide_editor_must_enable_this_feature">මාර්ගෝපදේශයේ සංස්කාරක මෙම අංගය සක්‍රීය කළ යුතුය.</string>
     <string name="are_you_sure">ඔබට විශ්වාසද?</string>
     <string name="download_guide_alert">මෙය %1$s ක දත්ත බාගත කරනු ඇත, එවිට ඔබට අන්තර්ජාල ප්‍රවේශය නොමැති විටදී පවා මෙම මාර්ගෝපදේශය භාවිතා කළ හැකිය.</string>
-    <string name="download">බාගත කරන්න</string>
     <string name="failed_to_download_guide">මාර්ගෝපදේශය බාගත කිරීමට අපොහොසත් විය</string>
     <string name="internet_connection_seems_to_be_offline">අන්තර්ජාල සම්බන්ධතාවය මාර්ගගත නොමැති බව පෙනේ.</string>
     <string name="downloading">බාගත කරමින්...</string>
@@ -255,7 +252,6 @@
     <string name="first">ප්‍රථම</string>
     <string name="make_first">ප්‍රථමය කරන්න</string>
     <string name="notes">සටහන්</string>
-    <string name="location_is">ස්ථානය</string>
     <string name="is_captive">එය අල්ලාගත් හෝ වගා කළ වේ</string>
     <string name="location_visibility">ස්ථාන දෘශ්‍යතාවය</string>
     <string name="set_location">ස්ථානය</string>
@@ -297,7 +293,6 @@
     <string name="delete_comment">අදහස් දැක්වීම මකන්න</string>
     <string name="delete_id_message">ඔබට මෙම හඳුනාගැනීම ඉල්ලා අස්කර ගැනීමට අවශ්‍ය බව ඔබට විශ්වාසද?</string>
     <string name="delete_comment_message">ඔබට මෙම අදහස් දැක්වීම මකා දැමීමට අවශ්‍ය බව ඔබට විශ්වාසද?</string>
-    <string name="comment">අදහස් දක්වන්න</string>
     <string name="suggest_id">හඳුනාගැනීම යෝජනා කරන්න</string>
     <string name="update_comment">අදහස් දැක්වීම යාවත්කාලීන කරන්න</string>
     <string name="fave_this_observation">මෙම නිරීක්ෂණය ප්‍රියතමයක් කරන්න</string>
@@ -724,7 +719,6 @@
     <string name="news_all_caps">පුවත්</string>
     <string name="got_it_all_caps">තේරුම් ගත්තා!</string>
     <string name="view_all_all_caps">සියල්ල බලන්න</string>
-    <string name="new_all_caps">නව</string>
     <string name="observers_all_caps">නිරීක්ෂකයෝ</string>
     <string name="observations_regular">නිරීක්ෂණ</string>
     <string name="data_quality_assessment">දත්තවල ගුණාත්මකභාවයේ තක්සේරුව</string>

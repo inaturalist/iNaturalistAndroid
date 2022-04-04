@@ -130,7 +130,6 @@
     <string name="done">Hotovo</string>
     <string name="please_sign_in_via_settings">Pre zobrazenie projektov, do ktorých prispievate musíte byť prihlásený.</string>
     <string name="contact_support">Kontaktovať podporu</string>
-    <string name="credits">Navrhol a vyrobil iNaturalist.org s podporou California Academy of Sciences</string>
     <string name="leave_project">Opustiť projekt</string>
     <string name="leave_project_confirmation">Naozaj chcete opustiť tento projekt?</string>
     <string name="discard_location_changes">Naozaj chcete prísť o neuložené zmeny?</string>
@@ -177,7 +176,6 @@
     <string name="search">Vyhľadávanie</string>
     <string name="details">Podrobnosti</string>
     <string name="observation_photos">Fotografie pozorovania</string>
-    <string name="remove">Odstrániť?</string>
     <string name="no_observations_found">Žiadne pozorovania nenájdené</string>
     <string name="license_none">Žiadne, všetky práva vyhradené</string>
     <string name="sources_and_attribution">Zdroje a autori</string>
@@ -203,7 +201,7 @@
     <string name="alert_message_use_inaturalistcr">iNaturalist Costa Rica je členom siete iNaturalist v Kostarike. Miestne inštitúcie podporujúce iNaturalist Costa Rica získajú prístup k Vašej emailovej adrese a ku skutočným súradniciam pozorovaní, ktoré sú súkromné alebo skryté pre verejnosť. Prosím, nemeňte Vaše pridruženie, ak máte viac ako 1000 pozorovaní. Chceli by ste zmeniť Vaše pridruženie?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala je členom siete iNaturalist v Guatemale. Miestne inštitúcie podporujúce iNaturalist Guatemala získajú prístup k Vašej emailovej adrese a ku skutočným súradniciam pozorovaní, ktoré sú súkromné alebo skryté pre verejnosť. Prosím, nemeňte Vaše pridruženie, ak máte viac ako 1000 pozorovaní. Chceli by ste zmeniť Vaše pridruženie?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden je členom siete iNaturalist vo Švédsku. Miestne inštitúcie podporujúce iNaturalist Sweden získajú prístup k Vašej emailovej adrese a ku skutočným súradniciam pozorovaní, ktoré sú súkromné alebo skryté pre verejnosť. Prosím, nemeňte Vaše pridruženie, ak máte viac ako 1000 pozorovaní. Chceli by ste zmeniť Vaše pridruženie?</string>
-    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay je členom siete iNaturalist v Uruguaji. Miestne inštitúcie podporujúce Naturalistu Uruguay získajú prístup k Vašej emailovej adrese a ku skutočným súradniciam pozorovaní, ktoré sú súkromné alebo skryté pre verejnosť. Prosím, nemeňte Vaše pridruženie, ak máte viac ako 1000 pozorovaní. Prajete si zmeniť Vaše pridruženie?</string>
     <string name="editor">Editor</string>
     <string name="license">Licencia</string>
     <string name="download_for_offline_use">Na stiahnutie pre použitie v režime offline</string>
@@ -211,7 +209,6 @@
     <string name="guide_editor_must_enable_this_feature">Editor sprievodcov musí umožniť túto funkciu.</string>
     <string name="are_you_sure">Ste si istý?</string>
     <string name="download_guide_alert">Teraz sa bude sťahovať %1$s dát aby ste mohli používať tohto sprievodcu, keď nebudete pripojený na internet.</string>
-    <string name="download">Stiahnuť</string>
     <string name="failed_to_download_guide">Nepodarilo sa prevziať sprievodcu</string>
     <string name="internet_connection_seems_to_be_offline">Internetové pripojenie sa zdá byť offline.</string>
     <string name="downloading">Sťahuje sa...</string>
@@ -257,7 +254,6 @@
     <string name="first">1.</string>
     <string name="make_first">Urobte 1.</string>
     <string name="notes">Poznámky</string>
-    <string name="location_is">Poloha je</string>
     <string name="is_captive">Je chovaný v zajatí alebo je v kultivácii</string>
     <string name="location_visibility">Viditeľnosť polohy</string>
     <string name="set_location">Poloha</string>
@@ -301,7 +297,6 @@
     <string name="delete_comment">Vymazať komentár</string>
     <string name="delete_id_message">Naozaj chcete odstrániť túto identifikáciu?</string>
     <string name="delete_comment_message">Naozaj chcete vymazať tento komentár?</string>
-    <string name="comment">Komentár</string>
     <string name="suggest_id">Navrhnúť identifikáciu</string>
     <string name="update_comment">Aktualizovať komentár</string>
     <string name="fave_this_observation">Favorizovať toto pozorovanie</string>
@@ -325,7 +320,7 @@
     <string name="finding_current_location">Zistenie polohy...</string>
     <string name="flag_as_captive">Označiť ako v zajatí/v kultivácii</string>
     <string name="observation_flagged_as_captive">Pozorovanie bolo označené ako v zajatí/v kultivácii</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Ste si istý, že chcete označiť pozorovaný objekt ako pestovaný alebo chovaný v zajatí?</string>
     <string name="do_you_agree_to_the_following">Súhlasíte s nasledovným?</string>
     <string name="terms">Podmienky použitia</string>
     <string name="observation_rules">Pravidlá pozorovaní</string>
@@ -422,7 +417,7 @@
     <string name="you_will_only_receive_updates_when_following">(Budete získavať aktualizácie až potom ako budete sledovať pozorovania)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> navrhol ID:%2$s<font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> komentoval: &ldquo;%2$s&rdquo;<font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> Vás spomenul: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Zdá sa, že ste odstránili fotografiu vymazaním vyrovnávacej pamäte aplikácií pred jej nahranim.  Budete musieť pridať fotografiu späť do svojho pozorovania z vašej galérie. Nabudúce sa uistite, že ste nahrali všetky fotografie pred vymazaním vyrovnávacej pamäte aplikácie.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -575,7 +570,7 @@
     <string name="start">Začiatok</string>
     <string name="end">Koniec</string>
     <string name="months">Mesiace</string>
-    <string name="choose_months">Choose month(s)</string>
+    <string name="choose_months">Vyber mesiac(e)</string>
     <string name="map_area">Oblasť mapy</string>
     <string name="global">Globálne</string>
     <!-- As in redo search in the current map area -->
@@ -624,7 +619,7 @@ www.protectedplanet.net</a>]]></string>
     <string name="password_changed">Heslo, ktoré aplikácia používa, už nefunguje - zmenili ste heslo na webových stránkach? Zadajte prosím nové</string>
     <string name="just_so_you_know">Len aby ste vedeli...</string>
     <string name="ask_for_g_plus_permissions">Google od nás požaduje, aby sme si od vás vyžiadali prístup k vašim kontaktom, aby sme mohli používať váš účet Google, aj keď zo žiadneho dôvodu nemáme prístup k vašim kontaktom. Ak zamietnete toto povolenie, budete sa musieť zaregistrovať alebo prihlásiť pomocou vášho používateľského mena a hesla.</string>
-    <string name="new_to_inat_sign_up_now"><![CDATA[Ste noví v %1$s? <b>Zaregistrujte sa teraz!</b>]]></string>
+    <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
     <string name="see_more_observations">Pozri viac pozorovaní</string>
     <string name="see_more_species">Pozri viac druhov</string>
     <string name="see_more_identifications">Pozrite sa na viac identifikácií</string>
@@ -735,7 +730,6 @@ www.protectedplanet.net</a>]]></string>
     <string name="news_all_caps">NOVINKY</string>
     <string name="got_it_all_caps">CHÁPEM!</string>
     <string name="view_all_all_caps">ZOBRAZIŤ VŠETKO</string>
-    <string name="new_all_caps">NOVÉ</string>
     <string name="observers_all_caps">POZOROVATELIA</string>
     <string name="observations_regular">Pozorovania</string>
     <string name="data_quality_assessment">Posúdenie kvality dát</string>
@@ -776,7 +770,7 @@ www.protectedplanet.net</a>]]></string>
     <string name="network_credit_inaturalistcr"><![CDATA[Kostarika: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) podporujúca Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) podporujúci iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Švédsko: SLU Swedish Species Information Centre podporujúce iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
-    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguaj: JULANA a Biodiversidata podporujúce Naturalistu Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">Označiť všetko ako videné</string>
     <string name="content_hidden">Obsah skrytý</string>
     <string name="show_hidden_content">Zobraziť skrytý obsah</string>
@@ -847,7 +841,7 @@ www.protectedplanet.net</a>]]></string>
     <string name="seconds_value">sekúnd</string>
     <string name="shop_the_inat_store">Nakupujte v iNat Store</string>
     <string name="delete_your_account">Odstrániť účet</string>
-    <string name="delete_account_message"><![CDATA[Odstránením účtu odstránite: <br/><br/><ul><li> Všetky pozorovania vrátane práce všetkých ľudí, ktorí vám pomohli s identifikáciou.</li><li> Všetky identifikácie, ktoré ste pridali do pozorovaní iných ľudí a ktoré môžu prípadne ovplyvniť kvalitu údajov týchto pozorovaní.</li><li> Všetky komentáre, ktoré ste pridali.</li></ul><br/>Táto akcia sa už nedá vrátiť späť. Aj keď neskôr zmeníte názor, nebudete už môcť získať nič z tohto obsahu.<br/><br/>Ak táto služba generuje príliš veľa oznámení, skúste <a href="https://www.inaturalist.org/users/edit">upraviť nastavenia na webových stránkach</a>, aby ste prestali dostávať určité oznámenia alebo emaily. Ak máte problém s konkrétnou osobou, môžete ju namiesto odstraňovania svojho účtu <a href="https://www.inaturalist.org/users/edit">zablokovať</a>.<br/><br/>Ak stále trváte na tom, že chcete odstrániť svoj účet, zadajte <b>\"%1$s\"</b> vo formulári nižšie a kliknite na tlačidlo pre zmazanie vášho účtu a všetkých vašich údajov.]]></string>
+    <string name="delete_account_message"><![CDATA[Odstránením účtu sa vymažú: <br/><br/><ul><li> Všetky pozorovania vrátane práce všetkých ľudí, ktorí Vám pomohli s identifikáciou.</li><li> Všetky identifikácie, ktoré ste pridali do pozorovaní iných ľudí a ktoré môžu ovplyvniť kvalitu údajov týchto pozorovaní.</li><li> Všetky komentáre, ktoré ste pridali.</li></ul><br/>Naviac, táto akcia sa nedá zvrátiť. Aj keby ste neskôr zmenili názor, nič z Vášho obsahu sa už nebude dať získať.<br/><br/>Ak táto služba produkuje príliš veľa oznámení, skúste <a href="https://www.inaturalist.org/users/edit">upraviť nastavenia na webových stránkach</a>, aby ste prestali dostávať určité oznámenia alebo emaily. Ak máte problém s konkrétnou osobou, môžete ju namiesto odstraňovania svojho účtu <a href="https://www.inaturalist.org/users/edit">stlmiť</a>.<br/><br/>Ak stále trváte na tom, že chcete odstrániť svoj účet, zadajte <b>\"%1$s\"</b> vo formulári nižšie a kliknite na tlačidlo pre zmazanie Vášho účtu a všetkých Vašich údajov.]]></string>
     <string name="your_account_has_been_deleted">Váš účet bol odstránený</string>
     <string name="you_must_enter_username_in_the_form_to_delete_account">Pre odstránenie účtu musíte zadať „%1$s“ do formulára</string>
     <!-- Second person hint text asking the user to enter their username -->
@@ -921,13 +915,13 @@ www.protectedplanet.net</a>]]></string>
     <string name="you_will_no_longer_receive_messages">Od tohto používateľa už nebudete dostávať žiadne oznámenia o aktivite vrátane správ, komentárov, identifikácií a zmienok.</string>
     <string name="mute">Stlmiť</string>
     <string name="muting_user">Stišujem používateľa...</string>
-    <string name="unmuting_user">Ruším zablokovanie používateľa...</string>
-    <string name="failed_muting_user">Používateľa sa nepodarilo zablokovať!</string>
-    <string name="failed_unmuting_user">Nepodarilo sa zrušiť zablokovanie používateľa!</string>
+    <string name="unmuting_user">Stlmenie používateľa sa ruší...</string>
+    <string name="failed_muting_user">Používateľa sa nepodarilo stlmiť!</string>
+    <string name="failed_unmuting_user">Nepodarilo sa zrušiť stlmenie používateľa!</string>
     <string name="flag_conversation">Nahlásiť konverzáciu</string>
     <string name="spam">Spam</string>
     <string name="commercial_solicitation">Komerčná žiadosť, neplatné odkazy atď.</string>
-    <string name="offensive_inappropriate">Útočné/nevhodné</string>
+    <string name="offensive_inappropriate">Urážlivé/nevhodné</string>
     <string name="misleading_or_illegal_content">Zavádzajúci alebo nelegálny obsah, rasové alebo etnické napádanie atď. Podrobnosti k našej definícii toho, čo je \"vhodné\", nájdete vo FAQ.</string>
     <string name="other">Iné</string>
     <string name="some_other_reason">Iný dôvod, ktorý môžete vysvetliť.</string>

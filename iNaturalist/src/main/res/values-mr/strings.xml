@@ -130,7 +130,6 @@
     <string name="done">पूर्ण झाले </string>
     <string name="please_sign_in_via_settings">तुम्ही असलेला प्रकल्प पाहण्यासाठी लॉग इन करणे आवश्यक </string>
     <string name="contact_support">मदतीसाठी संपर्क</string>
-    <string name="credits">निर्मिती iNaturalist.org सहाय्य California Academy of Sciences</string>
     <string name="leave_project">प्रकल्प सोडा </string>
     <string name="leave_project_confirmation">तुम्हाला नक्की प्रकल्प सोडायचा आहे ?</string>
     <string name="discard_location_changes">बदल नोंद करायचे नाहीत याबद्दल तुम्ही ठाम आहात ?</string>
@@ -175,7 +174,6 @@
     <string name="search"> शोधा</string>
     <string name="details">तपशील</string>
     <string name="observation_photos">निरीक्षण फोटो</string>
-    <string name="remove">काढून टाका</string>
     <string name="no_observations_found">निरीक्षण सापडत नाही</string>
     <string name="license_none">सर्व हक्क राखीव</string>
     <string name="sources_and_attribution">स्रोत आणि विशेषता</string>
@@ -209,7 +207,6 @@
     <string name="guide_editor_must_enable_this_feature">Guide editor must enable this feature.</string>
     <string name="are_you_sure">नक्की ?</string>
     <string name="download_guide_alert">This will download %1$s of data so you can use this guide even when you don\'t have Internet access.</string>
-    <string name="download">Download</string>
     <string name="failed_to_download_guide">Failed to download guide</string>
     <string name="internet_connection_seems_to_be_offline">The Internet connection appears to be offline.</string>
     <string name="downloading">Downloading...</string>
@@ -255,7 +252,6 @@
     <string name="first">पहिला</string>
     <string name="make_first">पहिला करा</string>
     <string name="notes">टिपणे</string>
-    <string name="location_is">स्थान</string>
     <string name="is_captive">पाळीव अथवा लागवडीतील </string>
     <string name="location_visibility">स्थान दृश्यता </string>
     <string name="set_location">स्थान</string>
@@ -297,7 +293,6 @@
     <string name="delete_comment">टिप्पणी हटवा</string>
     <string name="delete_id_message">आपण खरंच ही ओळख मागे घेऊ इच्छिता?</string>
     <string name="delete_comment_message">आपण खरंच ही टिप्पणी हटवू इच्छिता?</string>
-    <string name="comment">प्रतिक्रिया </string>
     <string name="suggest_id">ओळख सुचवा</string>
     <string name="update_comment">टिप्पणी बदल</string>
     <string name="fave_this_observation">Fave This Observation</string>
@@ -724,7 +719,6 @@
     <string name="news_all_caps">NEWS</string>
     <string name="got_it_all_caps">GOT IT!</string>
     <string name="view_all_all_caps">VIEW ALL</string>
-    <string name="new_all_caps">NEW</string>
     <string name="observers_all_caps">OBSERVERS</string>
     <string name="observations_regular">Observations</string>
     <string name="data_quality_assessment">Data Quality Assessment</string>

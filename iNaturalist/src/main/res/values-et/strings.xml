@@ -130,7 +130,6 @@
     <string name="done">Valmis</string>
     <string name="please_sign_in_via_settings">Liitutud projektide vaatamiseks pead olema sisse loginud.</string>
     <string name="contact_support">Kontakteeru klienditoega</string>
-    <string name="credits">California Teaduste Akadeemia abiga disaininud ja ehitanud iNaturalist.org</string>
     <string name="leave_project">Lahku projektist</string>
     <string name="leave_project_confirmation">Oled kindel, et soovid sellest projektist lahkuda?</string>
     <string name="discard_location_changes">Oled sa kindel, et soovid salvestamata muudatused maha kanda?</string>
@@ -175,7 +174,6 @@
     <string name="search">Otsi</string>
     <string name="details">Üksikasjad</string>
     <string name="observation_photos">Vaatluse fotod</string>
-    <string name="remove">Eemalda?</string>
     <string name="no_observations_found">Vaatluseid ei leitud</string>
     <string name="license_none">Puudub, kõik õigused kaitstud</string>
     <string name="sources_and_attribution">Allikad ja viited</string>
@@ -209,7 +207,6 @@
     <string name="guide_editor_must_enable_this_feature">Juhendi toimetaja peab selle võimaluse lubama.</string>
     <string name="are_you_sure">Oled kindel?</string>
     <string name="download_guide_alert">Sellega laetakse alla %1$s kogus andmeid, et saaksid juhendit kasutada ka ilma interneti ühenduseta.</string>
-    <string name="download">Lae alla</string>
     <string name="failed_to_download_guide">Juhendi allalaadimine ebaõnnestus</string>
     <string name="internet_connection_seems_to_be_offline">Näib, et internetiühendus puudub.</string>
     <string name="downloading">Laen alla...</string>
@@ -255,7 +252,6 @@
     <string name="first">Esimene</string>
     <string name="make_first">Make 1st</string>
     <string name="notes">Märkmed</string>
-    <string name="location_is">Location is</string>
     <string name="is_captive">It is captive or cultivated</string>
     <string name="location_visibility">Location Visibility</string>
     <string name="set_location">Asukoht</string>
@@ -297,7 +293,6 @@
     <string name="delete_comment">Kustuta kommentaar</string>
     <string name="delete_id_message">Oled sa kindel, et soovid määratlust tagasi võtta?</string>
     <string name="delete_comment_message">Oled sa kindel, et soovid seda kommentaari kustutada?</string>
-    <string name="comment">Kommentaar</string>
     <string name="suggest_id">Soovita määratlust</string>
     <string name="update_comment">Uuenda kommentaari</string>
     <string name="fave_this_observation">Määra vaatlus lemmikuks</string>
@@ -724,7 +719,6 @@
     <string name="news_all_caps">NEWS</string>
     <string name="got_it_all_caps">GOT IT!</string>
     <string name="view_all_all_caps">VIEW ALL</string>
-    <string name="new_all_caps">NEW</string>
     <string name="observers_all_caps">OBSERVERS</string>
     <string name="observations_regular">Observations</string>
     <string name="data_quality_assessment">Data Quality Assessment</string>

@@ -130,7 +130,6 @@
     <string name="done">Ferdig</string>
     <string name="please_sign_in_via_settings">Du må være logget inn for å se prosjektene du er med i.</string>
     <string name="contact_support">Kontakt støtte</string>
-    <string name="credits">Designet og bygget av iNaturalist.org med støtte fra California Academy of Sciences</string>
     <string name="leave_project">Dra fra prosjekt</string>
     <string name="leave_project_confirmation">Er du sikker på at du vil forlate dette prosjektet?</string>
     <string name="discard_location_changes">Er du sikker på at du vil kaste ulagrede forandringer?</string>
@@ -175,7 +174,6 @@
     <string name="search">Søk</string>
     <string name="details">Detaljer</string>
     <string name="observation_photos">Observasjonsfotografier</string>
-    <string name="remove">Fjern?</string>
     <string name="no_observations_found">Ingen observasjoner funnet</string>
     <string name="license_none">Ingen, alle rettigheter bevart</string>
     <string name="sources_and_attribution">Kilder og henvisninger</string>
@@ -209,7 +207,6 @@
     <string name="guide_editor_must_enable_this_feature">Gaidredaktør må aktivere denne funksjonen.</string>
     <string name="are_you_sure">Er du sikker?</string>
     <string name="download_guide_alert">Dette vil laste ned %1$s data slik at du kan bruke denne gaiden selv når du ikke har internettilgang.</string>
-    <string name="download">Last ned</string>
     <string name="failed_to_download_guide">Kunne ikke laste ned gaid</string>
     <string name="internet_connection_seems_to_be_offline">Internettilkoblingen er tilsynelatende av nett.</string>
     <string name="downloading">Laster ned...</string>
@@ -255,7 +252,6 @@
     <string name="first">1.</string>
     <string name="make_first">Skap den første</string>
     <string name="notes">Notater</string>
-    <string name="location_is">Posisjon er</string>
     <string name="is_captive">Den er i fangenskap eller kultivert</string>
     <string name="location_visibility">Posisjonssynlighet</string>
     <string name="set_location">Posisjon</string>
@@ -297,7 +293,6 @@
     <string name="delete_comment">Slett kommentar</string>
     <string name="delete_id_message">Er du sikker på at du vil ta tilbake denne identifikasjonen?</string>
     <string name="delete_comment_message">Er du sikker på at du vil slette denne kommentaren?</string>
-    <string name="comment">Kommentar</string>
     <string name="suggest_id">Foreslå ID</string>
     <string name="update_comment">Oppdatér kommentar</string>
     <string name="fave_this_observation">Gjør denne observasjonen til favoritt</string>
@@ -724,7 +719,6 @@
     <string name="news_all_caps">NYHETER</string>
     <string name="got_it_all_caps">FORSTÅR!</string>
     <string name="view_all_all_caps">VIS ALLE</string>
-    <string name="new_all_caps">NY</string>
     <string name="observers_all_caps">OBSERVATØRER</string>
     <string name="observations_regular">Observasjoner</string>
     <string name="data_quality_assessment">Datakvalitetsvurdering</string>

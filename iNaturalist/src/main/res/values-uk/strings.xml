@@ -130,7 +130,6 @@
     <string name="done">Готово</string>
     <string name="please_sign_in_via_settings">Для перегляду проектів, до яких ви приєдналися ви повинні ввійти.</string>
     <string name="contact_support">Звернутися до служби підтримки</string>
-    <string name="credits">Спроектовано та зроблено сайтом iNuturalist за підтримки Каліфорнійської академії наук</string>
     <string name="leave_project">Покинути проект</string>
     <string name="leave_project_confirmation">Ви впевнені, що ви хочете покинути цей проект?</string>
     <string name="discard_location_changes">Ви справді хочете відхилити незбережені зміни?</string>
@@ -177,7 +176,6 @@
     <string name="search">Пошук</string>
     <string name="details">Деталі</string>
     <string name="observation_photos">Фото спостереження</string>
-    <string name="remove">Видалити?</string>
     <string name="no_observations_found">Спостережень не знайдено</string>
     <string name="license_none">Немає, усі права захищені</string>
     <string name="sources_and_attribution">Джерела та атрибуції</string>
@@ -223,7 +221,6 @@
     <string name="guide_editor_must_enable_this_feature">Редактор посібника повинен увімкнути цю функцію.</string>
     <string name="are_you_sure">Ви впевнені?</string>
     <string name="download_guide_alert">Це призведе до завантаження %1$s даних, тому ви зможете користуватися цим посібником навіть коли не маєте доступу до інтернету.</string>
-    <string name="download">Завантажити</string>
     <string name="failed_to_download_guide">Не вдалося завантажити посібник</string>
     <string name="internet_connection_seems_to_be_offline">Немає з\'єднання з мережею інтернет.</string>
     <string name="downloading">Завантаження...</string>
@@ -269,7 +266,6 @@
     <string name="first">Перше</string>
     <string name="make_first">Зробити першим</string>
     <string name="notes">Нотатки</string>
-    <string name="location_is">Видимість</string>
     <string name="is_captive">Це утримується в неволі або культивується</string>
     <string name="location_visibility">Видимість місцерозташування</string>
     <string name="set_location">Місцезнаходження</string>
@@ -313,7 +309,6 @@
     <string name="delete_comment">Видалити коментар</string>
     <string name="delete_id_message">Ви впевнені, що бажаєте скасувати цю ідентифікацію?</string>
     <string name="delete_comment_message">Ви впевнені, що хочете видалити цей коментар?</string>
-    <string name="comment">Коментар</string>
     <string name="suggest_id">Запропонувати ID</string>
     <string name="update_comment">Оновити коментар</string>
     <string name="fave_this_observation">Додати цей огляд в Улюблене</string>
@@ -746,7 +741,6 @@
     <string name="news_all_caps">НОВИНИ</string>
     <string name="got_it_all_caps">ЗРОЗУМІЛО!</string>
     <string name="view_all_all_caps">ПЕРЕГЛЯНУТИ УСІ</string>
-    <string name="new_all_caps">НОВИЙ</string>
     <string name="observers_all_caps">СПОСТЕРІГАЧІ</string>
     <string name="observations_regular">Спостереження</string>
     <string name="data_quality_assessment">Оцінка якості даних</string>

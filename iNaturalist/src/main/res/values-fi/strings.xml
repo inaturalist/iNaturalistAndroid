@@ -130,7 +130,6 @@
     <string name="done">Valmis</string>
     <string name="please_sign_in_via_settings">Sinun pitää kirjautua sisään nähdäksesi projektit, joihin olet liittynyt.</string>
     <string name="contact_support">Ota yhteyttä tukeen</string>
-    <string name="credits">Suunnitellut ja rakentanut iNaturalist.org California Academy of Science:n tuella</string>
     <string name="leave_project">Poistu projektista</string>
     <string name="leave_project_confirmation">Haluatko varmasti lähteä tästä projektista?</string>
     <string name="discard_location_changes">Haluatko varmasti hylätä tallentamattomat muutokset?</string>
@@ -175,7 +174,6 @@
     <string name="search">Hae</string>
     <string name="details">Tiedot</string>
     <string name="observation_photos">Havaintokuvat</string>
-    <string name="remove">Poista?</string>
     <string name="no_observations_found">Havaintoja ei löytynyt</string>
     <string name="license_none">Ei mitään, kaikki oikeudet pidätetään</string>
     <string name="sources_and_attribution">Lähteet ja nimeäminen</string>
@@ -209,7 +207,6 @@
     <string name="guide_editor_must_enable_this_feature">Oppaan muokkaajan on asetettava tämä ominaisuus päälle.</string>
     <string name="are_you_sure">Oletko varma?</string>
     <string name="download_guide_alert">Tämä lataa %1$s tietoja, joten voit käyttää tätä opasta jopa silloin kun sinulla ei ole Internet-yhteyttä.</string>
-    <string name="download">Lataa</string>
     <string name="failed_to_download_guide">Oppaan lataaminen epäonnistui</string>
     <string name="internet_connection_seems_to_be_offline">Internet-yhteys ei näytä toimivan (on offline-tilassa).</string>
     <string name="downloading">Ladataan...</string>
@@ -255,7 +252,6 @@
     <string name="first">1.</string>
     <string name="make_first">Tee tästä ensisijainen</string>
     <string name="notes">Merkinnät</string>
-    <string name="location_is">Sijainti on</string>
     <string name="is_captive">Onko se vangittu tai viljelty</string>
     <string name="location_visibility">Sijainnin näkyvyys</string>
     <string name="set_location">Sijainti</string>
@@ -302,7 +298,6 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="delete_comment">Poista kommentti</string>
     <string name="delete_id_message">Haluatko varmasti peruuttaa tämän tunnistuksen?</string>
     <string name="delete_comment_message">Haluatko varmasti poistaa tämän kommentin?</string>
-    <string name="comment">Kommentti</string>
     <string name="suggest_id">Ehdota tunnistusta</string>
     <string name="update_comment">Päivitä kommentti</string>
     <string name="fave_this_observation">Merkitse tämä havainto suosikiksi</string>
@@ -734,7 +729,6 @@ IUCN:n kategorian II paikat perustuen IUCN:n ja UNEP-WCMC:n (2015) tietoihin, ti
     <string name="news_all_caps">UUTISET</string>
     <string name="got_it_all_caps">SELVÄ!</string>
     <string name="view_all_all_caps">NÄYTÄ KAIKKI</string>
-    <string name="new_all_caps">UUSI</string>
     <string name="observers_all_caps">HAVAINNOIJAA</string>
     <string name="observations_regular">Havaintoa</string>
     <string name="data_quality_assessment">Tietojen laadunarviointi</string>

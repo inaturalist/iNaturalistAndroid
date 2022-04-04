@@ -130,7 +130,6 @@
     <string name="done">Готово</string>
     <string name="please_sign_in_via_settings">Трябва да се влезли, за да видите проектите, в които членувате.</string>
     <string name="contact_support">Свържи се с поддръжката</string>
-    <string name="credits">Проектирано и изработено от iNaturalist.org с подкрепата на Калифорнийската академия на науките</string>
     <string name="leave_project">Напусни проекта</string>
     <string name="leave_project_confirmation">Сигурни ли сте, че искате да напуснете проекта?</string>
     <string name="discard_location_changes">Сигурни ли сте, че искате да отхвърлите незапазените промени?</string>
@@ -175,7 +174,6 @@
     <string name="search">Търсене</string>
     <string name="details">Подробно</string>
     <string name="observation_photos">Снимки на наблюдението</string>
-    <string name="remove">Премахни?</string>
     <string name="no_observations_found">Не бяха открити наблюдения</string>
     <string name="license_none">Няма, всички права запазени</string>
     <string name="sources_and_attribution">Източници и признание</string>
@@ -209,7 +207,6 @@
     <string name="guide_editor_must_enable_this_feature">Тази функция трябва да се активира от редактор на ръководството.</string>
     <string name="are_you_sure">Сигурни ли сте?</string>
     <string name="download_guide_alert">Това ще изтегли %1$s данни, така че да можете да използвате ръководството дори и без връзка с Интернет.</string>
-    <string name="download">Изтегли</string>
     <string name="failed_to_download_guide">Неуспешно изтегляне на ръководството</string>
     <string name="internet_connection_seems_to_be_offline">Изглежда няма връзка с Интернет.</string>
     <string name="downloading">Изтегляне...</string>
@@ -255,7 +252,6 @@
     <string name="first">1-ви</string>
     <string name="make_first">Направи първа</string>
     <string name="notes">Бележки</string>
-    <string name="location_is">Местоположението е</string>
     <string name="is_captive">Недиво или култивирано</string>
     <string name="location_visibility">Видимост на местоположението</string>
     <string name="set_location">Местоположение</string>
@@ -301,7 +297,6 @@
     <string name="delete_comment">Изтрий коментара</string>
     <string name="delete_id_message">Сигурни ли сте, че искате да оттеглите това разпознаване?</string>
     <string name="delete_comment_message">Сигурни ли сте, че искате да изтриете този коментар?</string>
-    <string name="comment">Коментар</string>
     <string name="suggest_id">Предложи ID</string>
     <string name="update_comment">Обнови коментара</string>
     <string name="fave_this_observation">Харесай наблюдението</string>
@@ -325,7 +320,7 @@
     <string name="finding_current_location">Установяване на текущото местоположение...</string>
     <string name="flag_as_captive">Маркирай като недив</string>
     <string name="observation_flagged_as_captive">Наблюдението беше маркирано като недиво</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Сигурни ли сте, че искате да маркирате това наблюдение като недиво?</string>
     <string name="do_you_agree_to_the_following">Съгласни ли сте със следното?</string>
     <string name="terms">Условия</string>
     <string name="observation_rules">Правила за наблюдения</string>
@@ -353,7 +348,7 @@
     <string name="there_was_a_problem_updating_profile">Възникна проблем при обновяването на профила Ви!</string>
     <string name="there_was_a_problem_updating_profile_params">Възникна проблем при обновяването на профила Ви: %1$s</string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
-    <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
+    <string name="currently_logged_in_as_html"><![CDATA[Влезли сте като <b>%1$s</b>]]></string>
     <string name="log_out">Излизане</string>
     <string name="not_logged_in">Не сте влезли</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
@@ -422,7 +417,7 @@
     <string name="you_will_only_receive_updates_when_following">(Ще получавате новости само когато следвате наблюдения)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> предложи разп.: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> коментира: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> Ви спомена: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Изглежда сте изтрили снимка, като сте изчистили кеша на приложението преди да бъде качена. Трябва наново да добавите снимката към наблюдението от Вашето устройство. В бъдеще Ви молим да се уверете, че всички снимки са качени преди да изтриете кеша.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -462,7 +457,7 @@
     <string name="view_suggestions">Вижте предложения</string>
     <string name="species_search">Търсене на видове</string>
     <string name="were_not_confident_enough">Не сме достатъчно уверени за да препоръчаме нещо, но ето нашите най-добри предположения:</string>
-    <string name="were_not_confident_enough_no_suggestions">We\'re not confident enough to make a recommendation.</string>
+    <string name="were_not_confident_enough_no_suggestions">Не сме достатъчно уверени за да предложим нещо.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Най-наблюдавани възможности отговарящи на филтрите:</string>
     <!-- Header for a list of suggested taxa -->
@@ -571,7 +566,7 @@
     <string name="start">Начало</string>
     <string name="end">Край</string>
     <string name="months">Месеци</string>
-    <string name="choose_months">Choose month(s)</string>
+    <string name="choose_months">Изберете месец(и)</string>
     <string name="map_area">Обсег на карта</string>
     <string name="global">Глобално</string>
     <!-- As in redo search in the current map area -->
@@ -732,7 +727,6 @@ CalTech и Cornell Tech помогнаха при разработката на 
     <string name="news_all_caps">НОВИНИ</string>
     <string name="got_it_all_caps">РАЗБРАХ!</string>
     <string name="view_all_all_caps">ВИЖ ВСИЧКИ</string>
-    <string name="new_all_caps">НОВИ</string>
     <string name="observers_all_caps">НАБЛЮДАТЕЛИ</string>
     <string name="observations_regular">Наблюдения</string>
     <string name="data_quality_assessment">Оценка на качеството на данните</string>
@@ -1002,9 +996,9 @@ CalTech и Cornell Tech помогнаха при разработката на 
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long">MMM d, yyyy</string>
+    <string name="date_long">d MMM yyyy</string>
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
+    <string name="date_long_with_time">d MMMM yyyy, k:mm</string>
     <string name="show_common_names">Показвай народните имена</string>
     <string name="show_common_names_description">Изключете, ако искате да виждате само научните имена.</string>
     <string name="email_must_look_like_email_address">Имейлът трябва да е валиден имейл адрес</string>
@@ -1133,7 +1127,7 @@ CalTech и Cornell Tech помогнаха при разработката на 
     <string name="default_photo_license">Лиценз по подразбиране за снимка</string>
     <string name="default_sound_license">Лиценз по подразбиране за звук</string>
     <string name="change_existing_licenses">Промени съществуващите лицензи</string>
-    <string name="change_licenses_for_existing_observations">Change licenses for existing observations, photos, and sounds</string>
+    <string name="change_licenses_for_existing_observations">Промени лицензите на съществуващи наблюдения, снимки и звуци</string>
     <string name="change_licenses_for_all_existing_observations">Промени лицензите на всички налични наблюдения</string>
     <string name="change_licenses_for_all_existing_photos">Промени лицензите на всички налични снимки</string>
     <string name="change_licenses_for_all_existing_sounds">Промени лицензите на всички налични звуци</string>
@@ -1183,39 +1177,39 @@ CalTech и Cornell Tech помогнаха при разработката на 
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Покажи опции</string>
     <!-- Placeholder text for an observation field value -->
-    <string name="field_value">Field Value</string>
+    <string name="field_value">Стойност на поле</string>
     <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
-    <string name="delete_attribute_value">Delete attribute value</string>
-    <string name="open_menu_for_more_options">Open menu for more options</string>
-    <string name="change_user_profile_photo">Change user profile photo</string>
-    <string name="expand_list">Expand list</string>
-    <string name="change_map_layers">Change map layers (terrain vs. satellite)</string>
-    <string name="redo_observation_search">Redo observation search in this map area</string>
-    <string name="view_observations_on_map">View observations on map</string>
-    <string name="view_observations_on_grid">View observations on grid</string>
-    <string name="clear_text">Clear text</string>
-    <string name="observation_has_sounds">Observation has sounds</string>
-    <string name="go_to_my_location">Go to my current location</string>
-    <string name="change_geoprivacy">Change geoprivacy</string>
-    <string name="active_filters">Active filters</string>
-    <string name="message_is_flagged">Message is flagged</string>
-    <string name="user_is_muted">User is muted</string>
-    <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
-    <string name="delete_observations">Delete observations</string>
-    <string name="comment_count">Comment count</string>
-    <string name="id_count">Identification count</string>
-    <string name="observation_selected">Observation selected</string>
-    <string name="share_observation">Share observation</string>
-    <string name="unknown_location">Unknown location</string>
+    <string name="delete_attribute_value">Изтрий стойността на атрибута</string>
+    <string name="open_menu_for_more_options">Отвори менюто за повече опции</string>
+    <string name="change_user_profile_photo">Смени профилната снимка</string>
+    <string name="expand_list">Разгърни списъка</string>
+    <string name="change_map_layers">Промени типа карта (релефна/сателитна)</string>
+    <string name="redo_observation_search">Повтори търсенето на наблюдения в пределите на картата</string>
+    <string name="view_observations_on_map">Виж наблюденията на карта</string>
+    <string name="view_observations_on_grid">Виж наблюденията решетъчно</string>
+    <string name="clear_text">Изчисти текста</string>
+    <string name="observation_has_sounds">Наблюдението има звуци</string>
+    <string name="go_to_my_location">Отиди до текущото ми местоположение</string>
+    <string name="change_geoprivacy">Промени геоповерителността</string>
+    <string name="active_filters">Активни филтри</string>
+    <string name="message_is_flagged">Съобщението е маркирано</string>
+    <string name="user_is_muted">Потребителят е заглушен</string>
+    <string name="cancel_multiple_obs_selection">Отмени множествения избор на наблюдения</string>
+    <string name="delete_observations">Изтрий наблюденията</string>
+    <string name="comment_count">Брой коментари</string>
+    <string name="id_count">Брой разпознавания</string>
+    <string name="observation_selected">Неблюдението е избрано</string>
+    <string name="share_observation">Сподели наблюдението</string>
+    <string name="unknown_location">Неизвестно местоположение</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
-    <string name="close">Close</string>
-    <string name="set_date2">Set date</string>
+    <string name="close">Затвори</string>
+    <string name="set_date2">Задай дата</string>
     <string name="project_selected">Project Selected</string>
     <string name="project_unselected">Project Unselected</string>
-    <string name="show_my_observations">Show my observations</string>
-    <string name="play_pause_sound">Play or pause sound</string>
-    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
-    <string name="view_image">View image</string>
+    <string name="show_my_observations">Покажи моите наблюдения</string>
+    <string name="play_pause_sound">Старт или пауза на звук</string>
+    <string name="california_academy_of_sciences_and_national_geographic">Калифорнийска академия на науките и Национално географско дружество</string>
+    <string name="view_image">Виж изображението</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <string name="assessment_passes">Assessment passes</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
@@ -1225,15 +1219,15 @@ CalTech и Cornell Tech помогнаха при разработката на 
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
     <string name="disagree_assessment_passes">Disagree assessment passes</string>
     <plurals name="delete_x_selected_observations">
-        <item quantity="one">Delete %1$d selected observation</item>
-        <item quantity="other">Delete %1$d selected observations</item>
+        <item quantity="one">Изтрий %1$d избрано наблюдение</item>
+        <item quantity="other">Изтрий %1$d избрани наблюдения</item>
     </plurals>
     <plurals name="sync_x_selected_observations">
-        <item quantity="one">Sync %1$d selected observation</item>
-        <item quantity="other">Sync %1$d selected observations</item>
+        <item quantity="one">Синхронизирай %1$d избрано наблюдение</item>
+        <item quantity="other">Синхронизирай %1$d избрани наблюдения</item>
     </plurals>
-    <string name="add_media_evidence">Add media evidence</string>
-    <string name="remove_identification">Remove identification</string>
+    <string name="add_media_evidence">Добави медийно свидетелство</string>
+    <string name="remove_identification">Премахни разпознаването</string>
     <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
-    <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
+    <string name="app_version_copied_to_clipboard">Верията на приложението е копирана в обменния буфер</string>
 </resources>

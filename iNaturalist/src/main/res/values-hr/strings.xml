@@ -130,7 +130,6 @@
     <string name="done">Završeno</string>
     <string name="please_sign_in_via_settings">You must be logged in to view projects you\'ve joined.</string>
     <string name="contact_support">Kontaktirajte podršku</string>
-    <string name="credits">Designed and built by iNaturalist.org with support from the California Academy of Sciences</string>
     <string name="leave_project">Napusti projekt</string>
     <string name="leave_project_confirmation">Are you sure you want to leave this project?</string>
     <string name="discard_location_changes">Are you sure you want to discard unsaved changes?</string>
@@ -176,7 +175,6 @@
     <string name="search">Traži</string>
     <string name="details">Detalji</string>
     <string name="observation_photos">Fotografije opservacija</string>
-    <string name="remove">Ukloniti?</string>
     <string name="no_observations_found">Opservacije nisu pronađene</string>
     <string name="license_none">None, all rights reserved</string>
     <string name="sources_and_attribution">Izvori i pripisivanje</string>
@@ -210,7 +208,6 @@
     <string name="guide_editor_must_enable_this_feature">Uređivač vodiča mora omogućiti ovu značajku.</string>
     <string name="are_you_sure">Da li ste sigurni?</string>
     <string name="download_guide_alert">This will download %1$s of data so you can use this guide even when you don\'t have Internet access.</string>
-    <string name="download">Preuzimanje</string>
     <string name="failed_to_download_guide">Preuzimanje vodiča nije uspjelo</string>
     <string name="internet_connection_seems_to_be_offline">Čini se da je internetska veza izvan mreže.</string>
     <string name="downloading">Preuzimanje...</string>
@@ -256,7 +253,6 @@
     <string name="first">1st</string>
     <string name="make_first">Make 1st</string>
     <string name="notes">Bilješke</string>
-    <string name="location_is">Location is</string>
     <string name="is_captive">It is captive or cultivated</string>
     <string name="location_visibility">Location Visibility</string>
     <string name="set_location">Lokacija</string>
@@ -299,7 +295,6 @@
     <string name="delete_comment">Delete Comment</string>
     <string name="delete_id_message">Are you sure you want to withdraw this identification?</string>
     <string name="delete_comment_message">Are you sure you want to delete this comment?</string>
-    <string name="comment">Komentar</string>
     <string name="suggest_id">Predloži ID</string>
     <string name="update_comment">Update Comment</string>
     <string name="fave_this_observation">Fave This Observation</string>
@@ -729,7 +724,6 @@
     <string name="news_all_caps">NEWS</string>
     <string name="got_it_all_caps">GOT IT!</string>
     <string name="view_all_all_caps">VIEW ALL</string>
-    <string name="new_all_caps">NEW</string>
     <string name="observers_all_caps">OBSERVERS</string>
     <string name="observations_regular">Opažanja</string>
     <string name="data_quality_assessment">Data Quality Assessment</string>

@@ -130,7 +130,6 @@
     <string name="done">Fet</string>
     <string name="please_sign_in_via_settings">Heu d\'haver iniciat sessió per veure els vostres projectes.</string>
     <string name="contact_support">Contacteu amb el suport</string>
-    <string name="credits">Dissenyat i construït per iNaturalist.org amb el suport de l\'Acadèmia de Ciències de Califòrnia</string>
     <string name="leave_project">Deixar el projecte</string>
     <string name="leave_project_confirmation">Esteu segur que voleu sortir d\'aquest projecte?</string>
     <string name="discard_location_changes">Segur que voleu descartar els canvis no desats?</string>
@@ -175,7 +174,6 @@
     <string name="search">Cercar</string>
     <string name="details">Detalls</string>
     <string name="observation_photos">Fotos de l\'Observació</string>
-    <string name="remove">Eliminar?</string>
     <string name="no_observations_found">No s\'han trobat observacions</string>
     <string name="license_none">Cap, tots els drets reservats</string>
     <string name="sources_and_attribution">Fonts i Reconeixement</string>
@@ -209,7 +207,6 @@
     <string name="guide_editor_must_enable_this_feature">L\'editor de la guia ha d\'activar aquesta característica.</string>
     <string name="are_you_sure">Esteu segur?</string>
     <string name="download_guide_alert">Això descarregarà %1$s de dades, així podreu utilitzar aquesta guia fins i tot quan no tingueu accés a Internet.</string>
-    <string name="download">Descarregar</string>
     <string name="failed_to_download_guide">Error en descarregar la guia</string>
     <string name="internet_connection_seems_to_be_offline">La connexió d\'Internet sembla estar fora de línia.</string>
     <string name="downloading">Descarregant...</string>
@@ -255,7 +252,6 @@
     <string name="first">1er</string>
     <string name="make_first">Fer 1er</string>
     <string name="notes">Notes</string>
-    <string name="location_is">La ubicació es</string>
     <string name="is_captive">Està en captivitat o és cultivada</string>
     <string name="location_visibility">Visibilitat de la ubicació</string>
     <string name="set_location">Establir ubicació</string>
@@ -297,7 +293,6 @@
     <string name="delete_comment">Esborrar el Comentari</string>
     <string name="delete_id_message">Esteu segur que voleu esborrar aquesta identificació?</string>
     <string name="delete_comment_message">Esteu segur que voleu esborrar aquest comentari?</string>
-    <string name="comment">Comentari</string>
     <string name="suggest_id">Suggerir ID</string>
     <string name="update_comment">Actualitzar Comentari</string>
     <string name="fave_this_observation">Fer aquesta observació favorita</string>
@@ -724,7 +719,6 @@
     <string name="news_all_caps">NOUS</string>
     <string name="got_it_all_caps">D\'ACORD!</string>
     <string name="view_all_all_caps">VEURE-HO TOT</string>
-    <string name="new_all_caps">NOU</string>
     <string name="observers_all_caps">OBSERVADORS</string>
     <string name="observations_regular">Observacions</string>
     <string name="data_quality_assessment">Avaluació de la qualitat de dades</string>

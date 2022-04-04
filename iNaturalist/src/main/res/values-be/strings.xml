@@ -130,7 +130,6 @@
     <string name="done">Гатова</string>
     <string name="please_sign_in_via_settings">Вы павінны ўвайсці ў сістэму, каб праглядаць праекты, да якіх вы далучыліся.</string>
     <string name="contact_support">Звярнуцца да службы падтрымкі</string>
-    <string name="credits">Спраектавана і зроблена iNaturalist.org з падтрымкай California Academy of Sciences</string>
     <string name="leave_project">Пакінуць праект</string>
     <string name="leave_project_confirmation">Вы ўпэўненыя, што жадаеце пакінуць гэты праект?</string>
     <string name="discard_location_changes">Вы ўпэўненыя, што жадаеце адмяніць незахаваныя змены?</string>
@@ -177,7 +176,6 @@
     <string name="search">Пошук</string>
     <string name="details">Падрабязнасці</string>
     <string name="observation_photos">Фатаграфіі назіранняў</string>
-    <string name="remove">Выдаліць?</string>
     <string name="no_observations_found">Назіранняў не знойдзена</string>
     <string name="license_none">Няма, усе правы абаронены</string>
     <string name="sources_and_attribution">Крыніцы ды атрыбуцыі</string>
@@ -211,7 +209,6 @@
     <string name="guide_editor_must_enable_this_feature">Рэдактар дапаможніка павінен уключыць гэтую функцыю.</string>
     <string name="are_you_sure">Вы ўпэўненыя?</string>
     <string name="download_guide_alert">Гэта дазволіць спампаваць %1$s дадзеных, таму вы зможаце карыстацца гэтым дапаможнікам нават тады, калі ў вас няма доступу да Інтэрнэту. </string>
-    <string name="download">Спампаваць</string>
     <string name="failed_to_download_guide">Не атрымалася спампаваць дапаможнік</string>
     <string name="internet_connection_seems_to_be_offline">Здаецца, няма падключэнне да Інтэрнэту. </string>
     <string name="downloading">Спампаванне…</string>
@@ -257,7 +254,6 @@
     <string name="first">Першы</string>
     <string name="make_first">Зрабіць першым</string>
     <string name="notes">Нататкі</string>
-    <string name="location_is">Месцазнаходжанне</string>
     <string name="is_captive">Утрымліваецца ў няволі альбо культывуецца</string>
     <string name="location_visibility">Бачнасць месцазнаходжання</string>
     <string name="set_location">Месцазнаходжанне</string>
@@ -301,7 +297,6 @@
     <string name="delete_comment">Выдаліць каментарый</string>
     <string name="delete_id_message">Вы ўпэўнены, што хочаце скасаваць гэтае вызначэнне? </string>
     <string name="delete_comment_message">Вы ўпэўнены, што хочаце выдаліць гэты каментарый? </string>
-    <string name="comment">Каментарый</string>
     <string name="suggest_id">Прапанаваць ID</string>
     <string name="update_comment">Аднавіць каментарый</string>
     <string name="fave_this_observation">Дадаць гэтае назіранне да ўлюблёных</string>
@@ -734,7 +729,6 @@
     <string name="news_all_caps">НАВІНЫ</string>
     <string name="got_it_all_caps">ЗРАЗУМЕЛА!</string>
     <string name="view_all_all_caps">ПРАГЛЯДЗЕЦЬ УСЁ</string>
-    <string name="new_all_caps">НОВЫ</string>
     <string name="observers_all_caps">НАЗІРАЛЬНІКІ</string>
     <string name="observations_regular">Назіранні</string>
     <string name="data_quality_assessment">Ацэнка якасці дадзеных</string>

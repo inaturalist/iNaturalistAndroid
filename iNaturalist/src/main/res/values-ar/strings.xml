@@ -130,7 +130,6 @@
     <string name="done">انهاء</string>
     <string name="please_sign_in_via_settings">الرجاء الدخول بواسطة شباك الاعدادات للاطلاع على المشاريع</string>
     <string name="contact_support">الإتصال بالدعم</string>
-    <string name="credits">تصميم وتطويرiNaturalist.org بدعم من California Academy of Sciences</string>
     <string name="leave_project">ترك المشروع</string>
     <string name="leave_project_confirmation">ترك المشروع?</string>
     <string name="discard_location_changes">هل أنت متأكد أنك تريد أن تفقد التغييرات التي لم يتم حفظها?</string>
@@ -180,7 +179,6 @@
     <string name="search">بحث</string>
     <string name="details">تفاصيل</string>
     <string name="observation_photos">صور ارصاد</string>
-    <string name="remove">حذف?</string>
     <string name="no_observations_found">لم يتم العثور على ارصاد</string>
     <string name="license_none">بدون. جميع الحقوق محفوظة</string>
     <string name="sources_and_attribution">مرجع لمصدر</string>
@@ -214,7 +212,6 @@
     <string name="guide_editor_must_enable_this_feature">على محرر المرشد تفعيل الخيار التالي.</string>
     <string name="are_you_sure">متاكد?</string>
     <string name="download_guide_alert">يتم التحميل%1$s للمعلومات لكي يتم لتوفير الاستخدام لاحقا من غير تواصل شبكي.</string>
-    <string name="download">تحميل</string>
     <string name="failed_to_download_guide">تحميل الدليل غير متوفر</string>
     <string name="internet_connection_seems_to_be_offline">لا يوجد شبكة</string>
     <string name="downloading">جاري التحميل…</string>
@@ -260,7 +257,6 @@
     <string name="first">أول</string>
     <string name="make_first">ارجع للموقع الاول</string>
     <string name="notes">تعقيبات</string>
-    <string name="location_is">الموقع</string>
     <string name="is_captive">أسير او مروض</string>
     <string name="location_visibility">خصوصية الموقع</string>
     <string name="set_location">تحديد المكان</string>
@@ -306,7 +302,6 @@
     <string name="delete_comment">حذف التعليق</string>
     <string name="delete_id_message">هل أنت متأكد من رغبتك في استعادة المحدد؟</string>
     <string name="delete_comment_message">هل أنت متأكد من رغبتك في حذف التعليق؟</string>
-    <string name="comment">تعليق</string>
     <string name="suggest_id">اقترح محدد</string>
     <string name="update_comment">تحديث التعليق</string>
     <string name="fave_this_observation">قم بادراج الملحوظة تحت قائمة المفضل لديك</string>
@@ -745,7 +740,6 @@
     <string name="news_all_caps">أخبار</string>
     <string name="got_it_all_caps">حسنًا</string>
     <string name="view_all_all_caps">عرض الجميع</string>
-    <string name="new_all_caps">جديد</string>
     <string name="observers_all_caps">ملاحظين</string>
     <string name="observations_regular">الملاحظات</string>
     <string name="data_quality_assessment">تقييم جودة البيانات</string>

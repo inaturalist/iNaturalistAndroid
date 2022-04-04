@@ -130,7 +130,6 @@
     <string name="done">ಸಂಪನ್ನವಾಗಿದೆ</string>
     <string name="please_sign_in_via_settings">ನೀವು ಸೇರಿರುವ ಪ್ರಾಯೋಜನೆಗಳನ್ನು ವೀಕ್ಷಿಸಲು ನೀವು ಲಾಗಿನ್ ಆಗಿರಬೇಕಾಗುತ್ತದೆ.</string>
     <string name="contact_support">ಸಹಾಯಕ್ಕಾಗಿ ಸಂಪರ್ಕಿಸಿ</string>
-    <string name="credits">iNaturalist.org ಅವರಿಂದ ಕ್ಯಾಲಿಫೋರ್ನಿಯಾ ಅಕಾಡೆಮಿ ಆಫ್ ಸೈನ್ಸಸ್ ಬೆಂಬಲದೊಂದಿಗೆ ವಿನ್ಯಾಸ ಮತ್ತು ಅಭಿವೃದ್ಧಿಪಡಿಸಲಾಗಿದೆ.</string>
     <string name="leave_project">ಪ್ರಾಯೋಜನೆ ತೊರೆಯಿರಿ</string>
     <string name="leave_project_confirmation">ಈ ಪ್ರಾಯೋಜನೆಯನ್ನು ತೊರೆಯಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
     <string name="discard_location_changes">ಉಳಿಸಿರದ ಬದಲಾವಣೆಗಳನ್ನು ತ್ಯಜಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
@@ -175,7 +174,6 @@
     <string name="search">ಹುಡುಕಿ</string>
     <string name="details">ವಿವರಗಳು</string>
     <string name="observation_photos">ವೀಕ್ಷಣಾ ಚಿತ್ರಗಳು</string>
-    <string name="remove">ತೆಗೆಯಬೇಕೆ?</string>
     <string name="no_observations_found">ಯಾವುದೇ ವೀಕ್ಷಣೆಗಳು ಕಂಡುಬಂದಿಲ್ಲ</string>
     <string name="license_none">ಯಾವುದೂ ಇಲ್ಲ, ಎಲ್ಲಾ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಿದೆ</string>
     <string name="sources_and_attribution">Sources and Attribution</string>
@@ -209,7 +207,6 @@
     <string name="guide_editor_must_enable_this_feature">ಈ ವೈಶಿಷ್ಟ್ಯವನ್ನು ಕೈಪಿಡಿ ಸಂಪಾದಕರು ಸಕ್ರಿಯಗೊಳಿಸಬೇಕಾಗುತ್ತದೆ.</string>
     <string name="are_you_sure">ನಿಮಗೆ ಖಚಿತವೆ?</string>
     <string name="download_guide_alert">ಇದು %1$s ನಷ್ಟು ದತ್ತಾಂಶವನ್ನು ಡೌನ್‍ಲೋಡ್ ಮಾಡುತ್ತದೆ ಹಾಗಾಗಿ ನೀವು ಈ ಕೈಪಿಡಿಯನ್ನು ಅಂತರ್ಜಾಲದ ಸಂಪರ್ಕವಿಲ್ಲದಿದ್ದಾಗಲೂ ಸಹ ನೋಡಬಹುದಾಗಿದೆ.</string>
-    <string name="download">ಡೌನ್‌ಲೋಡ್</string>
     <string name="failed_to_download_guide">ಕೈಪಿಡಿ ಡೌನ್‌ಲೋಡ್ ವಿಫಲವಾಗಿದೆ</string>
     <string name="internet_connection_seems_to_be_offline">ನಿಮ್ಮ ಅಂತರ್ಜಾಲ ಸಂಪರ್ಕವು ಆಫ್ಲೈನ್ ಆದಂತೆ ತೋರುತ್ತಿದೆ</string>
     <string name="downloading">ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ…</string>
@@ -255,7 +252,6 @@
     <string name="first">1ನೇ</string>
     <string name="make_first">1ನೇಯದನ್ನಾಗಿ ಮಾಡಿ</string>
     <string name="notes">ಟಿಪ್ಪಣಿಗಳು</string>
-    <string name="location_is">Location is</string>
     <string name="is_captive">ಇದು ಸೆರೆಯ ಜೀವಿ ಅಥವಾ ಪಳಗಿಸಿದ ಜೀವಿಯಾಗಿದೆ</string>
     <string name="location_visibility">ಸ್ಥಳ ಗೋಚರತೆ</string>
     <string name="set_location">ಸ್ಥಳ</string>
@@ -297,7 +293,6 @@
     <string name="delete_comment">ಅಭಿಪ್ರಾಯ ಅಳಿಸಿ</string>
     <string name="delete_id_message">ಈ ಗುರುತಿಸುವಿಕೆಯನ್ನು ಹಿಂಪಡೆಯಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
     <string name="delete_comment_message">ಈ ಅಭಿಪ್ರಾಯವನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
-    <string name="comment">ಅಭಿಪ್ರಾಯ</string>
     <string name="suggest_id">ID ಸಲಹೆನೀಡಿ</string>
     <string name="update_comment">ಅಭಿಪ್ರಾಯ ನವೀಕರಿಸಿ</string>
     <string name="fave_this_observation">ಈ ವೀಕ್ಷಣೆಯನ್ನು ಮೆಚ್ಚಿ</string>
@@ -724,7 +719,6 @@
     <string name="news_all_caps">ಸುದ್ದಿ</string>
     <string name="got_it_all_caps">ಅರ್ಥವಾಯಿತು!</string>
     <string name="view_all_all_caps">ಎಲ್ಲವನ್ನೂ ನೋಡಿ</string>
-    <string name="new_all_caps">ಹೊಸತು</string>
     <string name="observers_all_caps">ವೀಕ್ಷಕರು</string>
     <string name="observations_regular">ವೀಕ್ಷಣೆಗಳು</string>
     <string name="data_quality_assessment">ದತ್ತಾಂಶ ಗುಣಮಟ್ಟ ವಿಮರ್ಶೆ</string>

@@ -130,7 +130,6 @@
     <string name="done">Готово</string>
     <string name="please_sign_in_via_settings">Вы должны войти для просмотра проектов, к которым вы присоединились.</string>
     <string name="contact_support">Обратитесь в службу поддержки</string>
-    <string name="credits">Спроектирован и создан iNaturalist.org с поддержкой Калифорнийской Академии Наук</string>
     <string name="leave_project">Покинуть проект</string>
     <string name="leave_project_confirmation">Вы уверены, что вы хотите покинуть этот проект?</string>
     <string name="discard_location_changes">Вы уверены, что хотите отменить несохраненные изменения?</string>
@@ -177,7 +176,6 @@
     <string name="search">Поиск</string>
     <string name="details">Детали</string>
     <string name="observation_photos">Фотографии наблюдений</string>
-    <string name="remove">Удалить?</string>
     <string name="no_observations_found">Не найдено наблюдений</string>
     <string name="license_none">Нет, все права защищены</string>
     <string name="sources_and_attribution">Источники и атрибуции</string>
@@ -211,7 +209,6 @@
     <string name="guide_editor_must_enable_this_feature">Такая функция должна быть доступна в редакторе руководства.</string>
     <string name="are_you_sure">Вы уверены?</string>
     <string name="download_guide_alert">Это приведет к загрузке %1$s данных, так что вы можете пользоваться этим руководством, даже когда не имеете доступа к Интернету.</string>
-    <string name="download">Скачать</string>
     <string name="failed_to_download_guide">Не удалось загрузить руководство</string>
     <string name="internet_connection_seems_to_be_offline">В настоящий момент подключение к Интернету отсутствует.</string>
     <string name="downloading">Загрузка...</string>
@@ -257,7 +254,6 @@
     <string name="first">1-й</string>
     <string name="make_first">Сделать первым</string>
     <string name="notes">Заметки</string>
-    <string name="location_is">Местоположение</string>
     <string name="is_captive">Содержится в неволе или культивируемое</string>
     <string name="location_visibility">Видимость местоположения</string>
     <string name="set_location">Местоположение</string>
@@ -302,7 +298,6 @@
     <string name="delete_comment">Удалить комментарий</string>
     <string name="delete_id_message">Вы уверены, что хотите удалить эту идентификацию?</string>
     <string name="delete_comment_message">Вы уверены, что хотите удалить этот комментарий?</string>
-    <string name="comment">Комментарий</string>
     <string name="suggest_id">Предложить ID</string>
     <string name="update_comment">Обновить комментарий</string>
     <string name="fave_this_observation">Добавить наблюдение к фаворитам</string>
@@ -735,7 +730,6 @@
     <string name="news_all_caps">НОВОСТИ</string>
     <string name="got_it_all_caps">ПОНЯТНО!</string>
     <string name="view_all_all_caps">ПОСМОТРЕТЬ ВСЕ</string>
-    <string name="new_all_caps">НОВЫЕ</string>
     <string name="observers_all_caps">НАБЛЮДАТЕЛИ</string>
     <string name="observations_regular">Наблюдения</string>
     <string name="data_quality_assessment">Оценка качества данных</string>

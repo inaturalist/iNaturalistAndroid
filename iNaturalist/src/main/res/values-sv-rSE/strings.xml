@@ -130,7 +130,6 @@
     <string name="done">Klar</string>
     <string name="please_sign_in_via_settings">Du måste vara inloggad för att se projekt du har anslutit dig till.</string>
     <string name="contact_support">Kontakta support</string>
-    <string name="credits">Designat och byggt av iNaturalist.org med stöd från California Academy of Sciences</string>
     <string name="leave_project">Lämna projekt</string>
     <string name="leave_project_confirmation">Är du säker på att du vill lämna detta projekt?</string>
     <string name="discard_location_changes">Är du säker på att du vill slänga osparade ändringar?</string>
@@ -175,7 +174,6 @@
     <string name="search">Sök</string>
     <string name="details">Detaljer</string>
     <string name="observation_photos">Fyndbilder</string>
-    <string name="remove">Ta bort?</string>
     <string name="no_observations_found">Inga fynd hittade</string>
     <string name="license_none">Ingen, alla rättigheter förbehållna</string>
     <string name="sources_and_attribution">Källor och Erkännande</string>
@@ -209,7 +207,6 @@
     <string name="guide_editor_must_enable_this_feature">Guideredaktören måste aktivera den här funktionen.</string>
     <string name="are_you_sure">Är du säker?</string>
     <string name="download_guide_alert">Det här kommer att ladda ner %1$s data så att du kan använda fältguiden även när du inte har tillgång till internet.</string>
-    <string name="download">Ladda ner</string>
     <string name="failed_to_download_guide">Det gick inte att hämta guiden</string>
     <string name="internet_connection_seems_to_be_offline">Internetanslutningen verkar vara offline.</string>
     <string name="downloading">Laddar ner...</string>
@@ -255,7 +252,6 @@
     <string name="first">1:a</string>
     <string name="make_first">Flytta till 1:a</string>
     <string name="notes">Noteringar</string>
-    <string name="location_is">Platsen är</string>
     <string name="is_captive">Det är i fångenskap eller odlad</string>
     <string name="location_visibility">Platssekretess</string>
     <string name="set_location">Plats</string>
@@ -297,7 +293,6 @@
     <string name="delete_comment">Radera kommentar</string>
     <string name="delete_id_message">Är du säker du vill återkalla denna bestämning?</string>
     <string name="delete_comment_message">Är du säker på att du vill radera denna kommentar?</string>
-    <string name="comment">Kommentar</string>
     <string name="suggest_id">Föreslå bestämning</string>
     <string name="update_comment">Uppdatera kommentar</string>
     <string name="fave_this_observation">Markera fynd som favorit</string>
@@ -724,7 +719,6 @@
     <string name="news_all_caps">NYHETER</string>
     <string name="got_it_all_caps">OK!</string>
     <string name="view_all_all_caps">VISA ALLA</string>
-    <string name="new_all_caps">NYTT</string>
     <string name="observers_all_caps">OBSERVATÖRER</string>
     <string name="observations_regular">Fynd</string>
     <string name="data_quality_assessment">Bedömning av datakvalitet</string>

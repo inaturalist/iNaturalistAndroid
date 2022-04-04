@@ -130,7 +130,6 @@
     <string name="done">完了</string>
     <string name="please_sign_in_via_settings">ご自身のプロジェクトを閲覧するには設定画面からサインインしてください</string>
     <string name="contact_support">サポートへのお問い合わせ</string>
-    <string name="credits">このアプリはiNaturalist.orgによりデザイン及び設計が行われカリフォルニア科学アカデミーの支援により運営されています</string>
     <string name="leave_project">このプロジェクトを退会</string>
     <string name="leave_project_confirmation">このプロジェクトを退会してもよろしいですか？</string>
     <string name="discard_location_changes">変更が保存されていませんが破棄してもよろしいですか？</string>
@@ -174,7 +173,6 @@
     <string name="search">検索</string>
     <string name="details">詳細</string>
     <string name="observation_photos">観察記録の写真</string>
-    <string name="remove">削除しますか？</string>
     <string name="no_observations_found">観測記録が見つかりません</string>
     <string name="license_none">著作権を全て留保する</string>
     <string name="sources_and_attribution">ソースと帰属</string>
@@ -208,7 +206,6 @@
     <string name="guide_editor_must_enable_this_feature">ガイドの編集者はこの機能を有効にする必要があります。</string>
     <string name="are_you_sure">本当によろしいですか？</string>
     <string name="download_guide_alert">%1$sのデータをダウンロードして、インター ネットに接続できない場合でも、このガイドを使用することができるようにします。</string>
-    <string name="download">ダウンロード</string>
     <string name="failed_to_download_guide">ガイドのダウンロードに失敗しました</string>
     <string name="internet_connection_seems_to_be_offline">インターネット接続がオフラインのようです。</string>
     <string name="downloading">ダウンロード中…</string>
@@ -254,7 +251,6 @@
     <string name="first">最初</string>
     <string name="make_first">最初に作る</string>
     <string name="notes">メモ</string>
-    <string name="location_is">場所は</string>
     <string name="is_captive">飼育または栽培されている</string>
     <string name="location_visibility">場所の表示</string>
     <string name="set_location">場所を設定</string>
@@ -295,7 +291,6 @@
     <string name="delete_comment">コメントを削除</string>
     <string name="delete_id_message">この同定を削除してもよろしいですか?</string>
     <string name="delete_comment_message">このコメントを削除してもよろしいですか?</string>
-    <string name="comment">コメント </string>
     <string name="suggest_id">IDを提供</string>
     <string name="update_comment">コメントを更新します。</string>
     <string name="fave_this_observation">この観測記録をお気に入りに登録する</string>
@@ -719,7 +714,6 @@
     <string name="news_all_caps">NEWS</string>
     <string name="got_it_all_caps">了解</string>
     <string name="view_all_all_caps">すべて表示</string>
-    <string name="new_all_caps">新機能</string>
     <string name="observers_all_caps">オブザーバー</string>
     <string name="observations_regular">観察記録</string>
     <string name="data_quality_assessment">データ品質評価</string>

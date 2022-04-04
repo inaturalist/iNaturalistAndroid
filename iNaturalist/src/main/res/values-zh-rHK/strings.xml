@@ -130,7 +130,6 @@
     <string name="done">完成</string>
     <string name="please_sign_in_via_settings">您必須登入以查看您所加入的任務。</string>
     <string name="contact_support">與支援部門聯繫</string>
-    <string name="credits">在加州科學院的支援下由 iNaturalist.org 設計及開發</string>
     <string name="leave_project">離開任務群組</string>
     <string name="leave_project_confirmation">您確定要離開此任務群組？</string>
     <string name="discard_location_changes">確定要放棄修改嗎？</string>
@@ -174,7 +173,6 @@
     <string name="search">搜尋</string>
     <string name="details">詳情</string>
     <string name="observation_photos">觀察記錄照片</string>
-    <string name="remove">移除嗎？</string>
     <string name="no_observations_found">仍未發現觀察記錄</string>
     <string name="license_none">保留一切著作權利</string>
     <string name="sources_and_attribution">來源與屬性</string>
@@ -208,7 +206,6 @@
     <string name="guide_editor_must_enable_this_feature">指南編輯必須啟用此功能。</string>
     <string name="are_you_sure">您肯定？</string>
     <string name="download_guide_alert">這將下載 %1$s 的資料，所以就算您沒有網路連線，也可以離線使用本指南。</string>
-    <string name="download">下載</string>
     <string name="failed_to_download_guide">未能下載指南</string>
     <string name="internet_connection_seems_to_be_offline">互聯網連接為離線。</string>
     <string name="downloading">下載中</string>
@@ -254,7 +251,6 @@
     <string name="first">第一</string>
     <string name="make_first">設為第一</string>
     <string name="notes">備註</string>
-    <string name="location_is">位置資訊是</string>
     <string name="is_captive">它是圈養或是栽培的</string>
     <string name="location_visibility">位置可見度</string>
     <string name="set_location">位置</string>
@@ -295,7 +291,6 @@
     <string name="delete_comment">刪除評論</string>
     <string name="delete_id_message">您確定您想要撤回此辨認？</string>
     <string name="delete_comment_message">您確定想要刪除此評論嗎？</string>
-    <string name="comment">評論</string>
     <string name="suggest_id">物種辨認的建議</string>
     <string name="update_comment">更新評論</string>
     <string name="fave_this_observation">將此觀察記錄設為最愛</string>
@@ -719,7 +714,6 @@
     <string name="news_all_caps">新聞</string>
     <string name="got_it_all_caps">明白了！</string>
     <string name="view_all_all_caps">檢視全部</string>
-    <string name="new_all_caps">新增</string>
     <string name="observers_all_caps">觀察者</string>
     <string name="observations_regular">觀察記錄</string>
     <string name="data_quality_assessment">資料品質評估</string>

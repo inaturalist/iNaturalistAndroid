@@ -130,7 +130,6 @@
     <string name="done">Ολοκληρώθηκε</string>
     <string name="please_sign_in_via_settings">Πρέπει να συνδεθείτε να δείτε τα πρότζεκτ στα οποία είστε μέλος.</string>
     <string name="contact_support">Τεχνική Υποστήριξη</string>
-    <string name="credits">Σχεδιάστηκε και αναπτύχθηκε από το iNaturalist.org με υποστήριξη από την Ακαδημία Επιστημών της Καλιφόρνια</string>
     <string name="leave_project">Αποχώρηση από το πρότζεκτ</string>
     <string name="leave_project_confirmation">Είστε βέβαιος/η ότι θέλετε να αποχωρήσετε από αυτό το πρότζεκτ;</string>
     <string name="discard_location_changes">Είσαι σίγουρος/η ότι θέλεις να απορρίψεις τις αλλαγές;</string>
@@ -175,7 +174,6 @@
     <string name="search">Αναζήτηση</string>
     <string name="details">Λεπτομέρειες</string>
     <string name="observation_photos">Φωτογραφίες παρατήρησης</string>
-    <string name="remove">Αφαίρεση;</string>
     <string name="no_observations_found">Δεν υπάρχουν παρατηρήσεις ακόμα</string>
     <string name="license_none">Με την επιφύλαξη παντός δικαιώματος</string>
     <string name="sources_and_attribution">Πηγές και Απόδοση</string>
@@ -209,7 +207,6 @@
     <string name="guide_editor_must_enable_this_feature">Ο συντάκτης του οδηγού πρέπει να ενεργοποιήσει αυτή την λειτουργία.</string>
     <string name="are_you_sure">Είσαι σίγουρος/η;</string>
     <string name="download_guide_alert">Κατεβάζει %1$s των δεδομένων για χρήση του οδηγού χωρίς σύνδεση στο διαδίκτυο.</string>
-    <string name="download">Λήψη</string>
     <string name="failed_to_download_guide">Σφάλμα στη λήψης του οδηγού</string>
     <string name="internet_connection_seems_to_be_offline">Η σύνδεση στο διαδίκτυο φαίνεται να είναι offline.</string>
     <string name="downloading">Γίνεται λήψη...</string>
@@ -255,7 +252,6 @@
     <string name="first">1ος</string>
     <string name="make_first">Κάντε την 1η </string>
     <string name="notes">Σημειώσεις</string>
-    <string name="location_is">Τοποθεσία</string>
     <string name="is_captive">Είναι σε αιχμαλωσία / καλλιεργούμενο</string>
     <string name="location_visibility">Ορατότητα Τοποθεσίας</string>
     <string name="set_location">Τοποθεσία</string>
@@ -297,7 +293,6 @@
     <string name="delete_comment">Διαγραφή σχολίου</string>
     <string name="delete_id_message">Είσαι σίγουρος/η ότι θέλεις να διαγράψεις αυτόν τον προσδιορισμό;</string>
     <string name="delete_comment_message">Είσαι σίγουρος/η ότι θέλεις να διαγράψεις αυτό το σχόλιο;</string>
-    <string name="comment">Σχόλιο</string>
     <string name="suggest_id">Πρόταση προσδιορισμού</string>
     <string name="update_comment">Ενημέρωση σχολίου</string>
     <string name="fave_this_observation">Δηλώστε στα αγαπημένα αυτήν την παρατήρηση</string>
@@ -724,7 +719,6 @@
     <string name="news_all_caps">ΝΕΑ</string>
     <string name="got_it_all_caps">ΤΟ ΚΑΤΑΛΑΒΑ!</string>
     <string name="view_all_all_caps">ΠΡΟΒΟΛΗ ΟΛΩΝ</string>
-    <string name="new_all_caps">ΝΕΟ</string>
     <string name="observers_all_caps">ΠΑΡΑΤΗΡΗΤΕΣ</string>
     <string name="observations_regular">Παρατηρήσεις</string>
     <string name="data_quality_assessment">Αξιολόγηση ποιότητας δεδομένων</string>

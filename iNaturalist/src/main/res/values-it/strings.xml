@@ -130,7 +130,6 @@
     <string name="done">Fatto</string>
     <string name="please_sign_in_via_settings">Per favore accedi tramite la pagina delle impostazioni per vedere i tuoi progetti</string>
     <string name="contact_support">Contatta il servizio assistenza</string>
-    <string name="credits">Disegnato e costruito da iNaturalist.org con il supporto della California Academy of Sciences</string>
     <string name="leave_project">Lascia Progetto</string>
     <string name="leave_project_confirmation">Sei sicuro di volere lasciare questo progetto?</string>
     <string name="discard_location_changes">Sei sicuro di voler ignorare le modifiche non salvate?</string>
@@ -175,7 +174,6 @@
     <string name="search">Cerca</string>
     <string name="details">Dettagli</string>
     <string name="observation_photos">Foto delle osservazioni</string>
-    <string name="remove">Rimuovere?</string>
     <string name="no_observations_found">Nessuna osservazione trovata</string>
     <string name="license_none">Nessuno, tutti i diritti riservati</string>
     <string name="sources_and_attribution">Fonti e attribuzione</string>
@@ -209,7 +207,6 @@
     <string name="guide_editor_must_enable_this_feature">L\'editor della guida deve abilitare questa funzionalità.</string>
     <string name="are_you_sure">Sei sicuro?</string>
     <string name="download_guide_alert">Questo scaricherà %1$s di dati, quindi sarà possibile utilizzare questa guida anche quando non hai accesso a Internet.</string>
-    <string name="download">Download</string>
     <string name="failed_to_download_guide">Impossibile scaricare guida</string>
     <string name="internet_connection_seems_to_be_offline">Accesso Internet attualmente non disponibile.</string>
     <string name="downloading">Scaricamento...</string>
@@ -255,7 +252,6 @@
     <string name="first">1º</string>
     <string name="make_first">Rendi 1 °</string>
     <string name="notes">Note</string>
-    <string name="location_is">La posizione è</string>
     <string name="is_captive">È in cattività o coltivata</string>
     <string name="location_visibility">Visibilità della posizione</string>
     <string name="set_location">Imposta posizione</string>
@@ -297,7 +293,6 @@
     <string name="delete_comment">Cancella commento</string>
     <string name="delete_id_message">Sei sicuro di che voler eliminare questa identificazione?</string>
     <string name="delete_comment_message">Sei sicuro di voler eliminare questo commento?</string>
-    <string name="comment">Commento</string>
     <string name="suggest_id">Suggerisci ID</string>
     <string name="update_comment">Aggiorna commento</string>
     <string name="fave_this_observation">Aggiungi ai preferiti</string>
@@ -724,7 +719,6 @@
     <string name="news_all_caps">NOTIZIE</string>
     <string name="got_it_all_caps">CAPITO!</string>
     <string name="view_all_all_caps">VISUALIZZA TUTTO</string>
-    <string name="new_all_caps">NUOVO</string>
     <string name="observers_all_caps">OSSERVATORI</string>
     <string name="observations_regular">Osservazioni</string>
     <string name="data_quality_assessment">Valutazione della Qualità dei Dati</string>

@@ -130,7 +130,6 @@
     <string name="done">Kész</string>
     <string name="please_sign_in_via_settings">A projektjeid megtekintéséhez be kell jelentkezned.</string>
     <string name="contact_support">Kapcsolatfelvétel</string>
-    <string name="credits">Tervezte és létrehozta az iNaturalist, a California Academy of Sciences támogátásával.</string>
     <string name="leave_project">Kilépés a projektből </string>
     <string name="leave_project_confirmation">Biztosan kilépsz ebből a projektből?</string>
     <string name="discard_location_changes">Biztosan eldobod a mentetlen módosításokat?</string>
@@ -175,7 +174,6 @@
     <string name="search">Keresés</string>
     <string name="details">Részletek</string>
     <string name="observation_photos">Megfigyelés képei</string>
-    <string name="remove">Törlöd?</string>
     <string name="no_observations_found">Nincsenek megfigyelések</string>
     <string name="license_none">Nincs, minden jog fenntartva.</string>
     <string name="sources_and_attribution">Források és tulajdon</string>
@@ -209,7 +207,6 @@
     <string name="guide_editor_must_enable_this_feature">Az útmutató-szerkesztőnek bekapcsolva kell lennie ehhez a funkcióhoz.</string>
     <string name="are_you_sure">Biztos vagy benne?</string>
     <string name="download_guide_alert">Ez %1$s adat letöltésével jár, így a kalauzt akkor is használhatod, ha nincs interneted.</string>
-    <string name="download">Letöltés</string>
     <string name="failed_to_download_guide">Nem sikerült letölteni az útmutatót</string>
     <string name="internet_connection_seems_to_be_offline">Úgy néz ki, hogy nincs internetkapcsolat.</string>
     <string name="downloading">Letöltés...</string>
@@ -255,7 +252,6 @@
     <string name="first">1.</string>
     <string name="make_first">Elejére</string>
     <string name="notes">Megjegyzések</string>
-    <string name="location_is">Hely:</string>
     <string name="is_captive">Fogságban lévő vagy kultivált</string>
     <string name="location_visibility">A hely láthatósága</string>
     <string name="set_location">Hely</string>
@@ -297,7 +293,6 @@
     <string name="delete_comment">Hozzászólás törlése</string>
     <string name="delete_id_message">Biztosan visszavonod ezt a meghatározást?</string>
     <string name="delete_comment_message">Biztosan törölni szeretnéd ezt a hozzászólást?</string>
-    <string name="comment">Hozzászólás</string>
     <string name="suggest_id">Meghatározás</string>
     <string name="update_comment">Hozzászólás módosítása</string>
     <string name="fave_this_observation">Kedvencként megjelölés</string>
@@ -724,7 +719,6 @@
     <string name="news_all_caps">HÍREK</string>
     <string name="got_it_all_caps">RENDBEN</string>
     <string name="view_all_all_caps">MIND MEGTEKINTÉSE</string>
-    <string name="new_all_caps">ÚJ</string>
     <string name="observers_all_caps">MEGFIGYELŐ</string>
     <string name="observations_regular">Megfigyelések</string>
     <string name="data_quality_assessment">Adatminőség</string>

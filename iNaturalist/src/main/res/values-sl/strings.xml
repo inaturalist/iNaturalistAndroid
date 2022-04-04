@@ -130,7 +130,6 @@
     <string name="done">Opravljeno</string>
     <string name="please_sign_in_via_settings">Za ogled projektov, ki ste se jim pridružili, se morate prijaviti.</string>
     <string name="contact_support">Stik s podporo</string>
-    <string name="credits">Zasnova in izdelava: iNaturalist.org ob podpori Kalifornijske akademije znanosti</string>
     <string name="leave_project">Zapusti projekt</string>
     <string name="leave_project_confirmation">Ali res želite zapustiti ta projekt?</string>
     <string name="discard_location_changes">Ali res želite zavreči neshranjene spremembe?</string>
@@ -177,7 +176,6 @@
     <string name="search">Išči</string>
     <string name="details">Podrobnosti</string>
     <string name="observation_photos">Fotografije opazovanja</string>
-    <string name="remove">Odstranim?</string>
     <string name="no_observations_found">Ni najdenih opazovanj</string>
     <string name="license_none">Nič, vse pravice pridržane.</string>
     <string name="sources_and_attribution">Viri in avtorstvo</string>
@@ -211,7 +209,6 @@
     <string name="guide_editor_must_enable_this_feature">Urejevalec vodil mora omogočiti to možnost.</string>
     <string name="are_you_sure">Ste prepričani?</string>
     <string name="download_guide_alert">S tem se bo preneslo %1$s podatkov, tako da boste lahko ta vodnik uporabljali tudi brez internetnega dostopa.</string>
-    <string name="download">Prenesi</string>
     <string name="failed_to_download_guide">Prenos vodnika ni uspel.</string>
     <string name="internet_connection_seems_to_be_offline">Zdi se, da niste povezani z internetom.</string>
     <string name="downloading">Prenašam ...</string>
@@ -257,7 +254,6 @@
     <string name="first">1.</string>
     <string name="make_first">Ustvari 1.</string>
     <string name="notes">Opombe</string>
-    <string name="location_is">Lokacija je</string>
     <string name="is_captive">V ujetništvu ali gojena</string>
     <string name="location_visibility">Vidnost lokacije</string>
     <string name="set_location">Lokacija</string>
@@ -301,7 +297,6 @@
     <string name="delete_comment">Izbriši komentar</string>
     <string name="delete_id_message">Ali res želite umakniti to določitev?</string>
     <string name="delete_comment_message">Ali res želite izbrisati ta komentar?</string>
-    <string name="comment">Komentar</string>
     <string name="suggest_id">Predlagaj ID</string>
     <string name="update_comment">Posodobi komentar</string>
     <string name="fave_this_observation">Všečkaj to opazovanje</string>
@@ -734,7 +729,6 @@
     <string name="news_all_caps">NOVICE</string>
     <string name="got_it_all_caps">RAZUMEM!</string>
     <string name="view_all_all_caps">PRIKAŽI VSE</string>
-    <string name="new_all_caps">NOVA</string>
     <string name="observers_all_caps">OPAZOVALCI</string>
     <string name="observations_regular">Opazovanja</string>
     <string name="data_quality_assessment">Ocena kakovosti podatkov</string>

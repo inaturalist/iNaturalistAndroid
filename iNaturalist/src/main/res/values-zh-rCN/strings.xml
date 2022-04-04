@@ -130,7 +130,6 @@
     <string name="done">已完成</string>
     <string name="please_sign_in_via_settings">您必须登入以查看您加入的任务。</string>
     <string name="contact_support">联络支援团队</string>
-    <string name="credits">在加州科学院的支援下由 iNaturalist.org 设计及打造</string>
     <string name="leave_project">离开任务群组</string>
     <string name="leave_project_confirmation">您确定要离开此任务群组吗？</string>
     <string name="discard_location_changes">您确定要放弃未储存的修改吗？</string>
@@ -174,7 +173,6 @@
     <string name="search">搜寻</string>
     <string name="details">详细资料</string>
     <string name="observation_photos">观察照片</string>
-    <string name="remove">移除吗？</string>
     <string name="no_observations_found">尚未有观察记录</string>
     <string name="license_none">保留一切著作权利</string>
     <string name="sources_and_attribution">来源与属性</string>
@@ -208,7 +206,6 @@
     <string name="guide_editor_must_enable_this_feature">指南编辑必须启用此功能。</string>
     <string name="are_you_sure">您确定吗？</string>
     <string name="download_guide_alert">这将下载 %1$s 的资料，所以就算您没有网路连线，也可以离线使用本指南。</string>
-    <string name="download">下载</string>
     <string name="failed_to_download_guide">下载指南失败</string>
     <string name="internet_connection_seems_to_be_offline">网路连线显示为离线状态。</string>
     <string name="downloading">正在下载…</string>
@@ -254,7 +251,6 @@
     <string name="first">第一</string>
     <string name="make_first">设为第一</string>
     <string name="notes">备注</string>
-    <string name="location_is">位置资讯是</string>
     <string name="is_captive">它是圈养或是栽培的</string>
     <string name="location_visibility">位置可见度</string>
     <string name="set_location">位置</string>
@@ -295,7 +291,6 @@
     <string name="delete_comment">删除评论</string>
     <string name="delete_id_message">您确定您想要撤回此鉴定？</string>
     <string name="delete_comment_message">您确定想要删除此评论吗？</string>
-    <string name="comment">评论</string>
     <string name="suggest_id">建议之 ID</string>
     <string name="update_comment">更新评论</string>
     <string name="fave_this_observation">将此观察记录设为最爱</string>
@@ -719,7 +714,6 @@
     <string name="news_all_caps">新闻</string>
     <string name="got_it_all_caps">知道了！</string>
     <string name="view_all_all_caps">检示所有</string>
-    <string name="new_all_caps">新增</string>
     <string name="observers_all_caps">观察者</string>
     <string name="observations_regular">观察记录</string>
     <string name="data_quality_assessment">数据质量评估</string>
