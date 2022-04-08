@@ -162,6 +162,10 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 
         if (results == null) {
             return null;
+        } else if (results[0] == null) {
+            mLoginErrorMessage = results[1];
+            Logger.tag(TAG).error(mLoginErrorMessage);
+            return null;
         }
 
         // Upgrade from FB/Google email to iNat username
@@ -232,7 +236,9 @@ public class SignInTask extends AsyncTask<String, Void, String> {
             }
 
 
-            if (!isNetworkAvailable()) {
+            if (mLoginErrorMessage != null) {
+                mHelper.alert(mLoginErrorMessage);
+            } else if (!isNetworkAvailable()) {
                 mHelper.alert(mActivity.getString(R.string.not_connected));
             } else {
                 mHelper.alert(mActivity.getString(R.string.username_invalid));

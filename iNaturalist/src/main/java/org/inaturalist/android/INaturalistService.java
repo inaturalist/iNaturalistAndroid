@@ -101,6 +101,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 import static java.net.HttpURLConnection.HTTP_GONE;
 import static java.net.HttpURLConnection.HTTP_UNAUTHORIZED;
@@ -6437,10 +6438,12 @@ public class INaturalistService extends IntentService {
     }
 
 
-    // Returns an array of two strings: access token + iNat username
+    // Returns an array of two strings: access token + iNat username. In case of error, returns
+    // the array with first value (token) as null, second value as error description.
     public static String[] verifyCredentials(Context context, String username, String oauth2Token, LoginType authType, boolean askForScopeDeletion) {
         String grantType = null;
 
+        INaturalistApp app = (INaturalistApp) context.getApplicationContext();
         String url = HOST + (authType == LoginType.OAUTH_PASSWORD ? "/oauth/token" : "/oauth/assertion_token");
 
         OkHttpClient client = new OkHttpClient().newBuilder()
@@ -6477,6 +6480,8 @@ public class INaturalistService extends IntentService {
             requestBodyBuilder.add("scope", "login write account_delete");
         }
 
+        requestBodyBuilder.add("locale", app.getLanguageCodeForAPI());
+
         RequestBody requestBody = requestBodyBuilder.build();
 
         Request request = new Request.Builder()
@@ -6490,7 +6495,14 @@ public class INaturalistService extends IntentService {
 
             if (!response.isSuccessful()) {
                 Logger.tag(TAG).error("Authentication failed: " + response.code() + ": " + response.message());
-                return null;
+                ResponseBody responseBody = response.body();
+                if (responseBody != null) {
+                    String content = responseBody.string();
+                    JSONObject json = new JSONObject(content);
+                    return new String[]{null, json.optString("error_description")};
+                } else {
+                    return new String[]{null, context.getString(R.string.authentication_failed)};
+                }
             }
 
             String content = response.body().string();
@@ -6511,7 +6523,8 @@ public class INaturalistService extends IntentService {
 
             if (!response.isSuccessful()) {
                 Logger.tag(TAG).error("Authentication failed (edit.json): " + response.code() + ": " + response.message());
-                return null;
+
+                return new String[]{null, context.getString(R.string.authentication_failed)};
             }
 
             content = response.body().string();
@@ -6521,7 +6534,7 @@ public class INaturalistService extends IntentService {
 
             json = new JSONObject(content);
             if (!json.has("login")) {
-                return null;
+                return new String[]{null, context.getString(R.string.authentication_failed)};
             }
 
             String returnedUsername = json.getString("login");
@@ -6534,8 +6547,7 @@ public class INaturalistService extends IntentService {
             Logger.tag(TAG).error(e);
         }
 
-        return null;
-
+        return new String[]{null, context.getString(R.string.authentication_failed)};
     }
 
 
