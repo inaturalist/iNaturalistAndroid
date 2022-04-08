@@ -130,7 +130,6 @@
     <string name="done">Hotovo</string>
     <string name="please_sign_in_via_settings">Musíte být přihlášen pro zobrazení projektů.</string>
     <string name="contact_support">Kontaktovat podporu</string>
-    <string name="credits">Navrženo a vyrobeno iNaturalist.org s podporou Kalifornské akademie věd</string>
     <string name="leave_project">Opustit projekt</string>
     <string name="leave_project_confirmation">Jste si jisti, že chcete opustit tento projekt?</string>
     <string name="discard_location_changes">Jste si jisti, že chcete zrušit neuložené změny?</string>
@@ -177,7 +176,6 @@
     <string name="search">Hledat</string>
     <string name="details">Podrobnosti</string>
     <string name="observation_photos">Fotografie pozorování</string>
-    <string name="remove">Odebrat?</string>
     <string name="no_observations_found">Žádná pozorování nenalezena</string>
     <string name="license_none">Žádný, všechna práva vyhrazena</string>
     <string name="sources_and_attribution">Zdroje a přiřazení</string>
@@ -211,7 +209,6 @@
     <string name="guide_editor_must_enable_this_feature">Tuto funkci musí povolit editor průvodce.</string>
     <string name="are_you_sure">Jste si jisti?</string>
     <string name="download_guide_alert">Toto stáhne %1$s dat, takže tohoto průvoce můžete použít i v případě, že nemáte přístup k Internetu.</string>
-    <string name="download">Stáhnout</string>
     <string name="failed_to_download_guide">Průvodce se nepodařilo stáhnout</string>
     <string name="internet_connection_seems_to_be_offline">Připojení k internetu je zřejmě off-line.</string>
     <string name="downloading">Stahování...</string>
@@ -257,7 +254,6 @@
     <string name="first">1.</string>
     <string name="make_first">Nastavit jako 1.</string>
     <string name="notes">Poznámky</string>
-    <string name="location_is">Umístění je</string>
     <string name="is_captive">Žije v zajetí nebo je pěstované</string>
     <string name="location_visibility">Viditelnost polohy</string>
     <string name="set_location">Poloha</string>
@@ -301,7 +297,6 @@
     <string name="delete_comment">Odstranit komentář</string>
     <string name="delete_id_message">Přejete si smazat tuto identifikaci?</string>
     <string name="delete_comment_message">Jste si jisti, že chcete smazat tento komentář?</string>
-    <string name="comment">Komentář</string>
     <string name="suggest_id">Navrhnout identifikaci</string>
     <string name="update_comment">Aktualizovat komentář</string>
     <string name="fave_this_observation">Oblíbit si toto pozorování</string>
@@ -734,7 +729,6 @@
     <string name="news_all_caps">NOVÉ</string>
     <string name="got_it_all_caps">ROZUMÍM</string>
     <string name="view_all_all_caps">ZOBRAZIT VŠE</string>
-    <string name="new_all_caps">NOVÉ</string>
     <string name="observers_all_caps">POZOROVATELÉ</string>
     <string name="observations_regular">Pozorování</string>
     <string name="data_quality_assessment">Hodnocení kvality údajů</string>

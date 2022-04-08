@@ -130,7 +130,6 @@
     <string name="done">ചെയ്‌തു</string>
     <string name="please_sign_in_via_settings">നിങ്ങൾ ചേർന്ന പ്രോജക്റ്റുകൾ കാണുന്നതിന് നിങ്ങൾ ലോഗിൻ ചെയ്തിരിക്കണം.</string>
     <string name="contact_support">കോൺ‌ടാക്റ്റ് പിന്തുണ</string>
-    <string name="credits">Designed and built by iNaturalist.org with support from the California Academy of Sciences</string>
     <string name="leave_project">Leave Project</string>
     <string name="leave_project_confirmation">Are you sure you want to leave this project?</string>
     <string name="discard_location_changes">Are you sure you want to discard unsaved changes?</string>
@@ -175,7 +174,6 @@
     <string name="search">Search</string>
     <string name="details">Details</string>
     <string name="observation_photos">Observation Photos</string>
-    <string name="remove">Remove?</string>
     <string name="no_observations_found">No observations found</string>
     <string name="license_none">None, all rights reserved</string>
     <string name="sources_and_attribution">Sources and Attribution</string>
@@ -209,7 +207,6 @@
     <string name="guide_editor_must_enable_this_feature">Guide editor must enable this feature.</string>
     <string name="are_you_sure">Are you sure?</string>
     <string name="download_guide_alert">This will download %1$s of data so you can use this guide even when you don\'t have Internet access.</string>
-    <string name="download">Download</string>
     <string name="failed_to_download_guide">Failed to download guide</string>
     <string name="internet_connection_seems_to_be_offline">The Internet connection appears to be offline.</string>
     <string name="downloading">Downloading...</string>
@@ -255,7 +252,6 @@
     <string name="first">1st</string>
     <string name="make_first">Make 1st</string>
     <string name="notes">Notes</string>
-    <string name="location_is">Location is</string>
     <string name="is_captive">It is captive or cultivated</string>
     <string name="location_visibility">Location Visibility</string>
     <string name="set_location">Location</string>
@@ -297,7 +293,6 @@
     <string name="delete_comment">Delete Comment</string>
     <string name="delete_id_message">Are you sure you want to withdraw this identification?</string>
     <string name="delete_comment_message">Are you sure you want to delete this comment?</string>
-    <string name="comment">Comment</string>
     <string name="suggest_id">Suggest ID</string>
     <string name="update_comment">Update Comment</string>
     <string name="fave_this_observation">Fave This Observation</string>
@@ -724,7 +719,6 @@
     <string name="news_all_caps">NEWS</string>
     <string name="got_it_all_caps">GOT IT!</string>
     <string name="view_all_all_caps">VIEW ALL</string>
-    <string name="new_all_caps">NEW</string>
     <string name="observers_all_caps">OBSERVERS</string>
     <string name="observations_regular">Observations</string>
     <string name="data_quality_assessment">Data Quality Assessment</string>

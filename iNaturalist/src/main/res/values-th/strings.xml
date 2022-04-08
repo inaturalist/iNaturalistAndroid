@@ -130,7 +130,6 @@
     <string name="done">เรียบร้อยแล้ว</string>
     <string name="please_sign_in_via_settings">คุณต้องเข้าสู่ระบบเพื่อดูโครงการที่คุณเข้าร่วม</string>
     <string name="contact_support">ติดต่อฝ่ายสนับสนุน</string>
-    <string name="credits">ออกแบบและสร้างโดย iNaturalist.org โดยได้รับการสนับสนุนจาก California Academy of Sciences</string>
     <string name="leave_project">ออกจากโครงการ</string>
     <string name="leave_project_confirmation">คุณแน่ใจไหมว่าต้องการออกจากโครงการนี้?</string>
     <string name="discard_location_changes">แน่ใจไหมว่าต้องการยกเลิกการเปลี่ยนแปลงที่ยังไม่ได้บันทึก</string>
@@ -174,7 +173,6 @@
     <string name="search">ค้นหา</string>
     <string name="details">รายละเอียด</string>
     <string name="observation_photos">รูปภาพจากการสังเกตการณ์</string>
-    <string name="remove">ลบออก?</string>
     <string name="no_observations_found">ไม่พบการสังเกตการณ์</string>
     <string name="license_none">ไม่มีสงวนลิขสิทธิ์</string>
     <string name="sources_and_attribution">แหล่งที่มาและการระบุแหล่งที่มา</string>
@@ -208,7 +206,6 @@
     <string name="guide_editor_must_enable_this_feature">ตัวแก้ไขคำแนะนำต้องการเปิดใช้งานคุณสมบัตินี้</string>
     <string name="are_you_sure">คุณแน่ใจหรือไม่?</string>
     <string name="download_guide_alert">สิ่งนี้จะดาวน์โหลด %1$s ของข้อมูลเพื่อให้คุณสามารถใช้คู่มือนี้ได้แม้ว่าคุณจะไม่มีอินเทอร์เน็ตก็ตาม</string>
-    <string name="download">ดาวน์โหลด</string>
     <string name="failed_to_download_guide">ไม่สามารถดาวน์โหลดคำแนะนำ</string>
     <string name="internet_connection_seems_to_be_offline">ดูเหมือนว่าจะไม่ได้เชื่อมต่ออินเตอร์เน็ต</string>
     <string name="downloading">กำลังดาวน์โหลด...</string>
@@ -254,7 +251,6 @@
     <string name="first">อันดับ 1</string>
     <string name="make_first">เป็นอันดับที่ 1</string>
     <string name="notes">หมายเหตุ</string>
-    <string name="location_is">ตำแหน่งที่ตั้ง</string>
     <string name="is_captive">เป็นสัตว์เลี้ยงหรือเพาะปลูก</string>
     <string name="location_visibility">การเปิดเผยตำแหน่ง</string>
     <string name="set_location">ตำแหน่งที่ตั้ง</string>
@@ -295,7 +291,6 @@
     <string name="delete_comment">ลบความคิดเห็น</string>
     <string name="delete_id_message">คุณแน่ใจหรือไม่ว่าต้องการเพิกถอนการระบุตัวตนนี้?</string>
     <string name="delete_comment_message">แน่ใจหรือไม่ว่าคุณต้องการลบความคิดเห็นนี้?</string>
-    <string name="comment">ความคิดเห็น</string>
     <string name="suggest_id">การจำแนกที่ได้รับการแนะนำ</string>
     <string name="update_comment">อัปเดตความคิดเห็น</string>
     <string name="fave_this_observation">บันทึกการสังเกตนี้</string>
@@ -719,7 +714,6 @@
     <string name="news_all_caps">ข่าวสาร</string>
     <string name="got_it_all_caps">รับทราบ!</string>
     <string name="view_all_all_caps">ดูทั้งหมด</string>
-    <string name="new_all_caps">ใหม่</string>
     <string name="observers_all_caps">ผู้สังเกตการณ์</string>
     <string name="observations_regular">การสังเกตการณ์</string>
     <string name="data_quality_assessment">การประเมินคุณภาพข้อมูล</string>
@@ -1165,9 +1159,9 @@
     <string name="expand_list">ขยายรายการ</string>
     <string name="change_map_layers">เปลี่ยนชั้นข้อมูลแผนที่ (ภูมิประเทศ กับ ดาวเทียม)</string>
     <string name="redo_observation_search">Redo observation search in this map area</string>
-    <string name="view_observations_on_map">View observations on map</string>
-    <string name="view_observations_on_grid">View observations on grid</string>
-    <string name="clear_text">Clear text</string>
+    <string name="view_observations_on_map">ดูการสังเกตบนแผนที่</string>
+    <string name="view_observations_on_grid">ดูการสังเกตแบบตาราง</string>
+    <string name="clear_text">ล้างข้อความ</string>
     <string name="observation_has_sounds">การสังเกตมีเสียง</string>
     <string name="go_to_my_location">ไปที่ตำแหน่งปัจจุบันของฉัน</string>
     <string name="change_geoprivacy">เปลี่ยนความเป็นส่วนตัวของพิกัด</string>
@@ -1175,21 +1169,21 @@
     <string name="message_is_flagged">ข้อความได้รับรายงานแล้ว</string>
     <string name="user_is_muted">User is muted</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
-    <string name="delete_observations">Delete observations</string>
+    <string name="delete_observations">ลบการสังเกต</string>
     <string name="comment_count">Comment count</string>
     <string name="id_count">Identification count</string>
     <string name="observation_selected">Observation selected</string>
     <string name="share_observation">แชร์การสังเกต</string>
     <string name="unknown_location">ไม่ทราบแหล่ง</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
-    <string name="close">Close</string>
+    <string name="close">ปิด</string>
     <string name="set_date2">Set date</string>
     <string name="project_selected">โปรเจคถูกเลือก</string>
     <string name="project_unselected">Project Unselected</string>
     <string name="show_my_observations">แสดงการสังเกตของฉัน</string>
     <string name="play_pause_sound">Play or pause sound</string>
-    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
-    <string name="view_image">View image</string>
+    <string name="california_academy_of_sciences_and_national_geographic">สถาบันวิทยาศาสตร์แห่งแคลิฟอร์เนีย และเนชันแนล จีโอกราฟิก</string>
+    <string name="view_image">ดูรูปภาพ</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <string name="assessment_passes">Assessment passes</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
@@ -1204,8 +1198,8 @@
     <plurals name="sync_x_selected_observations">
         <item quantity="other">Sync %1$d selected observations</item>
     </plurals>
-    <string name="add_media_evidence">Add media evidence</string>
+    <string name="add_media_evidence">เพิ่มหลักฐานรูปภาพหรือเสียง</string>
     <string name="remove_identification">ลบการระบุ</string>
     <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
-    <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
+    <string name="app_version_copied_to_clipboard">คัดลอกเวอร์ชันแอปไปยังคลิปบอร์ดแล้ว</string>
 </resources>

@@ -130,7 +130,6 @@
     <string name="done">בוצע</string>
     <string name="please_sign_in_via_settings">עליך להיות מחובר/ת כדי לראות פרויקטים שהתחברת אליהם.</string>
     <string name="contact_support">צור קשר עם התמיכה</string>
-    <string name="credits">תוכנן ונבנה על ידי iNaturalist.org בתמיכת האקדמיה למדעים של קליפורניה</string>
     <string name="leave_project">צא/י מהפרויקט</string>
     <string name="leave_project_confirmation">בטוחים שאתם רוצים לעזוב את הפרויקט?</string>
     <string name="discard_location_changes">האם את/ה בטוח/ה שברצונך לבטל את השינויים שלא נשמרו?</string>
@@ -177,7 +176,6 @@
     <string name="search">חיפוש</string>
     <string name="details">פרטים</string>
     <string name="observation_photos">תמונות התצפית</string>
-    <string name="remove">להסיר?</string>
     <string name="no_observations_found">לא נמצאו תצפיות</string>
     <string name="license_none">כל הזכויות שמורות</string>
     <string name="sources_and_attribution">מקורות וייחוס</string>
@@ -211,7 +209,6 @@
     <string name="guide_editor_must_enable_this_feature">עורך המדרך צריך לאשר את האופציה הזאת.</string>
     <string name="are_you_sure">האם אתה בטוח?</string>
     <string name="download_guide_alert">פעולה זאת תוריד %1$s של מידע ואז תוכלו להשתמש במדריך גם כאשר לא יהיה חיבור לאינטרנט.</string>
-    <string name="download">הורדה</string>
     <string name="failed_to_download_guide">תקלה בהורדת המדריך</string>
     <string name="internet_connection_seems_to_be_offline">אין חיבור לאינטרנט.</string>
     <string name="downloading">מוריד...</string>
@@ -257,7 +254,6 @@
     <string name="first">הראשון</string>
     <string name="make_first">שנו לראשון</string>
     <string name="notes">רשימות</string>
-    <string name="location_is">מיקום הוא</string>
     <string name="is_captive">נמצא בשבי או מתורבת</string>
     <string name="location_visibility">מיקום גלוי</string>
     <string name="set_location">מיקום</string>
@@ -301,7 +297,6 @@
     <string name="delete_comment">מחיקת תגובה</string>
     <string name="delete_id_message">האם את/ה בטוחה שאת/ה רוצה להסיר את הזיהוי?</string>
     <string name="delete_comment_message">האם אתם בטוחים שברצונכם למחוק תגובה זו?</string>
-    <string name="comment">תגובה</string>
     <string name="suggest_id">הצע/הציעי זיהוי</string>
     <string name="update_comment">עדכן/ני תגובה</string>
     <string name="fave_this_observation">בחר/בחרי בתצפית זו כמועדפת</string>
@@ -734,7 +729,6 @@
     <string name="news_all_caps">חדשות</string>
     <string name="got_it_all_caps">הבנתי!</string>
     <string name="view_all_all_caps">להציג הכל</string>
-    <string name="new_all_caps">חדש</string>
     <string name="observers_all_caps">מתצפתים</string>
     <string name="observations_regular">תצפיות</string>
     <string name="data_quality_assessment">הערכת איכות הנתונים</string>

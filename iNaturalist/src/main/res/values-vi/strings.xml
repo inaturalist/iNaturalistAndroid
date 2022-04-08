@@ -130,7 +130,6 @@
     <string name="done">Hoàn thành</string>
     <string name="please_sign_in_via_settings">Bạn phải đăng nhập để xem các dự án mà bạn đã tham gia</string>
     <string name="contact_support">Liên hệ bộ phận Hỗ trợ</string>
-    <string name="credits">Được sáng tạo bởi iNaturalist.org với sự giúp đỡ của Học Viện Khoa Học California</string>
     <string name="leave_project">Rời dự án</string>
     <string name="leave_project_confirmation">Bạn có chắc chắn là muốn rời khỏi dự án này ?</string>
     <string name="discard_location_changes">Bạn có chắc chắn muốn xóa tất cả các thay đổi chưa lưu không?</string>
@@ -174,7 +173,6 @@
     <string name="search">Tìm kiếm</string>
     <string name="details">Thông tin chi tiết</string>
     <string name="observation_photos">Những bức ảnh quan sát</string>
-    <string name="remove">Loại bỏ?</string>
     <string name="no_observations_found">Không tìm thấy quan sát nào</string>
     <string name="license_none">Không, bản quyền đã được bảo hộ</string>
     <string name="sources_and_attribution">Các nguồn và Quyền hạn</string>
@@ -208,7 +206,6 @@
     <string name="guide_editor_must_enable_this_feature">Trình biên tập phải kích hoạt chức năng này.</string>
     <string name="are_you_sure">Bạn chắc chứ?</string>
     <string name="download_guide_alert">Cái này sẽ tải xuống %1$s dữ liệu để bạn có thể sử dụng hướng dẫn này ngay cả khi bạn không có Internet.</string>
-    <string name="download">Tải về</string>
     <string name="failed_to_download_guide">Không thể tải bản hướng dẫn</string>
     <string name="internet_connection_seems_to_be_offline">Có vẻ như kết nối Internet đang ở chế độ ngoại tuyến.</string>
     <string name="downloading">Đang tải về...</string>
@@ -254,7 +251,6 @@
     <string name="first">Thứ nhất</string>
     <string name="make_first">Chọn làm thứ nhất</string>
     <string name="notes">Ghi chú</string>
-    <string name="location_is">Vị trí là</string>
     <string name="is_captive">Được nuôi hay được trồng</string>
     <string name="location_visibility">Hiển thị vị trí</string>
     <string name="set_location">Vị trí</string>
@@ -295,7 +291,6 @@
     <string name="delete_comment">Xoá bình luận</string>
     <string name="delete_id_message">Bạn muốn ngưng lần nhận dạng này phải không?</string>
     <string name="delete_comment_message">Bạn muốn xóa lời bình luận này phải không?</string>
-    <string name="comment">Bình luận</string>
     <string name="suggest_id">Gợi ý CM</string>
     <string name="update_comment">Cập nhật bình luận</string>
     <string name="fave_this_observation">Thích quan sát này</string>
@@ -719,7 +714,6 @@
     <string name="news_all_caps">TIN TỨC</string>
     <string name="got_it_all_caps">HIỂU RỒI!</string>
     <string name="view_all_all_caps">XEM TẤT CẢ</string>
-    <string name="new_all_caps">MỚI</string>
     <string name="observers_all_caps">NHỮNG NGƯỜI QUAN SÁT</string>
     <string name="observations_regular">Các quan sát</string>
     <string name="data_quality_assessment">Đánh giá chất lượng dữ liệu</string>

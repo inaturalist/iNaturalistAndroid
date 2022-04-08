@@ -130,7 +130,6 @@
     <string name="done">Gatavs</string>
     <string name="please_sign_in_via_settings">Pieslēdzies, lai apskatītu projektus, kuros esi iesaistījies.</string>
     <string name="contact_support">Sazināties ar atbalsta dienestu</string>
-    <string name="credits">Lietotni izstrādājuši iNaturalist.org ar atbalstu no California Academy of Sciences.</string>
     <string name="leave_project">Pamest projektu</string>
     <string name="leave_project_confirmation">Vai tiešām vēlies pamest projektu?</string>
     <string name="discard_location_changes">Vai tiešām vēlies atcelt nesaglabātās izmaiņas?</string>
@@ -176,7 +175,6 @@
     <string name="search">Meklēt</string>
     <string name="details">Dati</string>
     <string name="observation_photos">Novērojuma fotogrāfijas</string>
-    <string name="remove">Dzēst?</string>
     <string name="no_observations_found">Novērojumi nav atrasti</string>
     <string name="license_none">Neviens, visas tiesības paturētas</string>
     <string name="sources_and_attribution">Avoti un nopelni</string>
@@ -211,7 +209,6 @@ globālā iNaturalist tīkla.</string>
     <string name="guide_editor_must_enable_this_feature">Padomu autoram jāiespējo šī funkcija.</string>
     <string name="are_you_sure">Vai esi pārliecināts?</string>
     <string name="download_guide_alert">Ar šo funkciju iespējams lejupielādēt %1$s datus, lai padomus varētu apskatīt arī bez interneta pieslēguma.</string>
-    <string name="download">Lejupielādēt</string>
     <string name="failed_to_download_guide">Padomus neizdevās lejupielādēt</string>
     <string name="internet_connection_seems_to_be_offline">Nav interneta savienojuma.</string>
     <string name="downloading">Lejupielādē...</string>
@@ -257,7 +254,6 @@ globālā iNaturalist tīkla.</string>
     <string name="first">1.</string>
     <string name="make_first">Novietot sākumā</string>
     <string name="notes">Piezīmes</string>
-    <string name="location_is">Atrašanās vieta ir</string>
     <string name="is_captive">Vai indivīds ir nebrīvē vai kultivēts?</string>
     <string name="location_visibility">Atrašanās vietas redzamība</string>
     <string name="set_location">Atrašanās vieta</string>
@@ -300,7 +296,6 @@ globālā iNaturalist tīkla.</string>
     <string name="delete_comment">Dzēst komentāru</string>
     <string name="delete_id_message">Vai tiešām vēlies atsaukt identifikāciju?</string>
     <string name="delete_comment_message">Vai tiešām vēlies dzēst komentāru?</string>
-    <string name="comment">Komentēt</string>
     <string name="suggest_id">Ieteikt ID</string>
     <string name="update_comment">Labot komentāru</string>
     <string name="fave_this_observation">Pievienot novērojumu izlasei</string>
@@ -731,7 +726,6 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="news_all_caps">ZIŅAS</string>
     <string name="got_it_all_caps">Aizvērt</string>
     <string name="view_all_all_caps">SKATĪT VISU</string>
-    <string name="new_all_caps">JAUNS</string>
     <string name="observers_all_caps">NOVĒROTĀJI</string>
     <string name="observations_regular">Novērojumi</string>
     <string name="data_quality_assessment">Datu kvalitātes novērtējums</string>

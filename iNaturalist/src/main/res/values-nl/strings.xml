@@ -130,7 +130,6 @@
     <string name="done">Voltooid</string>
     <string name="please_sign_in_via_settings">Je moet ingelogd zijn om je gekoppelde projecten te bekijken.</string>
     <string name="contact_support">Contact opnemen met support</string>
-    <string name="credits">Ontworpen en gebouwd door iNaturalist.org met steun van de California Academy of Sciences</string>
     <string name="leave_project">Project verlaten</string>
     <string name="leave_project_confirmation">Weet u zeker dat u dit project wil verlaten?</string>
     <string name="discard_location_changes">Weet je zeker dat je deze wijzigingen niet wilt opslaan?</string>
@@ -175,7 +174,6 @@
     <string name="search">Zoeken</string>
     <string name="details">Details</string>
     <string name="observation_photos">Foto\'s bij de waarneming</string>
-    <string name="remove">Verwijderen?</string>
     <string name="no_observations_found">Geen waarnemingen gevonden</string>
     <string name="license_none">Geen, alle rechten voorbehouden</string>
     <string name="sources_and_attribution">Bronvermelding</string>
@@ -209,7 +207,6 @@
     <string name="guide_editor_must_enable_this_feature">Gidseditor moet deze functie inschakelen.</string>
     <string name="are_you_sure">Weet je het zeker?</string>
     <string name="download_guide_alert">Hiermee download u %1$s aan gegevens, zodat u deze gids ook kunt gebruiken als u geen toegang tot internet hebt.</string>
-    <string name="download">Download</string>
     <string name="failed_to_download_guide">Downloaden van gids mislukt</string>
     <string name="internet_connection_seems_to_be_offline">De internetverbinding lijkt offline te zijn.</string>
     <string name="downloading">Downloaden...</string>
@@ -255,7 +252,6 @@
     <string name="first">1ste</string>
     <string name="make_first">1ste maken</string>
     <string name="notes">Opmerkingen</string>
-    <string name="location_is">Locatie is</string>
     <string name="is_captive">Het is gevangen of gekweekt</string>
     <string name="location_visibility">Zichtbaarheid locatie</string>
     <string name="set_location">Locatie</string>
@@ -277,7 +273,7 @@
     <string name="share">Delen via</string>
     <string name="unable_to_acquire_location">Kan locatie niet vaststellen</string>
     <string name="casual_grade">Onvolledig</string>
-    <string name="needs_id">Determinatie vereist</string>
+    <string name="needs_id">ID nodig</string>
     <string name="research_grade">Onderzoekskwaliteit</string>
     <string name="data_quality">Gegevenskwaliteit</string>
     <string name="casual_grade_add_location"><![CDATA[ Voeg een <b>locatie</b> toe om deze waarneming te upgraden naar "ID nodig" status. ]]></string>
@@ -297,7 +293,6 @@
     <string name="delete_comment">Verwijder commentaar</string>
     <string name="delete_id_message">Weet U zeker dat U deze identificatie wilt verwijderen?</string>
     <string name="delete_comment_message">Weet u zeker dat u dit commentaar wilt verwijderen?</string>
-    <string name="comment">Commentaar</string>
     <string name="suggest_id">Stel ID voor</string>
     <string name="update_comment">Commentaar bijwerken</string>
     <string name="fave_this_observation">Maak deze waarneming favoriet</string>
@@ -724,7 +719,6 @@
     <string name="news_all_caps">NIEUWS</string>
     <string name="got_it_all_caps">BEGREPEN!</string>
     <string name="view_all_all_caps">ALLES TONEN</string>
-    <string name="new_all_caps">NIEUW</string>
     <string name="observers_all_caps">WAARNEMERS</string>
     <string name="observations_regular">Waarnemingen</string>
     <string name="data_quality_assessment">Kwaliteitsbeoordeling van de gegevens</string>

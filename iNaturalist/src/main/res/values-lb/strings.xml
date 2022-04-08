@@ -130,7 +130,6 @@
     <string name="done">Fäerdeg</string>
     <string name="please_sign_in_via_settings">You must be logged in to view projects you\'ve joined.</string>
     <string name="contact_support">Support kontakteiren</string>
-    <string name="credits">Designed and built by iNaturalist.org with support from the California Academy of Sciences</string>
     <string name="leave_project">Projet verloossen</string>
     <string name="leave_project_confirmation">Sidd Dir sécher datt Dir dëse Projet verloosse wëllt?</string>
     <string name="discard_location_changes">Sidd Dir sécher dass Dir net gespäichert Verännerunge wëllt verwerfen?</string>
@@ -175,7 +174,6 @@
     <string name="search">Sichen</string>
     <string name="details">Detailer</string>
     <string name="observation_photos">Observatiousfotoen</string>
-    <string name="remove">Ewechhuelen?</string>
     <string name="no_observations_found">Keng Observatiounen fonnt</string>
     <string name="license_none">Keng, all Rechter reservéiert</string>
     <string name="sources_and_attribution">Quellen an Attributiounen</string>
@@ -209,7 +207,6 @@
     <string name="guide_editor_must_enable_this_feature">Guide Editor muss dës Feature aktivéieren.</string>
     <string name="are_you_sure">Sidd Dir sécher?</string>
     <string name="download_guide_alert">This will download %1$s of data so you can use this guide even when you don\'t have Internet access.</string>
-    <string name="download">Eroflueden</string>
     <string name="failed_to_download_guide">Guide konnt net erofgeluede ginn</string>
     <string name="internet_connection_seems_to_be_offline">D\'Internetverbindung schéngt offline ze sinn.</string>
     <string name="downloading">Gëtt erofgelueden...</string>
@@ -255,7 +252,6 @@
     <string name="first">1.</string>
     <string name="make_first">Den éischte maachen</string>
     <string name="notes">Notizen</string>
-    <string name="location_is">Site ass</string>
     <string name="is_captive">Ass et gefaangen oder kultivéiert</string>
     <string name="location_visibility">Site Visibilitéit</string>
     <string name="set_location">Site</string>
@@ -297,7 +293,6 @@
     <string name="delete_comment">Kommentar läschen</string>
     <string name="delete_id_message">Sidd Dir sécher datt Dir dës Bestëmmung zeréckleien wëllt?</string>
     <string name="delete_comment_message">Sidd Dir sécher datt Dir dësen Kommentar läsche wëllt?</string>
-    <string name="comment">Kommentar</string>
     <string name="suggest_id">ID virschloen</string>
     <string name="update_comment">Kommentar aktualiséieren</string>
     <string name="fave_this_observation">Dës Observatioun favoriseiren</string>
@@ -724,7 +719,6 @@
     <string name="news_all_caps">Neiegkeeten</string>
     <string name="got_it_all_caps">VERSTANEN!</string>
     <string name="view_all_all_caps">ALL KUCKEN</string>
-    <string name="new_all_caps">NEI</string>
     <string name="observers_all_caps">OBSERVATEUREN</string>
     <string name="observations_regular">Observatiounen</string>
     <string name="data_quality_assessment">Datenqualitéitsevaluatioun</string>

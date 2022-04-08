@@ -130,7 +130,6 @@
     <string name="done">Gata</string>
     <string name="please_sign_in_via_settings">Te rugăm să te conectezi via ecranul cu setări pentru a putea vedea proiectele tale</string>
     <string name="contact_support">Contactare echipa de suport tehnic</string>
-    <string name="credits">Proiectat și construit de iNaturalist.org cu sprijinul Academiei de Științe din California</string>
     <string name="leave_project">Ieși din Proiect</string>
     <string name="leave_project_confirmation">Ești sigur că vrei să ieși din acest proiect?</string>
     <string name="discard_location_changes">Ești sigur că dorești să renunți la modificările nesalvate?</string>
@@ -176,7 +175,6 @@
     <string name="search">Căutare</string>
     <string name="details">Detalii</string>
     <string name="observation_photos">Fotografii de observare</string>
-    <string name="remove">Șterge?</string>
     <string name="no_observations_found">Nu au fost găsite observații</string>
     <string name="license_none">Nimic, toate drepturile rezervate</string>
     <string name="sources_and_attribution">Surse și atribuiri</string>
@@ -210,7 +208,6 @@
     <string name="guide_editor_must_enable_this_feature">Editorul ghidului trebuie să activeze această caracteristică.</string>
     <string name="are_you_sure">Ești sigur?</string>
     <string name="download_guide_alert">Se vor descărca datele %1$s astfel, puteți utiliza ghidul chiar și în lipsa accesului la internet.</string>
-    <string name="download">Descarcă</string>
     <string name="failed_to_download_guide">Nu s-a reușit descărcarea ghidului</string>
     <string name="internet_connection_seems_to_be_offline">Conexiunea la internet pare să fie oprită.</string>
     <string name="downloading">Se descarcă...</string>
@@ -256,7 +253,6 @@
     <string name="first">Primul</string>
     <string name="make_first">Fă primul</string>
     <string name="notes">Notițe</string>
-    <string name="location_is">Locația este</string>
     <string name="is_captive">Este captiv sau cultivat</string>
     <string name="location_visibility">Vizibilitatea locației</string>
     <string name="set_location">Locație</string>
@@ -299,7 +295,6 @@
     <string name="delete_comment">Șterge comentariu</string>
     <string name="delete_id_message">Ești sigur că vrei să retragi această identificare?</string>
     <string name="delete_comment_message">Ești sigur că vrei să ștergi acest comentariu?</string>
-    <string name="comment">Comentariu</string>
     <string name="suggest_id">Sugerează ID</string>
     <string name="update_comment">Actualizează comentariu</string>
     <string name="fave_this_observation">Favorizează această observație</string>
@@ -729,7 +724,6 @@
     <string name="news_all_caps">ȘTIRI</string>
     <string name="got_it_all_caps">AM ÎNȚELES!</string>
     <string name="view_all_all_caps">VEZI TOATE</string>
-    <string name="new_all_caps">NOU</string>
     <string name="observers_all_caps">OBSERVATORI</string>
     <string name="observations_regular">Observări</string>
     <string name="data_quality_assessment">Evaluarea calității datelor</string>

@@ -130,7 +130,6 @@
     <string name="done">Baigta</string>
     <string name="please_sign_in_via_settings">Norėdami peržiūrėti projektus, prie kurių prisijungėte, turite būti prisijungę prie programėlės.</string>
     <string name="contact_support">Susisiekti su pagalba</string>
-    <string name="credits">Sukūrė iNaturalist.org, padedant Kalifornijos mokslo akademijai</string>
     <string name="leave_project">Palikti projektą</string>
     <string name="leave_project_confirmation">Ar tikrai norite palikti šį projektą?</string>
     <string name="discard_location_changes">Ar tikrai norite panaikinti neišsaugotus pakeitimus?</string>
@@ -177,7 +176,6 @@
     <string name="search">Paieška</string>
     <string name="details">Informacija</string>
     <string name="observation_photos">Stebėjimo nuotraukos</string>
-    <string name="remove">Pašalinti?</string>
     <string name="no_observations_found">Stebėjimų nerasta</string>
     <string name="license_none">Visos teisės saugomos</string>
     <string name="sources_and_attribution">Šaltiniai ir atribucija</string>
@@ -211,7 +209,6 @@
     <string name="guide_editor_must_enable_this_feature">Vadovo redaktorius turi įjungti šią funkciją.</string>
     <string name="are_you_sure">Ar esate įsitikinę?</string>
     <string name="download_guide_alert">Tai atsiųs %1$s duomenis, todėl galėsite naudotis šiuo vadovu neprisijungę prie interneto.</string>
-    <string name="download">Atsisiųsti</string>
     <string name="failed_to_download_guide">Vadovo atsisiųsti nepavyko</string>
     <string name="internet_connection_seems_to_be_offline">Panašu, kad jūsų interneto ryšys atjungtas.</string>
     <string name="downloading">Atsiunčiama...</string>
@@ -257,7 +254,6 @@
     <string name="first">1-asis</string>
     <string name="make_first">Padaryti 1-uoju</string>
     <string name="notes">Užrašai</string>
-    <string name="location_is">Vieta yra</string>
     <string name="is_captive">Ar tai naminis/kultivuojamas</string>
     <string name="location_visibility">Vietos matomumas</string>
     <string name="set_location">Vieta</string>
@@ -301,7 +297,6 @@
     <string name="delete_comment">Ištrinti komentarą</string>
     <string name="delete_id_message">Ar tikrai norite atsisakyti identifikacijos?</string>
     <string name="delete_comment_message">Ar tikrai norite ištrinti šį komentarą?</string>
-    <string name="comment">Komentuoti</string>
     <string name="suggest_id">Pasiūlyti ID</string>
     <string name="update_comment">Atnaujinti komentarą</string>
     <string name="fave_this_observation">Pamėgti šį stebėjimą</string>
@@ -734,7 +729,6 @@
     <string name="news_all_caps">NAUJIENOS</string>
     <string name="got_it_all_caps">SUPRATAU!</string>
     <string name="view_all_all_caps">ŽIŪRĖTI VISKĄ</string>
-    <string name="new_all_caps">NAUJAS</string>
     <string name="observers_all_caps">STEBĖTOJAI</string>
     <string name="observations_regular">Stebėjimai</string>
     <string name="data_quality_assessment">Duomenų kokybės įvertinimas</string>

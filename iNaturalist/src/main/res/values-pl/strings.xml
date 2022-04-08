@@ -130,7 +130,6 @@
     <string name="done">Gotowe</string>
     <string name="please_sign_in_via_settings">Musisz być zalogowany, aby zobaczyć projekty do których dołączyłeś.</string>
     <string name="contact_support">Skontaktuj się z pomocą techniczną</string>
-    <string name="credits">Design i wykonanie przez iNaturalist.org ze wsparciem od Kalifornijskiej Akademii Odkryć</string>
     <string name="leave_project">Opuść projekt</string>
     <string name="leave_project_confirmation">Czy jesteś pewien, że chcesz opuścić ten projekt?</string>
     <string name="discard_location_changes">Czy jesteś pewien, że chcesz porzucić niezapisane zmiany?</string>
@@ -177,7 +176,6 @@
     <string name="search">Szukaj</string>
     <string name="details">Szczegóły</string>
     <string name="observation_photos">Zdjęcia z obserwacji</string>
-    <string name="remove">Usunąć?</string>
     <string name="no_observations_found">Nie znaleziono żadnych obserwacji</string>
     <string name="license_none">Brak, Wszystkie prawa zastrzeżone</string>
     <string name="sources_and_attribution">Źródła i Uznanie Autorstwa</string>
@@ -211,7 +209,6 @@
     <string name="guide_editor_must_enable_this_feature">Redaktor Przewodnika musi włączyć tą funkcję.</string>
     <string name="are_you_sure">Jesteś pewien?</string>
     <string name="download_guide_alert">Zostanie pobrane %1$s danych, abyś mógł używać tego przewodnika nawet gdy nie będziesz miał dostępu do Internetu.</string>
-    <string name="download">Pobierz</string>
     <string name="failed_to_download_guide">Nie udało się pobrać Przewodnika</string>
     <string name="internet_connection_seems_to_be_offline">Wygląda na to, że nie działa połączenie z internetem.</string>
     <string name="downloading">Pobieranie...</string>
@@ -257,7 +254,6 @@
     <string name="first">Nr 1</string>
     <string name="make_first">Ustaw jako pierwsze</string>
     <string name="notes">Notatki</string>
-    <string name="location_is">Lokalizacja</string>
     <string name="is_captive">Żyje w niewoli lub jest uprawiany</string>
     <string name="location_visibility">Widoczność lokalizacji</string>
     <string name="set_location">Lokalizacja</string>
@@ -301,7 +297,6 @@
     <string name="delete_comment">Usuń komentarz</string>
     <string name="delete_id_message">Czy na pewno chcesz wycofać to oznaczenie?</string>
     <string name="delete_comment_message">Czy na pewno chcesz usunąć ten komentarz?</string>
-    <string name="comment">Komentarz</string>
     <string name="suggest_id">Sugerowana identyfikacja</string>
     <string name="update_comment">Zaktualizuj komentarz</string>
     <string name="fave_this_observation">Dodaj obserwację do ulubionych</string>
@@ -734,7 +729,6 @@
     <string name="news_all_caps">AKTUALNOŚCI</string>
     <string name="got_it_all_caps">ROZUMIEM!</string>
     <string name="view_all_all_caps">ZOBACZ WSZYSTKO</string>
-    <string name="new_all_caps">NOWE</string>
     <string name="observers_all_caps">OBSERWATORZY</string>
     <string name="observations_regular">Obserwacje</string>
     <string name="data_quality_assessment">Ocena jakości danych</string>

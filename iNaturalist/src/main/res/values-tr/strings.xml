@@ -130,7 +130,6 @@
     <string name="done">Tamamlandı</string>
     <string name="please_sign_in_via_settings">Katıldığınız projeleri görüntüleyebilmek için giriş yapmanız gerekmektedir.</string>
     <string name="contact_support">Destekle İletişime Geç</string>
-    <string name="credits">California Doğal Bilimler Akademisi\'nin destekleri ile iNaturalist.org tarafından tasarlanmış ve inşa edilmiştir.</string>
     <string name="leave_project">Projeden Ayrıl</string>
     <string name="leave_project_confirmation">Bu projeden çıkmak istediğinize emin misiniz?</string>
     <string name="discard_location_changes">Değişikliklerinizi kaydetmeden iptal etmek istediğinizden emin misiniz?</string>
@@ -175,7 +174,6 @@
     <string name="search">Ara</string>
     <string name="details">Ayrıntılar</string>
     <string name="observation_photos">Gözlem Fotoğrafları</string>
-    <string name="remove">Kaldırılsın mı?</string>
     <string name="no_observations_found">Hiçbir gözlem bulunamadı</string>
     <string name="license_none">Hiçbiri, tüm hakları saklıdır</string>
     <string name="sources_and_attribution">Kaynaklar ve Atıflar</string>
@@ -209,7 +207,6 @@
     <string name="guide_editor_must_enable_this_feature">Bu özellik için rehber düzenleyicisi etkinleştirilmelidir.</string>
     <string name="are_you_sure">Emin misiniz?</string>
     <string name="download_guide_alert">Bu, İnternet erişiminiz olmasa bile bu rehberi kullanabilmeniz için %1$s veri indirir.</string>
-    <string name="download">İndir</string>
     <string name="failed_to_download_guide">Rehber indirme başarısız</string>
     <string name="internet_connection_seems_to_be_offline">İnternet bağlantısı çevrimdışı görünüyor.</string>
     <string name="downloading">İndiriliyor...</string>
@@ -255,7 +252,6 @@
     <string name="first">Birinci</string>
     <string name="make_first">Birinci yap</string>
     <string name="notes">Notlar</string>
-    <string name="location_is">Konum</string>
     <string name="is_captive">O kısıtlı ya da ekili</string>
     <string name="location_visibility">Konum Görünürlüğü</string>
     <string name="set_location">Konum</string>
@@ -297,7 +293,6 @@
     <string name="delete_comment">Yorumu Sil</string>
     <string name="delete_id_message">Bu tanımlamayı geri almak istediğinizden emin misiniz?</string>
     <string name="delete_comment_message">Bu yorumu silmek istediğinizden emin misiniz?</string>
-    <string name="comment">Yorum</string>
     <string name="suggest_id">Tanımlama öner</string>
     <string name="update_comment">Yorumu Güncelle</string>
     <string name="fave_this_observation">Bu Gözlemi Favori Yap</string>
@@ -724,7 +719,6 @@
     <string name="news_all_caps">HABER</string>
     <string name="got_it_all_caps">ANLADIM!</string>
     <string name="view_all_all_caps">TÜMÜNÜ GÖSTER</string>
-    <string name="new_all_caps">YENİ</string>
     <string name="observers_all_caps">GÖZLEMCİLER</string>
     <string name="observations_regular">Gözlemler</string>
     <string name="data_quality_assessment">Veri Nitelik Değerlendirmesi</string>

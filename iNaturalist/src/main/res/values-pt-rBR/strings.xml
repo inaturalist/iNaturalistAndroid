@@ -130,7 +130,6 @@
     <string name="done">Pronto</string>
     <string name="please_sign_in_via_settings">Por favor entre através da tela de configurações para exibir seus projetos</string>
     <string name="contact_support">Entre em contato com o suporte</string>
-    <string name="credits">Projetado e construído por iNaturalist.org com o apoio da Academia de Ciências da Califórnia</string>
     <string name="leave_project">Sair do Projeto</string>
     <string name="leave_project_confirmation">Tem certeza que deseja sair deste projeto?</string>
     <string name="discard_location_changes">Tem certeza que deseja descartar as alterações que não estão salvas?</string>
@@ -175,7 +174,6 @@
     <string name="search">Pesquisar</string>
     <string name="details">Detalhes</string>
     <string name="observation_photos">Fotos da Observação</string>
-    <string name="remove">Deseja Remover?</string>
     <string name="no_observations_found">Nenhuma observação foi encontrada</string>
     <string name="license_none">Nenhuma, todos os direitos reservados</string>
     <string name="sources_and_attribution">Fontes e atribuição</string>
@@ -209,7 +207,6 @@
     <string name="guide_editor_must_enable_this_feature">Editor do guia deve habilitar esse recurso.</string>
     <string name="are_you_sure">Tem certeza?</string>
     <string name="download_guide_alert">Isto irá baixar %1$s de dados, assim você poderá usar este guia, mesmo quando não tiver acesso à Internet.</string>
-    <string name="download">Download</string>
     <string name="failed_to_download_guide">O download do arquivo falhou</string>
     <string name="internet_connection_seems_to_be_offline">A conexão à Internet parece estar desligada.</string>
     <string name="downloading">Baixando...</string>
@@ -255,7 +252,6 @@
     <string name="first">1º</string>
     <string name="make_first">Tornar o 1º</string>
     <string name="notes">Anotações</string>
-    <string name="location_is">A localização é</string>
     <string name="is_captive">É cultivada ou está em cativeiro</string>
     <string name="location_visibility">Visibilidade do local</string>
     <string name="set_location">Localização</string>
@@ -297,7 +293,6 @@
     <string name="delete_comment">Excluir comentário</string>
     <string name="delete_id_message">Tem certeza que deseja retirar essa identificação?</string>
     <string name="delete_comment_message">Você realmente deseja deletar este comentário?</string>
-    <string name="comment">Comentário</string>
     <string name="suggest_id">Sugira ID</string>
     <string name="update_comment">Atualizar Comentário</string>
     <string name="fave_this_observation">Marque como Favorito</string>
@@ -724,7 +719,6 @@
     <string name="news_all_caps">NOTÍCIAS</string>
     <string name="got_it_all_caps">ENTENDI!</string>
     <string name="view_all_all_caps">VER TUDO</string>
-    <string name="new_all_caps">NOVO</string>
     <string name="observers_all_caps">OBSERVADORES</string>
     <string name="observations_regular">Observações</string>
     <string name="data_quality_assessment">Avaliação da Qualidade dos Dados</string>

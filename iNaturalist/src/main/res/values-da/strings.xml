@@ -130,7 +130,6 @@
     <string name="done">Udført</string>
     <string name="please_sign_in_via_settings">Du skal være logget ind for at se projekter, du deltager i.</string>
     <string name="contact_support">Kontakt Support</string>
-    <string name="credits">Designet og bygget af iNaturalist.org med støtte fra California Academy of Sciences</string>
     <string name="leave_project">Forlad projekt</string>
     <string name="leave_project_confirmation">Sikker på, at du vil forlade dette projekt?</string>
     <string name="discard_location_changes">Sikker på, at du vil kasserer ikke-gemte ændringer?</string>
@@ -175,7 +174,6 @@
     <string name="search">Søg</string>
     <string name="details">Detaljer</string>
     <string name="observation_photos">Observationsfotos</string>
-    <string name="remove">Fjern?</string>
     <string name="no_observations_found">Ingen observationer fundet</string>
     <string name="license_none">Ingen, alle rettigheder forbeholdes</string>
     <string name="sources_and_attribution">Kilder og Tilskrivning</string>
@@ -209,7 +207,6 @@
     <string name="guide_editor_must_enable_this_feature">Guideredaktøren skal aktivere denne funktion.</string>
     <string name="are_you_sure">Sikker?</string>
     <string name="download_guide_alert">Dette vil downloade %1$s data, så du også kan benytte denne guide uden offline.</string>
-    <string name="download">Download</string>
     <string name="failed_to_download_guide">Download af guide mislykkedes</string>
     <string name="internet_connection_seems_to_be_offline">Der lader ikke til at være nogen Internetadgang.</string>
     <string name="downloading">Downloader...</string>
@@ -255,7 +252,6 @@
     <string name="first">1.</string>
     <string name="make_first">Gør til 1.</string>
     <string name="notes">Notater</string>
-    <string name="location_is">Placering er</string>
     <string name="is_captive">Er i fangeskab eller dyrket</string>
     <string name="location_visibility">Placeringssynlighed</string>
     <string name="set_location">Placering</string>
@@ -297,7 +293,6 @@
     <string name="delete_comment">Slet kommentar</string>
     <string name="delete_id_message">Sikker på, at du vil trække denne identifikation tilbage?</string>
     <string name="delete_comment_message">Sikker på, at du vil slette denne kommentar?</string>
-    <string name="comment">Kommentar</string>
     <string name="suggest_id">Foreslå ID</string>
     <string name="update_comment">Opdatere kommentar</string>
     <string name="fave_this_observation">Favorisér denne Observation</string>
@@ -724,7 +719,6 @@
     <string name="news_all_caps">NYHEDER</string>
     <string name="got_it_all_caps">FORSTÅET!</string>
     <string name="view_all_all_caps">SE ALLE</string>
-    <string name="new_all_caps">NY</string>
     <string name="observers_all_caps">OBSERVATØRER</string>
     <string name="observations_regular">Observationer</string>
     <string name="data_quality_assessment">Datakvalitetsvurdering</string>

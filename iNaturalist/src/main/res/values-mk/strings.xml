@@ -130,7 +130,6 @@
     <string name="done">Направено</string>
     <string name="please_sign_in_via_settings">Мора да сте најавени за да ги видите проектите во кои сте вклучени</string>
     <string name="contact_support">Контактирајте ја поддршката</string>
-    <string name="credits">Дизајнирано и изградено од iNaturalist.org со поддршка од Калифорниската академија на науките</string>
     <string name="leave_project">Напуштете го проектот</string>
     <string name="leave_project_confirmation">Дали сте сигурни дека сакате да го напуштите овој проект?</string>
     <string name="discard_location_changes">Дали сте сигурни дека сакате да ги избришете незачуваните промени?</string>
@@ -175,7 +174,6 @@
     <string name="search">Пребарувај</string>
     <string name="details">Детали</string>
     <string name="observation_photos">Фотографии од набљудување</string>
-    <string name="remove">Отстрани?</string>
     <string name="no_observations_found">Не се најдени набљудувања</string>
     <string name="license_none">Нема, сите права се задржани</string>
     <string name="sources_and_attribution">Извори и заслуги</string>
@@ -209,7 +207,6 @@
     <string name="guide_editor_must_enable_this_feature">Уредникот на водичот мора да го овозможи тоа.</string>
     <string name="are_you_sure">Дали сте сигурни?</string>
     <string name="download_guide_alert">Ова ќе преземе %1$s на податоци за да можете да го користите водичот дури и кога немате интернет пристап.</string>
-    <string name="download">Преземи</string>
     <string name="failed_to_download_guide">Неуспешно преземање на водичот</string>
     <string name="internet_connection_seems_to_be_offline">Изгледа не те поврзани со интернет.</string>
     <string name="downloading">Преземање...</string>
@@ -255,7 +252,6 @@
     <string name="first">Прв</string>
     <string name="make_first">Направи го прв</string>
     <string name="notes">Белешки</string>
-    <string name="location_is">Местоположбата е</string>
     <string name="is_captive">Дали е во заробеништво или е одгледувано</string>
     <string name="location_visibility">Видливост на местоположбата:</string>
     <string name="set_location">Местоположба</string>
@@ -297,7 +293,6 @@
     <string name="delete_comment">Избриши коментар</string>
     <string name="delete_id_message">Дали сте сигурни дека сакате да го повлечете препознавањето?</string>
     <string name="delete_comment_message">Дали сте сигурни дека сакате да го избришете коментарот?</string>
-    <string name="comment">Коментар</string>
     <string name="suggest_id">Предложете што е</string>
     <string name="update_comment">Поднови коментар</string>
     <string name="fave_this_observation">Додај го во омилени ова набљудување</string>
@@ -724,7 +719,6 @@
     <string name="news_all_caps">НОВОСТИ</string>
     <string name="got_it_all_caps">Разбирам!</string>
     <string name="view_all_all_caps">ПОГЛЕДНИ ГИ СИТЕ</string>
-    <string name="new_all_caps">НОВО</string>
     <string name="observers_all_caps">НАБЉУДУВАЧИ</string>
     <string name="observations_regular">Набљудувања</string>
     <string name="data_quality_assessment">Оценка на квалитетот на податоците</string>
@@ -858,8 +852,8 @@
     <string name="restart_app">Рестартирајте ја апликацијата</string>
     <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
-        <item quantity="one">Are you sure you want to delete this %1$d observation?</item>
-        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+        <item quantity="one">Дали сте сигурни дека сакате да го избришете ова набљудување: %1$d?</item>
+        <item quantity="other">Дали сте сигурни дека сакате да ги избришете овие набљудувања: %1$d?</item>
     </plurals>
     <string name="future_observed_on_date_error">Вашето набљудување беше создадено (и поднесено) на %1$s, но вие се обидувате да поставите датум на набљудувањето подоцна од тоа: %2$s</string>
     <string name="no_more_photos_allowed">Набљудувањата може да имаат до %1$d слики. За да додадете повеќе потребно е да остраните некоја слика.</string>
@@ -1003,7 +997,7 @@
     <string name="only_view_nearby_suggestions">Погледнете ги само околните предлози</string>
     <string name="suggestions_source">Извор на предлозите</string>
     <string name="research_grade_observations">Набљудувања на истражувачко ниво</string>
-    <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
+    <string name="visually_similar_description">iNaturalist ќе даде предлози врз база на тоа колку визуелно слични се сликите со тие на видовите забележани во близината на оваа локација во ова време од годината.</string>
     <string name="research_grade_observations_description">Наместо визуелно слични предлози, iNaturalist ќе предложува видови кои се набљудувани на одредената локација и во рамките на одредена таксономска група.</string>
     <string name="taxon">Таксон:</string>
     <string name="place">Место:</string>

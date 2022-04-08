@@ -130,7 +130,6 @@
     <string name="done">Fertig</string>
     <string name="please_sign_in_via_settings">Du musst eingeloggt sein, um deine Projekte anzusehen.</string>
     <string name="contact_support">Support kontaktieren</string>
-    <string name="credits">Designed und entwickelt von iNaturalist.org mit Unterstützung der California Academy of Sciences</string>
     <string name="leave_project">Projekt verlassen</string>
     <string name="leave_project_confirmation">Bist du sicher, dass du dieses Projekt verlassen willst?</string>
     <string name="discard_location_changes">Bist du sicher, dass du die Änderungen verwerfen möchtest?</string>
@@ -175,7 +174,6 @@
     <string name="search">Suchen</string>
     <string name="details">Details</string>
     <string name="observation_photos">Beobachtungsfotos</string>
-    <string name="remove">Entfernen?</string>
     <string name="no_observations_found">Keine Beobachtungen gefunden</string>
     <string name="license_none">Keine, alle Rechte vorbehalten</string>
     <string name="sources_and_attribution">Quellen und Attribution</string>
@@ -209,7 +207,6 @@
     <string name="guide_editor_must_enable_this_feature">Guideeditor muss dieses Feature erlauben.</string>
     <string name="are_you_sure">Bist du sicher?</string>
     <string name="download_guide_alert">Dies wird %1$s an Daten herunterladen, sodass du diesen Guide auch ohne Internetverbindung benutzen kannst.</string>
-    <string name="download">Download</string>
     <string name="failed_to_download_guide">Herunterladen des Guides gescheitert</string>
     <string name="internet_connection_seems_to_be_offline">Du scheinst offline zu sein.</string>
     <string name="downloading">Herunterladen...</string>
@@ -255,7 +252,6 @@
     <string name="first">1.</string>
     <string name="make_first">Zum 1. Bild machen</string>
     <string name="notes">Bemerkungen</string>
-    <string name="location_is">Standort ist</string>
     <string name="is_captive">Ist die Beobachtung ein Tier in Haltung, eine angepflanzte/kultivierte Pflanze etc.?</string>
     <string name="location_visibility">Standortsichtbarkeit</string>
     <string name="set_location">Standort</string>
@@ -297,7 +293,6 @@
     <string name="delete_comment">Kommentar löschen</string>
     <string name="delete_id_message">Bist du sicher, dass du die Bestimmung zurückziehen möchtest?</string>
     <string name="delete_comment_message">Möchtest du diesen Kommentar wirklich löschen?</string>
-    <string name="comment">Kommentar</string>
     <string name="suggest_id">ID vorschlagen</string>
     <string name="update_comment">Kommentar aktualisieren</string>
     <string name="fave_this_observation">Favorisiere diese Beobachtung</string>
@@ -724,7 +719,6 @@
     <string name="news_all_caps">Neuigkeiten</string>
     <string name="got_it_all_caps">Verstanden!</string>
     <string name="view_all_all_caps">Alle anzeigen</string>
-    <string name="new_all_caps">Neu</string>
     <string name="observers_all_caps">Beobachter</string>
     <string name="observations_regular">Beobachtungen</string>
     <string name="data_quality_assessment">Bewertung der Datenqualität</string>

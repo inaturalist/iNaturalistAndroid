@@ -130,7 +130,6 @@
     <string name="done">Terminé</string>
     <string name="please_sign_in_via_settings">Veuillez vous connecter pour visualiser vos projets</string>
     <string name="contact_support">Contacter notre équipe d\'assistance</string>
-    <string name="credits">Conçu et développé par iNaturalist.org avec le soutien de l\'Académie des Sciences de Californie</string>
     <string name="leave_project">Quitter le projet</string>
     <string name="leave_project_confirmation">Désirez-vous vraiment quitter ce projet ?</string>
     <string name="discard_location_changes">Désirez-vous vraiment effacer les modifications non enregistrées?</string>
@@ -175,7 +174,6 @@
     <string name="search">Rechercher</string>
     <string name="details">Détails</string>
     <string name="observation_photos">Photos de l\'observation</string>
-    <string name="remove">Supprimer ?</string>
     <string name="no_observations_found">Aucune observation trouvée</string>
     <string name="license_none">Aucun, tous droits réservés</string>
     <string name="sources_and_attribution">Sources et attribution</string>
@@ -209,7 +207,6 @@
     <string name="guide_editor_must_enable_this_feature">L\'éditeur du guide doit activer cette fonctionnalité.</string>
     <string name="are_you_sure">Êtes-vous sûr ?</string>
     <string name="download_guide_alert">%1$s de données seront téléchargées pour vous permettre d\'utiliser ce guide même lorsque vous n\'avez pas accès à Internet.</string>
-    <string name="download">Télécharger</string>
     <string name="failed_to_download_guide">Échec du téléchargement du guide</string>
     <string name="internet_connection_seems_to_be_offline">La connexion Internet semble être indisponible.</string>
     <string name="downloading">Téléchargement en cours...</string>
@@ -255,7 +252,6 @@
     <string name="first">1er</string>
     <string name="make_first">Mettre en 1er</string>
     <string name="notes">Notes</string>
-    <string name="location_is">La géolocalisation est</string>
     <string name="is_captive">Est en captivité ou cultivé</string>
     <string name="location_visibility">Visibilité de la géolocalisation</string>
     <string name="set_location">Géolocalisation</string>
@@ -297,7 +293,6 @@
     <string name="delete_comment">Supprimer le commentaire</string>
     <string name="delete_id_message">Êtes-vous sûr de vouloir retirer cette identification?</string>
     <string name="delete_comment_message">Êtes-vous sûr de vouloir supprimer ce commentaire ?</string>
-    <string name="comment">Commenter</string>
     <string name="suggest_id">Suggérer ident.</string>
     <string name="update_comment">Mettre le commentaire à jour</string>
     <string name="fave_this_observation">Ajouter aux favoris</string>
@@ -724,7 +719,6 @@
     <string name="news_all_caps">ACTUALITÉS</string>
     <string name="got_it_all_caps">OK!</string>
     <string name="view_all_all_caps">TOUT AFFICHER</string>
-    <string name="new_all_caps">NOUVEAU</string>
     <string name="observers_all_caps">OBSERVATEURS</string>
     <string name="observations_regular">Observations</string>
     <string name="data_quality_assessment">Évaluation de la qualité des données</string>

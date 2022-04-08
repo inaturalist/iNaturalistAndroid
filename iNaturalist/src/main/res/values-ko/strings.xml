@@ -130,7 +130,6 @@
     <string name="done">완료</string>
     <string name="please_sign_in_via_settings">내가 참여하는 프로젝트를 보려면 로그인해야 합니다.</string>
     <string name="contact_support">Contact Support</string>
-    <string name="credits">iNaturalist의 설립과 디자인은 캘리포니아 과학 아카데미(California Academy of Sciences)에서 지원하였습니다.</string>
     <string name="leave_project">프로젝트 나가기</string>
     <string name="leave_project_confirmation">정말로 이 프로젝트에서 나가시겠습니까?</string>
     <string name="discard_location_changes">저장되지 않은 변경사항을 삭제하겠습니까?</string>
@@ -174,7 +173,6 @@
     <string name="search">검색</string>
     <string name="details">자세한 사항</string>
     <string name="observation_photos">관찰 사진</string>
-    <string name="remove">삭제합니까?</string>
     <string name="no_observations_found">관찰을 찾지 못했습니다.</string>
     <string name="license_none">없음, 모든 권리는 저작권자에게 있음</string>
     <string name="sources_and_attribution">출처와 저작자</string>
@@ -208,7 +206,6 @@
     <string name="guide_editor_must_enable_this_feature">가이드 편집자는 이 특색이 드러나게 작성해야 합니다.</string>
     <string name="are_you_sure">확실합니까?</string>
     <string name="download_guide_alert">%1$s에 관련된 데이터를 저장합니다. 이후에 인터넷 접속이 안될 때에도 이 가이드를 이용 할 수 있습니다.</string>
-    <string name="download">다운로드</string>
     <string name="failed_to_download_guide">가이드 저장에 실패하였습니다.</string>
     <string name="internet_connection_seems_to_be_offline">인터넷에 연결되지 않았습니다.</string>
     <string name="downloading">다운로드중...</string>
@@ -254,7 +251,6 @@
     <string name="first">첫 번째</string>
     <string name="make_first">첫 번째로 만들기</string>
     <string name="notes">메모</string>
-    <string name="location_is">위치는</string>
     <string name="is_captive">사육되거나 포획되었습니다.</string>
     <string name="location_visibility">위치 표시</string>
     <string name="set_location">장소 등록하기</string>
@@ -295,7 +291,6 @@
     <string name="delete_comment">댓글 삭제</string>
     <string name="delete_id_message">동정을 삭제하시겠습니까?</string>
     <string name="delete_comment_message">이 댓글을 삭제하시겠습니까?</string>
-    <string name="comment">댓글</string>
     <string name="suggest_id">이름 제안하기</string>
     <string name="update_comment">댓글 업데이트</string>
     <string name="fave_this_observation">이 관찰을 즐겨찾기에 등록</string>
@@ -719,7 +714,6 @@
     <string name="news_all_caps">뉴스</string>
     <string name="got_it_all_caps">확인!</string>
     <string name="view_all_all_caps">모두 보기</string>
-    <string name="new_all_caps">NEW</string>
     <string name="observers_all_caps">관찰자</string>
     <string name="observations_regular">관찰</string>
     <string name="data_quality_assessment">데이터 품질 평가</string>
