@@ -58,16 +58,20 @@ def call_cmd(*args, **kwargs):
     run(args, **kwargs)
 
 
+# Creates a partial filename for zip extraction
 def extless_basename(path):
     if os.path.isfile(path):
         return os.path.splitext(os.path.basename(path))[0]
     return os.path.split(path)[-1]
 
 
+# Create filepath for and store locale data from crowdin
 def copy_to_android_locale(src, android_locale, options={}):
+    # Make pathname
     android_dir_path = os.path.join(
         "iNaturalist", "src", "main", "res", "values-{}".format(android_locale)
     )
+    # Create path if it doesn't exist
     if not os.path.isdir(android_dir_path):
         if options.verbose:
             print("\tCreating {}".format(android_dir_path))
@@ -79,28 +83,34 @@ def copy_to_android_locale(src, android_locale, options={}):
 
 
 def import_crowdin_for_android(zip_path, options={}):
+    # Fetch zip file
     if zip_path == __file__:
         zip_path = sys.argv[1]
+    # Create path for unzipped file & extract to that path
     dir_path = os.path.join(tempfile.mkdtemp(), extless_basename(zip_path))
     call_cmd("unzip", zip_path, "-d", dir_path)
+    # Iterate over extracted files in newly created path
     for path in sorted(glob("{}/*".format(dir_path))):
         if options.verbose:
             print(f"Considering {path}")
+        # If locale not in current path, continue to next path
         if options.locale and options.locale not in path:
             continue
         crowdin_locale = extless_basename(path)
         # Skip non-android directories
         if "fbt" in crowdin_locale or "i18n" in crowdin_locale:
             continue
+        # Parse locale data
         locale, *sublocale = crowdin_locale.split("-")
+        # Handle empty sublocales
         sublocale = None if len(sublocale) == 0 else sublocale[0]
+        # Convert to android-readable locale data
         android_locale = locale
         if sublocale:
             android_locale = "{}-r{}".format(locale, sublocale)
+        # Store locale data in ..Android/strings.xml
         src = os.path.join(path, "Android", "strings.xml")
         copy_to_android_locale(src, android_locale, options)
-        # Copy Hebrew file to the old locale codes that some modern Androids
-        # still use
         for src_crowdin_locale in CROWDIN_TO_ANDROID_LOCALES:
             if options.verbose:
                 print(f"Considering if {src_crowdin_locale} matches {crowdin_locale}...")
@@ -109,11 +119,6 @@ def import_crowdin_for_android(zip_path, options={}):
                     if options.verbose:
                         print(f"Copying to {dest_android_locale}...")
                     copy_to_android_locale(src, dest_android_locale, options)
-        # if locale == "he":
-        #     for new_android_locale in ["iw", "iw-rIL", "he-rIL"]:
-        #         copy_to_android_locale(src, new_android_locale, options)
-        # elif android_locale == "sv-rSE":
-        #     copy_to_android_locale(src, "sv", options)
 
 
 def validate_translation(path, key, text, en_string, errors, warnings,
@@ -126,6 +131,7 @@ def validate_translation(path, key, text, en_string, errors, warnings,
     for match in re.finditer(ANDROID_FORMAT_PATTERN, en_string):
         translation_mismatch = None
         number_of_usages = 0
+        # Check for translation mismatch
         for tm in re.finditer(ANDROID_FORMAT_PATTERN, text):
             indexes_match = (
                 tm.group("argument_index") == match.group("argument_index")
@@ -139,6 +145,7 @@ def validate_translation(path, key, text, en_string, errors, warnings,
                 translation_mismatch = tm
         # if variable missing in node.text:
         if translation_mismatch or number_of_usages == 0:
+            # Identify missing variable
             if key not in errors[path]:
                 errors[path][key] = []
             errors[path][key].append(
@@ -148,6 +155,7 @@ def validate_translation(path, key, text, en_string, errors, warnings,
                 print("\t\t{}".format(errors[path][key][-1]))
         # if too many usages
         if number_of_usages > 1:
+            # Identify over-used variable
             if key not in warnings[path]:
                 warnings[path][key] = []
             warnings[path][key].append(
@@ -162,6 +170,7 @@ def validate_translation(path, key, text, en_string, errors, warnings,
             for m in re.finditer(ANDROID_FORMAT_PATTERN, en_string)
         ]
         for match in re.finditer(ANDROID_FORMAT_PATTERN, text):
+            # Identify extraneous variables
             if match.group("argument_index") not in en_indexes:
                 if key not in errors[path]:
                     errors[path][key] = []
@@ -185,6 +194,7 @@ def validate_translation(path, key, text, en_string, errors, warnings,
                 r"[^GyYMLwWDdFEuaHkKhmsSzZX]",
                 potentially_formatted)
             )
+        # Find bad chars in DATE_FORMAT_KEYS
         if bad_characters and len(bad_characters) > 0:
             if key not in errors[path]:
                 errors[path][key] = []
@@ -218,17 +228,22 @@ def validate_android_translations(options={}):
     errors = {}
     warnings = {}
     progress_counts = {}
+    # Iterate over all files created in strings.xml
     for path in glob("iNaturalist/src/main/res/values-*/strings.xml"):
+        # Continue to next path if locale not present
         if options.locale and options.locale not in path:
             continue
         if options.verbose:
             print("Checking {}".format(path))
+            # Use Dicts to store errors/warnings for each path
         errors[path] = {}
         warnings[path] = {}
         tree = ET.parse(path)
+        # Check individual strings
         for node in tree.findall("string"):
             key = node.get("name")
             text = node.text
+            # Check for key in current en_strings
             if options.key and options.key not in key:
                 continue
             if key not in en_strings:
@@ -241,12 +256,14 @@ def validate_android_translations(options={}):
                 progress_counts[path] = (
                     progress_counts[path] + 1 if path in progress_counts else 0
                 )
+        # Check string arrays
         for string_array in tree.findall("string-array"):
             key = string_array.get("name")
             if options.key and options.key not in key:
                 continue
             if key not in en_string_arrays:
                 continue
+            # Iterate over string array, checking each for valid translation
             for idx, item in enumerate(string_array):
                 en_string = en_string_arrays[key][idx]
                 text = item.text
@@ -264,12 +281,14 @@ def validate_android_translations(options={}):
                         progress_counts[path] = (
                             progress_counts[path] + 1 if path in progress_counts else 0  # noqa: E501
                         )
+        # Check plurals
         for plural in tree.findall("plurals"):
             key = plural.get("name")
             if options.key and options.key not in key:
                 continue
             if key not in en_string_plurals:
                 continue
+            # Itreate over list of plurals, checking for proper translation
             for item in plural:
                 item_key = item.get("quantity")
                 en_string = en_string_plurals[key].get(item_key)
@@ -299,19 +318,24 @@ def validate_android_translations(options={}):
     for path in glob("iNaturalist/src/main/res/values-*/strings.xml"):
         if options.locale and options.locale not in path:
             continue
+        # Collect all errors/warnings in keys variable and clean data
         keys = list(errors[path].keys()) + list(warnings[path].keys())
         keys = [k for k in keys if k is not None]
+        # Convert to set to prevent repeats
         keys = set(keys)
         print(f"{bcolors.BOLD}{path}{bcolors.ENDC}")
         if path in progress_counts:
             percent = round(progress_counts[path] / num_keys * 100)
         else:
             percent = 0
+        # Handle translation failure
         if percent == 0:
             print(f"\t{bcolors.FAIL}{percent}% translated{bcolors.ENDC}")
             untranslated.append(path)
+        # Handle partial translation failure (warning)
         elif percent < 66:
             print(f"\t{bcolors.WARNING}{percent}% translated{bcolors.ENDC}")
+        # Successful translation
         else:
             print(f"\t{bcolors.OKGREEN}{percent}% translated{bcolors.ENDC}")
         if len(keys) == 0:
@@ -319,12 +343,15 @@ def validate_android_translations(options={}):
             continue
         for key in keys:
             print("\t{}".format(key))
+            # Print errros remaining
             if key in errors[path]:
                 for error in errors[path][key]:
                     print(f"\t\t{bcolors.FAIL}ERROR: {error}{bcolors.ENDC}")
+            # Print warnings remaining
             if key in warnings[path]:
                 for warning in warnings[path][key]:
                     print(f"\t\t{bcolors.WARNING}Warning: {warning}{bcolors.ENDC}")  # noqa: E501
+    # Allow for removal of untranslated filed
     if len(untranslated) > 0:
         print("\nIf you want to delete untranslated files...\n")
         for path in untranslated:
@@ -381,6 +408,7 @@ def find_unused_keys(options={}):
 
 
 def main():
+    # Initialize Parser
     parser = OptionParser("Usage: %prog [options]")
     parser.description = """
         Script for validating and updating translations from crowdin. Default
@@ -392,6 +420,7 @@ def main():
 
         Note: Python 3 required.
     """.strip()
+    # Include tags for parser
     parser.add_option("-v", "--verbose", action="store_true", dest="verbose")
     parser.add_option("-d", "--debug", action="store_true", dest="debug")
     parser.add_option(
@@ -412,7 +441,9 @@ def main():
         dest="find_unused",
         help="Show keys that don't seem to be used any more"
     )
+    # Store options and args in tuple
     (options, args) = parser.parse_args()
+    # Check if valid filepath for zip
     if options.zip_path:
         import_crowdin_for_android(options.zip_path, options)
     validate_android_translations(options)
