@@ -92,89 +92,89 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">छोड़ें</string>
     <string name="join">शामिल हों</string>
-    <string name="no_check_list">No Taxa in Check List!</string>
-    <string name="failed_to_add_obs_to_project">Failed to add observation \'%1$s\' to project \'%2$s\': %3$s</string>
-    <string name="invalid_project_field">Please enter a valid value for field \'%1s\'</string>
+    <string name="no_check_list">चेक लिस्ट में कोई टैक्स नहीं!</string>
+    <string name="failed_to_add_obs_to_project">प्रोजेक्ट \'%2$s\' में अवलोकन \'%1$s\' जोड़ने में विफल: %3$s</string>
+    <string name="invalid_project_field">कृपया \'%1s\' फ़ील्ड के लिए एक मान्य मान दर्ज करें</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
     <string name="select_projects">शामिल हुए परियोजनाओं में से चुनें</string>
-    <string name="not_connected">You must be connected to the Internet in order to do that!</string>
+    <string name="not_connected">ऐसा करने के लिए आपको इंटरनेट से कनेक्ट होना चाहिए!</string>
     <string name="search_projects">परियोजनाओं की खोज करें..</string>
-    <string name="search_guides">Search guides...</string>
-    <string name="save_observation">Save observation</string>
+    <string name="search_guides">निदेशिका खोजें...</string>
+    <string name="save_observation">अवलोकन सहेजें</string>
     <!-- Header for a description an individual guide -->
     <string name="about_guide">हमारे बारे में</string>
     <string name="about_guide_all_caps">के बारे में</string>
     <!-- Header for a description an individual project -->
-    <string name="about_project">About</string>
-    <string name="about_project_all_caps">ABOUT</string>
-    <string name="about_this_app">About</string>
-    <string name="about_taxon_short">About</string>
+    <string name="about_project">बारे में</string>
+    <string name="about_project_all_caps">बारे में</string>
+    <string name="about_this_app">बारे में</string>
+    <string name="about_taxon_short">बारे में</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
-    <string name="geoprivacy">Geoprivacy</string>
+    <string name="geoprivacy">भू-गोपनीयता</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
-    <string name="geoprivacy_with_value">Geoprivacy: %1$s</string>
-    <string name="delete_confirmation">Are you sure you want to delete this observation?</string>
+    <string name="geoprivacy_with_value">भू-गोपनीयता: %1$s</string>
+    <string name="delete_confirmation">क्या आप वाकई इस अवलोकन को हटाना चाहते हैं?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
-    <string name="guides">Guides</string>
+    <string name="guides">निदेशिका</string>
     <string name="my_guides">आपके</string>
-    <string name="nearby_guides">Nearby</string>
+    <string name="nearby_guides">आस पास के</string>
     <string name="all_guides">सब</string>
     <string name="no_taxa">इस गाइड में कोई टेक्सा नहीं मिले!</string>
     <string name="search_taxa">टेक्सा खोजें....</string>
     <string name="no_internet_guides">गाइड के लिए इंटरनेट कनेक्शन की आवश्यकता है</string>
     <string name="no_internet_projects">परियोजनाओं के लिए इंटरनेट कनेक्शन की आवश्यकता है</string>
     <string name="locale_gl">गैलिशियन्</string>
-    <string name="locale_eu">Basque</string>
+    <string name="locale_eu">बॉस्क्यू</string>
     <string name="use_device_language_settings">डिवाइस भाषा सेटिंग्स का उपयोग करें</string>
     <string name="choose_location">स्थान चुनें</string>
     <string name="done">पूर्ण हुआ</string>
-    <string name="please_sign_in_via_settings">You must be logged in to view projects you\'ve joined.</string>
+    <string name="please_sign_in_via_settings">आपके द्वारा शामिल किए गए परियोजनाओं को देखने के लिए आपको लॉग इन होना चाहिए।</string>
     <string name="contact_support">सहायता के लिए संपर्क करें</string>
-    <string name="leave_project">Leave Project</string>
+    <string name="leave_project">परियोजना छोड़ें</string>
     <string name="leave_project_confirmation">क्या आप सुनिश्चित हैं कि आप इस परियोजना को छोड़ना चाहते हैं?</string>
-    <string name="discard_location_changes">Are you sure you want to discard unsaved changes?</string>
+    <string name="discard_location_changes">क्या आप वाकई सहेजे न गए परिवर्तनों को छोड़ना चाहते हैं?</string>
     <string name="edit_location">स्थान संपादित करें</string>
-    <string name="edit_locality_notes">Edit Locality Notes</string>
+    <string name="edit_locality_notes">स्थानीयता नोट्स संपादित करें</string>
     <string name="get_current_location">वर्तमान स्थान प्राप्त करें</string>
-    <string name="pull_to_refresh">Pull to refresh...</string>
-    <string name="release_to_refresh">Release to refresh...</string>
+    <string name="pull_to_refresh">रीफ़्रेश करने के लिए खींचें...</string>
+    <string name="release_to_refresh">ताज़ा होने के लिए छोड़ दें...</string>
     <string name="refreshing">रेफ़रेश किया जा रहा है...</string>
     <plurals name="sync_x_observations">
-        <item quantity="one">Sync %1$d observation</item>
-        <item quantity="other">Sync %1$d observations</item>
+        <item quantity="one">%1$d अवलोकन सिंक करिये</item>
+        <item quantity="other">%1$d अवलोकन सिंक करें</item>
     </plurals>
-    <string name="sync_observations">Sync Observations</string>
-    <string name="lets_get_started">Let\'s get started!</string>
-    <string name="view_nearby_observations">View Nearby Observations</string>
+    <string name="sync_observations">अवलोकन सिंक करें</string>
+    <string name="lets_get_started">आइए शुरू करते हैं!</string>
+    <string name="view_nearby_observations">आस-पास के अवलोकन देखें</string>
     <string name="skip_for_now">अभी के लिए छोड़ें</string>
     <string-array name="tutorial_titles">
         <item></item>
         <item>प्रेक्षण</item>
         <item>साझा करें </item>
         <item>सीखें</item>
-        <item>Contribute</item>
+        <item>योगदान दें</item>
     </string-array>
     <string-array name="tutorial_descriptions">
-        <item>Explore and Connect with Nature</item>
-        <item>Get outside! Find something wild, and take a clear, full frame photo.</item>
-        <item>Share your observation with the iNaturalist community.</item>
-        <item>Check back for comments and identifications on your observation!</item>
-        <item><![CDATA[<b>Research Grade</b> observations are shared with scientists working to better understand and protect nature.]]></item>
+        <item>समन्वेषण करें और प्रकृति से जुड़ें</item>
+        <item>बाहर निकलें! कुछ जंगली ढूंढें, और एक स्पष्ट, पूर्ण फ़्रेम फ़ोटो लें।</item>
+        <item>अपने अवलोकन को iNaturalist समुदाय के साथ साझा करें।</item>
+        <item>अपने अवलोकन पर टिप्पणियों और पहचान के लिए वापस देखें!</item>
+        <item><![CDATA[प्रकृति को बेहतर ढंग से समझने और उसकी रक्षा करने के लिए काम कर रहे वैज्ञानिकों के साथ <b>शोध ग्रेड</b> अवलोकन साझा किए जाते हैं।]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
         <item>खोलें</item>
-        <item>Obscured</item>
+        <item>अस्पष्ट</item>
         <item>निजी</item>
     </string-array>
-    <string name="alert_sign_out">Are you sure you want to sign out? This will delete all your observations on this device. It will not affect any observations you\'ve uploaded to iNaturalist.</string>
-    <string name="alert_unsupported_media_type">Sorry, but there was a problem loading the photo from this source</string>
+    <string name="alert_sign_out">क्या आप द्वारा साइन आउट किया जाना सुनिश्चित है? यह इस उपकरण पर आपकी सभी टिप्पणियों को हटा देगा। यह आपके द्वारा iNaturalist पर अपलोड किए गए किसी भी अवलोकन को प्रभावित नहीं करेगा।</string>
+    <string name="alert_unsupported_media_type">क्षमा करें, लेकिन इस स्रोत से फ़ोटो लोड करने में एक समस्या थी</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
-    <string name="explore">Explore</string>
-    <string name="restricted_to_current_map_area">Restricted to current map area</string>
+    <string name="explore">खोज करें</string>
+    <string name="restricted_to_current_map_area">वर्तमान मानचित्र क्षेत्र तक सीमित</string>
     <string name="search">खोजें</string>
     <string name="details">विवरण</string>
-    <string name="observation_photos">Observation Photos</string>
-    <string name="no_observations_found">No observations found</string>
+    <string name="observation_photos">अवलोकन तस्वीरें</string>
+    <string name="no_observations_found">कोई अवलोकन नहीं मिला</string>
     <string name="license_none">None, all rights reserved</string>
     <string name="sources_and_attribution">Sources and Attribution</string>
     <string name="photos"><![CDATA[<b>तस्वीरें:</b> %1$s]]></string>

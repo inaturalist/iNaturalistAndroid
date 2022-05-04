@@ -47,11 +47,11 @@
     <string name="unknown">Neurčené</string>
     <string name="unknown_species">Neznámy druh</string>
     <string name="com_facebook_dialogloginactivity_ok_button">OK</string>
-    <string name="com_facebook_loginview_log_out_button">Odhlásenie</string>
+    <string name="com_facebook_loginview_log_out_button">Odhlásiť sa</string>
     <string name="com_facebook_loginview_log_in_button">Prihlásenie</string>
     <string name="com_facebook_loginview_logged_in_as">Prihlásený ako: %1$s</string>
     <string name="com_facebook_loginview_logged_in_using_facebook">Prihlásený pomocou Facebooku</string>
-    <string name="com_facebook_loginview_log_out_action">Odhlásenie</string>
+    <string name="com_facebook_loginview_log_out_action">Odhlásiť sa</string>
     <string name="com_facebook_loginview_cancel_action">Zrušiť</string>
     <string name="com_facebook_logo_content_description">Facebook Logo</string>
     <string name="com_facebook_usersettingsfragment_log_in_button">Prihlásiť sa&#8230;</string>
@@ -66,7 +66,7 @@
     <string name="com_facebook_loading">Prebieha načítavanie...</string>
     <string name="com_facebook_internet_permission_error_title">Chyba v AndroidManifest</string>
     <string name="com_facebook_internet_permission_error_message">WebView prihlásenie vyžaduje povolenie na INTERNETE</string>
-    <string name="com_facebook_requesterror_web_login">Váš účet na Facebooku je zablokovaný. Prosím, prihláste sa na www.facebook.com aby ste mohli pokračovať.</string>
+    <string name="com_facebook_requesterror_web_login">Váš účet na Facebooku je zablokovaný. Prosím, prihláste sa na www.facebook.com, aby ste mohli pokračovať.</string>
     <string name="com_facebook_requesterror_relogin">Prihláste sa do tejto aplikácie znova na opätovné prepojenie konta Facebook.</string>
     <string name="com_facebook_requesterror_password_changed">Vaše heslo na Facebooku sa zmenilo. Prosím, znovu sa prihláste do tejto aplikácie pre znovupripojenie vášho Facebook účtu.</string>
     <string name="com_facebook_requesterror_reconnect">Prihláste sa do tejto aplikácie znova na opätovné prepojenie konta Facebook.</string>
@@ -83,7 +83,7 @@
     <string name="remarks">Poznámky...</string>
     <string name="enter_taxon_name">Druhové meno</string>
     <string name="no_projects">Neboli nájdené žiadne projekty!</string>
-    <string name="no_guides">Žiadny sprievodcovia nenájdený!</string>
+    <string name="no_guides">Žiadni sprievodcovia sa nenašli!</string>
     <string name="loading_projects">Načítanie projektov...</string>
     <string name="joined_projects">Pripojil sa</string>
     <string name="nearby_projects">V blízkosti</string>
@@ -102,12 +102,12 @@
     <string name="search_guides">Hľadať sprievodcov...</string>
     <string name="save_observation">Uložiť pozorovanie</string>
     <!-- Header for a description an individual guide -->
-    <string name="about_guide">O</string>
-    <string name="about_guide_all_caps">O aplikácii</string>
+    <string name="about_guide">O sprievodcovi</string>
+    <string name="about_guide_all_caps">O SPRIEVODCOVI</string>
     <!-- Header for a description an individual project -->
     <string name="about_project">O projekte</string>
     <string name="about_project_all_caps">O PROJEKTE</string>
-    <string name="about_this_app">O aplikácií</string>
+    <string name="about_this_app">O aplikácii</string>
     <string name="about_taxon_short">O taxóne</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Geosúkromie</string>
@@ -116,9 +116,9 @@
     <string name="delete_confirmation">Naozaj chcete odstrániť toto pozorovanie?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">Sprievodcovia</string>
-    <string name="my_guides">Moje</string>
+    <string name="my_guides">Vaši</string>
     <string name="nearby_guides">V blízkosti</string>
-    <string name="all_guides">Všetky</string>
+    <string name="all_guides">Všetci</string>
     <string name="no_taxa">V tomto sprievodcovi sa nenašiel žiadny druh!</string>
     <string name="search_taxa">Hľadať druhy...</string>
     <string name="no_internet_guides">Sprievodcovia vyžadujú pripojenie na internet</string>
@@ -164,9 +164,9 @@
         <item><![CDATA[<b>Research Grade</b> pozorovania sú zdieľané s vedcami, ktorí pracujú na lepšom porozumení a ochrane prírody.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
-        <item>Otvoriť</item>
+        <item>Otvorené</item>
         <item>Skryté</item>
-        <item>Súkromný</item>
+        <item>Súkromné</item>
     </string-array>
     <string name="alert_sign_out">Naozaj chcete odhlásiť? Táto akcia odstráni všetky vaše pozorovania na tomto zariadení. Neovplyvní to žiadne pozorovania, ktoré ste nahrali do iNaturalist.</string>
     <string name="alert_unsupported_media_type">Ľutujeme, ale vyskytol sa problém s načítaním fotografie z tohto zdroja</string>
@@ -220,7 +220,7 @@
     <string name="could_not_retrieve_guide">Nepodarilo sa načítať údaje sprievodcu - pravdepodobne chyba siete.</string>
     <string name="inat_support_email_subject">Pomoc s iNaturalist (verzia %1$s - %2$s; užívateľské meno - %3$s)</string>
     <string name="send_email">Odoslať e-mail...</string>
-    <string name="login_with">Prihlásiť sa s pomocou</string>
+    <string name="login_with">Prihlásiť sa cez</string>
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-mail</string>
@@ -237,7 +237,7 @@
     <!-- Try to keep this about the length of the English text -->
     <string name="username_or_email">Meno používateľa alebo e-mail</string>
     <string name="forgot">Zabudli ste?</string>
-    <string name="or_login_with">Alebo prihlásiť sa s pomocou:</string>
+    <string name="or_login_with">Alebo sa prihláste cez:</string>
     <string name="registering">Registrácia...</string>
     <string name="recommended_next_step">Odporúčaný ďalší krok</string>
     <string name="could_not_register_user">Nemožno zaregistrovať používateľa</string>
@@ -254,7 +254,7 @@
     <string name="first">1.</string>
     <string name="make_first">Urobte 1.</string>
     <string name="notes">Poznámky</string>
-    <string name="is_captive">Je chovaný v zajatí alebo je v kultivácii</string>
+    <string name="is_captive">Je pestovaný alebo chovaný v zajatí</string>
     <string name="location_visibility">Viditeľnosť polohy</string>
     <string name="set_location">Poloha</string>
     <string name="coordinates_lat">Lat:</string>
@@ -301,7 +301,7 @@
     <string name="update_comment">Aktualizovať komentár</string>
     <string name="fave_this_observation">Favorizovať toto pozorovanie</string>
     <string name="faved">Favorizované</string>
-    <string name="be_the_first_to_fave_this_obs">Buďte prvý kto favorizuje toto pozorovanie...</string>
+    <string name="be_the_first_to_fave_this_obs">Buďte prvý, kto favorizuje toto pozorovanie…</string>
     <string name="leave_a_comment">Zanechať komentár, alebo navrhnúť identifikáciu...</string>
     <string name="location_coords">Lat: Lon %1$s: %2$s podľa %3$s</string>
     <string name="location_coords_no_acc">Lat: Lon %1$s: %2$s</string>
@@ -341,7 +341,7 @@
     <string name="edit_profile">Upraviť profil</string>
     <string name="remove_photo">Odstrániť fotografiu</string>
     <string name="name">Meno</string>
-    <string name="tell_us_about_yourself">Povedzte nám o sebe...</string>
+    <string name="tell_us_about_yourself">Povedzte nám niečo o sebe…</string>
     <string name="view_profile">Zobraziť profil</string>
     <string name="are_you_sure_you_want_to_remove_photo">Naozaj chcete odstrániť vaše fotografie?</string>
     <string name="updating_profile">Aktualizuje sa profil...</string>
@@ -349,14 +349,14 @@
     <string name="there_was_a_problem_updating_profile_params">Vyskytol sa problém pri aktualizácii profilu: %1$s</string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
     <string name="currently_logged_in_as_html"><![CDATA[Aktuálne prihlásený ako <b>%1$s</b>]]></string>
-    <string name="log_out">Odhlásenie</string>
+    <string name="log_out">Odhlásiť sa</string>
     <string name="not_logged_in">Nie ste prihlásený</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
     <string name="login_or_sign_up">Prihlásiť sa alebo zaregistrovať</string>
     <string name="auto_upload_description">Automatické posielanie nových pozorovaní a úprav pozorovaní</string>
     <string name="language">Jazyk</string>
     <string name="version">Verzia</string>
-    <string name="inat_network">iNaturalist sieť</string>
+    <string name="inat_network">Sieť iNaturalist</string>
     <string name="inat_network_description">Sieť iNaturalist je štruktúra pre lokalizovanie komunity iNaturalistu. Miestne inštitúcie, ktoré podpísali dohodu s iNaturalistom, podporujú webové stránky, aby povzbudili k jeho miestnemu využívaniu a pomáhali miestnej biodiverzite.</string>
     <string name="more_info">Viac informácií</string>
     <string name="select_network">Vyberte pridruženie k sieti iNaturalist</string>
@@ -406,7 +406,7 @@
     <string name="searching_your_area">Vyhľadávanie vo vašej oblasti...</string>
     <string name="expanding_your_search_area">Rozšírenie oblasti vyhľadávania...</string>
     <string name="introducing_missions">Predstavujeme misie!</string>
-    <string name="missions_onboarding_description">Misie odporúčjú čo môžete vidieť okolo seba. Týmto spôsobom môžete objavovať pre vás nové druhy! (Vyžaduje sa dátové pripojenie)</string>
+    <string name="missions_onboarding_description">Misie podávajú aktuálne odporúčania o tom, čo môžete nájsť vo vašom okolí. Takto môžete objavovať pre vás nové druhy! (Vyžaduje sa dátové pripojenie)</string>
     <string name="ok_got_it">Ok, rozumiem!</string>
     <string name="could_not_download_observations">Nepodarilo sa prevziať najnovšie pozorovania - problémy s pripojením. Skúste znova neskôr.</string>
     <string name="no_news_yet">Zatiaľ žiadne správy. Zostaňte v kontakte!</string>
@@ -428,7 +428,7 @@
         <item quantity="one">%1s nová</item>
         <item quantity="few">%1s nové</item>
         <item quantity="many">%1s nových</item>
-        <item quantity="other">%1s nové</item>
+        <item quantity="other">%1s nových</item>
     </plurals>
     <string name="no_results_found">Neboli nájdené žiadne výsledky...</string>
     <plurals name="syncing_x_out_of_y_observations">
@@ -466,7 +466,7 @@
     <string name="most_observed_options_matching_filters">Najčastejšie pozorované možnosti zodpovedajúce filtrom:</string>
     <!-- Header for a list of suggested taxa -->
     <string name="top_suggestions">Najlepšie návrhy</string>
-    <string name="pretty_sure_rank">Sme si celkom istý, že je to v %1$s:</string>
+    <string name="pretty_sure_rank">Sme si celkom istí, že je to v tomto %1$s:</string>
     <string name="what_did_you_see">Čo ste videli?</string>
     <string name="suggest_species">Návrhy druhov</string>
     <string name="suggest_species_description">Zobrazí návrhy druhov podľa vizuálnej podobnosti s fotografiami.</string>
@@ -555,7 +555,7 @@
     <string name="apply_filters">Aplikovať filtre</string>
     <string name="remove_filters">Odstrániť filtre</string>
     <string name="reset">Obnoviť</string>
-    <string name="show_only_my_observations">Zobraz iba moje pozorovania</string>
+    <string name="show_only_my_observations">Zobraziť iba moje pozorovania</string>
     <string name="project">Projekt</string>
     <string name="user">Používateľ</string>
     <string name="search_users">Vyhľadávanie používateľov...</string>
@@ -619,7 +619,7 @@ www.protectedplanet.net</a>]]></string>
     <string name="password_changed">Heslo, ktoré aplikácia používa, už nefunguje - zmenili ste heslo na webových stránkach? Zadajte prosím nové</string>
     <string name="just_so_you_know">Len aby ste vedeli...</string>
     <string name="ask_for_g_plus_permissions">Google od nás požaduje, aby sme si od vás vyžiadali prístup k vašim kontaktom, aby sme mohli používať váš účet Google, aj keď zo žiadneho dôvodu nemáme prístup k vašim kontaktom. Ak zamietnete toto povolenie, budete sa musieť zaregistrovať alebo prihlásiť pomocou vášho používateľského mena a hesla.</string>
-    <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
+    <string name="new_to_inat_sign_up_now"><![CDATA[Ste nový v projekte %1$s? <b>Zaregistrujte sa teraz!</b>]]></string>
     <string name="see_more_observations">Pozri viac pozorovaní</string>
     <string name="see_more_species">Pozri viac druhov</string>
     <string name="see_more_identifications">Pozrite sa na viac identifikácií</string>
@@ -656,7 +656,7 @@ www.protectedplanet.net</a>]]></string>
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Pohlavie</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
-    <string name="annotation_name_alive_or_dead">Mŕtvy alebo živý</string>
+    <string name="annotation_name_alive_or_dead">Živý alebo mŕtvy</string>
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
     <string name="annotation_name_evidence_of_presence">Dôkaz prítomnosti</string>
     <!-- Adjective, having open flowers -->
@@ -687,7 +687,7 @@ www.protectedplanet.net</a>]]></string>
     <string name="annotation_value_female">Samica</string>
     <string name="annotation_value_male">Samec</string>
     <!-- Adjective, alive and shows no signs of imminent death -->
-    <string name="annotation_value_alive">Nažive</string>
+    <string name="annotation_value_alive">Živý</string>
     <!-- Adjective, dead or shows signs of imminent death -->
     <string name="annotation_value_dead">Mŕtvy</string>
     <!-- Value for when the value of the attribute cannot be determined -->
@@ -703,23 +703,23 @@ www.protectedplanet.net</a>]]></string>
     <!-- Evidence of Presence value when for bones -->
     <string name="annotation_value_bone">Kosť</string>
     <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
-    <string name="annotation_value_molt">Časť z tela</string>
+    <string name="annotation_value_molt">Zvlečka</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
-    <string name="joined_projects_all_caps">PRIDAL SA</string>
-    <string name="nearby_projects_all_caps">BLÍZKO</string>
+    <string name="joined_projects_all_caps">ČLENSKÉ</string>
+    <string name="nearby_projects_all_caps">V OKOLÍ</string>
     <string name="featured_projects_all_caps">VYBRANÉ</string>
     <!-- Text for a button or label that allows someone to join a project -->
     <string name="join_all_caps">PRIPOJIŤ SA</string>
-    <string name="my_guides_all_caps">VAŠE</string>
+    <string name="my_guides_all_caps">VAŠI</string>
     <string name="nearby_guides_all_caps">V OKOLÍ</string>
-    <string name="all_guides_all_caps">VŠETKY</string>
+    <string name="all_guides_all_caps">VŠETCI</string>
     <string name="description_all_caps">POPIS</string>
     <string name="quantity_all_caps">Množ.</string>
     <plurals name="observation_count_all_caps">
         <item quantity="one">%1$s POZOROVANIE</item>
         <item quantity="few">%1$s POZOROVANIA</item>
         <item quantity="many">%1$s POZOROVANÍ</item>
-        <item quantity="other">%1$s POZOROVANIA</item>
+        <item quantity="other">%1$s POZOROVANÍ</item>
     </plurals>
     <string name="agree_all_caps">SÚHLAS</string>
     <string name="observations_all_caps">POZOROVANIA</string>
@@ -848,7 +848,7 @@ www.protectedplanet.net</a>]]></string>
     <string name="type_your_username">Napíšte svoje užívateľské meno</string>
     <string name="error_deleting_account">Pri odstraňovaní vášho účtu došlo k chybe – skontrolujte, prosím, internetové pripojenie</string>
     <string name="verify_your_password">Overiť heslo</string>
-    <string name="third_party_data_sharing">Zdieľanie dát treťou stranou</string>
+    <string name="third_party_data_sharing">Odosielanie dát tretím stranám</string>
     <string name="disable_third_party_data_sharing">Zakázať odosielanie dát tretím stranám</string>
     <string name="do_not_collect_third_party_data">Nezhromažďovať údaje o stabilite a používaní pomocou služieb tretích strán</string>
     <string name="enabled">Povolené</string>
@@ -1030,16 +1030,16 @@ www.protectedplanet.net</a>]]></string>
     <string name="pretty_sure_parvorder">Sme si celkom istí, že je to v tomto parvrade:</string>
     <string name="pretty_sure_zoosection">Sme si celkom istí, že je to v tejto zoosekcii:</string>
     <string name="pretty_sure_zoosubsection">Sme si celkom istí, že je to v tejto zoopodsekcii:</string>
-    <string name="pretty_sure_superfamily">Sme si celkom istý, že je to v tejto nadčeľadi:</string>
-    <string name="pretty_sure_epifamily">Sme si celkom istý, že je to v tejto epičeľadi:</string>
-    <string name="pretty_sure_family">Sme si celkom istý, že je to v tejto čeľadi:</string>
-    <string name="pretty_sure_subfamily">Sme si celkom istý, že je to v tejto podčeľadi:</string>
+    <string name="pretty_sure_superfamily">Sme si celkom istí, že je to v tejto nadčeľadi:</string>
+    <string name="pretty_sure_epifamily">Sme si celkom istí, že je to v tejto epičeľadi:</string>
+    <string name="pretty_sure_family">Sme si celkom istí, že je to v tejto čeľadi:</string>
+    <string name="pretty_sure_subfamily">Sme si celkom istí, že je to v tejto podčeľadi:</string>
     <string name="pretty_sure_supertribe">Sme si celkom istí, že je to v tomto nadtribuse:</string>
     <string name="pretty_sure_tribe">Sme si celkom istí, že je to v tomto tribuse:</string>
     <string name="pretty_sure_subtribe">Sme si celkom istí, že je to v tomto podtribuse:</string>
-    <string name="pretty_sure_genus">Sme si celkom istý, že je to v tomto rode:</string>
-    <string name="pretty_sure_genushybrid">Sme si celkom istý, že je to v tomto hybridnom rode:</string>
-    <string name="pretty_sure_subgenus">Sme si celkom istý, že je to v tomto podrode:</string>
+    <string name="pretty_sure_genus">Sme si celkom istí, že je to v tomto rode:</string>
+    <string name="pretty_sure_genushybrid">Sme si celkom istí, že je to v tomto hybridnom rode:</string>
+    <string name="pretty_sure_subgenus">Sme si celkom istí, že je to v tomto podrode:</string>
     <string name="pretty_sure_section">Sme si celkom istí, že je to v tejto sekcii:</string>
     <string name="pretty_sure_subsection">Sme si celkom istí, že je to v tejto podsekcii:</string>
     <string name="pretty_sure_complex">Sme si celkom istí, že je to v tomto komplexe:</string>
@@ -1095,7 +1095,7 @@ www.protectedplanet.net</a>]]></string>
     See explore_order_by_items and explore_order_items keys !-->
     <string name="sorted_by_full">Zoradené podľa %1$s (%2$s)</string>
     <!-- Label for an observation search filter to exclude your own observations -->
-    <string name="hide_my_observations">Skry moje pozorovania</string>
+    <string name="hide_my_observations">Skryť moje pozorovania</string>
     <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
     <string name="follow_this_observation">Sledovať toto pozorovanie</string>
     <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->

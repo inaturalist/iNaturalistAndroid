@@ -852,8 +852,8 @@
     <string name="restart_app">Рестартирајте ја апликацијата</string>
     <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
-        <item quantity="one">Дали сте сигурни дека сакате да го избришете ова набљудување: %1$d?</item>
-        <item quantity="other">Дали сте сигурни дека сакате да ги избришете овие набљудувања: %1$d?</item>
+        <item quantity="one">Дали сте сигурни дека сакате да избришете %1$d набљудување?</item>
+        <item quantity="other">Дали сте сигурни дека сакате да избришете %1$d набљудувања?</item>
     </plurals>
     <string name="future_observed_on_date_error">Вашето набљудување беше создадено (и поднесено) на %1$s, но вие се обидувате да поставите датум на набљудувањето подоцна од тоа: %2$s</string>
     <string name="no_more_photos_allowed">Набљудувањата може да имаат до %1$d слики. За да додадете повеќе потребно е да остраните некоја слика.</string>
