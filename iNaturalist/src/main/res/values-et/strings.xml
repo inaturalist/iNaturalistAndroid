@@ -112,7 +112,7 @@
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Geoprivaatsus</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
-    <string name="geoprivacy_with_value">Geoprivacy: %1$s</string>
+    <string name="geoprivacy_with_value">Geoprivaatsus: %1$s</string>
     <string name="delete_confirmation">Oled sa kindel, et soovid seda vaatlust kustutada?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">Juhendid</string>
@@ -134,19 +134,19 @@
     <string name="leave_project_confirmation">Oled kindel, et soovid sellest projektist lahkuda?</string>
     <string name="discard_location_changes">Oled sa kindel, et soovid salvestamata muudatused maha kanda?</string>
     <string name="edit_location">Muuda asukohta</string>
-    <string name="edit_locality_notes">Edit Locality Notes</string>
+    <string name="edit_locality_notes">Muuda asukoha märkmeid</string>
     <string name="get_current_location">Leia praegune asukoht</string>
-    <string name="pull_to_refresh">Pull to refresh...</string>
-    <string name="release_to_refresh">Release to refresh...</string>
+    <string name="pull_to_refresh">Tõmba, et värskendada...</string>
+    <string name="release_to_refresh">Lase lahti, et värskendada…</string>
     <string name="refreshing">Värskendan...</string>
     <plurals name="sync_x_observations">
-        <item quantity="one">Sync %1$d observation</item>
-        <item quantity="other">Sync %1$d observations</item>
+        <item quantity="one">Sünkroniseeri %1$d vaatlus</item>
+        <item quantity="other">Sünkroniseeri %1$d vaatlust</item>
     </plurals>
-    <string name="sync_observations">Sync Observations</string>
+    <string name="sync_observations">Sünkroniseeri vaatlused</string>
     <string name="lets_get_started">Alustame!</string>
-    <string name="view_nearby_observations">View Nearby Observations</string>
-    <string name="skip_for_now">Skip for Now</string>
+    <string name="view_nearby_observations">Vaata lähedal asuvaid vaatluseid</string>
+    <string name="skip_for_now">Jäta praegu vahele</string>
     <string-array name="tutorial_titles">
         <item></item>
         <item>Vaatle</item>
@@ -155,14 +155,14 @@
         <item>Panusta</item>
     </string-array>
     <string-array name="tutorial_descriptions">
-        <item>Explore and Connect with Nature</item>
-        <item>Get outside! Find something wild, and take a clear, full frame photo.</item>
-        <item>Share your observation with the iNaturalist community.</item>
-        <item>Check back for comments and identifications on your observation!</item>
+        <item>Avasta ja leia enda side loodusega</item>
+        <item>Mine õue! Leia midagi metsikut ning tee sellest selge ja täielik foto.</item>
+        <item>Jaga oma vaatluseid iNaturalisti kogukonnaga.</item>
+        <item>Vaata hiljem, kas keegi on su vaatlust kommenteerinud või sellele määratluse lisanud!</item>
         <item><![CDATA[<b>Teaduskõlbulike</b> vaatluseid jagatakse teadlastega, kes proovivad loodust paremini mõista ja kaitsta.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
-        <item>Ava</item>
+        <item>Avalik</item>
         <item>Varjatud</item>
         <item>Privaatne</item>
     </string-array>
@@ -181,25 +181,25 @@
     <string name="text"><![CDATA[<b>Tekst:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">iNaturalisti põhivõrgustik. Vajutades OK, lisatakse su rakendus üleilmsesse iNaturalist võrgustikku.</string>
-    <string name="alert_message_use_naturalista">NaturaLista is a member of the iNaturalist Network in Mexico. Local institutions supporting NaturaLista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturewatchnz">iNaturalist NZ is a member of the iNaturalist Network in New Zealand. Local institutions supporting iNaturalist NZ will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Local institutions supporting iNaturalist Canada will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Local institutions supporting Naturalista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4All is a member of the iNaturalist Network in Portugal. Local institutions supporting Biodiversity4All will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá is a member of the iNaturalist Network in Panama. Local institutions supporting iNaturalist Panamá will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador is a member of the iNaturalist Network in Ecuador. Local institutions supporting iNaturalist Ecuador will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia is a member of the iNaturalist Network in Australia. Local institutions supporting iNaturalist Australia will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_argentinat">ArgentiNat is a member of the iNaturalist Network in Argentina. Local institutions supporting ArgentiNat will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel is a member of the iNaturalist Network in Israel. Local institutions supporting iNaturalist Israel will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistfi">iNaturalist Finland is a member of the iNaturalist Network in Finland. Local institutions supporting iNaturalist Finland will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistgr">iNaturalist Greece is a member of the iNaturalist Network in Greece. Local institutions supporting iNaturalist Greece will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg is a member of the iNaturalist Network in Luxembourg. Local institutions supporting iNaturalist Luxembourg will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom is a member of the iNaturalist Network in United Kingdom. Local institutions supporting iNaturalist United Kingdom will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is a member of the iNaturalist Network in Costa Rica. Local institutions supporting Naturalista Costa Rica will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalista">NaturaLista on iNaturalisti võrgustikku liige Mehhikos. Kohalikud institutsioonid, mis toetavad NaturaListat, näeksid sinu e-posti aadressi ning sinu vaatluste varjatud või privaatseid koordinaate. Palun ära eksperimenteeri enda võrgustiku kuuluvusega, kui sul on üle tuhande vaatluse. Soovid sa enda kuuluvust muuta?</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZ on iNaturalisti võrgustikku liige Uus-Meremaal. Kohalikud institutsioonid, mis toetavad iNaturalist NZ\'i, näeksid sinu e-posti aadressi ning sinu vaatluste varjatud või privaatseid koordinaate. Palun ära eksperimenteeri enda võrgustiku kuuluvusega, kui sul on üle tuhande vaatluse. Soovid sa enda kuuluvust muuta?</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada on iNaturalisti võrgustikku liige Kanadas. Kohalikud institutsioonid, mis toetavad iNaturalist Canadat, näeksid sinu e-posti aadressi ning sinu vaatluste varjatud või privaatseid koordinaate. Palun ära eksperimenteeri enda võrgustiku kuuluvusega, kui sul on üle tuhande vaatluse. Soovid sa enda kuuluvust muuta?</string>
+    <string name="alert_message_use_naturalistacolombia">Naturalista on iNaturalisti võrgustikku liige Colombias. Kohalikud institutsioonid, mis toetavad Naturalistat, näeksid sinu e-posti aadressi ning sinu vaatluste varjatud või privaatseid koordinaate. Palun ära eksperimenteeri enda võrgustiku kuuluvusega, kui sul on üle tuhande vaatluse. Soovid sa enda kuuluvust muuta?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All on iNaturalisti võrgustikku liige Portugalis. Kohalikud institutsioonid, mis toetavad Biodiversity4All\'i, näeksid sinu e-posti aadressi ning sinu vaatluste varjatud või privaatseid koordinaate. Palun ära eksperimenteeri enda võrgustiku kuuluvusega, kui sul on üle tuhande vaatluse. Soovid sa enda kuuluvust muuta?</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá on iNaturalisti võrgustikku liige Panamas. Kohalikud institutsioonid, mis toetavad iNaturalist Panamát, näeksid sinu e-posti aadressi ning sinu vaatluste varjatud või privaatseid koordinaate. Palun ära eksperimenteeri enda võrgustiku kuuluvusega, kui sul on üle tuhande vaatluse. Soovid sa enda kuuluvust muuta?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador on iNaturalisti võrgustikku liige Ecuadoris. Kohalikud institutsioonid, mis toetavad iNaturalist Ecuadori, näeksid sinu e-posti aadressi ning sinu vaatluste varjatud või privaatseid koordinaate. Palun ära eksperimenteeri enda võrgustiku kuuluvusega, kui sul on üle tuhande vaatluse. Soovid sa enda kuuluvust muuta?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia on iNaturalisti võrgustikku liige Austraalias. Kohalikud institutsioonid, mis toetavad iNaturalist Australiat, näeksid sinu e-posti aadressi ning sinu vaatluste varjatud või privaatseid koordinaate. Palun ära eksperimenteeri enda võrgustiku kuuluvusega, kui sul on üle tuhande vaatluse. Soovid sa enda kuuluvust muuta?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat on iNaturalisti võrgustikku liige Argentinas. Kohalikud institutsioonid, mis toetavad ArgentiNati, näeksid sinu e-posti aadressi ning sinu vaatluste varjatud või privaatseid koordinaate. Palun ära eksperimenteeri enda võrgustiku kuuluvusega, kui sul on üle tuhande vaatluse. Soovid sa enda kuuluvust muuta?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel on iNaturalisti võrgustikku liige Iisraelis. Kohalikud institutsioonid, mis toetavad iNaturalist Israeli, näeksid sinu e-posti aadressi ning sinu vaatluste varjatud või privaatseid koordinaate. Palun ära eksperimenteeri enda võrgustiku kuuluvusega, kui sul on üle tuhande vaatluse. Soovid sa enda kuuluvust muuta?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland on iNaturalisti võrgustikku liige Soomes. Kohalikud institutsioonid, mis toetavad iNaturalist Finlandi, näeksid sinu e-posti aadressi ning sinu vaatluste varjatud või privaatseid koordinaate. Palun ära eksperimenteeri enda võrgustiku kuuluvusega, kui sul on üle tuhande vaatluse. Soovid sa enda kuuluvust muuta?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile on iNaturalisti võrgustikku liige Tšiilis. Kohalikud institutsioonid, mis toetavad iNaturalist Chile\'t, näeksid sinu e-posti aadressi ning sinu vaatluste varjatud või privaatseid koordinaate. Palun ära eksperimenteeri enda võrgustiku kuuluvusega, kui sul on üle tuhande vaatluse. Soovid sa enda kuuluvust muuta?</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Greece on iNaturalisti võrgustikku liige Kreekas. Kohalikud institutsioonid, mis toetavad iNaturalist Greece\'i, näeksid sinu e-posti aadressi ning sinu vaatluste varjatud või privaatseid koordinaate. Palun ära eksperimenteeri enda võrgustiku kuuluvusega, kui sul on üle tuhande vaatluse. Soovid sa enda kuuluvust muuta?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg on iNaturalisti võrgustikku liige Luksemburgis. Kohalikud institutsioonid, mis toetavad iNaturalist Luxembourgi, näeksid sinu e-posti aadressi ning sinu vaatluste varjatud või privaatseid koordinaate. Palun ära eksperimenteeri enda võrgustiku kuuluvusega, kui sul on üle tuhande vaatluse. Soovid sa enda kuuluvust muuta?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom on iNaturalisti võrgustikku liige Ühendatud Kuningriikides. Kohalikud institutsioonid, mis toetavad iNaturalist United Kingdomi, näeksid sinu e-posti aadressi ning sinu vaatluste varjatud või privaatseid koordinaate. Palun ära eksperimenteeri enda võrgustiku kuuluvusega, kui sul on üle tuhande vaatluse. Soovid sa enda kuuluvust muuta?</string>
+    <string name="alert_message_use_inaturalistcr">iNaturalist Costa Rica on iNaturalisti võrgustikku liige Costa Ricas. Kohalikud institutsioonid, mis toetavad iNaturalist Costa Ricat, näeksid sinu e-posti aadressi ning sinu vaatluste varjatud või privaatseid koordinaate. Palun ära eksperimenteeri enda võrgustiku kuuluvusega, kui sul on üle tuhande vaatluse. Soovid sa enda kuuluvust muuta?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala on iNaturalisti võrgustikku liige Guatemalas. Kohalikud institutsioonid, mis toetavad iNaturalist Guatemala, näeksid sinu e-posti aadressi ning sinu vaatluste varjatud või privaatseid koordinaate. Palun ära eksperimenteeri enda võrgustiku kuuluvusega, kui sul on üle tuhande vaatluse. Soovid sa enda kuuluvust muuta?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sweden on iNaturalisti võrgustikku liige Rootsis. Kohalikud institutsioonid, mis toetavad iNaturalist Swedenit, näeksid sinu e-posti aadressi ning sinu vaatluste varjatud või privaatseid koordinaate. Palun ära eksperimenteeri enda võrgustiku kuuluvusega, kui sul on üle tuhande vaatluse. Soovid sa enda kuuluvust muuta?</string>
+    <string name="alert_message_use_naturalistauy">iNaturalist Uruguay on iNaturalisti võrgustikku liige Uruguays. Kohalikud institutsioonid, mis toetavad iNaturalist Uruguayd, näeksid sinu e-posti aadressi ning sinu vaatluste varjatud või privaatseid koordinaate. Palun ära eksperimenteeri enda võrgustiku kuuluvusega, kui sul on üle tuhande vaatluse. Soovid sa enda kuuluvust muuta?</string>
     <string name="editor">Toimetaja</string>
     <string name="license">Litsents</string>
     <string name="download_for_offline_use">Lae levita kasutamise jaoks alla</string>
@@ -228,62 +228,62 @@
     <string name="sign_up">Registreeri</string>
     <!-- Title of the view used to sign up for a new account -->
     <string name="sign_up_title">Registreeri</string>
-    <string name="min_6_chars">Min. 6 characters</string>
-    <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data (recommended). <b>Learn More</b>]]></string>
-    <string name="content_licensing">Content Licensing</string>
-    <string name="content_licensing_description">Check this box if you want to apply a Creative Commons Attribution-NonCommercial license to your photos. You can choose a different license or remove the license later, but this is the best license for sharing with researchers.</string>
+    <string name="min_6_chars">Vähemalt 6 tähemärki</string>
+    <string name="use_my_license"><![CDATA[Jah, lisa minu loodud sisule litsents, mis võimaldaks teadlastel minu andmete kasutamist (soovituslik). <b>Loe täpsemalt</b>]]></string>
+    <string name="content_licensing">Sisulitsents</string>
+    <string name="content_licensing_description">Pane siia kasti linnuke, kui soovid oma fotodele lisada Creative Commonsi Viitamine-Mitteäriline litsentsi. Võid hiljem valida teistsuguse litsentsi või selle eemaldada, kuid tegu on teadlastega jagamise jaoks parima litsentsiga.</string>
     <!-- Try to keep this about the length of the English text -->
     <string name="username_or_email">Kasutajanimi või E-mail</string>
     <string name="forgot">Unustasid?</string>
-    <string name="or_login_with">Or Log In With:</string>
+    <string name="or_login_with">Või logi sisse kasutades:</string>
     <string name="registering">Registreerimine...</string>
-    <string name="recommended_next_step">Recommended Next Step</string>
-    <string name="could_not_register_user">Couldn\'t register user</string>
+    <string name="recommended_next_step">Järgmine soovituslik samm</string>
+    <string name="could_not_register_user">Kasutaja registreerimine ebaõnnestus</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
     <string name="login_signup">Logi Sisse / Registreeru</string>
-    <string name="please_sign_in_via_settings_for_guides">You must be logged in to view your guides.</string>
-    <string name="please_sign_in_for_updates">You must be logged in to view your updates.</string>
-    <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="https://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
+    <string name="please_sign_in_via_settings_for_guides">Enda juhendite vaatamiseks pead olema sisse logitud.</string>
+    <string name="please_sign_in_for_updates">Enda uudiste vaatamiseks pead olema sisse logitud.</string>
+    <string name="by_using_inat_terms"><![CDATA[Kasutades iNaturalisti nõustud sa <b><a href="https://www.inaturalist.org/pages/terms">kasutamis-</a></b> ja <b><a href="https://www.inaturalist.org/pages/privacy">privaatsustingimustega</a></b>]]></string>
     <string name="activity">Uudised</string>
     <!-- Label for a button to open the camera to take a new photo for an observation -->
     <string name="camera">Tee Pilt</string>
     <!-- Label for a button to import an existing photo for an observation -->
     <string name="upload_photo">Vali pilt</string>
     <string name="first">Esimene</string>
-    <string name="make_first">Make 1st</string>
+    <string name="make_first">Liiguta esimeseks</string>
     <string name="notes">Märkmed</string>
-    <string name="is_captive">It is captive or cultivated</string>
-    <string name="location_visibility">Location Visibility</string>
+    <string name="is_captive">Vangistatud / kultiveeritud</string>
+    <string name="location_visibility">Asukoha nähtavus</string>
     <string name="set_location">Asukoht</string>
     <string name="coordinates_lat">Laius:</string>
     <string name="coordinates_lon">Pikkus:</string>
-    <string name="coordinates_acc">Acc. </string>
+    <string name="coordinates_acc">Täpsus</string>
     <string name="required">* Kohustuslik</string>
-    <string name="downloading_observations">Downloading observations...</string>
+    <string name="downloading_observations">Laen vaatluseid...</string>
     <string name="no_thanks">Ei Aitäh</string>
     <string name="turn_on">Lülita sisse</string>
-    <string name="introducing_auto_sync">Introducing Auto-Sync!</string>
-    <string name="turn_on_auto_sync">Turn on Auto-Sync in Settings and your observations will be automatically uploaded to iNaturalist.</string>
-    <string name="automatic_upload">Automatic Upload (Auto Sync)</string>
-    <string name="waiting_to_upload">Waiting to upload...</string>
+    <string name="introducing_auto_sync">Tutvustame autosünkrooni!</string>
+    <string name="turn_on_auto_sync">Lülita sätetest autosünkroon sisse ning su vaatlused laetakse automaatselt iNaturalisti.</string>
+    <string name="automatic_upload">Automaatne üleslaadimine (autosünkroon)</string>
+    <string name="waiting_to_upload">Ootan üleslaadimist...</string>
     <string name="uploading">Laen üles...</string>
-    <string name="failed_to_add_to_project">Failed to add to project \'%1$s\': %2$s</string>
-    <string name="needs_your_attention">Needs your attention...</string>
-    <string name="observation">Observation</string>
+    <string name="failed_to_add_to_project">Projekti \'%1$s\' juurde lisamine ebaõnnestus: %2$s</string>
+    <string name="needs_your_attention">Vajab tähelepanu...</string>
+    <string name="observation">Vaatlus</string>
     <string name="share">Jaga</string>
-    <string name="unable_to_acquire_location">Unable to acquire location</string>
-    <string name="casual_grade">Casual Grade</string>
+    <string name="unable_to_acquire_location">Asukoha andmete saamine ebaõnnestus</string>
+    <string name="casual_grade">Juhuvaatlus</string>
     <string name="needs_id">Vajab ID\'d</string>
-    <string name="research_grade">Research Grade</string>
-    <string name="data_quality">Data Quality</string>
-    <string name="casual_grade_add_location"><![CDATA[ Add a <b>location</b> to advance this observation to “Needs ID” status. ]]></string>
-    <string name="casual_grade_add_date"><![CDATA[ Add a <b>date</b> to advance this observation to “Needs ID” status. ]]></string>
-    <string name="casual_grade_add_photo"><![CDATA[ Add a <b>photo</b> to advance this observation to “Needs ID” status. ]]></string>
+    <string name="research_grade">Teaduskõlbulik</string>
+    <string name="data_quality">Andmete kvaliteet</string>
+    <string name="casual_grade_add_location"><![CDATA[Vaatluse "Vajab määratlemist" kategooriasse paigutamiseks lisa selle <b>asukoht</b>.]]></string>
+    <string name="casual_grade_add_date"><![CDATA[Vaatluse "Vajab määratlemist" kategooriasse paigutamiseks lisa selle <b>kuupäev</b>.]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[Vaatluse "Vajab määratlemist" kategooriasse paigutamiseks lisa selle <b>foto</b>.]]></string>
     <string name="casual_grade_captive"><![CDATA[ Tegemist on juhuvaatlusega, kuna see on <b>vangistatud / kultiveeritud</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ Vaatlus vajab kogukonnalt <b>rohkem määratlusi</b>, et muutuda "Teaduskõlbulikuks". ]]></string>
     <plurals name="included_in_projects">
-        <item quantity="one">Included in %1$d project</item>
-        <item quantity="other">Included in %1$d projects</item>
+        <item quantity="one">Osaleb projektis %1$d</item>
+        <item quantity="other">Osaleb %1$d projektis</item>
     </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivaatsus on säte, millega saad vaatlustel määrata kuidas selle koordinaate (laiuskraad ja pikkuskraad) kuvatakse. Võimalused on järgnevad: <br/><b>avalik</b> - Kui tegu pole ohustatud taksoniga, näevad koordinaate kõik kasutajad. <br/><b>varjatud</b> - Avalikke koordinaate näidatakse juhusliku punktina 0,2×0,2 kraadises tõeliseid koordinaate sisaldavas alas, mis tähendab, et ekvaatoril oleks tegu 22×22 ruutkilomeetrise ebamäärasusega ning poolustele lähenedes ebamäärasus väheneks. Tõelised koordinaadid on nähtavad ainult nende projektide kuraatoritele, kuhu sa oma vaatluseid lisad. <br/><b>privaatsed</b> - Koordinaadid on avalikelt kaartidelt täielikult eemaldatud ning tõeliseid koordinaate näed vaid sina ning nende projektide kuraatorid, kuhu sa oma vaatluseid lisad. <br/><br/>Pane tähele, et projektide kuraatorid näevad koordinaate alati hoolimata sinu groprivaatsuse sätetest. Seega kui oled mures, kellel on ligipääs su koordinaatidele, peaksid oleme kindel, et usaldad nende projektide kuraatoreid, milles osaled. ]]></string>
     <string name="id_title">%1$s määratlus • %2$s</string>
@@ -308,7 +308,7 @@
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Kommenteerimiseks või määratlemiseks sünkroniseeri vaatlus...</string>
     <!--  Label for a button to add an observation without a photo or a sound  -->
-    <string name="no_photo">No Media</string>
+    <string name="no_photo">Ilma meediata</string>
     <string name="about_this_species">Liigist</string>
     <string name="view_on_wikipedia">Wikipedia artikkel</string>
     <string name="photo"><![CDATA[Foto: <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -316,7 +316,7 @@
     <string name="finding_current_location">Otsin praegust asukohta...</string>
     <string name="flag_as_captive">Määra vangistatuks / kultiveerituks</string>
     <string name="observation_flagged_as_captive">Vaatlus määratud vangistatuks / kultiveerituks</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Oled sa kindel, et soovid sellele vaatlusele lisada märkuse \"vangistatud/kultiveeritud\"?</string>
     <string name="do_you_agree_to_the_following">Nõustud sa järgnevaga?</string>
     <string name="terms">Tingimused</string>
     <string name="observation_rules">Vaatlusreeglid</string>
@@ -331,64 +331,64 @@
     <string name="couldnt_load_user_details">Kasutaja andmete laadimine ebaõnnestus: %1$s</string>
     <string name="more_bio"><![CDATA[<b><font color="#ffffff">Veel »</font></b>]]></string>
     <string name="no_location">Asukoht puudub</string>
-    <string name="add_to_projects">Add to project(s)</string>
-    <string name="are_you_sure_you_want_to_save_obs_without_coords">Are you sure you want to save the observation without any coordinates?</string>
-    <string name="users_identification">%1$s\'s ID: %2$s</string>
+    <string name="add_to_projects">Lisa projekti(desse)</string>
+    <string name="are_you_sure_you_want_to_save_obs_without_coords">Oled sa kindel, et soovid vaatluse ilma koordinaatideta salvestada?</string>
+    <string name="users_identification">Kasutaja %1$s määratlus: %2$s</string>
     <string name="edit_profile">Muuda profiili</string>
-    <string name="remove_photo">Eemalda Pilt</string>
+    <string name="remove_photo">Eemalda pilt</string>
     <string name="name">Nimi</string>
-    <string name="tell_us_about_yourself">Tell us about yourself...</string>
+    <string name="tell_us_about_yourself">Räägi meile endast...</string>
     <string name="view_profile">Profiil</string>
     <string name="are_you_sure_you_want_to_remove_photo">Kas sa oled kindel, et tahad kustutada oma foto?</string>
-    <string name="updating_profile">Updating Profile...</string>
-    <string name="there_was_a_problem_updating_profile">There was a problem while updating your profile!</string>
-    <string name="there_was_a_problem_updating_profile_params">There was a problem while updating your profile: %1$s</string>
+    <string name="updating_profile">Värskendan profiili...</string>
+    <string name="there_was_a_problem_updating_profile">Profiili värskendamisel tekkis probleem!</string>
+    <string name="there_was_a_problem_updating_profile_params">Profiili värskendamisel tekkis probleem: %1$s</string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
-    <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
+    <string name="currently_logged_in_as_html"><![CDATA[Logitud sisse kasutajana <b>%1$s</b>]]></string>
     <string name="log_out">Logi välja</string>
     <string name="not_logged_in">Pole sisse logitud</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
-    <string name="login_or_sign_up">Log In or Sign Up</string>
-    <string name="auto_upload_description">Auto-upload new observations and edits to observations</string>
+    <string name="login_or_sign_up">Logi sisse või registreeru</string>
+    <string name="auto_upload_description">Lae uued vaatlused ja vaatluste muudatused automaatselt üles</string>
     <string name="language">Keel</string>
     <string name="version">Versioon</string>
-    <string name="inat_network">iNaturalist Network</string>
-    <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
+    <string name="inat_network">INaturalisti võrgustik</string>
+    <string name="inat_network_description">INaturalisti võrgustik aitab lehte tõlkida ja meie kogukonda struktureerida. Võrgustiku alalehti toetavad kohalikud institustioonid, mis on meiega lepingu allkirjastanud ning ergutavad seeläbi iNaturalisti kohalikku kasutamist ja kohapealset elurikkust.</string>
     <string name="more_info">Rohkem Infot</string>
-    <string name="select_network">Select Network Affiliation</string>
+    <string name="select_network">Vali võrgustiku kuuluvus</string>
     <string name="help">Abi</string>
     <string name="stop">Peata</string>
     <string name="resume">Jätka</string>
     <string name="cleaning_up">Puhastan...</string>
     <string name="syncing">Sünkroniseerin...</string>
-    <string name="syncing_observation_fields">Syncing observation fields...</string>
-    <string name="syncing_observations">Syncing observations...</string>
+    <string name="syncing_observation_fields">Sünkroniseerin vaatluse andmeid...</string>
+    <string name="syncing_observations">Sünkroniseerin vaatluseid...</string>
     <string name="syncing_paused">Peatatud</string>
     <string name="upload">Lae ülesse</string>
-    <string name="search_observations">Search Observations...</string>
+    <string name="search_observations">Otsin vaatluseid...</string>
     <string name="withdraw">Võta tagasi</string>
     <!-- Dialog title for when you are updating the description of an identification -->
-    <string name="update_id_description">Update Identification Description</string>
+    <string name="update_id_description">Uuenda määratluse kirjeldust</string>
     <string name="your_identification">Sinu ID: %1$s</string>
-    <string name="onboarding_species_name">Name what you saw if you can, even if that\'s just \"insect\" or \"bird,\" or just leave this blank. Others may help you identify it!</string>
-    <string name="upload_complete">Upload Complete!</string>
-    <string name="onboarding_upload_description">Check back soon for identifications and comments on your observation(s).</string>
-    <string name="importing_photos">Importing photo(s)...</string>
-    <string name="multi_select_description">Import multiple photos by long-pressing on a single photo</string>
-    <string name="preparing_photo">Preparing photo...</string>
-    <string name="recommended_for_you">Recommended for You</string>
+    <string name="onboarding_species_name">Anna enda poolt nähtule nime, isegi kui see on vaid \"putukas\" või \"lind. Võid ka tühjaks jätta. Ehk aitavad teised kasutajad sul seda määrata!</string>
+    <string name="upload_complete">Üleslaadimine õnnestus!</string>
+    <string name="onboarding_upload_description">Tule varsti tagasi, et näha oma vaatlus(t)ele lisatud määratlusi ja kommentaare.</string>
+    <string name="importing_photos">Impordin fotot/fotosid...</string>
+    <string name="multi_select_description">Mitme pildi korraga importimiseks vajuta pikemalt ühele fotole</string>
+    <string name="preparing_photo">Valmistan fotot ette...</string>
+    <string name="recommended_for_you">Soovitame sulle</string>
     <string name="missions">Missioonid</string>
-    <string name="browse_by_category">Browse By Category</string>
-    <string name="couldnt_load_recommended_missions">Couldn\'t load recommended missions: %1$s</string>
+    <string name="browse_by_category">Näita kategooriate kaupa</string>
+    <string name="couldnt_load_recommended_missions">Soovituslikke missioonide laadimine ebaõnnestus: %1$s</string>
     <string name="plants">Taimed</string>
     <string name="mammals">Imetajad</string>
     <string name="insects">Putukad</string>
     <string name="reptiles">Roomajad</string>
-    <string name="animals">Animals</string>
+    <string name="animals">Loomad</string>
     <string name="fish">Kalad</string>
     <string name="mollusks">Molluskid</string>
-    <string name="protozoans">Protozoans</string>
-    <string name="chromista">Kelp, Diatoms, and Allies</string>
+    <string name="protozoans">Ainuraksed</string>
+    <string name="chromista">Vetikad, diaatomid ja nende sugulased</string>
     <string name="amphibians">Kahepaiksed</string>
     <string name="fungi">Seened</string>
     <string name="birds">Linnud</string>
@@ -409,92 +409,92 @@
     <string name="my_content">Minu sinu</string>
     <string name="following">Jälgimine</string>
     <string name="no_updates_yet">Täiendusi veel pole. Vaata hiljem uuesti!</string>
-    <string name="you_will_only_receive_updates_when_creating">(You will only receive updates once you\'ve created observations)</string>
-    <string name="you_will_only_receive_updates_when_following">(You will only receive updates once you\'re following observations)</string>
-    <string name="user_activity_id"><![CDATA[<b>%1$s</b> suggested an ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="user_activity_comment"><![CDATA[<b>%1$s</b> commented: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="deleted_photos_from_cache_error">It looks like you deleted a photo by clearing the app cache before uploading. You will need to add the photo back to your observation from your gallery. In the future, please make sure you have uploaded all your photos before clearing the app cache.</string>
+    <string name="you_will_only_receive_updates_when_creating">(Teateid saad vaid siis, kui oled loonud vaatluseid)</string>
+    <string name="you_will_only_receive_updates_when_following">(Teateid saad vaid siis, kui oled ennast määranud vaatluseid jälgima)</string>
+    <string name="user_activity_id"><![CDATA[Kasutaja <b>%1$s</b> soovitas määratluse: %2$s<font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_comment"><![CDATA[Kasutaja <b>%1$s</b> kommenteeris: &ldquo;%2$s&rdquo;<font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[Kasutaja <b>%1$s</b> mainis sind: &ldquo;%2$s&rdquo;<font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="deleted_photos_from_cache_error">Näib, et sa tühjendasi rakenduse vahemälu ja kustutasid seeläbi foto enne selle üleslaadimist. Pead selle foto oma galeriist uuesti vaatlusele lisama. Veendu tulevikus, et oled kõik fotod üles laadinud enne rakenduse vahemälu tühjendamist.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
         the side drawer next to the Activity menu item when you have new activity on your own
         content.
     -->
     <plurals name="new_activities">
-        <item quantity="one">%1s new</item>
-        <item quantity="other">%1s new</item>
+        <item quantity="one">Uusi %1s</item>
+        <item quantity="other">Uusi %1s</item>
     </plurals>
     <string name="no_results_found">Tulemusi ei leitud...</string>
     <plurals name="syncing_x_out_of_y_observations">
-        <item quantity="one">Syncing %1$d of %2$d observation...</item>
-        <item quantity="other">Syncing %1$d of %2$d observations...</item>
+        <item quantity="one">Sünkroniseerin vaatlust %1$d / %2$d...</item>
+        <item quantity="other">Sünkroniseerin vaatlust %1$d / %2$d...</item>
     </plurals>
     <string name="deleting_observations">Kustutan vaatlused</string>
-    <string name="preparing">Valmistan...</string>
-    <string name="add_edit_remark">Add/Edit Remark</string>
+    <string name="preparing">Kohendan...</string>
+    <string name="add_edit_remark">Lisa/muuda märkust</string>
     <string name="restore">Taasta</string>
-    <string name="compare">Compare</string>
-    <string name="select">Select</string>
-    <string name="source_wikipedia">(Source: Wikipedia)</string>
-    <string name="conservation_source"><![CDATA[<b>Source:</b> <i>%1$s</i>]]></string>
-    <string name="conservation_status_least_concern">Of least concern</string>
-    <string name="conservation_status_near_threatened">Near threatened</string>
-    <string name="conservation_status_vulnerable">Vulnerable</string>
-    <string name="conservation_status_endangered">Endangered</string>
-    <string name="conservation_status_critically_endangered">Critically endangered</string>
-    <string name="conservation_status_extinct_in_the_wild">Extinct in the wild</string>
+    <string name="compare">Võrdle</string>
+    <string name="select">Vali</string>
+    <string name="source_wikipedia">(Allikas: Vikipeedia)</string>
+    <string name="conservation_source"><![CDATA[<b>Allikas:</b> <i>%1$s</i>]]></string>
+    <string name="conservation_status_least_concern">Vähim muresid</string>
+    <string name="conservation_status_near_threatened">Peaaegu ohustatud</string>
+    <string name="conservation_status_vulnerable">Ohustatud</string>
+    <string name="conservation_status_endangered">Ohustatud</string>
+    <string name="conservation_status_critically_endangered">Kriitlises hävimisohus</string>
+    <string name="conservation_status_extinct_in_the_wild">Looduses väljasurnud</string>
     <string name="conservation_status_extinct">Väljasurnud</string>
     <string name="map_of_observations">Vaatluste kaart</string>
     <string name="taxonomy">Taksonoomia</string>
-    <string name="about_this_section">About This Section</string>
+    <string name="about_this_section">Lisainfo</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
-    <string name="taxonomy_info">These are links to ancestors of this particular taxon. They are in order from coarser to more refined. Use these links to move up and down the Tree of Life. For example, if you don\'t know what an organism is, but know what grouping it falls into, tap on a taxon from the list to view more information about it.</string>
+    <string name="taxonomy_info">Need on lingid mis viitavad antud taksoni ülemtaksonitele. Nende järjekord on üldisemalt täpsemale. Linkide abil saad mööda elu puustruktuuri ringi liikuda. Kui sa näiteks ei tea, mis organismiga on tegu, kuid tead, millisse gruppi see kuulub, vajuta mõnele nimekirjas olevale taksonile, et selle kohta rohkem infot saada.</string>
     <string name="more_info_on_inat">Rohkem infot lehel iNaturalist.org</string>
-    <string name="view_suggestions">View Suggestions</string>
-    <string name="species_search">Species Search</string>
-    <string name="were_not_confident_enough">We\'re not confident enough to make a recommendation, but here are our top suggestions:</string>
-    <string name="were_not_confident_enough_no_suggestions">We\'re not confident enough to make a recommendation.</string>
+    <string name="view_suggestions">Vaata soovitusi</string>
+    <string name="species_search">Otsi liiki</string>
+    <string name="were_not_confident_enough">Me pole soovituste tegemiseks piisavalt kindlad, kuid siin on parimad pakkumised:</string>
+    <string name="were_not_confident_enough_no_suggestions">Me pole soovituste tegemiseks piisavalt kindlad.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
-    <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
+    <string name="most_observed_options_matching_filters">Filtritele vastavad enim vaadeldud tulemused:</string>
     <!-- Header for a list of suggested taxa -->
-    <string name="top_suggestions">Top suggestions</string>
-    <string name="pretty_sure_rank">We\'re pretty sure it\'s in this %1$s:</string>
+    <string name="top_suggestions">Parimad soovitused</string>
+    <string name="pretty_sure_rank">Oleme päris kindlad, et vaatluse %1$s on:</string>
     <string name="what_did_you_see">Mida sa nägid?</string>
-    <string name="suggest_species">Suggest Species</string>
-    <string name="suggest_species_description">Suggest species based on visual similarity to photos.</string>
-    <string name="visually_similar">Visually Similar</string>
-    <string name="visually_similar_seen_nearby">Visually Similar / Seen Nearby</string>
-    <string name="seen_nearby">Seen Nearby</string>
+    <string name="suggest_species">Soovita liike</string>
+    <string name="suggest_species_description">Soovita fotode visuaalse sarnasuse põhjal liike</string>
+    <string name="visually_similar">Visuaalselt sarnane</string>
+    <string name="visually_similar_seen_nearby">Visuaalselt sarnane / Läheduses nähtud</string>
+    <string name="seen_nearby">Läheduses nähtud</string>
     <string name="enlarge">Suurenda</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
-    <string name="view_children">View Children</string>
-    <string name="taxon_has_no_photos">This taxon has no photos.</string>
+    <string name="view_children">Vaata alamtaksoneid</string>
+    <string name="taxon_has_no_photos">Sellel taksonil pole fotosid</string>
     <string name="terrain">Maastik</string>
     <string name="filters">Filtrid</string>
-    <string name="exploring_all">Exploring All</string>
-    <string name="nearby">Nearby</string>
-    <string name="couldnt_load_results">Couldn\'t load results: %1$s</string>
+    <string name="exploring_all">Näitan kõike</string>
+    <string name="nearby">Lähedal</string>
+    <string name="couldnt_load_results">Tulemuste laadimine ebaõnnestus: %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
-    <string name="research_grade_initials">RG</string>
-    <string name="taxon_search_hint">e.g. birds, monarch</string>
-    <string name="location_search_hint">e.g. city, state, park, country...</string>
-    <string name="no_taxon">Sorry, taxon not found</string>
-    <string name="please_select_taxon">Please select a valid taxon from the list (or clear the taxon field).</string>
-    <string name="sorry_no_location">Sorry, location not found</string>
-    <string name="location_not_found">The location or place you have searched is not in our database. Please choose a place from the list of options below the location search field or clear the search field.</string>
+    <string name="research_grade_initials">TK</string>
+    <string name="taxon_search_hint">nt linnud, nurmenukk</string>
+    <string name="location_search_hint">nt linn, maakond, park, riik...</string>
+    <string name="no_taxon">Kahjuks ei leidnud me ühtegi taksonit</string>
+    <string name="please_select_taxon">Palun vali nimekirjast õige takson (või tühjenda taksoni väli).</string>
+    <string name="sorry_no_location">Kahjuks ei leidnud me sellist kohta</string>
+    <string name="location_not_found">Sinu otsitud kohta meie andmebaasis ei ole. Palun vali mõni koht allpoolsest nimekirjast või tühjenda otsingulahter.</string>
     <string name="undefined">Määramata</string>
-    <string name="street_segment">Street Segment</string>
+    <string name="street_segment">Tänavaosa</string>
     <string name="intersection">Ristmik</string>
     <string name="town">Linn</string>
     <!-- As in a political administrative area, e.g. Hawaii in the United States -->
     <string name="state">Osariik</string>
     <string name="county">Maakond</string>
-    <string name="local_administrative_area">Local Administrative Area</string>
+    <string name="local_administrative_area">Kohalik administratiivpiirkond</string>
     <string name="country">Riik</string>
     <string name="island">Saar</string>
     <string name="airport">Lennujaam</string>
-    <string name="drainage">Drainage</string>
-    <string name="land_feature">Land Feature</string>
+    <string name="drainage">Valgla</string>
+    <string name="land_feature">Maamärk</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="miscellaneous">Miscellaneous</string>
     <string name="nationality">Nationality</string>
@@ -534,58 +534,58 @@
     <string name="village_block">Village block</string>
     <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
     <string name="sum">Sum</string>
-    <string name="shire">Shire</string>
-    <string name="prefecture_city">Prefecture City</string>
+    <string name="shire">Krahvkond</string>
+    <string name="prefecture_city">Ringkonna õigustega linn</string>
     <!-- Indonesian sub-sub-national place type -->
-    <string name="regency">Regency</string>
-    <string name="constituency">Constituency</string>
-    <string name="local_authority">Local Authority</string>
+    <string name="regency">Kabupaten</string>
+    <string name="constituency">Valimisringkond</string>
+    <string name="local_authority">Kohalik omavalitsus</string>
     <!-- https://en.wikipedia.org/wiki/Poblacion -->
     <string name="poblacion">Poblacion</string>
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
-    <string name="delegation">Delegation</string>
-    <string name="apply_filters">Apply Filters</string>
-    <string name="remove_filters">Remove Filters</string>
-    <string name="reset">Reset</string>
-    <string name="show_only_my_observations">Show Only My Observations</string>
-    <string name="project">Project</string>
-    <string name="user">User</string>
-    <string name="search_users">Search Users...</string>
-    <string name="quality_grade">Quality Grade</string>
+    <string name="delegation">Mutamadiyah</string>
+    <string name="apply_filters">Kinnita filtrid</string>
+    <string name="remove_filters">Eemalda filtrid</string>
+    <string name="reset">Lähtesta</string>
+    <string name="show_only_my_observations">Näita ainult minu vaatluseid</string>
+    <string name="project">Projekt</string>
+    <string name="user">Kasutaja</string>
+    <string name="search_users">Otsi kasutajaid...</string>
+    <string name="quality_grade">Kvaliteedihinnang</string>
     <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
-    <string name="date_observed">Date Observed</string>
+    <string name="date_observed">Vaatluskuupäev</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
-    <string name="any">Any</string>
+    <string name="any">Ükskõik milline</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
-    <string name="to">to</string>
-    <string name="exact_date">Exact Date</string>
-    <string name="start">Start</string>
-    <string name="end">End</string>
-    <string name="months">Months</string>
-    <string name="choose_months">Choose month(s)</string>
-    <string name="map_area">Map Area</string>
-    <string name="global">Global</string>
+    <string name="to">kuni</string>
+    <string name="exact_date">Täpne kuupäev</string>
+    <string name="start">Algus</string>
+    <string name="end">Lõpp</string>
+    <string name="months">Kuud</string>
+    <string name="choose_months">Vali kuu(d)</string>
+    <string name="map_area">Kaardi piirkond</string>
+    <string name="global">Üleilmne</string>
     <!-- As in redo search in the current map area -->
-    <string name="search_map_area">Search Map Area</string>
+    <string name="search_map_area">Otsi piirkonda</string>
     <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
-    <string name="date_minute">%dm</string>
+    <string name="date_minute">%d min</string>
     <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
-    <string name="date_hour">%dh</string>
+    <string name="date_hour">%d t</string>
     <!-- Compact form of "X days ago", so "3 days ago" would be "3d" -->
-    <string name="date_day">%dd</string>
+    <string name="date_day">%d p</string>
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
-    <string name="date_week">%dw</string>
-    <string name="new_observation">New Observation</string>
-    <string name="inactive_taxon">Inactive Taxon</string>
-    <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
-    <string name="no_species_found">This is a list of the species you have observed the most.\n\nFYI: There\'s an estimated 9 million species on the planet, so get out there and observe them!</string>
-    <string name="make_an_observation">Make an observation</string>
-    <string name="no_observations_found_new">Observations are records of your encounters with individual organisms at particular times and locations.</string>
+    <string name="date_week">%d näd</string>
+    <string name="new_observation">Uued vaatlused</string>
+    <string name="inactive_taxon">Mitteaktiivne takson</string>
+    <string name="no_identifications_found">Siin saad hoida silma peale enda poolt tehtud määratlustel teiste kasutajate vaatlustele.</string>
+    <string name="no_species_found">Nimekiri liikidest, mida oled kõige rohkem vaadelnud.\n\nNB: Maailmas on eeldatavasti 9 miljonit liiki, nii et lihtsalt hakka neid vaatlema!</string>
+    <string name="make_an_observation">Vaatle</string>
+    <string name="no_observations_found_new">Vaatlused salvestavad sinu kokkupuuteid üksikute organismidega konkreetsel ajal ja kohas.</string>
     <string name="discard_comment">Oled sa kindel, et ei soovi seda kommentaari salvestada?</string>
-    <string name="leave_comment">Leave a comment...</string>
-    <string name="swipe">Swipe</string>
+    <string name="leave_comment">Lisa kommentaar...</string>
+    <string name="swipe">Libista</string>
     <string name="swipe_indicator">›</string>
-    <string name="potential_disagreement">Potential Disagreement</string>
+    <string name="potential_disagreement">Võimalik ebakõla</string>
     <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[I don\'t know but I\'m sure this is <b>%1$s</b>.]]></string>
@@ -605,20 +605,20 @@
     -->
     <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="https://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
-    <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
+    <string name="inat_credits_post"><![CDATA[Lisaks on iNaturalist sügavalt tänulik avatud lähtekoodi kasutavatele arendajatele, kes on loonud suure osa sellest tarkvarast, mida igapäevaselt kasutame. Külasta lehte <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a>, et näha nimekirja sellistest panustest meie projektile.<br/>Oleme tänulikud ka crowdin.com kogukonna vabatahtlikele, kes on pakkunud tõlkeabi. Eriti Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie ja katunchik.<br/>IUCN teise kategooria asukoha andmete allikaks on IUCN ja UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Leitav aadressil: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Credits</string>
     <string name="password_changed">The password the app uses no longer works - did you change your password on the website? Please enter the new one here</string>
     <string name="just_so_you_know">Just So You Know...</string>
     <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
-    <string name="see_more_observations">See more observations</string>
+    <string name="see_more_observations">Veel vaatluseid</string>
     <string name="see_more_species">See more species</string>
     <string name="see_more_identifications">See more identifications</string>
     <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
     <string name="description">Description</string>
     <string name="quantity">Qty</string>
     <string name="agree2">Agree</string>
-    <string name="project_observations">Observations</string>
+    <string name="project_observations">Vaatlused</string>
     <string name="project_species">Species</string>
     <string name="project_people">People</string>
     <!-- People who added identifications to observations in a project -->
@@ -707,11 +707,11 @@
     <string name="description_all_caps">DESCRIPTION</string>
     <string name="quantity_all_caps">QTY</string>
     <plurals name="observation_count_all_caps">
-        <item quantity="one">%1$s OBSERVATION</item>
-        <item quantity="other">%1$s OBSERVATIONS</item>
+        <item quantity="one">%1$s VAATLUS</item>
+        <item quantity="other">%1$s VAATLUST</item>
     </plurals>
     <string name="agree_all_caps">AGREE</string>
-    <string name="observations_all_caps">OBSERVATIONS</string>
+    <string name="observations_all_caps">VAATLUSED</string>
     <string name="species_all_caps">SPECIES</string>
     <string name="people_all_caps">PEOPLE</string>
     <string name="identifiers_all_caps">IDENTIFIERS</string>
@@ -720,7 +720,7 @@
     <string name="got_it_all_caps">GOT IT!</string>
     <string name="view_all_all_caps">VIEW ALL</string>
     <string name="observers_all_caps">OBSERVERS</string>
-    <string name="observations_regular">Observations</string>
+    <string name="observations_regular">Vaatlused</string>
     <string name="data_quality_assessment">Data Quality Assessment</string>
     <string name="research_grade_qualification">Research Grade Qualification</string>
     <string name="date_specified">Date specified</string>
@@ -775,13 +775,13 @@
     <string name="record_sound">Record Sound</string>
     <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
     <!-- Label for a button to import an existing sound for an observation -->
-    <string name="upload_sound">Choose Sound</string>
+    <string name="upload_sound">Lisa heli</string>
     <string name="multi_select_sound_description">Import multiple sounds by long-pressing on a single sound</string>
     <string name="alert_unsupported_audio_type">Sorry, but there was a problem loading the sound from this source</string>
     <string name="invalid_audio_extension">Error importing sound(s): Can only import sound files with WAV/MP3/AMR extensions</string>
     <string name="importing_sounds">Importing sound(s)...</string>
-    <string name="observation_sound">Observation Sound</string>
-    <string name="deleted_sounds_from_cache_error">It looks like you deleted a sound by clearing the app cache before uploading. You will need to add the sound back to your observation from your gallery. In the future, please make sure you have uploaded all your sounds before clearing the app cache.</string>
+    <string name="observation_sound">Vaatluse heli</string>
+    <string name="deleted_sounds_from_cache_error">Näib, et sa tühjendasi rakenduse vahemälu ja kustutasid seeläbi heli enne selle üleslaadimist. Pead selle heli oma galeriist uuesti vaatlusele lisama. Veendu tulevikus, et oled kõik helid üles laadinud enne rakenduse vahemälu tühjendamist.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f sec</string>
     <string name="clear_all_debug_logs">Clear All Debug Logs</string>
@@ -821,7 +821,7 @@
     <string name="ucrop_label_free">Free</string>
     <!-- Verb phrase, button label to edit an observation photo -->
     <string name="ucrop_label_edit_photo">Edit Photo</string>
-    <string name="service_temporarily_unavailable">Service temporarily unavailable.</string>
+    <string name="service_temporarily_unavailable">Teenust ei saa ajutiselt kasutada.</string>
     <string name="please_try_again_in_a_few_hours">Please try again in a few hours.</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
     <string name="please_try_again_in_x">Please try again in %1$d %2$s.</string>
@@ -830,7 +830,7 @@
     <string name="seconds_value">seconds</string>
     <string name="shop_the_inat_store">Shop the iNat Store</string>
     <string name="delete_your_account">Delete Your Account</string>
-    <string name="delete_account_message"><![CDATA[By deleting your account you will remove:<br/><br/><ul><li> All of your observations, including the work of the all the people who have helped you out with identifications.</li><li> All of the identifications you\'ve added to the observations of other people, which will potentially affect the data quality of those observations.</li><li> All of the comments you\'ve added.</li></ul><br/>Furthermore, this action cannot be undone. If you change your mind later, you aren\'t getting any of that content back.<br/><br/>If this service generates too many notifications, consider <a href="https://www.inaturalist.org/users/edit">editing your settings on the website</a> to opt out of certain notifications or stop receiving email from us. If you\'re having trouble with a specific person, consider <a href="https://www.inaturalist.org/users/edit">muting them</a> instead of deleting your account.<br/><br/>If you\'re still sure you want to delete your account, enter <b>\"%1$s\"</b> in the form below and click the button to delete your account and all your data.]]></string>
+    <string name="delete_account_message"><![CDATA[Enda konto kustutamisel eemaldad:<br/><br/><ul><li> Kõik enda vaatlused ning ka kogu selle töö, mida teised inimesed on nende määramisse panustanud.</li><li> Kõik enda lisatud määratlused teiste inimeste vaatlusele, mis võib omakorda mõjutada nende vaatluste kvaliteedihinnanguid.</li><li> Kõik enda lisatud kommentaarid.</li></ul><br/>Lisaks kõigele sellele, ei saa antud sammu tagasi võtta. Kui hiljem meelt muudad, ei saa sa midagi kustutatust taastada.<br/><br/>Kui meie teenused loovad liiga palju teavitusi, muuda pigem <a href="https://www.inaturalist.org/users/edit">oma sätteid meie kodulehel</a>, mille abil saad mõned teavitused kinni keerata või lõpetada üldse meie e-kirjade saamine. Kui sul on probleeme konkreetse isikuga, kaalu <a href="https://www.inaturalist.org/users/edit">nende vaigistamist</a> ja mitte oma konto kustutamist.<br/><br/>Kui oled siiski kindel, et soovid oma konto kustutada, sisesta allolevasse vormi <b>\"%1$s\"</b> ning vajuta konto ja kõigi andmete kustutamiseks nupule.]]></string>
     <string name="your_account_has_been_deleted">Your account has been deleted</string>
     <string name="you_must_enter_username_in_the_form_to_delete_account">You must enter \'%1$s\' in the form to delete your account</string>
     <!-- Second person hint text asking the user to enter their username -->
@@ -852,17 +852,17 @@
     <string name="restart_app">Restart App</string>
     <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
-        <item quantity="one">Are you sure you want to delete this %1$d observation?</item>
-        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+        <item quantity="one">Oled sa kindel, et soovid kustutada %1$d vaatlus?</item>
+        <item quantity="other">Oled sa kindel, et soovid kustutada %1$d vaatlust?</item>
     </plurals>
     <string name="future_observed_on_date_error">Your observation was created (and submitted) on %1$s, but you\'re trying to set an observation date that is later than that: %2$s</string>
-    <string name="no_more_photos_allowed">Observations can only have %1$d photos. To add more you will need to remove some.</string>
-    <string name="warning_multiple_photos">If you\'re adding photos of different kinds of organisms to this observation, or the same kind at different places or times, you should remove those photos and add them as separate observations. An observation can only have %1$d photos.</string>
+    <string name="no_more_photos_allowed">Vaatlustel võib kokku olla %1$d fotot. Kui soovid neid juurde lisada, eemalda mõned varasemad.</string>
+    <string name="warning_multiple_photos">Kui sa lisad selle vaatluse alla fotosid erinevates organismidest või samast organismist erinevates kohtades ja aegadel, peaksid need pildid eemaldama ning lisama eraldiseisvate vaatlustega. Ühel vaatlusel saab kokku olla %1$d fotot.</string>
     <string name="choosing_specific_language_warning">Choosing a specific language for your account requires an Internet connection</string>
     <string name="running_in_background_notfication">Running in the background so we can run without interruption</string>
-    <string name="opt_out_of_community_taxon">Opt out of the Community Taxon</string>
+    <string name="opt_out_of_community_taxon">Keeldu kogukondlikust taksonist</string>
     <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
-    <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
+    <string name="opt_out_message">Kogukondlikust taksonist keeldumine seostab selle vaatluse vaid sinu praegu määratluse taksoniga ning ei proovi seda tuletada teistest sellele vaatlusele tehtud määratlustest. Kui piisavalt palju määrajaid sinuga ei nõustu, muutub see vaatlus juhuvaatluseks. Peaksid keelduma vaid siis, kui oled kindel, et sinu määratlus on õige ning teised valed.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
     <string name="permission_required">Permission Required</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
@@ -872,16 +872,16 @@
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
     <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <string name="list_observation_checkbox_description">Kastike, millesse saab mitme vaatluse korraga valimisel panna linnukese</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <string name="observation_list_item_iconic_pic_description">Vaadeldava taksoni eelvaate foto</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
-    <string name="messages">Messages</string>
-    <string name="all_messages">All Messages</string>
-    <string name="search_messages">Search messages</string>
-    <string name="no_messages">You currently have no messages. You can send a new message with the green button, or message them from their profile page.</string>
-    <string name="no_messages_found">No messages found.</string>
+    <string name="observation_list_item_obs_pic_description">Vaatluse eelvaate foto</string>
+    <string name="messages">Sõnumid</string>
+    <string name="all_messages">Kõik sõnumid</string>
+    <string name="search_messages">Otsi sõnumeid</string>
+    <string name="no_messages">Sul pole praegu ühtegi sõnumit. Rohelise nupu abil saad uue sõnumi kirjutada või tee seda otse adressaadi profiililehelt.</string>
+    <string name="no_messages_found">Ühtegi sõnumit ei leitud.</string>
     <string name="send_a_message">Send a message</string>
     <string name="sending_message">Sending message...</string>
     <string name="could_not_send_message">Couldn\'t send message: %1$s</string>
@@ -892,14 +892,14 @@
     <string name="who_would_you_like_to_send_a_message_to">Who would you like to send a message to?</string>
     <string name="new_message">New Message</string>
     <string name="search_for_inaturalist_users">Search for iNaturalist users</string>
-    <string name="please_sign_in_for_messages">You must be logged in to view your messages.</string>
+    <string name="please_sign_in_for_messages">Sõnumite vaatamiseks pead olema sisse logitud.</string>
     <string name="sorry">Sorry</string>
-    <string name="you_must_have_three_observations">You must have three verifiable observations or three identifications for others in order to do that.</string>
+    <string name="you_must_have_three_observations">Selle tegemiseks peab sul olema kolm kinnitatud vaatlust või kolm teistele tehtud määratlust.</string>
     <string name="mute_this_user">Mute this user</string>
     <string name="unmute_this_user">Unmute this user</string>
     <string name="flag_this_conversation">Flag this conversation</string>
     <string name="mute_this_user_question">Mute this user?</string>
-    <string name="you_will_no_longer_receive_messages">You will no longer receive any notifications about activity from this user, including messages, comments, identifications, and mentions.</string>
+    <string name="you_will_no_longer_receive_messages">Enam sind selle kasutaja tegevusest (nt sõnumid, kommentaarid, määratlused või sinu mainimised) ei teavitata.</string>
     <string name="mute">Mute</string>
     <string name="muting_user">Muting user...</string>
     <string name="unmuting_user">Unmuting user...</string>
@@ -968,17 +968,17 @@
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
     <string name="deleted_user">Deleted User</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short_this_year">MMM d</string>
+    <string name="date_short_this_year">d. MMM</string>
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short">MM/dd/yy</string>
+    <string name="date_short">dd.MM.yy</string>
     <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_24_hour">HH:mm</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long">MMM d, yyyy</string>
+    <string name="date_long">d. MMM, yyyy</string>
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
+    <string name="date_long_with_time">d. MMMM, yyy HH:mm</string>
     <string name="show_common_names">Show common names</string>
     <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
     <string name="email_must_look_like_email_address">Email must look like an email address</string>
@@ -986,17 +986,17 @@
     <string name="password_too_short">Password must be at least six characters long</string>
     <string name="switch_to_grid_view">Switch to grid view</string>
     <string name="switch_to_list_view">Switch to list view</string>
-    <string name="remove_project_filter">Remove project filter</string>
-    <string name="remove_observer_filter">Remove observer filter</string>
-    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
-    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
-    <string name="filter_observations_by_months">Filter observations by months</string>
+    <string name="remove_project_filter">Eemalda projekti filter</string>
+    <string name="remove_observer_filter">Eemalda vaatleja filter</string>
+    <string name="filter_observations_by_an_exact_date">Filtreeri vaatluseid täpse kuupäeva abil</string>
+    <string name="filter_observations_by_a_date_range">Filtreeri vaatluseid kuupäevade vahemiku abil</string>
+    <string name="filter_observations_by_months">Filtreeri vaatluseid kuude kaupa</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="include_suggestions_not_seen_nearby">Include suggestions not seen nearby</string>
-    <string name="only_view_nearby_suggestions">Only view nearby suggestions</string>
-    <string name="suggestions_source">Suggestions Source</string>
-    <string name="research_grade_observations">Research Grade Observations</string>
+    <string name="include_suggestions_not_seen_nearby">Näita ka soovitusi, mida pole lähipiirkonnas nähtud</string>
+    <string name="only_view_nearby_suggestions">Vaata ainult lähipiirkonna vaatluseid</string>
+    <string name="suggestions_source">Soovituste allikas</string>
+    <string name="research_grade_observations">Teaduskõlbulikud vaatlused</string>
     <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
     <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will suggest species observed in a specific place and within a specific taxonomic group.</string>
     <string name="taxon">Taxon:</string>
@@ -1038,22 +1038,22 @@
     <string name="pretty_sure_variety">We\'re pretty sure it\'s in this variety:</string>
     <string name="pretty_sure_form">We\'re pretty sure it\'s in this form:</string>
     <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
-    <string name="remove_date_observed">Remove date &amp; time observed</string>
-    <string name="remove_time_observed">Remove time observed</string>
-    <string name="remove_location">Remove location</string>
-    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
+    <string name="remove_date_observed">Eemalde vaatluse kuupäev &amp; aeg</string>
+    <string name="remove_time_observed">Eemalda vaatlusaeg</string>
+    <string name="remove_location">Eemalda asukoht</string>
+    <string name="are_you_sure_you_want_to_remove_date">Oled sa kindel, et soovid vaatluse kuupäeva ja kellaaega eemaldada?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Oled sa kindel, et soovid vaatluse aega eemaldada?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Oled sa kindel, et soovid asukohta eemaldada?</string>
     <string name="share_location">Share Location</string>
     <string name="share_hidden_location">Share Hidden Location</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
     <string name="sound_format_not_supported">That audio encoding is not supported by Android.</string>
-    <string name="view_observations">View Observations</string>
+    <string name="view_observations">Ava vaatlused</string>
     <string name="choose_this_option">Choose this option</string>
-    <string name="compare_observation_with_this_option">Compare observation with this option</string>
+    <string name="compare_observation_with_this_option">Võrdle selliseid vaatluseid</string>
     <string name="go_back">Go back</string>
-    <string name="change_the_source_of_the_suggestions">Change the source of the suggestions</string>
+    <string name="change_the_source_of_the_suggestions">Muuda soovituste allikat</string>
     <string name="thumbnail_photo_for_suggested_taxon">Thumbnail photo for suggested taxon</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
     <string name="comments_ids_title">Comments and Identifications</string>
@@ -1063,7 +1063,7 @@
     <string name="previous_option">Previous Option</string>
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
     <string name="next_option">Next Option</string>
-    <string name="no_observations_yet2">No observations yet.</string>
+    <string name="no_observations_yet2">Vaatluseid veel pole.</string>
     <string name="no_species_yet">No species yet.</string>
     <string name="no_identifications_yet">No identifications yet.</string>
     <string name="sort_by">Sort By</string>
@@ -1082,15 +1082,15 @@
     See explore_order_by_items and explore_order_items keys !-->
     <string name="sorted_by_full">Sorted by %1$s (%2$s)</string>
     <!-- Label for an observation search filter to exclude your own observations -->
-    <string name="hide_my_observations">Hide My Observations</string>
+    <string name="hide_my_observations">Peida minu vaatlused</string>
     <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
-    <string name="follow_this_observation">Follow this Observation</string>
+    <string name="follow_this_observation">Jälgi seda vaatlust</string>
     <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
-    <string name="unfollow_this_observation">Unfollow this Observation</string>
+    <string name="unfollow_this_observation">Lõpeta vaatluse jälgimine</string>
     <!-- Error message shown when an attempt to follow an observation fails -->
-    <string name="could_not_follow_observation">Could not follow this observation</string>
+    <string name="could_not_follow_observation">Vaatluse jälgimine ei õnnestunud</string>
     <!-- Error message shown when an attempt to unfollow an observation fails -->
-    <string name="could_not_unfollow_observation">Could not unfollow this observation</string>
+    <string name="could_not_unfollow_observation">Vaatluse jälgimise lõpetamine ei õnnestunud</string>
     <!-- Label for a button to copy the coordinates of an observation -->
     <string name="copy_coordinates">Copy coordinates</string>
     <string name="coordinates_copied_to_clipboard">Coordinates copied to clipboard</string>
@@ -1102,58 +1102,58 @@
     <string name="uuid">UUID</string>
     <!--  Universal Resource Locator  -->
     <string name="url">URL</string>
-    <string name="default_licenses">Default Licenses</string>
-    <string name="default_observation_license">Default Observation License</string>
-    <string name="default_photo_license">Default Photo License</string>
-    <string name="default_sound_license">Default Sound License</string>
-    <string name="change_existing_licenses">Change Existing Licenses</string>
-    <string name="change_licenses_for_existing_observations">Change licenses for existing observations, photos, and sounds</string>
-    <string name="change_licenses_for_all_existing_observations">Change licenses for all existing observations</string>
-    <string name="change_licenses_for_all_existing_photos">Change licenses for all existing photos</string>
-    <string name="change_licenses_for_all_existing_sounds">Change licenses for all existing sounds</string>
-    <string name="change_observation_licenses">Change Observation Licenses</string>
-    <string name="change_photo_licenses">Change Photo Licenses</string>
-    <string name="change_sound_licenses">Change Sound Licenses</string>
-    <string name="change_licenses_for_observations_confirmation"><![CDATA[Change the licenses of <b>%1$d</b> existing observations to <b>%2$s</b>?]]></string>
-    <string name="change_licenses_for_photos_confirmation"><![CDATA[Change the licenses of existing photos to <b>%1$s</b>?]]></string>
-    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Change the licenses of existing sounds to <b>%1$s</b>?]]></string>
-    <string name="observation_licenses_updated">Observation Licenses Updated</string>
-    <string name="photo_licenses_updated">Photo Licenses Updated</string>
-    <string name="sound_licenses_updated">Sound Licenses Updated</string>
-    <string name="existing_observation_licenses_have_been_updated">All existing observation licenses have been changed to %1$s.</string>
-    <string name="existing_photo_licenses_have_been_updated">All existing photo licenses have been changed to %1$s.</string>
-    <string name="existing_sound_licenses_have_been_updated">All existing sound licenses have been changed to %1$s.</string>
-    <string name="default_licenses_description"><![CDATA[Licensing your content gives anyone the legal right to use it without asking your permission if they abide by the terms of the license. In addition, iNat includes your Creative Commons-licensed content in regularly-updated archives produced for select partner organizations interested in our data. For example, we include No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC) records in the archive we generate for the <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, an international, inter-governmental organization that compiles and distributes biodiversity information from around the world.]]></string>
-    <string name="photo_license">Photo License</string>
-    <string name="sound_license">Sound License</string>
-    <string name="edit_photo_license">Edit Photo License</string>
-    <string name="observation_license">Observation License</string>
-    <string name="edit_observation_license">Edit Observation License</string>
-    <string name="about_licenses">About Licenses</string>
-    <string name="view_license">View License</string>
+    <string name="default_licenses">Vaikimisi litsents</string>
+    <string name="default_observation_license">Vaikimisi vaatluslitsents</string>
+    <string name="default_photo_license">Vaikimisi fotolitsents</string>
+    <string name="default_sound_license">Vaikimisi helilitsents</string>
+    <string name="change_existing_licenses">Muuda olemasolevat litsentsi</string>
+    <string name="change_licenses_for_existing_observations">Muuda olemasolevate vaatluste, fotode ja helide litsentsi</string>
+    <string name="change_licenses_for_all_existing_observations">Muuda kõiki olemasolevate vaatluste litsentsi</string>
+    <string name="change_licenses_for_all_existing_photos">Muuda kõiki olemasolevate fotode litsentsi</string>
+    <string name="change_licenses_for_all_existing_sounds">Muuda kõiki olemasolevate helide litsentsi</string>
+    <string name="change_observation_licenses">Muuda vaatluste litsentse</string>
+    <string name="change_photo_licenses">Muuda fotode litsentse</string>
+    <string name="change_sound_licenses">Muuda helide litsentse</string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[Asenda <b>%1$d</b> olemasoleva vaatluse litsents: <b>%2$s</b>?]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[Asenda olemasolevate fotode litsents: <b>%1$s</b>?]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Asenda olemasolevate helide litsents: <b>%1$s</b>?]]></string>
+    <string name="observation_licenses_updated">Vaatluste litsents muudetud</string>
+    <string name="photo_licenses_updated">Fotode litsents muudetud</string>
+    <string name="sound_licenses_updated">Helide litsents muudetud</string>
+    <string name="existing_observation_licenses_have_been_updated">Kõiki olemasolevate vaatluste litsents on nüüd: %1$s.</string>
+    <string name="existing_photo_licenses_have_been_updated">Kõiki olemasolevate fotode litsents on nüüd: %1$s.</string>
+    <string name="existing_sound_licenses_have_been_updated">Kõiki olemasolevate helide litsents on nüüd: %1$s.</string>
+    <string name="default_licenses_description"><![CDATA[Enda loodud sisu litsenseerimine lubab teistel seda legaalselt kasutada ilma sinult eraldi luba küsimata, kui nad käituvad vastavalt litsentsi tingimustele. Lisaks liidab INaturalist sinu Creative Commons litsentsiga sisu regulaarselt valitud partnerorganisatsioonidega, keda huvitavad meie andmed. Näiteks lisame me autoriõiguseta (CC0), viitamine (CC BY) ja viitamine-mitteäriline (CC BY-NC) tähisega andmeid sellesse arhiivi, mida loome <a href="http://www.gbif.org/">Globaalse Loodusliku Mitmekesisuse Andmesüsteemi</a> (Global Biodiversity Information Facility, GBIF) jaoks, mis on rahvusvaheline valitsuste ülene organisatsioon, mis kogub ja jagab infot terve maailma loodusliku mitmekesisuse kohta.]]></string>
+    <string name="photo_license">Foto litsents</string>
+    <string name="sound_license">Heli litsents</string>
+    <string name="edit_photo_license">Muuda foto litsentsi</string>
+    <string name="observation_license">Vaatluse litsents</string>
+    <string name="edit_observation_license">Muuda vaatluse litsentsi</string>
+    <string name="about_licenses">Litsentsidest</string>
+    <string name="view_license">Vaata litsentsi</string>
     <!-- License Names -->
-    <string name="license_name_cc0">Public Domain</string>
-    <string name="license_name_cc_by">Attribution</string>
-    <string name="license_name_cc_by_nc">Attribution-NonCommercial</string>
-    <string name="license_name_cc_by_nc_sa">Attribution-NonCommercial-ShareAlike</string>
-    <string name="license_name_cc_by_nc_nd">Attribution-NonCommercial-NoDerivs</string>
-    <string name="license_name_cc_by_nd">Attribution-NoDerivs</string>
-    <string name="license_name_cc_by_sa">Attribution-ShareAlike</string>
-    <string name="license_name_no_license">All rights reserved</string>
+    <string name="license_name_cc0">Üldkasutatav</string>
+    <string name="license_name_cc_by">Viitamine</string>
+    <string name="license_name_cc_by_nc">Viitamine-Mitteäriline</string>
+    <string name="license_name_cc_by_nc_sa">Viitamine-Mitteäriline-Samatingimuslik</string>
+    <string name="license_name_cc_by_nc_nd">Viitamine-Mitteäriline-Mittetuletamine</string>
+    <string name="license_name_cc_by_nd">Viitamine-Mittetuletamine</string>
+    <string name="license_name_cc_by_sa">Viitamine-Samatingimuslik</string>
+    <string name="license_name_no_license">Kõik õigused kaitstud</string>
     <!-- License Descriptions -->
-    <string name="license_description_cc0">This license releases your work into the public domain, so others can copy, modify, distribute and perform your work, even for commercial purposes, all without asking permission or giving you credit. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.</string>
-    <string name="license_description_cc_by">This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation.</string>
-    <string name="license_description_cc_by_nc">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
-    <string name="license_description_cc_by_nc_sa">This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms.</string>
-    <string name="license_description_cc_by_nc_nd">This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can\'t change them in any way or use them commercially.</string>
-    <string name="license_description_cc_by_nd">This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.</string>
-    <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
-    <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
+    <string name="license_description_cc0">See litsents määrab, et sinu töö on vabakasutuses ning teised saavad seda kopeerida, muuta, jagada ja esitleda isegi ärilistel eesmärkidel ning seda kõike sinult luba küsimata või sinule viitamata. See on pakutavatest litsentsidest kõige vabam. Soovitame seda litsentseeritud materialide maksimaalse leviku ja kasutamise eesmärkidel.</string>
+    <string name="license_description_cc_by">See litsents lubab teistel sinu tööd levitada, muuta ja täiendada (ka ärilistel eesmärkidel), kui nad seejures sinule kui originaali autorile viitavad.</string>
+    <string name="license_description_cc_by_nc">See litsents luba teistel sinu tööd mitteärilistel eesmärkidel muuta ja täiendada ning kuigi nende uued teosed peavad sulle viitama ja olema samuti mitteärilised, ei pea nad oma tuletisi samadel tingimustel litsenseerima.</string>
+    <string name="license_description_cc_by_nc_sa">See litsents lubab teistel sinu töid mitteärilistel eesmärkidel muuta ja täiendada, kuni nad sinule viitavad ja uued teosed identse litsentsi all jagavad.</string>
+    <string name="license_description_cc_by_nc_nd">See litsents on kuuest võimalikust kõige piiravam ning lubab teistel sinu töid alla laadida ja jagada vaid siis, kui nad sulle viitavad, aga nad ei saa neid mingilgi moel muuta või neid ärilistel eesmärkidel kasutada.</string>
+    <string name="license_description_cc_by_nd">See litsents lubab jagamist nii ärilistel kui mitteärilistel eesmärkidel kuniks teos on muutmata kujul ja terviklik ning sulle on viidatud.</string>
+    <string name="license_description_cc_by_sa">See litsents lubab teistel sinu töid ka ärilistel eesmärkidel muuta ja täiendada, kuni nad sinule viitavad ja uued teosed identse litsentsi all jagavad. Seda litsentsi võrreldakse sageli tasuta vabavaraliste tarkvaralitsentsidega. Kõik uud teosed, mis põhinevad sinu loomingul, kasutavad sama litsentsi, mis tähendab, et ka tuletised peavad lubama ärilist kasutamist. Seda litsentsi kasutab Vikipeedia ning seda soovitatakse materjalidele, mille puhul on Vikipeedia ja teiste sarnast litsentsi kasutavate projektide sisu kaasamine kasulik </string>
+    <string name="license_description_no_license">Säilitad enda lisatud sisule kõik autoriõigused väljaarvatud neend õigused, mille annad vastavalt meie teenuse osutamise tingimustele üle iNaturalistile.</string>
     <string name="invalid_photo">Photo format not supported</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">Suggestions based on observations and identifications provided by the iNaturalist community, including %1$s, %2$s, %3$s, and many others.</string>
     <!-- Preference to control what tapping on the action button does on My Observations -->
-    <string name="default_observation_action">Default Observation Action</string>
+    <string name="default_observation_action">Vaatlusnupu vaikevalik</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Show Options</string>
     <!-- Placeholder text for an observation field value -->
@@ -1164,29 +1164,29 @@
     <string name="change_user_profile_photo">Change user profile photo</string>
     <string name="expand_list">Expand list</string>
     <string name="change_map_layers">Change map layers (terrain vs. satellite)</string>
-    <string name="redo_observation_search">Redo observation search in this map area</string>
-    <string name="view_observations_on_map">View observations on map</string>
-    <string name="view_observations_on_grid">View observations on grid</string>
+    <string name="redo_observation_search">Otsi selles kaardipiirkonnas vaatluseid uuesti</string>
+    <string name="view_observations_on_map">Näita vaatluseid kaardil</string>
+    <string name="view_observations_on_grid">Näita vaatluseid ruudustikuna</string>
     <string name="clear_text">Clear text</string>
-    <string name="observation_has_sounds">Observation has sounds</string>
+    <string name="observation_has_sounds">Vaatlusel on helid</string>
     <string name="go_to_my_location">Go to my current location</string>
     <string name="change_geoprivacy">Change geoprivacy</string>
     <string name="active_filters">Active filters</string>
     <string name="message_is_flagged">Message is flagged</string>
     <string name="user_is_muted">User is muted</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
-    <string name="delete_observations">Delete observations</string>
+    <string name="delete_observations">Kustuta vaatlused</string>
     <string name="comment_count">Comment count</string>
     <string name="id_count">Identification count</string>
-    <string name="observation_selected">Observation selected</string>
-    <string name="share_observation">Share observation</string>
+    <string name="observation_selected">Vaatlus valitud</string>
+    <string name="share_observation">Jaga vaatlust</string>
     <string name="unknown_location">Unknown location</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
     <string name="close">Close</string>
     <string name="set_date2">Set date</string>
     <string name="project_selected">Project Selected</string>
     <string name="project_unselected">Project Unselected</string>
-    <string name="show_my_observations">Show my observations</string>
+    <string name="show_my_observations">Näita minu vaatluseid</string>
     <string name="play_pause_sound">Play or pause sound</string>
     <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
     <string name="view_image">View image</string>
@@ -1199,15 +1199,15 @@
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
     <string name="disagree_assessment_passes">Disagree assessment passes</string>
     <plurals name="delete_x_selected_observations">
-        <item quantity="one">Delete %1$d selected observation</item>
-        <item quantity="other">Delete %1$d selected observations</item>
+        <item quantity="one">Kustuta %1$d valitud vaatlus</item>
+        <item quantity="other">Kustuta %1$d valitud vaatlust</item>
     </plurals>
     <plurals name="sync_x_selected_observations">
-        <item quantity="one">Sync %1$d selected observation</item>
-        <item quantity="other">Sync %1$d selected observations</item>
+        <item quantity="one">Sünkroniseeri %1$d valitud vaatlus</item>
+        <item quantity="other">Sünkroniseeri %1$d valitud vaatlust</item>
     </plurals>
     <string name="add_media_evidence">Add media evidence</string>
-    <string name="remove_identification">Remove identification</string>
+    <string name="remove_identification">Eemalda määratlus</string>
     <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
     <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
 </resources>

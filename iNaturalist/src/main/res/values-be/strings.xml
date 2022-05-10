@@ -110,9 +110,9 @@
     <string name="about_this_app">Пра прыкладанне</string>
     <string name="about_taxon_short">Пра таксон</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
-    <string name="geoprivacy">Геапрыватнасць</string>
+    <string name="geoprivacy">Бачнасць геададзеных</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
-    <string name="geoprivacy_with_value">Геапрыватнасць: %1$s</string>
+    <string name="geoprivacy_with_value">Бачнасць геададзеных: %1$s</string>
     <string name="delete_confirmation">Вы ўпэўнены, што хочаце выдаліць гэта назіранне?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">Дапаможнікі</string>
@@ -165,7 +165,7 @@
     </string-array>
     <string-array name="geoprivacy_items">
         <item>Адкрытае</item>
-        <item>Схаванае</item>
+        <item>Прыхаванае</item>
         <item>Прыватнае</item>
     </string-array>
     <string name="alert_sign_out">Вы ўпэўнены, што хочаце выйсці? Гэта выдаліць усе вашыя назіранні на гэтай прыладзе. Гэта не паўплывае на любыя назіранні, якія вы загрузілі ў iNaturalist.</string>
@@ -201,7 +201,7 @@
     <string name="alert_message_use_inaturalistcr">iNaturalist Costa Rica з\'яўляецца членам iNaturalist Network у Коста Рыке. Мясцовыя ўстановы, якія падтрымліваюць iNaturalist Costa Rica, будуць мець доступ да вашага адрасу электроннай пошты і сапраўдных каардынатаў для назіранняў, якія з\'яўляюцца закрытымі для публікі альбо прыватнымі. Калі ў вас ёсць больш за 1000 назіранняў, не эксперыментуйце са зменай прыналежнасці. Вы хочаце змяніць сваю прыналежнасць?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala з\'яўляецца членам iNaturalist Network у Гватэмале. Мясцовыя ўстановы, якія падтрымліваюць iNaturalist Guatemala, будуць мець доступ да вашага адрасу электроннай пошты і сапраўдных каардынатаў для назіранняў, якія з\'яўляюцца закрытымі для публікі альбо прыватнымі. Калі ў вас ёсць больш за 1000 назіранняў, не эксперыментуйце са зменай прыналежнасці. Вы хочаце змяніць сваю прыналежнасць?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden з\'яўляецца членам iNaturalist Network у Швэцыі. Мясцовыя ўстановы, якія падтрымліваюць iNaturalist Sweden, будуць мець доступ да вашага адрасу электроннай пошты і сапраўдных каардынатаў для назіранняў, якія з\'яўляюцца закрытымі для публікі альбо прыватнымі. Калі ў вас ёсць больш за 1000 назіранняў, не эксперыментуйце са зменай прыналежнасці. Вы хочаце змяніць сваю прыналежнасць?</string>
-    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay з\'яўляецца членам сеткі iNaturalist у Уругваі. Мясцовыя ўстановы, якія падтрымліваюць Naturalista Uruguay, будуць мець доступ да вашага адрасу электроннай пошты і сапраўдных каардынатаў для назіранняў, якія з\'яўляюцца закрытымі для публікі альбо прыватнымі. Калі ў вас ёсць больш за 1000 назіранняў, не эксперыментуйце са зменай прыналежнасці. Вы хочаце змяніць сваю прыналежнасць?</string>
     <string name="editor">Рэдактар</string>
     <string name="license">Ліцэнзія</string>
     <string name="download_for_offline_use">Спампаваць для выкарыстання ў аўтаномным рэжыме</string>
@@ -289,7 +289,7 @@
         <item quantity="many">Уключана ў %1$d праэктаў</item>
         <item quantity="other">Уключана ў %1$d праэктаў</item>
     </plurals>
-    <string name="geoprivacy_explanation"><![CDATA[Геапрыватнасць - гэта налада, якую вы можаце выкарыстоўваць для сваіх назіранняў. Яна кантралюе, як адлюстроўваюцца прасторавыя каардынаты (шырата і даўгата). Магчымыя параметры: <br/> <b> адкрыта </b> - Усе могуць бачыць каардынаты, калі таксон не пагражаемы. <br/> <b> прыхавана</b> - агульнадаступныя каардынаты паказваюцца ў выглядзе выпадковай кропкі ў межах плошчы 0,2 на 0,2 градуса, якая змяшчае сапраўдныя каардынаты, што адпавядае плошчы нявызначанасці, блізкую да 22x22 км на экватары і памяншаецца па меры набліжэння да палюсоў. Сапраўдныя каардынаты бачныя толькі вам і куратарам праектаў, да якіх вы дадаяце назіранне. <br/> <b> прыватныя </b> - Каардынаты, цалкам схаваныя ад агульнадаступных карт, сапраўдныя каардынаты бачныя толькі вам і куратарам праектаў, да якіх вы дадаяце назіранне. <br/> <br/> Звярніце ўвагу, што куратары асобных праектаў заўсёды могуць бачыць каардынаты незалежна ад вашых налад геапрыватнасці, таму, калі вас непакоіць, хто мае доступ да каардынат, вы павінны быць упэўнены, што давяраеце куратарам праектаў, у якіх вы ўдзельнічаеце.]]></string>
+    <string name="geoprivacy_explanation"><![CDATA[Бачнасць геададзеных (геапрыватнасць) - гэта налада, якую вы можаце выкарыстоўваць для сваіх назіранняў. Яна кантралюе, як адлюстроўваюцца прасторавыя каардынаты (шырата і даўгата). Магчымыя параметры: <br/> <b> адкрытае </b> - Усе могуць бачыць каардынаты, калі таксон не пагражаемы. <br/> <b> прыхаванае</b> - агульнадаступныя каардынаты паказваюцца ў выглядзе выпадковай кропкі ў межах плошчы 0,2 на 0,2 градуса, якая змяшчае сапраўдныя каардынаты, што адпавядае плошчы нявызначанасці, блізкую да 22x22 км на экватары і памяншаецца пры набліжэнні да палюсоў. Сапраўдныя каардынаты бачныя толькі вам і куратарам праектаў, да якіх вы дадаяце назіранне. <br/> <b> прыватнае </b> - Каардынаты, цалкам схаваныя на агульнадаступных мапах, сапраўдныя каардынаты бачныя толькі вам і куратарам праектаў, да якіх вы дадаяце назіранне. <br/> <br/> Звярніце ўвагу на тое, што куратары асобных праектаў заўсёды могуць бачыць каардынаты незалежна ад вашых налад геапрыватнасці, таму, калі вас непакоіць, хто мае доступ да каардынат, вы павінны быць упэўнены, што давяраеце куратарам праектаў, у якіх вы ўдзельнічаеце.]]></string>
     <string name="id_title">ID ад %1$s • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">Выдаліць</string>
@@ -1182,7 +1182,7 @@
     <string name="clear_text">Ачысціць тэкст</string>
     <string name="observation_has_sounds">Назіранне мае гукі</string>
     <string name="go_to_my_location">Перайсці да цяперашняга  месцазнаходжання</string>
-    <string name="change_geoprivacy">Змяніць геапрыватнасць</string>
+    <string name="change_geoprivacy">Змяніць бачнасць геададзеных</string>
     <string name="active_filters">Актыўныя фільтры</string>
     <string name="message_is_flagged">Паведамленне пазначана</string>
     <string name="user_is_muted">Карыстальнік прыглушаны</string>

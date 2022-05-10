@@ -378,7 +378,7 @@
     <string name="preparing_photo">Klargør foto...</string>
     <string name="recommended_for_you">Anbefalet til dig</string>
     <string name="missions">Missioner</string>
-    <string name="browse_by_category">Gennemse efter Kategori</string>
+    <string name="browse_by_category">Gennemse efter kategori</string>
     <string name="couldnt_load_recommended_missions">Kunne ikke indlæse anbefalede missioner: %1$s</string>
     <string name="plants">Planter</string>
     <string name="mammals">Pattedyr</string>
