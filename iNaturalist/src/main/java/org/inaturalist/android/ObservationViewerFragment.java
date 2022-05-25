@@ -2513,6 +2513,15 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 	    public void onReceive(Context context, Intent intent) {
             Logger.tag(TAG).info("AttributesReceiver");
 
+            Integer obsId = intent.getIntExtra(INaturalistService.OBSERVATION_ID, -1);
+
+            if (mObservation == null) return;
+
+            if (obsId != -1 && mObservation.id != obsId) {
+                Logger.tag(TAG).info("AttributesReceiver - received attributes for other observation: " + mObservation.id + " vs. " + obsId);
+                return;
+            }
+
             BetterJSONObject resultsObj = (BetterJSONObject) mApp.getServiceResult(INaturalistService.GET_ATTRIBUTES_FOR_TAXON_RESULT);
 
             if (resultsObj == null) {
@@ -3036,6 +3045,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
         if (taxonId == -1) {
             // No taxon - get the generic attributes (no taxon)
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_ATTRIBUTES_FOR_TAXON, null, getActivity(), INaturalistService.class);
+            if (mObservation != null) serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
             ContextCompat.startForegroundService(getActivity(), serviceIntent);
             return;
         }
@@ -3070,6 +3080,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
         // Now that we have full taxon details, we can retrieve the annotations/attributes for that taxon
         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_ATTRIBUTES_FOR_TAXON, null, getActivity(), INaturalistService.class);
+        if (mObservation != null) serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
         serviceIntent.putExtra(INaturalistService.TAXON_ID, taxon.optInt("id"));
         serviceIntent.putExtra(INaturalistService.ANCESTORS, new SerializableJSONArray(taxon.optJSONArray("ancestor_ids")));
         ContextCompat.startForegroundService(getActivity(), serviceIntent);

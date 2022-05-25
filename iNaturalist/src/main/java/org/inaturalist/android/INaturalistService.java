@@ -1131,12 +1131,14 @@ public class INaturalistService extends IntentService {
 
             } else if (action.equals(ACTION_GET_ATTRIBUTES_FOR_TAXON)) {
                 Integer taxonId = intent.getIntExtra(TAXON_ID, -1);
+                Integer obsId = intent.getIntExtra(OBSERVATION_ID, -1);
                 SerializableJSONArray ancestors = (SerializableJSONArray) intent.getSerializableExtra(ANCESTORS);
                 BetterJSONObject results = getAttributesForTaxon(ancestors != null ? ancestors.getJSONArray() : null, taxonId);
 
                 Intent reply = new Intent(GET_ATTRIBUTES_FOR_TAXON_RESULT);
                 mApp.setServiceResult(GET_ATTRIBUTES_FOR_TAXON_RESULT, results);
                 reply.putExtra(IS_SHARED_ON_APP, true);
+                reply.putExtra(OBSERVATION_ID, obsId);
                 LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GET_TAXON_SUGGESTIONS)) {
