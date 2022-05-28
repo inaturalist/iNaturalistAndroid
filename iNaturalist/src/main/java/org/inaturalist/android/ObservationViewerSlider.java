@@ -177,13 +177,18 @@ public class ObservationViewerSlider extends AppCompatActivity {
             Intent intent = getIntent();
             Uri uri = intent.getData();
             mIsReadOnly = false;
+            boolean isExternalId = false;
 
+            Logger.tag(TAG).debug("Constructor 1 - " + uri);
             if ((uri != null) && (uri.getScheme().equals("https"))) {
                 String path = uri.getPath();
                 if (path.toLowerCase().startsWith("/observations/")) {
+                    Logger.tag(TAG).debug("Constructor 2 - read only");
                     mIsReadOnly = true;
+                    isExternalId = true;
                 }
             } else if (intent.getBooleanExtra("read_only", false)) {
+                Logger.tag(TAG).debug("Constructor 3 - read only");
                 mIsReadOnly = true;
             }
 
@@ -194,7 +199,6 @@ public class ObservationViewerSlider extends AppCompatActivity {
             Integer totalResults = intent.getIntExtra("total_results", 0);
             Integer resultsPage = intent.getIntExtra("results_page", 0);
             Integer obsId = null;
-            boolean isExternalId = false;
 
             if ((uri != null) && (uri.getLastPathSegment().replaceAll("[\\D]", "").length() > 0)) {
                 obsId = Integer.valueOf(uri.getLastPathSegment().replaceAll("[\\D]", ""));
@@ -208,6 +212,7 @@ public class ObservationViewerSlider extends AppCompatActivity {
             if ((obsId != null) && (currentUser != null)) {
                 Cursor c = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = ? and user_login = ?", new String[]{String.valueOf(obsId), currentUser}, Observation.DEFAULT_SORT_ORDER);
                 if (c.getCount() > 0) {
+                    Logger.tag(TAG).debug("Constructor 4 - not read only");
                     mIsReadOnly = false;
                 }
                 c.close();
@@ -241,6 +246,7 @@ public class ObservationViewerSlider extends AppCompatActivity {
 
                 // Find initial position according to the URI the activity was launched with
                 mLastPosition = isExternalId ? getObsPosition(obsId, true) : getObsPosition(getIntent().getData());
+                Logger.tag(TAG).debug("Constructor 5 " + isExternalId + "; " + obsId + ": " + mLastPosition);
 
                 mGetAdditionalObsReceiver = new GetAdditionalObsReceiver();
                 IntentFilter filter = new IntentFilter();
@@ -295,6 +301,8 @@ public class ObservationViewerSlider extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
+            Logger.tag(TAG).debug("getItem " + position);
+
             Fragment fragment = new ObservationViewerFragment();
 
             if (mObsResults != null) {
@@ -307,7 +315,9 @@ public class ObservationViewerSlider extends AppCompatActivity {
                     loadNextResultsPage();
                 }
             } else if (!mIsReadOnly) {
+                Logger.tag(TAG).debug("getItem " + position + ": not read only");
                 Uri obsUri = getObsUriByPosition(position);
+                Logger.tag(TAG).debug("getItem " + position + ": obs uri = " + obsUri);
                 Bundle args = new Bundle();
                 if (obsUri != null) {
                     args.putString(ObservationViewerFragment.OBS_URI, obsUri.toString());

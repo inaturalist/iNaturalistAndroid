@@ -1941,11 +1941,15 @@ public class INaturalistService extends IntentService {
                 int id = intent.getExtras().getInt(OBSERVATION_ID);
                 Pair<Observation, JSONObject> result = getAndDownloadObservation(id);
 
+                Logger.tag(TAG).info("ACTION_GET_AND_SAVE_OBSERVATION - " + result);
                 Intent reply = new Intent(ACTION_GET_AND_SAVE_OBSERVATION_RESULT);
 
                 if (result != null) {
                     Observation observation = result.first;
                     JSONObject json = result.second;
+
+                    Logger.tag(TAG).info("ACTION_GET_AND_SAVE_OBSERVATION 2 - " + result.first);
+                    Logger.tag(TAG).info("ACTION_GET_AND_SAVE_OBSERVATION 3 - " + result.second);
 
                     Cursor c = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = ?", new String[]{String.valueOf(observation.id)}, Observation.DEFAULT_SORT_ORDER);
                     if (c.getCount() > 0) {

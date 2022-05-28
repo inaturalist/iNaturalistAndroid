@@ -378,6 +378,8 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
         }
 
         public PhotosViewPagerAdapter() {
+            Logger.tag(TAG).info("PhotosViewPagerAdapter - " + mReadOnly + ":" + mObservation);
+
             if (!mReadOnly && mObservation != null && mObservation.uuid != null) {
                 mImageCursor = getActivity().getContentResolver().query(ObservationPhoto.CONTENT_URI,
                         ObservationPhoto.PROJECTION,
@@ -391,6 +393,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                         mApp.isLayoutRTL() ? ObservationSound.REVERSE_DEFAULT_SORT_ORDER : ObservationSound.DEFAULT_SORT_ORDER);
 
                 mImageCursor.moveToFirst();
+                Logger.tag(TAG).info("PhotosViewPagerAdapter 2 - " + mImageCursor.getCount());
             }
         }
 
@@ -2517,7 +2520,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
             if (mObservation == null) return;
 
-            if (obsId != -1 && mObservation.id != obsId) {
+            if (obsId != -1 && !mObservation.id.equals(obsId)) {
                 Logger.tag(TAG).info("AttributesReceiver - received attributes for other observation: " + mObservation.id + " vs. " + obsId);
                 return;
             }
@@ -2615,9 +2618,9 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
             Observation observation;
             if (isSharedOnApp) {
-                observation = (Observation) mApp.getServiceResult(INaturalistService.ACTION_OBSERVATION_RESULT + mObservation.id);
+                observation = (Observation) mApp.getServiceResult(INaturalistService.ACTION_OBSERVATION_RESULT);
             } else {
-                observation = (Observation) intent.getSerializableExtra(INaturalistService.OBSERVATION_RESULT + mObservation.id);
+                observation = (Observation) intent.getSerializableExtra(INaturalistService.OBSERVATION_RESULT);
             }
 
             if (mObservation == null) {
@@ -2625,6 +2628,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                 mObsJson = null;
             }
 
+            Logger.tag(TAG).info("DownloadObservationReceiver - obs: " + observation);
             if (observation == null) {
                 // Couldn't retrieve observation details (probably deleted)
                 mCommentsIds = new ArrayList<BetterJSONObject>();
@@ -2638,6 +2642,9 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                 Logger.tag(TAG).error(String.format("DownloadObservationReceiver: Got old observation result for id %d, while current observation is %d", observation.id, mObservation.id));
                 return;
             }
+
+            Logger.tag(TAG).info("DownloadObservationReceiver - setting obs: " + observation);
+            Logger.tag(TAG).info("DownloadObservationReceiver - setting obs: " + observation.toJSONObject());
 
             JSONArray projects = observation.projects.getJSONArray();
             JSONArray comments = observation.comments.getJSONArray();
@@ -2980,6 +2987,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                 // See if this read-only observation is in fact our own observation (e.g. viewed from explore screen)
                 if (mObservation.user_login.toLowerCase().equals(mApp.currentUserLogin().toLowerCase())) {
                     // Our own observation
+                    Logger.tag(TAG).info("Obervation belongs to current user");
                     Cursor c = getActivity().getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = ?", new String[]{String.valueOf(mObservation.id)}, Observation.DEFAULT_SORT_ORDER);
                     if (c.getCount() > 0) {
                         // Observation available locally in the DB - just show/edit it
@@ -2991,6 +2999,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                         getActivity().getIntent().setData(mUri);
                     } else {
                         // Observation not downloaded yet - download and save it
+                        Logger.tag(TAG).info("Obervation belongs to current user - downloading it");
                         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION, null, getActivity(), INaturalistService.class);
                         serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                         ContextCompat.startForegroundService(getActivity(), serviceIntent);
