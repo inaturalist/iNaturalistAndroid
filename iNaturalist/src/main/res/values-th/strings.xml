@@ -3,7 +3,7 @@
     <string name="email_address">ที่อยู่อีเมล</string>
     <string name="delete_observation">ลบการสังเกต</string>
     <string name="observation_deleted">ลบการสังเกตการณ์แล้ว</string>
-    <string name="species_guess_hint">ชื่อสายพันธุ์</string>
+    <string name="species_guess_hint">ชื่อชนิด</string>
     <string name="ok">ตกลง</string>
     <string name="cancel">ยกเลิก</string>
     <string name="loading">กำลังโหลด...</string>
@@ -98,7 +98,7 @@
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
     <string name="select_projects">เลือกจากโครงการที่เข้าร่วม</string>
     <string name="not_connected">คุณต้องเชื่อมต่อกับอินเทอร์เน็ตเพื่อทำสิ่งนี้</string>
-    <string name="search_projects">ค้นหาโครงการ</string>
+    <string name="search_projects">กำลังค้นหาโครงการ...</string>
     <string name="search_guides">ค้นหาคำแนะนำ</string>
     <string name="save_observation">บันทึกการสังเกตการณ์</string>
     <!-- Header for a description an individual guide -->
@@ -463,7 +463,7 @@
     <string name="seen_nearby">เห็นในบริเวณใกล้เคียง</string>
     <string name="enlarge">ขยาย</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
-    <string name="view_children">ดูเด็ก ๆ</string>
+    <string name="view_children">ดูลำดับย่อย</string>
     <string name="taxon_has_no_photos">อนุกรมวิธานนี้ไม่มีรูปถ่าย</string>
     <string name="terrain">ภูมิประเทศ</string>
     <string name="filters">ตัวกรอง</string>
@@ -615,7 +615,7 @@
     <string name="quantity">จำนวน</string>
     <string name="agree2">ยอมรับ</string>
     <string name="project_observations">การสังเกตการณ์</string>
-    <string name="project_species">สายพันธุ์</string>
+    <string name="project_species">ชนิด</string>
     <string name="project_people">ผู้คน</string>
     <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">ผู้จำแนก</string>
@@ -665,7 +665,7 @@
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
     <string name="annotation_value_nymph">ตัวอ่อนบนบก</string>
     <!-- Noun for the arthropod life stage between egg and adult -->
-    <string name="annotation_value_larva">ตัวอ่อนหนอน</string>
+    <string name="annotation_value_larva">ตัวอ่อน</string>
     <string name="annotation_value_egg">ไข่</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
     <string name="annotation_value_juvenile">วัยเด็ก</string>
@@ -707,7 +707,7 @@
     </plurals>
     <string name="agree_all_caps">ยอมรับ</string>
     <string name="observations_all_caps">การสังเกตการณ์</string>
-    <string name="species_all_caps">สายพันธุ์</string>
+    <string name="species_all_caps">ชนิด</string>
     <string name="people_all_caps">ผู้คน</string>
     <string name="identifiers_all_caps">ผู้จำแนก</string>
     <string name="identifications_all_caps">การจำแนก</string>
@@ -944,10 +944,10 @@
     <string name="rank_subsection">ส่วนย่อย</string>
     <string name="rank_complex">ชนิดเชิงซ้อน</string>
     <!-- Singular -->
-    <string name="rank_species">สายพันธุ์</string>
+    <string name="rank_species">ชนิด</string>
     <string name="rank_hybrid">ลูกผสม</string>
     <!-- Singular -->
-    <string name="rank_subspecies">ชนิดย่อย (Subspecies)</string>
+    <string name="rank_subspecies">ชนิดย่อย</string>
     <string name="rank_variety">ความหลากหลาย</string>
     <string name="rank_form">รูปแบบ</string>
     <string name="rank_infrahybrid">ลูกผสมฐาน</string>
@@ -1058,7 +1058,7 @@
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
     <string name="next_option">ตัวเลือกถัดไป</string>
     <string name="no_observations_yet2">ยังไม่มีการสังเกตการณ์</string>
-    <string name="no_species_yet">ยังไม่มีสายพันธุ์</string>
+    <string name="no_species_yet">ยังไม่มีชนิด</string>
     <string name="no_identifications_yet">ยังไม่มีการจำแนก</string>
     <string name="sort_by">เรียงลำดับตาม:</string>
     <string-array name="explore_order_by_items">

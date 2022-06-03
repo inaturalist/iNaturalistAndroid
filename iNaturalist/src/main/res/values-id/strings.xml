@@ -562,7 +562,7 @@
     <string name="map_area">Area Peta</string>
     <string name="global">Global</string>
     <!-- As in redo search in the current map area -->
-    <string name="search_map_area">Cari Area Peta</string>
+    <string name="search_map_area">Cari di Area Peta</string>
     <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
     <string name="date_minute">%dm</string>
     <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
