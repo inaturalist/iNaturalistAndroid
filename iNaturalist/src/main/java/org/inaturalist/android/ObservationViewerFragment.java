@@ -2519,6 +2519,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             Integer obsId = intent.getIntExtra(INaturalistService.OBSERVATION_ID, -1);
 
             if (mObservation == null) return;
+            if (mObservation.id == null) return;
 
             if (obsId != -1 && !mObservation.id.equals(obsId)) {
                 Logger.tag(TAG).info("AttributesReceiver - received attributes for other observation: " + mObservation.id + " vs. " + obsId);
