@@ -246,7 +246,7 @@ globālā iNaturalist tīkla.</string>
     <string name="please_sign_in_via_settings_for_guides">Pieslēdzies, lai apskatītu savus padomus.</string>
     <string name="please_sign_in_for_updates">Pieslēdzies, lai apskatītu jaunumus.</string>
     <string name="by_using_inat_terms"><![CDATA[Izmantojot iNat, tu piekrīti <b><a href="https://www.inaturalist.org/pages/terms">noteik.</a></b> un <b><a href="https://www.inaturalist.org/pages/privacy">priv. politikai.</a></b>]]></string>
-    <string name="activity">Paziņojumi</string>
+    <string name="activity">Aktivitāte</string>
     <!-- Label for a button to open the camera to take a new photo for an observation -->
     <string name="camera">Uzņemt fotogrāfiju</string>
     <!-- Label for a button to import an existing photo for an observation -->
@@ -410,7 +410,7 @@ globālā iNaturalist tīkla.</string>
     <string name="could_not_download_observations">Neizdevās lejupielādēt jaunākos novērojumus savienojuma problēmu dēļ. Mēģini vēlreiz nedaudz vēlāk!</string>
     <string name="no_news_yet">Vēl nav ziņu. Pārbaudi vēlreiz nedaudz vēlāk!</string>
     <string name="my_content">Mans saturs</string>
-    <string name="following">Tu seko</string>
+    <string name="following">Abonēts saturs</string>
     <string name="no_updates_yet">Vēl nav jaunumu. Pārbaudi vēlreiz nedaudz vēlāk!</string>
     <string name="you_will_only_receive_updates_when_creating">(Jaunumus saņemsi tikai tad, kad būsi pievienojis kādu novērojumu.)</string>
     <string name="you_will_only_receive_updates_when_following">(Jaunumus saņemsi tikai tad, kad sekosi kādam novērojumam.)</string>
@@ -649,7 +649,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
     <string name="annotation_name_plant_phenology">Auga fenoloģiskās attīstības fāze</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
-    <string name="annotation_name_life_stage">Dzīves posms</string>
+    <string name="annotation_name_life_stage">Dzīves stadija</string>
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Dzimums</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
@@ -1092,13 +1092,13 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <!-- Label for an observation search filter to exclude your own observations -->
     <string name="hide_my_observations">Slēpt manus novērojumus</string>
     <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
-    <string name="follow_this_observation">Sekot šim novērojumam</string>
+    <string name="follow_this_observation">Sekot novērojumam</string>
     <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
-    <string name="unfollow_this_observation">Atsekot no šī novērojuma</string>
+    <string name="unfollow_this_observation">Nesekot novērojumam</string>
     <!-- Error message shown when an attempt to follow an observation fails -->
-    <string name="could_not_follow_observation">Neizdevās pieteikties sekot šim novērojumam</string>
+    <string name="could_not_follow_observation">Sekot šim novērojumam neizdevās</string>
     <!-- Error message shown when an attempt to unfollow an observation fails -->
-    <string name="could_not_unfollow_observation">Neizdevās atteikties sekot šim novērojumam</string>
+    <string name="could_not_unfollow_observation">Neizdevās beigt sekot šim novērojumam</string>
     <!-- Label for a button to copy the coordinates of an observation -->
     <string name="copy_coordinates">Kopēt koordinātas</string>
     <string name="coordinates_copied_to_clipboard">Koordinātas nokopētas starpliktuvē</string>

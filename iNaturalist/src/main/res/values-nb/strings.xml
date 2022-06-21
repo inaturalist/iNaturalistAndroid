@@ -227,9 +227,9 @@
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Bli med</string>
     <!-- Title of the view used to sign up for a new account -->
-    <string name="sign_up_title">Sign Up</string>
+    <string name="sign_up_title">Registrer deg</string>
     <string name="min_6_chars">Minst 6 karakterer</string>
-    <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data (recommended). <b>Learn More</b>]]></string>
+    <string name="use_my_license"><![CDATA[Ja, lisensier innholdet mitt slik at forskere kan bruke mine data. <b>Lær mer</b>]]></string>
     <string name="content_licensing">Innholdslisensiering</string>
     <string name="content_licensing_description">Huk av i denne boksen hvis du vil legge til et ikke-kommersielt lisens til bildene dine. Du kan velge et annet lisens eller fjerne lisenset senere, men dette er det beste lisenset for å dele med forskere.</string>
     <!-- Try to keep this about the length of the English text -->
@@ -308,7 +308,7 @@
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Synkronisér denne observasjonen for å etterlate en kommentar eller foreslå en identifikasjon...</string>
     <!--  Label for a button to add an observation without a photo or a sound  -->
-    <string name="no_photo">No Media</string>
+    <string name="no_photo">Ingen media</string>
     <string name="about_this_species">Om denne arten</string>
     <string name="view_on_wikipedia">Wikipedia-artikkel</string>
     <string name="photo"><![CDATA[Fotografi: <b><a href="%1$s">%2$s</a></b>]]></string>
@@ -316,7 +316,7 @@
     <string name="finding_current_location">Finner nåværende posisjon...</string>
     <string name="flag_as_captive">Flagg som bevart/kultivert</string>
     <string name="observation_flagged_as_captive">Observasjon ble flagget som bevart/kultivert</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Er du sikker på at du vil rapportere denne observasjonen som fanget/dyrket?</string>
     <string name="do_you_agree_to_the_following">Er du enig med det følgende?</string>
     <string name="terms">Vilkår</string>
     <string name="observation_rules">Observasjonsregler</string>
@@ -344,11 +344,11 @@
     <string name="there_was_a_problem_updating_profile">Det oppsto et problem mens profilen din oppdaterte!</string>
     <string name="there_was_a_problem_updating_profile_params">Det oppsto et problem mens profilen din oppdaterte: %1$s</string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
-    <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
+    <string name="currently_logged_in_as_html"><![CDATA[For tiden logget inn som <b>%1$s</b>]]></string>
     <string name="log_out">Logg ut</string>
     <string name="not_logged_in">Ikke logget inn</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
-    <string name="login_or_sign_up">Log In or Sign Up</string>
+    <string name="login_or_sign_up">Logg inn eller registrer deg</string>
     <string name="auto_upload_description">Auto-last opp nye observasjoner og endringer til observasjoner</string>
     <string name="language">Språk</string>
     <string name="version">Versjon</string>
@@ -384,11 +384,11 @@
     <string name="mammals">Pattedyr</string>
     <string name="insects">Insekter</string>
     <string name="reptiles">Reptiler</string>
-    <string name="animals">Animals</string>
+    <string name="animals">Dyr</string>
     <string name="fish">Fisker</string>
     <string name="mollusks">Bløtdyr</string>
-    <string name="protozoans">Protozoans</string>
-    <string name="chromista">Kelp, Diatoms, and Allies</string>
+    <string name="protozoans">Protozoer</string>
+    <string name="chromista">Tare, diatomeer og allierte</string>
     <string name="amphibians">Amfibier</string>
     <string name="fungi">Sopp</string>
     <string name="birds">Fugler</string>
@@ -413,7 +413,7 @@
     <string name="you_will_only_receive_updates_when_following">(Du vil bare motta oppdateringer når du følger observasjoner)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> foreslo en ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> kommenterte: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> nevnte deg: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Det ser ut til at du har slettet et bilde ved å rydde appens cache før opplasting. Du må derfor legge bildet til observasjoner fra galleriet på nytt. Sørg for at du har lastet opp alle dine bilder før du rydder appcachen i fremtiden.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -421,8 +421,8 @@
         content.
     -->
     <plurals name="new_activities">
-        <item quantity="one">%1s new</item>
-        <item quantity="other">%1s new</item>
+        <item quantity="one">%1s ny</item>
+        <item quantity="other">%1s nye</item>
     </plurals>
     <string name="no_results_found">Ingen resultat funnet...</string>
     <plurals name="syncing_x_out_of_y_observations">
@@ -453,7 +453,7 @@
     <string name="view_suggestions">Vis forslag</string>
     <string name="species_search">Artssøk</string>
     <string name="were_not_confident_enough">Vi er ikke sikker nok til å komme med en anbefaling, men her er våre topp forslag.</string>
-    <string name="were_not_confident_enough_no_suggestions">We\'re not confident enough to make a recommendation.</string>
+    <string name="were_not_confident_enough_no_suggestions">Vi er ikke sikre nok til å komme med en anbefaling.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Mest-observerte alternativer som stemmer med filtre:</string>
     <!-- Header for a list of suggested taxa -->
@@ -545,7 +545,7 @@
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Delegasjon</string>
     <string name="apply_filters">Bruk filtre</string>
-    <string name="remove_filters">Remove Filters</string>
+    <string name="remove_filters">Fjern filtre</string>
     <string name="reset">Nullstill</string>
     <string name="show_only_my_observations">Vis bare mine observasjoner</string>
     <string name="project">Prosjekt</string>
@@ -562,7 +562,7 @@
     <string name="start">Start</string>
     <string name="end">Slutt</string>
     <string name="months">Måneder</string>
-    <string name="choose_months">Choose month(s)</string>
+    <string name="choose_months">Velg måned(er)</string>
     <string name="map_area">Kartområde</string>
     <string name="global">Global</string>
     <!-- As in redo search in the current map area -->
@@ -649,7 +649,7 @@
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">Levende eller død</string>
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
-    <string name="annotation_name_evidence_of_presence">Evidence of Presence</string>
+    <string name="annotation_name_evidence_of_presence">Bevis for tilstedeværelse</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Blomstring</string>
     <!-- Adjective, having fruit -->
@@ -684,17 +684,17 @@
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Kan ikke bestemmes</string>
     <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
-    <string name="annotation_value_organism">Organism</string>
+    <string name="annotation_value_organism">Organisme</string>
     <!-- Evidence of Presence value when for bird feathers -->
-    <string name="annotation_value_feather">Feather</string>
+    <string name="annotation_value_feather">Fjær</string>
     <!-- Evidence of Presence value when for fecal remains -->
-    <string name="annotation_value_scat">Scat</string>
+    <string name="annotation_value_scat">Avføring</string>
     <!-- Evidence of Presence value for impressions in the ground or snow -->
-    <string name="annotation_value_track">Track</string>
+    <string name="annotation_value_track">Spor</string>
     <!-- Evidence of Presence value when for bones -->
-    <string name="annotation_value_bone">Bone</string>
+    <string name="annotation_value_bone">Bein</string>
     <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
-    <string name="annotation_value_molt">Molt</string>
+    <string name="annotation_value_molt">Myte</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">DELTAR</string>
     <string name="nearby_projects_all_caps">I NÆRHETEN</string>
@@ -963,16 +963,22 @@ mer om vår definisjon av \"passende\" i ofte stilte spørsmål.</string>
     <string name="rank_infrahybrid">Infrahybrid</string>
     <string name="rank_leaves">Blad</string>
     <string name="location_lat_lng">Sted: %1$f, %2$f</string>
-    <string name="i_consent_process_personal_info"><![CDATA[I consent to allow iNaturalist to store and process limited kinds of personal information about me in order to manage my account. <b>Learn More</b>]]></string>
-    <string name="about_personal_information">About Personal Information</string>
-    <string name="personal_information_notes"><![CDATA[We store personal information like usernames and email addresses in order to manage accounts on this site, and to comply with privacy laws, we need you to check this box to indicate that you consent to this use of personal information. To learn more about what information we collect and how we use it, please see our <a href="https://www.inaturalist.org/privacy">Privacy Policy</a> and our <a href="https://www.inaturalist.org/terms">Terms of Service</a>.]]></string>
-    <string name="i_agree_to_tos_and_privacy"><![CDATA[I agree to the <a href="https://www.inaturalist.org/terms">Terms of Service</a> and <a href="https://www.inaturalist.org/privacy">Privacy Policy</a>, and I have reviewed the <a href="https://www.inaturalist.org/pages/community+guidelines">Community Guidelines</a>.]]></string>
-    <string name="privacy_policy">Privacy Policy</string>
-    <string name="terms_of_service">Terms of Service</string>
+    <string name="i_consent_process_personal_info"><![CDATA[Jeg samtykker til at iNaturalist kan lagre og behandle begrensede typer personlig informasjon om meg for å håndtere kontoen min. <b>Lær mer</b>]]></string>
+    <string name="about_personal_information">Om personlig informasjon</string>
+    <string name="personal_information_notes"><![CDATA[Vi lagrer personlig informasjon som brukernavn og e-postadresser for
+å administrere kontoer på dette nettstedet, og for å overholde personvernloven trenger vi
+at du krysser av denne boksen for å angi at du samtykker til denne bruken av
+personlig informasjon. For å lære mer om hvilken informasjon vi samler inn og
+hvordan vi bruker det, vennligst se vår <a href="https://www.inaturalist.org/privacy">personvernspolitikk</a> og våre <a href="https://www.inaturalist.org/terms">tjenestevilkår</a>.]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[Jeg godtar <a href="https://www.inaturalist.org/terms">tjenestevilkårene</a> og
+<a href="https://www.inaturalist.org/privacy">personvernerklæringen</a>, og jeg har gått gjennom
+<a href="https://www.inaturalist.org/pages/community+guidelines">samfunnets retningslinjer</a>.]]></string>
+    <string name="privacy_policy">Retningslinjer for personvern</string>
+    <string name="terms_of_service">Vilkår for bruk</string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
-    <string name="deleted_user">Deleted User</string>
+    <string name="deleted_user">Slettet bruker</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short_this_year">MMM d</string>
+    <string name="date_short_this_year">d MMM</string>
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_short">MM/dd/yy</string>
     <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
@@ -980,24 +986,24 @@ mer om vår definisjon av \"passende\" i ofte stilte spørsmål.</string>
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long">MMM d, yyyy</string>
+    <string name="date_long">d, MMM yyyy</string>
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
-    <string name="show_common_names">Show common names</string>
-    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
-    <string name="email_must_look_like_email_address">Email must look like an email address</string>
-    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
-    <string name="password_too_short">Password must be at least six characters long</string>
-    <string name="switch_to_grid_view">Switch to grid view</string>
-    <string name="switch_to_list_view">Switch to list view</string>
-    <string name="remove_project_filter">Remove project filter</string>
-    <string name="remove_observer_filter">Remove observer filter</string>
-    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
-    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
-    <string name="filter_observations_by_months">Filter observations by months</string>
+    <string name="show_common_names">Vis populærnavn</string>
+    <string name="show_common_names_description">Deaktiver hvis du bare vil vise vitenskapelige navn.</string>
+    <string name="email_must_look_like_email_address">E-post må se ut som en e-postadresse</string>
+    <string name="username_must_begin_with">Brukernavn må begynne med en bokstav, ikke inneholde mellomrom, og bruke kun bokstaver, tall, bindestrek og understrek</string>
+    <string name="password_too_short">Passordet må være minst seks tegn</string>
+    <string name="switch_to_grid_view">Bytt til rutenettvisning</string>
+    <string name="switch_to_list_view">Bytt til listevisning</string>
+    <string name="remove_project_filter">Fjern prosjektfilter</string>
+    <string name="remove_observer_filter">Fjern observatørfilter</string>
+    <string name="filter_observations_by_an_exact_date">Filtrer observasjoner etter en eksakt dato</string>
+    <string name="filter_observations_by_a_date_range">Filtrer observasjoner etter et datointervall</string>
+    <string name="filter_observations_by_months">Filtrer observasjoner etter måneder</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="include_suggestions_not_seen_nearby">Include suggestions not seen nearby</string>
+    <string name="include_suggestions_not_seen_nearby">Inkluder forslag ikke sett i nærheten</string>
     <string name="only_view_nearby_suggestions">Vis bare forslag i nærheten</string>
     <string name="suggestions_source">Kilde til forslag</string>
     <string name="research_grade_observations">Observasjoner av forskningskvalitet</string>
@@ -1010,14 +1016,14 @@ mer om vår definisjon av \"passende\" i ofte stilte spørsmål.</string>
     <string name="pretty_sure_phylum">Vi er ganske sikre på at det er i denne rekken/divisjonen:</string>
     <string name="pretty_sure_subphylum">Vi er ganske sikre på at det er i denne under-rekken/-divisjonen:</string>
     <string name="pretty_sure_superclass">Vi er ganske sikre på at det er i denne superklasse</string>
-    <string name="pretty_sure_class">We\'re pretty sure it\'s in this class:</string>
+    <string name="pretty_sure_class">Vi er ganske sikre på at det er i denne klassen:</string>
     <string name="pretty_sure_subclass">Vi er ganske sikre på at det er i denne underklassen:</string>
     <string name="pretty_sure_infraclass">Vi er ganske sikre på at det er i denne infra-klassen:</string>
     <string name="pretty_sure_superorder">Vi er ganske sikre på at det er i denne superordenen:</string>
     <string name="pretty_sure_order">Vi er ganske sikre på at det er i denne ordenen:</string>
     <string name="pretty_sure_suborder">Vi er ganske sikre på at det er i denne under-ordenen:</string>
     <string name="pretty_sure_infraorder">Vi er ganske sikre på at det er i denne infra-ordenen:</string>
-    <string name="pretty_sure_subterclass">We\'re pretty sure it\'s in this subterclass:</string>
+    <string name="pretty_sure_subterclass">Vi er ganske sikre på at den er i denne underklassen:</string>
     <string name="pretty_sure_parvorder">We\'re pretty sure it\'s in this parvorder:</string>
     <string name="pretty_sure_zoosection">We\'re pretty sure it\'s in this zoosection:</string>
     <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
@@ -1028,17 +1034,17 @@ mer om vår definisjon av \"passende\" i ofte stilte spørsmål.</string>
     <string name="pretty_sure_supertribe">We\'re pretty sure it\'s in this supertribe:</string>
     <string name="pretty_sure_tribe">We\'re pretty sure it\'s in this tribe:</string>
     <string name="pretty_sure_subtribe">We\'re pretty sure it\'s in this subtribe:</string>
-    <string name="pretty_sure_genus">We\'re pretty sure it\'s in this genus:</string>
-    <string name="pretty_sure_genushybrid">We\'re pretty sure it\'s in this genushybrid:</string>
-    <string name="pretty_sure_subgenus">We\'re pretty sure it\'s in this subgenus:</string>
+    <string name="pretty_sure_genus">Vi er ganske sikre på at det er i denne slekten:</string>
+    <string name="pretty_sure_genushybrid">Vi er ganske sikre på at det er i denne slektshybriden:</string>
+    <string name="pretty_sure_subgenus">Vi er ganske sikre på at det er i denne underslekt:</string>
     <string name="pretty_sure_section">We\'re pretty sure it\'s in this section:</string>
     <string name="pretty_sure_subsection">We\'re pretty sure it\'s in this subsection:</string>
     <string name="pretty_sure_complex">We\'re pretty sure it\'s in this complex:</string>
     <!-- Singular -->
-    <string name="pretty_sure_species">We\'re pretty sure it\'s in this species:</string>
-    <string name="pretty_sure_hybrid">We\'re pretty sure it\'s in this hybrid:</string>
+    <string name="pretty_sure_species">Vi er ganske sikre på at det er innenfor denne arten:</string>
+    <string name="pretty_sure_hybrid">Vi er ganske sikre på at det er i denne hybriden:</string>
     <!-- Singular -->
-    <string name="pretty_sure_subspecies">We\'re pretty sure it\'s in this subspecies:</string>
+    <string name="pretty_sure_subspecies">Vi er ganske sikre på at den er innenfor denne underarten:</string>
     <string name="pretty_sure_variety">We\'re pretty sure it\'s in this variety:</string>
     <string name="pretty_sure_form">We\'re pretty sure it\'s in this form:</string>
     <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
@@ -1049,55 +1055,55 @@ mer om vår definisjon av \"passende\" i ofte stilte spørsmål.</string>
     <string name="are_you_sure_you_want_to_remove_time">Er du sikker på at du vil fjerne tid observert?</string>
     <string name="are_you_sure_you_want_to_remove_location">Er du sikker på at du vil fjerne posisjonen?</string>
     <string name="share_location">Del posisjon</string>
-    <string name="share_hidden_location">Share Hidden Location</string>
+    <string name="share_hidden_location">Del skjult plassering</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
-    <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
+    <string name="couldnt_duplicate_sound">Kunne ikke duplisere lyd!</string>
     <string name="sound_format_not_supported">Den lydkodingen støttes ikke av Android.</string>
-    <string name="view_observations">View Observations</string>
-    <string name="choose_this_option">Choose this option</string>
-    <string name="compare_observation_with_this_option">Compare observation with this option</string>
-    <string name="go_back">Go back</string>
-    <string name="change_the_source_of_the_suggestions">Change the source of the suggestions</string>
-    <string name="thumbnail_photo_for_suggested_taxon">Thumbnail photo for suggested taxon</string>
+    <string name="view_observations">Vis observasjoner</string>
+    <string name="choose_this_option">Velg dette alternativet</string>
+    <string name="compare_observation_with_this_option">Sammenlign observasjon med dette alternativet</string>
+    <string name="go_back">Gå tilbake</string>
+    <string name="change_the_source_of_the_suggestions">Endre kilden til forslagene</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Miniatyrbilde for foreslåtte takson</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
-    <string name="comments_ids_title">Comments and Identifications</string>
+    <string name="comments_ids_title">Kommentarer og identifikasjoner</string>
     <!-- Accessibility text for the faves tab on the observation detail view -->
-    <string name="faves">Faves</string>
+    <string name="faves">Favoritter</string>
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
-    <string name="previous_option">Previous Option</string>
+    <string name="previous_option">Forrige alternativ</string>
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
-    <string name="next_option">Next Option</string>
-    <string name="no_observations_yet2">No observations yet.</string>
-    <string name="no_species_yet">No species yet.</string>
-    <string name="no_identifications_yet">No identifications yet.</string>
-    <string name="sort_by">Sort By</string>
+    <string name="next_option">Neste alternativ</string>
+    <string name="no_observations_yet2">Ingen observasjoner enda.</string>
+    <string name="no_species_yet">Ingen arter ennå.</string>
+    <string name="no_identifications_yet">Ingen identifikasjoner enda.</string>
+    <string name="sort_by">Sorter etter</string>
     <string-array name="explore_order_by_items">
-        <item>Date Added</item>
-        <item>Date Observed</item>
-        <item>Date Updated</item>
+        <item>Dato lagt til</item>
+        <item>Dato observert</item>
+        <item>Dato oppdatert</item>
         <!--<item>Faves</item>-->
-        <item>Random</item>
+        <item>Tilfeldig</item>
     </string-array>
     <string-array name="explore_order_items">
-        <item>Descending</item>
-        <item>Ascending</item>
+        <item>Synkende</item>
+        <item>Stigende</item>
     </string-array>
     <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
     See explore_order_by_items and explore_order_items keys !-->
-    <string name="sorted_by_full">Sorted by %1$s (%2$s)</string>
+    <string name="sorted_by_full">Sortert etter %1$s (%2$s)</string>
     <!-- Label for an observation search filter to exclude your own observations -->
-    <string name="hide_my_observations">Hide My Observations</string>
+    <string name="hide_my_observations">Skjul mine observasjoner</string>
     <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
-    <string name="follow_this_observation">Follow this Observation</string>
+    <string name="follow_this_observation">Følg denne observasjonen</string>
     <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
-    <string name="unfollow_this_observation">Unfollow this Observation</string>
+    <string name="unfollow_this_observation">Ikke følg denne observasjonen</string>
     <!-- Error message shown when an attempt to follow an observation fails -->
-    <string name="could_not_follow_observation">Could not follow this observation</string>
+    <string name="could_not_follow_observation">Kunne ikke følge denne observasjonen</string>
     <!-- Error message shown when an attempt to unfollow an observation fails -->
-    <string name="could_not_unfollow_observation">Could not unfollow this observation</string>
+    <string name="could_not_unfollow_observation">Kunne ikke slutte å følge denne observasjonen</string>
     <!-- Label for a button to copy the coordinates of an observation -->
-    <string name="copy_coordinates">Copy coordinates</string>
-    <string name="coordinates_copied_to_clipboard">Coordinates copied to clipboard</string>
+    <string name="copy_coordinates">Kopier koordinater</string>
+    <string name="coordinates_copied_to_clipboard">Koordinater kopiert til utklippstavlen</string>
     <!--  Title of a section on the observation detail view that displays minor metadata  -->
     <string name="metadata">Metadata</string>
     <!--  iNat observation identifier  -->
@@ -1105,12 +1111,12 @@ mer om vår definisjon av \"passende\" i ofte stilte spørsmål.</string>
     <!--  iNat observation Universally Unique Identifier  -->
     <string name="uuid">UUID</string>
     <!--  Universal Resource Locator  -->
-    <string name="url">URL</string>
+    <string name="url">Nettadresse</string>
     <string name="default_licenses">Standard lisenser</string>
     <string name="default_observation_license">Standard observasjonslisens</string>
     <string name="default_photo_license">Standard fotolisens</string>
     <string name="default_sound_license">Standard lydlisens</string>
-    <string name="change_existing_licenses">Change Existing Licenses</string>
+    <string name="change_existing_licenses">Endre eksisterende lisenser</string>
     <string name="change_licenses_for_existing_observations">Endre lisenser for eksisterende observasjoner, bilder og lyder</string>
     <string name="change_licenses_for_all_existing_observations">Endre lisenser for alle eksisterende observasjoner</string>
     <string name="change_licenses_for_all_existing_photos">Endre lisenser for alle eksisterende bilder</string>
@@ -1129,14 +1135,14 @@ mer om vår definisjon av \"passende\" i ofte stilte spørsmål.</string>
     <string name="existing_sound_licenses_have_been_updated">Alle eksisterende lydlisenser er endret til %1$s.</string>
     <string name="default_licenses_description"><![CDATA[Lisensiering av ditt innhold gir hvem som helst lov til å bruke det uten å be deg om tillatelse så lenge de oppfyller vilkårene i lisensen. I tillegg inkluderer iNat ditt innhold som er lisensiert under Creative Commons i jevnlig oppdaterte arkiver som produseres for utvalgte partner-organisasjoner som er interessert i dine data. Vi inkluderer, for eksempel, registreringer uten opphavsrett (CC0), og i kategoriene Kreditering (CC BY), og Kreditering-IkkeKommersiell (CC BY-NC) i arkivet som vi genererer for <a href="http://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, en internasjonal mellomstatlig organisasjon som sammenstiller og distribuerer informasjon om biodiversitet fra hele verden.]]></string>
     <string name="photo_license">Fotolisens</string>
-    <string name="sound_license">Sound License</string>
+    <string name="sound_license">Lydlisens</string>
     <string name="edit_photo_license">Rediger fotolisens</string>
     <string name="observation_license">Observasjonslisens</string>
     <string name="edit_observation_license">Rediger observasjonslisens</string>
     <string name="about_licenses">Om lisenser</string>
     <string name="view_license">Vis lisens</string>
     <!-- License Names -->
-    <string name="license_name_cc0">Public Domain</string>
+    <string name="license_name_cc0">Offentlig eiendom</string>
     <string name="license_name_cc_by">Kreditering</string>
     <string name="license_name_cc_by_nc">Kreditering-IkkeKommersiell</string>
     <string name="license_name_cc_by_nc_sa">Kreditering-IkkeKommersiell-DelPåSammeVilkår</string>
@@ -1153,65 +1159,65 @@ mer om vår definisjon av \"passende\" i ofte stilte spørsmål.</string>
     <string name="license_description_cc_by_nd">This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.</string>
     <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
     <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
-    <string name="invalid_photo">Photo format not supported</string>
+    <string name="invalid_photo">Bildeformatet er ikke støttet</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
-    <string name="suggestions_based_on">Suggestions based on observations and identifications provided by the iNaturalist community, including %1$s, %2$s, %3$s, and many others.</string>
+    <string name="suggestions_based_on">Forslag basert på observasjoner og identifikasjoner fra iNaturalistsamfunnet, inkludert %1$s, %2$s, %3$s, og mange andre.</string>
     <!-- Preference to control what tapping on the action button does on My Observations -->
-    <string name="default_observation_action">Default Observation Action</string>
+    <string name="default_observation_action">Standard observasjonshandling</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
-    <string name="show_options">Show Options</string>
+    <string name="show_options">Vis alternativer</string>
     <!-- Placeholder text for an observation field value -->
-    <string name="field_value">Field Value</string>
-    <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
-    <string name="delete_attribute_value">Delete attribute value</string>
-    <string name="open_menu_for_more_options">Open menu for more options</string>
-    <string name="change_user_profile_photo">Change user profile photo</string>
-    <string name="expand_list">Expand list</string>
-    <string name="change_map_layers">Change map layers (terrain vs. satellite)</string>
-    <string name="redo_observation_search">Redo observation search in this map area</string>
-    <string name="view_observations_on_map">View observations on map</string>
-    <string name="view_observations_on_grid">View observations on grid</string>
-    <string name="clear_text">Clear text</string>
-    <string name="observation_has_sounds">Observation has sounds</string>
-    <string name="go_to_my_location">Go to my current location</string>
-    <string name="change_geoprivacy">Change geoprivacy</string>
-    <string name="active_filters">Active filters</string>
-    <string name="message_is_flagged">Message is flagged</string>
-    <string name="user_is_muted">User is muted</string>
-    <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
-    <string name="delete_observations">Delete observations</string>
-    <string name="comment_count">Comment count</string>
-    <string name="id_count">Identification count</string>
-    <string name="observation_selected">Observation selected</string>
-    <string name="share_observation">Share observation</string>
-    <string name="unknown_location">Unknown location</string>
+    <string name="field_value">Feltverdi</string>
+    <string name="expand_annotation_to_agree_or_disagree">Utvid merknaden for å bli enig eller uenig</string>
+    <string name="delete_attribute_value">Slett attributtverdi</string>
+    <string name="open_menu_for_more_options">Åpne menyen for flere alternativer</string>
+    <string name="change_user_profile_photo">Endre brukerprofilbilde</string>
+    <string name="expand_list">Utvid liste</string>
+    <string name="change_map_layers">Endre kartlag (terreng vs. satellitt)</string>
+    <string name="redo_observation_search">Gjenta observasjonssøk i dette kartområdet</string>
+    <string name="view_observations_on_map">Vis observasjoner på kart</string>
+    <string name="view_observations_on_grid">Vis observasjoner på rutenett</string>
+    <string name="clear_text">Tøm tekst</string>
+    <string name="observation_has_sounds">Observasjonen har lyder</string>
+    <string name="go_to_my_location">Gå til min nåværende posisjon</string>
+    <string name="change_geoprivacy">Endre geosperring</string>
+    <string name="active_filters">Aktive filtre</string>
+    <string name="message_is_flagged">Meldingen er flagget</string>
+    <string name="user_is_muted">Bruker er dempet</string>
+    <string name="cancel_multiple_obs_selection">Avbryt flere observasjonsvalg</string>
+    <string name="delete_observations">Slett observasjoner</string>
+    <string name="comment_count">Antall kommentarer</string>
+    <string name="id_count">Antall identifikasjoner</string>
+    <string name="observation_selected">Observasjon valgt</string>
+    <string name="share_observation">Del observasjon</string>
+    <string name="unknown_location">Ukjent sted</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
-    <string name="close">Close</string>
-    <string name="set_date2">Set date</string>
-    <string name="project_selected">Project Selected</string>
-    <string name="project_unselected">Project Unselected</string>
-    <string name="show_my_observations">Show my observations</string>
-    <string name="play_pause_sound">Play or pause sound</string>
-    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
-    <string name="view_image">View image</string>
+    <string name="close">Lukk</string>
+    <string name="set_date2">Angi dato</string>
+    <string name="project_selected">Prosjekt valgt</string>
+    <string name="project_unselected">Prosjekt ikke valgt</string>
+    <string name="show_my_observations">Vis mine observasjoner</string>
+    <string name="play_pause_sound">Spill av eller pause lyd</string>
+    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences og National Geographic</string>
+    <string name="view_image">Vis bilde</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
-    <string name="assessment_passes">Assessment passes</string>
+    <string name="assessment_passes">Enig evaluering bestått</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
-    <string name="agree_assessment_passes">Agree assessment passes</string>
+    <string name="agree_assessment_passes">Enig evaluering bestått</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
-    <string name="does_not_pass_assessment">Does not pass assessment</string>
+    <string name="does_not_pass_assessment">Evaluering ikke bestått</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
-    <string name="disagree_assessment_passes">Disagree assessment passes</string>
+    <string name="disagree_assessment_passes">Uenig evaluering bestått</string>
     <plurals name="delete_x_selected_observations">
-        <item quantity="one">Delete %1$d selected observation</item>
-        <item quantity="other">Delete %1$d selected observations</item>
+        <item quantity="one">Slett %1$d valgt observasjon</item>
+        <item quantity="other">Slett %1$d valgte observasjon</item>
     </plurals>
     <plurals name="sync_x_selected_observations">
         <item quantity="one">Sync %1$d selected observation</item>
         <item quantity="other">Sync %1$d selected observations</item>
     </plurals>
-    <string name="add_media_evidence">Add media evidence</string>
-    <string name="remove_identification">Remove identification</string>
-    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
-    <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
+    <string name="add_media_evidence">Legg til mediabevis</string>
+    <string name="remove_identification">Fjern identifikasjon</string>
+    <string name="issue_with_updating_photos">Det oppstod et problem med oppdatering av bilder i denne observasjonen som nylig har blitt fikset. Logg deg på og logg inn igjen for å løse dette problemet.</string>
+    <string name="app_version_copied_to_clipboard">App-versjon kopiert til utklippstavlen</string>
 </resources>
