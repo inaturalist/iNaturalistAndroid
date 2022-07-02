@@ -2812,7 +2812,7 @@ public class ObservationEditor extends Fragment {
 
                         // Add new photo instead
                         Uri createdUri = createObservationPhotoForPhoto(photoUri, index, false);
-                        if (mPhotosAndSoundsAdded != null) {
+                        if ((mPhotosAndSoundsAdded != null) && (createdUri != null)) {
                             mPhotosAndSoundsAdded.add(createdUri.toString());
                         }
                         mCameraPhotos.add(photoUri.getPath());
