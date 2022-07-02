@@ -2455,7 +2455,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
     }
 
     private boolean isFollowingObservation() {
-        if ((mObservationSubscriptions == null) || (mObservationSubscriptions.length() == 0)) {
+        if ((mObservationSubscriptions == null) || (mObservationSubscriptions.length() == 0) || (mObservation == null) || (mObservation.id == null)) {
             return false;
         }
 
