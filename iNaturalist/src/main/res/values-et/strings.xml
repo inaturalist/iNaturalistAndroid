@@ -353,7 +353,7 @@
     <string name="language">Keel</string>
     <string name="version">Versioon</string>
     <string name="inat_network">INaturalisti võrgustik</string>
-    <string name="inat_network_description">INaturalisti võrgustik aitab lehte tõlkida ja meie kogukonda struktureerida. Võrgustiku alalehti toetavad kohalikud institustioonid, mis on meiega lepingu allkirjastanud ning ergutavad seeläbi iNaturalisti kohalikku kasutamist ja kohapealset elurikkust.</string>
+    <string name="inat_network_description">iNaturalisti võrgustik aitab lehte tõlkida ja meie kogukonda struktureerida. Võrgustiku alalehti toetavad kohalikud institustioonid, mis on meiega lepingu allkirjastanud ning ergutavad seeläbi iNaturalisti kohalikku kasutamist ja kohapealset elurikkust.</string>
     <string name="more_info">Rohkem Infot</string>
     <string name="select_network">Vali võrgustiku kuuluvus</string>
     <string name="help">Abi</string>
@@ -406,7 +406,7 @@
     <string name="ok_got_it">OK, sain aru!</string>
     <string name="could_not_download_observations">Probleemid ühendusega - viimaste vaatluste laadimine ebaõnnestus. Proovi uuesti.</string>
     <string name="no_news_yet">Uudiseid veel pole. Vaata hiljem uuesti!</string>
-    <string name="my_content">Minu sinu</string>
+    <string name="my_content">Minu sisu</string>
     <string name="following">Jälgimine</string>
     <string name="no_updates_yet">Täiendusi veel pole. Vaata hiljem uuesti!</string>
     <string name="you_will_only_receive_updates_when_creating">(Teateid saad vaid siis, kui oled loonud vaatluseid)</string>
@@ -496,42 +496,42 @@
     <string name="drainage">Valgla</string>
     <string name="land_feature">Maamärk</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
-    <string name="miscellaneous">Miscellaneous</string>
-    <string name="nationality">Nationality</string>
+    <string name="miscellaneous">Sega</string>
+    <string name="nationality">Rahvus</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
-    <string name="supername">Supername</string>
+    <string name="supername">Ülemnimetus</string>
     <string name="point_of_interest">Huvitav paik</string>
     <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
-    <string name="region">Region</string>
+    <string name="region">Regioon</string>
     <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
-    <string name="colloquial">Colloquial</string>
+    <string name="colloquial">Kõnekeelne</string>
     <string name="zone">Tsoon</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_state">Ajalooline osariik</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <string name="historical_county">Ajalooline Maakond</string>
     <string name="continent">Mander</string>
-    <string name="estate">Estate</string>
+    <string name="estate">Maatükk</string>
     <string name="historical_town">Ajalooline Linn</string>
-    <string name="aggregate">Aggregate</string>
-    <string name="open_space">Open Space</string>
+    <string name="aggregate">Koondnimetus</string>
+    <string name="open_space">Avamaa</string>
     <string name="territory">Territoorium</string>
     <string name="district">Piirkond</string>
-    <string name="province">Province</string>
-    <string name="municipality">Municipality</string>
-    <string name="parish">Parish</string>
+    <string name="province">Provints</string>
+    <string name="municipality">Omavalitsus</string>
+    <string name="parish">Kihelkond</string>
     <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
-    <string name="department_segment">Department Segment</string>
-    <string name="city_building">City Building</string>
-    <string name="commune">Commune</string>
-    <string name="governorate">Governorate</string>
+    <string name="department_segment">Alampiirkond</string>
+    <string name="city_building">Hoone</string>
+    <string name="commune">Kommuun</string>
+    <string name="governorate">Kubermang</string>
     <string name="prefecture">Prefektuur</string>
-    <string name="canton">Canton</string>
-    <string name="republic">Republic</string>
-    <string name="division">Division</string>
-    <string name="subdivision">Subdivision</string>
+    <string name="canton">Kanton</string>
+    <string name="republic">Vabariik</string>
+    <string name="division">Jaotus</string>
+    <string name="subdivision">Naabruskond</string>
     <!-- https://gadm.org place type, presumably describing an area larger than an individual property but smaller than a neighborhood -->
-    <string name="village_block">Village block</string>
+    <string name="village_block">Kvartal</string>
     <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
     <string name="sum">Sum</string>
     <string name="shire">Krahvkond</string>
@@ -586,15 +586,15 @@
     <string name="swipe">Libista</string>
     <string name="swipe_indicator">›</string>
     <string name="potential_disagreement">Võimalik ebakõla</string>
-    <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
+    <string name="do_you_think_this_could_be"><![CDATA[Kas on piisavalt tõendeid, et saab kinnitada määramist taksonisse <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
-    <string name="i_dont_know_but"><![CDATA[I don\'t know but I\'m sure this is <b>%1$s</b>.]]></string>
-    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
-    <string name="submit">Submit</string>
-    <string name="change_password">Change Password</string>
-    <string name="search_projects_youve_joined">Search projects you\'ve joined...</string>
-    <string name="must_be_connected_to_load_more_obs">You must be connected to the Internet to load more observations</string>
-    <string name="inat_about_title">iNaturalist is a joint initiative by the California Academy of Sciences and the National Geographic Society.</string>
+    <string name="i_dont_know_but"><![CDATA[Ma pole kindel, kuid olen kindel, et see on <b>%1$s</b>.]]></string>
+    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Ei, kuid see kuulub taksonisse <b>%1$s</b>.]]></string>
+    <string name="submit">Salvesta</string>
+    <string name="change_password">Muuda salasõna</string>
+    <string name="search_projects_youve_joined">Otsi projekte, mille liige oled...</string>
+    <string name="must_be_connected_to_load_more_obs">Rohkemate vaatluste laadimiseks pead omama interneti ühendust</string>
+    <string name="inat_about_title">iNaturalist on California Teaduste Akadeemia ja National Geographic Society ühisprojekt.</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -603,157 +603,157 @@
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
-    <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="https://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
-    <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
+    <string name="inat_credits"><![CDATA[iNaturalist eksisteerib tänu kõigile meie kogukonnast osa võtvatele isikutele. Inimesed, kes seda tarkvara ehitavad, kasutajaliideseid disainivad, meie infrastruktuuri töös hoiavad, pakuvad kogukonnatuge ning loovad sidemeid on Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard ja Ken-ichi Ueda.<br/><br/>CalTech ja Cornell Tech aitas luua masinnägemis süsteemi, mis soovitab fotode põhjal määratlusi. Täname Grant Van Horni, Serge Belongie\'it and Pietro Perona\'t nende panuse eest masinnägemise arendamisse. Rohkem infot saab leida lehelt <a href="https://www.visipedia.org">visipedia.org</a>. Eriline tänu NVIDIAle nende toetuse eest.]]></string>
+    <string name="inat_credits_networks_pre"><![CDATA[Rahvusvaheline iNaturalisti Võrgustik toetab läbi assotsieerunud partnerorganisatsioonide tõlgitud ja täielikult kohandatud iNaturalisti põhiseid veebilehti.]]></string>
     <string name="inat_credits_post"><![CDATA[Lisaks on iNaturalist sügavalt tänulik avatud lähtekoodi kasutavatele arendajatele, kes on loonud suure osa sellest tarkvarast, mida igapäevaselt kasutame. Külasta lehte <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a>, et näha nimekirja sellistest panustest meie projektile.<br/>Oleme tänulikud ka crowdin.com kogukonna vabatahtlikele, kes on pakkunud tõlkeabi. Eriti Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie ja katunchik.<br/>IUCN teise kategooria asukoha andmete allikaks on IUCN ja UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Leitav aadressil: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
-    <string name="credits_title">Credits</string>
-    <string name="password_changed">The password the app uses no longer works - did you change your password on the website? Please enter the new one here</string>
-    <string name="just_so_you_know">Just So You Know...</string>
-    <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
-    <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
+    <string name="credits_title">Autorid</string>
+    <string name="password_changed">Salasõna, mida rakendus kasutab, enam ei toimu. Kas sa muutsid salasõna kodulehel? Palun sisesta uus salasõna</string>
+    <string name="just_so_you_know">Lihtsalt teadmiseks...</string>
+    <string name="ask_for_g_plus_permissions">Google nõuab, et küsiksime sult luba sinu Google\'i konto kontaktidele libipääsuks, kuigi me neid mitte mingil tingimusel ei kasuta. Kui sa keeldud seda luba andmast, pead sisse logima kasutajatunnuse ja salasõnaga.</string>
+    <string name="new_to_inat_sign_up_now"><![CDATA[%1$s on sulle uus? <b>Hakka meie kasutajaks!</b>]]></string>
     <string name="see_more_observations">Veel vaatluseid</string>
-    <string name="see_more_species">See more species</string>
-    <string name="see_more_identifications">See more identifications</string>
-    <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
-    <string name="description">Description</string>
-    <string name="quantity">Qty</string>
-    <string name="agree2">Agree</string>
+    <string name="see_more_species">Vaata veel liike</string>
+    <string name="see_more_identifications">Vaate veel määratlusi</string>
+    <string name="collection_and_umbrella_projects">Kogumis- ja ülemprojektid</string>
+    <string name="description">Kirjeldus</string>
+    <string name="quantity">Kogus :</string>
+    <string name="agree2">Nõustun</string>
     <string name="project_observations">Vaatlused</string>
-    <string name="project_species">Species</string>
-    <string name="project_people">People</string>
+    <string name="project_species">Liigid</string>
+    <string name="project_people">Inimesed</string>
     <!-- People who added identifications to observations in a project -->
-    <string name="project_identifiers">Identifiers</string>
-    <string name="got_it">Got it!</string>
-    <string name="view_all">View All</string>
-    <string name="observers">Observers</string>
+    <string name="project_identifiers">Määrajad</string>
+    <string name="got_it">Mõistan!</string>
+    <string name="view_all">Vaata kõiki</string>
+    <string name="observers">Vaatlejad</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
-    <string name="attribute">Attribute</string>
+    <string name="attribute">Omadus</string>
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
-    <string name="value">Value</string>
+    <string name="value">Väärtus</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
-    <string name="disagree">Disagree</string>
+    <string name="disagree">Ei nõustu</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
-    <string name="annotations">Annotations</string>
+    <string name="annotations">Märked</string>
     <!-- Used when filtering observations with annotations -->
-    <string name="with_annotation">With Annotation</string>
+    <string name="with_annotation">Märkega</string>
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
-    <string name="annotation_name">Annotation Name</string>
+    <string name="annotation_name">Märke nimi</string>
     <!-- Annotation value for when no annotation has been chosen -->
-    <string name="none">None</string>
+    <string name="none">Puudub</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
-    <string name="annotation_name_plant_phenology">Plant Phenology</string>
+    <string name="annotation_name_plant_phenology">Taime fenoloogia</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
-    <string name="annotation_name_life_stage">Life Stage</string>
+    <string name="annotation_name_life_stage">Elujärk</string>
     <!-- Noun, describes sex of the organism -->
-    <string name="annotation_name_sex">Sex</string>
+    <string name="annotation_name_sex">Sugu</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
-    <string name="annotation_name_alive_or_dead">Alive or Dead</string>
+    <string name="annotation_name_alive_or_dead">Elus või surnud</string>
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
-    <string name="annotation_name_evidence_of_presence">Evidence of Presence</string>
+    <string name="annotation_name_evidence_of_presence">Kohalolu tõend</string>
     <!-- Adjective, having open flowers -->
-    <string name="annotation_value_flowering">Flowering</string>
+    <string name="annotation_value_flowering">Õitsev</string>
     <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">Fruiting</string>
+    <string name="annotation_value_fruiting">Viljakandev</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_budding">Budding</string>
+    <string name="annotation_value_budding">Võrsuv</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_flower_budding">Flower Budding</string>
+    <string name="annotation_value_flower_budding">Õiepungad</string>
     <!-- Observation presents no evidence of flowering phenology -->
-    <string name="annotation_value_no_evidence_of_flowering">No Evidence of Flowering</string>
+    <string name="annotation_value_no_evidence_of_flowering">Õitsemine pole tuvastatav</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
-    <string name="annotation_value_adult">Adult</string>
+    <string name="annotation_value_adult">Täiskasvanu</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
-    <string name="annotation_value_teneral">Teneral</string>
+    <string name="annotation_value_teneral">Valmik</string>
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
-    <string name="annotation_value_pupa">Pupa</string>
+    <string name="annotation_value_pupa">Nukk</string>
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
-    <string name="annotation_value_nymph">Nymph</string>
+    <string name="annotation_value_nymph">Nümf</string>
     <!-- Noun for the arthropod life stage between egg and adult -->
-    <string name="annotation_value_larva">Larva</string>
-    <string name="annotation_value_egg">Egg</string>
+    <string name="annotation_value_larva">Tõuk</string>
+    <string name="annotation_value_egg">Muna</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
-    <string name="annotation_value_juvenile">Juvenile</string>
+    <string name="annotation_value_juvenile">Nooruk</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
-    <string name="annotation_value_subimago">Subimago</string>
-    <string name="annotation_value_female">Female</string>
-    <string name="annotation_value_male">Male</string>
+    <string name="annotation_value_subimago">Eelvalmik</string>
+    <string name="annotation_value_female">Naissoost</string>
+    <string name="annotation_value_male">Meessoost</string>
     <!-- Adjective, alive and shows no signs of imminent death -->
-    <string name="annotation_value_alive">Alive</string>
+    <string name="annotation_value_alive">Elus</string>
     <!-- Adjective, dead or shows signs of imminent death -->
-    <string name="annotation_value_dead">Dead</string>
+    <string name="annotation_value_dead">Surnud</string>
     <!-- Value for when the value of the attribute cannot be determined -->
-    <string name="annotation_value_cannot_be_determined">Cannot Be Determined</string>
+    <string name="annotation_value_cannot_be_determined">Ei saa kindlaks teha</string>
     <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
-    <string name="annotation_value_organism">Organism</string>
+    <string name="annotation_value_organism">Organism ise</string>
     <!-- Evidence of Presence value when for bird feathers -->
-    <string name="annotation_value_feather">Feather</string>
+    <string name="annotation_value_feather">Sulg</string>
     <!-- Evidence of Presence value when for fecal remains -->
-    <string name="annotation_value_scat">Scat</string>
+    <string name="annotation_value_scat">Väljaheide</string>
     <!-- Evidence of Presence value for impressions in the ground or snow -->
-    <string name="annotation_value_track">Track</string>
+    <string name="annotation_value_track">Jälg</string>
     <!-- Evidence of Presence value when for bones -->
-    <string name="annotation_value_bone">Bone</string>
+    <string name="annotation_value_bone">Luu</string>
     <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
-    <string name="annotation_value_molt">Molt</string>
+    <string name="annotation_value_molt">Kest</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
-    <string name="joined_projects_all_caps">JOINED</string>
-    <string name="nearby_projects_all_caps">NEARBY</string>
-    <string name="featured_projects_all_caps">FEATURED</string>
+    <string name="joined_projects_all_caps">LIIGE</string>
+    <string name="nearby_projects_all_caps">LÄHEDAL</string>
+    <string name="featured_projects_all_caps">OLULISED</string>
     <!-- Text for a button or label that allows someone to join a project -->
-    <string name="join_all_caps">JOIN</string>
-    <string name="my_guides_all_caps">YOURS</string>
-    <string name="nearby_guides_all_caps">NEARBY</string>
-    <string name="all_guides_all_caps">ALL</string>
-    <string name="description_all_caps">DESCRIPTION</string>
-    <string name="quantity_all_caps">QTY</string>
+    <string name="join_all_caps">LIITU</string>
+    <string name="my_guides_all_caps">MINU</string>
+    <string name="nearby_guides_all_caps">LÄHEDAL</string>
+    <string name="all_guides_all_caps">KÕIK</string>
+    <string name="description_all_caps">KIRJELDUS</string>
+    <string name="quantity_all_caps">KOGUS</string>
     <plurals name="observation_count_all_caps">
         <item quantity="one">%1$s VAATLUS</item>
         <item quantity="other">%1$s VAATLUST</item>
     </plurals>
-    <string name="agree_all_caps">AGREE</string>
+    <string name="agree_all_caps">NÕUSTUN</string>
     <string name="observations_all_caps">VAATLUSED</string>
-    <string name="species_all_caps">SPECIES</string>
-    <string name="people_all_caps">PEOPLE</string>
-    <string name="identifiers_all_caps">IDENTIFIERS</string>
-    <string name="identifications_all_caps">IDENTIFICATIONS</string>
-    <string name="news_all_caps">NEWS</string>
-    <string name="got_it_all_caps">GOT IT!</string>
-    <string name="view_all_all_caps">VIEW ALL</string>
-    <string name="observers_all_caps">OBSERVERS</string>
+    <string name="species_all_caps">LIIGID</string>
+    <string name="people_all_caps">INIMESED</string>
+    <string name="identifiers_all_caps">MÄÄRAJAD</string>
+    <string name="identifications_all_caps">MÄÄRATLUSED</string>
+    <string name="news_all_caps">UUDISED</string>
+    <string name="got_it_all_caps">MÕISTAN!</string>
+    <string name="view_all_all_caps">KÕIK</string>
+    <string name="observers_all_caps">VAATLEJAD</string>
     <string name="observations_regular">Vaatlused</string>
-    <string name="data_quality_assessment">Data Quality Assessment</string>
-    <string name="research_grade_qualification">Research Grade Qualification</string>
-    <string name="date_specified">Date specified</string>
-    <string name="location_specified">Location specified</string>
-    <string name="has_photos_or_sounds">Has photos or sounds</string>
-    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
-    <string name="date_is_accurate">Date is accurate</string>
-    <string name="location_is_accurate">Location is accurate</string>
-    <string name="organism_is_wild">Organism is wild</string>
-    <string name="evidence_of_organism">Evidence of organism</string>
-    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
-    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
-    <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
-    <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
-    <string name="seasonality">Seasonality</string>
-    <string name="verifiable">Verifiable</string>
-    <string name="no_annotation">No Annotation</string>
+    <string name="data_quality_assessment">Andmete kvaliteedihinnang</string>
+    <string name="research_grade_qualification">Teaduskõlbulikuse tingimused</string>
+    <string name="date_specified">Kuupäev määratud</string>
+    <string name="location_specified">Asukoht määratud</string>
+    <string name="has_photos_or_sounds">On piltide või helidega</string>
+    <string name="has_id_supported_by_two_or_more">On kahe või enama kasutaja poolt määratud</string>
+    <string name="date_is_accurate">Kuupäev on täpne</string>
+    <string name="location_is_accurate">Asukoht on täpne</string>
+    <string name="organism_is_wild">Organism on metsik</string>
+    <string name="evidence_of_organism">Tõendid organismi kohta</string>
+    <string name="recent_evidence_of_an_organism">Hiljutised tõendid organismi kohta</string>
+    <string name="community_id_at_species_level_or_lower">Kogukondlik määratlus liigina või sellest madalamal tasemel</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Kas vastavalt tõenditele saab kogukondliku määratluse kinnitada või seda parandada?</string>
+    <string name="no_as_good_as_it_can_be">Sellest enam paremaks minna ei saa</string>
+    <string name="seasonality">Hooajalisus</string>
+    <string name="verifiable">Tõendatav</string>
+    <string name="no_annotation">Märkus puudub</string>
     <string name="donate_to_inaturalist">Anneta iNaturalistile</string>
-    <string name="prefers_scientific_name_first">Näita tähtsaid nimesid esimesena</string>
-    <string name="prefers_scientific_name_first_description">Show scientific names before common names.</string>
-    <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, and Parks Canada operating iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
-    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
-    <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) operating NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
-    <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network operating iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
-    <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
-    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
-    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
-    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Natural History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
-    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
-    <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="prefers_scientific_name_first">Näita esmalt teaduslikku nimetust</string>
+    <string name="prefers_scientific_name_first_description">Näita teaduslikke nimesid enne rahvapäraseid.</string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[Kanada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada ning Parks Canada opereerivad lehte iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt opereerib lehte Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalista"><![CDATA[Mehhiko: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) opereerib lehte NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[Uus-Meremaa: New Zealand Biodiversity Recording Network opereerib lehte iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
+    <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos opereerib lehte Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente opereerib lehte iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina toetab lehte ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Austraalia: Atlas of Living Australia toetab lehte iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) toetab lehte iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Iisrael: University of Haifa toetab lehte iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Soome: Finnish Museum of Natural History (LUOMUS) toetab lehte iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Tsiili: Ministerio del Medio Ambiente toetab lehte iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Kreeka: iSea toetab lehte iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
@@ -792,37 +792,37 @@
     <string name="debug_settings">Debug Settings</string>
     <string name="are_you_sure_you_want_to_delete_logs">Are you sure you want to delete all debug logs? Only press \'Yes\' if you want clear up storage room for your phone</string>
     <string name="no_log_files_found">No log files found for that date range - try earlier date?</string>
-    <string name="choose_pinned_location">Choose Pinned Location</string>
-    <string name="pin_current_location">Pin Current Location</string>
-    <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
-    <string name="delete_this_pinned_location">Delete this pinned location?</string>
+    <string name="choose_pinned_location">Vali see asukoht</string>
+    <string name="pin_current_location">Kasuta praegust asukohta</string>
+    <string name="location_pinned_successfully">Praegune asukoht kinnitatud</string>
+    <string name="delete_this_pinned_location">Kustutan selle asukoha?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
-    <string name="duplicate">Duplicate</string>
+    <string name="duplicate">Kopeeri</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
-    <string name="couldnt_duplicate_photo">Couldn\'t duplicate photo!</string>
-    <string name="couldnt_edit_photo">Couldn\'t edit photo!</string>
+    <string name="couldnt_duplicate_photo">Foto kopeerimine ei õnnestunud!</string>
+    <string name="couldnt_edit_photo">Foto muutmine ei õnnestunud!</string>
     <!-- Verb, as in "Rotate this photo" -->
-    <string name="ucrop_rotate">Rotate</string>
+    <string name="ucrop_rotate">Pööra</string>
     <!-- Verb, as in "Scale (resize) this photo" -->
-    <string name="ucrop_scale">Scale</string>
+    <string name="ucrop_scale">Suurendus</string>
     <!-- Verb, as in "Crop this photo" -->
-    <string name="ucrop_crop">Crop</string>
+    <string name="ucrop_crop">Lõika</string>
     <!-- Label for adjusting the brightness of an image -->
-    <string name="ucrop_brightness">Brightness</string>
+    <string name="ucrop_brightness">Heledus</string>
     <!-- Label for adjusting the contrast of an image -->
-    <string name="ucrop_contrast">Contrast</string>
+    <string name="ucrop_contrast">Kontrastsus</string>
     <!-- Label for adjusting the saturation of an image -->
-    <string name="ucrop_saturation">Saturation</string>
+    <string name="ucrop_saturation">Küllastus</string>
     <!-- Label for adjusting the sharpness of an image -->
-    <string name="ucrop_sharpness">Sharpness</string>
+    <string name="ucrop_sharpness">Teravus</string>
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
-    <string name="ucrop_label_original">Original</string>
+    <string name="ucrop_label_original">Algne</string>
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
-    <string name="ucrop_label_free">Free</string>
+    <string name="ucrop_label_free">Suva</string>
     <!-- Verb phrase, button label to edit an observation photo -->
-    <string name="ucrop_label_edit_photo">Edit Photo</string>
+    <string name="ucrop_label_edit_photo">Muuda foto</string>
     <string name="service_temporarily_unavailable">Teenust ei saa ajutiselt kasutada.</string>
-    <string name="please_try_again_in_a_few_hours">Please try again in a few hours.</string>
+    <string name="please_try_again_in_a_few_hours">Proovi mõne tunni pärast uuesti.</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
     <string name="please_try_again_in_x">Please try again in %1$d %2$s.</string>
     <string name="hours">hours</string>
@@ -844,12 +844,12 @@
     <string name="disabled">Disabled</string>
     <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third-party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
     <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
-    <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third-party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b>Need teenused on meile tohutult olulised</b>, sest nende abil hoiame suhteliselt väikese meeskonnaga iNaturalist stabiilse ja toimivana. Mobiilsete seadmete puhul pole meil pea mingit muud võimalust saamaks teadma provleemidest, kuna meie tarkvara jookseb seadmetele, mida meie ise ei kontrollia. Mõnikord pole me mõnest probleemist isegi teadlikud, kuni nende teenuste andmed seda meile näitavad. <b>Seda infot jagades aitad sa meil teenindada nii ennast kui terve iNaturalisti kogukonda.</b>]]></string>
     <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
-    <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
-    <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
-    <string name="search_places">Search Places</string>
-    <string name="restart_app">Restart App</string>
+    <string name="common_names_place"><![CDATA[Rahvapäraste nimede asukoht: <b>%1$s</b>]]></string>
+    <string name="tap_to_prioritize_common_names">Vali siit täpne koht, mille rahvapäraseid nimesid eelistada.</string>
+    <string name="search_places">Otsi kohta</string>
+    <string name="restart_app">Taaskäivita rakendus</string>
     <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
         <item quantity="one">Oled sa kindel, et soovid kustutada %1$d vaatlus?</item>
@@ -885,9 +885,9 @@
     <string name="send_a_message">Send a message</string>
     <string name="sending_message">Sending message...</string>
     <string name="could_not_send_message">Couldn\'t send message: %1$s</string>
-    <string name="subject">Subject</string>
-    <string name="body">Body</string>
-    <string name="type_your_message_here">Type your message here</string>
+    <string name="subject">Pealkiri</string>
+    <string name="body">Kirja sisu</string>
+    <string name="type_your_message_here">Sisesta oma sõnum siia</string>
     <string name="new_message_to">New Message to %1$s</string>
     <string name="who_would_you_like_to_send_a_message_to">Who would you like to send a message to?</string>
     <string name="new_message">New Message</string>
@@ -979,8 +979,8 @@
     <string name="date_long">d. MMM, yyyy</string>
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long_with_time">d. MMMM, yyy HH:mm</string>
-    <string name="show_common_names">Show common names</string>
-    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
+    <string name="show_common_names">Näita rahvapäraseid nimesid</string>
+    <string name="show_common_names_description">Võta linnuke ära, kui soovid näha teaduslikke nimesid.</string>
     <string name="email_must_look_like_email_address">Email must look like an email address</string>
     <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
     <string name="password_too_short">Password must be at least six characters long</string>

@@ -86,6 +86,7 @@
 		<item>hi</item>
 		<item>hr</item>
 		<item>hu</item>
+		<item>fa</item>
 		<item>id</item>
 		<item>it</item>
 		<item>ja</item>
@@ -116,6 +117,7 @@
 		<item>sq</item>
 		<item>sv</item>
 		<item>sv-rSE</item>
+		<item>sw</item>
 		<item>th</item>
 		<item>tr</item>
 		<item>uk</item>
@@ -153,6 +155,7 @@
 		<item>हिन्दी</item>
 		<item>Hrvatski</item>
 		<item>Magyar</item>
+		<item>فارسی</item>
 		<item>Bahasa Indonesia</item>
 		<item>Italiano</item>
 		<item>日本語</item>
@@ -183,6 +186,7 @@
 		<item>Shqipe</item>
 		<item>Svenska</item>
 		<item>Svenska (Sverige)</item>
+		<item>Kiswahili</item>
 		<item>ภาษาไทย</item>
 		<item>Türkçe</item>
 		<item>Українська</item>

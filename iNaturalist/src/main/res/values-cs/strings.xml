@@ -259,7 +259,7 @@
     <string name="set_location">Poloha</string>
     <string name="coordinates_lat">Zeměpisná šířka:</string>
     <string name="coordinates_lon">Zem. délka:</string>
-    <string name="coordinates_acc">Účet. </string>
+    <string name="coordinates_acc">Přes.</string>
     <string name="required">Požadováno</string>
     <string name="downloading_observations">Stahování pozorování...</string>
     <string name="no_thanks">Ne, děkuji</string>

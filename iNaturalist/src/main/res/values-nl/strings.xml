@@ -641,7 +641,7 @@
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Geen</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
-    <string name="annotation_name_plant_phenology">Plant fenologie</string>
+    <string name="annotation_name_plant_phenology">Plantenfenologie</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Levensstadium</string>
     <!-- Noun, describes sex of the organism -->
