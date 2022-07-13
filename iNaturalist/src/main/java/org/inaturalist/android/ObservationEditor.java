@@ -372,8 +372,16 @@ public class ObservationEditor extends Fragment {
             Logger.tag(TAG).error("Insert 1");
 
             // See if the sending app is a blacklisted one
-            String sendingPackageName = getActivity().getReferrer().getHost();
-            Logger.tag(TAG).debug("Shared from: " + sendingPackageName);
+            Uri referrer = getActivity().getReferrer();
+
+            String sendingPackageName = null;
+            if (referrer == null) {
+                Logger.tag(TAG).error("Null referrer");
+                sendingPackageName = "";
+            } else {
+                sendingPackageName = referrer.getHost();
+                Logger.tag(TAG).debug("Shared from: " + sendingPackageName);
+            }
 
             List<String> blacklistedApps = Arrays.asList(getResources().getStringArray(R.array.blocklisted_sharing_apps));
 
