@@ -790,16 +790,19 @@ public class ObservationEditor extends Fragment {
                             public void run() {
                                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_DELETE);
 
-                                delete((mObservation == null) || (mObservation.id == null));
+                                boolean deleteLocalOnly = (mObservation == null) || (mObservation.id == null);
+                                delete(deleteLocalOnly);
                                 Toast.makeText(getActivity(), R.string.observation_deleted, Toast.LENGTH_SHORT).show();
 
                                 getActivity().setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_DELETED);
 
                                 // Update cached obs count
-                                SharedPreferences prefs = getActivity().getSharedPreferences("iNaturalistPreferences", Activity.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = prefs.edit();
-                                editor.putInt("observation_count", prefs.getInt("observation_count", 0) - 1);
-                                editor.commit();
+                                if (!Intent.ACTION_INSERT.equals(getActivity().getIntent().getAction())) {
+                                    SharedPreferences prefs = getActivity().getSharedPreferences("iNaturalistPreferences", Activity.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = prefs.edit();
+                                    editor.putInt("observation_count", prefs.getInt("observation_count", 0) - 1);
+                                    editor.commit();
+                                }
 
                                 getActivity().finish();
                             }

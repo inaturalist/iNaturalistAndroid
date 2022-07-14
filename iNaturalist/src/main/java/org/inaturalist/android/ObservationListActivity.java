@@ -1,6 +1,7 @@
 package org.inaturalist.android;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -1588,6 +1589,13 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             ContextCompat.startForegroundService(ObservationListActivity.this, serviceIntent);
 
         }
+
+        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("observation_count", prefs.getInt("observation_count", 0) - mObsIdsToSync.size());
+        editor.commit();
+        DecimalFormat formatter = new DecimalFormat("#,###,###");
+        ((TextView) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.count)).setText(formatter.format(prefs.getInt("observation_count", 0)));
 
         setMultiSelectionMode(false);
     }
