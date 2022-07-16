@@ -2341,25 +2341,29 @@ public class INaturalistService extends IntentService {
             increaseProgressForObservation(observation);
 
             mApp.setObservationIdBeingSynced(observation._id);
-            Logger.tag(TAG).debug("syncObservations: Syncing " + observation._id + ": " + observation.toString());
+            try {
+                Logger.tag(TAG).debug("syncObservations: Syncing " + observation._id + ": " + observation.toString());
 
-            if ((observation._synced_at == null) || ((observation._updated_at != null) && (observation._updated_at.after(observation._synced_at))) || (observation.id == null)) {
-                postObservation(observation);
-                increaseProgressForObservation(observation);
+                if ((observation._synced_at == null) || ((observation._updated_at != null) && (observation._updated_at.after(observation._synced_at))) || (observation.id == null)) {
+                    postObservation(observation);
+                    increaseProgressForObservation(observation);
+                }
+                Logger.tag(TAG).debug("syncObservations: Finished Syncing " + observation._id + " - now uploading photos");
+
+                postPhotos(observation);
+                Logger.tag(TAG).debug("syncObservations: Finished uploading photos " + observation._id);
+                deleteObservationPhotos(observation); // Delete locally-removed observation photos
+
+                postSounds(observation);
+                Logger.tag(TAG).debug("syncObservations: Finished uploading sounds " + observation._id);
+                deleteObservationSounds(observation); // Delete locally-removed observation sounds
+
+                syncObservationFields(observation);
+                postProjectObservations(observation);
+                Logger.tag(TAG).debug("syncObservations: Finished delete photos, obs fields and project obs - " + observation._id);
+            } catch (SyncFailedException exc) {
+                Logger.tag(TAG).error("Sync Failed for observation");
             }
-            Logger.tag(TAG).debug("syncObservations: Finished Syncing " + observation._id + " - now uploading photos");
-
-            postPhotos(observation);
-            Logger.tag(TAG).debug("syncObservations: Finished uploading photos " + observation._id);
-            deleteObservationPhotos(observation); // Delete locally-removed observation photos
-
-            postSounds(observation);
-            Logger.tag(TAG).debug("syncObservations: Finished uploading sounds " + observation._id);
-            deleteObservationSounds(observation); // Delete locally-removed observation sounds
-
-            syncObservationFields(observation);
-            postProjectObservations(observation);
-            Logger.tag(TAG).debug("syncObservations: Finished delete photos, obs fields and project obs - " + observation._id);
 
             c.moveToNext();
         }
