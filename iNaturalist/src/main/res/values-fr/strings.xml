@@ -85,7 +85,7 @@
     <string name="no_projects">Aucun projet trouvé!</string>
     <string name="no_guides">Aucun guide trouvé!</string>
     <string name="loading_projects">Chargement des projets...</string>
-    <string name="joined_projects">Joint</string>
+    <string name="joined_projects">Mes projets</string>
     <string name="nearby_projects">À proximité</string>
     <!-- Tab title for the list of featured projects in the Projects screen -->
     <string name="featured_projects">Notre sélection</string>
@@ -696,7 +696,7 @@
     <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
     <string name="annotation_value_molt">Mue</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
-    <string name="joined_projects_all_caps">JOINT</string>
+    <string name="joined_projects_all_caps">MES PROJETS</string>
     <string name="nearby_projects_all_caps">À PROXIMITÉ</string>
     <string name="featured_projects_all_caps">NOTRE SELECTION</string>
     <!-- Text for a button or label that allows someone to join a project -->
