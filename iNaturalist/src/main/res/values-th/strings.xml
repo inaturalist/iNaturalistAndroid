@@ -2,7 +2,7 @@
 <resources>
     <string name="email_address">ที่อยู่อีเมล</string>
     <string name="delete_observation">ลบการสังเกต</string>
-    <string name="observation_deleted">ลบการสังเกตการณ์แล้ว</string>
+    <string name="observation_deleted">ลบการสังเกตแล้ว</string>
     <string name="species_guess_hint">ชื่อชนิด</string>
     <string name="ok">ตกลง</string>
     <string name="cancel">ยกเลิก</string>
@@ -10,7 +10,7 @@
     <string name="street">ถนน</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">ดาวเทียม</string>
-    <string name="couldnt_load_nearby_observations">ไม่สามารถโหลดการสังเกตการณ์ในบริเวณใกล้เคียง: %1$s</string>
+    <string name="couldnt_load_nearby_observations">ไม่สามารถโหลดการสังเกตในบริเวณใกล้เคียง: %1$s</string>
     <string name="username_invalid">ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้องโปรดลงชื่อเข้าใช้อีกครั้ง</string>
     <string name="signing_in">กำลังลงชื่อเข้าใช้ ...</string>
     <string name="signed_in">ลงชื่อเข้าใช้!</string>
@@ -25,13 +25,13 @@
     <string name="something_went_wrong">มีบางอย่างผิดปกติ: %1$s</string>
     <string name="edit">แก้ไข</string>
     <string name="oh_no">ไม่นะ! %1$s</string>
-    <string name="observations">การสังเกตการณ์ของฉัน</string>
+    <string name="observations">การสังเกตของฉัน</string>
     <string name="map">แผนที่</string>
     <string name="settings">การตั้งค่า</string>
     <string name="projects">โครงการทั้งหมด</string>
     <string name="delete_photo">ลบรูปถ่าย</string>
     <string name="my_location">ตำแหน่งที่ตั้งของฉัน</string>
-    <string name="nearby_observations">การสังเกตการณ์ในบริเวณใกล้เคียง</string>
+    <string name="nearby_observations">การสังเกตในบริเวณใกล้เคียง</string>
     <string name="add">เพิ่ม</string>
     <string name="view_on_inat">ข้อมูลเพิ่มเติมใน iNaturalist.org</string>
     <string name="reload">โหลดใหม่</string>
@@ -39,7 +39,7 @@
     <string name="add_observation">เพิ่มการสังเกต</string>
     <string name="take_picture">ถ่ายรูป</string>
     <string name="save">บันทึก</string>
-    <string name="no_observations_yet">ยังไม่มีการสังเกตการณ์</string>
+    <string name="no_observations_yet">ยังไม่มีการสังเกต!</string>
     <string name="or">หรือ</string>
     <string name="signed_out">ออกจากระบบ</string>
     <string name="username">ชื่อผู้ใช้</string>
@@ -83,7 +83,7 @@
     <string name="remarks">หมายเหตุ</string>
     <string name="enter_taxon_name">ชื่อสายพันธุ์</string>
     <string name="no_projects">ไม่พบโครงการ</string>
-    <string name="no_guides">ไม่พบคำแนะนำ!</string>
+    <string name="no_guides">ไม่พบคู่มือ!</string>
     <string name="loading_projects">กำลังโหลดโครงการ...</string>
     <string name="joined_projects">เข้าร่วมแล้ว</string>
     <string name="nearby_projects">ใกล้เคียง</string>
@@ -99,8 +99,8 @@
     <string name="select_projects">เลือกจากโครงการที่เข้าร่วม</string>
     <string name="not_connected">คุณต้องเชื่อมต่อกับอินเทอร์เน็ตเพื่อทำสิ่งนี้</string>
     <string name="search_projects">กำลังค้นหาโครงการ...</string>
-    <string name="search_guides">ค้นหาคำแนะนำ</string>
-    <string name="save_observation">บันทึกการสังเกตการณ์</string>
+    <string name="search_guides">กำลังค้นหาคู่มือ...</string>
+    <string name="save_observation">บันทึกการสังเกต</string>
     <!-- Header for a description an individual guide -->
     <string name="about_guide">เกี่ยวกับ</string>
     <string name="about_guide_all_caps">เกี่ยวกับเรา</string>
@@ -115,13 +115,13 @@
     <string name="geoprivacy_with_value">ความเป็นส่วนตัวของพิกัด: %1$s</string>
     <string name="delete_confirmation">แน่ใจไหมว่าต้องการลบการสังเกตนี้</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
-    <string name="guides">คำแนะนำ</string>
+    <string name="guides">คู่มือสำรวจ</string>
     <string name="my_guides">ของคุณ</string>
     <string name="nearby_guides">ใกล้เคียง</string>
     <string name="all_guides">ทั้งหมด</string>
-    <string name="no_taxa">ไม่พบอันดับอนุกรมวิธานสำหรับคำแนะนำนี้!</string>
+    <string name="no_taxa">ไม่พบหน่วยอนุกรมวิธานสำหรับคู่มือนี้!</string>
     <string name="search_taxa">ค้นหาอันดับอนุกรมวิธาน</string>
-    <string name="no_internet_guides">คำแนะนำต้องใช้การเชื่อมต่ออินเทอร์เน็ต</string>
+    <string name="no_internet_guides">ต้องเชื่อมต่ออินเทอร์เน็ตเพื่อใช้คู่มือ</string>
     <string name="no_internet_projects">โครงการต้องใช้การเชื่อมต่ออินเทอร์เน็ต</string>
     <string name="locale_gl">กาลิเซีย</string>
     <string name="locale_eu">บาสก์</string>
@@ -140,11 +140,11 @@
     <string name="release_to_refresh">ปล่อยเพื่อรีเฟรช...</string>
     <string name="refreshing">กำลังรีเฟรช...</string>
     <plurals name="sync_x_observations">
-        <item quantity="other">ซิงค์ %1$d การสังเกตการณ์</item>
+        <item quantity="other">ซิงค์ %1$d การสังเกต</item>
     </plurals>
-    <string name="sync_observations">ซิงค์การสังเกตการณ์</string>
+    <string name="sync_observations">ซิงค์การสังเกต</string>
     <string name="lets_get_started">มาเริ่มกันเลย!</string>
-    <string name="view_nearby_observations">ดูการสังเกตการณ์ในบริเวณใกล้เคียง</string>
+    <string name="view_nearby_observations">ดูการสังเกตในบริเวณใกล้เคียง</string>
     <string name="skip_for_now">ข้ามไปก่อน</string>
     <string-array name="tutorial_titles">
         <item></item>
@@ -158,7 +158,7 @@
         <item>ออกไปข้างนอก! ค้นหาสิ่งที่อยู่ในะรรมชาติและถ่ายภาพเต็มเฟรมที่ชัดเจน</item>
         <item>แบ่งปันการสังเกตของคุณกับชุมชน iNaturalist </item>
         <item>กลับมาตรวจสอบความคิดเห็นและการระบุการสังเกตของคุณ!</item>
-        <item><![CDATA[<b>ระดับงานวิจัย</b> มีการแบ่งปันการสังเกตการณ์กับนักวิทยาศาสตร์ที่ทำงานเพื่อทำความเข้าใจและปกป้องธรรมชาติให้ดีขึ้น]]></item>
+        <item><![CDATA[<b>ระดับงานวิจัย</b> มีการแบ่งปันการสังเกตกับนักวิทยาศาสตร์ที่ทำงานเพื่อทำความเข้าใจและปกป้องธรรมชาติให้ดีขึ้น]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
         <item>เปิด</item>
@@ -172,32 +172,32 @@
     <string name="restricted_to_current_map_area">จำกัดเฉพาะพื้นที่แผนที่ปัจจุบัน</string>
     <string name="search">ค้นหา</string>
     <string name="details">รายละเอียด</string>
-    <string name="observation_photos">รูปภาพจากการสังเกตการณ์</string>
-    <string name="no_observations_found">ไม่พบการสังเกตการณ์</string>
+    <string name="observation_photos">รูปภาพจากการสังเกต</string>
+    <string name="no_observations_found">ไม่พบการสังเกต</string>
     <string name="license_none">ไม่มีสงวนลิขสิทธิ์</string>
     <string name="sources_and_attribution">แหล่งที่มาและการระบุแหล่งที่มา</string>
     <string name="photos"><![CDATA[<b>รูปภาพ:</b> %1$s]]></string>
     <string name="text"><![CDATA[<b>ตัวอักษร:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">เครือข่าย iNaturalist หลัก การคลิกตกลงจะตั้งค่าแอปของคุณให้เป็นส่วนหนึ่งของเครือข่าย iNaturalist ทั่วโลก</string>
-    <string name="alert_message_use_naturalista">NaturaLista เป็นสมาชิกของ iNaturalist Network ในเม็กซิโก สถาบันในท้องถิ่นที่สนับสนุน NaturaLista จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่ปิดบังต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
-    <string name="alert_message_use_naturewatchnz">iNaturalist NZ เป็นสมาชิกของเครือข่าย iNaturalist ในนิวซีแลนด์ สถาบันในท้องถิ่นที่สนับสนุน iNaturalist NZ จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่ปิดบังต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
-    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada เป็นสมาชิกของเครือข่าย iNaturalist ในแคนาดา สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Canada จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
-    <string name="alert_message_use_naturalistacolombia">Naturalista เป็นสมาชิกของเครือข่าย iNaturalist ในโคลอมเบีย สถาบันในท้องถิ่นที่สนับสนุน Naturalista จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่ปิดบังต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4All เป็นสมาชิกของเครือข่าย iNaturalist ในโปรตุเกส สถาบันในท้องถิ่นที่สนับสนุน Biodiversity4All จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่ปิดบังต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
-    <string name="alert_message_use_inaturalistpanama">นักธรรมชาติวิทยาPanamáเป็นสมาชิกของเครือข่าย iNaturalist ในปานามา สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Panamáจะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
-    <string name="alert_message_use_inaturalistecuador">iNaturalist เอกวาดอร์เป็นสมาชิกของเครือข่าย iNaturalist ในเอกวาดอร์ สถาบันในท้องถิ่นที่สนับสนุน iNaturalist เอกวาดอร์จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่ปิดบังต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
-    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia เป็นสมาชิกของเครือข่าย iNaturalist ในออสเตรเลีย สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Australia จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
-    <string name="alert_message_use_argentinat">ArgentiNat เป็นสมาชิกของเครือข่าย iNaturalist ในอาร์เจนตินา สถาบันในท้องถิ่นที่สนับสนุน ArgentiNat จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
-    <string name="alert_message_use_inaturalistil">iNaturalist Israel เป็นสมาชิกของเครือข่าย iNaturalist ในอิสราเอล สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Israel จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่ปิดบังต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
-    <string name="alert_message_use_inaturalistfi">iNaturalist Finland เป็นสมาชิกของเครือข่าย iNaturalist ในฟินแลนด์ สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Finland จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
-    <string name="alert_message_use_inaturalistcl">iNaturalist Chile เป็นสมาชิกของเครือข่าย iNaturalist ในชิลี สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Chile จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
-    <string name="alert_message_use_inaturalistgr">iNaturalist Greece เป็นสมาชิกของเครือข่าย iNaturalist ในกรีซ สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Greece จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
-    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg เป็นสมาชิกของเครือข่าย iNaturalist ในลักเซมเบิร์ก สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Luxembourg จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่ปิดบังต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
-    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom เป็นสมาชิกของเครือข่าย iNaturalist ในสหราชอาณาจักร สถาบันในท้องถิ่นที่สนับสนุน iNaturalist สหราชอาณาจักรจะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่ปิดบังต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
-    <string name="alert_message_use_inaturalistcr">iNaturalist Costa Rica เป็นสมาชิกของเครือข่าย iNaturalist ในคอสตาริกา สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Costa Rica จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
-    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala เป็นสมาชิกของเครือข่าย iNaturalist ในกัวเตมาลา สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Guatemala จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
-    <string name="alert_message_use_inaturalistse">iNaturalist Sweden เป็นสมาชิกของเครือข่าย iNaturalist ในสวีเดน สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Sweden จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตการณ์ที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
+    <string name="alert_message_use_naturalista">NaturaLista เป็นสมาชิกของ iNaturalist Network ในเม็กซิโก สถาบันในท้องถิ่นที่สนับสนุน NaturaLista จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตที่ปิดบังต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZ เป็นสมาชิกของเครือข่าย iNaturalist ในนิวซีแลนด์ สถาบันในท้องถิ่นที่สนับสนุน iNaturalist NZ จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตที่ปิดบังต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada เป็นสมาชิกของเครือข่าย iNaturalist ในแคนาดา สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Canada จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
+    <string name="alert_message_use_naturalistacolombia">Naturalista เป็นสมาชิกของเครือข่าย iNaturalist ในโคลอมเบีย สถาบันในท้องถิ่นที่สนับสนุน Naturalista จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตที่ปิดบังต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All เป็นสมาชิกของเครือข่าย iNaturalist ในโปรตุเกส สถาบันในท้องถิ่นที่สนับสนุน Biodiversity4All จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตที่ปิดบังต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
+    <string name="alert_message_use_inaturalistpanama">นักธรรมชาติวิทยาPanamáเป็นสมาชิกของเครือข่าย iNaturalist ในปานามา สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Panamáจะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist เอกวาดอร์เป็นสมาชิกของเครือข่าย iNaturalist ในเอกวาดอร์ สถาบันในท้องถิ่นที่สนับสนุน iNaturalist เอกวาดอร์จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตที่ปิดบังต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia เป็นสมาชิกของเครือข่าย iNaturalist ในออสเตรเลีย สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Australia จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat เป็นสมาชิกของเครือข่าย iNaturalist ในอาร์เจนตินา สถาบันในท้องถิ่นที่สนับสนุน ArgentiNat จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
+    <string name="alert_message_use_inaturalistil">iNaturalist Israel เป็นสมาชิกของเครือข่าย iNaturalist ในอิสราเอล สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Israel จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตที่ปิดบังต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland เป็นสมาชิกของเครือข่าย iNaturalist ในฟินแลนด์ สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Finland จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile เป็นสมาชิกของเครือข่าย iNaturalist ในชิลี สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Chile จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Greece เป็นสมาชิกของเครือข่าย iNaturalist ในกรีซ สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Greece จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg เป็นสมาชิกของเครือข่าย iNaturalist ในลักเซมเบิร์ก สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Luxembourg จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตที่ปิดบังต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom เป็นสมาชิกของเครือข่าย iNaturalist ในสหราชอาณาจักร สถาบันในท้องถิ่นที่สนับสนุน iNaturalist สหราชอาณาจักรจะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตที่ปิดบังต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
+    <string name="alert_message_use_inaturalistcr">iNaturalist Costa Rica เป็นสมาชิกของเครือข่าย iNaturalist ในคอสตาริกา สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Costa Rica จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala เป็นสมาชิกของเครือข่าย iNaturalist ในกัวเตมาลา สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Guatemala จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sweden เป็นสมาชิกของเครือข่าย iNaturalist ในสวีเดน สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Sweden จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
     <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">บรรณาธิการ</string>
     <string name="license">ใบอนุญาต</string>
@@ -206,7 +206,7 @@
     <string name="guide_editor_must_enable_this_feature">ตัวแก้ไขคำแนะนำต้องการเปิดใช้งานคุณสมบัตินี้</string>
     <string name="are_you_sure">คุณแน่ใจหรือไม่?</string>
     <string name="download_guide_alert">สิ่งนี้จะดาวน์โหลด %1$s ของข้อมูลเพื่อให้คุณสามารถใช้คู่มือนี้ได้แม้ว่าคุณจะไม่มีอินเทอร์เน็ตก็ตาม</string>
-    <string name="failed_to_download_guide">ไม่สามารถดาวน์โหลดคำแนะนำ</string>
+    <string name="failed_to_download_guide">ไม่สามารถดาวน์โหลดคู่มือ</string>
     <string name="internet_connection_seems_to_be_offline">ดูเหมือนว่าจะไม่ได้เชื่อมต่ออินเตอร์เน็ต</string>
     <string name="downloading">กำลังดาวน์โหลด...</string>
     <string name="extracting">แตกไฟล์</string>
@@ -214,7 +214,7 @@
     <string name="delete_download">ลบการดาวน์โหลด</string>
     <string name="re_download">ดาวน์โหลดอีกครั้ง</string>
     <string name="error">ผิดพลาด</string>
-    <string name="could_not_retrieve_guide">ไม่สามารถเรียกดูรายละเอียดคำแนะนำ - อาจเป็นข้อผิดพลาดของเครือข่าย</string>
+    <string name="could_not_retrieve_guide">ไม่สามารถเรียกดูรายละเอียดคู่มือ - อาจเป็นข้อผิดพลาดของเครือข่าย</string>
     <string name="inat_support_email_subject">ช่วยด้วย iNaturalist (เวอร์ชัน %1$s - %2$s; รหัสผู้ใช้ - %3$s)</string>
     <string name="send_email">ส่งอีเมล</string>
     <string name="login_with">เข้าสู่ระบบด้วย</string>
@@ -240,7 +240,7 @@
     <string name="could_not_register_user">ไม่สามารถลงทะเบียนผู้ใช้</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
     <string name="login_signup">เข้าสู่ระบบ/ลงทะเบียน</string>
-    <string name="please_sign_in_via_settings_for_guides">คุณต้องเข้าสู่ระบบเพื่อดูคำแนะนำของคุณ</string>
+    <string name="please_sign_in_via_settings_for_guides">ต้องเข้าสู่ระบบเพื่อดูคู่มือสำรวจของคุณ</string>
     <string name="please_sign_in_for_updates">คุณต้องเข้าสู่ระบบเพื่อดูการอัปเดตของคุณ</string>
     <string name="by_using_inat_terms"><![CDATA[การใช้ iNaturalist แสดงว่าคุณยอมรับ <b><a href="https://www.inaturalist.org/pages/terms">เงื่อนไขการให้บริการ</a></b> และ <b><a href="https://www.inaturalist.org/pages/privacy">นโยบายความเป็นส่วนตัว</a></b>]]></string>
     <string name="activity">กิจกรรม</string>
@@ -258,7 +258,7 @@
     <string name="coordinates_lon">ลองจิจูด:</string>
     <string name="coordinates_acc">Acc. </string>
     <string name="required">จำเป็นต้องระบุ</string>
-    <string name="downloading_observations">กำลังดาวน์โหลดการสังเกตการณ์ ...</string>
+    <string name="downloading_observations">กำลังดาวน์โหลดการสังเกต ...</string>
     <string name="no_thanks">ไม่ล่ะ ขอบคุณ</string>
     <string name="turn_on">เปิด</string>
     <string name="introducing_auto_sync">ขอแนะนำการอัปโหลดอัตโนมัติ!</string>
@@ -268,18 +268,18 @@
     <string name="uploading">กำลังอัปโหลด...</string>
     <string name="failed_to_add_to_project">เพิ่มลงในโปรเจ็กต์ไม่สำเร็จ \'%1$s\': %2$s</string>
     <string name="needs_your_attention">ต้องการความสนใจของคุณ ...</string>
-    <string name="observation">การสังเกตการณ์</string>
+    <string name="observation">การสังเกต</string>
     <string name="share">แชร์</string>
     <string name="unable_to_acquire_location">ไม่สามารถรับตำแหน่ง</string>
-    <string name="casual_grade">ระดับไม่เป็นทางการ</string>
-    <string name="needs_id">ต้องการการระบุจำแนก</string>
+    <string name="casual_grade">ไม่เป็นทางการ</string>
+    <string name="needs_id">รอจำแนกชนิด</string>
     <string name="research_grade">ระดับงานวิจัย</string>
     <string name="data_quality">คุณภาพข้อมูล</string>
     <string name="casual_grade_add_location"><![CDATA[ เพิ่ม <b>ตำแหน่งที่ตั้ง</b> เพื่อเลื่อนการสังเกตนี้ไปสู่สถานะ "ต้องการ ID"]]></string>
     <string name="casual_grade_add_date"><![CDATA[ เพิ่ม <b>วันที่</b> เพื่อเลื่อนการสังเกตนี้ไปสู่สถานะ "ต้องการ ID"]]></string>
     <string name="casual_grade_add_photo"><![CDATA[เพิ่ม <b>รูปภาพ</b> เพื่อเลื่อนการสังเกตนี้ไปสู่สถานะ "ต้องการ ID"]]></string>
-    <string name="casual_grade_captive"><![CDATA[ การสังเกตการณ์เป็นระดับไม่เป้นทางการเนื่องจาก <b>การเพาะเลี้ยง/เพาะปลูก</b>. ]]></string>
-    <string name="needs_id_more_ids"><![CDATA[ การสังเกตการณ์ต้องการ <b>การระบุเพิ่มเติม</b> จากชุมชนกลายเป็นสถานะ "ระดับงานวิจัย"]]></string>
+    <string name="casual_grade_captive"><![CDATA[ การสังเกตไม่เป็นทางการเพราะ<b>ถูกจับมา/เพาะปลูก</b> ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[จะต้องมี<b>การระบุเพิ่มเติม</b>จากชุมชนเพื่อให้การสังเกตนี้เป็น "ระดับงานวิจัย"]]></string>
     <plurals name="included_in_projects">
         <item quantity="other">รวมอยู่ใน %1$d โครงการ</item>
     </plurals>
@@ -313,11 +313,11 @@
     <string name="photo_attr"><![CDATA[รูปภาพ: <b>%1$s</b>]]></string>
     <string name="finding_current_location">กำลังค้นหาตำแหน่งของคุณ ...</string>
     <string name="flag_as_captive">ตั้งค่าสถานะเป็น เพาะเลี้ยง / เพาะปลูก</string>
-    <string name="observation_flagged_as_captive">การสังเกตการณ์ถูกตั้งค่าสถานะเป็น เพาะเลี้ยง / เพาะปลูก</string>
+    <string name="observation_flagged_as_captive">การสังเกตถูกตั้งค่าสถานะเป็น เพาะเลี้ยง / เพาะปลูก</string>
     <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
     <string name="do_you_agree_to_the_following">คุณเห็นด้วยกับสิ่งต่อไปนี้หรือไม่?</string>
     <string name="terms">ข้อตกลง</string>
-    <string name="observation_rules">กฎการสังเกตการณ์</string>
+    <string name="observation_rules">กฎการสังเกต</string>
     <string name="couldnt_load_project_details">ไม่สามารถโหลดรายละเอียดโครงการ: %1$s</string>
     <string name="no_people_found">ไม่พบผู้คน</string>
     <string name="rank">อันดับ</string>
@@ -359,11 +359,11 @@
     <string name="resume">ทำต่อ</string>
     <string name="cleaning_up">กำลังล้าง...</string>
     <string name="syncing">กำลังซิงค์...</string>
-    <string name="syncing_observation_fields">กำลังซิงค์งานการสังเกตการณ์ ...</string>
-    <string name="syncing_observations">กำลังซิงค์การสังเกตการณ์ ...</string>
+    <string name="syncing_observation_fields">กำลังซิงค์งานการสังเกต ...</string>
+    <string name="syncing_observations">กำลังซิงค์การสังเกต ...</string>
     <string name="syncing_paused">หยุดชั่วคราว</string>
     <string name="upload">อัปโหลด</string>
-    <string name="search_observations">ค้นหาการสังเกตการณ์ ...</string>
+    <string name="search_observations">ค้นหาการสังเกต...</string>
     <string name="withdraw">ถอนออก</string>
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">อัปเดตคำอธิบายการจำแนก</string>
@@ -374,7 +374,7 @@
     <string name="importing_photos">กำลังนำเข้าภาพถ่าย ...</string>
     <string name="multi_select_description">นำเข้ารูปภาพหลายรูปโดยการกดค้างที่รูปภาพเดียว</string>
     <string name="preparing_photo">กำลังเตรียมภาพ ...</string>
-    <string name="recommended_for_you">คำแนะนำสำหรับคุณ</string>
+    <string name="recommended_for_you">แนะนำสำหรับคุณ</string>
     <string name="missions">ภารกิจ</string>
     <string name="browse_by_category">เรียกดูตามหมวดหมู่</string>
     <string name="couldnt_load_recommended_missions">ไม่สามารถโหลดภารกิจที่แนะนำได้: %1$s</string>
@@ -423,7 +423,7 @@
     </plurals>
     <string name="no_results_found">ไม่พบผลลัพธ์</string>
     <plurals name="syncing_x_out_of_y_observations">
-        <item quantity="other">กำลังซิงค์ %1$d ของ %2$d การสังเกตการณ์ ...</item>
+        <item quantity="other">กำลังซิงค์ %1$d จาก %2$d การสังเกต...</item>
     </plurals>
     <string name="deleting_observations">ลบการสังเกต</string>
     <string name="preparing">กำลังเตรียมพร้อม...</string>
@@ -440,7 +440,7 @@
     <string name="conservation_status_critically_endangered">เสี่ยงอันตราย (CR)</string>
     <string name="conservation_status_extinct_in_the_wild">สูญพันธุ์ไปแล้วในป่า (EW)</string>
     <string name="conservation_status_extinct">สูญพันธุ์</string>
-    <string name="map_of_observations">แผนที่การสังเกตการณ์</string>
+    <string name="map_of_observations">แผนที่การสังเกต</string>
     <string name="taxonomy">อนุกรมวิธาน</string>
     <string name="about_this_section">เกี่ยวกับส่วนนี้</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
@@ -575,7 +575,7 @@
     <string name="inactive_taxon">Taxon ที่ไม่มีความเคลื่อนไหว</string>
     <string name="no_identifications_found">ติดตามการจำแนกที่คุณแนะนำให้กับการสังเกตของผู้อื่นที่นี่</string>
     <string name="no_species_found">นี่คือรายชื่อสายพันธุ์ที่คุณสังเกตเห็นมากที่สุด \n\nFYI: มีประมาณ 9 ล้านสปีชีส์บนโลกดังนั้นจงออกไปที่นั่นและสังเกตพวกมัน!and observe them!</string>
-    <string name="make_an_observation">เพิ่มการสังเกตการณ์</string>
+    <string name="make_an_observation">เพิ่มการสังเกต</string>
     <string name="no_observations_found_new">การสังเกตเป็นการบันทึกการเผชิญหน้าของคุณกับสิ่งมีชีวิตแต่ละตัวในช่วงเวลาและสถานที่เฉพาะ</string>
     <string name="discard_comment">แน่ใจไหมว่าต้องการยกเลิกความคิดเห็นนี้</string>
     <string name="leave_comment">ละทิ้งการแสดงความคิดเห็น...</string>
@@ -614,7 +614,7 @@
     <string name="description">คำอธิบาย</string>
     <string name="quantity">จำนวน</string>
     <string name="agree2">ยอมรับ</string>
-    <string name="project_observations">การสังเกตการณ์</string>
+    <string name="project_observations">การสังเกต</string>
     <string name="project_species">ชนิด</string>
     <string name="project_people">ผู้คน</string>
     <!-- People who added identifications to observations in a project -->
@@ -631,9 +631,9 @@
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
     <string name="annotations">คำอธิบายประกอบ</string>
     <!-- Used when filtering observations with annotations -->
-    <string name="with_annotation">ด้วยคำอธิบายประกอบ</string>
+    <string name="with_annotation">พร้อมหมายเหตุ</string>
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
-    <string name="annotation_name">ชื่อคำอธิบายประกอบ</string>
+    <string name="annotation_name">ชื่อหมายเหตุ</string>
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">ไม่ระบุ</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
@@ -703,10 +703,10 @@
     <string name="description_all_caps">คำอธิบาย</string>
     <string name="quantity_all_caps">จำนวน</string>
     <plurals name="observation_count_all_caps">
-        <item quantity="other">%1$s การสังเกตการณ์</item>
+        <item quantity="other">%1$s การสังเกต</item>
     </plurals>
     <string name="agree_all_caps">ยอมรับ</string>
-    <string name="observations_all_caps">การสังเกตการณ์</string>
+    <string name="observations_all_caps">การสังเกต</string>
     <string name="species_all_caps">ชนิด</string>
     <string name="people_all_caps">ผู้คน</string>
     <string name="identifiers_all_caps">ผู้จำแนก</string>
@@ -715,7 +715,7 @@
     <string name="got_it_all_caps">รับทราบ!</string>
     <string name="view_all_all_caps">ดูทั้งหมด</string>
     <string name="observers_all_caps">ผู้สังเกตการณ์</string>
-    <string name="observations_regular">การสังเกตการณ์</string>
+    <string name="observations_regular">การสังเกต</string>
     <string name="data_quality_assessment">การประเมินคุณภาพข้อมูล</string>
     <string name="research_grade_qualification">คุณสมบัติระดับการวิจัย</string>
     <string name="date_specified">วันที่ระบุ</string>
@@ -775,7 +775,7 @@
     <string name="alert_unsupported_audio_type">ขออภัยมีปัญหาในการโหลดเสียงจากแหล่งนี้</string>
     <string name="invalid_audio_extension">เกิดข้อผิดพลาดในการนำเข้าเสียง: สามารถนำเข้าไฟล์เสียงที่มีนามสกุล WAV / MP3 / AMR เท่านั้น</string>
     <string name="importing_sounds">กำลังนำเข้าเสียง ...</string>
-    <string name="observation_sound">เสียงจากการสังเกตการณ์</string>
+    <string name="observation_sound">เสียงจากการสังเกต</string>
     <string name="deleted_sounds_from_cache_error">ดูเหมือนว่าคุณจะลบเสียงโดยการล้างแคชของแอปก่อนที่จะอัปโหลด คุณจะต้องเพิ่มเสียงกลับไปที่การสังเกตจากแกลเลอรีของคุณ ในอนาคตโปรดตรวจสอบให้แน่ใจว่าคุณได้อัปโหลดเสียงทั้งหมดของคุณก่อนที่จะล้างแคชของแอป</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f วินาที</string>
@@ -847,11 +847,11 @@
     <string name="restart_app">รีสตาร์ทแอพ</string>
     <string name="disable_third_party_sharing_restart">หากต้องการปิดใช้งานการแชร์ข้อมูลของบุคคลที่สามทันทีแอปจะต้องรีสตาร์ท</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
-        <item quantity="other">แน่ใจไหมว่าต้องการลบ %1$d การสังเกตการณ์?</item>
+        <item quantity="other">แน่ใจหรือว่าต้องการลบ %1$d การสังเกตนี้?</item>
     </plurals>
     <string name="future_observed_on_date_error">การสังเกตของคุณถูกสร้างขึ้น (และส่ง) เมื่อวันที่ %1$sแต่คุณกำลังพยายามกำหนดวันสังเกตการณ์ที่ช้ากว่านั้น: %2$s</string>
     <string name="no_more_photos_allowed">การสังเกตสามารถมีได้เท่านั้น %1$d รูปถ่าย หากต้องการเพิ่มมากขึ้นคุณจะต้องลบบางส่วนออก</string>
-    <string name="warning_multiple_photos">หากคุณกำลังเพิ่มภาพถ่ายของสิ่งมีชีวิตประเภทต่างๆในการสังเกตการณ์นี้หรือประเภทเดียวกันในสถานที่หรือเวลาต่างๆกันคุณควรลบรูปภาพเหล่านั้นออกและเพิ่มเป็นการสังเกตการณ์แยกกัน การสังเกตสามารถมีได้เท่านั้น %1$d รูปถ่าย</string>
+    <string name="warning_multiple_photos">หากคุณกำลังเพิ่มภาพถ่ายของสิ่งมีชีวิตประเภทต่างๆในการสังเกตนี้หรือประเภทเดียวกันในสถานที่หรือเวลาต่างๆกันคุณควรลบรูปภาพเหล่านั้นออกและเพิ่มเป็นการสังเกตแยกกัน การสังเกตสามารถมีได้เท่านั้น %1$d รูปถ่าย</string>
     <string name="choosing_specific_language_warning">การเลือกภาษาเฉพาะสำหรับบัญชีของคุณต้องใช้การเชื่อมต่ออินเทอร์เน็ต</string>
     <string name="running_in_background_notfication">ทำงานอยู่เบื้องหลังเพื่อให้เราสามารถวิ่งได้โดยไม่หยุดชะงัก</string>
     <string name="opt_out_of_community_taxon">เลือกไม่ใช้ Community Taxon</string>
@@ -864,7 +864,7 @@
     <!-- Dialog title when displaying a message that an action is not permitted -->
     <string name="forbidden">ต้องห้าม</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
-    <string name="app_you_shared_blocked">แอปที่คุณแชร์สร้างรูปภาพที่ไม่เหมาะสำหรับการสังเกตการณ์เนื่องจากไม่ได้แสดงถึงหลักฐานประสบการณ์ของคุณกับสิ่งมีชีวิตอื่นเนื่องจากมีเนื้อหาเกี่ยวกับแบรนด์หรือเนื้อหาเชิงพาณิชย์ที่ไม่เหมาะสมหรือเนื่องจากพวกเขาละเมิดข้อกำหนดในการให้บริการของเราในรูปแบบอื่น ๆ</string>
+    <string name="app_you_shared_blocked">แอปที่คุณแชร์สร้างรูปภาพที่ไม่เหมาะสำหรับการสังเกตเนื่องจากไม่ได้แสดงถึงหลักฐานประสบการณ์ของคุณกับสิ่งมีชีวิตอื่นเนื่องจากมีเนื้อหาเกี่ยวกับแบรนด์หรือเนื้อหาเชิงพาณิชย์ที่ไม่เหมาะสมหรือเนื่องจากพวกเขาละเมิดข้อกำหนดในการให้บริการของเราในรูปแบบอื่น ๆ</string>
     <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">ช่องทำเครื่องหมายสำหรับเลือกการสังเกตในโหมดเลือกหลายรายการ</string>
     <!-- Description of a UI element for screen readers -->
@@ -1035,7 +1035,7 @@
     <string name="remove_date_observed">นำวันที่ &amp; เวลาของการสังเกตออก</string>
     <string name="remove_time_observed">ลบเวลาที่สังเกต</string>
     <string name="remove_location">เอาตำแหน่งออก</string>
-    <string name="are_you_sure_you_want_to_remove_date">คุณแน่ใจหรือไม่ที่ต้องการนำวันที่ &amp; และเวลาการสังเกตการณ์ออก?</string>
+    <string name="are_you_sure_you_want_to_remove_date">คุณแน่ใจหรือไม่ที่ต้องการนำวันที่ &amp; และเวลาการสังเกตออก?</string>
     <string name="are_you_sure_you_want_to_remove_time">แน่ใจไหมว่าต้องการลบเวลาที่สังเกต</string>
     <string name="are_you_sure_you_want_to_remove_location">คุณแน่ใจหรือไม่ที่ต้องการเอาตำแหน่งที่ตั้งออก?</string>
     <string name="share_location">แบ่งปันตำแหน่งที่ตั้ง</string>
@@ -1043,7 +1043,7 @@
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">ไม่สามารถทำซ้ำเสียงได้!</string>
     <string name="sound_format_not_supported">Android ไม่รองรับการเข้ารหัสเสียงนั้น</string>
-    <string name="view_observations">ดูการสังเกตการณ์</string>
+    <string name="view_observations">ดูการสังเกต</string>
     <string name="choose_this_option">เลือกตัวเลือกนี้</string>
     <string name="compare_observation_with_this_option">เปรียบเทียบการสังเกตกับตัวเลือกนี้</string>
     <string name="go_back">ย้อนกลับ</string>
@@ -1057,7 +1057,7 @@
     <string name="previous_option">ตัวเลือกก่อนหน้า</string>
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
     <string name="next_option">ตัวเลือกถัดไป</string>
-    <string name="no_observations_yet2">ยังไม่มีการสังเกตการณ์</string>
+    <string name="no_observations_yet2">ยังไม่มีการสังเกต</string>
     <string name="no_species_yet">ยังไม่มีชนิด</string>
     <string name="no_identifications_yet">ยังไม่มีการจำแนก</string>
     <string name="sort_by">เรียงลำดับตาม:</string>
@@ -1097,32 +1097,32 @@
     <!--  Universal Resource Locator  -->
     <string name="url">URL</string>
     <string name="default_licenses">สิทธิ์การใช้งานเริ่มต้น</string>
-    <string name="default_observation_license">ใบอนุญาตการสังเกตการณ์เริ่มต้น</string>
+    <string name="default_observation_license">ใบอนุญาตการสังเกตเริ่มต้น</string>
     <string name="default_photo_license">สิทธิ์การใช้งานภาพถ่ายเริ่มต้น</string>
     <string name="default_sound_license">ใบอนุญาตใช้เสียงเริ่มต้น</string>
     <string name="change_existing_licenses">เปลี่ยนใบอนุญาตสิทธิ์ที่มีอยู่</string>
-    <string name="change_licenses_for_existing_observations">เปลี่ยนใบอนุญาตสำหรับการสังเกตการณ์ภาพถ่ายและเสียงที่มีอยู่</string>
-    <string name="change_licenses_for_all_existing_observations">เปลี่ยนใบอนุญาตสำหรับการสังเกตการณ์ที่มีอยู่ทั้งหมด</string>
+    <string name="change_licenses_for_existing_observations">เปลี่ยนใบอนุญาตสำหรับการสังเกตภาพถ่ายและเสียงที่มีอยู่</string>
+    <string name="change_licenses_for_all_existing_observations">เปลี่ยนใบอนุญาตสำหรับการสังเกตที่มีอยู่ทั้งหมด</string>
     <string name="change_licenses_for_all_existing_photos">เปลี่ยนใบอนุญาตสำหรับรูปภาพที่มีอยู่ทั้งหมด</string>
     <string name="change_licenses_for_all_existing_sounds">เปลี่ยนใบอนุญาตสำหรับเสียงที่มีอยู่ทั้งหมด</string>
-    <string name="change_observation_licenses">เปลี่ยนใบอนุญาตการสังเกตการณ์</string>
+    <string name="change_observation_licenses">เปลี่ยนใบอนุญาตการสังเกต</string>
     <string name="change_photo_licenses">เปลี่ยนสิทธิ์การใช้งานภาพถ่าย</string>
     <string name="change_sound_licenses">เปลี่ยนใบอนุญาตเสียง</string>
     <string name="change_licenses_for_observations_confirmation"><![CDATA[เปลี่ยนใบอนุญาตของ <b>%1$d</b> การสังเกตที่มีอยู่เพื่อ <b>%2$s</b>?]]></string>
     <string name="change_licenses_for_photos_confirmation"><![CDATA[เปลี่ยนใบอนุญาตของรูปภาพที่มีอยู่เป็น <b>%1$s</b>?]]></string>
     <string name="change_licenses_for_sounds_confirmation"><![CDATA[เปลี่ยนใบอนุญาตของเสียงที่มีอยู่เป็น <b>%1$s</b>?]]></string>
-    <string name="observation_licenses_updated">ใบอนุญาตการสังเกตการณ์อัปเดตแล้ว</string>
+    <string name="observation_licenses_updated">ใบอนุญาตการสังเกตอัปเดตแล้ว</string>
     <string name="photo_licenses_updated">ใบอนุญาตภาพถ่ายอัปเดตแล้ว</string>
     <string name="sound_licenses_updated">ใบอนุญาตเสียงอัปเดตแล้ว</string>
-    <string name="existing_observation_licenses_have_been_updated">ใบอนุญาตการสังเกตการณ์ที่มีอยู่ทั้งหมดถูกเปลี่ยนเป็น %1$s.</string>
+    <string name="existing_observation_licenses_have_been_updated">ใบอนุญาตการสังเกตที่มีอยู่ทั้งหมดถูกเปลี่ยนเป็น %1$s.</string>
     <string name="existing_photo_licenses_have_been_updated">ใบอนุญาตการกระทำที่มีอยู่ทั้งหมดถูกเปลี่ยนเป็น %1$s.</string>
     <string name="existing_sound_licenses_have_been_updated">ใบอนุญาตเสียงที่มีอยู่ทั้งหมดถูกเปลี่ยนเป็น %1$s.</string>
     <string name="default_licenses_description"><![CDATA[การอนุญาตให้ใช้สิทธิ์เนื้อหาของคุณทำให้ทุกคนมีสิทธิ์ตามกฎหมายในการใช้งานโดยไม่ต้องขออนุญาตจากคุณหากพวกเขาปฏิบัติตามเงื่อนไขของใบอนุญาต นอกจากนี้ iNat ยังรวมเนื้อหาที่ได้รับอนุญาตครีเอทีฟคอมมอนส์ของคุณไว้ในที่เก็บถาวรที่อัปเดตเป็นประจำซึ่งจัดทำขึ้นสำหรับองค์กรพันธมิตรที่สนใจข้อมูลของเรา ตัวอย่างเช่นเรารวมบันทึก No Copyright (CC0), Attribution (CC BY) และ Attribution-NonCommercial (CC BY-NC) ไว้ในไฟล์เก็บถาวรที่เราสร้างขึ้นสำหรับ <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a> องค์กรระหว่างประเทศระหว่างรัฐบาลที่รวบรวมและแจกจ่ายข้อมูลความหลากหลายทางชีวภาพจากทั่วโลก]]></string>
     <string name="photo_license">ใบอนุญาตรูปถ่าย</string>
     <string name="sound_license">ใบอนุญาตสิทธิ์ในเสียง</string>
     <string name="edit_photo_license">แก้ไขใบอนุญาตรูปถ่าย</string>
-    <string name="observation_license">ใบอนุญาตการสังเกตการณ์</string>
-    <string name="edit_observation_license">แก้ไขใบอนุญาตการสังเกตการณ์</string>
+    <string name="observation_license">ใบอนุญาตการสังเกต</string>
+    <string name="edit_observation_license">แก้ไขใบอนุญาตการสังเกต</string>
     <string name="about_licenses">เกี่ยวกับใบอนุญาต</string>
     <string name="view_license">ดูใบอนุญาต</string>
     <!-- License Names -->

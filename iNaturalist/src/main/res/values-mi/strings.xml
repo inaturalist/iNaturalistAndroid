@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="email_address">Email Address</string>
-    <string name="delete_observation">Mukua te pūkete</string>
+    <string name="delete_observation">Mukua te mauhanga</string>
     <string name="observation_deleted">Observation deleted</string>
     <string name="species_guess_hint">Species name</string>
     <string name="ok">OK</string>
@@ -31,7 +31,7 @@
     <string name="projects">Projects</string>
     <string name="delete_photo">Mukua whakaahua</string>
     <string name="my_location">My Location</string>
-    <string name="nearby_observations">Ngā pūkete tātata</string>
+    <string name="nearby_observations">Ngā mauhanga tātata</string>
     <string name="add">Add</string>
     <string name="view_on_inat">View on iNaturalist.org</string>
     <string name="reload">Reload</string>
@@ -39,7 +39,7 @@
     <string name="add_observation">Add observation</string>
     <string name="take_picture">Take picture</string>
     <string name="save">Tiaki</string>
-    <string name="no_observations_yet">E kore ngā pūkete anō!</string>
+    <string name="no_observations_yet">E kore ngā mauhanga anō!</string>
     <string name="or">or</string>
     <string name="signed_out">Sign out</string>
     <string name="username">Ingoa rorohiko</string>
@@ -100,7 +100,7 @@
     <string name="not_connected">You must be connected to the Internet in order to do that!</string>
     <string name="search_projects">Search projects...</string>
     <string name="search_guides">Search guides...</string>
-    <string name="save_observation">Tiakina te pūkete</string>
+    <string name="save_observation">Tiakina te mauhanga</string>
     <!-- Header for a description an individual guide -->
     <string name="about_guide">About</string>
     <string name="about_guide_all_caps">ABOUT</string>
@@ -144,7 +144,7 @@
     </plurals>
     <string name="sync_observations">Sync Observations</string>
     <string name="lets_get_started">Let\'s get started!</string>
-    <string name="view_nearby_observations">View Nearby Observations</string>
+    <string name="view_nearby_observations">Tirohia ngā mauhanga tātata</string>
     <string name="skip_for_now">Skip for Now</string>
     <string-array name="tutorial_titles">
         <item></item>
@@ -258,7 +258,7 @@
     <string name="coordinates_lon">Ahopou</string>
     <string name="coordinates_acc">Ko tōna</string>
     <string name="required">* Required</string>
-    <string name="downloading_observations">E tikiake ana ngā pūkete...</string>
+    <string name="downloading_observations">E tikiake ana ngā mauhanga...</string>
     <string name="no_thanks">No Thanks</string>
     <string name="turn_on">Whakaoho</string>
     <string name="introducing_auto_sync">Introducing Auto-Sync!</string>
@@ -268,7 +268,7 @@
     <string name="uploading">Uploading...</string>
     <string name="failed_to_add_to_project">Failed to add to project \'%1$s\': %2$s</string>
     <string name="needs_your_attention">Needs your attention...</string>
-    <string name="observation">Pūkete</string>
+    <string name="observation">Mauhanga</string>
     <string name="share">Share</string>
     <string name="unable_to_acquire_location">Unable to acquire location</string>
     <string name="casual_grade">Casual Grade</string>
@@ -571,7 +571,7 @@
     <string name="date_day">%dd</string>
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
     <string name="date_week">%dw</string>
-    <string name="new_observation">New Observation</string>
+    <string name="new_observation">Mauhanga hōu</string>
     <string name="inactive_taxon">Inactive Taxon</string>
     <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
     <string name="no_species_found">This is a list of the species you have observed the most.\n\nFYI: There\'s an estimated 9 million species on the planet, so get out there and observe them!</string>
@@ -706,7 +706,7 @@
         <item quantity="other">%1$s OBSERVATIONS</item>
     </plurals>
     <string name="agree_all_caps">AGREE</string>
-    <string name="observations_all_caps">OBSERVATIONS</string>
+    <string name="observations_all_caps">MAUHANGA</string>
     <string name="species_all_caps">SPECIES</string>
     <string name="people_all_caps">PEOPLE</string>
     <string name="identifiers_all_caps">IDENTIFIERS</string>
@@ -715,7 +715,7 @@
     <string name="got_it_all_caps">GOT IT!</string>
     <string name="view_all_all_caps">VIEW ALL</string>
     <string name="observers_all_caps">Ngā kaititiro</string>
-    <string name="observations_regular">Observations</string>
+    <string name="observations_regular">Mauhanga</string>
     <string name="data_quality_assessment">Data Quality Assessment</string>
     <string name="research_grade_qualification">Research Grade Qualification</string>
     <string name="date_specified">Date specified</string>
@@ -739,7 +739,7 @@
     <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, and Parks Canada operating iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
     <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
     <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) operating NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
-    <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network operating iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[Aotearoa: Ko New Zealand Biodiversity Recording Network e whakahaere ana ko iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
     <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
@@ -1043,10 +1043,10 @@
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
     <string name="sound_format_not_supported">That audio encoding is not supported by Android.</string>
-    <string name="view_observations">View Observations</string>
+    <string name="view_observations">Tirohia ngā mauhanga</string>
     <string name="choose_this_option">Choose this option</string>
     <string name="compare_observation_with_this_option">Compare observation with this option</string>
-    <string name="go_back">Go back</string>
+    <string name="go_back">E hoki</string>
     <string name="change_the_source_of_the_suggestions">Change the source of the suggestions</string>
     <string name="thumbnail_photo_for_suggested_taxon">Thumbnail photo for suggested taxon</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
@@ -1057,14 +1057,14 @@
     <string name="previous_option">Previous Option</string>
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
     <string name="next_option">Next Option</string>
-    <string name="no_observations_yet2">E kore ngā pūkete anō</string>
+    <string name="no_observations_yet2">E kore ngā mauhanga anō</string>
     <string name="no_species_yet">E kore ngā momo anō</string>
     <string name="no_identifications_yet">E kore ngā tautuhi anō</string>
     <string name="sort_by">Sort By</string>
     <string-array name="explore_order_by_items">
         <item>Date Added</item>
-        <item>Date Observed</item>
-        <item>Date Updated</item>
+        <item>Rā mātakitia</item>
+        <item>Rā whakahou</item>
         <!--<item>Faves</item>-->
         <item>Random</item>
     </string-array>
@@ -1078,7 +1078,7 @@
     <!-- Label for an observation search filter to exclude your own observations -->
     <string name="hide_my_observations">Hide My Observations</string>
     <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
-    <string name="follow_this_observation">Whāia te pūkete nei</string>
+    <string name="follow_this_observation">Whāia te mauhanga nei</string>
     <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
     <string name="unfollow_this_observation">Unfollow this Observation</string>
     <!-- Error message shown when an attempt to follow an observation fails -->
@@ -1123,17 +1123,17 @@
     <string name="edit_photo_license">Edit Photo License</string>
     <string name="observation_license">Observation License</string>
     <string name="edit_observation_license">Edit Observation License</string>
-    <string name="about_licenses">About Licenses</string>
-    <string name="view_license">View License</string>
+    <string name="about_licenses">Mō ngā raihana</string>
+    <string name="view_license">Tirohia Raihana</string>
     <!-- License Names -->
     <string name="license_name_cc0">Public Domain</string>
-    <string name="license_name_cc_by">Attribution</string>
-    <string name="license_name_cc_by_nc">Attribution-NonCommercial</string>
-    <string name="license_name_cc_by_nc_sa">Attribution-NonCommercial-ShareAlike</string>
-    <string name="license_name_cc_by_nc_nd">Attribution-NonCommercial-NoDerivs</string>
-    <string name="license_name_cc_by_nd">Attribution-NoDerivs</string>
-    <string name="license_name_cc_by_sa">Attribution-ShareAlike</string>
-    <string name="license_name_no_license">All rights reserved</string>
+    <string name="license_name_cc_by">Tautohu Matatiki</string>
+    <string name="license_name_cc_by_nc">Tautohu Matatiki-Arumoni Kore</string>
+    <string name="license_name_cc_by_nc_sa">Tautohu Matatiki-Arumoni Kore-Tiritiri Raihana</string>
+    <string name="license_name_cc_by_nc_nd">Tautohu Matatiki-Arumoni Kore-Taketake Anake</string>
+    <string name="license_name_cc_by_nd">Tautohu Matatiki-Taketake Anake</string>
+    <string name="license_name_cc_by_sa">Tautohu Matatiki-Tiritiri Raihana</string>
+    <string name="license_name_no_license">Kua rāhuitia ngā mōtika katoa</string>
     <!-- License Descriptions -->
     <string name="license_description_cc0">This license releases your work into the public domain, so others can copy, modify, distribute and perform your work, even for commercial purposes, all without asking permission or giving you credit. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.</string>
     <string name="license_description_cc_by">This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation.</string>
@@ -1169,7 +1169,7 @@
     <string name="message_is_flagged">Message is flagged</string>
     <string name="user_is_muted">User is muted</string>
     <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
-    <string name="delete_observations">Mukua ngā pūkete</string>
+    <string name="delete_observations">Mukua ngā mauhanga</string>
     <string name="comment_count">Comment count</string>
     <string name="id_count">Identification count</string>
     <string name="observation_selected">Observation selected</string>
