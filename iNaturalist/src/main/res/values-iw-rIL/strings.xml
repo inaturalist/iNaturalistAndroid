@@ -290,7 +290,7 @@
         <item quantity="other">כלול ב %1$d פרויקטים</item>
     </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy היא הגדרה של תצפית הקובעת איך יוצג המיקום (קו אורך וקו אורך). האפשרויות הן:<br/><b>פתוח</b> - קואורדינטות גלויות אלא אם הזן בסכנה. <br/><b>מוסתר</b> - הקואורדינטות נמצאות בנקודה רנדומלית בטווח של. 2 מעלות, בשטח שמכיל את הקואורדינטות האמיתיות, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. הקואורדינטות גלויות לך ולאחראי על הפרויקט. <br/><b>פרטי</b> - הקואורדינטות מוסתרות, הקואורדינטות גלויות לך ולאחראי על הפרויקט אליו הוספת את התצפיות. <br/><br/>Note that האחראים על הפרויקט תמיד יראו את המיקומים, לא תלוי ברמת הפרטיות, אם את/ה רוצים לשמור על הגישה למיקומים, בדקו היטב מי האחראים לפרוייקטים שאתם שותפים בם. ]]></string>
-    <string name="id_title">%1$s\'s מזהה • %2$s</string>
+    <string name="id_title">זיהוי של %1$s  • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">מחק/י</string>
     <string name="delete_id">הסר/הסירי זיהוי</string>
@@ -320,7 +320,7 @@
     <string name="finding_current_location">מאתר מיקום נוכחי...</string>
     <string name="flag_as_captive">סמן/סמני כמתורבת/בשבי</string>
     <string name="observation_flagged_as_captive">תצפית סומנה כמתורבתת/בשבי</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">האם ברצונך לסמן תצפית זו כמתורבתת/בשבי?</string>
     <string name="do_you_agree_to_the_following">האם את/ה מסכימה לדברים הבאים?</string>
     <string name="terms">תנאים</string>
     <string name="observation_rules">חוקי תצפית</string>
@@ -348,11 +348,11 @@
     <string name="there_was_a_problem_updating_profile">אירעה בעיה בעת עדכון הפרופיל שלך!</string>
     <string name="there_was_a_problem_updating_profile_params">אירעה בעיה בעת עדכון הפרופיל שלך!: %1$s</string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
-    <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
+    <string name="currently_logged_in_as_html"><![CDATA[מחובר.ת כעת בתור <b>%1$s</b>]]></string>
     <string name="log_out">יציאה</string>
     <string name="not_logged_in">לא מחובר / ת</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
-    <string name="login_or_sign_up">Log In or Sign Up</string>
+    <string name="login_or_sign_up">התחברות או הרשמה</string>
     <string name="auto_upload_description">העלאת תצפיות חדשות ועדכונים אוטומטית לתצפיות</string>
     <string name="language">שפה</string>
     <string name="version">גירסה</string>
@@ -391,8 +391,8 @@
     <string name="animals">בעלי חיים</string>
     <string name="fish">דג</string>
     <string name="mollusks">רכיכות</string>
-    <string name="protozoans">Protozoans</string>
-    <string name="chromista">Kelp, Diatoms, and Allies</string>
+    <string name="protozoans">פרוטוזואות</string>
+    <string name="chromista">קלפ, צורניות ואחרים</string>
     <string name="amphibians">דו-חיים</string>
     <string name="fungi">פטריות</string>
     <string name="birds">ציפורים</string>
@@ -417,7 +417,7 @@
     <string name="you_will_only_receive_updates_when_following">(תקבלו עדכונים רק לאחר שתעקבו על תצפיות)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> הציע/ה מזהה: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> הגיב/ה: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> הזכיר.ה אותך: &ldquo;%2$s&rdquo;<font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">מסתמן שמחקת תמונה על ידי פעולת ניקיון ה cache לפני העלאתה. העלה/י את התמונה מחדש מגלריית התמונות לתצפיות. בעתיד, בדוק/בדקי את סטטוס העלאת התמונות לפני ניקיון ה cache.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -461,9 +461,9 @@
     <string name="view_suggestions">צפייה בהצעות</string>
     <string name="species_search">חיפוש מינים</string>
     <string name="were_not_confident_enough">אנחנו לא לגמרי בטוחים, אבל הנה ההצעות הנבחרות שלנו:</string>
-    <string name="were_not_confident_enough_no_suggestions">We\'re not confident enough to make a recommendation.</string>
+    <string name="were_not_confident_enough_no_suggestions">אין לנו מספיק וודאות כדי לתת המלצה.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
-    <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
+    <string name="most_observed_options_matching_filters">התוצאות הנצפות ביותר שמתאימות לסינון:</string>
     <!-- Header for a list of suggested taxa -->
     <string name="top_suggestions">הצעות נבחרות</string>
     <string name="pretty_sure_rank">אנחנו די בטוחים שזה %1$s:</string>
@@ -483,7 +483,7 @@
     <string name="nearby">בקרבת מקום</string>
     <string name="couldnt_load_results">שגיאה בהעלאת תוצאות: %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
-    <string name="research_grade_initials">RG רמת מחקר</string>
+    <string name="research_grade_initials">ד.מ</string>
     <string name="taxon_search_hint">למשל ציפורים, פרפרים</string>
     <string name="location_search_hint">למשל עיר, מדינה, פארק, ארץ...</string>
     <string name="no_taxon">מצטערים, זן לא נמצא</string>
@@ -507,7 +507,7 @@
     <string name="miscellaneous">שונות</string>
     <string name="nationality">אזרחות</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
-    <string name="supername">Supername</string>
+    <string name="supername">אזור-על</string>
     <string name="point_of_interest">נקודת ענין</string>
     <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">איזור</string>
@@ -570,7 +570,7 @@
     <string name="start">התחלה</string>
     <string name="end">סיום</string>
     <string name="months">חודשים</string>
-    <string name="choose_months">Choose month(s)</string>
+    <string name="choose_months">יש לבחור חודש/ים</string>
     <string name="map_area">איזור מפה</string>
     <string name="global">גלובלי</string>
     <!-- As in redo search in the current map area -->
@@ -657,7 +657,7 @@
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">חי או מת</string>
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
-    <string name="annotation_name_evidence_of_presence">Evidence of Presence</string>
+    <string name="annotation_name_evidence_of_presence">עדות לנוכחות</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">פריחה</string>
     <!-- Adjective, having fruit -->
@@ -692,17 +692,17 @@
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">לא ניתן לברר</string>
     <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
-    <string name="annotation_value_organism">Organism</string>
+    <string name="annotation_value_organism">אורגניזם</string>
     <!-- Evidence of Presence value when for bird feathers -->
-    <string name="annotation_value_feather">Feather</string>
+    <string name="annotation_value_feather">נוצה</string>
     <!-- Evidence of Presence value when for fecal remains -->
-    <string name="annotation_value_scat">Scat</string>
+    <string name="annotation_value_scat">גללים</string>
     <!-- Evidence of Presence value for impressions in the ground or snow -->
-    <string name="annotation_value_track">Track</string>
+    <string name="annotation_value_track">עקבות</string>
     <!-- Evidence of Presence value when for bones -->
-    <string name="annotation_value_bone">Bone</string>
+    <string name="annotation_value_bone">עצם</string>
     <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
-    <string name="annotation_value_molt">Molt</string>
+    <string name="annotation_value_molt">השלה</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">הצטרפו</string>
     <string name="nearby_projects_all_caps">בקרבת מקום</string>
@@ -788,7 +788,7 @@
     <string name="upload_sound">בחר צליל</string>
     <string name="multi_select_sound_description">ייבא מספר קבצי קול ע\"י לחיצה ארוכה על קול מסויים</string>
     <string name="alert_unsupported_audio_type">מצטערים, בעיה בטעינת הצליל ממקור זה</string>
-    <string name="invalid_audio_extension">טעות בייבוא הקול(ות) - ניתן לייבא רק קבצי קול עם סיומות WAV/MP3/AMR</string>
+    <string name="invalid_audio_extension">שגיאה בייבוא קול(ות) - ניתן לייבא רק קובצי קול עם הסיומות WAV/MP3/AMR</string>
     <string name="importing_sounds">מייבא קבצי קול ...</string>
     <string name="observation_sound">נמצאה תצפית</string>
     <string name="deleted_sounds_from_cache_error">מסתמן שמחקת קול על ידי פעולת ניקיון ה מטמון לפני העלאתה. העלה / י את הקול מחדש מגלריית שמע לתצפיות. בזמן, בדוק / בדקי את סטטוס העלאת שמע לפני ניקיון ה מטמון.</string>
@@ -796,15 +796,15 @@
     <string name="seconds">%1$.1f שניות</string>
     <string name="clear_all_debug_logs">נקה את כל יומני איתור באגים</string>
     <string name="clears_up_storage_room_on_your_phone">מנקה את שטח האחסון בטלפון שלך</string>
-    <string name="number_of_days_to_store_logs">Number of days to store logs</string>
-    <string name="send_debug_logs_from_start_date">Send Debug Logs From Start Date</string>
-    <string name="send_debug_logs_by_email">Send debug logs by email (from specified start date)</string>
+    <string name="number_of_days_to_store_logs">מספר הימים לאחסון רישומים</string>
+    <string name="send_debug_logs_from_start_date">שליחת רישומים של איתור באגים מתאריך התחלה</string>
+    <string name="send_debug_logs_by_email">שליחת רישומים של איתור באגים בדוא\"ל (החל מתאריך התחלה ספציפי)</string>
     <string name="debug_settings">הגדרות איתור באגים</string>
-    <string name="are_you_sure_you_want_to_delete_logs">Are you sure you want to delete all debug logs? Only press \'Yes\' if you want clear up storage room for your phone</string>
-    <string name="no_log_files_found">No log files found for that date range - try earlier date?</string>
-    <string name="choose_pinned_location">Choose Pinned Location</string>
-    <string name="pin_current_location">Pin Current Location</string>
-    <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
+    <string name="are_you_sure_you_want_to_delete_logs">האם ברצונך למחוק את כל הרישומים של איתור באגים? יש ללחוץ על \'כן\' רק במידה וברצונך לפנות זכרון בטלפון שלך.</string>
+    <string name="no_log_files_found">לא נמצאו קובצי רישומים עבור טווח תאיריכם זה - לנסות תאריך מוקדם יותר?</string>
+    <string name="choose_pinned_location">בחירת מיקום שמור</string>
+    <string name="pin_current_location">שמירת מיקום נוכחי</string>
+    <string name="location_pinned_successfully">מיקום נוכחי ננעץ בהצלחה</string>
     <string name="delete_this_pinned_location">למחוק את המיקום הזה?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
     <string name="duplicate">שכפל</string>
@@ -831,10 +831,10 @@
     <string name="ucrop_label_free">חינם</string>
     <!-- Verb phrase, button label to edit an observation photo -->
     <string name="ucrop_label_edit_photo">ערוך תמונה</string>
-    <string name="service_temporarily_unavailable">Service temporarily unavailable.</string>
-    <string name="please_try_again_in_a_few_hours">Please try again in a few hours.</string>
+    <string name="service_temporarily_unavailable">השירות לא זמין כרגע</string>
+    <string name="please_try_again_in_a_few_hours">נא לנסות שוב בעוד מספר שעות.</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
-    <string name="please_try_again_in_x">Please try again in %1$d %2$s.</string>
+    <string name="please_try_again_in_x">אנא נסו שוב בעוד %1$d %2$s.</string>
     <string name="hours">שעות</string>
     <string name="minutes">דקות</string>
     <string name="seconds_value">שניות</string>
@@ -848,33 +848,33 @@
     <string name="error_deleting_account">היתה תקלה במחיקת חשבונך -- נא לבדוק שאת/ה מחובר/ת לאינטרנט</string>
     <string name="verify_your_password">אימות סיסמא</string>
     <string name="third_party_data_sharing">שיתוף נתונים עם צד שלישי</string>
-    <string name="disable_third_party_data_sharing">Disable Third-party Data Sharing</string>
+    <string name="disable_third_party_data_sharing">ביטול שיתוף נתונים עם גורמי צד שלישי</string>
     <string name="do_not_collect_third_party_data">אין לאסוף מידע אודות יציבות והשימוש בפלטפורמה באמצעות שירותים של גוף שלישי</string>
     <string name="enabled">מופעל</string>
     <string name="disabled">מופסק</string>
-    <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third-party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
-    <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
-    <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third-party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
-    <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[אנו עושות שימוש במגוון שירותי צד שלישי כדי לנטר יציבות ולאתר באגים ובעיות בתוכנה שלנו. גורמי צד שלישי אלו כוללים: <ul>גוגל (<a href="https://analytics.google.com/">גוגל אנליזות</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="third_party_data_sharing_notes2"><![CDATA[מידע שאנו משתפים עם גורמי צד שלישי אלו כולל:<br/><ul><li> כתובות IP (שיכולות לשמש לאיתור מיקום ברמת העיר, ולעקוב אחריך באתרים ושירותים שונים; יש לשים לב שאפשרנו <a href="https://support.google.com/analytics/answer/2763052">אנונימיזציית IP</a> בגוגל אנליזות ו-<a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> לא רושם כתובות IP למיטב ידיעתנו)</li><li>פרטי דפדפן, כגון יצרן, דגם וגרסה</li><li>פרטי קריסות, למשל איזו שורת קוד גרמה לקריסה</li><li>פרטי מכשיר, כגון יצרן ודגם של טלפון נייד</li></ul>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b>שירותי צד שלישי אלו מספקים לנו ערך עצום</b> בשמירה על היציבות והשמישות של iNaturalist עם הצוות הקטן שלנו. במכשירים ניידים, אין כמעט דרך אחרת לאסוף תובנות על בעיות שעולות, מכיוון שהתוכנה רצה על מכשירים שהם לא בשליטתנו. לעתים אנחנו אפילו לא מודעות לקיומן של בעיות עד שאנו רואות אותן בנתונים ששירותים אלו מספקים. <b>שיתוף מידע זה עוזר לנו לשרת אותך ואת כל קהילת iNaturalist.</b>]]></string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[יש לשים לב שאפשרות זו תקפה רק עבור ניתוחים ונתוני קריסת תוכנה שאנו שולחים באופן ישיר לחברות אלו. כל שרתי iNaturalist מסופקים ומאוכסנים על-ידי מיקרוסופט, כל תמונות iNaturalist מאוכסנות על-ידי אמזון, וכמעט כל מפות iNaturalist מוגשות על-ידי גוגל. זה אומר שבכל פעם שאת.ה צופה בתצפית ב-iNaturalist הנך מתחבר.ת לשירותים המסופקים על-ידי חברות אלו וחושפ.ת את כתובת כתובת ה-IP שלך אליהן, לכל הפחות (באפליקציית אייפון אנו עושות שימוש במפות של אפל). iNaturalist כנראה לא הייתה קיימת ללא השירותים המסופקים על-ידי חברות אלו, ועל אף שאנחנו יכולות להגביל את כמות וסוגי הדאטא שאת.ה משתפ.ת איתן בזמן השימוש ב-iNat, אין ביכולתנו לעצור את זרימת הנתונים לחלוטין.]]></string>
     <string name="common_names_place"><![CDATA[מיקום שמות נפוצים: <b>%1$s</b>]]></string>
-    <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
-    <string name="search_places">Search Places</string>
-    <string name="restart_app">Restart App</string>
-    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
+    <string name="tap_to_prioritize_common_names">הקליקו כדי לתעדף שמות נפוצים ממקום מסוים.</string>
+    <string name="search_places">חיפוש מקומות</string>
+    <string name="restart_app">אתחול אפליקציה</string>
+    <string name="disable_third_party_sharing_restart">על מנת לבטל שיתוף נתונים עם גורמי צד שלישי באופן מיידי, האפליקציה חייבת לעבור הפעלה מחדש.</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
-        <item quantity="one">Are you sure you want to delete this %1$d observation?</item>
-        <item quantity="two">Are you sure you want to delete these %1$d observations?</item>
-        <item quantity="many">Are you sure you want to delete these %1$d observations?</item>
-        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+        <item quantity="one">האם ברצונך למחוק את %1$d התצפית הזו?</item>
+        <item quantity="two">האם ברצונך למחוק את %1$d התצפיות הללו?</item>
+        <item quantity="many">האם ברצונך למחוק את %1$d התצפיות הללו?</item>
+        <item quantity="other">האם ברצונך למחוק את %1$d התצפיות הללו?</item>
     </plurals>
-    <string name="future_observed_on_date_error">Your observation was created (and submitted) on %1$s, but you\'re trying to set an observation date that is later than that: %2$s</string>
-    <string name="no_more_photos_allowed">Observations can only have %1$d photos. To add more you will need to remove some.</string>
-    <string name="warning_multiple_photos">If you\'re adding photos of different kinds of organisms to this observation, or the same kind at different places or times, you should remove those photos and add them as separate observations. An observation can only have %1$d photos.</string>
-    <string name="choosing_specific_language_warning">Choosing a specific language for your account requires an Internet connection</string>
-    <string name="running_in_background_notfication">Running in the background so we can run without interruption</string>
-    <string name="opt_out_of_community_taxon">Opt out of the Community Taxon</string>
-    <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
-    <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
+    <string name="future_observed_on_date_error">התצפית שלך נוצרה (והוגשה) בתאריך %1$s, אבל אם ברצונך לקבוע תאריך צפייה שמאוחר מזה: %2$s</string>
+    <string name="no_more_photos_allowed">תצפיות יכולות להכיל רק עד %1$d תמונות. כדי להוסיף נוספות יהיה עליך להסיר חלק.</string>
+    <string name="warning_multiple_photos">אם את.ה מוסיפ.ה תמונות של סוגים שונים של אוגניזמים לתצפית זו, או מאותו סוג אבל במקומות או זמנים שונים, עליך להסיר את התמונות ההן ולהוסיף אותן בתור תצפיות נפרדות. תצפית יכולה להכיל רק עד %1$d תמונות.</string>
+    <string name="choosing_specific_language_warning">בחירת שפה ספציפית עבור חשבונך דורשת חיבור לאינטרנט</string>
+    <string name="running_in_background_notfication">רץ ברקע כדי שנוכל לרוץ ללא הפרעה.</string>
+    <string name="opt_out_of_community_taxon">אי-הסכמה עם טקסון הקהילה</string>
+    <string name="opt_in_to_community_taxon">הסכמה עם טקסון הקהילה</string>
+    <string name="opt_out_message">בחירת אי-השתתפות בטקסון הקהילתי מאלצת תצפית זו להיות משויכת לטקסון מהזיהוי הנוכחי שלך, לעומת טקסון שמבוסס על כל הזיהויים שנוספו לתצפית זו. אם מספיק מזהות ומזהים לא יסכימו איתך, התצפית שלך תוגדר \'חסר\'. כדאי לך לבחור לא להשתתף רק במידה ואת.ה בטוח.ה שהזיהוי שלך הוא נכון וזיהויים אחרים הם שגויים.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
     <string name="permission_required">דרושה הרשאה</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
@@ -892,93 +892,93 @@
     <string name="messages">הודעות</string>
     <string name="all_messages">כל ההודעות</string>
     <string name="search_messages">חפש הודעות</string>
-    <string name="no_messages">You currently have no messages. You can send a new message with the green button, or message them from their profile page.</string>
-    <string name="no_messages_found">No messages found.</string>
+    <string name="no_messages">אין לך הודעות כרגע. באפשרותך לשלוח הודעה חדשה באמצעות הכפתור הירוק, או מעמוד הפרופיל של כל יוזר.</string>
+    <string name="no_messages_found">לא נמצאו הודעות.</string>
     <string name="send_a_message">שלח\י הודעה</string>
     <string name="sending_message">שולח הודעה...</string>
-    <string name="could_not_send_message">Couldn\'t send message: %1$s</string>
+    <string name="could_not_send_message">לא ניתן לשלוח: %1$s</string>
     <string name="subject">נושא</string>
     <string name="body">גוף</string>
     <string name="type_your_message_here">הקלד/י את הודעתך כאן</string>
-    <string name="new_message_to">New Message to %1$s</string>
+    <string name="new_message_to">הודעה חדשה ל%1$s</string>
     <string name="who_would_you_like_to_send_a_message_to">למי הייתם רוצים לשלוח הודעה?</string>
     <string name="new_message">הודעה חדשה</string>
-    <string name="search_for_inaturalist_users">Search for iNaturalist users</string>
+    <string name="search_for_inaturalist_users">חיפוש משתמשות ומשתמשי iNaturalist</string>
     <string name="please_sign_in_for_messages">עליך להיות מחובר/ת כדי לצפות בהודעות שלך.</string>
-    <string name="sorry">Sorry</string>
-    <string name="you_must_have_three_observations">You must have three verifiable observations or three identifications for others in order to do that.</string>
-    <string name="mute_this_user">Mute this user</string>
-    <string name="unmute_this_user">Unmute this user</string>
-    <string name="flag_this_conversation">Flag this conversation</string>
-    <string name="mute_this_user_question">Mute this user?</string>
-    <string name="you_will_no_longer_receive_messages">You will no longer receive any notifications about activity from this user, including messages, comments, identifications, and mentions.</string>
+    <string name="sorry">סליחה</string>
+    <string name="you_must_have_three_observations">עליך לצבור שלוש תצפיות בנות-אימות או שלושה זיהויים עבור אחרים כדי לעשות זאת.</string>
+    <string name="mute_this_user">השתקת יוזר זה</string>
+    <string name="unmute_this_user">ביטול השתקת יוזר זה</string>
+    <string name="flag_this_conversation">סימון שיחה זו</string>
+    <string name="mute_this_user_question">להשתיק יוזר זה?</string>
+    <string name="you_will_no_longer_receive_messages">לא תקבל.י יותר התראות פעילות מיוזר זה, כולל הודעות, תגובות, זיהויים ואזכורים.</string>
     <string name="mute">השתק</string>
     <string name="muting_user">משתיק משתמש/ת...</string>
     <string name="unmuting_user">השתקת משתמש/ת מבוטלת...</string>
-    <string name="failed_muting_user">Failed muting user!</string>
-    <string name="failed_unmuting_user">Failed unmuting user!</string>
-    <string name="flag_conversation">Flag conversation</string>
+    <string name="failed_muting_user">השתקת היוזר נכשלה!</string>
+    <string name="failed_unmuting_user">ביטול השתקת היוזר נכשל!</string>
+    <string name="flag_conversation">סימון שיחה</string>
     <string name="spam">ספאם</string>
-    <string name="commercial_solicitation">Commercial solicitation, links to nowhere, etc.</string>
-    <string name="offensive_inappropriate">Offensive/Inappropriate</string>
-    <string name="misleading_or_illegal_content">Misleading or illegal content, racial or ethnic slurs, etc. For more on our definition of \"appropriate,\" see the FAQ.</string>
+    <string name="commercial_solicitation">פרסום מסחרי, קישורים לא תקינים, וכו\'.</string>
+    <string name="offensive_inappropriate">פוגעני/לא הולם</string>
+    <string name="misleading_or_illegal_content">תוכן מתעתע או בלתי-חוקי, המשצה גזענית או אתנית. למידע נוסף אודות ההגדרה שלנו ל\"הולם\", יש לעיין בשאלות הנפוצות.</string>
     <string name="other">אחר</string>
-    <string name="some_other_reason">Some other reason you can explain.</string>
+    <string name="some_other_reason">סיבה אחרת שביכולתך להסביר.</string>
     <string name="continue_text">המשך</string>
-    <string name="why_are_you_flagging_this_item">Why are you flagging this item?</string>
-    <string name="thank_you_for_submitting_the_flag">Thank you for submitting the flag!</string>
-    <string name="flagging_conversation">Flagging conversation...</string>
-    <string name="failed_flagging_conversation">Failed flagging conversation!</string>
+    <string name="why_are_you_flagging_this_item">מדוע בחרת לסמן פריט זה?</string>
+    <string name="thank_you_for_submitting_the_flag">תודה על הגשת הסימון!</string>
+    <string name="flagging_conversation">מסמן שיחה...</string>
+    <string name="failed_flagging_conversation">שגיאה בסימון השיחה!</string>
     <string name="no_subject">ללא נושא</string>
     <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
-    <string name="rank_state_of_matter">State of matter</string>
+    <string name="rank_state_of_matter">מצב החומר</string>
     <string name="rank_kingdom">ממלכה</string>
     <string name="rank_subkingdom">תת ממלכה</string>
-    <string name="rank_phylum">Phylum</string>
-    <string name="rank_subphylum">Subphylum</string>
+    <string name="rank_phylum">מערכה</string>
+    <string name="rank_subphylum">תת-מערכה</string>
     <string name="rank_superclass">מחלקת על</string>
     <string name="rank_class">מחלקה</string>
     <string name="rank_subclass">תת מחלקה</string>
-    <string name="rank_infraclass">Infraclass</string>
-    <string name="rank_superorder">Superorder</string>
-    <string name="rank_order">Order</string>
-    <string name="rank_suborder">Suborder</string>
-    <string name="rank_infraorder">Infraorder</string>
-    <string name="rank_subterclass">Subterclass</string>
-    <string name="rank_parvorder">Parvorder</string>
-    <string name="rank_zoosection">Zoosection</string>
-    <string name="rank_zoosubsection">Zoosubsection</string>
+    <string name="rank_infraclass">תת-תת-מחלקה</string>
+    <string name="rank_superorder">על-סדרה</string>
+    <string name="rank_order">סדרה</string>
+    <string name="rank_suborder">תת-סדרה</string>
+    <string name="rank_infraorder">תת-תת-סדרה</string>
+    <string name="rank_subterclass">תת-אינפרא-מחלקה</string>
+    <string name="rank_parvorder">תת-תת-סדרה</string>
+    <string name="rank_zoosection">זואוסקציה</string>
+    <string name="rank_zoosubsection">זואו-תת-סקציה</string>
     <string name="rank_superfamily">משפחת על</string>
-    <string name="rank_epifamily">Epifamily</string>
+    <string name="rank_epifamily">על-משפחה</string>
     <string name="rank_family">משפחה</string>
     <string name="rank_subfamily">תת משפחה</string>
-    <string name="rank_supertribe">Supertribe</string>
+    <string name="rank_supertribe">על-שבט</string>
     <string name="rank_tribe">שבט</string>
     <string name="rank_subtribe">תת-שבט</string>
     <string name="rank_genus">סוג</string>
     <string name="rank_genushybrid">מין היברידי</string>
-    <string name="rank_subgenus">Subgenus</string>
-    <string name="rank_section">Section</string>
-    <string name="rank_subsection">subsection</string>
-    <string name="rank_complex">Complex</string>
+    <string name="rank_subgenus">תת-סוג</string>
+    <string name="rank_section">סקציה</string>
+    <string name="rank_subsection">תת-סקציה</string>
+    <string name="rank_complex">קומפלקס</string>
     <!-- Singular -->
-    <string name="rank_species">Species</string>
-    <string name="rank_hybrid">Hybrid</string>
+    <string name="rank_species">מין</string>
+    <string name="rank_hybrid">היבריד</string>
     <!-- Singular -->
-    <string name="rank_subspecies">Subspecies</string>
-    <string name="rank_variety">Variety</string>
-    <string name="rank_form">Form</string>
-    <string name="rank_infrahybrid">Infrahybrid</string>
-    <string name="rank_leaves">Leaves</string>
-    <string name="location_lat_lng">Location: %1$f, %2$f</string>
-    <string name="i_consent_process_personal_info"><![CDATA[I consent to allow iNaturalist to store and process limited kinds of personal information about me in order to manage my account. <b>Learn More</b>]]></string>
-    <string name="about_personal_information">About Personal Information</string>
-    <string name="personal_information_notes"><![CDATA[We store personal information like usernames and email addresses in order to manage accounts on this site, and to comply with privacy laws, we need you to check this box to indicate that you consent to this use of personal information. To learn more about what information we collect and how we use it, please see our <a href="https://www.inaturalist.org/privacy">Privacy Policy</a> and our <a href="https://www.inaturalist.org/terms">Terms of Service</a>.]]></string>
-    <string name="i_agree_to_tos_and_privacy"><![CDATA[I agree to the <a href="https://www.inaturalist.org/terms">Terms of Service</a> and <a href="https://www.inaturalist.org/privacy">Privacy Policy</a>, and I have reviewed the <a href="https://www.inaturalist.org/pages/community+guidelines">Community Guidelines</a>.]]></string>
+    <string name="rank_subspecies">תת-מין</string>
+    <string name="rank_variety">זן</string>
+    <string name="rank_form">טופס</string>
+    <string name="rank_infrahybrid">אינפרא-היבריד</string>
+    <string name="rank_leaves">עלים</string>
+    <string name="location_lat_lng">מיקום: %1$f, %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[אני נותנ.ת את הסכמתי לאפשר ל-iNaturalist לשמור ולעבד מידע אישי מוגבל אודותיי על מנת לנהל את חשבוני. <b>מידע נוסף</b>]]></string>
+    <string name="about_personal_information">אודות מידע אישי</string>
+    <string name="personal_information_notes"><![CDATA[אנו שומרות מידע אישי כגון שמות משתמש וכתובות דוא"ל על מנת לנהל חשבונות באתר זה, ועל מנת לשמור על חוקי הפרטיות, אנו זקוקות שתסמנ.י תיבה זו להראות שאת.ה מסכימ.ה לשימוש זה במידע אישי. למידע נוסף אודות המידע שאנו אוספות ואופן השימוש בו, נא לעיין ב<a href="https://www.inaturalist.org/privacy">מדיניות הפרטיות</a> וב<a href="https://www.inaturalist.org/terms">תנאי השימוש</a> שלנו.]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[אני מסכימ.ה ל<a href="/terms" target="_blank">תנאי השימוש</a> ול<a href="/privacy" target="_blank">מדיניות הפרטיות</a>, ועברתי על <a href="/pages/community+guidelines" target="_blank">כללי הקהילה</a>.]]></string>
     <string name="privacy_policy">מדיניות פרטיות</string>
     <string name="terms_of_service">תנאי שימוש</string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
-    <string name="deleted_user">Deleted User</string>
+    <string name="deleted_user">משתמש מחוק</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_short_this_year">MMM d</string>
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
@@ -994,90 +994,90 @@
     <string name="show_common_names">הצג שמות נפוצים</string>
     <string name="show_common_names_description">השביתו אם ברצונכם להציג רק שמות מדעיים</string>
     <string name="email_must_look_like_email_address">חייב להראות כמו כתובת אימייל</string>
-    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
+    <string name="username_must_begin_with">שם המשתמש חייב להתחיל באות, לא להכיל רווחים, ולהשתמש רק באותיות, מספרים, מקפים ותווי קו תחתון</string>
     <string name="password_too_short">סיסמא חייבת להכיל לפחות 6 תווים</string>
-    <string name="switch_to_grid_view">Switch to grid view</string>
-    <string name="switch_to_list_view">Switch to list view</string>
-    <string name="remove_project_filter">Remove project filter</string>
-    <string name="remove_observer_filter">Remove observer filter</string>
-    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
-    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
-    <string name="filter_observations_by_months">Filter observations by months</string>
+    <string name="switch_to_grid_view">מעבר לתצוגת גלריה</string>
+    <string name="switch_to_list_view">מעבר לתצוגת רשימה</string>
+    <string name="remove_project_filter">מסרת מסנן פרויקטים</string>
+    <string name="remove_observer_filter">הסרת סינון מתצפת.ת</string>
+    <string name="filter_observations_by_an_exact_date">סינון תצפיות לפי תאריך מדויק</string>
+    <string name="filter_observations_by_a_date_range">סינון תצפיות לפי טווח תאריכים</string>
+    <string name="filter_observations_by_months">סינון תצפיות לפי חודשים</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
     <string name="include_suggestions_not_seen_nearby">כלול הצעות שלא נראו בקרבת מקום</string>
-    <string name="only_view_nearby_suggestions">Only view nearby suggestions</string>
-    <string name="suggestions_source">Suggestions Source</string>
+    <string name="only_view_nearby_suggestions">הצגת הצעות מקרבת מקום בלבד</string>
+    <string name="suggestions_source">מקור ההצעות</string>
     <string name="research_grade_observations">תצפיות ברמה מחקרית</string>
     <string name="visually_similar_description">iNaturalist יציע הצעות המבוססות על מידת הדמיון החזותי של התמונות לאלה של מינים שנצפו בסמוך למיקום זה בעונה זו של השנה.</string>
     <string name="research_grade_observations_description">במקום הצעות דומות מבחינה חזותית, iNaturalist יציע מינים שנצפו במקום מסוים ובתוך קבוצה טקסונומית ספציפית.</string>
-    <string name="taxon">Taxon:</string>
-    <string name="place">Place:</string>
-    <string name="pretty_sure_kingdom">We\'re pretty sure it\'s in this kingdom:</string>
-    <string name="pretty_sure_subkingdom">We\'re pretty sure it\'s in this subkingdom:</string>
-    <string name="pretty_sure_phylum">We\'re pretty sure it\'s in this phylum:</string>
-    <string name="pretty_sure_subphylum">We\'re pretty sure it\'s in this subphylum:</string>
-    <string name="pretty_sure_superclass">We\'re pretty sure it\'s in this superclass:</string>
-    <string name="pretty_sure_class">We\'re pretty sure it\'s in this class:</string>
-    <string name="pretty_sure_subclass">We\'re pretty sure it\'s in this subclass:</string>
-    <string name="pretty_sure_infraclass">We\'re pretty sure it\'s in this infraclass:</string>
-    <string name="pretty_sure_superorder">We\'re pretty sure it\'s in this superorder:</string>
-    <string name="pretty_sure_order">We\'re pretty sure it\'s in this order:</string>
-    <string name="pretty_sure_suborder">We\'re pretty sure it\'s in this suborder:</string>
-    <string name="pretty_sure_infraorder">We\'re pretty sure it\'s in this infraorder:</string>
-    <string name="pretty_sure_subterclass">We\'re pretty sure it\'s in this subterclass:</string>
-    <string name="pretty_sure_parvorder">We\'re pretty sure it\'s in this parvorder:</string>
-    <string name="pretty_sure_zoosection">We\'re pretty sure it\'s in this zoosection:</string>
-    <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
-    <string name="pretty_sure_superfamily">We\'re pretty sure it\'s in this superfamily:</string>
-    <string name="pretty_sure_epifamily">We\'re pretty sure it\'s in this epifamily:</string>
-    <string name="pretty_sure_family">We\'re pretty sure it\'s in this family:</string>
-    <string name="pretty_sure_subfamily">We\'re pretty sure it\'s in this subfamily:</string>
-    <string name="pretty_sure_supertribe">We\'re pretty sure it\'s in this supertribe:</string>
-    <string name="pretty_sure_tribe">We\'re pretty sure it\'s in this tribe:</string>
-    <string name="pretty_sure_subtribe">We\'re pretty sure it\'s in this subtribe:</string>
+    <string name="taxon">טקסון:</string>
+    <string name="place">מקום:</string>
+    <string name="pretty_sure_kingdom">לדעתנו זה בתוך ממלכה זו:</string>
+    <string name="pretty_sure_subkingdom">לדעתנו זה בתוך תת-ממלכה זו:</string>
+    <string name="pretty_sure_phylum">לדעתנו זה בתוך מערכה זו:</string>
+    <string name="pretty_sure_subphylum">לדעתנו זה בתוך תת-מערכה זו:</string>
+    <string name="pretty_sure_superclass">לדעתנו זה בתוך על-סדרה זו:</string>
+    <string name="pretty_sure_class">לדעתנו זה בתוך מחלקה זו:</string>
+    <string name="pretty_sure_subclass">לדעתנו זה בתוך תת-מחלקה זו:</string>
+    <string name="pretty_sure_infraclass">לדעתנו זה בתוך אינפרא-מחלקה זו:</string>
+    <string name="pretty_sure_superorder">לדעתנו זה בתוך על-סדרה זו:</string>
+    <string name="pretty_sure_order">לדעתנו זה בתוך סדרה זו:</string>
+    <string name="pretty_sure_suborder">לדעתנו זה בתוך תת-סדרה זו:</string>
+    <string name="pretty_sure_infraorder">לדעתנו זה בתוך אינפרא-סדרה זו:</string>
+    <string name="pretty_sure_subterclass">לדעתנו זה בתוך תת-אינפרא-מחלקה זו:</string>
+    <string name="pretty_sure_parvorder">לדעתנו זה בתוך תת-אינפרא-סדרה זו:</string>
+    <string name="pretty_sure_zoosection">לדעתנו זה בתוך זואוסקציה זו:</string>
+    <string name="pretty_sure_zoosubsection">לדעתנו זה בתוך זואו-תת-סקציה זו:</string>
+    <string name="pretty_sure_superfamily">לדעתנו זה בתוך על-משפחה זו:</string>
+    <string name="pretty_sure_epifamily">לדעתנו זה בתוך אפי-משפחה זו:</string>
+    <string name="pretty_sure_family">לדעתנו זה בתוך משפחה זו:</string>
+    <string name="pretty_sure_subfamily">לדעתנו זה בתוך תת-משפחה זו:</string>
+    <string name="pretty_sure_supertribe">לדעתנו זה בתוך על-שבט זה:</string>
+    <string name="pretty_sure_tribe">לדעתנו זה בתוך שבט זה:</string>
+    <string name="pretty_sure_subtribe">לדעתנו זה בתוך תת-שבט זה:</string>
     <string name="pretty_sure_genus">אנחנו די בטוחים שזה מהסוג הזה:</string>
-    <string name="pretty_sure_genushybrid">We\'re pretty sure it\'s in this genushybrid:</string>
-    <string name="pretty_sure_subgenus">We\'re pretty sure it\'s in this subgenus:</string>
-    <string name="pretty_sure_section">We\'re pretty sure it\'s in this section:</string>
-    <string name="pretty_sure_subsection">We\'re pretty sure it\'s in this subsection:</string>
-    <string name="pretty_sure_complex">We\'re pretty sure it\'s in this complex:</string>
+    <string name="pretty_sure_genushybrid">לדעתנו זה בתוך היבריד סוגי זה:</string>
+    <string name="pretty_sure_subgenus">לדעתנו זה בתוך תת-סוג זה:</string>
+    <string name="pretty_sure_section">לדעתנו זה בתוך סקציה זו:</string>
+    <string name="pretty_sure_subsection">לדעתנו זה בתוך תת-סקציה זו:</string>
+    <string name="pretty_sure_complex">לדעתנו זה בתוך קמפלקס זה:</string>
     <!-- Singular -->
-    <string name="pretty_sure_species">We\'re pretty sure it\'s in this species:</string>
-    <string name="pretty_sure_hybrid">We\'re pretty sure it\'s in this hybrid:</string>
+    <string name="pretty_sure_species">לדעתנו זה בתוך מין זה:</string>
+    <string name="pretty_sure_hybrid">לדעתנו זה בתוך היבריד זה:</string>
     <!-- Singular -->
-    <string name="pretty_sure_subspecies">We\'re pretty sure it\'s in this subspecies:</string>
-    <string name="pretty_sure_variety">We\'re pretty sure it\'s in this variety:</string>
-    <string name="pretty_sure_form">We\'re pretty sure it\'s in this form:</string>
-    <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
-    <string name="remove_date_observed">Remove date &amp; time observed</string>
-    <string name="remove_time_observed">Remove time observed</string>
+    <string name="pretty_sure_subspecies">לדעתנו זה בתת-מין זה:</string>
+    <string name="pretty_sure_variety">לדעתנו זה בתוך זן זה:</string>
+    <string name="pretty_sure_form">לדעתנו זה בתוך טופס זה:</string>
+    <string name="pretty_sure_infrahybrid">לדעתנו זה בתוך אינפרא-היבריד זה:</string>
+    <string name="remove_date_observed">הסרת תאריך &amp; שעת הצפייה</string>
+    <string name="remove_time_observed">הסרת זמן צפייה</string>
     <string name="remove_location">הסרת מיקום</string>
-    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
+    <string name="are_you_sure_you_want_to_remove_date">האם ברצונך להסיר את תאריך &amp; שעת הצפייה?</string>
+    <string name="are_you_sure_you_want_to_remove_time">האם ברצונך להסיר את שעת הצפייה?</string>
+    <string name="are_you_sure_you_want_to_remove_location">האם ברצונך להסיר מיקום זה?</string>
     <string name="share_location">שיתוף מיקום</string>
-    <string name="share_hidden_location">Share Hidden Location</string>
+    <string name="share_hidden_location">שיתוף מיקום מוסתר</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
-    <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
-    <string name="sound_format_not_supported">That audio encoding is not supported by Android.</string>
+    <string name="couldnt_duplicate_sound">לא היה ניתן לשכפל את הקול!</string>
+    <string name="sound_format_not_supported">קידוד השמע ההוא אינו נתמך על-ידי אנדרואיד</string>
     <string name="view_observations">צפייה בתצפיות</string>
-    <string name="choose_this_option">Choose this option</string>
-    <string name="compare_observation_with_this_option">Compare observation with this option</string>
-    <string name="go_back">Go back</string>
-    <string name="change_the_source_of_the_suggestions">Change the source of the suggestions</string>
-    <string name="thumbnail_photo_for_suggested_taxon">Thumbnail photo for suggested taxon</string>
+    <string name="choose_this_option">בחירת אפשרות זו</string>
+    <string name="compare_observation_with_this_option">השוואת תצפית עם אפשרות זו</string>
+    <string name="go_back">חזרה</string>
+    <string name="change_the_source_of_the_suggestions">שינוי מקור ההצעות</string>
+    <string name="thumbnail_photo_for_suggested_taxon">תמונה ממוזערת לטקסון מוצע</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
-    <string name="comments_ids_title">Comments and Identifications</string>
+    <string name="comments_ids_title">הערות וזיהויים</string>
     <!-- Accessibility text for the faves tab on the observation detail view -->
-    <string name="faves">Faves</string>
+    <string name="faves">מועדפים</string>
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
-    <string name="previous_option">Previous Option</string>
+    <string name="previous_option">לאפשרות הקודמת</string>
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
-    <string name="next_option">Next Option</string>
-    <string name="no_observations_yet2">No observations yet.</string>
-    <string name="no_species_yet">No species yet.</string>
-    <string name="no_identifications_yet">No identifications yet.</string>
+    <string name="next_option">לאפשרות הבאה</string>
+    <string name="no_observations_yet2">אין תצפיות עדיין.</string>
+    <string name="no_species_yet">אין עדיין מינים</string>
+    <string name="no_identifications_yet">אין זיהויים עדיין</string>
     <string name="sort_by">מיון לפי</string>
     <string-array name="explore_order_by_items">
         <item>תאריך הוספה</item>
@@ -1092,7 +1092,7 @@
     </string-array>
     <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
     See explore_order_by_items and explore_order_items keys !-->
-    <string name="sorted_by_full">Sorted by %1$s (%2$s)</string>
+    <string name="sorted_by_full">ממויין לפי %1$s (%2$s)</string>
     <!-- Label for an observation search filter to exclude your own observations -->
     <string name="hide_my_observations">הסתר תצפיות שלי</string>
     <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
@@ -1100,110 +1100,110 @@
     <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
     <string name="unfollow_this_observation">בטל עקיבה אחר תצפית זו</string>
     <!-- Error message shown when an attempt to follow an observation fails -->
-    <string name="could_not_follow_observation">Could not follow this observation</string>
+    <string name="could_not_follow_observation">המעקב אחרי תצפית זו נכשל</string>
     <!-- Error message shown when an attempt to unfollow an observation fails -->
-    <string name="could_not_unfollow_observation">Could not unfollow this observation</string>
+    <string name="could_not_unfollow_observation">ביטול המעקב אחרי תצפית זו נכשל</string>
     <!-- Label for a button to copy the coordinates of an observation -->
-    <string name="copy_coordinates">Copy coordinates</string>
-    <string name="coordinates_copied_to_clipboard">Coordinates copied to clipboard</string>
+    <string name="copy_coordinates">העתקת נקודות ציון</string>
+    <string name="coordinates_copied_to_clipboard">הקואורדינטות הועתקו ללוח</string>
     <!--  Title of a section on the observation detail view that displays minor metadata  -->
-    <string name="metadata">Metadata</string>
+    <string name="metadata">מטה-דאטא</string>
     <!--  iNat observation identifier  -->
-    <string name="id">ID</string>
+    <string name="id">מזהה</string>
     <!--  iNat observation Universally Unique Identifier  -->
     <string name="uuid">UUID</string>
     <!--  Universal Resource Locator  -->
     <string name="url">URL</string>
-    <string name="default_licenses">Default Licenses</string>
-    <string name="default_observation_license">Default Observation License</string>
-    <string name="default_photo_license">Default Photo License</string>
-    <string name="default_sound_license">Default Sound License</string>
-    <string name="change_existing_licenses">Change Existing Licenses</string>
-    <string name="change_licenses_for_existing_observations">Change licenses for existing observations, photos, and sounds</string>
-    <string name="change_licenses_for_all_existing_observations">Change licenses for all existing observations</string>
-    <string name="change_licenses_for_all_existing_photos">Change licenses for all existing photos</string>
-    <string name="change_licenses_for_all_existing_sounds">Change licenses for all existing sounds</string>
-    <string name="change_observation_licenses">Change Observation Licenses</string>
-    <string name="change_photo_licenses">Change Photo Licenses</string>
-    <string name="change_sound_licenses">Change Sound Licenses</string>
-    <string name="change_licenses_for_observations_confirmation"><![CDATA[Change the licenses of <b>%1$d</b> existing observations to <b>%2$s</b>?]]></string>
-    <string name="change_licenses_for_photos_confirmation"><![CDATA[Change the licenses of existing photos to <b>%1$s</b>?]]></string>
-    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Change the licenses of existing sounds to <b>%1$s</b>?]]></string>
-    <string name="observation_licenses_updated">Observation Licenses Updated</string>
-    <string name="photo_licenses_updated">Photo Licenses Updated</string>
-    <string name="sound_licenses_updated">Sound Licenses Updated</string>
-    <string name="existing_observation_licenses_have_been_updated">All existing observation licenses have been changed to %1$s.</string>
-    <string name="existing_photo_licenses_have_been_updated">All existing photo licenses have been changed to %1$s.</string>
-    <string name="existing_sound_licenses_have_been_updated">All existing sound licenses have been changed to %1$s.</string>
-    <string name="default_licenses_description"><![CDATA[Licensing your content gives anyone the legal right to use it without asking your permission if they abide by the terms of the license. In addition, iNat includes your Creative Commons-licensed content in regularly-updated archives produced for select partner organizations interested in our data. For example, we include No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC) records in the archive we generate for the <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, an international, inter-governmental organization that compiles and distributes biodiversity information from around the world.]]></string>
-    <string name="photo_license">Photo License</string>
-    <string name="sound_license">Sound License</string>
-    <string name="edit_photo_license">Edit Photo License</string>
-    <string name="observation_license">Observation License</string>
-    <string name="edit_observation_license">Edit Observation License</string>
-    <string name="about_licenses">About Licenses</string>
-    <string name="view_license">View License</string>
+    <string name="default_licenses">רישיונות ברירת המחדל</string>
+    <string name="default_observation_license">רשיון ברירת המחדל של התצפית</string>
+    <string name="default_photo_license">רשיון ברירת המחדל של תמונה</string>
+    <string name="default_sound_license">רשיון ברירת המחדל של קול</string>
+    <string name="change_existing_licenses">החלפת רשיונות קיימים</string>
+    <string name="change_licenses_for_existing_observations">שינוי רישיונות עבור תצפיות, תמונות וקולות קיימים</string>
+    <string name="change_licenses_for_all_existing_observations">שינוי רשיונות עבור כל התצפיות הקיימות</string>
+    <string name="change_licenses_for_all_existing_photos">שינוי רשיונות עבור כל התמונות הקיימות</string>
+    <string name="change_licenses_for_all_existing_sounds">שינוי רשיונות עבור כל הקולות הקיימים</string>
+    <string name="change_observation_licenses">שינוי רשיונות תצפיות</string>
+    <string name="change_photo_licenses">החלפת רשיונות תמונות</string>
+    <string name="change_sound_licenses">החלפת רשיונות קולות</string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[לשנות את הרישיונות של <b>%1$d</b> תצפיות קיימות ל-<b>%2$s</b>?]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[לשנות את הרישיונות של התמונות הקיימות ל-<b>%1$s</b>?]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[לשנות את הרישיונות של הקולות הקיימים ל-<b>%1$s</b>?]]></string>
+    <string name="observation_licenses_updated">עודכנו רשיונות תצפיות</string>
+    <string name="photo_licenses_updated">עודכנו רשיונות תמונות</string>
+    <string name="sound_licenses_updated">עודכנו רשיונות קולות</string>
+    <string name="existing_observation_licenses_have_been_updated">כל הרישיונות של התצפיות הקיימות שונו ל-%1$s.</string>
+    <string name="existing_photo_licenses_have_been_updated">כל הרישיונות של התמונות הקיימות שונו ל-%1$s.</string>
+    <string name="existing_sound_licenses_have_been_updated">כל הרישיונות של הקולות הקיימים שונו ל-%1$s.</string>
+    <string name="default_licenses_description"><![CDATA[רישוי התוכן שלך נותן לכל אחת ואחד את הזכות החוקית להשתמש בו מבלי לבקש את רשותך במידה והם שומרות ושומרים על תנאי הרישיון. נוסף על כך, iNaturalist כולל את התוכן שלך שמורשה ב-Creative Commons בארכיונים המעודכנים בקביעות אשר מופקים עבור ארגונים שותפים שמעוניינים בנתונים שלנו. למשל, אנו כוללים רישומי No Copyright (CC0), Attribution (CC BY), ו-Attribution-NonCommercial (CC BY-NC) בארכיון שאנו מייצרים עבור <a href="https://www.gbif.org/">מתקן המידע העולמי למגוון הביולוגי (GBIF)</a>, ארגון בינלאומי ובין-ממשלתי שמרכז ומפיץ מידע על המגוון הביולוגי ברחבי העולם.]]></string>
+    <string name="photo_license">רשיון תמונות</string>
+    <string name="sound_license">רשיון קול</string>
+    <string name="edit_photo_license">עריכת רישיון תמונה</string>
+    <string name="observation_license">רישיון תצפית</string>
+    <string name="edit_observation_license">עריכת רשיון תצפית</string>
+    <string name="about_licenses">אודות רישיונות</string>
+    <string name="view_license">הצגת הרישיון</string>
     <!-- License Names -->
-    <string name="license_name_cc0">Public Domain</string>
-    <string name="license_name_cc_by">Attribution</string>
+    <string name="license_name_cc0">נחלת הכלל</string>
+    <string name="license_name_cc_by">ייחוס</string>
     <string name="license_name_cc_by_nc">Attribution-NonCommercial</string>
     <string name="license_name_cc_by_nc_sa">Attribution-NonCommercial-ShareAlike</string>
     <string name="license_name_cc_by_nc_nd">Attribution-NonCommercial-NoDerivs</string>
     <string name="license_name_cc_by_nd">Attribution-NoDerivs</string>
     <string name="license_name_cc_by_sa">Attribution-ShareAlike</string>
-    <string name="license_name_no_license">All rights reserved</string>
+    <string name="license_name_no_license">כל הזכויות שמורות</string>
     <!-- License Descriptions -->
-    <string name="license_description_cc0">This license releases your work into the public domain, so others can copy, modify, distribute and perform your work, even for commercial purposes, all without asking permission or giving you credit. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.</string>
-    <string name="license_description_cc_by">This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation.</string>
-    <string name="license_description_cc_by_nc">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
-    <string name="license_description_cc_by_nc_sa">This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms.</string>
-    <string name="license_description_cc_by_nc_nd">This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can\'t change them in any way or use them commercially.</string>
-    <string name="license_description_cc_by_nd">This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.</string>
-    <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
-    <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
-    <string name="invalid_photo">Photo format not supported</string>
+    <string name="license_description_cc0">רישיון זה משחרר את עבודתך אל נחלת הכלל, כך שאחרים יכולים להעתיק, לשנות, להפיץ ולהציג את עבודתך, אפילו למטרות מסחריות, כל זה ללא בקשת רשות או מתן קרדיט. זהו הרישיון המקל ביותר. מומלץ בשביל הפצה מקסימלית ושימוש בחומרים מורשים.</string>
+    <string name="license_description_cc_by">רישיון זה מאפשר הפצה, עריכה, כוונון והרחבה של העבודה שלך, אפילו למטרות מסחריות, כל עוד ניתן לך קרדיט על היצירה המקורית.</string>
+    <string name="license_description_cc_by_nc">רישיון זה מאפשר הפצה, עריכה, כוונון והרחבה של העבודה שלך, למטרות שאינן מסחריות. למרות שהעבודות החדשות גם חייבות להכיר בך ולהיות למטרות שאינן מסחריות, רישוי העבודות הנגזרות שלהן לא חייב להיות באותם התנאים.</string>
+    <string name="license_description_cc_by_nc_sa">רישיון זה מאפשר הפצה, עריכה, כוונון והרחבה של העבודה שלך, למטרות שאינן מסחריות, כל עוד ניתן לך קרדיט ורישוי היצירות החדשות נעשה תחת תנאים זהים לעבודה שלך.</string>
+    <string name="license_description_cc_by_nc_nd">רישיון זה הוא המגביל ביותר מבין ששת הרישיונות העיקריים. הוא מאפשר לאחרים רק להוריד את עבודתך ולשתף אותה בתנאי שניתן לך קרדיט, אבל אסור לשנות אותה בשום צורה או להשתמש בה למטרות מסחריות.</string>
+    <string name="license_description_cc_by_nd">רישיון זה מאפשר הפצה מחדש, הן למטרות מסחריות והן למטרות שאינן מסחריות, כל עוד זה מועבר שלם וללא שינויים, תוך מתן קרדיט לך.</string>
+    <string name="license_description_cc_by_sa">רישיון זה מאפשר עריכה, התאמה והרחבה של העבודה שלך, אפילו למטרות מסחריות, כל עוד ניתן לך קרדיט ורישוי היצירות החדשות נעשה תחת תנאים זהים. ניתן להשוות את רישיון זה לרישיונות \"copyleft\" של תוכנת קוד פתוח וחופשי. כל עבודה חדשה שתתבסס על שלך תשא את אותו הרישיון, כך שכל הנגזרות שלה גם תאפשרנה שימוש מסחרי. זהו הרישיון הנמצא בשימוש ויקיפדיה, והוא מומלץ עבור חומרים שהיו מרוויחים משילוב תוכן מויקיפדיה ומפרויקטים בעלי רישיונות דומים. </string>
+    <string name="license_description_no_license">כל זכויות היוצרים על התוכן שלך מוחזקות על-ידך, מלבד אותן הזכויות שהוענקו ל-iNaturalist בתנאי השימוש שלנו.</string>
+    <string name="invalid_photo">פורמט תמונה לא נתמך</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
-    <string name="suggestions_based_on">Suggestions based on observations and identifications provided by the iNaturalist community, including %1$s, %2$s, %3$s, and many others.</string>
+    <string name="suggestions_based_on">הצעות המבוססות על תצפיות וזיהויים מקהילת iNaturalist, כולל %1$s, %2$s, %3$s, ורבים אחרים.</string>
     <!-- Preference to control what tapping on the action button does on My Observations -->
-    <string name="default_observation_action">Default Observation Action</string>
+    <string name="default_observation_action">פעולת ברירת מחדל לתצפית</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
-    <string name="show_options">Show Options</string>
+    <string name="show_options">הצגת אפשרויות</string>
     <!-- Placeholder text for an observation field value -->
-    <string name="field_value">Field Value</string>
-    <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
-    <string name="delete_attribute_value">Delete attribute value</string>
-    <string name="open_menu_for_more_options">Open menu for more options</string>
-    <string name="change_user_profile_photo">Change user profile photo</string>
-    <string name="expand_list">Expand list</string>
-    <string name="change_map_layers">Change map layers (terrain vs. satellite)</string>
-    <string name="redo_observation_search">Redo observation search in this map area</string>
-    <string name="view_observations_on_map">View observations on map</string>
+    <string name="field_value">ערך השדה</string>
+    <string name="expand_annotation_to_agree_or_disagree">הרחבת תווית כדי להסכים או לא להסכים</string>
+    <string name="delete_attribute_value">מחיקת ערך מאפיין</string>
+    <string name="open_menu_for_more_options">פתיחת תפריט לאפשרויות נוספות</string>
+    <string name="change_user_profile_photo">החלפת תמונת פרופיל</string>
+    <string name="expand_list">הרחבת הרשימה</string>
+    <string name="change_map_layers">שינוי שכבות מפה (פני קרקע לעומת לוויין)</string>
+    <string name="redo_observation_search">חיפוש תצפיות מחדש באזור מפה זה</string>
+    <string name="view_observations_on_map">צפייה בתצפיות על מפה</string>
     <string name="view_observations_on_grid">View observations on grid</string>
-    <string name="clear_text">Clear text</string>
-    <string name="observation_has_sounds">Observation has sounds</string>
-    <string name="go_to_my_location">Go to my current location</string>
-    <string name="change_geoprivacy">Change geoprivacy</string>
-    <string name="active_filters">Active filters</string>
-    <string name="message_is_flagged">Message is flagged</string>
-    <string name="user_is_muted">User is muted</string>
-    <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
-    <string name="delete_observations">Delete observations</string>
-    <string name="comment_count">Comment count</string>
-    <string name="id_count">Identification count</string>
-    <string name="observation_selected">Observation selected</string>
-    <string name="share_observation">Share observation</string>
-    <string name="unknown_location">Unknown location</string>
+    <string name="clear_text">ניקוי טקסט</string>
+    <string name="observation_has_sounds">תצפית עם קולות</string>
+    <string name="go_to_my_location">מעבר למיקום הנוכחי</string>
+    <string name="change_geoprivacy">שינוי פרטיות מיקום</string>
+    <string name="active_filters">מסננים פעילים</string>
+    <string name="message_is_flagged">ההודעה מסומנת</string>
+    <string name="user_is_muted">המשתמש.ת מושתק.ת</string>
+    <string name="cancel_multiple_obs_selection">ביטול בחירת תצפיות מרובות</string>
+    <string name="delete_observations">מחיקת תצפיות</string>
+    <string name="comment_count">מונה תגובות</string>
+    <string name="id_count">מונה זיהויים</string>
+    <string name="observation_selected">תצפית נבחרה</string>
+    <string name="share_observation">שיתוף תצפית</string>
+    <string name="unknown_location">מיקום לא ידוע</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
-    <string name="close">Close</string>
-    <string name="set_date2">Set date</string>
-    <string name="project_selected">Project Selected</string>
-    <string name="project_unselected">Project Unselected</string>
-    <string name="show_my_observations">Show my observations</string>
-    <string name="play_pause_sound">Play or pause sound</string>
-    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
-    <string name="view_image">View image</string>
+    <string name="close">סגירה</string>
+    <string name="set_date2">הגדרת תאריך</string>
+    <string name="project_selected">פרויקט נבחר</string>
+    <string name="project_unselected">בוטלה בחירת הפרויקט</string>
+    <string name="show_my_observations">הצגת התצפיות שלי</string>
+    <string name="play_pause_sound">הפעלת/הפסקת קול</string>
+    <string name="california_academy_of_sciences_and_national_geographic">האקדמיה למדעים של קליפורניה ונשיונל ג\'יאוגרפיק</string>
+    <string name="view_image">צפייה בתמונה</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
-    <string name="assessment_passes">Assessment passes</string>
+    <string name="assessment_passes">עובר הערכה</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
     <string name="agree_assessment_passes">Agree assessment passes</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
@@ -1211,19 +1211,19 @@
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
     <string name="disagree_assessment_passes">Disagree assessment passes</string>
     <plurals name="delete_x_selected_observations">
-        <item quantity="one">Delete %1$d selected observation</item>
-        <item quantity="two">Delete %1$d selected observations</item>
-        <item quantity="many">Delete %1$d selected observations</item>
-        <item quantity="other">Delete %1$d selected observations</item>
+        <item quantity="one">מחיקת %1$d תצפית נבחרת</item>
+        <item quantity="two">מחיקת %1$d תצפיות נבחרות</item>
+        <item quantity="many">מחיקת %1$d תצפיות נבחרות</item>
+        <item quantity="other">מחיקת %1$d תצפיות נבחרות</item>
     </plurals>
     <plurals name="sync_x_selected_observations">
-        <item quantity="one">Sync %1$d selected observation</item>
-        <item quantity="two">Sync %1$d selected observations</item>
-        <item quantity="many">Sync %1$d selected observations</item>
-        <item quantity="other">Sync %1$d selected observations</item>
+        <item quantity="one">סנכרון %1$d תצפית נבחרת </item>
+        <item quantity="two">סנכרון %1$d תצפיות נבחרות</item>
+        <item quantity="many">סנכרון %1$d תצפית נבחרת</item>
+        <item quantity="other">סנכרון %1$d תצפית נבחרת</item>
     </plurals>
-    <string name="add_media_evidence">Add media evidence</string>
-    <string name="remove_identification">Remove identification</string>
-    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
-    <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
+    <string name="add_media_evidence">הוספת ראיות בצורת מדיה</string>
+    <string name="remove_identification">הסרת זיהוי</string>
+    <string name="issue_with_updating_photos">הייתה שגיאה בעדכון התמונות בתצפית זו שנפתרה לאחרונה. נא לצאת ולהתחבר מחדש כדי לפתור בעיה זו.</string>
+    <string name="app_version_copied_to_clipboard">גרסת האפליקציה הועתקה ללוח </string>
 </resources>

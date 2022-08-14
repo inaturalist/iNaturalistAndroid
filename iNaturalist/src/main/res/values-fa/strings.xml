@@ -252,7 +252,7 @@
     <string name="first">اولین</string>
     <string name="make_first">ساخت اولین</string>
     <string name="notes">یادداشت ها</string>
-    <string name="is_captive">اسیر یا کشته شده است</string>
+    <string name="is_captive">اسیر یا اهلی شده است</string>
     <string name="location_visibility">دید موقعیت مکانی</string>
     <string name="set_location">موقعیت مکانی</string>
     <string name="coordinates_lat">عرض جغرافیایی:</string>
@@ -272,14 +272,14 @@
     <string name="observation">مشاهده</string>
     <string name="share">اشتراک گذاری</string>
     <string name="unable_to_acquire_location">به دست آوردن موقعیت مکانی ممکن نیست</string>
-    <string name="casual_grade">رتبه عادی</string>
+    <string name="casual_grade">درجه عادی</string>
     <string name="needs_id">نیاز به شناسه</string>
-    <string name="research_grade">رتبه پژوهش</string>
+    <string name="research_grade">درجه پژوهش</string>
     <string name="data_quality">کیفیت داده</string>
     <string name="casual_grade_add_location"><![CDATA[یک <b>مکان</b> اضافه کنید این مشاهده برای پیشرفت به وضعیت "شناسه نیاز دارد".]]></string>
     <string name="casual_grade_add_date"><![CDATA[یک <b>تاریخ</b> اضافه کنید این مشاهده برای پیشرفت به وضعیت "شناسه نیاز دارد".]]></string>
     <string name="casual_grade_add_photo"><![CDATA[یک <b>عکس</b> اضافه کنید این مشاهده برای پیشرفت به وضعیت "شناسه نیاز دارد".]]></string>
-    <string name="casual_grade_captive"><![CDATA[مشاهده رتبه عادی است زیرا <b>در اسارت/کشته شده</b> است.]]></string>
+    <string name="casual_grade_captive"><![CDATA[مشاهده درجه عادی است زیرا <b>در اسارت/ اهلی</b> است.]]></string>
     <string name="needs_id_more_ids"><![CDATA[مشاهده به <b>شناسایی های بیشتر</b> از جامعه نیاز دارد تا به وضعیت "درجه پژوهش" تبدیل شود.]]></string>
     <plurals name="included_in_projects">
         <item quantity="one">شامل %1$d پروژه ها</item>
@@ -475,7 +475,7 @@
     <string name="nearby">همین نزدیکی</string>
     <string name="couldnt_load_results">نتایج بارگیری نشد: %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
-    <string name="research_grade_initials">رتبه تحقیق</string>
+    <string name="research_grade_initials">درجه پژوهش</string>
     <string name="taxon_search_hint">به عنوان مثال،  پرندگان، سرآمد</string>
     <string name="location_search_hint">به عنوان مثال،  پرندگان، پادشاه</string>
     <string name="no_taxon">با عرض پوزش، تاکسون پیدا نشد</string>
@@ -836,139 +836,139 @@
     <!-- Second person hint text asking the user to enter their username -->
     <string name="type_your_username">نام کاربری خود را تایپ کنید</string>
     <string name="error_deleting_account">هنگام حذف حساب شما خطایی روی داد - لطفاً اتصال اینترنت خود را بررسی کنید</string>
-    <string name="verify_your_password">Verify Your Password</string>
-    <string name="third_party_data_sharing">Third-party Data Sharing</string>
-    <string name="disable_third_party_data_sharing">Disable Third-party Data Sharing</string>
-    <string name="do_not_collect_third_party_data">Do not collect stability and usage data using third-party services</string>
-    <string name="enabled">Enabled</string>
-    <string name="disabled">Disabled</string>
-    <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third-party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
-    <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
-    <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third-party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
-    <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
-    <string name="common_names_place"><![CDATA[Common names place: <b>%1$s</b>]]></string>
-    <string name="tap_to_prioritize_common_names">Tap to prioritize common names from a specific place.</string>
-    <string name="search_places">Search Places</string>
-    <string name="restart_app">Restart App</string>
-    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
+    <string name="verify_your_password">رمز عبور خود را تأیید کنید</string>
+    <string name="third_party_data_sharing">اشتراک گذاری داده های شخص ثالث</string>
+    <string name="disable_third_party_data_sharing">اشتراک‌گذاری داده‌های شخص ثالث را غیرفعال کنید</string>
+    <string name="do_not_collect_third_party_data">داده های پایداری و استفاده را با استفاده از خدمات شخص ثالث جمع‌آوری نکنید</string>
+    <string name="enabled">فعال شد</string>
+    <string name="disabled">غیرفعال شده</string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[ما از انواع خدمات شخص ثالث برای نظارت بر ثبات و تشخیص اشکالات و مشکلات در نرم افزار خود استفاده می کنیم.  این اشخاص ثالث عبارتند از:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>، <a href="https://  firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li  </ul>]]></string>
+    <string name="third_party_data_sharing_notes2"><![CDATA[اطلاعاتی که با این اشخاص ثالث به اشتراک می گذاریم عبارتند از:<br/><ul><li> آدرس های IP (که می توانند برای بدست آوردن موقعیت مکانی در سطح شهر و ردیابی شما در وب سایت ها و سرویس های مختلف استفاده شوند؛ توجه داشته باشید که ما فعال کرده ایم.  <a href="https://support.google.com/analytics/answer/2763052">ناشناس‌سازی IP</a> در Google Analytics و <a href="https://firebase.google.com/support/privacy  ">Firebase Crashlytics</a> آدرس IP را طبق اطلاعات ما ضبط نمی کند)</li><li>جزئیات مرورگر، مانند ساخت، مدل، و نسخه</li><li>جزئیات خرابی، مانند اینکه دقیقاً کدام خط کد  باعث خرابی شد</li><li>جزئیات دستگاه، مانند برند و مدل تلفن همراه</li></ul>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b>این خدمات شخص ثالث ارزش بسیار زیادی را برای ما در حفظ ثبات و قابلیت استفاده iNaturalist با کارکنان نسبتاً کوچک ما فراهم می‌کنند.  در دستگاه‌های تلفن همراه، تقریباً هیچ راه دیگری وجود ندارد که بتوانیم بینشی در مورد مشکلاتی که رخ می‌دهند به دست آوریم، زیرا نرم‌افزار روی دستگاه‌هایی اجرا می‌شود که ما کنترل نمی‌کنیم.  گاهی اوقات تا زمانی که آنها را در داده‌هایی که این سرویس‌ها ارائه می‌کنند نبینیم، حتی از وقوع چنین مشکلاتی آگاه نیستیم.  <b>با اشتراک گذاری این اطلاعات، به ما کمک می کنید تا به شما و کل جامعه iNaturalist خدمت کنیم.</b>]]></string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[توجه داشته باشید که این گزینه فقط برای تجزیه و تحلیل و داده های خرابی اعمال می شود که به صراحت برای این شرکت ها ارسال می کنیم.  همه سرورهای iNaturalist توسط مایکروسافت ارائه و میزبانی می شوند، همه تصاویر iNaturalist توسط آمازون میزبانی می شوند و تقریباً تمام نقشه های iNaturalist توسط Google ارائه می شوند، به این معنی که هر بار که به مشاهده ای در iNaturalist نگاه می کنید، به خدمات ارائه شده توسط این شرکت ها متصل می شوید و  آدرس IP خود را حداقل در معرض دید آنها قرار دهید (در برنامه آیفون ما از نقشه های اپل استفاده می کنیم).  iNaturalist احتمالاً بدون خدماتی که این شرکت‌ها ارائه می‌کنند وجود نخواهد داشت، و در حالی که ما می‌توانیم مقدار و نوع داده‌هایی را که با آنها به اشتراک می‌گذارید در حین استفاده از iNat محدود کنیم، نمی‌توانیم جریان داده‌ها را به طور کامل متوقف کنیم.]]></string>
+    <string name="common_names_place"><![CDATA[فهرست اسامی عامیانه: <b>%1$s</b>]]></string>
+    <string name="tap_to_prioritize_common_names">برای اولویت بندی نام های رایج از یک مکان خاص، ضربه بزنید.</string>
+    <string name="search_places">جستجوی مکان ها</string>
+    <string name="restart_app">برنامه را مجددا راه‌اندازی کنید</string>
+    <string name="disable_third_party_sharing_restart">برای غیرفعال کردن فوری اشتراک‌گذاری داده شخص ثالث، برنامه باید راه‌اندازی مجدد شود.</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
-        <item quantity="one">Are you sure you want to delete this %1$d observation?</item>
-        <item quantity="other">Are you sure you want to delete these %1$d observations?</item>
+        <item quantity="one">آیا مطمئنید که می‌خواهید این %1$d مشاهده را حذف کنید؟</item>
+        <item quantity="other">آیا مطمئنید که می خواهید این %1$d مشاهدات را حذف کنید؟</item>
     </plurals>
     <string name="future_observed_on_date_error">Your observation was created (and submitted) on %1$s, but you\'re trying to set an observation date that is later than that: %2$s</string>
-    <string name="no_more_photos_allowed">Observations can only have %1$d photos. To add more you will need to remove some.</string>
-    <string name="warning_multiple_photos">If you\'re adding photos of different kinds of organisms to this observation, or the same kind at different places or times, you should remove those photos and add them as separate observations. An observation can only have %1$d photos.</string>
-    <string name="choosing_specific_language_warning">Choosing a specific language for your account requires an Internet connection</string>
-    <string name="running_in_background_notfication">Running in the background so we can run without interruption</string>
-    <string name="opt_out_of_community_taxon">Opt out of the Community Taxon</string>
-    <string name="opt_in_to_community_taxon">Opt in to the Community Taxon</string>
-    <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
+    <string name="no_more_photos_allowed">مشاهدات فقط می توانند %1$d عکس داشته باشند.  برای افزودن موارد بیشتر، باید تعدادی را حذف کنید.</string>
+    <string name="warning_multiple_photos">اگر عکس‌هایی از انواع مختلف موجودات زنده به این مشاهده اضافه می‌کنید، یا همان نوع موجود در مکان‌ها یا زمان‌های مختلف، باید آن عکس‌ها را حذف کرده و به‌عنوان مشاهدات جداگانه اضافه کنید.  یک مشاهده فقط می تواند %1$d عکس داشته باشد.</string>
+    <string name="choosing_specific_language_warning">انتخاب یک زبان خاص برای حساب کاربری شما نیاز به اتصال اینترنت دارد</string>
+    <string name="running_in_background_notfication">در حال اجرا در پس زمینه تا بتوانیم بدون وقفه اجرا کنیم</string>
+    <string name="opt_out_of_community_taxon">از انجمن تاکسون انصراف دهید</string>
+    <string name="opt_in_to_community_taxon">در انجمن تاکسون شرکت کنید</string>
+    <string name="opt_out_message">انصراف از تاکسون انجمن این مشاهده را مجبور می‌کند تا با تاکسون شناسایی فعلی شما مرتبط شود، نه تاکسونی که از همه شناسایی‌هایی که به این مشاهدات اضافه شده‌اند به دست آمده است.  اگر تعداد کافی شناسه با شما مخالف باشد، مشاهده شما غیررسمی خواهد شد.  فقط در صورتی باید انصراف دهید که مطمئن باشید شناسایی شما صحیح است و سایر شناسایی ها نادرست هستند.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
-    <string name="permission_required">Permission Required</string>
+    <string name="permission_required">مجوز لازم است</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
-    <string name="to_access_your_location">To access your location you must grant location access permission to this app.</string>
+    <string name="to_access_your_location">برای دسترسی به موقعیت مکانی خود باید مجوز دسترسی به موقعیت مکانی را به این برنامه بدهید.</string>
     <!-- Dialog title when displaying a message that an action is not permitted -->
-    <string name="forbidden">Forbidden</string>
+    <string name="forbidden">ممنوع</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
-    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
+    <string name="app_you_shared_blocked">برنامه‌ای که از آن به اشتراک گذاشته‌اید، عکس‌هایی را ایجاد می‌کند که برای مشاهده مناسب نیستند، زیرا نشان‌دهنده تجربه شما با ارگانیسم دیگری نیستند، زیرا حاوی نام تجاری یا محتوای تجاری نامناسب هستند، یا به این دلیل که شرایط خدمات ما را به روش‌های دیگر نقض می‌کنند.</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="list_observation_checkbox_description">Checkbox for selecting observation in multi-select mode</string>
+    <string name="list_observation_checkbox_description">چک باکس برای انتخاب مشاهده در حالت انتخاب چندگانه</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="observation_list_item_iconic_pic_description">Thumbnail photo for observation taxon</string>
+    <string name="observation_list_item_iconic_pic_description">عکس کوچک برای مشاهده تاکسون</string>
     <!-- Description of a UI element for screen readers -->
-    <string name="observation_list_item_obs_pic_description">Thumbnail photo for observation</string>
-    <string name="messages">Messages</string>
-    <string name="all_messages">All Messages</string>
-    <string name="search_messages">Search messages</string>
-    <string name="no_messages">You currently have no messages. You can send a new message with the green button, or message them from their profile page.</string>
-    <string name="no_messages_found">No messages found.</string>
-    <string name="send_a_message">Send a message</string>
-    <string name="sending_message">Sending message...</string>
-    <string name="could_not_send_message">Couldn\'t send message: %1$s</string>
-    <string name="subject">Subject</string>
-    <string name="body">Body</string>
-    <string name="type_your_message_here">Type your message here</string>
-    <string name="new_message_to">New Message to %1$s</string>
-    <string name="who_would_you_like_to_send_a_message_to">Who would you like to send a message to?</string>
-    <string name="new_message">New Message</string>
-    <string name="search_for_inaturalist_users">Search for iNaturalist users</string>
-    <string name="please_sign_in_for_messages">You must be logged in to view your messages.</string>
-    <string name="sorry">Sorry</string>
-    <string name="you_must_have_three_observations">You must have three verifiable observations or three identifications for others in order to do that.</string>
-    <string name="mute_this_user">Mute this user</string>
-    <string name="unmute_this_user">Unmute this user</string>
-    <string name="flag_this_conversation">Flag this conversation</string>
-    <string name="mute_this_user_question">Mute this user?</string>
-    <string name="you_will_no_longer_receive_messages">You will no longer receive any notifications about activity from this user, including messages, comments, identifications, and mentions.</string>
-    <string name="mute">Mute</string>
-    <string name="muting_user">Muting user...</string>
-    <string name="unmuting_user">Unmuting user...</string>
-    <string name="failed_muting_user">Failed muting user!</string>
-    <string name="failed_unmuting_user">Failed unmuting user!</string>
-    <string name="flag_conversation">Flag conversation</string>
-    <string name="spam">Spam</string>
-    <string name="commercial_solicitation">Commercial solicitation, links to nowhere, etc.</string>
-    <string name="offensive_inappropriate">Offensive/Inappropriate</string>
-    <string name="misleading_or_illegal_content">Misleading or illegal content, racial or ethnic slurs, etc. For more on our definition of \"appropriate,\" see the FAQ.</string>
-    <string name="other">Other</string>
-    <string name="some_other_reason">Some other reason you can explain.</string>
-    <string name="continue_text">Continue</string>
-    <string name="why_are_you_flagging_this_item">Why are you flagging this item?</string>
-    <string name="thank_you_for_submitting_the_flag">Thank you for submitting the flag!</string>
-    <string name="flagging_conversation">Flagging conversation...</string>
-    <string name="failed_flagging_conversation">Failed flagging conversation!</string>
-    <string name="no_subject">No Subject</string>
+    <string name="observation_list_item_obs_pic_description">عکس کوچک برای مشاهده</string>
+    <string name="messages">پیام ها</string>
+    <string name="all_messages">همه پیام ها</string>
+    <string name="search_messages">جستجوی پیام ها</string>
+    <string name="no_messages">شما در حال حاضر هیچ پیامی ندارید.  می توانید با دکمه سبز پیام جدیدی ارسال کنید یا از صفحه نمایه آنها پیام دهید.</string>
+    <string name="no_messages_found">هیچ پیامی یافت نشد</string>
+    <string name="send_a_message">ارسال یک پیام</string>
+    <string name="sending_message">ارسال پیام...</string>
+    <string name="could_not_send_message">پیام ارسال نشد: %1$s</string>
+    <string name="subject">موضوع</string>
+    <string name="body">بدن</string>
+    <string name="type_your_message_here">پیام خود را اینجا تایپ کنید</string>
+    <string name="new_message_to">پیام جدید به %1$s</string>
+    <string name="who_would_you_like_to_send_a_message_to">دوست دارید برای چه کسی پیام ارسال کنید؟</string>
+    <string name="new_message">پیام جدید</string>
+    <string name="search_for_inaturalist_users">کاربران iNaturalist را جستجو کنید</string>
+    <string name="please_sign_in_for_messages">برای مشاهده پیام های خود باید وارد شوید.</string>
+    <string name="sorry">متاسف</string>
+    <string name="you_must_have_three_observations">برای انجام این کار باید سه مشاهده قابل تأیید یا سه شناسایی برای دیگران داشته باشید.</string>
+    <string name="mute_this_user">این کاربر را نادیده بگیرید</string>
+    <string name="unmute_this_user">این کاربر را باصدا کنید</string>
+    <string name="flag_this_conversation">این مکالمه را پرچم گذاری کنید</string>
+    <string name="mute_this_user_question">این کاربر بی صدا شود؟</string>
+    <string name="you_will_no_longer_receive_messages">دیگر هیچ اعلانی درباره فعالیت این کاربر، از جمله پیام‌ها، نظرات، شناسایی‌ها و اشاره‌ها دریافت نخواهید کرد.</string>
+    <string name="mute">بی صدا</string>
+    <string name="muting_user">نادیده گرفتن کاربر...</string>
+    <string name="unmuting_user">لغو نادیده گرفتن کاربر...</string>
+    <string name="failed_muting_user">نادیده گرفتن کاربر ناموفق بود!</string>
+    <string name="failed_unmuting_user">لغو نادیده کاربر ناموفق بود!</string>
+    <string name="flag_conversation">پرچم گذاری مکالمه</string>
+    <string name="spam">هرزنامه</string>
+    <string name="commercial_solicitation">درخواست تجاری، پیوند به هیچ جا و غیره.</string>
+    <string name="offensive_inappropriate">توهین آمیز / نامناسب</string>
+    <string name="misleading_or_illegal_content">محتوای گمراه‌کننده یا غیرقانونی، توهین‌های نژادی یا قومیتی، و غیره. برای اطلاعات بیشتر در مورد تعریف «مناسب»، به پرسش‌های متداول مراجعه کنید.</string>
+    <string name="other">دیگر</string>
+    <string name="some_other_reason">یک دلیل دیگر که می توانید توضیح دهید.</string>
+    <string name="continue_text">ادامه</string>
+    <string name="why_are_you_flagging_this_item">چرا این مورد را پرچم گذاری می کنید؟</string>
+    <string name="thank_you_for_submitting_the_flag">از شما برای ارسال پرچم متشکریم!</string>
+    <string name="flagging_conversation">پرچم گذاری مکالمه...</string>
+    <string name="failed_flagging_conversation">پرچم گذاری مکالمه ناموفق بود!</string>
+    <string name="no_subject">بدون موضوع</string>
     <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
-    <string name="rank_state_of_matter">State of matter</string>
-    <string name="rank_kingdom">Kingdom</string>
-    <string name="rank_subkingdom">Subkingdom</string>
-    <string name="rank_phylum">Phylum</string>
-    <string name="rank_subphylum">Subphylum</string>
-    <string name="rank_superclass">Superclass</string>
-    <string name="rank_class">Class</string>
-    <string name="rank_subclass">Subclass</string>
-    <string name="rank_infraclass">Infraclass</string>
-    <string name="rank_superorder">Superorder</string>
-    <string name="rank_order">Order</string>
-    <string name="rank_suborder">Suborder</string>
-    <string name="rank_infraorder">Infraorder</string>
-    <string name="rank_subterclass">Subterclass</string>
-    <string name="rank_parvorder">Parvorder</string>
-    <string name="rank_zoosection">Zoosection</string>
-    <string name="rank_zoosubsection">Zoosubsection</string>
-    <string name="rank_superfamily">Superfamily</string>
-    <string name="rank_epifamily">Epifamily</string>
-    <string name="rank_family">Family</string>
-    <string name="rank_subfamily">Subfamily</string>
-    <string name="rank_supertribe">Supertribe</string>
-    <string name="rank_tribe">Tribe</string>
-    <string name="rank_subtribe">Subtribe</string>
-    <string name="rank_genus">Genus</string>
-    <string name="rank_genushybrid">Genushybrid</string>
-    <string name="rank_subgenus">Subgenus</string>
-    <string name="rank_section">Section</string>
-    <string name="rank_subsection">subsection</string>
-    <string name="rank_complex">Complex</string>
+    <string name="rank_state_of_matter">حالت ماده</string>
+    <string name="rank_kingdom">پادشاهی</string>
+    <string name="rank_subkingdom">زیر فرمانرو</string>
+    <string name="rank_phylum">شاخه</string>
+    <string name="rank_subphylum">دودمان</string>
+    <string name="rank_superclass">ابَر رده</string>
+    <string name="rank_class">رده</string>
+    <string name="rank_subclass">زیر رده</string>
+    <string name="rank_infraclass">فُرورَده</string>
+    <string name="rank_superorder">میان رده</string>
+    <string name="rank_order">رسته</string>
+    <string name="rank_suborder">زیر راسته</string>
+    <string name="rank_infraorder">نا هم رگه</string>
+    <string name="rank_subterclass">خردپایان</string>
+    <string name="rank_parvorder">شریک کننده</string>
+    <string name="rank_zoosection">بخش باغ وحش</string>
+    <string name="rank_zoosubsection">زیربخش باغ وحش</string>
+    <string name="rank_superfamily">ابَر تیره</string>
+    <string name="rank_epifamily">برون تیره</string>
+    <string name="rank_family">تیره</string>
+    <string name="rank_subfamily">زیر خانواده</string>
+    <string name="rank_supertribe">ابَر خانواده</string>
+    <string name="rank_tribe">قبیله</string>
+    <string name="rank_subtribe">زیر قبیله</string>
+    <string name="rank_genus">سرده</string>
+    <string name="rank_genushybrid">دورگه</string>
+    <string name="rank_subgenus">زیر سرده</string>
+    <string name="rank_section">بخش</string>
+    <string name="rank_subsection">زیر بخش</string>
+    <string name="rank_complex">مجتمع</string>
     <!-- Singular -->
-    <string name="rank_species">Species</string>
-    <string name="rank_hybrid">Hybrid</string>
+    <string name="rank_species">گونه ها</string>
+    <string name="rank_hybrid">ترکیبی</string>
     <!-- Singular -->
-    <string name="rank_subspecies">Subspecies</string>
-    <string name="rank_variety">Variety</string>
-    <string name="rank_form">Form</string>
-    <string name="rank_infrahybrid">Infrahybrid</string>
-    <string name="rank_leaves">Leaves</string>
-    <string name="location_lat_lng">Location: %1$f, %2$f</string>
-    <string name="i_consent_process_personal_info"><![CDATA[I consent to allow iNaturalist to store and process limited kinds of personal information about me in order to manage my account. <b>Learn More</b>]]></string>
-    <string name="about_personal_information">About Personal Information</string>
-    <string name="personal_information_notes"><![CDATA[We store personal information like usernames and email addresses in order to manage accounts on this site, and to comply with privacy laws, we need you to check this box to indicate that you consent to this use of personal information. To learn more about what information we collect and how we use it, please see our <a href="https://www.inaturalist.org/privacy">Privacy Policy</a> and our <a href="https://www.inaturalist.org/terms">Terms of Service</a>.]]></string>
-    <string name="i_agree_to_tos_and_privacy"><![CDATA[I agree to the <a href="https://www.inaturalist.org/terms">Terms of Service</a> and <a href="https://www.inaturalist.org/privacy">Privacy Policy</a>, and I have reviewed the <a href="https://www.inaturalist.org/pages/community+guidelines">Community Guidelines</a>.]]></string>
-    <string name="privacy_policy">Privacy Policy</string>
-    <string name="terms_of_service">Terms of Service</string>
+    <string name="rank_subspecies">زیرگونه ها</string>
+    <string name="rank_variety">تنوع</string>
+    <string name="rank_form">فرم</string>
+    <string name="rank_infrahybrid">زیرساخت ترکیبی</string>
+    <string name="rank_leaves">برگها</string>
+    <string name="location_lat_lng">مکان: %1$f, %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[من موافقت می‌کنم که به iNaturalist اجازه می‌دهم انواع محدودی از اطلاعات شخصی من را برای مدیریت حساب من ذخیره و پردازش کند.  <b>بیشتر بیاموزید</b>]]></string>
+    <string name="about_personal_information">درباره اطلاعات شخصی</string>
+    <string name="personal_information_notes"><![CDATA[ما اطلاعات شخصی مانند نام‌های کاربری و آدرس‌های ایمیل را برای مدیریت حساب‌ها در این سایت ذخیره می‌کنیم و برای رعایت قوانین حفظ حریم خصوصی، باید این کادر را علامت بزنید تا نشان دهید که با این استفاده از اطلاعات شخصی موافقت می‌کنید.  برای کسب اطلاعات بیشتر درباره اطلاعاتی که جمع‌آوری می‌کنیم و نحوه استفاده از آن‌ها، لطفاً به <a href="https://www.inaturalist.org/privacy">خط‌مشی رازداری</a> و <a href="https:  //www.inaturalist.org/terms">شرایط خدمات</a>.]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[من با <a href="https://www.inaturalist.org/terms">شرایط خدمات</a> و <a href="https://www.inaturalist.org/privacy">خط‌مشی رازداری موافقم  </a>، و من <a href="https://www.inaturalist.org/pages/community+guidelines">دستورالعمل‌های انجمن</a> را بررسی کرده‌ام.]]></string>
+    <string name="privacy_policy">سیاست پردازش اطلاعات محرمانه</string>
+    <string name="terms_of_service">شرایط خدمات</string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
-    <string name="deleted_user">Deleted User</string>
+    <string name="deleted_user">کاربر حذف شده</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_short_this_year">MMM d</string>
+    <string name="date_short_this_year">d MMM</string>
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_short">MM/dd/yy</string>
     <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
@@ -976,238 +976,238 @@
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long">MMM d, yyyy</string>
+    <string name="date_long">ماه روز، سال</string>
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
-    <string name="show_common_names">Show common names</string>
-    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
-    <string name="email_must_look_like_email_address">Email must look like an email address</string>
-    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
-    <string name="password_too_short">Password must be at least six characters long</string>
-    <string name="switch_to_grid_view">Switch to grid view</string>
-    <string name="switch_to_list_view">Switch to list view</string>
-    <string name="remove_project_filter">Remove project filter</string>
-    <string name="remove_observer_filter">Remove observer filter</string>
-    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
-    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
-    <string name="filter_observations_by_months">Filter observations by months</string>
+    <string name="date_long_with_time">ماه روز، سال ساعت:دقیقه</string>
+    <string name="show_common_names">نمایش نام های رایج</string>
+    <string name="show_common_names_description">اگر فقط می خواهید نام های علمی را مشاهده کنید غیرفعال کنید.</string>
+    <string name="email_must_look_like_email_address">ایمیل باید شبیه یک آدرس ایمیل باشد</string>
+    <string name="username_must_begin_with">نام کاربری باید با یک حرف شروع شود، بدون فاصله باشد و فقط از حروف، اعداد، خط تیره و زیرخط استفاده کند.</string>
+    <string name="password_too_short">رمز عبور باید حداقل شش کاراکتر باشد</string>
+    <string name="switch_to_grid_view">به نمای شبکه ای بروید</string>
+    <string name="switch_to_list_view">به نمای فهرست تغییر دهید</string>
+    <string name="remove_project_filter">فیلتر پروژه را حذف کنید</string>
+    <string name="remove_observer_filter">فیلتر ناظر را بردارید</string>
+    <string name="filter_observations_by_an_exact_date">مشاهدات را بر اساس تاریخ دقیق فیلتر کنید</string>
+    <string name="filter_observations_by_a_date_range">مشاهدات را بر اساس محدوده تاریخ فیلتر کنید</string>
+    <string name="filter_observations_by_months">مشاهدات را بر اساس ماه ها فیلتر کنید</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="include_suggestions_not_seen_nearby">Include suggestions not seen nearby</string>
-    <string name="only_view_nearby_suggestions">Only view nearby suggestions</string>
-    <string name="suggestions_source">Suggestions Source</string>
-    <string name="research_grade_observations">Research Grade Observations</string>
-    <string name="visually_similar_description">iNaturalist will provide suggestions based on how visually similar the images are to those of species observed near this location at this time of year.</string>
-    <string name="research_grade_observations_description">Instead of visually similar suggestions, iNaturalist will suggest species observed in a specific place and within a specific taxonomic group.</string>
-    <string name="taxon">Taxon:</string>
-    <string name="place">Place:</string>
-    <string name="pretty_sure_kingdom">We\'re pretty sure it\'s in this kingdom:</string>
-    <string name="pretty_sure_subkingdom">We\'re pretty sure it\'s in this subkingdom:</string>
-    <string name="pretty_sure_phylum">We\'re pretty sure it\'s in this phylum:</string>
-    <string name="pretty_sure_subphylum">We\'re pretty sure it\'s in this subphylum:</string>
-    <string name="pretty_sure_superclass">We\'re pretty sure it\'s in this superclass:</string>
-    <string name="pretty_sure_class">We\'re pretty sure it\'s in this class:</string>
-    <string name="pretty_sure_subclass">We\'re pretty sure it\'s in this subclass:</string>
-    <string name="pretty_sure_infraclass">We\'re pretty sure it\'s in this infraclass:</string>
-    <string name="pretty_sure_superorder">We\'re pretty sure it\'s in this superorder:</string>
-    <string name="pretty_sure_order">We\'re pretty sure it\'s in this order:</string>
-    <string name="pretty_sure_suborder">We\'re pretty sure it\'s in this suborder:</string>
-    <string name="pretty_sure_infraorder">We\'re pretty sure it\'s in this infraorder:</string>
-    <string name="pretty_sure_subterclass">We\'re pretty sure it\'s in this subterclass:</string>
-    <string name="pretty_sure_parvorder">We\'re pretty sure it\'s in this parvorder:</string>
-    <string name="pretty_sure_zoosection">We\'re pretty sure it\'s in this zoosection:</string>
-    <string name="pretty_sure_zoosubsection">We\'re pretty sure it\'s in this zoosubsection:</string>
-    <string name="pretty_sure_superfamily">We\'re pretty sure it\'s in this superfamily:</string>
-    <string name="pretty_sure_epifamily">We\'re pretty sure it\'s in this epifamily:</string>
-    <string name="pretty_sure_family">We\'re pretty sure it\'s in this family:</string>
-    <string name="pretty_sure_subfamily">We\'re pretty sure it\'s in this subfamily:</string>
-    <string name="pretty_sure_supertribe">We\'re pretty sure it\'s in this supertribe:</string>
-    <string name="pretty_sure_tribe">We\'re pretty sure it\'s in this tribe:</string>
-    <string name="pretty_sure_subtribe">We\'re pretty sure it\'s in this subtribe:</string>
-    <string name="pretty_sure_genus">We\'re pretty sure it\'s in this genus:</string>
-    <string name="pretty_sure_genushybrid">We\'re pretty sure it\'s in this genushybrid:</string>
-    <string name="pretty_sure_subgenus">We\'re pretty sure it\'s in this subgenus:</string>
-    <string name="pretty_sure_section">We\'re pretty sure it\'s in this section:</string>
-    <string name="pretty_sure_subsection">We\'re pretty sure it\'s in this subsection:</string>
-    <string name="pretty_sure_complex">We\'re pretty sure it\'s in this complex:</string>
+    <string name="include_suggestions_not_seen_nearby">شامل پیشنهاداتی که در این نزدیکی دیده نمی شوند</string>
+    <string name="only_view_nearby_suggestions">فقط پیشنهادهای نزدیک را مشاهده کنید</string>
+    <string name="suggestions_source">منبع پیشنهادها</string>
+    <string name="research_grade_observations">مشاهدات درجه تحقیق</string>
+    <string name="visually_similar_description">iNaturalist پیشنهاداتی را بر اساس شباهت بصری تصاویر به گونه‌های مشاهده شده در نزدیکی این مکان در این زمان از سال ارائه خواهد کرد.</string>
+    <string name="research_grade_observations_description">به جای پیشنهادها بصری مشابه، iNaturalist گونه هایی را پیشنهاد می کند که در یک مکان خاص و در یک گروه طبقه‌بندی خاص مشاهده شده اند.</string>
+    <string name="taxon">تاکسون:</string>
+    <string name="place">مکان:</string>
+    <string name="pretty_sure_kingdom">ما تقریباً مطمئن هستیم که در این قلمرو پادشاهی است:</string>
+    <string name="pretty_sure_subkingdom">ما تقریباً مطمئن هستیم که در این زیرقلمرو وجود دارد:</string>
+    <string name="pretty_sure_phylum">ما تقریباً مطمئن هستیم که در این شاخه قرار دارد:</string>
+    <string name="pretty_sure_subphylum">ما تقریباً مطمئن هستیم که در این زیرشاخه قرار دارد:</string>
+    <string name="pretty_sure_superclass">ما تقریباً مطمئن هستیم که در این ابَر رده است:</string>
+    <string name="pretty_sure_class">ما تقریباً مطمئن هستیم که در این رده است:</string>
+    <string name="pretty_sure_subclass">ما تقریباً مطمئن هستیم که در این زیر رده است:</string>
+    <string name="pretty_sure_infraclass">ما تقریباً مطمئن هستیم که در این فُرورَده است:</string>
+    <string name="pretty_sure_superorder">ما تقریباً مطمئن هستیم که در این ابَر راسته است:</string>
+    <string name="pretty_sure_order">ما تقریباً مطمئن هستیم که در این راسته است:</string>
+    <string name="pretty_sure_suborder">ما تقریباً مطمئن هستیم که در این زیر راسته است:</string>
+    <string name="pretty_sure_infraorder">ما تقریباً مطمئن هستیم که در این نا هم رگه است:</string>
+    <string name="pretty_sure_subterclass">ما تقریباً مطمئن هستیم که در این زیر رده قرار دارد:</string>
+    <string name="pretty_sure_parvorder">ما تقریباً مطمئن هستیم که در این فُروراسته وجود دارد:</string>
+    <string name="pretty_sure_zoosection">ما تقریباً مطمئن هستیم که در این بخش باغ وحش وجود دارد:</string>
+    <string name="pretty_sure_zoosubsection">ما تقریباً مطمئن هستیم که در این زیربخش باغ وحش وجود دارد:</string>
+    <string name="pretty_sure_superfamily">ما تقریباً مطمئن هستیم که در این ابَرخانواده است:</string>
+    <string name="pretty_sure_epifamily">ما تقریباً مطمئن هستیم که در این برون خانواده وجود دارد:</string>
+    <string name="pretty_sure_family">ما تقریباً مطمئن هستیم که در این خانواده است:</string>
+    <string name="pretty_sure_subfamily">ما تقریباً مطمئن هستیم که در این زیرخانواده است:</string>
+    <string name="pretty_sure_supertribe">ما تقریباً مطمئن هستیم که در این ابَر قبیله است:</string>
+    <string name="pretty_sure_tribe">ما تقریباً مطمئن هستیم که در این قبیله است:</string>
+    <string name="pretty_sure_subtribe">ما تقریباً مطمئن هستیم که در این زیر قبیله است:</string>
+    <string name="pretty_sure_genus">ما تقریباً مطمئن هستیم که در این جنس است:</string>
+    <string name="pretty_sure_genushybrid">ما تقریباً مطمئن هستیم که در این ترکیب جنس وجود دارد:</string>
+    <string name="pretty_sure_subgenus">ما تقریباً مطمئن هستیم که در این زیرسرده است:</string>
+    <string name="pretty_sure_section">ما تقریباً مطمئن هستیم که در این بخش است:</string>
+    <string name="pretty_sure_subsection">ما تقریباً مطمئن هستیم که در این زیربخش است:</string>
+    <string name="pretty_sure_complex">ما تقریباً مطمئن هستیم که در این مجموعه است:</string>
     <!-- Singular -->
-    <string name="pretty_sure_species">We\'re pretty sure it\'s in this species:</string>
-    <string name="pretty_sure_hybrid">We\'re pretty sure it\'s in this hybrid:</string>
+    <string name="pretty_sure_species">ما تقریباً مطمئن هستیم که در این گونه است:</string>
+    <string name="pretty_sure_hybrid">ما تقریباً مطمئن هستیم که در این ترکیب است:</string>
     <!-- Singular -->
-    <string name="pretty_sure_subspecies">We\'re pretty sure it\'s in this subspecies:</string>
-    <string name="pretty_sure_variety">We\'re pretty sure it\'s in this variety:</string>
-    <string name="pretty_sure_form">We\'re pretty sure it\'s in this form:</string>
-    <string name="pretty_sure_infrahybrid">We\'re pretty sure it\'s in this infrahybrid:</string>
-    <string name="remove_date_observed">Remove date &amp; time observed</string>
-    <string name="remove_time_observed">Remove time observed</string>
-    <string name="remove_location">Remove location</string>
-    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
-    <string name="share_location">Share Location</string>
-    <string name="share_hidden_location">Share Hidden Location</string>
+    <string name="pretty_sure_subspecies">ما تقریباً مطمئن هستیم که در این زیرگونه است:</string>
+    <string name="pretty_sure_variety">ما تقریباً مطمئن هستیم که در این واریته است:</string>
+    <string name="pretty_sure_form">ما تقریباً مطمئن هستیم که به این شکل است:</string>
+    <string name="pretty_sure_infrahybrid">ما تقریباً مطمئن هستیم که در این فُرو ترکیب وجود دارد:</string>
+    <string name="remove_date_observed">حذف تاریخ &amp;  زمان مشاهده شده</string>
+    <string name="remove_time_observed">زمان مشاهده شده را حذف کنید</string>
+    <string name="remove_location">حذف مکان</string>
+    <string name="are_you_sure_you_want_to_remove_date">آیا مطمئن هستید که می خواهید تاریخ را حذف کنید &amp;  زمان مشاهده شده؟</string>
+    <string name="are_you_sure_you_want_to_remove_time">آیا مطمئن هستید که می خواهید زمان مشاهده شده را حذف کنید؟</string>
+    <string name="are_you_sure_you_want_to_remove_location">آیا مطمئن هستید که می خواهید مکان را حذف کنید؟</string>
+    <string name="share_location">اشتراک گذاری مکان</string>
+    <string name="share_hidden_location">مکان پنهان را به اشتراک بگذارید</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
-    <string name="couldnt_duplicate_sound">Couldn\'t duplicate sound!</string>
-    <string name="sound_format_not_supported">That audio encoding is not supported by Android.</string>
-    <string name="view_observations">View Observations</string>
-    <string name="choose_this_option">Choose this option</string>
-    <string name="compare_observation_with_this_option">Compare observation with this option</string>
-    <string name="go_back">Go back</string>
-    <string name="change_the_source_of_the_suggestions">Change the source of the suggestions</string>
-    <string name="thumbnail_photo_for_suggested_taxon">Thumbnail photo for suggested taxon</string>
+    <string name="couldnt_duplicate_sound">صدا کپی نشد!</string>
+    <string name="sound_format_not_supported">آن کدگذاری صوتی توسط Android پشتیبانی نمی شود.</string>
+    <string name="view_observations">مشاهده مشاهدات</string>
+    <string name="choose_this_option">این گزینه را انتخاب کنید</string>
+    <string name="compare_observation_with_this_option">مشاهده را با این گزینه مقایسه کنید</string>
+    <string name="go_back">برگرد</string>
+    <string name="change_the_source_of_the_suggestions">منبع پیشنهادها را تغییر دهید</string>
+    <string name="thumbnail_photo_for_suggested_taxon">عکس کوچک برای تاکسون پیشنهادی</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
-    <string name="comments_ids_title">Comments and Identifications</string>
+    <string name="comments_ids_title">نظرات و شناسایی ها</string>
     <!-- Accessibility text for the faves tab on the observation detail view -->
-    <string name="faves">Faves</string>
+    <string name="faves">مورد علاقه ها</string>
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
-    <string name="previous_option">Previous Option</string>
+    <string name="previous_option">گزینه قبلی</string>
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
-    <string name="next_option">Next Option</string>
-    <string name="no_observations_yet2">No observations yet.</string>
-    <string name="no_species_yet">No species yet.</string>
-    <string name="no_identifications_yet">No identifications yet.</string>
-    <string name="sort_by">Sort By</string>
+    <string name="next_option">گزینه بعدی</string>
+    <string name="no_observations_yet2">هنوز مشاهداتی وجود ندارد.</string>
+    <string name="no_species_yet">هنوز هیچ گونه ای وجود ندارد.</string>
+    <string name="no_identifications_yet">هنوز هیچ شناسایی وجود ندارد.</string>
+    <string name="sort_by">مرتب‌سازی بر اساس</string>
     <string-array name="explore_order_by_items">
-        <item>Date Added</item>
-        <item>Date Observed</item>
-        <item>Date Updated</item>
+        <item>تاریخ اضافه شده</item>
+        <item>تاریخ مشاهده</item>
+        <item>تاریخ به روز رسانی</item>
         <!--<item>Faves</item>-->
-        <item>Random</item>
+        <item>تصادفی</item>
     </string-array>
     <string-array name="explore_order_items">
-        <item>Descending</item>
-        <item>Ascending</item>
+        <item>نزولی</item>
+        <item>صعودی</item>
     </string-array>
     <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
     See explore_order_by_items and explore_order_items keys !-->
-    <string name="sorted_by_full">Sorted by %1$s (%2$s)</string>
+    <string name="sorted_by_full">مرتب شده بر اساس %1$s (%2$s)</string>
     <!-- Label for an observation search filter to exclude your own observations -->
-    <string name="hide_my_observations">Hide My Observations</string>
+    <string name="hide_my_observations">پنهان کردن مشاهدات من</string>
     <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
-    <string name="follow_this_observation">Follow this Observation</string>
+    <string name="follow_this_observation">این مشاهده را دنبال کنید</string>
     <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
-    <string name="unfollow_this_observation">Unfollow this Observation</string>
+    <string name="unfollow_this_observation">این مشاهده را لغو دنبال کنید</string>
     <!-- Error message shown when an attempt to follow an observation fails -->
-    <string name="could_not_follow_observation">Could not follow this observation</string>
+    <string name="could_not_follow_observation">نمی توان این مشاهده را دنبال کرد</string>
     <!-- Error message shown when an attempt to unfollow an observation fails -->
-    <string name="could_not_unfollow_observation">Could not unfollow this observation</string>
+    <string name="could_not_unfollow_observation">نمی توان این مشاهده را لغو کرد</string>
     <!-- Label for a button to copy the coordinates of an observation -->
-    <string name="copy_coordinates">Copy coordinates</string>
-    <string name="coordinates_copied_to_clipboard">Coordinates copied to clipboard</string>
+    <string name="copy_coordinates">کپی مختصات</string>
+    <string name="coordinates_copied_to_clipboard">مختصات در حافظه موقت کپی شد</string>
     <!--  Title of a section on the observation detail view that displays minor metadata  -->
-    <string name="metadata">Metadata</string>
+    <string name="metadata">متادیتا</string>
     <!--  iNat observation identifier  -->
-    <string name="id">ID</string>
+    <string name="id">شناسه</string>
     <!--  iNat observation Universally Unique Identifier  -->
-    <string name="uuid">UUID</string>
+    <string name="uuid">شناسه منحصر به فرد همگانی</string>
     <!--  Universal Resource Locator  -->
-    <string name="url">URL</string>
-    <string name="default_licenses">Default Licenses</string>
-    <string name="default_observation_license">Default Observation License</string>
-    <string name="default_photo_license">Default Photo License</string>
-    <string name="default_sound_license">Default Sound License</string>
-    <string name="change_existing_licenses">Change Existing Licenses</string>
-    <string name="change_licenses_for_existing_observations">Change licenses for existing observations, photos, and sounds</string>
-    <string name="change_licenses_for_all_existing_observations">Change licenses for all existing observations</string>
-    <string name="change_licenses_for_all_existing_photos">Change licenses for all existing photos</string>
-    <string name="change_licenses_for_all_existing_sounds">Change licenses for all existing sounds</string>
-    <string name="change_observation_licenses">Change Observation Licenses</string>
-    <string name="change_photo_licenses">Change Photo Licenses</string>
-    <string name="change_sound_licenses">Change Sound Licenses</string>
-    <string name="change_licenses_for_observations_confirmation"><![CDATA[Change the licenses of <b>%1$d</b> existing observations to <b>%2$s</b>?]]></string>
-    <string name="change_licenses_for_photos_confirmation"><![CDATA[Change the licenses of existing photos to <b>%1$s</b>?]]></string>
-    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Change the licenses of existing sounds to <b>%1$s</b>?]]></string>
-    <string name="observation_licenses_updated">Observation Licenses Updated</string>
-    <string name="photo_licenses_updated">Photo Licenses Updated</string>
-    <string name="sound_licenses_updated">Sound Licenses Updated</string>
-    <string name="existing_observation_licenses_have_been_updated">All existing observation licenses have been changed to %1$s.</string>
-    <string name="existing_photo_licenses_have_been_updated">All existing photo licenses have been changed to %1$s.</string>
-    <string name="existing_sound_licenses_have_been_updated">All existing sound licenses have been changed to %1$s.</string>
-    <string name="default_licenses_description"><![CDATA[Licensing your content gives anyone the legal right to use it without asking your permission if they abide by the terms of the license. In addition, iNat includes your Creative Commons-licensed content in regularly-updated archives produced for select partner organizations interested in our data. For example, we include No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC) records in the archive we generate for the <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, an international, inter-governmental organization that compiles and distributes biodiversity information from around the world.]]></string>
-    <string name="photo_license">Photo License</string>
-    <string name="sound_license">Sound License</string>
-    <string name="edit_photo_license">Edit Photo License</string>
-    <string name="observation_license">Observation License</string>
-    <string name="edit_observation_license">Edit Observation License</string>
-    <string name="about_licenses">About Licenses</string>
-    <string name="view_license">View License</string>
+    <string name="url">نشانی اینترنتی</string>
+    <string name="default_licenses">مجوز های پیش فرض</string>
+    <string name="default_observation_license">مجوز مشاهده پیش فرض</string>
+    <string name="default_photo_license">مجوز پیش فرض عکس</string>
+    <string name="default_sound_license">مجوز پیش فرض صدا</string>
+    <string name="change_existing_licenses">تغییر مجوزهای موجود</string>
+    <string name="change_licenses_for_existing_observations">مجوزها را برای مشاهدات، عکس ها و صداهای موجود تغییر دهید</string>
+    <string name="change_licenses_for_all_existing_observations">مجوزها را برای همه مشاهدات موجود تغییر دهید</string>
+    <string name="change_licenses_for_all_existing_photos">تغییر مجوز برای همه عکس های موجود</string>
+    <string name="change_licenses_for_all_existing_sounds">مجوزها را برای همه صداهای موجود تغییر دهید</string>
+    <string name="change_observation_licenses">تغییر مجوزهای مشاهده</string>
+    <string name="change_photo_licenses">مجوزهای عکس را تغییر دهید</string>
+    <string name="change_sound_licenses">مجوزهای صدا را تغییر دهید</string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[مجوزهای <b>%1$d</b> مشاهدات موجود را به <b>%2$s</b> تغییر دهید؟]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[مجوز عکس‌های موجود را به <b>%1$s</b> تغییر دهید؟]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[مجوزهای صداهای موجود را به <b>%1$s</b> تغییر دهید؟]]></string>
+    <string name="observation_licenses_updated">مجوزهای مشاهده به روز شد</string>
+    <string name="photo_licenses_updated">مجوزهای عکس به روز شد</string>
+    <string name="sound_licenses_updated">مجوزهای صدا به روز شد</string>
+    <string name="existing_observation_licenses_have_been_updated">همه مجوزهای مشاهده موجود به %1$s تغییر یافته است.</string>
+    <string name="existing_photo_licenses_have_been_updated">همه مجوزهای عکس موجود به %1$s تغییر یافته است.</string>
+    <string name="existing_sound_licenses_have_been_updated">همه مجوزهای صوتی موجود به %1$s تغییر یافته است.</string>
+    <string name="default_licenses_description"><![CDATA[مجوز دادن به محتوای شما به هر کس حق قانونی برای استفاده از آن را می‌دهد بدون این که از شما اجازه بخواهد که از شرایط مجوز تبعیت کنند. علاوه بر این، inat شامل محتوای غیر مجاز شما در بایگانی منظم تولید شده برای انتخاب سازمان‌های شریک علاقه‌مند به داده‌های ما می‌شود. به عنوان مثال، ما نه حق نسخه‌برداری (CC۰)، اسناد (CC به وسیله)، و اسناد اسناد (CC - NC)در بایگانی که برای the (href)< / a >، یک سازمان بین‌المللی، بین دولتی که گردآوری و توزیع می‌کند و اطلاعات گوناگونی را از سراسر جهان توزیع می‌کند.]]></string>
+    <string name="photo_license">مجوز عکس</string>
+    <string name="sound_license">مجوز صدا</string>
+    <string name="edit_photo_license">ویرایش مجوز عکس</string>
+    <string name="observation_license">مجوز مشاهده</string>
+    <string name="edit_observation_license">ویرایش مجوز مشاهده</string>
+    <string name="about_licenses">درباره مجوزها</string>
+    <string name="view_license">مشاهده مجوز</string>
     <!-- License Names -->
-    <string name="license_name_cc0">Public Domain</string>
-    <string name="license_name_cc_by">Attribution</string>
-    <string name="license_name_cc_by_nc">Attribution-NonCommercial</string>
-    <string name="license_name_cc_by_nc_sa">Attribution-NonCommercial-ShareAlike</string>
-    <string name="license_name_cc_by_nc_nd">Attribution-NonCommercial-NoDerivs</string>
-    <string name="license_name_cc_by_nd">Attribution-NoDerivs</string>
-    <string name="license_name_cc_by_sa">Attribution-ShareAlike</string>
-    <string name="license_name_no_license">All rights reserved</string>
+    <string name="license_name_cc0">دامنه عمومی</string>
+    <string name="license_name_cc_by">ارجاع</string>
+    <string name="license_name_cc_by_nc">ارجاع-غیر تجاری</string>
+    <string name="license_name_cc_by_nc_sa">ارجاع-غیرتجاری-اشتراک همسان</string>
+    <string name="license_name_cc_by_nc_nd">ارجاع-غیرتجاری-بدون اشتقاق</string>
+    <string name="license_name_cc_by_nd">ارجاع-بدون اشتقاق</string>
+    <string name="license_name_cc_by_sa">ارجاع-اشتراک همسان</string>
+    <string name="license_name_no_license">تمامی حقوق محفوظ است</string>
     <!-- License Descriptions -->
-    <string name="license_description_cc0">This license releases your work into the public domain, so others can copy, modify, distribute and perform your work, even for commercial purposes, all without asking permission or giving you credit. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.</string>
-    <string name="license_description_cc_by">This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation.</string>
-    <string name="license_description_cc_by_nc">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
-    <string name="license_description_cc_by_nc_sa">This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms.</string>
-    <string name="license_description_cc_by_nc_nd">This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can\'t change them in any way or use them commercially.</string>
-    <string name="license_description_cc_by_nd">This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.</string>
-    <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
-    <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
-    <string name="invalid_photo">Photo format not supported</string>
+    <string name="license_description_cc0">این مجوز کار شما را در مالکیت عمومی منتشر می‌کند، بنابراین دیگران می‌توانند کار شما را حتی برای مقاصد تجاری، کپی، اصلاح، توزیع و انجام دهند، همه اینها بدون درخواست اجازه یا دادن اعتبار به شما.  این سازگارترین مجوز ارائه شده است.  برای حداکثر انتشار و استفاده از مواد دارای مجوز توصیه می شود.</string>
+    <string name="license_description_cc_by">این مجوز امکان کپی، نشر، نمایش و اجرا اثر و آثار اشتقاقی آن را می‌دهد فقط در صورتی که حق تعیین نحوهٔ استفاده برای مجوز دهنده یا پدیدآورنده اثر محفوظ باشد.</string>
+    <string name="license_description_cc_by_nc">این مجوز تنها برای مقاصد غیر تجاری امکان کپی، نشر، نمایش و اجرا اثر و آثار اشتقاقی آن را می‌دهد.</string>
+    <string name="license_description_cc_by_nc_sa">این مجوز به دیگران اجازه می‌دهد تا کارهای شما را به صورت غیرتجاری بازسازی کنند، تغییر دهند و بر اساس آن بسازند، تا زمانی که به شما اعتبار می‌دهند و آثار جدید خود را تحت شرایط یکسان مجوز می‌دهند.</string>
+    <string name="license_description_cc_by_nc_nd">این مجوز محدودترین مجوز از شش مجوز اصلی است و فقط به دیگران اجازه می‌دهد تا زمانی که به شما اعتبار می‌دهند آثار شما را دانلود کرده و با دیگران به اشتراک بگذارند، اما به هیچ وجه نمی‌توانند آن‌ها را تغییر دهند یا از آنها استفاده تجاری کنند.</string>
+    <string name="license_description_cc_by_nd">این مجوز امکان کپی، نشر، نمایش و اجرا اثر را می‌دهد فقط در صورتی که اثر اقتباسی از آن تهیه نشود.</string>
+    <string name="license_description_cc_by_sa">این مجوز امکان کپی، نشر، نمایش و اجرا اثر و آثار اشتقاقی آن را می‌دهد فقط در صورتی که مجوز استفاده همانند اثر اصلی باشد.</string>
+    <string name="license_description_no_license">شما حق چاپ کامل محتوای خود را به غیر از حقوقی که در شرایط خدمات ما به iNaturalist اعطا شده است، حفظ می کنید.</string>
+    <string name="invalid_photo">قالب عکس پشتیبانی نمی شود</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
-    <string name="suggestions_based_on">Suggestions based on observations and identifications provided by the iNaturalist community, including %1$s, %2$s, %3$s, and many others.</string>
+    <string name="suggestions_based_on">پیشنهادها مبتنی بر مشاهدات و شناسایی های ارائه شده توسط جامعه iNaturalist، از جمله %1$s، %2$s، %3$s، و بسیاری دیگر.</string>
     <!-- Preference to control what tapping on the action button does on My Observations -->
-    <string name="default_observation_action">Default Observation Action</string>
+    <string name="default_observation_action">عملکرد مشاهده پیش فرض</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
-    <string name="show_options">Show Options</string>
+    <string name="show_options">نمایش گزینه ها</string>
     <!-- Placeholder text for an observation field value -->
-    <string name="field_value">Field Value</string>
-    <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
-    <string name="delete_attribute_value">Delete attribute value</string>
-    <string name="open_menu_for_more_options">Open menu for more options</string>
-    <string name="change_user_profile_photo">Change user profile photo</string>
-    <string name="expand_list">Expand list</string>
-    <string name="change_map_layers">Change map layers (terrain vs. satellite)</string>
-    <string name="redo_observation_search">Redo observation search in this map area</string>
-    <string name="view_observations_on_map">View observations on map</string>
-    <string name="view_observations_on_grid">View observations on grid</string>
-    <string name="clear_text">Clear text</string>
-    <string name="observation_has_sounds">Observation has sounds</string>
-    <string name="go_to_my_location">Go to my current location</string>
-    <string name="change_geoprivacy">Change geoprivacy</string>
-    <string name="active_filters">Active filters</string>
-    <string name="message_is_flagged">Message is flagged</string>
-    <string name="user_is_muted">User is muted</string>
-    <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
-    <string name="delete_observations">Delete observations</string>
-    <string name="comment_count">Comment count</string>
-    <string name="id_count">Identification count</string>
-    <string name="observation_selected">Observation selected</string>
-    <string name="share_observation">Share observation</string>
-    <string name="unknown_location">Unknown location</string>
+    <string name="field_value">ارزش مِیدانی</string>
+    <string name="expand_annotation_to_agree_or_disagree">تفسیر را برای موافقت یا مخالفت گسترش دهید</string>
+    <string name="delete_attribute_value">مقدار ویژگی را حذف کنید</string>
+    <string name="open_menu_for_more_options">فهرست انتخاب را برای گزینه های بیشتر باز کنید</string>
+    <string name="change_user_profile_photo">تغییر عکس نمایه کاربر</string>
+    <string name="expand_list">گسترش لیست</string>
+    <string name="change_map_layers">تغییر لایه های نقشه (عوارض زمین در مقابل ماهواره)</string>
+    <string name="redo_observation_search">جستجوی مشاهده را در این منطقه نقشه دوباره انجام دهید</string>
+    <string name="view_observations_on_map">مشاهده مشاهدات روی نقشه</string>
+    <string name="view_observations_on_grid">مشاهده مشاهدات روی شبکه</string>
+    <string name="clear_text">متن را پاک کنید</string>
+    <string name="observation_has_sounds">مشاهده صداهایی دارد</string>
+    <string name="go_to_my_location">به مکان فعلی من بروید</string>
+    <string name="change_geoprivacy">حریم خصوصی جغرافیایی را تغییر دهید</string>
+    <string name="active_filters">فیلترهای فعال</string>
+    <string name="message_is_flagged">پیام پرچم گذاری شده است</string>
+    <string name="user_is_muted">کاربر بی صدا شده است</string>
+    <string name="cancel_multiple_obs_selection">لغو انتخاب مشاهده چندگانه</string>
+    <string name="delete_observations">حذف مشاهدات</string>
+    <string name="comment_count">تعداد نظرات</string>
+    <string name="id_count">شمارش شناسایی</string>
+    <string name="observation_selected">مشاهده انتخاب شد</string>
+    <string name="share_observation">مشاهده را به اشتراک بگذارید</string>
+    <string name="unknown_location">مکان نامعلوم</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
-    <string name="close">Close</string>
-    <string name="set_date2">Set date</string>
-    <string name="project_selected">Project Selected</string>
-    <string name="project_unselected">Project Unselected</string>
-    <string name="show_my_observations">Show my observations</string>
-    <string name="play_pause_sound">Play or pause sound</string>
-    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
-    <string name="view_image">View image</string>
+    <string name="close">بستن</string>
+    <string name="set_date2">تنظیم تاریخ</string>
+    <string name="project_selected">پروژه انتخاب شد</string>
+    <string name="project_unselected">پروژه انتخاب نشده است</string>
+    <string name="show_my_observations">مشاهدات من را نشان دهید</string>
+    <string name="play_pause_sound">پخش یا مکث صدا</string>
+    <string name="california_academy_of_sciences_and_national_geographic">آکادمی علوم کالیفرنیا و نشنال جئوگرافیک</string>
+    <string name="view_image">مشاهده تصویر</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
-    <string name="assessment_passes">Assessment passes</string>
+    <string name="assessment_passes">پاس های ارزیابی</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
-    <string name="agree_assessment_passes">Agree assessment passes</string>
+    <string name="agree_assessment_passes">پاس های ارزیابی موافق</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
-    <string name="does_not_pass_assessment">Does not pass assessment</string>
+    <string name="does_not_pass_assessment">ارزیابی را پاس نمی کند</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
-    <string name="disagree_assessment_passes">Disagree assessment passes</string>
+    <string name="disagree_assessment_passes">پاس های ارزیابی مخالف</string>
     <plurals name="delete_x_selected_observations">
-        <item quantity="one">Delete %1$d selected observation</item>
-        <item quantity="other">Delete %1$d selected observations</item>
+        <item quantity="one">%1$d مشاهده انتخابی را حذف کنید</item>
+        <item quantity="other">%1$d مشاهدات انتخابی را حذف کنید</item>
     </plurals>
     <plurals name="sync_x_selected_observations">
-        <item quantity="one">Sync %1$d selected observation</item>
-        <item quantity="other">Sync %1$d selected observations</item>
+        <item quantity="one">%1$d مشاهده انتخابی را همگام‌سازی کنید</item>
+        <item quantity="other">%1$d مشاهدات انتخابی را همگام‌سازی کنید</item>
     </plurals>
-    <string name="add_media_evidence">Add media evidence</string>
-    <string name="remove_identification">Remove identification</string>
-    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
-    <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
+    <string name="add_media_evidence">شواهد رسانه ای را اضافه کنید</string>
+    <string name="remove_identification">حذف شناسایی</string>
+    <string name="issue_with_updating_photos">مشکلی در به‌روزرسانی عکس‌ها در این مشاهده وجود داشت که اخیراً برطرف شده است.  لطفاً برای حل این مشکل از سیستم خارج شوید و دوباره وارد شوید.</string>
+    <string name="app_version_copied_to_clipboard">نسخه برنامه در حافظه موقت کپی شد</string>
 </resources>

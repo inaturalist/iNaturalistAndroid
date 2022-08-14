@@ -372,7 +372,7 @@
     <string name="your_identification">Meghatározásod: %1$s </string>
     <string name="onboarding_species_name">Ha felismered amit láttál, add meg a nevét (pl. pitypang, rovar), vagy hagyd üresen. Mások segíteni fognak ebben.</string>
     <string name="upload_complete">A feltöltés sikeres</string>
-    <string name="onboarding_upload_description">Nézz vissza hamarosan a megfigyelése(i)dre érkezett hozzászólásokra és meghatározásokra.</string>
+    <string name="onboarding_upload_description">Nézz vissza hamarosan a megfigyeléseidre érkezett meghatározásokra és hozzászólásokra.</string>
     <string name="importing_photos">Fénykép(ek) importálása...</string>
     <string name="multi_select_description">A fényképet nyomvatartva több fényképet is importálhatsz. </string>
     <string name="preparing_photo">Fénykép előkészítése</string>
