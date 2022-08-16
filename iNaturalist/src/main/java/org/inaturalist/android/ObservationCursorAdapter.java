@@ -309,7 +309,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         if (onlinePc != null) {
             onlinePc.moveToFirst();
-            while (!onlinePc.isAfterLast()) {
+            while (!onlinePc.isAfterLast() && !onlinePc.isBeforeFirst()) {
                 String photoUrl;
                 String photoFilename;
                 String obsUUID;
