@@ -2066,9 +2066,11 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                 }
 
                 Intent intent = new Intent(getActivity(), TaxonActivity.class);
-                intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(mTaxon));
+                JSONObject minimalTaxon = ObservationUtils.getMinimalTaxon(mTaxon, true);
+                intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(minimalTaxon));
                 JSONObject minimalObs = ObservationUtils.getMinimalObservation((mObsJson != null ? new BetterJSONObject(mObsJson) : new BetterJSONObject(mObservation.toJSONObject())).getJSONObject());
                 intent.putExtra(TaxonActivity.OBSERVATION, new BetterJSONObject(minimalObs));
+                intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
                 startActivity(intent);
             }
         };
