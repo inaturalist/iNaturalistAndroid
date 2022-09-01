@@ -6323,13 +6323,18 @@ public class INaturalistService extends IntentService {
                         // Show service not available message to user
                         mHandler.post(() -> {
                             String errorMessage;
-                            if (mRetryAfterDate == null) {
+                            Date retryAfterDate = mRetryAfterDate;
+                            Date currentTime = Calendar.getInstance().getTime();
+
+                            if (retryAfterDate == null || currentTime == null) {
                                 // No specific retry time
                                 errorMessage = getString(R.string.please_try_again_in_a_few_hours);
+                            } else if (retryAfterDate.before(currentTime)) {
+                                // Service is down and we don't know when it'll be back
+                                errorMessage = getString(R.string.please_try_again_soon);
                             } else {
                                 // Specific retry time
-                                Date currentTime = Calendar.getInstance().getTime();
-                                long differenceSeconds = (mRetryAfterDate.getTime() - currentTime.getTime()) / 1000;
+                                long differenceSeconds = (retryAfterDate.getTime() - currentTime.getTime()) / 1000;
 
                                 long delay;
                                 String delayType;
