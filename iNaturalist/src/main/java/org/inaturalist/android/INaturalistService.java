@@ -1648,14 +1648,14 @@ public class INaturalistService extends IntentService {
                     mLogin = newUser.optString("login");
                     editor.putString("username", mLogin);
                     editor.putInt("user_id", newUser.optInt("id"));
-                    if (!newUser.has("user_icon_url") || newUser.isNull("user_icon_url")) {
+                    if (!newUser.has("icon_url") || newUser.isNull("icon_url")) {
                         editor.putString("user_icon_url", null);
                     } else {
-                        editor.putString("user_icon_url", newUser.has("icon") ? newUser.optString("icon") : newUser.optString("user_icon_url"));
+                        editor.putString("user_icon_url", newUser.optString("icon_url"));
                     }
-                    if (bio != null) editor.putString("user_bio", newUser.optString("description"));
-                    if (email != null) editor.putString("user_email", newUser.optString("email", email));
                     editor.putString("user_full_name", newUser.optString("name"));
+                    editor.putString("user_bio", bio);
+                    editor.putString("user_email", email);
 
                     editor.apply();
 
