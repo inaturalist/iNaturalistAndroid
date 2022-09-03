@@ -110,9 +110,9 @@
     <string name="about_this_app">Tietoja</string>
     <string name="about_taxon_short">Tietoja</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
-    <string name="geoprivacy">Sijainnin tietosuoja</string>
+    <string name="geoprivacy">Sijainnin näkyvyys</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
-    <string name="geoprivacy_with_value">Sijainnin tietosuoja: %1$s</string>
+    <string name="geoprivacy_with_value">Sijainnin näkyvyys: %1$s</string>
     <string name="delete_confirmation">Haluatko varmasti poistaa tämän havainnon?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">Oppaat</string>
@@ -285,7 +285,7 @@
         <item quantity="one">Mukana %1$d projektissa</item>
         <item quantity="other">Mukana %1$d projektissa</item>
     </plurals>
-    <string name="geoprivacy_explanation"><![CDATA[ Sijainnin tietosuoja on asetus, jolla voit säädellä miten havainnon sijainti ja koordinaatit näytetään. vaihtoehdot ovat:
+    <string name="geoprivacy_explanation"><![CDATA[ Sijainnin näkyvyys on asetus, jolla voit säädellä miten havainnon sijainti ja koordinaatit näytetään. vaihtoehdot ovat:
 <br/><b>Avoin</b> - kaikki näkevät koordinaatit, ellei taksoni ole uhattu.
 <br/><b>Karkeistettu</b> - Julkiset koordinaatit näytetään satunnaisessa paikassa 0,2 x 0,2 asteen alueella todellisten koodinaattien sijainnista. Tämä tarkoittaa noin 22 x 22 kilometrin neliötä päiväntasaajalla ja pienenee kohti maapallon napoja. Todelliset koordinaatit näytetään vain sinulle ja niiden projektien kuraattoreille, joihin lisää havainnon.
 <br/><b>Yksityinen</b> - Koordinaatit piilotetaan kokonaan julkislta kartoilta. Todelliset koordinaatit näytetään vain sinulle ja niiden projektien kuraattoreille, joihin lisää havainnon.
@@ -349,11 +349,11 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="there_was_a_problem_updating_profile">Virhe päivitettäessä profiiliasi!</string>
     <string name="there_was_a_problem_updating_profile_params">Virhe päivitettäessä profiiliasi: %1$s</string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
-    <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
+    <string name="currently_logged_in_as_html"><![CDATA[Kirjautuneena nimellä <b>%1$s</b>]]></string>
     <string name="log_out">Kirjaudu ulos</string>
     <string name="not_logged_in">Ei kirjautuneena sisään</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
-    <string name="login_or_sign_up">Log In or Sign Up</string>
+    <string name="login_or_sign_up">Kirjaudu tai rekisteröidy</string>
     <string name="auto_upload_description">Tallenna uudet havainnot ja muokkaukset havaintoihin automaattisesti</string>
     <string name="language">Kieli</string>
     <string name="version">Versio</string>
@@ -393,7 +393,7 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="fish">Kalat</string>
     <string name="mollusks">Simpukat</string>
     <string name="protozoans">Alkueläimet</string>
-    <string name="chromista">Kelp, Diatoms, and Allies</string>
+    <string name="chromista">ruskolevät, piilevät ja näiden sukulaiset</string>
     <string name="amphibians">Sammakkoeläimet</string>
     <string name="fungi">Sienet</string>
     <string name="birds">Linnut</string>
@@ -460,7 +460,7 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="were_not_confident_enough">Emme ole tarpeeksi varmoja tehdäksemme suositusta, mutta tässä ovat parhaat ehdotukset: </string>
     <string name="were_not_confident_enough_no_suggestions">Emme ole tarpeeksi varmoja tehdäksemme suositusta. </string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
-    <string name="most_observed_options_matching_filters">Most-observed options matching filters:</string>
+    <string name="most_observed_options_matching_filters">Useimmin havaitut vaihtoehdot vastaavat suodattimia:</string>
     <!-- Header for a list of suggested taxa -->
     <string name="top_suggestions">Osuvimmat ehdotukset</string>
     <string name="pretty_sure_rank">Olemme melko varmoja, että %1$s on tämä:</string>

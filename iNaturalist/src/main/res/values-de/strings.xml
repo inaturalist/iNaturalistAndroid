@@ -110,9 +110,9 @@
     <string name="about_this_app">Über</string>
     <string name="about_taxon_short">Über</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
-    <string name="geoprivacy">Geoprivatsphäre</string>
+    <string name="geoprivacy">Geo-Privatsphäre</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
-    <string name="geoprivacy_with_value">Geodatenschutz: %1$s</string>
+    <string name="geoprivacy_with_value">Geo-Privatsphäre: %1$s</string>
     <string name="delete_confirmation">Möchtest du diese Beobachtung wirklich löschen?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">Guides</string>
@@ -285,7 +285,7 @@
         <item quantity="one">In %1$d Projekt enthalten</item>
         <item quantity="other">In %1$d Projekten enthalten</item>
     </plurals>
-    <string name="geoprivacy_explanation"><![CDATA[ Geoprivatsphäre ist eine Einstellung für deine Beobachtungen, die bestimmt, wie deren Koordinaten (Längen- und Breitengrad) dargestellt werden. Dies sind die Optionen: <br/><b>offen</b> - Wenn die Art nicht bedroht ist, kann jeder die Koordinaten sehen. <br/><b>versteckt</b> - Öffentliche Koordinaten werden als zufälliger Punkt in einer 0.2*0.2°-Gebiet um die wahren Koordinaten angezeigt. Dies entspricht am Äquator 22 Qaudratkilometer, weniger nahe der Pole. Nur du und Kuratoren von Projekten, denen du deine Beobachtung hinzufügst, können die wahren Koordinaten sehen. <br/><b>privat</b> - Koordinaten werden nicht in den öffentlichen Karten dargestellt. Nur du und Kuratoren von Projekten, denen du deine Beobachtung hinzufügst, können die wahren Koordinaten sehen.<br/><br/>Projektkuratoren beteiligter Projekte können immer die wahren Koordinaten sehen. Solltest du dich um die Privatheit der Koordinaten deiner Beobachtungen sorgen, solltest du also nur an Projekten teilnehmen, deren Kuratoren du vertraust. ]]></string>
+    <string name="geoprivacy_explanation"><![CDATA[ Geo-Privatsphäre ist eine Einstellung für deine Beobachtungen, mit der du bestimmst, wie die Koordinaten (Längen- und Breitengrad) dargestellt werden. Es gibt diese Optionen: <br/><b>offen</b> - Jeder kann die Koordinaten sehen (solange die Art nicht besonders geschützt ist). <br/><b>verdeckt</b> - Öffentlich sichtbare Koordinaten werden als zufälliger Punkt innerhalb eines  0,2°*0,2°-Gebiets um die wahren Koordinaten angezeigt. Dies entspricht am Äquator einer Fläche von ca. 22km x 22km, und wird weniger in Richtung der Pole. Nur du und Kuratoren von Projekten, mit denen du deine Beobachtung teilst, können die wahren Koordinaten sehen. <br/><b>privat</b> - Koordinaten werden nicht in den öffentlichen Karten dargestellt. Nur du und Kuratoren von Projekten, mit denen du deine Beobachtung teilst, können die wahren Koordinaten sehen.<br/><br/>Projektkuratoren beteiligter Projekte können immer die wahren Koordinaten sehen. Solltest du dich um die Sichtbarkeit der Koordinaten deiner Beobachtungen sorgen, solltest du also nur an Projekten teilnehmen, deren Kuratoren du vertraust.]]></string>
     <string name="id_title">%1$ss ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">Löschen</string>
@@ -323,7 +323,7 @@
     <string name="couldnt_load_project_details">Konnte Projektdetails nicht laden: %1$s</string>
     <string name="no_people_found">Keine Personen gefunden</string>
     <string name="rank">Rang</string>
-    <string name="identifications">Identifizierungen</string>
+    <string name="identifications">Bestimmungen</string>
     <string name="no_news_found">Keine neuen Elemente gefunden</string>
     <string name="news">News</string>
     <string name="article">Artikel</string>
@@ -451,14 +451,14 @@
     <string name="taxonomy_info">Hier finden sich Links zu höheren taxonomischen Ebenen dieses speziellen Taxons, in hierarchischer  Reihenfolge sortiert. Verwende diese Links um den Stammbaum zu erkunden. Wenn du z.B. den genauen Namen eines Organismus nicht kennst, aber weißt wo er auf höherer Ebene einzuordnen ist, klicke auf ein Taxon aus der Liste um mehr Informationen anzuzeigen und so möglicherweise etwas über deinen Fund herauszubekommen.</string>
     <string name="more_info_on_inat">Weitere Informationen auf iNaturalist.org</string>
     <string name="view_suggestions">Vorschläge anzeigen</string>
-    <string name="species_search">Suche nach Arten</string>
+    <string name="species_search">eigene Bestimmung eingeben</string>
     <string name="were_not_confident_enough">Wir sind nicht sicher genug, um eine Empfehlung abzugeben, aber hier sind unsere besten Vorschläge.</string>
     <string name="were_not_confident_enough_no_suggestions">Eine Empfehlung abzugeben ist uns hier zu unsicher.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <string name="most_observed_options_matching_filters">Die häufigsten Beobachtungen mit diesen Filtereinstellungen:</string>
     <!-- Header for a list of suggested taxa -->
     <string name="top_suggestions">Beste Vorschläge</string>
-    <string name="pretty_sure_rank">Wir sind ziemlich sicher, dass es in dieser %1$s ist:</string>
+    <string name="pretty_sure_rank">bester Vorschlag: %1$s</string>
     <string name="what_did_you_see">Was hast du gefunden?</string>
     <string name="suggest_species">Art vorschlagen</string>
     <string name="suggest_species_description"> Vom Algorithmus eine Art vorschlagen lassen, basierend auf visuellen Vergleichen anderer Fotos </string>
