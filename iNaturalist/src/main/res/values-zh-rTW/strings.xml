@@ -198,7 +198,7 @@
     <string name="alert_message_use_inaturalistcr">iNaturalist Costa Rica 是 iNaturalist 附屬網路在哥斯大黎加的成員。支援 iNaturalist Costa Rica 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala 是 iNaturalist 附屬網路在瓜地馬拉的成員。支援 iNaturalist Guatemala 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden 是 iNaturalist 附屬網路在瑞典的成員。支援 iNaturalist Sweden 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
-    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay 是 iNaturalist 附屬網路在烏拉圭的成員。支援 Naturalista Uruguay 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
     <string name="editor">編輯</string>
     <string name="license">授權</string>
     <string name="download_for_offline_use">下載供離線使用</string>
@@ -314,7 +314,7 @@
     <string name="finding_current_location">搜尋您所在的位置...</string>
     <string name="flag_as_captive">設為圈養/栽培旗標</string>
     <string name="observation_flagged_as_captive">觀察記錄被標記為捕捉/栽培</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">您確定您想要標記此觀察記錄為圈養/栽培？</string>
     <string name="do_you_agree_to_the_following">你同意以下嗎？</string>
     <string name="terms">使用條款</string>
     <string name="observation_rules">觀察記錄的規則</string>
@@ -411,7 +411,7 @@
     <string name="you_will_only_receive_updates_when_following">一旦您已上傳觀察記錄就會收到更新的資訊。</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b>建議了物種辨認：%2$s<font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b>作出了回應：&ldquo;%2$s&rdquo;<font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b>提及您：&ldquo;%2$s&rdquo;<font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">看起來您在上傳前清除了 App 的快取而刪除了一張照片。您需要從您的照片庫中重新加回此照片至您的觀察記錄。之後當您清理 App 快取時請確定您已經上傳了所有照片。</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -558,7 +558,7 @@
     <string name="start">開始</string>
     <string name="end">結束</string>
     <string name="months">月</string>
-    <string name="choose_months">Choose month(s)</string>
+    <string name="choose_months">選擇月份</string>
     <string name="map_area">地圖區域</string>
     <string name="global">全域</string>
     <!-- As in redo search in the current map area -->
@@ -754,7 +754,7 @@
     <string name="network_credit_inaturalistcr"><![CDATA[哥斯大黎加：Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO; 國家生物多樣性管理委員會) 支持 Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[瓜地馬拉：Consejo Nacional de Áreas Protegidas (CONAP; 國家保護區委員會) 支持 iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[瑞典： SLU Swedish Species Information Centre (瑞典物種資訊中心) 支持 iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
-    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[烏拉圭：JULANA 和 Biodiversidata 協助維運 Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
     <string name="mark_all_as_viewed">標記為已讀</string>
     <string name="content_hidden">內容已隱藏</string>
     <string name="show_hidden_content">顯示隱藏內容</string>
