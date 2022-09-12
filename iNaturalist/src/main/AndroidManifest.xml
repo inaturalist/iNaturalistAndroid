@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.inaturalist.android"
     android:installLocation="auto"
-    android:versionCode="551"
-    android:versionName="1.27.9">
+    android:versionCode="552"
+    android:versionName="1.27.10">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -104,6 +104,7 @@
         </activity>
         <activity
             android:name=".UserProfile"
+            android:exported="true"
             android:configChanges="orientation"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowActionBar="false">
@@ -199,6 +200,7 @@
             android:windowSoftInputMode="adjustNothing"></activity>
         <activity
             android:name=".ObservationViewerSlider"
+            android:exported="true"
             android:configChanges="orientation">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW"/>
@@ -258,6 +260,7 @@
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".ObservationListActivity"
+            android:exported="true"
             android:configChanges="orientation"
             android:label="iNaturalist">
             <intent-filter>
@@ -487,6 +490,7 @@
         <activity
             android:name=".ObservationEditorSlider"
             android:configChanges="orientation"
+            android:exported="true"
             android:label="iNaturalist"
             android:theme="@style/iNatAppThemeCustomActionBar">
             <meta-data
@@ -688,6 +692,7 @@
             android:label="@string/all_messages"></activity>
 
         <activity
+            android:exported="true"
             android:name=".MessagesThreadActivity"
             android:configChanges="orientation">
 

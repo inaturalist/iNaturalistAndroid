@@ -59,9 +59,9 @@ android {
     defaultConfig {
         applicationId "org.inaturalist.android"
         minSdkVersion 23
-        targetSdkVersion 30
+        targetSdkVersion 31
         multiDexEnabled true
-        renderscriptTargetApi 30
+        renderscriptTargetApi 31
         renderscriptSupportModeEnabled true
         testInstrumentationRunner = "org.inaturalist.android.DefaultTestRunner"
         packagingOptions {
