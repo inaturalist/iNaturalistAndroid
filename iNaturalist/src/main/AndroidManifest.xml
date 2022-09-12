@@ -271,6 +271,7 @@
             android:name=".ObservationListActivity.inaturalist"
             android:targetActivity=".ObservationListActivity"
             android:enabled="true"
+            android:exported="true"
             android:configChanges="orientation"
             android:label="iNaturalist">
             <intent-filter>
@@ -283,6 +284,7 @@
             android:targetActivity=".ObservationListActivity"
             android:configChanges="orientation"
             android:enabled="false"
+            android:exported="true"
             android:label="@string/network_inaturalistcanada">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -294,6 +296,7 @@
             android:targetActivity=".ObservationListActivity"
             android:configChanges="orientation"
             android:enabled="false"
+            android:exported="true"
             android:label="iNaturalist">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -305,6 +308,7 @@
             android:targetActivity=".ObservationListActivity"
             android:configChanges="orientation"
             android:enabled="false"
+            android:exported="true"
             android:label="iNaturalist">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -315,6 +319,7 @@
             android:name=".ObservationListActivity.naturewatchnz"
             android:targetActivity=".ObservationListActivity"
             android:enabled="false"
+            android:exported="true"
             android:configChanges="orientation"
             android:label="@string/network_naturewatchnz">
             <intent-filter>
@@ -326,6 +331,7 @@
             android:name=".ObservationListActivity.biodiversity4all"
             android:targetActivity=".ObservationListActivity"
             android:enabled="false"
+            android:exported="true"
             android:configChanges="orientation"
             android:label="@string/network_biodiversity4all">
             <intent-filter>
@@ -338,6 +344,7 @@
             android:targetActivity=".ObservationListActivity"
             android:configChanges="orientation"
             android:enabled="false"
+            android:exported="true"
             android:label="@string/network_inaturalistpanama">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -349,6 +356,7 @@
             android:targetActivity=".ObservationListActivity"
             android:configChanges="orientation"
             android:enabled="false"
+            android:exported="true"
             android:label="@string/network_inaturalistecuador">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -360,6 +368,7 @@
             android:targetActivity=".ObservationListActivity"
             android:configChanges="orientation"
             android:enabled="false"
+            android:exported="true"
             android:label="@string/network_inaturalistaustralia">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -371,6 +380,7 @@
             android:targetActivity=".ObservationListActivity"
             android:configChanges="orientation"
             android:enabled="false"
+            android:exported="true"
             android:label="@string/network_inaturalistfi">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -382,6 +392,7 @@
             android:targetActivity=".ObservationListActivity"
             android:configChanges="orientation"
             android:enabled="false"
+            android:exported="true"
             android:label="@string/network_inaturalistcl">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -393,6 +404,7 @@
             android:targetActivity=".ObservationListActivity"
             android:configChanges="orientation"
             android:enabled="false"
+            android:exported="true"
             android:label="@string/network_inaturalistgr">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -404,6 +416,7 @@
             android:targetActivity=".ObservationListActivity"
             android:configChanges="orientation"
             android:enabled="false"
+            android:exported="true"
             android:label="@string/network_inaturalistlu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -415,6 +428,7 @@
             android:targetActivity=".ObservationListActivity"
             android:configChanges="orientation"
             android:enabled="false"
+            android:exported="true"
             android:label="@string/network_inaturalistuk">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -426,6 +440,7 @@
             android:targetActivity=".ObservationListActivity"
             android:configChanges="orientation"
             android:enabled="false"
+            android:exported="true"
             android:label="@string/network_inaturalistil">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -437,6 +452,7 @@
             android:targetActivity=".ObservationListActivity"
             android:configChanges="orientation"
             android:enabled="false"
+            android:exported="true"
             android:label="@string/network_argentinat">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -448,6 +464,7 @@
             android:targetActivity=".ObservationListActivity"
             android:configChanges="orientation"
             android:enabled="false"
+            android:exported="true"
             android:label="@string/network_inaturalistcr">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -459,6 +476,7 @@
             android:targetActivity=".ObservationListActivity"
             android:configChanges="orientation"
             android:enabled="false"
+            android:exported="true"
             android:label="@string/network_inaturalistgt">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -470,6 +488,7 @@
             android:targetActivity=".ObservationListActivity"
             android:configChanges="orientation"
             android:enabled="false"
+            android:exported="true"
             android:label="@string/network_inaturalistse">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -481,6 +500,7 @@
             android:targetActivity=".ObservationListActivity"
             android:configChanges="orientation"
             android:enabled="false"
+            android:exported="true"
             android:label="@string/network_naturalistauy">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
