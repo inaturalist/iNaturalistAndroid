@@ -2572,6 +2572,8 @@ public class ObservationEditor extends Fragment {
     }
 
     private void setCurrentLocation(Location location) {
+        if (getActivity() == null) return;
+        
         mCurrentLocation = location;
 
         // Update any external photos taken through the app with the coordinates
