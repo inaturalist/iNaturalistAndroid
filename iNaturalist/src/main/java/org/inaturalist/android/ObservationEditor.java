@@ -3731,24 +3731,10 @@ public class ObservationEditor extends Fragment {
             SimpleDateFormat exifDateFormat = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
 
             if (exif != null) {
-                // TAG_GPS_DATE_STAMP is defined as UTC / GMT+0
-                String date = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_GPS_DATE_STAMP);
-                String time = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_GPS_TIME_STAMP);
-
-                if ((date == null) || (date.length() == 0) || (time == null) || (time.length() == 0)) {
-                    // Try getting GPS datetime from other EXIF library
-                    date = orgExif.getAttribute(ExifInterface.TAG_GPS_DATESTAMP);
-                    time = orgExif.getAttribute(ExifInterface.TAG_GPS_TIMESTAMP);
-                }
-
-                if ((date == null) || (date.length() == 0) || (date.startsWith("1970")) || (time == null) || (time.length() == 0)) {
-                    // No timezone defined - assume user's local timezone
-                    useLocalTimezone = true;
-                    String dateTimeValue = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_DATE_TIME_ORIGINAL);
-                    datetime = dateTimeValue != null ? dateTimeValue.trim() : null;
-                } else {
-                    datetime = date.trim() + " " + time.trim();
-                }
+                // No timezone defined - assume user's local timezone
+                useLocalTimezone = true;
+                String dateTimeValue = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_DATE_TIME_ORIGINAL);
+                datetime = dateTimeValue != null ? dateTimeValue.trim() : null;
 
                 if (datetime == null) {
                     datetime = exif.getTagStringValue(it.sephiroth.android.library.exif2.ExifInterface.TAG_DATE_TIME);
@@ -3757,15 +3743,8 @@ public class ObservationEditor extends Fragment {
 
             if ((exif == null) || (datetime == null)) {
                 // Try using built-in EXIF library instead
-                String date = orgExif.getAttribute(ExifInterface.TAG_GPS_DATESTAMP);
-                String time = orgExif.getAttribute(ExifInterface.TAG_GPS_TIMESTAMP);
-
-                if ((date == null) || (time == null) || (date.startsWith("1970"))) {
-                    useLocalTimezone = true;
-                    datetime = orgExif.getAttribute(ExifInterface.TAG_DATETIME_ORIGINAL);
-                } else {
-                    datetime = date.trim() + " " + time.trim();
-                }
+                useLocalTimezone = true;
+                datetime = orgExif.getAttribute(ExifInterface.TAG_DATETIME_ORIGINAL);
 
                 if (datetime == null) {
                     datetime = orgExif.getAttribute(ExifInterface.TAG_DATETIME);
