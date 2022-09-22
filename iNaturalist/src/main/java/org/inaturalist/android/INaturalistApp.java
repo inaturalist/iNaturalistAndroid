@@ -1123,12 +1123,12 @@ public class INaturalistApp extends MultiDexApplication {
     }
     
     public void notify(Integer id, String title, String content, String ticker, Intent intent) {
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
         notify(id, title, content, ticker, pendingIntent);
     }
     
     public void serviceNotify(Integer id, String title, String content, String ticker, Intent intent) {
-        PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, android.app.PendingIntent.FLAG_IMMUTABLE);
         notify(id, title, content, ticker, pendingIntent);
     }
 
