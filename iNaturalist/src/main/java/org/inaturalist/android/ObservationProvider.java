@@ -94,7 +94,7 @@ public class ObservationProvider extends ContentProvider {
                 db.execSQL(ProjectField.sqlCreate());
                 // Re-populate the table
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_JOINED_PROJECTS_ONLINE, null, mContext, INaturalistService.class);
-                ContextCompat.startForegroundService(mContext, serviceIntent);
+                INaturalistService.callService(mContext, serviceIntent);
             }
             if (oldVersion < 11) {
                 // Add a "is_deleted" column to ObservationPhoto

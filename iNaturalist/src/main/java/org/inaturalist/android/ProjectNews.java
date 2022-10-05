@@ -162,7 +162,7 @@ public class ProjectNews extends BaseFragmentActivity {
                 serviceIntent = new Intent(INaturalistService.ACTION_GET_PROJECT_NEWS, null, ProjectNews.this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.PROJECT_ID, mProject.getInt("id"));
             }
-            ContextCompat.startForegroundService(this, serviceIntent);
+            INaturalistService.callService(this, serviceIntent);
         }
     }
 

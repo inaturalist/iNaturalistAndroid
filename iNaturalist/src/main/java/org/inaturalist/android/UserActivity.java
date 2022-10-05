@@ -479,7 +479,7 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
             serviceIntent.putExtra(INaturalistService.FOLLOWING, refreshType == REFRESH_TYPE_MY_CONTENT ? false : true);
         }
 
-        ContextCompat.startForegroundService(UserActivity.this, serviceIntent);
+        INaturalistService.callService(UserActivity.this, serviceIntent);
     }
 
 
@@ -501,7 +501,7 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
         // Get the user's news feed
         if ((mNews == null) || (mRefreshType == REFRESH_TYPE_NEWS)) {
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_NEWS, null, UserActivity.this, INaturalistService.class);
-            ContextCompat.startForegroundService(this, serviceIntent);
+            INaturalistService.callService(this, serviceIntent);
         }
 
         if (mApp.loggedIn()) {
@@ -509,13 +509,13 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
                 // Get the user's activities
                 Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_USER_UPDATES, null, UserActivity.this, INaturalistService.class);
                 serviceIntent2.putExtra(INaturalistService.FOLLOWING, false);
-                ContextCompat.startForegroundService(this, serviceIntent2);
+                INaturalistService.callService(this, serviceIntent2);
             }
             if ((mFollowingActivities == null) || (mRefreshType == REFRESH_TYPE_FOLLOWING)) {
                 // Get the user's activities (following obs)
                 Intent serviceIntent3 = new Intent(INaturalistService.ACTION_GET_USER_UPDATES, null, UserActivity.this, INaturalistService.class);
                 serviceIntent3.putExtra(INaturalistService.FOLLOWING, true);
-                ContextCompat.startForegroundService(this, serviceIntent3);
+                INaturalistService.callService(this, serviceIntent3);
             }
         } else {
             // Only works if user is logged in

@@ -87,7 +87,7 @@ public class NewMessageActivity extends AppCompatActivity {
             serviceIntent.putExtra(INaturalistService.TO_USER, mUserId);
             serviceIntent.putExtra(INaturalistService.SUBJECT, mMessageSubject.getText().toString());
             serviceIntent.putExtra(INaturalistService.BODY, mMessageBody.getText().toString());
-            ContextCompat.startForegroundService(this, serviceIntent);
+            INaturalistService.callService(this, serviceIntent);
 
             mSendingMessage = true;
             mHelper.loading(getString(R.string.sending_message));

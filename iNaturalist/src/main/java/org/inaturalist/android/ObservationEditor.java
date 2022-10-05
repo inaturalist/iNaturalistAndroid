@@ -1120,7 +1120,7 @@ public class ObservationEditor extends Fragment {
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON_NEW, null, getActivity(), INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.TAXON_ID, mObservation.taxon_id);
-                ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                INaturalistService.callService(getActivity(), serviceIntent);
             }
         }
 

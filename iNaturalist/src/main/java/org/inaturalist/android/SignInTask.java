@@ -50,7 +50,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
     private LoginButton mFacebookLoginButton;
     private String mUsername;
     private String mPassword;
-    private INaturalistService.LoginType mLoginType;
+    private INaturalistServiceImplementation.LoginType mLoginType;
     private Activity mActivity;
     private boolean mInvalidated;
     private ProgressDialog mProgressDialog;
@@ -67,7 +67,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 
     public interface SignInTaskStatus {
         void onLoginSuccessful();
-        void onLoginFailed(INaturalistService.LoginType loginType);
+        void onLoginFailed(INaturalistServiceImplementation.LoginType loginType);
     }
 
     public SignInTask(Activity activity, SignInTaskStatus callback) {
@@ -94,7 +94,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
                         if (username == null) {
                             // First time login
                             String accessToken = newToken.getToken();
-                            new SignInTask(activity, callback, facebookLoginButton, passwordVerificationForDeletion).execute(null, accessToken, INaturalistService.LoginType.FACEBOOK.toString());
+                            new SignInTask(activity, callback, facebookLoginButton, passwordVerificationForDeletion).execute(null, accessToken, INaturalistServiceImplementation.LoginType.FACEBOOK.toString());
                         }
                     }
                 }
@@ -151,14 +151,14 @@ public class SignInTask extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... pieces) {
         mUsername = pieces[0];
         mPassword = pieces[1];
-        mLoginType = INaturalistService.LoginType.valueOf(pieces[2]);
+        mLoginType = INaturalistServiceImplementation.LoginType.valueOf(pieces[2]);
         if (pieces.length > 3) {
             mInvalidated = (pieces[3] == "invalidated");
         } else {
             mInvalidated = false;
         }
 
-        String[] results = INaturalistService.verifyCredentials(mActivity, mUsername, mPassword, mLoginType, mPasswordVerificationForDeletion);
+        String[] results = INaturalistServiceImplementation.verifyCredentials(mActivity, mUsername, mPassword, mLoginType, mPasswordVerificationForDeletion);
 
         if (results == null) {
             return null;
@@ -195,11 +195,11 @@ public class SignInTask extends AsyncTask<String, Void, String> {
         }
 
         String loginType = null;
-        if (mLoginType == INaturalistService.LoginType.FACEBOOK) {
+        if (mLoginType == INaturalistServiceImplementation.LoginType.FACEBOOK) {
             loginType = AnalyticsClient.EVENT_VALUE_FACEBOOK;
-        } else if ((mLoginType == INaturalistService.LoginType.OAUTH_PASSWORD) || (mLoginType == INaturalistService.LoginType.PASSWORD)) {
+        } else if ((mLoginType == INaturalistServiceImplementation.LoginType.OAUTH_PASSWORD) || (mLoginType == INaturalistServiceImplementation.LoginType.PASSWORD)) {
             loginType = AnalyticsClient.EVENT_VALUE_INATURALIST;
-        } else if (mLoginType == INaturalistService.LoginType.GOOGLE) {
+        } else if (mLoginType == INaturalistServiceImplementation.LoginType.GOOGLE) {
             loginType = AnalyticsClient.EVENT_VALUE_GOOGLE_PLUS;
         }
 
@@ -216,12 +216,12 @@ public class SignInTask extends AsyncTask<String, Void, String> {
             }
 
         } else {
-            if (mLoginType == INaturalistService.LoginType.FACEBOOK) {
+            if (mLoginType == INaturalistServiceImplementation.LoginType.FACEBOOK) {
                 // Login failed - need to sign-out of Facebook as well
                 LoginManager.getInstance().logOut();
-            } else if (mLoginType == INaturalistService.LoginType.GOOGLE && !mInvalidated) {
+            } else if (mLoginType == INaturalistServiceImplementation.LoginType.GOOGLE && !mInvalidated) {
                 AccountManager.get(mActivity).invalidateAuthToken("com.google", mPassword);
-                signIn(INaturalistService.LoginType.GOOGLE, mUsername, null, true);
+                signIn(INaturalistServiceImplementation.LoginType.GOOGLE, mUsername, null, true);
                 return;
             }
 
@@ -262,7 +262,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 
         // Run the first observation sync
         Intent serviceIntent = new Intent(INaturalistService.ACTION_FIRST_SYNC, null, mActivity, INaturalistService.class);
-        ContextCompat.startForegroundService(mActivity, serviceIntent);
+        INaturalistService.callService(mActivity, serviceIntent);
     }
 
 
@@ -273,11 +273,11 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 
         if ((requestCode == REQUEST_CODE_ADD_ACCOUNT) && (resultCode == Activity.RESULT_OK)) {
             // User finished adding his account
-            signIn(INaturalistService.LoginType.GOOGLE, mGoogleUsername, null);
+            signIn(INaturalistServiceImplementation.LoginType.GOOGLE, mGoogleUsername, null);
 
         } else if ((requestCode == REQUEST_CODE_LOGIN) && (resultCode == Activity.RESULT_OK)) {
             // User finished entering his password
-            signIn(INaturalistService.LoginType.GOOGLE, mGoogleUsername, null);
+            signIn(INaturalistServiceImplementation.LoginType.GOOGLE, mGoogleUsername, null);
 
         } else if ((requestCode == REQUEST_CODE_CHOOSE_GOOGLE_ACCOUNT) && (resultCode == Activity.RESULT_OK)) {
             String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
@@ -305,7 +305,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
                         final Intent authIntent = result.getParcelable(AccountManager.KEY_INTENT);
                         if (accountName != null && authToken != null) {
 //	                        Logger.tag(TAG).debug(String.format("Token: %s", authToken));
-                            execute(boundUsername, authToken, INaturalistService.LoginType.GOOGLE.toString(), boundInvalidated);
+                            execute(boundUsername, authToken, INaturalistServiceImplementation.LoginType.GOOGLE.toString(), boundInvalidated);
 
                         } else if (authIntent != null) {
                             int flags = authIntent.getFlags();
@@ -335,12 +335,12 @@ public class SignInTask extends AsyncTask<String, Void, String> {
     }
 
 
-    public void signIn(INaturalistService.LoginType loginType, String username, String password) {
+    public void signIn(INaturalistServiceImplementation.LoginType loginType, String username, String password) {
 	    signIn(loginType, username, password, false);
 	}
 
-	public void signIn(INaturalistService.LoginType loginType, String username, String password, boolean invalidated) {
-	    boolean googleLogin = (loginType == INaturalistService.LoginType.GOOGLE);
+	public void signIn(INaturalistServiceImplementation.LoginType loginType, String username, String password, boolean invalidated) {
+	    boolean googleLogin = (loginType == INaturalistServiceImplementation.LoginType.GOOGLE);
 
 	    if (googleLogin) {
 	        String googleUsername = null;
@@ -360,7 +360,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 
 	    } else {
 	        // "Regular" login
-	        execute(username, password, INaturalistService.LoginType.OAUTH_PASSWORD.toString());
+	        execute(username, password, INaturalistServiceImplementation.LoginType.OAUTH_PASSWORD.toString());
 	    }
 	}
 

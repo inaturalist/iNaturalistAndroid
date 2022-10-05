@@ -96,7 +96,7 @@ public class DataQualityAssessment extends AppCompatActivity implements DataQual
         // Download the data quality votes
         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_DATA_QUALITY_METRICS, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.getInt("id"));
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
 
         mIdCanBeImprovedContainer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,7 +114,7 @@ public class DataQualityAssessment extends AppCompatActivity implements DataQual
                 }
 
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.getInt("id"));
-                ContextCompat.startForegroundService(DataQualityAssessment.this, serviceIntent);
+                INaturalistService.callService(DataQualityAssessment.this, serviceIntent);
 
             }
         });
@@ -134,7 +134,7 @@ public class DataQualityAssessment extends AppCompatActivity implements DataQual
                 }
 
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.getInt("id"));
-                ContextCompat.startForegroundService(DataQualityAssessment.this, serviceIntent);
+                INaturalistService.callService(DataQualityAssessment.this, serviceIntent);
             }
         });
     }
@@ -195,7 +195,7 @@ public class DataQualityAssessment extends AppCompatActivity implements DataQual
         Intent serviceIntent = new Intent(INaturalistService.ACTION_AGREE_DATA_QUALITY, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.getInt("id"));
         serviceIntent.putExtra(INaturalistService.METRIC, metric);
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
     }
 
     @Override
@@ -203,7 +203,7 @@ public class DataQualityAssessment extends AppCompatActivity implements DataQual
         Intent serviceIntent = new Intent(INaturalistService.ACTION_DISAGREE_DATA_QUALITY, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.getInt("id"));
         serviceIntent.putExtra(INaturalistService.METRIC, metric);
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
     }
 
     @Override
@@ -211,7 +211,7 @@ public class DataQualityAssessment extends AppCompatActivity implements DataQual
         Intent serviceIntent = new Intent(INaturalistService.ACTION_DELETE_DATA_QUALITY_VOTE, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.getInt("id"));
         serviceIntent.putExtra(INaturalistService.METRIC, metric);
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
     }
 
     private class DataQualityMetricsReceiver extends BroadcastReceiver {
@@ -409,7 +409,7 @@ public class DataQualityAssessment extends AppCompatActivity implements DataQual
 
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_DATA_QUALITY_METRICS, null, DataQualityAssessment.this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.getInt("id"));
-            ContextCompat.startForegroundService(DataQualityAssessment.this, serviceIntent);
+            INaturalistService.callService(DataQualityAssessment.this, serviceIntent);
 	    }
 
 	}

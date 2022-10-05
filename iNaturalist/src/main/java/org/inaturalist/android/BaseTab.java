@@ -320,7 +320,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
                         public void onPermissionGranted() {
                             Logger.tag(TAG).info("Calling " + getActionName());
                             Intent serviceIntent = new Intent(getActionName(), null, getActivity(), INaturalistService.class);
-                            ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                            INaturalistService.callService(getActivity(), serviceIntent);
 
                             mEmptyListLabel.setVisibility(View.GONE);
                             mSettings.setVisibility(View.GONE);
@@ -337,7 +337,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
             } else if (getActivity() != null){
                 Logger.tag(TAG).info("Calling " + getActionName());
                 Intent serviceIntent = new Intent(getActionName(), null, getActivity(), INaturalistService.class);
-                ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                INaturalistService.callService(getActivity(), serviceIntent);
             }
         } else {
             // Load previously downloaded projects
@@ -399,7 +399,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
 
         Logger.tag(TAG).info("Re-Calling " + getActionName());
         Intent serviceIntent = new Intent(getActionName(), null, getActivity(), INaturalistService.class);
-        ContextCompat.startForegroundService(getActivity(), serviceIntent);
+        INaturalistService.callService(getActivity(), serviceIntent);
     }
 
     @Override

@@ -136,7 +136,7 @@ public class NewMessageSelectUserActivity extends AppCompatActivity implements U
         Intent serviceIntent = new Intent(INaturalistService.ACTION_SEARCH_USERS, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.QUERY, mCurrentSearchString);
         serviceIntent.putExtra(INaturalistService.PAGE_NUMBER, 1);
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
 
         refreshViewState();
     }

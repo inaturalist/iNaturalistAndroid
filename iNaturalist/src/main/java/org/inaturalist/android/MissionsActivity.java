@@ -238,7 +238,7 @@ public class MissionsActivity extends BaseFragmentActivity {
                     Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_RECOMMENDED_MISSIONS, null, MissionsActivity.this, INaturalistService.class);
                     serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
                     serviceIntent.putExtra(INaturalistService.EXPAND_LOCATION_BY_DEGREES, nextExpansion);
-                    ContextCompat.startForegroundService(MissionsActivity.this, serviceIntent);
+                    INaturalistService.callService(MissionsActivity.this, serviceIntent);
                 }
             }
 
@@ -307,7 +307,7 @@ public class MissionsActivity extends BaseFragmentActivity {
             if (mApp.isLocationPermissionGranted()) {
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_RECOMMENDED_MISSIONS, null, this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
-                ContextCompat.startForegroundService(this, serviceIntent);
+                INaturalistService.callService(this, serviceIntent);
             } else if (!mAskedForLocationPermissions) {
                 SharedPreferences settings = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
                 if (settings.getBoolean("shown_missions_onboarding", false)) {
@@ -327,7 +327,7 @@ public class MissionsActivity extends BaseFragmentActivity {
             public void onPermissionGranted() {
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_RECOMMENDED_MISSIONS, null, MissionsActivity.this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
-                ContextCompat.startForegroundService(MissionsActivity.this, serviceIntent);
+                INaturalistService.callService(MissionsActivity.this, serviceIntent);
             }
 
             @Override

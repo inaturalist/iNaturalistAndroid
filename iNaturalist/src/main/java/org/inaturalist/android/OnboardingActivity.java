@@ -189,7 +189,7 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
                         }
                     });
                 } else {
-                    mSignInTask.signIn(INaturalistService.LoginType.GOOGLE, null, null);
+                    mSignInTask.signIn(INaturalistServiceImplementation.LoginType.GOOGLE, null, null);
                 }
             }
         });
@@ -207,7 +207,7 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == PERMISSIONS_REQUEST) {
             if (grantResults.length > 0 && grantResults[0] == PermissionChecker.PERMISSION_GRANTED) {
-                mSignInTask.signIn(INaturalistService.LoginType.GOOGLE, null, null);
+                mSignInTask.signIn(INaturalistServiceImplementation.LoginType.GOOGLE, null, null);
             }
         }
     }
@@ -222,7 +222,7 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
     }
 
     @Override
-    public void onLoginFailed(INaturalistService.LoginType loginType) {
+    public void onLoginFailed(INaturalistServiceImplementation.LoginType loginType) {
     }
 
 
@@ -241,7 +241,7 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
             if (resultCode == RESULT_OK) {
                 // Successfully registered / logged-in from the sub-activity we've opened
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_REFRESH_CURRENT_USER_SETTINGS, null, this, INaturalistService.class);
-                ContextCompat.startForegroundService(this, serviceIntent);
+                INaturalistService.callService(this, serviceIntent);
 
                 mSignInTask.pause();
                 setResult(RESULT_OK);

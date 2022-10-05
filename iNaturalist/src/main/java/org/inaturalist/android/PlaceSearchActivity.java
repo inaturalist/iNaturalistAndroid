@@ -236,7 +236,7 @@ public class PlaceSearchActivity extends AppCompatActivity {
         Intent serviceIntent = new Intent(INaturalistService.ACTION_SEARCH_PLACES, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.QUERY, query);
         serviceIntent.putExtra(INaturalistService.PAGE_NUMBER, 1);
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
 
         refreshViewState(false);
     }

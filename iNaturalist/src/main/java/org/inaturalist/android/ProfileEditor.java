@@ -137,7 +137,7 @@ public class ProfileEditor extends AppCompatActivity {
                     }
                 }
 
-                ContextCompat.startForegroundService(this, serviceIntent);
+                INaturalistService.callService(this, serviceIntent);
 
                 mHelper.loading(getString(R.string.updating_profile));
 
@@ -283,7 +283,7 @@ public class ProfileEditor extends AppCompatActivity {
     private void downloadUserProfile() {
         // Get fresh user details from the server
         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_USER_DETAILS, null, this, INaturalistService.class);
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
     }
 
     @Override

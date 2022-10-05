@@ -171,7 +171,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
 
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON, null, this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.TAXON_ID, taxonId);
-            ContextCompat.startForegroundService(this, serviceIntent);
+            INaturalistService.callService(this, serviceIntent);
         }
 
 
@@ -300,7 +300,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
             getObservationsIntent.putExtra("location_expansion", mLocationExpansion);
             getObservationsIntent.putExtra("taxon_id", taxonId);
             getObservationsIntent.putExtra("per_page", MAX_MAP_RESULTS);
-            ContextCompat.startForegroundService(this, getObservationsIntent);
+            INaturalistService.callService(this, getObservationsIntent);
         }
 
         refreshViewState();

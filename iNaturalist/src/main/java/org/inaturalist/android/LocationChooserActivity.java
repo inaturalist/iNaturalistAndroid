@@ -826,7 +826,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
                 serviceIntent.putExtra(INaturalistService.ACCURACY, mAccuracy);
                 serviceIntent.putExtra(INaturalistService.GEOPRIVACY, (String) values.get(mGeoprivacySpinner.getSelectedItemPosition()));
                 serviceIntent.putExtra(INaturalistService.TITLE, mPlaceGuess);
-                ContextCompat.startForegroundService(LocationChooserActivity.this, serviceIntent);
+                INaturalistService.callService(LocationChooserActivity.this, serviceIntent);
 
                 Toast.makeText(getApplicationContext(), R.string.location_pinned_successfully, Toast.LENGTH_LONG).show();
 

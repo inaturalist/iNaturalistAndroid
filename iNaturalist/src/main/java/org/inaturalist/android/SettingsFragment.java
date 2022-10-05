@@ -235,7 +235,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                         Logger.tag(TAG).error(e);
                     }
                     serviceIntent.putExtra(INaturalistService.USER, new BetterJSONObject(userDetails));
-                    ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                    INaturalistService.callService(getActivity(), serviceIntent);
                 }
 
                 return false;
@@ -257,7 +257,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     Logger.tag(TAG).error(e);
                 }
                 serviceIntent.putExtra(INaturalistService.USER, new BetterJSONObject(userDetails));
-                ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                INaturalistService.callService(getActivity(), serviceIntent);
             }
 
             return false;
@@ -281,7 +281,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                         Logger.tag(TAG).error(e);
                     }
                     serviceIntent.putExtra(INaturalistService.USER, new BetterJSONObject(userDetails));
-                    ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                    INaturalistService.callService(getActivity(), serviceIntent);
                 }
 
                 mApp.applyLocaleSettings();
@@ -423,7 +423,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     Logger.tag(TAG).error(e);
                 }
                 serviceIntent.putExtra(INaturalistService.USER, new BetterJSONObject(userDetails));
-                ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                INaturalistService.callService(getActivity(), serviceIntent);
 
                 refreshSettings();
             }

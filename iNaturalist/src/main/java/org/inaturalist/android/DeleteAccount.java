@@ -81,7 +81,7 @@ public class DeleteAccount extends BaseFragmentActivity {
 
                 // Delete account
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_DELETE_ACCOUNT, null, DeleteAccount.this, INaturalistService.class);
-                ContextCompat.startForegroundService(DeleteAccount.this, serviceIntent);
+                INaturalistService.callService(DeleteAccount.this, serviceIntent);
             }
         });
 

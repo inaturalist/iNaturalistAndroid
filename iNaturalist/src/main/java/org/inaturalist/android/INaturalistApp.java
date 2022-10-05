@@ -42,11 +42,11 @@ import java.util.UUID;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.Transformer;
-import org.inaturalist.android.INaturalistService.LoginType;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.tinylog.Logger;
+import org.inaturalist.android.INaturalistServiceImplementation.LoginType;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -322,15 +322,15 @@ public class INaturalistApp extends MultiDexApplication {
 
         // Clear out any old cached photos
         Intent serviceIntent = new Intent(INaturalistService.ACTION_CLEAR_OLD_PHOTOS_CACHE, null, this, INaturalistService.class);
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
 
         // Add observation UUIDs to photos/sounds that are missing it
         Intent serviceIntent2 = new Intent(INaturalistService.ACTION_ADD_MISSING_OBS_UUID, null, this, INaturalistService.class);
-        ContextCompat.startForegroundService(this, serviceIntent2);
+        INaturalistService.callService(this, serviceIntent2);
 
         // Get latest joined projects
         Intent serviceIntent3 = new Intent(INaturalistService.ACTION_SYNC_JOINED_PROJECTS, null, this, INaturalistService.class);
-        ContextCompat.startForegroundService(this, serviceIntent3);
+        INaturalistService.callService(this, serviceIntent3);
     }
 
     /** Returns language code string, to be used in API calls (locale param) */
@@ -370,11 +370,11 @@ public class INaturalistApp extends MultiDexApplication {
     public void setServiceResult(String key, Serializable value) {
     	mServiceResults.put(key,  value);
     }
-    
+
     public Serializable getServiceResult(String key) {
     	return mServiceResults.get(key);
     }
-   
+
 
  	/**
 	 * Get ISO 3166-1 alpha-2 country code for this device (or null if not available)
@@ -706,7 +706,7 @@ public class INaturalistApp extends MultiDexApplication {
             // Update the server of the network change
             Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_USER_NETWORK, null, this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.NETWORK_SITE_ID, Integer.valueOf(getStringResourceByName("inat_site_id_" + memberNetwork)));
-            ContextCompat.startForegroundService(this, serviceIntent);
+            INaturalistService.callService(this, serviceIntent);
         }
 
 
@@ -811,14 +811,14 @@ public class INaturalistApp extends MultiDexApplication {
         helper = new ActivityHelper(context);
 
 		Resources res = getBaseContext().getResources();
-		
+
 		LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-		View titleBarView = inflater.inflate(R.layout.change_network_title_bar, null);	
+		View titleBarView = inflater.inflate(R.layout.change_network_title_bar, null);
 		ImageView titleBarLogo = (ImageView) titleBarView.findViewById(R.id.title_bar_logo);
-		
+
 		String country = getUserCountry(context);
 		Logger.tag(TAG).debug("Detected country: " + country);
-		
+
         final String[] inatNetworks = getINatNetworks();
 
 		if (country == null) {
@@ -826,7 +826,7 @@ public class INaturalistApp extends MultiDexApplication {
 			setInaturalistNetworkMember(inatNetworks[0]);
 			return;
 		}
-		
+
 
         String detectedNetwork = inatNetworks[0]; // Select default iNaturalist network
 		for (int i = 0; i < inatNetworks.length; i++) {
@@ -835,7 +835,7 @@ public class INaturalistApp extends MultiDexApplication {
 				break;
 			}
 		}
-		
+
         // Don't ask the user again to switch if it's the default iNat network
 		if (!detectedNetwork.equals(inatNetworks[0])) {
 			// Set the logo in the title bar according to network type
@@ -843,7 +843,7 @@ public class INaturalistApp extends MultiDexApplication {
 			String packageName = getPackageName();
 			int resId = getResources().getIdentifier(logoName, "drawable", packageName);
 			titleBarLogo.setImageResource(resId);
-			
+
 			final String selectedNetwork = detectedNetwork;
 			helper.confirm(
 					titleBarView,
@@ -868,13 +868,13 @@ public class INaturalistApp extends MultiDexApplication {
 		}
 
 	}
-   
-    
+
+
     public String[] getINatNetworks() {
         Resources res = getResources();
         return res.getStringArray(R.array.inat_networks);
     }
-    
+
     public String[] getStringArrayResourceByName(String aString) {
     	String packageName = getPackageName();
     	int resId = getResources().getIdentifier(aString, "array", packageName);
@@ -883,7 +883,7 @@ public class INaturalistApp extends MultiDexApplication {
     	} else {
     		return getResources().getStringArray(resId);
     	}
-    } 
+    }
 
     public int getColorResourceByName(String aString) {
     	int resId = getResourceIdByName(aString, "color");
@@ -893,7 +893,7 @@ public class INaturalistApp extends MultiDexApplication {
     		return getResources().getColor(resId);
     	}
     }
-    
+
     public String getStringResourceByName(String aString) {
     	int resId = getResourceIdByName(aString, "string");
     	if (resId == 0) {

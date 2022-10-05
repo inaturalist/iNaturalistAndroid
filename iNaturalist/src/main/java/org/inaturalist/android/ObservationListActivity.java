@@ -440,12 +440,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         // Get the user's activities
         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_USER_UPDATES, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.FOLLOWING, false);
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
 
         if (mApp.loggedIn()) {
             // Refresh user settings on app open
             Intent serviceIntent2 = new Intent(INaturalistService.ACTION_REFRESH_CURRENT_USER_SETTINGS, null, this, INaturalistService.class);
-            ContextCompat.startForegroundService(this, serviceIntent2);
+            INaturalistService.callService(this, serviceIntent2);
         }
 
         redownloadObservationsIfLocaleChanged();
@@ -456,7 +456,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         // User changed the phone's language - re-download all local observations with the new taxon names (in that new language)
         Intent serviceIntent = new Intent(INaturalistService.ACTION_REDOWNLOAD_OBSERVATIONS_FOR_TAXON, null, this, INaturalistService.class);
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
     }
 
     private void refreshViewState() {
@@ -698,7 +698,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 Logger.tag(TAG).debug("Start sync by triggerSyncIfNeeded");
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                ContextCompat.startForegroundService(this, serviceIntent);
+                INaturalistService.callService(this, serviceIntent);
 
                 if (mSyncingTopBar != null) {
                     mSyncingStatus.setText(R.string.syncing);
@@ -968,7 +968,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         if ((refreshView == mListSwipeContainer) || (refreshView == mGridSwipeContainer)) {
             // Pull latest observations
             Intent serviceIntent = new Intent(INaturalistService.ACTION_PULL_OBSERVATIONS, null, ObservationListActivity.this, INaturalistService.class);
-            ContextCompat.startForegroundService(this, serviceIntent);
+            INaturalistService.callService(this, serviceIntent);
 
             // In this case - also refresh IDs/species
             getUserDetails(INaturalistService.ACTION_GET_USER_IDENTIFICATIONS);
@@ -1444,7 +1444,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                             // Re-sync
                             Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
                             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                            ContextCompat.startForegroundService(ObservationListActivity.this, serviceIntent);
+                            INaturalistService.callService(ObservationListActivity.this, serviceIntent);
 
                         }
                     });
@@ -1586,7 +1586,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             remoteIdsToDelete.toArray(obsIds);
             serviceIntent.putExtra(INaturalistService.OBS_IDS_TO_DELETE, ArrayUtils.toPrimitive(obsIds));
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-            ContextCompat.startForegroundService(ObservationListActivity.this, serviceIntent);
+            INaturalistService.callService(ObservationListActivity.this, serviceIntent);
 
         }
 
@@ -1877,7 +1877,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     private void getUserDetails(String action) {
         Intent serviceIntent = new Intent(action, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
     }
 
     private class NewsReceiver extends BroadcastReceiver {
@@ -1996,7 +1996,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 mObsIdsToSync.toArray(obsIds);
                 serviceIntent.putExtra(INaturalistService.OBS_IDS_TO_SYNC, ArrayUtils.toPrimitive(obsIds));
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                ContextCompat.startForegroundService(ObservationListActivity.this, serviceIntent);
+                INaturalistService.callService(ObservationListActivity.this, serviceIntent);
 
                 // Exit multi-batch mode immediately
                 setMultiSelectionMode(false);

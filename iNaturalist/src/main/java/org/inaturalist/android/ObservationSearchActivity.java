@@ -202,7 +202,7 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
 
         Intent serviceIntent = new Intent(INaturalistService.ACTION_SEARCH_USER_OBSERVATIONS, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.QUERY, query);
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
     }
 
     public void onItemClick(AdapterView<?> adapterView, View v, int position, long id) {
@@ -298,7 +298,7 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
                     // This observation has a non-project custom field - add it as well
                     Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_PROJECT_FIELD, null, this, INaturalistService.class);
                     serviceIntent.putExtra(INaturalistService.FIELD_ID, fieldValue.field_id);
-                    ContextCompat.startForegroundService(this, serviceIntent);
+                    INaturalistService.callService(this, serviceIntent);
                 }
                 c.close();
             }

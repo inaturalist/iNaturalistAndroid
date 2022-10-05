@@ -550,7 +550,7 @@ public class GuideTaxonActivity extends AppCompatActivity {
 
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON, null, this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxonId != null ? mTaxonId : mTaxon.getInt("id"));
-            ContextCompat.startForegroundService(this, serviceIntent);
+            INaturalistService.callService(this, serviceIntent);
         }
     }
 }

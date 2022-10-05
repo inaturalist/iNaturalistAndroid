@@ -175,7 +175,7 @@ public class CompareSuggestionActivity extends AppCompatActivity {
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON_NEW, null, this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.TAXON_ID, taxon.optInt("id"));
-                ContextCompat.startForegroundService(this, serviceIntent);
+                INaturalistService.callService(this, serviceIntent);
             }
         }
     }

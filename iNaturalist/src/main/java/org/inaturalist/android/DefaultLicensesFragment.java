@@ -69,7 +69,7 @@ public class DefaultLicensesFragment extends PreferenceFragmentCompat {
             LicenseUtils.showLicenseChooser(getActivity(), R.string.default_observation_license, mApp.getDefaultObservationLicense().value, license -> {
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_USER_DETAILS, null, getActivity(), INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.ACTION_USER_LICENSE, license.value);
-                ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                INaturalistService.callService(getActivity(), serviceIntent);
                 mApp.setDefaultObservationLicense(license.value);
 
                 refreshSettings();
@@ -81,7 +81,7 @@ public class DefaultLicensesFragment extends PreferenceFragmentCompat {
             LicenseUtils.showLicenseChooser(getActivity(), R.string.default_photo_license, mApp.getDefaultPhotoLicense().value, license -> {
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_USER_DETAILS, null, getActivity(), INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.ACTION_USER_PHOTO_LICENSE, license.value);
-                ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                INaturalistService.callService(getActivity(), serviceIntent);
                 mApp.setDefaultPhotoLicense(license.value);
 
                 refreshSettings();
@@ -93,7 +93,7 @@ public class DefaultLicensesFragment extends PreferenceFragmentCompat {
             LicenseUtils.showLicenseChooser(getActivity(), R.string.default_sound_license, mApp.getDefaultSoundLicense().value, license -> {
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_USER_DETAILS, null, getActivity(), INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.ACTION_USER_SOUND_LICENSE, license.value);
-                ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                INaturalistService.callService(getActivity(), serviceIntent);
                 mApp.setDefaultSoundLicense(license.value);
 
                 refreshSettings();

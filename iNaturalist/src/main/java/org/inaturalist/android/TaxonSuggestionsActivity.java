@@ -314,7 +314,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
         serviceIntent.putExtra(INaturalistService.TAXON_IDS, new SerializableJSONArray(taxonIds));
         mTopResultsUUID = UUID.randomUUID().toString();
         serviceIntent.putExtra(INaturalistService.UUID, mTopResultsUUID);
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
     }
 
 
@@ -586,7 +586,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
             }
         }
 
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
 
         mLoadingSuggestions.setVisibility(View.VISIBLE);
         mSuggestionsContainer.setVisibility(View.GONE);
@@ -693,7 +693,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON_NEW, null, this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.TAXON_ID, taxonId);
-                ContextCompat.startForegroundService(this, serviceIntent);
+                INaturalistService.callService(this, serviceIntent);
             }
         }
 

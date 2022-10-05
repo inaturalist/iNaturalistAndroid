@@ -1267,7 +1267,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         if (mOnLoadingMoreResultsListener != null) mOnLoadingMoreResultsListener.onLoadingMoreResultsStart();
 
         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_ADDITIONAL_OBS, null, mContext, INaturalistService.class);
-        ContextCompat.startForegroundService(mContext, serviceIntent);
+        INaturalistService.callService(mContext, serviceIntent);
     }
 
     static HashMap<String, Drawable> taxonIconCache = new HashMap<>();

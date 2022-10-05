@@ -351,7 +351,7 @@ public class ObservationViewerSlider extends AppCompatActivity {
             if ((mObsResults == null) && (!mLoadingNextResults && !mNoMoreObsLeft && mApp.loggedIn())) {
                 mLoadingNextResults = true;
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_ADDITIONAL_OBS, null, ObservationViewerSlider.this, INaturalistService.class);
-                ContextCompat.startForegroundService(ObservationViewerSlider.this, serviceIntent);
+                INaturalistService.callService(ObservationViewerSlider.this, serviceIntent);
 
             } else if ((mObsResults != null) && (!mLoadingNextResults && mObsResults.size() < mTotalResults)) {
                 mLoadingNextResults = true;
@@ -363,7 +363,7 @@ public class ObservationViewerSlider extends AppCompatActivity {
                 serviceIntent.putExtra(INaturalistService.PAGE_NUMBER, mCurrentResultsPage + 1);
                 mLatestSearchUuid = UUID.randomUUID().toString();
                 serviceIntent.putExtra(INaturalistService.UUID, mLatestSearchUuid);
-                ContextCompat.startForegroundService(ObservationViewerSlider.this, serviceIntent);
+                INaturalistService.callService(ObservationViewerSlider.this, serviceIntent);
 
             }
         }

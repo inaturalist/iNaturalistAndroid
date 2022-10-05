@@ -195,7 +195,7 @@ public class MentionsAutoComplete implements TextWatcher, AdapterView.OnItemClic
         Intent serviceIntent = new Intent(INaturalistService.ACTION_SEARCH_USERS, null, mContext, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.QUERY, searchText);
         serviceIntent.putExtra(INaturalistService.PAGE_NUMBER, 1);
-        ContextCompat.startForegroundService(mContext, serviceIntent);
+        INaturalistService.callService(mContext, serviceIntent);
     }
 
     @Override

@@ -138,7 +138,7 @@ public class MissionsGridActivity extends AppCompatActivity {
                 serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
                 serviceIntent.putExtra(INaturalistService.EXPAND_LOCATION_BY_DEGREES, nextExpansion);
                 if (mTaxonId > -1) serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxonId);
-                ContextCompat.startForegroundService(this, serviceIntent);
+                INaturalistService.callService(this, serviceIntent);
             }
         }
 
@@ -212,7 +212,7 @@ public class MissionsGridActivity extends AppCompatActivity {
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_MISSIONS_BY_TAXON, null, this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
                 serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxonId);
-                ContextCompat.startForegroundService(this, serviceIntent);
+                INaturalistService.callService(this, serviceIntent);
 
             } else {
                 // Load recommended missions (already loaded in the previous screen - the main missions activity)

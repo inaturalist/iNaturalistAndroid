@@ -147,8 +147,11 @@ dependencies {
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
     implementation 'com.github.budowski:Zoomy:v1.1.1'
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.work:work-runtime:2.7.0'
+    implementation "androidx.work:work-runtime-ktx:2.7.0"
     annotationProcessor 'com.evernote:android-state-processor:1.4.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+    annotationProcessor 'androidx.hilt:hilt-compiler:1.0.0'
     androidTestImplementation 'androidx.core:core-ktx:1.6.0'
     androidTestImplementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     androidTestImplementation 'androidx.test.ext:junit-ktx:1.1.3'

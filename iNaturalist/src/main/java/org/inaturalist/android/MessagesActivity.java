@@ -169,7 +169,7 @@ public class MessagesActivity extends BaseFragmentActivity implements MessageAda
         }
 
         serviceIntent.putExtra(INaturalistService.BOX, "any");
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
         refreshUserDetails();
 
         refreshViewState();

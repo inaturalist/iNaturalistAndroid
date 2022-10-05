@@ -14,6 +14,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
 import android.util.Log;
+import android.util.Pair;
 
 public class ObservationPhoto implements BaseColumns, Serializable {
     public Integer _id;
@@ -323,13 +324,13 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         return cv;
     }
 
-    public ArrayList<NameValuePair> getParams() {
-        final ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-        if (observation_id != null) { params.add(new BasicNameValuePair("observation_photo[observation_id]", observation_id.toString())); }
-        if (photo_id != null) { params.add(new BasicNameValuePair("observation_photo[photo_id]", photo_id.toString())); }
-        if (position != null) { params.add(new BasicNameValuePair("observation_photo[position]", position.toString())); }
-        if (license != null) { params.add(new BasicNameValuePair("observation_photo[photo][license_code]", license)); }
-        if (uuid != null) { params.add(new BasicNameValuePair("observation_photo[uuid]", uuid)); }
+    public ArrayList<Pair<String, String>> getParams() {
+        final ArrayList<Pair<String, String>> params = new ArrayList<Pair<String, String>>();
+        if (observation_id != null) { params.add(new Pair("observation_photo[observation_id]", observation_id.toString())); }
+        if (photo_id != null) { params.add(new Pair("observation_photo[photo_id]", photo_id.toString())); }
+        if (position != null) { params.add(new Pair("observation_photo[position]", position.toString())); }
+        if (license != null) { params.add(new Pair("observation_photo[photo][license_code]", license)); }
+        if (uuid != null) { params.add(new Pair("observation_photo[uuid]", uuid)); }
 
         return params;
     }

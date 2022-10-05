@@ -352,7 +352,7 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
         BaseFragmentActivity.safeRegisterReceiver(mProjectReceiver, filter, this);
 
         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_JOINED_PROJECTS, null, ProjectSelectorActivity.this, INaturalistService.class);
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
     }
 
     // Update project field values from UI

@@ -2,7 +2,7 @@ package org.inaturalist.android;
 
 import java.util.HashMap;
 
-import org.inaturalist.android.INaturalistService.LoginType;
+import org.inaturalist.android.INaturalistServiceImplementation.LoginType;
 
 
 

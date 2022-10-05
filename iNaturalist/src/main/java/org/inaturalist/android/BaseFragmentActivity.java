@@ -233,13 +233,13 @@ public class BaseFragmentActivity extends AppCompatActivity {
             if (System.currentTimeMillis() - lastRefreshTime > 1000 * USER_REFRESH_TIME_SECONDS) {
                 // Get fresh user details from the server
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_USER_DETAILS, null, this, INaturalistService.class);
-                ContextCompat.startForegroundService(this, serviceIntent);
+                INaturalistService.callService(this, serviceIntent);
             }
 
             if (System.currentTimeMillis() - lastNotificationCountsTime > 1000 * USER_NOTIFICATIONS_REFRESH_TIME_SECONDS) {
                 // Get number of unread messages
                 Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_NOTIFICATION_COUNTS, null, this, INaturalistService.class);
-                ContextCompat.startForegroundService(this, serviceIntent2);
+                INaturalistService.callService(this, serviceIntent2);
             }
         } else {
             findViewById(R.id.menu_login).setVisibility(View.VISIBLE);
@@ -743,9 +743,9 @@ public class BaseFragmentActivity extends AppCompatActivity {
         INaturalistApp app = (INaturalistApp) context.getApplicationContext();
         SharedPreferences prefs = app.getPrefs();
         SharedPreferences.Editor prefEditor = prefs.edit();
-        INaturalistService.LoginType loginType = INaturalistService.LoginType.valueOf(prefs.getString("login_type", INaturalistService.LoginType.OAUTH_PASSWORD.toString()));
+        INaturalistServiceImplementation.LoginType loginType = INaturalistServiceImplementation.LoginType.valueOf(prefs.getString("login_type", INaturalistServiceImplementation.LoginType.OAUTH_PASSWORD.toString()));
 
-        if (loginType == INaturalistService.LoginType.FACEBOOK) {
+        if (loginType == INaturalistServiceImplementation.LoginType.FACEBOOK) {
             FacebookSdk.setApplicationId(context.getString(R.string.facebook_app_id));
             FacebookSdk.sdkInitialize(context);
             LoginManager.getInstance().logOut();
@@ -907,7 +907,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 // Get place details (display name)
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_PLACE_DETAILS, null, BaseFragmentActivity.this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.PLACE_ID, placeId.intValue());
-                ContextCompat.startForegroundService(BaseFragmentActivity.this, serviceIntent);
+                INaturalistService.callService(BaseFragmentActivity.this, serviceIntent);
             } else {
                 editor.putString("user_place_display_name", getString(R.string.global));
             }

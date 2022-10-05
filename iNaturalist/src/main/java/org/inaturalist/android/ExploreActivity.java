@@ -431,7 +431,7 @@ public class ExploreActivity extends BaseFragmentActivity {
 
         if (mAllAnnotations == null) {
             Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_ALL_ATTRIBUTES, null, ExploreActivity.this, INaturalistService.class);
-            ContextCompat.startForegroundService(this, serviceIntent2);
+            INaturalistService.callService(this, serviceIntent2);
         }
 
 
@@ -1295,7 +1295,7 @@ public class ExploreActivity extends BaseFragmentActivity {
             serviceIntent.putExtra(INaturalistService.PAGE_NUMBER, mCurrentResultsPage[resultsType] + 1);
             mLatestSearchUuid[resultsType] = UUID.randomUUID().toString();
             serviceIntent.putExtra(INaturalistService.UUID, mLatestSearchUuid[resultsType]);
-            ContextCompat.startForegroundService(this, serviceIntent);
+            INaturalistService.callService(this, serviceIntent);
 
             if (mCurrentResultsPage[resultsType] > 0) {
                 mLoadingMoreResults[resultsType].setVisibility(View.VISIBLE);
@@ -1453,7 +1453,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                     @Override
                     public void onClick(View v) {
                         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_CURRENT_LOCATION, null, ExploreActivity.this, INaturalistService.class);
-                        ContextCompat.startForegroundService(ExploreActivity.this, serviceIntent);
+                        INaturalistService.callService(ExploreActivity.this, serviceIntent);
                     }
                 });
 

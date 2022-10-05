@@ -1045,7 +1045,7 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
             int guideId = mGuide.getInt("id");
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GUIDE_XML, null, GuideDetails.this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.ACTION_GUIDE_ID, guideId);
-            ContextCompat.startForegroundService(this, serviceIntent);
+            INaturalistService.callService(this, serviceIntent);
         }
     }
 

@@ -475,7 +475,7 @@ public class ProjectFieldViewer {
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON, null, mContext, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxonId);
-                ContextCompat.startForegroundService(mContext, serviceIntent);
+                INaturalistService.callService(mContext, serviceIntent);
             } else {
                 mIdName.setText("");
                 mIdTaxonName.setText("");

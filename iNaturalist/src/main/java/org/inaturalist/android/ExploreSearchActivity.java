@@ -364,7 +364,7 @@ public class ExploreSearchActivity extends AppCompatActivity {
         Intent serviceIntent = new Intent(searchType == SEARCH_TYPE_TAXON ? INaturalistService.ACTION_SEARCH_TAXA : INaturalistService.ACTION_SEARCH_PLACES, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.QUERY, query);
         serviceIntent.putExtra(INaturalistService.PAGE_NUMBER, 1);
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
 
         refreshViewState(false);
     }

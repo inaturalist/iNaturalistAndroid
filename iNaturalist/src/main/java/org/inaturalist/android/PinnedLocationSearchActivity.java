@@ -239,7 +239,7 @@ public class PinnedLocationSearchActivity extends AppCompatActivity {
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_DELETE_PINNED_LOCATION, null, PinnedLocationSearchActivity.this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.ID, place.id);
-                ContextCompat.startForegroundService(PinnedLocationSearchActivity.this, serviceIntent);
+                INaturalistService.callService(PinnedLocationSearchActivity.this, serviceIntent);
 
                 // Refresh pinned locations
                 mProgress.setVisibility(View.VISIBLE);

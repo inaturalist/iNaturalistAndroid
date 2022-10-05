@@ -245,7 +245,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
             if (!mObsIdBeingDownloaded.containsKey(obsId) || !mObsIdBeingDownloaded.get(obsId)) {
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION, null, mContext, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, obsId);
-                ContextCompat.startForegroundService(mContext, serviceIntent);
+                INaturalistService.callService(mContext, serviceIntent);
                 Logger.tag(TAG).error(obsId + ": Start download: " + mObsIdBeingDownloaded.containsKey(obsId));
             } else {
                 Logger.tag(TAG).error(obsId + ": Downloading");
@@ -350,7 +350,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                 // Mark observation update as viewed
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_VIEWED_UPDATE, null, mContext, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, obs.id);
-                ContextCompat.startForegroundService(mContext, serviceIntent);
+                INaturalistService.callService(mContext, serviceIntent);
             }
         };
 

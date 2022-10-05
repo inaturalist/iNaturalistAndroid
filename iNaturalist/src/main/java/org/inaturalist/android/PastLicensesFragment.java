@@ -56,7 +56,7 @@ public class PastLicensesFragment extends PreferenceFragmentCompat {
                     Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_USER_DETAILS, null, getActivity(), INaturalistService.class);
                     serviceIntent.putExtra(INaturalistService.ACTION_USER_LICENSE, license.value);
                     serviceIntent.putExtra(INaturalistService.ACTION_MAKE_LICENSE_SAME, true);
-                    ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                    INaturalistService.callService(getActivity(), serviceIntent);
                     mApp.setDefaultObservationLicense(license.value);
 
                     String confirmation = String.format(getString(R.string.existing_observation_licenses_have_been_updated), license.shortName);
@@ -74,7 +74,7 @@ public class PastLicensesFragment extends PreferenceFragmentCompat {
                     Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_USER_DETAILS, null, getActivity(), INaturalistService.class);
                     serviceIntent.putExtra(INaturalistService.ACTION_USER_PHOTO_LICENSE, license.value);
                     serviceIntent.putExtra(INaturalistService.ACTION_MAKE_PHOTO_LICENSE_SAME, true);
-                    ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                    INaturalistService.callService(getActivity(), serviceIntent);
                     mApp.setDefaultPhotoLicense(license.value);
 
                     String confirmation = String.format(getString(R.string.existing_photo_licenses_have_been_updated), license.shortName);
@@ -92,7 +92,7 @@ public class PastLicensesFragment extends PreferenceFragmentCompat {
                     Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_USER_DETAILS, null, getActivity(), INaturalistService.class);
                     serviceIntent.putExtra(INaturalistService.ACTION_USER_SOUND_LICENSE, license.value);
                     serviceIntent.putExtra(INaturalistService.ACTION_MAKE_SOUND_LICENSE_SAME, true);
-                    ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                    INaturalistService.callService(getActivity(), serviceIntent);
                     mApp.setDefaultSoundLicense(license.value);
 
                     String confirmation = String.format(getString(R.string.existing_sound_licenses_have_been_updated), license.shortName);

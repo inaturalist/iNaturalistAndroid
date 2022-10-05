@@ -299,28 +299,28 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
     public void onDeleteAnnotationValue(String uuid) {
         Intent serviceIntent = new Intent(INaturalistService.ACTION_DELETE_ANNOTATION, null, getActivity(), INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.UUID, uuid);
-        ContextCompat.startForegroundService(getActivity(), serviceIntent);
+        INaturalistService.callService(getActivity(), serviceIntent);
     }
 
     @Override
     public void onAnnotationAgree(String uuid) {
         Intent serviceIntent = new Intent(INaturalistService.ACTION_AGREE_ANNOTATION, null, getActivity(), INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.UUID, uuid);
-        ContextCompat.startForegroundService(getActivity(), serviceIntent);
+        INaturalistService.callService(getActivity(), serviceIntent);
     }
 
     @Override
     public void onAnnotationDisagree(String uuid) {
         Intent serviceIntent = new Intent(INaturalistService.ACTION_DISAGREE_ANNOTATION, null, getActivity(), INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.UUID, uuid);
-        ContextCompat.startForegroundService(getActivity(), serviceIntent);
+        INaturalistService.callService(getActivity(), serviceIntent);
     }
 
     @Override
     public void onAnnotationVoteDelete(String uuid) {
         Intent serviceIntent = new Intent(INaturalistService.ACTION_DELETE_ANNOTATION_VOTE, null, getActivity(), INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.UUID, uuid);
-        ContextCompat.startForegroundService(getActivity(), serviceIntent);
+        INaturalistService.callService(getActivity(), serviceIntent);
     }
 
     @Override
@@ -329,7 +329,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
         serviceIntent.putExtra(INaturalistService.ATTRIBUTE_ID, annotationId);
         serviceIntent.putExtra(INaturalistService.VALUE_ID, valueId);
         serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-        ContextCompat.startForegroundService(getActivity(), serviceIntent);
+        INaturalistService.callService(getActivity(), serviceIntent);
     }
 
     private class PhotosViewPagerAdapter extends PagerAdapter implements SoundPlayer.OnPlayerStatusChange {
@@ -866,7 +866,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
         if (mObservation != null && mObservation._synced_at != null) {
             Intent serviceIntent = new Intent(INaturalistService.ACTION_VIEWED_UPDATE, null, getActivity(), INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-            ContextCompat.startForegroundService(getActivity(), serviceIntent);
+            INaturalistService.callService(getActivity(), serviceIntent);
         }
 
         return mRootView;
@@ -947,7 +947,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                                 // Observation not downloaded yet - download and save it
                                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION, null, getActivity(), INaturalistService.class);
                                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                                ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                                INaturalistService.callService(getActivity(), serviceIntent);
 
                                 mReadOnly = false;
                                 mReloadObs = true;
@@ -995,7 +995,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, getActivity(), INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
             serviceIntent.putExtra(INaturalistService.GET_PROJECTS, true);
-            ContextCompat.startForegroundService(getActivity(), serviceIntent);
+            INaturalistService.callService(getActivity(), serviceIntent);
         }
 
         if (mObservation != null) {
@@ -1128,7 +1128,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_REMOVE_FAVORITE, null, getActivity(), INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                INaturalistService.callService(getActivity(), serviceIntent);
 
                 mFavIndex = getFavoritedByUsername(username);
 
@@ -1154,7 +1154,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_FAVORITE, null, getActivity(), INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                INaturalistService.callService(getActivity(), serviceIntent);
 
                 SharedPreferences pref = getActivity().getSharedPreferences("iNaturalistPreferences", Activity.MODE_PRIVATE);
                 String username = pref.getString("username", null);
@@ -1274,7 +1274,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                     serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                     serviceIntent.putExtra(INaturalistService.TAXON_ID, taxon.getJSONObject("taxon").getInt("id"));
                     serviceIntent.putExtra(INaturalistService.FROM_VISION, false);
-                    ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                    INaturalistService.callService(getActivity(), serviceIntent);
 
                     try {
                         JSONObject eventParams = new JSONObject();
@@ -1301,7 +1301,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                 mReloadTaxon = true;
                 serviceIntent.putExtra(INaturalistService.IDENTIFICATION_ID, taxon.getInt("id"));
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                INaturalistService.callService(getActivity(), serviceIntent);
             }
 
             @Override
@@ -1341,7 +1341,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                                 serviceIntent.putExtra(INaturalistService.IDENTIFICATION_BODY, body);
                                 serviceIntent.putExtra(INaturalistService.TAXON_ID, id.getInt("taxon_id"));
-                                ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                                INaturalistService.callService(getActivity(), serviceIntent);
                             }
                         },
                         new DialogInterface.OnClickListener() {
@@ -1361,7 +1361,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_RESTORE_ID, null, getActivity(), INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.IDENTIFICATION_ID, id.getInt("id"));
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                INaturalistService.callService(getActivity(), serviceIntent);
             }
 
 
@@ -1374,7 +1374,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_DELETE_COMMENT, null, getActivity(), INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.COMMENT_ID, comment.getInt("id"));
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                INaturalistService.callService(getActivity(), serviceIntent);
             }
 
             @Override
@@ -1413,7 +1413,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                                 serviceIntent.putExtra(INaturalistService.COMMENT_ID, comment.getInt("id"));
                                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                                 serviceIntent.putExtra(INaturalistService.COMMENT_BODY, commentBody);
-                                ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                                INaturalistService.callService(getActivity(), serviceIntent);
                             }
                         },
                         new DialogInterface.OnClickListener() {
@@ -1492,7 +1492,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                         Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_COMMENT, null, getActivity(), INaturalistService.class);
                         serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                         serviceIntent.putExtra(INaturalistService.COMMENT_BODY, comment);
-                        ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                        INaturalistService.callService(getActivity(), serviceIntent);
 
                         mCommentMentions.dismiss();
 
@@ -1728,7 +1728,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, getActivity(), INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
             serviceIntent.putExtra(INaturalistService.GET_PROJECTS, false);
-            ContextCompat.startForegroundService(getActivity(), serviceIntent);
+            INaturalistService.callService(getActivity(), serviceIntent);
 
             if (mReadOnly) {
                 // Show loading progress bars for the photo and map
@@ -2359,7 +2359,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             case R.id.follow_observation:
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_FOLLOW_OBSERVATION, null, getActivity(), INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                INaturalistService.callService(getActivity(), serviceIntent);
 
                 mFollowingObservation = true;
                 refreshMenu();
@@ -2406,7 +2406,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                         // Flag as captive
                         Intent serviceIntent = new Intent(INaturalistService.ACTION_FLAG_OBSERVATION_AS_CAPTIVE, null, getActivity(), INaturalistService.class);
                         serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                        ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                        INaturalistService.callService(getActivity(), serviceIntent);
 
                         Toast.makeText(getActivity().getApplicationContext(), R.string.observation_flagged_as_captive, Toast.LENGTH_LONG).show();
                         getActivity().setResult(RESULT_FLAGGED_AS_CAPTIVE);
@@ -2495,7 +2495,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, getActivity(), INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
             serviceIntent.putExtra(INaturalistService.GET_PROJECTS, false);
-            ContextCompat.startForegroundService(getActivity(), serviceIntent);
+            INaturalistService.callService(getActivity(), serviceIntent);
 	    }
 
 	}
@@ -2505,7 +2505,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION_SUBSCRIPTIONS, null, getActivity(), INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-        ContextCompat.startForegroundService(getActivity(), serviceIntent);
+        INaturalistService.callService(getActivity(), serviceIntent);
 
         mObservationSubscriptions = null;
         mFollowingObservation = false;
@@ -3005,7 +3005,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                         Logger.tag(TAG).info("Obervation belongs to current user - downloading it");
                         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION, null, getActivity(), INaturalistService.class);
                         serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                        ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                        INaturalistService.callService(getActivity(), serviceIntent);
 
                         mReadOnly = false;
                         mReloadObs = true;
@@ -3058,7 +3058,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             // No taxon - get the generic attributes (no taxon)
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_ATTRIBUTES_FOR_TAXON, null, getActivity(), INaturalistService.class);
             if (mObservation != null) serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-            ContextCompat.startForegroundService(getActivity(), serviceIntent);
+            INaturalistService.callService(getActivity(), serviceIntent);
             return;
         }
 
@@ -3095,7 +3095,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
         if (mObservation != null) serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
         serviceIntent.putExtra(INaturalistService.TAXON_ID, taxon.optInt("id"));
         serviceIntent.putExtra(INaturalistService.ANCESTORS, new SerializableJSONArray(taxon.optJSONArray("ancestor_ids")));
-        ContextCompat.startForegroundService(getActivity(), serviceIntent);
+        INaturalistService.callService(getActivity(), serviceIntent);
     }
 
     private void reloadPhotos() {
@@ -3279,7 +3279,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                         serviceIntent.putExtra(INaturalistService.IDENTIFICATION_BODY, idRemarks);
                         serviceIntent.putExtra(INaturalistService.DISAGREEMENT, disagreement);
                         serviceIntent.putExtra(INaturalistService.FROM_VISION, fromSuggestion);
-                        ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                        INaturalistService.callService(getActivity(), serviceIntent);
 
                         try {
                             JSONObject eventParams = new JSONObject();
@@ -3319,7 +3319,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, getActivity(), INaturalistService.class);
             serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
             serviceIntent2.putExtra(INaturalistService.GET_PROJECTS, false);
-            ContextCompat.startForegroundService(getActivity(), serviceIntent2);
+            INaturalistService.callService(getActivity(), serviceIntent2);
 
         } else if (requestCode == OBSERVATION_PHOTOS_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {

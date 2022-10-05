@@ -1051,7 +1051,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
 
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON_OBSERVATION_BOUNDS, null, this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxon.getInt("id"));
-            ContextCompat.startForegroundService(this, serviceIntent);
+            INaturalistService.callService(this, serviceIntent);
 
         }
 
@@ -1064,7 +1064,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
 
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON_NEW, null, this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxon.getInt("id"));
-            ContextCompat.startForegroundService(this, serviceIntent);
+            INaturalistService.callService(this, serviceIntent);
         }
 
         //
@@ -1078,16 +1078,16 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
 
         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_HISTOGRAM, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxon.getInt("id"));
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
 
         serviceIntent = new Intent(INaturalistService.ACTION_GET_HISTOGRAM, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxon.getInt("id"));
         serviceIntent.putExtra(INaturalistService.RESEARCH_GRADE, true);
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
 
         serviceIntent = new Intent(INaturalistService.ACTION_GET_POPULAR_FIELD_VALUES, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxon.getInt("id"));
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
 
         refreshSeasonality();
     }

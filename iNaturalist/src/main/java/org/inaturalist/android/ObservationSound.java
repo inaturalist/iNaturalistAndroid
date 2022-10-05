@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
+import android.util.Pair;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -157,9 +158,9 @@ public class ObservationSound implements BaseColumns, Serializable {
         return cv;
     }
 
-    public ArrayList<NameValuePair> getParams() {
-        final ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-        if (observation_id != null) { params.add(new BasicNameValuePair("observation_sound[observation_id]", observation_id.toString())); }
+    public ArrayList<Pair<String, String>> getParams() {
+        final ArrayList<Pair<String, String>> params = new ArrayList<Pair<String, String>>();
+        if (observation_id != null) { params.add(new Pair("observation_sound[observation_id]", observation_id.toString())); }
 
         return params;
     }

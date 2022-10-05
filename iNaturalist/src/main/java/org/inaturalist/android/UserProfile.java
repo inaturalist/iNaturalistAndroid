@@ -522,7 +522,7 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
     private void getUserDetails(String action) {
         Intent serviceIntent = new Intent(action, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.USERNAME, mUser.getString("login"));
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
     }
 
     private class UserDetailsReceiver extends BroadcastReceiver {

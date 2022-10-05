@@ -62,7 +62,7 @@ public class ThirdPartyDataSharingFragment extends PreferenceFragmentCompat {
                     Logger.tag(TAG).error(e);
                 }
                 serviceIntent.putExtra(INaturalistService.USER, new BetterJSONObject(userDetails));
-                ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                INaturalistService.callService(getActivity(), serviceIntent);
 
                 if (newValue) {
                     // Restart to apply changes

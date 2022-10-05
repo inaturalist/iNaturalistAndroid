@@ -160,7 +160,7 @@ public class MessagesThreadActivity extends AppCompatActivity {
             serviceIntent.putExtra(INaturalistService.THREAD_ID, mMessage.getInt("thread_id"));
             serviceIntent.putExtra(INaturalistService.SUBJECT, mMessage.getString("subject"));
             serviceIntent.putExtra(INaturalistService.BODY, mMessageText.getText().toString());
-            ContextCompat.startForegroundService(this, serviceIntent);
+            INaturalistService.callService(this, serviceIntent);
 
             mSendingMessage = true;
             mHelper.loading(getString(R.string.sending_message));
@@ -227,7 +227,7 @@ public class MessagesThreadActivity extends AppCompatActivity {
     private void loadThread() {
         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_MESSAGES, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.MESSAGE_ID, mMessage.getJSONObject().optInt("id"));
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
     }
 
     private Integer getOtherUserId() {
@@ -493,7 +493,7 @@ public class MessagesThreadActivity extends AppCompatActivity {
                 if (mSelectedFlagType == -1) {
                     serviceIntent.putExtra(INaturalistService.FLAG_EXPLANATION, flagExplanation.getText().toString());
                 }
-                ContextCompat.startForegroundService(this, serviceIntent);
+                INaturalistService.callService(this, serviceIntent);
 
                 mFlaggingConversation = true;
                 refreshViewState(false, false);
@@ -513,7 +513,7 @@ public class MessagesThreadActivity extends AppCompatActivity {
 
         Intent serviceIntent = new Intent(isUserMuted() ? INaturalistService.ACTION_UNMUTE_USER : INaturalistService.ACTION_MUTE_USER, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.USER, user);
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
 
         mMutingUser = true;
         refreshViewState(false, false);

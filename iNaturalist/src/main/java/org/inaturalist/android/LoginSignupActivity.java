@@ -117,7 +117,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
             } else {
                 // Registration successful - login the user
                 recreateSignInTaskIfNeeded();
-                mSignInTask.signIn(INaturalistService.LoginType.OAUTH_PASSWORD, mUsername.getText().toString(), mPassword.getText().toString());
+                mSignInTask.signIn(INaturalistServiceImplementation.LoginType.OAUTH_PASSWORD, mUsername.getText().toString(), mPassword.getText().toString());
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_CREATE_ACCOUNT);
             }
         }
@@ -446,7 +446,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
                     });
                 } else {
                     recreateSignInTaskIfNeeded();
-                    mSignInTask.signIn(INaturalistService.LoginType.GOOGLE, null, null);
+                    mSignInTask.signIn(INaturalistServiceImplementation.LoginType.GOOGLE, null, null);
                 }
             }
         });
@@ -459,7 +459,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
                 if (!mIsSignup) {
                     // Login
                     recreateSignInTaskIfNeeded();
-                    mSignInTask.signIn(INaturalistService.LoginType.OAUTH_PASSWORD, mUsername.getText().toString().trim(), mPassword.getText().toString());
+                    mSignInTask.signIn(INaturalistServiceImplementation.LoginType.OAUTH_PASSWORD, mUsername.getText().toString().trim(), mPassword.getText().toString());
                 } else {
                     // Sign up
                     String username = mUsername.getText().toString();
@@ -486,7 +486,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
                     serviceIntent.putExtra(INaturalistService.USERNAME, mUsername.getText().toString());
                     serviceIntent.putExtra(INaturalistService.PASSWORD, mPassword.getText().toString());
                     serviceIntent.putExtra(INaturalistService.LICENSE, (mUseCCLicense ? "CC-BY-NC" : "on"));
-                    ContextCompat.startForegroundService(LoginSignupActivity.this, serviceIntent);
+                    INaturalistService.callService(LoginSignupActivity.this, serviceIntent);
 
                     mHelper.loading(getString(R.string.registering));
                 }
@@ -515,7 +515,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
         if (requestCode == PERMISSIONS_REQUEST) {
             if (grantResults.length > 0 && grantResults[0] == PermissionChecker.PERMISSION_GRANTED) {
                 recreateSignInTaskIfNeeded();
-                mSignInTask.signIn(INaturalistService.LoginType.GOOGLE, null, null);
+                mSignInTask.signIn(INaturalistServiceImplementation.LoginType.GOOGLE, null, null);
             }
         }
     }
@@ -554,8 +554,8 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
 
 
     @Override
-    public void onLoginFailed(INaturalistService.LoginType loginType) {
-        if ((!mIsSignup) && (isNetworkAvailable()) && (loginType == INaturalistService.LoginType.OAUTH_PASSWORD)) {
+    public void onLoginFailed(INaturalistServiceImplementation.LoginType loginType) {
+        if ((!mIsSignup) && (isNetworkAvailable()) && (loginType == INaturalistServiceImplementation.LoginType.OAUTH_PASSWORD)) {
             // Invalid password - clear the password field
             mPassword.setText("");
         }

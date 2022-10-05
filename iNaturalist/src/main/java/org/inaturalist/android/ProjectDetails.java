@@ -241,7 +241,7 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
 
                                     Intent serviceIntent = new Intent(INaturalistService.ACTION_LEAVE_PROJECT, null, ProjectDetails.this, INaturalistService.class);
                                     serviceIntent.putExtra(INaturalistService.PROJECT_ID, mProject.getInt("id"));
-                                    ContextCompat.startForegroundService(ProjectDetails.this, serviceIntent);
+                                    INaturalistService.callService(ProjectDetails.this, serviceIntent);
                                 }
                             }, new DialogInterface.OnClickListener() {
                                 @Override
@@ -286,7 +286,7 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
 
         Intent serviceIntent = new Intent(INaturalistService.ACTION_JOIN_PROJECT, null, ProjectDetails.this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.PROJECT_ID, mProject.getInt("id"));
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
     }
 
     @Override
@@ -466,7 +466,7 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
     private void getProjectDetails(String action) {
         Intent serviceIntent = new Intent(action, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.PROJECT_ID, mProject.getInt("id"));
-        ContextCompat.startForegroundService(this, serviceIntent);
+        INaturalistService.callService(this, serviceIntent);
     }
 
     private class ProjectDetailsReceiver extends BroadcastReceiver {
