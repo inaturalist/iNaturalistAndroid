@@ -200,6 +200,7 @@
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala یکی از اعضای شبکه iNaturalist در گواتمالا است.  مؤسسات محلی حامی iNaturalist Guatemala به آدرس ایمیل شما و به مختصات واقعی مشاهداتی که به طور عمومی مبهم یا خصوصی هستند دسترسی خواهند داشت.  لطفاً اگر بیش از 1000 مشاهده دارید، وابستگی خود را به طور آزمایشی تغییر ندهید.  آیا می خواهید وابستگی خود را تغییر دهید؟</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden یکی از اعضای شبکه iNaturalist در سوئد است.  مؤسسات محلی حامی iNaturalist سوئد به آدرس ایمیل شما و دسترسی به مختصات واقعی مشاهداتی که به طور عمومی مبهم یا خصوصی هستند دسترسی خواهند داشت.  لطفاً اگر بیش از 1000 مشاهده دارید، وابستگی خود را به طور آزمایشی تغییر ندهید.  آیا می خواهید وابستگی خود را تغییر دهید؟</string>
     <string name="alert_message_use_naturalistauy">Naturalista Uruguay عضو شبکه iNaturalist در اروگوئه است.  مؤسسات محلی حامی ناتورالیستا اروگوئه به آدرس ایمیل شما و دسترسی به مختصات واقعی مشاهداتی که به طور عمومی مبهم یا خصوصی هستند دسترسی خواهند داشت.  لطفاً اگر بیش از 1000 مشاهده دارید، وابستگی خود را به طور آزمایشی تغییر ندهید.  آیا می خواهید وابستگی خود را تغییر دهید؟</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan is a member of the iNaturalist Network in Taiwan. Local institutions supporting iNaturalist Taiwan will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">ویرایشگر</string>
     <string name="license">مجوز</string>
     <string name="download_for_offline_use">دانلود برای استفاده آفلاین</string>
@@ -760,6 +761,7 @@
     <string name="network_credit_inaturalistgt"><![CDATA[گواتمالا: شورای ملی مناطق حفاظت شده (CONAP) از iNaturalist Guatemala حمایت می کند (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[سوئد: مرکز اطلاعات گونه‌های سوئدی SLU از iNaturalist سوئد پشتیبانی می‌کند (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="network_credit_naturalistauy"><![CDATA[اروگوئه: JULANA و Biodiversidata از Naturalista اوروگوئه حمایت می کنند (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi University and Taiwan Forestry Research Institute supporting iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">همه را به عنوان مشاهده شده علامت گذاری کنید</string>
     <string name="content_hidden">محتوا پنهان شد</string>
     <string name="show_hidden_content">نمایش محتوای پنهان</string>
@@ -1210,4 +1212,6 @@
     <string name="remove_identification">حذف شناسایی</string>
     <string name="issue_with_updating_photos">مشکلی در به‌روزرسانی عکس‌ها در این مشاهده وجود داشت که اخیراً برطرف شده است.  لطفاً برای حل این مشکل از سیستم خارج شوید و دوباره وارد شوید.</string>
     <string name="app_version_copied_to_clipboard">نسخه برنامه در حافظه موقت کپی شد</string>
+    <string name="authentication_failed">Authentication Failed</string>
+    <string name="please_try_again_soon">Please try again soon.</string>
 </resources>

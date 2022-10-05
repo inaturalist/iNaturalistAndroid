@@ -200,6 +200,7 @@
     <string name="alert_message_use_inaturalistgt">Az iNaturalist Guatemala a guatemalai iNaturalist Network tagja. Az iNaturalist Guatemalai helyi intézményi támogatói hozzáférhetnek az emailcímedhez és a megfigyeléseid pontos, egyébként fedett vagy privát koordinátáihoz. Kérjük, hogy próbaképpen ne módosíts a partneri beállításokon, ha 1000-nél több megfigyelésed van. Szeretnéd módosítani a partneri beállításaidat?</string>
     <string name="alert_message_use_inaturalistse">Az iNaturlaist Sweden a svédországi iNaturalist Network tagja. Az iNaturalist Sweden helyi intézményi támogatói hozzáférhetnek az emailcímedhez és a megfigyeléseid pontos, egyébként fedett vagy privát koordinátáihoz. Kérjük, hogy próbaképpen ne módosíts a partneri beállításokon, ha 1000-nél több megfigyelésed van. Szeretnéd módosítani a partneri beállításaidat?</string>
     <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan is a member of the iNaturalist Network in Taiwan. Local institutions supporting iNaturalist Taiwan will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Szerkesztő</string>
     <string name="license">Licensz</string>
     <string name="download_for_offline_use">Letöltés kapcsolat nélküli használatra</string>
@@ -760,6 +761,7 @@
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi University and Taiwan Forestry Research Institute supporting iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">Mind megjelölése megtekintettként</string>
     <string name="content_hidden">Rejtett tartalom</string>
     <string name="show_hidden_content">Rejtett tartalom megjelenítése</string>
@@ -1210,4 +1212,6 @@
     <string name="remove_identification">Meghatározás eltávolítása</string>
     <string name="issue_with_updating_photos">E megfigyelés fényképeinek frissítésével kapcsolatos hiba elhárult. Kérjük, a megoldáshoz jelentkezz ki, majd jelentkezz be újból. </string>
     <string name="app_version_copied_to_clipboard">Verzió a vágólapra másolva</string>
+    <string name="authentication_failed">Authentication Failed</string>
+    <string name="please_try_again_soon">Please try again soon.</string>
 </resources>

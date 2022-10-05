@@ -200,6 +200,7 @@
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala est membre du réseau iNaturalist au Guatemala. Les institutions locales qui soutiennent iNaturalist Guatemala auront accès à votre adresse e-mail et aux coordonnées exactes de vos observations masquées ou privées. Veuillez ne pas modifier votre affiliation arbitrairement si vous avez plus de 1000 observations. Souhaitez-vous changer d\'affiliation ?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Suède est membre du réseau iNaturalist en Suède. Les institutions locales qui soutiennent iNaturalist Suède auront accès à votre adresse e-mail et aux coordonnées exactes de vos observations masquées ou privées. Veuillez ne pas modifier votre affiliation arbitrairement si vous avez plus de 1000 observations. Souhaitez-vous changer d\'affiliation ?</string>
     <string name="alert_message_use_naturalistauy">Naturalista Uruguay est membre du réseau iNaturalist en Uruguay. Les institutions locales qui soutiennent Naturalista auront accès à votre adresse e-mail et aux coordonnées précises de vos observations masquées et privées. Veuillez ne pas modifier votre affiliation à titre expérimental si vous avez plus de 1000 observations. Souhaitez-vous modifier votre affiliation ?</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan is a member of the iNaturalist Network in Taiwan. Local institutions supporting iNaturalist Taiwan will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Éditeur</string>
     <string name="license">Licence</string>
     <string name="download_for_offline_use">Télécharger pour utilisation en mode hors connexion</string>
@@ -741,25 +742,26 @@
     <string name="donate_to_inaturalist">Faire un don à iNaturalist</string>
     <string name="prefers_scientific_name_first">Afficher les noms scientifiques en premier</string>
     <string name="prefers_scientific_name_first_description">Afficher les noms scientifiques avant les noms communs.</string>
-    <string name="network_credit_inaturalistcanada"><![CDATA[Canada : Fédération canadienne de la faune, le Musée royal de l\'Ontario, NatureServe Canada et Parcs Canada opérant iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
-    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia : Institut Humboldt opérant Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
-    <string name="network_credit_naturalista"><![CDATA[Mexique: Comission nationale pour la connaissance et l\'utilisation de la biodiversité (CONABIO) opérant NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
-    <string name="network_credit_naturewatchnz"><![CDATA[Nouvelle-Zélande : Réseau d\'enregistrement de la biodiversité de Nouvelle-Zélande opérant iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
-    <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Association de Biodiversité Pour Tous opérant Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
-    <string name="network_credit_inaturalistpanama"><![CDATA[Panama : Ministère de l\'Environnement opérant iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="network_credit_argentinat"><![CDATA[Argentine : la Fundación Vida Silvestre Argentine soutient ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
-    <string name="network_credit_inaturalistaustralia"><![CDATA[Australie : l\'Atlas of Living Australia soutient iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
-    <string name="network_credit_inaturalistecuador"><![CDATA[Équateur : l\'Instituto Nacional de Biodiversidad (INABIO) soutient iNaturalist Equateur (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistil"><![CDATA[Israël : l\'Université d\'Haïfa soutient iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistfi"><![CDATA[Finlande: Musée finlandais d\'histoire naturaliste (LUOMUS) soutenant iNaturalist Finlande (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
-    <string name="network_credit_inaturalistcl"><![CDATA[Chili : Ministerio del Medio Ambiente soutenant iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
-    <string name="network_credit_inaturalistgr"><![CDATA[Grèce : iSea soutient iNaturalist Grèce (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>).]]></string>
-    <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg : Le Musée national d\'histoire naturelle du Luxembourg (MNHNL) soutient iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>).]]></string>
-    <string name="network_credit_inaturalistuk"><![CDATA[Royaume-Uni : Le National Biodiversity Network Trust soutient iNaturalist Royaume-Uni (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>).]]></string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[Canada : Fédération canadienne de la faune, Musée royal de l\'Ontario, NatureServe Canada et Parcs Canada – iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia : Instituto Humboldt – Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalista"><![CDATA[Mexique : Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) – NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[Nouvelle-Zélande : New Zealand Biodiversity Recording Network – iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
+    <string name="network_credit_biodiversity4all"><![CDATA[Portugal : Associação Biodiversidade Para Todos – Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[Panama : Ministerio de Ambiente – iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Argentine : Fundación Vida Silvestre Argentine – ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Australie : Atlas of Living Australia – iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Équateur : Instituto Nacional de Biodiversidad (INABIO) – iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Israël : Université d\'Haïfa – iNaturalist Israël (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Finlande: Musée finlandais d\'histoire naturelle (LUOMUS) – iNaturalist Finlande (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chili : Ministerio del Medio Ambiente – iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Grèce : iSea – iNaturalist Grèce (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg : Musée national d\'histoire naturelle du Luxembourg (MNHNL) – iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Royaume-Uni : National Biodiversity Network Trust – iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica : La Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) soutient Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>).]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala : Le Consejo Nacional de Áreas Protegidas (CONAP) soutient iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>).]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Suède : SLU Artdatabanken soutient iNaturalist Suède (<a href="https://www.inaturalist.se">www.inaturalist.se</a>).]]></string>
     <string name="network_credit_naturalistauy"><![CDATA[Uruguay : JULANA et Biodiversidata qui gèrent Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi University and Taiwan Forestry Research Institute supporting iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">Marquer tout comme lu</string>
     <string name="content_hidden">Contenu masqué</string>
     <string name="show_hidden_content">Afficher le contenu masqué</string>
@@ -1220,4 +1222,6 @@ non, tant que le travail demeure inchangé et complet, et que vous êtes mention
     <string name="remove_identification">Enlever l\'identification</string>
     <string name="issue_with_updating_photos">Un problème de mise à jour des photos dans cette observation a récemment été corrigé. Veuillez vous déconnecter et vous reconnecter pour résoudre ce problème.</string>
     <string name="app_version_copied_to_clipboard">Version de l\'application copiée dans le presse-papiers</string>
+    <string name="authentication_failed">Authentication Failed</string>
+    <string name="please_try_again_soon">Please try again soon.</string>
 </resources>

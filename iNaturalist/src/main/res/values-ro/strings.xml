@@ -201,6 +201,7 @@
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala este membru al rețelei iNaturalist din Guatemala. Instituțiile locale care sprijină iNaturalist Guatemala vor avea acces la adresa dvs. de e-mail și la coordonatele adevărate ale observațiilor care sunt ascunse public sau private. Vă rugăm să nu modificați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Suedia este membru al rețelei iNaturalist din Suedia. Instituțiile locale care sprijină iNaturalist Suedia vor avea acces la adresa dvs. de e-mail și la coordonatele adevărate ale observațiilor care sunt ascunse public sau private. Vă rugăm să nu modificați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
     <string name="alert_message_use_naturalistauy">Naturalista Uruguay este membru al rețelei iNaturalist din Uruguay. Instituțiile locale care sprijină Naturalista Uruguay vor avea acces la adresa dvs. de e-mail și la coordonatele reale pentru observațiile ascunse obscure sau private pentru public. Vă rugăm să nu vă schimbați în mod experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan is a member of the iNaturalist Network in Taiwan. Local institutions supporting iNaturalist Taiwan will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editor</string>
     <string name="license">Licență</string>
     <string name="download_for_offline_use">Descarcă pentru utilizare offline</string>
@@ -765,6 +766,7 @@
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) sprijină iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre suportă iNaturalist Suedia(<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA și Biodiversidata care sprijină Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi University and Taiwan Forestry Research Institute supporting iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">Bifează tot ca vizionat</string>
     <string name="content_hidden">Conținut ascuns</string>
     <string name="show_hidden_content">Arată conținut ascuns</string>
@@ -1218,4 +1220,6 @@
     <string name="remove_identification">Elimină identificarea</string>
     <string name="issue_with_updating_photos">A apărut o problemă la actualizarea fotografiilor din această observație, care a fost recent rezolvată. Deconectează-te și conectează-te din nou pentru a rezolva această problemă</string>
     <string name="app_version_copied_to_clipboard">Versiunea aplicației copiată în clipboard</string>
+    <string name="authentication_failed">Authentication Failed</string>
+    <string name="please_try_again_soon">Please try again soon.</string>
 </resources>

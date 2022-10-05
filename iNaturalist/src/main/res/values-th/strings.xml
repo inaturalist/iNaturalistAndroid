@@ -30,7 +30,7 @@
     <string name="settings">การตั้งค่า</string>
     <string name="projects">โครงการทั้งหมด</string>
     <string name="delete_photo">ลบรูปถ่าย</string>
-    <string name="my_location">ตำแหน่งที่ตั้งของฉัน</string>
+    <string name="my_location">ตำแหน่งของฉัน</string>
     <string name="nearby_observations">การสังเกตในบริเวณใกล้เคียง</string>
     <string name="add">เพิ่ม</string>
     <string name="view_on_inat">ข้อมูลเพิ่มเติมใน iNaturalist.org</string>
@@ -199,6 +199,7 @@
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala เป็นสมาชิกของเครือข่าย iNaturalist ในกัวเตมาลา สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Guatemala จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden เป็นสมาชิกของเครือข่าย iNaturalist ในสวีเดน สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Sweden จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
     <string name="alert_message_use_naturalistauy">Naturalista Uruguay เป็นสมาชิกของเครือข่าย inaturalist ในอุรุกวัย สถาบันท้องถิ่นที่สนับสนุน Naturalista Uruguay จะสามารถเข้าถึงที่อยู่อีเมลของคุณและการเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตที่ถูกบดบังสาธารณะหรือเป็นส่วนตัว โปรดอย่าเปลี่ยนความร่วมมือของคุณหากคุณมีข้อสังเกตมากกว่า 1,000 ข้อ คุณต้องการเปลี่ยนความร่วมมือหรือไม่?</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan is a member of the iNaturalist Network in Taiwan. Local institutions supporting iNaturalist Taiwan will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">บรรณาธิการ</string>
     <string name="license">ใบอนุญาต</string>
     <string name="download_for_offline_use">ดาวน์โหลดเพื่อใช้งานออฟไลน์</string>
@@ -263,7 +264,7 @@
     <string name="turn_on">เปิด</string>
     <string name="introducing_auto_sync">ขอแนะนำการอัปโหลดอัตโนมัติ!</string>
     <string name="turn_on_auto_sync">เปิดการซิงค์อัตโนมัติในการตั้งค่าและการสังเกตของคุณจะถูกอัปโหลดไปยัง iNaturalist โดยอัตโนมัติ</string>
-    <string name="automatic_upload">อัปโหลดอัตโนมัติ (ซิงค์อัตโนมัติ)</string>
+    <string name="automatic_upload">อัปโหลดอัตโนมัติ (ซิงก์อัตโนมัติ)</string>
     <string name="waiting_to_upload">กำลังรออัปโหลด ...</string>
     <string name="uploading">กำลังอัปโหลด...</string>
     <string name="failed_to_add_to_project">เพิ่มลงในโปรเจ็กต์ไม่สำเร็จ \'%1$s\': %2$s</string>
@@ -472,8 +473,8 @@
     <string name="couldnt_load_results">ไม่สามารถโหลดผลลัพธ์: %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">RG</string>
-    <string name="taxon_search_hint">เช่น. นก ผีเสื้อ</string>
-    <string name="location_search_hint">เช่น. เมือง, รัฐ, อุทยาน, ประเทศ ...</string>
+    <string name="taxon_search_hint">เช่น นก ผีเสื้อ</string>
+    <string name="location_search_hint">เช่น เมือง รัฐ อุทยาน ประเทศ...</string>
     <string name="no_taxon">ขออภัยไม่พบอันดับอนุกรมวิธานนี้</string>
     <string name="please_select_taxon">โปรดเลือกอันดับอนุกรมวิธานที่ถูกต้องจากรายการ (หรือล้างฟิลด์อันดับอนุกรมวิธาน)</string>
     <string name="sorry_no_location">ขออภัยไม่พบตำแหน่ง</string>
@@ -554,7 +555,7 @@
     <string name="any">อื่นๆ</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
     <string name="to">ถึง</string>
-    <string name="exact_date">วันที่ที่แน่นอน</string>
+    <string name="exact_date">เฉพาะวันที่</string>
     <string name="start">เริ่มต้น</string>
     <string name="end">สิ้นสุด</string>
     <string name="months">เดือน</string>
@@ -698,7 +699,7 @@
     <!-- Text for a button or label that allows someone to join a project -->
     <string name="join_all_caps">เข้าร่วม</string>
     <string name="my_guides_all_caps">ของคุณ</string>
-    <string name="nearby_guides_all_caps">ใกล้</string>
+    <string name="nearby_guides_all_caps">ใกล้เคียง</string>
     <string name="all_guides_all_caps">ทั้งหมด</string>
     <string name="description_all_caps">คำอธิบาย</string>
     <string name="quantity_all_caps">จำนวน</string>
@@ -714,7 +715,7 @@
     <string name="news_all_caps">ข่าวสาร</string>
     <string name="got_it_all_caps">รับทราบ!</string>
     <string name="view_all_all_caps">ดูทั้งหมด</string>
-    <string name="observers_all_caps">ผู้สังเกตการณ์</string>
+    <string name="observers_all_caps">ผู้สังเกต</string>
     <string name="observations_regular">การสังเกต</string>
     <string name="data_quality_assessment">การประเมินคุณภาพข้อมูล</string>
     <string name="research_grade_qualification">คุณสมบัติระดับการวิจัย</string>
@@ -755,6 +756,7 @@
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi University and Taiwan Forestry Research Institute supporting iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">ทำเครื่องหมายทั้งหมดว่าดูแล้ว</string>
     <string name="content_hidden">เนื้อหาที่ซ่อนอยู่</string>
     <string name="show_hidden_content">แสดงเนื้อหาที่ซ่อนอยู่</string>
@@ -981,7 +983,7 @@
     <string name="switch_to_grid_view">เปลี่ยนเป็นมุมมองตาราง</string>
     <string name="switch_to_list_view">เปลี่ยนเป็นมุมมองรายการ</string>
     <string name="remove_project_filter">ลบตัวกรองโครงการ</string>
-    <string name="remove_observer_filter">ลบตัวกรองผู้สังเกตการณ์</string>
+    <string name="remove_observer_filter">ลบตัวกรองผู้สังเกต</string>
     <string name="filter_observations_by_an_exact_date">กรองการสังเกตตามวันที่ที่แน่นอน</string>
     <string name="filter_observations_by_a_date_range">กรองการสังเกตตามช่วงวันที่</string>
     <string name="filter_observations_by_months">กรองการสังเกตตามเดือน</string>
@@ -1069,8 +1071,8 @@
         <item>สุ่ม</item>
     </string-array>
     <string-array name="explore_order_items">
-        <item>จากมากไปน้อย</item>
-        <item>จากน้อยไปมาก</item>
+        <item>จากใหม่ไปเก่า</item>
+        <item>จากเก่าไปใหม่</item>
     </string-array>
     <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
     See explore_order_by_items and explore_order_items keys !-->
@@ -1202,4 +1204,6 @@
     <string name="remove_identification">ลบการระบุ</string>
     <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
     <string name="app_version_copied_to_clipboard">คัดลอกเวอร์ชันแอปไปยังคลิปบอร์ดแล้ว</string>
+    <string name="authentication_failed">Authentication Failed</string>
+    <string name="please_try_again_soon">Please try again soon.</string>
 </resources>
