@@ -200,7 +200,7 @@
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala ist Mitglied des iNaturalist Netzwerkes in Guatemala. Lokale Institutionen, die iNaturalist Guatemala unterstützen, werden Zugang zu Ihrer E-Mail-Adresse und Zugang zu den wahren Koordinaten für öffentliche oder private Beobachtungen haben. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1000 Beobachtungen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Schweden ist Mitglied des iNaturalist-Netzwerks in Schweden. Lokale Institutionen, die iNaturalist Schweden unterstützen, haben Zugriff auf deine E-Mail-Adresse und Zugriff auf die wahren Koordinaten für Beobachtungen, die öffentlich verdeckt oder privat sind. Bitte ändere deine Zugehörigkeit nicht experimentell, falls du mehr als 1000 Beobachtungen hast. Möchtest du deine Zugehörigkeit ändern?</string>
     <string name="alert_message_use_naturalistauy">Naturalista Uruguay ist Mitglied des iNaturalist-Netzwerks. Lokale Institutionen, die Naturalista Uruguay unterstützen, werden Zugang zu deiner E-Mail-Adresse und zu den wahren Koordinaten für verdeckte oder private Beobachtungen haben. Bitte ändere deine Zugehörigkeit nicht experimentell, falls du mehr als 1000 Beobachtungen haben solltest. Möchtest du deine Zugehörigkeit ändern?</string>
-    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan is a member of the iNaturalist Network in Taiwan. Local institutions supporting iNaturalist Taiwan will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan ist Mitglied des iNaturalist-Netzwerks in Taiwan. Lokale Institutionen, die iNaturalist Taiwan unterstützen, haben Zugang zu deiner E-Mail-Adresse und zu den echten Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändere deine Zugehörigkeit nicht experimentell, wenn du mehr als 1000 Beobachtungen hast. Möchtest du deine Zugehörigkeit ändern?</string>
     <string name="editor">Editor</string>
     <string name="license">Lizenz</string>
     <string name="download_for_offline_use">Herunterladen für Offline Verwendung</string>
@@ -761,7 +761,7 @@
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) unterstützt iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Schweden: SLU Schwedisches Arteninformationszentrum unterstützt iNaturalist Schweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA und Biodiversidata unterstützen Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
-    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi University and Taiwan Forestry Research Institute supporting iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi University und Taiwan Forestry Research Institute unterstützen iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">Alle als „angesehen” kennzeichnen</string>
     <string name="content_hidden">Inhalt ausgeblendet</string>
     <string name="show_hidden_content">Ausgeblendeten Inhalt anzeigen</string>
@@ -1217,6 +1217,6 @@ Facility</a> (GBIF) generieren: eine internationale, zwischenstaatliche Organisa
     <string name="remove_identification">Bestimmung entfernen</string>
     <string name="issue_with_updating_photos">Es gab ein Problem bei der Aktualisierung der Fotos in dieser Beobachtung, welches vor kurzem behoben wurde. Bitte melde dich ab und dann erneut an, um dieses Problem zu lösen.</string>
     <string name="app_version_copied_to_clipboard">App-Version in Zwischenablage kopiert</string>
-    <string name="authentication_failed">Authentication Failed</string>
-    <string name="please_try_again_soon">Please try again soon.</string>
+    <string name="authentication_failed">Authentifizierung fehlgeschlagen</string>
+    <string name="please_try_again_soon">Bitte erneut versuchen.</string>
 </resources>

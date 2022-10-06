@@ -1212,6 +1212,6 @@
     <string name="remove_identification">Meghatározás eltávolítása</string>
     <string name="issue_with_updating_photos">E megfigyelés fényképeinek frissítésével kapcsolatos hiba elhárult. Kérjük, a megoldáshoz jelentkezz ki, majd jelentkezz be újból. </string>
     <string name="app_version_copied_to_clipboard">Verzió a vágólapra másolva</string>
-    <string name="authentication_failed">Authentication Failed</string>
-    <string name="please_try_again_soon">Please try again soon.</string>
+    <string name="authentication_failed">Sikertelen hitelesítés</string>
+    <string name="please_try_again_soon">Kérjük, próbáld újra később.</string>
 </resources>

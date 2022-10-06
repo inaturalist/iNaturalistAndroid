@@ -1232,6 +1232,6 @@ CalTech и Cornell Tech помогнаха при разработката на 
     <string name="remove_identification">Премахни разпознаването</string>
     <string name="issue_with_updating_photos">Имаше проблем с обновяването на снимките на това наблюдение, който вече е коригиран. Моля, излезте и влезте наново в системата, за да отстраните проблема.</string>
     <string name="app_version_copied_to_clipboard">Верията на приложението е копирана в обменния буфер</string>
-    <string name="authentication_failed">Authentication Failed</string>
-    <string name="please_try_again_soon">Please try again soon.</string>
+    <string name="authentication_failed">Неуспешно удостоверяване</string>
+    <string name="please_try_again_soon">Моля, опитайте пак скоро.</string>
 </resources>
