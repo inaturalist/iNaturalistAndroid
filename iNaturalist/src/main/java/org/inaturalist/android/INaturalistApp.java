@@ -376,7 +376,23 @@ public class INaturalistApp extends MultiDexApplication {
     }
 
 
- 	/**
+    private Map<String, Bundle> mServiceParams = new HashMap<>();
+
+    public void setServiceParams(String uuid, Bundle params) {
+        mServiceParams.put(uuid,  params);
+    }
+
+    public Bundle getServiceParams(String uuid) {
+        Bundle params = mServiceParams.get(uuid);
+        mServiceParams.remove(uuid);
+
+        return params;
+    }
+
+
+
+
+    /**
 	 * Get ISO 3166-1 alpha-2 country code for this device (or null if not available)
 	 * @param context Context reference to get the TelephonyManager instance from
 	 * @return country code or null
