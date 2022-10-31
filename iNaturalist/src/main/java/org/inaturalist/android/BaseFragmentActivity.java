@@ -747,6 +747,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
 
         if (loginType == INaturalistServiceImplementation.LoginType.FACEBOOK) {
             FacebookSdk.setApplicationId(context.getString(R.string.facebook_app_id));
+            FacebookSdk.setClientToken(context.getString(R.string.facebook_client_token));
             FacebookSdk.sdkInitialize(context);
             LoginManager.getInstance().logOut();
         }

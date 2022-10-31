@@ -418,6 +418,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
             @Override
             public void onClick(View view) {
                 FacebookSdk.setApplicationId(getString(R.string.facebook_app_id));
+                FacebookSdk.setClientToken(getString(R.string.facebook_client_token));
                 FacebookSdk.sdkInitialize(getApplicationContext());
                 mFacebookLoginButton = new LoginButton(LoginSignupActivity.this);
                 mFacebookLoginButton.setLayoutParams(new RelativeLayout.LayoutParams(0, 0));
