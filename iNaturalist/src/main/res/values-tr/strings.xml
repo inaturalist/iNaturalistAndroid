@@ -200,7 +200,7 @@
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala, Guatemala\'daki iNaturalist Ağı\'nın bir üyesidir. iNaturalist Guatemala\'yı destekleyen yerel kurumlar e-posta adresine ve kamuya açık olmayan ya da gizli olan gözlemler için gerçek koordinatlara erişebilecektir. Lütfen 1000\'den çok gözlemin varsa üyeliğini deneysel olarak değiştirme. Üyeliğini değiştirmek ister misin?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden, İsveç\'teki iNaturalist Ağı\'nın bir üyesidir. iNaturalist Sweden\'ı destekleyen yerel kurumlar e-posta adresine ve kamuya açık olmayan ya da gizli olan gözlemler için gerçek koordinatlara erişebilecektir. Lütfen 1000\'den çok gözlemin varsa üyeliğini deneysel olarak değiştirme. Üyeliğini değiştirmek ister misin?</string>
     <string name="alert_message_use_naturalistauy">Naturalista Uruguay, Uruguay\'daki iNaturalist Ağı\'nın bir üyesidir. Naturalista Uruguay\'ı destekleyen yerel kurumlar e-posta adresine ve kamuya açık olmayan ya da gizli olan gözlemler için gerçek koordinatlara erişebilecektir. Lütfen 1000\'den çok gözlemin varsa üyeliğini deneysel olarak değiştirme. Üyeliğini değiştirmek ister misin?</string>
-    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan is a member of the iNaturalist Network in Taiwan. Local institutions supporting iNaturalist Taiwan will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan, Tayvan\'daki iNaturalist Ağı\'nın bir üyesidir. iNaturalist Taiwan\'ı destekleyen yerel kurumlar e-posta adresine ve kamuya açık veya gizli olan gözlemler için gerçek koordinatlara erişebilecektir. Lütfen 1000\'den fazla gözlemin varsa üyeliğini deneysel olarak değiştirme. Üyeliğini değiştirmek ister misin?</string>
     <string name="editor">Düzenleyici</string>
     <string name="license">Lisans</string>
     <string name="download_for_offline_use">Çevrim dışı kullanım için indir</string>
@@ -761,7 +761,7 @@
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP), iNaturalist Guatemala\'yı destekliyor (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[İsveç: SLU Swedish Species Information Centre, iNaturalist İsveç\'i destekliyor (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata, Naturalista Uruguay\'ı destekliyor (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
-    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi University and Taiwan Forestry Research Institute supporting iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Tayvan: Ulusal Chiayi Üniversitesi ve Tayvan Ormancılık Araştırma Enstitüsü iNaturalist Taiwan\'ı desteklemektedir (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">Tümünü görüntülendi olarak işaretle</string>
     <string name="content_hidden">İçerik Gizlendi</string>
     <string name="show_hidden_content">Gizli İçeriği Göster</string>
@@ -1214,6 +1214,6 @@ Ticari Olmayan Atfetme (CC BY-NC), gibi kayıtların  biyolojik çeşitlilik bil
     <string name="remove_identification">Tanımlamayı kaldır</string>
     <string name="issue_with_updating_photos">Kısa süre önce düzeltilen bu gözlemdeki fotoğraflar, güncellenirken bir sorun oluştu. Bu sorunu çözmek için lütfen oturumunuzu kapatın ve tekrar oturum açın.</string>
     <string name="app_version_copied_to_clipboard">Uygulama sürümü panoya kopyalandı</string>
-    <string name="authentication_failed">Authentication Failed</string>
-    <string name="please_try_again_soon">Please try again soon.</string>
+    <string name="authentication_failed">Kimlik Doğrulama Başarısız</string>
+    <string name="please_try_again_soon">Lütfen daha sonra tekrar deneyin.</string>
 </resources>

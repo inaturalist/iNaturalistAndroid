@@ -200,7 +200,7 @@
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala est membre du réseau iNaturalist au Guatemala. Les institutions locales qui soutiennent iNaturalist Guatemala, auront accès à votre adresse email ainsi qu\'aux coordonnées réelles en ce qui concerne les observations  obscurcies publiquement ou privées. S\'il vous plaît, veuillez ne pas changer  votre affiliation expérimentallement si vous avez plus que 1000 observations. Aimeriez-vous changer votre affiliation?  </string>
     <string name="alert_message_use_inaturalistse">iNaturalist Suède est membre du réseau iNaturalist en Suède. Les institutions locales qui soutiennent iNaturalist Suède, auront accès à votre adresse email ainsi qu\'aux coordonnées réelles en ce qui concerne les observations  obscurcies publiquement ou privées. S\'il vous plaît, veuillez ne pas changer  votre affiliation expérimentallement si vous avez plus que 1000 observations. Aimeriez-vous changer votre affiliation?  </string>
     <string name="alert_message_use_naturalistauy">Naturalista Uruguay est membre du réseau iNaturalist en Uruguay. Les institutions locales qui soutiennent Naturalista auront accès à votre adresse e-mail et aux coordonnées précises de vos observations masquées et privées. Veuillez ne pas modifier votre affiliation à titre expérimental si vous avez plus de 1000 observations. Souhaitez-vous modifier votre affiliation ?</string>
-    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan is a member of the iNaturalist Network in Taiwan. Local institutions supporting iNaturalist Taiwan will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taïwan est membre du réseau iNaturalist à Taïwan. Les institutions locales qui soutiennent iNaturalist Taïwan auront accès à votre adresse de courriel et aux coordonnées exactes  de vos observations masquées au public ou privées. Veuillez ne pas modifier votre affiliation à titre expérimental si vous avez plus de 1000 observations. Souhaitez-vous changer votre affiliation ?</string>
     <string name="editor">Éditeur</string>
     <string name="license">Licence</string>
     <string name="download_for_offline_use">Télécharger pour utilisation en mode hors connexion</string>
@@ -761,7 +761,7 @@
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala : Le Consejo Nacional de Áreas Protegidas (CONAP) soutient iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>).]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Suède : SLU Artdatabanken soutient iNaturalist Suède (<a href="https://www.inaturalist.se">www.inaturalist.se</a>).]]></string>
     <string name="network_credit_naturalistauy"><![CDATA[Uruguay : JULANA et Biodiversidata qui gèrent Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
-    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi University and Taiwan Forestry Research Institute supporting iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Taïwan : National Chiayi University et Taiwan Forestry Research Institute – iNaturalist Taïwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">Marquer tout comme lu</string>
     <string name="content_hidden">Contenu masqué</string>
     <string name="show_hidden_content">Afficher le contenu masqué</string>
@@ -1218,6 +1218,6 @@ non, tant que le travail demeure inchangé et complet, et que vous êtes mention
     <string name="remove_identification">Enlever l\'identification</string>
     <string name="issue_with_updating_photos">Un problème de mise à jour des photos dans cette observation a récemment été corrigé. Veuillez vous déconnecter et vous reconnecter pour résoudre ce problème.</string>
     <string name="app_version_copied_to_clipboard">Version de l\'application copiée au presse-papiers</string>
-    <string name="authentication_failed">Authentication Failed</string>
-    <string name="please_try_again_soon">Please try again soon.</string>
+    <string name="authentication_failed">Échec de l\'authentification</string>
+    <string name="please_try_again_soon">Veuillez réessayer plus tard.</string>
 </resources>

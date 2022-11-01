@@ -16,7 +16,7 @@
     <string name="signed_in">ลงชื่อเข้าใช้!</string>
     <string name="please_sign_in">กรุณาเข้าสู่ระบบ</string>
     <string name="please_sign_in_description">โปรดลงชื่อเข้าใช้บัญชี iNaturalist ของคุณหรือสมัครใหม่</string>
-    <string name="please_enable_location_services">โปรดเปิดใช้งานบริการระบุตำแหน่งเพื่อค้นหาตำแหน่งปัจจุบันของคุณ ...</string>
+    <string name="please_enable_location_services">โปรดเปิดใช้งานบริการค้นหาตำแหน่งเพื่อหาตำแหน่งปัจจุบันของคุณ...</string>
     <string name="go_to_settings">ไปยังการตั้งค่า</string>
     <string name="photo_not_specified">ไม่ได้ระบุรูปภาพ</string>
     <string name="set_date">วันที่</string>
@@ -112,7 +112,7 @@
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">ความเป็นส่วนตัวของพิกัด</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
-    <string name="geoprivacy_with_value">ความเป็นส่วนตัวของพิกัด: %1$s</string>
+    <string name="geoprivacy_with_value">การเปิดเผยพิกัด: %1$s</string>
     <string name="delete_confirmation">แน่ใจไหมว่าต้องการลบการสังเกตนี้</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">คู่มือสำรวจ</string>
@@ -312,7 +312,7 @@
     <string name="view_on_wikipedia">บทความ Wikipedia</string>
     <string name="photo"><![CDATA[รูปภาพ: <b><a href="%1$s">%2$s</a></b>]]></string>
     <string name="photo_attr"><![CDATA[รูปภาพ: <b>%1$s</b>]]></string>
-    <string name="finding_current_location">กำลังค้นหาตำแหน่งของคุณ ...</string>
+    <string name="finding_current_location">กำลังค้นหาตำแหน่งปัจจุบัน...</string>
     <string name="flag_as_captive">ตั้งค่าสถานะเป็น เพาะเลี้ยง / เพาะปลูก</string>
     <string name="observation_flagged_as_captive">การสังเกตถูกตั้งค่าสถานะเป็น เพาะเลี้ยง / เพาะปลูก</string>
     <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
@@ -477,8 +477,8 @@
     <string name="location_search_hint">เช่น เมือง รัฐ อุทยาน ประเทศ...</string>
     <string name="no_taxon">ขออภัยไม่พบอันดับอนุกรมวิธานนี้</string>
     <string name="please_select_taxon">โปรดเลือกอันดับอนุกรมวิธานที่ถูกต้องจากรายการ (หรือล้างฟิลด์อันดับอนุกรมวิธาน)</string>
-    <string name="sorry_no_location">ขออภัยไม่พบตำแหน่ง</string>
-    <string name="location_not_found">ตำแหน่งหรือสถานที่ที่คุณค้นหาไม่ได้อยู่ในฐานข้อมูลของเรา โปรดเลือกสถานที่จากรายการตัวเลือกด้านล่างช่องค้นหาสถานที่หรือล้างช่องค้นหา</string>
+    <string name="sorry_no_location">ขออภัย ไม่พบตำแหน่ง</string>
+    <string name="location_not_found">ฐานข้อมูลของเราไม่มีตำแหน่งหรือสถานที่ที่คุณค้นหา โปรดเลือกสถานที่จากรายการตัวเลือกด้านล่างช่องค้นหาตำแหน่งหรือล้างช่องค้นหา</string>
     <string name="undefined">ไม่ได้กำหนด</string>
     <string name="street_segment">ส่วนของถนน</string>
     <string name="intersection">ทางแยก</string>
@@ -789,7 +789,7 @@
     <string name="debug_settings">การตั้งค่าตรวจแก้จุดบกพร่อง</string>
     <string name="are_you_sure_you_want_to_delete_logs">แน่ใจไหมว่าต้องการลบบันทึกการแก้ไขข้อบกพร่องทั้งหมด กด \'ใช่\' เท่านั้นหากคุณต้องการล้างห้องเก็บข้อมูลสำหรับโทรศัพท์ของคุณ</string>
     <string name="no_log_files_found">ไม่พบไฟล์บันทึกสำหรับช่วงวันที่นั้นลองวันที่ก่อนหน้านี้ไหม</string>
-    <string name="choose_pinned_location">เลือกสถานที่ที่ถูกตรึง</string>
+    <string name="choose_pinned_location">เลือกตำแหน่งที่ปักหมุดไว้</string>
     <string name="pin_current_location">ปักหมุดตำแหน่งปัจจุบัน</string>
     <string name="location_pinned_successfully">ตรึงตำแหน่งปัจจุบันเรียบร้อยแล้ว</string>
     <string name="delete_this_pinned_location">ลบสถานที่ที่ตรึงไว้นี้หรือไม่?</string>

@@ -1204,6 +1204,6 @@
     <string name="remove_identification">Hapus identifikasi</string>
     <string name="issue_with_updating_photos">Terdapat masalah ketika mengubah foto untuk pengamatan ini yang baru saja diperbaiki. Harap keluar dari akun dan silakan mencoba untuk masuk lagi agar isu ini dapat diselesaikan.</string>
     <string name="app_version_copied_to_clipboard">Versi aplikasi tersalin ke papan klip</string>
-    <string name="authentication_failed">Authentication Failed</string>
-    <string name="please_try_again_soon">Please try again soon.</string>
+    <string name="authentication_failed">Autentikasi gagal.</string>
+    <string name="please_try_again_soon">Silahkan coba lagi nanti</string>
 </resources>

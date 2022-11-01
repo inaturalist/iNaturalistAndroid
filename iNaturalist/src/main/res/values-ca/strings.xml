@@ -200,7 +200,7 @@
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala és membre de la Xarxa iNaturalist a Guatemala. Les institucions locals que donen suport a iNaturalist Guatemala tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Suècia és membre de la Xarxa iNaturalist a Suècia. Les institucions locals que donen suport a iNaturalist Suècia tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
     <string name="alert_message_use_naturalistauy">Naturalista Uruguai és membre de la Xarxa iNaturalist a Uruguai. Les Institucions locals que donen suport a Naturalista Uruguai tenen accés a la vostra adreça de correu electrònic i a les coordenades reals de les observacions encara que siguin enfosquides o privades. Si us plau, no canvieu experimentalment la vostra afiliació si teniu més de 1000 observacions. Voleu canviar la vostra afiliació?</string>
-    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan is a member of the iNaturalist Network in Taiwan. Local institutions supporting iNaturalist Taiwan will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan és membre de la xarxa iNaturalist a Taiwan. Les institucions locals que donen suport a iNaturalist Taiwan tindran accés a la teva adreça de correu electrònic i a les coordenades reals de les teves observacions encara que estiguin públicament enfosquides o siguin privades. Per favor, no canviïs de forma experimental la teva afiliació si tens més de 1000 observacions. Vols canviar la teva afiliació?</string>
     <string name="editor">Editor</string>
     <string name="license">Llicència</string>
     <string name="download_for_offline_use">Descarregar per a ús fora de línia</string>
@@ -761,7 +761,7 @@
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: el Consejo Nacional de Áreas Protegidas (CONAP) dóna suport a iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Suècia: el SLU, Swedish Species Information Centre, dona suport a iNaturalist Suècia (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="network_credit_naturalistauy"><![CDATA[Uruguai: JULANA i Biodiversidata donen suport a Naturalista Uruguai (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
-    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi University and Taiwan Forestry Research Institute supporting iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: el National Chiayi University i el Taiwan Forestry Research Institute donen suport a iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">Marca tot com a vist</string>
     <string name="content_hidden">Contingut amagat</string>
     <string name="show_hidden_content">Mostra Contingut Amagat</string>
@@ -1212,6 +1212,6 @@
     <string name="remove_identification">Eliminar identificació</string>
     <string name="issue_with_updating_photos">Va haber un problema durant l\'actualització de les fotos d\'aquesta observació que s\'ha corregit darrerament. Si us plau, tanca la sessió i inicia-la de nou per resoldre aquest problema</string>
     <string name="app_version_copied_to_clipboard">Versió de l\'App copiada al porta-retalls</string>
-    <string name="authentication_failed">Authentication Failed</string>
-    <string name="please_try_again_soon">Please try again soon.</string>
+    <string name="authentication_failed">Autentificació fallida</string>
+    <string name="please_try_again_soon">Si us plau, torneu-ho a intentar en breu</string>
 </resources>
