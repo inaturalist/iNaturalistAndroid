@@ -33,6 +33,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TimeZone;
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
@@ -352,6 +353,7 @@ public class INaturalistService extends IntentService {
     public static final String PROJECT_ID = "project_id";
     public static final String CHECK_LIST_ID = "check_list_id";
     public static final String ACTION = "action";
+    public static final String REQUEST_UUID = "request_uuid";
     public static final String ACTION_CHECK_LIST_RESULT = "action_check_list_result";
     public static final String ACTION_MESSAGES_RESULT = "action_messages_result";
     public static final String ACTION_NOTIFICATION_COUNTS_RESULT = "action_notification_counts_result";
@@ -663,33 +665,17 @@ public class INaturalistService extends IntentService {
     // See: https://stackoverflow.com/questions/70044393/fatal-android-12-exception-startforegroundservice-not-allowed-due-to-mallows/72131422#72131422
     public static void callService(Context context, Intent intent) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            // Convert from Bundle extras to WorkManager Data
-            Data.Builder data = new Data.Builder();
-            Bundle extras = intent.getExtras();
-            if (extras != null) {
-                for (String key : extras.keySet()) {
-                    Object value = extras.get(key);
 
-                    if ((value == null) ||
-                        (value instanceof String) ||
-                        (value instanceof Float) ||
-                        (value instanceof Integer) ||
-                        (value instanceof Boolean) ||
-                        (value instanceof Double) ||
-                        (value instanceof Long) ||
-                        (value instanceof ArrayList)) {
-                        data.put(key, value);
-                    } else if (value instanceof Serializable) {
-                        // Since Data.Builder doesn't support Serializable by default,
-                        // we need to use our extension code for this
-                        putSerializable(data, key, (Serializable) value);
-                    } else {
-                        Logger.tag(TAG).error("Could not save key " + key + ": " + value.getClass() + " = " + value);
-                        data.put(key, value);
-                    }
-                }
-            }
+            Data.Builder data = new Data.Builder();
             data.putString(ACTION, intent.getAction());
+
+            String uuid = java.util.UUID.randomUUID().toString();
+            data.putString(REQUEST_UUID, uuid);
+
+            INaturalistApp app = (INaturalistApp) context.getApplicationContext();
+            Bundle extras = intent.getExtras();
+            app.setServiceParams(uuid, extras);
+
             OneTimeWorkRequest request = new OneTimeWorkRequest.Builder(INatutralistServiceWorker.class).setInputData(data.build()).build();
             WorkManager.getInstance(context).enqueue(request);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
