@@ -16,7 +16,7 @@
     <string name="signed_in">ลงชื่อเข้าใช้!</string>
     <string name="please_sign_in">กรุณาเข้าสู่ระบบ</string>
     <string name="please_sign_in_description">โปรดลงชื่อเข้าใช้บัญชี iNaturalist ของคุณหรือสมัครใหม่</string>
-    <string name="please_enable_location_services">โปรดเปิดใช้งานบริการระบุตำแหน่งเพื่อค้นหาตำแหน่งปัจจุบันของคุณ ...</string>
+    <string name="please_enable_location_services">โปรดเปิดใช้งานบริการค้นหาตำแหน่งเพื่อหาตำแหน่งปัจจุบันของคุณ...</string>
     <string name="go_to_settings">ไปยังการตั้งค่า</string>
     <string name="photo_not_specified">ไม่ได้ระบุรูปภาพ</string>
     <string name="set_date">วันที่</string>
@@ -30,7 +30,7 @@
     <string name="settings">การตั้งค่า</string>
     <string name="projects">โครงการทั้งหมด</string>
     <string name="delete_photo">ลบรูปถ่าย</string>
-    <string name="my_location">ตำแหน่งที่ตั้งของฉัน</string>
+    <string name="my_location">ตำแหน่งของฉัน</string>
     <string name="nearby_observations">การสังเกตในบริเวณใกล้เคียง</string>
     <string name="add">เพิ่ม</string>
     <string name="view_on_inat">ข้อมูลเพิ่มเติมใน iNaturalist.org</string>
@@ -112,7 +112,7 @@
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">ความเป็นส่วนตัวของพิกัด</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
-    <string name="geoprivacy_with_value">ความเป็นส่วนตัวของพิกัด: %1$s</string>
+    <string name="geoprivacy_with_value">การเปิดเผยพิกัด: %1$s</string>
     <string name="delete_confirmation">แน่ใจไหมว่าต้องการลบการสังเกตนี้</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">คู่มือสำรวจ</string>
@@ -126,14 +126,14 @@
     <string name="locale_gl">กาลิเซีย</string>
     <string name="locale_eu">บาสก์</string>
     <string name="use_device_language_settings">ใช้การตั้งค่าภาษาของอุปกรณ์</string>
-    <string name="choose_location">เลือกตำแหน่งที่ตั้ง</string>
+    <string name="choose_location">เลือกตำแหน่ง</string>
     <string name="done">เรียบร้อยแล้ว</string>
     <string name="please_sign_in_via_settings">คุณต้องเข้าสู่ระบบเพื่อดูโครงการที่คุณเข้าร่วม</string>
     <string name="contact_support">ติดต่อฝ่ายสนับสนุน</string>
     <string name="leave_project">ออกจากโครงการ</string>
     <string name="leave_project_confirmation">คุณแน่ใจไหมว่าต้องการออกจากโครงการนี้?</string>
     <string name="discard_location_changes">แน่ใจไหมว่าต้องการยกเลิกการเปลี่ยนแปลงที่ยังไม่ได้บันทึก</string>
-    <string name="edit_location">แก้ไขตำแหน่งที่ตั้ง</string>
+    <string name="edit_location">แก้ไขตำแหน่ง</string>
     <string name="edit_locality_notes">แก้ไขบันทึกสถานที่</string>
     <string name="get_current_location">ตำแหน่งปัจจุบัน</string>
     <string name="pull_to_refresh">ลากลงเพื่อรีเฟรช...</string>
@@ -199,6 +199,7 @@
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala เป็นสมาชิกของเครือข่าย iNaturalist ในกัวเตมาลา สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Guatemala จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden เป็นสมาชิกของเครือข่าย iNaturalist ในสวีเดน สถาบันในท้องถิ่นที่สนับสนุน iNaturalist Sweden จะสามารถเข้าถึงที่อยู่อีเมลของคุณและเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตที่เปิดเผยต่อสาธารณะหรือเป็นส่วนตัว โปรดอย่าทดลองเปลี่ยนการเชื่อมโยงของคุณหากคุณมีการสังเกตมากกว่า 1,000 ครั้ง คุณต้องการเปลี่ยนสังกัดของคุณหรือไม่?</string>
     <string name="alert_message_use_naturalistauy">Naturalista Uruguay เป็นสมาชิกของเครือข่าย inaturalist ในอุรุกวัย สถาบันท้องถิ่นที่สนับสนุน Naturalista Uruguay จะสามารถเข้าถึงที่อยู่อีเมลของคุณและการเข้าถึงพิกัดที่แท้จริงสำหรับการสังเกตที่ถูกบดบังสาธารณะหรือเป็นส่วนตัว โปรดอย่าเปลี่ยนความร่วมมือของคุณหากคุณมีข้อสังเกตมากกว่า 1,000 ข้อ คุณต้องการเปลี่ยนความร่วมมือหรือไม่?</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan is a member of the iNaturalist Network in Taiwan. Local institutions supporting iNaturalist Taiwan will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">บรรณาธิการ</string>
     <string name="license">ใบอนุญาต</string>
     <string name="download_for_offline_use">ดาวน์โหลดเพื่อใช้งานออฟไลน์</string>
@@ -253,7 +254,7 @@
     <string name="notes">หมายเหตุ</string>
     <string name="is_captive">เป็นสัตว์เลี้ยงหรือเพาะปลูก</string>
     <string name="location_visibility">การเปิดเผยตำแหน่ง</string>
-    <string name="set_location">ตำแหน่งที่ตั้ง</string>
+    <string name="set_location">ตำแหน่ง</string>
     <string name="coordinates_lat">ละติจูด:</string>
     <string name="coordinates_lon">ลองจิจูด:</string>
     <string name="coordinates_acc">Acc. </string>
@@ -263,7 +264,7 @@
     <string name="turn_on">เปิด</string>
     <string name="introducing_auto_sync">ขอแนะนำการอัปโหลดอัตโนมัติ!</string>
     <string name="turn_on_auto_sync">เปิดการซิงค์อัตโนมัติในการตั้งค่าและการสังเกตของคุณจะถูกอัปโหลดไปยัง iNaturalist โดยอัตโนมัติ</string>
-    <string name="automatic_upload">อัปโหลดอัตโนมัติ (ซิงค์อัตโนมัติ)</string>
+    <string name="automatic_upload">อัปโหลดอัตโนมัติ (ซิงก์อัตโนมัติ)</string>
     <string name="waiting_to_upload">กำลังรออัปโหลด ...</string>
     <string name="uploading">กำลังอัปโหลด...</string>
     <string name="failed_to_add_to_project">เพิ่มลงในโปรเจ็กต์ไม่สำเร็จ \'%1$s\': %2$s</string>
@@ -275,7 +276,7 @@
     <string name="needs_id">รอจำแนกชนิด</string>
     <string name="research_grade">ระดับงานวิจัย</string>
     <string name="data_quality">คุณภาพข้อมูล</string>
-    <string name="casual_grade_add_location"><![CDATA[ เพิ่ม <b>ตำแหน่งที่ตั้ง</b> เพื่อเลื่อนการสังเกตนี้ไปสู่สถานะ "ต้องการ ID"]]></string>
+    <string name="casual_grade_add_location"><![CDATA[ เพิ่ม<b>ตำแหน่ง</b>เพื่อทำให้การสังเกตนี้มีสถานะ "รอจำแนกชนิด"]]></string>
     <string name="casual_grade_add_date"><![CDATA[ เพิ่ม <b>วันที่</b> เพื่อเลื่อนการสังเกตนี้ไปสู่สถานะ "ต้องการ ID"]]></string>
     <string name="casual_grade_add_photo"><![CDATA[เพิ่ม <b>รูปภาพ</b> เพื่อเลื่อนการสังเกตนี้ไปสู่สถานะ "ต้องการ ID"]]></string>
     <string name="casual_grade_captive"><![CDATA[ การสังเกตไม่เป็นทางการเพราะ<b>ถูกจับมา/เพาะปลูก</b> ]]></string>
@@ -299,7 +300,7 @@
     <string name="leave_a_comment">แสดงความคิดเห็นหรือแนะนำการระบุตัวตน ...</string>
     <string name="location_coords">Lat: %1$s Lon: %2$s Acc. %3$s</string>
     <string name="location_coords_no_acc">Lat: %1$s Lon: %2$s</string>
-    <string name="location">ตำแหน่งที่ตั้ง</string>
+    <string name="location">ตำแหน่ง</string>
     <string name="login_in_to_add_comments_ids">เข้าสู่ระบบหรือสมัครเพื่อแสดงความคิดเห็นหรือแนะนำการระบุตัวตน ...</string>
     <string name="login_in_to_fav">เข้าสู่ระบบหรือลงทะเบียนเพื่อดูรายการโปรดหรือข้อสังเกตนี้ ...</string>
     <string name="sync_obs_to_see_favs">ซิงค์การสังเกตนี้เพื่อดูบันทึก ...</string>
@@ -311,7 +312,7 @@
     <string name="view_on_wikipedia">บทความ Wikipedia</string>
     <string name="photo"><![CDATA[รูปภาพ: <b><a href="%1$s">%2$s</a></b>]]></string>
     <string name="photo_attr"><![CDATA[รูปภาพ: <b>%1$s</b>]]></string>
-    <string name="finding_current_location">กำลังค้นหาตำแหน่งของคุณ ...</string>
+    <string name="finding_current_location">กำลังค้นหาตำแหน่งปัจจุบัน...</string>
     <string name="flag_as_captive">ตั้งค่าสถานะเป็น เพาะเลี้ยง / เพาะปลูก</string>
     <string name="observation_flagged_as_captive">การสังเกตถูกตั้งค่าสถานะเป็น เพาะเลี้ยง / เพาะปลูก</string>
     <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
@@ -411,7 +412,7 @@
     <string name="you_will_only_receive_updates_when_following">(คุณจะได้รับการอัปเดตเมื่อคุณติดตามการสังเกตเท่านั้น)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> แนะนำ ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> แสดงความคิดเห็น: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[%1$s พูดถึงคุณ: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">ดูเหมือนว่าคุณลบรูปภาพโดยล้างแคชของแอพก่อนที่จะอัปโหลด คุณจะต้องเพิ่มรูปภาพกลับไปที่การสังเกตจากแกลเลอรีของคุณ ในอนาคตโปรดตรวจสอบให้แน่ใจว่าคุณได้อัปโหลดรูปภาพทั้งหมดของคุณก่อนที่จะล้างแคชของแอป</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -447,7 +448,7 @@
     <string name="taxonomy_info">สิ่งเหล่านี้เป็นลิงก์ไปยังบรรพบุรุษของอนุกรมวิธานนี้ พวกเขาเรียงตามลำดับจากสเกลใหญ่ไปสู่เชิงลึกขึ้น ใช้ลิงก์เหล่านี้เพื่อเลื่อนขึ้นและลในสายใยงต้นไม้แห่งชีวิต ตัวอย่างเช่นหากคุณไม่รู้ว่าสิ่งมีชีวิตคืออะไร แต่รู้ว่ามันจัดอยู่ในกลุ่มใดให้แตะที่อนุกรมวิธานจากรายการเพื่อดูข้อมูลเพิ่มเติมเกี่ยวกับสิ่งมีชีวิต</string>
     <string name="more_info_on_inat">ข้อมูลเพิ่มเติมใน iNaturalist.org</string>
     <string name="view_suggestions">ดูคำแนะนำ </string>
-    <string name="species_search">ค้นหาสายพันธุ์</string>
+    <string name="species_search">ค้นหาชนิด</string>
     <string name="were_not_confident_enough">เราไม่มั่นใจพอที่จะให้คำแนะนำ แต่นี่คือคำแนะนำยอดนิยมของเรา:</string>
     <string name="were_not_confident_enough_no_suggestions">เราไม่มั่นใจพอที่จะแนะนำได้</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
@@ -472,12 +473,12 @@
     <string name="couldnt_load_results">ไม่สามารถโหลดผลลัพธ์: %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">RG</string>
-    <string name="taxon_search_hint">เช่น. นก ผีเสื้อ</string>
-    <string name="location_search_hint">เช่น. เมือง, รัฐ, อุทยาน, ประเทศ ...</string>
+    <string name="taxon_search_hint">เช่น นก ผีเสื้อ</string>
+    <string name="location_search_hint">เช่น เมือง รัฐ อุทยาน ประเทศ...</string>
     <string name="no_taxon">ขออภัยไม่พบอันดับอนุกรมวิธานนี้</string>
     <string name="please_select_taxon">โปรดเลือกอันดับอนุกรมวิธานที่ถูกต้องจากรายการ (หรือล้างฟิลด์อันดับอนุกรมวิธาน)</string>
-    <string name="sorry_no_location">ขออภัยไม่พบตำแหน่ง</string>
-    <string name="location_not_found">ตำแหน่งหรือสถานที่ที่คุณค้นหาไม่ได้อยู่ในฐานข้อมูลของเรา โปรดเลือกสถานที่จากรายการตัวเลือกด้านล่างช่องค้นหาสถานที่หรือล้างช่องค้นหา</string>
+    <string name="sorry_no_location">ขออภัย ไม่พบตำแหน่ง</string>
+    <string name="location_not_found">ฐานข้อมูลของเราไม่มีตำแหน่งหรือสถานที่ที่คุณค้นหา โปรดเลือกสถานที่จากรายการตัวเลือกด้านล่างช่องค้นหาตำแหน่งหรือล้างช่องค้นหา</string>
     <string name="undefined">ไม่ได้กำหนด</string>
     <string name="street_segment">ส่วนของถนน</string>
     <string name="intersection">ทางแยก</string>
@@ -554,7 +555,7 @@
     <string name="any">อื่นๆ</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
     <string name="to">ถึง</string>
-    <string name="exact_date">วันที่ที่แน่นอน</string>
+    <string name="exact_date">เฉพาะวันที่</string>
     <string name="start">เริ่มต้น</string>
     <string name="end">สิ้นสุด</string>
     <string name="months">เดือน</string>
@@ -698,7 +699,7 @@
     <!-- Text for a button or label that allows someone to join a project -->
     <string name="join_all_caps">เข้าร่วม</string>
     <string name="my_guides_all_caps">ของคุณ</string>
-    <string name="nearby_guides_all_caps">ใกล้</string>
+    <string name="nearby_guides_all_caps">ใกล้เคียง</string>
     <string name="all_guides_all_caps">ทั้งหมด</string>
     <string name="description_all_caps">คำอธิบาย</string>
     <string name="quantity_all_caps">จำนวน</string>
@@ -714,7 +715,7 @@
     <string name="news_all_caps">ข่าวสาร</string>
     <string name="got_it_all_caps">รับทราบ!</string>
     <string name="view_all_all_caps">ดูทั้งหมด</string>
-    <string name="observers_all_caps">ผู้สังเกตการณ์</string>
+    <string name="observers_all_caps">ผู้สังเกต</string>
     <string name="observations_regular">การสังเกต</string>
     <string name="data_quality_assessment">การประเมินคุณภาพข้อมูล</string>
     <string name="research_grade_qualification">คุณสมบัติระดับการวิจัย</string>
@@ -755,6 +756,7 @@
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi University and Taiwan Forestry Research Institute supporting iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">ทำเครื่องหมายทั้งหมดว่าดูแล้ว</string>
     <string name="content_hidden">เนื้อหาที่ซ่อนอยู่</string>
     <string name="show_hidden_content">แสดงเนื้อหาที่ซ่อนอยู่</string>
@@ -787,8 +789,8 @@
     <string name="debug_settings">การตั้งค่าตรวจแก้จุดบกพร่อง</string>
     <string name="are_you_sure_you_want_to_delete_logs">แน่ใจไหมว่าต้องการลบบันทึกการแก้ไขข้อบกพร่องทั้งหมด กด \'ใช่\' เท่านั้นหากคุณต้องการล้างห้องเก็บข้อมูลสำหรับโทรศัพท์ของคุณ</string>
     <string name="no_log_files_found">ไม่พบไฟล์บันทึกสำหรับช่วงวันที่นั้นลองวันที่ก่อนหน้านี้ไหม</string>
-    <string name="choose_pinned_location">เลือกสถานที่ที่ถูกตรึง</string>
-    <string name="pin_current_location">ตรึงตำแหน่งที่ตั้งปัจจุบัน</string>
+    <string name="choose_pinned_location">เลือกตำแหน่งที่ปักหมุดไว้</string>
+    <string name="pin_current_location">ปักหมุดตำแหน่งปัจจุบัน</string>
     <string name="location_pinned_successfully">ตรึงตำแหน่งปัจจุบันเรียบร้อยแล้ว</string>
     <string name="delete_this_pinned_location">ลบสถานที่ที่ตรึงไว้นี้หรือไม่?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
@@ -906,7 +908,7 @@
     <string name="misleading_or_illegal_content">เนื้อหาที่ทำให้เข้าใจผิดหรือผิดกฎหมายคำดูถูกทางเชื้อชาติหรือชาติพันธุ์ ฯลฯ สำหรับข้อมูลเพิ่มเติมเกี่ยวกับคำจำกัดความของคำว่า \"เหมาะสม\" ของเราโปรดดูคำถามที่พบบ่อย</string>
     <string name="other">อื่นๆ</string>
     <string name="some_other_reason">เหตุผลอื่น ๆ ที่คุณสามารถอธิบายได้</string>
-    <string name="continue_text">ดำเนินการต่อ</string>
+    <string name="continue_text">ต่อไป</string>
     <string name="why_are_you_flagging_this_item">เหตุใดคุณจึงตั้งค่าสถานะรายการนี้</string>
     <string name="thank_you_for_submitting_the_flag">ขอขอบคุณที่ส่งการติดตาม!</string>
     <string name="flagging_conversation">ปักหมุดการสนทนานี้</string>
@@ -952,7 +954,7 @@
     <string name="rank_form">รูปแบบ</string>
     <string name="rank_infrahybrid">ลูกผสมฐาน</string>
     <string name="rank_leaves">ใบไม้</string>
-    <string name="location_lat_lng">ตำแหน่งที่ตั้ง: %1$f, %2$f</string>
+    <string name="location_lat_lng">ตำแหน่ง: %1$f, %2$f</string>
     <string name="i_consent_process_personal_info"><![CDATA[ฉันยินยอมให้ iNaturalist จัดเก็บและประมวลผลข้อมูลส่วนบุคคลที่ จำกัด เกี่ยวกับตัวฉันเพื่อจัดการบัญชีของฉัน <b>เรียนรู้เพิ่มเติม</b>]]></string>
     <string name="about_personal_information">เกี่ยวกับข้อมูลส่วนบุคคล</string>
     <string name="personal_information_notes"><![CDATA[เราจัดเก็บข้อมูลส่วนบุคคลเช่นชื่อผู้ใช้และที่อยู่อีเมลเพื่อจัดการบัญชีในไซต์นี้และเพื่อให้สอดคล้องกับกฎหมายความเป็นส่วนตัวเราต้องการให้คุณทำเครื่องหมายในช่องนี้เพื่อระบุว่าคุณยินยอมให้ใช้ข้อมูลส่วนบุคคลนี้ หากต้องการเรียนรู้เพิ่มเติมเกี่ยวกับข้อมูลที่เรารวบรวมและวิธีการใช้งานโปรดดูของเรา <a href="https://www.inaturalist.org/privacy">นโยบายความเป็นส่วนตัว</a> และ <a href="https://www.inaturalist.org/terms">เงื่อนไขการให้บริการ</a>.]]></string>
@@ -981,7 +983,7 @@
     <string name="switch_to_grid_view">เปลี่ยนเป็นมุมมองตาราง</string>
     <string name="switch_to_list_view">เปลี่ยนเป็นมุมมองรายการ</string>
     <string name="remove_project_filter">ลบตัวกรองโครงการ</string>
-    <string name="remove_observer_filter">ลบตัวกรองผู้สังเกตการณ์</string>
+    <string name="remove_observer_filter">ลบตัวกรองผู้สังเกต</string>
     <string name="filter_observations_by_an_exact_date">กรองการสังเกตตามวันที่ที่แน่นอน</string>
     <string name="filter_observations_by_a_date_range">กรองการสังเกตตามช่วงวันที่</string>
     <string name="filter_observations_by_months">กรองการสังเกตตามเดือน</string>
@@ -990,7 +992,7 @@
     <string name="include_suggestions_not_seen_nearby">รวมคำแนะนำที่ไม่เห็นในบริเวณใกล้เคียง</string>
     <string name="only_view_nearby_suggestions">ดูคำแนะนำในบริเวณใกล้เคียงเท่านั้น</string>
     <string name="suggestions_source">ที่มาของข้อเสนอแนะ</string>
-    <string name="research_grade_observations">การสังเกตระดับการวิจัย</string>
+    <string name="research_grade_observations">การสังเกตระดับงานวิจัย</string>
     <string name="visually_similar_description">iNaturalist จะให้คำแนะนำโดยพิจารณาว่าภาพที่เห็นนั้นมีความคล้ายคลึงกับสิ่งมีชีวิตชนิดใดที่พบใกล้สถานที่นี้ในช่วงเวลานี้ของปี</string>
     <string name="research_grade_observations_description">แทนที่จะเป็นคำแนะนำที่คล้ายกันทางสายตา iNaturalist จะแนะนำสายพันธุ์ที่สังเกตเห็นในสถานที่เฉพาะเจาะจงและอยู่ในกลุ่มอนุกรมวิธานที่เฉพาะเจาะจง</string>
     <string name="taxon">อันดับขั้นทางอนุกรมวิธาน</string>
@@ -1037,9 +1039,9 @@
     <string name="remove_location">เอาตำแหน่งออก</string>
     <string name="are_you_sure_you_want_to_remove_date">คุณแน่ใจหรือไม่ที่ต้องการนำวันที่ &amp; และเวลาการสังเกตออก?</string>
     <string name="are_you_sure_you_want_to_remove_time">แน่ใจไหมว่าต้องการลบเวลาที่สังเกต</string>
-    <string name="are_you_sure_you_want_to_remove_location">คุณแน่ใจหรือไม่ที่ต้องการเอาตำแหน่งที่ตั้งออก?</string>
-    <string name="share_location">แบ่งปันตำแหน่งที่ตั้ง</string>
-    <string name="share_hidden_location">แบ่งปันตำแหน่งที่ตั้งที่ซ่อนไว้</string>
+    <string name="are_you_sure_you_want_to_remove_location">แน่ใจหรือไม่ว่าต้องการลบตำแหน่งนี้?</string>
+    <string name="share_location">แชร์ตำแหน่ง</string>
+    <string name="share_hidden_location">แชร์ตำแหน่งที่ซ่อนไว้</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_sound">ไม่สามารถทำซ้ำเสียงได้!</string>
     <string name="sound_format_not_supported">Android ไม่รองรับการเข้ารหัสเสียงนั้น</string>
@@ -1069,8 +1071,8 @@
         <item>สุ่ม</item>
     </string-array>
     <string-array name="explore_order_items">
-        <item>จากมากไปน้อย</item>
-        <item>จากน้อยไปมาก</item>
+        <item>จากใหม่ไปเก่า</item>
+        <item>จากเก่าไปใหม่</item>
     </string-array>
     <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
     See explore_order_by_items and explore_order_items keys !-->
@@ -1089,7 +1091,7 @@
     <string name="copy_coordinates">คัดลอกพิกัด</string>
     <string name="coordinates_copied_to_clipboard">คัดลอกพิกัดไปยังคลิปบอร์ดแล้ว</string>
     <!--  Title of a section on the observation detail view that displays minor metadata  -->
-    <string name="metadata">ข้อมูลขนาดใหญ่</string>
+    <string name="metadata">ข้อมูลอภิพันธุ์</string>
     <!--  iNat observation identifier  -->
     <string name="id">ID</string>
     <!--  iNat observation Universally Unique Identifier  -->
@@ -1168,20 +1170,20 @@
     <string name="active_filters">ตัวกรองที่ใช้งานอยู่</string>
     <string name="message_is_flagged">ข้อความได้รับรายงานแล้ว</string>
     <string name="user_is_muted">User is muted</string>
-    <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
+    <string name="cancel_multiple_obs_selection">ยกเลิกการเลือกหลายการสังเกต</string>
     <string name="delete_observations">ลบการสังเกต</string>
-    <string name="comment_count">Comment count</string>
-    <string name="id_count">Identification count</string>
+    <string name="comment_count">จำนวนความคิดเห็น</string>
+    <string name="id_count">จำนวนการจำแนก</string>
     <string name="observation_selected">Observation selected</string>
     <string name="share_observation">แชร์การสังเกต</string>
     <string name="unknown_location">ไม่ทราบแหล่ง</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
     <string name="close">ปิด</string>
-    <string name="set_date2">Set date</string>
+    <string name="set_date2">ตั้งวันที่</string>
     <string name="project_selected">โปรเจคถูกเลือก</string>
-    <string name="project_unselected">Project Unselected</string>
+    <string name="project_unselected">โครงการที่ไม่ได้เลือก</string>
     <string name="show_my_observations">แสดงการสังเกตของฉัน</string>
-    <string name="play_pause_sound">Play or pause sound</string>
+    <string name="play_pause_sound">เล่นหรือหยุดเสียง</string>
     <string name="california_academy_of_sciences_and_national_geographic">สถาบันวิทยาศาสตร์แห่งแคลิฟอร์เนีย และเนชันแนล จีโอกราฟิก</string>
     <string name="view_image">ดูรูปภาพ</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
@@ -1189,17 +1191,19 @@
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
     <string name="agree_assessment_passes">Agree assessment passes</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
-    <string name="does_not_pass_assessment">Does not pass assessment</string>
+    <string name="does_not_pass_assessment">ไม่ผ่านการประเมิน</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
     <string name="disagree_assessment_passes">Disagree assessment passes</string>
     <plurals name="delete_x_selected_observations">
         <item quantity="other">Delete %1$d selected observations</item>
     </plurals>
     <plurals name="sync_x_selected_observations">
-        <item quantity="other">Sync %1$d selected observations</item>
+        <item quantity="other">ซิงก์ %1$d การสังเกตที่เลือก</item>
     </plurals>
     <string name="add_media_evidence">เพิ่มหลักฐานรูปภาพหรือเสียง</string>
     <string name="remove_identification">ลบการระบุ</string>
     <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
     <string name="app_version_copied_to_clipboard">คัดลอกเวอร์ชันแอปไปยังคลิปบอร์ดแล้ว</string>
+    <string name="authentication_failed">Authentication Failed</string>
+    <string name="please_try_again_soon">โปรดลองอีกครั้ง</string>
 </resources>

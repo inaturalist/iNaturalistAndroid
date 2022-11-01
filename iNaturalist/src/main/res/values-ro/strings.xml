@@ -201,6 +201,7 @@
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala este membru al rețelei iNaturalist din Guatemala. Instituțiile locale care sprijină iNaturalist Guatemala vor avea acces la adresa dvs. de e-mail și la coordonatele adevărate ale observațiilor care sunt ascunse public sau private. Vă rugăm să nu modificați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Suedia este membru al rețelei iNaturalist din Suedia. Instituțiile locale care sprijină iNaturalist Suedia vor avea acces la adresa dvs. de e-mail și la coordonatele adevărate ale observațiilor care sunt ascunse public sau private. Vă rugăm să nu modificați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
     <string name="alert_message_use_naturalistauy">Naturalista Uruguay este membru al rețelei iNaturalist din Uruguay. Instituțiile locale care sprijină Naturalista Uruguay vor avea acces la adresa dvs. de e-mail și la coordonatele reale pentru observațiile ascunse obscure sau private pentru public. Vă rugăm să nu vă schimbați în mod experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan este membru al rețelei iNaturalist din Taiwan. Instituțiile locale care sprijină iNaturalist Taiwan vor avea acces la adresa dvs. de e-mail și la coordonatele reale pentru observațiile care sunt ascunse public sau private. Vă rugăm să nu vă schimbați în mod experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
     <string name="editor">Editor</string>
     <string name="license">Licență</string>
     <string name="download_for_offline_use">Descarcă pentru utilizare offline</string>
@@ -281,7 +282,7 @@
     <string name="casual_grade_add_date"><![CDATA[ Adaugă o <b>dată</b> pentru a avansa această observație la starea “Necesită ID”. ]]></string>
     <string name="casual_grade_add_photo"><![CDATA[ Adaugă o <b>imagine</b> pentru a avansa această observație la starea “Necesită ID”. ]]></string>
     <string name="casual_grade_captive"><![CDATA[ Observația are un grad cazual deoarece este <b>captivă/cultivată</b>. ]]></string>
-    <string name="needs_id_more_ids"><![CDATA[ Observația are nevoie de <b>mai multe identificări</b>de la comunitate pentru a avea status "Grad de Cercetare". ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ Observația are nevoie de <b>mai multe identificări</b>de la comunitate pentru a avea status de „Grad de cercetare”. ]]></string>
     <plurals name="included_in_projects">
         <item quantity="one">Inclus în %1$d proiect </item>
         <item quantity="few">Inclus în %1$d proiecte</item>
@@ -479,7 +480,7 @@
     <string name="nearby">În apropiere</string>
     <string name="couldnt_load_results">Nu au putut fi încărcate rezultatele: %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
-    <string name="research_grade_initials">NC</string>
+    <string name="research_grade_initials">GC</string>
     <string name="taxon_search_hint">ex. păsări, fluture monarh</string>
     <string name="location_search_hint">ex. oraş, stat, parc, ţară...</string>
     <string name="no_taxon">Ne pare rău, taxonul nu a fost găsit</string>
@@ -727,7 +728,7 @@
     <string name="observers_all_caps">OBSERVATORI</string>
     <string name="observations_regular">Observări</string>
     <string name="data_quality_assessment">Evaluarea calității datelor</string>
-    <string name="research_grade_qualification">Calificarea Nivelului de Cercetare</string>
+    <string name="research_grade_qualification">Calificarea Gradului de cercetare</string>
     <string name="date_specified">Data specificată</string>
     <string name="location_specified">Locație specificată</string>
     <string name="has_photos_or_sounds">Are fotografii sau sunete</string>
@@ -765,6 +766,7 @@
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) sprijină iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre suportă iNaturalist Suedia(<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA și Biodiversidata care sprijină Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi University și Taiwan Forestry Research Institute care sprijină iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Bifează tot ca vizionat</string>
     <string name="content_hidden">Conținut ascuns</string>
     <string name="show_hidden_content">Arată conținut ascuns</string>
@@ -1002,7 +1004,7 @@
     <string name="include_suggestions_not_seen_nearby">Include sugestii care nu au fost văzute în apropiere</string>
     <string name="only_view_nearby_suggestions">Vizualizează numai sugestiile din apropiere</string>
     <string name="suggestions_source">Sursa sugestiilor</string>
-    <string name="research_grade_observations">Observații privind calitatea cercetării</string>
+    <string name="research_grade_observations">Observații privind Gradul de cercetare</string>
     <string name="visually_similar_description">iNaturalist va oferi sugestii bazate pe cât de vizual similare imaginile sunt cu cele ale speciilor observate în apropierea acestei locații în acest moment al anului.</string>
     <string name="research_grade_observations_description">În loc de sugestii similare din punct de vedere vizual, iNaturalist va sugera specii observate într-un anumit loc și în cadrul unui anumit grup taxonomic.</string>
     <string name="taxon">Taxon:</string>
@@ -1218,4 +1220,6 @@
     <string name="remove_identification">Elimină identificarea</string>
     <string name="issue_with_updating_photos">A apărut o problemă la actualizarea fotografiilor din această observație, care a fost recent rezolvată. Deconectează-te și conectează-te din nou pentru a rezolva această problemă</string>
     <string name="app_version_copied_to_clipboard">Versiunea aplicației copiată în clipboard</string>
+    <string name="authentication_failed">Autentificarea a eșuat</string>
+    <string name="please_try_again_soon">Încercați din nou puțin mai târziu.</string>
 </resources>

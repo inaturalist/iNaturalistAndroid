@@ -200,6 +200,7 @@
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is lid van het iNaturalist Network in Guatemala. Lokale instellingen die iNaturalist Guatemala ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel je lidmaatschap als jij meer dan 1000 waarnemingen hebt. Wil jij jouw lidmaatschap wijzigen?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Zweden is lid van het iNaturalist Network in Zweden. Lokale instellingen die iNaturalist Zweden ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel jouw lidmaatschap als jij meer dan 1000 waarnemingen hebt. Wil jij jouw lidmaatschap wijzigen?</string>
     <string name="alert_message_use_naturalistauy">iNaturalist Uruguay is lid van het iNaturalist Network in Uruguay. Lokale instellingen die iNaturalist Uruguay ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of privé zijn. Verander niet experimenteel je lidmaatschap als je meer dan 1000 waarnemingen hebt. Wil jij jouw lidmaatschap wijzigen?</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan is lid van het iNaturalist Network in Taiwan. Lokale instellingen die iNaturalist Taiwan ondersteunen hebben toegang tot jouw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel jouw lidmaatschap als jij meer dan 1000 waarnemingen hebt. Wil jij jouw lidmaatschap wijzigen?</string>
     <string name="editor">Redacteur</string>
     <string name="license">Licentie</string>
     <string name="download_for_offline_use">Downloaden voor offline gebruik</string>
@@ -740,9 +741,9 @@
     <string name="no_annotation">Geen aantekeningen</string>
     <string name="donate_to_inaturalist">Doneren aan iNaturalist</string>
     <string name="prefers_scientific_name_first">Toon wetenschappelijke namen eerst</string>
-    <string name="prefers_scientific_name_first_description">Wetenschappelijke namen vóór algemene namen tonen.</string>
+    <string name="prefers_scientific_name_first_description">Toon wetenschappelijke namen voor lokale namen.</string>
     <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, het Royal Ontario Museum, NatureServe Canada en Parks Canada beheren iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
-    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt beheert Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
     <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) beheren NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
     <string name="network_credit_naturewatchnz"><![CDATA[Nieuw Zeeland: New Zealand Biodiversity Recording Network beheert iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos beheert Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
@@ -760,6 +761,7 @@
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) steunt iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Zweden: SLU Swedish Species Information Centre steunt iNaturalist Zweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA en Biodiversidata ondersteunen Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi University en Taiwan Forstry Research Institute steunen iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">Markeer alle berichten als gelezen</string>
     <string name="content_hidden">Inhoud verborgen</string>
     <string name="show_hidden_content">Toon verborgen inhoud</string>
@@ -847,7 +849,7 @@
     <string name="third_party_data_sharing_notes3"><![CDATA[<b>Deze services van derden zijn erg waardevol voor ons</b> bij het stabiel en bruikbaar houden van iNaturalist met ons relatief kleine aantal werknemers. Op mobiele apparaten is er nagenoeg geen andere manier om inzicht te krijgen in de problemen die zich voordoen, aangezien de software draait op apparaten waarover we geen controle hebben. Soms weten we niet eens dat zulke problemen zich voordoen voordat we ze in de data van zulke diensten zien. <b>Door deze informatie te delen help je ons, en de gehele gemeenschap op iNaturalist.</b>]]></string>
     <string name="third_party_data_sharing_notes4"><![CDATA[Deze optie is alleen van toepassing op de analytische en crashgegevens die wij expliciet naar deze bedrijven sturen. Alle iNaturalist servers zijn geleverd en gehost door Microsoft, alle iNaturalist afbeeldingen worden gehost door Amazon en bijna alle iNaturalist kaarten worden geleverd door Google. Dit betekent dat wanneer je naar een waarneming op iNaturalist kijkt je verbonden bent met diensten aangeboden door deze bedrijven en zij op zijn minst beschikken over je IP-adres (de iPhone app gebruikt Apple\'s maps). iNaturalist zou waarschijnlijk niet bestaan zonder de diensten die deze bedrijven leveren. Hoewel iNaturalist de hoeveelheid en soort gegevens kan beperken die je met hen deelt tijdens het gebruik van iNat, kunnen we de datastroom niet helemaal stoppen.]]></string>
     <string name="common_names_place"><![CDATA[Plaats voor lokale namen: <b>%1$s</b>]]></string>
-    <string name="tap_to_prioritize_common_names">Tik om algemene namen van een bepaalde plek te prioriteren.</string>
+    <string name="tap_to_prioritize_common_names">Tik om lokale namen van een bepaalde plek te prioriteren.</string>
     <string name="search_places">Plaatsen zoeken</string>
     <string name="restart_app">App herstarten</string>
     <string name="disable_third_party_sharing_restart">Om gegevens delen van derden onmiddellijk uit te schakelen moet de app opnieuw opgestart worden.</string>
@@ -983,7 +985,7 @@ de <a href="https://www.inaturalist.org/pages/community+guidelines">gemeenschaps
     <string name="date_long">d MMM yyyy</string>
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long_with_time">d MMMM yyyy HH:mm</string>
-    <string name="show_common_names">Algemene namen tonen</string>
+    <string name="show_common_names">Toon lokale namen</string>
     <string name="show_common_names_description">Schakel uit als je alleen wetenschappelijke namen wilt zien.</string>
     <string name="email_must_look_like_email_address">E-mail moet eruit zien als een e-mailadres</string>
     <string name="username_must_begin_with">Gebruikersnaam moet beginnen met een letter, geen spaties bevatten en gebruik alleen letters, cijfers, streepjes en onderstrepingstekens</string>
@@ -1215,4 +1217,6 @@ zonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van d
     <string name="remove_identification">Determinatie verwijderen</string>
     <string name="issue_with_updating_photos">Er is een fout opgetreden tijdens het bijwerken van de foto\'s in deze waarneming die onlangs zijn opgelost. Log alsjeblieft uit en log opnieuw in om dit probleem op te lossen.</string>
     <string name="app_version_copied_to_clipboard">Versie van de app gekopieerd naar klembord</string>
+    <string name="authentication_failed">Authenticatie mislukt.</string>
+    <string name="please_try_again_soon">Probeer het later nog eens</string>
 </resources>

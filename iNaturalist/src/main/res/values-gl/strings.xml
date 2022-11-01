@@ -200,6 +200,7 @@
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala é un membro da Rede iNaturalist en Guatemala. As institucións locais que apoian a iNaturalist Australia terán acceso ó teu enderezo de correo electrónico e acceso ás coordenadas verdadeiras de observacións que foron escurecidas públicamente ou privadas. Por favor, non mudes a túa afiliación experimentalmente se xa contas con máis de 1000 observacións. ¿Queres mudar a túa afiliación?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden é un membro da Rede iNaturalist en Suecia. As institucións locais que apoian a iNaturalist Greece terán acceso ó teu enderezo de correo electrónico e acceso ás coordenadas verdadeiras de observacións que foron escurecidas públicamente ou privadas. Por favor, non mudes a túa afiliación experimentalmente se xa contas con máis de 1000 observacións. ¿Queres mudar a túa afiliación?</string>
     <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan is a member of the iNaturalist Network in Taiwan. Local institutions supporting iNaturalist Taiwan will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editor</string>
     <string name="license">Licenza</string>
     <string name="download_for_offline_use">Descarga para uso fóra de liña</string>
@@ -760,6 +761,7 @@
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) apoiando iNaturalist Guatemala (<a href="guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre apoiando iNaturalist Sweden (<a href="www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi University and Taiwan Forestry Research Institute supporting iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">Marcar todos como vistos</string>
     <string name="content_hidden">Contido Ocultado</string>
     <string name="show_hidden_content">Mostrar Contido Oculto</string>
@@ -1210,4 +1212,6 @@
     <string name="remove_identification">Eliminar identificación</string>
     <string name="issue_with_updating_photos">Houbo un problema ó actualizar as fotos nesta observación que foi arranxado recentemente. Por favor, pecha e inicia a sesión de novo para resolver este tema.</string>
     <string name="app_version_copied_to_clipboard">Versión da App copiada no portapapeis.</string>
+    <string name="authentication_failed">Authentication Failed</string>
+    <string name="please_try_again_soon">Please try again soon.</string>
 </resources>

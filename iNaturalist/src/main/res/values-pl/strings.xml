@@ -202,6 +202,7 @@
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala jest członkiem sieci iNaturalist w Gwatemali. Lokalne instytucje wspierające Guatemala będą miały dostęp do Twojego adresu e-mail i prawdziwych współrzędnych dla obserwacji, które są publicznie ukryte lub prywatne. Prosimy, nie zmieniaj eksperymentalnie przynależności, jeśli posiadasz więcej niż 1000 obserwacji. Czy chcesz zmienić swoją przynależność?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden jest członkiem sieci iNaturalist w Szwecji. Lokalne instytucje wspierające Sweden będą miały dostęp do Twojego adresu e-mail i prawdziwych współrzędnych dla obserwacji, które są publicznie ukryte lub prywatne. Prosimy, nie zmieniaj eksperymentalnie przynależności, jeśli posiadasz więcej niż 1000 obserwacji. Czy chcesz zmienić swoją przynależność?</string>
     <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan is a member of the iNaturalist Network in Taiwan. Local institutions supporting iNaturalist Taiwan will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Redaktor</string>
     <string name="license">Licencja</string>
     <string name="download_for_offline_use">Pobierz do użytku offline</string>
@@ -417,7 +418,7 @@
     <string name="you_will_only_receive_updates_when_following">(Będziesz otrzymywać aktualizacje jak tylko zaczniesz śledzić obserwacje)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> zasugerował oznaczenie: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> skomentował: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> wspomniał o tobie: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Wygląda na to, że usunąłeś zdjęcie przez wyczyszczenie pamięci podręcznej aplikacji zanim to zostało wysłane. Musisz ponownie dodać zdjęcie z galerii. W przyszłości, postaraj się wysłać wszystkie dodane zdjęcia przed wyczyszczeniem pamięci podręcznej aplikacji.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -570,7 +571,7 @@
     <string name="start">Start</string>
     <string name="end">Koniec</string>
     <string name="months">Miesiące</string>
-    <string name="choose_months">Choose month(s)</string>
+    <string name="choose_months">Wybierz miesiąc/miesiące</string>
     <string name="map_area">Obszar na mapie</string>
     <string name="global">Globalne</string>
     <!-- As in redo search in the current map area -->
@@ -770,6 +771,7 @@
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi University and Taiwan Forestry Research Institute supporting iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">Oznacz wszystkie jako przejrzane</string>
     <string name="content_hidden">Zawartość ukryta</string>
     <string name="show_hidden_content">Pokaż ukrytą zawartość</string>
@@ -1226,4 +1228,6 @@
     <string name="remove_identification">Usuń oznaczenie</string>
     <string name="issue_with_updating_photos">Błąd występujący podczas aktualizacji zdjęć dla tej obserwacji został ostatnio naprawiony. Wyloguj się i zaloguj ponownie aby usunąć problem.</string>
     <string name="app_version_copied_to_clipboard">Wersja aplikacji została skopiowana do schowka</string>
+    <string name="authentication_failed">Authentication Failed</string>
+    <string name="please_try_again_soon">Please try again soon.</string>
 </resources>

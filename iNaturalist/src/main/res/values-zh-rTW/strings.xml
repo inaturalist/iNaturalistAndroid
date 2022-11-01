@@ -199,6 +199,7 @@
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala 是 iNaturalist 附屬網路在瓜地馬拉的成員。支援 iNaturalist Guatemala 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden 是 iNaturalist 附屬網路在瑞典的成員。支援 iNaturalist Sweden 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
     <string name="alert_message_use_naturalistauy">Naturalista Uruguay 是 iNaturalist 附屬網路在烏拉圭的成員。支援 Naturalista Uruguay 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan is a member of the iNaturalist Network in Taiwan. Local institutions supporting iNaturalist Taiwan will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">編輯</string>
     <string name="license">授權</string>
     <string name="download_for_offline_use">下載供離線使用</string>
@@ -755,6 +756,7 @@
     <string name="network_credit_inaturalistgt"><![CDATA[瓜地馬拉：Consejo Nacional de Áreas Protegidas (CONAP; 國家保護區委員會) 支持 iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[瑞典： SLU Swedish Species Information Centre (瑞典物種資訊中心) 支持 iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="network_credit_naturalistauy"><![CDATA[烏拉圭：JULANA 和 Biodiversidata 協助維運 Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi University and Taiwan Forestry Research Institute supporting iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">標記為已讀</string>
     <string name="content_hidden">內容已隱藏</string>
     <string name="show_hidden_content">顯示隱藏內容</string>
@@ -1202,4 +1204,6 @@
     <string name="remove_identification">移除鑑定</string>
     <string name="issue_with_updating_photos">在這筆觀察紀錄中更新照片所出現的問題目前已修正。請先登出後再登入以解決此問題。</string>
     <string name="app_version_copied_to_clipboard">App 版本號已複製到剪貼簿</string>
+    <string name="authentication_failed">Authentication Failed</string>
+    <string name="please_try_again_soon">Please try again soon.</string>
 </resources>
