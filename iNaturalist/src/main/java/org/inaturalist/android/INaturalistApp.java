@@ -6,6 +6,8 @@ import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapsSdkInitializedCallback;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
@@ -96,7 +98,7 @@ import android.widget.TextView;
 
 import static androidx.core.view.ViewCompat.LAYOUT_DIRECTION_RTL;
 
-public class INaturalistApp extends MultiDexApplication {
+public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInitializedCallback {
     private final static String TAG = "INAT: Application";
 
     private static final int PERMISSIONS_REQUEST = 0x1234;
@@ -163,6 +165,18 @@ public class INaturalistApp extends MultiDexApplication {
         mOnboardingShownBefore = true;
     }
 
+    @Override
+    public void onMapsSdkInitialized(@NonNull MapsInitializer.Renderer renderer) {
+        switch (renderer) {
+            case LATEST:
+                Logger.tag(TAG).info("The latest version of the renderer is used.");
+                break;
+            case LEGACY:
+                Logger.tag(TAG).info("The legacy version of the renderer is used.");
+                break;
+        }
+    }
+
     public interface INotificationCallback {
     	public void onNotification(String title, String content);
     }
@@ -218,6 +232,8 @@ public class INaturalistApp extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        MapsInitializer.initialize(getApplicationContext(), MapsInitializer.Renderer.LATEST, this);
 
         FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(!getPrefersNoTracking());
 
