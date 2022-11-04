@@ -200,6 +200,7 @@
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala on iNaturalisti võrgustikku liige Guatemalas. Kohalikud institutsioonid, mis toetavad iNaturalist Guatemala, näeksid sinu e-posti aadressi ning sinu vaatluste varjatud või privaatseid koordinaate. Palun ära eksperimenteeri enda võrgustiku kuuluvusega, kui sul on üle tuhande vaatluse. Soovid sa enda kuuluvust muuta?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden on iNaturalisti võrgustikku liige Rootsis. Kohalikud institutsioonid, mis toetavad iNaturalist Swedenit, näeksid sinu e-posti aadressi ning sinu vaatluste varjatud või privaatseid koordinaate. Palun ära eksperimenteeri enda võrgustiku kuuluvusega, kui sul on üle tuhande vaatluse. Soovid sa enda kuuluvust muuta?</string>
     <string name="alert_message_use_naturalistauy">iNaturalist Uruguay on iNaturalisti võrgustikku liige Uruguays. Kohalikud institutsioonid, mis toetavad iNaturalist Uruguayd, näeksid sinu e-posti aadressi ning sinu vaatluste varjatud või privaatseid koordinaate. Palun ära eksperimenteeri enda võrgustiku kuuluvusega, kui sul on üle tuhande vaatluse. Soovid sa enda kuuluvust muuta?</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan on iNaturalisti võrgustikku liige Taiwanil. Kohalikud institutsioonid, mis toetavad iNaturalist Taiwani, näeksid sinu e-posti aadressi ning sinu vaatluste varjatud või privaatseid koordinaate. Palun ära eksperimenteeri enda võrgustiku kuuluvusega, kui sul on üle tuhande vaatluse. Soovid sa enda kuuluvust muuta?</string>
     <string name="editor">Toimetaja</string>
     <string name="license">Litsents</string>
     <string name="download_for_offline_use">Lae levita kasutamise jaoks alla</string>
@@ -760,6 +761,7 @@
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) toetab lehte iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Rootsi: SLU Swedish Species Information Centre toetab lehte iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA ja Biodiversidata toetavad lehte Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi University ja Taiwan Forestry Research Institute toetavad lehte iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">Märgi kõik nähtuks</string>
     <string name="content_hidden">Sisu on varjatud</string>
     <string name="show_hidden_content">Näita varjatud sisu</string>
@@ -1211,4 +1213,6 @@
     <string name="remove_identification">Eemalda määratlus</string>
     <string name="issue_with_updating_photos">Selle vaatluse fotode uuendamisel oli probleem, mis on nüüdseks lahendatud. Palun logi probleemi lahendamiseks rakendusest välja ning uuesti tagasi sisse.</string>
     <string name="app_version_copied_to_clipboard">Rakenduse versioon kopeeritud</string>
+    <string name="authentication_failed">Tuvastamine ebaõnnestus</string>
+    <string name="please_try_again_soon">Palun proovi varsti uuesti.</string>
 </resources>

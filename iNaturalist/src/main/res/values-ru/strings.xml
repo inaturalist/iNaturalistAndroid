@@ -202,6 +202,7 @@
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala - это член сети iNaturalist Network в Гватемале. Местные организации, поддерживающие iNaturalist Guatemala, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden - это член сети iNaturalist Network в Швеции. Местные организации, поддерживающие iNaturalist Sweden, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
     <string name="alert_message_use_naturalistauy">Naturalista Uruguay - это член сети iNaturalist Network в Уругвае. Местные организации, поддерживающие Naturalista Uruguay, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan - это член сети iNaturalist Network в Тайване. Местные организации, поддерживающие iNaturalist Taiwan, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
     <string name="editor">Редактор</string>
     <string name="license">Лицензия</string>
     <string name="download_for_offline_use">Загрузить для использования в автономном режиме</string>
@@ -771,6 +772,7 @@
     <string name="network_credit_inaturalistgt"><![CDATA[Гватемала: Национальный совет по охраняемым районам (CONAP) поддерживает iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Швеция: Шведский информационный центр по видам SLU поддерживает iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="network_credit_naturalistauy"><![CDATA[Уругвай: гражданская ассоциация Уругвая (JULANA) и Уругвайский консорциум данных о биоразнообразии (Biodiversidata) обеспечивают работу Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>) (NaturaLista.mx).]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Тайвань: Национальный университет Цзяи (NCYU) и Тайваньский научно-исследовательский институт лесного хозяйства поддерживают iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">Пометить все как просмотренные</string>
     <string name="content_hidden">Скрытый контент</string>
     <string name="show_hidden_content">Показать скрытый контент</string>
@@ -1227,4 +1229,6 @@
     <string name="remove_identification">Удалить идентификацию</string>
     <string name="issue_with_updating_photos">Недавно мы исправли ошибку, связанную с обновлением фото в этом наблюдении. Для устранения проблемы, пожалуйста, выйдите из учетной записи и войдите снова.</string>
     <string name="app_version_copied_to_clipboard">Версия приложения скопирована в буфер обмена</string>
+    <string name="authentication_failed">Ошибка аутентификации</string>
+    <string name="please_try_again_soon">Пожалуйста, повторите попытку позже</string>
 </resources>

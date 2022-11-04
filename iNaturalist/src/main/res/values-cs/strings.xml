@@ -202,6 +202,7 @@
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala je členem sítě iNaturalist v Guatemalě. Místní instituce podporující iNaturalist Guatemala budou mít přístup k vaší e-mailové adrese a ke skutečným souřadnicím pro pozorování, která jsou veřejně skrytá nebo soukromá. Pokud máte více než 1000 pozorování, neměňte své přičlenění experimentálně. Chcete změnit své přičlenění?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Švédsko je členem sítě iNaturalist ve Švédsku. Místní instituce podporující iNaturalist Švédsko budou mít přístup k vaší e-mailové adrese a ke skutečným souřadnicím pro pozorování, která jsou veřejně skrytá nebo soukromá. Pokud máte více než 1000 pozorování, neměňte své přičlenění experimentálně. Chcete změnit své přičlenění?</string>
     <string name="alert_message_use_naturalistauy">Naturalista Uruguay je členem sítě iNaturalist v Uruguayi. Místní instituce podporující Naturalista Uruguay budou mít přístup k vaší e-mailové adrese a ke skutečným souřadnicím pro pozorování, která jsou veřejně skrytá nebo soukromá. Pokud máte více než 1 000 pozorování, prosím neměňte své přičlěnění. Chtěli byste změnit své přičlěnění?</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan je členem sítě iNaturalist Network na Tchaj-wanu. Místní instituce podporující iNaturalist Taiwan budou mít přístup k vaší e-mailové adrese a přístup ke skutečným souřadnicím u pozorování, která jsou veřejně skrytá nebo soukromá. Pokud máte více než 1000 pozorování, neměňte prosím experimentálně svou příslušnost. Chcete změnit svou příslušnost?</string>
     <string name="editor">Editor</string>
     <string name="license">Licence</string>
     <string name="download_for_offline_use">Stáhnout pro offline použití</string>
@@ -770,6 +771,7 @@
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) podporující iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Švédsko: Švédské centrum pro informace o druzích SLU podporující iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA a Biodiversidata podporující Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Tchaj-wan: National Chiayi University and Taiwan Forestry Research Institute podporující iNaturalist Tchaj-wan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">Označit vše za prohlédnuté</string>
     <string name="content_hidden">Skrytý obsah</string>
     <string name="show_hidden_content">Zobrazit skrytý obsah</string>
@@ -1232,4 +1234,6 @@ a naše <a href="https://www.inaturalist.org/terms">Smluvní podmínky</a>.]]></
     <string name="remove_identification">Odebrat identifikaci</string>
     <string name="issue_with_updating_photos">Při aktualizaci fotografií tohoto pozorování došlo k chybě, která byla nedávno opravena. Pro vyřešení tohoto problému se prosím odhlaste a znovu přihlaste.</string>
     <string name="app_version_copied_to_clipboard">Verze aplikace byla zkopírována do schránky</string>
+    <string name="authentication_failed">Ověření se nezdařilo</string>
+    <string name="please_try_again_soon">Prosím, zkuste to brzy znovu.</string>
 </resources>

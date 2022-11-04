@@ -202,6 +202,7 @@
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_naturalistauy">Naturalista Uruguay yra Urugvajaus iNaturalist tinklo narys. Vietinės institucijos, remiančios Naturalista Uruguay, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
+    <string name="alert_message_use_inaturalisttw">„iNaturalist Taiwan“ yra „iNaturalist“ tinklo Taivane narys. Vietos institucijos, remiančios „iNaturalist Taiwan“, turės prieigą prie jūsų el. pašto adreso ir prieigą prie tikrųjų stebėjimų koordinačių, kurios yra paslėptos arba privačios. Nebandykite keisti savo priklausymo, jei turite daugiau kaip 1000 stebėjimų. Ar norėtumėte keisti savo priklausymą?</string>
     <string name="editor">Redaktorius</string>
     <string name="license">Licencija</string>
     <string name="download_for_offline_use">Atsisiųsti naudojimui atsijungus nuo tinklo</string>
@@ -770,6 +771,7 @@
     <string name="network_credit_inaturalistgt"><![CDATA[Gvatemala: Nacionalinė saugomų teritorijų taryba (Consejo Nacional de Áreas Protegidas, CONAP), remianti „iNaturalist Guatemala“ (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Švedija: SLU Švedijos informacinis rūšių centras, remiantis „iNaturalist Sweden“ (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="network_credit_naturalistauy"><![CDATA[Urugvajus: JULANA ir Biodiversidata remia Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Taivanas: Nacionalinis Chiayi universitetas ir Taivano miškininkystės tyrimų institutas remia „iNaturalist Taiwan“ (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">Pažymėti visus kaip peržiūrėtus</string>
     <string name="content_hidden">Turinys paslėptas</string>
     <string name="show_hidden_content">Rodyti paslėptą turinį</string>
@@ -1227,4 +1229,6 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <string name="remove_identification">Naikinti identifikaciją</string>
     <string name="issue_with_updating_photos">Iškilo problema atnaujinant nuotraukas stebėjime, kuris neseniai buvo sutvarkytas. Kad pašalintumėte šią problemą, atsijunkite ir vėl prisijunkite.</string>
     <string name="app_version_copied_to_clipboard">Programėlės versija nukopijuota į mainų sritį</string>
+    <string name="authentication_failed">Autentifikavimas nepavyko</string>
+    <string name="please_try_again_soon">Netrukus bandykite dar kartą.</string>
 </resources>
