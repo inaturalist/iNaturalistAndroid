@@ -1228,6 +1228,6 @@
     <string name="remove_identification">הסרת זיהוי</string>
     <string name="issue_with_updating_photos">הייתה שגיאה בעדכון התמונות בתצפית זו שנפתרה לאחרונה. נא לצאת ולהתחבר מחדש כדי לפתור בעיה זו.</string>
     <string name="app_version_copied_to_clipboard">גרסת האפליקציה הועתקה ללוח </string>
-    <string name="authentication_failed">Authentication Failed</string>
+    <string name="authentication_failed">האימות נכשל</string>
     <string name="please_try_again_soon">Please try again soon.</string>
 </resources>
