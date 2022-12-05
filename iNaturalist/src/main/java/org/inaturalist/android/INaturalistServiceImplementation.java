@@ -6276,8 +6276,8 @@ public class INaturalistServiceImplementation {
                 jsonObservation = jsonObservationsById.get(observation.id);
                 boolean isModified = observation.merge(jsonObservation);
 
-                Logger.tag(TAG).debug("syncJson - updating existing: " + observation.id + ":" + observation._id + ":" + observation.preferred_common_name + ":" + observation.taxon_id);
-                Logger.tag(TAG).debug("syncJson - remote obs: " + jsonObservation.id + ":" + jsonObservation.preferred_common_name + ":" + jsonObservation.taxon_id);
+                Logger.tag(TAG).debug("syncJson - updating existing: " + observation.id + ":" + observation._id + ":" + observation.preferred_common_name + ":" + observation.taxon_id + "; updated at = " + observation._updated_at + " / " + observation._updated_at);
+                Logger.tag(TAG).debug("syncJson - remote obs: " + jsonObservation.id + ":" + jsonObservation.preferred_common_name + ":" + jsonObservation.taxon_id + "; updated_at = " + jsonObservation.updated_at );
 
                 cv = observation.getContentValues();
                 if (observation._updated_at.before(jsonObservation.updated_at)) {

@@ -1221,11 +1221,13 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             cv.put(Observation.IDENTIFICATIONS_COUNT, mObservation.identifications_count);
             cv.put(Observation.LAST_IDENTIFICATIONS_COUNT, mObservation.last_identifications_count);
             if ((mObservation._synced_at != null) && (mObservation.id != null)) {
+                Logger.tag(TAG).debug("ObservationViewerFragment - refreshActivity - " + mObservation._updated_at + " / " + mObservation._synced_at);
                 if ((mObservation._updated_at == null) || (mObservation._updated_at.before(mObservation._synced_at)) || (mObservation._updated_at.equals(mObservation._synced_at))) {
-                    cv.put(Observation._SYNCED_AT, System.currentTimeMillis()); // No need to sync
+                    cv.put(ObservationProvider.DO_NOT_CHANGE_UPDATE_TIME, true); // No need to sync
                 }
             }
 
+            Logger.tag(TAG).debug("ObservationViewerFragment - refreshActivity - updating comment count");
             getActivity().getContentResolver().update(mObservation.getUri(), cv, null, null);
             Logger.tag(TAG).debug("ObservationViewerFragment - refreshActivity - update obs: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
         }
