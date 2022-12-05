@@ -563,7 +563,7 @@
     <string name="start">Kezdete</string>
     <string name="end">Vége</string>
     <string name="months">Hónapok</string>
-    <string name="choose_months">Choose month(s)</string>
+    <string name="choose_months">Hónap(ok) kiválasztása</string>
     <string name="map_area">Térképtartomány</string>
     <string name="global">Globális</string>
     <!-- As in redo search in the current map area -->
@@ -888,7 +888,7 @@
     <string name="sending_message">Üzenet küldése...</string>
     <string name="could_not_send_message">Üzenetküldés sikertelen: %1$s</string>
     <string name="subject">Tárgy</string>
-    <string name="body">Törzs</string>
+    <string name="body">Üzenet</string>
     <string name="type_your_message_here">Írd ide az üzeneted</string>
     <string name="new_message_to">Új üzenet %1$s számára</string>
     <string name="who_would_you_like_to_send_a_message_to">Kinek szeretnél üzenetet küldeni?</string>
@@ -1160,7 +1160,7 @@
     <string name="show_options">Beállítások megjelenítése</string>
     <!-- Placeholder text for an observation field value -->
     <string name="field_value">Mezőérték</string>
-    <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
+    <string name="expand_annotation_to_agree_or_disagree">Bejegyzés bővítése egyetértéshez vagy egyet nem értéshez</string>
     <string name="delete_attribute_value">Érték törlése</string>
     <string name="open_menu_for_more_options">Menü megnyitása a további opciókért</string>
     <string name="change_user_profile_photo">Profilfénykép módosítása</string>

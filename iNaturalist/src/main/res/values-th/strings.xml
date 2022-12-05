@@ -252,7 +252,7 @@
     <string name="first">อันดับ 1</string>
     <string name="make_first">เป็นอันดับที่ 1</string>
     <string name="notes">หมายเหตุ</string>
-    <string name="is_captive">เป็นสัตว์เลี้ยงหรือเพาะปลูก</string>
+    <string name="is_captive">ถูกจับมาหรือเพาะปลูก</string>
     <string name="location_visibility">การเปิดเผยตำแหน่ง</string>
     <string name="set_location">ตำแหน่ง</string>
     <string name="coordinates_lat">ละติจูด:</string>
@@ -991,7 +991,7 @@
     <string name="equals_sign">=</string>
     <string name="include_suggestions_not_seen_nearby">รวมคำแนะนำที่ไม่เห็นในบริเวณใกล้เคียง</string>
     <string name="only_view_nearby_suggestions">ดูคำแนะนำในบริเวณใกล้เคียงเท่านั้น</string>
-    <string name="suggestions_source">ที่มาของข้อเสนอแนะ</string>
+    <string name="suggestions_source">ที่มาของคำแนะนำ</string>
     <string name="research_grade_observations">การสังเกตระดับงานวิจัย</string>
     <string name="visually_similar_description">iNaturalist จะให้คำแนะนำโดยพิจารณาว่าภาพที่เห็นนั้นมีความคล้ายคลึงกับสิ่งมีชีวิตชนิดใดที่พบใกล้สถานที่นี้ในช่วงเวลานี้ของปี</string>
     <string name="research_grade_observations_description">แทนที่จะเป็นคำแนะนำที่คล้ายกันทางสายตา iNaturalist จะแนะนำสายพันธุ์ที่สังเกตเห็นในสถานที่เฉพาะเจาะจงและอยู่ในกลุ่มอนุกรมวิธานที่เฉพาะเจาะจง</string>
