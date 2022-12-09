@@ -757,6 +757,12 @@ public class ObservationEditor extends Fragment {
                 GalleryCursorAdapter adapter = (GalleryCursorAdapter) recyclerView.getAdapter();
                 int from = viewHolder.getAdapterPosition();
                 int to = target.getAdapterPosition();
+
+                if (from >= adapter.getPhotoCount()) {
+                    // Trying to move a sound
+                    return false;
+                }
+
                 adapter.moveItem(from, to);
                 adapter.notifyItemMoved(from, to);
                 updateImagesAndSounds(false);
