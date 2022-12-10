@@ -233,6 +233,9 @@ public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInit
     public void onCreate() {
         super.onCreate();
 
+        // Initialize the logger
+        LoggingUtils.initializeLogger(this);
+
         MapsInitializer.initialize(getApplicationContext(), MapsInitializer.Renderer.LATEST, this);
 
         FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(!getPrefersNoTracking());
@@ -252,9 +255,6 @@ public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInit
                 StateSaver.restoreInstanceState(target, state);
             }
         });
-
-        // Initialize the logger
-        LoggingUtils.initializeLogger(this);
 
         Logger.tag(TAG).debug("onCreate");
 
@@ -299,8 +299,8 @@ public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInit
                 Logger.tag(TAG).debug("All files in getExternalCacheDir: " + getExternalCacheDir() + ": total: " + total);
 
                 Logger.tag(TAG).debug("Listing all files in getCacheDir: " + getCacheDir());
-                total = listFilesRecursively(getExternalCacheDir());
-                Logger.tag(TAG).debug("All files in getCacheDir: " + getExternalCacheDir() + ": total: " + total);
+                total = listFilesRecursively(getCacheDir());
+                Logger.tag(TAG).debug("All files in getCacheDir: " + getCacheDir() + ": total: " + total);
             }
         }).start();
 
