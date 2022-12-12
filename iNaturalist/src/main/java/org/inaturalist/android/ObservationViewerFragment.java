@@ -586,6 +586,8 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                     .tapListener(new TapListener() {
                         @Override
                         public void onTap(View v) {
+                            if (getActivity() == null) return;
+
                             Intent intent = new Intent(getActivity(), ObservationPhotosViewer.class);
                             intent.putExtra(ObservationPhotosViewer.CURRENT_PHOTO_INDEX, position);
 
