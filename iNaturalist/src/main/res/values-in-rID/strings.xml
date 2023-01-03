@@ -199,7 +199,7 @@
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala adalah anggota jaringan iNaturalist di Guatemala. Institusi lokal yang mendukung iNaturalist Guatemala akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum maupun pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Swedia adalah anggota jaringan iNaturalist di Swedia. Institusi lokal yang mendukung iNaturalist Swedia akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum maupun pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
     <string name="alert_message_use_naturalistauy">Naturalista Uruguay adalah anggota Jaringan iNaturalist di Uruguay. Institusi lokal yang mendukung Naturalista Uruguay akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
-    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan is a member of the iNaturalist Network in Taiwan. Local institutions supporting iNaturalist Taiwan will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan adalah anggota iNaturalist Network di Taiwan. Institusi lokal yang mendukung iNaturalist Taiwan akan memiliki akses ke alamat email Anda dan akses ke koordinat sebenarnya untuk pengamatan yang dikaburkan untuk umum atau pribadi. Harap jangan secara eksperimental mengubah afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan. Apakah Anda ingin mengubah afiliasi Anda?</string>
     <string name="editor">Editor</string>
     <string name="license">Lisensi</string>
     <string name="download_for_offline_use">Unduh untuk penggunaan luring</string>
@@ -356,7 +356,7 @@
     <string name="more_info">Informasi Selengkapnya</string>
     <string name="select_network">Pilih Afiliasi Jaringan</string>
     <string name="help">Bantuan</string>
-    <string name="stop">Berhenti</string>
+    <string name="stop">Hentikan</string>
     <string name="resume">Lanjutkan</string>
     <string name="cleaning_up">Membersihkan...</string>
     <string name="syncing">Menyinkronkan...</string>
@@ -756,7 +756,7 @@
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Nacional de Áreas Protegidas (CONAP) mendukung iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Swedia: SLU Swedish Species Information Centre mendukung iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA dan Biodiversidata mendukung Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
-    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi University and Taiwan Forestry Research Institute supporting iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: Universitas Nasional Chiayi dan Institut Riset Kehutanan Taiwan mendukung iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">Tandai semua sudah dilihat</string>
     <string name="content_hidden">Konten Tersembunyi</string>
     <string name="show_hidden_content">Tampilkan Konten Tersembunyi</string>

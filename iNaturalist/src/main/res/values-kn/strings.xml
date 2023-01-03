@@ -1214,6 +1214,6 @@
     <string name="remove_identification">ಗುತುತಿಸುವಿಕೆಯನ್ನು ತೆಗೆದುಹಾಕಿರಿ</string>
     <string name="issue_with_updating_photos">ಈ ವೀಕ್ಷಣೆಯಲ್ಲಿ ಚಿತ್ರವನ್ನು ನವೀಕರಿಸಲು ಒಂದು ತೊಂದರೆಯುಂಟಾಗಿತ್ತು, ಇದನ್ನು ಇತ್ತೀಚೆಗೆ ಸರಿಪಡಿಸಲಾಗಿದೆ. ಈ ತೊಂದರೆಯನ್ನು ಪರಿಹರಿಸಲು ದಯವಿಟ್ಟು ಒಮ್ಮೆ ಲಾಗೌಟ್ ಆಗಿ ಮತ್ತೆ ಸೈನ್ ಇನ್ ಆಗಿ.</string>
     <string name="app_version_copied_to_clipboard">ಆಪ್ ಅವೃತ್ತಿಯನ್ನು  ಕ್ಲಿಪ್ಬೋರ್ಡಿಗೆ ನಕಲಿಸಲಾಗಿದೆ</string>
-    <string name="authentication_failed">Authentication Failed</string>
-    <string name="please_try_again_soon">Please try again soon.</string>
+    <string name="authentication_failed">ದೃಢೀಕರಣ ವಿಫಲವಾಗಿದೆ</string>
+    <string name="please_try_again_soon">ದಯವಿಟ್ಟು ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
 </resources>
