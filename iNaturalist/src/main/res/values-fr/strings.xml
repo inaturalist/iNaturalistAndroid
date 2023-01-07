@@ -403,7 +403,7 @@
     <string name="searching_your_area">Recherche dans votre région...</string>
     <string name="expanding_your_search_area">Extension de votre zone de recherche...</string>
     <string name="introducing_missions">Voici les Missions !</string>
-    <string name="missions_onboarding_description">Les missions sont des recommandations en temps réel de ce que vous pouvez chercher autour de vous. De cette façon vous pouvez découvrir de nouvelles espèces! (Nécessite une connection internet)</string>
+    <string name="missions_onboarding_description">Les missions sont des recommandations en temps réel de ce que vous pouvez chercher autour de vous. De cette façon, vous pouvez découvrir de nouvelles espèces! (Nécessite une connexion internet)</string>
     <string name="ok_got_it">OK, j\'ai compris !</string>
     <string name="could_not_download_observations">Les observations les plus récentes n\'ont pas pu être téléchargées - problème de connexion. Veuillez réessayer ultérieurement.</string>
     <string name="no_news_yet">Rien de nouveau pour l\'instant. A très bientôt!</string>
