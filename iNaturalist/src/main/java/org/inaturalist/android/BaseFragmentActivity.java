@@ -25,6 +25,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -56,6 +58,7 @@ import java.text.DecimalFormat;
 public class BaseFragmentActivity extends AppCompatActivity {
 	
     protected static final int REQUEST_CODE_OBSERVATION_EDIT = 0x1000;
+    protected static final int REQUEST_CODE_LOGIN_SIGNUP = 0x1001;
 
 	private static final String TAG = "BaseFragmentActivity";
 
@@ -860,7 +863,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
 
                 Intent intent2 = new Intent(BaseFragmentActivity.this, LoginSignupActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent2.putExtra(LoginSignupActivity.SIGNUP, true);
-                startActivity(intent2);
+                startActivityForResult(intent2, REQUEST_CODE_LOGIN_SIGNUP);
 
                 return;
             }
@@ -872,7 +875,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 Intent intent2 = new Intent(BaseFragmentActivity.this, LoginSignupActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent2.putExtra(LoginSignupActivity.SIGNUP, false);
                 intent2.putExtra(LoginSignupActivity.PASSWORD_CHANGED, true);
-                startActivity(intent2);
+                startActivityForResult(intent2, REQUEST_CODE_LOGIN_SIGNUP);
 
                 return;
             }

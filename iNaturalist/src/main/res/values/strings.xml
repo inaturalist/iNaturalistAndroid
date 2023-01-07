@@ -1244,4 +1244,5 @@
     <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
     <string name="authentication_failed">Authentication Failed</string>
     <string name="please_try_again_soon">Please try again soon.</string>
+    <string name="verify_your_email">Verify Your Email Address</string>
 </resources>

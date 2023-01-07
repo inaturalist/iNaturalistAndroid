@@ -1943,6 +1943,15 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 // Added a new obs
                 triggerSync = true;
             }
+        } else if (requestCode == REQUEST_CODE_LOGIN_SIGNUP) {
+            if (resultCode == RESULT_OK) {
+                if ((data != null) && (data.getStringExtra(LoginSignupActivity.EXTRA_STATUS) != null)) {
+                    // Post registration - show an extra message to the user asking them to
+                    // verify their email address
+                    String extraStatus = data.getStringExtra(LoginSignupActivity.EXTRA_STATUS);
+                    mHelper.alert(extraStatus);
+                }
+            }
         }
 
         if (triggerSync) {

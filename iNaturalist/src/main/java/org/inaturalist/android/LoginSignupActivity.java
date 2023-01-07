@@ -43,12 +43,16 @@ import android.widget.Toast;
 import com.facebook.FacebookSdk;
 import com.facebook.login.widget.LoginButton;
 
+import org.tinylog.Logger;
+
 import java.util.regex.Pattern;
 
 
 public class LoginSignupActivity extends AppCompatActivity implements SignInTask.SignInTaskStatus {
 
     private static final int PERMISSIONS_REQUEST = 0x1000;
+    public static final String EXTRA_STATUS = "extra_status";
+    public static final int RESULT_EMAIL_VERIFICATION_REQUIRED = 3;
 
     private static String TAG = "LoginSignupActivity";
     private INaturalistApp mApp;
@@ -88,6 +92,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
     private TextView mTerms;
     private boolean mPasswordChanged;
     private boolean mVerifyPassword;
+    private String mExtraStatus = null;
 
     @Override
     protected void onStart() {
@@ -110,14 +115,36 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
             mHelper.stopLoading();
 
             boolean status = intent.getBooleanExtra(INaturalistService.REGISTER_USER_STATUS, false);
+            boolean emailVerificationRequired = intent.getBooleanExtra(INaturalistService.REGISTER_EMAIL_VERIFICATION_REQUIRED, false);
             String error = intent.getStringExtra(INaturalistService.REGISTER_USER_ERROR);
+            mExtraStatus = error;
 
             if (!status) {
                 mHelper.alert(getString(R.string.could_not_register_user), error);
             } else {
                 // Registration successful - login the user
                 recreateSignInTaskIfNeeded();
-                mSignInTask.signIn(INaturalistServiceImplementation.LoginType.OAUTH_PASSWORD, mUsername.getText().toString(), mPassword.getText().toString());
+                if (!emailVerificationRequired) {
+                    mSignInTask.signIn(INaturalistServiceImplementation.LoginType.OAUTH_PASSWORD, mUsername.getText().toString(), mPassword.getText().toString());
+                } else {
+                    // Since email verification is required, we can't login just yet (we'll get a 400 error code)
+                    // So close this form
+                    mSignInTask.pause();
+
+                    mHelper.confirm(getString(R.string.verify_your_email),
+                            mExtraStatus,
+                            (dialog, which) -> {
+                                // Go back to my observations screen
+                                LoginSignupActivity.this.setResult(RESULT_EMAIL_VERIFICATION_REQUIRED);
+                                finish();
+                                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                            },
+                            null
+                    );
+
+
+                }
+
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_CREATE_ACCOUNT);
             }
         }
@@ -549,16 +576,35 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
     public void onLoginSuccessful() {
         mSignInTask.pause();
 
-        setResult(RESULT_OK);
+        Intent intent = new Intent();
+        intent.putExtra(EXTRA_STATUS, mExtraStatus);
+        setResult(RESULT_OK, intent);
         finish();
     }
 
 
     @Override
-    public void onLoginFailed(INaturalistServiceImplementation.LoginType loginType) {
+    public void onLoginFailed(INaturalistServiceImplementation.LoginType loginType, String failureMessage) {
         if ((!mIsSignup) && (isNetworkAvailable()) && (loginType == INaturalistServiceImplementation.LoginType.OAUTH_PASSWORD)) {
             // Invalid password - clear the password field
             mPassword.setText("");
+        }
+
+        if (!isNetworkAvailable() || (loginType == INaturalistServiceImplementation.LoginType.OAUTH_PASSWORD)) {
+            mHelper.alert(failureMessage);
+        } else {
+            // Email verification required scenario - in this case, we close current activity
+            mHelper.confirm(getString(R.string.verify_your_email),
+                    failureMessage,
+                    (dialog, which) -> {
+                        // Go back to my observations screen
+                        LoginSignupActivity.this.setResult(RESULT_EMAIL_VERIFICATION_REQUIRED);
+                        finish();
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                    },
+                    null
+            );
+
         }
     }
 

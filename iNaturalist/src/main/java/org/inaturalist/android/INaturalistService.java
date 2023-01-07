@@ -405,6 +405,7 @@ public class INaturalistService extends IntentService {
     public static final String LIFE_LIST = "life_list";
     public static final String REGISTER_USER_ERROR = "error";
     public static final String REGISTER_USER_STATUS = "status";
+    public static final String REGISTER_EMAIL_VERIFICATION_REQUIRED = "email_verification_required";
     public static final String SYNC_CANCELED = "sync_canceled";
     public static final String SYNC_FAILED = "sync_failed";
     public static final String FIRST_SYNC = "first_sync";

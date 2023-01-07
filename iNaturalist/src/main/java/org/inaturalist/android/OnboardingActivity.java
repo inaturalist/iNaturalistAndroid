@@ -223,7 +223,22 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
     }
 
     @Override
-    public void onLoginFailed(INaturalistServiceImplementation.LoginType loginType) {
+    public void onLoginFailed(INaturalistServiceImplementation.LoginType loginType, String failureMessage) {
+        if ((loginType == INaturalistServiceImplementation.LoginType.FACEBOOK) ||
+                (loginType == INaturalistServiceImplementation.LoginType.GOOGLE)) {
+            // Happens when user needs to verify their email address
+            mSignInTask.pause();
+
+            mHelper.confirm(getString(R.string.verify_your_email),
+                    failureMessage,
+                    (dialog, which) -> {
+                        // Go back to my observations screen
+                        setResult(RESULT_CANCELED);
+                        finish();
+                    },
+                    null
+            );
+        }
     }
 
 
@@ -239,7 +254,13 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
         mSignInTask.onActivityResult(requestCode, resultCode, data);
 
         if ((requestCode == REQUEST_CODE_LOGIN) || (requestCode == REQUEST_CODE_SIGNUP)) {
-            if (resultCode == RESULT_OK) {
+            if (resultCode == LoginSignupActivity.RESULT_EMAIL_VERIFICATION_REQUIRED) {
+                // Email verification require go to the my observation screen
+                mSignInTask.pause();
+                setResult(RESULT_CANCELED);
+                finish();
+
+            } else if (resultCode == RESULT_OK) {
                 // Successfully registered / logged-in from the sub-activity we've opened
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_REFRESH_CURRENT_USER_SETTINGS, null, this, INaturalistService.class);
                 INaturalistService.callService(this, serviceIntent);
@@ -247,6 +268,7 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
                 mSignInTask.pause();
                 setResult(RESULT_OK);
                 finish();
+
             } else {
                 mSignInTask.resume();
             }
