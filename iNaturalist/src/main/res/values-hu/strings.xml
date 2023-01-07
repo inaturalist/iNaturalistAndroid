@@ -113,7 +113,7 @@
     <string name="geoprivacy">Pozíció láthatósága</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
     <string name="geoprivacy_with_value">Pozíció láthatósága: %1$s</string>
-    <string name="delete_confirmation">Biztosan törli ezt a megfigyelést?</string>
+    <string name="delete_confirmation">Biztosan törlöd ezt a megfigyelést?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">Útmutatók</string>
     <string name="my_guides">Sajátjaid</string>
@@ -245,7 +245,7 @@
     <string name="please_sign_in_via_settings_for_guides">A kalauzaid megtekintéséhez be kell jelentkezned.</string>
     <string name="please_sign_in_for_updates">A frissítéseid megtekintéséhez be kell jelentkezned.</string>
     <string name="by_using_inat_terms"><![CDATA[Az iNaturalist használatával elfogadod a <a href="https://www.inaturalist.org/pages/terms">Felhasználói feltételeket</a></b> és az<a href="https://www.inaturalist.org/pages/privacy">Adatvédelmi nyilatkozatot</a></b>]]></string>
-    <string name="activity">Tevékenység</string>
+    <string name="activity">Aktivitás</string>
     <!-- Label for a button to open the camera to take a new photo for an observation -->
     <string name="camera">Fénykép készítése</string>
     <!-- Label for a button to import an existing photo for an observation -->

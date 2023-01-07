@@ -28,7 +28,7 @@
     <string name="observations">การสังเกตของฉัน</string>
     <string name="map">แผนที่</string>
     <string name="settings">การตั้งค่า</string>
-    <string name="projects">โครงการทั้งหมด</string>
+    <string name="projects">โครงการ</string>
     <string name="delete_photo">ลบรูปถ่าย</string>
     <string name="my_location">ตำแหน่งของฉัน</string>
     <string name="nearby_observations">การสังเกตในบริเวณใกล้เคียง</string>
@@ -45,7 +45,7 @@
     <string name="username">ชื่อผู้ใช้</string>
     <string name="password">รหัสผ่าน</string>
     <string name="unknown">ไม่ทราบ</string>
-    <string name="unknown_species">ไม่ทราบสายพันธุ์</string>
+    <string name="unknown_species">ไม่ทราบชนิด</string>
     <string name="com_facebook_dialogloginactivity_ok_button">ตกลง</string>
     <string name="com_facebook_loginview_log_out_button">ออกจากระบบ</string>
     <string name="com_facebook_loginview_log_in_button">เข้าสู่ระบบ</string>
@@ -76,12 +76,12 @@
     <string name="yes">ใช่</string>
     <string name="no">ไม่</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
-    <string name="agree">ยอมรับ?</string>
+    <string name="agree">เห็นด้วย?</string>
     <string name="no_comments">ยังไม่มีความคิดเห็น / การระบุตัวตน</string>
-    <string name="add_comment">เพิ่มข้อคิดเห็น</string>
+    <string name="add_comment">เพิ่มความคิดเห็น</string>
     <string name="add_id">เพิ่มการจำแนก</string>
     <string name="remarks">หมายเหตุ</string>
-    <string name="enter_taxon_name">ชื่อสายพันธุ์</string>
+    <string name="enter_taxon_name">ชื่อชนิด</string>
     <string name="no_projects">ไม่พบโครงการ</string>
     <string name="no_guides">ไม่พบคู่มือ!</string>
     <string name="loading_projects">กำลังโหลดโครงการ...</string>
@@ -140,9 +140,9 @@
     <string name="release_to_refresh">ปล่อยเพื่อรีเฟรช...</string>
     <string name="refreshing">กำลังรีเฟรช...</string>
     <plurals name="sync_x_observations">
-        <item quantity="other">ซิงค์ %1$d การสังเกต</item>
+        <item quantity="other">ซิงก์ %1$d การสังเกต</item>
     </plurals>
-    <string name="sync_observations">ซิงค์การสังเกต</string>
+    <string name="sync_observations">ซิงก์การสังเกต</string>
     <string name="lets_get_started">มาเริ่มกันเลย!</string>
     <string name="view_nearby_observations">ดูการสังเกตในบริเวณใกล้เคียง</string>
     <string name="skip_for_now">ข้ามไปก่อน</string>
@@ -262,8 +262,8 @@
     <string name="downloading_observations">กำลังดาวน์โหลดการสังเกต ...</string>
     <string name="no_thanks">ไม่ล่ะ ขอบคุณ</string>
     <string name="turn_on">เปิด</string>
-    <string name="introducing_auto_sync">ขอแนะนำการอัปโหลดอัตโนมัติ!</string>
-    <string name="turn_on_auto_sync">เปิดการซิงค์อัตโนมัติในการตั้งค่าและการสังเกตของคุณจะถูกอัปโหลดไปยัง iNaturalist โดยอัตโนมัติ</string>
+    <string name="introducing_auto_sync">กำลังเริ่มการซิงก์อัตโนมัติ!</string>
+    <string name="turn_on_auto_sync">เปิดการซิงก์อัตโนมัติในการตั้งค่า การสังเกตของคุณจะถูกอัปโหลดไปยัง iNaturalist โดยอัตโนมัติ</string>
     <string name="automatic_upload">อัปโหลดอัตโนมัติ (ซิงก์อัตโนมัติ)</string>
     <string name="waiting_to_upload">กำลังรออัปโหลด ...</string>
     <string name="uploading">กำลังอัปโหลด...</string>
@@ -292,7 +292,7 @@
     <string name="delete_comment">ลบความคิดเห็น</string>
     <string name="delete_id_message">คุณแน่ใจหรือไม่ว่าต้องการเพิกถอนการระบุตัวตนนี้?</string>
     <string name="delete_comment_message">แน่ใจหรือไม่ว่าคุณต้องการลบความคิดเห็นนี้?</string>
-    <string name="suggest_id">การจำแนกที่ได้รับการแนะนำ</string>
+    <string name="suggest_id">จำแนกชนิด</string>
     <string name="update_comment">อัปเดตความคิดเห็น</string>
     <string name="fave_this_observation">บันทึกการสังเกตนี้</string>
     <string name="faved">บันทึกแล้ว</string>
@@ -303,18 +303,18 @@
     <string name="location">ตำแหน่ง</string>
     <string name="login_in_to_add_comments_ids">เข้าสู่ระบบหรือสมัครเพื่อแสดงความคิดเห็นหรือแนะนำการระบุตัวตน ...</string>
     <string name="login_in_to_fav">เข้าสู่ระบบหรือลงทะเบียนเพื่อดูรายการโปรดหรือข้อสังเกตนี้ ...</string>
-    <string name="sync_obs_to_see_favs">ซิงค์การสังเกตนี้เพื่อดูบันทึก ...</string>
+    <string name="sync_obs_to_see_favs">ซิงก์การสังเกตนี้เพื่อดูรายการโปรด...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
-    <string name="sync_obs_to_add_comments_ids">ซิงค์ข้อสังเกตนี้เพื่อแสดงความคิดเห็นหรือแนะนำการระบุตัวตน ...</string>
+    <string name="sync_obs_to_add_comments_ids">ซิงก์การสังเกตนี้เพื่อแสดงความคิดเห็นหรือแนะนำการจำแนก...</string>
     <!--  Label for a button to add an observation without a photo or a sound  -->
     <string name="no_photo">ไม่มีสื่อ</string>
-    <string name="about_this_species">เกี่ยวกับสายพันธุ์นี้</string>
+    <string name="about_this_species">เกี่ยวกับชนิดนี้</string>
     <string name="view_on_wikipedia">บทความ Wikipedia</string>
     <string name="photo"><![CDATA[รูปภาพ: <b><a href="%1$s">%2$s</a></b>]]></string>
     <string name="photo_attr"><![CDATA[รูปภาพ: <b>%1$s</b>]]></string>
     <string name="finding_current_location">กำลังค้นหาตำแหน่งปัจจุบัน...</string>
-    <string name="flag_as_captive">ตั้งค่าสถานะเป็น เพาะเลี้ยง / เพาะปลูก</string>
-    <string name="observation_flagged_as_captive">การสังเกตถูกตั้งค่าสถานะเป็น เพาะเลี้ยง / เพาะปลูก</string>
+    <string name="flag_as_captive">รายงานว่าถูกจับมา/เพาะปลูก</string>
+    <string name="observation_flagged_as_captive">การสังเกตนี้ได้รับรายงานว่าถูกจับมา/เพาะปลูก</string>
     <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
     <string name="do_you_agree_to_the_following">คุณเห็นด้วยกับสิ่งต่อไปนี้หรือไม่?</string>
     <string name="terms">ข้อตกลง</string>
@@ -359,9 +359,9 @@
     <string name="stop">หยุด</string>
     <string name="resume">ทำต่อ</string>
     <string name="cleaning_up">กำลังล้าง...</string>
-    <string name="syncing">กำลังซิงค์...</string>
-    <string name="syncing_observation_fields">กำลังซิงค์งานการสังเกต ...</string>
-    <string name="syncing_observations">กำลังซิงค์การสังเกต ...</string>
+    <string name="syncing">กำลังซิงก์...</string>
+    <string name="syncing_observation_fields">กำลังซิงก์ข้อมูลเสริมการสังเกต...</string>
+    <string name="syncing_observations">กำลังซิงก์การสังเกต...</string>
     <string name="syncing_paused">หยุดชั่วคราว</string>
     <string name="upload">อัปโหลด</string>
     <string name="search_observations">ค้นหาการสังเกต...</string>
@@ -424,7 +424,7 @@
     </plurals>
     <string name="no_results_found">ไม่พบผลลัพธ์</string>
     <plurals name="syncing_x_out_of_y_observations">
-        <item quantity="other">กำลังซิงค์ %1$d จาก %2$d การสังเกต...</item>
+        <item quantity="other">กำลังซิงก์ %1$d จาก %2$d การสังเกต...</item>
     </plurals>
     <string name="deleting_observations">ลบการสังเกต</string>
     <string name="preparing">กำลังเตรียมพร้อม...</string>
@@ -457,8 +457,8 @@
     <string name="top_suggestions">คำแนะนำยอดนิยม</string>
     <string name="pretty_sure_rank">เราค่อนข้างมั่นใจว่าอยู่ในนี้ %1$s:</string>
     <string name="what_did_you_see">คุณเห็นอะไร?</string>
-    <string name="suggest_species">สายพันธุ์ที่ได้รับการแนะนำ</string>
-    <string name="suggest_species_description">สายพันธุ์ที่แนะนำดำเนินการตามความคล้ายคลึงกันของภาพกับภาพถ่าย</string>
+    <string name="suggest_species">แนะนำชนิด</string>
+    <string name="suggest_species_description">แนะนำชนิดตามความคล้ายของรูปถ่าย</string>
     <string name="visually_similar">ภาพที่คล้ายกัน</string>
     <string name="visually_similar_seen_nearby">ภาพที่คล้ายกัน / มองเห็นได้ในบริเวณใกล้เคียง</string>
     <string name="seen_nearby">เห็นในบริเวณใกล้เคียง</string>
@@ -552,7 +552,7 @@
     <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
     <string name="date_observed">วันที่สังเกต</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
-    <string name="any">อื่นๆ</string>
+    <string name="any">ไม่ระบุ</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
     <string name="to">ถึง</string>
     <string name="exact_date">เฉพาะวันที่</string>
@@ -575,11 +575,11 @@
     <string name="new_observation">การสังเกตใหม่</string>
     <string name="inactive_taxon">Taxon ที่ไม่มีความเคลื่อนไหว</string>
     <string name="no_identifications_found">ติดตามการจำแนกที่คุณแนะนำให้กับการสังเกตของผู้อื่นที่นี่</string>
-    <string name="no_species_found">นี่คือรายชื่อสายพันธุ์ที่คุณสังเกตเห็นมากที่สุด \n\nFYI: มีประมาณ 9 ล้านสปีชีส์บนโลกดังนั้นจงออกไปที่นั่นและสังเกตพวกมัน!and observe them!</string>
+    <string name="no_species_found">นี่คือรายชื่อชนิดที่คุณสังเกตมากที่สุด \n\nFYI: มีประมาณ 9 ล้านชนิดบนโลกใบนี้ ออกไปสังเกตพวกเขากันเถอะ!</string>
     <string name="make_an_observation">เพิ่มการสังเกต</string>
     <string name="no_observations_found_new">การสังเกตเป็นการบันทึกการเผชิญหน้าของคุณกับสิ่งมีชีวิตแต่ละตัวในช่วงเวลาและสถานที่เฉพาะ</string>
     <string name="discard_comment">แน่ใจไหมว่าต้องการยกเลิกความคิดเห็นนี้</string>
-    <string name="leave_comment">ละทิ้งการแสดงความคิดเห็น...</string>
+    <string name="leave_comment">เลิกแสดงความคิดเห็น...</string>
     <string name="swipe">ปัด</string>
     <string name="swipe_indicator">›</string>
     <string name="potential_disagreement">ความไม่เห็นด้วยที่อาจเกิดขึ้น</string>
@@ -609,12 +609,12 @@
     <string name="ask_for_g_plus_permissions">Google กำหนดให้เราต้องขออนุญาตในการเข้าถึงผู้ติดต่อของคุณเพื่อใช้บัญชี Google ของคุณแม้ว่าเราจะไม่เข้าถึงรายชื่อติดต่อของคุณไม่ว่าด้วยเหตุผลใดก็ตาม หากคุณปฏิเสธการอนุญาตนี้คุณจะต้องลงทะเบียนหรือเข้าสู่ระบบด้วยชื่อผู้ใช้และรหัสผ่าน</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[ใหม่สำหรับ %1$s? <b>สมัครตอนนี้เลย!</b>]]></string>
     <string name="see_more_observations">ดูการสังเกตเพิ่มเติม</string>
-    <string name="see_more_species">ดูสายพันธุ์เพิ่มเติม</string>
+    <string name="see_more_species">ดูชนิดเพิ่มเติม</string>
     <string name="see_more_identifications">ดูการระบุเพิ่มเติม</string>
     <string name="collection_and_umbrella_projects">โครงการเก็บสะสมตัวอย่างและเพื่อการอนุรักษ์</string>
     <string name="description">คำอธิบาย</string>
     <string name="quantity">จำนวน</string>
-    <string name="agree2">ยอมรับ</string>
+    <string name="agree2">เห็นด้วย</string>
     <string name="project_observations">การสังเกต</string>
     <string name="project_species">ชนิด</string>
     <string name="project_people">ผู้คน</string>
@@ -628,7 +628,7 @@
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
     <string name="value">ค่า</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
-    <string name="disagree">ไม่ยอมรับ</string>
+    <string name="disagree">ไม่เห็นด้วย</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
     <string name="annotations">คำอธิบายประกอบ</string>
     <!-- Used when filtering observations with annotations -->
@@ -679,7 +679,7 @@
     <!-- Adjective, dead or shows signs of imminent death -->
     <string name="annotation_value_dead">ตาย</string>
     <!-- Value for when the value of the attribute cannot be determined -->
-    <string name="annotation_value_cannot_be_determined">ไม่สามารถคาดการณ์ได้</string>
+    <string name="annotation_value_cannot_be_determined">ระบุไม่ได้</string>
     <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
     <string name="annotation_value_organism">สิ่งมีชีวิต</string>
     <!-- Evidence of Presence value when for bird feathers -->
@@ -706,7 +706,7 @@
     <plurals name="observation_count_all_caps">
         <item quantity="other">%1$s การสังเกต</item>
     </plurals>
-    <string name="agree_all_caps">ยอมรับ</string>
+    <string name="agree_all_caps">เห็นด้วย</string>
     <string name="observations_all_caps">การสังเกต</string>
     <string name="species_all_caps">ชนิด</string>
     <string name="people_all_caps">ผู้คน</string>
@@ -728,7 +728,7 @@
     <string name="organism_is_wild">สิ่งมีชีวิตเป็นสัตว์ป่า</string>
     <string name="evidence_of_organism">หลักฐานของสิ่งมีชีวิต</string>
     <string name="recent_evidence_of_an_organism">หลักฐานล่าสุดของสิ่งมีชีวิต</string>
-    <string name="community_id_at_species_level_or_lower">การจำแนกระดับชุมชนที่ระดับสปีชีส์หรือต่ำกว่า</string>
+    <string name="community_id_at_species_level_or_lower">เป็นหน่วยอนุกรมวิธานที่ชุมชนเห็นพ้องกันที่ระดับชนิดหรือต่ำกว่า</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">ตามหลักฐานการจำแนกระดับชุมชนจะยังคงได้รับการยืนยันหรือปรับปรุงอยู่หรือไม่?</string>
     <string name="no_as_good_as_it_can_be">ไม่มันดีเท่าที่ควร</string>
     <string name="seasonality">ตามฤดูกาล</string>
@@ -763,7 +763,7 @@
     <string name="content_hidden_because">เนื้อหาถูกซ่อนโดย @%1$s ที่ %2$s ด้วยเหตุผล: \"%3$s\"</string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">ติดต่อฝ่ายสนับสนุน</a>]]></string>
     <string name="content">เนื้อหา</string>
-    <string name="has_photos">มีภาพถ่าย</string>
+    <string name="has_photos">มีรูปถ่าย</string>
     <string name="has_sounds">มีเสียง</string>
     <string name="could_not_play_sound">ไม่สามารถเล่นเสียงได้ - อาจเป็นปัญหาเกี่ยวกับเครือข่าย</string>
     <string name="cant_play_soundcloud"><![CDATA[หากต้องการฟังเสียง Soundcloud ให้ดูไฟล์ <a href="%1$s">เว็บไซต์</a>.]]></string>
@@ -794,7 +794,7 @@
     <string name="location_pinned_successfully">ตรึงตำแหน่งปัจจุบันเรียบร้อยแล้ว</string>
     <string name="delete_this_pinned_location">ลบสถานที่ที่ตรึงไว้นี้หรือไม่?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
-    <string name="duplicate">ทำสำเนา</string>
+    <string name="duplicate">ทำซ้ำการสังเกต</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_photo">ไม่สามารถทำซ้ำรูปภาพ!</string>
     <string name="couldnt_edit_photo">ไม่สามารถแก้ไขรูปภาพ!</string>
@@ -906,7 +906,7 @@
     <string name="commercial_solicitation">การชักชวนทางการค้าการเชื่อมโยงไปยังที่ใด ๆ ฯลฯ</string>
     <string name="offensive_inappropriate">เป็นที่น่ารังเกียจ / ไม่เหมาะสม</string>
     <string name="misleading_or_illegal_content">เนื้อหาที่ทำให้เข้าใจผิดหรือผิดกฎหมายคำดูถูกทางเชื้อชาติหรือชาติพันธุ์ ฯลฯ สำหรับข้อมูลเพิ่มเติมเกี่ยวกับคำจำกัดความของคำว่า \"เหมาะสม\" ของเราโปรดดูคำถามที่พบบ่อย</string>
-    <string name="other">อื่นๆ</string>
+    <string name="other">อื่น ๆ</string>
     <string name="some_other_reason">เหตุผลอื่น ๆ ที่คุณสามารถอธิบายได้</string>
     <string name="continue_text">ต่อไป</string>
     <string name="why_are_you_flagging_this_item">เหตุใดคุณจึงตั้งค่าสถานะรายการนี้</string>
@@ -918,30 +918,30 @@
     <string name="rank_state_of_matter">สถานะของสาร</string>
     <string name="rank_kingdom">อาณาจักร</string>
     <string name="rank_subkingdom">อาณาจักรย่อย</string>
-    <string name="rank_phylum">ไฟลัม /ส่วน (Phylum)</string>
-    <string name="rank_subphylum">ไฟลัมย่อย (Subphylum)</string>
-    <string name="rank_superclass">ชั้นใหญ่ (Superclass)</string>
-    <string name="rank_class">ชั้น (Class)</string>
-    <string name="rank_subclass">ชั้นย่อย (Subclass)</string>
-    <string name="rank_infraclass">ชั้นใหญ่ (Infraclass)</string>
-    <string name="rank_superorder">อันดับใหญ่ (Superorder)</string>
-    <string name="rank_order">อันดับ (Order)</string>
-    <string name="rank_suborder">อันดับย่อย (Suborder)</string>
-    <string name="rank_infraorder">อันดับใหญ่ (Infraorder)</string>
-    <string name="rank_subterclass">Subterclass</string>
+    <string name="rank_phylum">ไฟลัม</string>
+    <string name="rank_subphylum">ไฟลัมย่อย</string>
+    <string name="rank_superclass">ชั้นใหญ่</string>
+    <string name="rank_class">ชั้น</string>
+    <string name="rank_subclass">ชั้นย่อย</string>
+    <string name="rank_infraclass">ชั้นฐาน</string>
+    <string name="rank_superorder">อันดับใหญ่</string>
+    <string name="rank_order">อันดับ</string>
+    <string name="rank_suborder">อันดับย่อย</string>
+    <string name="rank_infraorder">อันดับฐาน</string>
+    <string name="rank_subterclass">ชั้นใต้</string>
     <string name="rank_parvorder">อนุอันดับ</string>
     <string name="rank_zoosection">ส่วน</string>
     <string name="rank_zoosubsection">ส่วนย่อย</string>
-    <string name="rank_superfamily">วงศ์ใหญ่ (Superfamily)</string>
-    <string name="rank_epifamily">อันดับระหว่างครอบครัว (Epifamily)</string>
-    <string name="rank_family">วงศ์ (Family)</string>
-    <string name="rank_subfamily">วงศ์ย่อย (Subfamily)</string>
+    <string name="rank_superfamily">วงศ์ใหญ่</string>
+    <string name="rank_epifamily">วงศ์บน</string>
+    <string name="rank_family">วงศ์</string>
+    <string name="rank_subfamily">วงศ์ย่อย</string>
     <string name="rank_supertribe">เผ่าใหญ่ (Supertribe)</string>
     <string name="rank_tribe">เผ่า (Tribe)</string>
     <string name="rank_subtribe">เผ่าย่อย (Subtribe)</string>
-    <string name="rank_genus">สกุล (Genus)</string>
+    <string name="rank_genus">สกุล</string>
     <string name="rank_genushybrid">สกุลผสม</string>
-    <string name="rank_subgenus">สกุลย่อย (Subgenus)</string>
+    <string name="rank_subgenus">สกุลย่อย</string>
     <string name="rank_section">ส่วน (Automatic Translation)</string>
     <string name="rank_subsection">ส่วนย่อย</string>
     <string name="rank_complex">ชนิดเชิงซ้อน</string>
@@ -997,46 +997,46 @@
     <string name="research_grade_observations_description">แทนที่จะเป็นคำแนะนำที่คล้ายกันทางสายตา iNaturalist จะแนะนำสายพันธุ์ที่สังเกตเห็นในสถานที่เฉพาะเจาะจงและอยู่ในกลุ่มอนุกรมวิธานที่เฉพาะเจาะจง</string>
     <string name="taxon">อันดับขั้นทางอนุกรมวิธาน</string>
     <string name="place">สถานที่</string>
-    <string name="pretty_sure_kingdom">เราค่อนข้างมั่นใจว่าอยู่ในอาณาจักรนี้:</string>
-    <string name="pretty_sure_subkingdom">เราค่อนข้างมั่นใจว่าอยู่ในอาณาจักรย่อยนี้:</string>
-    <string name="pretty_sure_phylum">เราค่อนข้างมั่นใจว่าอยู่ในไฟลัมนี้:</string>
-    <string name="pretty_sure_subphylum">เราค่อนข้างแน่ใจว่ามันอยู่ในไฟลัมย่อยนี้:</string>
-    <string name="pretty_sure_superclass">เราค่อนข้างแน่ใจว่ามันอยู่ในชั้นใหญ่นี้:</string>
-    <string name="pretty_sure_class">เราค่อนข้างแน่ใจว่ามันอยู่ในชั้นนี้:</string>
-    <string name="pretty_sure_subclass">เราค่อนข้างแน่ใจว่ามันอยู่ในชั้นย่อยนี้:</string>
-    <string name="pretty_sure_infraclass">เราค่อนข้างแน่ใจว่ามันอยู่ในชั้นย่อยระหว่างครอบครัวนี้:</string>
-    <string name="pretty_sure_superorder">เราค่อนข้างมั่นใจว่าอยู่ในกลุ่มอันดับใหญ่นี้:</string>
-    <string name="pretty_sure_order">เราค่อนข้างมั่นใจว่าอยู่ในกลุ่มอันดับนี้:</string>
-    <string name="pretty_sure_suborder">เราค่อนข้างมั่นใจว่าอยู่ในกลุ่มอันดับย่อยนี้:</string>
-    <string name="pretty_sure_infraorder">เราค่อนข้างมั่นใจว่าอยู่ในกลุ่มอันดับย่อยระหว่างครอบครัวนี้:</string>
+    <string name="pretty_sure_kingdom">เราค่อนข้างแน่ใจว่าอยู่ในอาณาจักรนี้:</string>
+    <string name="pretty_sure_subkingdom">เราค่อนข้างแน่ใจว่าอยู่ในอาณาจักรย่อยนี้:</string>
+    <string name="pretty_sure_phylum">เราค่อนข้างแน่ใจว่าอยู่ในไฟลัมนี้:</string>
+    <string name="pretty_sure_subphylum">เราค่อนข้างแน่ใจว่าอยู่ในไฟลัมย่อยนี้:</string>
+    <string name="pretty_sure_superclass">เราค่อนข้างแน่ใจว่าอยู่ในชั้นใหญ่นี้:</string>
+    <string name="pretty_sure_class">เราค่อนข้างแน่ใจว่าอยู่ในชั้นนี้:</string>
+    <string name="pretty_sure_subclass">เราค่อนข้างแน่ใจว่าอยู่ในชั้นย่อยนี้:</string>
+    <string name="pretty_sure_infraclass">เราค่อนข้างแน่ใจว่าอยู่ในชั้นฐานนี้:</string>
+    <string name="pretty_sure_superorder">เราค่อนข้างแน่ใจว่าอยู่ในอันดับใหญ่นี้:</string>
+    <string name="pretty_sure_order">เราค่อนข้างแน่ใจว่าอยู่ในอันดับนี้:</string>
+    <string name="pretty_sure_suborder">เราค่อนข้างแน่ใจว่าอยู่ในอันดับย่อยนี้:</string>
+    <string name="pretty_sure_infraorder">เราค่อนข้างแน่ใจว่าอยู่ในอันดับฐานนี้:</string>
     <string name="pretty_sure_subterclass">We\'re pretty sure it\'s in this subterclass:</string>
     <string name="pretty_sure_parvorder">เราค่อนข้างแน่ใจว่าอยู่ในอนุอันดับนี้:</string>
     <string name="pretty_sure_zoosection">เราค่อนข้างแน่ใจว่าอยู่ในส่วนนี้:</string>
     <string name="pretty_sure_zoosubsection">เราค่อนข้างแน่ใจว่าอยู่ในส่วนย่อยนี้:</string>
-    <string name="pretty_sure_superfamily">เราค่อนข้างแน่ใจว่ามันอยู่ในวงศ์ใหญ่นี้:</string>
+    <string name="pretty_sure_superfamily">เราค่อนข้างแน่ใจว่าอยู่ในวงศ์ใหญ่นี้:</string>
     <string name="pretty_sure_epifamily">เราค่อนข้างแน่ใจว่าอยู่ในวงศ์บนนี้:</string>
-    <string name="pretty_sure_family">เราค่อนข้างแน่ใจว่ามันอยู่ในวงศ์นี้:</string>
-    <string name="pretty_sure_subfamily">เราค่อนข้างแน่ใจว่ามันอยู่ในวงศ์ย่อยนี้:</string>
+    <string name="pretty_sure_family">เราค่อนข้างแน่ใจว่าอยู่ในวงศ์นี้:</string>
+    <string name="pretty_sure_subfamily">เราค่อนข้างแน่ใจว่าอยู่ในวงศ์ย่อยนี้:</string>
     <string name="pretty_sure_supertribe">เราค่อนข้างแน่ใจว่ามันอยู่ในเผ่าใหญ่นี้:</string>
     <string name="pretty_sure_tribe">เราค่อนข้างแน่ใจว่ามันอยู่ในเผ่านี้:</string>
     <string name="pretty_sure_subtribe">เราค่อนข้างแน่ใจว่ามันอยู่ในเผ่าย่อยนี้:</string>
-    <string name="pretty_sure_genus">เราค่อนข้างแน่ใจว่ามันอยู่ในสกุลนี้:</string>
-    <string name="pretty_sure_genushybrid">เราค่อนข้างแน่ใจว่ามันอยู่ในสกุลผสมนี้:</string>
-    <string name="pretty_sure_subgenus">เราค่อนข้างแน่ใจว่ามันอยู่ในสกุลย่อยนี้:</string>
+    <string name="pretty_sure_genus">เราค่อนข้างแน่ใจว่าอยู่ในสกุลนี้:</string>
+    <string name="pretty_sure_genushybrid">เราค่อนข้างแน่ใจว่าอยู่ในสกุลผสมนี้:</string>
+    <string name="pretty_sure_subgenus">เราค่อนข้างแน่ใจว่าอยู่ในสกุลย่อยนี้:</string>
     <string name="pretty_sure_section">เราค่อนข้างแน่ใจว่าอยู่ในส่วนนี้:</string>
     <string name="pretty_sure_subsection">เราค่อนข้างแน่ใจว่าอยู่ในส่วนย่อยนี้:</string>
     <string name="pretty_sure_complex">เราค่อนข้างแน่ใจว่าอยู่ในชนิดเชิงซ้อนนี้:</string>
     <!-- Singular -->
-    <string name="pretty_sure_species">เราค่อนข้างแน่ใจว่ามันอยู่ในชนิดนี้:</string>
+    <string name="pretty_sure_species">เราค่อนข้างแน่ใจว่าอยู่ในชนิดนี้:</string>
     <string name="pretty_sure_hybrid">เราค่อนข้างแน่ใจว่าอยู่ในลูกผสมนี้:</string>
     <!-- Singular -->
-    <string name="pretty_sure_subspecies">เราค่อนข้างแน่ใจว่ามันอยู่ในชนิดย่อยนี้:</string>
+    <string name="pretty_sure_subspecies">เราค่อนข้างแน่ใจว่าอยู่ในชนิดย่อยนี้:</string>
     <string name="pretty_sure_variety">เราค่อนข้างแน่ใจว่ามันอยู่ในสายพันธุ์นี้:</string>
     <string name="pretty_sure_form">เราค่อนข้างแน่ใจว่ามันอยู่ในรูปแบบนี้:</string>
     <string name="pretty_sure_infrahybrid">เราค่อนข้างแน่ใจว่าอยู่ในลูกผสมฐานนี้:</string>
     <string name="remove_date_observed">นำวันที่ &amp; เวลาของการสังเกตออก</string>
     <string name="remove_time_observed">ลบเวลาที่สังเกต</string>
-    <string name="remove_location">เอาตำแหน่งออก</string>
+    <string name="remove_location">นำตำแหน่งออก</string>
     <string name="are_you_sure_you_want_to_remove_date">คุณแน่ใจหรือไม่ที่ต้องการนำวันที่ &amp; และเวลาการสังเกตออก?</string>
     <string name="are_you_sure_you_want_to_remove_time">แน่ใจไหมว่าต้องการลบเวลาที่สังเกต</string>
     <string name="are_you_sure_you_want_to_remove_location">แน่ใจหรือไม่ว่าต้องการลบตำแหน่งนี้?</string>
@@ -1187,7 +1187,7 @@
     <string name="california_academy_of_sciences_and_national_geographic">สถาบันวิทยาศาสตร์แห่งแคลิฟอร์เนีย และเนชันแนล จีโอกราฟิก</string>
     <string name="view_image">ดูรูปภาพ</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
-    <string name="assessment_passes">Assessment passes</string>
+    <string name="assessment_passes">ผ่านการประเมิน</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
     <string name="agree_assessment_passes">Agree assessment passes</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
@@ -1195,7 +1195,7 @@
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
     <string name="disagree_assessment_passes">Disagree assessment passes</string>
     <plurals name="delete_x_selected_observations">
-        <item quantity="other">Delete %1$d selected observations</item>
+        <item quantity="other">ลบ %1$d การสังเกตที่เลือก</item>
     </plurals>
     <plurals name="sync_x_selected_observations">
         <item quantity="other">ซิงก์ %1$d การสังเกตที่เลือก</item>

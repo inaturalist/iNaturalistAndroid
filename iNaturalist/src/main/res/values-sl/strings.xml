@@ -201,8 +201,8 @@
     <string name="alert_message_use_inaturalistcr">Združenje iNaturalist Costa Rica je članica omrežja iNaturalist Network v Mehiki. Krajevne ustanove, ki podpirajo združenje iNaturalist Costa Rica, bodo imele dostop do vašega e-poštnega naslova in pravih koordinat opazovanj, ki so javno skrita ali zasebna. Če imate več kot 1000 opazovanj, svoje pripadnosti ne spreminjajte poskusno. Ali želite spremeniti svojo pripadnost?</string>
     <string name="alert_message_use_inaturalistgt">Združenje iNaturalist Guatemala je članica omrežja iNaturalist Network v Mehiki. Krajevne ustanove, ki podpirajo združenje iNaturalist Guatemala, bodo imele dostop do vašega e-poštnega naslova in pravih koordinat opazovanj, ki so javno skrita ali zasebna. Če imate več kot 1000 opazovanj, svoje pripadnosti ne spreminjajte poskusno. Ali želite spremeniti svojo pripadnost?</string>
     <string name="alert_message_use_inaturalistse">Združenje iNaturalist Sweden je članica omrežja iNaturalist Network v Mehiki. Krajevne ustanove, ki podpirajo združenje iNaturalist Sweden, bodo imele dostop do vašega e-poštnega naslova in pravih koordinat opazovanj, ki so javno skrita ali zasebna. Če imate več kot 1000 opazovanj, svoje pripadnosti ne spreminjajte poskusno. Ali želite spremeniti svojo pripadnost?</string>
-    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan is a member of the iNaturalist Network in Taiwan. Local institutions supporting iNaturalist Taiwan will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalistauy">Združenje Naturalista Uruguay je članica omrežja iNaturalist Network v Urugvaju. Krajevne ustanove, ki podpirajo združenje Naturalista Uroguay, bodo imele dostop do vašega e-poštnega naslova in pravih koordinat opazovanj, ki so javno skrita ali zasebna. Če imate več kot 1000 opazovanj, svoje pripadnosti ne spreminjajte poskusno. Ali želite spremeniti svojo pripadnost?</string>
+    <string name="alert_message_use_inaturalisttw">Združenje iNaturalist Taiwan je članica omrežja iNaturalist Network na Tajvanu. Krajevne ustanove, ki podpirajo združenje iNaturalist Taiwan, bodo imele dostop do vašega e-poštnega naslova in pravih koordinat opazovanj, ki so javno skrita ali zasebna. Če imate več kot 1000 opazovanj, svoje pripadnosti ne spreminjajte poskusno. Ali želite spremeniti svojo pripadnost?</string>
     <string name="editor">Urejevalec</string>
     <string name="license">Licenca</string>
     <string name="download_for_offline_use">Prenos za uporabo brez povezave</string>
@@ -277,7 +277,7 @@
     <string name="unable_to_acquire_location">Lokacije ni bilo mogoče pridobiti</string>
     <string name="casual_grade">priložnostna stopnja</string>
     <string name="needs_id">potrebuje ID</string>
-    <string name="research_grade">Research Grade</string>
+    <string name="research_grade">Raziskovalna stopnja</string>
     <string name="data_quality">Kakovost podatkov</string>
     <string name="casual_grade_add_location"><![CDATA[ Dodajte <b>lokacijo</b> za prehod tega opazovanja v stanje »Potrebuje ID«.]]></string>
     <string name="casual_grade_add_date"><![CDATA[ Dodajte <b>datum</b> za prehod tega opazovanja v stanje »Potrebuje ID«.]]></string>
@@ -321,7 +321,7 @@
     <string name="finding_current_location">Iščem trenutno lokacijo ...</string>
     <string name="flag_as_captive">Označi kot »V ujetništvu/gojena«</string>
     <string name="observation_flagged_as_captive">Opazovanje je bilo označeno kot »v ujetništvu/gojena«</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Ali res želite označiti to opazovanje kot v ujetništvu/gojeno?</string>
     <string name="do_you_agree_to_the_following">Ali privoljujete v naslednje?</string>
     <string name="terms">Pogoji</string>
     <string name="observation_rules">Pravila opazovanja</string>
@@ -418,7 +418,7 @@
     <string name="you_will_only_receive_updates_when_following">(Posodobitve boste prejemali šele, ko boste spremljali opazovanja.)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> je predlagal/-a ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> je komentiral/-a: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> vas je omenil_a: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Zdi se, da ste s počiščenjem predpomnilnika aplikacije pred prenosom izbrisali fotografijo. To fotografijo boste morali k opazovanju znova dodati iz galerije. V prihodnje se pred čiščenjem predpomnilnika aplikacije prepričajte, da ste prenesli vse fotografije.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -571,7 +571,7 @@
     <string name="start">Začetek</string>
     <string name="end">Konec</string>
     <string name="months">Meseci</string>
-    <string name="choose_months">Choose month(s)</string>
+    <string name="choose_months">Izberite mesec(e)</string>
     <string name="map_area">Območje zemljevida</string>
     <string name="global">Globalno</string>
     <!-- As in redo search in the current map area -->
@@ -658,7 +658,7 @@
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">Živ ali mrtev</string>
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
-    <string name="annotation_name_evidence_of_presence">Evidence of Presence</string>
+    <string name="annotation_name_evidence_of_presence">Dokaz prisotnosti</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Cvetenje</string>
     <!-- Adjective, having fruit -->
@@ -693,17 +693,17 @@
     <!-- Value for when the value of the attribute cannot be determined -->
     <string name="annotation_value_cannot_be_determined">Ni mogoče določiti</string>
     <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
-    <string name="annotation_value_organism">Organism</string>
+    <string name="annotation_value_organism">Organizem</string>
     <!-- Evidence of Presence value when for bird feathers -->
-    <string name="annotation_value_feather">Feather</string>
+    <string name="annotation_value_feather">Pero</string>
     <!-- Evidence of Presence value when for fecal remains -->
-    <string name="annotation_value_scat">Scat</string>
+    <string name="annotation_value_scat">Iztrebki</string>
     <!-- Evidence of Presence value for impressions in the ground or snow -->
-    <string name="annotation_value_track">Track</string>
+    <string name="annotation_value_track">Sled</string>
     <!-- Evidence of Presence value when for bones -->
-    <string name="annotation_value_bone">Bone</string>
+    <string name="annotation_value_bone">Kost</string>
     <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
-    <string name="annotation_value_molt">Molt</string>
+    <string name="annotation_value_molt">Lev</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">PRIDRUŽENI</string>
     <string name="nearby_projects_all_caps">BLIŽNJI</string>
@@ -767,11 +767,11 @@
     <string name="network_credit_inaturalistgr"><![CDATA[Grčija: Združenje iNaturalist Greece podpira organizacija iSea (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>).]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luksemburg: Združenje iNaturalist Luxembourg podpira Luksemburški naravoslovni muzej (MnhnL) (<a href="https://inaturalist.lu">inaturalist.lu</a>).]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[Združeno kraljestvo: Združenje iNaturalist United Kingdom podpira ustanova National Biodiversity Network Trust (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>).]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
-    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
-    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi University and Taiwan Forestry Research Institute supporting iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Kostarika: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO), ki podpira Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Gvatemala: Consejo Nacional de Áreas Protegidas (CONAP), ki podpira iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Švedska: SLU Swedish Species Information Centre, ki podpira iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Urugvaj: JULANA in Biodiversidata, ki podpirata Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Tajvan: Narodna univerza Chiay in Tajvanski inštitut za raziskovanje gozda, ki podpirata iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">Označi vse kot ogledano</string>
     <string name="content_hidden">Skrita vsebina</string>
     <string name="show_hidden_content">Prikaži skrito vsebino</string>
@@ -990,9 +990,9 @@
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh.mm</string>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long">MMM d, yyyy</string>
+    <string name="date_long">dd. MM. YYYY</string>
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
+    <string name="date_long_with_time">dd. MMMM LLLL, hh.mma</string>
     <string name="show_common_names">Prikaži običajna imena</string>
     <string name="show_common_names_description">Onemogočite, če želite videti samo znanstvena imena.</string>
     <string name="email_must_look_like_email_address">E-poštni naslov mora imeti obliko zapisa e-poštnih naslovov.</string>
@@ -1171,37 +1171,37 @@
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Prikaži možnosti</string>
     <!-- Placeholder text for an observation field value -->
-    <string name="field_value">Field Value</string>
-    <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
-    <string name="delete_attribute_value">Delete attribute value</string>
-    <string name="open_menu_for_more_options">Open menu for more options</string>
-    <string name="change_user_profile_photo">Change user profile photo</string>
-    <string name="expand_list">Expand list</string>
-    <string name="change_map_layers">Change map layers (terrain vs. satellite)</string>
-    <string name="redo_observation_search">Redo observation search in this map area</string>
-    <string name="view_observations_on_map">View observations on map</string>
-    <string name="view_observations_on_grid">View observations on grid</string>
-    <string name="clear_text">Clear text</string>
-    <string name="observation_has_sounds">Observation has sounds</string>
-    <string name="go_to_my_location">Go to my current location</string>
-    <string name="change_geoprivacy">Change geoprivacy</string>
-    <string name="active_filters">Active filters</string>
-    <string name="message_is_flagged">Message is flagged</string>
-    <string name="user_is_muted">User is muted</string>
-    <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
-    <string name="delete_observations">Delete observations</string>
-    <string name="comment_count">Comment count</string>
-    <string name="id_count">Identification count</string>
-    <string name="observation_selected">Observation selected</string>
-    <string name="share_observation">Share observation</string>
-    <string name="unknown_location">Unknown location</string>
+    <string name="field_value">Vrednost polja</string>
+    <string name="expand_annotation_to_agree_or_disagree">Razširi zabeležko na strinjanje ali nestrinjanje</string>
+    <string name="delete_attribute_value">Izbriši vrednost atributa</string>
+    <string name="open_menu_for_more_options">Odpri meni za več možnosti</string>
+    <string name="change_user_profile_photo">Zamenjaj profilno sliko uporabnika</string>
+    <string name="expand_list">Razširi seznam</string>
+    <string name="change_map_layers">Spremeni sloje zemljevida (terenski ali satelitski)</string>
+    <string name="redo_observation_search">Ponovi iskanje opazovanja na tem območju zemljevida</string>
+    <string name="view_observations_on_map">Ogled opazovanj na zemljevidu</string>
+    <string name="view_observations_on_grid">Ogled opazovanj na mreži</string>
+    <string name="clear_text">Izbriši besedilo</string>
+    <string name="observation_has_sounds">Opazovanje ima zvoke</string>
+    <string name="go_to_my_location">Pojdi na mojo trenutno lokacijo</string>
+    <string name="change_geoprivacy">Spremeni geozasebnost</string>
+    <string name="active_filters">Aktivni filtri</string>
+    <string name="message_is_flagged">Sporočilo je označeno</string>
+    <string name="user_is_muted">Uporabnik je utišan</string>
+    <string name="cancel_multiple_obs_selection">Prekliči izbiro več opazovanj</string>
+    <string name="delete_observations">Izbriši opazovanja</string>
+    <string name="comment_count">Število komentarjev</string>
+    <string name="id_count">Število določitev</string>
+    <string name="observation_selected">Opazovanje izbrano</string>
+    <string name="share_observation">Deli opazovanje</string>
+    <string name="unknown_location">Neznana lokacija</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
-    <string name="close">Close</string>
-    <string name="set_date2">Set date</string>
-    <string name="project_selected">Project Selected</string>
-    <string name="project_unselected">Project Unselected</string>
-    <string name="show_my_observations">Show my observations</string>
-    <string name="play_pause_sound">Play or pause sound</string>
+    <string name="close">Zapri</string>
+    <string name="set_date2">Nastavi datum</string>
+    <string name="project_selected">Projekt izbran</string>
+    <string name="project_unselected">Projekt odizbran</string>
+    <string name="show_my_observations">Prikaži moja opazovanja</string>
+    <string name="play_pause_sound">Predvajaj ali pavziraj zvok</string>
     <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
     <string name="view_image">View image</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
