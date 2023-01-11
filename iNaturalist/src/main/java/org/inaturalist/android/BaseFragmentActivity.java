@@ -888,14 +888,17 @@ public class BaseFragmentActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = prefs.edit();
 
             boolean shouldRestart = false;
-            String newLocale = user.getString("locale").replace("-", "-r");
-            String oldLocale = prefs.getString("pref_locale", "");
-            if (!oldLocale.toLowerCase().equals(newLocale.toLowerCase()) && (!oldLocale.equals(""))) {
-                // User locale changed (server-side)
-                Logger.tag(TAG).debug(String.format("Restarting app - locale changed from %s to %s", oldLocale, newLocale));
-                editor.putString("pref_locale", newLocale);
-                mApp.applyLocaleSettings(getBaseContext());
-                shouldRestart = true;
+
+            if (user.has("locale") && user.getString("locale") != null) {
+                String newLocale = user.getString("locale").replace("-", "-r");
+                String oldLocale = prefs.getString("pref_locale", "");
+                if (!oldLocale.toLowerCase().equals(newLocale.toLowerCase()) && (!oldLocale.equals(""))) {
+                    // User locale changed (server-side)
+                    Logger.tag(TAG).debug(String.format("Restarting app - locale changed from %s to %s", oldLocale, newLocale));
+                    editor.putString("pref_locale", newLocale);
+                    mApp.applyLocaleSettings(getBaseContext());
+                    shouldRestart = true;
+                }
             }
 
             editor.putInt("observation_count", user.getInt("observations_count"));
