@@ -59,7 +59,7 @@
         android:id="@+id/inat_credits"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/inat_credits"
+        android:text="@string/inat_credits2"
         android:textDirection="locale"
         android:textSize="14sp"
         android:textColor="#000000"
