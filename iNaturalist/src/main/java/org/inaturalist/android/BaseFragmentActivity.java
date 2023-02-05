@@ -25,6 +25,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -56,6 +58,7 @@ import java.text.DecimalFormat;
 public class BaseFragmentActivity extends AppCompatActivity {
 	
     protected static final int REQUEST_CODE_OBSERVATION_EDIT = 0x1000;
+    protected static final int REQUEST_CODE_LOGIN_SIGNUP = 0x1001;
 
 	private static final String TAG = "BaseFragmentActivity";
 
@@ -860,7 +863,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
 
                 Intent intent2 = new Intent(BaseFragmentActivity.this, LoginSignupActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent2.putExtra(LoginSignupActivity.SIGNUP, true);
-                startActivity(intent2);
+                startActivityForResult(intent2, REQUEST_CODE_LOGIN_SIGNUP);
 
                 return;
             }
@@ -872,7 +875,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 Intent intent2 = new Intent(BaseFragmentActivity.this, LoginSignupActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent2.putExtra(LoginSignupActivity.SIGNUP, false);
                 intent2.putExtra(LoginSignupActivity.PASSWORD_CHANGED, true);
-                startActivity(intent2);
+                startActivityForResult(intent2, REQUEST_CODE_LOGIN_SIGNUP);
 
                 return;
             }
@@ -885,14 +888,17 @@ public class BaseFragmentActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = prefs.edit();
 
             boolean shouldRestart = false;
-            String newLocale = user.getString("locale").replace("-", "-r");
-            String oldLocale = prefs.getString("pref_locale", "");
-            if (!oldLocale.toLowerCase().equals(newLocale.toLowerCase()) && (!oldLocale.equals(""))) {
-                // User locale changed (server-side)
-                Logger.tag(TAG).debug(String.format("Restarting app - locale changed from %s to %s", oldLocale, newLocale));
-                editor.putString("pref_locale", newLocale);
-                mApp.applyLocaleSettings(getBaseContext());
-                shouldRestart = true;
+
+            if (user.has("locale") && user.getString("locale") != null) {
+                String newLocale = user.getString("locale").replace("-", "-r");
+                String oldLocale = prefs.getString("pref_locale", "");
+                if (!oldLocale.toLowerCase().equals(newLocale.toLowerCase()) && (!oldLocale.equals(""))) {
+                    // User locale changed (server-side)
+                    Logger.tag(TAG).debug(String.format("Restarting app - locale changed from %s to %s", oldLocale, newLocale));
+                    editor.putString("pref_locale", newLocale);
+                    mApp.applyLocaleSettings(getBaseContext());
+                    shouldRestart = true;
+                }
             }
 
             editor.putInt("observation_count", user.getInt("observations_count"));

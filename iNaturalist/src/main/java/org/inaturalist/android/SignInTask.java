@@ -67,7 +67,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 
     public interface SignInTaskStatus {
         void onLoginSuccessful();
-        void onLoginFailed(INaturalistServiceImplementation.LoginType loginType);
+        void onLoginFailed(INaturalistServiceImplementation.LoginType loginType, String failureMessage);
     }
 
     public SignInTask(Activity activity, SignInTaskStatus callback) {
@@ -203,6 +203,8 @@ public class SignInTask extends AsyncTask<String, Void, String> {
             loginType = AnalyticsClient.EVENT_VALUE_GOOGLE_PLUS;
         }
 
+        Logger.tag(TAG).info("onPostExecute: " + result + ":" + loginType + ":" + mInvalidated + ":" + mLoginErrorMessage);
+
         if (result != null) {
             Toast.makeText(mActivity, mActivity.getString(R.string.signed_in), Toast.LENGTH_SHORT).show();
 
@@ -219,10 +221,6 @@ public class SignInTask extends AsyncTask<String, Void, String> {
             if (mLoginType == INaturalistServiceImplementation.LoginType.FACEBOOK) {
                 // Login failed - need to sign-out of Facebook as well
                 LoginManager.getInstance().logOut();
-            } else if (mLoginType == INaturalistServiceImplementation.LoginType.GOOGLE && !mInvalidated) {
-                AccountManager.get(mActivity).invalidateAuthToken("com.google", mPassword);
-                signIn(INaturalistServiceImplementation.LoginType.GOOGLE, mUsername, null, true);
-                return;
             }
 
             try {
@@ -236,14 +234,15 @@ public class SignInTask extends AsyncTask<String, Void, String> {
             }
 
 
+            String failureMessage;
             if (mLoginErrorMessage != null) {
-                mHelper.alert(mLoginErrorMessage);
+                failureMessage = mLoginErrorMessage;
             } else if (!isNetworkAvailable()) {
-                mHelper.alert(mActivity.getString(R.string.not_connected));
+                failureMessage = mActivity.getString(R.string.not_connected);
             } else {
-                mHelper.alert(mActivity.getString(R.string.username_invalid));
+                failureMessage = mActivity.getString(R.string.username_invalid);
             }
-            mCallback.onLoginFailed(mLoginType);
+            mCallback.onLoginFailed(mLoginType, mLoginErrorMessage);
 
             return;
         }
@@ -316,7 +315,8 @@ public class SignInTask extends AsyncTask<String, Void, String> {
                             Logger.tag(TAG).error("AccountManager was unable to obtain an authToken.");
                         }
                     } catch (Exception e) {
-                        Logger.tag(TAG).error("Auth Error", e);
+                        Logger.tag(TAG).error("Auth Error");
+                        Logger.tag(TAG).error(e);
                     }
                 }
             };

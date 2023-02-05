@@ -757,6 +757,12 @@ public class ObservationEditor extends Fragment {
                 GalleryCursorAdapter adapter = (GalleryCursorAdapter) recyclerView.getAdapter();
                 int from = viewHolder.getAdapterPosition();
                 int to = target.getAdapterPosition();
+
+                if (from >= adapter.getPhotoCount()) {
+                    // Trying to move a sound
+                    return false;
+                }
+
                 adapter.moveItem(from, to);
                 adapter.notifyItemMoved(from, to);
                 updateImagesAndSounds(false);
@@ -2813,9 +2819,16 @@ public class ObservationEditor extends Fragment {
                                 "(_observation_id=?) and ((is_deleted = 0) OR (is_deleted IS NULL)) and (position = ?)",
                                 new String[]{mObservation._id.toString(), String.valueOf(index)},
                                 ObservationPhoto.DEFAULT_SORT_ORDER);
-                        ObservationPhoto op = new ObservationPhoto(c);
-                        c.close();
-                        mPhotosRemoved.add(op);
+                        ObservationPhoto op;
+                        if (c.getCount() > 0) {
+                            op = new ObservationPhoto(c);
+                            mPhotosRemoved.add(op);
+                            c.close();
+                        } else {
+                            Logger.tag(TAG).error("Failed to find old photo: " + index);
+                            c.close();
+                            continue;
+                        }
 
                         // Mark photo as deleted
                         ContentValues cv = new ContentValues();
@@ -3265,6 +3278,7 @@ public class ObservationEditor extends Fragment {
 
     private void prepareCapturedPhoto(Uri selectedImageUri) {
         if (mCapturedPhotoFilePath == null) return;
+        if (getActivity() == null) return;
 
         // Make a copy of the image into the phone's camera folder
         String path = mCapturedPhotoFilePath;

@@ -8,6 +8,7 @@ import static java.net.HttpURLConnection.HTTP_NOT_FOUND;
 import static java.net.HttpURLConnection.HTTP_OK;
 import static java.net.HttpURLConnection.HTTP_UNAUTHORIZED;
 import static java.net.HttpURLConnection.HTTP_UNAVAILABLE;
+import static java.net.HttpURLConnection.HTTP_CREATED;
 
 import android.annotation.SuppressLint;
 import android.content.ContentUris;
@@ -434,7 +435,8 @@ public class INaturalistServiceImplementation {
                         }
 
                         Intent reply = new Intent(ACTION_REGISTER_USER_RESULT);
-                        reply.putExtra(REGISTER_USER_STATUS, error == null);
+                        reply.putExtra(REGISTER_USER_STATUS, (error == null || mLastStatusCode == HTTP_CREATED));
+                        reply.putExtra(REGISTER_EMAIL_VERIFICATION_REQUIRED, mLastStatusCode == HTTP_CREATED);
                         reply.putExtra(REGISTER_USER_ERROR, error);
                         boolean b = LocalBroadcastManager.getInstance(mContext).sendBroadcast(reply);
 
@@ -3429,6 +3431,13 @@ public class INaturalistServiceImplementation {
                 Logger.tag(TAG).error(e);
                 return null;
             }
+
+        } else if (mLastStatusCode == HTTP_CREATED) {
+            // This mean email verification is required - return the status message
+            JSONObject json = response.optJSONObject(0);
+            BetterJSONObject o = new BetterJSONObject(json);
+            return o.getString("message");
+
         } else {
             return null;
         }
@@ -6276,8 +6285,8 @@ public class INaturalistServiceImplementation {
                 jsonObservation = jsonObservationsById.get(observation.id);
                 boolean isModified = observation.merge(jsonObservation);
 
-                Logger.tag(TAG).debug("syncJson - updating existing: " + observation.id + ":" + observation._id + ":" + observation.preferred_common_name + ":" + observation.taxon_id);
-                Logger.tag(TAG).debug("syncJson - remote obs: " + jsonObservation.id + ":" + jsonObservation.preferred_common_name + ":" + jsonObservation.taxon_id);
+                Logger.tag(TAG).debug("syncJson - updating existing: " + observation.id + ":" + observation._id + ":" + observation.preferred_common_name + ":" + observation.taxon_id + "; updated at = " + observation._updated_at + " / " + observation._updated_at);
+                Logger.tag(TAG).debug("syncJson - remote obs: " + jsonObservation.id + ":" + jsonObservation.preferred_common_name + ":" + jsonObservation.taxon_id + "; updated_at = " + jsonObservation.updated_at );
 
                 cv = observation.getContentValues();
                 if (observation._updated_at.before(jsonObservation.updated_at)) {

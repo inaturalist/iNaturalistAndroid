@@ -28,6 +28,7 @@ public class ObservationProvider extends ContentProvider {
     private static final int DATABASE_VERSION = 23;
     private static final SQLiteCursorFactory sFactory;
     public static final UriMatcher URI_MATCHER;
+    public static final String DO_NOT_CHANGE_UPDATE_TIME = "do_not_change_update_time";
 
     static {
         sFactory = new SQLiteCursorFactory(true);
@@ -538,8 +539,12 @@ public class ObservationProvider extends ContentProvider {
         Uri contentUri;
         
         int uriCode = URI_MATCHER.match(uri);
-        
-        if  (values.containsKey(Observation._SYNCED_AT)) {
+
+        if (values.containsKey(DO_NOT_CHANGE_UPDATE_TIME) && values.getAsBoolean(DO_NOT_CHANGE_UPDATE_TIME)) {
+            // Do not update the _UPDATED_AT / _SYNCED_AT fields
+            Logger.tag(TAG).debug("Update " + uri + ": " + values + ":" + whereArgs + " - Not changing update time");
+            values.remove(DO_NOT_CHANGE_UPDATE_TIME);
+        } else if  (values.containsKey(Observation._SYNCED_AT)) {
             // if synced at is being set, updated at should *always* match exactly
             values.put(Observation._UPDATED_AT, values.getAsLong(Observation._SYNCED_AT));
         } else if ((uriCode != Project.PROJECTS_URI_CODE) && (uriCode != Project.PROJECT_ID_URI_CODE) &&

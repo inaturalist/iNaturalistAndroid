@@ -1104,9 +1104,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             if (obsId != null) {
                 cv.put(Observation.LAST_COMMENTS_COUNT, bc.getInt(Observation.COMMENTS_COUNT));
                 cv.put(Observation.LAST_IDENTIFICATIONS_COUNT, bc.getInt(Observation.IDENTIFICATIONS_COUNT));
-                // Update its sync at time so we won't update the remote servers later on (since we won't
-                // accidentally consider this an updated record)
-                cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
+                // We won't consider this an updated record
+                cv.put(ObservationProvider.DO_NOT_CHANGE_UPDATE_TIME, true);
                 int count = getContentResolver().update(ContentUris.withAppendedId(Observation.CONTENT_URI, obsId), cv, null, null);
                 if (count != 1) {
                     Logger.tag(TAG).warn("Failed to update observation when marking all observations read");
@@ -1943,6 +1942,15 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             if ((resultCode == RESULT_OK) || (resultCode == ObservationEditor.RESULT_REFRESH_OBS)) {
                 // Added a new obs
                 triggerSync = true;
+            }
+        } else if (requestCode == REQUEST_CODE_LOGIN_SIGNUP) {
+            if (resultCode == RESULT_OK) {
+                if ((data != null) && (data.getStringExtra(LoginSignupActivity.EXTRA_STATUS) != null)) {
+                    // Post registration - show an extra message to the user asking them to
+                    // verify their email address
+                    String extraStatus = data.getStringExtra(LoginSignupActivity.EXTRA_STATUS);
+                    mHelper.alert(extraStatus);
+                }
             }
         }
 

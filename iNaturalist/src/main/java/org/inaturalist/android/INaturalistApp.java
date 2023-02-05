@@ -6,6 +6,8 @@ import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapsSdkInitializedCallback;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
@@ -96,7 +98,7 @@ import android.widget.TextView;
 
 import static androidx.core.view.ViewCompat.LAYOUT_DIRECTION_RTL;
 
-public class INaturalistApp extends MultiDexApplication {
+public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInitializedCallback {
     private final static String TAG = "INAT: Application";
 
     private static final int PERMISSIONS_REQUEST = 0x1234;
@@ -163,6 +165,18 @@ public class INaturalistApp extends MultiDexApplication {
         mOnboardingShownBefore = true;
     }
 
+    @Override
+    public void onMapsSdkInitialized(@NonNull MapsInitializer.Renderer renderer) {
+        switch (renderer) {
+            case LATEST:
+                Logger.tag(TAG).info("The latest version of the renderer is used.");
+                break;
+            case LEGACY:
+                Logger.tag(TAG).info("The legacy version of the renderer is used.");
+                break;
+        }
+    }
+
     public interface INotificationCallback {
     	public void onNotification(String title, String content);
     }
@@ -219,6 +233,11 @@ public class INaturalistApp extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
 
+        // Initialize the logger
+        LoggingUtils.initializeLogger(this);
+
+        MapsInitializer.initialize(getApplicationContext(), MapsInitializer.Renderer.LATEST, this);
+
         FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(!getPrefersNoTracking());
 
         AnalyticsClient.initAnalyticsClient(this, getPrefersNoTracking());
@@ -236,9 +255,6 @@ public class INaturalistApp extends MultiDexApplication {
                 StateSaver.restoreInstanceState(target, state);
             }
         });
-
-        // Initialize the logger
-        LoggingUtils.initializeLogger(this);
 
         Logger.tag(TAG).debug("onCreate");
 
@@ -283,8 +299,8 @@ public class INaturalistApp extends MultiDexApplication {
                 Logger.tag(TAG).debug("All files in getExternalCacheDir: " + getExternalCacheDir() + ": total: " + total);
 
                 Logger.tag(TAG).debug("Listing all files in getCacheDir: " + getCacheDir());
-                total = listFilesRecursively(getExternalCacheDir());
-                Logger.tag(TAG).debug("All files in getCacheDir: " + getExternalCacheDir() + ": total: " + total);
+                total = listFilesRecursively(getCacheDir());
+                Logger.tag(TAG).debug("All files in getCacheDir: " + getCacheDir() + ": total: " + total);
             }
         }).start();
 

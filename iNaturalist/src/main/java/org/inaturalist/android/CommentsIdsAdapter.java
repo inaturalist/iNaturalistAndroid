@@ -151,7 +151,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
             final ImageView userPic = (ImageView) view.findViewById(R.id.user_pic);
             JSONObject user = item.getJSONObject("user");
             String userIconUrl = user.optString("user_icon_url", user.optString("icon"));
-            boolean hasUserIcon = userIconUrl != null;
+            boolean hasUserIcon = userIconUrl != null && userIconUrl.length() > 0;
 
             userPic.setOnClickListener(showUser);
             postedOn.setOnClickListener(showUser);
