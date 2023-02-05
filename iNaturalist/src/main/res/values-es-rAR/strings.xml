@@ -200,7 +200,7 @@
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala es miembro de la red iNaturalist en Guatemala. Las instituciones locales que apoyan a iNaturalist Guatemala tendrán acceso a tu dirección de correo electrónico y a las ubicaciones exactas de tus observaciones, por más que estén ocultas o privadas. Por favor, no experimentes cambiando tu afiliación si tenés más de 1.000 observaciones. ¿Quisieras cambiar tu afiliación?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden es miembro de la red iNaturalist en Suecia. Las instituciones locales que apoyan a iNaturalist Sweden tendrán acceso a tu dirección de correo electrónico y a las ubicaciones exactas de tus observaciones, por más que estén ocultas o privadas. Por favor, no experimentes cambiando tu afiliación si tenés más de 1.000 observaciones. ¿Quisieras cambiar tu afiliación?</string>
     <string name="alert_message_use_naturalistauy">Naturalista Uruguay es miembro de la red iNaturalist en Uruguay. Las instituciones locales que apoyan a Naturalista Uruguay tendrán acceso a tu dirección de correo electrónico y a las ubicaciones exactas de tus observaciones, por más que estén ocultas o privadas. Por favor, no experimentes cambiando tu afiliación si tenés más de 1.000 observaciones. ¿Quisieras cambiar tu afiliación?</string>
-    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwán es miembro de la red iNaturalist en Taiwán. Las instituciones locales que apoyan a iNaturalist Taiwán tendrán acceso a tu dirección de correo electrónico y a las coordenadas reales de tus observaciones aunque estén públicamente oscurecidas o sean privadas. Por favor, no cambies de forma experimental tu afiliación si tienes más de 1000 observaciones. ¿Deseas cambiar tu afiliación?</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwán es miembro de la red iNaturalist en Taiwán. Las instituciones locales que apoyen a iNaturalist Taiwán tendrán acceso a tu dirección de correo electrónico y a las coordenadas exactas de tus observaciones por más que estén publicamente oscurecidas o en privado. Por favor, no experimentes con cambiar tu afiliación si tenés más de 1000 observaciones. ¿Deseás cambiar tu afiliación?</string>
     <string name="editor">Editor</string>
     <string name="license">Licencia</string>
     <string name="download_for_offline_use">Descargar para uso fuera de línea</string>
@@ -604,7 +604,7 @@
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
-    <string name="inat_credits"><![CDATA[iNaturalist existe gracias a cada una de las personas que participan en nuestra comunidad. Quienes desarrollan el software, diseñan la interfaz, mantienen nuestra infraestructura, apoyan a la comunidad, y fomentan las colaboraciones son: Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, y Ken-ichi Ueda.<br/><br/>CalTech y Cornell Tech ayudaron a desarrollar la versión de escritorio del sistema que permite sugerir identificaciones a partir de imágenes. Agradecemos a Grant Van Horn, Serge Belongie, y Pietro Perona por el avance en la investigación de visión artificial. Podés encontrar más información en <a href="https://www.visipedia.org">visipedia.org</a>. Agradecemos especialmente a NVIDIA por su ayuda adicional.]]></string>
+    <string name="inat_credits2"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Johannes Klein, Patrick Leary, Scott Loarie, Abhas Misraraj, Sylvain Morin, Carrie Seltzer, Alex Shepard, Angie Ta, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="https://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[La red internacional de iNaturalist apoya sitios web localizados, totalmente integrados y basados en iNaturalist en los siguientes países, agradecemos el apoyo de las organizaciones asociadas.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist agardece profundamente a los desarrolladores de código abierto que hicieron grandes aportes al software del que dependemos todos los días. Entrá a <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> para ver dichas contribuciones. <br/> Agradecemos la ayuda para traducir nuestra interfaz, brindada por los voluntarios de la comunidad de crowdin.com, en especial a Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, y katunchik. <br/>IUCN categoría II lugares suministrados por IUCN y UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line] (Base de Datos Mundial de Áreas Protegidas), [11/2014], Cambridge, Reino Unido: UNEP-WCMC. Disponible en: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Créditos</string>
@@ -761,7 +761,7 @@
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: el Consejo Nacional de Áreas Protegidas (CONAP) apoya a iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Suecia: el SLU Swedish Species Information Centre (Centro Sueco de Información sobre las Especies) apoya a iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
     <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA y Biodiversidata apoyan a Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
-    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: Universidad Nacional de Chiayi y el Instituto de Investigación Forestal de Taiwán apoyan a iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Taiwán: la Universidad Nacional de Chiayi (National Chiayi University) y el Instituto de Investigación Forestal de Taiwán (Taiwan Forestry Research Institute) apoyan a iNaturalist Taiwán (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org</a>).]]></string>
     <string name="mark_all_as_viewed">Marcar todo como visto</string>
     <string name="content_hidden">Contenido oculto</string>
     <string name="show_hidden_content">Mostrar contenido oculto</string>
@@ -896,7 +896,7 @@
     <string name="search_for_inaturalist_users">Buscar usuarios de iNaturalist</string>
     <string name="please_sign_in_for_messages">Debes iniciar sesión para ver tus mensajes.</string>
     <string name="sorry">Perdón</string>
-    <string name="you_must_have_three_observations">Para poder hacerlo, debes tener tres observaciones verificables o realizar tres identificaciones de otros.</string>
+    <string name="you_must_have_three_observations">Para poder realizar esta acción, debés tener tres observaciones verificables o tres identificaciones a otros.</string>
     <string name="mute_this_user">Silenciar usuario</string>
     <string name="unmute_this_user">Dejar de silenciar a este usuario</string>
     <string name="flag_this_conversation">Marcar esta conversación</string>
@@ -905,20 +905,18 @@
     <string name="mute">Silenciar</string>
     <string name="muting_user">Silenciando usuario...</string>
     <string name="unmuting_user">Dejando de silenciar al usuario...</string>
-    <string name="failed_muting_user">¡Error al silenciar al usuario!</string>
-    <string name="failed_unmuting_user">¡Error al dejar de silenciar al usuario!</string>
-    <string name="flag_conversation">Denunciar conversación</string>
+    <string name="failed_muting_user">¡Error al silenciar usuario!</string>
+    <string name="failed_unmuting_user">¡Error al dejar de silenciar usuario!</string>
+    <string name="flag_conversation">Denunciar esta conversación</string>
     <string name="spam">Spam</string>
-    <string name="commercial_solicitation">Publicidad comercial, enlaces que no llevan a ningún lugar, etc.</string>
+    <string name="commercial_solicitation">Solicitud comercial, enlaces que no llevan a ningún lado, etc.</string>
     <string name="offensive_inappropriate">Ofensivo/inapropiado</string>
-    <string name="misleading_or_illegal_content">Contenido ilegal o engañoso, insultos raciales o étnicos, etc.
-Más información de nuestra definición de \"contenido apropriado\" en las 
-<a href="/help#inappropriate">Preguntas frecuentes</a>.</string>
+    <string name="misleading_or_illegal_content">Contenido engañoso o ilegal, insultos raciales o étnicos, etc. Para más información sobre nuestra definición de \"inapropiado\", ve nuestra sección de Preguntas frecuentes.</string>
     <string name="other">Otro</string>
-    <string name="some_other_reason">Cualquier otra razón que puedes explicar.</string>
+    <string name="some_other_reason">Otra razón que podés explicar.</string>
     <string name="continue_text">Continuar</string>
-    <string name="why_are_you_flagging_this_item">¿Por qué está denunciando este elemento?</string>
-    <string name="thank_you_for_submitting_the_flag">¡Gracias por enviar el aviso!</string>
+    <string name="why_are_you_flagging_this_item">¿Por qué denunciás este elemento?</string>
+    <string name="thank_you_for_submitting_the_flag">¡Gracias por darnos aviso!</string>
     <string name="flagging_conversation">Denunciando conversación...</string>
     <string name="failed_flagging_conversation">¡Error al denunciar la conversación!</string>
     <string name="no_subject">Sin asunto</string>
@@ -962,13 +960,13 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <string name="rank_form">Forma</string>
     <string name="rank_infrahybrid">Infrahíbrido</string>
     <string name="rank_leaves">Hojas</string>
-    <string name="location_lat_lng">Localización: %1$f %2$f</string>
-    <string name="i_consent_process_personal_info"><![CDATA[Autorizo a iNaturalist a almacenar y procesar determinado tipo de información personal para administrar mi cuenta.<b>Saber Más</b>]]></string>
+    <string name="location_lat_lng">Ubicación: %1$f,%2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[Doy mi consentimiento para que iNaturalist almacene y procese cantidades limitadas de mi información personal con la finalidad de administrar mi cuenta. <b>Más información</b>]]></string>
     <string name="about_personal_information">Sobre la información personal</string>
-    <string name="personal_information_notes"><![CDATA[Almacenamos información personal como el nombre de usuario y dirección de correo electrónico para administrar las cuentas en este sitio y cumplir con las leyes de privacidad, necesitamos que marque esta casilla para indicar que acepta este uso de información personal. Para obtener más información sobre qué información recopilamos y cómo la usamos, consulte nuestra <a href="https://www.inaturalist.org/privacy">Política de Privacidad</a> y nuestras <a href="https://www.inaturalist.org/terms">Condiciones del servicio</a>.]]></string>
-    <string name="i_agree_to_tos_and_privacy"><![CDATA[Acepto las <a href="https://www.inaturalist.org/terms">Condiciones del servicio</a> y la <a href="https://www.inaturalist.org/privacy">Política de privacidad</a>, y he revisado la <a href="https://www.inaturalist.org/pages/community+guidelines">Guía de la comunidad</a>.]]></string>
+    <string name="personal_information_notes"><![CDATA[Almacenamos información personal, como nombres de usurio y direcciones de correo electrónico, con la finalidad de administrar las cuentas de este sitio y, para cumplir con las leyes de privacidad, necesitamos que tildes esta casilla para indicar que nos das tu consentimiento a utilizar tu información privada. Para saber más sobre qué información recopilamos y cómo la utilizamos, por favor lee nuestra<a href="https://www.inaturalist.org/privacy">Política de privacidad</a> y nuestras <a href="https://www.inaturalist.org/terms">Condiciones de servicio</a>.]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[Acepto las <a href="https://www.inaturalist.org/terms">Condiciones de servicio</a> y la <a href="https://www.inaturalist.org/privacy">Política de privacidad</a> y he leído las <a href="https://www.inaturalist.org/pages/community+guidelines">Normas de la comunidad</a>.]]></string>
     <string name="privacy_policy">Política de privacidad</string>
-    <string name="terms_of_service">Condiciones del servicio</string>
+    <string name="terms_of_service">Condiciones de servicio</string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
     <string name="deleted_user">Usuario eliminado</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
@@ -982,26 +980,26 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long">d MMM, yyyy</string>
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long_with_time">d MMM, yyyy hh:mma</string>
+    <string name="date_long_with_time">d MMMM, yyyy hh:mma</string>
     <string name="show_common_names">Mostrar nombres comunes</string>
-    <string name="show_common_names_description">Desactivar si solo desea ver nombres científicos.</string>
-    <string name="email_must_look_like_email_address">El correo electrónico debe ser una dirección de correo válida</string>
-    <string name="username_must_begin_with">El nombre de usuario debe comenzar con una letra, no contener espacios, y usar sólo letras, números, guiones y guiones bajos</string>
+    <string name="show_common_names_description">Desactivar solo si deseás ver nombres científicos.</string>
+    <string name="email_must_look_like_email_address">La dirección de correo electrónico debe verse como una dirección de correo electrónico</string>
+    <string name="username_must_begin_with">El nombre de usuario debe comenzar con una letra, no debe contener espacios, y solo utilizar letras, números y guiones</string>
     <string name="password_too_short">La contraseña debe tener al menos seis caracteres</string>
     <string name="switch_to_grid_view">Cambiar a vista de cuadrícula</string>
     <string name="switch_to_list_view">Cambiar a vista de lista</string>
     <string name="remove_project_filter">Eliminar filtro de proyecto</string>
     <string name="remove_observer_filter">Eliminar filtro de observador</string>
-    <string name="filter_observations_by_an_exact_date">Filtrar observaciones por fecha exacta</string>
-    <string name="filter_observations_by_a_date_range">Filtrar observaciones por un rango de fechas</string>
-    <string name="filter_observations_by_months">Filtrar observaciones por meses</string>
+    <string name="filter_observations_by_an_exact_date">Filtrar las observaciones por fecha exacta</string>
+    <string name="filter_observations_by_a_date_range">Filtrar las observaciones por un rango de fechas</string>
+    <string name="filter_observations_by_months">Filtrar las observaciones por meses</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="include_suggestions_not_seen_nearby">Incluir sugerencias que no han sido vistas cerca de aquí</string>
-    <string name="only_view_nearby_suggestions">Solo mostrar sugerencias que hayan sido vistas cerca de aquí</string>
-    <string name="suggestions_source">Fuente de sugerencias</string>
+    <string name="include_suggestions_not_seen_nearby">Incluir sugerencias no vistas cerca</string>
+    <string name="only_view_nearby_suggestions">Solo mostrar sugerencias cercanas</string>
+    <string name="suggestions_source">Origen de las sugerencias</string>
     <string name="research_grade_observations">Observaciones con grado de investigación</string>
-    <string name="visually_similar_description">iNaturalist ofrecerá sugerencias basándose en la similaridad visual de las imágenes a las de especies observadas cerca de este lugar en esta época del año.</string>
+    <string name="visually_similar_description">iNaturalist ofrecerá sugerencias basándose en qué tan visualmente similares sean las imagenes de las especies observadas cerca de esta ubicación en esta época del año.</string>
     <string name="research_grade_observations_description">En lugar de sugerencias visualmente similares, iNaturalist sugerirá especies del mismo grupo taxonómico que hayan sido observadas en el mismo lugar.</string>
     <string name="taxon">Taxón:</string>
     <string name="place">Lugar:</string>
@@ -1047,20 +1045,20 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <string name="remove_location">Eliminar ubicación</string>
     <string name="are_you_sure_you_want_to_remove_date">¿Estás seguro de querer quitar la fecha de la observación?</string>
     <string name="are_you_sure_you_want_to_remove_time">¿Estás seguro de querer quitar la hora de la observación?</string>
-    <string name="are_you_sure_you_want_to_remove_location">¿Estas seguro de querer quitar la ubicación?</string>
+    <string name="are_you_sure_you_want_to_remove_location">¿Estás seguro de querer eliminar la ubicación?</string>
     <string name="share_location">Compartir ubicación</string>
-    <string name="share_hidden_location">Compartir la ubicación oculta</string>
+    <string name="share_hidden_location">Compartir ubicación oculta</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
-    <string name="couldnt_duplicate_sound">¡No se ha podido duplicar el sonido!</string>
+    <string name="couldnt_duplicate_sound">¡No se pudo duplicar el sonido!</string>
     <string name="sound_format_not_supported">Esta codificación de audio no es compatible con Android.</string>
     <string name="view_observations">Ver observaciones</string>
     <string name="choose_this_option">Elegir esta opción</string>
     <string name="compare_observation_with_this_option">Comparar la observación con esta opción</string>
-    <string name="go_back">Volver</string>
+    <string name="go_back">Vover</string>
     <string name="change_the_source_of_the_suggestions">Cambiar el origen de las sugerencias</string>
     <string name="thumbnail_photo_for_suggested_taxon">Foto en miniatura del taxón sugerido</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
-    <string name="comments_ids_title">Comentarios e identificaciones</string>
+    <string name="comments_ids_title">Comentatios e identificaciones</string>
     <!-- Accessibility text for the faves tab on the observation detail view -->
     <string name="faves">Favoritos</string>
     <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
@@ -1216,4 +1214,5 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <string name="app_version_copied_to_clipboard">Versión de la App copiada al portapapeles</string>
     <string name="authentication_failed">Error de autenticación</string>
     <string name="please_try_again_soon">Por favor, inténtalo más tarde.</string>
+    <string name="verify_your_email">Verifica Tu dirección de e-mail</string>
 </resources>
