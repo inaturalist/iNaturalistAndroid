@@ -16,6 +16,7 @@ import android.provider.MediaStore;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -72,6 +73,68 @@ public class ProfileEditor extends AppCompatActivity {
     private UserDetailsReceiver mUserDetailsReceiver;
 
 
+    private void updateProfile() {
+        mHelper.loading(getString(R.string.updating_profile));
+
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_USER_DETAILS, null, ProfileEditor.this, INaturalistService.class);
+        serviceIntent.putExtra(INaturalistService.ACTION_USERNAME, mUserNameText.getText().toString());
+        serviceIntent.putExtra(INaturalistService.ACTION_FULL_NAME, mUserFullNameText.getText().toString());
+        serviceIntent.putExtra(INaturalistService.ACTION_USER_EMAIL, mUserEmailText.getText().toString());
+        serviceIntent.putExtra(INaturalistService.ACTION_USER_BIO, mUserBioText.getText().toString());
+        serviceIntent.putExtra(INaturalistService.ACTION_USER_PASSWORD, mUserPasswordText.getText().toString());
+
+        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        String iconUrl = prefs.getString("user_icon_url", null);
+
+        if (!mUserNameText.getText().toString().equals(prefs.getString("username", ""))) {
+            // Username changed
+            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_PROFILE_USERNAME_CHANGED);
+        }
+
+        if ((mUserIconUrl == null) && (iconUrl != null)) {
+            // Delete profile pic
+            serviceIntent.putExtra(INaturalistService.ACTION_USER_DELETE_PIC, true);
+
+            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_PROFILE_PHOTO_REMOVED);
+        }
+
+        if ((mUserIconUrl != null) && (!mUserIconUrl.equals(iconUrl))) {
+            // New profile pic - make a copy of it
+
+            try {
+                JSONObject eventParams = new JSONObject();
+                eventParams.put(AnalyticsClient.EVENT_PARAM_ALREADY_HAD_PHOTO, iconUrl != null ? AnalyticsClient.EVENT_PARAM_VALUE_YES : AnalyticsClient.EVENT_PARAM_VALUE_NO);
+
+                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_PROFILE_PHOTO_CHANGED, eventParams);
+            } catch (JSONException e) {
+                Logger.tag(TAG).error(e);
+            }
+
+
+            try {
+                String newFilename = null;
+                File outputFile = new File(getExternalCacheDir(), UUID.randomUUID().toString() + ".jpeg");
+                OutputStream os = new FileOutputStream(outputFile);
+                InputStream is = getContentResolver().openInputStream(Uri.parse(mUserIconUrl));
+                IOUtils.copyStreamToStream(is, os);
+                is.close();
+                os.close();
+
+                newFilename = outputFile.getAbsolutePath();
+
+                serviceIntent.putExtra(INaturalistService.ACTION_USER_PIC, newFilename);
+
+            } catch (Exception exc) {
+                Logger.tag(TAG).error(exc);
+                showError(null);
+                return;
+            }
+        }
+
+        INaturalistService.callService(this, serviceIntent);
+
+        mHelper.loading(getString(R.string.updating_profile));
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -81,65 +144,19 @@ public class ProfileEditor extends AppCompatActivity {
                     mHelper.alert(getString(R.string.not_connected));
                     return true;
                 }
+                if (!mUserPasswordText.getText().toString().equals("")) {
+                    // Show warning dialog in case user changes password
+                    mHelper.confirm(getString(R.string.are_you_sure), getString(R.string.after_you_change_your_password), (dialog, which) -> {
+                        updateProfile();
+                    }, (dialog, which) -> {
+                        // User canceled
+                        return;
+                    }, R.string.ok, R.string.cancel);
 
-                Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_USER_DETAILS, null, ProfileEditor.this, INaturalistService.class);
-                serviceIntent.putExtra(INaturalistService.ACTION_USERNAME, mUserNameText.getText().toString());
-                serviceIntent.putExtra(INaturalistService.ACTION_FULL_NAME, mUserFullNameText.getText().toString());
-                serviceIntent.putExtra(INaturalistService.ACTION_USER_EMAIL, mUserEmailText.getText().toString());
-                serviceIntent.putExtra(INaturalistService.ACTION_USER_BIO, mUserBioText.getText().toString());
-                serviceIntent.putExtra(INaturalistService.ACTION_USER_PASSWORD, mUserPasswordText.getText().toString());
-
-                SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
-                String iconUrl = prefs.getString("user_icon_url", null);
-
-                if (!mUserNameText.getText().toString().equals(prefs.getString("username", ""))) {
-                    // Username changed
-                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_PROFILE_USERNAME_CHANGED);
+                    return true;
                 }
 
-                if ((mUserIconUrl == null) && (iconUrl != null)) {
-                    // Delete profile pic
-                    serviceIntent.putExtra(INaturalistService.ACTION_USER_DELETE_PIC, true);
-
-                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_PROFILE_PHOTO_REMOVED);
-                }
-
-                if ((mUserIconUrl != null) && (!mUserIconUrl.equals(iconUrl))) {
-                    // New profile pic - make a copy of it
-
-                    try {
-                        JSONObject eventParams = new JSONObject();
-                        eventParams.put(AnalyticsClient.EVENT_PARAM_ALREADY_HAD_PHOTO, iconUrl != null ? AnalyticsClient.EVENT_PARAM_VALUE_YES : AnalyticsClient.EVENT_PARAM_VALUE_NO);
-
-                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_PROFILE_PHOTO_CHANGED, eventParams);
-                    } catch (JSONException e) {
-                        Logger.tag(TAG).error(e);
-                    }
-
-
-                    try {
-                        String newFilename = null;
-                        File outputFile = new File(getExternalCacheDir(), UUID.randomUUID().toString() + ".jpeg");
-                        OutputStream os = new FileOutputStream(outputFile);
-                        InputStream is = getContentResolver().openInputStream(Uri.parse(mUserIconUrl));
-                        IOUtils.copyStreamToStream(is, os);
-                        is.close();
-                        os.close();
-
-                        newFilename = outputFile.getAbsolutePath();
-
-                        serviceIntent.putExtra(INaturalistService.ACTION_USER_PIC, newFilename);
-
-                    } catch (Exception exc) {
-                        Logger.tag(TAG).error(exc);
-                        showError(null);
-                        return true;
-                    }
-                }
-
-                INaturalistService.callService(this, serviceIntent);
-
-                mHelper.loading(getString(R.string.updating_profile));
+                updateProfile();
 
                 return true;
 
@@ -493,6 +510,12 @@ public class ProfileEditor extends AppCompatActivity {
 
             mHelper.stopLoading();
             refreshUserDetails();
+
+            if (!mUserPasswordText.getText().toString().equals("")) {
+                // User changed password - sign them out
+                BaseFragmentActivity.signOut(getApplicationContext());
+            }
+
             finish();
         }
     }
