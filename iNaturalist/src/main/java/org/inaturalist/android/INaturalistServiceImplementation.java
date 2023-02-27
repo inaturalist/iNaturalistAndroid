@@ -9,6 +9,7 @@ import static java.net.HttpURLConnection.HTTP_OK;
 import static java.net.HttpURLConnection.HTTP_UNAUTHORIZED;
 import static java.net.HttpURLConnection.HTTP_UNAVAILABLE;
 import static java.net.HttpURLConnection.HTTP_CREATED;
+import static java.net.HttpURLConnection.HTTP_ENTITY_TOO_LARGE;
 
 import android.annotation.SuppressLint;
 import android.content.ContentUris;
@@ -3636,8 +3637,15 @@ public class INaturalistServiceImplementation {
             response = request( API_HOST + "/observation_sounds", "post", params, null, true, true, false);
 
             try {
-                if (response == null || response.length() != 1) {
+                if (response == null || response.length() != 1 || mLastStatusCode != HTTP_OK) {
                     c.close();
+
+                    if (mLastStatusCode == HTTP_ENTITY_TOO_LARGE) {
+                        JSONArray errors = new JSONArray();
+                        errors.put(mContext.getString(R.string.couldnt_upload_file_too_large));
+                        mApp.setErrorsForObservation(os.observation_id, 0, errors);
+                    }
+
                     throw new SyncFailedException();
                 }
 
@@ -3892,8 +3900,15 @@ public class INaturalistServiceImplementation {
             Logger.tag(TAG).debug("postPhotos: POSTing new photo: " + params);
             response = post(API_HOST + "/observation_photos", params, true);
             try {
-                if (response == null || response.length() != 1) {
+                if (response == null || response.length() != 1 || mLastStatusCode != HTTP_OK) {
                     c.close();
+
+                    if (mLastStatusCode == HTTP_ENTITY_TOO_LARGE) {
+                        JSONArray errors = new JSONArray();
+                        errors.put(mContext.getString(R.string.couldnt_upload_file_too_large));
+                        mApp.setErrorsForObservation(op.observation_id, 0, errors);
+                    }
+
                     throw new SyncFailedException();
                 }
 
