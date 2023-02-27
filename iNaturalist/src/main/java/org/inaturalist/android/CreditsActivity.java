@@ -55,7 +55,7 @@ public class CreditsActivity extends AppCompatActivity {
 
         StringBuilder credits = new StringBuilder();
 
-        credits.append(getString(R.string.inat_credits));
+        credits.append(getString(R.string.inat_credits2));
 
         // Add per-network credit
         final String[] inatNetworks = mApp.getINatNetworks();

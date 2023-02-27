@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="email_address">Электрондық пошта</string>
+    <string name="email_address">Электронды поштаның мекенжайы</string>
     <string name="delete_observation">Бақылауды жою</string>
     <string name="observation_deleted">Бақылау жойылды</string>
     <string name="species_guess_hint">Түр атауы</string>
-    <string name="ok">Жарайды</string>
+    <string name="ok">ОК</string>
     <string name="cancel">Бас тарту</string>
     <string name="loading">Жүктелуде...</string>
     <string name="street">Көше</string>
@@ -22,7 +22,7 @@
     <string name="set_date">Күн</string>
     <string name="set_time">Уақыт</string>
     <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
-    <string name="something_went_wrong">Жарылыс, бірдеңе дұрыс болмады: %1$s</string>
+    <string name="something_went_wrong">Қап, бірдеңе дұрыс болмады: %1$s</string>
     <string name="edit">Түзету</string>
     <string name="oh_no">О, жоқ! %1$s</string>
     <string name="observations">Менің бақылауларым</string>
@@ -45,8 +45,8 @@
     <string name="username">Пайдаланушы аты</string>
     <string name="password">Құпия сөз</string>
     <string name="unknown">Белгісіз</string>
-    <string name="unknown_species">Белгісіз түрлер</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">Жарайды</string>
+    <string name="unknown_species">Белгісіз түр</string>
+    <string name="com_facebook_dialogloginactivity_ok_button">ОК</string>
     <string name="com_facebook_loginview_log_out_button">Шығу</string>
     <string name="com_facebook_loginview_log_in_button">Жүйеге кіру</string>
     <string name="com_facebook_loginview_logged_in_as">Жүйеге %1$s ретінде кірдіңіз</string>
@@ -68,7 +68,7 @@
     <string name="com_facebook_internet_permission_error_message">WebView жүйесіне кіру үшін INTERNET рұқсаты қажет</string>
     <string name="com_facebook_requesterror_web_login">Сіздің Facebook аккаунтыңыз құлыпталған. Жалғастыру үшін www.facebook.com сайтына кіріңіз.</string>
     <string name="com_facebook_requesterror_relogin">Facebook аккаунтыңызды қайта қосу үшін осы қолданбаға қайта кіріңіз.</string>
-    <string name="com_facebook_requesterror_password_changed">Facebook құпия сөзі өзгерді. Facebook аккаунтыңызды қайта қосу үшін осы қолданбаға қайта кіріңіз.</string>
+    <string name="com_facebook_requesterror_password_changed">Facebook құпия сөзі өзгерген. Facebook аккаунтыңызды қайта қосу үшін осы қолданбаға қайта кіріңіз.</string>
     <string name="com_facebook_requesterror_reconnect">Facebook аккаунтыңызды қайта қосу үшін осы қолданбаға қайта кіріңіз.</string>
     <string name="com_facebook_requesterror_permissions">Бұл қолданбаның мұны істеуге рұқсаты жоқ. Рұқсаттарды өзгерту үшін қолданбаға қайта кіріп көріңіз.</string>
     <string name="edit_observation">Бақылауды өңдеу</string>
@@ -77,13 +77,13 @@
     <string name="no">Жоқ</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">Келісу?</string>
-    <string name="no_comments">Пікірлер/идентификаторлар әлі жоқ</string>
+    <string name="no_comments">Пікірлер/идентификациялар әлі жоқ</string>
     <string name="add_comment">Пікір қосу</string>
     <string name="add_id">Идентификацияны қосу</string>
     <string name="remarks">Ескертпелер...</string>
     <string name="enter_taxon_name">Түр атауы</string>
     <string name="no_projects">Жобалар табылмады!</string>
-    <string name="no_guides">Ешқандай нұсқаулар табылмады!</string>
+    <string name="no_guides">Нұсқаулықтар табылмады!</string>
     <string name="loading_projects">Жобалар жүктелуде...</string>
     <string name="joined_projects">Қосылды</string>
     <string name="nearby_projects">Жақын жерде</string>
@@ -99,7 +99,7 @@
     <string name="select_projects">Қосылған жобалардан таңдау</string>
     <string name="not_connected">Мұны істеу үшін сіз Интернетке қосылған болуыңыз керек!</string>
     <string name="search_projects">Жобаларды іздеу...</string>
-    <string name="search_guides">Нұсқауларды іздеу...</string>
+    <string name="search_guides">Нұсқаулықтарды іздеу...</string>
     <string name="save_observation">Бақылауды сақтау</string>
     <!-- Header for a description an individual guide -->
     <string name="about_guide">Толығырақ</string>
@@ -115,9 +115,9 @@
     <string name="geoprivacy_with_value">Геоқұпиялылық: %1$s</string>
     <string name="delete_confirmation">Осы бақылауды шынымен жойғыңыз келе ме?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
-    <string name="guides">Нұсқаулық</string>
-    <string name="my_guides">Сіздің</string>
-    <string name="nearby_guides">Жақын</string>
+    <string name="guides">Нұсқаулықтар</string>
+    <string name="my_guides">Сіздікі</string>
+    <string name="nearby_guides">Маңайдағы</string>
     <string name="all_guides">Барлық</string>
     <string name="no_taxa">Бұл нұсқаулық үшін ешқандай таксон табылмады!</string>
     <string name="search_taxa">Таксондарды іздеу...</string>
@@ -144,8 +144,8 @@
         <item quantity="other">%1$d бақылауларды синхрондау</item>
     </plurals>
     <string name="sync_observations">Бақылауларды синхрондау</string>
-    <string name="lets_get_started">Бастайық!</string>
-    <string name="view_nearby_observations">Маңайдағы бақылауларды көру</string>
+    <string name="lets_get_started">Қане, бастайық!</string>
+    <string name="view_nearby_observations">Жақын маңдағы бақылауларды көру</string>
     <string name="skip_for_now">Әзірге өткізіп жіберу</string>
     <string-array name="tutorial_titles">
         <item></item>
@@ -218,12 +218,12 @@
     <string name="error">Қате</string>
     <string name="could_not_retrieve_guide">Нұсқаулық мәліметтерін алу мүмкін болмады - желі қатесі болуы мүмкін.</string>
     <string name="inat_support_email_subject">iNaturalist анықтамасы (нұсқа %1$s - %2$s; пайдаланушы идентификаторы - %3$s)</string>
-    <string name="send_email">Пошта жіберу...</string>
-    <string name="login_with">Келесі арқылы кіру</string>
+    <string name="send_email">Электрондық хат жіберу...</string>
+    <string name="login_with">Осы арқылы кіру</string>
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Электрондық пошта</string>
-    <string name="skip">Өткізу</string>
+    <string name="skip">Өткізу  ›</string>
     <string name="log_in">Жүйеге кіру</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
     <string name="sign_up">Тіркелу</string>
@@ -244,21 +244,21 @@
     <string name="login_signup">Жүйеге кіру / Тіркелу</string>
     <string name="please_sign_in_via_settings_for_guides">Нұсқаулықтарды көру үшін жүйеге кіруіңіз керек.</string>
     <string name="please_sign_in_for_updates">Жаңартуларды көру үшін жүйеге кіруіңіз керек.</string>
-    <string name="by_using_inat_terms"><![CDATA[iNaturalist пайдалану арқылы сіз келесімен келісесіз  <b><a href="https://www.inaturalist.org/pages/terms">Қызмет көрсету шарттары</a></b> and <b><a href="https://www.inaturalist.org/pages/privacy">Құпиялылық саясаты</a></b>]]></string>
+    <string name="by_using_inat_terms"><![CDATA[iNaturalist-ті пайдалану арқылы сіз <b><a href="https://www.inaturalist.org/pages/terms">Қызмет көрсету шарттары</a></b> және <b><a href="https://www.inaturalist.org/pages/privacy">Құпиялылық саясатымен</a></b> келісесіз]]></string>
     <string name="activity">Белсенділік</string>
     <!-- Label for a button to open the camera to take a new photo for an observation -->
     <string name="camera">Суретке түсіру</string>
     <!-- Label for a button to import an existing photo for an observation -->
     <string name="upload_photo">Сурет таңдау</string>
     <string name="first">1-ші</string>
-    <string name="make_first">Бірінші жасау</string>
+    <string name="make_first">Бірінші қылу</string>
     <string name="notes">Ескертпелер</string>
     <string name="is_captive">Ол қолға түскен немесе өсірілген</string>
     <string name="location_visibility">Орналасқан жердің көрінуі</string>
     <string name="set_location">Орналасқан жер</string>
     <string name="coordinates_lat">Ендік:</string>
     <string name="coordinates_lon">Бойлық:</string>
-    <string name="coordinates_acc">Дәлдік</string>
+    <string name="coordinates_acc">Дәлдік </string>
     <string name="required">* Міндетті</string>
     <string name="downloading_observations">Бақылаулар жүктелуде...</string>
     <string name="no_thanks">Жоқ рақмет</string>
@@ -277,16 +277,16 @@
     <string name="needs_id">ID керек</string>
     <string name="research_grade">Зерттеу дәрежесі</string>
     <string name="data_quality">Деректер сапасы</string>
-    <string name="casual_grade_add_location"><![CDATA[Бұл бақылауды “ID керек” күйіне жылжыту үшін <b>орналасқан жерді</b> қосыңыз.]]></string>
-    <string name="casual_grade_add_date"><![CDATA[Бұл бақылауды “ID керек” күйіне жылжыту үшін <b>күнді</b> қосыңыз.]]></string>
-    <string name="casual_grade_add_photo"><![CDATA[ Бұл бақылауды “ID керек” күйіне жылжыту үшін <b>фотоны</b> қосыңыз. ]]></string>
-    <string name="casual_grade_captive"><![CDATA[ Бақылау кездейсоқ дәреже болып табылады, себебі ол <b>қолға түскен/өсірілген</b>. ]]></string>
+    <string name="casual_grade_add_location"><![CDATA[ Бұл бақылауды “ID керек” күйіне жылжыту үшін <b>орналасқан жерді</b> қосыңыз. ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ Бұл бақылауды “ID керек” күйіне жылжыту үшін <b>күнді</b> қосыңыз. ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[ Бұл бақылауды “ID керек” күйіне жылжыту үшін <b>фотосуретті</b> қосыңыз. ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ Бақылауға "Кәдімгі дәреже" мәртебесі берілді, себебі ол <b>қолға түскен/өсірілген</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ Бақылау "Зерттеу дәрежесі" мәртебесіне ие болу үшін қауымдастықтан </b>қосымша идентификацияларды</b> қажет етеді. ]]></string>
     <plurals name="included_in_projects">
         <item quantity="one">%1$d жобаға енгізілген</item>
-        <item quantity="other">%1$d жобаларға енгізілген</item>
+        <item quantity="other">%1$d жобаға енгізілген</item>
     </plurals>
-    <string name="geoprivacy_explanation"><![CDATA[ Геоқұпиялылық - кеңістіктік координаттардың (ендік пен бойлық) көрсетілу жолын басқаратын бақылауларыңызда жасауға болатын баптау. Мұнда опциялар берілген:<br/><b>ашық</b> - таксонға қауіп төнбесе, әркім координаттарды көре алады.  <br/><b>жасырын</b> - 0,2-ден 0,2 градусқа дейінгі аумақта кездейсоқ нүкте ретінде көрсетілген жалпы координаттар шынайы координаттарды қамтиды, ол экватордағы белгісіздіктің шамамен 22x22 км шаршы алаңына жұмыс істейді, полюстерге жақындағанда төмендейді . Нағыз координаттар тек сізге және бақылауды қосатын жобалардың кураторларына ғана көрінеді. <br/><b>жеке</b> - координаттар жалпыға ортақ карталардан толығымен жасырылған, шынайы координаттар тек сізге және бақылауды қосқан жобалардың кураторларына көрінеді. <br/><br/>Жеке жобалардың кураторлары сіздің геоқұпиялылық баптауларыңызға қарамастан координаттарды әрқашан көре алатынын ескеріңіз, сондықтан координаттарға кімнің қол жеткізе алатыны туралы алаңдасаңыз, онда қатысатын жобалардың кураторларына сенетініңізге сенімді болуыңыз керек. ]]></string>
+    <string name="geoprivacy_explanation"><![CDATA[ Геоқұпиялылық - кеңістіктік координаттардың (ендік пен бойлық) көрсетілу жолын басқаратын бақылауларыңызда жасауға болатын баптау. Мұнда опциялар берілген:<br/><b>ашық</b> - таксонға қауіп төнбесе, әркім координаттарды көре алады.  <br/><b>жасырын</b> - 0,2-ден 0,2 градусқа дейінгі аумақта кездейсоқ нүкте ретінде көрсетілген жалпы координаттар шынайы координаттарды қамтиды, ол экватордағы белгісіздіктің шамамен 22x22 км шаршы алаңына жұмыс істейді, полюстерге жақындағанда төмендейді. Нағыз координаттар тек сізге және бақылауды қосатын жобалардың кураторларына ғана көрінеді. <br/><b>жеке</b> - координаттар жалпыға ортақ карталардан толығымен жасырылған, шынайы координаттар тек сізге және бақылауды өзіңіз қосқан жобалардың кураторларына көрінеді. <br/><br/>Жеке жобалардың кураторлары сіздің геоқұпиялылық баптауларыңызға қарамастан координаттарды әрқашан көре алатынын ескеріңіз, сондықтан координаттарға кімнің қол жеткізе алатыны туралы алаңдасаңыз, онда қатысатын жобалардың кураторларына сенетініңізге сенімді болуыңыз керек. ]]></string>
     <string name="id_title">%1$s ұсынған ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">Жою</string>
@@ -298,7 +298,7 @@
     <string name="update_comment">Пікірді жаңарту</string>
     <string name="fave_this_observation">Бұл бақылауды таңдаулыға қосу</string>
     <string name="faved">Таңдаулыға қосылды</string>
-    <string name="be_the_first_to_fave_this_obs">Бұл байқауды бірінші болып таңдаулыға қосыңыз...</string>
+    <string name="be_the_first_to_fave_this_obs">Бұл бақылауды бірінші болып таңдаулыға қосыңыз...</string>
     <string name="leave_a_comment">Пікір қалдырыңыз немесе идентификация ұсыныңыз...</string>
     <string name="location_coords">Ендік: %1$s Бойлық: %2$s Дәлдік. %3$s</string>
     <string name="location_coords_no_acc">Ендік: %1$s Бойлық: %2$s </string>
@@ -335,9 +335,9 @@
     <string name="add_to_projects">Жоба(лар)ға қосу</string>
     <string name="are_you_sure_you_want_to_save_obs_without_coords">Сіз бақылауды координатсыз сақтағыңыз келетініне сенімдісіз бе?</string>
     <string name="users_identification">%1$s ұсынған ID: %2$s</string>
-    <string name="edit_profile">Профильді өзгерту</string>
+    <string name="edit_profile">Профильді өңдеу</string>
     <string name="remove_photo">Фотосуретті жою</string>
-    <string name="name">Аты</string>
+    <string name="name">Есімі</string>
     <string name="tell_us_about_yourself">Өзіңіз туралы айтып беріңізші...</string>
     <string name="view_profile">Профильді қарау</string>
     <string name="are_you_sure_you_want_to_remove_photo">Фотосуретті жойғыңыз келетініне сенімдісіз бе?</string>
@@ -349,12 +349,12 @@
     <string name="log_out">Шығу</string>
     <string name="not_logged_in">Жүйеге кірілмеді</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
-    <string name="login_or_sign_up">Жүйеге кіру / Тіркелу</string>
-    <string name="auto_upload_description">Жаңа бақылаулар мен бақылаулардың өзгертулерін автоматты түрде жүктеу</string>
+    <string name="login_or_sign_up">Жүйеге кіру немесе Тіркелу</string>
+    <string name="auto_upload_description">Жаңа бақылауларды автоматты түрде жүктеу және бақылауларды өзгерту </string>
     <string name="language">Тіл</string>
     <string name="version">Нұсқа</string>
     <string name="inat_network">iNaturalist желісі</string>
-    <string name="inat_network_description">iNaturalist желісі iNaturalist қауымдастығын локализациялауға арналған негіз болып табылады. Желілік сайттарға жергілікті пайдалануды ынталандыру және жергілікті биоалуантүрлілікке пайда келтіру үшін iNaturalist компаниясымен келісімге қол қойған жергілікті мекемелер қолдау көрсетеді.</string>
+    <string name="inat_network_description">iNaturalist желісі - iNaturalist қауымдастығын локализациялауға арналған негіз болып табылады. Желі сайттарына жергілікті пайдалануды ынталандыру және жергілікті биоалуантүрлілікке пайда келтіру үшін iNaturalist компаниясымен келісімге қол қойған жергілікті мекемелер қолдау көрсетеді.</string>
     <string name="more_info">Толығырақ ақпарат</string>
     <string name="select_network">Желілік қатыстылықты таңдау</string>
     <string name="help">Көмек</string>
@@ -373,12 +373,12 @@
     <string name="your_identification">Сіздің ID: %1$s</string>
     <string name="onboarding_species_name">Мүмкіндігінше көргеніңізді атаңыз, тіпті бұл жай «жәндік» немесе «құс» болса да немесе бос қалдырыңыз. Басқалар оны анықтауға көмектесуі мүмкін!</string>
     <string name="upload_complete">Жүктеу аяқталды!</string>
-    <string name="onboarding_upload_description">Бақылау(лар)ыңыз бойынша идентификациялар мен пікірлер үшін жақын арада қайта тексеріңіз.</string>
+    <string name="onboarding_upload_description">Бақылау(лар)ыңыз бойынша ұсынылған идентификациялар мен пікірлерді қарау үшін жақын арада қайта тексеріңіз.</string>
     <string name="importing_photos">Фотосурет(тер) импортталуда...</string>
     <string name="multi_select_description">Бір фотосуретті ұзақ басу арқылы бірнеше фотосуретті импорттау</string>
     <string name="preparing_photo">Фотосурет дайындалуда...</string>
     <string name="recommended_for_you">Сіз үшін ұсынылады</string>
-    <string name="missions">Миссиялар</string>
+    <string name="missions">Тапсырмалар</string>
     <string name="browse_by_category">Санат бойынша шолу</string>
     <string name="couldnt_load_recommended_missions">Ұсынылған тапсырмаларды жүктеу мүмкін болмады: %1$s</string>
     <string name="plants">Өсімдіктер</string>
@@ -399,11 +399,11 @@
     <string name="what_to_look_for">Не іздеу керек</string>
     <string name="have_been_seen_here">Осы жерде көрген</string>
     <string name="observe">Бақылау</string>
-    <string name="nearby_missions">Жақын миссиялар</string>
+    <string name="nearby_missions">Жақын тапсырмалар</string>
     <string name="searching_your_area">Сіздің аймағыңызда ізделуде...</string>
     <string name="expanding_your_search_area">Іздеу аймағы кеңейтілуде...</string>
-    <string name="introducing_missions">Миссиялармен таныстыру!</string>
-    <string name="missions_onboarding_description">Миссиялар - айналаңызда не іздеу керектігі туралы нақты уақыттағы ұсыныстар. Осылайша сіз өзіңіз үшін жаңа түрлерді таба аласыз! (Байланысты қажет етеді)</string>
+    <string name="introducing_missions">Тапсырмалармен таныстыру!</string>
+    <string name="missions_onboarding_description">Тапсырмалар - айналаңызда не іздеу керектігі туралы нақты уақыттағы ұсыныстар. Осылайша сіз өзіңіз үшін жаңа түрлерді таба аласыз! (Байланысты қажет етеді)</string>
     <string name="ok_got_it">Жарайды, түсіндім!</string>
     <string name="could_not_download_observations">Соңғы бақылауларды жүктеп алу мүмкін болмады - Байланыс ақаулары. Әрекетті кейінірек қайталаңыз.</string>
     <string name="no_news_yet">Әзірге жаңалық жоқ. Бізбен бірге қалыңыз!</string>
@@ -449,14 +449,14 @@
     <string name="taxonomy">Таксономия</string>
     <string name="about_this_section">Осы бөлім туралы</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
-    <string name="taxonomy_info">These are links to ancestors of this particular taxon. They are in order from coarser to more refined. Use these links to move up and down the Tree of Life. For example, if you don\'t know what an organism is, but know what grouping it falls into, tap on a taxon from the list to view more information about it.</string>
+    <string name="taxonomy_info">Бұл нақты таксонның ата-бабаларына сілтемелер. Олар дөрекіден тазартылғанға қарай реттелген. Өмір ағашын жоғары және төмен жылжыту үшін осы сілтемелерді пайдаланыңыз. Мысалы, ағзаның не екенін білмесеңіз, бірақ оның қандай топқа жататынын білсеңіз, ол туралы қосымша ақпаратты көру үшін тізімдегі таксонды түртіңіз.</string>
     <string name="more_info_on_inat">Қосымша ақпарат iNaturalist.org сайтында</string>
     <string name="view_suggestions">Ұсыныстарды көру</string>
     <string name="species_search">Түрлерді іздеу</string>
     <string name="were_not_confident_enough">Ұсыныс жасауға жеткілікті сенімді емеспіз, бірақ ең жақсы деген ұсыныстарымыз мыналар:</string>
     <string name="were_not_confident_enough_no_suggestions">Ұсыныс жасауға жеткілікті сенімді емеспіз.</string>
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
-    <string name="most_observed_options_matching_filters">Сүзгілерге сәйкес келетін ең көп байқалатын опциялар:</string>
+    <string name="most_observed_options_matching_filters">Сүзгілерге сәйкес келетін ең көп байқалатын түрлер:</string>
     <!-- Header for a list of suggested taxa -->
     <string name="top_suggestions">Ең жақсы ұсыныстар</string>
     <string name="pretty_sure_rank">Бұл %1$s ішінде екеніне сенімдіміз:</string>
@@ -468,24 +468,24 @@
     <string name="seen_nearby">Жақын жерде көрген</string>
     <string name="enlarge">Үлкейту</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
-    <string name="view_children">View Children</string>
+    <string name="view_children">Төменгі таксондар</string>
     <string name="taxon_has_no_photos">Бұл таксонның фотосуреттері жоқ.</string>
     <string name="terrain">Жер бедері</string>
-    <string name="filters">Фильтрлер</string>
+    <string name="filters">Сүзгілер</string>
     <string name="exploring_all">Барлығын зерттеу</string>
     <string name="nearby">Жақын жерде</string>
     <string name="couldnt_load_results">Нәтижелерді жүктеу мүмкін болмады: %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">ЗД</string>
-    <string name="taxon_search_hint">мысалы құс, көбелек</string>
+    <string name="taxon_search_hint">мысалы кесіртке, бүркіт</string>
     <string name="location_search_hint">мысалы қала, аудан, саябақ, ел...</string>
     <string name="no_taxon">Өкінішке орай, таксон табылмады</string>
     <string name="please_select_taxon">Тізімнен жарамды таксонды таңдаңыз (немесе таксон өрісін тазалаңыз).</string>
     <string name="sorry_no_location">Өкінішке орай, орын табылмады</string>
-    <string name="location_not_found">Сіз іздеген орын немесе жер біздің дерекқорымызда жоқ. Орынды іздеу өрісінің астындағы опциялар тізімінен орынды таңдаңыз немесе іздеу өрісін тазалаңыз.</string>
+    <string name="location_not_found">Сіз іздеген орын немесе жер біздің дерекқорымызда жоқ. Орынды іздеу өрісінің астындағы ұсыныстар тізімінен таңдаңыз немесе іздеу өрісін тазалаңыз.</string>
     <string name="undefined">Белгісіз жағдай</string>
     <string name="street_segment">Көше бөлігі</string>
-    <string name="intersection">Қиылысу</string>
+    <string name="intersection">Жол қиылысы</string>
     <string name="town">Қала</string>
     <!-- As in a political administrative area, e.g. Hawaii in the United States -->
     <string name="state">Мемлекет</string>
@@ -500,7 +500,7 @@
     <string name="miscellaneous">Miscellaneous</string>
     <string name="nationality">Азаматтық</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
-    <string name="supername">Суперат</string>
+    <string name="supername">Супересім</string>
     <string name="point_of_interest">Қызықты жер</string>
     <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
     <string name="region">Аймақ</string>
@@ -525,7 +525,7 @@
     <string name="department_segment">Бөлім сегменті</string>
     <string name="city_building">Қалалық ғимарат</string>
     <string name="commune">Коммуна</string>
-    <string name="governorate">Губернаторлық</string>
+    <string name="governorate">Губерния</string>
     <string name="prefecture">Префектура</string>
     <string name="canton">Кантон</string>
     <string name="republic">Республика</string>
@@ -545,8 +545,8 @@
     <string name="poblacion">Побласьон</string>
     <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
     <string name="delegation">Муатамадият</string>
-    <string name="apply_filters">Фильтрлерді қолдану</string>
-    <string name="remove_filters">Фильтрлерді алып тастау</string>
+    <string name="apply_filters">Сүзгілерді қолдану</string>
+    <string name="remove_filters">Сүзгілерді алып тастау</string>
     <string name="reset">Тастау</string>
     <string name="show_only_my_observations">Тек менің бақылауларымды көрсету</string>
     <string name="project">Жоба</string>
@@ -560,8 +560,8 @@
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
     <string name="to">-</string>
     <string name="exact_date">Нақты күн</string>
-    <string name="start">Бастау</string>
-    <string name="end">Аяқтау</string>
+    <string name="start">Басталуы</string>
+    <string name="end">Аяқталуы</string>
     <string name="months">Айлар</string>
     <string name="choose_months">Ай(лар)ды таңдау</string>
     <string name="map_area">Карта аймағы</string>
@@ -579,9 +579,9 @@
     <string name="new_observation">Жаңа бақылау</string>
     <string name="inactive_taxon">Белсенді емес таксон</string>
     <string name="no_identifications_found">Басқа адамдардың бақылаулары үшін ұсынатын идентификацияларыңызды осы жерден қадағалаңыз.</string>
-    <string name="no_species_found">Бұл сіз ең көп байқаған түрлердің тізімі..\n\nЕскертпе: Жер шарында шамамен 9 миллион түр бар, сондықтан табиғатқа шығып, оларды бақылаңыз!</string>
+    <string name="no_species_found">Бұл сіз ең көп байқаған түрлердің тізімі.\n\nЕскертпе: Жер шарында шамамен 9 миллион түр бар, сондықтан табиғатқа шығып, оларды бақылаңыз!</string>
     <string name="make_an_observation">Түсініктеме жасау</string>
-    <string name="no_observations_found_new">Бақылаулар - белгілі бір уақытта және жерлерде жеке организмдермен кездесулеріңіздің жазбалары.</string>
+    <string name="no_observations_found_new">Бақылаулар - ол белгілі бір уақытта және жерде жеке организмдермен кездесулеріңіздің жазбалары.</string>
     <string name="discard_comment">Бұл пікірді шынымен жойғыңыз келе ме?</string>
     <string name="leave_comment">Пікір қалдыру...</string>
     <string name="swipe">Сырғыту</string>
@@ -590,12 +590,12 @@
     <string name="do_you_think_this_could_be"><![CDATA[Бұл <b>%1$s</b> екенін растау үшін ұсынылған дәлелдер жеткілікті ме?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[Мен білмеймін, бірақ бұл <b>%1$s</b> екеніне сенімдімін.]]></string>
-    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Жоқ, бірақ ол <b>%1$s</b> мүшесі.]]></string>
+    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Жоқ, бірақ бұл <b>%1$s</b> мүшесі.]]></string>
     <string name="submit">Жіберу</string>
-    <string name="change_password">Құпия сөзді өзгерту</string>
+    <string name="change_password">Құпия сөзді ауыстыру</string>
     <string name="search_projects_youve_joined">Сіз қосылған жобаларды іздеу...</string>
     <string name="must_be_connected_to_load_more_obs">Қосымша бақылауларды жүктеу үшін Интернетке қосылған болуыңыз керек</string>
-    <string name="inat_about_title">iNaturalist — California Academy of Sciences пен National Geographic Society бірлескен бастамасы</string>
+    <string name="inat_about_title">iNaturalist — California Academy of Sciences пен National Geographic Society бірлескен бастамасы.</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -604,14 +604,14 @@
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
-    <string name="inat_credits"><![CDATA[iNaturalist біздің қоғамдастыққа қатысатын әрбір адамның арқасында жұмыс жасайды. Бағдарламалық жасақтаманы құрастыратын, интерфейстерді жобалайтын, инфрақұрылымды қолдайтын, қауымдастықты қолдайтын және ынтымақтастықты дамытатын адамдар -  Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard және Ken-ichi Ueda.<br/><br/>CalTech және Cornell Tech фотосуреттерден идентификацияларды ұсынатын компьютерлік көру жүйесін дамытуға көмектесті. Біз Grant Van Horn, Serge Belongie және Pietro Perona-ға компьютерлік көру саласындағы зерттеуді алға жылжытқаны үшін алғыс айтамыз. Қосымша ақпаратты <a href="https://www.visipedia.org">visipedia.org</a> сайтынан табуға болады. Қосымша көмек үшін NVIDIA компаниясына ерекше рақмет.]]></string>
+    <string name="inat_credits2"><![CDATA[iNaturalist біздің қоғамдастыққа қатысатын әрбір адамның арқасында жұмыс жасайды. Бағдарламалық жасақтаманы құрастыратын, интерфейстерді жобалайтын, инфрақұрылымды қолдайтын, қауымдастықты қолдайтын және ынтымақтастықты дамытатын адамдар: Ярон Будовски, Аманда Буллингтон, Тони Айвэн, Йоханнес Кляйн, Патрик Лири, Скотт Лори, Абхас Мисрарадж, Сильвен Морин, Кэрри Зельцер, Алекс Шепард, Анджи Та және Кен-ичи Уэда.<br/><br/>CalTech және Cornell Tech фотосуреттерден сәйкестендіруді ұсынатын компьютерлік көру жүйесін дамытуға көмектесті. Біз Грант Ван Хорнға, Серж Белонгиге және Пьетро Перонаға компьютерлік көруді зерттеуді алға жылжытқаны үшін алғыс айтамыз. Қосымша ақпаратты <a href="https://www.visipedia.org">visipedia.org</a> сайтынан табуға болады. Қосымша көмек үшін NVIDIA компаниясына ерекше рақмет.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[Халықаралық iNaturalist желісі байланысқан серіктес ұйымдардың қолдауының арқасында келесі елдердегі локализацияланған, толық интеграцияланған, iNaturalist негізіндегі веб-сайттарды қолдайды.]]></string>
-    <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
+    <string name="inat_credits_post"><![CDATA[iNaturalist сонымен қатар біз күн сайын сенетін бағдарламалық қамтамасыз етудің көп бөлігін қамтамасыз еткен ашық бастапқы әзірлеушілерге алғысын білдіреді. Ашық бастапқы коды бар үлестерді <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> бөлімінен қараңыз.<br/> Біз crowdin.com қауымдастығындағы еріктілердің, әсіресе Эдуардо Мартинес, Лин Ченг-Тао, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie және katunchik ұсынған аударма көмегі үшін алғыс айтамыз. <br/>II санаттағы IUCN орындары IUCN және UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Кембридж, Ұлыбритания: UNEP-WCMC алынған. Мына жерде қол жетімді: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Ризашылық</string>
     <string name="password_changed">Қолданба қолданатын құпия сөз енді жұмыс істемейді - веб-сайтта құпия сөзіңізді өзгерттіңіз бе? Жаңасын осы жерге енгізіңіз</string>
     <string name="just_so_you_know">Сонымен, өзіңіз білетіндей...</string>
-    <string name="ask_for_g_plus_permissions">Google бізден Google аккаунтыңызды пайдалану үшін контактілеріңізге кіруге рұқсат сұрауымызды талап етеді. Бұл рұқсаттан бас тартсаңыз, тіркелуіңіз немесе пайдаланушы аты мен құпия сөзбен кіруіңіз керек.</string>
-    <string name="new_to_inat_sign_up_now"><![CDATA[%1$s жаңадан келдіңіз бе? <b>Қазір тіркеліңіз!</b>]]></string>
+    <string name="ask_for_g_plus_permissions">Біз сіздің контактілеріңізге қандай да бір себептермен қолданбасақ та, Google бізден Google аккаунтыңызды пайдалану үшін контактілеріңізге кіруге рұқсат сұрауымызды талап етеді. Бұл рұқсаттан бас тартсаңыз, тіркелуіңіз немесе пайдаланушы аты мен құпия сөзбен кіруіңіз керек.</string>
+    <string name="new_to_inat_sign_up_now"><![CDATA[%1$s жаңадан келдіңіз бе? <b>Дәл қазір тіркеліңіз!</b>]]></string>
     <string name="see_more_observations">Басқа бақылауларды қарау</string>
     <string name="see_more_species">Басқа түрлерді қарау</string>
     <string name="see_more_identifications">Басқа идентификацияларды қарау</string>
@@ -621,9 +621,9 @@
     <string name="agree2">Келісемін</string>
     <string name="project_observations">Бақылаулар</string>
     <string name="project_species">Түрлер</string>
-    <string name="project_people">Адамдар</string>
+    <string name="project_people">Қатысушылар</string>
     <!-- People who added identifications to observations in a project -->
-    <string name="project_identifiers">Идентификаторлар</string>
+    <string name="project_identifiers">Сарапшылар</string>
     <string name="got_it">Түсінікті!</string>
     <string name="view_all">Барлығын көру</string>
     <string name="observers">Бақылаушылар</string>
@@ -715,7 +715,7 @@
     <string name="observations_all_caps">БАҚЫЛАУЛАР</string>
     <string name="species_all_caps">ТҮР</string>
     <string name="people_all_caps">АДАМДАР</string>
-    <string name="identifiers_all_caps">Сарапшылар</string>
+    <string name="identifiers_all_caps">САРАПШЫЛАР</string>
     <string name="identifications_all_caps">ИДЕНТИФИКАЦИЯЛАР</string>
     <string name="news_all_caps">ЖАҢАЛЫҚТАР</string>
     <string name="got_it_all_caps">ТҮСІНІКТІ!</string>
@@ -723,7 +723,7 @@
     <string name="observers_all_caps">БАҚЫЛАУШЫЛАР</string>
     <string name="observations_regular">Бақылаулар</string>
     <string name="data_quality_assessment">Деректер сапасын бағалау</string>
-    <string name="research_grade_qualification">Зерттеу дәрежесінің біліктілігі</string>
+    <string name="research_grade_qualification">Зерттеу дәрежесінің бағасы</string>
     <string name="date_specified">Күні көрсетілген</string>
     <string name="location_specified">Орналасқан жері көрсетілген</string>
     <string name="has_photos_or_sounds">Фотосуреттері немесе дыбыстары бар</string>
@@ -734,7 +734,7 @@
     <string name="evidence_of_organism">Организмнің бар екендігінің дәлелі</string>
     <string name="recent_evidence_of_an_organism">Организмнің бар екендігінің соңғы дәлелі</string>
     <string name="community_id_at_species_level_or_lower">Қауымдастық идентификациясы түр деңгейінде немесе одан төмен</string>
-    <string name="based_on_evidence_can_community_id_be_confirmed">Дәлелдерге сүйене отырып, қауымдастық идентификаторын әлі де растауға немесе жақсартуға бола ма?</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Дәлелдерге сүйене отырып, қауымдастық идентификациясын әлі де растауға немесе жақсартуға бола ма?</string>
     <string name="no_as_good_as_it_can_be">Жоқ, бұл мүмкіндігінше жақсы</string>
     <string name="seasonality">Маусымдық</string>
     <string name="verifiable">Анықталуда</string>
@@ -742,26 +742,26 @@
     <string name="donate_to_inaturalist">iNaturalist-ке қайырымдылық жасау</string>
     <string name="prefers_scientific_name_first">Алдымен ғылыми атауларды көрсету</string>
     <string name="prefers_scientific_name_first_description">Жалпы атаулардан бұрын ғылыми атауларды көрсету.</string>
-    <string name="network_credit_inaturalistcanada"><![CDATA[Канада: iNaturalist Канаданың жұмысын қамтамасыз ететін Канаданың жабайы табиғат федерациясы, Патшалық Онтарио мұражайы, NatureServe Canada және Parks Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[Канада: iNaturalist Canada-ның жұмысын қамтамасыз ететін Канаданың жабайы табиғат федерациясы, Патшалық Онтарио мұражайы, NatureServe Canada және Parks Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
     <string name="network_credit_naturalistacolombia"><![CDATA[Колумбия: Naturalista-ның жұмысын қамтамасыз ететін Гумбольдт интитуты (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
     <string name="network_credit_naturalista"><![CDATA[Мексика: NaturaLista-ның жұмысын қамтамасыз ететін Биоәртүрлілікті зерттеу және пайдалану жөніндегі ұлттық комиссия (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
     <string name="network_credit_naturewatchnz"><![CDATA[Жаңа Зеландия: iNaturalist NZ — Mātaki Taiao-ның жұмысын қамтамасыз ететін Жаңа Зеландияның биоалуантүрлілікті тіркеу желісі (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Португалия: Biodiversity4All-дың жұмысын қамтамасыз ететін Баршаға арналған биоалуантүрлілік қауымдастығы (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Панама: iNaturalistPa-ның жұмысын қамтамасыз ететін Қоршаған орта министрлігі (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="network_credit_argentinat"><![CDATA[Аргентина: ArgentiNat-ны қолдайтын Аргентинаның жабайы табиғат қоры (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
-    <string name="network_credit_inaturalistaustralia"><![CDATA[Аустралия: iNaturalist Аустралияны қолдайтын Аустралияның жабайы табиғат атласы (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
-    <string name="network_credit_inaturalistecuador"><![CDATA[Эквадор: iNaturalist Эквадорды қолдайтын Ұлттық биоалуантүрлілік институты (INABIO)(<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistil"><![CDATA[Израиль: iNaturalist Израильді қолдайтын Хайфа университеті (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistfi"><![CDATA[Финляндия: iNaturalist Финляндияны қолдайтын Финляндияның жаратылыстану мұражайы (LUOMUS)(<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
-    <string name="network_credit_inaturalistcl"><![CDATA[Чили: iNaturalist Чилиді қолдайтын Қоршаған орта министрлігі (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
-    <string name="network_credit_inaturalistgr"><![CDATA[Грекия: iNaturalist Грекия қолдайтын iSea (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistlu"><![CDATA[Люксембург: iNaturalist Люксембургты қолдайтын Люксембург ұлттық жаратылыстану мұражайы (MnhnL)(<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
-    <string name="network_credit_inaturalistuk"><![CDATA[Ұлыбритания: iNaturalist Ұлыбританияны қолдайтын Ұлттық биоалуантүрлілік желі қоры (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Коста-Рика: iNaturalist Коста-Риканы қолдайтын Биоалуантүрлілікті басқару жөніндегі ұлттық комиссиясы (CONAGEBIO)(<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Гватемала: iNaturalist Гватемаланы қолдайтын Ерекше қорғалатын табиғи аумақтардың ұлттық кеңесі (CONAP)(<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Швеция: iNaturalist Швецияны қолдайтын SLU швед түрлерінің ақпарат орталығы (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
-    <string name="network_credit_naturalistauy"><![CDATA[Уругвай: Naturalista Уругвайды қолдайтын JULANA және биоалуантүрлілік (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
-    <string name="network_credit_inaturalisttw"><![CDATA[Тайвань: iNaturalist Тайваньды қолдайтын Ұлттық Цзяи университеті және Тайвань орман шаруашылығы ғылыми-зерттеу институты (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Аргентина: ArgentiNat-ты қолдайтын Аргентинаның жабайы табиғат қоры (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Аустралия: iNaturalist Australia-ны қолдайтын Аустралияның жабайы табиғат атласы (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Эквадор: iNaturalist Ecuador-ды қолдайтын Ұлттық биоалуантүрлілік институты (INABIO)(<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Израиль: iNaturalist Israel-ді қолдайтын Хайфа университеті (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Финляндия: iNaturalist Finland-ты қолдайтын Финляндияның жаратылыстану мұражайы (LUOMUS)(<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Чили: iNaturalist Chile-ді қолдайтын Қоршаған орта министрлігі (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Грекия: iNaturalist Greece-ті қолдайтын iSea (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Люксембург: iNaturalist Luxembourg-ты қолдайтын Люксембург ұлттық жаратылыстану мұражайы (MnhnL)(<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Ұлыбритания: iNaturalist United Kingdom-ды қолдайтын Ұлттық биоалуантүрлілік желі қоры (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Коста-Рика: iNaturalist Costa Rica-ны қолдайтын Биоалуантүрлілікті басқару жөніндегі ұлттық комиссиясы (CONAGEBIO)(<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Гватемала: iNaturalist Guatemala-ны қолдайтын Ерекше қорғалатын табиғи аумақтардың ұлттық кеңесі (CONAP)(<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Швеция: iNaturalist Sweden-ды қолдайтын SLU швед түрлерінің ақпарат орталығы (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Уругвай: Naturalista Uruguay-ды қолдайтын JULANA және биоалуантүрлілік (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Тайвань: iNaturalist Taiwan-ды қолдайтын Ұлттық Цзяи университеті және Тайвань орман шаруашылығы ғылыми-зерттеу институты (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">Барлығын қаралған деп белгілеу</string>
     <string name="content_hidden">Жасырын контент</string>
     <string name="show_hidden_content">Жасырын контентті көрсету</string>
@@ -779,7 +779,7 @@
     <!-- Label for a button to import an existing sound for an observation -->
     <string name="upload_sound">Дыбыс таңдау</string>
     <string name="multi_select_sound_description">Бір дыбысты ұзақ басу арқылы бірнеше дыбысты импорттау</string>
-    <string name="alert_unsupported_audio_type">Кешіріңіз, бірақ осы көзден дыбысты жүктеу кезінде мәселе туындады</string>
+    <string name="alert_unsupported_audio_type">Кешіріңіз, бірақ осы көзден дыбысты жүктеу кезінде ақау туындады</string>
     <string name="invalid_audio_extension">Дыбыстарды импорттау қатесі: WAV/MP3/AMR кеңейтімдері бар дыбыс файлдарын ғана импорттауға болады</string>
     <string name="importing_sounds">Дыбыс(тар) импортталуда...</string>
     <string name="observation_sound">Бақылау дыбысы</string>
@@ -793,16 +793,16 @@
     <string name="send_debug_logs_by_email">Түзету журналдарын электрондық пошта арқылы жіберу (көрсетілген басталу күнінен бастап)</string>
     <string name="debug_settings">Түзету баптаулары</string>
     <string name="are_you_sure_you_want_to_delete_logs">Барлық түзету журналдарын жойғыңыз келетініне сенімдісіз бе? Телефоныңыздың сақтау орнын тазартқыңыз келсе «Иә» түймесін басыңыз</string>
-    <string name="no_log_files_found">No log files found for that date range - try earlier date?</string>
+    <string name="no_log_files_found">Бұл күндер ауқымы үшін түзету журналдары табылмады - ертерек күнді қолданып көру қажет пе?</string>
     <string name="choose_pinned_location">Бекітілген орынды таңдау</string>
     <string name="pin_current_location">Ағымдағы орынды бекіту</string>
     <string name="location_pinned_successfully">Ағымдағы орын сәтті бекітілді</string>
     <string name="delete_this_pinned_location">Осы бекітілген орынды жою керек пе?</string>
     <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
-    <string name="duplicate">Көшірме</string>
+    <string name="duplicate">Көшіру</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
     <string name="couldnt_duplicate_photo">Фотосуретті көшіру мүмкін болмады!</string>
-    <string name="couldnt_edit_photo">Фотосуретті өңдеу мүмкін болмады!</string>
+    <string name="couldnt_edit_photo">Фотосуретті өзгерту мүмкін болмады!</string>
     <!-- Verb, as in "Rotate this photo" -->
     <string name="ucrop_rotate">Айналдыру</string>
     <!-- Verb, as in "Scale (resize) this photo" -->
@@ -822,7 +822,7 @@
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
     <string name="ucrop_label_free">Еркін</string>
     <!-- Verb phrase, button label to edit an observation photo -->
-    <string name="ucrop_label_edit_photo">Фотосуретті өңдеу</string>
+    <string name="ucrop_label_edit_photo">Фотосуретті өзгерту</string>
     <string name="service_temporarily_unavailable">Қызмет уақытша қолжетімсіз.</string>
     <string name="please_try_again_in_a_few_hours">Бірнеше сағаттан кейін әрекетті қайталап көріңіз.</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
@@ -832,39 +832,39 @@
     <string name="seconds_value">секунд</string>
     <string name="shop_the_inat_store">iNat Store-дан сатып алу</string>
     <string name="delete_your_account">Аккаунтты жою</string>
-    <string name="delete_account_message"><![CDATA[By deleting your account you will remove:<br/><br/><ul><li> All of your observations, including the work of the all the people who have helped you out with identifications.</li><li> All of the identifications you\'ve added to the observations of other people, which will potentially affect the data quality of those observations.</li><li> All of the comments you\'ve added.</li></ul><br/>Furthermore, this action cannot be undone. If you change your mind later, you aren\'t getting any of that content back.<br/><br/>If this service generates too many notifications, consider <a href="https://www.inaturalist.org/users/edit">editing your settings on the website</a> to opt out of certain notifications or stop receiving email from us. If you\'re having trouble with a specific person, consider <a href="https://www.inaturalist.org/users/edit">muting them</a> instead of deleting your account.<br/><br/>If you\'re still sure you want to delete your account, enter <b>\"%1$s\"</b> in the form below and click the button to delete your account and all your data.]]></string>
+    <string name="delete_account_message"><![CDATA[Аккаунтыңызды жою арқылы сіз мыналарды жоясыз:<br/><br/><ul><li> Барлық бақылауларыңызды, соның ішінде сізге идентификациямен көмектескен барлық адамдардың жұмысын.</li><li> Сіз басқа адамдардың бақылауларына қосқан барлық идентификацияларыңызды, бұл бақылаулардың деректер сапасына әсер етуі мүмкін.</li><li> Сіз қосқан барлық пікірлер.</li></ul><br/>Сонымен қатар, бұл әрекетті қайтару мүмкін емес. Егер кейінірек ойыңызды өзгертсеңіз, ол контенттің ешқайсысын қайтара алмайсыз.<br/><br/>Егер бұл қызмет тым көп хабарландырулар жасаса, белгілі бір хабарландырулардан бас тарту немесе бізден электрондық хат алуды тоқтату үшін <a href="https://www.inaturalist.org/users/edit">веб-сайттағы баптауларды өңдеуді</a> қарастырыңыз. Белгілі бір адаммен қиындыққа тап болсаңыз, аккаунтыңызды жоюдың орнына <a href="https://www.inaturalist.org/users/edit">оны елемеуді</a> қарастырыңыз.<br/><br/>Егер аккаунтыңызды әлі де жойғыңыз келетініне сенімді болсаңыз, төмендегі пішінге <b>\"%1$s\"</b> енгізіңіз және аккаунтыңызды және барлық деректеріңізді жою үшін түймені басыңыз.]]></string>
     <string name="your_account_has_been_deleted">Сіздің аккаунтыңыз жойылды</string>
     <string name="you_must_enter_username_in_the_form_to_delete_account">Аккаунтты жою үшін пішінге \'%1$s\' енгізуіңіз керек</string>
     <!-- Second person hint text asking the user to enter their username -->
     <string name="type_your_username">Пайдаланушы атыңызды теріңіз</string>
     <string name="error_deleting_account">Аккаунтыңызды жою кезінде қате орын алды - Интернет байланысын тексеріңіз</string>
     <string name="verify_your_password">Құпия сөзіңізді растаңыз</string>
-    <string name="third_party_data_sharing">Third-party Data Sharing</string>
-    <string name="disable_third_party_data_sharing">Disable Third-party Data Sharing</string>
+    <string name="third_party_data_sharing">Деректерді үшінші тараппен бөлісу</string>
+    <string name="disable_third_party_data_sharing">Деректерді үшінші тараппен бөлісуді өшіру</string>
     <string name="do_not_collect_third_party_data">Үшінші тарап қызметтерін пайдаланып тұрақтылық пен пайдалану деректерін жинамау</string>
     <string name="enabled">Қосулы</string>
     <string name="disabled">Өшірулі</string>
-    <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third-party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
-    <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
-    <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third-party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
-    <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[Біз тұрақтылықты бақылау және бағдарламалық құралдағы қателер мен ақауларды диагностикалау үшін әртүрлі үшінші тарап қызметтерін пайдаланамыз. Бұл үшінші тараптар мыналарды қамтиды:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="third_party_data_sharing_notes2"><![CDATA[Осы үшінші тараптармен бөлісетін ақпаратқа мыналар кіреді:<br/><ul><li> IP мекенжайлары (олар қала деңгейіндегі орналасқан жерді анықтау және әртүрлі веб-сайттар мен қызметтерде сізді бақылау үшін пайдаланылуы мүмкін; сонымен қатар, біз Google Analytics жүйесінде <a href="https://support.google.com/analytics/answer/2763052">IP анонимизациясы</a> қосқанымызды және <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> IP мекенжайын біз білетіндей жазбайтындығын ескеріңіз)</li><li>Браузер мәліметтері, мысалы, маркасы, үлгісі және нұсқасы</li><li>Ақау туралы мәліметтер, дәл қай код жолы бұзылғандығы туралы</li><li>Ұялы телефонның маркасы мен үлгісі сияқты құрылғы мәліметтері</li></ul>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b>Бұл үшінші тарап қызметтері iNaturalist-тің салыстырмалы түрде шағын қызметкерлерімен тұрақтылығы мен қолайлылығын сақтауда бізге үлкен мән береді</b>. Мобильді құрылғыларда бағдарламалық жасақтама біз басқармайтын құрылғыларда жұмыс істеп тұрғандықтан туындайтын мәселелерді түсінудің басқа жолы жоқ. Кейде біз мұндай мәселелерді осы қызметтер ұсынатын деректерде көрмейінше, олардың орын алғанын білмейміз. <b>Осы ақпаратты бөлісу арқылы сіз бізге және бүкіл iNaturalist қауымдастығына қызмет көрсетуге көмектесесіз.</b>]]></string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[Бұл опцияның біз осы компанияларға нақты жіберіп жатқан талдаулар мен ақау деректеріне ғана қолданылатынын ескеріңіз. Барлық iNaturalist серверлерін Microsoft қамтамасыз етеді және орналастырады, барлық iNaturalist суреттерін Amazon орналастырады және барлық дерлік iNaturalist карталарына Google қызмет көрсетеді, яғни iNaturalist сайтындағы бақылауды көрген сайын сіз осы компаниялар ұсынатын қызметтерге қосыласыз және кем дегенде оларға IP мекенжайыңызды көрсетесіз (iPhone қолданбасында біз Apple карталарын қолданамыз). iNaturalist бұл компаниялар ұсынатын қызметтерсіз болмауы мүмкін және iNat пайдалану кезінде олармен бөлісетін деректердің көлемі мен түрлерін шектей алатынымызға қарамастан, деректер ағынын толығымен тоқтата алмаймыз.]]></string>
     <string name="common_names_place"><![CDATA[Жалпы атаулар орны: <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">Белгілі бір жердегі жалпы атауларға басымдық беру үшін түртіңіз.</string>
     <string name="search_places">Орындарды іздеу</string>
     <string name="restart_app">Қолданбаны қайта іске қосу</string>
-    <string name="disable_third_party_sharing_restart">To disable third party data sharing immediately, the app must restart.</string>
+    <string name="disable_third_party_sharing_restart">Деректерді үшінші тараппен бөлісуді дереу өшіру үшін қолданба қайта іске қосылуы керек.</string>
     <plurals name="are_you_sure_you_want_to_delete_observations">
         <item quantity="one">Осы %1$d бақылауды шынымен жойғыңыз келе ме?</item>
         <item quantity="other">Осы %1$d бақылауды шынымен жойғыңыз келе ме?</item>
     </plurals>
-    <string name="future_observed_on_date_error">Your observation was created (and submitted) on %1$s, but you\'re trying to set an observation date that is later than that: %2$s</string>
+    <string name="future_observed_on_date_error">Бақылауыңыз %1$s күні жасалды (және жіберілді), бірақ сіз одан кейінірек бақылау күнін орнатуға әрекет жасап жатырсыз: %2$s</string>
     <string name="no_more_photos_allowed">Бақылауларда тек %1$d фотосурет болуы мүмкін. Қосымша қосу үшін кейбірін алып тастау керек.</string>
-    <string name="warning_multiple_photos">If you\'re adding photos of different kinds of organisms to this observation, or the same kind at different places or times, you should remove those photos and add them as separate observations. An observation can only have %1$d photos.</string>
+    <string name="warning_multiple_photos">Егер сіз осы бақылауға ағзалардың әртүрлі түрлерінің фотосуреттерін немесе әртүрлі жерлерде немесе уақыттағы бірдей түрді қосып жатсаңыз, сол фотосуреттерді алып тастап, оларды бөлек бақылаулар ретінде қосуыңыз керек. Бақылауда тек %1$d фотосурет болуы мүмкін.</string>
     <string name="choosing_specific_language_warning">Аккаунт үшін белгілі бір тілді таңдау үшін Интернет байланысы қажет</string>
-    <string name="running_in_background_notfication">Running in the background so we can run without interruption</string>
+    <string name="running_in_background_notfication">Фондық режимде жұмыс істелгендіктен үзіліссіз жұмыс істей аламыз</string>
     <string name="opt_out_of_community_taxon">Қауымдастық таксонынан бас тарту</string>
     <string name="opt_in_to_community_taxon">Қауымдастық таксонына қосылу</string>
-    <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
+    <string name="opt_out_message">Қауымдастық таксонынан бас тарту бұл бақылауды осы бақылауға қосылған барлық идентификациялардан алынған таксонмен емес, ағымдағы идентификациядағы таксонмен байланыстыруға мәжбүр етеді. Егер жеткілікті сарапшылар сізбен келіспесе, сіздің бақылауыңыз Кездейсоқ дәрежесін алады. Сіздің идентификацияңыз дұрыс және басқа идентификациялар дұрыс емес екеніне сенімді болсаңыз ғана бас тартуыңыз керек.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
     <string name="permission_required">Рұқсат қажет</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
@@ -872,7 +872,7 @@
     <!-- Dialog title when displaying a message that an action is not permitted -->
     <string name="forbidden">Тыйым салынған</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
-    <string name="app_you_shared_blocked">Сіз бөліскен қолданба бақылауға жарамсыз фотосуреттерді жасайды, себебі олар сіздің басқа организммен тәжірибеңіздің дәлелі болып табылмайды, оларда сәйкес емес брендинг немесе коммерциялық контент бар немесе олар біздің Қызмет көрсету шарттарын басқа жолмен бұзады.</string>
+    <string name="app_you_shared_blocked">Сіз бөліскен қолданба бақылауға жарамсыз фотосуреттерді жасайды, себебі олар сіздің басқа ағзамен тәжірибеңіздің дәлелі болып табылмайды, оларда сәйкес емес брендинг немесе коммерциялық контент бар немесе олар біздің Қызмет көрсету шарттарын басқа жолмен бұзады.</string>
     <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">Көп таңдау режимінде бақылауды таңдауға арналған құсбелгі</string>
     <!-- Description of a UI element for screen readers -->
@@ -895,7 +895,7 @@
     <string name="new_message">Жаңа хабарлама</string>
     <string name="search_for_inaturalist_users">iNaturalist пайдаланушыларын іздеу</string>
     <string name="please_sign_in_for_messages">Хабарламаларды көру үшін жүйеге кіруіңіз керек.</string>
-    <string name="sorry">Өкінішті</string>
+    <string name="sorry">Кешіріңіз</string>
     <string name="you_must_have_three_observations">Мұны істеу үшін сізде үш анықталатын бақылау немесе басқалар үшін жасалған үш идентификацияңыз болу керек.</string>
     <string name="mute_this_user">Бұл пайдаланушыны елемеу</string>
     <string name="unmute_this_user">Бұл пайдаланушыны елемеуден бас тарту</string>
@@ -1055,7 +1055,7 @@
     <string name="choose_this_option">Осы опцияны таңдау</string>
     <string name="compare_observation_with_this_option">Осы опциямен бақылауды салыстыру</string>
     <string name="go_back">Артқа қайту</string>
-    <string name="change_the_source_of_the_suggestions">Ұсыныстар көзін өзгерту</string>
+    <string name="change_the_source_of_the_suggestions">Ұсыныстар дереккөзін өзгерту</string>
     <string name="thumbnail_photo_for_suggested_taxon">Ұсынылған таксонның нобай фотосуреті</string>
     <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
     <string name="comments_ids_title">Пікірлер мен идентификациялар</string>
@@ -1065,7 +1065,7 @@
     <string name="previous_option">Алдыңғы опция</string>
     <!-- Accessibility text for a button that navigates to the next option in a list of options -->
     <string name="next_option">Келесі опция</string>
-    <string name="no_observations_yet2">Әзірге бақылаулар жоқ!</string>
+    <string name="no_observations_yet2">Әзірге бақылаулар жоқ.</string>
     <string name="no_species_yet">Әзірге түрлер жоқ.</string>
     <string name="no_identifications_yet">Әзірге идентификациялар жоқ.</string>
     <string name="sort_by">Осылайша сұрыптау</string>
@@ -1094,10 +1094,10 @@
     <!-- Error message shown when an attempt to unfollow an observation fails -->
     <string name="could_not_unfollow_observation">Осы бақылауға жазылудан бас тарту мүмкін болмады</string>
     <!-- Label for a button to copy the coordinates of an observation -->
-    <string name="copy_coordinates">Координаталарды көшіру</string>
+    <string name="copy_coordinates">Координаттарды көшіру</string>
     <string name="coordinates_copied_to_clipboard">Координаттар алмасу буферіне көшірілді</string>
     <!--  Title of a section on the observation detail view that displays minor metadata  -->
-    <string name="metadata">Metaдеректер</string>
+    <string name="metadata">Метадеректер</string>
     <!--  iNat observation identifier  -->
     <string name="id">ID</string>
     <!--  iNat observation Universally Unique Identifier  -->
@@ -1125,12 +1125,12 @@
     <string name="existing_observation_licenses_have_been_updated">Бақылау лицензияларының барлығы %1$s болып өзгертілді.</string>
     <string name="existing_photo_licenses_have_been_updated">Фотосурет лицензияларының барлығы %1$s болып өзгертілді.</string>
     <string name="existing_sound_licenses_have_been_updated">Дыбыс лицензияларының барлығы %1$s болып өзгертілді.</string>
-    <string name="default_licenses_description"><![CDATA[Licensing your content gives anyone the legal right to use it without asking your permission if they abide by the terms of the license. In addition, iNat includes your Creative Commons-licensed content in regularly-updated archives produced for select partner organizations interested in our data. For example, we include No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC) records in the archive we generate for the <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, an international, inter-governmental organization that compiles and distributes biodiversity information from around the world.]]></string>
+    <string name="default_licenses_description"><![CDATA[Контентіңізді лицензиялау кез келген адамға лицензия шарттарын орындайтын болса, оны сіздің рұқсатыңызды сұрамай пайдалануға заңды құқық береді. Бұған қоса, iNat сіздің Creative Commons лицензиясы бар контентіңізді қызығушылық танытатын таңдаулы серіктес ұйымдар үшін жасалған жүйелі түрде жаңартылатын мұрағаттарға қосады. Мысалы, біз бүкіл әлемдегі биоәртүрлілік туралы ақпаратты құрастыратын және тарататын халықаралық, үкіметаралық ұйым <a href="https://www.gbif.org/">Жаһандық биоалуантүрлілік туралы ақпарат орталығы (GBIF)</a> үшін жасаған мұрағатқа авторлық құқығы жоқ (CC0), авторы көрсетілуі тиіс (CC BY) және коммерциялық емес пайдалану құқығы бар (CC BY-NC) жазбаларды қосамыз.]]></string>
     <string name="photo_license">Фотосурет лицензиясы</string>
     <string name="sound_license">Дыбыс лицензиясы</string>
-    <string name="edit_photo_license">Фотосурет лицензиясын өңдеу</string>
+    <string name="edit_photo_license">Фотосурет лицензиясын өзгерту</string>
     <string name="observation_license">Бақылау лицензиясы</string>
-    <string name="edit_observation_license">Бақылау лицензиясын өңдеу</string>
+    <string name="edit_observation_license">Бақылау лицензиясын өзгерту</string>
     <string name="about_licenses">Лицензиялар туралы</string>
     <string name="view_license">Лицензияны көру</string>
     <!-- License Names -->
@@ -1143,15 +1143,15 @@
     <string name="license_name_cc_by_sa">Атрибуция-Бірдей бөлісу</string>
     <string name="license_name_no_license">Барлық құқықтар сақталған</string>
     <!-- License Descriptions -->
-    <string name="license_description_cc0">This license releases your work into the public domain, so others can copy, modify, distribute and perform your work, even for commercial purposes, all without asking permission or giving you credit. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.</string>
-    <string name="license_description_cc_by">This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation.</string>
-    <string name="license_description_cc_by_nc">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
-    <string name="license_description_cc_by_nc_sa">This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms.</string>
-    <string name="license_description_cc_by_nc_nd">This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can\'t change them in any way or use them commercially.</string>
-    <string name="license_description_cc_by_nd">This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.</string>
-    <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
+    <string name="license_description_cc0">Бұл лицензия жұмысыңызды жалпыға ортақ доменге айналдырады, сондықтан басқалар сіздің жұмысыңызды, тіпті коммерциялық мақсатта да рұқсат сұрамай немесе сіздің автор екеніңізді көрсетпей, көшіре, өзгерте, тарата және орындай алады. Бұл ұсынылған лицензиялардың ең қолайлысы. Лицензияланған материалдарды барынша тарату және пайдалану үшін ұсынылады.</string>
+    <string name="license_description_cc_by">Бұл лицензия басқаларға сіздің жұмысыңызды таратуға, ремиксациялауға, түзетуге және бастапқы жасау үшін сіздің автор екеніңізді көрсеткен жағдайда, тіпті коммерциялық тұрғыдан да құруға мүмкіндік береді.</string>
+    <string name="license_description_cc_by_nc">Бұл лицензия басқаларға жұмысыңызды коммерциялық емес түрде ремиксациялауға, өзгертуге және оның негізінде құруға мүмкіндік береді және олардың жаңа жұмыстары да сіздің автор екеніңізді көрсетуі және коммерциялық емес болуы керек болса да, олардың туынды жұмыстарын бірдей шарттармен лицензиялаудың қажеті жоқ.</string>
+    <string name="license_description_cc_by_nc_sa">Бұл лицензия басқаларға сіздің жұмысыңызды коммерциялық емес түрде ремиксациялауға, өзгертуге және негізінде құруға мүмкіндік береді, егер олар сіздің автор екеніңізді көрсетіп, жаңа туындыларына бірдей шарттармен лицензия берсе.</string>
+    <string name="license_description_cc_by_nc_nd">Бұл лицензия алты негізгі лицензияның ішіндегі ең шектеуші болып табылады, тек басқаларға жұмыстарыңызды жүктеп алуға және сіздің автор екеніңізді көрсеткен жағдайда оларды басқалармен бөлісуге мүмкіндік береді, бірақ олар оларды ешбір жолмен өзгерте немесе коммерциялық мақсатта пайдалана алмайды.</string>
+    <string name="license_description_cc_by_nd">Бұл лицензия өзгеріссіз және толығымен сіздің автор екеніңіз көрсетілген жағдайда, коммерциялық және коммерциялық емес негізде қолдануға мүмкіндік береді.</string>
+    <string name="license_description_cc_by_sa">Бұл лицензия басқаларға сіздің жұмысыңызды ремиксациялауға, бейімдеуге және сіздің жұмысыңызды коммерциялық мақсаттарға негіздеуге мүмкіндік береді, егер олар сіздің автор екеніңізді көрсетіп, жаңа туындыларын бірдей шарттармен лицензиялаған болса. Бұл лицензия жиі «copyleft» тегін және ашық бастапқы бағдарламалық жасақтама лицензияларымен салыстырылады. Сіздікіне негізделген барлық жаңа жұмыстар бірдей лицензияға ие болады, сондықтан кез келген туындылар коммерциялық пайдалануға мүмкіндік береді. Бұл Уикипедия пайдаланатын лицензия және Уикипедия контентін және сол сияқты лицензияланған жобаларды енгізуден пайда көретін материалдар үшін ұсынылады.</string>
     <string name="license_description_no_license">Қызмет көрсету шарттарында iNaturalist-ке берілген құқықтардан басқа, сіз контентке қатысты толық авторлық құқықты сақтайсыз.</string>
-    <string name="invalid_photo">Фото форматына қолдау көрсетілмейді</string>
+    <string name="invalid_photo">Фотосурет форматына қолдау көрсетілмейді</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">%1$s, %2$s, %3$s және т.б. қоса, iNaturalist қауымдастығы ұсынған бақылаулар мен идентификацияларға негізделген ұсыныстар.</string>
     <!-- Preference to control what tapping on the action button does on My Observations -->
@@ -1165,7 +1165,7 @@
     <string name="open_menu_for_more_options">Қосымша опциялар үшін мәзірді ашу</string>
     <string name="change_user_profile_photo">Пайдаланушы профилінің фотосуретін өзгерту</string>
     <string name="expand_list">Тізімді кеңейту</string>
-    <string name="change_map_layers">Карта қабаттарын өзгерту (жер бедері мен жер серігі)</string>
+    <string name="change_map_layers">Карта қабаттарын өзгерту (жер бедері/жер серігі)</string>
     <string name="redo_observation_search">Осы карта аймағында бақылау іздеуді қайталау</string>
     <string name="view_observations_on_map">Бақылауларды картадан қарау</string>
     <string name="view_observations_on_grid">Бақылауларды тор арқылы қарау</string>
@@ -1173,7 +1173,7 @@
     <string name="observation_has_sounds">Бақылауда дыбыстар бар</string>
     <string name="go_to_my_location">Менің ағымдағы орналасқан жеріме өту</string>
     <string name="change_geoprivacy">Геоқұпиялылықты өзгерту</string>
-    <string name="active_filters">Белсенді фильтрлер</string>
+    <string name="active_filters">Белсенді сүзгілер</string>
     <string name="message_is_flagged">Хабарламаға белгі қойылған</string>
     <string name="user_is_muted">Пайдаланушы еленбеуде</string>
     <string name="cancel_multiple_obs_selection">Бірнеше бақылауды таңдаудан бас тарту</string>
@@ -1214,4 +1214,5 @@
     <string name="app_version_copied_to_clipboard">Қолданба нұсқасы алмасу буферіне көшірілді</string>
     <string name="authentication_failed">Аутентификация орындалмады</string>
     <string name="please_try_again_soon">Жақын арада әрекетті қайталап көріңіз.</string>
+    <string name="verify_your_email">Электрондық пошта мекенжайыңызды растаңыз</string>
 </resources>
