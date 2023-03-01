@@ -185,8 +185,8 @@ public class LocationDetailsActivity extends AppCompatActivity implements Locati
             finish();
             return true;
         case R.id.copy_coordinates:
-            Double latitude = (mObservation.geoprivacy == null) || (mObservation.geoprivacy.equals("open")) ? mObservation.latitude : mObservation.private_latitude;
-            Double longitude = (mObservation.geoprivacy == null) || (mObservation.geoprivacy.equals("open")) ? mObservation.longitude : mObservation.private_longitude;
+            Double latitude = mObservation.private_latitude == null ? mObservation.latitude : mObservation.private_latitude;
+            Double longitude = mObservation.private_longitude == null ? mObservation.longitude : mObservation.private_longitude;
 
             if (latitude == null || longitude == null) return true;
 
