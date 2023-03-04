@@ -138,6 +138,7 @@ public class INaturalistServiceImplementation {
     private boolean mServiceUnavailable = false;
 
     private JSONArray mResponseErrors;
+    private JSONObject mLastResponseJson;
 
     private String mNearByObservationsUrl;
     private int mLastStatusCode = 0;
@@ -3347,7 +3348,17 @@ public class INaturalistServiceImplementation {
 
         if ((mResponseErrors != null) || (array == null)) {
             // Couldn't update user
-            return null;
+            if ((mLastResponseJson != null) && (mLastResponseJson.has("error"))) {
+                // API returned specific validation errors - return those
+                try {
+                    return mLastResponseJson.getJSONObject("error").getJSONObject("original");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    return null;
+                }
+            } else {
+                return null;
+            }
         } else {
             return array.optJSONObject(0);
         }
@@ -5889,6 +5900,7 @@ public class INaturalistServiceImplementation {
 
         try {
             mResponseErrors = null;
+            mLastResponseJson = null;
 
             Request request = requestBuilder.method(method, requestBody).build();
             Response response = client.newCall(request).execute();
@@ -5929,6 +5941,7 @@ public class INaturalistServiceImplementation {
             try {
                 if ((json != null) && (json.length() > 0)) {
                     JSONObject result = json.getJSONObject(0);
+                    mLastResponseJson = result;
                     if (result.has("errors")) {
                         // Error response
                         Logger.tag(TAG).error("Got an error response: " + result.get("errors").toString());
