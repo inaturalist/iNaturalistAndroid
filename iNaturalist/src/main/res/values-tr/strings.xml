@@ -1217,4 +1217,6 @@ Ticari Olmayan Atfetme (CC BY-NC), gibi kayıtların  biyolojik çeşitlilik bil
     <string name="authentication_failed">Kimlik Doğrulama Başarısız</string>
     <string name="please_try_again_soon">Lütfen daha sonra tekrar deneyin.</string>
     <string name="verify_your_email">E-posta Adresini Doğrula</string>
+    <string name="after_you_change_your_password">Şifreni değiştirdikten sonra oturumun kapatılacak ve yeni şifrenle tekrar oturum açman gerekecektir. Ayrıca iNaturalist mobil uygulamalarından ve adına iNaturalist\'e gönderi yapan diğer uygulamalardan veya web sitelerinden de çıkış yapacaksın, bu nedenle bunu yapmadan önce bekleyen gözlemlerini yüklediğinden emin ol. Yüklenmeyen tüm gözlemler kaybolacaktır.</string>
+    <string name="couldnt_upload_file_too_large">Dosya yüklenemedi - 20 MB\'den büyük</string>
 </resources>

@@ -1225,4 +1225,6 @@ non, tant que le travail demeure inchangé et complet, et que vous êtes mention
     <string name="authentication_failed">Échec de l\'authentification</string>
     <string name="please_try_again_soon">Veuillez réessayer plus tard.</string>
     <string name="verify_your_email">Vérifiez votre adresse e-mail</string>
+    <string name="after_you_change_your_password">Quand vous aurez changé votre mot de passe, votre session prendra fin et vous devrez vous reconnecter avec votre nouveau mot de passe. Vous devrez également vous reconnecter sur les applications mobiles iNaturalist et toutes les autres applications ou sites Web qui publient sur iNaturalist en votre nom. Assurez-vous donc d\'avoir téléchargé au préalable toutes les observations en attente. Les observations qui n\'auront pas été téléchargées seront perdues.</string>
+    <string name="couldnt_upload_file_too_large">Échec du téléchargement. Le fichier doit faire moins de 20 Mo.</string>
 </resources>

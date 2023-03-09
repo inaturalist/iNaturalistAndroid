@@ -78,7 +78,7 @@
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">เห็นด้วย?</string>
     <string name="no_comments">ยังไม่มีความคิดเห็น / การระบุตัวตน</string>
-    <string name="add_comment">เพิ่มความคิดเห็น</string>
+    <string name="add_comment">ความคิดเห็น</string>
     <string name="add_id">เพิ่มการจำแนก</string>
     <string name="remarks">หมายเหตุ</string>
     <string name="enter_taxon_name">ชื่อชนิด</string>
@@ -297,7 +297,7 @@
     <string name="fave_this_observation">บันทึกการสังเกตนี้</string>
     <string name="faved">บันทึกแล้ว</string>
     <string name="be_the_first_to_fave_this_obs">เป็นคนแรกที่บันทึกการสังเกตนี้ ...</string>
-    <string name="leave_a_comment">แสดงความคิดเห็นหรือแนะนำการระบุตัวตน ...</string>
+    <string name="leave_a_comment">แสดงความคิดเห็นหรือจำแนกชนิด...</string>
     <string name="location_coords">Lat: %1$s Lon: %2$s Acc. %3$s</string>
     <string name="location_coords_no_acc">Lat: %1$s Lon: %2$s</string>
     <string name="location">ตำแหน่ง</string>
@@ -315,7 +315,7 @@
     <string name="finding_current_location">กำลังค้นหาตำแหน่งปัจจุบัน...</string>
     <string name="flag_as_captive">รายงานว่าถูกจับมา/เพาะปลูก</string>
     <string name="observation_flagged_as_captive">การสังเกตนี้ได้รับรายงานว่าถูกจับมา/เพาะปลูก</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">แน่ใจหรือไม่ว่าต้องการรายงานว่าถูกจับมา/เพาะปลูก?</string>
     <string name="do_you_agree_to_the_following">คุณเห็นด้วยกับสิ่งต่อไปนี้หรือไม่?</string>
     <string name="terms">ข้อตกลง</string>
     <string name="observation_rules">กฎการสังเกต</string>
@@ -405,12 +405,12 @@
     <string name="ok_got_it">โอเค เข้าใจแล้ว!</string>
     <string name="could_not_download_observations">ไม่สามารถดาวน์โหลดข้อสังเกตล่าสุด - ปัญหาการเชื่อมต่อ โปรดลองอีกครั้งในภายหลัง</string>
     <string name="no_news_yet">ยังไม่มีข่าว คอยติดตาม!</string>
-    <string name="my_content">เนื้อหาของคุณ</string>
+    <string name="my_content">ของฉัน</string>
     <string name="following">กำลังติดตาม</string>
     <string name="no_updates_yet">ยังไม่มีการอัปเดต คอยติดตาม!</string>
     <string name="you_will_only_receive_updates_when_creating">(คุณจะได้รับการอัปเดตเมื่อคุณได้สร้างข้อสังเกตเท่านั้น)</string>
     <string name="you_will_only_receive_updates_when_following">(คุณจะได้รับการอัปเดตเมื่อคุณติดตามการสังเกตเท่านั้น)</string>
-    <string name="user_activity_id"><![CDATA[<b>%1$s</b> แนะนำ ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_id"><![CDATA[<b>%1$s</b> จำแนกว่าเป็น: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> แสดงความคิดเห็น: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_mention"><![CDATA[%1$s พูดถึงคุณ: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">ดูเหมือนว่าคุณลบรูปภาพโดยล้างแคชของแอพก่อนที่จะอัปโหลด คุณจะต้องเพิ่มรูปภาพกลับไปที่การสังเกตจากแกลเลอรีของคุณ ในอนาคตโปรดตรวจสอบให้แน่ใจว่าคุณได้อัปโหลดรูปภาพทั้งหมดของคุณก่อนที่จะล้างแคชของแอป</string>
@@ -460,7 +460,7 @@
     <string name="suggest_species">แนะนำชนิด</string>
     <string name="suggest_species_description">แนะนำชนิดตามความคล้ายของรูปถ่าย</string>
     <string name="visually_similar">ภาพที่คล้ายกัน</string>
-    <string name="visually_similar_seen_nearby">ภาพที่คล้ายกัน / มองเห็นได้ในบริเวณใกล้เคียง</string>
+    <string name="visually_similar_seen_nearby">รูปคล้ายกัน / พบบริเวณใกล้เคียง</string>
     <string name="seen_nearby">เห็นในบริเวณใกล้เคียง</string>
     <string name="enlarge">ขยาย</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
@@ -582,8 +582,8 @@
     <string name="leave_comment">เลิกแสดงความคิดเห็น...</string>
     <string name="swipe">ปัด</string>
     <string name="swipe_indicator">›</string>
-    <string name="potential_disagreement">ความไม่เห็นด้วยที่อาจเกิดขึ้น</string>
-    <string name="do_you_think_this_could_be"><![CDATA[มีหลักฐานเพียงพอที่จะยืนยันได้หรือไม่ <b>%1$s</b>?]]></string>
+    <string name="potential_disagreement">ความขัดแย้งที่เป็นไปได้</string>
+    <string name="do_you_think_this_could_be"><![CDATA[หลักฐานเพียงพอที่จะยืนยันได้หรือไม่ว่าเป็น <b>%1$s</b>?]]></string>
     <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
     <string name="i_dont_know_but"><![CDATA[ฉันไม่รู้ แต่ฉันแน่ใจว่านี่คือ <b>%1$s</b>.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[ไม่ แต่เป็นสมาชิกของ <b>%1$s</b>.]]></string>
@@ -856,7 +856,7 @@
     <string name="warning_multiple_photos">หากคุณกำลังเพิ่มภาพถ่ายของสิ่งมีชีวิตประเภทต่างๆในการสังเกตนี้หรือประเภทเดียวกันในสถานที่หรือเวลาต่างๆกันคุณควรลบรูปภาพเหล่านั้นออกและเพิ่มเป็นการสังเกตแยกกัน การสังเกตสามารถมีได้เท่านั้น %1$d รูปถ่าย</string>
     <string name="choosing_specific_language_warning">การเลือกภาษาเฉพาะสำหรับบัญชีของคุณต้องใช้การเชื่อมต่ออินเทอร์เน็ต</string>
     <string name="running_in_background_notfication">ทำงานอยู่เบื้องหลังเพื่อให้เราสามารถวิ่งได้โดยไม่หยุดชะงัก</string>
-    <string name="opt_out_of_community_taxon">เลือกไม่ใช้ Community Taxon</string>
+    <string name="opt_out_of_community_taxon">ไม่ต้องการคำแนะนำของชุมชน</string>
     <string name="opt_in_to_community_taxon">เลือกใช้ Community Taxon</string>
     <string name="opt_out_message">การเลือกไม่ใช้ Community Taxon จะบังคับให้การสังเกตนี้เชื่อมโยงกับ Taxon จากข้อมูลประจำตัวปัจจุบันของคุณไม่ใช่ Taxon ที่ได้มาจากการระบุทั้งหมดที่เพิ่มเข้ามาในข้อสังเกตนี้ หากมีตัวระบุที่ไม่เห็นด้วยกับคุณมากพอการสังเกตของคุณจะกลายเป็นเรื่องสบาย ๆ คุณควรเลือกไม่ใช้ก็ต่อเมื่อคุณแน่ใจว่าข้อมูลประจำตัวของคุณถูกต้องและการระบุอื่น ๆ ไม่ถูกต้อง</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
@@ -989,7 +989,7 @@
     <string name="filter_observations_by_months">กรองการสังเกตตามเดือน</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
-    <string name="include_suggestions_not_seen_nearby">รวมคำแนะนำที่ไม่เห็นในบริเวณใกล้เคียง</string>
+    <string name="include_suggestions_not_seen_nearby">รวมชนิดที่ไม่พบในบริเวณใกล้เคียง</string>
     <string name="only_view_nearby_suggestions">ดูคำแนะนำในบริเวณใกล้เคียงเท่านั้น</string>
     <string name="suggestions_source">ที่มาของคำแนะนำ</string>
     <string name="research_grade_observations">การสังเกตระดับงานวิจัย</string>
@@ -1176,7 +1176,7 @@
     <string name="id_count">จำนวนการจำแนก</string>
     <string name="observation_selected">Observation selected</string>
     <string name="share_observation">แชร์การสังเกต</string>
-    <string name="unknown_location">ไม่ทราบแหล่ง</string>
+    <string name="unknown_location">ไม่ทราบตำแหน่ง</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
     <string name="close">ปิด</string>
     <string name="set_date2">ตั้งวันที่</string>
@@ -1207,4 +1207,6 @@
     <string name="authentication_failed">Authentication Failed</string>
     <string name="please_try_again_soon">โปรดลองอีกครั้ง</string>
     <string name="verify_your_email">Verify Your Email Address</string>
+    <string name="after_you_change_your_password">เมื่อเปลี่ยนรหัสผ่านแล้ว คุณจะออกจากระบบและต้องลงชื่อเข้าใช้อีกครั้งด้วยรหัสผ่านใหม่ทั้งในแอปหรือเว็บไซต์เกี่ยวกับ iNaturalist ที่คุณใช้งานอยู่ โปรดตรวจสอบก่อนว่ามีการสังเกตที่ยังอัปโหลดค้างไว้หรือไม่ หากยังไม่อัปโหลดจะทำให้การสังเกตนั้นสูญหายได้</string>
+    <string name="couldnt_upload_file_too_large">อัปโหลดไฟล์ที่มีขนาดใหญ่เกิน 20MB ไม่ได้</string>
 </resources>

@@ -1215,4 +1215,6 @@
     <string name="authentication_failed">Authentication Failed</string>
     <string name="please_try_again_soon">Please try again soon.</string>
     <string name="verify_your_email">Verifique seu endereço eletrônico</string>
+    <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
 </resources>
