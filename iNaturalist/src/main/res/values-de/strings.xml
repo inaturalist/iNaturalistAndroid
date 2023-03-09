@@ -1220,4 +1220,6 @@ Facility</a> (GBIF) generieren: eine internationale, zwischenstaatliche Organisa
     <string name="authentication_failed">Authentifizierung fehlgeschlagen</string>
     <string name="please_try_again_soon">Bitte erneut versuchen.</string>
     <string name="verify_your_email">Bestätige deine E-Mail-Adresse</string>
+    <string name="after_you_change_your_password">Nachdem du dein Passwort geändert hast, wirst du abgemeldet und musst dich erneut mit deinem neuen Passwort anmelden. Du wirst auch von den mobilen Apps und anderen Apps oder Webseiten abgemeldet, mit denen du Beobachtungen an iNaturalist meldest, also überprüfe, dass alle ausstehenden Beobachtungen hochgeladen wurden, bevor du dein Passwort änderst. Alle nicht hochgeladenen Beobachtungen gehen verloren.</string>
+    <string name="couldnt_upload_file_too_large">Dateien größer als 20 MB können nicht hochgeladen werden</string>
 </resources>

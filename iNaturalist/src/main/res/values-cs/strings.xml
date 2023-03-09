@@ -1237,4 +1237,6 @@ a naše <a href="https://www.inaturalist.org/terms">Smluvní podmínky</a>.]]></
     <string name="authentication_failed">Ověření se nezdařilo</string>
     <string name="please_try_again_soon">Prosím, zkuste to brzy znovu.</string>
     <string name="verify_your_email">Verify Your Email Address</string>
+    <string name="after_you_change_your_password">Poté, co změníte své heslo, budete odhlášeni a budete se muset znovu přihlásit svým novým heslem. Budete také odhlášeni z mobilních aplikací iNaturalist a jakýchkoli dalších aplikací nebo webových stránek, které váš jménem publikují iNaturalist tak se ujistěte, že jste nahráli veškerá čekající pozorování, než to uděláte. Všechna pozorování, která nejsou nahrána, budou ztracena.</string>
+    <string name="couldnt_upload_file_too_large">Soubor nelze nahrát - větší než 20MB</string>
 </resources>

@@ -1219,4 +1219,6 @@ og <a href="https://www.inaturalist.org/terms">Tjenestevilkår</a>.]]></string>
     <string name="authentication_failed">Godkendelse mislykkedes</string>
     <string name="please_try_again_soon">Forsøg igen senere</string>
     <string name="verify_your_email">Bekræft din e-mailadresse</string>
+    <string name="after_you_change_your_password">Efter skift af adgangskoden, logget man ud og vil skulle logge ind igen med den nye adgangskode. Man logges også ud af iNaturalist mobil-apps samt alle øvrige apps eller websteder, som poster til iNaturalist på vegne af kontoen/brugeren, så sørg for at have uploadet alle udestående observationer, før dette gøres. Evt. ikke-uploadede observationer går tabt.</string>
+    <string name="couldnt_upload_file_too_large">Kunne ikke uploade fil — overstiger 20MB</string>
 </resources>

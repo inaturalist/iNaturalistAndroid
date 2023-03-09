@@ -1215,4 +1215,6 @@
     <string name="authentication_failed">Sikertelen hitelesítés</string>
     <string name="please_try_again_soon">Kérjük, próbáld újra később.</string>
     <string name="verify_your_email">Erõsítsd meg az e-mail címed</string>
+    <string name="after_you_change_your_password">A jelszavad módosítása után a rendszer kiléptet, majd az új jelszavaddal újra be kell lépned. Ugyanez történik az iNaturlalist mobilalkalmazásoknál is, és minden olyan weboldalnál és alkalmazásnál, amely a nevedben k-ld adatokat ay iNaturalistra. Bizonyosodj meg arról, hogy nincs függőben lévő megfigyelésed, mivel azok feltöltése megszakad, és a megfigyelés elveszik.</string>
+    <string name="couldnt_upload_file_too_large">A fájl feltöltése sikertelen - 20MB-nál nagyobb</string>
 </resources>

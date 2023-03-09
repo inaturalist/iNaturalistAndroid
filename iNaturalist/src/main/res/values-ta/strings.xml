@@ -22,7 +22,7 @@
     <string name="set_date">தேதி</string>
     <string name="set_time">நேரம்</string>
     <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
-    <string name="something_went_wrong">Blast, something went wrong: %1$s</string>
+    <string name="something_went_wrong">ஐயோ, ஏதோ தவறாகிவிட்டது: %1$s</string>
     <string name="edit">திருத்து</string>
     <string name="oh_no">Oh no! %1$s</string>
     <string name="observations">My Observations</string>
@@ -39,7 +39,7 @@
     <string name="add_observation">Add observation</string>
     <string name="take_picture">படம் எடு</string>
     <string name="save">சேமி</string>
-    <string name="no_observations_yet">No observations yet!</string>
+    <string name="no_observations_yet">இதுவரை கவனிப்பு எதுவுமில்லை!</string>
     <string name="or">அல்லது</string>
     <string name="signed_out">வெளியேறு</string>
     <string name="username">பயனர் பெயர்</string>
@@ -558,7 +558,7 @@
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
     <string name="any">Any</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
-    <string name="to">to</string>
+    <string name="to">பெறுநர்</string>
     <string name="exact_date">Exact Date</string>
     <string name="start">Start</string>
     <string name="end">End</string>
@@ -1215,4 +1215,6 @@
     <string name="authentication_failed">Authentication Failed</string>
     <string name="please_try_again_soon">Please try again soon.</string>
     <string name="verify_your_email">Verify Your Email Address</string>
+    <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
 </resources>
