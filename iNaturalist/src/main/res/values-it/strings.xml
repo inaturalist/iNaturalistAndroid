@@ -1217,6 +1217,6 @@ le <a href="https://www.inaturalist.org/pages/community+guidelines">Linee Guida 
     <string name="authentication_failed">Autenticazione Fallita</string>
     <string name="please_try_again_soon">Per favore riprova più tardi.</string>
     <string name="verify_your_email">Verifica il Tuo Indirizzo Email</string>
-    <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
-    <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="after_you_change_your_password">Dopo aver modificato la tua password, sarai disconnesso e dovrai accedere di nuovo con la tua nuova password. Sarai anche disconnesso dalle app mobili iNaturalist e da qualsiasi altra app o siti web che pubblicano su iNaturalist per tuo conto, quindi assicurati di aver caricato tutte le osservazioni in sospeso prima di farlo. Le osservazioni che non sono già caricate andranno perse.</string>
+    <string name="couldnt_upload_file_too_large">Non è possibile caricare il file - è più grande di 20MB</string>
 </resources>

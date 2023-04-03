@@ -583,7 +583,7 @@
     <string name="start">Початок</string>
     <string name="end">Закінчення</string>
     <string name="months">Місяці</string>
-    <string name="choose_months">Choose month(s)</string>
+    <string name="choose_months">Виберіть місяць(и)</string>
     <string name="map_area">Мапа ділянки</string>
     <string name="global">Загальні</string>
     <!-- As in redo search in the current map area -->
@@ -1242,9 +1242,9 @@
     <string name="remove_identification">Видалити визначення</string>
     <string name="issue_with_updating_photos">При оновленні фото в цьому спостереженні виникла помилка, яку нещодавно було виправлено. Будь ласка, вийдіть і увійдіть в систему знову, щоб розв\'язати цю проблему.</string>
     <string name="app_version_copied_to_clipboard">Версія додатку скопійована до буферу обміну</string>
-    <string name="authentication_failed">Authentication Failed</string>
-    <string name="please_try_again_soon">Please try again soon.</string>
-    <string name="verify_your_email">Verify Your Email Address</string>
+    <string name="authentication_failed">Помилка автентифікації</string>
+    <string name="please_try_again_soon">Будь ласка, спробуйте ще раз пізніше.</string>
+    <string name="verify_your_email">Підтвердьте адресу електронної пошти</string>
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
 </resources>

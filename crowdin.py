@@ -196,12 +196,12 @@ def validate_translation(path, key, text, en_string, errors, warnings,
             )
         # Find bad chars in DATE_FORMAT_KEYS
         if bad_characters and len(bad_characters) > 0:
-            if key not in errors[path]:
-                errors[path][key] = []
-            errors[path][key].append(
-                f"Invalid date format characters: {bad_characters}")
+            if key not in warnings[path]:
+                warnings[path][key] = []
+            warnings[path][key].append(
+                f"Invalid date format characters: {bad_characters} (maybe ok for non-Latin chars)")
             if options.debug:
-                print("\t\t{}".format(errors[path][key][-1]))
+                print("\t\t{}".format(warnings[path][key][-1]))
 
 
 def en_translations():

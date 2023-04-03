@@ -163,7 +163,7 @@
     </string-array>
     <string-array name="geoprivacy_items">
         <item>Open</item>
-        <item>Obscured</item>
+        <item>അവക്തമായ</item>
         <item>Private</item>
     </string-array>
     <string name="alert_sign_out">Are you sure you want to sign out? This will delete all your observations on this device. It will not affect any observations you\'ve uploaded to iNaturalist.</string>
