@@ -1220,6 +1220,6 @@ zonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van d
     <string name="authentication_failed">Authenticatie mislukt.</string>
     <string name="please_try_again_soon">Probeer het later nog eens</string>
     <string name="verify_your_email">Verifieer je e-mailadres</string>
-    <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <string name="after_you_change_your_password">Nadat jij jouw wachtwoord hebt gewijzigd wordt je afgemeld en moet je opnieuw inloggen met je nieuwe wachtwoord. Je wordt ook afgemeld bij de iNaturalist mobiele apps en andere apps of websites die in namens jou naar iNaturalist posten, dus zorg ervoor dat je alle lopende waarnemingen hebt geüpload voordat je dit doet. Alle waarnemingen die niet zijn geüpload gaan verloren.</string>
     <string name="couldnt_upload_file_too_large">Kon bestand niet uploaden - groter dan 20MB</string>
 </resources>

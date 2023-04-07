@@ -1215,6 +1215,6 @@
     <string name="authentication_failed">सत्यापन अयशस्वी</string>
     <string name="please_try_again_soon">कृपया थोड्या वेळाने पुन्हा प्रयत्न करा.</string>
     <string name="verify_your_email">आपल्या ई-मेल पत्त्याची खात्री करा</string>
-    <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
-    <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="after_you_change_your_password">म्ही तुमचा पासवर्ड बदलल्यानंतर, तुम्हाला साइन आउट केले जाईल आणि तुम्हाला तुमच्या नवीन पासवर्डने पुन्हा साइन इन करावे लागेल. तुम्हाला iNaturalist मोबाइल ऍप्स आणि तुमच्या वतीने iNaturalist वर पोस्ट करणार्‍या इतर कोणत्याही ऍप्स किंवा वेबसाइटमधून साइन आउट केले जाईल, म्हणून तुम्ही हे करण्यापूर्वी कोणतीही प्रलंबित निरीक्षणे अपलोड केली आहेत याची खात्री करा. अपलोड न केलेली कोणतीही निरीक्षणे गमावली जातील.</string>
+    <string name="couldnt_upload_file_too_large">फाइल अपलोड करू शकत नाही - 20MB पेक्षा मोठी</string>
 </resources>

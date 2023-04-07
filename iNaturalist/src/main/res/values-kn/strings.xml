@@ -145,7 +145,7 @@
     </plurals>
     <string name="sync_observations">ವೀಕ್ಷಣೆಗಳನ್ನು ಸಿಂಕ್ ಮಾಡಿ</string>
     <string name="lets_get_started">ನಾವೀಗ ಆರಂಭಿಸೋಣ!</string>
-    <string name="view_nearby_observations">ಸಮೀಪದ ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ</string>
+    <string name="view_nearby_observations">ಹತ್ತಿರದ ವೀಕ್ಷಣೆಗಳು ವೀಕ್ಷಿಸಿ</string>
     <string name="skip_for_now">ಸಧ್ಯಕ್ಕೆ ಮುಂದೆಹೋಗಿ</string>
     <string-array name="tutorial_titles">
         <item></item>
@@ -378,7 +378,7 @@
     <string name="multi_select_description">ಒಂದು ಬಿಡಿ ಚಿತ್ರದ ಮೇಲೆ ದೀರ್ಘವಾಗಿ ಒತ್ತುವುದರ ಮೂಲಕ ಅನೇಕ ಚಿತ್ರಗಳನ್ನು ಆಮದು ಮಾಡಿ</string>
     <string name="preparing_photo">ಚಿತ್ರವನ್ನು ಸಜ್ಜುಗೊಳಿಸಲಾಗುತ್ತಿದೆ...</string>
     <string name="recommended_for_you">ನಿಮಗೆ ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ</string>
-    <string name="missions">Missions</string>
+    <string name="missions">ಮಿಷನ್ನುಗಳು</string>
     <string name="browse_by_category">ವಿಭಾಗದಂತೆ ಬ್ರೌಸ್ ಮಾಡಿ</string>
     <string name="couldnt_load_recommended_missions">Couldn\'t load recommended missions: %1$s</string>
     <string name="plants">ಗಿಡಗಳು</string>
@@ -630,7 +630,7 @@
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
     <string name="attribute">ಗುಣವಿಶೇಷ</string>
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
-    <string name="value">Value</string>
+    <string name="value">ಮೌಲ್ಯ</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
     <string name="disagree">ಅಸಮ್ಮತಿಸಿ</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
@@ -888,7 +888,7 @@
     <string name="sending_message">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ...</string>
     <string name="could_not_send_message">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲಾಗಲಿಲ್ಲ: %1$s</string>
     <string name="subject">ವಿಷಯ</string>
-    <string name="body">Body</string>
+    <string name="body">ಒಡಲು</string>
     <string name="type_your_message_here">ನಿಮ್ಮ ಸಂದೇಶವನ್ನು ಇಲ್ಲಿ ಬರೆಯಿರಿ</string>
     <string name="new_message_to">%1$s ಇವರಿಗೆ ಹೊಸ ಸಂದೇಶ</string>
     <string name="who_would_you_like_to_send_a_message_to">ನೀವು ಯಾರಿಗೆ ಸಂದೇಶ ಕಳುಹಿಸಬೇಕೆಂದು ಬಯಸುತ್ತೀರಿ?</string>
@@ -899,7 +899,7 @@
     <string name="you_must_have_three_observations">ಅದನ್ನು ಮಾಡಲು ನೀವು ಮೂರು ಪರಿಶೀಲನಾರ್ಹ ವೀಕ್ಷಣೆಗಳನ್ನು ಅಥವಾ ಇತರರಿಗಾಗಿ ಮೂರು ಗುರುತಿಸುವಿಕೆಗಳನ್ನು ಹೊಂದಿರಬೇಕಾಗುತ್ತದೆ.</string>
     <string name="mute_this_user">ಈ ಬಳಕೆದಾರರನ್ನು ಮೌನವಾಗಿಸಿ</string>
     <string name="unmute_this_user">ಈ ಬಳಕೆದಾರರ ಮೌನ ನೀಗಿಸಿ</string>
-    <string name="flag_this_conversation">Flag this conversation</string>
+    <string name="flag_this_conversation">ಈ ಮಾತುಕತೆಯನ್ನು ಫ್ಲ್ಯಾಗ್ ಮಾಡಿ</string>
     <string name="mute_this_user_question">ಈ ಬಳಕೆದಾರರನ್ನು ಮೌನವಾಗಿಸಬೇಕೆ?</string>
     <string name="you_will_no_longer_receive_messages">ಈ ಬಳಕೆದಾರರಿಂದ ಸಂದೇಶಗಳು, ಪ್ರತಿಕ್ರಿಯೆಗಳು, ಗುರುತಿಸುವಿಕೆಗಳು ಮತ್ತು ಉಲ್ಲೇಖಗಳನ್ನು ಒಳಗೊಂಡಂತೆ ಅವರ 
 ಚಟುವಟಿಕೆಗಳ ಬಗೆಗಿನ ಯಾವುದೇ ಅಧಿಸೂಚನೆಗಳನ್ನು ನೀವು ಇನ್ನೆಂದಿಗೂ ಸ್ವೀಕರಿಸಲಾರಿರಿ. </string>
@@ -908,7 +908,7 @@
     <string name="unmuting_user">ಬಳಕೆದಾರರ ಮೌನ ನೀಗಿಸುತ್ತಿದೆ...</string>
     <string name="failed_muting_user">ಬಳಕೆದಾರರನ್ನು ಮೌನವಾಗಿಸುವಲ್ಲಿ ವಿಫಲವಾಗಿದೆ!</string>
     <string name="failed_unmuting_user">ಬಳಕೆದಾರರ ಮೌನ ನೀಗಿಸುವಲ್ಲಿ ವಿಫಲವಾಗಿದೆ!</string>
-    <string name="flag_conversation">Flag conversation</string>
+    <string name="flag_conversation">ಮಾತುಕತೆಯನ್ನು ಫ್ಲ್ಯಾಗ್ ಮಾಡಿ</string>
     <string name="spam">ಸ್ಪ್ಯಾಮ್</string>
     <string name="commercial_solicitation">Commercial solicitation, links to nowhere, etc.</string>
     <string name="offensive_inappropriate">ಅವಹೇಳನಕಾರಿ/ಅನುಚಿತ</string>
@@ -918,7 +918,7 @@
     <string name="continue_text">ಮುಂದುವರಿಸಿ</string>
     <string name="why_are_you_flagging_this_item">Why are you flagging this item?</string>
     <string name="thank_you_for_submitting_the_flag">Thank you for submitting the flag!</string>
-    <string name="flagging_conversation">Flagging conversation...</string>
+    <string name="flagging_conversation">ಮಾತುಕತೆಯನ್ನು ಫ್ಲ್ಯಾಗ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
     <string name="failed_flagging_conversation">Failed flagging conversation!</string>
     <string name="no_subject">ವಿಷಯ ಇಲ್ಲ</string>
     <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
@@ -936,7 +936,7 @@
     <string name="rank_suborder">ಉಪಗಣ</string>
     <string name="rank_infraorder">ನಿಮ್ನಗಣ</string>
     <string name="rank_subterclass">ಕೆಳವರ್ಗ</string>
-    <string name="rank_parvorder">Parvorder</string>
+    <string name="rank_parvorder">ಪಾರ್ವರ್ಡರ್</string>
     <string name="rank_zoosection">ಝೂವಿಭಾಗ</string>
     <string name="rank_zoosubsection">ಝೂಉಪವಿಭಾಗ</string>
     <string name="rank_superfamily">ಮೇಲ್‍ಕುಟುಂಬ</string>
@@ -1163,7 +1163,7 @@
     <!-- Placeholder text for an observation field value -->
     <string name="field_value">Field Value</string>
     <string name="expand_annotation_to_agree_or_disagree">ಸಮ್ಮತಿಸಲು ಅಥವಾ ಅಸಮ್ಮತಿಸಲು ಕಿರುಟಿಪ್ಪಣಿಯನ್ನು ವಿಸ್ತರಿಸಿ</string>
-    <string name="delete_attribute_value">Delete attribute value</string>
+    <string name="delete_attribute_value">ಗುಣಲಕ್ಷಣದ ಮೌಲ್ಯ ತೆಗೆದುಹಾಕಿ</string>
     <string name="open_menu_for_more_options">ಹೆಚ್ಚಿನ ಆಯ್ಕೆಗಳಿಗಾಗಿ ಮೆನುವನ್ನು ತೆರೆಯಿರಿ</string>
     <string name="change_user_profile_photo">ಬಳಕೆದಾರರ ಪರಿಚಯ ಚಿತ್ರವನ್ನು ಬದಲಿಸಿ</string>
     <string name="expand_list">ಪಟ್ಟಿ ವಿಸ್ತರಿಸಿ</string>
