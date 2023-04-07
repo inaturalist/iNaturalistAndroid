@@ -15,13 +15,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import com.google.android.material.tabs.TabLayout;
-
-import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.core.view.ViewCompat;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.ActionBar;
-
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -58,9 +55,6 @@ import com.google.maps.android.data.geojson.GeoJsonFeature;
 import com.google.maps.android.data.geojson.GeoJsonLayer;
 import com.google.maps.android.data.geojson.GeoJsonPolygon;
 import com.livefront.bridge.Bridge;
-
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.collections4.Predicate;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -135,6 +129,7 @@ public class ExploreActivity extends BaseFragmentActivity {
     private View mMapHide;
     private TextView mObservationsGridFilterBar;
     private TextView mObservationsMapFilterBar;
+    private CustomLocationProvider mCustomLocationProvider;
 
     private ImageView mObservationsViewModeGrid;
     private ImageView mObservationsViewModeMap;
@@ -405,6 +400,10 @@ public class ExploreActivity extends BaseFragmentActivity {
         BaseFragmentActivity.safeUnregisterReceiver(mAnnotationsReceiver, this);
 
         mLoadingNextResults = new boolean[]{false, false, false, false};
+
+        if (mCustomLocationProvider != null) {
+            mCustomLocationProvider.deactivate();
+        }
     }
 
     @Override
@@ -1384,6 +1383,8 @@ public class ExploreActivity extends BaseFragmentActivity {
 
                         if (mApp.isLocationPermissionGranted()) {
                             mObservationsMap.setMyLocationEnabled(true);
+                            mCustomLocationProvider = new CustomLocationProvider(ExploreActivity.this);
+                            mObservationsMap.setLocationSource(mCustomLocationProvider);
                         } else {
                             mObservationsMap.setMyLocationEnabled(false);
                         }

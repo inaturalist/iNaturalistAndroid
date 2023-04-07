@@ -9,6 +9,7 @@ import static java.net.HttpURLConnection.HTTP_OK;
 import static java.net.HttpURLConnection.HTTP_UNAUTHORIZED;
 import static java.net.HttpURLConnection.HTTP_UNAVAILABLE;
 import static java.net.HttpURLConnection.HTTP_CREATED;
+import static java.net.HttpURLConnection.HTTP_ENTITY_TOO_LARGE;
 
 import android.annotation.SuppressLint;
 import android.content.ContentUris;
@@ -137,6 +138,7 @@ public class INaturalistServiceImplementation {
     private boolean mServiceUnavailable = false;
 
     private JSONArray mResponseErrors;
+    private JSONObject mLastResponseJson;
 
     private String mNearByObservationsUrl;
     private int mLastStatusCode = 0;
@@ -3346,7 +3348,17 @@ public class INaturalistServiceImplementation {
 
         if ((mResponseErrors != null) || (array == null)) {
             // Couldn't update user
-            return null;
+            if ((mLastResponseJson != null) && (mLastResponseJson.has("error"))) {
+                // API returned specific validation errors - return those
+                try {
+                    return mLastResponseJson.getJSONObject("error").getJSONObject("original");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    return null;
+                }
+            } else {
+                return null;
+            }
         } else {
             return array.optJSONObject(0);
         }
@@ -3636,8 +3648,15 @@ public class INaturalistServiceImplementation {
             response = request( API_HOST + "/observation_sounds", "post", params, null, true, true, false);
 
             try {
-                if (response == null || response.length() != 1) {
+                if (response == null || response.length() != 1 || mLastStatusCode != HTTP_OK) {
                     c.close();
+
+                    if (mLastStatusCode == HTTP_ENTITY_TOO_LARGE) {
+                        JSONArray errors = new JSONArray();
+                        errors.put(mContext.getString(R.string.couldnt_upload_file_too_large));
+                        mApp.setErrorsForObservation(os.observation_id, 0, errors);
+                    }
+
                     throw new SyncFailedException();
                 }
 
@@ -3892,8 +3911,15 @@ public class INaturalistServiceImplementation {
             Logger.tag(TAG).debug("postPhotos: POSTing new photo: " + params);
             response = post(API_HOST + "/observation_photos", params, true);
             try {
-                if (response == null || response.length() != 1) {
+                if (response == null || response.length() != 1 || mLastStatusCode != HTTP_OK) {
                     c.close();
+
+                    if (mLastStatusCode == HTTP_ENTITY_TOO_LARGE) {
+                        JSONArray errors = new JSONArray();
+                        errors.put(mContext.getString(R.string.couldnt_upload_file_too_large));
+                        mApp.setErrorsForObservation(op.observation_id, 0, errors);
+                    }
+
                     throw new SyncFailedException();
                 }
 
@@ -5874,6 +5900,7 @@ public class INaturalistServiceImplementation {
 
         try {
             mResponseErrors = null;
+            mLastResponseJson = null;
 
             Request request = requestBuilder.method(method, requestBody).build();
             Response response = client.newCall(request).execute();
@@ -5914,6 +5941,7 @@ public class INaturalistServiceImplementation {
             try {
                 if ((json != null) && (json.length() > 0)) {
                     JSONObject result = json.getJSONObject(0);
+                    mLastResponseJson = result;
                     if (result.has("errors")) {
                         // Error response
                         Logger.tag(TAG).error("Got an error response: " + result.get("errors").toString());
