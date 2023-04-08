@@ -151,7 +151,6 @@ public class INaturalistServiceImplementation {
     public enum LoginType {
         PASSWORD,
         GOOGLE,
-        FACEBOOK,
         OAUTH_PASSWORD
     };
 
@@ -5892,7 +5891,7 @@ public class INaturalistServiceImplementation {
                     // Old-style password authentication
                     requestBuilder.addHeader("Authorization", "Basic " + mCredentials);
                 } else {
-                    // OAuth2 token (Facebook/G+/etc)
+                    // OAuth2 token (G+/etc)
                     requestBuilder.addHeader("Authorization", "Bearer " + mCredentials);
                 }
             }
@@ -6142,9 +6141,7 @@ public class INaturalistServiceImplementation {
                 .add("client_id", INaturalistApp.getAppContext().getString(R.string.oauth_client_id))
                 .add("client_secret", INaturalistApp.getAppContext().getString(R.string.oauth_client_secret));
 
-        if (authType == LoginType.FACEBOOK) {
-            grantType = "facebook";
-        } else if (authType == LoginType.GOOGLE) {
+        if (authType == LoginType.GOOGLE) {
             grantType = "google";
         } else if (authType == LoginType.OAUTH_PASSWORD) {
             grantType = "password";

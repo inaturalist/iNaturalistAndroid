@@ -1,7 +1,5 @@
 package org.inaturalist.android;
 
-import com.facebook.FacebookSdk;
-import com.facebook.login.LoginManager;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
@@ -26,8 +24,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -747,13 +743,6 @@ public class BaseFragmentActivity extends AppCompatActivity {
         SharedPreferences prefs = app.getPrefs();
         SharedPreferences.Editor prefEditor = prefs.edit();
         INaturalistServiceImplementation.LoginType loginType = INaturalistServiceImplementation.LoginType.valueOf(prefs.getString("login_type", INaturalistServiceImplementation.LoginType.OAUTH_PASSWORD.toString()));
-
-        if (loginType == INaturalistServiceImplementation.LoginType.FACEBOOK) {
-            FacebookSdk.setApplicationId(context.getString(R.string.facebook_app_id));
-            FacebookSdk.setClientToken(context.getString(R.string.facebook_client_token));
-            FacebookSdk.sdkInitialize(context);
-            LoginManager.getInstance().logOut();
-        }
 
         boolean shouldRestart = false;
 

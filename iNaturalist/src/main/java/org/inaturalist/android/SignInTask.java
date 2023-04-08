@@ -20,15 +20,6 @@ import androidx.core.content.ContextCompat;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.facebook.AccessToken;
-import com.facebook.AccessTokenTracker;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.tinylog.Logger;
@@ -41,13 +32,9 @@ public class SignInTask extends AsyncTask<String, Void, String> {
     private static final String GOOGLE_AUTH_TOKEN_TYPE = "oauth2:https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
     private boolean mPasswordVerificationForDeletion = false;
 
-    private AccessTokenTracker mFacebookAccessTokenTracker = null;
-
     private SharedPreferences mPreferences;
     private ActivityHelper mHelper;
     private SharedPreferences.Editor mPrefEditor;
-    private CallbackManager mFacebookCallbackManager;
-    private LoginButton mFacebookLoginButton;
     private String mUsername;
     private String mPassword;
     private INaturalistServiceImplementation.LoginType mLoginType;
@@ -76,68 +63,11 @@ public class SignInTask extends AsyncTask<String, Void, String> {
         mPrefEditor = mPreferences.edit();
         mHelper = new ActivityHelper(mActivity);
         mCallback = callback;
-        mFacebookLoginButton = null;
-        mFacebookCallbackManager = null;
     }
 
-    public SignInTask(Activity activity, SignInTaskStatus callback, LoginButton facebookLoginButton, boolean passwordVerificationForDeletion) {
+    public SignInTask(Activity activity, SignInTaskStatus callback, boolean passwordVerificationForDeletion) {
         this(activity, callback);
-        mFacebookLoginButton = facebookLoginButton;
         mPasswordVerificationForDeletion = passwordVerificationForDeletion;
-
-        if (mFacebookLoginButton != null) {
-            mFacebookAccessTokenTracker = new AccessTokenTracker() {
-                @Override
-                protected void onCurrentAccessTokenChanged(AccessToken oldToken, AccessToken newToken) {
-                    if (newToken != null) {
-                        String username = mPreferences.getString("username", null);
-                        if (username == null) {
-                            // First time login
-                            String accessToken = newToken.getToken();
-                            new SignInTask(activity, callback, facebookLoginButton, passwordVerificationForDeletion).execute(null, accessToken, INaturalistServiceImplementation.LoginType.FACEBOOK.toString());
-                        }
-                    }
-                }
-            };
-
-            mFacebookCallbackManager = CallbackManager.Factory.create();
-
-            ArrayList<String> permissions = new ArrayList<String>();
-            permissions.add("email");
-            mFacebookLoginButton.setReadPermissions(permissions);
-
-            mFacebookLoginButton.registerCallback(mFacebookCallbackManager, new FacebookCallback<LoginResult>() {
-                @Override
-                public void onSuccess(LoginResult loginResult) {
-
-                }
-
-                @Override
-                public void onCancel() {
-                    if (!isNetworkAvailable()) {
-                        Toast.makeText(mActivity.getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
-                    }
-                }
-
-                @Override
-                public void onError(FacebookException exception) {
-                    mLoginErrorMessage = exception.getMessage();
-                    Toast.makeText(mActivity.getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
-
-
-                    try {
-                        JSONObject eventParams = new JSONObject();
-                        eventParams.put(AnalyticsClient.EVENT_PARAM_FROM, AnalyticsClient.EVENT_VALUE_FACEBOOK);
-                        if (mLoginErrorMessage != null) eventParams.put(AnalyticsClient.EVENT_PARAM_CODE, mLoginErrorMessage);
-
-                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_LOGIN_FAILED, eventParams);
-                    } catch (JSONException e) {
-                        Logger.tag(TAG).error(e);
-                    }
-
-                }
-            });
-        }
     }
 
     private boolean isNetworkAvailable() {
@@ -190,14 +120,8 @@ public class SignInTask extends AsyncTask<String, Void, String> {
             // Ignore
         }
 
-        if (mFacebookAccessTokenTracker != null) {
-            mFacebookAccessTokenTracker.stopTracking();
-        }
-
         String loginType = null;
-        if (mLoginType == INaturalistServiceImplementation.LoginType.FACEBOOK) {
-            loginType = AnalyticsClient.EVENT_VALUE_FACEBOOK;
-        } else if ((mLoginType == INaturalistServiceImplementation.LoginType.OAUTH_PASSWORD) || (mLoginType == INaturalistServiceImplementation.LoginType.PASSWORD)) {
+        if ((mLoginType == INaturalistServiceImplementation.LoginType.OAUTH_PASSWORD) || (mLoginType == INaturalistServiceImplementation.LoginType.PASSWORD)) {
             loginType = AnalyticsClient.EVENT_VALUE_INATURALIST;
         } else if (mLoginType == INaturalistServiceImplementation.LoginType.GOOGLE) {
             loginType = AnalyticsClient.EVENT_VALUE_GOOGLE_PLUS;
@@ -218,11 +142,6 @@ public class SignInTask extends AsyncTask<String, Void, String> {
             }
 
         } else {
-            if (mLoginType == INaturalistServiceImplementation.LoginType.FACEBOOK) {
-                // Login failed - need to sign-out of Facebook as well
-                LoginManager.getInstance().logOut();
-            }
-
             try {
                 JSONObject eventParams = new JSONObject();
                 eventParams.put(AnalyticsClient.EVENT_PARAM_FROM, loginType);
@@ -266,10 +185,6 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (mFacebookCallbackManager != null) {
-            mFacebookCallbackManager.onActivityResult(requestCode, resultCode, data);
-        }
-
         if ((requestCode == REQUEST_CODE_ADD_ACCOUNT) && (resultCode == Activity.RESULT_OK)) {
             // User finished adding his account
             signIn(INaturalistServiceImplementation.LoginType.GOOGLE, mGoogleUsername, null);
@@ -365,14 +280,8 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 	}
 
     public void pause() {
-        if (mFacebookAccessTokenTracker != null) {
-            mFacebookAccessTokenTracker.stopTracking();
-        }
     }
     public void resume() {
-        if (mFacebookAccessTokenTracker != null) {
-            mFacebookAccessTokenTracker.startTracking();
-        }
     }
 
 }

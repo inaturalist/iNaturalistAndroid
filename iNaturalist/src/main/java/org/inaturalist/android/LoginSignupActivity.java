@@ -40,11 +40,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.facebook.FacebookSdk;
-import com.facebook.login.widget.LoginButton;
-
-import org.tinylog.Logger;
-
 import java.util.regex.Pattern;
 
 
@@ -86,7 +81,6 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
     private Button mSignup;
     private boolean mIsSignup;
     private SignInTask mSignInTask;
-    private LoginButton mFacebookLoginButton;
 
     private UserRegisterReceiver mUserRegisterReceiver;
     private TextView mTerms;
@@ -153,7 +147,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
     // Recreates a new instance of the sign in task if it finished running before (since an AsyncTask can only be run once).
     private void recreateSignInTaskIfNeeded() {
         if (mSignInTask.getStatus() == AsyncTask.Status.FINISHED) {
-            mSignInTask = new SignInTask(this, this, mFacebookLoginButton, mVerifyPassword);
+            mSignInTask = new SignInTask(this, this, mVerifyPassword);
         }
     }
 
@@ -440,21 +434,6 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
             mTerms.setVisibility(View.VISIBLE);
         }
         
-        View loginWithFacebook = findViewById(R.id.login_with_facebook);
-        loginWithFacebook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FacebookSdk.setApplicationId(getString(R.string.facebook_app_id));
-                FacebookSdk.setClientToken(getString(R.string.facebook_client_token));
-                FacebookSdk.sdkInitialize(getApplicationContext());
-                mFacebookLoginButton = new LoginButton(LoginSignupActivity.this);
-                mFacebookLoginButton.setLayoutParams(new RelativeLayout.LayoutParams(0, 0));
-
-                mSignInTask = new SignInTask(LoginSignupActivity.this, LoginSignupActivity.this, mFacebookLoginButton, mVerifyPassword);
-                mFacebookLoginButton.performClick();
-            }
-        });
-
         View loginWithGoogle = findViewById(R.id.login_with_gplus);
         loginWithGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -479,7 +458,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
             }
         });
 
-        mSignInTask = new SignInTask(this, this, null, mVerifyPassword);
+        mSignInTask = new SignInTask(this, this, mVerifyPassword);
 
         mSignup.setOnClickListener(new View.OnClickListener() {
             @Override
