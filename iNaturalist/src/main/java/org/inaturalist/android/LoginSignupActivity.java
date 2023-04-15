@@ -415,13 +415,14 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
                 SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
                 String username = prefs.getString("username", "");
                 mUsername.setText(username);
-                usernameContainer.setVisibility(username.length() == 0 ? View.VISIBLE : View.GONE);
+
+                parent.removeView(usernameContainer);
+                parent.addView(usernameContainer, 1);
 
                 View loginButtons = findViewById(R.id.login_buttons_container);
                 loginButtons.setVisibility(View.GONE);
                 View loginWith = findViewById(R.id.login_with);
                 loginWith.setVisibility(View.GONE);
-                backButton.setVisibility(View.GONE);
 
                 View passwordChanges = findViewById(R.id.password_changed);
                 passwordChanges.setVisibility(View.VISIBLE);
@@ -538,11 +539,24 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
 
     public void onBackPressed(){
         if (!mPasswordChanged) {
-            mSignInTask.pause();
-            setResult(RESULT_CANCELED);
-            finish();
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            closeActivity();
+        } else {
+            mHelper.confirm(getString(R.string.signed_out),
+                    getString(R.string.alert_sign_out),
+                    (dialog, which) -> {
+                        BaseFragmentActivity.signOut(this);
+                        closeActivity();
+                    },
+                    (dialogInterface, i) -> dialogInterface.cancel()
+            );
         }
+    }
+
+    private void closeActivity() {
+        mSignInTask.pause();
+        setResult(RESULT_CANCELED);
+        finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     @Override
