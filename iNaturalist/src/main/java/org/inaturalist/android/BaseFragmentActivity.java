@@ -857,8 +857,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 return;
             }
 
-            // TODO - AAA
-            if (true || authenticationFailed) {
+            if (authenticationFailed) {
                 Logger.tag(TAG).info("User changed password via website");
 
                 // This means the user has changed his password on the website
