@@ -151,7 +151,8 @@ public class INaturalistServiceImplementation {
     public enum LoginType {
         PASSWORD,
         GOOGLE,
-        OAUTH_PASSWORD
+        FACEBOOK,
+        OAUTH_PASSWORD,
     };
 
     public INaturalistServiceImplementation(Context context) {
