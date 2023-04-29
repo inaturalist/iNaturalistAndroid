@@ -6277,7 +6277,10 @@ public class INaturalistServiceImplementation {
 
                         // Save project field values
                         Hashtable<Integer, ProjectFieldValue> fields = new Hashtable<Integer, ProjectFieldValue>();
-                        JSONArray jsonFields = o.getJSONArray(o.has("ofvs") ? "ofvs" : "observation_field_values").getJSONArray();
+                        SerializableJSONArray arr = o.getJSONArray(o.has("ofvs") ? "ofvs" : "observation_field_values");
+                        if (arr == null) continue;
+
+                        JSONArray jsonFields = arr.getJSONArray();
 
                         for (int j = 0; j < jsonFields.length(); j++) {
                             BetterJSONObject field = new BetterJSONObject(jsonFields.getJSONObject(j));
