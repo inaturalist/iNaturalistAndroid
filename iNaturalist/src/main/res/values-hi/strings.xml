@@ -46,31 +46,6 @@
     <string name="password">पासवर्ड</string>
     <string name="unknown">अज्ञात</string>
     <string name="unknown_species">अज्ञात प्रजाति</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">ठीक</string>
-    <string name="com_facebook_loginview_log_out_button">लॉग आउट करें</string>
-    <string name="com_facebook_loginview_log_in_button">लॉग इन करें</string>
-    <string name="com_facebook_loginview_logged_in_as">%1$s के रूप में लॉग इन हैं</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">फेसबुक के साथ लॉगिन हैं</string>
-    <string name="com_facebook_loginview_log_out_action">लॉग आउट करें</string>
-    <string name="com_facebook_loginview_cancel_action">रद्द करें</string>
-    <string name="com_facebook_logo_content_description">Facebook लोगो</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">लॉग इन करें...</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">लॉग इन किया है</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">लॉग इन नहीं हैं</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d यहाँ थे</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d यहाँ थे</string>
-    <string name="com_facebook_picker_done_button_text">पूर्ण हुआ</string>
-    <string name="com_facebook_choose_friends">मित्र चुनें</string>
-    <string name="com_facebook_nearby">आस पास के</string>
-    <string name="com_facebook_loading">लोड हो रहा है...</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifest त्रुटि</string>
-    <string name="com_facebook_internet_permission_error_message">वेबव्यू लॉगिन के लिए इंटरनेट अनुमति की आवश्यकता है</string>
-    <string name="com_facebook_requesterror_web_login">आपका Facebook खाता बंद है। जारी रखने के लिए कृपया facebook.com पर लॉग इन करें। </string>
-    <string name="com_facebook_requesterror_relogin">अपने Facebook खाते को फिर से जोड़ने के लिए कृपया इस ऐप में फिर से लॉग इन करें।</string>
-    <string name="com_facebook_requesterror_password_changed">आपका Facebook पासवर्ड बदल गया है। अपने Facebook खाते को फिर से जोड़ने के लिए कृपया इस ऐप में फिर से लॉग इन करें।</string>
-    <string name="com_facebook_requesterror_reconnect">अपने Facebook खाते को फिर से जोड़ने के लिए कृपया इस ऐप में फिर से लॉग इन करें।</string>
-    <string name="com_facebook_requesterror_permissions">इस ऐप को ऐसा करने की अनुमति नहीं है। अनुमतियां बदलने के लिए, ऐप में फिर से लॉग इन करने का प्रयास करें।</string>
     <string name="edit_observation">प्रेक्षण संपादित करें</string>
     <string name="discard_changes">क्या आप वाकई सहेजे न गए परिवर्तनों को छोड़ना चाहते हैं?</string>
     <string name="yes">हाँ</string>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">Help with iNaturalist (version %1$s - %2$s; user id - %3$s)</string>
     <string name="send_email">Send email...</string>
     <string name="login_with">Log In with</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Email</string>
     <string name="skip">Skip  ›</string>
@@ -1216,5 +1190,7 @@
     <string name="please_try_again_soon">Please try again soon.</string>
     <string name="verify_your_email">Verify Your Email Address</string>
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

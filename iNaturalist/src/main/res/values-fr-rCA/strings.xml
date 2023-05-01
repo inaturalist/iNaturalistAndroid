@@ -46,31 +46,6 @@
     <string name="password">Mot de passe</string>
     <string name="unknown">Inconnu</string>
     <string name="unknown_species">Espèce inconnue</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">OK</string>
-    <string name="com_facebook_loginview_log_out_button">Déconnexion</string>
-    <string name="com_facebook_loginview_log_in_button">Connexion</string>
-    <string name="com_facebook_loginview_logged_in_as">Connecté en tant que %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Se connecter à l\'aide de Facebook</string>
-    <string name="com_facebook_loginview_log_out_action">Déconnexion</string>
-    <string name="com_facebook_loginview_cancel_action">Annuler</string>
-    <string name="com_facebook_logo_content_description">Logo de Facebook</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Connexion&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Connecté</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Vous n\'êtes pas connecté</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d ont été ici</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d ont été ici</string>
-    <string name="com_facebook_picker_done_button_text">Effectué</string>
-    <string name="com_facebook_choose_friends">Choisir des amis</string>
-    <string name="com_facebook_nearby">À proximité</string>
-    <string name="com_facebook_loading">Chargement en cours...</string>
-    <string name="com_facebook_internet_permission_error_title">Erreur AndroidManifest</string>
-    <string name="com_facebook_internet_permission_error_message">La connexion à WebView nécessite une permission INTERNET</string>
-    <string name="com_facebook_requesterror_web_login">Votre compte Facebook est verrouillé. Veuillez vous connecter sur www.facebook.com pour continuer.</string>
-    <string name="com_facebook_requesterror_relogin">Veuillez ouvrir une nouvelle session sur cette application pour vous reconnecter à votre compte Facebook.</string>
-    <string name="com_facebook_requesterror_password_changed">Votre mot de passe Facebook a changé. Veuillez vous reconnecter à cette application pour reconnecter votre compte Facebook.</string>
-    <string name="com_facebook_requesterror_reconnect">Veuillez ouvrir une nouvelle session sur cette application pour vous reconnecter à votre compte Facebook.</string>
-    <string name="com_facebook_requesterror_permissions">L\'application n\'est pas autorisée à exécuter cette tâche. Pour changer les permissions, veuillez vous reconnecter à l\'application.</string>
     <string name="edit_observation">Modifier l\'observation</string>
     <string name="discard_changes">Désirez-vous vraiment ignorer les modifications non enregistrées?</string>
     <string name="yes">Oui</string>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">Aider iNaturalist (version %1$s - %2$s ; id utilisateur - %3$s)</string>
     <string name="send_email">Envoyer un courriel...</string>
     <string name="login_with">Connexion avec</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Courriel</string>
     <string name="skip">Ignorer</string>
@@ -1222,5 +1196,7 @@ non, tant que le travail demeure inchangé et complet, et que vous êtes mention
     <string name="please_try_again_soon">Veuillez réessayer plus tard.</string>
     <string name="verify_your_email">Vérifiez votre adresse e-mail</string>
     <string name="after_you_change_your_password">Quand vous aurez changé votre mot de passe, votre session prendra fin et vous devrez vous reconnecter avec votre nouveau mot de passe. Vous devrez également vous reconnecter sur les applications mobiles iNaturalist et toutes les autres applications ou sites Web qui publient sur iNaturalist en votre nom. Assurez-vous donc d\'avoir téléchargé au préalable toutes les observations en attente. Les observations qui n\'auront pas été téléchargées seront perdues.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Échec du téléchargement. Le fichier doit faire moins de 20 Mo.</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

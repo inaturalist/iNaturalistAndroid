@@ -46,31 +46,6 @@
     <string name="password">Лозинка</string>
     <string name="unknown">Непознат</string>
     <string name="unknown_species">непознат вид</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">Во ред</string>
-    <string name="com_facebook_loginview_log_out_button">Одјави се</string>
-    <string name="com_facebook_loginview_log_in_button">Најави се</string>
-    <string name="com_facebook_loginview_logged_in_as">Логиран како: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Логиран преку Фејсбук</string>
-    <string name="com_facebook_loginview_log_out_action">Одјави се</string>
-    <string name="com_facebook_loginview_cancel_action">Откажи</string>
-    <string name="com_facebook_logo_content_description">лого на Фејсбук</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Најави се</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Најавен</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Не сте најавени</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d беа тука</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d беше тука</string>
-    <string name="com_facebook_picker_done_button_text">Направено</string>
-    <string name="com_facebook_choose_friends">Блиски пријатели</string>
-    <string name="com_facebook_nearby">Во близина</string>
-    <string name="com_facebook_loading">Вчитува...</string>
-    <string name="com_facebook_internet_permission_error_title">Грешка во AndroidManifest</string>
-    <string name="com_facebook_internet_permission_error_message">За логирање преку WebView потребна е дозвола за интернет</string>
-    <string name="com_facebook_requesterror_web_login">Вашата Facebook сметка е заклучена. Ве молиме логирајте се на www.facebook.com за да продолжите.</string>
-    <string name="com_facebook_requesterror_relogin">Ве молиме повторно најавете се на апликацијата за да ја поврзете со Facebook сметката.</string>
-    <string name="com_facebook_requesterror_password_changed">Вашата Facebook лозинка е промента. Ве молиме повторно најавете се на апликацијата за да ја поврзете со вашата Facebook сметка.</string>
-    <string name="com_facebook_requesterror_reconnect">Ве молиме повторно најавете се на апликацијата за да ја поврзете со Facebook сметката.</string>
-    <string name="com_facebook_requesterror_permissions">Оваа апликација нема дозвола да го направи тоа. За да ги промените дозволите, обидете се да се најавите повторно на апликацијата.</string>
     <string name="edit_observation">Измени го набљудувањето</string>
     <string name="discard_changes">Дали сте сигурни дека сакате да ги избришете незачуваните промени?</string>
     <string name="yes">Да</string>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">Помош со иНатуралист (верзија %1$s - %2$s; корисник - %3$s)</string>
     <string name="send_email">Испрати е-пошта...</string>
     <string name="login_with">Најави се преку</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">е-пошта</string>
     <string name="skip">Прескокни</string>
@@ -1216,5 +1190,7 @@
     <string name="please_try_again_soon">Please try again soon.</string>
     <string name="verify_your_email">Verify Your Email Address</string>
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

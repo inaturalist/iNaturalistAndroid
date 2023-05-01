@@ -46,31 +46,6 @@
     <string name="password">ᱫᱟᱱᱟᱝ ᱥᱟᱵᱟᱫ</string>
     <string name="unknown">ᱵᱟᱝ ᱵᱟᱰᱟᱭ</string>
     <string name="unknown_species">ᱵᱟᱝ ᱵᱟᱲᱟᱭ ᱡᱟᱹᱛ</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">ᱴᱷᱤᱠ</string>
-    <string name="com_facebook_loginview_log_out_button">ᱵᱟᱦᱨᱮ ᱛᱮ ᱚᱰᱚᱠ</string>
-    <string name="com_facebook_loginview_log_in_button">ᱵᱚᱞᱚ ᱠᱚ</string>
-    <string name="com_facebook_loginview_logged_in_as">ᱞᱮᱠᱷᱟ ᱵᱚᱞᱚ ᱮᱱᱟ : %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Facebook ᱵᱮᱵᱷᱟᱨ ᱛᱮ ᱵᱚᱞᱚ</string>
-    <string name="com_facebook_loginview_log_out_action">ᱵᱟᱦᱨᱮ ᱛᱮ ᱚᱰᱚᱠ</string>
-    <string name="com_facebook_loginview_cancel_action">ᱵᱟᱹᱰᱨᱟᱹ</string>
-    <string name="com_facebook_logo_content_description">Facebook ᱞᱚᱜᱚ</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">ᱵᱚᱞᱚ &#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">ᱵᱚᱞᱚ ᱮᱱᱟᱢ</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">ᱵᱟᱝ ᱵᱚᱞᱚ ᱠᱟᱱᱟᱢ</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d ᱠᱚ ᱱᱚᱰᱮ ᱛᱟᱦᱮᱸ ᱠᱟᱱᱟ ᱠᱚ</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d ᱠᱚ ᱱᱚᱰᱮ ᱛᱟᱦᱮᱸ ᱠᱟᱱᱟ ᱠᱚ</string>
-    <string name="com_facebook_picker_done_button_text">ᱦᱩᱭᱮᱱᱟ</string>
-    <string name="com_facebook_choose_friends">ᱜᱟᱛᱮ ᱠᱚ ᱵᱟᱪᱷᱟᱣ ᱢᱮ</string>
-    <string name="com_facebook_nearby">ᱥᱩᱨ ᱠᱚᱨᱤᱱ</string>
-    <string name="com_facebook_loading">ᱞᱟᱫᱮᱜ ᱠᱟᱱᱟ...</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifest ᱵᱷᱩᱞ</string>
-    <string name="com_facebook_internet_permission_error_message">WebView ᱵᱚᱞᱚ ᱡᱷᱚᱜ ᱤᱱᱴᱚᱨᱱᱮᱴ ᱫᱚᱨᱠᱟᱨ ᱠᱟᱱᱟ</string>
-    <string name="com_facebook_requesterror_web_login">ᱟᱢᱟᱜ Facebook ᱠᱷᱟᱛᱟ ᱫᱚ ᱠᱩᱞᱩᱯ ᱠᱟᱱᱟ ᱾ ᱫᱟᱭᱟᱠᱟᱛᱮ ᱞᱟᱦᱟ ᱞᱟᱹᱜᱤᱫ www.facebook.com ᱨᱮ ᱵᱚᱞᱚᱱ ᱢᱮ ᱾</string>
-    <string name="com_facebook_requesterror_relogin">ᱟᱢᱟᱜ Facebook ᱠᱷᱟᱛᱟ ᱥᱟᱞᱟᱜ ᱫᱩᱦᱲᱟᱹ ᱡᱩᱲᱟᱹᱣ ᱞᱟᱹᱜᱤᱫ ᱫᱟᱭᱟᱠᱟᱛᱮ ᱱᱚᱶᱟ ᱮᱯ ᱨᱮ ᱵᱚᱞᱚᱱ ᱢᱮ ᱾</string>
-    <string name="com_facebook_requesterror_password_changed">ᱟᱢᱟᱜ Facebook ᱫᱟᱱᱟᱝ ᱥᱟᱵᱟᱫ ᱫᱚ ᱵᱚᱫᱚᱞ ᱮᱱ ᱛᱟᱢᱟ ᱾ ᱟᱢᱟᱜ Facebook ᱠᱷᱟᱛᱟ ᱥᱟᱞᱟᱜ ᱫᱩᱦᱲᱟᱹ ᱡᱩᱲᱟᱹᱣ ᱞᱟᱹᱜᱤᱫ ᱫᱟᱭᱟᱠᱟᱛᱮ ᱱᱚᱶᱟ ᱮᱯ ᱨᱮ ᱵᱚᱞᱚᱱ ᱢᱮ ᱾</string>
-    <string name="com_facebook_requesterror_reconnect">ᱟᱢᱟᱜ Facebook ᱠᱷᱟᱛᱟ ᱥᱟᱞᱟᱜ ᱫᱩᱦᱲᱟᱹ ᱡᱩᱲᱟᱹᱣ ᱞᱟᱹᱜᱤᱫ ᱫᱟᱭᱟᱠᱟᱛᱮ ᱱᱚᱶᱟ ᱮᱯ ᱨᱮ ᱵᱚᱞᱚᱱ ᱢᱮ ᱾</string>
-    <string name="com_facebook_requesterror_permissions">ᱱᱚᱶᱟ ᱮᱯ ᱴᱷᱮᱱ ᱢᱩᱨᱢᱩᱴᱷ ᱵᱟᱹᱱᱩᱜᱼᱟ ᱾ ᱦᱩᱨᱢᱩᱴᱷ ᱵᱚᱫᱚᱞ ᱞᱟᱹᱜᱤᱫ, ᱱᱚᱶᱟ ᱮᱯ ᱨᱮ ᱫᱩᱦᱲᱟᱹ ᱵᱚᱞᱚᱱ ᱢᱮ ᱾</string>
     <string name="edit_observation">ᱧᱮᱞᱯᱚᱨᱚᱠᱷ ᱥᱟᱯᱲᱟᱣ ᱢᱮ</string>
     <string name="discard_changes">ᱟᱢ ᱡᱷᱚᱛᱚ ᱞᱮᱠᱷᱟᱛᱮ ᱵᱟᱝ ᱥᱟᱧᱪᱟᱣ ᱠᱟᱱ ᱵᱚᱫᱚᱞ ᱠᱚ ᱵᱟᱹᱨᱜᱤᱞ ᱜᱤᱰᱤ ᱥᱮᱱᱟᱮᱫ ᱢᱮᱭᱟ ᱥᱮ ?</string>
     <string name="yes">ᱦᱚᱭ</string>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">iNaturalist ᱥᱟᱶ ᱜᱚᱲᱚ ᱮᱢᱚᱜ ᱢᱮ (ᱦᱟᱹᱞᱤᱭᱟᱹᱠ%1$s - %2$s; ᱵᱮᱵᱷᱟᱹᱨᱤᱭᱟᱹ id - %3$s)</string>
     <string name="send_email">ᱤᱢᱮᱞ ᱵᱷᱮᱡᱟᱭ ᱢᱮ ...</string>
     <string name="login_with">ᱥᱟᱶ ᱵᱚᱞᱚᱱ ᱢᱮ</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">ᱤᱢᱮᱞ</string>
     <string name="skip">ᱟᱲᱟᱜᱽ ᱢᱮ  ›</string>
@@ -1216,5 +1190,7 @@
     <string name="please_try_again_soon">Please try again soon.</string>
     <string name="verify_your_email">Verify Your Email Address</string>
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

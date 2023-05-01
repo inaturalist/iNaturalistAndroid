@@ -46,31 +46,6 @@
     <string name="password">Password</string>
     <string name="unknown">Di alam</string>
     <string name="unknown_species">Di alam na espesye</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">Sige</string>
-    <string name="com_facebook_loginview_log_out_button">Mag-logout</string>
-    <string name="com_facebook_loginview_log_in_button">Mag-login</string>
-    <string name="com_facebook_loginview_logged_in_as">Naka-login bilang si: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Naka-login gamit Facebook</string>
-    <string name="com_facebook_loginview_log_out_action">Mag-logout</string>
-    <string name="com_facebook_loginview_cancel_action">Ikansela</string>
-    <string name="com_facebook_logo_content_description">Logo ng Facebook</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Mag-login&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Naka-login</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Di naka-login</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d were here</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d were here</string>
-    <string name="com_facebook_picker_done_button_text">Tapos na</string>
-    <string name="com_facebook_choose_friends">Pumili ng mga kaibigan</string>
-    <string name="com_facebook_nearby">Kalapit</string>
-    <string name="com_facebook_loading">Naglo-load...</string>
-    <string name="com_facebook_internet_permission_error_title">Error sa AndroidManifest</string>
-    <string name="com_facebook_internet_permission_error_message">Nangangailangan ng permiso sa INTERNET ang pag-login sa WebView</string>
-    <string name="com_facebook_requesterror_web_login">Naka-lock ang Facebook account mo. Mangyaring mag-login sa www.facebook.com para magpatuloy.</string>
-    <string name="com_facebook_requesterror_relogin">Mangyaring mag-login muli sa app na ito para kumonekta uli sa iyong Facebook account.</string>
-    <string name="com_facebook_requesterror_password_changed">Bago na ang password mo sa Facebook. Mangyaring mag-login muli sa app na ito para kumonekta uli sa iyong Facebook account.</string>
-    <string name="com_facebook_requesterror_reconnect">Mangyaring mag-login muli sa app na ito para kumonekta uli sa iyong Facebook account.</string>
-    <string name="com_facebook_requesterror_permissions">Walang permiso ang app para gawin ito. Para mabago ang mga permiso, subukang mag-login muli sa app.</string>
     <string name="edit_observation">I-edit ang obserbasyon</string>
     <string name="discard_changes">Sigurado ka bang gusto mong balewalain ang mga di naka-save na pagbabago?</string>
     <string name="yes">Oo</string>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">Help with iNaturalist (version %1$s - %2$s; user id - %3$s)</string>
     <string name="send_email">Magpadala ng email...</string>
     <string name="login_with">Mag-login gamit</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Email</string>
     <string name="skip">Laktawan</string>
@@ -1216,5 +1190,7 @@
     <string name="please_try_again_soon">Please try again soon.</string>
     <string name="verify_your_email">Verify Your Email Address</string>
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

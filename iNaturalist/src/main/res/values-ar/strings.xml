@@ -46,31 +46,6 @@
     <string name="password">كلمة السر</string>
     <string name="unknown">ا أعرف</string>
     <string name="unknown_species">الأنواع غير محدد</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">موافقة</string>
-    <string name="com_facebook_loginview_log_out_button">تسجيل الخروج/י</string>
-    <string name="com_facebook_loginview_log_in_button">دخول</string>
-    <string name="com_facebook_loginview_logged_in_as">سجل دخول %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">تواصل مع الفيسبوك</string>
-    <string name="com_facebook_loginview_log_out_action">تسجيل الخروج/י</string>
-    <string name="com_facebook_loginview_cancel_action">إلغاء</string>
-    <string name="com_facebook_logo_content_description">رمز   الفيسبوك</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">تسجيل الدخول...</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">متصل</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">لم تقم بتسجيل الدخول</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,dكانت هناك</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d كان هنا</string>
-    <string name="com_facebook_picker_done_button_text">انهاء</string>
-    <string name="com_facebook_choose_friends">اختيار أصدقاء</string>
-    <string name="com_facebook_nearby">قريب</string>
-    <string name="com_facebook_loading">تحميل…</string>
-    <string name="com_facebook_internet_permission_error_title">خطأ إذن  في الإنترنت- AndroidManifest</string>
-    <string name="com_facebook_internet_permission_error_message">مطلوب إذن وصول الإنترنت</string>
-    <string name="com_facebook_requesterror_web_login">حساب الفيسبوك الخاص بك مقفل. الرجاء الدخول بالموقع www.facebook.com لمواصلة</string>
-    <string name="com_facebook_requesterror_relogin">الرجاء الدخول بالتطبيق ثانيتا </string>
-    <string name="com_facebook_requesterror_password_changed">تم تغيير كلمة السر الفيسبوك. لرجاء الدخول بالتطبيق ثانيتا </string>
-    <string name="com_facebook_requesterror_reconnect">لرجاء الدخول بالتطبيق ثانيتا  </string>
-    <string name="com_facebook_requesterror_permissions">لا أذونات إلى التطبيق. لرجاء الدخول بالتطبيق ثانيتا .</string>
     <string name="edit_observation">تحرير الارصاد</string>
     <string name="discard_changes">متاكد? هناك تغييرات لم يتم حفظها ستفقد.</string>
     <string name="yes">نعم</string>
@@ -225,7 +200,6 @@
     <string name="inat_support_email_subject">المساعدة مع iNaturalist (الإصدار %1$s - %2$s؛ معرف المستخدم - %3$s)</string>
     <string name="send_email">ارسال</string>
     <string name="login_with">الدخول بواسطة</string>
-    <string name="facebook">الفيسبوك</string>
     <string name="gplus">جوجل</string>
     <string name="email">البريد الالكتروني</string>
     <string name="skip">تخطى</string>
@@ -1249,5 +1223,7 @@
     <string name="please_try_again_soon">Please try again soon.</string>
     <string name="verify_your_email">Verify Your Email Address</string>
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

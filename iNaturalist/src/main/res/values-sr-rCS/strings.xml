@@ -46,31 +46,6 @@
     <string name="password">Šifra</string>
     <string name="unknown">Nеpoznato</string>
     <string name="unknown_species">Nepoznata vrsta</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">U redu</string>
-    <string name="com_facebook_loginview_log_out_button">Odjava</string>
-    <string name="com_facebook_loginview_log_in_button">Prijava</string>
-    <string name="com_facebook_loginview_logged_in_as">Prijavljeni kao: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Prijavljeni pomiću Facebook-a</string>
-    <string name="com_facebook_loginview_log_out_action">Odjava</string>
-    <string name="com_facebook_loginview_cancel_action">Otkaži</string>
-    <string name="com_facebook_logo_content_description">Facebook logo</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Prijavljivanje...</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Prijavljenji ste</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Niste prijavljeni</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d su bili ovdje</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d su bili ovdje</string>
-    <string name="com_facebook_picker_done_button_text">Gotovo</string>
-    <string name="com_facebook_choose_friends">Izaberi prijatelje</string>
-    <string name="com_facebook_nearby">U blizini</string>
-    <string name="com_facebook_loading">Učitavanje...</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifest Greška</string>
-    <string name="com_facebook_internet_permission_error_message">WebView login zahtijeva INTERNET dozvolu</string>
-    <string name="com_facebook_requesterror_web_login">Vaš Facebook profil je zaključan. Prijavite se na www.facebook.com da nastavite.</string>
-    <string name="com_facebook_requesterror_relogin">Prijavite se u ovoj aplikaciji da bi ste ponovo povezali vaš Facebook nalog.</string>
-    <string name="com_facebook_requesterror_password_changed">Tvoja Facebook lozinka je promenjena. Uloguj se opet na ovu aplikaciju da bi opet povezao/la tvoj Facebook nalog.</string>
-    <string name="com_facebook_requesterror_reconnect">Ponovo se uloguj u aplikaciju da se povežeš na tvoj Facebook nalog.</string>
-    <string name="com_facebook_requesterror_permissions">Aplikacija nema dozvolu da uradi to. Da promeniš dozvole, ponovo se uloguj u aplikaciju.</string>
     <string name="edit_observation">Izmeni opservaciju</string>
     <string name="discard_changes">Da li sigurno želiš da odbaciš nesačuvane promene?</string>
     <string name="yes">Da</string>
@@ -221,7 +196,6 @@
     <string name="inat_support_email_subject">Help with iNaturalist (version %1$s - %2$s; user id - %3$s)</string>
     <string name="send_email">Pošalji imejl...</string>
     <string name="login_with">Uloguj se pomoću</string>
-    <string name="facebook">Fejsbuk</string>
     <string name="gplus">Gugl</string>
     <string name="email">Imejl</string>
     <string name="skip">Preskoči  ›</string>
@@ -1224,5 +1198,7 @@
     <string name="please_try_again_soon">Molimo pokušaj kasnije.</string>
     <string name="verify_your_email">Verify Your Email Address</string>
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

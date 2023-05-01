@@ -46,31 +46,6 @@
     <string name="password">Pasahitza</string>
     <string name="unknown">Ezezaguna</string>
     <string name="unknown_species">Espezie ezezaguna</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">ADOS</string>
-    <string name="com_facebook_loginview_log_out_button">Irten</string>
-    <string name="com_facebook_loginview_log_in_button">Saioa hasi</string>
-    <string name="com_facebook_loginview_logged_in_as">Honela hasitako saioa: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Saioa hasita Facebook erabiliz</string>
-    <string name="com_facebook_loginview_log_out_action">Irten</string>
-    <string name="com_facebook_loginview_cancel_action">Utzi</string>
-    <string name="com_facebook_logo_content_description">Facebook Logoa</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Sartu...</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Saioa hasita</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Saioa hasi gabe</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d hemen egon da</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d hemen egon zen</string>
-    <string name="com_facebook_picker_done_button_text">Eginda</string>
-    <string name="com_facebook_choose_friends">Lagunak Aukeratu</string>
-    <string name="com_facebook_nearby">Hurbilak</string>
-    <string name="com_facebook_loading">Kargatzen...</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifest Akatsa</string>
-    <string name="com_facebook_internet_permission_error_message">WebView bidez sartzeak INTERNET baimena behar du</string>
-    <string name="com_facebook_requesterror_web_login">Zure Facebook kontua blokeatuta dago. Sartu www.facebook.com-en jarraitzeko.</string>
-    <string name="com_facebook_requesterror_relogin">Please log into this app again to reconnect your Facebook account.</string>
-    <string name="com_facebook_requesterror_password_changed">Your Facebook password has changed. Please log into this app again to reconnect your Facebook account.</string>
-    <string name="com_facebook_requesterror_reconnect">Please log into this app again to reconnect your Facebook account.</string>
-    <string name="com_facebook_requesterror_permissions">This app doesn’t have permission to do this. To change permissions, try logging into the app again.</string>
     <string name="edit_observation">Behaketa editatu</string>
     <string name="discard_changes">Ziur al zaude gordegabeko aldaketak deuseztatu nahi dituzula?</string>
     <string name="yes">Bai</string>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">Help with iNaturalist (version %1$s - %2$s; user id - %3$s)</string>
     <string name="send_email">E-posta bidali...</string>
     <string name="login_with">Hasi Saioa honekin</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Eposta</string>
     <string name="skip">Saltatu ›</string>
@@ -1216,5 +1190,7 @@
     <string name="please_try_again_soon">Please try again soon.</string>
     <string name="verify_your_email">Verify Your Email Address</string>
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

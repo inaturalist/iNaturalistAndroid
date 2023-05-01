@@ -46,31 +46,6 @@
     <string name="password">Κωδικός πρόσβασης</string>
     <string name="unknown">Άγνωστο</string>
     <string name="unknown_species">Άγνωστο είδος</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">ΟΚ</string>
-    <string name="com_facebook_loginview_log_out_button">Αποσύνδεση</string>
-    <string name="com_facebook_loginview_log_in_button">Είσοδος</string>
-    <string name="com_facebook_loginview_logged_in_as">Συνδεδεμένος/η ως: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Συνδεδεμένος/η μέσω Facebook</string>
-    <string name="com_facebook_loginview_log_out_action">Αποσύνδεση</string>
-    <string name="com_facebook_loginview_cancel_action">Ακύρωση</string>
-    <string name="com_facebook_logo_content_description">Λογότυπο του Facebook</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Συνδέσου&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Συνδεδεμένος/η</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Δεν είσαι συνδεδεμένος/η</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d ήταν εδώ</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d ήταν εδώ</string>
-    <string name="com_facebook_picker_done_button_text">Ολοκληρώθηκε</string>
-    <string name="com_facebook_choose_friends">Διάλεξε φίλους</string>
-    <string name="com_facebook_nearby">Σε κοντινή απόσταση</string>
-    <string name="com_facebook_loading">Φόρτωση...</string>
-    <string name="com_facebook_internet_permission_error_title">Σφάλμα AndroidManifest</string>
-    <string name="com_facebook_internet_permission_error_message">Η σύνδεση μέσω WebView απαιτεί την άδεια INTERNET</string>
-    <string name="com_facebook_requesterror_web_login">Ο λογαρισμός σου στο Facebook είναι κλειδωμένος. Συνδέσου στο www.facebook.com για να συνεχίσεις.</string>
-    <string name="com_facebook_requesterror_relogin">Παρακαλώ συνδέσου σε αυτήν την εφαρμογή να συνδεθείς ξανά με το λογαριασμό σου στο Facebook.</string>
-    <string name="com_facebook_requesterror_password_changed">Ο κωδικός σου στο Facebook άλλαξε. Παρακαλώ συνδέσου ξανά στην εφαρμογή για να επανασυνδεθείς με τον λογαριασμό σου στο Facebook.</string>
-    <string name="com_facebook_requesterror_reconnect">Παρακαλούμε συνδεθείτε σε αυτήν την εφαρμογή να συνδέσετε ξανά το λογαριασμό σας στο Facebook.</string>
-    <string name="com_facebook_requesterror_permissions">Αυτή η εφαρμογή δεν έχει άδεια για να κάνει αυτό. Για να αλλάξετε τις άδειες κάντε ξανά είσοδο στην εφαρμογή.</string>
     <string name="edit_observation">Επεξεργασία παρατήρησης</string>
     <string name="discard_changes">Είσαι σίγουρος/η ότι θέλεις να απορρίψεις τις αλλαγές;</string>
     <string name="yes">Ναι</string>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">Βοήθεια για το iNaturalist (έκδοση %1$s - %2$s; ID χρήστη - %3$s)</string>
     <string name="send_email">Αποστολή email...</string>
     <string name="login_with">Συνδέσου με</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-mail</string>
     <string name="skip">Παράλειψη  ›</string>
@@ -1216,5 +1190,7 @@
     <string name="please_try_again_soon">Please try again soon.</string>
     <string name="verify_your_email">Verify Your Email Address</string>
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

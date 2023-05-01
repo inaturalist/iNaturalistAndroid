@@ -46,31 +46,6 @@
     <string name="password">Contrasinal</string>
     <string name="unknown">Descoñecido</string>
     <string name="unknown_species">Especie descoñecida</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">OK</string>
-    <string name="com_facebook_loginview_log_out_button">Pechar sesión</string>
-    <string name="com_facebook_loginview_log_in_button">Iniciar Sesión</string>
-    <string name="com_facebook_loginview_logged_in_as">Sesión iniciada como %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Sesión iniciada con Facebook</string>
-    <string name="com_facebook_loginview_log_out_action">Pechar Sesión</string>
-    <string name="com_facebook_loginview_cancel_action">Cancelar</string>
-    <string name="com_facebook_logo_content_description">Logo do Facebook</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Iniciar Sesión...</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Sesión Iniciada</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Non Iniciaches Sesión</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d estiveron aquí</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d estivo aquí</string>
-    <string name="com_facebook_picker_done_button_text">Feito</string>
-    <string name="com_facebook_choose_friends">Escoller amizades</string>
-    <string name="com_facebook_nearby">Próximos</string>
-    <string name="com_facebook_loading">Cargando...</string>
-    <string name="com_facebook_internet_permission_error_title">Erro de AndroidManifest</string>
-    <string name="com_facebook_internet_permission_error_message">O inicio de sesión con WebView require permiso de INTERNET</string>
-    <string name="com_facebook_requesterror_web_login">A túa conta de Facebook está bloqueada. Inicia a sesión desde www.facebook.com para continuar.</string>
-    <string name="com_facebook_requesterror_relogin">Por favor, volve acceder a esta aplicación para conectar outra vez coa túa conta do Facebook.</string>
-    <string name="com_facebook_requesterror_password_changed">O teu contrasinal no Facebook cambiou. Volve iniciar sesión na aplicación para volver conectar coa túa conta de Facebook.</string>
-    <string name="com_facebook_requesterror_reconnect">Por favor, volve acceder a esta aplicación para conectar outra vez coa túa conta do Facebook.</string>
-    <string name="com_facebook_requesterror_permissions">Esta aplicación non ten permiso para facer isto. Volve entrar nela para mudar os permisos.</string>
     <string name="edit_observation">Edita a observación</string>
     <string name="discard_changes">Seguro que queres descartar os cambios non gardados?</string>
     <string name="yes">Si</string>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">Axuda con iNaturalist (versión %1$s - %2$s; id de usuario - %3$s)</string>
     <string name="send_email">Enviar correo...</string>
     <string name="login_with">Iniciar Sesión con</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Correo</string>
     <string name="skip">Saltar  ›</string>
@@ -1216,5 +1190,7 @@
     <string name="please_try_again_soon">Please try again soon.</string>
     <string name="verify_your_email">Verify Your Email Address</string>
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

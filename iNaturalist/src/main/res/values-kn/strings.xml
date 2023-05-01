@@ -46,31 +46,6 @@
     <string name="password">ಗುಪ್ತಪದ</string>
     <string name="unknown">ಅಪರಿಚಿತ</string>
     <string name="unknown_species">ಅಪರಿಚಿತ ಪ್ರಭೇಧ</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">ಓಕೆ</string>
-    <string name="com_facebook_loginview_log_out_button">ಲಾಗ್ ಔಟ್</string>
-    <string name="com_facebook_loginview_log_in_button">ಲಾಗಿನ್ ಆಗಿ</string>
-    <string name="com_facebook_loginview_logged_in_as">%1$s : ನಂತೆ ಲಾಗಿನ್ ಆಗಿದೆ</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">ಫೇಸ್ಬುಕ್ ಮೂಲಕ ಲಾಗ್ ಇನ್ ಆಗಿದೆ</string>
-    <string name="com_facebook_loginview_log_out_action">ಲಾಗ್ ಔಟ್</string>
-    <string name="com_facebook_loginview_cancel_action">ರದ್ದುಗೊಳಿಸಿ</string>
-    <string name="com_facebook_logo_content_description">ಫೇಸ್ ಬುಕ್ ಲೋಗೊ</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">ಲಾಗಿನ್...</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">ಲಾಗಿನ್ ಆಗಿದೆ</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">ಲಾಗಿನ್‌ ಆಗಿಲ್ಲ</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d ಅವರು ಇಲ್ಲಿದ್ದರು</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d ಆವರು ಇಲ್ಲಿದ್ದರು</string>
-    <string name="com_facebook_picker_done_button_text">ಸಂಪನ್ನವಾಗಿದೆ</string>
-    <string name="com_facebook_choose_friends">ಗೆಳೆಯರನ್ನು ಆರಿಸಿ</string>
-    <string name="com_facebook_nearby">ಸಮೀಪದ</string>
-    <string name="com_facebook_loading">ಸಜ್ಜುಗೊಳಿಸಲಾಗುತ್ತಿದೆ...</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifest ದೋಷ</string>
-    <string name="com_facebook_internet_permission_error_message">WebView ಲಾಗಿನ್ ಗೆ ಅಂತರ್ಜಾಲದ ಅನುಮತಿಯ ಅಗತ್ಯವಿದೆ</string>
-    <string name="com_facebook_requesterror_web_login">ನಿಮ್ಮ ಫೇಸ್‍ಬುಕ್ ಖಾತೆಯನ್ನು ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ. ಮುಂದುವರೆಸಲು ದಯವಿಟ್ಟು www.facebook.com ಗೆ ಲಾಗಿನ್ ಆಗಿ</string>
-    <string name="com_facebook_requesterror_relogin">ನಿಮ್ಮ ಫೇಸ್‍ಬುಕ್ ಖಾತೆ ಗೆ ಮರುಜೋಡಣೆಯಾಗಲು ದಯವಿಟ್ಟು ಈ ಆಪ್ ಗೆ ಮತ್ತೆ ಲಾಗಿನ್ ಆಗಿ.</string>
-    <string name="com_facebook_requesterror_password_changed">ನಿಮ್ಮ ಫೇಸ್‍ಬುಕ್ ಗುಪ್ತಪದ ಬದಲಾವಣೆಯಾಗಿದೆ. ನಿಮ್ಮ ಫೇಸ್‍ಬುಕ್ ಖಾತೆ ಗೆ ಮರುಜೋಡಣೆಯಾಗಲು ದಯವಿಟ್ಟು ಈ ಆಪ್ ಗೆ ಮತ್ತೆ ಲಾಗಿನ್ ಆಗಿ.</string>
-    <string name="com_facebook_requesterror_reconnect">ನಿಮ್ಮ ಫೇಸ್‍ಬುಕ್ ಖಾತೆ ಗೆ ಮರುಜೋಡಣೆಯಾಗಲು ದಯವಿಟ್ಟು ಈ ಆಪ್ ಗೆ ಮತ್ತೆ ಲಾಗಿನ್ ಆಗಿ.</string>
-    <string name="com_facebook_requesterror_permissions">ಈ ಆಪ್ ಗೆ ಇದನ್ನು ಮಾಡಲು ಅನುಮತಿಯಿಲ್ಲ. ಅನುಮತಿಗಳನ್ನು ಬದಲಿಸಲು, ಆಪ್ ಗೆ ಮತ್ತೆ ಲಾಗಿನ್ ಆಗಲು ಪ್ರಯತ್ನಿಸಿ.</string>
     <string name="edit_observation">ವೀಕ್ಷಣೆಯನ್ನು ಸಂಪಾದಿಸಿ</string>
     <string name="discard_changes">ಉಳಿಸಿರದ ಬದಲಾವಣೆಗಳನ್ನು ತ್ಯಜಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
     <string name="yes">ಹೌದು</string>
@@ -94,7 +69,7 @@
     <string name="join">ಸೇರಿರಿ</string>
     <string name="no_check_list">ತಾಳೆಪಟ್ಟಿಯಲ್ಲಿ ಯಾವುದೇ ಜೀವಿವರ್ಗಗಳಿಲ್ಲ!</string>
     <string name="failed_to_add_obs_to_project">\'%1$s\' ವೀಕ್ಷಣೆಯನ್ನು \'%2$s\' ಪ್ರಾಯೋಜನೆಗೆ ಸೇರಿಸಲು ವಿಫಲವಾಗಿದೆ: %3$s</string>
-    <string name="invalid_project_field">Please enter a valid value for field \'%1s\'</string>
+    <string name="invalid_project_field">ದಯವಿಟ್ಟು ಪಟ್ಟಿಯಲ್ಲಿನ ಒಂದು ಆಯ್ಕೆಯನ್ನು ಆರಿಸಿ \'%1s\'</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
     <string name="select_projects">ಸೇರಿರುವ ಪ್ರಾಯೋಜನೆಗಳಿಂದ ಆರಿಸಿ</string>
     <string name="not_connected">ಇದನ್ನು ಮಾಡಲು ನೀವು ಅಂತರ್ಜಾಲ ಸಂಪರ್ಕದಲ್ಲಿರಲೇಬೇಕು!</string>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">iNaturalist ನ ಜೊತೆ ಸಹಾಯ (ಆವೃತ್ತಿ %1$s-%2$s; ಬಳಕೆದಾರರ ಐಡಿ - %3$s)</string>
     <string name="send_email">ಮಿಂಚೆ ಕಳುಹಿಸಿ..</string>
     <string name="login_with">ಇದರೊಂದಿಗೆ ಲಾಗಿನ್ ಆಗಿ</string>
-    <string name="facebook">ಫೇಸ್‍‌ಬುಕ್</string>
     <string name="gplus">ಗೂಗಲ್</string>
     <string name="email">ಮಿಂಚೆ</string>
     <string name="skip">ಹಾರಿಸಿ ></string>
@@ -1218,5 +1192,7 @@
     <string name="please_try_again_soon">ದಯವಿಟ್ಟು ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
     <string name="verify_your_email">Verify Your Email Address</string>
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>
