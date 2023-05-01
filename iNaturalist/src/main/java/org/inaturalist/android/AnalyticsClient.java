@@ -138,7 +138,6 @@ public class AnalyticsClient {
 
     // Login related
     public static final String EVENT_NAME_LOGIN = "Login";
-    public static final String EVENT_VALUE_FACEBOOK = "Facebook";
     public static final String EVENT_VALUE_INATURALIST = "iNaturalist";
     public static final String EVENT_VALUE_GOOGLE_PLUS = "Google";
     public static final String EVENT_NAME_LOGIN_FAILED = "Login Failed";

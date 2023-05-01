@@ -25,10 +25,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
-import com.facebook.FacebookSdk;
-import com.facebook.login.widget.LoginButton;
-
-
 public class OnboardingActivity extends AppCompatActivity implements SignInTask.SignInTaskStatus {
     private static final int REQUEST_CODE_SIGNUP = 0x1000;
     private static final int REQUEST_CODE_LOGIN = 0x1001;
@@ -44,8 +40,6 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mPrefEditor;
     private SignInTask mSignInTask;
-
-    private LoginButton mFacebookLoginButton;
 
     @Override
 	protected void onStart() {
@@ -158,20 +152,6 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
             closeButton.setVisibility(View.INVISIBLE);
         }
 
-        View loginWithFacebook = findViewById(R.id.login_with_facebook);
-        loginWithFacebook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FacebookSdk.setApplicationId(getString(R.string.facebook_app_id));
-                FacebookSdk.setClientToken(getString(R.string.facebook_client_token));
-                FacebookSdk.sdkInitialize(getApplicationContext());
-                mFacebookLoginButton = new LoginButton(OnboardingActivity.this);
-                mFacebookLoginButton.setLayoutParams(new RelativeLayout.LayoutParams(0, 0));
-                mSignInTask = new SignInTask(OnboardingActivity.this, OnboardingActivity.this, mFacebookLoginButton, false);
-                mFacebookLoginButton.performClick();
-            }
-        });
-
         View loginWithGoogle = findViewById(R.id.login_with_gplus);
         loginWithGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -195,7 +175,7 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
             }
         });
 
-        mSignInTask = new SignInTask(this, this, null, false);
+        mSignInTask = new SignInTask(this, this, false);
 
         if (shouldLogin) {
             // Show login screen
@@ -224,8 +204,7 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
 
     @Override
     public void onLoginFailed(INaturalistServiceImplementation.LoginType loginType, String failureMessage) {
-        if ((loginType == INaturalistServiceImplementation.LoginType.FACEBOOK) ||
-                (loginType == INaturalistServiceImplementation.LoginType.GOOGLE)) {
+        if (loginType == INaturalistServiceImplementation.LoginType.GOOGLE) {
             // Happens when user needs to verify their email address
             mSignInTask.pause();
 
