@@ -632,7 +632,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
                             new LatLng(boundsJson.getDouble("swlat"), boundsJson.getDouble("swlng")),
                             new LatLng(boundsJson.getDouble("nelat"), boundsJson.getDouble("nelng")));
                     mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 0));
-                } catch (IllegalArgumentException exc) {
+                } catch (Exception exc) {
                     // Happens when the bounds of the taxon is too wide (entire world) - then we get an exception of "Unsupported zoom level: NaN"
                     // In this case, just center on the entire world, with minimal zoom level
                     Logger.tag(TAG).error(exc);
