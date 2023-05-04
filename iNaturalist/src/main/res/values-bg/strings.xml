@@ -46,31 +46,6 @@
     <string name="password">Парола</string>
     <string name="unknown">Неизвестен</string>
     <string name="unknown_species">Неизвестен вид</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">OK</string>
-    <string name="com_facebook_loginview_log_out_button">Отписване</string>
-    <string name="com_facebook_loginview_log_in_button">Вход</string>
-    <string name="com_facebook_loginview_logged_in_as">Влезли сте като:%1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Вход чрез Facebook</string>
-    <string name="com_facebook_loginview_log_out_action">Излизане</string>
-    <string name="com_facebook_loginview_cancel_action">Отказ</string>
-    <string name="com_facebook_logo_content_description">Фейсбук лого</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Влизане&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Влезнал</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Не сте влезли в профила си</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d бяха тук</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d бяха тук</string>
-    <string name="com_facebook_picker_done_button_text">Готово</string>
-    <string name="com_facebook_choose_friends">Избери приятели</string>
-    <string name="com_facebook_nearby">Наблизо</string>
-    <string name="com_facebook_loading">Зареждане...</string>
-    <string name="com_facebook_internet_permission_error_title">Грешка AndroidManifest</string>
-    <string name="com_facebook_internet_permission_error_message">Влизането чрез WebView изисква разрешение INTERNET</string>
-    <string name="com_facebook_requesterror_web_login">Вашият акаунт на Фейсбук е заключен. Моля, влезте наново във facebook.com за да продължите.</string>
-    <string name="com_facebook_requesterror_relogin">Моля, влезте наново в системата за да възстановите връзката с Фейсбук акаунта си.</string>
-    <string name="com_facebook_requesterror_password_changed">Вашата парола за Фейсбук е променена. Моля, влезте наново в системата за да възстановите връзката с Фейсбук акаунта си.</string>
-    <string name="com_facebook_requesterror_reconnect">Моля, влезте наново в системата за да възстановите връзката с Вашия акаунт на Фейсбук.</string>
-    <string name="com_facebook_requesterror_permissions">Приложението не е упълномощено да прави това. За да промените пълномощията, пробвайте да влезете в системата наново.</string>
     <string name="edit_observation">Редактирай наблюдението</string>
     <string name="discard_changes">Сигурни ли сте, че искате да отхвърлите незапазените промени?</string>
     <string name="yes">Да</string>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">Помощ с iNaturalist (версия %1$s - %2$s; потр. id - %3$s)</string>
     <string name="send_email">Изпрати имейл...</string>
     <string name="login_with">Влез чрез</string>
-    <string name="facebook">Фейсбук</string>
     <string name="gplus">Google</string>
     <string name="email">Имейл</string>
     <string name="skip">Пропусни  ›</string>
@@ -1235,5 +1209,7 @@
     <string name="please_try_again_soon">Моля, опитайте пак скоро.</string>
     <string name="verify_your_email">Verify Your Email Address</string>
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

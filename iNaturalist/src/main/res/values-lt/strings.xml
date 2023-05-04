@@ -46,31 +46,6 @@
     <string name="password">Slaptažodis</string>
     <string name="unknown">Nežinomas</string>
     <string name="unknown_species">Nežinoma rūšis</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">Gerai</string>
-    <string name="com_facebook_loginview_log_out_button">Atsijungti</string>
-    <string name="com_facebook_loginview_log_in_button">Prisijungti</string>
-    <string name="com_facebook_loginview_logged_in_as">Prisijungta kaip: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Prisijungta naudojant Facebook</string>
-    <string name="com_facebook_loginview_log_out_action">Atsijungti</string>
-    <string name="com_facebook_loginview_cancel_action">Atšaukti</string>
-    <string name="com_facebook_logo_content_description">Facebook logotipas</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Jungiamasi&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Prisijungta</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Nesate prisijungęs</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d čia buvo</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d čia buvo</string>
-    <string name="com_facebook_picker_done_button_text">Baigta</string>
-    <string name="com_facebook_choose_friends">Pasirinkti draugus</string>
-    <string name="com_facebook_nearby">Netoliese</string>
-    <string name="com_facebook_loading">Kraunama...</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifest klaida</string>
-    <string name="com_facebook_internet_permission_error_message">Prisijungimui prie WebView reikalingas INTERNETO leidimas</string>
-    <string name="com_facebook_requesterror_web_login">Jūsų Facebook paskyra užrakinta. Norėdami tęsti, prisijunkite į www.facebook.com.</string>
-    <string name="com_facebook_requesterror_relogin">Norėdami vėl prisijungti prie Facebook paskyros, dar kartą prisijunkyte prie šios programėlės.</string>
-    <string name="com_facebook_requesterror_password_changed">Jųsų Facebook slaptažodis pasikeitė. Norėdami vėl prisijungti prie Facebook paskyros, dar kartą prisijunkyte prie šios programėlės.</string>
-    <string name="com_facebook_requesterror_reconnect">Norėdami vėl prisijungti prie Facebook paskyros, dar kartą prisijunkyte prie šios programėlės.</string>
-    <string name="com_facebook_requesterror_permissions">Ši programėlė neturi leidimo tai atlikti. Norėdami pakeisti leidimus, prisijunkite prie programėlės dar kartą.</string>
     <string name="edit_observation">Redaguoti stebėjimą</string>
     <string name="discard_changes">Ar tikrai norite panaikinti neišsaugotus pakeitimus?</string>
     <string name="yes">Taip</string>
@@ -222,7 +197,6 @@
     <string name="inat_support_email_subject">Padėkite su iNaturalist (versija %1$s - %2$s; vartotojo id - %3$s)</string>
     <string name="send_email">Siųsti el. laišką...</string>
     <string name="login_with">Prisijungti su</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">El. paštas</string>
     <string name="skip">Praleisti  ›</string>
@@ -1233,5 +1207,7 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <string name="please_try_again_soon">Netrukus bandykite dar kartą.</string>
     <string name="verify_your_email">Patvirtinti savo el. pašto adresą</string>
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

@@ -46,31 +46,6 @@
     <string name="password">Şifre</string>
     <string name="unknown">Bilinmeyen</string>
     <string name="unknown_species">Bilinmeyen tür</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">TAMAM</string>
-    <string name="com_facebook_loginview_log_out_button">Çıkış Yap</string>
-    <string name="com_facebook_loginview_log_in_button">Oturum Aç</string>
-    <string name="com_facebook_loginview_logged_in_as">%1$s olarak giriş yapıldı</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Facebook kullanılarak oturum açıldı</string>
-    <string name="com_facebook_loginview_log_out_action">Çıkış Yap</string>
-    <string name="com_facebook_loginview_cancel_action">İptal</string>
-    <string name="com_facebook_logo_content_description">Facebook Logosu</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Oturum aç...</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Giriş Yapıldı</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Giriş Yapılamadı</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d buradaydı</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d buradaydı</string>
-    <string name="com_facebook_picker_done_button_text">Tamamlandı</string>
-    <string name="com_facebook_choose_friends">Arkadaşları Seç</string>
-    <string name="com_facebook_nearby">Yakında</string>
-    <string name="com_facebook_loading">Yükleniyor...</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifest Hatası</string>
-    <string name="com_facebook_internet_permission_error_message">WebView giriş, İNTERNET iznine gerek duyar</string>
-    <string name="com_facebook_requesterror_web_login">Facebook hesabınız kilitlendi. Lütfen devam etmek için www.facebook.com adresinden giriş yapın.</string>
-    <string name="com_facebook_requesterror_relogin">Facebook hesabınıza tekrar bağlanabilmek için lütfen bu uygulamaya tekrar giriş yapın.</string>
-    <string name="com_facebook_requesterror_password_changed">Facebook şifreniz değişti. Facebook hesabınıza tekrar bağlanabilmek için lütfen bu uygulamaya tekrar giriş yapın.</string>
-    <string name="com_facebook_requesterror_reconnect">Facebook hesabınıza tekrar bağlanabilmek için lütfen bu uygulamaya tekrar giriş yapın.</string>
-    <string name="com_facebook_requesterror_permissions">Bu uygulamanın, bu değişikliği yapma izni yok. İzinleri değiştirmek için, tekrar uygulamaya giriş yapmayı deneyin.</string>
     <string name="edit_observation">Gözlemi Düzenle</string>
     <string name="discard_changes">Kaydedilmemiş değişiklikleri iptal etmek istediğinizden emin misiniz?</string>
     <string name="yes">Evet</string>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">iNaturalist için Yardım (sürüm %1$s - %2$s; kullanıcı kimliği %3$s)</string>
     <string name="send_email">E-posta gönder...</string>
     <string name="login_with">Şununla oturum aç</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-posta</string>
     <string name="skip">Atla ›</string>
@@ -1218,5 +1192,7 @@ Ticari Olmayan Atfetme (CC BY-NC), gibi kayıtların  biyolojik çeşitlilik bil
     <string name="please_try_again_soon">Lütfen daha sonra tekrar deneyin.</string>
     <string name="verify_your_email">E-posta Adresini Doğrula</string>
     <string name="after_you_change_your_password">Şifreni değiştirdikten sonra oturumun kapatılacak ve yeni şifrenle tekrar oturum açman gerekecektir. Ayrıca iNaturalist mobil uygulamalarından ve adına iNaturalist\'e gönderi yapan diğer uygulamalardan veya web sitelerinden de çıkış yapacaksın, bu nedenle bunu yapmadan önce bekleyen gözlemlerini yüklediğinden emin ol. Yüklenmeyen tüm gözlemler kaybolacaktır.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Dosya yüklenemedi - 20 MB\'den büyük</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

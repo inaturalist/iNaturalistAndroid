@@ -46,31 +46,6 @@
     <string name="password">Palavra-passe</string>
     <string name="unknown">Desconhecido</string>
     <string name="unknown_species">Espécie desconhecida</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">Ok</string>
-    <string name="com_facebook_loginview_log_out_button">Sair</string>
-    <string name="com_facebook_loginview_log_in_button">Iniciar sessão</string>
-    <string name="com_facebook_loginview_logged_in_as">Iniciou sessão como: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Iniciou sessão com o Facebook</string>
-    <string name="com_facebook_loginview_log_out_action">Sair</string>
-    <string name="com_facebook_loginview_cancel_action">Cancelar</string>
-    <string name="com_facebook_logo_content_description">Logótipo do Facebook</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Iniciar sessão&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Com sessão iniciada</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Sem sessão iniciada</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s %2$,d estavam aqui</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d estavam aqui</string>
-    <string name="com_facebook_picker_done_button_text">Concluído</string>
-    <string name="com_facebook_choose_friends">Escolher Amigos</string>
-    <string name="com_facebook_nearby">Nas Proximidades</string>
-    <string name="com_facebook_loading">A carregar...</string>
-    <string name="com_facebook_internet_permission_error_title">Erro AndroidManifest</string>
-    <string name="com_facebook_internet_permission_error_message">Iniciar sessão com WebView requer permissão de INTERNET</string>
-    <string name="com_facebook_requesterror_web_login">A sua conta Facebook está bloqueada. Por favor, inicie sessão em www.facebook.com para continuar.</string>
-    <string name="com_facebook_requesterror_relogin">Por favor, inicie sessão novamente nesta aplicação para voltar a ligar a sua conta Facebook.</string>
-    <string name="com_facebook_requesterror_password_changed">A sua palavra-passe do Facebook foi alterada. Por favor, inicie sessão novamente nesta aplicação para voltar a ligar a sua conta Facebook.</string>
-    <string name="com_facebook_requesterror_reconnect">Por favor, inicie sessão novamente nesta aplicação para voltar a ligar a sua conta Facebook.</string>
-    <string name="com_facebook_requesterror_permissions">Esta aplicação não tem permissão para fazer isto. Para alterar as permissões, tente iniciar sessão novamente na aplicação.</string>
     <string name="edit_observation">Editar Observação</string>
     <string name="discard_changes">Tem a certeza que pretende descartar as alterações não guardadas?</string>
     <string name="yes">Sim</string>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">Ajuda com o iNaturalist (versão %1$s - %2$s; identificação do utilizador - %3$s)</string>
     <string name="send_email">Enviar email...</string>
     <string name="login_with">Iniciar sessão com</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Email</string>
     <string name="skip">Passar  ›</string>
@@ -1218,5 +1192,7 @@ nossa comunidade de código aberto]]></string>
     <string name="please_try_again_soon">Please try again soon.</string>
     <string name="verify_your_email">Verify Your Email Address</string>
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

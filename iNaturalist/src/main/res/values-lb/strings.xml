@@ -46,31 +46,6 @@
     <string name="password">Passwuert</string>
     <string name="unknown">Onbekannt</string>
     <string name="unknown_species">Onbekannten Aart</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">OK</string>
-    <string name="com_facebook_loginview_log_out_button">Ausloggen</string>
-    <string name="com_facebook_loginview_log_in_button">Aloggen</string>
-    <string name="com_facebook_loginview_logged_in_as">Ageloggt als: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Ageloggt mat Facebook</string>
-    <string name="com_facebook_loginview_log_out_action">Ausloggen</string>
-    <string name="com_facebook_loginview_cancel_action">Ofbriechen</string>
-    <string name="com_facebook_logo_content_description">Facebook Logo</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Aloggen...</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Aegloggt</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Net ageloggt</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d waren hei</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d waren hei</string>
-    <string name="com_facebook_picker_done_button_text">Fäerdeg</string>
-    <string name="com_facebook_choose_friends">Frënd wielen</string>
-    <string name="com_facebook_nearby">Nobäi</string>
-    <string name="com_facebook_loading">Lueden...</string>
-    <string name="com_facebook_internet_permission_error_title">Nach keng Kommentaren/Bestëmmungen</string>
-    <string name="com_facebook_internet_permission_error_message">WebView login requires INTERNET permission</string>
-    <string name="com_facebook_requesterror_web_login">Äre Facebook Account ass gespaart. W.e.g. loggt Iech an ob www.facebook.com fir weider ze fueren.</string>
-    <string name="com_facebook_requesterror_relogin">W.e.g. loggt Iech nach emol an des App an fir Ären Facebook Account ze reconnectéieren.</string>
-    <string name="com_facebook_requesterror_password_changed">Äert Facebook Passwuert huet geännert. W.e.g. loggt Iech nach emol an des App a fir Aren Facebook Account ze reconnectéieren.</string>
-    <string name="com_facebook_requesterror_reconnect">W.e.g. loggt Iech nach emol an des App an fir Ären Facebook Account ze reconnecteiren.</string>
-    <string name="com_facebook_requesterror_permissions">Des App huet keng Permissioun dëst ze maachen. Fir d\'Permissiounen ze änneren, versicht Iech nach emol an d\'App anzeloggen.</string>
     <string name="edit_observation">Observatioun änneren</string>
     <string name="discard_changes">Sidd Dir sécher dass Dir net gespäichert Verännerunge wëllt verwerfen?</string>
     <string name="yes">Jo</string>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">Hëllef mat iNaturalist (Versioun %1$s -%2$s; Benotzer id - %3$s)</string>
     <string name="send_email">Email senden...</string>
     <string name="login_with">Aloggen mat</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-Mail</string>
     <string name="skip">Iwwersprangen  ›</string>
@@ -1216,5 +1190,7 @@
     <string name="please_try_again_soon">Please try again soon.</string>
     <string name="verify_your_email">Verify Your Email Address</string>
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

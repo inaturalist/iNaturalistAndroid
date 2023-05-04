@@ -46,31 +46,6 @@
     <string name="password">סיסמה</string>
     <string name="unknown">לא ידוע</string>
     <string name="unknown_species">מין לא ידוע</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">אישור</string>
-    <string name="com_facebook_loginview_log_out_button">יציאה</string>
-    <string name="com_facebook_loginview_log_in_button">התחברות</string>
-    <string name="com_facebook_loginview_logged_in_as">מחובר.ת בתור %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">מחובר.ת באמצעות פייסבוק</string>
-    <string name="com_facebook_loginview_log_out_action">התנתק</string>
-    <string name="com_facebook_loginview_cancel_action">ביטול</string>
-    <string name="com_facebook_logo_content_description">לוגו פייסבוק</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">כניסה&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">מחובר.ת</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">לא מחובר.ת</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d היו כאן</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d היו כאן</string>
-    <string name="com_facebook_picker_done_button_text">בוצע</string>
-    <string name="com_facebook_choose_friends">בחירת חברות וחברים</string>
-    <string name="com_facebook_nearby">בקרבת מקום</string>
-    <string name="com_facebook_loading">טוען...</string>
-    <string name="com_facebook_internet_permission_error_title">שגיאת AndroidManifest</string>
-    <string name="com_facebook_internet_permission_error_message">תצוגת WebView דורשת הרשאות אינטרנט</string>
-    <string name="com_facebook_requesterror_web_login">חשבון הפייסבוק שלך נעול. נא להיכנס ל-www.facebook.com כדי להמשיך.</string>
-    <string name="com_facebook_requesterror_relogin">נא להיכנס מחדש לאפליקציה זו כדי להתחבר מחדש לחשבון הפייסבוק שלך.</string>
-    <string name="com_facebook_requesterror_password_changed">הסיסמה שלך בפייסבוק השתנתה. נא להיכנס לאפליקציה זו שוב, כדי להתחבר מחדש לחשבון הפייסבוק שלך.</string>
-    <string name="com_facebook_requesterror_reconnect">נא להיכנס מחדש לאפליקציה זו כדי להתחבר מחדש לחשבון הפייסבוק שלך.</string>
-    <string name="com_facebook_requesterror_permissions">לאפליקציה זו אין הרשאה לבצע זאת. כדי לשנות הרשאות, יש לנסות להיכנס לאפליקציה שוב.</string>
     <string name="edit_observation">עריכת תצפית</string>
     <string name="discard_changes">האם ברצונך לבטל את השינויים שלא נשמרו?</string>
     <string name="yes">כן</string>
@@ -222,7 +197,6 @@
     <string name="inat_support_email_subject">עזרה עם iNaturalist (גרסא %1$s - %2$s; user id - %3$s)</string>
     <string name="send_email">שלח.י דוא\"ל...</string>
     <string name="login_with">התחברות עם</string>
-    <string name="facebook">פייסבוק</string>
     <string name="gplus">גוגל</string>
     <string name="email">דוא\"ל</string>
     <string name="skip">דלג.י ›</string>
@@ -1232,5 +1206,7 @@
     <string name="please_try_again_soon">נא לנסות שוב בקרוב.</string>
     <string name="verify_your_email">נא לאמת את כתובת הדוא״ל שלך</string>
     <string name="after_you_change_your_password">לאחר שינוי הסיסמה שלך, תנותק.י ויהיה עליך להתחבר חדש באמצעות סיסמתך החדשה. כמו כן, תנותק.י מהאפליקציות הניידות של iNaturalist ומכל אפליקציה או אתר אחרים המעלים ל-iNaturalist בשמך, לכן יש לוודא שהעלית את כל התצפיות הממתינות שלך לפני כן. תצפיות שלא הועלו לא  יישמרו.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">לא ניתן להעלות קבצים הגדולים מ-20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

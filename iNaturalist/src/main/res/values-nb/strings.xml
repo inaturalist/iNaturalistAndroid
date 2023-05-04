@@ -46,31 +46,6 @@
     <string name="password">Passord</string>
     <string name="unknown">Ukjent</string>
     <string name="unknown_species">Ukjent art</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">OK</string>
-    <string name="com_facebook_loginview_log_out_button">Logg ut</string>
-    <string name="com_facebook_loginview_log_in_button">Logg inn</string>
-    <string name="com_facebook_loginview_logged_in_as">Logget inn som: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Logget inn med Facebook</string>
-    <string name="com_facebook_loginview_log_out_action">Logg ut</string>
-    <string name="com_facebook_loginview_cancel_action">Avbryt</string>
-    <string name="com_facebook_logo_content_description">Facebook-logo</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Logg inn&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Logget inn</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Ikke logget inn</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d var her</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d var her</string>
-    <string name="com_facebook_picker_done_button_text">Ferdig</string>
-    <string name="com_facebook_choose_friends">Velg venner</string>
-    <string name="com_facebook_nearby">Nære</string>
-    <string name="com_facebook_loading">Laster...</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifest-feil</string>
-    <string name="com_facebook_internet_permission_error_message">WebView-innlogging krever internettillatelse</string>
-    <string name="com_facebook_requesterror_web_login">Facebook-kontoen din er låst. Vennligst logg in på www.facebook.com for å fortsette.</string>
-    <string name="com_facebook_requesterror_relogin">Vennligst logg in på denne appen igjen for å tilkoble Facebook-kontoen din.</string>
-    <string name="com_facebook_requesterror_password_changed">Facebook-passordet ditt har forandret seg. Vennligst logg inn på denne appen igjen for å tilkoble Facebook-kontoen din.</string>
-    <string name="com_facebook_requesterror_reconnect">Vennligst logg inn på denne appen igjen for å tilkoble Facebook-kontoen din.</string>
-    <string name="com_facebook_requesterror_permissions">Denne appen har ikke tillatelse til å gjøre dette. For å forandre tillatelser, prøv å logge inn på appen på nytt.</string>
     <string name="edit_observation">Redigér observasjon</string>
     <string name="discard_changes">Er du sikker på at du vil kaste ulagrede forandringer?</string>
     <string name="yes">Ja</string>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">Hjelp til med iNaturalist (versjon %1$s - %2$s; bruker-id - %3$s)</string>
     <string name="send_email">Send e-post...</string>
     <string name="login_with">Logg inn med</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-post</string>
     <string name="skip">Hopp over  ›</string>
@@ -1226,5 +1200,7 @@ hvordan vi bruker det, vennligst se vår <a href="https://www.inaturalist.org/pr
     <string name="please_try_again_soon">Please try again soon.</string>
     <string name="verify_your_email">Verify Your Email Address</string>
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

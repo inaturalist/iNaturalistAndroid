@@ -46,31 +46,6 @@
     <string name="password">Құпия сөз</string>
     <string name="unknown">Белгісіз</string>
     <string name="unknown_species">Белгісіз түр</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">ОК</string>
-    <string name="com_facebook_loginview_log_out_button">Шығу</string>
-    <string name="com_facebook_loginview_log_in_button">Жүйеге кіру</string>
-    <string name="com_facebook_loginview_logged_in_as">Жүйеге %1$s ретінде кірдіңіз</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Facebook арқылы жүйеге кірді</string>
-    <string name="com_facebook_loginview_log_out_action">Шығу</string>
-    <string name="com_facebook_loginview_cancel_action">Бас тарту</string>
-    <string name="com_facebook_logo_content_description">Facebook логотипі</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Жүйеге кіру&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Жүйеге кірілді</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Жүйеге кірілмеді</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d осында болды</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d осында болды</string>
-    <string name="com_facebook_picker_done_button_text">Дайын</string>
-    <string name="com_facebook_choose_friends">Достарды таңдау</string>
-    <string name="com_facebook_nearby">Жақын жерде</string>
-    <string name="com_facebook_loading">Жүктелуде...</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifest қатесі</string>
-    <string name="com_facebook_internet_permission_error_message">WebView жүйесіне кіру үшін INTERNET рұқсаты қажет</string>
-    <string name="com_facebook_requesterror_web_login">Сіздің Facebook аккаунтыңыз құлыпталған. Жалғастыру үшін www.facebook.com сайтына кіріңіз.</string>
-    <string name="com_facebook_requesterror_relogin">Facebook аккаунтыңызды қайта қосу үшін осы қолданбаға қайта кіріңіз.</string>
-    <string name="com_facebook_requesterror_password_changed">Facebook құпия сөзі өзгерген. Facebook аккаунтыңызды қайта қосу үшін осы қолданбаға қайта кіріңіз.</string>
-    <string name="com_facebook_requesterror_reconnect">Facebook аккаунтыңызды қайта қосу үшін осы қолданбаға қайта кіріңіз.</string>
-    <string name="com_facebook_requesterror_permissions">Бұл қолданбаның мұны істеуге рұқсаты жоқ. Рұқсаттарды өзгерту үшін қолданбаға қайта кіріп көріңіз.</string>
     <string name="edit_observation">Бақылауды өңдеу</string>
     <string name="discard_changes">Сақталмаған өзгертулерден бас тартқыңыз келетініне сенімдісіз бе?</string>
     <string name="yes">Иә</string>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">iNaturalist анықтамасы (нұсқа %1$s - %2$s; пайдаланушы идентификаторы - %3$s)</string>
     <string name="send_email">Электрондық хат жіберу...</string>
     <string name="login_with">Осы арқылы кіру</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Электрондық пошта</string>
     <string name="skip">Өткізу  ›</string>
@@ -1216,5 +1190,7 @@
     <string name="please_try_again_soon">Жақын арада әрекетті қайталап көріңіз.</string>
     <string name="verify_your_email">Электрондық пошта мекенжайыңызды растаңыз</string>
     <string name="after_you_change_your_password">Құпия сөзді өзгерткеннен кейін жүйеден шығасыз және жаңа құпия сөзбен қайта кіруіңіз керек. Сондай-ақ, сіз iNaturalist мобильді қолданбаларынан және сіздің атыңыздан iNaturalist сайтына жариялайтын кез келген басқа қолданбалардан немесе веб-сайттардан шығасыз, сондықтан мұны жасамас бұрын кез келген күтудегі бақылауларды жүктеп салғаныңызға көз жеткізіңіз. Жүктеп салынбаған кез келген бақылаулар жоғалады.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Файлды жүктеп салу мүмкін болмады – 20 МБ-тан үлкен</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>
