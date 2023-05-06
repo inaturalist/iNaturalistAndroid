@@ -46,31 +46,6 @@
     <string name="password">Salasõna</string>
     <string name="unknown">Teadmata</string>
     <string name="unknown_species">Tundmatu liik</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">OK</string>
-    <string name="com_facebook_loginview_log_out_button">Logi välja</string>
-    <string name="com_facebook_loginview_log_in_button">Logi sisse</string>
-    <string name="com_facebook_loginview_logged_in_as">Sisse loginud: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Logitud sisse Facebookiga</string>
-    <string name="com_facebook_loginview_log_out_action">Logi välja</string>
-    <string name="com_facebook_loginview_cancel_action">Loobu</string>
-    <string name="com_facebook_logo_content_description">Facebooki Logo</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Logi sisse&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Sisse logitud</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Pole sisse logitud</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d olid siin</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d olid siin</string>
-    <string name="com_facebook_picker_done_button_text">Valmis</string>
-    <string name="com_facebook_choose_friends">Vali sõbrad</string>
-    <string name="com_facebook_nearby">Lähedal</string>
-    <string name="com_facebook_loading">Laen...</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifesti tõrge</string>
-    <string name="com_facebook_internet_permission_error_message">WebView login nõuab INTERNET-luba</string>
-    <string name="com_facebook_requesterror_web_login">Sinu Facebooki konto on lukustatud. Palun logi jätkamiseks sisse lehele www.facebook.com.</string>
-    <string name="com_facebook_requesterror_relogin">Facebooki konto taasühendamiseks, logi palun rakendusse uuesti sisse.</string>
-    <string name="com_facebook_requesterror_password_changed">Sinu Facebooki salasõna on muutunud. Facebooki konto taasühendamiseks, logi palun rakendusse uuesti sisse.</string>
-    <string name="com_facebook_requesterror_reconnect">Facebooki konto taasühendamiseks, logi palun rakendusse uuesti sisse.</string>
-    <string name="com_facebook_requesterror_permissions">Rakendusel puuduvad selle tegemiseks õigused. Õiguste muutmiseks proovi uuesti sisse logida.</string>
     <string name="edit_observation">Muuda vaatlust</string>
     <string name="discard_changes">Oled sa kindel, et soovid salvestamata muutused maha kanda?</string>
     <string name="yes">Jah</string>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">Aita meid iNaturalistiga (versioon %1$s - %2$s, kasutaja id - %3$s)</string>
     <string name="send_email">Saada e-post...</string>
     <string name="login_with">Logi sisse kontoga</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-post</string>
     <string name="skip">Jäta vahele ›</string>
@@ -1217,5 +1191,7 @@
     <string name="please_try_again_soon">Palun proovi varsti uuesti.</string>
     <string name="verify_your_email">Kinnita oma e-posti aadress</string>
     <string name="after_you_change_your_password">Peale salasõna vahetamist logitakse sind välja ning sa pead uue salasõnaga taaskord sisse logima. Samuti logitakse sind välja kõigist iNaturalisti mobiilirakendustest ning kõigist teistest rakendustest ja kodulehtedest, mis sinu eest iNaturalisti andmeid postitavad, nii et tee esmalt kindlaks, et kõik su ootel olevad vaatlused esmalt üles laetud saaksid. Kõik üles laadimata vaatlused jäävad muidu kadunuks.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Faili ei saa üles laadid, kuna see on suurem kui 20MB.</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

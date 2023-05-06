@@ -46,31 +46,6 @@
     <string name="password">Wachtwoord</string>
     <string name="unknown">Onbekend</string>
     <string name="unknown_species">Onbekende soort</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">OK</string>
-    <string name="com_facebook_loginview_log_out_button">Uitloggen</string>
-    <string name="com_facebook_loginview_log_in_button">Inloggen</string>
-    <string name="com_facebook_loginview_logged_in_as">Ingelogd als: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Ingelogd met Facebook</string>
-    <string name="com_facebook_loginview_log_out_action">Uitloggen</string>
-    <string name="com_facebook_loginview_cancel_action">Annuleren</string>
-    <string name="com_facebook_logo_content_description">Facebook Logo</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Aanmelden&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Ingelogd</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Niet aangemeld</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d waren hier</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d waren hier</string>
-    <string name="com_facebook_picker_done_button_text">Klaar</string>
-    <string name="com_facebook_choose_friends">Kies vrienden</string>
-    <string name="com_facebook_nearby">In de omgeving</string>
-    <string name="com_facebook_loading">Aan het laden...</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifest fout</string>
-    <string name="com_facebook_internet_permission_error_message">WebView login vereist INTERNET permissie</string>
-    <string name="com_facebook_requesterror_web_login">Je Facebook-account is niet toegankelijk. Log in bij www.facebook.com om verder te gaan.</string>
-    <string name="com_facebook_requesterror_relogin">Log terug in op deze app om je Facebook-account opnieuw te koppelen.</string>
-    <string name="com_facebook_requesterror_password_changed">Je Facebook-wachtwoord is gewijzigd. Log opnieuw in bij deze app om je Facebook-account weer te koppelen.</string>
-    <string name="com_facebook_requesterror_reconnect">Log weer in op deze app om je Facebook-account opnieuw te koppelen.</string>
-    <string name="com_facebook_requesterror_permissions">Deze app heeft geen toestemming om dit te doen. Om machtigingen te wijzigen, log opnieuw in op de app.</string>
     <string name="edit_observation">Waarneming wijzigen</string>
     <string name="discard_changes">Weet je zeker dat je deze wijzigingen niet wilt opslaan?</string>
     <string name="yes">Ja</string>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">Help bij iNaturalist (versie %1$s - %2$s; user id - %3$s)</string>
     <string name="send_email">Email verzenden...</string>
     <string name="login_with">Log in met</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-mail</string>
     <string name="skip">Sla over ›</string>
@@ -1221,5 +1195,7 @@ zonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van d
     <string name="please_try_again_soon">Probeer het later nog eens</string>
     <string name="verify_your_email">Verifieer je e-mailadres</string>
     <string name="after_you_change_your_password">Nadat jij jouw wachtwoord hebt gewijzigd wordt je afgemeld en moet je opnieuw inloggen met je nieuwe wachtwoord. Je wordt ook afgemeld bij de iNaturalist mobiele apps en andere apps of websites die in namens jou naar iNaturalist posten, dus zorg ervoor dat je alle lopende waarnemingen hebt geüpload voordat je dit doet. Alle waarnemingen die niet zijn geüpload gaan verloren.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Kon bestand niet uploaden - groter dan 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

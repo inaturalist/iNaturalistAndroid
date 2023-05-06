@@ -46,31 +46,6 @@
     <string name="password">Mật khẩu</string>
     <string name="unknown">Không rõ</string>
     <string name="unknown_species">Loài không xác định</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">Đồng ý</string>
-    <string name="com_facebook_loginview_log_out_button">Đăng Xuất</string>
-    <string name="com_facebook_loginview_log_in_button">Đăng nhập</string>
-    <string name="com_facebook_loginview_logged_in_as">Đăng nhập với tên: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Đăng nhập với Facebook</string>
-    <string name="com_facebook_loginview_log_out_action">Đăng Xuất</string>
-    <string name="com_facebook_loginview_cancel_action">Cancel</string>
-    <string name="com_facebook_logo_content_description">Facebook Logo</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Đăng nhập...</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Đã đăng nhập</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Chưa đăng nhập</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d đã từng ở đây</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d đã từng ở đây</string>
-    <string name="com_facebook_picker_done_button_text">Hoàn thành</string>
-    <string name="com_facebook_choose_friends">Chọn bạn bè</string>
-    <string name="com_facebook_nearby">Gần đây</string>
-    <string name="com_facebook_loading">Đang tải...</string>
-    <string name="com_facebook_internet_permission_error_title">Lỗi AndroidManifest</string>
-    <string name="com_facebook_internet_permission_error_message">Đăng nhập WebView yêu cầu sự cho phép INTERNET</string>
-    <string name="com_facebook_requesterror_web_login">Tài khoản Facebook của bạn đã bị khóa. Bạn hãy đăng nhập vào www.facebook.com để tiếp tục.</string>
-    <string name="com_facebook_requesterror_relogin">Bạn hãy thử đăng nhập vào ứng dụng này một lần nữa để kết nối lại với tài khoản Facebook của bạn.</string>
-    <string name="com_facebook_requesterror_password_changed">Mật khẩu Facebook của bạn đã thay đổi. Bạn vui lòng đăng nhập lại vào ứng dụng này để khôi phục kết nối với tài khoản Facebook của bạn.</string>
-    <string name="com_facebook_requesterror_reconnect">Bạn hãy thử đăng nhập vào ứng dụng này một lần nữa để kết nối lại với tài khoản Facebook của bạn.</string>
-    <string name="com_facebook_requesterror_permissions">Ứng dụng không có quyền thực hiện hành động này. Để thay đổi quyền cho phép, bạn hãy thử đăng nhập vào ứng dụng một lần nữa.</string>
     <string name="edit_observation">Chỉnh sửa quan sát</string>
     <string name="discard_changes">Bạn có chắc chắn muốn xóa tất cả các thay đổi chưa lưu không?</string>
     <string name="yes">Có</string>
@@ -219,7 +194,6 @@
     <string name="inat_support_email_subject">Giúp đỡ cùng với iNaturalist (version %1$s - %2$s; user id - %3$s)</string>
     <string name="send_email">Gửi email</string>
     <string name="login_with">Đăng nhập với</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Email</string>
     <string name="skip">Bỏ qua ›</string>
@@ -1209,5 +1183,7 @@ Các bên thứ ba này bao gồm: <br/><ul><li>Google (<a href="https://analyti
     <string name="please_try_again_soon">Please try again soon.</string>
     <string name="verify_your_email">Verify Your Email Address</string>
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

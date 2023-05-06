@@ -46,31 +46,6 @@
     <string name="password">මුරපදය</string>
     <string name="unknown">නොදන්නා</string>
     <string name="unknown_species">නොදන්නා විශේෂයක්</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">හරි</string>
-    <string name="com_facebook_loginview_log_out_button">ඉවත් වෙන්න</string>
-    <string name="com_facebook_loginview_log_in_button">ඇතුල් වන්න</string>
-    <string name="com_facebook_loginview_logged_in_as">ඇතුල් වී ඇත්තේ මෙලෙසිනි: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Facebook භාවිතයෙන් ඇතුල් වී ඇත</string>
-    <string name="com_facebook_loginview_log_out_action">ඉවත් වෙන්න</string>
-    <string name="com_facebook_loginview_cancel_action">අවලංගු කරන්න</string>
-    <string name="com_facebook_logo_content_description">Facebook ලාංඡනය</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">ඇතුල් වෙන්න&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">ඇතුල් වී ඇත</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">ඇතුල් වී නොමැත</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d මෙතන හිටියා</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d මෙතන හිටියා</string>
-    <string name="com_facebook_picker_done_button_text">සිදු කළා</string>
-    <string name="com_facebook_choose_friends">මිතුරන් තෝරන්න</string>
-    <string name="com_facebook_nearby">අසල ඇති</string>
-    <string name="com_facebook_loading">පූරණය වෙමින්...</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifest දෝෂයකි</string>
-    <string name="com_facebook_internet_permission_error_message">WebView ඇතුල් වීමට \"අන්තර්ජාල\" අවසරය අවශ්‍ය වේ</string>
-    <string name="com_facebook_requesterror_web_login">ඔබගේ Facebook ගිණුම අගුළු දමා ඇත. ඉදිරියට යාමට කරුණාකර www.facebook.com වෙත පිවිසෙන්න.</string>
-    <string name="com_facebook_requesterror_relogin">ඔබගේ Facebook ගිණුම නැවත සම්බන්ධ කිරීමට කරුණාකර මෙම යෙදුමට නැවත ඇතුල් වෙන්න.</string>
-    <string name="com_facebook_requesterror_password_changed">ඔබගේ Facebook මුරපදය වෙනස් වී ඇත. ඔබගේ Facebook ගිණුම නැවත සම්බන්ධ කිරීමට කරුණාකර මෙම යෙදුමට නැවත පිවිසෙන්න.</string>
-    <string name="com_facebook_requesterror_reconnect">ඔබගේ Facebook ගිණුම නැවත සම්බන්ධ කිරීමට කරුණාකර මෙම යෙදුමට නැවත ඇතුල් වෙන්න.</string>
-    <string name="com_facebook_requesterror_permissions">මෙය කිරීමට මෙම යෙදුමට අවසර නැත. අවසර වෙනස් කිරීමට, යෙදුමට නැවත ඇතුල් වීමට උත්සාහ කරන්න.</string>
     <string name="edit_observation">නිරීක්ෂණ සංස්කරණය කරන්න</string>
     <string name="discard_changes">සුරකින නොලද වෙනස්කම් ඉවත දැමීමට ඔබට අවශ්‍ය යැයි ඔබට විශ්වාසද?</string>
     <string name="yes">ඔව්</string>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">iNaturalist සඳහා උදව් (අනුවාදය %1$s - %2$s; පරිශීලක අනන්‍යතාව - %3$s)</string>
     <string name="send_email">විද්‍යුත් තැපෑල යවන්න...</string>
     <string name="login_with">මෙය සමඟ ඇතුල් වන්න</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">විද්‍යුත් තැපෑල</string>
     <string name="skip">මඟහරින්න  ›</string>
@@ -1216,5 +1190,7 @@
     <string name="please_try_again_soon">Please try again soon.</string>
     <string name="verify_your_email">Verify Your Email Address</string>
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

@@ -46,31 +46,6 @@
     <string name="password">Passwort</string>
     <string name="unknown">Unbekannt</string>
     <string name="unknown_species">Unbekannte Art</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">OK</string>
-    <string name="com_facebook_loginview_log_out_button">Ausloggen</string>
-    <string name="com_facebook_loginview_log_in_button">Einloggen</string>
-    <string name="com_facebook_loginview_logged_in_as">Eingeloggt als: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Mit Facebook angemeldet</string>
-    <string name="com_facebook_loginview_log_out_action">Ausloggen</string>
-    <string name="com_facebook_loginview_cancel_action">Abbrechen</string>
-    <string name="com_facebook_logo_content_description">Facebook Logo</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Einloggen&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Eingelogged</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Nicht eingelogged</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d waren hier</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d waren hier</string>
-    <string name="com_facebook_picker_done_button_text">Fertig</string>
-    <string name="com_facebook_choose_friends">Freunde auswählen</string>
-    <string name="com_facebook_nearby">In der Nähe</string>
-    <string name="com_facebook_loading">Ladevorgang...</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifest Fehler</string>
-    <string name="com_facebook_internet_permission_error_message">WebView Login erfordert INTERNET Berechtigung</string>
-    <string name="com_facebook_requesterror_web_login">Facebook-Konto ist gesperrt. Bitte auf www.facebook.com einloggen um fortzufahren</string>
-    <string name="com_facebook_requesterror_relogin">Bitte erneut in die App einloggen um dein Facebook-Konto zu verbinden.</string>
-    <string name="com_facebook_requesterror_password_changed">Dein Facebook Passwort hat sich geändert. Bitte erneut einloggen in die App um dein Facebook Konto zu verbinden.</string>
-    <string name="com_facebook_requesterror_reconnect">Bitte erneut in die App einloggen um dein Facebook-Konto zu verbinden.</string>
-    <string name="com_facebook_requesterror_permissions">Die App ist dazu nicht berechtigt. Um die Berechtigungen zu ändern, melde dich bitte nochmals in der App an.</string>
     <string name="edit_observation">Beobachtung bearbeiten</string>
     <string name="discard_changes">Bist du sicher, dass du die Änderungen verwerfen möchtest?</string>
     <string name="yes">Ja</string>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">Hilfe für iNaturalist (Version %1$s - %2$s; User ID - %3$s)</string>
     <string name="send_email">E-Mail senden...</string>
     <string name="login_with">Anmelden über</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-Mail</string>
     <string name="skip">Überspringen ›</string>
@@ -1221,5 +1195,7 @@ Facility</a> (GBIF) generieren: eine internationale, zwischenstaatliche Organisa
     <string name="please_try_again_soon">Bitte erneut versuchen.</string>
     <string name="verify_your_email">Bestätige deine E-Mail-Adresse</string>
     <string name="after_you_change_your_password">Nachdem du dein Passwort geändert hast, wirst du abgemeldet und musst dich erneut mit deinem neuen Passwort anmelden. Du wirst auch von den mobilen Apps und anderen Apps oder Webseiten abgemeldet, mit denen du Beobachtungen an iNaturalist meldest, also überprüfe, dass alle ausstehenden Beobachtungen hochgeladen wurden, bevor du dein Passwort änderst. Alle nicht hochgeladenen Beobachtungen gehen verloren.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Dateien größer als 20 MB können nicht hochgeladen werden</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>
