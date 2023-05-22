@@ -1005,6 +1005,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
         intent.putExtra(TaxonActivity.TAXON, taxon);
         intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
         intent.putExtra(TaxonActivity.TAXON_SUGGESTION, mTaxonSuggestion == TAXON_SUGGESTION_COMPARE_AND_SELECT ? TAXON_SUGGESTION_SELECT : mTaxonSuggestion);
+        if (mObservation != null) intent.putExtra(TaxonActivity.OBSERVATION, mObservation);
         startActivityForResult(intent, SELECT_TAXON_REQUEST_CODE);
     }
 
