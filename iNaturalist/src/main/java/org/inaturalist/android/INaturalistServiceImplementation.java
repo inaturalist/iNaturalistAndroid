@@ -1379,6 +1379,7 @@ public class INaturalistServiceImplementation {
                 boolean groupByThreads = intent.getExtras() != null ? intent.getExtras().getBoolean(GROUP_BY_THREADS) : false;
                 Integer messageId = (intent.getExtras() != null && intent.getExtras().containsKey(MESSAGE_ID)) ? intent.getExtras().getInt(MESSAGE_ID) : null;
                 BetterJSONObject messages = getMessages(query, box, groupByThreads, messageId);
+                messages = ObservationUtils.getMinimalMessagesResults(messages);
 
                 Intent reply = new Intent(ACTION_MESSAGES_RESULT);
                 mApp.setServiceResult(ACTION_MESSAGES_RESULT, messages);

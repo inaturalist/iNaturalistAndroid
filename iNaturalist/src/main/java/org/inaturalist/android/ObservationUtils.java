@@ -30,6 +30,48 @@ public class ObservationUtils {
         return results;
     }
 
+    public static BetterJSONObject getMinimalMessagesResults(BetterJSONObject results) {
+        if (results == null) return null;
+
+        SerializableJSONArray innerResults = results.getJSONArray("results");
+        if (innerResults == null) return null;
+
+        JSONArray messages = innerResults.getJSONArray();
+
+        if (messages != null) {
+            JSONArray minimizedResults = new JSONArray();
+
+            for (int i = 0; i < messages.length(); i++) {
+                JSONObject item = messages.optJSONObject(i);
+                minimizedResults.put(getMinimalMessage(item));
+            }
+
+            results.put("results", minimizedResults);
+        }
+
+        return results;
+    }
+
+    public static JSONObject getMinimalMessage(JSONObject message) {
+        if (message == null) return null;
+
+        try {
+            if (message.has("from_user")) {
+                JSONObject user = message.optJSONObject("from_user");
+                message.put("from_user", getMinimalUser(user));
+            }
+            if (message.has("to_user")) {
+                JSONObject user = message.optJSONObject("to_user");
+                message.put("to_user", getMinimalUser(user));
+            }
+        } catch (JSONException e) {
+            Logger.tag(TAG).error(e);
+            return null;
+        }
+
+        return message;
+    }
+
     public static BetterJSONObject getMinimalObserverResults(BetterJSONObject results) {
         if (results == null) return null;
 

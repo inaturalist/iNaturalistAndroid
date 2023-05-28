@@ -160,6 +160,7 @@ public class MessagesActivity extends BaseFragmentActivity implements MessageAda
     private void searchMessages() {
         mMessages = null;
 
+        Logger.tag(TAG).info("searchMessages");
         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_MESSAGES, null, this, INaturalistService.class);
         if (mCurrentSearchString.length() > 0) {
             serviceIntent.putExtra(INaturalistService.QUERY, mCurrentSearchString);
@@ -170,7 +171,6 @@ public class MessagesActivity extends BaseFragmentActivity implements MessageAda
 
         serviceIntent.putExtra(INaturalistService.BOX, "any");
         INaturalistService.callService(this, serviceIntent);
-        refreshUserDetails();
 
         refreshViewState();
     }
@@ -302,6 +302,7 @@ public class MessagesActivity extends BaseFragmentActivity implements MessageAda
     private class MessagesReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+            Logger.tag(TAG).info("MessagesReceiver - onReceive");
             Bundle extras = intent.getExtras();
 
             String query = intent.getStringExtra(INaturalistService.QUERY);
@@ -312,6 +313,7 @@ public class MessagesActivity extends BaseFragmentActivity implements MessageAda
 
             if (((query != null) && (!query.equals(mCurrentSearchString))) || ((query == null) && mCurrentSearchString.length() > 0)) {
                 // Older results (for previous search query)
+                Logger.tag(TAG).info("MessagesReceiver - onReceive - older results: " + query + " != " + mCurrentSearchString);
                 return;
             }
 
@@ -320,6 +322,8 @@ public class MessagesActivity extends BaseFragmentActivity implements MessageAda
             } else {
                 object = intent.getSerializableExtra(INaturalistService.ACTION_MESSAGES_RESULT);
             }
+
+            Logger.tag(TAG).info("MessagesReceiver - onReceive - " + object);
 
             if (object == null) {
                 // Network error of some kind
