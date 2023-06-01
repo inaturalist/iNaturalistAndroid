@@ -1197,5 +1197,5 @@ Facility</a> (GBIF) generieren: eine internationale, zwischenstaatliche Organisa
     <string name="after_you_change_your_password">Nachdem du dein Passwort geändert hast, wirst du abgemeldet und musst dich erneut mit deinem neuen Passwort anmelden. Du wirst auch von den mobilen Apps und anderen Apps oder Webseiten abgemeldet, mit denen du Beobachtungen an iNaturalist meldest, also überprüfe, dass alle ausstehenden Beobachtungen hochgeladen wurden, bevor du dein Passwort änderst. Alle nicht hochgeladenen Beobachtungen gehen verloren.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Dateien größer als 20 MB können nicht hochgeladen werden</string>
-    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Du wurdest abgemeldet. Bitte erneut anmelden.</string>
 </resources>

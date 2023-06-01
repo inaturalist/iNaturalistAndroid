@@ -1209,5 +1209,5 @@
     <string name="after_you_change_your_password">После смены пароля вы будете отключены от системы, и вам придется снова войти в систему с новым паролем. Вы также будете выведены из мобильных приложений iNaturalist и любых других приложений или сайтов, которые размещают сообщения в iNaturalist от вашего имени, поэтому убедитесь, что вы завершили происходящую загрузку наблюдений, прежде чем вы это сделаете. Любые недозагруженные наблюдения будут утеряны.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Невозможно загрузить файл, он больше 20Мб</string>
-    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Вы вышли из системы. Пожалуйста, войдите заново.</string>
 </resources>

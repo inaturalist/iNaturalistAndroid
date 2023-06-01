@@ -137,7 +137,7 @@
         <item><![CDATA[Observationer af <b>forskningskvalitet</b> deles med forskere, som arbejder for bedre at forstå og beskytte naturen.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
-        <item>Åbn</item>
+        <item>Åben</item>
         <item>Sløret</item>
         <item>Fortrolig</item>
     </string-array>
@@ -1196,5 +1196,5 @@ og <a href="https://www.inaturalist.org/terms">Tjenestevilkår</a>.]]></string>
     <string name="after_you_change_your_password">Efter skift af adgangskoden, logget man ud og vil skulle logge ind igen med den nye adgangskode. Man logges også ud af iNaturalist mobil-apps samt alle øvrige apps eller websteder, som poster til iNaturalist på vegne af kontoen/brugeren, så sørg for at have uploadet alle udestående observationer, før dette gøres. Evt. ikke-uploadede observationer går tabt.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Kunne ikke uploade fil — overstiger 20MB</string>
-    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Du er blevet logget ud. Log ind igen. </string>
 </resources>
