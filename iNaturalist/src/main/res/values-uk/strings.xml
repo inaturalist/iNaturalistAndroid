@@ -404,7 +404,7 @@
     <string name="you_will_only_receive_updates_when_following">(Ви отримуватимете оновлення лише тоді, коли ви будете підписані на спостереження)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> запропонував ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> прокоментував: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> mentioned you: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> згадав вас: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Схоже, ви видалили фото під час очищення кешу програми до того, як відвантажили його. Вам потрібно заново додати його до вашого спостереження із вашої галереї. Надалі, будь ласка, переконуйтеся, що ви відвантажили всі свої фотографії, перш ніж очистити кеш програми.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
@@ -1222,5 +1222,5 @@
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
-    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Ви вийшли з системи. Будь ласка, увійдіть знову.</string>
 </resources>

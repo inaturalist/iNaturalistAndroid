@@ -1194,5 +1194,5 @@ Ticari Olmayan Atfetme (CC BY-NC), gibi kayıtların  biyolojik çeşitlilik bil
     <string name="after_you_change_your_password">Şifreni değiştirdikten sonra oturumun kapatılacak ve yeni şifrenle tekrar oturum açman gerekecektir. Ayrıca iNaturalist mobil uygulamalarından ve adına iNaturalist\'e gönderi yapan diğer uygulamalardan veya web sitelerinden de çıkış yapacaksın, bu nedenle bunu yapmadan önce bekleyen gözlemlerini yüklediğinden emin ol. Yüklenmeyen tüm gözlemler kaybolacaktır.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Dosya yüklenemedi - 20 MB\'den büyük</string>
-    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Oturumunuz kapatıldı. Lütfen tekrar oturum açın.</string>
 </resources>
