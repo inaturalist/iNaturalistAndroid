@@ -303,7 +303,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         // Add any photos that were added/changed
         Cursor onlinePc = mContext.getContentResolver().query(ObservationPhoto.CONTENT_URI,
                 new String[]{ ObservationPhoto._OBSERVATION_ID, ObservationPhoto.OBSERVATION_UUID, ObservationPhoto.OBSERVATION_ID, ObservationPhoto._PHOTO_ID, ObservationPhoto.PHOTO_URL, ObservationPhoto.PHOTO_FILENAME, ObservationPhoto.ORIGINAL_PHOTO_FILENAME, ObservationPhoto.POSITION },
-                "(observation_uuid IN (" + StringUtils.join(obsUUIDsList, ",") + "))",
+                "(observation_uuid IN (" + StringUtils.join(obsUUIDsList, ",") + ")) AND ((is_deleted = 0) OR (is_deleted IS NULL))",
                 null,
                 ObservationPhoto.DEFAULT_SORT_ORDER);
 
