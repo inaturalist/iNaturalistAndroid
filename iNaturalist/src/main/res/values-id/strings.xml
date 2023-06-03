@@ -1185,5 +1185,5 @@ rin, Carrie Seltzer, Alex Shepard, Angie Ta, dan Ken-ichi Ueda.<br/><br/> CalTec
     <string name="after_you_change_your_password">Setelah Anda mengubah kata sandi Anda, Anda akan dikeluarkan dan Anda harus masuk kembali menggunakan kata sandi baru Anda. Anda juga akan dikeluarkan dari aplikasi mobile iNaturalist serta aplikasi-aplikasi atau situs-situs web lain yang mengunggah ke iNaturalist untuk Anda, jadi pastikan Anda sudah mengunggah pengamatan-pengamatan yang belum diunggah sebelum Anda melakukan hal-hal ini. Semua pengamatan yang belum diunggah akan hilang.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Tidak bisa mengunggah berkas - lebih besar dari 20MB</string>
-    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Anda telah keluar dari layanan. Silakan masuk kembali.</string>
 </resources>

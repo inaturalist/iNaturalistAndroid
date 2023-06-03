@@ -1193,5 +1193,5 @@
     <string name="after_you_change_your_password">Peale salasõna vahetamist logitakse sind välja ning sa pead uue salasõnaga taaskord sisse logima. Samuti logitakse sind välja kõigist iNaturalisti mobiilirakendustest ning kõigist teistest rakendustest ja kodulehtedest, mis sinu eest iNaturalisti andmeid postitavad, nii et tee esmalt kindlaks, et kõik su ootel olevad vaatlused esmalt üles laetud saaksid. Kõik üles laadimata vaatlused jäävad muidu kadunuks.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Faili ei saa üles laadid, kuna see on suurem kui 20MB.</string>
-    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Olete välja logitud. Palun logige uuesti sisse.</string>
 </resources>

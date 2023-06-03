@@ -1196,5 +1196,5 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <string name="after_you_change_your_password">Después de cambiar tu contraseña, serás desconectado y tendrás que volver a iniciar sesión con tu nueva contraseña. También serás desconectado de las aplicaciones móviles de iNaturalist y de cualquier otra aplicación o sitio web que publique en iNaturalist en tu nombre, así que asegúrese de haber subido cualquier observación pendiente. Cualquier observación que no se suba se perderá.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">No se pudo cargar el archivo - más de 20MB</string>
-    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Has sido desconectado. Por favor, vuelve a iniciar sesión.</string>
 </resources>

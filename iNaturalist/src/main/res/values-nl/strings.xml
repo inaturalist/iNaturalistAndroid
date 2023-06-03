@@ -1197,5 +1197,5 @@ zonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van d
     <string name="after_you_change_your_password">Nadat jij jouw wachtwoord hebt gewijzigd wordt je afgemeld en moet je opnieuw inloggen met je nieuwe wachtwoord. Je wordt ook afgemeld bij de iNaturalist mobiele apps en andere apps of websites die in namens jou naar iNaturalist posten, dus zorg ervoor dat je alle lopende waarnemingen hebt geüpload voordat je dit doet. Alle waarnemingen die niet zijn geüpload gaan verloren.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Kon bestand niet uploaden - groter dan 20MB</string>
-    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Je bent uitgelogd. Log opnieuw in.</string>
 </resources>

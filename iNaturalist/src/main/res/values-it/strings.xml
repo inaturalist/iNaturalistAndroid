@@ -1194,5 +1194,5 @@ le <a href="https://www.inaturalist.org/pages/community+guidelines">Linee Guida 
     <string name="after_you_change_your_password">Dopo aver modificato la tua password, sarai disconnesso e dovrai accedere di nuovo con la tua nuova password. Sarai anche disconnesso dalle app mobili iNaturalist e da qualsiasi altra app o siti web che pubblicano su iNaturalist per tuo conto, quindi assicurati di aver caricato tutte le osservazioni in sospeso prima di farlo. Le osservazioni che non sono già caricate andranno perse.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Non è possibile caricare il file - è più grande di 20MB</string>
-    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Sei stato disconnesso. Effettua nuovamente l\'accesso.</string>
 </resources>

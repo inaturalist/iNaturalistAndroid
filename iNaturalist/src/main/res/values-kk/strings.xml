@@ -1192,5 +1192,5 @@
     <string name="after_you_change_your_password">Құпия сөзді өзгерткеннен кейін жүйеден шығасыз және жаңа құпия сөзбен қайта кіруіңіз керек. Сондай-ақ, сіз iNaturalist мобильді қолданбаларынан және сіздің атыңыздан iNaturalist сайтына жариялайтын кез келген басқа қолданбалардан немесе веб-сайттардан шығасыз, сондықтан мұны жасамас бұрын кез келген күтудегі бақылауларды жүктеп салғаныңызға көз жеткізіңіз. Жүктеп салынбаған кез келген бақылаулар жоғалады.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Файлды жүктеп салу мүмкін болмады – 20 МБ-тан үлкен</string>
-    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Сіз жүйеден шықтыңыз. Жүйеге қайта кіріңіз.</string>
 </resources>

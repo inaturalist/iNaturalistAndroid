@@ -1204,5 +1204,5 @@ Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen 
     <string name="after_you_change_your_password">Kun olet vaihtanut salasanasi, sinut kirjaudutaan ulos ja sinun täytyy kirjautua sisään uudelleen uudella salasanallasi. Sinut kirjataan ulos möys iNaturalist-mobiilisovelluksesta ja muista sovelluksista tai sivustoista, jotka lähettävät havainnot iNaturalistiin puolestasi, joten varmista, että olet ladannut kaikki olevat havainnot ennen kuin teet tämän. Kaikki tallentamattomat havainnot menetetään.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Tiedostoa ei voitu ladata – suurempi kuin 20 Mt</string>
-    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Sinut on kirjattu ulos. Kirjaudu sisään uudelleen.</string>
 </resources>

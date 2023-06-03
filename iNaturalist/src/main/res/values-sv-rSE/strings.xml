@@ -1192,5 +1192,5 @@
     <string name="after_you_change_your_password">Efter att du bytt lösenord kommer du att loggas ut och måste logga in igen med ditt nya lösenord. Du kommer också att loggas ut från iNaturalists mobilappar och alla andra appar eller webbplatser som publicerar på iNaturalist för din räkning, så se till att du har laddat upp eventuella väntande fynd innan du gör detta. Alla fynd som inte är uppladdade kommer att förloras.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Lyckades inte ladda upp fil - större än 20MB</string>
-    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Du har blivit utloggad. Vänligen logga in igen.</string>
 </resources>

@@ -1202,5 +1202,5 @@ non, tant que le travail demeure inchangé et complet, et que vous êtes mention
     <string name="after_you_change_your_password">Quand vous aurez changé votre mot de passe, votre session prendra fin et vous devrez vous reconnecter avec votre nouveau mot de passe. Vous devrez également vous reconnecter sur les applications mobiles iNaturalist et toutes les autres applications ou sites Web qui publient sur iNaturalist en votre nom. Assurez-vous donc d\'avoir téléchargé au préalable toutes les observations en attente. Les observations qui n\'auront pas été téléchargées seront perdues.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Échec du téléchargement. Le fichier doit faire moins de 20 Mo.</string>
-    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Vous avez été déconnecté·e. Veuillez vous reconnecter.</string>
 </resources>
