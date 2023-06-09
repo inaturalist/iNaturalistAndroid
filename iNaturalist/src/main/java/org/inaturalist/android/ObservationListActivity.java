@@ -18,6 +18,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,6 +27,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.webkit.WebView;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -48,6 +50,7 @@ import com.evernote.android.state.State;
 import com.google.android.material.tabs.TabLayout;
 import com.livefront.bridge.Bridge;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.inaturalist.android.INaturalistApp.INotificationCallback;
 import org.jetbrains.annotations.NotNull;
@@ -58,6 +61,8 @@ import org.tinylog.Logger;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -72,6 +77,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     protected static final int REQUEST_CODE_OBSERVATION_VIEWER = 0x1001;
 
     @State public boolean[] mIsGrid = new boolean[] { false, false, false };
+
+    private AnnouncementsReceiver mAnnouncementsReceiver;
 
     private NewsReceiver mNewsReceiver;
 
@@ -126,6 +133,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
     @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mSpecies;
     @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mIdentifications;
+
+    @State(AndroidStateBundlers.BetterJSONListBundler.class) public ArrayList<BetterJSONObject> mAnnouncements;
 
     @State(AndroidStateBundlers.SetBundler.class) public Set<Long> mObsIdsToSync = new HashSet<>();
 
@@ -449,6 +458,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         }
 
         redownloadObservationsIfLocaleChanged();
+
+        Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_ANNOUNCEMENTS, null, ObservationListActivity.this, INaturalistService.class);
+        INaturalistService.callService(ObservationListActivity.this, serviceIntent2);
     }
 
     private void redownloadObservationsIfLocaleChanged() {
@@ -753,6 +765,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         safeUnregisterReceiver(mUserDetailsReceiver);
         safeUnregisterReceiver(mSyncCompleteReceiver);
         safeUnregisterReceiver(mConnectivityListener);
+        safeUnregisterReceiver(mAnnouncementsReceiver);
 
         mSyncRequested = false;
     }
@@ -819,6 +832,11 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         IntentFilter filter5 = new IntentFilter();
         filter5.addAction(INaturalistService.UPDATES_RESULT);
         safeRegisterReceiver(mNewsReceiver, filter5);
+
+        mAnnouncementsReceiver = new AnnouncementsReceiver();
+        IntentFilter filter6 = new IntentFilter();
+        filter6.addAction(INaturalistService.ANNOUNCEMENTS_RESULT);
+        safeRegisterReceiver(mAnnouncementsReceiver, filter6);
 
         if (mLoadingObservations != null) {
             if (mIsGrid[0]) {
@@ -1877,6 +1895,123 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         Intent serviceIntent = new Intent(action, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
         INaturalistService.callService(this, serviceIntent);
+    }
+
+    private class AnnouncementsReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Logger.tag(TAG).info("AnnouncementsReceiver");
+
+            if (intent.getAction() == null ||
+                    !intent.getAction().equals(INaturalistService.ANNOUNCEMENTS_RESULT)) {
+                return;
+            }
+
+            Bundle extras = intent.getExtras();
+            if (extras == null || extras.getString("error") != null) {
+                return;
+            }
+
+            boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
+            SerializableJSONArray resultsJSON;
+
+            if (isSharedOnApp) {
+                resultsJSON = (SerializableJSONArray) mApp.getServiceResult(intent.getAction());
+            } else {
+                resultsJSON = (SerializableJSONArray) intent.getSerializableExtra(INaturalistService.RESULTS);
+            }
+
+            if (resultsJSON == null) {
+                return;
+            }
+
+            JSONArray results = resultsJSON.getJSONArray();
+
+            if (results == null) {
+                return;
+            }
+
+            Logger.tag(TAG).info("AnnouncementsReceiver:" +  results);
+
+            mAnnouncements = new ArrayList<>();
+            for (int i = 0; i < results.length(); i++) {
+                if (results.optJSONObject(i).optString("placement", "").equals("mobile/home")) {
+                    // Only save mobile/home placement announcements (the ones we'll show in the my observations screen)
+                    mAnnouncements.add(new BetterJSONObject(results.optJSONObject(i)));
+                }
+            }
+
+            // Sort by earliest start date
+            Collections.sort(mAnnouncements, (a1, a2) -> a1.getTimestamp("start").compareTo(a2.getTimestamp("start")));
+
+            refreshAnnouncements();
+        }
+    }
+
+    private void refreshAnnouncements() {
+        View announcementContainer = findViewById(R.id.announcement_container);
+        WebView webView = findViewById(R.id.announcement_content);
+
+        if ((mAnnouncements == null) || (mAnnouncements.size() == 0)) {
+            announcementContainer.setVisibility(View.GONE);
+            return;
+        }
+
+        announcementContainer.setVisibility(View.VISIBLE);
+
+        // Only display the first announcement (earliest one)
+        BetterJSONObject announcement = mAnnouncements.get(0);
+
+        // Show contents
+        webView.setBackgroundColor(Color.TRANSPARENT);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setVerticalScrollBarEnabled(false);
+
+        String html = "" +
+                "<html>" +
+                "<head>" +
+                "<style type=\"text/css\"> " +
+                "@font-face { " +
+                "font-family: Whitney;" +
+                "src: url(\"file:///android_asset/fonts/whitney_light_pro.otf\")" +
+                "}" +
+                "body {" +
+                "line-height: 22pt;" +
+                "margin: 0;" +
+                "padding: 0;" +
+                "font-family: \"HelveticaNeue-UltraLight\", \"Segoe UI\", \"Roboto Light\", sans-serif;" +
+                "font-size: medium;" +
+                "} " +
+                "div {max-width: 100%;} " +
+                "figure { padding: 0; margin: 0; } " +
+                "img { padding-top: 4; padding-bottom: 4; max-width: 100%; } " +
+                "</style>" +
+                "<meta name=\"viewport\" content=\"user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width\" >" +
+                "</head>" +
+                "<body>";
+        webView.loadDataWithBaseURL("", html + announcement.getString("body") + "</body></html>", "text/html", "UTF-8", "");
+
+        View closeAnnouncement = findViewById(R.id.close_announcement);
+
+        if (announcement.getBoolean("dismissible")) {
+            // Show button to close announcement
+            closeAnnouncement.setVisibility(View.VISIBLE);
+
+            closeAnnouncement.setOnClickListener(v -> {
+                // When clicked, dismiss announcement
+
+                // Let the server know we dismissed this announcement
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_DISMISS_ANNOUNCEMENT, null, ObservationListActivity.this, INaturalistService.class);
+                serviceIntent.putExtra(INaturalistService.ANNOUNCEMENT_ID, announcement.getInt("id"));
+                INaturalistService.callService(ObservationListActivity.this, serviceIntent);
+
+                // Remove this announcement and refresh view
+                mAnnouncements.remove(0);
+                refreshAnnouncements();
+            });
+        } else {
+            closeAnnouncement.setVisibility(View.GONE);
+        }
     }
 
     private class NewsReceiver extends BroadcastReceiver {
