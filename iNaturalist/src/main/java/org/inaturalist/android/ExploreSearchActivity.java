@@ -394,7 +394,8 @@ public class ExploreSearchActivity extends AppCompatActivity {
                 mTaxonEditText.setText(taxonName);
                 mTaxonEditText.setSelection(0, taxonName.length());
                 mTaxonIcon.setColorFilter(null);
-                if (mSearchFilters.taxon.has("default_photo") && !mSearchFilters.taxon.isNull("default_photo")) {
+                if (mSearchFilters.taxon.has("default_photo") && !mSearchFilters.taxon.isNull("default_photo") &&
+                        mSearchFilters.taxon.optJSONObject("default_photo").optString("square_url").length() > 0) {
                     // Use taxon's default photo
                     Picasso.with(this).
                             load(mSearchFilters.taxon.optJSONObject("default_photo").optString("square_url")).
