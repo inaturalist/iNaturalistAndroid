@@ -5904,7 +5904,7 @@ public class INaturalistServiceImplementation {
             requestBody = requestBodyBuilder.build();
         }
 
-        if (url.startsWith(API_HOST) && (mCredentials != null)) {
+        if ((url.startsWith(API_HOST) || url.startsWith(API_V2_HOST)) && (mCredentials != null)) {
             // For the node API, if we're logged in, *always* use JWT authentication
             authenticated = true;
             useJWTToken = true;

@@ -36,6 +36,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -70,7 +71,7 @@ import java.util.Locale;
 import java.util.Set;
 
 public class ObservationListActivity extends BaseFragmentActivity implements INotificationCallback,
-        DialogInterface.OnClickListener, ObservationCursorAdapter.OnLoadingMoreResultsListener {
+        DialogInterface.OnClickListener, ObservationCursorAdapter.OnLoadingMoreResultsListener, BaseFragmentActivity.OnAnnouncementsRefreshed {
     public static String TAG = "INAT:ObservationListActivity";
 
     public final static String PARAM_FROM_OBS_EDITOR = "from_obs_editor";
@@ -78,12 +79,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
     @State public boolean[] mIsGrid = new boolean[] { false, false, false };
 
-    private AnnouncementsReceiver mAnnouncementsReceiver;
-
     private NewsReceiver mNewsReceiver;
 
 	private SyncCompleteReceiver mSyncCompleteReceiver;
-	
+
+    private ViewGroup mAnnouncementContainer;
+
 	private int mLastIndex;
 	private int mLastTop;
 
@@ -129,12 +130,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     private TextView mObservationsEmpty;
     private ImageView mObservationsEmptyIcon;
     private ListView mObservationsList;
-    private GridView mObservationsGrid;
+    private HeaderGridView mObservationsGrid;
 
     @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mSpecies;
     @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mIdentifications;
-
-    @State(AndroidStateBundlers.BetterJSONListBundler.class) public ArrayList<BetterJSONObject> mAnnouncements;
 
     @State(AndroidStateBundlers.SetBundler.class) public Set<Long> mObsIdsToSync = new HashSet<>();
 
@@ -198,6 +197,11 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         (new Handler()).postDelayed(() -> Toast.makeText(getApplicationContext(),
                 getResources().getString(R.string.not_connected),
                 Toast.LENGTH_LONG).show(), 100);
+    }
+
+    @Override
+    public void onAnnouncementsRefreshed() {
+        refreshAnnouncements();
     }
 
     private class SyncCompleteReceiver extends BroadcastReceiver {
@@ -459,8 +463,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         redownloadObservationsIfLocaleChanged();
 
-        Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_ANNOUNCEMENTS, null, ObservationListActivity.this, INaturalistService.class);
-        INaturalistService.callService(ObservationListActivity.this, serviceIntent2);
+        mOnAnnouncementsRefreshed = this;
     }
 
     private void redownloadObservationsIfLocaleChanged() {
@@ -765,7 +768,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         safeUnregisterReceiver(mUserDetailsReceiver);
         safeUnregisterReceiver(mSyncCompleteReceiver);
         safeUnregisterReceiver(mConnectivityListener);
-        safeUnregisterReceiver(mAnnouncementsReceiver);
 
         mSyncRequested = false;
     }
@@ -832,11 +834,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         IntentFilter filter5 = new IntentFilter();
         filter5.addAction(INaturalistService.UPDATES_RESULT);
         safeRegisterReceiver(mNewsReceiver, filter5);
-
-        mAnnouncementsReceiver = new AnnouncementsReceiver();
-        IntentFilter filter6 = new IntentFilter();
-        filter6.addAction(INaturalistService.ANNOUNCEMENTS_RESULT);
-        safeRegisterReceiver(mAnnouncementsReceiver, filter6);
 
         if (mLoadingObservations != null) {
             if (mIsGrid[0]) {
@@ -1046,6 +1043,20 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     item.setTitle(R.string.switch_to_list_view);
                 } else {
                     item.setTitle(R.string.switch_to_grid_view);
+                }
+
+                if (mViewPager.getCurrentItem() == 0) {
+                    // Need to re-add the header
+                    if (mAnnouncementContainer != null) {
+                        if (!mIsGrid[0]) {
+                            mObservationsGrid.removeHeaderView(mAnnouncementContainer);
+                        } else {
+                            mObservationsList.removeHeaderView(mAnnouncementContainer);
+                        }
+                        mAnnouncementContainer = null;
+                    }
+
+                    refreshAnnouncements();
                 }
 
                 if (mViewPager.getCurrentItem() == 0) {
@@ -1897,67 +1908,35 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         INaturalistService.callService(this, serviceIntent);
     }
 
-    private class AnnouncementsReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Logger.tag(TAG).info("AnnouncementsReceiver");
-
-            if (intent.getAction() == null ||
-                    !intent.getAction().equals(INaturalistService.ANNOUNCEMENTS_RESULT)) {
-                return;
-            }
-
-            Bundle extras = intent.getExtras();
-            if (extras == null || extras.getString("error") != null) {
-                return;
-            }
-
-            boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
-            SerializableJSONArray resultsJSON;
-
-            if (isSharedOnApp) {
-                resultsJSON = (SerializableJSONArray) mApp.getServiceResult(intent.getAction());
-            } else {
-                resultsJSON = (SerializableJSONArray) intent.getSerializableExtra(INaturalistService.RESULTS);
-            }
-
-            if (resultsJSON == null) {
-                return;
-            }
-
-            JSONArray results = resultsJSON.getJSONArray();
-
-            if (results == null) {
-                return;
-            }
-
-            Logger.tag(TAG).info("AnnouncementsReceiver:" +  results);
-
-            mAnnouncements = new ArrayList<>();
-            for (int i = 0; i < results.length(); i++) {
-                if (results.optJSONObject(i).optString("placement", "").equals("mobile/home")) {
-                    // Only save mobile/home placement announcements (the ones we'll show in the my observations screen)
-                    mAnnouncements.add(new BetterJSONObject(results.optJSONObject(i)));
-                }
-            }
-
-            // Sort by earliest start date
-            Collections.sort(mAnnouncements, (a1, a2) -> a1.getTimestamp("start").compareTo(a2.getTimestamp("start")));
-
-            refreshAnnouncements();
-        }
-    }
-
     private void refreshAnnouncements() {
-        View announcementContainer = findViewById(R.id.announcement_container);
-        WebView webView = findViewById(R.id.announcement_content);
-
         if ((mAnnouncements == null) || (mAnnouncements.size() == 0)) {
-            announcementContainer.setVisibility(View.GONE);
+            if (mAnnouncementContainer != null) {
+                if (mIsGrid[0]) {
+                    mObservationsGrid.removeHeaderView(mAnnouncementContainer);
+                } else {
+                    mObservationsList.removeHeaderView(mAnnouncementContainer);
+                }
+                mAnnouncementContainer = null;
+            }
             return;
         }
 
-        announcementContainer.setVisibility(View.VISIBLE);
+        if (mAnnouncementContainer == null) {
+            LayoutInflater inflater = LayoutInflater.from(this);
+            ViewGroup announcementContainer = (ViewGroup) inflater.inflate(R.layout.announcement, mIsGrid[0] ? mObservationsGrid : mObservationsList, false);
+            mAnnouncementContainer = announcementContainer;
+            if (mIsGrid[0]) {
+                mObservationsGrid.setAdapter(null);
+                mObservationsGrid.addHeaderView(mAnnouncementContainer, null, false);
+                mObservationsGrid.setAdapter(mObservationGridAdapter);
+            } else {
+                mObservationsList.setAdapter(null);
+                mObservationsList.addHeaderView(mAnnouncementContainer, null, false);
+                mObservationsList.setAdapter(mObservationListAdapter);
+            }
+        }
+
+        WebView webView = mAnnouncementContainer.findViewById(R.id.announcement_content);
 
         // Only display the first announcement (earliest one)
         BetterJSONObject announcement = mAnnouncements.get(0);
@@ -1991,7 +1970,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 "<body>";
         webView.loadDataWithBaseURL("", html + announcement.getString("body") + "</body></html>", "text/html", "UTF-8", "");
 
-        View closeAnnouncement = findViewById(R.id.close_announcement);
+        View closeAnnouncement = mAnnouncementContainer.findViewById(R.id.close_announcement);
 
         if (announcement.getBoolean("dismissible")) {
             // Show button to close announcement

@@ -104,7 +104,7 @@
             android:id="@+id/grid_swipe_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <GridView
+            <org.inaturalist.android.HeaderGridView
                 android:id="@+id/grid"
                 android:paddingTop="5dp"
                 android:layout_width="fill_parent"
@@ -115,7 +115,6 @@
                 android:paddingStart="1dp"
                 android:paddingEnd="1dp"
                 android:stretchMode="columnWidth"
-                android:gravity="center"
                 android:orientation="vertical"/>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
