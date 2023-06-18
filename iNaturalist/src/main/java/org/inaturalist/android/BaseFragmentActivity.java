@@ -250,9 +250,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 INaturalistService.callService(this, serviceIntent);
             }
 
-            // Refresh announcements
-            Intent serviceIntent3 = new Intent(INaturalistService.ACTION_GET_ANNOUNCEMENTS, null, this, INaturalistService.class);
-            INaturalistService.callService(this, serviceIntent3);
+            getLatestAnnouncements();
 
             if (System.currentTimeMillis() - lastNotificationCountsTime > 1000 * USER_NOTIFICATIONS_REFRESH_TIME_SECONDS) {
                 // Get number of unread messages
@@ -659,27 +657,6 @@ public class BaseFragmentActivity extends AppCompatActivity {
 
         if (mDrawerToggle != null) {
             mDrawerToggle.syncState();
-
-            mUserDetailsReceiver = new UserDetailsReceiver();
-            IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_USER_DETAILS_RESULT);
-            Logger.tag(TAG).info("Registering ACTION_GET_USER_DETAILS_RESULT");
-            safeRegisterReceiver(mUserDetailsReceiver, filter);
-
-            mPlaceDetailsReceiver = new PlaceDetailsReceiver();
-            IntentFilter filter2 = new IntentFilter(INaturalistService.PLACE_DETAILS_RESULT);
-            Logger.tag(TAG).info("Registering PLACE_DETAILS_RESULT");
-            safeRegisterReceiver(mPlaceDetailsReceiver, filter2);
-
-            mNotificationCountsReceiver = new NotificationCountsReceiver();
-            IntentFilter filter3 = new IntentFilter(INaturalistService.ACTION_NOTIFICATION_COUNTS_RESULT);
-            Logger.tag(TAG).info("Registering ACTION_NOTIFICATION_COUNTS_RESULT");
-            safeRegisterReceiver(mNotificationCountsReceiver, filter3);
-
-            mAnnouncementsReceiver = new AnnouncementsReceiver();
-            IntentFilter filter4 = new IntentFilter();
-            filter4.addAction(INaturalistService.ANNOUNCEMENTS_RESULT);
-            Logger.tag(TAG).info("Registering ANNOUNCEMENTS_RESULT");
-            safeRegisterReceiver(mAnnouncementsReceiver, filter4);
         }
     }
 
@@ -710,6 +687,27 @@ public class BaseFragmentActivity extends AppCompatActivity {
         if (mDrawerToggle != null) {
             refreshUserDetails();
         }
+
+        mUserDetailsReceiver = new UserDetailsReceiver();
+        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_USER_DETAILS_RESULT);
+        Logger.tag(TAG).info("Registering ACTION_GET_USER_DETAILS_RESULT");
+        safeRegisterReceiver(mUserDetailsReceiver, filter);
+
+        mPlaceDetailsReceiver = new PlaceDetailsReceiver();
+        IntentFilter filter2 = new IntentFilter(INaturalistService.PLACE_DETAILS_RESULT);
+        Logger.tag(TAG).info("Registering PLACE_DETAILS_RESULT");
+        safeRegisterReceiver(mPlaceDetailsReceiver, filter2);
+
+        mNotificationCountsReceiver = new NotificationCountsReceiver();
+        IntentFilter filter3 = new IntentFilter(INaturalistService.ACTION_NOTIFICATION_COUNTS_RESULT);
+        Logger.tag(TAG).info("Registering ACTION_NOTIFICATION_COUNTS_RESULT");
+        safeRegisterReceiver(mNotificationCountsReceiver, filter3);
+
+        mAnnouncementsReceiver = new AnnouncementsReceiver();
+        IntentFilter filter4 = new IntentFilter();
+        filter4.addAction(INaturalistService.ANNOUNCEMENTS_RESULT);
+        Logger.tag(TAG).info("Registering ANNOUNCEMENTS_RESULT");
+        safeRegisterReceiver(mAnnouncementsReceiver, filter4);
     }
 
     @Override
@@ -1093,6 +1091,11 @@ public class BaseFragmentActivity extends AppCompatActivity {
         }
     }
 
+    public void getLatestAnnouncements() {
+        // Refresh announcements
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_ANNOUNCEMENTS, null, this, INaturalistService.class);
+        INaturalistService.callService(this, serviceIntent);
+    }
 
     private class AnnouncementsReceiver extends BroadcastReceiver {
         @Override

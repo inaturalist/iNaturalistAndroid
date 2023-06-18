@@ -4359,17 +4359,18 @@ public class INaturalistServiceImplementation {
     }
 
     private void dismissAnnouncement(int announcementId) throws AuthenticationException {
-        String url = String.format(Locale.ENGLISH, "%s/announcements/%d",
+        String url = String.format(Locale.ENGLISH, "%s/announcements/%d/dismiss",
                 API_V2_HOST,
                 announcementId);
 
         JSONArray json = put(url, (JSONObject) null);
     }
 
+
     private SerializableJSONArray getAnnouncements() throws AuthenticationException {
         String url = String.format(Locale.ENGLISH, "%s/announcements?locale=%s&placement=mobile&fields=all",
                     API_V2_HOST,
-                    mApp.getLanguageCodeForAPI());
+                    mApp.getPrefLocale());
 
         JSONArray json = get(url, mCredentials != null);
         if (json == null) return null;

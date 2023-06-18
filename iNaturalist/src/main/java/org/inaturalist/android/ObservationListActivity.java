@@ -269,6 +269,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mOnboardingSyncing.setVisibility(hasOnboardedSyncing || !mApp.loggedIn() ? View.GONE : View.VISIBLE);
                 }
             }
+
+            getLatestAnnouncements();
         }
     } 	
 
@@ -974,6 +976,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             t.start();
             if (!isNetworkAvailable()) {
                 Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
+                mAnnouncements = null;
+                refreshAnnouncements();
             } else if (!isLoggedIn()) {
                 Toast.makeText(getApplicationContext(), R.string.please_sign_in, Toast.LENGTH_LONG).show();
             }
@@ -1909,8 +1913,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     }
 
     private void refreshAnnouncements() {
-        if ((mAnnouncements == null) || (mAnnouncements.size() == 0)) {
-            if (mAnnouncementContainer != null) {
+        Logger.tag(TAG).info("refreshAnnouncements: " + mAnnouncements);
+        if ((mAnnouncements == null) || (mAnnouncements.size() == 0) ||
+                (mApp.loggedIn() && mApp.getIsSyncing() && (mObservationListAdapter.getCount() == 0))) {
+                if (mAnnouncementContainer != null) {
                 if (mIsGrid[0]) {
                     mObservationsGrid.removeHeaderView(mAnnouncementContainer);
                 } else {
