@@ -1207,8 +1207,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mIdentificationsEmptyIcon = layout.findViewById(R.id.empty_icon);
                     mIdentificationsEmptyIcon.setImageResource(R.drawable.ic_empty_id);
                     mIdentificationsList = layout.findViewById(R.id.list);
+                    mIdentificationsList.setNestedScrollingEnabled(true);
                     layout.findViewById(R.id.list_swipe_container).setEnabled(true);
                     mIdentificationsGrid = layout.findViewById(R.id.grid);
+                    mIdentificationsGrid.setNestedScrollingEnabled(true);
                     layout.findViewById(R.id.grid_swipe_container).setEnabled(true);
                     mShowMoreIdentifications = layout.findViewById(R.id.show_more);
                     mShowMoreIdentifications.setText(R.string.see_more_identifications);
@@ -1262,8 +1264,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mSpeciesEmptyIcon = layout.findViewById(R.id.empty_icon);
                     mSpeciesEmptyIcon.setImageResource(R.drawable.ic_empty_leaf);
                     mSpeciesList = layout.findViewById(R.id.list);
+                    mSpeciesList.setNestedScrollingEnabled(true);
                     layout.findViewById(R.id.list_swipe_container).setEnabled(true);
                     mSpeciesGrid = layout.findViewById(R.id.grid);
+                    mSpeciesGrid.setNestedScrollingEnabled(true);
                     layout.findViewById(R.id.grid_swipe_container).setEnabled(true);
                     mShowMoreSpecies = layout.findViewById(R.id.show_more);
                     mShowMoreSpecies.setText(R.string.see_more_species);
@@ -1309,11 +1313,15 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mObservationsEmptyIcon.setImageResource(R.drawable.ic_empty_binoculars);
                     mListSwipeContainer = layout.findViewById(R.id.list_swipe_container);
                     mObservationsList = layout.findViewById(R.id.list);
+                    mObservationsList.setNestedScrollingEnabled(true);
                     layout.findViewById(R.id.list_swipe_container).setEnabled(true);
                     mObservationsGrid = layout.findViewById(R.id.grid);
+                    mObservationsGrid.setNestedScrollingEnabled(true);
                     layout.findViewById(R.id.grid_swipe_container).setEnabled(true);
                     mGridSwipeContainer = layout.findViewById(R.id.grid_swipe_container);
                     mLoadingMoreResults = layout.findViewById(R.id.loading_more_results);
+
+                    mAnnouncementContainer = layout.findViewById(R.id.announcement);
 
                     if (mIsGrid[0]) {
                         mListSwipeContainer.setEnabled(false);
@@ -1914,33 +1922,14 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
     private void refreshAnnouncements() {
         Logger.tag(TAG).info("refreshAnnouncements: " + mAnnouncements);
+
         if ((mAnnouncements == null) || (mAnnouncements.size() == 0) ||
                 (mApp.loggedIn() && mApp.getIsSyncing() && (mObservationListAdapter.getCount() == 0))) {
-                if (mAnnouncementContainer != null) {
-                if (mIsGrid[0]) {
-                    mObservationsGrid.removeHeaderView(mAnnouncementContainer);
-                } else {
-                    mObservationsList.removeHeaderView(mAnnouncementContainer);
-                }
-                mAnnouncementContainer = null;
-            }
+                mAnnouncementContainer.setVisibility(View.GONE);
             return;
         }
 
-        if (mAnnouncementContainer == null) {
-            LayoutInflater inflater = LayoutInflater.from(this);
-            ViewGroup announcementContainer = (ViewGroup) inflater.inflate(R.layout.announcement, mIsGrid[0] ? mObservationsGrid : mObservationsList, false);
-            mAnnouncementContainer = announcementContainer;
-            if (mIsGrid[0]) {
-                mObservationsGrid.setAdapter(null);
-                mObservationsGrid.addHeaderView(mAnnouncementContainer, null, false);
-                mObservationsGrid.setAdapter(mObservationGridAdapter);
-            } else {
-                mObservationsList.setAdapter(null);
-                mObservationsList.addHeaderView(mAnnouncementContainer, null, false);
-                mObservationsList.setAdapter(mObservationListAdapter);
-            }
-        }
+        mAnnouncementContainer.setVisibility(View.VISIBLE);
 
         WebView webView = mAnnouncementContainer.findViewById(R.id.announcement_content);
 
@@ -1978,7 +1967,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         View closeAnnouncement = mAnnouncementContainer.findViewById(R.id.close_announcement);
 
-        if (announcement.getBoolean("dismissible")) {
+        if (announcement.getBoolean("dismissible") ) {
             // Show button to close announcement
             closeAnnouncement.setVisibility(View.VISIBLE);
 
