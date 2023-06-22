@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#00FF0000"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <WebView
+        android:id="@+id/announcement_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="0dp"
+        android:background="#ffffff"
+        />
+    <ImageView
+        android:id="@+id/close_announcement"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:contentDescription="@string/close_announcement"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_close_black_48dp" />
+
+</RelativeLayout>

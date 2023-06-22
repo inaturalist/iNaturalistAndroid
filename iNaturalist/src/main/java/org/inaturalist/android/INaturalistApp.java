@@ -1019,6 +1019,15 @@ public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInit
         return resId;
     }
 
+    public String getPrefLocale() {
+        // Return user's locale preference, if exists
+        SharedPreferences settings = getPrefs();
+        String language = settings.getString("pref_locale", "");
+        if (language.length() > 0) return language;
+
+        // If not -> return OS language
+        return getLanguageCodeForAPI();
+    }
     public void applyLocaleSettings() {
         applyLocaleSettings(getBaseContext());
     }

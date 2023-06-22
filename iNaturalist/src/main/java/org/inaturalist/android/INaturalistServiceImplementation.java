@@ -964,6 +964,18 @@ public class INaturalistServiceImplementation {
                 reply.putExtra(UUID, uuid);
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(reply);
 
+            } else if (action.equals(ACTION_GET_ANNOUNCEMENTS)) {
+                SerializableJSONArray results = getAnnouncements();
+
+                Intent reply = new Intent(ANNOUNCEMENTS_RESULT);
+                mApp.setServiceResult(ANNOUNCEMENTS_RESULT, results);
+                reply.putExtra(IS_SHARED_ON_APP, true);
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_DISMISS_ANNOUNCEMENT)) {
+                int announcementId = intent.getIntExtra(ANNOUNCEMENT_ID, 0);
+                dismissAnnouncement(announcementId);
+
             } else if (action.equals(ACTION_EXPLORE_GET_IDENTIFIERS)) {
                 ExploreSearchFilters filters = (ExploreSearchFilters) intent.getSerializableExtra(FILTERS);
                 int pageNumber = intent.getIntExtra(PAGE_NUMBER, 1);
@@ -4346,6 +4358,32 @@ public class INaturalistServiceImplementation {
         }
     }
 
+    private void dismissAnnouncement(int announcementId) throws AuthenticationException {
+        String url = String.format(Locale.ENGLISH, "%s/announcements/%d/dismiss",
+                API_V2_HOST,
+                announcementId);
+
+        JSONArray json = put(url, (JSONObject) null);
+    }
+
+
+    private SerializableJSONArray getAnnouncements() throws AuthenticationException {
+        String url = String.format(Locale.ENGLISH, "%s/announcements?locale=%s&placement=mobile&fields=all",
+                    API_V2_HOST,
+                    mApp.getPrefLocale());
+
+        JSONArray json = get(url, mCredentials != null);
+        if (json == null) return null;
+        if (json.length() == 0) return null;
+        try {
+            JSONArray results = json.getJSONObject(0).getJSONArray("results");
+            return new SerializableJSONArray(results);
+        } catch (JSONException e) {
+            Logger.tag(TAG).error(e);
+            return null;
+        }
+    }
+
     private BetterJSONObject getExploreResults(String command, ExploreSearchFilters filters, int pageNumber, int pageSize, String orderBy) throws AuthenticationException {
         if (filters == null) return null;
 
@@ -5867,7 +5905,7 @@ public class INaturalistServiceImplementation {
             requestBody = requestBodyBuilder.build();
         }
 
-        if (url.startsWith(API_HOST) && (mCredentials != null)) {
+        if ((url.startsWith(API_HOST) || url.startsWith(API_V2_HOST)) && (mCredentials != null)) {
             // For the node API, if we're logged in, *always* use JWT authentication
             authenticated = true;
             useJWTToken = true;
