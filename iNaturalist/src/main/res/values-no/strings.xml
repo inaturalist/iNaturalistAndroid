@@ -136,7 +136,6 @@
     <string name="done">Ferdig</string>
     <string name="please_sign_in_via_settings">Du må være logget inn for å se prosjektene du er med i.</string>
     <string name="contact_support">Kontakt støtte</string>
-    <string name="credits">Designet og bygget av iNaturalist.org med støtte fra California Academy of Sciences</string>
     <string name="leave_project">Dra fra prosjekt</string>
     <string name="leave_project_confirmation">Er du sikker på at du vil forlate dette prosjektet?</string>
     <string name="discard_location_changes">Er du sikker på at du vil kaste ulagrede forandringer?</string>
@@ -556,7 +555,6 @@
     <string name="change_password">Endre passord</string>
     <string name="search_projects_youve_joined">Søk i prosjekter du deltar i...</string>
     <string name="must_be_connected_to_load_more_obs">Du må være tilkoblet internett for å last opp flere observasjoner</string>
-    <string name="inat_about_title">iNaturalist er et felles initiativ av California Academy of Sciences og National Geographic Society.</string>
     <string name="inat_credits"><![CDATA[iNaturalist eksisterer takket være hver enkelt person som bidrar i samfunnet vårt. Personene som har bygd programvaren, designet brukergrensesnittet, vedlikeholder infrastrukturen vår, støtter samfunnet vårt, og og fremmer samarbeid er Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, og Ken-ichi Ueda.<br/><br/>CalTech og Cornell Tech bidro med utvikling av computersynsystemet som foreslår identifikasjoner fra bilder. Vi vil takke Grant Van Horn, Serge Belongie og Pietro Perona for å fremme computersynforskningen. Mer informasjon kan du finne på <a href="http://www.visipedia.org">visipedia.org</a>. En spesiell takk til NVIDIA for ytterligere støtte.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[Det internasjonale iNaturalistnettverket støtter lokaliserte, fullstendig integrerte, iNaturalistbaserte nettsteder i følgende land, takket være støtten fra våre tilknyttede partnerorganisasjoner.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist er også dypt takknemlig ovenfor utviklerne av åpen kildekode som har sørget for store deler av programvaren vi setter vår lit til hver eneste dag. Se <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for åpen kildekodebidrag. <br/> Vi er takknemlige for hjelp til oversettelse av frivillige fra crowdin.com, spesielt Eduardo Martínes, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danielseglie, og katunchik. <br/>IUCN kategori II steder tilgjengeliggjort av IUCN og UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. tilgjengelig på: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>

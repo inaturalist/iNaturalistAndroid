@@ -569,7 +569,6 @@
     <string name="change_password">Şifre Değiştir</string>
     <string name="search_projects_youve_joined">Katıldığın projeleri ara...</string>
     <string name="must_be_connected_to_load_more_obs">Daha çok gözlem yüklemek için internete bağlı olmalısın</string>
-    <string name="inat_about_title">iNaturalist; Kaliforniya Bilimler Akademisi ve National Geographic Society\'nin ortak bir girişimidir.</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -1166,7 +1165,6 @@ Ticari Olmayan Atfetme (CC BY-NC), gibi kayıtların  biyolojik çeşitlilik bil
     <string name="project_unselected">Seçilmemiş Proje</string>
     <string name="show_my_observations">Gözlemlerimi göster</string>
     <string name="play_pause_sound">Sesi durdur veya oynat</string>
-    <string name="california_academy_of_sciences_and_national_geographic">Kaliforniya Bilim Akademisi ve National Geographic</string>
     <string name="view_image">Resmi görüntüle</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <string name="assessment_passes">Değerlendirme geçer</string>

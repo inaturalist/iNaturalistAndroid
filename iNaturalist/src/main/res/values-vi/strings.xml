@@ -565,7 +565,6 @@
     <string name="change_password">Đổi mật khẩu</string>
     <string name="search_projects_youve_joined">Tìm các dự án bạn đã tham gia...</string>
     <string name="must_be_connected_to_load_more_obs">Bạn phải kết nối với Internet mới tải thêm được các quan sát</string>
-    <string name="inat_about_title">iNaturalist là một sáng kiến ​​chung của Viện hàn lâm Khoa học California và Hiệp hội Địa lý Quốc gia.</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -1159,7 +1158,6 @@ Các bên thứ ba này bao gồm: <br/><ul><li>Google (<a href="https://analyti
     <string name="project_unselected">Project Unselected</string>
     <string name="show_my_observations">Show my observations</string>
     <string name="play_pause_sound">Play or pause sound</string>
-    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
     <string name="view_image">View image</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <string name="assessment_passes">Assessment passes</string>

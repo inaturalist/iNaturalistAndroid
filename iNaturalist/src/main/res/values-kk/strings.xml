@@ -569,7 +569,6 @@
     <string name="change_password">Құпия сөзді ауыстыру</string>
     <string name="search_projects_youve_joined">Сіз қосылған жобаларды іздеу...</string>
     <string name="must_be_connected_to_load_more_obs">Қосымша бақылауларды жүктеу үшін Интернетке қосылған болуыңыз керек</string>
-    <string name="inat_about_title">iNaturalist — California Academy of Sciences пен National Geographic Society бірлескен бастамасы.</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -1164,7 +1163,6 @@
     <string name="project_unselected">Жоба таңдалмады</string>
     <string name="show_my_observations">Менің бақылауларымды көрсету</string>
     <string name="play_pause_sound">Дыбысты ойнату немесе кідірту</string>
-    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences және National Geographic</string>
     <string name="view_image">Суретті көру</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <string name="assessment_passes">Бағалаудан өтті</string>

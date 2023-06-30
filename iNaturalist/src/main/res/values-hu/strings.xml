@@ -569,7 +569,6 @@
     <string name="change_password">Jelszó módosítása</string>
     <string name="search_projects_youve_joined">Keresés a követett projektekben</string>
     <string name="must_be_connected_to_load_more_obs">További megfigyelések betöltéséhez internetkapcsolat szükséges.</string>
-    <string name="inat_about_title">Az iNaturalist a California Academy of Sciences és a National Geographic Society közös kezdeményezése.</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -1164,7 +1163,6 @@
     <string name="project_unselected">Projekt kiválasztása visszavonva</string>
     <string name="show_my_observations">Megfigyeléseim megjelenítése</string>
     <string name="play_pause_sound">Hang lejátszása vagy szüneteltetése</string>
-    <string name="california_academy_of_sciences_and_national_geographic">Kaliforniai Tudományos Akadémia és National Geographic</string>
     <string name="view_image">Kép megjelenítése</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <string name="assessment_passes">Kiértékelés sikeres</string>

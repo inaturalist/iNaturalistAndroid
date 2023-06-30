@@ -565,7 +565,6 @@
     <string name="change_password">Ubah Kata Sandi</string>
     <string name="search_projects_youve_joined">Cari proyek yang Anda sudah tergabung di dalamnya...</string>
     <string name="must_be_connected_to_load_more_obs">Anda harus terhubung ke Internet untuk memuat lebih banyak pengamatan</string>
-    <string name="inat_about_title">iNaturalist adalah inisiatif gabungan dari California Academy of Sciences dan National Geographic Society.</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -1159,7 +1158,6 @@ rin, Carrie Seltzer, Alex Shepard, Angie Ta, dan Ken-ichi Ueda.<br/><br/> CalTec
     <string name="project_unselected">Proyek yang Tidak Dipilih</string>
     <string name="show_my_observations">Tunjukkan pengamatan saya</string>
     <string name="play_pause_sound">Putar atau jeda suara</string>
-    <string name="california_academy_of_sciences_and_national_geographic">Akademi Sains Kalifornia dan National Geographic</string>
     <string name="view_image">Lihat gambar</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <string name="assessment_passes">Lolos penilaian</string>

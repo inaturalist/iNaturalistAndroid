@@ -569,7 +569,6 @@
     <string name="change_password">Modifica password</string>
     <string name="search_projects_youve_joined">Progetti di ricerca a cui hai aderito...</string>
     <string name="must_be_connected_to_load_more_obs">È necessario essere connessi a Internet per caricare più osservazioni</string>
-    <string name="inat_about_title">iNaturalist è un\'iniziativa congiunta della California Academy of Sciences e la National Geographic Society.</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -1166,7 +1165,6 @@ le <a href="https://www.inaturalist.org/pages/community+guidelines">Linee Guida 
     <string name="project_unselected">Progetto Deselezionato</string>
     <string name="show_my_observations">Trova le mie osservazioni</string>
     <string name="play_pause_sound">Riproduci o metti in pausa il suono</string>
-    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
     <string name="view_image">Visualizza immagine</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <string name="assessment_passes">Supera la verifica</string>
