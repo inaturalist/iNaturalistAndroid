@@ -47,7 +47,7 @@ jobs:
         uses: juliangruber/find-pull-request-action@v1
         id: find-pull-request
         with:
-          branch: l10n_crowdin_translations
+          branch: 'l10n_main_${{ steps.date.outputs.current_date_branch }}'
 
       - run: echo "Pull Request ${number} (${sha})"
         env:
