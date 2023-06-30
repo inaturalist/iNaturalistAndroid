@@ -1050,16 +1050,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 }
 
                 if (mViewPager.getCurrentItem() == 0) {
-                    // Need to re-add the header
-                    if (mAnnouncementContainer != null) {
-                        if (!mIsGrid[0]) {
-                            mObservationsGrid.removeHeaderView(mAnnouncementContainer);
-                        } else {
-                            mObservationsList.removeHeaderView(mAnnouncementContainer);
-                        }
-                        mAnnouncementContainer = null;
-                    }
-
+                    // Need to re-show announcements
                     refreshAnnouncements();
                 }
 
