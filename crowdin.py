@@ -463,7 +463,7 @@ def main():
 
 
     # Return error code from the script if we have any errors
-    sys.exit(any(warnings.values()))
+    sys.exit(any(errors.values()))
 
 
 if __name__ == "__main__":
