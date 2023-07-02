@@ -32,7 +32,6 @@ jobs:
           pull_request_body: 'Crowdin translations for ${{ steps.date.outputs.current_date }}'
           commit_message: 'Crowdin translations for ${{ steps.date.outputs.current_date }}'
           pull_request_base_branch_name: 'main'
-          config: crowdin.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
