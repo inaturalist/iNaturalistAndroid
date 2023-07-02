@@ -1,5 +1,0 @@
-files:
-  - source: /iNaturalist/src/main/res/values/strings.xml
-    translation: /iNaturalist/src/main/res/values-%android_code%/strings.xml
-  - source: iNaturalist/src/main/res/values/strings.xml
-    translation: /iNaturalist/src/main/res/values-%two_letters_code%/strings.xml
