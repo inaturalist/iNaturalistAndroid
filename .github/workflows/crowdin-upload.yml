@@ -1,6 +1,7 @@
 name: CrowdIn - Push new strings to CrowdIn
 
 on:
+  workflow_dispatch:
   push:
     paths: [ 'iNaturalist/src/main/res/values/strings.xml' ]
     branches: [ main ]
