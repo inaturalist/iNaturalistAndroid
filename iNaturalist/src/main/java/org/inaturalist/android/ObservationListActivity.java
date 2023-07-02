@@ -18,6 +18,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,6 +27,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.webkit.WebView;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -34,6 +36,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +51,7 @@ import com.evernote.android.state.State;
 import com.google.android.material.tabs.TabLayout;
 import com.livefront.bridge.Bridge;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.inaturalist.android.INaturalistApp.INotificationCallback;
 import org.jetbrains.annotations.NotNull;
@@ -58,6 +62,8 @@ import org.tinylog.Logger;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -65,7 +71,7 @@ import java.util.Locale;
 import java.util.Set;
 
 public class ObservationListActivity extends BaseFragmentActivity implements INotificationCallback,
-        DialogInterface.OnClickListener, ObservationCursorAdapter.OnLoadingMoreResultsListener {
+        DialogInterface.OnClickListener, ObservationCursorAdapter.OnLoadingMoreResultsListener, BaseFragmentActivity.OnAnnouncementsRefreshed {
     public static String TAG = "INAT:ObservationListActivity";
 
     public final static String PARAM_FROM_OBS_EDITOR = "from_obs_editor";
@@ -76,7 +82,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     private NewsReceiver mNewsReceiver;
 
 	private SyncCompleteReceiver mSyncCompleteReceiver;
-	
+
+    private ViewGroup mAnnouncementContainer;
+
 	private int mLastIndex;
 	private int mLastTop;
 
@@ -122,7 +130,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     private TextView mObservationsEmpty;
     private ImageView mObservationsEmptyIcon;
     private ListView mObservationsList;
-    private GridView mObservationsGrid;
+    private HeaderGridView mObservationsGrid;
 
     @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mSpecies;
     @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mIdentifications;
@@ -191,6 +199,11 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 Toast.LENGTH_LONG).show(), 100);
     }
 
+    @Override
+    public void onAnnouncementsRefreshed() {
+        refreshAnnouncements();
+    }
+
     private class SyncCompleteReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -256,6 +269,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mOnboardingSyncing.setVisibility(hasOnboardedSyncing || !mApp.loggedIn() ? View.GONE : View.VISIBLE);
                 }
             }
+
+            getLatestAnnouncements();
         }
     } 	
 
@@ -449,6 +464,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         }
 
         redownloadObservationsIfLocaleChanged();
+
+        mOnAnnouncementsRefreshed = this;
     }
 
     private void redownloadObservationsIfLocaleChanged() {
@@ -959,6 +976,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             t.start();
             if (!isNetworkAvailable()) {
                 Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
+                mAnnouncements = null;
+                refreshAnnouncements();
             } else if (!isLoggedIn()) {
                 Toast.makeText(getApplicationContext(), R.string.please_sign_in, Toast.LENGTH_LONG).show();
             }
@@ -1028,6 +1047,11 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     item.setTitle(R.string.switch_to_list_view);
                 } else {
                     item.setTitle(R.string.switch_to_grid_view);
+                }
+
+                if (mViewPager.getCurrentItem() == 0) {
+                    // Need to re-show announcements
+                    refreshAnnouncements();
                 }
 
                 if (mViewPager.getCurrentItem() == 0) {
@@ -1174,8 +1198,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mIdentificationsEmptyIcon = layout.findViewById(R.id.empty_icon);
                     mIdentificationsEmptyIcon.setImageResource(R.drawable.ic_empty_id);
                     mIdentificationsList = layout.findViewById(R.id.list);
+                    mIdentificationsList.setNestedScrollingEnabled(true);
                     layout.findViewById(R.id.list_swipe_container).setEnabled(true);
                     mIdentificationsGrid = layout.findViewById(R.id.grid);
+                    mIdentificationsGrid.setNestedScrollingEnabled(true);
                     layout.findViewById(R.id.grid_swipe_container).setEnabled(true);
                     mShowMoreIdentifications = layout.findViewById(R.id.show_more);
                     mShowMoreIdentifications.setText(R.string.see_more_identifications);
@@ -1229,8 +1255,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mSpeciesEmptyIcon = layout.findViewById(R.id.empty_icon);
                     mSpeciesEmptyIcon.setImageResource(R.drawable.ic_empty_leaf);
                     mSpeciesList = layout.findViewById(R.id.list);
+                    mSpeciesList.setNestedScrollingEnabled(true);
                     layout.findViewById(R.id.list_swipe_container).setEnabled(true);
                     mSpeciesGrid = layout.findViewById(R.id.grid);
+                    mSpeciesGrid.setNestedScrollingEnabled(true);
                     layout.findViewById(R.id.grid_swipe_container).setEnabled(true);
                     mShowMoreSpecies = layout.findViewById(R.id.show_more);
                     mShowMoreSpecies.setText(R.string.see_more_species);
@@ -1276,11 +1304,15 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mObservationsEmptyIcon.setImageResource(R.drawable.ic_empty_binoculars);
                     mListSwipeContainer = layout.findViewById(R.id.list_swipe_container);
                     mObservationsList = layout.findViewById(R.id.list);
+                    mObservationsList.setNestedScrollingEnabled(true);
                     layout.findViewById(R.id.list_swipe_container).setEnabled(true);
                     mObservationsGrid = layout.findViewById(R.id.grid);
+                    mObservationsGrid.setNestedScrollingEnabled(true);
                     layout.findViewById(R.id.grid_swipe_container).setEnabled(true);
                     mGridSwipeContainer = layout.findViewById(R.id.grid_swipe_container);
                     mLoadingMoreResults = layout.findViewById(R.id.loading_more_results);
+
+                    mAnnouncementContainer = layout.findViewById(R.id.announcement);
 
                     if (mIsGrid[0]) {
                         mListSwipeContainer.setEnabled(false);
@@ -1877,6 +1909,74 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         Intent serviceIntent = new Intent(action, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
         INaturalistService.callService(this, serviceIntent);
+    }
+
+    private void refreshAnnouncements() {
+        Logger.tag(TAG).info("refreshAnnouncements: " + mAnnouncements);
+
+        if ((mAnnouncements == null) || (mAnnouncements.size() == 0) ||
+                (mApp.loggedIn() && mApp.getIsSyncing() && (mObservationListAdapter.getCount() == 0))) {
+                mAnnouncementContainer.setVisibility(View.GONE);
+            return;
+        }
+
+        mAnnouncementContainer.setVisibility(View.VISIBLE);
+
+        WebView webView = mAnnouncementContainer.findViewById(R.id.announcement_content);
+
+        // Only display the first announcement (earliest one)
+        BetterJSONObject announcement = mAnnouncements.get(0);
+
+        // Show contents
+        webView.setBackgroundColor(Color.TRANSPARENT);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setVerticalScrollBarEnabled(false);
+
+        String html = "" +
+                "<html>" +
+                "<head>" +
+                "<style type=\"text/css\"> " +
+                "@font-face { " +
+                "font-family: Whitney;" +
+                "src: url(\"file:///android_asset/fonts/whitney_light_pro.otf\")" +
+                "}" +
+                "body {" +
+                "line-height: 22pt;" +
+                "margin: 0;" +
+                "padding: 0;" +
+                "font-family: \"HelveticaNeue-UltraLight\", \"Segoe UI\", \"Roboto Light\", sans-serif;" +
+                "font-size: medium;" +
+                "} " +
+                "div {max-width: 100%;} " +
+                "figure { padding: 0; margin: 0; } " +
+                "img { padding-top: 4; padding-bottom: 4; max-width: 100%; } " +
+                "</style>" +
+                "<meta name=\"viewport\" content=\"user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width\" >" +
+                "</head>" +
+                "<body>";
+        webView.loadDataWithBaseURL("", html + announcement.getString("body") + "</body></html>", "text/html", "UTF-8", "");
+
+        View closeAnnouncement = mAnnouncementContainer.findViewById(R.id.close_announcement);
+
+        if (announcement.getBoolean("dismissible") ) {
+            // Show button to close announcement
+            closeAnnouncement.setVisibility(View.VISIBLE);
+
+            closeAnnouncement.setOnClickListener(v -> {
+                // When clicked, dismiss announcement
+
+                // Let the server know we dismissed this announcement
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_DISMISS_ANNOUNCEMENT, null, ObservationListActivity.this, INaturalistService.class);
+                serviceIntent.putExtra(INaturalistService.ANNOUNCEMENT_ID, announcement.getInt("id"));
+                INaturalistService.callService(ObservationListActivity.this, serviceIntent);
+
+                // Remove this announcement and refresh view
+                mAnnouncements.remove(0);
+                refreshAnnouncements();
+            });
+        } else {
+            closeAnnouncement.setVisibility(View.GONE);
+        }
     }
 
     private class NewsReceiver extends BroadcastReceiver {

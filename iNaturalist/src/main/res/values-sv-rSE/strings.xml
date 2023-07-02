@@ -46,31 +46,6 @@
     <string name="password">Lösenord</string>
     <string name="unknown">Okänd</string>
     <string name="unknown_species">Okänd art</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">OK</string>
-    <string name="com_facebook_loginview_log_out_button">Logga ut</string>
-    <string name="com_facebook_loginview_log_in_button">Logga in</string>
-    <string name="com_facebook_loginview_logged_in_as">Inloggad som: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Inloggad med Facebook</string>
-    <string name="com_facebook_loginview_log_out_action">Logga ut</string>
-    <string name="com_facebook_loginview_cancel_action">Avbryt</string>
-    <string name="com_facebook_logo_content_description">Facebook-logotyp</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Logga in&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Inloggad</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Inte inloggad</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d var här</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d var här</string>
-    <string name="com_facebook_picker_done_button_text">Klar</string>
-    <string name="com_facebook_choose_friends">Välj vänner</string>
-    <string name="com_facebook_nearby">Närliggande</string>
-    <string name="com_facebook_loading">Laddar...</string>
-    <string name="com_facebook_internet_permission_error_title">Android-manifestfel</string>
-    <string name="com_facebook_internet_permission_error_message">WebView-inloggning kräver internettillstånd</string>
-    <string name="com_facebook_requesterror_web_login">Ditt Facebook-konto är låst. Logga in på www.facebook.com för att fortsätta.</string>
-    <string name="com_facebook_requesterror_relogin">Vänligen logga in på denna app igen för att återansluta ditt Facebook-konto.</string>
-    <string name="com_facebook_requesterror_password_changed">Ditt Facebook-lösenord har ändrats. Vänligen logga in på denna app igen för att återansluta ditt Facebook-konto.</string>
-    <string name="com_facebook_requesterror_reconnect">Vänligen logga in på denna app igen för att återansluta ditt Facebook-konto.</string>
-    <string name="com_facebook_requesterror_permissions">Denna app har inte behörighet att göra detta. Om du vill ändra behörighetsinställningarna, försök att logga in på appen igen.</string>
     <string name="edit_observation">Ändra fynd</string>
     <string name="discard_changes">Är du säker på att du vill kasta osparade ändringar?</string>
     <string name="yes">Ja</string>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">Hjälp med iNaturalist (version %1$s - %2$s; användar-id - %3$s)</string>
     <string name="send_email">Skicka epost...</string>
     <string name="login_with">Logga in med</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-post</string>
     <string name="skip">Hoppa över ›</string>
@@ -1216,5 +1190,7 @@
     <string name="please_try_again_soon">Var god försök igen snart.</string>
     <string name="verify_your_email">Verifiera din e-postadress</string>
     <string name="after_you_change_your_password">Efter att du bytt lösenord kommer du att loggas ut och måste logga in igen med ditt nya lösenord. Du kommer också att loggas ut från iNaturalists mobilappar och alla andra appar eller webbplatser som publicerar på iNaturalist för din räkning, så se till att du har laddat upp eventuella väntande fynd innan du gör detta. Alla fynd som inte är uppladdade kommer att förloras.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Lyckades inte ladda upp fil - större än 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Du har blivit utloggad. Vänligen logga in igen.</string>
 </resources>

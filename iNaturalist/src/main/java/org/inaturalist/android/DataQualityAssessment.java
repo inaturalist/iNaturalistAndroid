@@ -374,7 +374,8 @@ public class DataQualityAssessment extends AppCompatActivity implements DataQual
         }
 
         Integer photoCount = mObservation.getInt("photo_count");
-        if (photoCount != null && photoCount > 0) {
+        Integer soundCount = mObservation.getInt("sound_count");
+        if ((photoCount != null && photoCount > 0) || (soundCount != null && soundCount > 0)) {
             metrics.get(2).agreeCount = 1;
         } else {
             metrics.get(2).disagreeCount = 1;

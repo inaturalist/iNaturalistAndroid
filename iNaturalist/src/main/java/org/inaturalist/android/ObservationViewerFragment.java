@@ -3685,6 +3685,11 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             } else {
                 minimaldObs.put("photo_count", 0);
             }
+            if (observation.has("sounds") && !observation.isNull("sounds")) {
+                minimaldObs.put("sound_count", observation.optJSONArray("sounds").length());
+            } else {
+                minimaldObs.put("sound_count", 0);
+            }
             if (observation.has("identifications") && !observation.isNull("identifications")) {
                 minimaldObs.put("identification_count", observation.optJSONArray("identifications").length());
             } else {

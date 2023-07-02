@@ -46,31 +46,6 @@
     <string name="password">Adgangskode</string>
     <string name="unknown">Ukendt</string>
     <string name="unknown_species">Ukendte arter</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">OK</string>
-    <string name="com_facebook_loginview_log_out_button">Log ud</string>
-    <string name="com_facebook_loginview_log_in_button">Log ind</string>
-    <string name="com_facebook_loginview_logged_in_as">Logget ind som: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Logget ind via Facebook</string>
-    <string name="com_facebook_loginview_log_out_action">Log ud</string>
-    <string name="com_facebook_loginview_cancel_action">Annullér</string>
-    <string name="com_facebook_logo_content_description">Facebook-logo</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Log Ind&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Logget ind</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Ikke logget ind</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d var her</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d var her</string>
-    <string name="com_facebook_picker_done_button_text">Udført</string>
-    <string name="com_facebook_choose_friends">Vælg venner</string>
-    <string name="com_facebook_nearby">I nærheden</string>
-    <string name="com_facebook_loading">Indlæser...</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifest-fejl</string>
-    <string name="com_facebook_internet_permission_error_message">WebView-login kræver INTERNET-rettighed</string>
-    <string name="com_facebook_requesterror_web_login">Din Facebook-konto er låst. Log i stedet ind på www.facebook.com for at fortsætte.</string>
-    <string name="com_facebook_requesterror_relogin">Log ind i denne app igen for at tilslutte din Facebook-konto.</string>
-    <string name="com_facebook_requesterror_password_changed">Din Facebook-adgangskode er ændret. Log ind i denne app igen for at gentilslutte din Facebook-konto.</string>
-    <string name="com_facebook_requesterror_reconnect">Log ind i denne app igen for at gentilslutte din Facebook-konto.</string>
-    <string name="com_facebook_requesterror_permissions">Denne app har ikke rettighed til at gøre dette. Prøv at logge ind i app\'en igen for at ændre rettigheder.</string>
     <string name="edit_observation">Redigér observation</string>
     <string name="discard_changes">Sikker på, at du vil slette ikke-gemte ændringer?</string>
     <string name="yes">Ja</string>
@@ -162,7 +137,7 @@
         <item><![CDATA[Observationer af <b>forskningskvalitet</b> deles med forskere, som arbejder for bedre at forstå og beskytte naturen.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
-        <item>Åbn</item>
+        <item>Åben</item>
         <item>Sløret</item>
         <item>Fortrolig</item>
     </string-array>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">Hjælp med iNaturalist (version %1$s - %2$s; bruger-ID - %3$s)</string>
     <string name="send_email">Send e-mail...</string>
     <string name="login_with">Log ind med</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-mail</string>
     <string name="skip">Overspring ›</string>
@@ -1220,5 +1194,7 @@ og <a href="https://www.inaturalist.org/terms">Tjenestevilkår</a>.]]></string>
     <string name="please_try_again_soon">Forsøg igen senere</string>
     <string name="verify_your_email">Bekræft din e-mailadresse</string>
     <string name="after_you_change_your_password">Efter skift af adgangskoden, logget man ud og vil skulle logge ind igen med den nye adgangskode. Man logges også ud af iNaturalist mobil-apps samt alle øvrige apps eller websteder, som poster til iNaturalist på vegne af kontoen/brugeren, så sørg for at have uploadet alle udestående observationer, før dette gøres. Evt. ikke-uploadede observationer går tabt.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Kunne ikke uploade fil — overstiger 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Du er blevet logget ud. Log ind igen. </string>
 </resources>

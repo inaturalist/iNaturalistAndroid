@@ -1,7 +1,6 @@
 package org.inaturalist.android;
 
-import com.facebook.FacebookSdk;
-import com.facebook.login.LoginManager;
+import com.evernote.android.state.State;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
@@ -26,8 +25,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,11 +42,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.tinylog.Logger;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Utility class for implementing the side-menu (navigation drawer) used throughout the app
@@ -79,6 +79,17 @@ public class BaseFragmentActivity extends AppCompatActivity {
 
     private BottomSheetDialog mBottomSheetDialog = null;
     private PlaceDetailsReceiver mPlaceDetailsReceiver;
+
+    private AnnouncementsReceiver mAnnouncementsReceiver;
+
+    @State(AndroidStateBundlers.BetterJSONListBundler.class) public ArrayList<BetterJSONObject> mAnnouncements;
+
+    public interface OnAnnouncementsRefreshed {
+        void onAnnouncementsRefreshed();
+    }
+
+    protected OnAnnouncementsRefreshed mOnAnnouncementsRefreshed;
+
 
     public int getStatusBarHeight() {
         int result = 0;
@@ -238,6 +249,8 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_USER_DETAILS, null, this, INaturalistService.class);
                 INaturalistService.callService(this, serviceIntent);
             }
+
+            getLatestAnnouncements();
 
             if (System.currentTimeMillis() - lastNotificationCountsTime > 1000 * USER_NOTIFICATIONS_REFRESH_TIME_SECONDS) {
                 // Get number of unread messages
@@ -644,21 +657,6 @@ public class BaseFragmentActivity extends AppCompatActivity {
 
         if (mDrawerToggle != null) {
             mDrawerToggle.syncState();
-
-            mUserDetailsReceiver = new UserDetailsReceiver();
-            IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_USER_DETAILS_RESULT);
-            Logger.tag(TAG).info("Registering ACTION_GET_USER_DETAILS_RESULT");
-            safeRegisterReceiver(mUserDetailsReceiver, filter);
-
-            mPlaceDetailsReceiver = new PlaceDetailsReceiver();
-            IntentFilter filter2 = new IntentFilter(INaturalistService.PLACE_DETAILS_RESULT);
-            Logger.tag(TAG).info("Registering PLACE_DETAILS_RESULT");
-            safeRegisterReceiver(mPlaceDetailsReceiver, filter2);
-
-            mNotificationCountsReceiver = new NotificationCountsReceiver();
-            IntentFilter filter3 = new IntentFilter(INaturalistService.ACTION_NOTIFICATION_COUNTS_RESULT);
-            Logger.tag(TAG).info("Registering ACTION_NOTIFICATION_COUNTS_RESULT");
-            safeRegisterReceiver(mNotificationCountsReceiver, filter3);
         }
     }
 
@@ -689,6 +687,27 @@ public class BaseFragmentActivity extends AppCompatActivity {
         if (mDrawerToggle != null) {
             refreshUserDetails();
         }
+
+        mUserDetailsReceiver = new UserDetailsReceiver();
+        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_USER_DETAILS_RESULT);
+        Logger.tag(TAG).info("Registering ACTION_GET_USER_DETAILS_RESULT");
+        safeRegisterReceiver(mUserDetailsReceiver, filter);
+
+        mPlaceDetailsReceiver = new PlaceDetailsReceiver();
+        IntentFilter filter2 = new IntentFilter(INaturalistService.PLACE_DETAILS_RESULT);
+        Logger.tag(TAG).info("Registering PLACE_DETAILS_RESULT");
+        safeRegisterReceiver(mPlaceDetailsReceiver, filter2);
+
+        mNotificationCountsReceiver = new NotificationCountsReceiver();
+        IntentFilter filter3 = new IntentFilter(INaturalistService.ACTION_NOTIFICATION_COUNTS_RESULT);
+        Logger.tag(TAG).info("Registering ACTION_NOTIFICATION_COUNTS_RESULT");
+        safeRegisterReceiver(mNotificationCountsReceiver, filter3);
+
+        mAnnouncementsReceiver = new AnnouncementsReceiver();
+        IntentFilter filter4 = new IntentFilter();
+        filter4.addAction(INaturalistService.ANNOUNCEMENTS_RESULT);
+        Logger.tag(TAG).info("Registering ANNOUNCEMENTS_RESULT");
+        safeRegisterReceiver(mAnnouncementsReceiver, filter4);
     }
 
     @Override
@@ -707,6 +726,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
         safeUnregisterReceiver(mUserDetailsReceiver);
         safeUnregisterReceiver(mPlaceDetailsReceiver);
         safeUnregisterReceiver(mNotificationCountsReceiver);
+        safeUnregisterReceiver(mAnnouncementsReceiver);
     }
 
     // Need to wrap the unregisterReceiver call in a try/catch, since sometimes the OS iteself
@@ -747,13 +767,6 @@ public class BaseFragmentActivity extends AppCompatActivity {
         SharedPreferences prefs = app.getPrefs();
         SharedPreferences.Editor prefEditor = prefs.edit();
         INaturalistServiceImplementation.LoginType loginType = INaturalistServiceImplementation.LoginType.valueOf(prefs.getString("login_type", INaturalistServiceImplementation.LoginType.OAUTH_PASSWORD.toString()));
-
-        if (loginType == INaturalistServiceImplementation.LoginType.FACEBOOK) {
-            FacebookSdk.setApplicationId(context.getString(R.string.facebook_app_id));
-            FacebookSdk.setClientToken(context.getString(R.string.facebook_client_token));
-            FacebookSdk.sdkInitialize(context);
-            LoginManager.getInstance().logOut();
-        }
 
         boolean shouldRestart = false;
 
@@ -1075,6 +1088,65 @@ public class BaseFragmentActivity extends AppCompatActivity {
             editor.commit();
 
             refreshUserDetails();
+        }
+    }
+
+    public void getLatestAnnouncements() {
+        // Refresh announcements
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_ANNOUNCEMENTS, null, this, INaturalistService.class);
+        INaturalistService.callService(this, serviceIntent);
+    }
+
+    private class AnnouncementsReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Logger.tag(TAG).info("AnnouncementsReceiver");
+
+            if (intent.getAction() == null ||
+                    !intent.getAction().equals(INaturalistService.ANNOUNCEMENTS_RESULT)) {
+                return;
+            }
+
+            Bundle extras = intent.getExtras();
+            if (extras == null || extras.getString("error") != null) {
+                return;
+            }
+
+            boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
+            SerializableJSONArray resultsJSON;
+
+            if (isSharedOnApp) {
+                resultsJSON = (SerializableJSONArray) mApp.getServiceResult(intent.getAction());
+            } else {
+                resultsJSON = (SerializableJSONArray) intent.getSerializableExtra(INaturalistService.RESULTS);
+            }
+
+            if (resultsJSON == null) {
+                return;
+            }
+
+            JSONArray results = resultsJSON.getJSONArray();
+
+            if (results == null) {
+                return;
+            }
+
+            Logger.tag(TAG).info("AnnouncementsReceiver:" +  results);
+
+            mAnnouncements = new ArrayList<>();
+            for (int i = 0; i < results.length(); i++) {
+                if (results.optJSONObject(i).optString("placement", "").equals("mobile/home")) {
+                    // Only save mobile/home placement announcements (the ones we'll show in the my observations screen)
+                    mAnnouncements.add(new BetterJSONObject(results.optJSONObject(i)));
+                }
+            }
+
+            // Sort by earliest start date
+            Collections.sort(mAnnouncements, (a1, a2) -> a1.getTimestamp("start").compareTo(a2.getTimestamp("start")));
+
+            if (mOnAnnouncementsRefreshed != null) {
+                mOnAnnouncementsRefreshed.onAnnouncementsRefreshed();
+            }
         }
     }
 }

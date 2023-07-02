@@ -46,38 +46,13 @@
     <string name="password">รหัสผ่าน</string>
     <string name="unknown">ไม่ทราบ</string>
     <string name="unknown_species">ไม่ทราบชนิด</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">ตกลง</string>
-    <string name="com_facebook_loginview_log_out_button">ออกจากระบบ</string>
-    <string name="com_facebook_loginview_log_in_button">เข้าสู่ระบบ</string>
-    <string name="com_facebook_loginview_logged_in_as">เข้าสู่ระบบด้วย: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">เข้าสู่ระบบด้วย Facebook</string>
-    <string name="com_facebook_loginview_log_out_action">ออกจากระบบ</string>
-    <string name="com_facebook_loginview_cancel_action">ยกเลิก</string>
-    <string name="com_facebook_logo_content_description">โลโก้ Facebook</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">เข้าสู่ระบบ&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">เข้าสู่ระบบ</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">ยังไม่ได้เข้าสู่ระบบ</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d อยู่ที่นี่</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d อยู่ที่นี่</string>
-    <string name="com_facebook_picker_done_button_text">เรียบร้อยแล้ว</string>
-    <string name="com_facebook_choose_friends">เลือกเพื่อน</string>
-    <string name="com_facebook_nearby">ใกล้เคียง</string>
-    <string name="com_facebook_loading">กำลังโหลด...</string>
-    <string name="com_facebook_internet_permission_error_title">ข้อผิดพลาด AndroidManifest</string>
-    <string name="com_facebook_internet_permission_error_message">การเข้าสู่ระบบ WebView ต้องได้รับอนุญาตจากอินเทอร์เน็ต</string>
-    <string name="com_facebook_requesterror_web_login">บัญชี Facebook ของคุณถูกล็อค กรุณาเข้าสู่ระบบ www.facebook.com เพื่อดำเนินการต่อ</string>
-    <string name="com_facebook_requesterror_relogin">กรุณาเข้าสู่ระบบของแอพพลิเคชั่นนี้อีกครั้งเพื่อลองเชื่อมต่อกับบัญชี Facebook ของคุณอีกครั้ง</string>
-    <string name="com_facebook_requesterror_password_changed">รหัสผ่าน Facebook ของคุณได้รับการเปลี่ยนแปลงแล้ว กรุณาเข้าสู่ระบบของแอพฯนี้อีกครั้งเพื่อเชื่อมต่อกับบัญชี Facebook ของคุณใหม่</string>
-    <string name="com_facebook_requesterror_reconnect">กรุณาเข้าสู่ระบบของแอพพลิเคชั่นนี้อีกครั้งเพื่อลองเชื่อมต่อกับบัญชี Facebook ของคุณอีกครั้ง</string>
-    <string name="com_facebook_requesterror_permissions">แอพพลิเคชั่นนี้ไม่อนุญาตให้กระทำสิ่งนี้ได้ ในการเปลี่ยนการอนุญาต ลองทำการเข้าสู่ระบบของแอพพลิเคชั่นอีกครั้ง</string>
     <string name="edit_observation">แก้ไขการสังเกต</string>
     <string name="discard_changes">แน่ใจไหมว่าต้องการยกเลิกการเปลี่ยนแปลงที่ยังไม่ได้บันทึก</string>
     <string name="yes">ใช่</string>
     <string name="no">ไม่</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">เห็นด้วย?</string>
-    <string name="no_comments">ยังไม่มีความคิดเห็น / การระบุตัวตน</string>
+    <string name="no_comments">ยังไม่มีความคิดเห็น / การจำแนก</string>
     <string name="add_comment">ความคิดเห็น</string>
     <string name="add_id">เพิ่มการจำแนก</string>
     <string name="remarks">หมายเหตุ</string>
@@ -157,7 +132,7 @@
         <item>ออกสำรวจและเชื่อมต่อกับธรรมชาติ</item>
         <item>ออกไปข้างนอก! ค้นหาสิ่งที่อยู่ในะรรมชาติและถ่ายภาพเต็มเฟรมที่ชัดเจน</item>
         <item>แบ่งปันการสังเกตของคุณกับชุมชน iNaturalist </item>
-        <item>กลับมาตรวจสอบความคิดเห็นและการระบุการสังเกตของคุณ!</item>
+        <item>กลับมาตรวจสอบความคิดเห็นและการจำแนกในการสังเกตของคุณ!</item>
         <item><![CDATA[<b>ระดับงานวิจัย</b> มีการแบ่งปันการสังเกตกับนักวิทยาศาสตร์ที่ทำงานเพื่อทำความเข้าใจและปกป้องธรรมชาติให้ดีขึ้น]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
@@ -219,7 +194,6 @@
     <string name="inat_support_email_subject">ช่วยด้วย iNaturalist (เวอร์ชัน %1$s - %2$s; รหัสผู้ใช้ - %3$s)</string>
     <string name="send_email">ส่งอีเมล</string>
     <string name="login_with">เข้าสู่ระบบด้วย</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">อีเมล</string>
     <string name="skip">ข้าม</string>
@@ -288,9 +262,9 @@
     <string name="id_title">%1$s\'s ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">ลบ</string>
-    <string name="delete_id">ถอนการระบุตัวตน</string>
+    <string name="delete_id">ถอนการจำแนก</string>
     <string name="delete_comment">ลบความคิดเห็น</string>
-    <string name="delete_id_message">คุณแน่ใจหรือไม่ว่าต้องการเพิกถอนการระบุตัวตนนี้?</string>
+    <string name="delete_id_message">แน่ใจหรือไม่ว่าต้องการถอนการจำแนกนี้?</string>
     <string name="delete_comment_message">แน่ใจหรือไม่ว่าคุณต้องการลบความคิดเห็นนี้?</string>
     <string name="suggest_id">จำแนกชนิด</string>
     <string name="update_comment">อัปเดตความคิดเห็น</string>
@@ -472,7 +446,7 @@
     <string name="nearby">ใกล้เคียง</string>
     <string name="couldnt_load_results">ไม่สามารถโหลดผลลัพธ์: %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
-    <string name="research_grade_initials">RG</string>
+    <string name="research_grade_initials">วิจัย</string>
     <string name="taxon_search_hint">เช่น นก ผีเสื้อ</string>
     <string name="location_search_hint">เช่น เมือง รัฐ อุทยาน ประเทศ...</string>
     <string name="no_taxon">ขออภัยไม่พบอันดับอนุกรมวิธานนี้</string>
@@ -718,7 +692,7 @@
     <string name="observers_all_caps">ผู้สังเกต</string>
     <string name="observations_regular">การสังเกต</string>
     <string name="data_quality_assessment">การประเมินคุณภาพข้อมูล</string>
-    <string name="research_grade_qualification">คุณสมบัติระดับการวิจัย</string>
+    <string name="research_grade_qualification">คุณสมบัติระดับงานวิจัย</string>
     <string name="date_specified">วันที่ระบุ</string>
     <string name="location_specified">ระบุสถานที่</string>
     <string name="has_photos_or_sounds">มีรูปถ่ายหรือเสียง</string>
@@ -1169,7 +1143,7 @@
     <string name="change_geoprivacy">เปลี่ยนความเป็นส่วนตัวของพิกัด</string>
     <string name="active_filters">ตัวกรองที่ใช้งานอยู่</string>
     <string name="message_is_flagged">ข้อความได้รับรายงานแล้ว</string>
-    <string name="user_is_muted">User is muted</string>
+    <string name="user_is_muted">ไม่แจ้งเตือนจากผู้ใช้นี้</string>
     <string name="cancel_multiple_obs_selection">ยกเลิกการเลือกหลายการสังเกต</string>
     <string name="delete_observations">ลบการสังเกต</string>
     <string name="comment_count">จำนวนความคิดเห็น</string>
@@ -1204,9 +1178,11 @@
     <string name="remove_identification">ลบการระบุ</string>
     <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
     <string name="app_version_copied_to_clipboard">คัดลอกเวอร์ชันแอปไปยังคลิปบอร์ดแล้ว</string>
-    <string name="authentication_failed">Authentication Failed</string>
+    <string name="authentication_failed">การตรวจสอบสิทธิ์ล้มเหลว</string>
     <string name="please_try_again_soon">โปรดลองอีกครั้ง</string>
-    <string name="verify_your_email">Verify Your Email Address</string>
+    <string name="verify_your_email">ยืนยันที่อยู่อีเมลของคุณ</string>
     <string name="after_you_change_your_password">เมื่อเปลี่ยนรหัสผ่านแล้ว คุณจะออกจากระบบและต้องลงชื่อเข้าใช้อีกครั้งด้วยรหัสผ่านใหม่ทั้งในแอปหรือเว็บไซต์เกี่ยวกับ iNaturalist ที่คุณใช้งานอยู่ โปรดตรวจสอบก่อนว่ามีการสังเกตที่ยังอัปโหลดค้างไว้หรือไม่ หากยังไม่อัปโหลดจะทำให้การสังเกตนั้นสูญหายได้</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">อัปโหลดไฟล์ที่มีขนาดใหญ่เกิน 20MB ไม่ได้</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">คุณออกจากระบบแล้ว กรุณาลงชื่อเข้าใหม่อีกครั้ง</string>
 </resources>

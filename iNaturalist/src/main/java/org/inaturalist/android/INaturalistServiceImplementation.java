@@ -152,7 +152,7 @@ public class INaturalistServiceImplementation {
         PASSWORD,
         GOOGLE,
         FACEBOOK,
-        OAUTH_PASSWORD
+        OAUTH_PASSWORD,
     };
 
     public INaturalistServiceImplementation(Context context) {
@@ -964,6 +964,18 @@ public class INaturalistServiceImplementation {
                 reply.putExtra(UUID, uuid);
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(reply);
 
+            } else if (action.equals(ACTION_GET_ANNOUNCEMENTS)) {
+                SerializableJSONArray results = getAnnouncements();
+
+                Intent reply = new Intent(ANNOUNCEMENTS_RESULT);
+                mApp.setServiceResult(ANNOUNCEMENTS_RESULT, results);
+                reply.putExtra(IS_SHARED_ON_APP, true);
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_DISMISS_ANNOUNCEMENT)) {
+                int announcementId = intent.getIntExtra(ANNOUNCEMENT_ID, 0);
+                dismissAnnouncement(announcementId);
+
             } else if (action.equals(ACTION_EXPLORE_GET_IDENTIFIERS)) {
                 ExploreSearchFilters filters = (ExploreSearchFilters) intent.getSerializableExtra(FILTERS);
                 int pageNumber = intent.getIntExtra(PAGE_NUMBER, 1);
@@ -1379,6 +1391,7 @@ public class INaturalistServiceImplementation {
                 boolean groupByThreads = intent.getExtras() != null ? intent.getExtras().getBoolean(GROUP_BY_THREADS) : false;
                 Integer messageId = (intent.getExtras() != null && intent.getExtras().containsKey(MESSAGE_ID)) ? intent.getExtras().getInt(MESSAGE_ID) : null;
                 BetterJSONObject messages = getMessages(query, box, groupByThreads, messageId);
+                messages = ObservationUtils.getMinimalMessagesResults(messages);
 
                 Intent reply = new Intent(ACTION_MESSAGES_RESULT);
                 mApp.setServiceResult(ACTION_MESSAGES_RESULT, messages);
@@ -4345,6 +4358,32 @@ public class INaturalistServiceImplementation {
         }
     }
 
+    private void dismissAnnouncement(int announcementId) throws AuthenticationException {
+        String url = String.format(Locale.ENGLISH, "%s/announcements/%d/dismiss",
+                API_V2_HOST,
+                announcementId);
+
+        JSONArray json = put(url, (JSONObject) null);
+    }
+
+
+    private SerializableJSONArray getAnnouncements() throws AuthenticationException {
+        String url = String.format(Locale.ENGLISH, "%s/announcements?locale=%s&placement=mobile&fields=all",
+                    API_V2_HOST,
+                    mApp.getPrefLocale());
+
+        JSONArray json = get(url, mCredentials != null);
+        if (json == null) return null;
+        if (json.length() == 0) return null;
+        try {
+            JSONArray results = json.getJSONObject(0).getJSONArray("results");
+            return new SerializableJSONArray(results);
+        } catch (JSONException e) {
+            Logger.tag(TAG).error(e);
+            return null;
+        }
+    }
+
     private BetterJSONObject getExploreResults(String command, ExploreSearchFilters filters, int pageNumber, int pageSize, String orderBy) throws AuthenticationException {
         if (filters == null) return null;
 
@@ -5866,7 +5905,7 @@ public class INaturalistServiceImplementation {
             requestBody = requestBodyBuilder.build();
         }
 
-        if (url.startsWith(API_HOST) && (mCredentials != null)) {
+        if ((url.startsWith(API_HOST) || url.startsWith(API_V2_HOST)) && (mCredentials != null)) {
             // For the node API, if we're logged in, *always* use JWT authentication
             authenticated = true;
             useJWTToken = true;
@@ -5892,7 +5931,7 @@ public class INaturalistServiceImplementation {
                     // Old-style password authentication
                     requestBuilder.addHeader("Authorization", "Basic " + mCredentials);
                 } else {
-                    // OAuth2 token (Facebook/G+/etc)
+                    // OAuth2 token (G+/etc)
                     requestBuilder.addHeader("Authorization", "Bearer " + mCredentials);
                 }
             }
@@ -6142,9 +6181,7 @@ public class INaturalistServiceImplementation {
                 .add("client_id", INaturalistApp.getAppContext().getString(R.string.oauth_client_id))
                 .add("client_secret", INaturalistApp.getAppContext().getString(R.string.oauth_client_secret));
 
-        if (authType == LoginType.FACEBOOK) {
-            grantType = "facebook";
-        } else if (authType == LoginType.GOOGLE) {
+        if (authType == LoginType.GOOGLE) {
             grantType = "google";
         } else if (authType == LoginType.OAUTH_PASSWORD) {
             grantType = "password";
@@ -6279,7 +6316,10 @@ public class INaturalistServiceImplementation {
 
                         // Save project field values
                         Hashtable<Integer, ProjectFieldValue> fields = new Hashtable<Integer, ProjectFieldValue>();
-                        JSONArray jsonFields = o.getJSONArray(o.has("ofvs") ? "ofvs" : "observation_field_values").getJSONArray();
+                        SerializableJSONArray arr = o.getJSONArray(o.has("ofvs") ? "ofvs" : "observation_field_values");
+                        if (arr == null) continue;
+
+                        JSONArray jsonFields = arr.getJSONArray();
 
                         for (int j = 0; j < jsonFields.length(); j++) {
                             BetterJSONObject field = new BetterJSONObject(jsonFields.getJSONObject(j));

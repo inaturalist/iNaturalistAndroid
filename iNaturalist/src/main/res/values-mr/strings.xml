@@ -46,31 +46,6 @@
     <string name="password">परवलीचा शब्द (पासवर्ड)</string>
     <string name="unknown">अज्ञात</string>
     <string name="unknown_species">अज्ञात प्रजाती</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">ठीक </string>
-    <string name="com_facebook_loginview_log_out_button">लॉग आउट करा</string>
-    <string name="com_facebook_loginview_log_in_button">लॉग इन करा</string>
-    <string name="com_facebook_loginview_logged_in_as">%1$s म्हणून साइन इन केले.</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">फेसबुकसह लॉग इन केले आहे </string>
-    <string name="com_facebook_loginview_log_out_action">लॉग आउट करा</string>
-    <string name="com_facebook_loginview_cancel_action">रद्द करा </string>
-    <string name="com_facebook_logo_content_description">फेसबुक चिन्ह </string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">लॉग इन करा ...</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">लॉग इन झाले आहे </string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">लॉग इन झालेले नाही </string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d इथे होते </string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d इथे होते </string>
-    <string name="com_facebook_picker_done_button_text">पूर्ण झाले </string>
-    <string name="com_facebook_choose_friends">मित्र निवडा </string>
-    <string name="com_facebook_nearby">जवळपास</string>
-    <string name="com_facebook_loading">येत आहे ...</string>
-    <string name="com_facebook_internet_permission_error_title">अँन्ड्रॉईड दिसण्यात गडबड </string>
-    <string name="com_facebook_internet_permission_error_message">आंतरजालावर पहाण्यास इंटरनेटची परवानगी आवश्यक </string>
-    <string name="com_facebook_requesterror_web_login">तुमचे फेसबुक खाते बंद ठेवण्यात आले आहे. कृपया  www.facebook.com वर जा </string>
-    <string name="com_facebook_requesterror_relogin">कृपया आपले फेसबुक खाते पुन्हा जोडण्यासाठी या अ‍ॅपवर पुन्हा लॉग इन करा</string>
-    <string name="com_facebook_requesterror_password_changed">तुमचा फेसबुक संकेतशब्द बदलला आहे. कृपया आपले फेसबुक खाते पुन्हा जोडण्यासाठी या अ‍ॅपवर पुन्हा लॉग इन करा.</string>
-    <string name="com_facebook_requesterror_reconnect">कृपया आपले फेसबुक खाते पुन्हा जोडण्यासाठी या अ‍ॅपमध्ये परत लॉग इन करा</string>
-    <string name="com_facebook_requesterror_permissions">या अ‍ॅपला असे करण्याची परवानगी नाही. परवानग्या बदलण्यासाठी पुन्हा अ‍ॅपमध्ये लॉग इन करून पहा.</string>
     <string name="edit_observation">निरीक्षण सुधारणा</string>
     <string name="discard_changes">बदल नोंद करायचे नाहीत याबद्दल तुम्ही ठाम आहात काय?</string>
     <string name="yes">होय</string>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">Help with iNaturalist (version %1$s - %2$s; user id - %3$s)</string>
     <string name="send_email">ईमेल पाठवा</string>
     <string name="login_with">यासह लॉगइन करा</string>
-    <string name="facebook">फेसबुक</string>
     <string name="gplus">गुगल</string>
     <string name="email">ईमेल</string>
     <string name="skip">गाळून पुढे जा</string>
@@ -1215,6 +1189,8 @@
     <string name="authentication_failed">सत्यापन अयशस्वी</string>
     <string name="please_try_again_soon">कृपया थोड्या वेळाने पुन्हा प्रयत्न करा.</string>
     <string name="verify_your_email">आपल्या ई-मेल पत्त्याची खात्री करा</string>
-    <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
-    <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="after_you_change_your_password">म्ही तुमचा पासवर्ड बदलल्यानंतर, तुम्हाला साइन आउट केले जाईल आणि तुम्हाला तुमच्या नवीन पासवर्डने पुन्हा साइन इन करावे लागेल. तुम्हाला iNaturalist मोबाइल ऍप्स आणि तुमच्या वतीने iNaturalist वर पोस्ट करणार्‍या इतर कोणत्याही ऍप्स किंवा वेबसाइटमधून साइन आउट केले जाईल, म्हणून तुम्ही हे करण्यापूर्वी कोणतीही प्रलंबित निरीक्षणे अपलोड केली आहेत याची खात्री करा. अपलोड न केलेली कोणतीही निरीक्षणे गमावली जातील.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
+    <string name="couldnt_upload_file_too_large">फाइल अपलोड करू शकत नाही - 20MB पेक्षा मोठी</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">तुम्हाला साइन आउट केले गेले आहे. कृपया पुन्हा साइन इन करा.</string>
 </resources>

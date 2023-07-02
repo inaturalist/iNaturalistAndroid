@@ -303,6 +303,7 @@ public class INaturalistService extends IntentService {
     public static final String OBSERVATION_COUNT = "observation_count";
     public static final String PROJECTS_RESULT = "projects_result";
     public static final String IDENTIFICATIONS_RESULT = "identifications_result";
+    public static final String ANNOUNCEMENTS_RESULT = "announcements_result";
     public static final String EXPLORE_GET_OBSERVATIONS_RESULT = "explore_get_observations_result";
     public static final String EXPLORE_GET_SPECIES_RESULT = "explore_get_species_result";
     public static final String EXPLORE_GET_IDENTIFIERS_RESULT = "explore_get_identifiers_result";
@@ -340,6 +341,8 @@ public class INaturalistService extends IntentService {
     public static final String DELETE_ACCOUNT_RESULT = "delete_account_result";
     public static final String TAXON_ID = "taxon_id";
     public static final String ANCESTORS = "ancestors";
+    public static final String ANNOUNCEMENTS = "announcements";
+    public static final String ANNOUNCEMENT_ID = "announcement_id";
     public static final String PLACE_LAT = "place_lat";
     public static final String PLACE_LNG = "place_lng";
     public static final String RESEARCH_GRADE = "research_grade";
@@ -422,6 +425,7 @@ public class INaturalistService extends IntentService {
     public static String TAG = "INaturalistService";
     public static String HOST = "https://www.inaturalist.org";
     public static String API_HOST = "https://api.inaturalist.org/v1";
+    public static String API_V2_HOST = "https://api.inaturalist.org/v2";
     public static String USER_AGENT = "iNaturalist/%VERSION% (" +
             "Build %BUILD%; " +
             "Android " + System.getProperty("os.version") + " " + android.os.Build.VERSION.INCREMENTAL + "; " +
@@ -431,6 +435,8 @@ public class INaturalistService extends IntentService {
             android.os.Build.PRODUCT + "; OS Version " +
             android.os.Build.VERSION.RELEASE +
             ")";
+    public static String ACTION_GET_ANNOUNCEMENTS = "get_announcements";
+    public static String ACTION_DISMISS_ANNOUNCEMENT = "dismiss_announcement";
     public static String ACTION_GET_HISTOGRAM = "action_get_histogram";
     public static String ACTION_GET_POPULAR_FIELD_VALUES = "action_get_popular_field_values";
     public static String ACTION_ADD_MISSING_OBS_UUID = "action_add_missing_obs_uuid";

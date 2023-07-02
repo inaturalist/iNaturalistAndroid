@@ -46,31 +46,6 @@
     <string name="password">密码</string>
     <string name="unknown">未知</string>
     <string name="unknown_species">未知的物种</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">好的</string>
-    <string name="com_facebook_loginview_log_out_button">登出</string>
-    <string name="com_facebook_loginview_log_in_button">登入</string>
-    <string name="com_facebook_loginview_logged_in_as">已登入为 %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">使用 Facebook 登入</string>
-    <string name="com_facebook_loginview_log_out_action">登出</string>
-    <string name="com_facebook_loginview_cancel_action">取消</string>
-    <string name="com_facebook_logo_content_description">Facebook Logo</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">登入...</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">已登入</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">尚未登入</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$ d 在这里</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d 在这里</string>
-    <string name="com_facebook_picker_done_button_text">已完成</string>
-    <string name="com_facebook_choose_friends">选择好友</string>
-    <string name="com_facebook_nearby">附近的</string>
-    <string name="com_facebook_loading">正在载入...</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifest 错误</string>
-    <string name="com_facebook_internet_permission_error_message">WebView 登录需要网际网路权限</string>
-    <string name="com_facebook_requesterror_web_login">您的 Facebook 帐户已被锁定。请登入至 www.facebook.com 继续。</string>
-    <string name="com_facebook_requesterror_relogin">请登入到这个应用程式，以重新连结您的 Facebook 帐户。</string>
-    <string name="com_facebook_requesterror_password_changed">您的 Facebook 密码已更改。请重新登入到这个 app 并连接您的 Facebook 帐户。</string>
-    <string name="com_facebook_requesterror_reconnect">请登入到这个 app，以重新连结您的 Facebook 帐户。</string>
-    <string name="com_facebook_requesterror_permissions">这个 app 没有执行此操作的权限。若要更改权限，请尝试再次登入到此 app。</string>
     <string name="edit_observation">编辑观察记录</string>
     <string name="discard_changes">您确定要放弃未储存的修改吗？</string>
     <string name="yes">是的</string>
@@ -219,7 +194,6 @@
     <string name="inat_support_email_subject">iNaturalist 说明 (版本 %1$s-%2$s; 使用者 id-%3$s)</string>
     <string name="send_email">传送电子邮件...</string>
     <string name="login_with">登入</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">谷歌</string>
     <string name="email">电子邮件</string>
     <string name="skip">略过 &gt;</string>
@@ -1210,5 +1184,7 @@
     <string name="please_try_again_soon">Please try again soon.</string>
     <string name="verify_your_email">Verify Your Email Address</string>
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

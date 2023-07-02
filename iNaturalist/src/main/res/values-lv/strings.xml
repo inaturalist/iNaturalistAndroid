@@ -46,31 +46,6 @@
     <string name="password">Parole</string>
     <string name="unknown">Nezināms</string>
     <string name="unknown_species">Nezināma suga</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">Labi</string>
-    <string name="com_facebook_loginview_log_out_button">Iziet</string>
-    <string name="com_facebook_loginview_log_in_button">Pieslēgties</string>
-    <string name="com_facebook_loginview_logged_in_as">Pieslēdzies ar lietotājvārdu: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Pieslēdzies ar Facebook</string>
-    <string name="com_facebook_loginview_log_out_action">Iziet</string>
-    <string name="com_facebook_loginview_cancel_action">Atcelt</string>
-    <string name="com_facebook_logo_content_description">Facebook logotips</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Pieslēgties...</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Pieslēdzies</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Neesi pieslēdzies</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d bija šeit</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d bija šeit</string>
-    <string name="com_facebook_picker_done_button_text">Gatavs</string>
-    <string name="com_facebook_choose_friends">Atlasīt draugus</string>
-    <string name="com_facebook_nearby">Tuvumā</string>
-    <string name="com_facebook_loading">Ielādē...</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifest kļūda</string>
-    <string name="com_facebook_internet_permission_error_message">WebView seansa uzsākšanai nepieciešama INTERNETA atļauja</string>
-    <string name="com_facebook_requesterror_web_login">Tavs Facebook konts nav atvērts. Lūdzu, pieslēdzies www.facebook.com, lai turpinātu.</string>
-    <string name="com_facebook_requesterror_relogin">Lūdzu, vēlreiz pieslēdzies mūsu lietotnei, lai no jauna pievienotu savu Facebook kontu.</string>
-    <string name="com_facebook_requesterror_password_changed">Tava Facebook parole ir mainīta. Lūdzu, vēlreiz pieslēdzies mūsu lietotnei, lai no jauna pievienotu savu Facebook kontu.</string>
-    <string name="com_facebook_requesterror_reconnect">Lūdzu, vēlreiz pieslēdzies mūsu lietotnei, lai no jauna pievienotu savu Facebook kontu.</string>
-    <string name="com_facebook_requesterror_permissions">Šai lietotnei nav atļaujas šīs darbības veikšanai. Lai mainītu atļaujas, pieslēdzies lietotnei no jauna!</string>
     <string name="edit_observation">Labot novērojumu</string>
     <string name="discard_changes">Vai tiešām vēlies atcelt nesaglabātās izmaiņas?</string>
     <string name="yes">Jā</string>
@@ -222,7 +197,6 @@ globālā iNaturalist tīkla.</string>
     <string name="inat_support_email_subject">Palīdzība ar iNaturalist lietošanu (versija %1$s - %2$s; lietotājvārds - %3$s)</string>
     <string name="send_email">Nosūtīt e-pasta ziņu.</string>
     <string name="login_with">Pieslēgties ar</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-pasts</string>
     <string name="skip">Izlaist  ›</string>
@@ -1226,5 +1200,7 @@ saraksta zem meklēšanas lauka vai notīri meklēšanas lauku.</string>
     <string name="please_try_again_soon">Please try again soon.</string>
     <string name="verify_your_email">Verify Your Email Address</string>
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

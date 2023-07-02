@@ -46,31 +46,6 @@
     <string name="password">Senha</string>
     <string name="unknown">Desconhecido</string>
     <string name="unknown_species">Espécie desconhecida</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">Ok</string>
-    <string name="com_facebook_loginview_log_out_button">Sair</string>
-    <string name="com_facebook_loginview_log_in_button">Iniciar sessão</string>
-    <string name="com_facebook_loginview_logged_in_as">Entrou como: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Conectado com o Facebook</string>
-    <string name="com_facebook_loginview_log_out_action">Sair</string>
-    <string name="com_facebook_loginview_cancel_action">Cancelar</string>
-    <string name="com_facebook_logo_content_description">Logotipo do Facebook</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Iniciar sessão&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Sessão Iniciada</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Não está conectado</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d esteve aqui</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d esteve aqui</string>
-    <string name="com_facebook_picker_done_button_text">Feito</string>
-    <string name="com_facebook_choose_friends">Escolha amigos</string>
-    <string name="com_facebook_nearby">Nas Proximidades</string>
-    <string name="com_facebook_loading">Carregando...</string>
-    <string name="com_facebook_internet_permission_error_title">Alerta de erro do Android</string>
-    <string name="com_facebook_internet_permission_error_message">Login no WebView solicita permissão da INTERNET</string>
-    <string name="com_facebook_requesterror_web_login">A sua conta do Facebook está bloqueada. Por favor acesse www.facebook.com para continuar.</string>
-    <string name="com_facebook_requesterror_relogin">Por favor, acesse novamente este aplicativo para reconectar com sua conta do Facebook.</string>
-    <string name="com_facebook_requesterror_password_changed">Sua senha do Facebook mudou. Por favor acesse este app novamente para reconectar com sua conta do Facebook.</string>
-    <string name="com_facebook_requesterror_reconnect">Por favor, acesse novamente este aplicativo para reconectar com sua conta do Facebook.</string>
-    <string name="com_facebook_requesterror_permissions">Este aplicativo não possuí permissão para fazer isso. Para alterar as permissões, tente entrar no aplicativo novamente.</string>
     <string name="edit_observation">Editar Observação</string>
     <string name="discard_changes">Tem certeza que deseja descartar as alterações?</string>
     <string name="yes">Sim</string>
@@ -199,8 +174,8 @@
     <string name="alert_message_use_inaturalistcr">iNaturalist Costa Rica é um membro da Rede iNaturalist na Costa Rica. Instituições locais que apoiam o iNaturalist Costa Rica terão acesso ao seu endereço de e-mail e às reais coordenadas de observações obscurecidas ou privadas do público. Por favor, não altere sua afiliação experimentalmente se você tiver mais de 1000 observações. Deseja mudar sua afiliação?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala é um membro da Rede iNaturalist no Guatemala. Instituições locais que apoiam o iNaturalist Guatemala terão acesso ao seu endereço de e-mail e às reais coordenadas de observações obscurecidas ou privadas do público. Por favor, não altere sua afiliação experimentalmente se você tiver mais de 1000 observações. Deseja mudar sua afiliação?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Suécia é um membro da Rede iNaturalist na Suécia. Instituições locais que apoiam o iNaturalist Suécia terão acesso ao seu endereço de e-mail e às reais coordenadas de observações obscurecidas ou privadas do público. Por favor, não altere sua afiliação experimentalmente se você tiver mais de 1000 observações. Deseja mudar sua afiliação?</string>
-    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan is a member of the iNaturalist Network in Taiwan. Local institutions supporting iNaturalist Taiwan will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalistauy">iNaturalist Grécia é um membro da Rede iNaturalist na Grécia. Instituições locais que apoiam o iNaturalist Grécia terão acesso ao seu endereço de e-mail e às reais coordenadas de observações obscurecidas ou privadas do público. Por favor, não altere sua afiliação experimentalmente se você tiver mais de 1000 observações. Deseja mudar sua afiliação?</string>
+    <string name="alert_message_use_inaturalisttw">O iNaturalist Finlândia é um membro da rede iNaturalist na Finlândia. Instituições locais que apoiam o iNaturalist Finlândia terão acesso ao seu endereço de e-mail e acesso às coordenadas verdadeiras para observações que são publicamente obscurecidas ou privadas. Por favor, não altere experimentalmente sua afiliação se você tiver mais de 1000 observações. Você gostaria de mudar sua afiliação?</string>
     <string name="editor">Editor</string>
     <string name="license">Licença</string>
     <string name="download_for_offline_use">Download para uso offline</string>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">Ajuda iNaturalist (versão %1$s - %2$s; id do usuário - %3$s)</string>
     <string name="send_email">Enviar e-mail...</string>
     <string name="login_with">Iniciar sessão com</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">E-mail</string>
     <string name="skip">Pular ›</string>
@@ -760,8 +734,8 @@
     <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comissão Nacional para a Gestão da Biodiversidade (CONAGEBIO) apoiando Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Conselho Nacional de Áreas Protegidas (CONAP) apoiando iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Suécia: SLU Centro de Informações Sueco apoiando iNaturalist Suécia (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
-    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
-    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi University and Taiwan Forestry Research Institute supporting iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA e Biodiversidata que apoiam o Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: Instituto de Pesquisa Chiayi Nacional da Universidade e Taiwan Florestal que apoia o iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">Marcar todos como visto</string>
     <string name="content_hidden">Conteúdo oculto</string>
     <string name="show_hidden_content">Mostrar conteúdo oculto</string>
@@ -1212,9 +1186,11 @@
     <string name="remove_identification">Remover identificação</string>
     <string name="issue_with_updating_photos">Houve um erro ao atualizar as fotos desta observação que foi recentemente corrigido. Por favor, saia e faça login novamente para resolver este problema.</string>
     <string name="app_version_copied_to_clipboard">Versão do aplicativo copiada para a área de transferência</string>
-    <string name="authentication_failed">Authentication Failed</string>
-    <string name="please_try_again_soon">Please try again soon.</string>
+    <string name="authentication_failed">Falha na Autenticação</string>
+    <string name="please_try_again_soon">Por favor, tente novamente em breve.</string>
     <string name="verify_your_email">Verifique seu endereço eletrônico</string>
-    <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
-    <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="after_you_change_your_password">Depois de alterar sua senha, você será desconectado e precisará entrar novamente utilizando sua nova senha. Você também será desconectado dos aplicativos móveis iNaturalist e de qualquer outro aplicativo ou site que poste em seu nome no iNaturalist, portanto, certifique-se de ter enviado quaisquer observações pendentes antes de fazer isso. Quaisquer observações que não tenham sido enviadas serão perdidas.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
+    <string name="couldnt_upload_file_too_large">Não foi possível carregar — arquivo maior que 20 MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">A sessão foi encerrada. Por favor, inicie nova sessão.</string>
 </resources>

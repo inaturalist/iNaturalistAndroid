@@ -16,29 +16,29 @@
     <RelativeLayout
         android:id="@+id/top_action_bar"
         android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="10dp"
-        android:layout_height="wrap_content">
+        android:layout_marginTop="?attr/actionBarSize">
+
         <TextView
             android:id="@+id/action_bar_title"
-            android:layout_marginTop="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textSize="22sp"
+            android:layout_marginTop="25dp"
             android:text="@string/sign_up_title"
             android:textColor="#FFFFFF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textSize="22sp" />
 
         <ImageView
             android:id="@+id/back"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_backward_white"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginTop="25dp"
             android:contentDescription="@string/go_back"
-            />
+            android:src="@drawable/ic_arrow_backward_white" />
     </RelativeLayout>
 
     <LinearLayout
@@ -55,7 +55,7 @@
             android:id="@+id/password_changed"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/password_changed"
+            android:text="@string/you_have_been_signed_out_please_sign_in_again"
             android:visibility="gone"
             android:textSize="15sp"
             android:textColor="#ffffff"
@@ -326,50 +326,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_marginEnd="5dp"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="40dp"
-            android:background="#11FFFFFF"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:focusable="true"
-            android:clickable="true"
-            android:id="@+id/login_with_facebook"
-            >
-
-            <ImageView
-                android:duplicateParentState="true"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/facebook_button_icon"
-                android:layout_marginStart="3dp"
-                android:importantForAccessibility="no"
-                />
-
-            <View
-                android:duplicateParentState="true"
-                android:layout_width="1dp"
-                android:layout_height="fill_parent"
-                android:layout_marginStart="3dp"
-                android:background="#33FFFFFF" />
-
-            <TextView
-                android:duplicateParentState="true"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:textColor="@drawable/semi_transparent_button_text"
-                android:text="@string/facebook"
-                android:textStyle="bold"
-                android:layout_marginEnd="4dp"
-                android:layout_gravity="center_vertical"
-                android:gravity="center"
-                />
-        </LinearLayout>
-
-        <LinearLayout
+       <LinearLayout
             android:layout_marginStart="5dp"
             android:layout_width="0dp"
             android:layout_weight="1"

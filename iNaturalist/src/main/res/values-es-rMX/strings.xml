@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="email_address">Dirección de correo electrónico</string>
-    <string name="delete_observation">Elimina observación</string>
+    <string name="delete_observation">Eliminar observación</string>
     <string name="observation_deleted">Observación eliminada</string>
     <string name="species_guess_hint">Nombre de la especie...</string>
     <string name="ok">OK</string>
@@ -46,31 +46,6 @@
     <string name="password">Contraseña</string>
     <string name="unknown">Desconocido</string>
     <string name="unknown_species">Especie desconocida</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">Ok</string>
-    <string name="com_facebook_loginview_log_out_button">Cierra la sesión</string>
-    <string name="com_facebook_loginview_log_in_button">Inicia sesión</string>
-    <string name="com_facebook_loginview_logged_in_as">Sesión iniciada como %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Sesión iniciada usando Facebook</string>
-    <string name="com_facebook_loginview_log_out_action">Cierra la sesión</string>
-    <string name="com_facebook_loginview_cancel_action">Cancela</string>
-    <string name="com_facebook_logo_content_description">Logo de Facebook</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Inicia sesión...</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Conectado</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">No conectado</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d estaban aquí</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d estuvieron aquí</string>
-    <string name="com_facebook_picker_done_button_text">Hecho</string>
-    <string name="com_facebook_choose_friends">Elige amigos</string>
-    <string name="com_facebook_nearby">Cercanas</string>
-    <string name="com_facebook_loading">Cargando...</string>
-    <string name="com_facebook_internet_permission_error_title">Error de Androide </string>
-    <string name="com_facebook_internet_permission_error_message">La conexión con WebView necesita permiso a INTERNET</string>
-    <string name="com_facebook_requesterror_web_login">Tu cuenta de Facebook está bloqueada. Por favor inicia sesión en www.facebook.com para continuar.</string>
-    <string name="com_facebook_requesterror_relogin">Vuelve a iniciar sesión en esta aplicación para reconectar con tu cuenta de Facebook.</string>
-    <string name="com_facebook_requesterror_password_changed">Tu contraseña de Facebook ha cambiado. Vuelve a iniciar sesión en la aplicación para volver a conectarte a tu cuenta de Facebook.</string>
-    <string name="com_facebook_requesterror_reconnect">Vuelve a iniciar sesión en esta aplicación para reconectar con tu cuenta de Facebook.</string>
-    <string name="com_facebook_requesterror_permissions">Esta aplicación no tiene permiso para hacer eso. Para cambiar los permisos, intenta volver a iniciar la sesión en la aplicación.</string>
     <string name="edit_observation">Edita tu observación</string>
     <string name="discard_changes">¿Estás seguro que deseas descartar los cambios no guardados?</string>
     <string name="yes">Si</string>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">Ayuda con iNaturalist (versión %1$s - %2$s; nombre de usuario - %3$s)</string>
     <string name="send_email">Envía correo...</string>
     <string name="login_with">Inicia sesión con</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Correo electrónico</string>
     <string name="skip">Omite</string>
@@ -1217,6 +1191,8 @@ Más información de nuestra definición de \"contenido apropiado\" en las
     <string name="authentication_failed">Autenticación fallida</string>
     <string name="please_try_again_soon">Por favor, inténtalo de nuevo.</string>
     <string name="verify_your_email">Verifique su dirección de correo electrónico</string>
-    <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
-    <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="after_you_change_your_password">Después de cambiar tu contraseña, serás desconectado y tendrás que volver a iniciar sesión con tu nueva contraseña. También serás desconectado de las aplicaciones móviles de iNaturalist y de cualquier otra aplicación o sitio web que publique en iNaturalist en tu nombre, así que asegúrese de que ha subido cualquier observación pendiente antes de hacer esto. Cualquier observación que no se suba se perderá.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
+    <string name="couldnt_upload_file_too_large">No se pudo cargar el archivo - más de 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Has cerrado sesión. Por favor, inicia sesión de nuevo.</string>
 </resources>

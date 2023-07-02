@@ -46,31 +46,6 @@
     <string name="password">ಗುಪ್ತಪದ</string>
     <string name="unknown">ಅಪರಿಚಿತ</string>
     <string name="unknown_species">ಅಪರಿಚಿತ ಪ್ರಭೇಧ</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">ಓಕೆ</string>
-    <string name="com_facebook_loginview_log_out_button">ಲಾಗ್ ಔಟ್</string>
-    <string name="com_facebook_loginview_log_in_button">ಲಾಗಿನ್ ಆಗಿ</string>
-    <string name="com_facebook_loginview_logged_in_as">%1$s : ನಂತೆ ಲಾಗಿನ್ ಆಗಿದೆ</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">ಫೇಸ್ಬುಕ್ ಮೂಲಕ ಲಾಗ್ ಇನ್ ಆಗಿದೆ</string>
-    <string name="com_facebook_loginview_log_out_action">ಲಾಗ್ ಔಟ್</string>
-    <string name="com_facebook_loginview_cancel_action">ರದ್ದುಗೊಳಿಸಿ</string>
-    <string name="com_facebook_logo_content_description">ಫೇಸ್ ಬುಕ್ ಲೋಗೊ</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">ಲಾಗಿನ್...</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">ಲಾಗಿನ್ ಆಗಿದೆ</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">ಲಾಗಿನ್‌ ಆಗಿಲ್ಲ</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d ಅವರು ಇಲ್ಲಿದ್ದರು</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d ಆವರು ಇಲ್ಲಿದ್ದರು</string>
-    <string name="com_facebook_picker_done_button_text">ಸಂಪನ್ನವಾಗಿದೆ</string>
-    <string name="com_facebook_choose_friends">ಗೆಳೆಯರನ್ನು ಆರಿಸಿ</string>
-    <string name="com_facebook_nearby">ಸಮೀಪದ</string>
-    <string name="com_facebook_loading">ಸಜ್ಜುಗೊಳಿಸಲಾಗುತ್ತಿದೆ...</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifest ದೋಷ</string>
-    <string name="com_facebook_internet_permission_error_message">WebView ಲಾಗಿನ್ ಗೆ ಅಂತರ್ಜಾಲದ ಅನುಮತಿಯ ಅಗತ್ಯವಿದೆ</string>
-    <string name="com_facebook_requesterror_web_login">ನಿಮ್ಮ ಫೇಸ್‍ಬುಕ್ ಖಾತೆಯನ್ನು ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ. ಮುಂದುವರೆಸಲು ದಯವಿಟ್ಟು www.facebook.com ಗೆ ಲಾಗಿನ್ ಆಗಿ</string>
-    <string name="com_facebook_requesterror_relogin">ನಿಮ್ಮ ಫೇಸ್‍ಬುಕ್ ಖಾತೆ ಗೆ ಮರುಜೋಡಣೆಯಾಗಲು ದಯವಿಟ್ಟು ಈ ಆಪ್ ಗೆ ಮತ್ತೆ ಲಾಗಿನ್ ಆಗಿ.</string>
-    <string name="com_facebook_requesterror_password_changed">ನಿಮ್ಮ ಫೇಸ್‍ಬುಕ್ ಗುಪ್ತಪದ ಬದಲಾವಣೆಯಾಗಿದೆ. ನಿಮ್ಮ ಫೇಸ್‍ಬುಕ್ ಖಾತೆ ಗೆ ಮರುಜೋಡಣೆಯಾಗಲು ದಯವಿಟ್ಟು ಈ ಆಪ್ ಗೆ ಮತ್ತೆ ಲಾಗಿನ್ ಆಗಿ.</string>
-    <string name="com_facebook_requesterror_reconnect">ನಿಮ್ಮ ಫೇಸ್‍ಬುಕ್ ಖಾತೆ ಗೆ ಮರುಜೋಡಣೆಯಾಗಲು ದಯವಿಟ್ಟು ಈ ಆಪ್ ಗೆ ಮತ್ತೆ ಲಾಗಿನ್ ಆಗಿ.</string>
-    <string name="com_facebook_requesterror_permissions">ಈ ಆಪ್ ಗೆ ಇದನ್ನು ಮಾಡಲು ಅನುಮತಿಯಿಲ್ಲ. ಅನುಮತಿಗಳನ್ನು ಬದಲಿಸಲು, ಆಪ್ ಗೆ ಮತ್ತೆ ಲಾಗಿನ್ ಆಗಲು ಪ್ರಯತ್ನಿಸಿ.</string>
     <string name="edit_observation">ವೀಕ್ಷಣೆಯನ್ನು ಸಂಪಾದಿಸಿ</string>
     <string name="discard_changes">ಉಳಿಸಿರದ ಬದಲಾವಣೆಗಳನ್ನು ತ್ಯಜಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
     <string name="yes">ಹೌದು</string>
@@ -94,7 +69,7 @@
     <string name="join">ಸೇರಿರಿ</string>
     <string name="no_check_list">ತಾಳೆಪಟ್ಟಿಯಲ್ಲಿ ಯಾವುದೇ ಜೀವಿವರ್ಗಗಳಿಲ್ಲ!</string>
     <string name="failed_to_add_obs_to_project">\'%1$s\' ವೀಕ್ಷಣೆಯನ್ನು \'%2$s\' ಪ್ರಾಯೋಜನೆಗೆ ಸೇರಿಸಲು ವಿಫಲವಾಗಿದೆ: %3$s</string>
-    <string name="invalid_project_field">Please enter a valid value for field \'%1s\'</string>
+    <string name="invalid_project_field">ದಯವಿಟ್ಟು ಪಟ್ಟಿಯಲ್ಲಿನ ಒಂದು ಆಯ್ಕೆಯನ್ನು ಆರಿಸಿ \'%1s\'</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
     <string name="select_projects">ಸೇರಿರುವ ಪ್ರಾಯೋಜನೆಗಳಿಂದ ಆರಿಸಿ</string>
     <string name="not_connected">ಇದನ್ನು ಮಾಡಲು ನೀವು ಅಂತರ್ಜಾಲ ಸಂಪರ್ಕದಲ್ಲಿರಲೇಬೇಕು!</string>
@@ -145,7 +120,7 @@
     </plurals>
     <string name="sync_observations">ವೀಕ್ಷಣೆಗಳನ್ನು ಸಿಂಕ್ ಮಾಡಿ</string>
     <string name="lets_get_started">ನಾವೀಗ ಆರಂಭಿಸೋಣ!</string>
-    <string name="view_nearby_observations">ಸಮೀಪದ ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ</string>
+    <string name="view_nearby_observations">ಹತ್ತಿರದ ವೀಕ್ಷಣೆಗಳು ವೀಕ್ಷಿಸಿ</string>
     <string name="skip_for_now">ಸಧ್ಯಕ್ಕೆ ಮುಂದೆಹೋಗಿ</string>
     <string-array name="tutorial_titles">
         <item></item>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">iNaturalist ನ ಜೊತೆ ಸಹಾಯ (ಆವೃತ್ತಿ %1$s-%2$s; ಬಳಕೆದಾರರ ಐಡಿ - %3$s)</string>
     <string name="send_email">ಮಿಂಚೆ ಕಳುಹಿಸಿ..</string>
     <string name="login_with">ಇದರೊಂದಿಗೆ ಲಾಗಿನ್ ಆಗಿ</string>
-    <string name="facebook">ಫೇಸ್‍‌ಬುಕ್</string>
     <string name="gplus">ಗೂಗಲ್</string>
     <string name="email">ಮಿಂಚೆ</string>
     <string name="skip">ಹಾರಿಸಿ ></string>
@@ -378,7 +352,7 @@
     <string name="multi_select_description">ಒಂದು ಬಿಡಿ ಚಿತ್ರದ ಮೇಲೆ ದೀರ್ಘವಾಗಿ ಒತ್ತುವುದರ ಮೂಲಕ ಅನೇಕ ಚಿತ್ರಗಳನ್ನು ಆಮದು ಮಾಡಿ</string>
     <string name="preparing_photo">ಚಿತ್ರವನ್ನು ಸಜ್ಜುಗೊಳಿಸಲಾಗುತ್ತಿದೆ...</string>
     <string name="recommended_for_you">ನಿಮಗೆ ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ</string>
-    <string name="missions">Missions</string>
+    <string name="missions">ಮಿಷನ್ನುಗಳು</string>
     <string name="browse_by_category">ವಿಭಾಗದಂತೆ ಬ್ರೌಸ್ ಮಾಡಿ</string>
     <string name="couldnt_load_recommended_missions">Couldn\'t load recommended missions: %1$s</string>
     <string name="plants">ಗಿಡಗಳು</string>
@@ -630,7 +604,7 @@
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
     <string name="attribute">ಗುಣವಿಶೇಷ</string>
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
-    <string name="value">Value</string>
+    <string name="value">ಮೌಲ್ಯ</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
     <string name="disagree">ಅಸಮ್ಮತಿಸಿ</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
@@ -888,7 +862,7 @@
     <string name="sending_message">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ...</string>
     <string name="could_not_send_message">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲಾಗಲಿಲ್ಲ: %1$s</string>
     <string name="subject">ವಿಷಯ</string>
-    <string name="body">Body</string>
+    <string name="body">ಒಡಲು</string>
     <string name="type_your_message_here">ನಿಮ್ಮ ಸಂದೇಶವನ್ನು ಇಲ್ಲಿ ಬರೆಯಿರಿ</string>
     <string name="new_message_to">%1$s ಇವರಿಗೆ ಹೊಸ ಸಂದೇಶ</string>
     <string name="who_would_you_like_to_send_a_message_to">ನೀವು ಯಾರಿಗೆ ಸಂದೇಶ ಕಳುಹಿಸಬೇಕೆಂದು ಬಯಸುತ್ತೀರಿ?</string>
@@ -899,7 +873,7 @@
     <string name="you_must_have_three_observations">ಅದನ್ನು ಮಾಡಲು ನೀವು ಮೂರು ಪರಿಶೀಲನಾರ್ಹ ವೀಕ್ಷಣೆಗಳನ್ನು ಅಥವಾ ಇತರರಿಗಾಗಿ ಮೂರು ಗುರುತಿಸುವಿಕೆಗಳನ್ನು ಹೊಂದಿರಬೇಕಾಗುತ್ತದೆ.</string>
     <string name="mute_this_user">ಈ ಬಳಕೆದಾರರನ್ನು ಮೌನವಾಗಿಸಿ</string>
     <string name="unmute_this_user">ಈ ಬಳಕೆದಾರರ ಮೌನ ನೀಗಿಸಿ</string>
-    <string name="flag_this_conversation">Flag this conversation</string>
+    <string name="flag_this_conversation">ಈ ಮಾತುಕತೆಯನ್ನು ಫ್ಲ್ಯಾಗ್ ಮಾಡಿ</string>
     <string name="mute_this_user_question">ಈ ಬಳಕೆದಾರರನ್ನು ಮೌನವಾಗಿಸಬೇಕೆ?</string>
     <string name="you_will_no_longer_receive_messages">ಈ ಬಳಕೆದಾರರಿಂದ ಸಂದೇಶಗಳು, ಪ್ರತಿಕ್ರಿಯೆಗಳು, ಗುರುತಿಸುವಿಕೆಗಳು ಮತ್ತು ಉಲ್ಲೇಖಗಳನ್ನು ಒಳಗೊಂಡಂತೆ ಅವರ 
 ಚಟುವಟಿಕೆಗಳ ಬಗೆಗಿನ ಯಾವುದೇ ಅಧಿಸೂಚನೆಗಳನ್ನು ನೀವು ಇನ್ನೆಂದಿಗೂ ಸ್ವೀಕರಿಸಲಾರಿರಿ. </string>
@@ -908,7 +882,7 @@
     <string name="unmuting_user">ಬಳಕೆದಾರರ ಮೌನ ನೀಗಿಸುತ್ತಿದೆ...</string>
     <string name="failed_muting_user">ಬಳಕೆದಾರರನ್ನು ಮೌನವಾಗಿಸುವಲ್ಲಿ ವಿಫಲವಾಗಿದೆ!</string>
     <string name="failed_unmuting_user">ಬಳಕೆದಾರರ ಮೌನ ನೀಗಿಸುವಲ್ಲಿ ವಿಫಲವಾಗಿದೆ!</string>
-    <string name="flag_conversation">Flag conversation</string>
+    <string name="flag_conversation">ಮಾತುಕತೆಯನ್ನು ಫ್ಲ್ಯಾಗ್ ಮಾಡಿ</string>
     <string name="spam">ಸ್ಪ್ಯಾಮ್</string>
     <string name="commercial_solicitation">Commercial solicitation, links to nowhere, etc.</string>
     <string name="offensive_inappropriate">ಅವಹೇಳನಕಾರಿ/ಅನುಚಿತ</string>
@@ -918,7 +892,7 @@
     <string name="continue_text">ಮುಂದುವರಿಸಿ</string>
     <string name="why_are_you_flagging_this_item">Why are you flagging this item?</string>
     <string name="thank_you_for_submitting_the_flag">Thank you for submitting the flag!</string>
-    <string name="flagging_conversation">Flagging conversation...</string>
+    <string name="flagging_conversation">ಮಾತುಕತೆಯನ್ನು ಫ್ಲ್ಯಾಗ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
     <string name="failed_flagging_conversation">Failed flagging conversation!</string>
     <string name="no_subject">ವಿಷಯ ಇಲ್ಲ</string>
     <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
@@ -936,7 +910,7 @@
     <string name="rank_suborder">ಉಪಗಣ</string>
     <string name="rank_infraorder">ನಿಮ್ನಗಣ</string>
     <string name="rank_subterclass">ಕೆಳವರ್ಗ</string>
-    <string name="rank_parvorder">Parvorder</string>
+    <string name="rank_parvorder">ಪಾರ್ವರ್ಡರ್</string>
     <string name="rank_zoosection">ಝೂವಿಭಾಗ</string>
     <string name="rank_zoosubsection">ಝೂಉಪವಿಭಾಗ</string>
     <string name="rank_superfamily">ಮೇಲ್‍ಕುಟುಂಬ</string>
@@ -1163,7 +1137,7 @@
     <!-- Placeholder text for an observation field value -->
     <string name="field_value">Field Value</string>
     <string name="expand_annotation_to_agree_or_disagree">ಸಮ್ಮತಿಸಲು ಅಥವಾ ಅಸಮ್ಮತಿಸಲು ಕಿರುಟಿಪ್ಪಣಿಯನ್ನು ವಿಸ್ತರಿಸಿ</string>
-    <string name="delete_attribute_value">Delete attribute value</string>
+    <string name="delete_attribute_value">ಗುಣಲಕ್ಷಣದ ಮೌಲ್ಯ ತೆಗೆದುಹಾಕಿ</string>
     <string name="open_menu_for_more_options">ಹೆಚ್ಚಿನ ಆಯ್ಕೆಗಳಿಗಾಗಿ ಮೆನುವನ್ನು ತೆರೆಯಿರಿ</string>
     <string name="change_user_profile_photo">ಬಳಕೆದಾರರ ಪರಿಚಯ ಚಿತ್ರವನ್ನು ಬದಲಿಸಿ</string>
     <string name="expand_list">ಪಟ್ಟಿ ವಿಸ್ತರಿಸಿ</string>
@@ -1218,5 +1192,7 @@
     <string name="please_try_again_soon">ದಯವಿಟ್ಟು ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
     <string name="verify_your_email">Verify Your Email Address</string>
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

@@ -46,31 +46,6 @@
     <string name="password">Salasana</string>
     <string name="unknown">Tuntematon</string>
     <string name="unknown_species">Tuntematon laji</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">Ok</string>
-    <string name="com_facebook_loginview_log_out_button">Kirjaudu ulos</string>
-    <string name="com_facebook_loginview_log_in_button">Kirjaudu sisään</string>
-    <string name="com_facebook_loginview_logged_in_as">Kirjautunut sisään nimellä: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Kirjautunut sisään Facebookin kautta</string>
-    <string name="com_facebook_loginview_log_out_action">Kirjaudu ulos</string>
-    <string name="com_facebook_loginview_cancel_action">Peruuta</string>
-    <string name="com_facebook_logo_content_description">Facebook-logo</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Kirjaudu sisään&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Kirjautunut sisään</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Ei kirjautunut sisään</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d oli täällä</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d oli täällä</string>
-    <string name="com_facebook_picker_done_button_text">Valmis</string>
-    <string name="com_facebook_choose_friends">Valitse kaverit</string>
-    <string name="com_facebook_nearby">Lähellä</string>
-    <string name="com_facebook_loading">Ladataan...</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifest-virhe</string>
-    <string name="com_facebook_internet_permission_error_message">WebView-kirjautuminen edellyttää INTERNET-oikeuksia</string>
-    <string name="com_facebook_requesterror_web_login">Facebook-tilisi on lukittu. Jatka kirjautumalla sisään osoitteessa www.facebook.com.</string>
-    <string name="com_facebook_requesterror_relogin">Kirjaudu sisään tähän sovellukseen yhdistääksesi uudelleen Facebook-tilisi.</string>
-    <string name="com_facebook_requesterror_password_changed">Facebook-salasanasi on vaihtunut. Kirjaudu sisään tähän sovellukseen uudelleen ja ota uudelleen yhteys Facebook-tiliisi.</string>
-    <string name="com_facebook_requesterror_reconnect">Kirjaudu sisään tähän sovellukseen yhdistääksesi uudelleen Facebook-tilisi.</string>
-    <string name="com_facebook_requesterror_permissions">Tällä sovelluksella ei ole oikeuksia tehdä tätä. Jos haluat vaihtaa käyttöoikeuksia, yritä kirjautua sovellukseen uudelleen.</string>
     <string name="edit_observation">Muokkaa havaintoa</string>
     <string name="discard_changes">Haluatko varmasti hylätä tallentamattomat muutokset?</string>
     <string name="yes">Kyllä</string>
@@ -220,7 +195,6 @@
     <string name="inat_support_email_subject">Help with iNaturalist (versio %1$s - %2$s; käyttäjätunnus - %3$s)</string>
     <string name="send_email">Lähetä sähköposti...</string>
     <string name="login_with">Kirjaudu käyttäen</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Sähköposti</string>
     <string name="skip">Ohita ›</string>
@@ -1228,5 +1202,7 @@ Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen 
     <string name="please_try_again_soon">Please try again soon.</string>
     <string name="verify_your_email">Vahvista sähköpostiosoitteesi</string>
     <string name="after_you_change_your_password">Kun olet vaihtanut salasanasi, sinut kirjaudutaan ulos ja sinun täytyy kirjautua sisään uudelleen uudella salasanallasi. Sinut kirjataan ulos möys iNaturalist-mobiilisovelluksesta ja muista sovelluksista tai sivustoista, jotka lähettävät havainnot iNaturalistiin puolestasi, joten varmista, että olet ladannut kaikki olevat havainnot ennen kuin teet tämän. Kaikki tallentamattomat havainnot menetetään.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Tiedostoa ei voitu ladata – suurempi kuin 20 Mt</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Sinut on kirjattu ulos. Kirjaudu sisään uudelleen.</string>
 </resources>

@@ -36,6 +36,11 @@ DATE_FORMAT_KEYS = [
     "time_short_24_hour",
     "time_short_12_hour"
 ]
+
+# List of languages to skip date format check for - e.g. in Japanese, it's legal to have Japanese letters as part of the date format string:
+# https://en.wikipedia.org/wiki/Date_and_time_notation_in_Japan#:~:text=The%20most%20commonly%20used%20date,%22Wednesday%2031%20December%202008%22.
+SKIP_DATE_FORMAT_CHECK = ['ja']
+
 # These are locales where Crowdin doesn't actually have the correct Android
 # locale code, or where we need to copy files to multiple locations to
 # accommodate different contexts, e.g. the same Hebrew translations for several
@@ -121,7 +126,7 @@ def import_crowdin_for_android(zip_path, options={}):
                     copy_to_android_locale(src, dest_android_locale, options)
 
 
-def validate_translation(path, key, text, en_string, errors, warnings,
+def validate_translation(locale, path, key, text, en_string, errors, warnings,
                          options={}):
     if options.debug:
         print("\tkey:                 {}".format(key))
@@ -186,7 +191,8 @@ def validate_translation(path, key, text, en_string, errors, warnings,
         errors[path][key].append("Unescaped single quote")
         if options.debug:
             print("\t\t{}".format(errors[path][key][-1]))
-    if text and key in DATE_FORMAT_KEYS:
+
+    if text and key in DATE_FORMAT_KEYS and locale not in SKIP_DATE_FORMAT_CHECK:
         without_escaped_text = re.sub(r"'.+?'", "", text)
         potentially_formatted = re.sub(r"[^\w]", "", without_escaped_text)
         bad_characters = set(
@@ -196,12 +202,12 @@ def validate_translation(path, key, text, en_string, errors, warnings,
             )
         # Find bad chars in DATE_FORMAT_KEYS
         if bad_characters and len(bad_characters) > 0:
-            if key not in errors[path]:
-                errors[path][key] = []
-            errors[path][key].append(
-                f"Invalid date format characters: {bad_characters}")
+            if key not in warnings[path]:
+                warnings[path][key] = []
+            warnings[path][key].append(
+                f"Invalid date format characters: {bad_characters} (maybe ok for non-Latin chars)")
             if options.debug:
-                print("\t\t{}".format(errors[path][key][-1]))
+                print("\t\t{}".format(warnings[path][key][-1]))
 
 
 def en_translations():
@@ -236,6 +242,7 @@ def validate_android_translations(options={}):
         if options.verbose:
             print("Checking {}".format(path))
             # Use Dicts to store errors/warnings for each path
+        locale = path.split('/')[-2][7:]
         errors[path] = {}
         warnings[path] = {}
         tree = ET.parse(path)
@@ -250,7 +257,7 @@ def validate_android_translations(options={}):
                 continue
             en_string = en_strings[key]
             validate_translation(
-                path, key, text, en_string, errors, warnings, options
+                locale, path, key, text, en_string, errors, warnings, options
             )
             if text != en_strings[key]:
                 progress_counts[path] = (
@@ -269,6 +276,7 @@ def validate_android_translations(options={}):
                 text = item.text
                 if text:
                     validate_translation(
+                        locale,
                         path,
                         f"{key}.{idx}",
                         text,
@@ -295,6 +303,7 @@ def validate_android_translations(options={}):
                 text = item.text
                 if text and en_string:
                     validate_translation(
+                        locale,
                         path,
                         "{}.{}".format(key, item_key),
                         text,
@@ -358,6 +367,7 @@ def validate_android_translations(options={}):
             print(f"rm {path}")
 
 
+    return errors, warnings
 
 
 def find_unused_keys(options={}):
@@ -446,10 +456,14 @@ def main():
     # Check if valid filepath for zip
     if options.zip_path:
         import_crowdin_for_android(options.zip_path, options)
-    validate_android_translations(options)
+    errors, warnings = validate_android_translations(options)
     if options.find_unused:
         print("\n\n")
         find_unused_keys(options)
+
+
+    # Return error code from the script if we have any errors
+    sys.exit(any(errors.values()))
 
 
 if __name__ == "__main__":

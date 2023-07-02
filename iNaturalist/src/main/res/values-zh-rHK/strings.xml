@@ -46,31 +46,6 @@
     <string name="password">密碼</string>
     <string name="unknown">不明</string>
     <string name="unknown_species">未知的物種</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">確定</string>
-    <string name="com_facebook_loginview_log_out_button">登出</string>
-    <string name="com_facebook_loginview_log_in_button">登入</string>
-    <string name="com_facebook_loginview_logged_in_as">已登入為 %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">已使用 Facebook 登入</string>
-    <string name="com_facebook_loginview_log_out_action">登出</string>
-    <string name="com_facebook_loginview_cancel_action">取消</string>
-    <string name="com_facebook_logo_content_description">Facebook 標誌</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">登入</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">已登入</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">未登入</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d 曾經過這裡</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d 曾經過這裡</string>
-    <string name="com_facebook_picker_done_button_text">完成</string>
-    <string name="com_facebook_choose_friends">選擇好友</string>
-    <string name="com_facebook_nearby">附近</string>
-    <string name="com_facebook_loading">載入中...</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifest 錯誤</string>
-    <string name="com_facebook_internet_permission_error_message">WebView 登錄需要網際網路權限</string>
-    <string name="com_facebook_requesterror_web_login">您的 Facebook 帳戶被鎖定。若要繼續，請登入 www.facebook.com。</string>
-    <string name="com_facebook_requesterror_relogin">請重新登入iNaturalist，然後重新連接您的 Facebook 帳戶。</string>
-    <string name="com_facebook_requesterror_password_changed">你的 Facebook 密碼已更改。請重新登入iNaturalist，然後重新連接您的 Facebook 帳戶。</string>
-    <string name="com_facebook_requesterror_reconnect">請重新登入iNaturalist，然後重新連接您的 Facebook 帳戶。</string>
-    <string name="com_facebook_requesterror_permissions">此應用程式沒有權限執行此任務。若要更改權限，請嘗試重新登入此應用程式。</string>
     <string name="edit_observation">編輯觀察記錄</string>
     <string name="discard_changes">確定要放棄修改嗎？</string>
     <string name="yes">是</string>
@@ -219,7 +194,6 @@
     <string name="inat_support_email_subject">iNaturalist 説明 (版本 %1$s-%2$s; 使用者 ID-%3$s)</string>
     <string name="send_email">傳送電子郵件</string>
     <string name="login_with">登入為</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">谷歌</string>
     <string name="email">電子郵件</string>
     <string name="skip">跳過 ›</string>
@@ -1208,5 +1182,7 @@
     <string name="please_try_again_soon">Please try again soon.</string>
     <string name="verify_your_email">Verify Your Email Address</string>
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

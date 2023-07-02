@@ -46,31 +46,6 @@
     <string name="password">Пароль</string>
     <string name="unknown">Неизвестные</string>
     <string name="unknown_species">Неизвестный вид</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">ОК</string>
-    <string name="com_facebook_loginview_log_out_button">Выйти</string>
-    <string name="com_facebook_loginview_log_in_button">Войти</string>
-    <string name="com_facebook_loginview_logged_in_as">Вошли как: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Войти с помощью Facebook</string>
-    <string name="com_facebook_loginview_log_out_action">Выйти</string>
-    <string name="com_facebook_loginview_cancel_action">Отмена</string>
-    <string name="com_facebook_logo_content_description">Логотип Facebook</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Войти&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Вход выполнен</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Вход не выполнен</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d были здесь</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d был здесь</string>
-    <string name="com_facebook_picker_done_button_text">Готово</string>
-    <string name="com_facebook_choose_friends">Выберите друзей</string>
-    <string name="com_facebook_nearby">Поблизости</string>
-    <string name="com_facebook_loading">Загрузка...</string>
-    <string name="com_facebook_internet_permission_error_title">Ошибка AndroidManifest</string>
-    <string name="com_facebook_internet_permission_error_message">Для WebView входа требуется разрешение INTERNET</string>
-    <string name="com_facebook_requesterror_web_login">Ваша учетная запись Facebook заблокирована. Пожалуйста, войдите в www.facebook.com, чтобы продолжить.</string>
-    <string name="com_facebook_requesterror_relogin">Пожалуйста, войдите в это приложение снова, чтобы восстановить подключение к вашему Facebook аккаунту.</string>
-    <string name="com_facebook_requesterror_password_changed">Ваш пароль в Facebook изменился. Пожалуйста, войдите в это приложение снова, чтобы восстановить подключение к вашему Facebook аккаунту.</string>
-    <string name="com_facebook_requesterror_reconnect">Пожалуйста, войдите в это приложение снова, чтобы восстановить подключение к вашему Facebook аккаунту.</string>
-    <string name="com_facebook_requesterror_permissions">Это приложение не имеет разрешения для этого. Для изменения прав доступа, попробуйте войти в приложение снова.</string>
     <string name="edit_observation">Изменить наблюдение</string>
     <string name="discard_changes">Вы уверены, что хотите отменить несохраненные изменения?</string>
     <string name="yes">Да</string>
@@ -222,7 +197,6 @@
     <string name="inat_support_email_subject">Помощь по iNaturalist (версия %1$s - %2$s; идентификатор пользователя - %3$s)</string>
     <string name="send_email">Отправить письмо...</string>
     <string name="login_with">Войти через</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Эл. почта</string>
     <string name="skip">Пропустить ›</string>
@@ -1233,5 +1207,7 @@
     <string name="please_try_again_soon">Пожалуйста, повторите попытку позже</string>
     <string name="verify_your_email">Подтвердите ваш адрес электронной почты</string>
     <string name="after_you_change_your_password">После смены пароля вы будете отключены от системы, и вам придется снова войти в систему с новым паролем. Вы также будете выведены из мобильных приложений iNaturalist и любых других приложений или сайтов, которые размещают сообщения в iNaturalist от вашего имени, поэтому убедитесь, что вы завершили происходящую загрузку наблюдений, прежде чем вы это сделаете. Любые недозагруженные наблюдения будут утеряны.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Невозможно загрузить файл, он больше 20Мб</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Вы вышли из системы. Пожалуйста, войдите заново.</string>
 </resources>

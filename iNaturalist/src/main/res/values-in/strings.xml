@@ -46,31 +46,6 @@
     <string name="password">Kata Sandi</string>
     <string name="unknown">Tidak Diketahui</string>
     <string name="unknown_species">Spesies tidak diketahui</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">OKE</string>
-    <string name="com_facebook_loginview_log_out_button">Keluar</string>
-    <string name="com_facebook_loginview_log_in_button">Masuk</string>
-    <string name="com_facebook_loginview_logged_in_as">Masuk sebagai: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Berhasil masuk menggunakan Facebook</string>
-    <string name="com_facebook_loginview_log_out_action">Keluar</string>
-    <string name="com_facebook_loginview_cancel_action">Batalkan</string>
-    <string name="com_facebook_logo_content_description">Logo Facebook</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Masuk&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Berhasil Masuk</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Tidak Berhasil Masuk</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d ada di sini</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d ada di sini</string>
-    <string name="com_facebook_picker_done_button_text">Selesai</string>
-    <string name="com_facebook_choose_friends">Pilih Teman</string>
-    <string name="com_facebook_nearby">Dekat</string>
-    <string name="com_facebook_loading">Memuat...</string>
-    <string name="com_facebook_internet_permission_error_title">Kesalahan AndroidManifest</string>
-    <string name="com_facebook_internet_permission_error_message">Masuk dengan WebView memerlukan izin INTERNET</string>
-    <string name="com_facebook_requesterror_web_login">Akun Facebook Anda terkunci. Silahkan login ke www.facebook.com untuk melanjutkan.</string>
-    <string name="com_facebook_requesterror_relogin">Silahkan masuk ke aplikasi ini lagi untuk menyambungkan kembali akun Facebook Anda.</string>
-    <string name="com_facebook_requesterror_password_changed">Sandi Facebook Anda telah berubah. Silakan masuk ke aplikasi ini lagi untuk menyambungkan kembali akun Facebook Anda.</string>
-    <string name="com_facebook_requesterror_reconnect">Silakan masuk ke aplikasi ini lagi untuk menyambungkan kembali akun Facebook Anda.</string>
-    <string name="com_facebook_requesterror_permissions">Aplikasi ini tidak memiliki izin untuk melakukannya. Untuk mengubah izin akses, silakan mencoba untuk masuk ke aplikasi lagi.</string>
     <string name="edit_observation">Ubah Pengamatan</string>
     <string name="discard_changes">Apakah Anda yakin Anda ingin membuang perubahan yang belum disimpan?</string>
     <string name="yes">Ya</string>
@@ -219,7 +194,6 @@
     <string name="inat_support_email_subject">Bantuan dengan iNaturalist (versi %1$s - %2$s; id pengguna - %3$s)</string>
     <string name="send_email">Kirim email...</string>
     <string name="login_with">Masuk dengan</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Email</string>
     <string name="skip">Lewati ›</string>
@@ -1209,5 +1183,7 @@ rin, Carrie Seltzer, Alex Shepard, Angie Ta, dan Ken-ichi Ueda.<br/><br/> CalTec
     <string name="please_try_again_soon">Silahkan coba lagi nanti</string>
     <string name="verify_your_email">Verifikasi Alamat Email Kamu</string>
     <string name="after_you_change_your_password">Setelah Anda mengubah kata sandi Anda, Anda akan dikeluarkan dan Anda harus masuk kembali menggunakan kata sandi baru Anda. Anda juga akan dikeluarkan dari aplikasi mobile iNaturalist serta aplikasi-aplikasi atau situs-situs web lain yang mengunggah ke iNaturalist untuk Anda, jadi pastikan Anda sudah mengunggah pengamatan-pengamatan yang belum diunggah sebelum Anda melakukan hal-hal ini. Semua pengamatan yang belum diunggah akan hilang.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Tidak bisa mengunggah berkas - lebih besar dari 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Anda telah keluar dari layanan. Silakan masuk kembali.</string>
 </resources>

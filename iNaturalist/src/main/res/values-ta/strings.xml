@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="email_address">மின்னஞ்சல் முகவரி</string>
-    <string name="delete_observation">Delete observation</string>
-    <string name="observation_deleted">Observation deleted</string>
+    <string name="delete_observation">கவனிப்பு நீக்கவா?</string>
+    <string name="observation_deleted">கவனிப்பு நீக்கப்பட்டன</string>
     <string name="species_guess_hint">இனம்</string>
     <string name="ok">சரி</string>
     <string name="cancel">ரத்து செய்</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">ஏற்றுகிறது...</string>
     <string name="street">தெரு</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
-    <string name="satellite">Satellite</string>
-    <string name="couldnt_load_nearby_observations">Couldn\'t load nearby observations: %1$s</string>
+    <string name="satellite">சாட்டிலைட்</string>
+    <string name="couldnt_load_nearby_observations">அருகிலுள்ள கவனிப்புகளை ஏற்ற முடியவில்லை: %1$s</string>
     <string name="username_invalid">Username or password was invalid, please sign in again.</string>
     <string name="signing_in">Signing in...</string>
     <string name="signed_in">Signed in!</string>
@@ -24,12 +24,12 @@
     <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
     <string name="something_went_wrong">ஐயோ, ஏதோ தவறாகிவிட்டது: %1$s</string>
     <string name="edit">திருத்து</string>
-    <string name="oh_no">Oh no! %1$s</string>
+    <string name="oh_no">அச்சச்சோ! %1$s</string>
     <string name="observations">My Observations</string>
     <string name="map">வரைபடம்</string>
     <string name="settings">அமைப்புகள்</string>
     <string name="projects">திட்டங்கள்</string>
-    <string name="delete_photo">Delete photo</string>
+    <string name="delete_photo">படத்தை நீக்கு</string>
     <string name="my_location">எனது இருப்பிடம்</string>
     <string name="nearby_observations">Nearby Observations</string>
     <string name="add">சேர்</string>
@@ -46,31 +46,6 @@
     <string name="password">கடவுச்சொல்</string>
     <string name="unknown">அறியாதது</string>
     <string name="unknown_species">அறியாத இனம்</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">சரி</string>
-    <string name="com_facebook_loginview_log_out_button">வெளியேறு</string>
-    <string name="com_facebook_loginview_log_in_button">உள்நுழை</string>
-    <string name="com_facebook_loginview_logged_in_as">Logged in as: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">முகநூல் மூலம் உள்நுழைக</string>
-    <string name="com_facebook_loginview_log_out_action">வெளியேறு</string>
-    <string name="com_facebook_loginview_cancel_action">ரத்து செய்</string>
-    <string name="com_facebook_logo_content_description">Facebook Logo</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Log In&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Logged In</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Not Logged In</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d were here</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d were here</string>
-    <string name="com_facebook_picker_done_button_text">Done</string>
-    <string name="com_facebook_choose_friends">Choose Friends</string>
-    <string name="com_facebook_nearby">அருகில் உள்ளவை</string>
-    <string name="com_facebook_loading">Loading...</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifest Error</string>
-    <string name="com_facebook_internet_permission_error_message">WebView login requires INTERNET permission</string>
-    <string name="com_facebook_requesterror_web_login">Your Facebook account is locked. Please log into www.facebook.com to continue.</string>
-    <string name="com_facebook_requesterror_relogin">Please log into this app again to reconnect your Facebook account.</string>
-    <string name="com_facebook_requesterror_password_changed">Your Facebook password has changed. Please log into this app again to reconnect your Facebook account.</string>
-    <string name="com_facebook_requesterror_reconnect">Please log into this app again to reconnect your Facebook account.</string>
-    <string name="com_facebook_requesterror_permissions">This app doesn’t have permission to do this. To change permissions, try logging into the app again.</string>
     <string name="edit_observation">Edit Observation</string>
     <string name="discard_changes">Are you sure you want to discard unsaved changes?</string>
     <string name="yes">ஆம்</string>
@@ -90,8 +65,8 @@
     <!-- Tab title for the list of featured projects in the Projects screen -->
     <string name="featured_projects">Featured</string>
     <!-- Verb, used as a label for actions like leaving a project -->
-    <string name="leave">Leave</string>
-    <string name="join">Join</string>
+    <string name="leave">வெளியேறு</string>
+    <string name="join">சேர்</string>
     <string name="no_check_list">No Taxa in Check List!</string>
     <string name="failed_to_add_obs_to_project">Failed to add observation \'%1$s\' to project \'%2$s\': %3$s</string>
     <string name="invalid_project_field">Please enter a valid value for field \'%1s\'</string>
@@ -102,21 +77,21 @@
     <string name="search_guides">Search guides...</string>
     <string name="save_observation">Save observation</string>
     <!-- Header for a description an individual guide -->
-    <string name="about_guide">About</string>
-    <string name="about_guide_all_caps">ABOUT</string>
+    <string name="about_guide">பற்றி</string>
+    <string name="about_guide_all_caps">பற்றி</string>
     <!-- Header for a description an individual project -->
-    <string name="about_project">About</string>
-    <string name="about_project_all_caps">ABOUT</string>
-    <string name="about_this_app">About</string>
-    <string name="about_taxon_short">About</string>
+    <string name="about_project">அறிமுகம்</string>
+    <string name="about_project_all_caps">பற்றி</string>
+    <string name="about_this_app">அறிமுகம்</string>
+    <string name="about_taxon_short">பற்றி</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Geoprivacy</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
-    <string name="geoprivacy_with_value">Geoprivacy: %1$s</string>
+    <string name="geoprivacy_with_value">நில தனியுரிமை: %1$s</string>
     <string name="delete_confirmation">Are you sure you want to delete this observation?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">Guides</string>
-    <string name="my_guides">Yours</string>
+    <string name="my_guides">உங்கள்</string>
     <string name="nearby_guides">Nearby</string>
     <string name="all_guides">All</string>
     <string name="no_taxa">No taxa found for this guide!</string>
@@ -163,11 +138,11 @@
     </string-array>
     <string-array name="geoprivacy_items">
         <item>Open</item>
-        <item>Obscured</item>
-        <item>Private</item>
+        <item>தெளிவற்ற</item>
+        <item>தனியார்</item>
     </string-array>
     <string name="alert_sign_out">Are you sure you want to sign out? This will delete all your observations on this device. It will not affect any observations you\'ve uploaded to iNaturalist.</string>
-    <string name="alert_unsupported_media_type">Sorry, but there was a problem loading the photo from this source</string>
+    <string name="alert_unsupported_media_type">மன்னிக்கவும், இந்த மூலத்திலிருந்து படத்தை ஏற்றுவதில் சிக்கல்.</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
     <string name="explore">Explore</string>
     <string name="restricted_to_current_map_area">Restricted to current map area</string>
@@ -220,9 +195,8 @@
     <string name="inat_support_email_subject">Help with iNaturalist (version %1$s - %2$s; user id - %3$s)</string>
     <string name="send_email">Send email...</string>
     <string name="login_with">Log In with</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
-    <string name="email">Email</string>
+    <string name="email">மின்னஞ்சல்</string>
     <string name="skip">Skip  ›</string>
     <string name="log_in">Log In</string>
     <!-- Second person imperative, usually a label on a button to sign up for a new account -->
@@ -234,7 +208,7 @@
     <string name="content_licensing">Content Licensing</string>
     <string name="content_licensing_description">Check this box if you want to apply a Creative Commons Attribution-NonCommercial license to your photos. You can choose a different license or remove the license later, but this is the best license for sharing with researchers.</string>
     <!-- Try to keep this about the length of the English text -->
-    <string name="username_or_email">Username or Email</string>
+    <string name="username_or_email">பயனர் பெயர் அல்லது மின்னஞ்சல்</string>
     <string name="forgot">Forgot?</string>
     <string name="or_login_with">Or Log In With:</string>
     <string name="registering">Registering...</string>
@@ -310,7 +284,7 @@
     <string name="sync_obs_to_add_comments_ids">Sync this observation in order to leave a comment or suggest an identification...</string>
     <!--  Label for a button to add an observation without a photo or a sound  -->
     <string name="no_photo">No Media</string>
-    <string name="about_this_species">About this Species</string>
+    <string name="about_this_species">இனம் பெயர்</string>
     <string name="view_on_wikipedia">Wikipedia Article</string>
     <string name="photo"><![CDATA[Photo: <b><a href="%1$s">%2$s</a></b>]]></string>
     <string name="photo_attr"><![CDATA[Photo: <b>%1$s</b>]]></string>
@@ -620,7 +594,7 @@
     <string name="quantity">Qty</string>
     <string name="agree2">Agree</string>
     <string name="project_observations">Observations</string>
-    <string name="project_species">Species</string>
+    <string name="project_species">இனம்</string>
     <string name="project_people">People</string>
     <!-- People who added identifications to observations in a project -->
     <string name="project_identifiers">Identifiers</string>
@@ -713,7 +687,7 @@
     </plurals>
     <string name="agree_all_caps">AGREE</string>
     <string name="observations_all_caps">OBSERVATIONS</string>
-    <string name="species_all_caps">SPECIES</string>
+    <string name="species_all_caps">இனம்</string>
     <string name="people_all_caps">PEOPLE</string>
     <string name="identifiers_all_caps">IDENTIFIERS</string>
     <string name="identifications_all_caps">IDENTIFICATIONS</string>
@@ -1216,5 +1190,7 @@
     <string name="please_try_again_soon">Please try again soon.</string>
     <string name="verify_your_email">Verify Your Email Address</string>
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>

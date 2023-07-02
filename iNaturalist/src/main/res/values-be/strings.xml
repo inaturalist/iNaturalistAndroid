@@ -46,31 +46,6 @@
     <string name="password">Пароль</string>
     <string name="unknown">Невядомы</string>
     <string name="unknown_species">Невядомы від</string>
-    <string name="com_facebook_dialogloginactivity_ok_button">ОК</string>
-    <string name="com_facebook_loginview_log_out_button">Выйсці</string>
-    <string name="com_facebook_loginview_log_in_button">Увайсці</string>
-    <string name="com_facebook_loginview_logged_in_as">Увайшлі як: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Увайшлі праз Facebook</string>
-    <string name="com_facebook_loginview_log_out_action">Выйсці</string>
-    <string name="com_facebook_loginview_cancel_action">Скасаваць</string>
-    <string name="com_facebook_logo_content_description">Лагатып Facebook</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Увайсці...</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Уваход здзейснены</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Уваход не здзейснены</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d быў(-ла) тут</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d быў(-ла) тут</string>
-    <string name="com_facebook_picker_done_button_text">Гатова</string>
-    <string name="com_facebook_choose_friends">Абярыце Сяброў</string>
-    <string name="com_facebook_nearby">Непадалёк</string>
-    <string name="com_facebook_loading">Запампоўка...</string>
-    <string name="com_facebook_internet_permission_error_title">Памылка AndroidManifest</string>
-    <string name="com_facebook_internet_permission_error_message">Дзеля ўваходу патрабуецца дазвол INTERNET</string>
-    <string name="com_facebook_requesterror_web_login">Ваш уліковы запіс Facebook заблакаваны. Калі ласка, увайдзіце ў www.facebook.com каб працягнуць.</string>
-    <string name="com_facebook_requesterror_relogin">Калі ласка, увайдзіце ў гэтае прыкладанне зноў каб перападключыць ваш уліковы запіс Facebook.</string>
-    <string name="com_facebook_requesterror_password_changed">Ваш пароль на Facebook змяніўся. Калі ласка, увайдзіце ў прыкладанне яшчэ раз, каб перападключыць свой уліковы рахунак Facebook.</string>
-    <string name="com_facebook_requesterror_reconnect">Калі ласка, увайдзіце ў гэтае прыкладанне зноў каб перападключыць ваш рахунак Facebook.</string>
-    <string name="com_facebook_requesterror_permissions">Гэтае прыкладанне не мае дазволу на гэта. Каб змяніць дазволы, паспрабуйце ўвайсці ў праграму яшчэ раз.</string>
     <string name="edit_observation">Змяніць назіранне</string>
     <string name="discard_changes">Вы ўпэўненыя, што жадаеце адмяніць незахаваныя змены?</string>
     <string name="yes">Так</string>
@@ -222,7 +197,6 @@
     <string name="inat_support_email_subject">Дапамога па iNaturalist (версія %1$s - %2$s; id карыстальніка - %3$s)</string>
     <string name="send_email">Даслаць ліст...</string>
     <string name="login_with">Увайсці праз</string>
-    <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
     <string name="email">Email</string>
     <string name="skip">Прапусціць ›</string>
@@ -1232,5 +1206,7 @@
     <string name="please_try_again_soon">Please try again soon.</string>
     <string name="verify_your_email">Verify Your Email Address</string>
     <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
 </resources>
