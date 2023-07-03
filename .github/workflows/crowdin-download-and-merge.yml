@@ -39,12 +39,13 @@ jobs:
           # localization_branch_name: ${{ env.L10N_BRANCH_NAME }}
           export_only_approved: true
           create_pull_request: false
+          push_translations: false
           # pull_request_title: ${{ steps.pr-title.outputs.pr_title }}
           # pull_request_body: ${{ steps.pr-title.outputs.pr_title }}
           # commit_message: ${{ steps.pr-title.outputs.pr_title }}
           # pull_request_base_branch_name: 'main'
         env:
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
