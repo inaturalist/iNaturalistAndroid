@@ -55,6 +55,9 @@ jobs:
       #     git commit -a -m "Default & new locales for ${{ steps.date.outputs.current_date }}"
       #     git push
 
+      - name: Ensure user owns everything
+        run: sudo chown -R $USER:$USER .
+
       - name: Add new files
         id: new-files
         uses: peter-evans/create-pull-request@v5
