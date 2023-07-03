@@ -16,11 +16,15 @@ jobs:
     steps:
       - name: Get current date
         id: date
-        run: echo "current_date=$(date +'%d %b %Y')" >> $GITHUB_OUTPUT
+        run: echo "current_date=$(date +'%-d %B %Y')" >> $GITHUB_OUTPUT
 
       - name: Generate pull request title
         id: pr-title
         run: echo "pr_title='Crowdin translations for ${{ steps.date.outputs.current_date }}'" >> $GITHUB_OUTPUT
+
+      - name: Generate PR branch name
+        id: branch-name
+        run: echo "branch_name='l10n-main-$(date +'%Y%m%d')'" >> $GITHUB_OUTPUT
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -32,15 +36,15 @@ jobs:
           upload_translations: false
           download_translations: true
           skip_untranslated_files: true
-          localization_branch_name: ${{ env.L10N_BRANCH_NAME }}
+          # localization_branch_name: ${{ env.L10N_BRANCH_NAME }}
           export_only_approved: true
-          create_pull_request: true
-          pull_request_title: ${{ steps.pr-title.outputs.pr_title }}
-          pull_request_body: ${{ steps.pr-title.outputs.pr_title }}
-          commit_message: ${{ steps.pr-title.outputs.pr_title }}
-          pull_request_base_branch_name: 'main'
+          create_pull_request: false
+          # pull_request_title: ${{ steps.pr-title.outputs.pr_title }}
+          # pull_request_body: ${{ steps.pr-title.outputs.pr_title }}
+          # commit_message: ${{ steps.pr-title.outputs.pr_title }}
+          # pull_request_base_branch_name: 'main'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
@@ -63,9 +67,10 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: Default & new locales for ${{ steps.date.outputs.current_date }}
+          # commit-message: Default & new locales for ${{ steps.date.outputs.current_date }}
+          commit-message: ${{ steps.pr-title.outputs.pr_title }}
           base: main
-          branch: ${{ env.L10N_BRANCH_NAME }}
+          branch: ${{ steps.branch-name.outputs.branch_name }}
           title: ${{ steps.pr-title.outputs.pr_title }}
           add-paths: |
             iNaturalist/src/main/res/values-**/strings.xml
