@@ -1186,4 +1186,5 @@ rin, Carrie Seltzer, Alex Shepard, Angie Ta, dan Ken-ichi Ueda.<br/><br/> CalTec
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Tidak bisa mengunggah berkas - lebih besar dari 20MB</string>
     <string name="you_have_been_signed_out_please_sign_in_again">Anda telah keluar dari layanan. Silakan masuk kembali.</string>
+    <string name="close_announcement">Tutup Pengumuman</string>
 </resources>
