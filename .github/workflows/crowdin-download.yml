@@ -1,10 +1,10 @@
-name: CrowdIn - Pull latest translations, verify and merge
+name: Crowdin Download
 
 on:
   # Allow manually triggering as well
   workflow_dispatch:
   schedule:
-    - cron: '0 0 1 * *' # Once a month (first of the month), at midnight
+    - cron: '0 0 1,15 * *' # First and middle of the month
 
 env:
   L10N_BRANCH_NAME: l10n_main
@@ -16,11 +16,15 @@ jobs:
     steps:
       - name: Get current date
         id: date
-        run: echo "current_date=$(date +'%d %b %Y')" >> $GITHUB_OUTPUT
+        run: echo "current_date=$(date +'%-d %B %Y')" >> $GITHUB_OUTPUT
 
       - name: Generate pull request title
         id: pr-title
-        run: echo "pr_title='Crowdin translations for ${{ steps.date.outputs.current_date }}'" >> $GITHUB_OUTPUT
+        run: echo "pr_title=Crowdin translations for ${{ steps.date.outputs.current_date }}" >> $GITHUB_OUTPUT
+
+      - name: Generate PR branch name
+        id: branch-name
+        run: echo "branch_name=l10n-main-$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -32,13 +36,9 @@ jobs:
           upload_translations: false
           download_translations: true
           skip_untranslated_files: true
-          localization_branch_name: ${{ env.L10N_BRANCH_NAME }}
           export_only_approved: true
-          create_pull_request: true
-          pull_request_title: ${{ steps.pr-title.outputs.pr_title }}
-          pull_request_body: ${{ steps.pr-title.outputs.pr_title }}
-          commit_message: ${{ steps.pr-title.outputs.pr_title }}
-          pull_request_base_branch_name: 'main'
+          create_pull_request: false
+          push_translations: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
@@ -48,33 +48,21 @@ jobs:
         run: python crowdin.py --delete-untranslated --crowdin-cli
         continue-on-error: false
 
-      # - name: Add new files and commit
-      #   run: |
-      #     git checkout $L10N_BRANCH_NAME
-      #     git status --porcelain --untracked-files iNaturalist/src/main/res/values-* | cut -c 4- | xargs git add
-      #     git commit -a -m "Default & new locales for ${{ steps.date.outputs.current_date }}"
-      #     git push
-
       - name: Ensure user owns everything
         run: sudo chown -R $USER:$USER .
 
-      - name: Add new files
+      - name: Add new files & create pull
         id: new-files
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: Default & new locales for ${{ steps.date.outputs.current_date }}
+          commit-message: ${{ steps.pr-title.outputs.pr_title }}
           base: main
-          branch: ${{ env.L10N_BRANCH_NAME }}
+          branch: ${{ steps.branch-name.outputs.branch_name }}
+          delete-branch: true
           title: ${{ steps.pr-title.outputs.pr_title }}
           add-paths: |
             iNaturalist/src/main/res/values-**/strings.xml
-
-      # - name: Find Pull Request
-      #   uses: juliangruber/find-pull-request-action@v1
-      #   id: find-pull-request
-      #   with:
-      #     branch: l10n_main
 
       - name: Print PR number & SHA
         env:
@@ -82,11 +70,22 @@ jobs:
           sha: ${{ steps.new-files.outputs.pull-request-head-sha }}
         run: echo "Pull Request ${number} (${sha})"
 
+      # Let's try it without this first to see how it goes. This will merge even if tests fail.
       # - name: Merge Pull Request
       #   uses: juliangruber/merge-pull-request-action@v1
       #   with:
       #     github-token: ${{ secrets.GITHUB_TOKEN }}
-      #     number: ${{ steps.find-pull-request.outputs.number }}
+      #     number: ${{ steps.new-files.outputs.pull-request-number }}
       #     method: squash
 
-
+  notify:
+    name: Notify Slack
+    needs: test
+    if: ${{ success() || failure() }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: iRoachie/slack-github-actions@v2.3.2
+        if: env.SLACK_WEBHOOK_URL != null
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_BUILDS_WEBHOOK_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
