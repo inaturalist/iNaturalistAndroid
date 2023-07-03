@@ -1,4 +1,4 @@
-name: CrowdIn - Pull latest translations, verify and merge
+name: Crowdin Download
 
 on:
   # Allow manually triggering as well

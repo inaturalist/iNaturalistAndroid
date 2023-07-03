@@ -1,4 +1,4 @@
-name: CrowdIn - Push new strings to CrowdIn
+name: Crowdin Upload
 
 on:
   workflow_dispatch:
