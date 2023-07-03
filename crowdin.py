@@ -58,6 +58,75 @@ CROWDIN_TO_ANDROID_LOCALES = {
     "sr-Cyrl": ["sr"]
 }
 
+# Similar to CROWDIN_TO_ANDROID_LOCALES but used for mapping when downloading
+# translations using the Crowdin CLI, for which we're using %android_locale%
+ANDROID_LOCALES_TO_COPY = {
+    "af-rZA": ["af"],
+    "ar-rSA": ["ar"],
+    "be-rBY": ["be"],
+    "bg-rBG": ["bg"],
+    "br-rFR": ["br"],
+    "bs-rBA": ["bs"],
+    "ca-rES": ["ca"],
+    "cs-rCZ": ["cs"],
+    "da-rDK": ["da"],
+    "de-rDE": ["de"],
+    "el-rGR": ["el"],
+    "es-rES": ["es"],
+    "et-rEE": ["et"],
+    "eu-rES": ["eu"],
+    "fa-rIR": ["fa"],
+    "fi-rFI": ["fi"],
+    "fr-rFR": ["fr"],
+    "gd-rGB": ["gd"],
+    "gl-rES": ["gl"],
+    "gu-rIN": ["gu"],
+    "he-rIL": ["he"],
+    "hi-rIN": ["hi"],
+    "hr-rHR": ["hr"],
+    "hu-rHU": ["hu"],
+    "il-rPH": ["il"],
+    "in-rID": ["id", "in", "id-rID"],
+    "it-rIT": ["it"],
+    "iw-rIL": ["he", "he-rIL", "iw"],
+    "ja-rJP": ["ja"],
+    "ka-rGE": ["ka"],
+    "kk-rKZ": ["kk"],
+    "kn-rIN": ["kn"],
+    "ko-rKR": ["ko"],
+    "lb-rLU": ["lb"],
+    "lt-rLT": ["lt"],
+    "lv-rLV": ["lv"],
+    "me-rME": ["me"],
+    "mi-rNZ": ["mi"],
+    "mk-rMK": ["mk"],
+    "ml-rIN": ["ml"],
+    "mr-rIN": ["mr"],
+    "ms-rMY": ["ms"],
+    "nb-rNO": ["nb"],
+    "nl-rNL": ["nl"],
+    "nn-rNO": ["nn"],
+    "pa-rIN": ["pa"],
+    "pl-rPL": ["pl"],
+    "pt-rPT": ["pt"],
+    "sat-rIN": ["sat"],
+    "sh-rHR": ["sh"],
+    "si-rLK": ["si"],
+    "sk-rSK": ["sk"],
+    "sl-rSI": ["sl"],
+    "sq-rAL": ["sq"],
+    "sr-rCS": ["sr"],
+    "sv-rSE": ["sv"],
+    "sw-rKE": ["sw"],
+    "ta-rIN": ["ta"],
+    "te-rIN": ["te"],
+    "th-rTH": ["th"],
+    "tl-rPH": ["tl"],
+    "tr-rTR": ["tr"],
+    "uk-rUA": ["uk"],
+    "vi-rVN": ["vi"],
+}
+
 
 def call_cmd(*args, **kwargs):
     run(args, **kwargs)
@@ -71,7 +140,7 @@ def extless_basename(path):
 
 
 # Create filepath for and store locale data from crowdin
-def copy_to_android_locale(src, android_locale, options={}):
+def copy_to_android_locale(src, android_locale, options):
     # Make pathname
     android_dir_path = os.path.join(
         "iNaturalist", "src", "main", "res", "values-{}".format(android_locale)
@@ -87,7 +156,7 @@ def copy_to_android_locale(src, android_locale, options={}):
     shutil.copyfile(src, dst)
 
 
-def import_crowdin_for_android(zip_path, options={}):
+def import_crowdin_for_android(zip_path, options):
     # Fetch zip file
     if zip_path == __file__:
         zip_path = sys.argv[1]
@@ -126,8 +195,33 @@ def import_crowdin_for_android(zip_path, options={}):
                     copy_to_android_locale(src, dest_android_locale, options)
 
 
+def copy_crowdin_cli_translations(options):
+    """Copy Crowdin CLI translations to custom locations, e.g. regionless locales"""
+    for path in sorted(glob(os.path.join("iNaturalist", "src", "main", "res", "values-*"))):
+        strings_xml_path = os.path.join(path, "strings.xml")
+        if not os.path.isfile(strings_xml_path):
+            continue
+        matches = re.match(r"values-([a-z]{2})-r([A-Z]{2})", os.path.basename(path))
+        if not matches:
+            continue
+        lang, region = matches.groups()
+        if not lang or not region:
+            continue
+        android_locale = f"{lang}-r{region}"
+        if android_locale not in ANDROID_LOCALES_TO_COPY:
+            continue
+        target_locales = ANDROID_LOCALES_TO_COPY[android_locale]
+        if target_locales:
+            for target_locale in target_locales:
+                copy_to_android_locale(
+                    os.path.join(path, "strings.xml"),
+                    target_locale,
+                    options
+                )
+
+
 def validate_translation(locale, path, key, text, en_string, errors, warnings,
-                         options={}):
+                         options):
     if options.debug:
         print("\tkey:                 {}".format(key))
         print("\ten_string:     {}".format(en_string))
@@ -227,7 +321,7 @@ def en_translations():
     return (en_strings, en_string_arrays, en_string_plurals)
 
 
-def validate_android_translations(options={}):
+def validate_android_translations(options):
     # Build the English reference dicts
     en_strings, en_string_arrays, en_string_plurals = en_translations()
     # Compile validation errors
@@ -362,15 +456,19 @@ def validate_android_translations(options={}):
                     print(f"\t\t{bcolors.WARNING}Warning: {warning}{bcolors.ENDC}")  # noqa: E501
     # Allow for removal of untranslated filed
     if len(untranslated) > 0:
-        print("\nIf you want to delete untranslated files...\n")
-        for path in untranslated:
-            print(f"rm {path}")
-
-
+        if options.delete_untranslated:
+            print("\nDeleting untranslated files...\n")
+            for path in untranslated:
+                call_cmd("git", "rm", "-f", path)
+                call_cmd("rm", "-f", path)
+        else:
+            print("\nIf you want to delete untranslated files...\n")
+            for path in untranslated:
+                print(f"rm {path}")
     return errors, warnings
 
 
-def find_unused_keys(options={}):
+def find_unused_keys(options):
     en_tree = ET.parse("iNaturalist/src/main/res/values/strings.xml")
     keys = set()
     for node in en_tree.findall("string"):
@@ -451,16 +549,28 @@ def main():
         dest="find_unused",
         help="Show keys that don't seem to be used any more"
     )
+    parser.add_option(
+        "--delete-untranslated", action="store_true",
+        dest="delete_untranslated",
+        help="Delete untranslated files"
+    )
+    parser.add_option(
+        "--crowdin-cli",
+        action="store_true",
+        dest="crowdin_cli",
+        help="Copy files to handle Crowdin CLI's interpretation of Android locales"
+    )
     # Store options and args in tuple
     (options, args) = parser.parse_args()
     # Check if valid filepath for zip
     if options.zip_path:
         import_crowdin_for_android(options.zip_path, options)
     errors, warnings = validate_android_translations(options)
+    if options.crowdin_cli:
+        copy_crowdin_cli_translations(options)
     if options.find_unused:
         print("\n\n")
         find_unused_keys(options)
-
 
     # Return error code from the script if we have any errors
     sys.exit(any(errors.values()))
