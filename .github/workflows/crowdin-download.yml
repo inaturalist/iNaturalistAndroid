@@ -11,7 +11,7 @@ env:
 
 permissions: write-all
 jobs:
-  crowdin-download-and-merge:
+  crowdin-download:
     runs-on: ubuntu-latest
     steps:
       - name: Get current date
@@ -80,7 +80,7 @@ jobs:
 
   notify:
     name: Notify Slack
-    needs: test
+    needs: crowdin-download
     if: ${{ success() || failure() }}
     runs-on: ubuntu-latest
     steps:
