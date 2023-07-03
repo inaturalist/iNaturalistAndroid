@@ -61,6 +61,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Default & new locales for ${{ steps.date.outputs.current_date }}
+          base: main
           branch: ${{ env.L10N_BRANCH_NAME }}
           title: ${{ steps.pr-title.outputs.pr_title }}
           add-paths: |
