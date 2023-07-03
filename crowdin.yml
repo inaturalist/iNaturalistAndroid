@@ -6,3 +6,9 @@ files:
   - source: /iNaturalist/src/main/res/values/strings.xml
     dest: /Android/strings.xml
     translation: /iNaturalist/src/main/res/values-%android_code%/strings.xml
+    type: android
+    ignore: [
+      "/google_play.xml",
+      "/iOS App Store Metadata.csv",
+      "/%locale%/iOS/*"
+    ]
