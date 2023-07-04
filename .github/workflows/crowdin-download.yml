@@ -12,6 +12,7 @@ env:
 permissions: write-all
 jobs:
   crowdin-download:
+    name: Crowdin Download & Pull Request
     runs-on: ubuntu-latest
     steps:
       - name: Get current date
@@ -61,6 +62,7 @@ jobs:
           branch: ${{ steps.branch-name.outputs.branch_name }}
           delete-branch: true
           title: ${{ steps.pr-title.outputs.pr_title }}
+          body: ${{ steps.pr-title.outputs.pr_title }} (automated)
           add-paths: |
             iNaturalist/src/main/res/values-**/strings.xml
 

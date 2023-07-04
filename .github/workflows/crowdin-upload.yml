@@ -8,6 +8,7 @@ on:
 
 jobs:
   crowdin-upload:
+    name: Crowdin Upload
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
