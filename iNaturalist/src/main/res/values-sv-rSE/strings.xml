@@ -1193,4 +1193,5 @@
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Lyckades inte ladda upp fil - större än 20MB</string>
     <string name="you_have_been_signed_out_please_sign_in_again">Du har blivit utloggad. Vänligen logga in igen.</string>
+    <string name="close_announcement">Stäng meddelande</string>
 </resources>

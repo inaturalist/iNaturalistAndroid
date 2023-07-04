@@ -1,0 +1,1205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="email_address">Adresa de e-mail</string>
+    <string name="delete_observation">Șterge observarea</string>
+    <string name="observation_deleted">Observare ștearsă</string>
+    <string name="species_guess_hint">Numele speciei</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Anulează</string>
+    <string name="loading">Se încarcă...</string>
+    <string name="street">Stradă</string>
+    <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
+    <string name="satellite">Satelit</string>
+    <string name="couldnt_load_nearby_observations">Nu am putut încărca observările din apropiere: %1$s</string>
+    <string name="username_invalid">Nume de utilizator sau parolă invalidă, te rugăm să te autentifici din nou.</string>
+    <string name="signing_in">Conectare...</string>
+    <string name="signed_in">Conectat!</string>
+    <string name="please_sign_in">Te rugăm să te autentifici</string>
+    <string name="please_sign_in_description">Te rugăm să te autentifici prin contul de pe iNaturalist sau înregistrează-te pentru unul nou.</string>
+    <string name="please_enable_location_services">Vă rugăm să activați serviciile de locație pentru a găsi locația dumneavoastră actuală...</string>
+    <string name="go_to_settings">Mergi la setări</string>
+    <string name="photo_not_specified">Fotografie nespecificată</string>
+    <string name="set_date">Configurează data</string>
+    <string name="set_time">Configurează ora</string>
+    <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
+    <string name="something_went_wrong">Hopa, ceva nu funcționează:%1$s</string>
+    <string name="edit">Editează</string>
+    <string name="oh_no">O nu! %1$s</string>
+    <string name="observations">Observări</string>
+    <string name="map">Hartă</string>
+    <string name="settings">Setări</string>
+    <string name="projects">Proiecte</string>
+    <string name="delete_photo">Șterge fotografia</string>
+    <string name="my_location">Locația mea</string>
+    <string name="nearby_observations">Observări în apropiere</string>
+    <string name="add">Adaugă</string>
+    <string name="view_on_inat">Vezi pe iNat</string>
+    <string name="reload">Reîncarcă</string>
+    <string name="view_in_browser">Afișează în browser</string>
+    <string name="add_observation">Adaugă observare</string>
+    <string name="take_picture">Fă o fotografie</string>
+    <string name="save">Salvează</string>
+    <string name="no_observations_yet">Nici o observare încă!</string>
+    <string name="or">sau</string>
+    <string name="signed_out">Deconectează-te</string>
+    <string name="username">Nume utilizator</string>
+    <string name="password">Parolă</string>
+    <string name="unknown">Necunoscut</string>
+    <string name="unknown_species">Specie necunoscută</string>
+    <string name="edit_observation">Editează Observare</string>
+    <string name="discard_changes">Ești sigur că dorești să renunți la modificările nesalvate?</string>
+    <string name="yes">Da</string>
+    <string name="no">Nu</string>
+    <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
+    <string name="agree">De acord?</string>
+    <string name="no_comments">Încă nu sunt comentarii/identificări</string>
+    <string name="add_comment">Adaugă comentariu</string>
+    <string name="add_id">Adaugă identificare</string>
+    <string name="remarks">Observații...</string>
+    <string name="enter_taxon_name">Introdu numele taxonului</string>
+    <string name="no_projects">Nu au fost găsite proiecte!</string>
+    <string name="no_guides">Nu au fost găsite ghiduri!</string>
+    <string name="loading_projects">Se încarcă proiecte...</string>
+    <string name="joined_projects">Înscris</string>
+    <string name="nearby_projects">În apropiere</string>
+    <!-- Tab title for the list of featured projects in the Projects screen -->
+    <string name="featured_projects">Recomandate</string>
+    <!-- Verb, used as a label for actions like leaving a project -->
+    <string name="leave">Părăsește</string>
+    <string name="join">Alătură-te</string>
+    <string name="no_check_list">Nici un taxon în Lista de Verificare!</string>
+    <string name="failed_to_add_obs_to_project">Nu s-a putut adăuga observarea \'%1$s\' la proiectul \'%2$s\': %3$s</string>
+    <string name="invalid_project_field">Te rugăm să introduci o valoare validă pentru câmpul \'%1s\'</string>
+    <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
+    <string name="select_projects">Selectează Proiecte</string>
+    <string name="not_connected">Trebuie să fii conectat la internet pentru a putea face asta!</string>
+    <string name="search_projects">Caută proiecte...</string>
+    <string name="search_guides">Caută ghiduri...</string>
+    <string name="save_observation">Salvează observarea</string>
+    <!-- Header for a description an individual guide -->
+    <string name="about_guide">Despre</string>
+    <string name="about_guide_all_caps">DESPRE</string>
+    <!-- Header for a description an individual project -->
+    <string name="about_project">Despre</string>
+    <string name="about_project_all_caps">DESPRE</string>
+    <string name="about_this_app">Despre</string>
+    <string name="about_taxon_short">Despre</string>
+    <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
+    <string name="geoprivacy">GeoProtecție</string>
+    <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
+    <string name="geoprivacy_with_value">GeoProtecție: %1$s</string>
+    <string name="delete_confirmation">Ești sigur că vrei să ștergi această observare?</string>
+    <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
+    <string name="guides">Ghiduri</string>
+    <string name="my_guides">Tale</string>
+    <string name="nearby_guides">În apropiere</string>
+    <string name="all_guides">Toate</string>
+    <string name="no_taxa">Nu a fost găsit nici un taxon pentru acest ghid!</string>
+    <string name="search_taxa">Caută taxon...</string>
+    <string name="no_internet_guides">Ghidurile necesită o conexiune la internet</string>
+    <string name="no_internet_projects">Proiectele necesită o conexiune la internet</string>
+    <string name="locale_gl">Galiciană</string>
+    <string name="locale_eu">Bască</string>
+    <string name="use_device_language_settings">Folosește setările de limbă ale dispozitivului</string>
+    <string name="choose_location">Alege Locația</string>
+    <string name="done">Gata</string>
+    <string name="please_sign_in_via_settings">Te rugăm să te conectezi via ecranul cu setări pentru a putea vedea proiectele tale</string>
+    <string name="contact_support">Contactare echipa de suport tehnic</string>
+    <string name="leave_project">Ieși din Proiect</string>
+    <string name="leave_project_confirmation">Ești sigur că vrei să ieși din acest proiect?</string>
+    <string name="discard_location_changes">Ești sigur că dorești să renunți la modificările nesalvate?</string>
+    <string name="edit_location">Editează locația</string>
+    <string name="edit_locality_notes">Editare Note Localizare</string>
+    <string name="get_current_location">Obține locația curentă</string>
+    <string name="pull_to_refresh">Trage pentru a reîmprospăta...</string>
+    <string name="release_to_refresh">Dă drumul pentru a reîmprospăta...</string>
+    <string name="refreshing">Se reîmprospătează...</string>
+    <plurals name="sync_x_observations">
+        <item quantity="one">Sincronizare %1$d observare</item>
+        <item quantity="few">Sincronizează %1$d observări</item>
+        <item quantity="other">Sincronizează %1$d de observări</item>
+    </plurals>
+    <string name="sync_observations">Sincronizează observări</string>
+    <string name="lets_get_started">Să începem!</string>
+    <string name="view_nearby_observations">Vezi observațiile din apropiere</string>
+    <string name="skip_for_now">Omite pentru moment</string>
+    <string-array name="tutorial_titles">
+        <item></item>
+        <item>Observă</item>
+        <item>Distribuie</item>
+        <item>Învață</item>
+        <item>Contribuie</item>
+    </string-array>
+    <string-array name="tutorial_descriptions">
+        <item>Explorează și conectează-te cu natura</item>
+        <item>Ieși afară! Găsește ceva sălbatic și fă o fotografie clară cu un cadru complet.</item>
+        <item>Împărtășește-ți observațiile cu comunitatea iNaturalist.</item>
+        <item>Verifică din nou comentariile și identificările la observațiile tale!</item>
+        <item><![CDATA[<b>Grad de cercetare</b>observațiile sunt partajate cu oamenii de știință pentru a înțelege și proteja natura, mai bine.]]></item>
+    </string-array>
+    <string-array name="geoprivacy_items">
+        <item>Deschisă</item>
+        <item>Acoperită</item>
+        <item>Privată</item>
+    </string-array>
+    <string name="alert_sign_out">Ești sigur că vrei să te deconectezi? Asta va șterge toate observările tale de pe acest dispozitiv. Observările pe care le-ai încărcat pe iNaturalist nu vor fi afectate.</string>
+    <string name="alert_unsupported_media_type">Ne pare rău, dar a intervenit o problemă la încărcarea fotografiei din această sursă</string>
+    <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
+    <string name="explore">Explorează</string>
+    <string name="restricted_to_current_map_area">Limitate la harta curentă</string>
+    <string name="search">Căutare</string>
+    <string name="details">Detalii</string>
+    <string name="observation_photos">Fotografii de observare</string>
+    <string name="no_observations_found">Nu au fost găsite observații</string>
+    <string name="license_none">Nimic, toate drepturile rezervate</string>
+    <string name="sources_and_attribution">Surse și atribuiri</string>
+    <string name="photos"><![CDATA[<b>Fotografii:</b>%1$s]]></string>
+    <string name="text"><![CDATA[<b>Text:</b>%1$s]]></string>
+    <!-- The dialog content asking the user to switch to another iNat network -->
+    <string name="alert_message_use_inaturalist">Rețeaua principală iNaturalist. Apăsând OK va configura aplicația ta ca făcând parte din rețeaua globală iNaturalist.</string>
+    <string name="alert_message_use_naturalista">NaturaLista este membru al Rețelei iNaturalist din Mexic. Instituțiile locale care sprijină NaturaLista vor avea acces la adresa dvs. de e-mail și acces la coordonatele adevărate pentru observațiile care sunt ascunse public sau privat. Vă rugăm să nu schimbați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist este membru al Rețelei iNaturalist din Noua Zeelandă. Instituțiile locale care sprijină iNaturalist NZ vor avea acces la adresa dvs. de e-mail și acces la coordonatele adevărate pentru observațiile care sunt ascunse public sau private. Vă rugăm să nu schimbați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada este membru al rețelei iNaturalist din Canada. Instituțiile locale care sprijină iNaturalist Canada vor avea acces la adresa dvs. de e-mail și acces la coordonatele adevărate pentru observațiile care sunt ascunse public sau privat. Vă rugăm să nu schimbați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="alert_message_use_naturalistacolombia">Naturalista este membru al Rețelei iNaturalist din Columbia. Instituțiile locale care sprijină Naturalista vor avea acces la adresa dvs. de e-mail și acces la coordonatele adevărate pentru observațiile care sunt ascunse public sau privat. Vă rugăm să nu schimbați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversitaty4All face parte din rețeaua iNaturalist din Portugalia. Instituțiile locale care sprijină Biodiversitaty4All vor avea acces la adresa dvs. de e-mail și acces la coordonatele adevărate pentru observațiile care sunt ascunse public sau privat. Vă rugăm să nu schimbați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panama este un membru al Rețelei iNaturaliste din Panama. Instituțiile locale care sprijină iNaturalist Panama vor avea acces la adresa dvs. de e-mail și acces la coordonatele adevărate pentru observațiile care sunt ascunse public sau privat. Vă rugăm să nu schimbați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador este membru al Rețelei iNaturalist din Ecuador. Instituțiile locale care sprijină iNaturalist Ecuador vor avea acces la adresa dvs. de e-mail și acces la coordonatele adevărate pentru observațiile care sunt ascunse public sau privat. Vă rugăm să nu schimbați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia este membru al Rețelei iNaturalist din Australia. Instituțiile locale care sprijină iNaturalist Australia vor avea acces la adresa dvs. de e-mail și acces la coordonatele adevărate pentru observațiile care sunt ascunse public sau privat. Vă rugăm să nu schimbați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat este membru al Reţelei iNaturaliste din Argentina. Instituţiile locale care sprijină ArgentiNat vor avea acces la adresa dvs. de e-mail şi acces la coordonatele adevărate pentru observaţiile care sunt ascunse public sau privat. Vă rugăm să nu schimbați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="alert_message_use_inaturalistil">INaturalist Israel este membru al rețelei iNaturalist din Israel. Instituțiile locale care sprijină iNaturalist Israel vor avea acces la adresa dvs. de e-mail și acces la coordonatele adevărate pentru observațiile care sunt ascunse public sau privat. Vă rugăm să nu schimbați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finlanda este membru al Rețelei iNaturalist din Finlanda. Instituțiile locale care sprijină iNaturalist Finlanda vor avea acces la adresa dvs. de e-mail și acces la coordonatele reale pentru observațiile care sunt ascunse public sau privat. Vă rugăm să nu schimbați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile este membru al Rețelei iNaturalist din Chile. Instituțiile locale care sprijină iNaturalist Chile vor avea acces la adresa dvs. de e-mail și acces la coordonatele reale pentru observațiile care sunt ascunse public sau private. Vă rugăm să nu schimbați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="alert_message_use_inaturalistgr">INaturalist Grecia este membru al rețelei iNaturalist din Grecia. Instituțiile locale care sprijină iNaturalist Grecia vor avea acces la adresa dvs. de e-mail și la coordonatele adevărate ale observațiilor care sunt ascunse public sau private. Vă rugăm să nu modificați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxemburg este membru al rețelei iNaturalist din Luxemburg. Instituțiile locale care sprijină iNaturalist Luxemburg vor avea acces la adresa dvs. de e-mail și la coordonatele adevărate ale observațiilor care sunt ascunse public sau private. Vă rugăm să nu modificați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist Marea Britanie este membru al rețelei iNaturalist din Marea Britanie. Instituțiile locale care sprijină iNaturalist Marea Britanie vor avea acces la adresa dvs. de e-mail și la coordonatele adevărate ale observațiilor care sunt ascunse public sau private. Vă rugăm să nu modificați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica este membru al rețelei iNaturalist din Costa Rica. Instituțiile locale care sprijină iNaturalist Costa Rica vor avea acces la adresa dvs. de e-mail și la coordonatele adevărate ale observațiilor care sunt ascunse public sau private. Vă rugăm să nu modificați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala este membru al rețelei iNaturalist din Guatemala. Instituțiile locale care sprijină iNaturalist Guatemala vor avea acces la adresa dvs. de e-mail și la coordonatele adevărate ale observațiilor care sunt ascunse public sau private. Vă rugăm să nu modificați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Suedia este membru al rețelei iNaturalist din Suedia. Instituțiile locale care sprijină iNaturalist Suedia vor avea acces la adresa dvs. de e-mail și la coordonatele adevărate ale observațiilor care sunt ascunse public sau private. Vă rugăm să nu modificați experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay este membru al rețelei iNaturalist din Uruguay. Instituțiile locale care sprijină Naturalista Uruguay vor avea acces la adresa dvs. de e-mail și la coordonatele reale pentru observațiile ascunse obscure sau private pentru public. Vă rugăm să nu vă schimbați în mod experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan este membru al rețelei iNaturalist din Taiwan. Instituțiile locale care sprijină iNaturalist Taiwan vor avea acces la adresa dvs. de e-mail și la coordonatele reale pentru observațiile care sunt ascunse public sau private. Vă rugăm să nu vă schimbați în mod experimental afilierea dacă aveți mai mult de 1000 de observații. Doriți să vă schimbați afilierea?</string>
+    <string name="editor">Editor</string>
+    <string name="license">Licență</string>
+    <string name="download_for_offline_use">Descarcă pentru utilizare offline</string>
+    <string name="download_not_available">Descărcare nu este disponibilă</string>
+    <string name="guide_editor_must_enable_this_feature">Editorul ghidului trebuie să activeze această caracteristică.</string>
+    <string name="are_you_sure">Ești sigur?</string>
+    <string name="download_guide_alert">Se vor descărca datele %1$s astfel, puteți utiliza ghidul chiar și în lipsa accesului la internet.</string>
+    <string name="failed_to_download_guide">Nu s-a reușit descărcarea ghidului</string>
+    <string name="internet_connection_seems_to_be_offline">Conexiunea la internet pare să fie oprită.</string>
+    <string name="downloading">Se descarcă...</string>
+    <string name="extracting">Se extrage...</string>
+    <string name="downloaded">Descărcat</string>
+    <string name="delete_download">Șterge descărcările</string>
+    <string name="re_download">Re-descarcă</string>
+    <string name="error">Eroare</string>
+    <string name="could_not_retrieve_guide">Nu s-au putut obține detaliile ghidului - probabil o eroare de rețea.</string>
+    <string name="inat_support_email_subject">Ajută la iNaturalist (versiunea %1$s - %2$s; id utilizator - %3$s)</string>
+    <string name="send_email">Trimite email...</string>
+    <string name="login_with">Autentificare cu</string>
+    <string name="gplus">Google</string>
+    <string name="email">Email</string>
+    <string name="skip">Sari ›</string>
+    <string name="log_in">Autentificare</string>
+    <!-- Second person imperative, usually a label on a button to sign up for a new account -->
+    <string name="sign_up">Înregistrare</string>
+    <!-- Title of the view used to sign up for a new account -->
+    <string name="sign_up_title">Înregistrare</string>
+    <string name="min_6_chars">Min. 6 caractere</string>
+    <string name="use_my_license"><![CDATA[Da, licențiați-mi conținutul încât savanții să-mi poată utiliza datele (recomandat) <b>Află mai multe</b>]]></string>
+    <string name="content_licensing">Conținut de licențiere</string>
+    <string name="content_licensing_description">Bifează această căsuță dacă vrei să aplici o licență de atribuire creativ non comercială forografiilor tale. Poți să alegi o licență diferită sau să alegi o altă licență mai târziu, dar aceasta este cea mai bună licență pentru partajarea cu cercetătorii.</string>
+    <!-- Try to keep this about the length of the English text -->
+    <string name="username_or_email">Nume utilizator sau email</string>
+    <string name="forgot">Ai uitat?</string>
+    <string name="or_login_with">Sau autentifică-te cu:</string>
+    <string name="registering">Înregistrare...</string>
+    <string name="recommended_next_step">Următorul pas recomandat</string>
+    <string name="could_not_register_user">Nu s-a putut înregistra utilizatorul</string>
+    <!-- Short label for a button in the side bar, not much more than 16 characters -->
+    <string name="login_signup">Autentificare / Înregistrare</string>
+    <string name="please_sign_in_via_settings_for_guides">Pentru a vedea ghidurile, trebuie să fi autentificat.</string>
+    <string name="please_sign_in_for_updates">Pentru a vedea actualizările, trebuie să fi autentificat.</string>
+    <string name="by_using_inat_terms"><![CDATA[Prin utilizarea iNaturalist sunteți de acord cu <b><a href="https://www.inaturalist.org/pages/terms">Condiții de utilizare</a></b> și <b><a href="https://www.inaturalist.org/pages/privacy">Politica de confidențialitate</a></b>]]></string>
+    <string name="activity">Activitate</string>
+    <!-- Label for a button to open the camera to take a new photo for an observation -->
+    <string name="camera">Faceți o fotografie</string>
+    <!-- Label for a button to import an existing photo for an observation -->
+    <string name="upload_photo">Alege imagine</string>
+    <string name="first">Primul</string>
+    <string name="make_first">Fă primul</string>
+    <string name="notes">Notițe</string>
+    <string name="is_captive">Este captiv sau cultivat</string>
+    <string name="location_visibility">Vizibilitatea locației</string>
+    <string name="set_location">Locație</string>
+    <string name="coordinates_lat">Lat:</string>
+    <string name="coordinates_lon">Long:</string>
+    <string name="coordinates_acc">Acc. </string>
+    <string name="required">* Necesare</string>
+    <string name="downloading_observations">Se descarcă observațiile...</string>
+    <string name="no_thanks">Nu Mulțumesc</string>
+    <string name="turn_on">Activare</string>
+    <string name="introducing_auto_sync">Se introduce auto sincronizarea!</string>
+    <string name="turn_on_auto_sync">Activează auto-sincronizarea în sertări și observațiile tale vor fi încărcate automat pe iNaturalist.</string>
+    <string name="automatic_upload">Încărcare automată (auto sincronizare)</string>
+    <string name="waiting_to_upload">Se așteaptă încărcarea...</string>
+    <string name="uploading">Se încarcă...</string>
+    <string name="failed_to_add_to_project">Nu s-a reușit adăugarea proiectului %1$s\': %2$s</string>
+    <string name="needs_your_attention">Necesită atenția ta...</string>
+    <string name="observation">Observații</string>
+    <string name="share">Distribuie</string>
+    <string name="unable_to_acquire_location">Nu s-a putut găsi locația</string>
+    <string name="casual_grade">Grad cazual</string>
+    <string name="needs_id">Necesită ID</string>
+    <string name="research_grade">Grad de cercetare</string>
+    <string name="data_quality">Calitatea datelor</string>
+    <string name="casual_grade_add_location"><![CDATA[ Adaugă o <b>locație</b> pentru a avansa această observație la starea “Necesită ID”. ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ Adaugă o <b>dată</b> pentru a avansa această observație la starea “Necesită ID”. ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[ Adaugă o <b>imagine</b> pentru a avansa această observație la starea “Necesită ID”. ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ Observația are un grad cazual deoarece este <b>captivă/cultivată</b>. ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ Observația are nevoie de <b>mai multe identificări</b>de la comunitate pentru a avea status de „Grad de cercetare”. ]]></string>
+    <plurals name="included_in_projects">
+        <item quantity="one">Inclus în %1$d proiect </item>
+        <item quantity="few">Inclus în %1$d proiecte</item>
+        <item quantity="other">Inclus în %1$d de proiecte</item>
+    </plurals>
+    <string name="geoprivacy_explanation"><![CDATA[ Confidențialitatea geografică este o setare pe care o puteți face observațiilor, care controlează felul în care coordonatele spațiale (latitudine și longitudine) sunt afișate. Aici sunt opțiunile: <br/><b>deschide</b> - În cazul în care taxonul nu este amenințat, toată lumea poate vedea coordonatele. <br/><b>obscur</b> - Coordonate publice care sunt aratate ca un punct aleatoriu într-o zonă cu 0,2 grade de 0,2 grade care conține coordonatele reale și care funcționează la o arie de 22x22 km pătrați de incertitudine la ecuator, scăzând pe măsură ce vă apropiați de poli. Coordonatele adevărate sunt vizibile doar pentru tine și pentru persoanele pe care le-ai adăugat la observație.<br/><b>privat</b> - Coordonatele complet ascunse din hartă, coordonatele adevărate sunt vizibile doar pentru tine și pentru persoanele pe care le-ai adăugat la observație. <br/><br/>Reține că cei care au proiecte individuale pot să vadă întotdeauna coordonatele indiferent de setările de confidențialitate geografică, și dacă vă faceți griji cu privire la cine are acces la coordonate are trebui să aveți încredere în persoanele care participă în proiectele în care participați și dumneavoastră. ]]></string>
+    <string name="id_title">%1$s\'s ID • %2$s</string>
+    <string name="comment_title">%1$s • %2$s</string>
+    <string name="delete">Șterge</string>
+    <string name="delete_id">Retrage identificarea</string>
+    <string name="delete_comment">Șterge comentariu</string>
+    <string name="delete_id_message">Ești sigur că vrei să retragi această identificare?</string>
+    <string name="delete_comment_message">Ești sigur că vrei să ștergi acest comentariu?</string>
+    <string name="suggest_id">Sugerează ID</string>
+    <string name="update_comment">Actualizează comentariu</string>
+    <string name="fave_this_observation">Favorizează această observație</string>
+    <string name="faved">Favorizat</string>
+    <string name="be_the_first_to_fave_this_obs">Fii primul care favorizează această observație...</string>
+    <string name="leave_a_comment">Lasă un comentariu sau o sugerează o identificare...</string>
+    <string name="location_coords">Lat: %1$s Lon: %2$s Acuratețe. %3$s</string>
+    <string name="location_coords_no_acc">Lat: %1$s Lon: %2$s</string>
+    <string name="location">Locație</string>
+    <string name="login_in_to_add_comments_ids">Autentifică-te sau înregistrează-te pentru a lăsa un comentariu sau a sugera o idetificare...</string>
+    <string name="login_in_to_fav">Autentifică-te sau înregistrează-te pentru a vedea favoritele sau a favoriza această observație...</string>
+    <string name="sync_obs_to_see_favs">Sincronizați această observaţie pentru a vedea favoritele...</string>
+    <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
+    <string name="sync_obs_to_add_comments_ids">Sincronizează această observație pentru a lăsa un comentariu sau a sugera o identificare...</string>
+    <!--  Label for a button to add an observation without a photo or a sound  -->
+    <string name="no_photo">Fără media</string>
+    <string name="about_this_species">Despre această specie</string>
+    <string name="view_on_wikipedia">Articol Wikipedia</string>
+    <string name="photo"><![CDATA[Fotografie: <b><a href="%1$s">%2$s</a></b>]]></string>
+    <string name="photo_attr"><![CDATA[Fotografie: <b>%1$s</b>]]></string>
+    <string name="finding_current_location">Se găsește locația actuală...</string>
+    <string name="flag_as_captive">Marchează ca Captiv/Cultivat</string>
+    <string name="observation_flagged_as_captive">Observația a fost marcată ca captivă/cultivată</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Sunteți sigur că doriți să marcați această observație ca fiind captivă/cultivată?</string>
+    <string name="do_you_agree_to_the_following">Sunteți de acord cu următoarele?</string>
+    <string name="terms">Termeni</string>
+    <string name="observation_rules">Regulile observației</string>
+    <string name="couldnt_load_project_details">Nu s-au putut încărca detaliile proiectului: %1$s</string>
+    <string name="no_people_found">Nu s-a găsit nici o persoană</string>
+    <string name="rank">Grad</string>
+    <string name="identifications">Identificări</string>
+    <string name="no_news_found">Nu au fost găsite știri despre elemente</string>
+    <string name="news">Știri</string>
+    <string name="article">Articol</string>
+    <string name="couldnt_load_project_news">Nu s-au putut încărca știrile proiectului: %1$s</string>
+    <string name="couldnt_load_user_details">Nu s-au putut încărca detaliile utilizatorului: %1$s</string>
+    <string name="more_bio"><![CDATA[<b><font color="#ffffff">Mai mult»</font></b>]]></string>
+    <string name="no_location">Nici o locație</string>
+    <string name="add_to_projects">Adăugare la proiect(e)</string>
+    <string name="are_you_sure_you_want_to_save_obs_without_coords">Ești sigur că vrei să salvezi această observație fără coordonate?</string>
+    <string name="users_identification">%1$s\'s ID: %2$s</string>
+    <string name="edit_profile">Editare profil</string>
+    <string name="remove_photo">Înlătură fotografia</string>
+    <string name="name">Nume</string>
+    <string name="tell_us_about_yourself">Spune-ne despre tine...</string>
+    <string name="view_profile">Vezi profil</string>
+    <string name="are_you_sure_you_want_to_remove_photo">Ești sigur că vrei să înlături imaginea ta?</string>
+    <string name="updating_profile">Se actualizează profilul...</string>
+    <string name="there_was_a_problem_updating_profile">A apărut o problemă în timp ce se actualiza profilul tău!</string>
+    <string name="there_was_a_problem_updating_profile_params">A apărut o problemă în timp ce se actualiza profilul tău: %1$s</string>
+    <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
+    <string name="currently_logged_in_as_html"><![CDATA[Autentificat ca  <b>%1$s</b>]]></string>
+    <string name="log_out">Deconectare</string>
+    <string name="not_logged_in">Nu ești autentificat</string>
+    <!-- Prompt to log in to your account or sign up for a new account -->
+    <string name="login_or_sign_up">Autentificare / Înregistrare</string>
+    <string name="auto_upload_description">Auto încarcă noi observații și editările la observații</string>
+    <string name="language">Limbă</string>
+    <string name="version">Versiune</string>
+    <string name="inat_network">Rețea iNaturalist</string>
+    <string name="inat_network_description">Rețeaua iNaturalist este fundamentul localizării comunității iNaturaliste. Site-urile de rețea sunt susținute de organizații locale care au semnat acorduri cu iNaturalist pentru a promova utilizarea locală în favoarea biodiversității locale.</string>
+    <string name="more_info">Mai multe informații</string>
+    <string name="select_network">Selectați Afilierea la Rețea</string>
+    <string name="help">Ajutor</string>
+    <string name="stop">Stop</string>
+    <string name="resume">Reluați</string>
+    <string name="cleaning_up">Se curăță...</string>
+    <string name="syncing">Sincronizare...</string>
+    <string name="syncing_observation_fields">Se sincronizează câmpurile observațiilor...</string>
+    <string name="syncing_observations">Sincronizare observații...</string>
+    <string name="syncing_paused">Întrerupt</string>
+    <string name="upload">Încărcare</string>
+    <string name="search_observations">Se caută Observații...</string>
+    <string name="withdraw">Retrage</string>
+    <!-- Dialog title for when you are updating the description of an identification -->
+    <string name="update_id_description">Actualizare descrierea identificării</string>
+    <string name="your_identification">ID-ul tău: %1$s</string>
+    <string name="onboarding_species_name">Numiți ce ați văzut dacă puteți, chiar dacă este doar \"insectă\" sau \"pasăre\", sau doar lăsați acest spațiu gol. Alții vă pot ajuta să-l identificați!</string>
+    <string name="upload_complete">Încărcare completă!</string>
+    <string name="onboarding_upload_description">Verifică dacă ai primit comentarii și identificării, la observațiile tale.</string>
+    <string name="importing_photos">Se importă fotografie(iile)...</string>
+    <string name="multi_select_description">Importă mai mult fotografii, ținând apăsat mai mult pe o singură fotografie</string>
+    <string name="preparing_photo">Se pregătește fotografia...</string>
+    <string name="recommended_for_you">Recomandate pentru tine</string>
+    <string name="missions">Misiuni</string>
+    <string name="browse_by_category">Navighează după categorie</string>
+    <string name="couldnt_load_recommended_missions">Nu s-au putut încărca misiunile recomandate: %1$s</string>
+    <string name="plants">Plante</string>
+    <string name="mammals">Mamifere</string>
+    <string name="insects">Insecte</string>
+    <string name="reptiles">Reptile</string>
+    <string name="animals">Animale</string>
+    <string name="fish">Pești</string>
+    <string name="mollusks">Moluște</string>
+    <string name="protozoans">Protozoare</string>
+    <string name="chromista">Laminarii, Diatomee și Similare</string>
+    <string name="amphibians">Amfibieni</string>
+    <string name="fungi">Ciuperci</string>
+    <string name="birds">Păsări</string>
+    <string name="arachnids">Arahnide</string>
+    <string name="no_connectivity">Nu există conexiune</string>
+    <string name="no_recommended_missions">Se pare că nu există recomandări în acest domeniu. Încercați să vă deplasați într-o locație nouă.</string>
+    <string name="what_to_look_for">Ce să cauți</string>
+    <string name="have_been_seen_here">Au fost văzute aici</string>
+    <string name="observe">Observă</string>
+    <string name="nearby_missions">Misiuni din apropiere</string>
+    <string name="searching_your_area">Se caută în zona ta...</string>
+    <string name="expanding_your_search_area">Se extinde zona ta de căutare...</string>
+    <string name="introducing_missions">Introducerea Misiunilor!</string>
+    <string name="missions_onboarding_description">Misiunile sunt recomandări în timp real pentru ce ai putea să cauți în zona din apropierea ta. În acest fel poți descoperi specii noi pentru tine! (Necesită conexiune la internet)</string>
+    <string name="ok_got_it">Ok, am înțeles!</string>
+    <string name="could_not_download_observations">Nu s-au putut descărcat ultimele observații - Probleme de conexiune. Încearcă mai târziu.</string>
+    <string name="no_news_yet">Nici o știre încă. Stai pe fază!</string>
+    <string name="my_content">Conținutul me</string>
+    <string name="following">Urmăriți</string>
+    <string name="no_updates_yet">Nici o actualizare încă. Stai pe fază!</string>
+    <string name="you_will_only_receive_updates_when_creating">(Vei primi actualizări după ce ai creat observații)</string>
+    <string name="you_will_only_receive_updates_when_following">(Vei primi actualizări după ce ai urmat observații)</string>
+    <string name="user_activity_id"><![CDATA[<b>%1$s</b> a sugerat un ID: %2$s<font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_comment"><![CDATA[<b>%1$s</b> a comentat: &ldquo;%2$s&rdquo;<font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_mention"><![CDATA[<b>%1$s</b> v-a menționat: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="deleted_photos_from_cache_error">Se pare că ai șters o poză înainte să o încarci, în timp ce eliberai memoria cache. Va trebui să adaugi poza din observația ta, din galeria proprie. În viitor, asigură-te că ai încărcat toate pozele, înainte să eliberezi cache-ul aplicației.</string>
+    <!--
+        Label for the number of new notifications you might have. This specific string is used in
+        the side drawer next to the Activity menu item when you have new activity on your own
+        content.
+    -->
+    <plurals name="new_activities">
+        <item quantity="one">%1s nouă</item>
+        <item quantity="few">%1s noi</item>
+        <item quantity="other">%1s noi</item>
+    </plurals>
+    <string name="no_results_found">Nici un rezultat găsit...</string>
+    <plurals name="syncing_x_out_of_y_observations">
+        <item quantity="one">%1$d observație  din %2$d se sincronizează...</item>
+        <item quantity="few">%1$d observații  din %2$d se sincronizează...</item>
+        <item quantity="other">%1$d de observații  din %2$d se sincronizează...</item>
+    </plurals>
+    <string name="deleting_observations">Se șterg observațiile...</string>
+    <string name="preparing">Se pregătește...</string>
+    <string name="add_edit_remark">Adaugă/Editează remarcă</string>
+    <string name="restore">Restabilire</string>
+    <string name="compare">Compară</string>
+    <string name="select">Selectare</string>
+    <string name="source_wikipedia">(Sursă: Wikipedia)</string>
+    <string name="conservation_source"><![CDATA[<b>Sursă:</b><i>%1$s</i>]]></string>
+    <string name="conservation_status_least_concern">De cea mai mică preocupare</string>
+    <string name="conservation_status_near_threatened">Aproape amenințată</string>
+    <string name="conservation_status_vulnerable">Vulnerabil</string>
+    <string name="conservation_status_endangered">Pe cale de dispariție</string>
+    <string name="conservation_status_critically_endangered">Critic amenințată</string>
+    <string name="conservation_status_extinct_in_the_wild">Dispărută în sălbăticie</string>
+    <string name="conservation_status_extinct">Dispărut</string>
+    <string name="map_of_observations">Hartă de observații</string>
+    <string name="taxonomy">Taxonomie</string>
+    <string name="about_this_section">Despre această secțiune</string>
+    <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
+    <string name="taxonomy_info">Acestea au legături cu strămoșii acestui taxon. Sunt ordonate în funcție de apropierea cu această specie. Folosește aceste link-uri pentru a muta în sus sau în jos, pe Arborele Vieții. De exemplu, dacă nu știi ce organism este dar știi clasa sau ordinul din care face parte, apasă pe un taxon pentru a vedea mai multe infromații.</string>
+    <string name="more_info_on_inat">Mai multe informații pe iNaturalist.org</string>
+    <string name="view_suggestions">Vezi Sugestii</string>
+    <string name="species_search">Căutare specie</string>
+    <string name="were_not_confident_enough">Nu suntem suficient de încrezători pentru a face o recomandare, dar iată sugestiile noastre de top:</string>
+    <string name="were_not_confident_enough_no_suggestions">Nu suntem suficient de încrezători pentru a face o recomandare.</string>
+    <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
+    <string name="most_observed_options_matching_filters">Cele mai observate opțiuni care corespund filtrelor:</string>
+    <!-- Header for a list of suggested taxa -->
+    <string name="top_suggestions">Cele mai bune sugestii</string>
+    <string name="pretty_sure_rank">Suntem destul de siguri că este aceasta %1$s:</string>
+    <string name="what_did_you_see">Ce ai văzut?</string>
+    <string name="suggest_species">Sugerează Specii</string>
+    <string name="suggest_species_description">Sugerează specii bazate pe baza similarității cu celelalte imagini.</string>
+    <string name="visually_similar">Similar vizuale</string>
+    <string name="visually_similar_seen_nearby">Similar vizuale / Văzut în apropiere</string>
+    <string name="seen_nearby">Văzut în apropiere</string>
+    <string name="enlarge">Mărește</string>
+    <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
+    <string name="view_children">Vezi copii</string>
+    <string name="taxon_has_no_photos">Acest taxon nu are fotografii.</string>
+    <string name="terrain">Teren</string>
+    <string name="filters">Filtre</string>
+    <string name="exploring_all">Explorează tot</string>
+    <string name="nearby">În apropiere</string>
+    <string name="couldnt_load_results">Nu au putut fi încărcate rezultatele: %1$s</string>
+    <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
+    <string name="research_grade_initials">GC</string>
+    <string name="taxon_search_hint">ex. păsări, fluture monarh</string>
+    <string name="location_search_hint">ex. oraş, stat, parc, ţară...</string>
+    <string name="no_taxon">Ne pare rău, taxonul nu a fost găsit</string>
+    <string name="please_select_taxon">Vă rugăm să selectați un taxon valid din listă (sau să goliți câmpul taxon).</string>
+    <string name="sorry_no_location">Ne pare rău, locaţia nu a fost găsită</string>
+    <string name="location_not_found">Locația căutată nu se găsește în baza noastră de date. Vă rugăm să selectați un loc din lista de opțiuni situată sub câmpul căutare locație sau goliți câmpul căutare.</string>
+    <string name="undefined">Nedefinit</string>
+    <string name="street_segment">Segment de stradă</string>
+    <string name="intersection">Intersecție</string>
+    <string name="town">Oraş</string>
+    <!-- As in a political administrative area, e.g. Hawaii in the United States -->
+    <string name="state">Stat</string>
+    <string name="county">Județ</string>
+    <string name="local_administrative_area">Unitate administrativă locală</string>
+    <string name="country">Țară</string>
+    <string name="island">Insulă</string>
+    <string name="airport">Aeroport</string>
+    <string name="drainage">Drenaj</string>
+    <string name="land_feature">Caracteristică teren</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
+    <string name="miscellaneous">Diverse</string>
+    <string name="nationality">Naţionalitate</string>
+    <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
+    <string name="supername">Regiune</string>
+    <string name="point_of_interest">Punct de interes</string>
+    <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
+    <string name="region">Regiune</string>
+    <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
+    <string name="colloquial">Colocvial</string>
+    <string name="zone">Zonă</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
+    <string name="historical_state">Istoricul Statului</string>
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
+    <string name="historical_county">Istoricul Județului</string>
+    <string name="continent">Continent</string>
+    <string name="estate">Domeniu</string>
+    <string name="historical_town">Istoricul Orașului</string>
+    <string name="aggregate">Zonă admin compusă</string>
+    <string name="open_space">Spaţiu deschis</string>
+    <string name="territory">Teritoriu</string>
+    <string name="district">District</string>
+    <string name="province">Județ</string>
+    <string name="municipality">Municipiu</string>
+    <string name="parish">Parohie</string>
+    <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
+    <string name="department_segment">Segment de Departament</string>
+    <string name="city_building">Clădire a Orașului</string>
+    <string name="commune">Comună</string>
+    <string name="governorate">Guvernorate</string>
+    <string name="prefecture">Prefectură</string>
+    <string name="canton">Canton</string>
+    <string name="republic">Republică</string>
+    <string name="division">Divizie</string>
+    <string name="subdivision">Subdivision</string>
+    <!-- https://gadm.org place type, presumably describing an area larger than an individual property but smaller than a neighborhood -->
+    <string name="village_block">Cartier</string>
+    <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
+    <string name="sum">Sumă</string>
+    <string name="shire">District</string>
+    <string name="prefecture_city">Prefectura Orașului</string>
+    <!-- Indonesian sub-sub-national place type -->
+    <string name="regency">Regență</string>
+    <string name="constituency">Circumscripție</string>
+    <string name="local_authority">Autoritatea Locală</string>
+    <!-- https://en.wikipedia.org/wiki/Poblacion -->
+    <string name="poblacion">Centrul Vechi</string>
+    <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
+    <string name="delegation">Delegare</string>
+    <string name="apply_filters">Aplicați Filtrele</string>
+    <string name="remove_filters">Elimină filtrele</string>
+    <string name="reset">Resetare</string>
+    <string name="show_only_my_observations">Arată doar observaţiile mele</string>
+    <string name="project">Proiect</string>
+    <string name="user">Utilizator</string>
+    <string name="search_users">Căutare utilizatori...</string>
+    <string name="quality_grade">Nivel de calitate</string>
+    <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
+    <string name="date_observed">Data Observării</string>
+    <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
+    <string name="any">Oricare</string>
+    <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
+    <string name="to">la</string>
+    <string name="exact_date">Data exactă</string>
+    <string name="start">Început</string>
+    <string name="end">Final</string>
+    <string name="months">Luni</string>
+    <string name="choose_months">Alegeți luna (lunile)</string>
+    <string name="map_area">Zona hărții</string>
+    <string name="global">Global</string>
+    <!-- As in redo search in the current map area -->
+    <string name="search_map_area">Căutare in Zona Hărții</string>
+    <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
+    <string name="date_minute">%dmin</string>
+    <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
+    <string name="date_hour">%dore</string>
+    <!-- Compact form of "X days ago", so "3 days ago" would be "3d" -->
+    <string name="date_day">%dzile</string>
+    <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
+    <string name="date_week">%dsăp</string>
+    <string name="new_observation">Observare nouă</string>
+    <string name="inactive_taxon">Taxon inactiv</string>
+    <string name="no_identifications_found">Urmăriți identificările pe care le oferiți pentru observații altor persoane aici.</string>
+    <string name="no_species_found">Aceasta este o listă cu speciile pe care le-aţi observat cel mai mult.\n\nFYI: Există aproximativ 9 milioane de specii pe planetă, așa că ieșiți afară și observați-le!</string>
+    <string name="make_an_observation">Realizați o observație</string>
+    <string name="no_observations_found_new">Observațiile sunt înregistrări ale întâlnirilor dvs. cu organisme individuale în anumite momente și locuri.</string>
+    <string name="discard_comment">Sunteți sigur că vreți să renuntați la acest comentariu?</string>
+    <string name="leave_comment">Adăugați un comentariu...</string>
+    <string name="swipe">Glisați</string>
+    <string name="swipe_indicator">›</string>
+    <string name="potential_disagreement">Posibile dezacorduri</string>
+    <string name="do_you_think_this_could_be"><![CDATA[Este dovada furnizată suficientă pentru a confirma că este <b>%1$s</b>?]]></string>
+    <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
+    <string name="i_dont_know_but"><![CDATA[Nu știu, dar sunt sigur că este <b>%1$s</b>.]]></string>
+    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Nu, dar este un membru al <b>%1$s</b>.]]></string>
+    <string name="submit">Trimiteți</string>
+    <string name="change_password">Schimbă parola</string>
+    <string name="search_projects_youve_joined">Căutați proiecte la care v-ați alăturat...</string>
+    <string name="must_be_connected_to_load_more_obs">Trebuie să fiți conectat la internet pentru a încărca mai multe observații</string>
+    <string name="inat_about_title">iNaturalist este o inițiativă comună a Academiei de Științe din California și a Societății Naționale Geografice.</string>
+    <!--
+        Pronunciation of people's names (as approved by the people in question):
+
+        Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
+        Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
+        Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
+        Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
+    -->
+    <string name="inat_credits2"><![CDATA[iNaturalist există datorită fiecărei persoane care participă în comunitatea noastră. Oamenii care construiesc software-ul, proiectează interfeţele, întreţin infrastructura, sprijină comunitatea şi sprijină colaborarea sunt Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard și Ken-ichi Ueda.<br/><br/>CalTech și Cornell Tech au ajutat la dezvoltarea sistemului de vedere computerizat care sugerează identificări din fotografii. Mulţumim Grant Van Horn, Serge Belongie, şi Pietro Perona pentru progresul cercetării privind viziunea informatică. Mai multe informații pot fi găsite la <a href="http://www.visipedia.org">visipedia.org</a>. Mulțumiri speciale NVIDIA pentru asistență suplimentară.]]></string>
+    <string name="inat_credits_networks_pre"><![CDATA[Rețeaua internațională iNaturalist sprijină site-urile internet locale, complet integrate ale iNaturalist în următoarele țări, datorită sprijinului organizațiilor partenere asociate.]]></string>
+    <string name="inat_credits_post"><![CDATA[iNaturalist este, de asemenea, profund recunoscător dezvoltatorilor open source care au furnizat atât de multe dintre programele pe care ne bazăm în fiecare zi. Vezi <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github. om/inaturalist/iNaturalistAndroid</a> pentru contribuții open source.<br/> Suntem recunoscători pentru asistența de traducere oferită de voluntari în crowdin.com, comunitatea română, în special Eduardo Martiànez, AlberTJ, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, și katunchik. <br/>Locuri IUCN categoria II furnizate de IUCN și UNEP-WCMC (2015), Baza de date mondială privind zonele protejate (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Disponibil la: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
+    <string name="credits_title">Contributori</string>
+    <string name="password_changed">Parola folosită de aplicație nu mai funcționează - v-ați schimbat parola pe site? Vă rugăm să intrați parola cea nouă aici</string>
+    <string name="just_so_you_know">Doar ca să știți...</string>
+    <string name="ask_for_g_plus_permissions">Google ne solicită permisiunea de a accesa contactele dvs. pentru a utiliza contul dvs. Google, chiar dacă nu avem acces la contactele dvs. din niciun motiv. Dacă refuzați această permisiune, va trebui să vă înscrieți sau să vă autentificați cu un nume de utilizator și parolă.</string>
+    <string name="new_to_inat_sign_up_now"><![CDATA[Nou la %1$s? <b>Înregistrează-te acum!</b>]]></string>
+    <string name="see_more_observations">Vezi mai multe observații</string>
+    <string name="see_more_species">Vezi mai multe specii</string>
+    <string name="see_more_identifications">Vezi mai multe identificări</string>
+    <string name="collection_and_umbrella_projects">Colecții și proiectul Umbrella</string>
+    <string name="description">Descriere</string>
+    <string name="quantity">Cant</string>
+    <string name="agree2">De acord</string>
+    <string name="project_observations">Observații</string>
+    <string name="project_species">Specii</string>
+    <string name="project_people">Oameni</string>
+    <!-- People who added identifications to observations in a project -->
+    <string name="project_identifiers">Identificatori</string>
+    <string name="got_it">Am înțeles!</string>
+    <string name="view_all">Vizualizați tot</string>
+    <string name="observers">Observatorii</string>
+    <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
+    <string name="attribute">Atribut</string>
+    <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
+    <string name="value">Valoare</string>
+    <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
+    <string name="disagree">Dezaprob</string>
+    <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
+    <string name="annotations">Adnotări</string>
+    <!-- Used when filtering observations with annotations -->
+    <string name="with_annotation">Cu Adnotare</string>
+    <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
+    <string name="annotation_name">Nume Adnotare</string>
+    <!-- Annotation value for when no annotation has been chosen -->
+    <string name="none">Niciunul</string>
+    <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
+    <string name="annotation_name_plant_phenology">Fenologie Vegetală</string>
+    <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
+    <string name="annotation_name_life_stage">Stadiu de Viață</string>
+    <!-- Noun, describes sex of the organism -->
+    <string name="annotation_name_sex">Sex</string>
+    <!-- Attribute that describes whether the organism is alive or dead -->
+    <string name="annotation_name_alive_or_dead">Viu sau Mort</string>
+    <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <string name="annotation_name_evidence_of_presence">Dovada prezenței</string>
+    <!-- Adjective, having open flowers -->
+    <string name="annotation_value_flowering">Înflorit</string>
+    <!-- Adjective, having fruit -->
+    <string name="annotation_value_fruiting">Cu fructe</string>
+    <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_budding">Înmugurit</string>
+    <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_budding">Aproape înflorit</string>
+    <!-- Observation presents no evidence of flowering phenology -->
+    <string name="annotation_value_no_evidence_of_flowering">Fără Dovezi de Înflorire</string>
+    <!-- Adjective describing the life stage where an individual can reproduce -->
+    <string name="annotation_value_adult">Adult</string>
+    <!-- Adjective describing the odonate life stage between nymph and adult -->
+    <string name="annotation_value_teneral">Teneral</string>
+    <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
+    <string name="annotation_value_pupa">Pupa</string>
+    <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
+    <string name="annotation_value_nymph">Nimfă</string>
+    <!-- Noun for the arthropod life stage between egg and adult -->
+    <string name="annotation_value_larva">Larva</string>
+    <string name="annotation_value_egg">Ou</string>
+    <!-- Life stage before adulthood, could work as a noun or an adjective -->
+    <string name="annotation_value_juvenile">Juvenil</string>
+    <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
+    <string name="annotation_value_subimago">Subimago</string>
+    <string name="annotation_value_female">Feminin</string>
+    <string name="annotation_value_male">Mascul</string>
+    <!-- Adjective, alive and shows no signs of imminent death -->
+    <string name="annotation_value_alive">Viu</string>
+    <!-- Adjective, dead or shows signs of imminent death -->
+    <string name="annotation_value_dead">Mort</string>
+    <!-- Value for when the value of the attribute cannot be determined -->
+    <string name="annotation_value_cannot_be_determined">Nu poate fi determinat</string>
+    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <string name="annotation_value_organism">Organism</string>
+    <!-- Evidence of Presence value when for bird feathers -->
+    <string name="annotation_value_feather">Pană</string>
+    <!-- Evidence of Presence value when for fecal remains -->
+    <string name="annotation_value_scat">Fecale</string>
+    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <string name="annotation_value_track">Pistă</string>
+    <!-- Evidence of Presence value when for bones -->
+    <string name="annotation_value_bone">Os</string>
+    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <string name="annotation_value_molt">Năpârlire</string>
+    <!-- Text for a label for a list of projects the viewer has joined -->
+    <string name="joined_projects_all_caps">ADERAT</string>
+    <string name="nearby_projects_all_caps">APROAPE</string>
+    <string name="featured_projects_all_caps">RECOMANDAT</string>
+    <!-- Text for a button or label that allows someone to join a project -->
+    <string name="join_all_caps">ADERAȚI</string>
+    <string name="my_guides_all_caps">PROPRII</string>
+    <string name="nearby_guides_all_caps">APROAPE</string>
+    <string name="all_guides_all_caps">TOATE</string>
+    <string name="description_all_caps">DESCRIERE</string>
+    <string name="quantity_all_caps">CANT.</string>
+    <plurals name="observation_count_all_caps">
+        <item quantity="one">%1$s OBSERVARE</item>
+        <item quantity="few">%1$s OBSERVĂRI</item>
+        <item quantity="other">%1$s DE OBSERVĂRI</item>
+    </plurals>
+    <string name="agree_all_caps">CONSIMT</string>
+    <string name="observations_all_caps">OBSERVAŢII</string>
+    <string name="species_all_caps">SPECII</string>
+    <string name="people_all_caps">PERSOANE</string>
+    <string name="identifiers_all_caps">IDENTIFICATORI</string>
+    <string name="identifications_all_caps">IDENTIFICĂRI</string>
+    <string name="news_all_caps">ȘTIRI</string>
+    <string name="got_it_all_caps">AM ÎNȚELES!</string>
+    <string name="view_all_all_caps">VEZI TOATE</string>
+    <string name="observers_all_caps">OBSERVATORI</string>
+    <string name="observations_regular">Observări</string>
+    <string name="data_quality_assessment">Evaluarea calității datelor</string>
+    <string name="research_grade_qualification">Calificarea Gradului de cercetare</string>
+    <string name="date_specified">Data specificată</string>
+    <string name="location_specified">Locație specificată</string>
+    <string name="has_photos_or_sounds">Are fotografii sau sunete</string>
+    <string name="has_id_supported_by_two_or_more">Are ID-ul susținut de doi sau mai mulți</string>
+    <string name="date_is_accurate">Data este exactă</string>
+    <string name="location_is_accurate">Locația este precisă</string>
+    <string name="organism_is_wild">Organismul este sălbatic</string>
+    <string name="evidence_of_organism">Dovada unui organism</string>
+    <string name="recent_evidence_of_an_organism">Dovada recentă a unui organism</string>
+    <string name="community_id_at_species_level_or_lower">ID comunitar la nivel de specie sau mai mic</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Pe baza dovezilor, poate fi confirmat sau îmbunătățit ID-ul comunitar?</string>
+    <string name="no_as_good_as_it_can_be">Nu, este cât se poate de bine</string>
+    <string name="seasonality">Sezonier</string>
+    <string name="verifiable">Verificabil</string>
+    <string name="no_annotation">Fără adnotare</string>
+    <string name="donate_to_inaturalist">Donează către iNaturalist</string>
+    <string name="prefers_scientific_name_first">Arată întâi numele științifice</string>
+    <string name="prefers_scientific_name_first_description">Arată numele științifice înaintea numelor comune.</string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Federația Canadiană a Vieții Sălbatice, Muzeul Regal Ontario, NatureServe Canada și Parks Canada care operează iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[Columbia: Institutul Humboldt care operează Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalista"><![CDATA[Mexico: Comisia Națională pentru Cunoașterea și Utilizarea Biodiversității (CONABIO) care operează NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[Noua Zeelandă: Rețeaua de Înregistrare a Biodiversității NZ care operează iNaturalist NZ - Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
+    <string name="network_credit_biodiversity4all"><![CDATA[Portugalia: Asociația Biodiversitate Pentru Toți care operează Biodiversitity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerul Mediului care operează iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundația Vida Silvestre Argentina care operează ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas al Australiei Vii care operează iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Institutul Național al Biodiversității (INABIO) care operează iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[Israel: Universitatea din Haifa care sprijină iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[Finlanda: Muzeul finlandez de Istorie Naturalistă (LUOMUS) care operează iNaturalist Finlanda (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerul Mediului Ambiant care operează iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[Grecia: iSea sprijină iNaturalist Grecia (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[Luxemburg: Muzeul național de istorie naturală din Luxemburg (MnhnL) sprijină iNaturalist Luxemburg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[Marea Britanie: National Biodiversity Network Trust sprijină iNaturalist Marea Britanie (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) sprijină Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) sprijină iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre suportă iNaturalist Suedia(<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA și Biodiversidata care sprijină Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi University și Taiwan Forestry Research Institute care sprijină iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org</a>)]]></string>
+    <string name="mark_all_as_viewed">Bifează tot ca vizionat</string>
+    <string name="content_hidden">Conținut ascuns</string>
+    <string name="show_hidden_content">Arată conținut ascuns</string>
+    <string name="content_hidden_because">Conținut ascuns de @%1$s pe %2$s deoarece: \"%3$s\"</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contactați asistența</a>]]></string>
+    <string name="content">Conținut</string>
+    <string name="has_photos">Conține fotografii</string>
+    <string name="has_sounds">Conține sunete</string>
+    <string name="could_not_play_sound">Sunetul nu a putut fi redat - probabil o problemă cu rețeaua</string>
+    <string name="cant_play_soundcloud"><![CDATA[Pentru a asculta sunete Soundcloud, vizitați <a href="%1$s">site-ul</a>.]]></string>
+    <string name="soundcloud">SoundCloud</string>
+    <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
+    <string name="record_sound">Înregistrează sunet</string>
+    <string name="couldnt_retrieve_sound">Nu am putut recupera sunetul din aparatul de înregistrare prestabilit - încercați în schimb să încărcați sunetul</string>
+    <!-- Label for a button to import an existing sound for an observation -->
+    <string name="upload_sound">Alegeți sunetul</string>
+    <string name="multi_select_sound_description">Încărcați mai multe sunete ținând apăsat pe un singur sunet</string>
+    <string name="alert_unsupported_audio_type">Ne pare rău, dar a apărut o problemă la încărcarea sunetului din această sursă</string>
+    <string name="invalid_audio_extension">Eroare la importare sunet(e): pot fi importate doar fișiere foto cu extensii WAV/MP3/AMR</string>
+    <string name="importing_sounds">Se importă sunet(e)...</string>
+    <string name="observation_sound">Sunet de observație</string>
+    <string name="deleted_sounds_from_cache_error">Se pare că ați șters un sunet când ați eliberat memoria cache a aplicației, înainte de a fi încărcat. Va fi nevoie să adăugați sunetul înapoi în observația proprie din galerie. Pe viitor, vă rugăm să vă asigurați că ați încărcat toate sunetele înainte de a goli memoria cache a aplicației.</string>
+    <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
+    <string name="seconds">%1$.1f sec</string>
+    <string name="clear_all_debug_logs">Șterge toate jurnalele de depanare</string>
+    <string name="clears_up_storage_room_on_your_phone">Curăță spațiul de stocare de pe telefon</string>
+    <string name="number_of_days_to_store_logs">Numărul de zile pentru a stoca jurnalele</string>
+    <string name="send_debug_logs_from_start_date">Trimite jurnale de depanare de la data de început</string>
+    <string name="send_debug_logs_by_email">Trimite jurnale de depanare prin e-mail (de la data de început)</string>
+    <string name="debug_settings">Setări depanare</string>
+    <string name="are_you_sure_you_want_to_delete_logs">Sunteţi sigur că doriţi să ştergeţi toate jurnalele de depanare? Apăsaţi \"Da\" numai dacă doriţi să ştergeţi spaţiul de stocare pentru telefonul dvs.</string>
+    <string name="no_log_files_found">Niciun fișier jurnal găsit pentru intervalul de date - încercați date anterioare?</string>
+    <string name="choose_pinned_location">Alegeți Locație Salvată</string>
+    <string name="pin_current_location">Salvați Locația Curentă</string>
+    <string name="location_pinned_successfully">Locația Curentă Salvată cu Succes</string>
+    <string name="delete_this_pinned_location">Ștergeți Această Locație Salvată?</string>
+    <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
+    <string name="duplicate">Duplicat</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
+    <string name="couldnt_duplicate_photo">Nu se poate dubla fotografia!</string>
+    <string name="couldnt_edit_photo">Nu se poate edita fotografia!</string>
+    <!-- Verb, as in "Rotate this photo" -->
+    <string name="ucrop_rotate">Rotire</string>
+    <!-- Verb, as in "Scale (resize) this photo" -->
+    <string name="ucrop_scale">Mărime</string>
+    <!-- Verb, as in "Crop this photo" -->
+    <string name="ucrop_crop">Taie</string>
+    <!-- Label for adjusting the brightness of an image -->
+    <string name="ucrop_brightness">Luminozitate</string>
+    <!-- Label for adjusting the contrast of an image -->
+    <string name="ucrop_contrast">Contrast</string>
+    <!-- Label for adjusting the saturation of an image -->
+    <string name="ucrop_saturation">Saturație</string>
+    <!-- Label for adjusting the sharpness of an image -->
+    <string name="ucrop_sharpness">Claritate</string>
+    <!-- Label for image cropping mode that maintains the original aspect ratio -->
+    <string name="ucrop_label_original">Original</string>
+    <!-- Label for image cropping mode that has no limits on the aspect ratio -->
+    <string name="ucrop_label_free">Gratuit</string>
+    <!-- Verb phrase, button label to edit an observation photo -->
+    <string name="ucrop_label_edit_photo">Editare foto</string>
+    <string name="service_temporarily_unavailable">Serviciu temporar indisponibil.</string>
+    <string name="please_try_again_in_a_few_hours">Vă rugăm să reîncercați în câteva ore.</string>
+    <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
+    <string name="please_try_again_in_x">Vă rugăm reîncărcați în %1$d %2$s</string>
+    <string name="hours">ore</string>
+    <string name="minutes">minute</string>
+    <string name="seconds_value">secunde</string>
+    <string name="shop_the_inat_store">Cumpără din magazinul iNat</string>
+    <string name="delete_your_account">Ștergeți-vă Contul</string>
+    <string name="delete_account_message"><![CDATA[Prin ștergerea contului veți elimina:<br/><br/><ul><li> Toate observațiile, inclusiv munca tuturor celor care v-au ajutat cu identificări.</li><li> Toate identificările pe care le-ați adăugat observațiilor altor persoane, care ar putea afecta calitatea datelor acestor observații.</li><li> Toate comentariile pe care le-ați adăugat.</li></ul><br/>În plus, această acțiune nu poate fi anulată. Dacă vă răzgândiți mai târziu, nu primiți înapoi niciun conținut.<br/><br/>Dacă acest serviciu generează prea multe notificări, considerați să <a href="https://www.inaturalist.org/users/edit"> editați setările pe site</a> pentru a renunța la anumite notificări sau a nu mai primi e-mailuri de la noi. Dacă aveți probleme cu o anumită persoană, luați în considerare <a href="https://www.inaturalist.org/users/edit">punerea lor în surdină</a> în loc să vă ștergeți contul.<br/><br/>Dacă totuși sunteți sigur că doriți să vă ștergeți contul, intrați <b>\"%1$s\"</b> în formularul de mai jos și clicați butonul pentru a șterge contul și toate datele dvs.]]></string>
+    <string name="your_account_has_been_deleted">Contul dvs. a fost șters.</string>
+    <string name="you_must_enter_username_in_the_form_to_delete_account">Trebuie să introduceți \'%1$s\' în formular pentru a vă șterge contul.</string>
+    <!-- Second person hint text asking the user to enter their username -->
+    <string name="type_your_username">Introduceți numele de utilizator</string>
+    <string name="error_deleting_account">A apărut o eroare la ștergerea contului dvs. - vă rugăm să verificați conexiunea la internet</string>
+    <string name="verify_your_password">Verificați-vă Parola</string>
+    <string name="third_party_data_sharing">Partajarea de date terțe</string>
+    <string name="disable_third_party_data_sharing">Dezactivează partajarea de date a terților</string>
+    <string name="do_not_collect_third_party_data">Nu colectați date de stabilitate și de utilizare folosind servicii terțe</string>
+    <string name="enabled">Activat</string>
+    <string name="disabled">Dezactivat</string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[Folosim diverse servicii terțe pentru a monitoriza stabilitatea și diagnostica erorile și problemele programului nostru. Aceste părți terțe includ:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="third_party_data_sharing_notes2"><![CDATA[Informațiile pe care le împărtășim cu acești terți includ:<br/><ul><li> adrese IP (care pot fi folosite pentru a obține locația la rezoluția orașului, și pentru a vă urmări pe diferite site-uri web și servicii; Țineți cont că am activat <a href="https://support.google.com/analytics/answer/2763052">anonimizarea IP</a> în Google Analytics și <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> nu înregistrează adresa IP în ceea ce știm noi)</li><li>Detalii browser ca: marca, modelul și versiunea</li><li>Detalii defecțiune ca: exact ce linie de cod a cauzat un accident</li><li>Detalii dispozitiv precum: marca și modelul telefonului mobil</li></ul>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b>Aceste servicii de terță parte ne oferă o valoare enormă</b> pentru a menține stabilitatea și capacitatea de utilizare a iNaturalist cu personalul nostru relativ mic. Pe dispozitivele mobile, nu există aproape nicio altă modalitate de a înțelege problemele care apar din moment ce software-ul rulează pe dispozitive pe care nu le controlăm. Uneori nici măcar nu suntem conștienți că astfel de probleme apar până când nu le vedem în datele pe care le furnizează aceste servicii. <b>Împărtășind aceste informații, ne ajutați să vă servim pe dvs și întreaga comunitate iNaturalist.</b>]]></string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[Rețineți că această opțiune se aplică numai pentru datele analitice și crash pe care le trimitem în mod explicit acestor companii. Toate serverele iNaturalist sunt furnizate și găzduite de Microsoft, toate imaginile iNaturalist sunt găzduite de Amazon și aproape toate hărțile iNaturalist sunt servite de Google, ceea ce înseamnă că de fiecare dată când vă uitați la o observație pe iNaturalist, vă conectați la serviciile furnizate de aceste companii și vă expuneți adresa dvs. IP la acestea, cel puțin (în aplicația iPhone folosim hărțile aplicației). iNaturalist probabil că nu ar exista fără serviciile pe care le furnizează aceste companii; și în timp ce putem limita cantitatea și tipurile de date pe care le partajați cu ele în timp ce utilizați iNat, nu putem opri complet fluxul de date.]]></string>
+    <string name="common_names_place"><![CDATA[Nume comune de locuri: <b>%1$s</b>]]></string>
+    <string name="tap_to_prioritize_common_names">Tapați pentru a pune în prioritate nume comune dintr-un anumit loc.</string>
+    <string name="search_places">Caută locuri</string>
+    <string name="restart_app">Reporniţi aplicaţia</string>
+    <string name="disable_third_party_sharing_restart">Pentru a dezactiva partajarea de date terță imediat, aplicația trebuie să repornească.</string>
+    <plurals name="are_you_sure_you_want_to_delete_observations">
+        <item quantity="one">Sunteți sigur că vreți să ștergeți această %1$d observare?</item>
+        <item quantity="few">Sunteți sigur că vreți să ștergeți aceste %1$d observări?</item>
+        <item quantity="other">Sunteți sigur că vreți să ștergeți aceste %1$d de observări?</item>
+    </plurals>
+    <string name="future_observed_on_date_error">Observația dvs. a fost creată (și trimisă) pe %1$s, dar încercați să setați o dată ulterioară observării: %2$s</string>
+    <string name="no_more_photos_allowed">Observațiile pot avea doar %1$d fotografii. Pentru a adăuga mai multe va trebui să ștergeți câteva.</string>
+    <string name="warning_multiple_photos">Dacă adăugați fotografii cu diferite tipuri de organisme la această observație, sau de aceeași natură în locuri sau momente diferite, ar trebui să le eliminați și să le adăugați ca observații separate. O observație poate avea doar %1$d fotografii.</string>
+    <string name="choosing_specific_language_warning">Alegerea unei anumite limbi pentru contul dvs. necesită o conexiune la internet</string>
+    <string name="running_in_background_notfication">Funcționând în fundal pentru a putea rula fără întrerupere</string>
+    <string name="opt_out_of_community_taxon">Omiterea taxonului comunitar</string>
+    <string name="opt_in_to_community_taxon">Includerea taxonului comunitar</string>
+    <string name="opt_out_message">Omiterea Taxonului Comunitar forțează această observație să fie asociată cu taxonul din identificarea curentă, nu un taxon derivat din toate identificările care au fost adăugate la această observație. Dacă destui identificatori nu sunt de acord cu observația dvs., aceasta va deveni Ordinară. Ar trebui să renunțați doar dacă sunteți sigur că identificarea dvs. este corectă și alte identificări sunt incorecte.</string>
+    <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
+    <string name="permission_required">Permisiune necesară</string>
+    <!-- Message displayed when the user tries to perform an action that requires location permission -->
+    <string name="to_access_your_location">Pentru a accesa locația dvs., trebuie să permiteți accesul la locație pentru această aplicație.</string>
+    <!-- Dialog title when displaying a message that an action is not permitted -->
+    <string name="forbidden">Interzis</string>
+    <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
+    <string name="app_you_shared_blocked">Aplicația din care partajați, crează fotografii care nu sunt compatibile pentru observații, deoarece acestea nu reprezintă dovada experienței cu un alt organism, întrucât includ mărci necorespunzătoare sau conținut comercial, sau pentru că ne încalcă Termenii și Condițiile în alte moduri.</string>
+    <!-- Description of a UI element for screen readers -->
+    <string name="list_observation_checkbox_description">Casetă de selectare, pentru selectarea observației în modul multi-select</string>
+    <!-- Description of a UI element for screen readers -->
+    <string name="observation_list_item_iconic_pic_description">Fotografie miniatură pentru observarea taxonului</string>
+    <!-- Description of a UI element for screen readers -->
+    <string name="observation_list_item_obs_pic_description">Fotografie miniatură pentru observare</string>
+    <string name="messages">Mesaje</string>
+    <string name="all_messages">Toate Mesajele</string>
+    <string name="search_messages">Caută mesaje</string>
+    <string name="no_messages">În prezent nu ai mesaje. Poți trimite un mesaj nou cu butonul verde sau le poți transmite din pagina lor de profil.</string>
+    <string name="no_messages_found">Nu au fost găsite mesaje.</string>
+    <string name="send_a_message">Trimite un mesaj</string>
+    <string name="sending_message">Mesajul se trimite...</string>
+    <string name="could_not_send_message">Mesajul nu a putut fi trimis: %1$s</string>
+    <string name="subject">Subiect</string>
+    <string name="body">Text</string>
+    <string name="type_your_message_here">Scrie-ți mesajul aici</string>
+    <string name="new_message_to">Mesaj Nou lui %1$s</string>
+    <string name="who_would_you_like_to_send_a_message_to">Cui dorești să trimiți un mesaj?</string>
+    <string name="new_message">Mesaj Nou</string>
+    <string name="search_for_inaturalist_users">Caută utilizatori iNaturalist</string>
+    <string name="please_sign_in_for_messages">Trebuie să fii conectat pentru a vizualiza mesajele.</string>
+    <string name="sorry">Scuze</string>
+    <string name="you_must_have_three_observations">Pentru a face aceasta trebuie să ai trei observații verificabile sau trei identificări pentru alții.</string>
+    <string name="mute_this_user">Muțește utilizatorul</string>
+    <string name="unmute_this_user">Anulați amuțirea</string>
+    <string name="flag_this_conversation">Semnalează conversația</string>
+    <string name="mute_this_user_question">Muțești utilizatorul?</string>
+    <string name="you_will_no_longer_receive_messages">Nu veți mai primi notificări despre activitatea acestui utilizator, inclusiv mesaje, comentarii, identificări și mențiuni.</string>
+    <string name="mute">Mut</string>
+    <string name="muting_user">Muțire utilizator...</string>
+    <string name="unmuting_user">Anulare muțire...</string>
+    <string name="failed_muting_user">Nu am putut muții utilizatorul!</string>
+    <string name="failed_unmuting_user">Nu am putut anula muțirea!</string>
+    <string name="flag_conversation">Semnalează conversația</string>
+    <string name="spam">Spam</string>
+    <string name="commercial_solicitation">Solicitare comercială, link către nicăieri etc</string>
+    <string name="offensive_inappropriate">Ofensiv/Neadecvat</string>
+    <string name="misleading_or_illegal_content">Conținut înșelător sau ilegal, insulte rasiale sau etnice, etc. Pentru mai multe despre definiția noastră de \"adecvat\", consultă FAQ.</string>
+    <string name="other">Altele</string>
+    <string name="some_other_reason">Un alt motiv pe care-l poți explica.</string>
+    <string name="continue_text">Continuă</string>
+    <string name="why_are_you_flagging_this_item">De ce semnalezi acest articol?</string>
+    <string name="thank_you_for_submitting_the_flag">Îți mulțumim pentru semnalarea trimisă!</string>
+    <string name="flagging_conversation">Semnalăm conversația...</string>
+    <string name="failed_flagging_conversation">Nu am putut semnala conversația!</string>
+    <string name="no_subject">Fără Subiect</string>
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
+    <string name="rank_state_of_matter">Starea materiei</string>
+    <string name="rank_kingdom">Regn</string>
+    <string name="rank_subkingdom">Subregn</string>
+    <string name="rank_phylum">Ramură</string>
+    <string name="rank_subphylum">Subramură</string>
+    <string name="rank_superclass">Superclasă</string>
+    <string name="rank_class">Clasă</string>
+    <string name="rank_subclass">Subclasă</string>
+    <string name="rank_infraclass">Infraclasă</string>
+    <string name="rank_superorder">Superordin</string>
+    <string name="rank_order">Ordin</string>
+    <string name="rank_suborder">Subordin</string>
+    <string name="rank_infraorder">Infraordin</string>
+    <string name="rank_subterclass">Subterclasă</string>
+    <string name="rank_parvorder">Parvordin</string>
+    <string name="rank_zoosection">Zoosecţiune</string>
+    <string name="rank_zoosubsection">Zoosubsecțiune</string>
+    <string name="rank_superfamily">Superfamilie</string>
+    <string name="rank_epifamily">Epifamilie</string>
+    <string name="rank_family">Familie</string>
+    <string name="rank_subfamily">Subfamilie</string>
+    <string name="rank_supertribe">Supertrib</string>
+    <string name="rank_tribe">Trib</string>
+    <string name="rank_subtribe">Subtrib</string>
+    <string name="rank_genus">Gen</string>
+    <string name="rank_genushybrid">Genhibrid</string>
+    <string name="rank_subgenus">Subgen</string>
+    <string name="rank_section">Secțiunea</string>
+    <string name="rank_subsection">subsecțiune</string>
+    <string name="rank_complex">Complex</string>
+    <!-- Singular -->
+    <string name="rank_species">Specii</string>
+    <string name="rank_hybrid">Hibrid</string>
+    <!-- Singular -->
+    <string name="rank_subspecies">Subspecii</string>
+    <string name="rank_variety">Varietate</string>
+    <string name="rank_form">Formă</string>
+    <string name="rank_infrahybrid">Infrahibrid</string>
+    <string name="rank_leaves">Frunze</string>
+    <string name="location_lat_lng">Locație: %1$f, %2$f</string>
+    <string name="i_consent_process_personal_info"><![CDATA[Sunt de acord să permit iNaturalist să stocheze și să prelucreze informații personale limitate despre mine pentru a-mi gestiona contul. <b>Află mai multe</b>]]></string>
+    <string name="about_personal_information">Despre Informații Personale</string>
+    <string name="personal_information_notes"><![CDATA[Stocăm informații personale precum nume de utilizator și adrese de e-mail pentru a gestiona conturile de pe acest site, și pentru a respecta legile de confidențialitate, trebuie să bifați această casetă pentru a indica faptul că dați acordul acestei utilizări a informațiilor personale. Ca să aflați mai multe despre ce informații colectăm și cum le folosim, consultați vă rog <a href="https://www.inaturalist.org/privacy">Politica Intimității</a> și <a href="https://www.inaturalist.org/terms">Termenii Serviciului</a> nostru.]]></string>
+    <string name="i_agree_to_tos_and_privacy"><![CDATA[Sunt de acord cu <a href="https://www.inaturalist.org/terms">Termenii Serviciului</a> și <a href="https://www.inaturalist.org/privacy">Politica Intimității</a>, și am revizuit <a href="https://www.inaturalist.org/pages/community+guidelines">Liniile Directoare Comunitare</a>.]]></string>
+    <string name="privacy_policy">Politica Intimității</string>
+    <string name="terms_of_service">Termenii Serviciului</string>
+    <!-- Placeholder text shown in place of a username when the user has been deleted -->
+    <string name="deleted_user">Utilizator Șters</string>
+    <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short_this_year">d MMM</string>
+    <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_short">dd/MM/yy</string>
+    <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_24_hour">HH:mm</string>
+    <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="time_short_12_hour">hh:mma</string>
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long">d MMM yyyy</string>
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <string name="date_long_with_time"> d MMMM yyyy hh:mma</string>
+    <string name="show_common_names">Afișează numele comune</string>
+    <string name="show_common_names_description">Dezactivează ca să vezi numai numele științifice.</string>
+    <string name="email_must_look_like_email_address">E-mailul trebuie să arate ca o adresă de e-mail</string>
+    <string name="username_must_begin_with">Numele de utilizator trebuie să înceapă cu o literă, să nu conțină spații și să utilizeze numai litere, cifre, liniuțe de separare și subliniere</string>
+    <string name="password_too_short">Parola trebuie să aibă minimum șase caractere</string>
+    <string name="switch_to_grid_view">Comută la vizualizare grilă</string>
+    <string name="switch_to_list_view">Comută la vizualizare listă</string>
+    <string name="remove_project_filter">Elimină filtrul proiectului</string>
+    <string name="remove_observer_filter">Elimină filtrul observatorului</string>
+    <string name="filter_observations_by_an_exact_date">Filtrează observațiile după o dată exactă</string>
+    <string name="filter_observations_by_a_date_range">Filtrează observațiile după un interval de date</string>
+    <string name="filter_observations_by_months">Filtrează observațiile după luni</string>
+    <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
+    <string name="equals_sign">=</string>
+    <string name="include_suggestions_not_seen_nearby">Include sugestii care nu au fost văzute în apropiere</string>
+    <string name="only_view_nearby_suggestions">Vizualizează numai sugestiile din apropiere</string>
+    <string name="suggestions_source">Sursa sugestiilor</string>
+    <string name="research_grade_observations">Observații privind Gradul de cercetare</string>
+    <string name="visually_similar_description">iNaturalist va oferi sugestii bazate pe cât de vizual similare imaginile sunt cu cele ale speciilor observate în apropierea acestei locații în acest moment al anului.</string>
+    <string name="research_grade_observations_description">În loc de sugestii similare din punct de vedere vizual, iNaturalist va sugera specii observate într-un anumit loc și în cadrul unui anumit grup taxonomic.</string>
+    <string name="taxon">Taxon:</string>
+    <string name="place">Locație:</string>
+    <string name="pretty_sure_kingdom">Suntem destul de siguri că se află în acest regn:</string>
+    <string name="pretty_sure_subkingdom">Suntem destul de siguri că se află în acest subregn:</string>
+    <string name="pretty_sure_phylum">Suntem destul de siguri că se află în această ramură:</string>
+    <string name="pretty_sure_subphylum">Suntem destul de siguri că se află în această subramură:</string>
+    <string name="pretty_sure_superclass">Suntem destul de siguri că se află în această superclasă:</string>
+    <string name="pretty_sure_class">Suntem destul de siguri că se află în această clasă:</string>
+    <string name="pretty_sure_subclass">Suntem destul de siguri că se află în această subclasă:</string>
+    <string name="pretty_sure_infraclass">Suntem destul de siguri că se află în această infraclasă:</string>
+    <string name="pretty_sure_superorder">Suntem destul de siguri că se află în acest superordin:</string>
+    <string name="pretty_sure_order">Suntem destul de siguri că se află în acest ordin:</string>
+    <string name="pretty_sure_suborder">Suntem destul de siguri că se află în acest subordin:</string>
+    <string name="pretty_sure_infraorder">Suntem destul de siguri că se află în acest infraordin:</string>
+    <string name="pretty_sure_subterclass">Suntem destul de siguri că se află în această subterclasă:</string>
+    <string name="pretty_sure_parvorder">Suntem destul de siguri că se află în acest parvordin:</string>
+    <string name="pretty_sure_zoosection">Suntem destul de siguri că se află în această zoosectiune:</string>
+    <string name="pretty_sure_zoosubsection">Suntem destul de siguri că se află în această zoosubsecțiune:</string>
+    <string name="pretty_sure_superfamily">Suntem destul de siguri că se află în această superfamilie:</string>
+    <string name="pretty_sure_epifamily">Suntem destul de siguri că se află în această epifamilie:</string>
+    <string name="pretty_sure_family">Suntem destul de siguri că se află în această familie:</string>
+    <string name="pretty_sure_subfamily">Suntem destul de siguri că se află în această subfamilie:</string>
+    <string name="pretty_sure_supertribe">Suntem destul de siguri că se află în acest supertrib:</string>
+    <string name="pretty_sure_tribe">Suntem destul de siguri că se află în acest trib:</string>
+    <string name="pretty_sure_subtribe">Suntem destul de siguri că se află în acest subtrib:</string>
+    <string name="pretty_sure_genus">Suntem destul de siguri că se află în acest gen:</string>
+    <string name="pretty_sure_genushybrid">Suntem destul de siguri că se află în acest genhibrid:</string>
+    <string name="pretty_sure_subgenus">Suntem destul de siguri că se află în acest subgen:</string>
+    <string name="pretty_sure_section">Suntem destul de siguri că se află în această secțiune:</string>
+    <string name="pretty_sure_subsection">Suntem destul de siguri că se află în această subsecțiune:</string>
+    <string name="pretty_sure_complex">Suntem destul de siguri că se află în acest complex:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_species">Suntem destul de siguri că se află în această specie:</string>
+    <string name="pretty_sure_hybrid">Suntem destul de siguri că se află în acest hibrid:</string>
+    <!-- Singular -->
+    <string name="pretty_sure_subspecies">Suntem destul de siguri că se află în această subspecie:</string>
+    <string name="pretty_sure_variety">Suntem destul de siguri că se află în această varietate:</string>
+    <string name="pretty_sure_form">Suntem destul de siguri că se află în această formă:</string>
+    <string name="pretty_sure_infrahybrid">Suntem destul de siguri că se află în acest infrahibrid:</string>
+    <string name="remove_date_observed">Elimină data &amp; ora observației</string>
+    <string name="remove_time_observed">Elimină ora de observare</string>
+    <string name="remove_location">Elimină locația</string>
+    <string name="are_you_sure_you_want_to_remove_date">Sigur dorești să elimini data &amp; observației?</string>
+    <string name="are_you_sure_you_want_to_remove_time">Sigur dorești să elimini ora observației?</string>
+    <string name="are_you_sure_you_want_to_remove_location">Sigur dorești să elimini locația?</string>
+    <string name="share_location">Partajează locația</string>
+    <string name="share_hidden_location">Partajează locația ascunsă</string>
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
+    <string name="couldnt_duplicate_sound">Nu s-a putut duplica sunetul!</string>
+    <string name="sound_format_not_supported">Această codificare audio nu este acceptată de Android.</string>
+    <string name="view_observations">Vizualizare observații</string>
+    <string name="choose_this_option">Alege această opțiune</string>
+    <string name="compare_observation_with_this_option">Compară observația cu această opțiune</string>
+    <string name="go_back">Înapoi</string>
+    <string name="change_the_source_of_the_suggestions">Schimbă sursa sugestiilor</string>
+    <string name="thumbnail_photo_for_suggested_taxon">Fotografie în miniatură pentru taxonul sugerat</string>
+    <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
+    <string name="comments_ids_title">Comentarii și Identificări</string>
+    <!-- Accessibility text for the faves tab on the observation detail view -->
+    <string name="faves">Favorite</string>
+    <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
+    <string name="previous_option">Opțiunea anterioară</string>
+    <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <string name="next_option">Următoarea opțiune</string>
+    <string name="no_observations_yet2">Nici o observație încă.</string>
+    <string name="no_species_yet">Nici o specie încă.</string>
+    <string name="no_identifications_yet">Nu există încă identificări.</string>
+    <string name="sort_by">Sortare după</string>
+    <string-array name="explore_order_by_items">
+        <item>Dată Adăugare</item>
+        <item>Data Observării</item>
+        <item>Data Actualizării</item>
+        <!--<item>Faves</item>-->
+        <item>Aleatoriu</item>
+    </string-array>
+    <string-array name="explore_order_items">
+        <item>Descrescător</item>
+        <item>Crescător</item>
+    </string-array>
+    <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
+    See explore_order_by_items and explore_order_items keys !-->
+    <string name="sorted_by_full">Sortate după %1$s (%2$s)</string>
+    <!-- Label for an observation search filter to exclude your own observations -->
+    <string name="hide_my_observations">Ascunde observațiile mele</string>
+    <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
+    <string name="follow_this_observation">Urmează această observație</string>
+    <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
+    <string name="unfollow_this_observation">Anulează urmarea acestei observații</string>
+    <!-- Error message shown when an attempt to follow an observation fails -->
+    <string name="could_not_follow_observation">Nu am putut urma această observație</string>
+    <!-- Error message shown when an attempt to unfollow an observation fails -->
+    <string name="could_not_unfollow_observation">Nu am putut anula urmarea acestei observații</string>
+    <!-- Label for a button to copy the coordinates of an observation -->
+    <string name="copy_coordinates">Copiază coordonatele</string>
+    <string name="coordinates_copied_to_clipboard">Coordonatele s-au copiat în clipboard</string>
+    <!--  Title of a section on the observation detail view that displays minor metadata  -->
+    <string name="metadata">Metadate</string>
+    <!--  iNat observation identifier  -->
+    <string name="id">ID</string>
+    <!--  iNat observation Universally Unique Identifier  -->
+    <string name="uuid">UUID</string>
+    <!--  Universal Resource Locator  -->
+    <string name="url">URL</string>
+    <string name="default_licenses">Licențe implicite</string>
+    <string name="default_observation_license">Licență implicită de observație</string>
+    <string name="default_photo_license">Licență implicită foto</string>
+    <string name="default_sound_license">Licență implicită de sunet</string>
+    <string name="change_existing_licenses">Modifică licențele existente</string>
+    <string name="change_licenses_for_existing_observations">Modificați licențele pentru observațiile, fotografiile și sunetele existente</string>
+    <string name="change_licenses_for_all_existing_observations">Modificați licențele pentru toate observațiile existente</string>
+    <string name="change_licenses_for_all_existing_photos">Modificați licențele pentru toate fotografiile existente</string>
+    <string name="change_licenses_for_all_existing_sounds">Modificați licențele pentru toate sunetele existente</string>
+    <string name="change_observation_licenses">Modificați licențele observației</string>
+    <string name="change_photo_licenses">Modificați licențele foto</string>
+    <string name="change_sound_licenses">Modificați licențele sunetului</string>
+    <string name="change_licenses_for_observations_confirmation"><![CDATA[Modificați licențele pentru <b>%1$d</b> observații existente la <b>%2$s</b>?]]></string>
+    <string name="change_licenses_for_photos_confirmation"><![CDATA[Modificați licențele fotografiilor existente la <b>%1$s</b>?]]></string>
+    <string name="change_licenses_for_sounds_confirmation"><![CDATA[Modificați licențele sunetelor existente la <b>%1$s</b>?]]></string>
+    <string name="observation_licenses_updated">Licențe de observație actualizate</string>
+    <string name="photo_licenses_updated">Licențe de fotografie actualizate</string>
+    <string name="sound_licenses_updated">Licențe de sunet actualizate</string>
+    <string name="existing_observation_licenses_have_been_updated">Toate licențele observațiilor existente au fost modificate la %1$s.</string>
+    <string name="existing_photo_licenses_have_been_updated">Toate licențele foto existente au fost modificate la %1$s.</string>
+    <string name="existing_sound_licenses_have_been_updated">Toate licențele de sunet existente au fost modificate la %1$s.</string>
+    <string name="default_licenses_description"><![CDATA[Licențierea conținutului dvs. conferă oricui dreptul legal de a-l utiliza fără a vă cere permisiunea, dacă respectă termenii licenței. În plus, iNat include conținutul dvs. cu licență Creative Commons în arhive actualizate în mod regulat, produse pentru anumite organizații partenere interesate de datele noastre. De exemplu, includem în arhivă înregistrările Fără drept de autor (CC0), Atribuire (CC BY) și Atribuire-NonComercială (CC BY-NC) pe care le generăm pentru <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, o organizație internațională, interguvernamentală care compilează și distribuie informații despre biodiversitate din întreaga lume.]]></string>
+    <string name="photo_license">Licență foto</string>
+    <string name="sound_license">Licență de sunet</string>
+    <string name="edit_photo_license">Editare licență foto</string>
+    <string name="observation_license">Licență de observație</string>
+    <string name="edit_observation_license">Editare licență de observație</string>
+    <string name="about_licenses">Despre licențe</string>
+    <string name="view_license">Vizualizare licență</string>
+    <!-- License Names -->
+    <string name="license_name_cc0">Domeniu Public</string>
+    <string name="license_name_cc_by">Atribuire</string>
+    <string name="license_name_cc_by_nc">Atribuire-NonComercială</string>
+    <string name="license_name_cc_by_nc_sa">Atribuire-Distribuire-NonComercială în condiții identice</string>
+    <string name="license_name_cc_by_nc_nd">Atribuire-NonComercială fără derivate</string>
+    <string name="license_name_cc_by_nd">Atribuire fără derivate</string>
+    <string name="license_name_cc_by_sa">Atribuire în condiții identice</string>
+    <string name="license_name_no_license">Toate drepturile rezervate.</string>
+    <!-- License Descriptions -->
+    <string name="license_description_cc0">Această licență vă eliberează activitatea în domeniul public, astfel încât alte persoane vă pot copia, modifica, distribui și efectua munca, chiar și în scopuri comerciale, toate fără a vă cere permisiunea sau a vă oferi credit. Aceasta este cea mai acceptabilă dintre licențele oferite. Recomandată pentru diseminarea și utilizarea maximă a materialelor licențiate.</string>
+    <string name="license_description_cc_by">Această licență permite altora să distribuie, să modifice, să optimizeze și să se bazeze pe munca dvs., inclusiv comercial, atâta timp cât vă creditează pentru creația originală.</string>
+    <string name="license_description_cc_by_nc">Această licență permite altora să modifice, să optimizeze și să se bazeze pe munca dvs. non-comercial și, deși lucrările lor noi trebuie să vă crediteze și să fie non-comerciale, ei nu trebuie să licențieze lucrările lor derivate în aceiași termeni.</string>
+    <string name="license_description_cc_by_nc_sa">Această licență permite altora să modifice, să optimizeze și să se bazeze pe munca dvs. non-comercial, atâta timp cât vă creditează și licențiază lucrările lor noi în condiții identice.</string>
+    <string name="license_description_cc_by_nc_nd">Această licență este cea mai restrictivă dintre cele șase licențe principale, permițând altor persoane doar să vă descarce lucrările și să le partajeze cu alții, atâta timp cât vă creditează, dar nu le pot schimba în niciun fel și nu le pot utiliza în scop comercial.</string>
+    <string name="license_description_cc_by_nd">Această licență permite redistribuirea în scop comercial sau non-comercial, atâta timp cât lucrarea este distribuită integral și fără modificări iar creditul vă aparține.</string>
+    <string name="license_description_cc_by_sa">Această licență permite altora să remixeze, să adapteze și să creeze pe baza muncii tale, chiar și în scopuri comerciale, atâta timp cât te creditează și licențiază noile lor creații în condiții identice. Această licență este adesea comparată cu conceptul „copyleft” de licențe software gratuite și open source. Toate lucrările noi bazate pe ale dumneavoastră, vor avea aceeași licență, astfel încât orice lucrare derivată va permite de asemenea, utilizarea comercială. Aceasta este licența folosită de Wikipedia și este recomandată pentru lucrările care ar putea beneficia de încorporarea de conținut din Wikipedia și alte proiecte similare licențiate.</string>
+    <string name="license_description_no_license">Rețineți complet dreptul de autor asupra conținutului dvs., în afară de acele drepturi acordate iNaturalist în termenii noștri de utilizare.</string>
+    <string name="invalid_photo">Format foto neacceptat</string>
+    <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
+    <string name="suggestions_based_on">Sugestii bazate pe observații și identificări oferite de comunitatea iNaturalist, incluzând %1$s, %2$s, %3$s, și mulți alții.</string>
+    <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">Acțiune de observare implicită</string>
+    <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <string name="show_options">Afișare opțiuni</string>
+    <!-- Placeholder text for an observation field value -->
+    <string name="field_value">Valoarea câmpului</string>
+    <string name="expand_annotation_to_agree_or_disagree">Extinde adnotarea pentru a fi de acord sau în dezacord</string>
+    <string name="delete_attribute_value">Șterge valoarea atributului</string>
+    <string name="open_menu_for_more_options">Deschide meniul pentru mai multe opțiuni</string>
+    <string name="change_user_profile_photo">Schimbă poza de profil a utilizatorului</string>
+    <string name="expand_list">Extinde lista</string>
+    <string name="change_map_layers">Schimbă straturile hărții (teren vs. sateliți)</string>
+    <string name="redo_observation_search">Refă căutarea de observație în această zonă a hărții</string>
+    <string name="view_observations_on_map">Vezi observațiile pe hartă</string>
+    <string name="view_observations_on_grid">Vezi observațiile pe grilă</string>
+    <string name="clear_text">Șterge textul</string>
+    <string name="observation_has_sounds">Observația are sunete</string>
+    <string name="go_to_my_location">Mergi la locația mea actuală</string>
+    <string name="change_geoprivacy">Schimbă geoprotecția</string>
+    <string name="active_filters">Filtre active</string>
+    <string name="message_is_flagged">Mesajul este marcat</string>
+    <string name="user_is_muted">Utilizatorul este amuțit</string>
+    <string name="cancel_multiple_obs_selection">Anulează selecția de observații multiple</string>
+    <string name="delete_observations">Șterge observațiile</string>
+    <string name="comment_count">Număr de comentarii</string>
+    <string name="id_count">Număr de identificări</string>
+    <string name="observation_selected">Observație selectată</string>
+    <string name="share_observation">Distribuie observația</string>
+    <string name="unknown_location">Locație necunoscută</string>
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <string name="close">Inchide</string>
+    <string name="set_date2">Setează data</string>
+    <string name="project_selected">Proiect selectat</string>
+    <string name="project_unselected">Selecția proiectului a fost anulată</string>
+    <string name="show_my_observations">Arată-mi observațiile</string>
+    <string name="play_pause_sound">Redă sau întrerupe sunetul</string>
+    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
+    <string name="view_image">Vizualizare imagine</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <string name="assessment_passes">Evaluarea trece</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <string name="agree_assessment_passes">Sunt de acord cu trecerea evaluării</string>
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <string name="does_not_pass_assessment">Nu trece evaluarea</string>
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="disagree_assessment_passes">Nu sunt de acord cu trecerea evaluării</string>
+    <plurals name="delete_x_selected_observations">
+        <item quantity="one">Șterge %1$d observație selectată</item>
+        <item quantity="few">Șterge %1$d observații selectate</item>
+        <item quantity="other">Șterge %1$d de observații selectate</item>
+    </plurals>
+    <plurals name="sync_x_selected_observations">
+        <item quantity="one">Sincronizează %1$d observație selectată</item>
+        <item quantity="few">Sincronizează %1$d observații selectate</item>
+        <item quantity="other">Sincronizează %1$d de observații selectate</item>
+    </plurals>
+    <string name="add_media_evidence">Adaugă dovezi media</string>
+    <string name="remove_identification">Elimină identificarea</string>
+    <string name="issue_with_updating_photos">A apărut o problemă la actualizarea fotografiilor din această observație, care a fost recent rezolvată. Deconectează-te și conectează-te din nou pentru a rezolva această problemă</string>
+    <string name="app_version_copied_to_clipboard">Versiunea aplicației copiată în clipboard</string>
+    <string name="authentication_failed">Autentificarea a eșuat</string>
+    <string name="please_try_again_soon">Încercați din nou puțin mai târziu.</string>
+    <string name="verify_your_email">Verificați adresa dvs. de e-mail</string>
+    <string name="after_you_change_your_password">După ce vă schimbați parola, veți fi deconectat și va trebui să vă conectați din nou cu noua parolă. De asemenea, vei fi deconectat de la aplicațiile mobile iNaturalist și de la orice alte aplicații sau site-uri web care postează pe iNaturalist în numele tău, așa asigură-te că ai încărcat orice observații în așteptare înainte de a face acest lucru. Orice observații care nu sunt încărcate vor fi pierdute.</string>
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
+    <string name="couldnt_upload_file_too_large">Nu s-a putut încărca  -  fișierul este mai mare de 20 MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Ați fost deconectat. Vă rugăm reautentificați-vă.</string>
+    <string name="close_announcement">Închide anunţul</string>
+</resources>
