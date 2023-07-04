@@ -40,7 +40,7 @@ jobs:
           create_pull_request: false
           push_translations: false
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
@@ -55,7 +55,7 @@ jobs:
         id: new-files
         uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.REPO_GITHUB_TOKEN }}
           commit-message: ${{ steps.pr-title.outputs.pr_title }}
           base: main
           branch: ${{ steps.branch-name.outputs.branch_name }}
