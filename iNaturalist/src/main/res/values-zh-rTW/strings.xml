@@ -576,7 +576,7 @@
     -->
     <string name="inat_credits2"><![CDATA[iNaturalist 的存在歸功於我們社群的所有參與者。Yaron Budowski、Amanda Bullington、Tony Iwane、Johannes Klein、Patrick Leary、Scott Loarie、Abhas Misraraj、Sylvain Morin、Carrie Seltzer、 Alex Shepard、Angie Ta 及 Ken-ichi Ueda 等人幫忙開發軟體、設計界面、維護我們的基礎設施、支援社群並促進合作。<br/><br/>加州理工學院 (Caltech) 和康乃爾科技校區 (Cornell Tech) 協助開發了可以根據照片進行鑑定的電腦視覺系統。我們感謝 Grant Van Horn、Serge Belongie 和 Pietro Perona 推動電腦視覺研究。更多資訊請到 <a href="https://www.visipedia.org">visipedia.org</a>。特別感謝 NVIDIA 提供額外的協助。]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[感謝相關夥伴組織的協助下，以下國家支援在地語系化、全面整合並建構於原有 iNaturalist 網站基礎上之 iNaturalist 附屬網路。]]></string>
-    <string name="inat_credits_post"><![CDATA[iNaturalist 也深深感謝開源開發者, 他們提供了我們每天所依賴的大量軟體。有關開源貢獻, 請參閱 <a href="https://github.com/inaturalist/iNaturalistAndroid">HTTPs://github.com/inaturalist/iNaturalistAndroid</a> 。<br/> 我們感謝 crowdin.com. com 社區的志願者提供的翻譯協助, 特別是Eduardo Martínez、林政道(Lin, Cheng-Tao)、KestrelLam、cgalindo、vilseskog、NCAA、ldacosta、radana、Mykola Pukhalskyi、danieseseglie 和 katunchik。<br/>由國際自然保護聯盟(IUCN)和聯合國環境署-世界保護監測中心 (UNEP-WCMC, 2015年) 所提供 IUCN 第二類地點、世界保護區資料庫(The World Database on Protected Areas; WDPA) [On-line], [11/2014], 英國劍橋: 聯合國環境署-世界保護監測中心提供。可在: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
+    <string name="inat_credits_post"><![CDATA[iNaturalist 也深深感謝開源開發者，他們提供了我們每天所依賴的大量軟體。有關開源貢獻，請參閱 <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a>。<br/>我們非常感謝 crowdin.com 社群的志願者提供翻譯協助，特別是 Eduardo Martínez、林政道 (Lin, Cheng-Tao)、KestrelLam、cgalindo、vilseskog、NCAA、ldacosta、radana、Mykola Pukhalskyi、danieseseglie 和 katunchik。<br/>IUCN 第二類地點由國際自然保護聯盟 (IUCN) 和聯合國環境署-世界保護監測中心 (UNEP-WCMC, 2015 年) 提供，世界保護區資料庫 (WDPA) [On-line], [11/2014], 由英國劍橋：聯合國環境署-世界保護監測中心提供。參閱：<a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">貢獻者</string>
     <string name="password_changed">app 所使用的密碼不再有效 - 您是否在網站上更改了密碼？請在這裡輸入新的密碼</string>
     <string name="just_so_you_know">只是要您知道...</string>
@@ -1185,4 +1185,5 @@
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">檔案無法上傳 - 大於 20MB</string>
     <string name="you_have_been_signed_out_please_sign_in_again">您已登出。請再次登入。</string>
+    <string name="close_announcement">關閉公告</string>
 </resources>
