@@ -574,7 +574,6 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="change_password">Vaihda salasana</string>
     <string name="search_projects_youve_joined">Hae projekteja, joihin olet liittynyt...</string>
     <string name="must_be_connected_to_load_more_obs">Sinun on oltava yhteydessä Internetiin ladataksesi enemmän havaintoja</string>
-    <string name="inat_about_title">iNaturalist on Kalifornian tiedeakatemian ja National Geographic Societyn yhteinen aloite.</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -1176,7 +1175,6 @@ Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen 
     <string name="project_unselected">Projektia ei valittu</string>
     <string name="show_my_observations">Näytä havaintoni</string>
     <string name="play_pause_sound">Toista tai keskeytä ääni</string>
-    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
     <string name="view_image">Näytä kuva</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <string name="assessment_passes">Arviointi läpäisee</string>

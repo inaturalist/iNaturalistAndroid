@@ -1190,7 +1190,6 @@
     <string name="project_unselected">Проєкт не вибрано</string>
     <string name="show_my_observations">Показати мої спостереження</string>
     <string name="play_pause_sound">Відтворити або призупинити звукозапис</string>
-    <string name="california_academy_of_sciences_and_national_geographic">Каліфорнійська академія наук і Національне географічне товариство</string>
     <string name="view_image">Показати зображення</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <string name="assessment_passes">Пройшло оцінку</string>

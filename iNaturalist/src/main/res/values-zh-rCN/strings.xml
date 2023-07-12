@@ -1160,7 +1160,6 @@
     <string name="project_unselected">未选择的项目</string>
     <string name="show_my_observations">显示我的观察记录</string>
     <string name="play_pause_sound">播放或暂停声音</string>
-    <string name="california_academy_of_sciences_and_national_geographic">加州科学院和国家地理学院</string>
     <string name="view_image">查看照片</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <string name="assessment_passes">通过评估</string>

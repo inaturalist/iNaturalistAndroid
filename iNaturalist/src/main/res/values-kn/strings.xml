@@ -1166,7 +1166,6 @@
     <string name="project_unselected">ಪ್ರಾಯೋಜನೆಯನ್ನು ಆಯ್ಕೆಯಿಂದ ತೆಗೆಯಲಾಗಿದೆ</string>
     <string name="show_my_observations">ನನ್ನ ವೀಕ್ಷಣೆಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ</string>
     <string name="play_pause_sound">ಧ್ವನಿಯನ್ನು ಚಾಲಿಸಿ ಅಥವಾ ವಿರಾಮಗೊಳಿಸಿ</string>
-    <string name="california_academy_of_sciences_and_national_geographic">ಕ್ಯಾಲಿಫೋರ್ನಿಯಾ ಅಕಾಡೆಮಿ ಆಫ್ ಸೈನ್ಸಸ್ ಮತ್ತು ನ್ಯಾಷನಲ್ ಜಿಯೋಗ್ರಾಫಿಕ್</string>
     <string name="view_image">ಚಿತ್ರವನ್ನು ವೀಕ್ಷಿಸಿ</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <string name="assessment_passes">ಮೌಲ್ಯಮಾಪನದಲ್ಲಿ ಉತ್ತೀರ್ಣವಾಗಿದೆ</string>

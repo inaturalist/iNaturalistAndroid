@@ -577,7 +577,6 @@
     <string name="change_password">Zmena hesla</string>
     <string name="search_projects_youve_joined">Prehľadajte projekty, na ktorých participujete...</string>
     <string name="must_be_connected_to_load_more_obs">Musíte byť pripojený na internet aby ste načítali viac pozorovaní</string>
-    <string name="inat_about_title">iNaturalist je spoločná iniciatíva California Academy of Sciences a National Geographic Society.</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -1177,7 +1176,6 @@ www.protectedplanet.net</a>]]></string>
     <string name="project_unselected">Výber projektu zrušený</string>
     <string name="show_my_observations">Zobraz moje pozorovania</string>
     <string name="play_pause_sound">Spustiť alebo pozastaviť zvuk</string>
-    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences and National Geographic</string>
     <string name="view_image">Zobraziť obrázok</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <string name="assessment_passes">Spĺňa hodnotenie kvality</string>

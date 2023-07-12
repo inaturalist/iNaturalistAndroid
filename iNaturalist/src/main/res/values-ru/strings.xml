@@ -1177,7 +1177,6 @@
     <string name="project_unselected">Отменён выбор проекта</string>
     <string name="show_my_observations">Показать мои наблюдения</string>
     <string name="play_pause_sound">Воспроизведение или приостановка звука</string>
-    <string name="california_academy_of_sciences_and_national_geographic">Калифорнийская академия наук и National Geographic</string>
     <string name="view_image">Просмотр изображения</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <string name="assessment_passes">Прошло оценку</string>

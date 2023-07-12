@@ -577,7 +577,6 @@
     <string name="change_password">שינוי סיסמה</string>
     <string name="search_projects_youve_joined">חפש.י פרויקטים שהצטרפת אליהם...</string>
     <string name="must_be_connected_to_load_more_obs">נדרש חיבור לאינטרנט כדי להעלות תצפיות נוספות</string>
-    <string name="inat_about_title">iNaturalist הוא מיזם משותף של האקדמיה למדעים של קליפורניה ונשיונל ג\'יאוגרפיק.</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -1176,7 +1175,6 @@
     <string name="project_unselected">בוטלה בחירת הפרויקט</string>
     <string name="show_my_observations">הצגת התצפיות שלי</string>
     <string name="play_pause_sound">הפעלת/הפסקת קול</string>
-    <string name="california_academy_of_sciences_and_national_geographic">האקדמיה למדעים של קליפורניה ונשיונל ג\'יאוגרפיק</string>
     <string name="view_image">צפייה בתמונה</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <string name="assessment_passes">עובר הערכה</string>

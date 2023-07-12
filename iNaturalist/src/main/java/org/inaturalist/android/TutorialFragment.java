@@ -31,7 +31,6 @@ public class TutorialFragment extends Fragment {
             String description = args.getString("description");
 
             ImageView imageView = (ImageView) v.findViewById(R.id.tutorial_image);
-            ImageView secondaryImageView = (ImageView) v.findViewById(R.id.secondary_tutorial_image);
             TextView titleView = (TextView) v.findViewById(R.id.tutorial_title);
             TextView descriptionView = (TextView) v.findViewById(R.id.tutorial_description);
 
@@ -44,10 +43,6 @@ public class TutorialFragment extends Fragment {
             }
 
             descriptionView.setText(Html.fromHtml(description));
-
-            if (secondaryImageResId > -1) {
-                secondaryImageView.setImageResource(secondaryImageResId);
-            }
         } else {
             // Final tutorial page ("Let's get started")
             TextView skip = (TextView) v.findViewById(R.id.skip);

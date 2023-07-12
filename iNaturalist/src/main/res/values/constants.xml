@@ -33,13 +33,6 @@
 		<item>slide_learn</item>
 		<item>slide_contribute</item>
 	</string-array>
-	<string-array name="secondary_tutorial_images">
-		<item>slide_branding</item>
-		<item/>
-		<item/>
-		<item/>
-		<item/>
-	</string-array>
 	<string-array name="tutorial_layouts">
 		<item>tutorial_page_first</item>
 		<item>tutorial_page</item>

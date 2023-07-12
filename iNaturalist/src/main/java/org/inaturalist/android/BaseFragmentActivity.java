@@ -239,6 +239,11 @@ public class BaseFragmentActivity extends AppCompatActivity {
         Long lastRefreshTime = prefs.getLong("last_user_details_refresh_time", 0);
         Long lastNotificationCountsTime = prefs.getLong("last_user_notifications_refresh_time", 0);
 
+        if (findViewById(R.id.side_menu_username) == null) {
+            // Side menu UI not loaded yet
+            return;
+        }
+
         if (username != null) {
             ((TextView)findViewById(R.id.side_menu_username)).setText(username);
             findViewById(R.id.menu_login).setVisibility(View.INVISIBLE);

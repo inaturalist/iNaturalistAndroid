@@ -577,7 +577,6 @@
     <string name="change_password">Pakeisti slaptažodį</string>
     <string name="search_projects_youve_joined">Ieškoti projektų, prie kurių prisijungėte...</string>
     <string name="must_be_connected_to_load_more_obs">Prisijunkite prie interneto, jei norite užkrauti daugiau stebėjimų</string>
-    <string name="inat_about_title">iNaturalist yra bendra California Academy of Sciences ir National Geographic Society iniciatyva.</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -1177,7 +1176,6 @@ Daugiau informacijos apie „nepriimtiną“ kalbą rasite DUK skiltyje.</string
     <string name="project_unselected">Projekto parinkimas pašalintas</string>
     <string name="show_my_observations">Rodyti mano stebėjimus</string>
     <string name="play_pause_sound">Leisti arba stabdyti garsą</string>
-    <string name="california_academy_of_sciences_and_national_geographic">Kalifornijos mokslų akademija ir „National Geographic“</string>
     <string name="view_image">Žiūrėti vaizdą</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <string name="assessment_passes">Įvertinimų patvirtinamai</string>

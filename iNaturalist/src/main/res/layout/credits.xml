@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/inat_about_title"
+        android:text="@string/inat_about_title_new"
         android:textSize="16sp"
         android:textColor="#000000"
         android:textAlignment="center"
@@ -24,19 +24,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:src="@drawable/cas_logo"
-            android:contentDescription="@string/california_academy_of_sciences"
+            android:src="@drawable/slide_logo"
+            android:contentDescription="@string/app_title"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_marginEnd="24dp"
             android:layout_height="100dp" />
-        <ImageView
-            android:src="@drawable/nat_geo_logo"
-            android:contentDescription="@string/national_geographic"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="100dp" />
-
     </LinearLayout>
 
     <View
