@@ -15,7 +15,7 @@
     <string name="signing_in">Inloggen...</string>
     <string name="signed_in">Ingelogd!</string>
     <string name="please_sign_in">Meld u aan</string>
-    <string name="please_sign_in_description">Meld u aan met u iNaturalist account of maak een nieuwe aan.</string>
+    <string name="please_sign_in_description">Meld je aan met je iNaturalist-account of maak een nieuw account aan.</string>
     <string name="please_enable_location_services">Schakel je GPS in zodat we je huidige locatie kunnen vinden...</string>
     <string name="go_to_settings">Ga naar Instellingen</string>
     <string name="photo_not_specified">Foto is niet specifiek</string>
@@ -141,7 +141,7 @@
         <item>Verborgen</item>
         <item>Afgeschermd</item>
     </string-array>
-    <string name="alert_sign_out">Weet u zeker dat u wilt uitloggen? Hiermee wist u al uw waarnemingen op dit apparaat. Het heeft geen invloed op alle waarnemingen die u naar Naturalist hebt geüploadt.</string>
+    <string name="alert_sign_out">Weet je zeker dat je wilt uitloggen? Hiermee wis je al jouw waarnemingen op dit apparaat. Het heeft geen invloed op alle waarnemingen die je naar Naturalist hebt geüploadt.</string>
     <string name="alert_unsupported_media_type">Sorry, er was een probleem bij het laden van de foto uit deze bron</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
     <string name="explore">Verkennen</string>
@@ -344,7 +344,7 @@
     <string name="withdraw">Intrekken</string>
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Werk de beschrijving van de determinatie bij</string>
-    <string name="your_identification">Uw identificatie: %1$s</string>
+    <string name="your_identification">Jouw determinatie: %1$s</string>
     <string name="onboarding_species_name">Noteer wat je hebt gezien als je kunt, ook als dat alleen \"insect\" of \"vogel\" is, of laat dit gewoon leeg. Anderen kunnen je helpen met determineren!</string>
     <string name="upload_complete">Upload voltooid!</string>
     <string name="onboarding_upload_description">Kom snel terug voor determinaties en reacties op je waarneming(en).</string>
@@ -569,6 +569,7 @@
     <string name="change_password">Wachtwoord Wijzigen</string>
     <string name="search_projects_youve_joined">Zoek projecten waar je aan deelneemt...</string>
     <string name="must_be_connected_to_load_more_obs">U moet verbinding hebben met Internet om meer waarnemingen te kunnen laden</string>
+    <string name="inat_about_title_new">iNaturalist is een onafhankelijke 501(c)(3) non-profit organisatie gevestigd in de Verenigde Staten (EIN 92-1296468)</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -1196,5 +1197,6 @@ zonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van d
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Kon bestand niet uploaden - groter dan 20MB</string>
     <string name="you_have_been_signed_out_please_sign_in_again">Je bent uitgelogd. Log opnieuw in.</string>
+    <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Aankondiging sluiten</string>
 </resources>
