@@ -177,13 +177,17 @@ public class ExploreActivity extends BaseFragmentActivity {
     protected void onStart() {
         super.onStart();
 
-
+        setupMapMyLocation();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        Logger.tag(TAG).debug("onStop");
 
+        if (mObservationsMap != null) {
+            mObservationsMap.setLocationSource(null);
+        }
     }
 
 
@@ -1361,6 +1365,8 @@ public class ExploreActivity extends BaseFragmentActivity {
                     @SuppressLint("MissingPermission")
                     @Override
                     public void onMapReady(GoogleMap googleMap) {
+                        Logger.tag(TAG).debug("onMapReady");
+
                         mObservationsMap = googleMap;
                         mObservationsMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                             @Override
@@ -1381,13 +1387,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                             }
                         });
 
-                        if (mApp.isLocationPermissionGranted()) {
-                            mObservationsMap.setMyLocationEnabled(true);
-                            mCustomLocationProvider = new CustomLocationProvider(ExploreActivity.this);
-                            mObservationsMap.setLocationSource(mCustomLocationProvider);
-                        } else {
-                            mObservationsMap.setMyLocationEnabled(false);
-                        }
+                        setupMapMyLocation();
 
                         mObservationsMap.getUiSettings().setMyLocationButtonEnabled(false);
                         mObservationsMap.getUiSettings().setMapToolbarEnabled(false);
@@ -1755,5 +1755,19 @@ public class ExploreActivity extends BaseFragmentActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         mApp.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @SuppressLint("MissingPermission")
+    private void setupMapMyLocation() {
+        Logger.tag(TAG).debug("setupMapMyLocation - " + mObservationsMap);
+        if (mApp != null && mObservationsMap != null) {
+            if (mApp.isLocationPermissionGranted()) {
+                mObservationsMap.setMyLocationEnabled(true);
+                mCustomLocationProvider = new CustomLocationProvider(ExploreActivity.this);
+                mObservationsMap.setLocationSource(mCustomLocationProvider);
+            } else {
+                mObservationsMap.setMyLocationEnabled(false);
+            }
+        }
     }
 }
