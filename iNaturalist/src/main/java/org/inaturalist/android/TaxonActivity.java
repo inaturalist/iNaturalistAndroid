@@ -13,7 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import com.google.android.material.tabs.TabLayout;
-import androidx.core.content.ContextCompat;
+
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.viewpager.widget.PagerAdapter;
@@ -76,7 +76,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -801,7 +800,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
                 String inatNetwork = mApp.getInaturalistNetworkMember();
                 String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
-                String taxonUrl = String.format(Locale.ENGLISH, "%s/taxa/%d?locale=%s", inatHost, mTaxon.getInt("id"), mApp.getLanguageCodeForAPI());
+                String taxonUrl = String.format(Locale.ENGLISH, "%s/taxa/%d?locale=%s", inatHost, mTaxon.getInt("id"), mApp.getPrefLocale());
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(taxonUrl));
                 startActivity(i);
@@ -911,7 +910,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
                 String inatNetwork = mApp.getInaturalistNetworkMember();
                 String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
-                String taxonUrl = String.format(Locale.ENGLISH, "%s/taxon_changes?taxon_id=%d&locale=%s", inatHost, mTaxon.getInt("id"), mApp.getLanguageCodeForAPI());
+                String taxonUrl = String.format(Locale.ENGLISH, "%s/taxon_changes?taxon_id=%d&locale=%s", inatHost, mTaxon.getInt("id"), mApp.getPrefLocale());
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(taxonUrl));
                 startActivity(i);

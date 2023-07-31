@@ -7,7 +7,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Locale;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,7 +18,6 @@ import com.evernote.android.state.State;
 import com.livefront.bridge.Bridge;
 import com.squareup.picasso.Picasso;
 
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -118,7 +116,7 @@ public class TaxonSearchActivity extends AppCompatActivity {
             sb.append(URLEncoder.encode(input, "utf8"));
 
             sb.append("&locale=");
-            sb.append(mApp.getLanguageCodeForAPI());
+            sb.append(mApp.getPrefLocale());
 
             URL url = new URL(sb.toString());
             conn = (HttpURLConnection) url.openConnection();

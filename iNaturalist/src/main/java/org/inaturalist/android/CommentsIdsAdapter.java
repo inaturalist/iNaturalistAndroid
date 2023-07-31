@@ -7,10 +7,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.time.FastDateFormat;
-import org.joda.time.DateTime;
 import org.joda.time.Duration;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,7 +16,6 @@ import org.json.JSONObject;
 import org.tinylog.Logger;
 
 import com.cocosw.bottomsheet.BottomSheet;
-import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -29,36 +26,25 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.net.Uri;
-import android.opengl.Visibility;
 import android.os.Build;
 import android.os.Handler;
 import android.text.Html;
 import android.text.format.DateFormat;
-import android.text.method.LinkMovementMethod;
-import android.text.util.Linkify;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.TouchDelegate;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
 
 public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implements OnClickListener {
     private static String TAG = "CommentsIdsAdapter";
@@ -508,7 +494,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 						String inatNetwork = app.getInaturalistNetworkMember();
 						String inatHost = app.getStringResourceByName("inat_host_" + inatNetwork);
 
-						String taxonUrl = String.format(Locale.ENGLISH, "%s/taxon_changes?taxon_id=%d&locale=%s", inatHost, item.getInt("taxon_id"), mApp.getLanguageCodeForAPI());
+						String taxonUrl = String.format(Locale.ENGLISH, "%s/taxon_changes?taxon_id=%d&locale=%s", inatHost, item.getInt("taxon_id"), mApp.getPrefLocale());
 						Intent i = new Intent(Intent.ACTION_VIEW);
 						i.setData(Uri.parse(taxonUrl));
 						mContext.startActivity(i);

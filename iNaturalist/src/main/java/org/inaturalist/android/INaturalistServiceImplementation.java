@@ -29,7 +29,6 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -38,9 +37,6 @@ import android.util.Pair;
 import android.widget.Toast;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.work.Data;
-import androidx.work.OneTimeWorkRequest;
-import androidx.work.WorkManager;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -2225,7 +2221,7 @@ public class INaturalistServiceImplementation {
         do {
             Logger.tag(TAG).debug("redownloadOldObservationsForTaxonNames: " + currentObsId);
             String url = API_HOST + "/observations?user_id=" + Uri.encode(mLogin) + "&per_page=100&id_below=" + currentObsId;
-            url += "&locale=" + mApp.getLanguageCodeForAPI();
+            url += "&locale=" + mApp.getPrefLocale();
 
             JSONArray json = get(url, true);
             Logger.tag(TAG).debug("redownloadOldObservationsForTaxonNames - downloaded");
@@ -2301,7 +2297,7 @@ public class INaturalistServiceImplementation {
             // Re-download this observation
 
             String url = API_HOST + "/observations?user_id=" + Uri.encode(mLogin) + "extra=observation_photos,projects,fields";
-            url += "&locale=" + mApp.getLanguageCodeForAPI();
+            url += "&locale=" + mApp.getPrefLocale();
             JSONArray json = get(url, true);
             if (json != null && json.length() > 0) {
                 syncJson(json, true);
@@ -2420,7 +2416,7 @@ public class INaturalistServiceImplementation {
     }
 
     private BetterJSONObject getTaxonNew(int id) throws AuthenticationException {
-        String url = API_HOST + "/taxa/" + id + "?locale=" + mApp.getLanguageCodeForAPI();
+        String url = API_HOST + "/taxa/" + id + "?locale=" + mApp.getPrefLocale();
 
         JSONArray json = get(url);
         if (json == null || json.length() == 0) {
@@ -2633,7 +2629,7 @@ public class INaturalistServiceImplementation {
     }
 
     private BetterJSONObject getAllAttributes() throws AuthenticationException {
-        String url = API_HOST + "/controlled_terms?locale=" + mApp.getLanguageCodeForAPI();
+        String url = API_HOST + "/controlled_terms?locale=" + mApp.getPrefLocale();
 
         JSONArray json = get(url);
         if (json == null || json.length() == 0) { return null; }
@@ -2659,10 +2655,10 @@ public class INaturalistServiceImplementation {
                 ancestry += String.format(Locale.ENGLISH, "%d,", currentTaxonId);
             }
             ancestry += String.format(Locale.ENGLISH, "%d", taxonId);
-            url = API_HOST + "/controlled_terms/for_taxon?taxon_id=" + ancestry + "&ttl=-1&locale=" + mApp.getLanguageCodeForAPI();
+            url = API_HOST + "/controlled_terms/for_taxon?taxon_id=" + ancestry + "&ttl=-1&locale=" + mApp.getPrefLocale();
 
         } else {
-            url = API_HOST + "/controlled_terms?ttl=-1&locale=" + mApp.getLanguageCodeForAPI();
+            url = API_HOST + "/controlled_terms?ttl=-1&locale=" + mApp.getPrefLocale();
         }
 
         JSONArray json = get(url);
@@ -2680,7 +2676,7 @@ public class INaturalistServiceImplementation {
     }
 
     private BetterJSONObject getTaxon(int id) throws AuthenticationException {
-        String url = String.format(Locale.ENGLISH, "%s/taxa/%d?locale=%s", API_HOST, id, mApp.getLanguageCodeForAPI());
+        String url = String.format(Locale.ENGLISH, "%s/taxa/%d?locale=%s", API_HOST, id, mApp.getPrefLocale());
 
         JSONArray json = get(url);
         if (json == null || json.length() == 0) {
@@ -3509,7 +3505,7 @@ public class INaturalistServiceImplementation {
             // Update observation
             Logger.tag(TAG).debug("postObservation: Updating existing " + observation.id + ":" + observation._id);
 
-            JSONArray response = request(API_HOST + "/observations/" + observation.id + "?locale=" + mApp.getLanguageCodeForAPI(), "put", null, observationToJsonObject(observation, false), true, true, false);
+            JSONArray response = request(API_HOST + "/observations/" + observation.id + "?locale=" + mApp.getPrefLocale(), "put", null, observationToJsonObject(observation, false), true, true, false);
 
             if (response == null) {
                 Logger.tag(TAG).debug("postObservation: Error for " + observation.id + ":" + observation._id + ":" + mLastStatusCode);
@@ -3552,7 +3548,7 @@ public class INaturalistServiceImplementation {
 
         boolean success = handleObservationResponse(
                 observation,
-                request(API_HOST + "/observations?locale=" + mApp.getLanguageCodeForAPI(), "post", null, observationParams, true, true, false)
+                request(API_HOST + "/observations?locale=" + mApp.getPrefLocale(), "post", null, observationParams, true, true, false)
         );
 
         if (!success) {
@@ -3563,7 +3559,7 @@ public class INaturalistServiceImplementation {
     }
 
     private JSONObject getObservationJson(int id, boolean authenticated, boolean includeNewProjects) throws AuthenticationException {
-        String url = String.format(Locale.ENGLISH, "%s/observations/%d?locale=%s&%s", API_HOST, id, mApp.getLanguageCodeForAPI(), includeNewProjects ? "include_new_projects=true" : "");
+        String url = String.format(Locale.ENGLISH, "%s/observations/%d?locale=%s&%s", API_HOST, id, mApp.getPrefLocale(), includeNewProjects ? "include_new_projects=true" : "");
 
         JSONArray json = get(url, authenticated);
         if (json == null || json.length() == 0) {
@@ -4153,7 +4149,7 @@ public class INaturalistServiceImplementation {
     }
 
     private String getGuideXML(Integer guideId) throws AuthenticationException {
-        String url = HOST + "/guides/" + guideId.toString() + ".xml?locale=" + mApp.getLanguageCodeForAPI();
+        String url = HOST + "/guides/" + guideId.toString() + ".xml?locale=" + mApp.getPrefLocale();
 
         try {
             OkHttpClient client = new OkHttpClient().newBuilder()
@@ -4265,7 +4261,7 @@ public class INaturalistServiceImplementation {
             sb.append("&extra=observation_photos,projects,fields");
 
             sb.append("&locale=");
-            sb.append(mApp.getLanguageCodeForAPI());
+            sb.append(mApp.getPrefLocale());
 
             url = sb.toString();
         } catch (UnsupportedEncodingException e) {
@@ -4282,7 +4278,7 @@ public class INaturalistServiceImplementation {
     }
 
     private BetterJSONObject searchAutoComplete(String type, String query, int page) throws AuthenticationException {
-        String url = API_HOST + "/" + type + "/autocomplete?geo=true&locale=" + mApp.getLanguageCodeForAPI() + "&per_page=50&page=" + page + "&q=" + Uri.encode(query);
+        String url = API_HOST + "/" + type + "/autocomplete?geo=true&locale=" + mApp.getPrefLocale() + "&per_page=50&page=" + page + "&q=" + Uri.encode(query);
         JSONArray json = get(url, false);
         if (json == null) return null;
         if (json.length() == 0) return null;
@@ -4309,7 +4305,7 @@ public class INaturalistServiceImplementation {
     }
 
     private SerializableJSONArray getUserUpdates(boolean following) throws AuthenticationException {
-        String url = API_HOST + "/observations/updates?locale=" + mApp.getLanguageCodeForAPI() + "&per_page=200&observations_by=" +
+        String url = API_HOST + "/observations/updates?locale=" + mApp.getPrefLocale() + "&per_page=200&observations_by=" +
                 (following ? "following" : "owner");
         JSONArray json = request(url, "get", null, null, true, true, false); // Use JWT Token authentication
         if (json == null) return null;
@@ -4392,7 +4388,7 @@ public class INaturalistServiceImplementation {
             url = String.format(Locale.ENGLISH, "%s/observations%s?locale=%s&page=%d&per_page=%d&ordered_by=%s&return_bounds=true&%s",
                     API_HOST,
                     command == null ? "" : "/" + command,
-                    mApp.getLanguageCodeForAPI(),
+                    mApp.getPrefLocale(),
                     pageNumber,
                     pageSize,
                     orderBy == null ? "" : orderBy,
@@ -4401,7 +4397,7 @@ public class INaturalistServiceImplementation {
             url = String.format(Locale.ENGLISH, "%s/observations/%s?locale=%s&page=%d&per_page=%d&%s",
                     API_HOST,
                     command,
-                    mApp.getLanguageCodeForAPI(),
+                    mApp.getPrefLocale(),
                     pageNumber,
                     pageSize,
                     filters.toUrlQueryString());
@@ -4427,7 +4423,7 @@ public class INaturalistServiceImplementation {
 
 
     private BetterJSONObject getUserSpeciesCount(String username) throws AuthenticationException {
-        String url = API_HOST + "/observations/species_counts?place_id=any&verifiable=any&user_id=" + username + "&locale=" + mApp.getLanguageCodeForAPI();
+        String url = API_HOST + "/observations/species_counts?place_id=any&verifiable=any&user_id=" + username + "&locale=" + mApp.getPrefLocale();
         JSONArray json = get(url, false);
         if (json == null) return null;
         if (json.length() == 0) return null;
@@ -4479,7 +4475,7 @@ public class INaturalistServiceImplementation {
 
 
     private BetterJSONObject getProjectObservations(int projectId) throws AuthenticationException {
-        String url = API_HOST + "/observations?project_id=" + projectId + "&per_page=50&locale=" + mApp.getLanguageCodeForAPI();
+        String url = API_HOST + "/observations?project_id=" + projectId + "&per_page=50&locale=" + mApp.getPrefLocale();
         JSONArray json = get(url);
         if (json == null) return new BetterJSONObject();
         try {
@@ -4512,7 +4508,7 @@ public class INaturalistServiceImplementation {
     }
 
     private BetterJSONObject getMissions(Location location, String username, Integer taxonId, float expandLocationByDegress) {
-        String url = API_HOST + "/observations/species_counts?locale=" + mApp.getLanguageCodeForAPI() +
+        String url = API_HOST + "/observations/species_counts?locale=" + mApp.getPrefLocale() +
                 "&verifiable=true&hrank=species&oauth_application_id=2,3";
 
         if (expandLocationByDegress == 0) {
@@ -4559,7 +4555,7 @@ public class INaturalistServiceImplementation {
     }
 
     private BetterJSONObject getProjectSpecies(int projectId) throws AuthenticationException {
-        String url = API_HOST + "/observations/species_counts?project_id=" + projectId + "&locale=" + mApp.getLanguageCodeForAPI();
+        String url = API_HOST + "/observations/species_counts?project_id=" + projectId + "&locale=" + mApp.getPrefLocale();
         JSONArray json = get(url);
         try {
             if (json == null) return new BetterJSONObject();
@@ -5156,7 +5152,7 @@ public class INaturalistServiceImplementation {
 
 
         String url = API_HOST + "/observations?user_id=" + Uri.encode(mLogin) + "&per_page=" + maxCount + "&id_below=" + lastId;
-        url += "&locale=" + mApp.getLanguageCodeForAPI();
+        url += "&locale=" + mApp.getPrefLocale();
 
         mProjectObservations = new ArrayList<SerializableJSONArray>();
         mProjectFieldValues = new Hashtable<Integer, Hashtable<Integer, ProjectFieldValue>>();
@@ -5295,7 +5291,7 @@ public class INaturalistServiceImplementation {
             url += String.format(Locale.ENGLISH, "&per_page=%d&page=1", maxCount);
         }
 
-        url += "&locale=" + mApp.getLanguageCodeForAPI();
+        url += "&locale=" + mApp.getPrefLocale();
 
         mProjectObservations = new ArrayList<SerializableJSONArray>();
         mProjectFieldValues = new Hashtable<Integer, Hashtable<Integer, ProjectFieldValue>>();
@@ -5718,7 +5714,7 @@ public class INaturalistServiceImplementation {
             url += "&project_id=" + extras.getInt("project_id");
         }
 
-        url += "&locale=" + mApp.getLanguageCodeForAPI();
+        url += "&locale=" + mApp.getPrefLocale();
 
         Logger.tag(TAG).debug("Near by observations URL: " + url);
 
@@ -6199,7 +6195,7 @@ public class INaturalistServiceImplementation {
             requestBodyBuilder.add("scope", "login write account_delete");
         }
 
-        requestBodyBuilder.add("locale", app.getLanguageCodeForAPI());
+        requestBodyBuilder.add("locale", app.getPrefLocale());
 
         RequestBody requestBody = requestBodyBuilder.build();
 

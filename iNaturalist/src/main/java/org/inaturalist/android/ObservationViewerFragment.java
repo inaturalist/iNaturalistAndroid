@@ -23,7 +23,6 @@ import android.os.Handler;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
@@ -2148,7 +2147,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                 String inatNetwork = mApp.getInaturalistNetworkMember();
                 String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
-                String taxonUrl = String.format(Locale.ENGLISH, "%s/taxon_changes?taxon_id=%d&locale=%s", inatHost, mTaxon.optInt("id"), mApp.getLanguageCodeForAPI());
+                String taxonUrl = String.format(Locale.ENGLISH, "%s/taxon_changes?taxon_id=%d&locale=%s", inatHost, mTaxon.optInt("id"), mApp.getPrefLocale());
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(taxonUrl));
                 startActivity(i);
@@ -2204,7 +2203,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
 
     private JSONObject downloadTaxon(int taxonId) {
-        final String idUrl = INaturalistService.API_HOST + "/taxa/" + taxonId + "?locale=" + mApp.getLanguageCodeForAPI();
+        final String idUrl = INaturalistService.API_HOST + "/taxa/" + taxonId + "?locale=" + mApp.getPrefLocale();
 
         JSONObject results = downloadJson(idUrl);
 

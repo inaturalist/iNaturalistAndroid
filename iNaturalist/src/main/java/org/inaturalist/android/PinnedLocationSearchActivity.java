@@ -1,8 +1,6 @@
 package org.inaturalist.android;
 
-import android.app.NotificationManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -11,32 +9,21 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Filter;
-import android.widget.Filterable;
-import android.widget.HeaderViewListAdapter;
-import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.evernote.android.state.State;
 import com.livefront.bridge.Bridge;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,7 +38,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class PinnedLocationSearchActivity extends AppCompatActivity {
     private static final String TAG = "PinnedLocationSearchActivity";
@@ -100,7 +86,7 @@ public class PinnedLocationSearchActivity extends AppCompatActivity {
             sb.append(URLEncoder.encode(input, "utf8"));
 
             sb.append("&locale=");
-            sb.append(mApp.getLanguageCodeForAPI());
+            sb.append(mApp.getPrefLocale());
 
             URL url = new URL(sb.toString());
             conn = (HttpURLConnection) url.openConnection();

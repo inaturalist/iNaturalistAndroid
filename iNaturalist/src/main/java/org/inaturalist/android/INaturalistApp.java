@@ -35,15 +35,12 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TimeZone;
 import java.util.UUID;
 
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.collections4.Transformer;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,7 +49,6 @@ import org.inaturalist.android.INaturalistServiceImplementation.LoginType;
 
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
@@ -65,14 +61,12 @@ import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.database.Cursor;
 import android.graphics.Typeface;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Debug;
 import android.os.Handler;
 import android.os.LocaleList;
 import androidx.annotation.NonNull;
@@ -81,11 +75,9 @@ import androidx.core.text.TextUtilsCompat;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 import androidx.core.content.res.ResourcesCompat;
 
-import android.os.StrictMode;
 import android.os.Trace;
 import android.telephony.TelephonyManager;
 import android.text.format.DateFormat;
@@ -350,7 +342,7 @@ public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInit
     }
 
     /** Returns language code string, to be used in API calls (locale param) */
-    public String getLanguageCodeForAPI() {
+    public String getDeviceLocale() {
         // This returns language code + region (e.g. es-mx or zh-tw)
         Locale deviceLocale = getResources().getConfiguration().locale;
         return deviceLocale.toLanguageTag().toLowerCase();
@@ -1026,7 +1018,7 @@ public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInit
         if (language.length() > 0) return language;
 
         // If not -> return OS language
-        return getLanguageCodeForAPI();
+        return getDeviceLocale();
     }
     public void applyLocaleSettings() {
         applyLocaleSettings(getBaseContext());
