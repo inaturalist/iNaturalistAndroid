@@ -569,7 +569,7 @@
     <string name="change_password">Passwort ändern</string>
     <string name="search_projects_youve_joined">Suche Projekte, denen du beigetreten bist...</string>
     <string name="must_be_connected_to_load_more_obs">Du musst mit dem Internet verbunden sein, um weitere Beobachtungen zu laden</string>
-    <string name="inat_about_title">iNaturalist ist eine gemeinsame Initiative der California Academy of Sciences und der National Geographic Society.</string>
+    <string name="inat_about_title_new">iNaturalist ist eine unabhängige gemeinnützige Organisation [501(c)(3)] mit Sitz in den Vereinigten Staaten (EIN 92-1296468)</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -1169,7 +1169,6 @@ Facility</a> (GBIF) generieren: eine internationale, zwischenstaatliche Organisa
     <string name="project_unselected">Projektauswahl aufheben</string>
     <string name="show_my_observations">Meine Beobachtungen anzeigen</string>
     <string name="play_pause_sound">Audioaufnahme wiedergeben oder stoppen</string>
-    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences und National Geographic</string>
     <string name="view_image">Foto anzeigen</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <string name="assessment_passes">Bewertungskriterien erreicht</string>
@@ -1198,5 +1197,6 @@ Facility</a> (GBIF) generieren: eine internationale, zwischenstaatliche Organisa
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Dateien größer als 20 MB können nicht hochgeladen werden</string>
     <string name="you_have_been_signed_out_please_sign_in_again">Du wurdest abgemeldet. Bitte erneut anmelden.</string>
+    <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Ankündigung schließen</string>
 </resources>
