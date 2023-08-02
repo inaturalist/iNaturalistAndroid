@@ -569,7 +569,7 @@
     <string name="change_password">Skift adgangskode</string>
     <string name="search_projects_youve_joined">Søg i projekter du deltager i...</string>
     <string name="must_be_connected_to_load_more_obs">Du skal have Internetforbindelse for at indlæse flere observationer</string>
-    <string name="inat_about_title">iNaturalist er et fælles initiativ fra California Academy of Sciences og National Geographic Society.</string>
+    <string name="inat_about_title_new">iNaturalist er en uafhængig 501(c)(3) nonprofitorganisation baseret i USA (EIN 92-1296468)</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -1168,7 +1168,6 @@ og <a href="https://www.inaturalist.org/terms">Tjenestevilkår</a>.]]></string>
     <string name="project_unselected">Projekt fravalgt</string>
     <string name="show_my_observations">Find mine observationer</string>
     <string name="play_pause_sound">Afspil eller sæt lyd på pause</string>
-    <string name="california_academy_of_sciences_and_national_geographic">California Academy of Sciences og National Geographic</string>
     <string name="view_image">Vis billede</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <string name="assessment_passes">Bestået bedømmelser</string>
@@ -1197,5 +1196,6 @@ og <a href="https://www.inaturalist.org/terms">Tjenestevilkår</a>.]]></string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Kunne ikke uploade fil — overstiger 20MB</string>
     <string name="you_have_been_signed_out_please_sign_in_again">Du er blevet logget ud. Log ind igen. </string>
+    <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Luk meddelelse</string>
 </resources>

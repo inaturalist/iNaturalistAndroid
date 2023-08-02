@@ -565,6 +565,7 @@
     <string name="change_password">更改密碼</string>
     <string name="search_projects_youve_joined">搜尋您已加入的專案...</string>
     <string name="must_be_connected_to_load_more_obs">您必須連接到網路才能載入更多的觀察記錄</string>
+    <string name="inat_about_title_new">iNaturalist 是一家位於美國的獨立 501(c)(3) 非營利組織 (EIN 92-1296468)</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -1183,5 +1184,6 @@
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">檔案無法上傳 - 大於 20MB</string>
     <string name="you_have_been_signed_out_please_sign_in_again">您已登出。請再次登入。</string>
+    <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">關閉公告</string>
 </resources>
