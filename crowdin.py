@@ -72,6 +72,7 @@ ANDROID_LOCALES_TO_COPY = {
     "da-rDK": ["da"],
     "de-rDE": ["de"],
     "el-rGR": ["el"],
+    "eo-rUY": ["eo"],
     "es-rES": ["es"],
     "et-rEE": ["et"],
     "eu-rES": ["eu"],
