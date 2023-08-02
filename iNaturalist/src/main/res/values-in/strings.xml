@@ -565,6 +565,7 @@
     <string name="change_password">Ubah Kata Sandi</string>
     <string name="search_projects_youve_joined">Cari proyek yang Anda sudah tergabung di dalamnya...</string>
     <string name="must_be_connected_to_load_more_obs">Anda harus terhubung ke Internet untuk memuat lebih banyak pengamatan</string>
+    <string name="inat_about_title_new">iNaturalist adalah perusahaan nirlaba 501(c)(3) independen yang berbasis di Amerika Serikat (EIN 92-1296468)</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -1184,5 +1185,6 @@ rin, Carrie Seltzer, Alex Shepard, Angie Ta, dan Ken-ichi Ueda.<br/><br/> CalTec
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Tidak bisa mengunggah berkas - lebih besar dari 20MB</string>
     <string name="you_have_been_signed_out_please_sign_in_again">Anda telah keluar dari layanan. Silakan masuk kembali.</string>
+    <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Tutup Pengumuman</string>
 </resources>
