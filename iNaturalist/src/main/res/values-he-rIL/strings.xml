@@ -177,7 +177,7 @@
     <string name="alert_message_use_inaturalistgt">iNaturalist גואטמלה היא חברה ברשת iNaturalist בגואטמלה. שותפים מקומיים של iNaturalist גואטמלה יקבלו גישה לכתובת דוא\"ל שלך וגם קואורדינטות האמיתיות של תצפיות שהן מוסתרות מהציבור או פרטיות. נא לא לשנות את שיוך החשבון שלך בצורה ניסיונית אם יש לך מעל 1000 תצפיות. האם ברצונך לשנות את השיוך שלך?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist שוודיה היא חברה ברשת iNaturalist בשוודיה. שותפים מקומיים של iNaturalist שוודיה יקבלו גישה לכתובת דוא\"ל שלך וגם קואורדינטות האמיתיות של תצפיות שהן מוסתרות מהציבור או פרטיות. נא לא לשנות את שיוך החשבון שלך בצורה ניסיונית אם יש לך מעל 1000 תצפיות. האם ברצונך לשנות את השיוך שלך?</string>
     <string name="alert_message_use_naturalistauy">iNaturalist אורוגוואי היא חברה ברשת iNaturalist באורוגוואי. שותפים מקומיים של iNaturalist אורוגוואי יקבלו גישה לכתובת דוא\"ל שלך וגם קואורדינטות האמיתיות של תצפיות שהן מוסתרות מהציבור או פרטיות. נא לא לשנות את שיוך החשבון שלך בצורה ניסיונית אם יש לך מעל 1000 תצפיות. האם ברצונך לשנות את השיוך שלך?</string>
-    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan is a member of the iNaturalist Network in Taiwan. Local institutions supporting iNaturalist Taiwan will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist טאיוון היא הנציגה הטאיוונית ברשת העולמית של iNaturalist . שותפים מקומיים של iNaturalist טאיוון יקבלו את פרטי הדוא\"ל שלך וגישה למיקום המדויק של תצפיות מוסתרות ופרטיות. נא לא לשנות את השייכות של חשבון המשתמש שלך אם העלית כבר יותר מ-100 תצפיות. האם ברצונך לשייך את החשבון שלך ל-iNaturalist טאיוון?</string>
     <string name="editor">עורכ.ת</string>
     <string name="license">רשיון</string>
     <string name="download_for_offline_use">הורדה לשימוש לא מקוון</string>
@@ -577,6 +577,7 @@
     <string name="change_password">שינוי סיסמה</string>
     <string name="search_projects_youve_joined">חפש.י פרויקטים שהצטרפת אליהם...</string>
     <string name="must_be_connected_to_load_more_obs">נדרש חיבור לאינטרנט כדי להעלות תצפיות נוספות</string>
+    <string name="inat_about_title_new">iNaturalist היא ארגון ללא מטרות רווח עצמאי מסוג 501(c)(3) המבוסס בארה\"ב (EIN 92-1296468)</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -1206,5 +1207,7 @@
     <string name="after_you_change_your_password">לאחר שינוי הסיסמה שלך, תנותק.י ויהיה עליך להתחבר חדש באמצעות סיסמתך החדשה. כמו כן, תנותק.י מהאפליקציות הניידות של iNaturalist ומכל אפליקציה או אתר אחרים המעלים ל-iNaturalist בשמך, לכן יש לוודא שהעלית את כל התצפיות הממתינות שלך לפני כן. תצפיות שלא הועלו לא  יישמרו.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">לא ניתן להעלות קבצים הגדולים מ-20MB</string>
-    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">נותקת מהחשבון. נא להתחבר מחדש.</string>
+    <!-- Accessibility label for a button that closes an announcement -->
+    <string name="close_announcement">סגירת הודעה</string>
 </resources>

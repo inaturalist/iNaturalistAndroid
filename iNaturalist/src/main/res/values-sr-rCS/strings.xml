@@ -573,6 +573,7 @@
     <string name="change_password">Promeni lozinku</string>
     <string name="search_projects_youve_joined">Pretraži projekte čiji si član...</string>
     <string name="must_be_connected_to_load_more_obs">You must be connected to the Internet to load more observations</string>
+    <string name="inat_about_title_new">iNaturalist is an independent 501(c)(3) nonprofit based in the United States (EIN 92-1296468)</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -1199,4 +1200,6 @@
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
     <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
+    <!-- Accessibility label for a button that closes an announcement -->
+    <string name="close_announcement">Close Announcement</string>
 </resources>

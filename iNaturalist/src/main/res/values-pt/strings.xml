@@ -171,11 +171,11 @@
     <string name="alert_message_use_inaturalistgr">iNaturalist Grécia é membro da Rede iNaturalist na Grécia. As instituições locais que apoiam o iNaturalist Grécia terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
     <string name="alert_message_use_inaturalistlu">iNaturalist Luxemburgo é membro da Rede iNaturalist no Luxemburgo. As instituições locais que apoiam o iNaturalist Luxemburgo terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
     <string name="alert_message_use_inaturalistuk">iNaturalist Reino Unido é membro da Rede iNaturalist no Reino Unido. As instituições locais que apoiam o iNaturalist Reino Unido terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
-    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is a member of the iNaturalist Network in Costa Rica. Local institutions supporting Naturalista Costa Rica will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan is a member of the iNaturalist Network in Taiwan. Local institutions supporting iNaturalist Taiwan will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcr">O Naturalista Costa Rica é membro da Rede iNaturalist na Costa Rica. Instituições locais que apoiam o Naturalista Costa Rica terão acesso ao seu endereço de e-mail e acesso às suas verdadeiras coordenadas de observações que estão publicamente ocultas ou privadas. Por favor, não altere a sua afiliação como teste se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
+    <string name="alert_message_use_inaturalistgt">O iNaturalist Guatemala é membro da Rede iNaturalist na Guatemala. Instituições locais que apoiam o iNaturalista Guatemala terão acesso ao seu endereço de e-mail e acesso às suas verdadeiras coordenadas de observações que estão publicamente ocultas ou privadas. Por favor, não altere a sua afiliação como teste se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
+    <string name="alert_message_use_inaturalistse">O iNaturalist Suécia é membro da Rede iNaturalist na Suécia. Instituições locais que apoiam o iNaturalista Suécia terão acesso ao seu endereço de e-mail e acesso às suas verdadeiras coordenadas de observações que estão publicamente ocultas ou privadas. Por favor, não altere a sua afiliação como teste se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
+    <string name="alert_message_use_naturalistauy">O iNaturalist Uruguai é membro da Rede iNaturalist no Uruguai. Instituições locais que apoiam o iNaturalista Uruguai terão acesso ao seu endereço de e-mail e acesso às suas verdadeiras coordenadas de observações que estão publicamente ocultas ou privadas. Por favor, não altere a sua afiliação como teste se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
+    <string name="alert_message_use_inaturalisttw">O iNaturalist Taiwan é membro da Rede iNaturalist em Taiwan. Instituições locais que apoiam o iNaturalista Taiwan terão acesso ao seu endereço de e-mail e acesso às suas verdadeiras coordenadas de observações que estão publicamente ocultas ou privadas. Por favor, não altere a sua afiliação como teste se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
     <string name="editor">Editor</string>
     <string name="license">Licença</string>
     <string name="download_for_offline_use">Descarregar para usar offline</string>
@@ -291,7 +291,7 @@
     <string name="finding_current_location">A procurar a localização atual...</string>
     <string name="flag_as_captive">Sinalizar como de Cativeiro/Cultivado</string>
     <string name="observation_flagged_as_captive">A observação foi sinalizada como de cativeiro/cultivado</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Tem a certeza de que deseja marcar esta observação como cativa/cultivada?</string>
     <string name="do_you_agree_to_the_following">Está de acordo com o seguinte?</string>
     <string name="terms">Termos</string>
     <string name="observation_rules">Regras de Observação</string>
@@ -319,11 +319,11 @@
     <string name="there_was_a_problem_updating_profile">Houve um problema ao atualizar o seu perfil!</string>
     <string name="there_was_a_problem_updating_profile_params">Houve um problema ao atualizar o seu perfil: %1$s</string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
-    <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
+    <string name="currently_logged_in_as_html"><![CDATA[Actualmente ligado como <b>%1$s</b>]]></string>
     <string name="log_out">Sair</string>
     <string name="not_logged_in">Sem sessão iniciada</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
-    <string name="login_or_sign_up">Log In or Sign Up</string>
+    <string name="login_or_sign_up">Inicie sessão ou Registe-se</string>
     <string name="auto_upload_description">Carrega automaticamente novas observações e edita as observações existentes</string>
     <string name="language">Idioma</string>
     <string name="version">Versão</string>
@@ -569,6 +569,7 @@
     <string name="change_password">Alterar Palavra-passe</string>
     <string name="search_projects_youve_joined">Procurar projetos a que aderiu...</string>
     <string name="must_be_connected_to_load_more_obs">Precisa de uma ligação Internet para carregar mais observações</string>
+    <string name="inat_about_title_new">iNaturalist is an independent 501(c)(3) nonprofit based in the United States (EIN 92-1296468)</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -1193,4 +1194,6 @@ nossa comunidade de código aberto]]></string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
     <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
+    <!-- Accessibility label for a button that closes an announcement -->
+    <string name="close_announcement">Close Announcement</string>
 </resources>

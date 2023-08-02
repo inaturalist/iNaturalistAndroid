@@ -565,7 +565,7 @@
     <string name="change_password">更改密码</string>
     <string name="search_projects_youve_joined">搜索您所加入的项目...</string>
     <string name="must_be_connected_to_load_more_obs">您必须连接到网络才能加载更多观察记录</string>
-    <string name="inat_about_title">iNaturalist 是由美国加利福尼亚科学院以及美国国家地理共同发起的平台。</string>
+    <string name="inat_about_title_new">iNaturalist is an independent 501(c)(3) nonprofit based in the United States (EIN 92-1296468)</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -1186,4 +1186,6 @@
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
     <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
+    <!-- Accessibility label for a button that closes an announcement -->
+    <string name="close_announcement">Close Announcement</string>
 </resources>
