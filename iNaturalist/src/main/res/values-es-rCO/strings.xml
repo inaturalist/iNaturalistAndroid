@@ -569,6 +569,7 @@
     <string name="change_password">Cambiar contraseña</string>
     <string name="search_projects_youve_joined">Buscar los proyectos a los que se ha unido...</string>
     <string name="must_be_connected_to_load_more_obs">Debes estar conectado al internet para cargar más observaciones</string>
+    <string name="inat_about_title_new">iNaturalist es una organización independiente sin ánimo de lucro 501(c)(3) con sede en los Estados Unidos (EIN 92-1296468)</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -1195,4 +1196,6 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">No se pudo cargar el archivo - más de 20MB</string>
     <string name="you_have_been_signed_out_please_sign_in_again">Has sido desconectado. Por favor, vuelve a iniciar sesión.</string>
+    <!-- Accessibility label for a button that closes an announcement -->
+    <string name="close_announcement">Cerrar anuncio</string>
 </resources>
