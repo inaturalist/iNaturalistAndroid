@@ -812,10 +812,13 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
 
         mMetadataObservationURL.setOnClickListener(v -> {
+            if (getActivity() == null) return;
+
             String inatNetwork = mApp.getInaturalistNetworkMember();
             String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
             String obsUrl = inatHost + "/observations/" + mObservation.id;
 
+            mHelper = new ActivityHelper(getActivity());
             mHelper.openUrlInBrowser(obsUrl);
         });
 
