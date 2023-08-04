@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="email_address">Адрес эл.почты</string>
+    <string name="email_address">Адрес электронной почты</string>
     <string name="delete_observation">Удаление наблюдения</string>
     <string name="observation_deleted">Наблюдение удалено</string>
     <string name="species_guess_hint">Название вида...</string>
@@ -578,7 +578,7 @@
     <string name="change_password">Смена пароля</string>
     <string name="search_projects_youve_joined">Поиск проектов вы присоединились...</string>
     <string name="must_be_connected_to_load_more_obs">Для загрузки дополнительных наблюдений необходимо подключение к Интернету</string>
-    <string name="inat_about_title">iNaturalist - совместная инициатива Калифорнийской академии наук и Национального географического общества.</string>
+    <string name="inat_about_title_new">iNaturalist - независимая некоммерческая организация, базирующаяся в Соединенных Штатах Америки (EIN 92-1296468)</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -1177,7 +1177,6 @@
     <string name="project_unselected">Отменён выбор проекта</string>
     <string name="show_my_observations">Показать мои наблюдения</string>
     <string name="play_pause_sound">Воспроизведение или приостановка звука</string>
-    <string name="california_academy_of_sciences_and_national_geographic">Калифорнийская академия наук и National Geographic</string>
     <string name="view_image">Просмотр изображения</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <string name="assessment_passes">Прошло оценку</string>
@@ -1210,5 +1209,6 @@
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Невозможно загрузить файл, он больше 20Мб</string>
     <string name="you_have_been_signed_out_please_sign_in_again">Вы вышли из системы. Пожалуйста, войдите заново.</string>
+    <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Объявление о закрытии</string>
 </resources>
