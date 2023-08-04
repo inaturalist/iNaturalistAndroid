@@ -703,7 +703,7 @@ public class ActivityHelper {
         ArrayList<String> packageNames = new ArrayList<>(Arrays.asList(BROWSER_PACKAGE_NAMES));
 
         // Find out package name of default browser
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://"));
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"));
         ResolveInfo resolveInfo = mContext.getPackageManager().resolveActivity(browserIntent, PackageManager.MATCH_DEFAULT_ONLY);
 
         if (resolveInfo != null) {
