@@ -1015,7 +1015,7 @@ public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInit
         // Return user's locale preference, if exists
         SharedPreferences settings = getPrefs();
         String language = settings.getString("pref_locale", "");
-        if (language.length() > 0) return language;
+        if (language.length() > 0) return language.replace("-r", "-");
 
         // If not -> return OS language
         return getDeviceLocale();
