@@ -2353,15 +2353,13 @@ public class INaturalistServiceImplementation {
     }
 
     private BetterJSONObject getTaxonSuggestions(String photoFilename, Double latitude, Double longitude, Timestamp observedOn, String suggestionSource, Integer placeId, Integer taxonId, Double placeLat, Double placeLng, Integer limit, Integer page) throws AuthenticationException {
-        Locale deviceLocale = mContext.getResources().getConfiguration().locale;
-        String deviceLanguage = deviceLocale.getLanguage();
         String date = observedOn != null ? new SimpleDateFormat("yyyy-MM-dd").format(observedOn) : null;
         ArrayList<Pair<String, String>> params = new ArrayList<>();
         String url = String.format(Locale.ENGLISH, API_HOST + "/taxa/suggest");
 
         if (limit != null) params.add(new Pair("limit", limit.toString()));
         if (page != null) params.add(new Pair("page", page.toString()));
-        params.add(new Pair("locale", deviceLanguage));
+        params.add(new Pair("locale", mApp.getPrefLocale()));
         if (date != null) params.add(new Pair("observed_on", date));
         boolean isOnline = false;
         if (suggestionSource.equals(SUGGESTION_SOURCE_VISUAL)) {
