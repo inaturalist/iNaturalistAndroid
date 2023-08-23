@@ -603,12 +603,12 @@ public class ImageUtils {
 
         try {
             metadata = Sanselan.getMetadata(stream, null);
-        } catch (Exception exc) {
+        } catch (Throwable exc) {
             // Couldn't read EXIF metadata
             Logger.tag(TAG).error(exc);
             return null;
         }
-        if (!(metadata instanceof  JpegImageMetadata)) {
+        if (!(metadata instanceof JpegImageMetadata)) {
             // Not a JPEG -> No EXIF data
             return null;
         }
