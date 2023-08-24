@@ -330,6 +330,9 @@ public class ObservationPhotosViewer extends AppCompatActivity {
             case R.id.set_as_first:
                 Intent data = new Intent();
                 data.putExtra(SET_DEFAULT_PHOTO_INDEX, mViewPager.getCurrentItem());
+                if (mReplacedPhotos.size() > 0) {
+                    data.putExtra(REPLACED_PHOTOS, replacedPhotosToString());
+                }
                 setResult(RESULT_OK, data);
                 finish();
                 return true;
