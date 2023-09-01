@@ -114,10 +114,6 @@
     <string name="pull_to_refresh">Deslizar para atualizar...</string>
     <string name="release_to_refresh">Soltar para atualizar...</string>
     <string name="refreshing">A atualizar...</string>
-    <plurals name="sync_x_observations">
-        <item quantity="one">Sync %1$d observation</item>
-        <item quantity="other">Sync %1$d observations</item>
-    </plurals>
     <string name="sync_observations">Sincronizar Observações</string>
     <string name="lets_get_started">Vamos começar!</string>
     <string name="view_nearby_observations">Ver as Observações nas Proximidades</string>
@@ -171,11 +167,11 @@
     <string name="alert_message_use_inaturalistgr">iNaturalist Grécia é membro da Rede iNaturalist na Grécia. As instituições locais que apoiam o iNaturalist Grécia terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
     <string name="alert_message_use_inaturalistlu">iNaturalist Luxemburgo é membro da Rede iNaturalist no Luxemburgo. As instituições locais que apoiam o iNaturalist Luxemburgo terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
     <string name="alert_message_use_inaturalistuk">iNaturalist Reino Unido é membro da Rede iNaturalist no Reino Unido. As instituições locais que apoiam o iNaturalist Reino Unido terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
-    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is a member of the iNaturalist Network in Costa Rica. Local institutions supporting Naturalista Costa Rica will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan is a member of the iNaturalist Network in Taiwan. Local institutions supporting iNaturalist Taiwan will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcr">O Naturalista Costa Rica é membro da Rede iNaturalist na Costa Rica. Instituições locais que apoiam o Naturalista Costa Rica terão acesso ao seu endereço de e-mail e acesso às suas verdadeiras coordenadas de observações que estão publicamente ocultas ou privadas. Por favor, não altere a sua afiliação como teste se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
+    <string name="alert_message_use_inaturalistgt">O iNaturalist Guatemala é membro da Rede iNaturalist na Guatemala. Instituições locais que apoiam o iNaturalista Guatemala terão acesso ao seu endereço de e-mail e acesso às suas verdadeiras coordenadas de observações que estão publicamente ocultas ou privadas. Por favor, não altere a sua afiliação como teste se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
+    <string name="alert_message_use_inaturalistse">O iNaturalist Suécia é membro da Rede iNaturalist na Suécia. Instituições locais que apoiam o iNaturalista Suécia terão acesso ao seu endereço de e-mail e acesso às suas verdadeiras coordenadas de observações que estão publicamente ocultas ou privadas. Por favor, não altere a sua afiliação como teste se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
+    <string name="alert_message_use_naturalistauy">O iNaturalist Uruguai é membro da Rede iNaturalist no Uruguai. Instituições locais que apoiam o iNaturalista Uruguai terão acesso ao seu endereço de e-mail e acesso às suas verdadeiras coordenadas de observações que estão publicamente ocultas ou privadas. Por favor, não altere a sua afiliação como teste se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
+    <string name="alert_message_use_inaturalisttw">O iNaturalist Taiwan é membro da Rede iNaturalist em Taiwan. Instituições locais que apoiam o iNaturalista Taiwan terão acesso ao seu endereço de e-mail e acesso às suas verdadeiras coordenadas de observações que estão publicamente ocultas ou privadas. Por favor, não altere a sua afiliação como teste se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
     <string name="editor">Editor</string>
     <string name="license">Licença</string>
     <string name="download_for_offline_use">Descarregar para usar offline</string>
@@ -256,10 +252,6 @@
     <string name="casual_grade_add_photo"><![CDATA[ Adicionar uma <b>foto</b> para avançar esta observação para o estatuto de "Precisa de Identificação". ]]></string>
     <string name="casual_grade_captive"><![CDATA[ Observação é de grau casual porque é <b>de cativeiro/cultivada</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ A observação necessita de <b>mais identificações</b> da comunidade para ficar com o estatuto de "Grau de Pesquisa". ]]></string>
-    <plurals name="included_in_projects">
-        <item quantity="one">Included in %1$d project</item>
-        <item quantity="other">Included in %1$d projects</item>
-    </plurals>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivacidade é uma configuração que pode definir para as suas observações que controla a forma como as coordenadas (latitude e longitude) são apresentadas. As opções são:<br/><b>pública</b> - Todos podem ver as coordenadas a não ser que o táxon esteja ameaçado. <br/><b>oculta</b> - As coordenadas públicas são apresentadas por um ponto aleatório numa área de 0,2 por 0,2 graus que contém as verdadeiras coordenadas, o que resulta numa área de incerteza de 22x22 km quadrados no equador, que diminui à medida que se aproxima dos pólos. As verdadeiras coordenadas só são visíveis para si e para os curadores dos projetos a que adiciona a observação. <br/><b>privada</b> - As coordenadas ficam completamente escondidas nos mapas públicos, as coordenadas verdadeiras só são visíveis para si e para os curadores dos projetos a que adiciona a observação. <br/><br/>Note que os curadores dos projetos individuais podem sempre ver as coordenadas apesar da sua configuração de geoprivacidade, por isso se está preocupado com quem tem acesso às coordenadas deve ter a certeza que pode confiar nos curadores dos projetos em que participa. ]]></string>
     <string name="id_title">Identificação de %1$s • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
@@ -291,7 +283,7 @@
     <string name="finding_current_location">A procurar a localização atual...</string>
     <string name="flag_as_captive">Sinalizar como de Cativeiro/Cultivado</string>
     <string name="observation_flagged_as_captive">A observação foi sinalizada como de cativeiro/cultivado</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Tem a certeza de que deseja marcar esta observação como cativa/cultivada?</string>
     <string name="do_you_agree_to_the_following">Está de acordo com o seguinte?</string>
     <string name="terms">Termos</string>
     <string name="observation_rules">Regras de Observação</string>
@@ -319,11 +311,11 @@
     <string name="there_was_a_problem_updating_profile">Houve um problema ao atualizar o seu perfil!</string>
     <string name="there_was_a_problem_updating_profile_params">Houve um problema ao atualizar o seu perfil: %1$s</string>
     <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
-    <string name="currently_logged_in_as_html"><![CDATA[Currently logged in as <b>%1$s</b>]]></string>
+    <string name="currently_logged_in_as_html"><![CDATA[Actualmente ligado como <b>%1$s</b>]]></string>
     <string name="log_out">Sair</string>
     <string name="not_logged_in">Sem sessão iniciada</string>
     <!-- Prompt to log in to your account or sign up for a new account -->
-    <string name="login_or_sign_up">Log In or Sign Up</string>
+    <string name="login_or_sign_up">Inicie sessão ou Registe-se</string>
     <string name="auto_upload_description">Carrega automaticamente novas observações e edita as observações existentes</string>
     <string name="language">Idioma</string>
     <string name="version">Versão</string>
@@ -395,15 +387,7 @@
         the side drawer next to the Activity menu item when you have new activity on your own
         content.
     -->
-    <plurals name="new_activities">
-        <item quantity="one">%1s new</item>
-        <item quantity="other">%1s new</item>
-    </plurals>
     <string name="no_results_found">Nenhum Resultado Encontrado...</string>
-    <plurals name="syncing_x_out_of_y_observations">
-        <item quantity="one">Syncing %1$d of %2$d observation...</item>
-        <item quantity="other">Syncing %1$d of %2$d observations...</item>
-    </plurals>
     <string name="deleting_observations">A Excluir Observações...</string>
     <string name="preparing">A preparar...</string>
     <string name="add_edit_remark">Adicionar/Editar Comentários</string>
@@ -577,7 +561,6 @@
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
-    <string name="inat_credits2"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Johannes Klein, Patrick Leary, Scott Loarie, Abhas Misraraj, Sylvain Morin, Carrie Seltzer, Alex Shepard, Angie Ta, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="https://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[A rede internacional iNaturalist suporta projetos e websites localizados, totalmente integrados, baseados em iNaturalist nos seguintes países, graças ao apoio de organizações parceiras associadas.]]></string>
     <string name="inat_credits_post"><![CDATA[O iNaturalist também está muito grato aos técnicos que desenvolveram o código aberto em fornecer o software em que confiamos todos os dias. Veja <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> para as contribuições de código aberto.<br/> Estamos gratos pela assistência na tradução efetuada por voluntários na comunidade crowdin.com, especialmente a Eduardo Martinez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie e katunchik. <br/>Os locais da categoria II da IUCN são fornecidos pelo IUCN e UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, Reino Unido: UNEP-WCMC. Disponível em: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>
 
@@ -664,7 +647,6 @@ nossa comunidade de código aberto]]></string>
     <!-- Evidence of Presence value when for bird feathers -->
     <string name="annotation_value_feather">Pena</string>
     <!-- Evidence of Presence value when for fecal remains -->
-    <string name="annotation_value_scat">Scat</string>
     <!-- Evidence of Presence value for impressions in the ground or snow -->
     <string name="annotation_value_track">Pegada</string>
     <!-- Evidence of Presence value when for bones -->
@@ -682,10 +664,6 @@ nossa comunidade de código aberto]]></string>
     <string name="all_guides_all_caps">TODOS</string>
     <string name="description_all_caps">DESCRIÇÃO</string>
     <string name="quantity_all_caps">QUANTIDADE</string>
-    <plurals name="observation_count_all_caps">
-        <item quantity="one">%1$s OBSERVATION</item>
-        <item quantity="other">%1$s OBSERVATIONS</item>
-    </plurals>
     <string name="agree_all_caps">CONCORDO</string>
     <string name="observations_all_caps">OBSERVAÇÕES</string>
     <string name="species_all_caps">ESPÉCIES</string>
@@ -732,11 +710,6 @@ nossa comunidade de código aberto]]></string>
     <string name="network_credit_inaturalistgr"><![CDATA[Grécia: iSea apoiando o iNaturalist Grécia (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistlu"><![CDATA[Luxemburgo, Museu Nacional de História Natural do Luxemburgo (MnhnL) que apoia o iNaturalist Luxemburgo (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
     <string name="network_credit_inaturalistuk"><![CDATA[Reino Unido: National Biodiversity Network Trust apoiando o iNaturalist UK (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
-    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
-    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi University and Taiwan Forestry Research Institute supporting iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">Marcar tudo como visto</string>
     <string name="content_hidden">Conteúdo Oculto</string>
     <string name="show_hidden_content">Mostrar Conteúdo Oculto</string>
@@ -862,7 +835,6 @@ nossa comunidade de código aberto]]></string>
     <string name="send_a_message">Enviar uma mensagem</string>
     <string name="sending_message">A enviar mensagem...</string>
     <string name="could_not_send_message">Não foi possível enviar mensagem: %1$s</string>
-    <string name="subject">Subject</string>
     <string name="body">Corpo</string>
     <string name="type_your_message_here">Escreva aqui a sua mensagem</string>
     <string name="new_message_to">Nova mensagem para %1$s</string>
@@ -914,18 +886,10 @@ nossa comunidade de código aberto]]></string>
     <string name="rank_zoosection">Zoosecção</string>
     <string name="rank_zoosubsection">Zoosubsecção</string>
     <string name="rank_superfamily">Superfamília</string>
-    <string name="rank_epifamily">Epifamily</string>
     <string name="rank_family">Família</string>
     <string name="rank_subfamily">Subfamília</string>
-    <string name="rank_supertribe">Supertribe</string>
-    <string name="rank_tribe">Tribe</string>
-    <string name="rank_subtribe">Subtribe</string>
     <string name="rank_genus">Género</string>
-    <string name="rank_genushybrid">Genushybrid</string>
     <string name="rank_subgenus">Subgénero</string>
-    <string name="rank_section">Section</string>
-    <string name="rank_subsection">subsection</string>
-    <string name="rank_complex">Complex</string>
     <!-- Singular -->
     <string name="rank_species">Espécie</string>
     <string name="rank_hybrid">Híbrido</string>
@@ -933,17 +897,7 @@ nossa comunidade de código aberto]]></string>
     <string name="rank_subspecies">Subespécie</string>
     <string name="rank_variety">Variedade</string>
     <string name="rank_form">Forma</string>
-    <string name="rank_infrahybrid">Infrahybrid</string>
-    <string name="rank_leaves">Leaves</string>
-    <string name="location_lat_lng">Location: %1$f, %2$f</string>
-    <string name="i_consent_process_personal_info"><![CDATA[I consent to allow iNaturalist to store and process limited kinds of personal information about me in order to manage my account. <b>Learn More</b>]]></string>
-    <string name="about_personal_information">About Personal Information</string>
-    <string name="personal_information_notes"><![CDATA[We store personal information like usernames and email addresses in order to manage accounts on this site, and to comply with privacy laws, we need you to check this box to indicate that you consent to this use of personal information. To learn more about what information we collect and how we use it, please see our <a href="https://www.inaturalist.org/privacy">Privacy Policy</a> and our <a href="https://www.inaturalist.org/terms">Terms of Service</a>.]]></string>
-    <string name="i_agree_to_tos_and_privacy"><![CDATA[I agree to the <a href="https://www.inaturalist.org/terms">Terms of Service</a> and <a href="https://www.inaturalist.org/privacy">Privacy Policy</a>, and I have reviewed the <a href="https://www.inaturalist.org/pages/community+guidelines">Community Guidelines</a>.]]></string>
-    <string name="privacy_policy">Privacy Policy</string>
-    <string name="terms_of_service">Terms of Service</string>
     <!-- Placeholder text shown in place of a username when the user has been deleted -->
-    <string name="deleted_user">Deleted User</string>
     <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_short_this_year">d MMM</string>
     <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
@@ -955,19 +909,6 @@ nossa comunidade de código aberto]]></string>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="date_long">d MMM yyyy</string>
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
-    <string name="show_common_names">Show common names</string>
-    <string name="show_common_names_description">Disable if you only want to view scientific names.</string>
-    <string name="email_must_look_like_email_address">Email must look like an email address</string>
-    <string name="username_must_begin_with">Username must begin with a letter, contain no spaces, and use only letters, numbers, dashes, and underscores</string>
-    <string name="password_too_short">Password must be at least six characters long</string>
-    <string name="switch_to_grid_view">Switch to grid view</string>
-    <string name="switch_to_list_view">Switch to list view</string>
-    <string name="remove_project_filter">Remove project filter</string>
-    <string name="remove_observer_filter">Remove observer filter</string>
-    <string name="filter_observations_by_an_exact_date">Filter observations by an exact date</string>
-    <string name="filter_observations_by_a_date_range">Filter observations by a date range</string>
-    <string name="filter_observations_by_months">Filter observations by months</string>
     <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
     <string name="equals_sign">=</string>
     <string name="include_suggestions_not_seen_nearby">Incluir sugestões não vistas nas proximidades</string>
@@ -1015,12 +956,6 @@ nossa comunidade de código aberto]]></string>
     <string name="pretty_sure_variety">Temos quase a certeza que pertence a esta variedade:</string>
     <string name="pretty_sure_form">Temos quase a certeza que pertence a esta forma:</string>
     <string name="pretty_sure_infrahybrid">Temos quase a certeza que pertence a este infrahíbrido:</string>
-    <string name="remove_date_observed">Remove date &amp; time observed</string>
-    <string name="remove_time_observed">Remove time observed</string>
-    <string name="remove_location">Remove location</string>
-    <string name="are_you_sure_you_want_to_remove_date">Are you sure you want to remove the date &amp; time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_time">Are you sure you want to remove the time observed?</string>
-    <string name="are_you_sure_you_want_to_remove_location">Are you sure you want to remove the location?</string>
     <string name="share_location">Partilhar localização</string>
     <string name="share_hidden_location">Partilhar localização oculta</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
@@ -1083,7 +1018,6 @@ nossa comunidade de código aberto]]></string>
     <string name="default_observation_license">Licença padrão para observações</string>
     <string name="default_photo_license">Licença padrão para fotografias</string>
     <string name="default_sound_license">Licença padrão para sons</string>
-    <string name="change_existing_licenses">Change Existing Licenses</string>
     <string name="change_licenses_for_existing_observations">Alterar licenças para observações, fotos e sons existentes</string>
     <string name="change_licenses_for_all_existing_observations">Alterar licenças para todas as observações existentes</string>
     <string name="change_licenses_for_all_existing_photos">Alterar licenças para todas as fotos existentes</string>
@@ -1102,7 +1036,6 @@ nossa comunidade de código aberto]]></string>
     <string name="existing_sound_licenses_have_been_updated">Todas as licenças de som existentes foram alteradas para %1$s.</string>
     <string name="default_licenses_description"><![CDATA[Licenciar o seu conteúdo dá a qualquer pessoa o direito legal de usá-lo sem pedir a sua permissão se cumprir os termos da licença. Além disso, iNat inclui o seu conteúdo com licença Creative Commons em arquivos atualizados regularmente, produzidos para organizações parceiras selecionadas, interessadas nos nossos dados. Por exemplo, incluímos No Copyright (CC0), Attribution (CC BY), e registros Attribution-NonCommercial (CC BY-NC) no arquivo que geramos para <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>,  uma organização internacional intergovernamental que compila e distribui informação sobre biodiversidade em todo o mundo.]]></string>
     <string name="photo_license">Licença da Foto</string>
-    <string name="sound_license">Sound License</string>
     <string name="edit_photo_license">Editar Licença Foto</string>
     <string name="observation_license">Licença de Observação</string>
     <string name="edit_observation_license">Editar Licença de Observação</string>
@@ -1124,73 +1057,17 @@ nossa comunidade de código aberto]]></string>
     <string name="license_description_cc_by_nc_sa">Esta licença permite a outros remexer, alterar e trabalhar a partir da sua obra para fins não comerciais, desde que lhe dêem crédito e licenciem as novas criações nos mesmos termos.</string>
     <string name="license_description_cc_by_nc_nd">Esta licença é a mais restritiva das seis principais licenças, permitindo apenas a outros fazer download dos seus trabalhos e partilhá-los com outros desde que lhe dêem crédito, mas não permitindo alterações de qualquer tipo ou o seu uso comercial.</string>
     <string name="license_description_cc_by_nd">Esta licença permite a redistribuição, comercial e não comercial, desde que seja usada integralmente sem alterações, e lhe dêem crédito enquanto autor.</string>
-    <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
     <string name="license_description_no_license">Você detém total direito sobre o seu conteúdo a partir dos direitos concedidos ao iNaturalist nos nossos Termos de Serviço.</string>
     <string name="invalid_photo">Formato de foto não suportado</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
-    <string name="suggestions_based_on">Suggestions based on observations and identifications provided by the iNaturalist community, including %1$s, %2$s, %3$s, and many others.</string>
     <!-- Preference to control what tapping on the action button does on My Observations -->
-    <string name="default_observation_action">Default Observation Action</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
-    <string name="show_options">Show Options</string>
     <!-- Placeholder text for an observation field value -->
-    <string name="field_value">Field Value</string>
-    <string name="expand_annotation_to_agree_or_disagree">Expand annotation to agree or disagree</string>
-    <string name="delete_attribute_value">Delete attribute value</string>
-    <string name="open_menu_for_more_options">Open menu for more options</string>
-    <string name="change_user_profile_photo">Change user profile photo</string>
-    <string name="expand_list">Expand list</string>
-    <string name="change_map_layers">Change map layers (terrain vs. satellite)</string>
-    <string name="redo_observation_search">Redo observation search in this map area</string>
-    <string name="view_observations_on_map">View observations on map</string>
-    <string name="view_observations_on_grid">View observations on grid</string>
-    <string name="clear_text">Clear text</string>
-    <string name="observation_has_sounds">Observation has sounds</string>
-    <string name="go_to_my_location">Go to my current location</string>
-    <string name="change_geoprivacy">Change geoprivacy</string>
-    <string name="active_filters">Active filters</string>
-    <string name="message_is_flagged">Message is flagged</string>
-    <string name="user_is_muted">User is muted</string>
-    <string name="cancel_multiple_obs_selection">Cancel multiple observation selection</string>
-    <string name="delete_observations">Delete observations</string>
-    <string name="comment_count">Comment count</string>
-    <string name="id_count">Identification count</string>
-    <string name="observation_selected">Observation selected</string>
-    <string name="share_observation">Share observation</string>
-    <string name="unknown_location">Unknown location</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
-    <string name="close">Close</string>
-    <string name="set_date2">Set date</string>
-    <string name="project_selected">Project Selected</string>
-    <string name="project_unselected">Project Unselected</string>
-    <string name="show_my_observations">Show my observations</string>
-    <string name="play_pause_sound">Play or pause sound</string>
-    <string name="view_image">View image</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
-    <string name="assessment_passes">Assessment passes</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
-    <string name="agree_assessment_passes">Agree assessment passes</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
-    <string name="does_not_pass_assessment">Does not pass assessment</string>
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
-    <string name="disagree_assessment_passes">Disagree assessment passes</string>
-    <plurals name="delete_x_selected_observations">
-        <item quantity="one">Delete %1$d selected observation</item>
-        <item quantity="other">Delete %1$d selected observations</item>
-    </plurals>
-    <plurals name="sync_x_selected_observations">
-        <item quantity="one">Sync %1$d selected observation</item>
-        <item quantity="other">Sync %1$d selected observations</item>
-    </plurals>
-    <string name="add_media_evidence">Add media evidence</string>
-    <string name="remove_identification">Remove identification</string>
-    <string name="issue_with_updating_photos">There was a problem updating the photos in this observation that has recently been fixed. Please sign out and sign in again to resolve this issue.</string>
-    <string name="app_version_copied_to_clipboard">App version copied to clipboard</string>
-    <string name="authentication_failed">Authentication Failed</string>
-    <string name="please_try_again_soon">Please try again soon.</string>
-    <string name="verify_your_email">Verify Your Email Address</string>
-    <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
-    <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
-    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
+    <!-- Accessibility label for a button that closes an announcement -->
 </resources>
