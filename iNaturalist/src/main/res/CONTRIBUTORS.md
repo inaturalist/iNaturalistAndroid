@@ -583,7 +583,7 @@ Many people have contributed translations to the iNaturalist Android app over th
 * [Fero Bednar (bednarfero)](https://crowdin.com/profile/bednarfero)
 * [Juraj Brandibur (brandibur.juraj)](https://crowdin.com/profile/brandibur.juraj)
 * [Marián Mičic (micic.marian)](https://crowdin.com/profile/micic.marian)
-* [TheWolfiKK](https://crowdin.com/profile/TheWolfiKK)
+* [MartinRatvaj](https://crowdin.com/profile/MartinRatvaj)
 * [Tomas V. (TWatz)](https://crowdin.com/profile/TWatz)
 
 ## Slovenian (`sl`)
@@ -633,7 +633,7 @@ Many people have contributed translations to the iNaturalist Android app over th
 * [Karen Soacha (adrisoacha)](https://crowdin.com/profile/adrisoacha)
 * [Nadia_Haje](https://crowdin.com/profile/Nadia_Haje)
 
-## Spanish, Costa Rica
+## Spanish, Costa Rica (`es-CR`)
 * [Carlos Carlos (CarlosTranslator)](https://crowdin.com/profile/CarlosTranslator)
 * [Letraduzco Translators (letraduzcotranslators)](https://crowdin.com/profile/letraduzcotranslators)
 
