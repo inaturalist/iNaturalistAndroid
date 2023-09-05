@@ -1552,6 +1552,7 @@ public class INaturalistServiceImplementation {
             mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
 
         } catch (AuthenticationException e) {
+            syncFailed = true;
             if (!mPassive) {
                 requestCredentials();
             }
@@ -1570,6 +1571,7 @@ public class INaturalistServiceImplementation {
                 reply.putExtra(SYNC_CANCELED, cancelSyncRequested);
                 reply.putExtra(SYNC_FAILED, syncFailed);
                 reply.putExtra(FIRST_SYNC, action.equals(ACTION_FIRST_SYNC));
+                reply.putExtra(SYNC_ERRORS, mResponseErrors != null ? mResponseErrors.toString() : null);
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(reply);
             }
         }
@@ -5931,6 +5933,8 @@ public class INaturalistServiceImplementation {
             }
         }
 
+        requestBuilder.addHeader("Accept-Language", mApp.getPrefLocale());
+
         try {
             mResponseErrors = null;
             mLastResponseJson = null;
@@ -5998,6 +6002,24 @@ public class INaturalistServiceImplementation {
                 switch (mLastStatusCode) {
                     case HTTP_UNAUTHORIZED:
                         // Authentication error
+
+                        // Extract error description, if exists
+                        if (json != null) {
+                            JSONObject innerJson = json.optJSONObject(0);
+                            Object errorObject = innerJson.opt("error");
+                            if (errorObject instanceof String) {
+                                mResponseErrors = new JSONArray();
+                                mResponseErrors.put((String)errorObject);
+                            } else if (errorObject != null) {
+                                if (((JSONObject)errorObject).optJSONObject("original") != null) {
+                                    String error = ((JSONObject)errorObject).optJSONObject("original").optString("error");
+                                    if (error != null) {
+                                        mResponseErrors = new JSONArray();
+                                        mResponseErrors.put(error);
+                                    }
+                                }
+                            }
+                        }
                         throw new AuthenticationException();
 
                     case HTTP_UNAVAILABLE:

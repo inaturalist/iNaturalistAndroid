@@ -412,6 +412,8 @@ public class INaturalistService extends IntentService {
     public static final String SYNC_CANCELED = "sync_canceled";
     public static final String SYNC_FAILED = "sync_failed";
     public static final String FIRST_SYNC = "first_sync";
+
+    public static final String SYNC_ERRORS = "sync_errors";
     public static final String PAGE_NUMBER = "page_number";
     public static final String PAGE_SIZE = "page_size";
     public static final String TAXON_IDS = "taxon_ids";

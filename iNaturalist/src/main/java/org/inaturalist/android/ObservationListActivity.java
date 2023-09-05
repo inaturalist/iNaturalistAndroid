@@ -270,6 +270,17 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 }
             }
 
+            String errors = intent.getStringExtra(INaturalistService.SYNC_ERRORS);
+            if (errors != null) {
+                try {
+                    JSONArray errorsArray = new JSONArray(errors);
+                    mHelper.alert(errorsArray.getString(0));
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+
             getLatestAnnouncements();
         }
     } 	
