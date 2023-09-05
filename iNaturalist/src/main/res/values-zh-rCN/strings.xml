@@ -165,16 +165,16 @@
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia 是 iNaturalist 附属网络位于澳大利亚的成员。此操作会让支援 iNaturalist Australia 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
     <string name="alert_message_use_argentinat">ArgentiNat 是 iNaturalist 附属网络位于阿根廷的成员。此操作会让支援 ArgentiNat 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
     <string name="alert_message_use_inaturalistil">iNaturalist Israel 是 iNaturalist 附属网络位于以色列的成员。此操作会让支援 iNaturalist Israel 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
-    <string name="alert_message_use_inaturalistfi">iNaturalist Finland is a member of the iNaturalist Network in Finland. Local institutions supporting iNaturalist Finland will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistcl">iNaturalist Chile is a member of the iNaturalist Network in Chile. Local institutions supporting iNaturalist Chile will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistgr">iNaturalist Greece is a member of the iNaturalist Network in Greece. Local institutions supporting iNaturalist Greece will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg is a member of the iNaturalist Network in Luxembourg. Local institutions supporting iNaturalist Luxembourg will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom is a member of the iNaturalist Network in United Kingdom. Local institutions supporting iNaturalist United Kingdom will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica is a member of the iNaturalist Network in Costa Rica. Local institutions supporting Naturalista Costa Rica will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala is a member of the iNaturalist Network in Guatemala. Local institutions supporting iNaturalist Guatemala will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistse">iNaturalist Sweden is a member of the iNaturalist Network in Sweden. Local institutions supporting iNaturalist Sweden will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturalistauy">Naturalista Uruguay is a member of the iNaturalist Network in Uruguay. Local institutions supporting Naturalista Uruguay will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan is a member of the iNaturalist Network in Taiwan. Local institutions supporting iNaturalist Taiwan will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistfi">iNaturalist Finland 是 iNaturalist 附属网络位于芬兰的成员。此操作会让支援 iNaturalist Finland 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
+    <string name="alert_message_use_inaturalistcl">iNaturalist Chile 是 iNaturalist 附属网络位于智利的成员。此操作会让支援 iNaturalist Chile 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
+    <string name="alert_message_use_inaturalistgr">iNaturalist Greece 是 iNaturalist 附属网络位于希腊的成员。此操作会让支援 iNaturalist Greece 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
+    <string name="alert_message_use_inaturalistlu">iNaturalist Luxembourg 是 iNaturalist 附属网络位于卢森堡的成员。此操作会让支援 iNaturalist Luxembourg 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
+    <string name="alert_message_use_inaturalistuk">iNaturalist United Kingdom 是 iNaturalist 附属网络位于英国的成员。此操作会让支援 iNaturalist United Kingdom 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
+    <string name="alert_message_use_inaturalistcr">iNaturalist Costa Rica 是 iNaturalist 附属网络位于哥斯达黎加的成员。此操作会让支援 iNaturalist Costa Rica 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
+    <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala 是 iNaturalist 附属网络位于危地马拉的成员。此操作会让支援 iNaturalist Guatemala 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
+    <string name="alert_message_use_inaturalistse">iNaturalist Sweden 是 iNaturalist 附属网络位于瑞典的成员。此操作会让支援 iNaturalist Sweden 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
+    <string name="alert_message_use_naturalistauy">Naturalista Uruguay 是 iNaturalist 附属网络位于乌拉圭的成员。此操作会让支援 Naturalista Uruguay 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Taiwan 是 iNaturalist 附属网络位于中国台湾的成员。此操作会让支援 iNaturalist Taiwan 的地方机构有权访问您的电子邮件地址，和被遮蔽的或私有的观察记录的真实坐标。如果您有超过 1000 笔观察记录的话，请不要尝试性的更改您的附属网络。您确定要更改您的 iNat 附属网络吗？</string>
     <string name="editor">编辑</string>
     <string name="license">授权</string>
     <string name="download_for_offline_use">下载供离线使用</string>
@@ -289,7 +289,6 @@
     <string name="finding_current_location">搜寻您所在的位置...</string>
     <string name="flag_as_captive">设为圈养/栽培旗标</string>
     <string name="observation_flagged_as_captive">观察记录被标记为捕捉/栽培</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Are you sure you want to flag this observation as captive/cultivated?</string>
     <string name="do_you_agree_to_the_following">你同意以下吗？</string>
     <string name="terms">使用条款</string>
     <string name="observation_rules">观察记录的规则</string>
@@ -565,7 +564,7 @@
     <string name="change_password">更改密码</string>
     <string name="search_projects_youve_joined">搜索您所加入的项目...</string>
     <string name="must_be_connected_to_load_more_obs">您必须连接到网络才能加载更多观察记录</string>
-    <string name="inat_about_title">iNaturalist 是由美国加利福尼亚科学院以及美国国家地理共同发起的平台。</string>
+    <string name="inat_about_title_new">iNaturalist 是一个设立在美国的独立501(c)(3) 非营利机构(EIN 92-1296468)</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -574,7 +573,6 @@
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
-    <string name="inat_credits2"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Johannes Klein, Patrick Leary, Scott Loarie, Abhas Misraraj, Sylvain Morin, Carrie Seltzer, Alex Shepard, Angie Ta, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="https://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[以下国家支持本地化的、全面整合的以及含有构建于 iNaturalist 基础上的网站的 iNaturalist 附属网络，感谢相关合作组织的协助。]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist 也深深的感谢开源开发者，他们为我们每天依赖的软件提供了许多东西。有关开源贡献，请参阅 <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a>.<br/> 我们感谢 crowdin.com 社区的志愿者提供的翻译协助，特别是 Eduardo Martínez, 林政道 (Lin Cheng-Tao), KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, 以及 katunchik. <br/>IUCN 第二类保护区由国际自然保护联盟 (IUCN) 和世界保护监测中心 (UNEP-WCMC) 提供，世界保护地数据库 (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. 可在 <a href="http://www.protectedplanet.net">www.protectedplanet.net</a> 查看。]]></string>
     <string name="credits_title">贡献者</string>
@@ -717,20 +715,20 @@
     <string name="network_credit_naturewatchnz"><![CDATA[新西兰：iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>) 由新西兰生物多样性记录网络 (New Zealand Biodiversity Recording Network) 营运]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[葡萄牙: 营运 Biodisy4all 的全民生物多样性协会 (Associação Biodiversidade Para Todos; <a href="https://biodiversity4all.org">biodistiny4al. org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[巴拿马: 营运 iNaturalistPa 的环境部 (Ministerio de Ambiente; <a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="network_credit_argentinat"><![CDATA[Argentina: Fundación Vida Silvestre Argentina supporting ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
-    <string name="network_credit_inaturalistaustralia"><![CDATA[Australia: Atlas of Living Australia supporting iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
-    <string name="network_credit_inaturalistecuador"><![CDATA[Ecuador: Instituto Nacional de Biodiversidad (INABIO) supporting iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistil"><![CDATA[Israel: University of Haifa supporting iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistfi"><![CDATA[Finland: Finnish Museum of Natural History (LUOMUS) supporting iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
-    <string name="network_credit_inaturalistcl"><![CDATA[Chile: Ministerio del Medio Ambiente supporting iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
-    <string name="network_credit_inaturalistgr"><![CDATA[Greece: iSea supporting iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistlu"><![CDATA[Luxembourg: Luxembourg National Museum of Natural History (MnhnL) supporting iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
-    <string name="network_credit_inaturalistuk"><![CDATA[United Kingdom: National Biodiversity Network Trust supporting iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistcr"><![CDATA[Costa Rica: Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) supporting Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistgt"><![CDATA[Guatemala: Consejo Nacional de Áreas Protegidas (CONAP) supporting iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
-    <string name="network_credit_inaturalistse"><![CDATA[Sweden: SLU Swedish Species Information Centre supporting iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
-    <string name="network_credit_naturalistauy"><![CDATA[Uruguay: JULANA and Biodiversidata supporting Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
-    <string name="network_credit_inaturalisttw"><![CDATA[Taiwan: National Chiayi University and Taiwan Forestry Research Institute supporting iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
+    <string name="network_credit_argentinat"><![CDATA[阿根廷：Fundación Vida Silvestre Argentina 支持 ArgentiNat (<a href="https://www.argentinat.org">www.argentinat.org</a>)]]></string>
+    <string name="network_credit_inaturalistaustralia"><![CDATA[澳大利亚：Atlas of Living Australia 支持 iNaturalist Australia (<a href="https://inaturalist.ala.org.au">inaturalist.ala.org.au</a>)]]></string>
+    <string name="network_credit_inaturalistecuador"><![CDATA[厄瓜多尔：Instituto Nacional de Biodiversidad (INABIO) 支持 iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistil"><![CDATA[以色列：海法大学支持 iNaturalist Israel (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistfi"><![CDATA[芬兰：芬兰自然历史博物馆（LUOMUS）支持 iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>]]></string>
+    <string name="network_credit_inaturalistcl"><![CDATA[智利：Ministerio del Medio Ambiente 支持 iNaturalist Chile (<a href="https://inaturalist.mma.gob.cl/">inaturalist.mma.gob.cl</a>)]]></string>
+    <string name="network_credit_inaturalistgr"><![CDATA[希腊：iSea 支持 iNaturalist Greece (<a href="https://greece.inaturalist.org">greece.iNaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistlu"><![CDATA[卢森堡：卢森堡国立自然史博物馆 (Mnhnl) 支持 iNaturalist Luxembourg (<a href="https://inaturalist.lu">inaturalist.lu</a>)]]></string>
+    <string name="network_credit_inaturalistuk"><![CDATA[英国：国家生物多样性保护网基金支持 iNaturalist United Kingdom (<a href="https://uk.inaturalist.org">uk.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcr"><![CDATA[哥斯达黎加：Comisión Nacional para la Gestión de la Biodiversidad (CONAGEBIO) 支持 Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistgt"><![CDATA[危地马拉：Consejo Nacional de Áreas Protegidas (CONAP) 支持 iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistse"><![CDATA[瑞典：瑞典农业科学大学瑞典物种信息中心支持 iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[乌拉圭：JULANA and Biodiversidata 支持 Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[中国台湾：嘉义大学和农业部林业试验所支持 iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">全部标记为已读</string>
     <string name="content_hidden">内容已隐藏</string>
     <string name="show_hidden_content">显示隐藏内容</string>
@@ -814,9 +812,7 @@
     <string name="enabled">已启用</string>
     <string name="disabled">已禁用</string>
     <string name="third_party_data_sharing_notes1"><![CDATA[我们使用各种第三方服务来监测稳定性并诊断我们软件中的缺陷和问题。 这些第三方包括：<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a> <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a></li><li><a href="https://newrelic.com/">New Relic</a></li></ul><a href="https://newrelic.com/">]]></string>
-    <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
-    <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third-party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
-    <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
+    <string name="third_party_data_sharing_notes2"><![CDATA[我们与这些第三方共享的信息包括：<br/><ul><li>IP地址（可用于推测您所在的城市，并在不同网站或服务中追踪您； <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
     <string name="common_names_place"><![CDATA[常用名称的使用位置： <b>%1$s</b>]]></string>
     <string name="tap_to_prioritize_common_names">点击以指定从特定地点来显示优先的常用名</string>
     <string name="search_places">搜索地点</string>
@@ -832,7 +828,6 @@
     <string name="running_in_background_notfication">在后台运行，以便我们可以不间断地运行程序</string>
     <string name="opt_out_of_community_taxon">取消加入至社群鉴定出来的分类群</string>
     <string name="opt_in_to_community_taxon">选择加入至社群鉴定出来的分类群</string>
-    <string name="opt_out_message">Opting out of the Community Taxon forces this observation to be associated with the taxon from your current identification, not a taxon derived from all the identifications that have been added to this observation. If enough identifiers disagree with you, your observation will become Casual. You should only opt out if you are sure your identification is correct and other identifications are incorrect.</string>
     <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
     <string name="permission_required">需要权限</string>
     <!-- Message displayed when the user tries to perform an action that requires location permission -->
@@ -840,7 +835,6 @@
     <!-- Dialog title when displaying a message that an action is not permitted -->
     <string name="forbidden">禁止</string>
     <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
-    <string name="app_you_shared_blocked">The app you shared from creates photos that are not suitable for observations because they do not represent evidence of your experience with another organism, because they include inappropriate branding or commercial content, or because they violate our Terms of Service in other ways.</string>
     <!-- Description of a UI element for screen readers -->
     <string name="list_observation_checkbox_description">复选观察记录的复选框</string>
     <!-- Description of a UI element for screen readers -->
@@ -948,9 +942,7 @@
     <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
     <string name="time_short_12_hour">hh:mma</string>
     <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long">MMM d, yyyy</string>
     <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
-    <string name="date_long_with_time">MMMM d, yyyy hh:mma</string>
     <string name="show_common_names">显示常用名</string>
     <string name="show_common_names_description">如果您只想查看学名，请禁用此功能。</string>
     <string name="email_must_look_like_email_address">电子邮箱必须是电子邮件的格式</string>
@@ -985,7 +977,6 @@
     <string name="pretty_sure_order">我们比较确定它属于这个目：</string>
     <string name="pretty_sure_suborder">我们比较确定它属于这个亚目：</string>
     <string name="pretty_sure_infraorder">我们比较确定它属于这个下目：</string>
-    <string name="pretty_sure_subterclass">We\'re pretty sure it\'s in this subterclass:</string>
     <string name="pretty_sure_parvorder">我们比较确定它属于这个小目：</string>
     <string name="pretty_sure_zoosection">我们比较确定它属于这个派：</string>
     <string name="pretty_sure_zoosubsection">我们比较确定它属于这个亚派：</string>
@@ -1095,7 +1086,6 @@
     <string name="existing_observation_licenses_have_been_updated">所有现有的观察授权已更改为 %1$s。</string>
     <string name="existing_photo_licenses_have_been_updated">所有现有的照片授权已更改为 %1$s。</string>
     <string name="existing_sound_licenses_have_been_updated">所有现有的声音授权已更改为 %1$s。</string>
-    <string name="default_licenses_description"><![CDATA[Licensing your content gives anyone the legal right to use it without asking your permission if they abide by the terms of the license. In addition, iNat includes your Creative Commons-licensed content in regularly-updated archives produced for select partner organizations interested in our data. For example, we include No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC) records in the archive we generate for the <a href="https://www.gbif.org/">Global Biodiversity Information Facility (GBIF)</a>, an international, inter-governmental organization that compiles and distributes biodiversity information from around the world.]]></string>
     <string name="photo_license">照片授权</string>
     <string name="sound_license">声音的授权</string>
     <string name="edit_photo_license">编辑照片授权</string>
@@ -1113,19 +1103,9 @@
     <string name="license_name_cc_by_sa">署名-相同方式共享</string>
     <string name="license_name_no_license">保留所有权利</string>
     <!-- License Descriptions -->
-    <string name="license_description_cc0">This license releases your work into the public domain, so others can copy, modify, distribute and perform your work, even for commercial purposes, all without asking permission or giving you credit. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.</string>
-    <string name="license_description_cc_by">This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation.</string>
-    <string name="license_description_cc_by_nc">This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don\'t have to license their derivative works on the same terms.</string>
-    <string name="license_description_cc_by_nc_sa">This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms.</string>
-    <string name="license_description_cc_by_nc_nd">This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can\'t change them in any way or use them commercially.</string>
-    <string name="license_description_cc_by_nd">This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you.</string>
-    <string name="license_description_cc_by_sa">This license lets others remix, adapt, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.</string>
-    <string name="license_description_no_license">You retain full copyright over your content aside from those rights granted to iNaturalist in our Terms of Service.</string>
     <string name="invalid_photo">不支持的照片格式</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
-    <string name="suggestions_based_on">Suggestions based on observations and identifications provided by the iNaturalist community, including %1$s, %2$s, %3$s, and many others.</string>
     <!-- Preference to control what tapping on the action button does on My Observations -->
-    <string name="default_observation_action">Default Observation Action</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">显示选项</string>
     <!-- Placeholder text for an observation field value -->
@@ -1175,15 +1155,11 @@
     <plurals name="sync_x_selected_observations">
         <item quantity="other">同步 %1$d 个选定的观察</item>
     </plurals>
-    <string name="add_media_evidence">Add media evidence</string>
     <string name="remove_identification">删除身份证明</string>
     <string name="issue_with_updating_photos">最近已修复更新该记录中的照片时出现的问题。 请退出登录并重新登录以解决这个问题。</string>
     <string name="app_version_copied_to_clipboard">已复制应用版本</string>
-    <string name="authentication_failed">Authentication Failed</string>
-    <string name="please_try_again_soon">Please try again soon.</string>
-    <string name="verify_your_email">Verify Your Email Address</string>
-    <string name="after_you_change_your_password">After you change your password, you will be signed out and you will need to sign in again with your new password. You will also be signed out of the iNaturalist mobile apps and any other apps or websites that post to iNaturalist on your behalf, so make sure you have uploaded any pending observations before you do this. Any observations that are not uploaded will be lost.</string>
+    <string name="please_try_again_soon">请稍后再试。</string>
+    <string name="verify_your_email">验证您的邮箱地址。</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
-    <string name="couldnt_upload_file_too_large">Couldn\'t upload file - larger than 20MB</string>
-    <string name="you_have_been_signed_out_please_sign_in_again">You have been signed out. Please sign in again.</string>
+    <!-- Accessibility label for a button that closes an announcement -->
 </resources>

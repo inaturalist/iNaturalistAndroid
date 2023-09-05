@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="email_address">ᱤᱢᱮᱞ ᱴᱷᱤᱠᱬᱟᱹ ᱠᱚ</string>
+    <string name="delete_observation">ᱧᱮᱞᱯᱚᱨᱚᱠ ᱢᱮᱴᱟᱣ ᱢᱮ</string>
+    <string name="observation_deleted">ᱧᱮᱞᱯᱚᱨᱚᱠ ᱢᱮᱴᱟᱣ ᱮᱱᱟ</string>
+    <string name="species_guess_hint">ᱡᱟᱹᱛ ᱠᱚ ᱨᱮᱭᱟᱜ ᱧᱩᱛᱩᱢ</string>
+    <string name="ok">ᱴᱷᱤᱠ</string>
+    <string name="cancel">ᱵᱟᱹᱰᱨᱟᱹ</string>
+    <string name="loading">ᱞᱟᱫᱮᱜ ᱠᱟᱱᱟ...</string>
+    <string name="street">ᱥᱚᱰᱚᱠ</string>
+    <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
+    <string name="satellite">ᱥᱮᱴᱮᱞᱟᱭᱤᱴ</string>
+    <string name="couldnt_load_nearby_observations">ᱥᱩᱨ ᱠᱚᱨᱮᱭᱟᱜ ᱧᱮᱞ ᱯᱚᱨᱚᱠ ᱠᱚ ᱞᱟᱫᱮ ᱵᱟᱭ ᱜᱟᱱᱚᱜ ᱠᱟᱱᱟ : %1$s</string>
+    <string name="username_invalid">ᱵᱮᱵᱷᱟᱨᱤᱭᱟᱹᱧᱩᱛᱩᱢ ᱵᱟᱝᱠᱷᱟᱱ ᱫᱟᱱᱟᱝ ᱥᱟᱵᱟᱫ ᱫᱚ ᱵᱷᱩᱞ ᱜᱮᱭᱟ, ᱫᱟᱭᱟᱠᱟᱛᱮ ᱫᱩᱦᱲᱟᱹ ᱥᱩᱦᱤ ᱮᱢ ᱵᱤᱱ ᱾</string>
+    <string name="signing_in">ᱥᱩᱦᱤ ᱮᱢᱚᱜ ᱠᱟᱱᱟ ...</string>
+    <string name="signed_in">ᱥᱩᱦᱤ ᱮᱢ ᱮᱱᱟ!</string>
+    <string name="please_sign_in">ᱫᱟᱭᱟᱠᱟᱛ ᱥᱩᱦᱤ ᱮᱢ ᱢᱮ</string>
+    <string name="please_sign_in_description">ᱫᱟᱭᱟᱠᱟᱛᱮ ᱟᱢᱟᱜ iNaturalist ᱠᱷᱟᱛᱟ ᱨᱮ ᱥᱩᱦᱤ ᱮᱢ ᱢᱮ ᱵᱟᱝᱠᱷᱟᱱ ᱥᱩᱦᱤ ᱮᱢ ᱠᱟᱛᱮ ᱱᱟᱶᱟ ᱛᱮᱭᱟᱨ ᱢᱮ ᱾</string>
+    <string name="please_enable_location_services">ᱟᱢᱟᱜ ᱱᱤᱛᱚᱜᱟᱜ ᱡᱟᱭᱜᱟ ᱯᱟᱱᱛᱮ ᱪᱷᱚ ᱞᱟᱹᱜᱤᱫ ᱫᱟᱭᱟᱠᱟᱛᱮ ᱡᱟᱭᱜᱟ ᱥᱚᱨᱵᱷᱤᱥ ᱠᱚ ᱮᱢ ᱪᱷᱚᱭ ᱢᱮ...</string>
+    <string name="go_to_settings">ᱥᱟᱡᱟᱣ ᱨᱮ ᱪᱟᱞᱟ ᱢᱮ</string>
+    <string name="photo_not_specified">ᱪᱤᱛᱟᱹᱨ ᱵᱟᱝ ᱵᱟᱛᱟᱣ ᱠᱟᱱᱟ</string>
+    <string name="set_date">ᱢᱟᱹᱦᱤᱛ</string>
+    <string name="set_time">ᱚᱠᱛᱚ</string>
+    <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
+    <string name="something_went_wrong">ᱵᱞᱟᱥᱴ, ᱪᱮᱫ ᱪᱷᱚᱸ ᱵᱷᱩᱞ ᱪᱟᱞᱟᱣ ᱮᱱᱟ : %1$s</string>
+    <string name="edit">ᱥᱟᱯᱲᱟᱣ</string>
+    <string name="oh_no">ᱮᱦᱮ ! %1$s</string>
+    <string name="observations">ᱤᱧᱟᱜ ᱧᱮᱞᱯᱚᱨᱚᱠ ᱠᱚ</string>
+    <string name="map">ᱱᱚᱠᱥᱟ</string>
+    <string name="settings">ᱥᱟᱡᱟᱣ ᱠᱚ</string>
+    <string name="projects">ᱯᱟᱱᱛᱷᱟ ᱠᱚ</string>
+    <string name="delete_photo">ᱪᱤᱛᱟᱹᱨ ᱢᱮᱴᱟᱣ ᱢᱮ</string>
+    <string name="my_location">ᱤᱧᱟᱜ ᱡᱟᱭᱜᱟ</string>
+    <string name="nearby_observations">ᱥᱩᱨ ᱧᱮᱞᱯᱚᱨᱚᱠ ᱠᱚ</string>
+    <string name="add">ᱥᱮᱞᱮᱫ</string>
+    <string name="view_on_inat">iNaturalist.org ᱨᱮ ᱧᱮᱞ ᱢᱮ</string>
+    <string name="reload">ᱫᱩᱦᱲᱟᱹ ᱞᱟᱫᱮ</string>
+    <string name="view_in_browser">ᱵᱽᱨᱟᱣᱡᱚᱨ ᱨᱮ ᱧᱮᱞ ᱢᱮ</string>
+    <string name="add_observation">ᱧᱮᱞᱯᱚᱨᱚᱠ ᱥᱮᱞᱮᱫ ᱢᱮ</string>
+    <string name="take_picture">ᱪᱤᱛᱟᱹᱨ ᱤᱫᱤ ᱢᱮ</string>
+    <string name="save">ᱥᱟᱧᱪᱟᱣ</string>
+    <string name="no_observations_yet">ᱱᱤᱛ ᱫᱷᱟᱹᱵᱤᱡ ᱪᱮᱫ ᱧᱮᱞ ᱯᱚᱨᱚᱠ ᱵᱟᱹᱱᱩᱜᱼᱟ!</string>
+    <string name="or">ᱵᱟᱝᱠᱷᱟᱱ</string>
+    <string name="signed_out">ᱵᱟᱦᱨᱮ ᱛᱮ ᱚᱰᱚᱠ</string>
+    <string name="username">ᱵᱮᱵᱷᱟᱨᱤᱭᱟᱹ ᱧᱩᱛᱩᱢ</string>
+    <string name="password">ᱫᱟᱱᱟᱝ ᱥᱟᱵᱟᱫ</string>
+    <string name="unknown">ᱵᱟᱝ ᱵᱟᱰᱟᱭ</string>
+    <string name="unknown_species">ᱵᱟᱝ ᱵᱟᱲᱟᱭ ᱡᱟᱹᱛ</string>
+    <string name="edit_observation">ᱧᱮᱞᱯᱚᱨᱚᱠᱷ ᱥᱟᱯᱲᱟᱣ ᱢᱮ</string>
+    <string name="discard_changes">ᱟᱢ ᱡᱷᱚᱛᱚ ᱞᱮᱠᱷᱟᱛᱮ ᱵᱟᱝ ᱥᱟᱧᱪᱟᱣ ᱠᱟᱱ ᱵᱚᱫᱚᱞ ᱠᱚ ᱵᱟᱹᱨᱜᱤᱞ ᱜᱤᱰᱤ ᱥᱮᱱᱟᱮᱫ ᱢᱮᱭᱟ ᱥᱮ ?</string>
+    <string name="yes">ᱦᱚᱭ</string>
+    <string name="no">ᱵᱟᱝᱟ</string>
+    <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
+    <string name="agree">ᱦᱮᱸᱥᱮᱨᱤᱭᱟᱹ‌?</string>
+    <string name="no_comments">ᱪᱮᱫ ᱴᱤᱯᱚᱬᱤ ᱠᱚ / ᱪᱤᱱᱦᱟᱹᱯ ᱠᱚ ᱱᱤᱛ ᱫᱷᱟᱹᱵᱤᱡ ᱵᱟᱹᱱᱩᱜᱼᱟ</string>
+    <string name="add_comment">ᱴᱤᱯᱚᱬᱤ ᱥᱮᱞᱮᱫ ᱢᱮ</string>
+    <string name="add_id">ᱪᱤᱱᱦᱟᱹᱯ ᱠᱚ ᱥᱮᱞᱮᱫ ᱢᱮ</string>
+    <string name="remarks">ᱨᱟᱹᱭ ...</string>
+    <string name="enter_taxon_name">ᱡᱟᱹᱛ ᱠᱚ ᱨᱮᱭᱟᱜ ᱧᱩᱛᱩᱢ</string>
+    <string name="no_projects">ᱯᱟᱱᱛᱷᱟ ᱠᱚ ᱵᱟᱝ ᱧᱟᱢ ᱞᱮᱱᱟ!</string>
+    <string name="no_guides">ᱜᱚᱲᱚ ᱠᱚ ᱵᱟᱝ ᱧᱟᱢ ᱞᱮᱱᱟ!</string>
+    <string name="loading_projects">ᱯᱟᱱᱛᱷᱟ ᱠᱚ ᱞᱟᱫᱮᱜ ᱠᱟᱱᱟ ...</string>
+    <string name="joined_projects">ᱥᱮᱞᱮᱫ ᱮᱱᱟ</string>
+    <string name="nearby_projects">ᱥᱩᱨ ᱠᱚᱨᱤᱱ</string>
+    <!-- Tab title for the list of featured projects in the Projects screen -->
+    <string name="featured_projects">ᱯᱷᱤᱪᱚᱨ ᱠᱟᱱ</string>
+    <!-- Verb, used as a label for actions like leaving a project -->
+    <string name="leave">ᱟᱲᱟᱜ</string>
+    <string name="join">ᱥᱮᱞᱮᱫ</string>
+    <string name="no_check_list">ᱪᱮᱫ ᱴᱮᱠᱥᱟ ᱫᱚ ᱪᱤᱱᱦᱟᱹ ᱞᱤᱥᱴᱭ ᱵᱟᱹᱱᱩᱜᱼᱟ!</string>
+    <string name="failed_to_add_obs_to_project">\'%2$s\' ᱯᱟᱱᱛᱷᱟ ᱨᱮ \'%1$s\' ᱧᱮᱞᱯᱚᱨᱚᱠ ᱥᱮᱞᱮᱫ ᱰᱤᱜᱟᱹᱣ ᱮᱱᱟ : %3$s</string>
+    <string name="invalid_project_field">\'%1s\' ᱡᱟᱭᱜᱟ ᱨᱮ ᱫᱟᱭᱟᱠᱟᱛᱮ ᱴᱷᱤᱠ ᱜᱚᱱᱚᱝ ᱟᱫᱮᱨ ᱢᱮ</string>
+    <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
+    <string name="select_projects">ᱥᱮᱞᱮᱫ ᱠᱟᱱ ᱯᱟᱱᱛᱷᱟ ᱠᱚ ᱵᱟᱪᱷᱟᱣ ᱢᱮ</string>
+    <string name="not_connected">ᱚᱱᱟ ᱠᱚᱨᱟᱣ ᱞᱟᱹᱜᱤᱫ ᱟᱢ ᱱᱤᱦᱟᱹᱛᱤ ᱤᱱᱴᱚᱨᱱᱮᱴ ᱥᱟᱞᱟᱜ ᱡᱩᱲᱟᱹᱣ ᱫᱚᱨᱠᱟᱨ ᱠᱟᱱᱟ!</string>
+    <string name="search_projects">ᱯᱟᱱᱛᱷᱟ ᱠᱚ ᱥᱮᱸᱫᱽᱨᱟᱭ ᱢᱮ ...</string>
+    <string name="search_guides">ᱜᱚᱲᱚ ᱠᱚ ᱥᱮᱸᱫᱽᱨᱟᱭ ᱢᱮ ...</string>
+    <string name="save_observation">ᱧᱮᱞᱯᱚᱨᱚᱠ ᱠᱚ ᱥᱟᱧᱪᱟᱣ ᱢᱮ</string>
+    <!-- Header for a description an individual guide -->
+    <string name="about_guide">ᱵᱟᱵᱚᱛ</string>
+    <string name="about_guide_all_caps">ᱵᱟᱵᱚᱛ</string>
+    <!-- Header for a description an individual project -->
+    <string name="about_project">ᱵᱟᱵᱚᱛ</string>
+    <string name="about_project_all_caps">ᱵᱟᱵᱚᱛ</string>
+    <string name="about_this_app">ᱵᱟᱵᱚᱛ</string>
+    <string name="about_taxon_short">ᱵᱟᱵᱚᱛ</string>
+    <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
+    <string name="geoprivacy">ᱚᱛᱱᱤᱥᱚᱱ</string>
+    <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
+    <string name="geoprivacy_with_value">ᱚᱛᱱᱤᱥᱚᱱ : %1$s</string>
+    <string name="delete_confirmation">ᱟᱢ ᱥᱟᱹᱨᱤ ᱛᱮ ᱱᱚᱶᱟ ᱧᱮᱯᱚᱨᱚᱠ ᱢᱮᱴᱟᱣ ᱥᱮᱱᱟᱢ ᱠᱟᱱᱟ ᱥᱮ ?</string>
+    <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
+    <string name="guides">ᱜᱚᱲᱚ ᱠᱚ</string>
+    <string name="my_guides">ᱟᱢᱟᱜ ᱠᱚ</string>
+    <string name="nearby_guides">ᱥᱩᱨ ᱠᱚᱨᱤᱱ</string>
+    <string name="all_guides">ᱡᱷᱚᱛᱚ</string>
+    <string name="no_taxa">ᱱᱚᱶᱟ ᱜᱚᱲᱚ ᱞᱟᱹᱜᱤᱫ ᱪᱮᱫ ᱴᱮᱠᱥᱟ ᱵᱟᱹᱱᱩᱜᱼᱟ!</string>
+    <string name="search_taxa">ᱴᱮᱠᱥᱟ ᱥᱮᱸᱫᱽᱨᱟᱭ ᱢᱮ ...</string>
+    <string name="no_internet_guides">ᱜᱚᱲᱚ ᱠᱚ ᱞᱟᱹᱜᱤᱫ ᱤᱱᱴᱚᱨᱱᱮᱴ ᱡᱩᱲᱟᱹᱣ ᱫᱚᱨᱠᱟᱨ ᱠᱟᱱᱟ</string>
+    <string name="no_internet_projects">ᱯᱟᱱᱛᱷᱟ ᱠᱚ ᱨᱮ ᱤᱱᱴᱚᱨᱱᱮᱴ ᱡᱩᱲᱟᱹᱣ ᱫᱚᱨᱠᱟᱨ ᱠᱟᱱᱟ</string>
+    <string name="locale_gl"> ᱜᱟᱞᱤᱥᱤᱭᱟᱱ</string>
+    <string name="locale_eu">ᱵᱟᱥᱠᱣᱩ</string>
+    <string name="use_device_language_settings">ᱥᱟᱫᱷᱚᱱ ᱯᱟᱹᱨᱥᱤ ᱥᱟᱡᱟᱣ ᱠᱚ ᱵᱮᱵᱷᱟᱨ ᱢᱮ</string>
+    <string name="choose_location">ᱡᱟᱭᱜᱟ ᱵᱟᱪᱷᱟᱣ ᱢᱮ</string>
+    <string name="done">ᱦᱩᱭᱮᱱᱟ</string>
+    <string name="please_sign_in_via_settings">ᱟᱢ ᱥᱮᱞᱮᱫ ᱠᱟᱱ ᱯᱟᱦᱛᱷᱟ ᱧᱮᱞ ᱞᱟᱹᱜᱤᱫ ᱟᱢ ᱫᱚ ᱵᱚᱞᱚ ᱛᱮ ᱦᱩᱭ ᱟᱢᱟ ᱾</string>
+    <string name="contact_support">ᱥᱚᱢᱯᱚᱨᱠ ᱜᱚᱲᱚ</string>
+    <string name="leave_project">ᱯᱟᱱᱛᱷᱟ ᱟᱲᱟᱜᱽ ᱢᱮ</string>
+    <string name="leave_project_confirmation">ᱟᱢ ᱡᱷᱚᱛᱚ ᱞᱮᱠᱷᱟᱛᱮ ᱱᱚᱶᱟ ᱯᱟᱱᱛᱷᱟ ᱟᱲᱟᱜ ᱥᱮᱱᱟᱢ ᱠᱟᱱᱟ ᱥᱮ ?</string>
+    <string name="discard_location_changes">ᱟᱢ ᱡᱷᱚᱛᱚ ᱞᱮᱠᱷᱟᱛᱮ ᱵᱟᱝ ᱥᱟᱧᱪᱟᱣ ᱠᱟᱱ ᱵᱚᱫᱚᱞ ᱠᱚ ᱵᱟᱹᱨᱜᱤᱞ ᱜᱤᱰᱤ ᱥᱮᱱᱟᱮᱫ ᱢᱮᱭᱟ ᱥᱮ ?</string>
+    <string name="edit_location">ᱡᱟᱭᱜᱟ ᱥᱟᱯᱲᱟᱣ ᱢᱮ</string>
+    <string name="edit_locality_notes">ᱡᱟᱭᱜᱟ ᱱᱚᱴ ᱠᱚ ᱥᱟᱯᱲᱟᱣ ᱢᱮ</string>
+    <string name="get_current_location">ᱱᱤᱛᱚᱜ ᱡᱟᱭᱜᱟ ᱧᱟᱢ ᱢᱮ</string>
+    <string name="pull_to_refresh">ᱫᱩᱦᱲᱟᱹ ᱨᱯᱷᱨᱮᱥ ᱞᱟᱹᱜᱤᱫ ᱚᱨ ᱢᱮ …</string>
+    <string name="release_to_refresh">ᱨᱤᱯᱷᱨᱮᱥ ᱞᱟᱹᱜᱤᱫ ᱟᱲᱟᱜᱽ ᱢᱮ …</string>
+    <string name="refreshing">ᱨᱤᱯᱷᱨᱮᱥᱚᱜ ᱠᱟᱱᱟ …</string>
+    <plurals name="sync_x_observations">
+        <item quantity="one">%1$d ᱧᱮᱞᱯᱚᱨᱚᱠ ᱨᱮ ᱥᱭᱝᱠ ᱢᱮ</item>
+        <item quantity="other">%1$d ᱧᱮᱞᱯᱚᱨᱚᱠ ᱠᱚᱨᱮ ᱥᱭᱝᱠ ᱢᱮ</item>
+    </plurals>
+    <string name="sync_observations">ᱧᱮᱯᱚᱨᱚᱠ ᱠᱚ ᱥᱭᱝᱠ ᱢᱮ</string>
+    <string name="lets_get_started">ᱫᱮᱞᱟ ᱵᱚᱱ ᱮᱛᱦᱚᱵ ᱞᱮᱜᱮ!</string>
+    <string name="view_nearby_observations">ᱥᱩᱨ ᱠᱚᱨᱮᱱᱟᱜ ᱧᱮᱞᱯᱚᱨᱚᱠ ᱠᱚ ᱫᱮᱠᱷᱟᱣ ᱢᱮ</string>
+    <string name="skip_for_now">ᱱᱤᱛᱚᱜ ᱞᱟᱹᱜᱤᱫ ᱟᱲᱟᱜ ᱠᱟᱜ ᱢᱮ</string>
+    <string-array name="tutorial_titles">
+        <item></item>
+        <item>ᱧᱮᱞᱯᱚᱨᱚᱠ ᱢᱮ</item>
+        <item>ᱦᱟᱹᱴᱤᱧ</item>
+        <item>ᱪᱮᱫᱚᱜ</item>
+        <item>ᱮᱱᱮᱢ</item>
+    </string-array>
+    <string-array name="tutorial_descriptions">
+        <item>ᱥᱮᱸᱫᱽᱨᱟᱭ ᱥᱟᱶᱛᱮ ᱯᱨᱚᱠᱨᱩᱛᱤ ᱥᱟᱞᱟᱜ ᱡᱩᱲᱟᱹᱣᱜ ᱢᱮ</item>
+        <item>ᱵᱟᱦᱨᱮᱛᱮ ᱪᱟᱞᱟᱜ ᱢᱮ!  ᱡᱟᱦᱱᱟᱜ ᱡᱚᱵᱚᱨᱫᱚᱥᱛ ᱯᱟᱱᱛᱮ ᱢᱮ, ᱟᱨ ᱥᱟᱯᱷᱟ, ᱯᱩᱨᱟᱹ ᱯᱷᱨᱮᱢ ᱯᱷᱚᱴᱚ ᱯᱟᱱᱛᱮ ᱢᱮ ᱾</item>
+        <item>iNaturalist ᱥᱚᱢᱩᱫᱟᱹᱭ ᱥᱟᱶ ᱟᱢᱟᱜ ᱧᱚᱞᱯᱚᱨᱚᱠ ᱦᱟᱹᱴᱤᱧ ᱢᱮ ᱾</item>
+        <item>ᱟᱢᱟᱜ ᱧᱮᱞᱯᱚᱨᱚᱠ ᱨᱮ ᱴᱤᱯᱚᱬᱤ ᱟᱨ ᱪᱤᱱᱦᱟᱹᱯ ᱠᱚ ᱛᱟᱭᱚᱢ ᱛᱮ ᱧᱮᱞ ᱵᱟᱲᱟᱭ ᱢᱮ!</item>
+        <item><![CDATA[<b>ᱨᱤᱥᱚᱨᱪ ᱜᱽᱨᱮᱰ</b> ᱧᱮᱞᱯᱚᱨᱚᱠ ᱫᱚ ᱥᱟᱮᱱᱴᱤᱥᱴ ᱫᱚ ᱥᱟᱶ ᱦᱟᱹᱴᱤᱧᱚᱜᱼᱟ ᱡᱟᱦᱟᱸ ᱫᱚ ᱵᱮᱥ ᱪᱚᱨᱚᱠ ᱯᱨᱚᱠᱨᱩᱛᱤ ᱠᱚ ᱨᱩᱠᱷᱤᱭᱟᱹ ᱟᱨ ᱵᱩᱡᱷᱟᱹᱣ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ ᱠᱚ ᱾]]></item>
+    </string-array>
+    <string-array name="geoprivacy_items">
+        <item>ᱡᱷᱤᱡᱽ</item>
+        <item>ᱫᱷᱩᱱᱫᱞᱟᱹ</item>
+        <item>ᱱᱤᱥᱚᱱ</item>
+    </string-array>
+    <string name="alert_sign_out">ᱟᱢ ᱯᱟᱹᱛᱤᱭᱟᱹᱜ ᱨᱮ ᱵᱟᱦᱨᱮ ᱚᱰᱚᱠ ᱥᱟᱱᱟᱢ ᱠᱟᱱᱟ ᱥᱮ ? ᱱᱚᱶᱟ ᱫᱚ ᱟᱢᱟᱜ ᱥᱟᱫᱷᱚᱱ ᱨᱮᱭᱟᱜ ᱧᱮᱞᱯᱚᱨᱚᱠ ᱠᱚ ᱢᱮᱴᱟᱣ ᱛᱟᱢᱟᱭ ᱾ ᱱᱚᱶᱟ ᱫᱚ ᱡᱟᱦᱟᱸ ᱢᱟᱲᱟᱝ ᱠᱷᱚᱱ iNaturalist. ᱨᱮ ᱞᱟᱫᱮ ᱧᱮᱞᱯᱚᱨᱚᱠ ᱠᱚ ᱵᱟᱭ ᱪᱤᱠᱟᱹᱭᱟᱭ ᱾</string>
+    <string name="alert_unsupported_media_type">ᱤᱠᱟᱹ , ᱱᱚᱶᱟ ᱥᱨᱚᱛ ᱠᱷᱚᱱ ᱪᱤᱛᱟᱹᱨ ᱞᱟᱫᱮ ᱡᱷᱚᱜ ᱵᱷᱩᱞ ᱦᱩᱭᱮᱱᱟ</string>
+    <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
+    <string name="explore">ᱥᱮᱸᱫᱽᱨᱟ</string>
+    <string name="restricted_to_current_map_area">ᱱᱤᱛᱚᱜᱟᱜ ᱱᱚᱠᱥᱟ ᱡᱟᱭᱜᱟ ᱫᱷᱟᱹᱵᱤᱡ ᱥᱤᱢᱟᱹ ᱠᱟᱹᱱᱟ</string>
+    <string name="search">ᱥᱮᱸᱫᱽᱨᱟ</string>
+    <string name="details">ᱵᱤᱵᱨᱚᱬ</string>
+    <string name="observation_photos">ᱧᱮᱞᱯᱚᱨᱚᱠ ᱯᱷᱚᱴᱚ ᱠᱚ</string>
+    <string name="no_observations_found">ᱧᱮᱞᱯᱚᱨᱚᱠ ᱠᱚ ᱵᱟᱝ ᱧᱟᱢ ᱞᱮᱱᱟ</string>
+    <string name="license_none">ᱪᱮᱫ ᱦᱚᱸ ᱵᱟᱝ , ᱡᱷᱚᱛᱚ ᱦᱚᱠ ᱨᱤᱡᱚᱨᱵ ᱠᱟᱱᱟ</string>
+    <string name="sources_and_attribution">ᱥᱨᱚᱛ ᱟᱨ ᱵᱤᱥᱮᱥᱛᱟᱹ</string>
+    <string name="photos"><![CDATA[<b>ᱪᱤᱛᱟᱹᱨ ᱠᱚ:</b> %1$s]]></string>
+    <string name="text"><![CDATA[<b>ᱚᱞ:</b> %1$s]]></string>
+    <!-- The dialog content asking the user to switch to another iNat network -->
+    <string name="alert_message_use_inaturalist">ᱢᱩᱞ iNaturalist ᱡᱟᱹᱞᱤ ᱾ ᱴᱷᱤᱠ ᱨᱮ ᱚᱛᱟ ᱞᱮᱠᱷᱟᱱ ᱱᱚᱶᱟ ᱮᱯ ᱫᱚ ᱡᱮᱜᱮᱛ iNaturalist ᱡᱟᱹᱞᱤ ᱞᱮᱠᱷᱟ ᱥᱮᱴᱟᱭ ᱾</string>
+    <string name="editor">ᱥᱟᱯᱲᱟᱣᱤᱭᱟᱹ</string>
+    <string name="license">ᱞᱟᱭᱥᱮᱱᱥ</string>
+    <string name="download_for_offline_use">ᱚᱯᱷᱞᱟᱭᱤᱱ ᱵᱮᱵᱷᱟᱨ ᱞᱟᱹᱜᱤᱫ ᱰᱟᱩᱱᱞᱚᱰ ᱢᱮ</string>
+    <string name="download_not_available">ᱰᱟᱩᱱᱞᱚᱰ ᱫᱚ ᱵᱟᱹᱱᱩᱜᱼᱟ</string>
+    <string name="guide_editor_must_enable_this_feature">ᱜᱚᱲᱚ ᱥᱟᱯᱲᱟᱣᱤᱭᱟᱹ ᱫᱚ ᱱᱚᱶᱟ ᱵᱤᱥᱮᱥ ᱡᱤᱱᱤᱥ ᱮᱢ ᱪᱷᱚ ᱠᱟᱛᱷᱟ ᱾</string>
+    <string name="are_you_sure">ᱟᱢ ᱯᱟᱹᱛᱤᱭᱟᱹᱣᱜ ᱠᱟᱱᱟᱢ ᱥᱮ?</string>
+    <string name="download_guide_alert">ᱱᱚᱶᱟ ᱫᱚ %1$s ᱰᱟᱴᱟ ᱰᱟᱩᱱᱞᱚᱰ ᱜᱚᱫ ᱠᱟᱜᱼᱟᱭ ᱢᱮᱱᱠᱷᱟᱱ ᱱᱚᱶᱟ ᱜᱟᱭᱤᱰ ᱫᱚ ᱵᱤᱱᱟᱹ ᱤᱱᱴᱚᱨᱱᱮᱴ ᱨᱮ ᱟᱫᱮᱨ ᱜᱟᱱᱚᱜᱼᱟ ᱾</string>
+    <string name="failed_to_download_guide">ᱜᱚᱲᱚ ᱰᱟᱩᱱᱞᱚᱰ ᱡᱷᱚᱜ ᱵᱷᱩᱞ ᱦᱩᱭᱮᱱᱟ</string>
+    <string name="internet_connection_seems_to_be_offline">ᱤᱱᱴᱚᱨᱱᱮᱴ ᱡᱩᱲᱟᱹᱣ ᱫᱚ ᱚᱯᱷᱞᱟᱭᱤᱱ ᱮᱱᱟ ᱞᱮᱠᱷᱟ ᱵᱩᱡᱷᱟᱹᱣᱜ ᱠᱟᱱᱟ ᱾</string>
+    <string name="downloading">ᱰᱟᱩᱱᱞᱚᱰᱚᱜ ᱠᱟᱱᱟ ...</string>
+    <string name="extracting">ᱪᱷᱟᱰᱟᱣᱜ ᱠᱟᱱᱟ  ...</string>
+    <string name="downloaded">ᱰᱟᱩᱱᱞᱚᱰ ᱮᱱᱟ</string>
+    <string name="delete_download">ᱰᱟᱩᱱᱞᱚᱰ ᱢᱮᱴᱟᱣ ᱢᱮ</string>
+    <string name="re_download">ᱫᱩᱦᱲᱟᱹ ᱰᱟᱩᱱᱞᱚᱰ ᱢᱮ</string>
+    <string name="error">ᱵᱷᱩᱞ</string>
+    <string name="could_not_retrieve_guide">ᱜᱚᱲᱚ ᱵᱤᱵᱨᱚᱬ ᱟᱹᱜᱩ ᱵᱟᱭ ᱜᱟᱱ ᱞᱮᱱᱟ ᱼ ᱯᱟᱞᱮ ᱱᱮᱴᱣᱟᱨᱠ ᱦᱩᱰᱟᱹᱜ ᱠᱷᱟᱹᱛᱤᱨ ᱦᱩᱭ ᱠᱚᱜᱼᱟ ᱾</string>
+    <string name="inat_support_email_subject">iNaturalist ᱥᱟᱶ ᱜᱚᱲᱚ ᱮᱢᱚᱜ ᱢᱮ (ᱦᱟᱹᱞᱤᱭᱟᱹᱠ%1$s - %2$s; ᱵᱮᱵᱷᱟᱹᱨᱤᱭᱟᱹ id - %3$s)</string>
+    <string name="send_email">ᱤᱢᱮᱞ ᱵᱷᱮᱡᱟᱭ ᱢᱮ ...</string>
+    <string name="login_with">ᱥᱟᱶ ᱵᱚᱞᱚᱱ ᱢᱮ</string>
+    <string name="gplus">Google</string>
+    <string name="email">ᱤᱢᱮᱞ</string>
+    <string name="skip">ᱟᱲᱟᱜᱽ ᱢᱮ  ›</string>
+    <string name="log_in">ᱵᱚᱞᱚᱱ ᱢᱮ</string>
+    <!-- Second person imperative, usually a label on a button to sign up for a new account -->
+    <string name="sign_up">ᱥᱩᱦᱤ ᱮᱢ ᱢᱮ</string>
+    <!-- Title of the view used to sign up for a new account -->
+    <string name="sign_up_title">ᱥᱩᱦᱤ ᱮᱢ ᱢᱮ</string>
+    <string name="min_6_chars">ᱠᱚᱢ ᱥᱮ ᱠᱚᱢ 6 ᱪᱤᱠᱤ ᱟᱨᱵᱟᱝ ᱚᱱᱟ ᱠᱷᱚᱱ ᱰᱷᱮᱨ</string>
+    <string name="content_licensing">ᱡᱤᱱᱤᱥ ᱨᱮᱭᱟᱜ ᱞᱟᱭᱥᱮᱱᱥᱤᱝ</string>
+    <!-- Try to keep this about the length of the English text -->
+    <string name="username_or_email">ᱵᱮᱵᱷᱟᱨᱤᱭᱟᱹ ᱧᱩᱛᱩᱢ ᱵᱟᱝᱠᱷᱟᱱ ᱤᱢᱮᱞ</string>
+    <string name="forgot">ᱦᱤᱲᱤᱧ ᱠᱮᱜᱼᱟᱢ?</string>
+    <string name="or_login_with">ᱵᱟᱝᱠᱷᱟᱱ ᱥᱟᱶ ᱵᱚᱞᱚᱱ ᱢᱮ :</string>
+    <string name="registering">ᱧᱩᱛᱩᱢ ᱚᱞᱚᱜ ᱠᱟᱱᱟ ...</string>
+    <string name="could_not_register_user">ᱵᱮᱵᱷᱟᱨᱤᱭᱟᱹᱟᱜ ᱧᱩᱛᱩᱢ ᱚᱞ ᱵᱟᱭ ᱜᱟᱱ ᱞᱮᱱᱟ</string>
+    <!-- Short label for a button in the side bar, not much more than 16 characters -->
+    <string name="login_signup">ᱵᱚᱞᱚᱱ / ᱥᱩᱦᱤ ᱮᱢ ᱢᱮ</string>
+    <string name="activity">ᱠᱟᱹᱢᱤ</string>
+    <!-- Label for a button to open the camera to take a new photo for an observation -->
+    <string name="camera">ᱪᱤᱛᱟᱹᱨ ᱤᱫᱤ ᱢᱮ</string>
+    <!-- Label for a button to import an existing photo for an observation -->
+    <string name="upload_photo">ᱪᱤᱛᱟᱹᱨ ᱵᱟᱪᱷᱟᱣ ᱢᱮ</string>
+    <string name="first">1st</string>
+    <string name="make_first">1st ᱛᱮᱭᱟᱨ ᱢᱮ</string>
+    <string name="notes">ᱠᱷᱟᱴᱚ ᱚᱞ ᱠᱚ</string>
+    <string name="is_captive">ᱫᱚᱶᱟ ᱫᱚ ᱵᱚᱱᱫᱤ ᱠᱟᱱᱟ ᱥᱮ ᱪᱟᱥ ᱠᱟᱱᱟ</string>
+    <string name="location_visibility">ᱡᱟᱭᱜᱟ ᱫᱮᱠᱷᱟᱣ</string>
+    <string name="set_location">ᱡᱟᱭᱜᱟ</string>
+    <string name="coordinates_lat">ᱞᱟᱴ :</string>
+    <string name="coordinates_lon">ᱞᱚᱝ :</string>
+    <string name="coordinates_acc">ᱥᱚᱴᱷ : </string>
+    <string name="required">* ᱞᱟᱹᱠᱛᱤ ᱜᱮᱭᱟ</string>
+    <string name="downloading_observations">ᱧᱮᱞᱯᱚᱨᱚᱠ ᱠᱚ ᱰᱟᱩᱱᱞᱚᱰᱚᱜ ᱠᱟᱱᱟ ...</string>
+    <string name="no_thanks">ᱵᱟᱝᱟ ᱥᱟᱨᱦᱟᱣ ᱜᱮ</string>
+    <string name="turn_on">ᱪᱟᱹᱞᱩᱭ ᱢᱮ</string>
+    <string name="automatic_upload">ᱟᱡ ᱛᱮ ᱞᱟᱫᱮ (ᱟᱡ ᱛᱮ ᱟᱹᱭᱩᱨ ᱢᱤᱫ)</string>
+    <string name="waiting_to_upload">ᱞᱟᱫᱮ ᱞᱟᱹᱜᱤᱫ ᱛᱟᱹᱝᱜᱤᱜ ᱠᱟᱱᱟ ᱹᱹᱹ</string>
+    <string name="uploading">ᱞᱟᱫᱮᱜ ᱠᱟᱱᱟ ...</string>
+    <string name="failed_to_add_to_project">\'%1$s\' ᱯᱟᱱᱛᱷᱟ ᱨᱮ ᱞᱟᱫᱮ ᱡᱷᱚᱜ ᱦᱩᱰᱟᱹᱜ : %2$s</string>
+    <string name="needs_your_attention">ᱟᱢᱟᱜ ᱫᱚᱠᱷᱚᱞ ᱱᱚᱨᱠᱟᱨ ...</string>
+    <string name="observation">ᱧᱮᱞᱯᱚᱨᱚᱠ</string>
+    <string name="share">ᱦᱟᱹᱴᱤᱧ</string>
+    <string name="unable_to_acquire_location">ᱟᱢᱟᱜ ᱡᱟᱭᱜᱟ ᱟᱹᱛᱩᱨ ᱵᱟᱭ ᱜᱟᱱ ᱞᱮᱱᱟ</string>
+    <string name="casual_grade">ᱟᱠᱚᱥᱢᱤᱠ ᱜᱽᱨᱮᱰ</string>
+    <string name="needs_id">ID ᱫᱚᱨᱠᱟᱨ</string>
+    <string name="research_grade">ᱨᱤᱥᱚᱨᱪ ᱜᱽᱨᱮᱰ</string>
+    <string name="data_quality">ᱰᱟᱴᱟ ᱨᱮᱭᱟᱜ ᱜᱩᱱ</string>
+    <string name="id_title">%1$s\'s ID • %2$s</string>
+    <string name="comment_title">%1$s • %2$s</string>
+    <string name="delete">ᱢᱮᱴᱟᱣ</string>
+    <string name="delete_comment">ᱴᱤᱯᱚᱬᱤ ᱢᱮᱴᱟᱣ ᱢᱮ</string>
+    <string name="suggest_id">ID ᱵᱟᱛᱟᱣ ᱢᱮ</string>
+    <string name="update_comment">ᱴᱤᱯᱚᱬᱤ ᱦᱟᱹᱞᱤᱭᱟᱹᱠ ᱢᱮ</string>
+    <string name="fave_this_observation">ᱱᱚᱶᱟ ᱧᱮᱞᱯᱚᱨᱚᱠ ᱠᱚ ᱠᱩᱥᱤᱭᱟᱜ ᱢᱮ</string>
+    <string name="faved">ᱠᱩᱥᱤᱭᱟᱜ</string>
+    <string name="be_the_first_to_fave_this_obs">ᱱᱚᱶᱟ ᱧᱮᱞᱯᱚᱨᱚᱠ ᱠᱩᱥᱤᱡ ᱯᱨᱩᱛᱷᱩᱞ ᱦᱚᱲ ᱛᱮᱭᱟᱨᱚᱜ ᱢᱮ ...</string>
+    <string name="leave_a_comment">ᱢᱤᱫᱴᱟᱹᱝ ᱧᱮᱞᱯᱚᱨᱚᱠ ᱨᱮᱭᱟᱜ ᱴᱤᱯᱚᱬᱤ ᱵᱟᱝᱠᱷᱟᱱ ᱵᱟᱛᱟᱣ ᱟᱲᱟᱜ ᱠᱟᱜ ᱢᱮ ...</string>
+    <string name="location_coords">ᱞᱟᱴ: %1$s ᱞᱚᱝ: %2$s ᱥᱚᱴᱷᱤᱠ %3$s</string>
+    <string name="location_coords_no_acc">ᱞᱟᱴ: %1$s ᱞᱚᱝ: %2$s</string>
+    <string name="location">ᱡᱟᱭᱜᱟ</string>
+    <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
+    <!--  Label for a button to add an observation without a photo or a sound  -->
+    <string name="no_photo">ᱪᱮᱫ ᱢᱤᱰᱤᱭᱟ ᱵᱟᱹᱱᱩᱜᱼᱟ</string>
+    <string name="about_this_species">ᱱᱚᱶᱟ ᱡᱟᱹᱛ ᱵᱟᱵᱚᱛ</string>
+    <string name="view_on_wikipedia">ᱣᱤᱠᱤᱯᱤᱰᱤᱭᱟ ᱚᱱᱚᱞ</string>
+    <string name="photo"><![CDATA[ᱪᱤᱛᱟᱹᱨ : <b><a href="%1$s">%2$s</a></b>]]></string>
+    <string name="photo_attr"><![CDATA[ᱪᱤᱛᱟᱹᱨ: <b>%1$s</b>]]></string>
+    <string name="finding_current_location">ᱱᱤᱛᱚᱜᱟᱛ ᱡᱟᱭᱜᱟ ᱯᱟᱱᱛᱮᱜ ᱠᱟᱱᱟ ...</string>
+    <string name="do_you_agree_to_the_following">ᱟᱢ ᱪᱮᱫ ᱱᱚᱶᱟ ᱠᱚᱛᱮ ᱯᱟᱹᱛᱤᱭᱟᱣᱜ ᱠᱟᱱᱟ ᱥᱮ?</string>
+    <string name="terms">ᱥᱚᱨᱛᱚ ᱠᱚ</string>
+    <string name="observation_rules">ᱧᱮᱞᱯᱚᱨᱚᱠ ᱱᱤᱭᱚᱢ ᱠᱚ</string>
+    <string name="couldnt_load_project_details">ᱯᱟᱱᱛᱷᱟ ᱵᱤᱵᱨᱚᱬ ᱞᱟᱫᱮ ᱵᱟᱝ ᱜᱟᱱ ᱞᱮᱱᱟ : %1$s</string>
+    <string name="no_people_found">ᱚᱠᱚᱭ ᱦᱚᱲ ᱦᱚᱸ ᱵᱟᱠᱚ ᱧᱟᱢ ᱞᱮᱱᱟ</string>
+    <string name="rank">ᱫᱟᱨᱡᱟ</string>
+    <string name="identifications">ᱪᱤᱱᱦᱟᱹᱯ ᱠᱚ</string>
+    <string name="no_news_found">ᱪᱮᱫ ᱠᱷᱚᱵᱚᱨ ᱵᱟᱝ ᱧᱟᱢ ᱞᱮᱱᱟ</string>
+    <string name="news">ᱠᱷᱚᱵᱚᱨ ᱠᱚ</string>
+    <string name="article">ᱚᱱᱚᱞ</string>
+    <string name="couldnt_load_project_news">ᱯᱟᱱᱛᱷᱟ ᱠᱷᱚᱵᱚᱨ ᱞᱟᱫᱮ ᱵᱟᱭ ᱜᱟᱱ ᱞᱮᱱᱟ : %1$s</string>
+    <string name="couldnt_load_user_details">ᱵᱮᱵᱷᱟᱹᱨᱤᱟᱹ ᱵᱤᱵᱨᱚᱬ ᱞᱟᱫᱮ ᱵᱟᱭ ᱜᱟᱱ ᱞᱮᱱᱟ : %1$s</string>
+    <string name="more_bio"><![CDATA[<b><font color="#ffffff">ᱰᱷᱮᱨ »</font></b>]]></string>
+    <string name="no_location">ᱡᱟᱭᱜᱟ ᱵᱟᱝ ᱧᱟᱢ ᱞᱮᱱᱟ</string>
+    <string name="add_to_projects">ᱯᱟᱱᱛᱷᱟ (ᱠᱚ) ᱛᱮ ᱥᱮᱞᱮᱫ ᱢᱮ</string>
+    <string name="users_identification">%1$s\'s ID: %2$s</string>
+    <string name="edit_profile">ᱢᱚᱦᱨᱟ ᱥᱟᱯᱲᱟᱣ ᱢᱮ</string>
+    <string name="remove_photo">ᱪᱤᱛᱟᱹᱨ ᱚᱪᱚᱜᱽ ᱢᱮ</string>
+    <string name="name">ᱧᱩᱛᱩᱢ</string>
+    <string name="tell_us_about_yourself">ᱟᱢ ᱵᱟᱵᱚᱛ ᱞᱟᱹᱭ ᱵᱤᱲᱟᱹᱣ ᱢᱮ ...</string>
+    <string name="view_profile">ᱢᱚᱦᱟᱲᱟ ᱧᱮᱞ ᱢᱮ</string>
+    <string name="are_you_sure_you_want_to_remove_photo">ᱪᱮᱫ ᱟᱢᱟᱜ ᱯᱟᱹᱛᱤᱭᱟᱹᱣ ᱨᱮ ᱟᱢᱟᱜ ᱯᱷᱚᱴᱚ ᱚᱪᱚᱜᱽ ᱥᱮᱱᱟᱢ ᱠᱟᱱᱟ ᱥᱮ?</string>
+    <string name="updating_profile">ᱢᱚᱦᱚᱨ ᱦᱟᱹᱞᱤᱭᱟᱹᱠᱚᱜ ᱠᱟᱱᱟ ...</string>
+    <string name="there_was_a_problem_updating_profile">ᱟᱢᱟᱜ ᱢᱚᱦᱚᱨ ᱦᱟᱹᱞᱤᱭᱟᱹᱠ ᱡᱷᱚᱜ ᱵᱷᱩᱞ ᱦᱩᱭ ᱮᱱᱟ!</string>
+    <string name="there_was_a_problem_updating_profile_params">ᱟᱢᱟᱜ ᱢᱚᱦᱚᱨ ᱦᱟᱹᱞᱤᱭᱟᱹᱠ ᱡᱷᱚᱜ ᱵᱷᱩᱞ ᱦᱩᱭ ᱮᱱᱟ : %1$s</string>
+    <!-- Notice of which user is currently logged in, e.g. "Currently logged in as kueda" -->
+    <string name="log_out">ᱵᱟᱦᱨᱮ ᱛᱮ ᱚᱰᱚᱠ</string>
+    <string name="not_logged_in">ᱵᱟᱝ ᱵᱚᱞᱚᱣᱟᱠ</string>
+    <!-- Prompt to log in to your account or sign up for a new account -->
+    <string name="login_or_sign_up">ᱵᱚᱞᱚᱱ ᱢᱮ ᱟᱨᱵᱟᱝ ᱥᱩᱦᱤ ᱮᱢ ᱢᱮ</string>
+    <string name="language">ᱯᱟᱹᱨᱥᱤ</string>
+    <string name="version">ᱦᱟᱹᱞᱤᱭᱟᱹᱠ</string>
+    <string name="inat_network">iNaturalist ᱨᱮᱭᱟᱜ ᱡᱟᱹᱞᱤ</string>
+    <string name="more_info">ᱰᱷᱮᱨ ᱵᱤᱵᱨᱚᱬ</string>
+    <string name="select_network">ᱱᱮᱴᱣᱟᱨᱠ ᱡᱩᱲᱟᱹᱣ ᱵᱟᱪᱷᱟᱣ ᱢᱮ</string>
+    <string name="help">ᱜᱚᱲᱚ</string>
+    <string name="stop">ᱛᱷᱩᱢ</string>
+    <string name="resume">ᱞᱟᱦᱟ</string>
+    <string name="cleaning_up">ᱥᱟᱯᱷᱟᱜ ᱠᱟᱱᱟ ...</string>
+    <string name="syncing">ᱟᱹᱭᱩᱨ ᱢᱤᱫᱚᱜ ᱠᱟᱱᱟ ...</string>
+    <string name="syncing_observation_fields">ᱧᱮᱞᱯᱚᱨᱚᱠ ᱡᱟᱭᱜᱟ ᱠᱚ ᱟᱹᱭᱩᱨ ᱢᱤᱫᱚᱜ ᱠᱟᱱᱟ ...</string>
+    <string name="syncing_observations">ᱧᱮᱞᱯᱚᱨᱚᱠ ᱠᱚ ᱟᱹᱭᱩᱨ ᱢᱤᱫᱚᱜ ᱠᱟᱱᱟ ...</string>
+    <string name="syncing_paused">ᱛᱷᱩᱢ</string>
+    <string name="upload">ᱞᱟᱫᱮ</string>
+    <string name="search_observations">ᱧᱮᱞᱯᱚᱨᱚᱠ ᱠᱚ ᱥᱮᱸᱫᱽᱨᱟᱭ ᱢᱮ ...</string>
+    <string name="withdraw">ᱚᱰᱚᱠ</string>
+    <!-- Dialog title for when you are updating the description of an identification -->
+    <string name="update_id_description">ᱪᱤᱱᱦᱟᱹᱯ ᱵᱤᱵᱨᱚᱬ ᱦᱟᱹᱞᱤᱭᱟᱹᱠ ᱢᱮ</string>
+    <string name="your_identification">ᱟᱢᱟᱜ ID: %1$s</string>
+    <string name="upload_complete">ᱞᱟᱫᱮ ᱪᱟᱵᱟ ᱮᱱᱟ!</string>
+    <string name="importing_photos">ᱪᱤᱛᱟᱹᱨ (ᱠᱚ) ᱞᱟᱫᱮᱜ ᱠᱟᱱᱟ ...</string>
+    <string name="multi_select_description">ᱢᱫᱤ ᱪᱤᱛᱟᱹᱨ ᱨᱮ ᱡᱩᱨ ᱚᱛᱟ ᱠᱟᱛᱮ ᱟᱭᱢᱟᱸ ᱪᱤᱛᱟᱹᱨ ᱠᱚ ᱟᱹᱜᱩᱭ ᱢᱮ</string>
+    <string name="preparing_photo">ᱪᱤᱛᱟᱹᱨ ᱛᱮᱭᱟᱨᱚᱜ ᱠᱟᱱᱟ ...</string>
+    <string name="recommended_for_you">ᱟᱢ ᱞᱟᱹᱜᱤᱫ ᱥᱩᱡᱷᱟᱹᱣ ᱠᱟᱱᱟ</string>
+    <string name="missions">ᱢᱤᱥᱚᱱ</string>
+    <string name="browse_by_category">ᱛᱷᱚᱠ ᱞᱮᱠᱷᱟᱛᱮ ᱯᱟᱱᱛᱮ ᱢᱮ</string>
+    <string name="couldnt_load_recommended_missions">ᱵᱟᱛᱟᱣ ᱠᱟᱱ ᱢᱤᱥᱚᱱ ᱫᱚ ᱞᱟᱫᱮ ᱵᱟᱝ ᱜᱟᱱ ᱞᱮᱱᱟ : %1$s</string>
+    <string name="plants">ᱫᱟᱨᱮ ᱠᱚ</string>
+    <string name="fish">ᱦᱟᱹᱠᱩ</string>
+    <string name="fungi">ᱜᱩᱢᱟᱹ</string>
+    <string name="birds">ᱪᱮᱬᱮ</string>
+    <string name="no_connectivity">ᱡᱩᱲᱟᱹᱣ ᱵᱟᱹᱱᱩᱜᱼᱟ</string>
+    <string name="observe">ᱧᱮᱞᱯᱚᱨᱚᱠ ᱢᱮ</string>
+    <string name="nearby_missions">ᱥᱩᱨ ᱠᱚ ᱨᱮᱭᱟᱜ ᱢᱤᱥᱚᱱ</string>
+    <string name="searching_your_area">ᱟᱢᱟᱜ ᱡᱟᱭᱜᱟ ᱨᱮ ᱯᱟᱱᱛᱮ ᱦᱩᱭᱩᱜ ᱠᱟᱱᱟ ...</string>
+    <string name="ok_got_it">ᱴᱷᱤᱠ, ᱵᱟᱲᱟᱭ ᱠᱮᱜᱼᱟᱹᱧ!</string>
+    <string name="my_content">ᱤᱧᱟᱜ ᱡᱤᱱᱤᱥ</string>
+    <string name="following">ᱯᱟᱧᱡᱟᱭᱮᱫ ᱟ</string>
+    <!--
+        Label for the number of new notifications you might have. This specific string is used in
+        the side drawer next to the Activity menu item when you have new activity on your own
+        content.
+    -->
+    <plurals name="new_activities">
+        <item quantity="one">%1s ᱱᱟᱶᱟ</item>
+        <item quantity="other">%1s ᱱᱟᱶᱟ</item>
+    </plurals>
+    <string name="no_results_found">ᱪᱮᱫ ᱛᱮᱞᱟ ᱠᱚ ᱵᱟᱝ ᱧᱟᱢ ᱞᱮᱱᱟ ...</string>
+    <string name="restore">ᱫᱚᱦᱰᱟ ᱡᱚᱜᱟᱣ</string>
+    <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
+    <string name="view_suggestions">ᱵᱟᱛᱟᱣᱠᱚ ᱧᱮᱞ ᱢᱮ</string>
+    <string name="species_search">ᱡᱟᱹᱛᱠᱚ ᱨᱮᱭᱟᱜ ᱥᱮᱸᱫᱽᱨᱟ</string>
+    <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
+    <!-- Header for a list of suggested taxa -->
+    <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
+    <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
+    <!-- As in a political administrative area, e.g. Hawaii in the United States -->
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
+    <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
+    <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
+    <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
+    <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
+    <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
+    <!-- https://gadm.org place type, presumably describing an area larger than an individual property but smaller than a neighborhood -->
+    <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
+    <!-- Indonesian sub-sub-national place type -->
+    <!-- https://en.wikipedia.org/wiki/Poblacion -->
+    <!-- https://en.wikipedia.org/wiki/Delegations_of_Tunisia -->
+    <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
+    <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
+    <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
+    <!-- As in redo search in the current map area -->
+    <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
+    <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
+    <!-- Compact form of "X days ago", so "3 days ago" would be "3d" -->
+    <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
+    <!-- This sentence expresses uncertainty at a fine taxonomic level but certainty at a higher taxonomic level, e.g. "I don't know if this is a dog but I'm sure it is a mammal." -->
+    <!--
+        Pronunciation of people's names (as approved by the people in question):
+
+        Abhas Misraraj: ɑbhɑs mɪʃrɑrɑdʒ (http://ipa-reader.xyz/?text=%C9%91bh%C9%91s%20m%C9%AA%CA%83r%C9%91r%C9%91d%CA%92)
+        Alex Shepard: ˈæ.lɪks ˈʃɛpɚd (http://ipa-reader.xyz/?text=%CB%88%C3%A6.l%C9%AAks%20%CB%88%CA%83%C9%9Bp%C9%9Ad)
+        Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
+        Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
+    -->
+    <!-- People who added identifications to observations in a project -->
+    <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
+    <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
+    <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
+    <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
+    <!-- Used when filtering observations with annotations -->
+    <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
+    <!-- Annotation value for when no annotation has been chosen -->
+    <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
+    <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
+    <!-- Noun, describes sex of the organism -->
+    <!-- Attribute that describes whether the organism is alive or dead -->
+    <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
+    <!-- Adjective, having open flowers -->
+    <!-- Adjective, having fruit -->
+    <!-- Adjective, having unopened flowers -->
+    <!-- Adjective, having unopened flowers -->
+    <!-- Observation presents no evidence of flowering phenology -->
+    <!-- Adjective describing the life stage where an individual can reproduce -->
+    <!-- Adjective describing the odonate life stage between nymph and adult -->
+    <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
+    <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
+    <!-- Noun for the arthropod life stage between egg and adult -->
+    <!-- Life stage before adulthood, could work as a noun or an adjective -->
+    <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
+    <!-- Adjective, alive and shows no signs of imminent death -->
+    <!-- Adjective, dead or shows signs of imminent death -->
+    <!-- Value for when the value of the attribute cannot be determined -->
+    <!-- Evidence of Presence value when the observation depicts the organism itself and not some kind of sign the organism left behind -->
+    <!-- Evidence of Presence value when for bird feathers -->
+    <!-- Evidence of Presence value when for fecal remains -->
+    <!-- Evidence of Presence value for impressions in the ground or snow -->
+    <!-- Evidence of Presence value when for bones -->
+    <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
+    <!-- Text for a label for a list of projects the viewer has joined -->
+    <!-- Text for a button or label that allows someone to join a project -->
+    <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
+    <!-- Label for a button to import an existing sound for an observation -->
+    <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
+    <!-- Verb, as in "Duplicate this photo" - Second person imperative -->
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the photo for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
+    <!-- Verb, as in "Rotate this photo" -->
+    <!-- Verb, as in "Scale (resize) this photo" -->
+    <!-- Verb, as in "Crop this photo" -->
+    <!-- Label for adjusting the brightness of an image -->
+    <!-- Label for adjusting the contrast of an image -->
+    <!-- Label for adjusting the saturation of an image -->
+    <!-- Label for adjusting the sharpness of an image -->
+    <!-- Label for image cropping mode that maintains the original aspect ratio -->
+    <!-- Label for image cropping mode that has no limits on the aspect ratio -->
+    <!-- Verb phrase, button label to edit an observation photo -->
+    <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
+    <!-- Second person hint text asking the user to enter their username -->
+    <!-- Dialog title when notifying the user that the action they tried to perform requires them to grant location permission to the app -->
+    <!-- Message displayed when the user tries to perform an action that requires location permission -->
+    <!-- Dialog title when displaying a message that an action is not permitted -->
+    <!-- Message displayed when the user tries to share media with the iNat app from another app that from which iNat does not accept media -->
+    <!-- Description of a UI element for screen readers -->
+    <!-- Description of a UI element for screen readers -->
+    <!-- Description of a UI element for screen readers -->
+    <!-- As in "matter and energy", or "life is a self-replicating pattern of matter subject to evolutionary processes" -->
+    <!-- Singular -->
+    <!-- Singular -->
+    <!-- Placeholder text shown in place of a username when the user has been deleted -->
+    <!-- Short date formatting template for dates in the current year. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <!-- Short date formatting template for any date. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <!-- Short time formatting template for 24-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <!-- Short time formatting template for 12-hour locales. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <!-- Long date formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <!-- Long date with time formatting template. See https://developer.android.com/reference/java/text/SimpleDateFormat#date-and-time-patterns for formatting options -->
+    <!-- Used to demonstrate annotation filters, e.g. Life Stage = Egg -->
+    <!-- Singular -->
+    <!-- Singular -->
+    <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
+    <!-- Accessibility text for the comments and IDs tab on the observation detail view -->
+    <!-- Accessibility text for the faves tab on the observation detail view -->
+    <!-- Accessibility text for a button that navigates to the previous option in a list of options -->
+    <!-- Accessibility text for a button that navigates to the next option in a list of options -->
+    <!-- Full sentence will look something like: "Sorted by Date Observed (Descending)" -
+    See explore_order_by_items and explore_order_items keys !-->
+    <!-- Label for an observation search filter to exclude your own observations -->
+    <!-- Label for an option to follow an observation, i.e. subscribe to future updates -->
+    <!-- Label for an option to unfollow an observation, i.e. unsubscribe to future updates -->
+    <!-- Error message shown when an attempt to follow an observation fails -->
+    <!-- Error message shown when an attempt to unfollow an observation fails -->
+    <!-- Label for a button to copy the coordinates of an observation -->
+    <!--  Title of a section on the observation detail view that displays minor metadata  -->
+    <!--  iNat observation identifier  -->
+    <!--  iNat observation Universally Unique Identifier  -->
+    <!--  Universal Resource Locator  -->
+    <!-- License Names -->
+    <!-- License Descriptions -->
+    <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
+    <!-- Preference to control what tapping on the action button does on My Observations -->
+    <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
+    <!-- Placeholder text for an observation field value -->
+    <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
+    <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
+    <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
+    <!-- Accessibility label for a button that closes an announcement -->
+</resources>

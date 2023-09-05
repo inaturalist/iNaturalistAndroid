@@ -577,7 +577,6 @@
     <string name="change_password">Změnit heslo</string>
     <string name="search_projects_youve_joined">Vyhledat projekty, ke kterým jste se připojili...</string>
     <string name="must_be_connected_to_load_more_obs">Pro nahrání více pozorování musíte být připojen/a k internetu</string>
-    <string name="inat_about_title">iNaturalist je společná iniciativa California Academy of Sciences a National Geographic Society.</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -1182,7 +1181,6 @@ a naše <a href="https://www.inaturalist.org/terms">Smluvní podmínky</a>.]]></
     <string name="project_unselected">Projekt byl odvybrán</string>
     <string name="show_my_observations">Ukázat moje pozorování</string>
     <string name="play_pause_sound">Přehrát nebo pozastavit zvuk</string>
-    <string name="california_academy_of_sciences_and_national_geographic">Kalifornská akademie věd a National Geographic</string>
     <string name="view_image">Zobrazit obrázek</string>
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a green check mark and a thumbs-up icon -->
     <string name="assessment_passes">Hodnocení kvality splněno</string>
@@ -1215,5 +1213,6 @@ a naše <a href="https://www.inaturalist.org/terms">Smluvní podmínky</a>.]]></
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <string name="couldnt_upload_file_too_large">Soubor nelze nahrát - větší než 20MB</string>
     <string name="you_have_been_signed_out_please_sign_in_again">Byl jste odhlášen. Přihlaste se prosím znovu.</string>
+    <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Zavřít oznámení</string>
 </resources>
