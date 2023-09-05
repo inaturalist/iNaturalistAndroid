@@ -1514,9 +1514,8 @@ public class ObservationEditor extends Fragment {
         }
 
         final Intent galleryIntent = new Intent();
-        galleryIntent.setAction(Intent.ACTION_OPEN_DOCUMENT);
-        galleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
         galleryIntent.setType("image/*");
+        galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             // Multi-photo picking is supported
