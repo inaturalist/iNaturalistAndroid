@@ -1283,7 +1283,11 @@ public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInit
     }
 
     public void requestExternalStoragePermission(Activity activity, OnRequestPermissionResult cb) {
-        requestPermissions(activity, new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE }, cb);
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requestPermissions(activity, new String[]{Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.READ_MEDIA_AUDIO}, cb);
+        } else {
+            requestPermissions(activity, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, cb);
+        }
     }
 
     public void requestAudioRecordingPermission(Activity activity, OnRequestPermissionResult cb) {
@@ -1291,6 +1295,8 @@ public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInit
     }
 
     private void requestPermissions(final Activity activity, final String[] permissions, OnRequestPermissionResult cb) {
+        mPermissionsCbByPermissionName.clear();
+
         for (String permission: permissions) {
             mPermissionsCbByPermissionName.put(permission, cb);
             mPrefs.edit().putBoolean(permission, true).commit();
@@ -1332,6 +1338,8 @@ public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInit
                 } else {
                     cb.onPermissionDenied();
                 }
+
+                break;
             }
         }
     }
@@ -1361,9 +1369,16 @@ public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInit
     }
 
     public boolean isExternalStoragePermissionGranted() {
-        return (
-                PermissionChecker.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_GRANTED
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            return (
+                    PermissionChecker.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) == PermissionChecker.PERMISSION_GRANTED &&
+                            PermissionChecker.checkSelfPermission(this, Manifest.permission.READ_MEDIA_AUDIO) == PermissionChecker.PERMISSION_GRANTED
             );
+        } else {
+            return (
+                    PermissionChecker.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PermissionChecker.PERMISSION_GRANTED
+            );
+        }
     }
 
     public boolean isAudioRecordingPermissionGranted() {
