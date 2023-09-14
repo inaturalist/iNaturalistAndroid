@@ -75,11 +75,11 @@ class TaxonSuggestionAdapter extends ArrayAdapter<String> {
         if (((visionScore == null) || (frequencyScore == null)) || ((frequencyScore == 0) && (visionScore == 0))) {
             visuallySimilar.setVisibility(View.GONE);
         } else if ((visionScore > 0) && (frequencyScore > 0)) {
-            visuallySimilar.setText(R.string.visually_similar_seen_nearby);
+            visuallySimilar.setText(R.string.visually_similar_expected_nearby);
         } else if (visionScore > 0) {
             visuallySimilar.setText(R.string.visually_similar);
         } else if (frequencyScore > 0) {
-            visuallySimilar.setText(R.string.seen_nearby);
+            visuallySimilar.setText(R.string.expected_nearby);
         }
 
         compareTaxon.setVisibility(mShowCompare ? View.VISIBLE : View.INVISIBLE);

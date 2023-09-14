@@ -82,7 +82,7 @@
             android:textSize="12sp"
             android:layout_marginTop="3dp"
             android:text="TextView"
-            tools:text="@string/visually_similar_seen_nearby"/>
+            tools:text="@string/visually_similar_expected_nearby"/>
     </LinearLayout>
 
 

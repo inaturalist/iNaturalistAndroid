@@ -455,7 +455,9 @@
     <string name="suggest_species_description">Suggest species based on visual similarity to photos.</string>
     <string name="visually_similar">Visually Similar</string>
     <string name="visually_similar_seen_nearby">Visually Similar / Seen Nearby</string>
+    <string name="visually_similar_expected_nearby">Visually Similar / Expected Nearby</string>
     <string name="seen_nearby">Seen Nearby</string>
+    <string name="expected_nearby">Expected Nearby</string>
     <string name="enlarge">Enlarge</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">View Children</string>
