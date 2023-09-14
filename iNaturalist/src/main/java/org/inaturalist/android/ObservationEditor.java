@@ -1493,16 +1493,21 @@ public class ObservationEditor extends Fragment {
     }
 
     private void choosePhoto() {
+        Logger.tag(TAG).debug("choosePhoto");
+
         if (!mApp.isExternalStoragePermissionGranted()) {
+            Logger.tag(TAG).debug("choosePhoto - no storage permissions");
+
             mApp.requestExternalStoragePermission(getActivity(), new INaturalistApp.OnRequestPermissionResult() {
                 @Override
                 public void onPermissionGranted() {
+                    Logger.tag(TAG).debug("choosePhoto - permission granted");
                     choosePhoto();
                 }
 
                 @Override
                 public void onPermissionDenied() {
-
+                    Logger.tag(TAG).debug("choosePhoto - permission denied");
                 }
             });
             return;
@@ -1515,7 +1520,8 @@ public class ObservationEditor extends Fragment {
 
         final Intent galleryIntent = new Intent();
         galleryIntent.setType("image/*");
-        galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+        galleryIntent.setAction(Intent.ACTION_OPEN_DOCUMENT);
+        galleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             // Multi-photo picking is supported

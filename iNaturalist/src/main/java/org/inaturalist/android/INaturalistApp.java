@@ -1284,7 +1284,7 @@ public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInit
 
     public void requestExternalStoragePermission(Activity activity, OnRequestPermissionResult cb) {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            requestPermissions(activity, new String[]{Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.READ_MEDIA_AUDIO}, cb);
+            requestPermissions(activity, new String[]{Manifest.permission.READ_MEDIA_IMAGES}, cb);
         } else {
             requestPermissions(activity, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, cb);
         }
@@ -1371,8 +1371,7 @@ public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInit
     public boolean isExternalStoragePermissionGranted() {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             return (
-                    PermissionChecker.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) == PermissionChecker.PERMISSION_GRANTED &&
-                            PermissionChecker.checkSelfPermission(this, Manifest.permission.READ_MEDIA_AUDIO) == PermissionChecker.PERMISSION_GRANTED
+                    PermissionChecker.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) == PermissionChecker.PERMISSION_GRANTED
             );
         } else {
             return (
