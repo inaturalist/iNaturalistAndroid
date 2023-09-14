@@ -578,7 +578,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
 
                 String[] items = new String[mAllAnnotations.getJSONArray().length() + 1];
 
-                items[0] = getString(R.string.none);
+                items[0] = getString(R.string.any);
 
                 for (int i = 0; i < mAllAnnotations.getJSONArray().length(); i++) {
                     JSONObject item = mAllAnnotations.getJSONArray().optJSONObject(i);
@@ -668,7 +668,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
                 final JSONArray values = annotation.optJSONArray("values");
 
                 String[] items = new String[values.length() + 1];
-                items[0] = getString(R.string.none);
+                items[0] = getString(R.string.any);
 
                 for (int i = 0; i < values.length(); i++) {
                     JSONObject value = values.optJSONObject(i);
@@ -871,7 +871,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
 
         if ((mSearchFilters.annotationNameId == null) || (mAllAnnotations == null)) {
             // No annotation name selected
-            setSpinnerText(mAnnotationName, getString(R.string.none));
+            setSpinnerText(mAnnotationName, getString(R.string.any));
             mAnnotationEqual.setVisibility(View.GONE);
             mAnnotationValue.setVisibility(View.GONE);
         } else {
@@ -887,7 +887,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
                     }
 
                 } else {
-                    setSpinnerText(mAnnotationValue, getString(R.string.none));
+                    setSpinnerText(mAnnotationValue, getString(R.string.any));
                 }
             }
         }
