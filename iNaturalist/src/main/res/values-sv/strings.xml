@@ -439,7 +439,9 @@
     <string name="suggest_species_description">Föreslå arter baserat på visuell likhet med bilder.</string>
     <string name="visually_similar">Visuellt liknande</string>
     <string name="visually_similar_seen_nearby">Visuellt liknande / Sett i närheten</string>
+    <string name="visually_similar_expected_nearby">Visuellt liknande / Förväntad i närheten</string>
     <string name="seen_nearby">Sett i närheten</string>
+    <string name="expected_nearby">Förväntad i närheten</string>
     <string name="enlarge">Förstora</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Visa underliggande</string>

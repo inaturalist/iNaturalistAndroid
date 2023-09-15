@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="email_address">Email adresa</string>
-    <string name="delete_observation">Obriši posmatranje</string>
-    <string name="observation_deleted">Posmatranje obrisano</string>
+    <string name="email_address">Imejl adresa</string>
+    <string name="delete_observation">Izbriši opservaciju</string>
+    <string name="observation_deleted">Opservacija izbrisana</string>
     <string name="species_guess_hint">Naziv vrste</string>
     <string name="ok">OK</string>
     <string name="cancel">Otkaži</string>
@@ -10,36 +10,36 @@
     <string name="street">Ulica</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Satelit</string>
-    <string name="couldnt_load_nearby_observations">Nije moguće učitati posmatranja: %1$s</string>
-    <string name="username_invalid">Ime i lozinka su pogrešni, prijavite se ponovo.</string>
+    <string name="couldnt_load_nearby_observations">Neuspelo učitavanje pservacija u blizini: %1$s</string>
+    <string name="username_invalid">Korisničko ime ili lozinka su pogrešni, uloguj se ponovo.</string>
     <string name="signing_in">Prijavljivanje...</string>
-    <string name="signed_in">Prijevljeni ste!</string>
-    <string name="please_sign_in">Prijavite se</string>
-    <string name="please_sign_in_description">Prijavete se na vašem iNaturalist nalogu ili napravite novi.</string>
+    <string name="signed_in">Ulogovan/a si!</string>
+    <string name="please_sign_in">Uloguj se</string>
+    <string name="please_sign_in_description">Prijavi se na tvoj iNaturalist nalog ili se registruj da napraviš novi.</string>
     <string name="please_enable_location_services">Molimo te da uključiš lokaciju da bi pronašli tvoju trenutnu lokaciju...</string>
     <string name="go_to_settings">Idi u podešavanja</string>
-    <string name="photo_not_specified">Fotografija nije označena</string>
+    <string name="photo_not_specified">Fotografija nije naznačena</string>
     <string name="set_date">Datum</string>
     <string name="set_time">Vreme</string>
     <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
-    <string name="something_went_wrong">Dođavola, nešto se pokravilo: %1$s</string>
+    <string name="something_went_wrong">Ups, nešto nije kako treba: %1$s</string>
     <string name="edit">Izmeni</string>
     <string name="oh_no">O ne! %1$s</string>
     <string name="observations">Moje opservacije</string>
     <string name="map">Mapa</string>
     <string name="settings">Podešavanja</string>
     <string name="projects">Projekti</string>
-    <string name="delete_photo">Obriši fotografiju</string>
+    <string name="delete_photo">Izbriši fotografiju</string>
     <string name="my_location">Moja lokacija</string>
-    <string name="nearby_observations">Bliska posmatranja</string>
+    <string name="nearby_observations">Opservacije u blizini</string>
     <string name="add">Dodaj</string>
     <string name="view_on_inat">Pogledaj na iNaturalist.org</string>
     <string name="reload">Ponovo učitaj</string>
     <string name="view_in_browser">Pogledaj u pretraživaču</string>
-    <string name="add_observation">Dodaj posmatranje</string>
+    <string name="add_observation">Dodaj opservaciju</string>
     <string name="take_picture">Napravi fotografiju</string>
     <string name="save">Sačuvaj</string>
-    <string name="no_observations_yet">Još nema posmatranja!</string>
+    <string name="no_observations_yet">Još nema opservacija!</string>
     <string name="or">ili</string>
     <string name="signed_out">Odjavi se</string>
     <string name="username">Korisničko Ime</string>
@@ -109,9 +109,9 @@
     <string name="discard_location_changes">Da li sigurno želite da odbacite nesačuvane promene?</string>
     <string name="edit_location">Izmeni lokaciju</string>
     <string name="edit_locality_notes">Izmeni napomene lokacije</string>
-    <string name="get_current_location">Trenutna lokacija</string>
-    <string name="pull_to_refresh">Povuci da osvežite...</string>
-    <string name="release_to_refresh">Pustite da osvežite...</string>
+    <string name="get_current_location">Pronađi trenutnu lokaciju</string>
+    <string name="pull_to_refresh">Povuci da osvežiš...</string>
+    <string name="release_to_refresh">Otpusti da osvežiš...</string>
     <string name="refreshing">Osvežavanje…</string>
     <plurals name="sync_x_observations">
         <item quantity="one">Sinhronizuj %1$d opservaciju</item>
@@ -119,8 +119,8 @@
         <item quantity="other">Sinhronizuj %1$d opservacija</item>
     </plurals>
     <string name="sync_observations">Sinhronizuj opservacije</string>
-    <string name="lets_get_started">Počnimo</string>
-    <string name="view_nearby_observations">Pogledaj bliska posmatranja</string>
+    <string name="lets_get_started">Počnimo!</string>
+    <string name="view_nearby_observations">Pogledaj opservacije u blizini</string>
     <string name="skip_for_now">Preskoči za sada</string>
     <string-array name="tutorial_titles">
         <item></item>
@@ -131,8 +131,8 @@
     </string-array>
     <string-array name="tutorial_descriptions">
         <item>Istraži i poveži se sa prirodom</item>
-        <item>Izađi napolje! Pronađi nešto divlje, i slikaj dobru punu fotografiju.</item>
-        <item>Podijeli svoja posmatranja sa iNaturalist društvom.</item>
+        <item>Izađi napolje! Pronađi nešto u divljini i napravi što bolju fotografiju.</item>
+        <item>Podeli svoje opservacije sa iNaturalist zajednicom.</item>
         <item>Proveri kasnije za nove komentare i identifikacije na tvojoj opservaciji!</item>
         <item><![CDATA[<b>Istraživački nivo</b> opservacije se dele sa naučnicima koji žele da bolje razumeju i zaštite prirodu.]]></item>
     </string-array>
@@ -146,10 +146,10 @@
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
     <string name="explore">Istraži</string>
     <string name="restricted_to_current_map_area">Ograničeno na trenutnu oblast mape</string>
-    <string name="search">Pronađi</string>
+    <string name="search">Pretraga</string>
     <string name="details">Detalji</string>
     <string name="observation_photos">Slike opservacije</string>
-    <string name="no_observations_found">Nema pronađenih posmatranja</string>
+    <string name="no_observations_found">Nijedna opservacija nije nađena</string>
     <string name="license_none">Nema, sva prava zadržana</string>
     <string name="photos"><![CDATA[<b>Fotografije:</b> %1$s]]></string>
     <string name="text"><![CDATA[<b>Tekst:</b> %1$s]]></string>
@@ -261,7 +261,7 @@
     <string name="delete">Izbriši</string>
     <string name="delete_id">Povuci identifikaciju</string>
     <string name="delete_comment">Izbriši komentar</string>
-    <string name="delete_id_message">Da li ste sigurno želite da povučete ovu identifikaciju?</string>
+    <string name="delete_id_message">Da li sigurno želiš da povučeš ovu identifikaciju?</string>
     <string name="delete_comment_message">Da li ste sigurno želite da izbrišete ovaj komentar?</string>
     <string name="suggest_id">Predloži ID</string>
     <string name="update_comment">Izmeni komentar</string>
@@ -934,7 +934,7 @@
     <string name="share_location">Podeli lokaciju</string>
     <string name="share_hidden_location">Podeli skrivenu lokaciju</string>
     <!-- Message shown when the user attempts to duplicate an observation but the app was unable to create a copy of the sound for some reason, e.g. the disk if full or the app lost the permission to write to disk -->
-    <string name="couldnt_duplicate_sound">Nije moguće duplirati zvuk!</string>
+    <string name="couldnt_duplicate_sound">Neuspelo pravljenje duplikata ovog zvuka!</string>
     <string name="view_observations">Pogledaj opservacije</string>
     <string name="choose_this_option">Izaberi ovu opciju</string>
     <string name="go_back">Nazad</string>
@@ -1005,6 +1005,7 @@
     <string name="photo_license">Licenca fotografije</string>
     <string name="sound_license">Licenca zvuka</string>
     <string name="edit_photo_license">Izmeni licencu fotografija</string>
+    <string name="edit_observation_license">Izmeni licencu opservacije</string>
     <string name="about_licenses">O licencama</string>
     <string name="view_license">Pogledaj licencu</string>
     <!-- License Names -->
@@ -1015,6 +1016,7 @@
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">Preporuke zasnovane na opservacijama i identifikacijama dodatim od strane iNaturalist zajednice, uključujući %1$s, %2$s, %3$s i mnoge druge.</string>
     <!-- Preference to control what tapping on the action button does on My Observations -->
+    <string name="default_observation_action">Podrazumevan način pravljenja opservacije</string>
     <!-- Option for the "Default Observation Action" preference that performs the default action of showing a slide-up menu of options -->
     <string name="show_options">Prikaži opcije</string>
     <!-- Placeholder text for an observation field value -->

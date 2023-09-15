@@ -439,7 +439,9 @@
     <string name="suggest_species_description"> Vom Algorithmus eine Art vorschlagen lassen, basierend auf visuellen Vergleichen anderer Fotos </string>
     <string name="visually_similar">Aussehen ähnlich</string>
     <string name="visually_similar_seen_nearby">Aussehen ähnlich / Gesehen in der Nähe</string>
+    <string name="visually_similar_expected_nearby">Aussehen ähnlich/ in der Umgebung zu erwarten</string>
     <string name="seen_nearby">In der Nähe gesehen</string>
+    <string name="expected_nearby">in der Umgebung zu erwarten</string>
     <string name="enlarge">Vergrößern</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">weitere Taxa anzeigen</string>
