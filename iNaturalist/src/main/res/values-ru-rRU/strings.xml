@@ -448,6 +448,7 @@
     <string name="suggest_species_description">Предложить вид на основе сходства с фотографиями.</string>
     <string name="visually_similar">Внешне похожий</string>
     <string name="visually_similar_seen_nearby">Визуально похожие / встречались поблизости</string>
+    <string name="visually_similar_expected_nearby">Визуально похожие / Встречаются поблизости</string>
     <string name="seen_nearby">Встречен поблизости</string>
     <string name="enlarge">Увеличить</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->

@@ -129,13 +129,13 @@
         <item>Obserwuj</item>
         <item>Udostępnij</item>
         <item>Ucz się</item>
-        <item>Wspomóż</item>
+        <item>Wnieś wkład</item>
     </string-array>
     <string-array name="tutorial_descriptions">
         <item>Eksploruj i połącz się z Naturą</item>
         <item>Wyjdź na zewnątrz! Znajdź coś dzikiego i wykonaj wyraźne zdjęcie.</item>
         <item>Udostępnij swoją obserwację społeczności iNaturalist.</item>
-        <item>Wróć później by sprawdzić komentarze i rozpoznania dotyczące Twoich obserwacji!</item>
+        <item>Wróć później, aby sprawdzić komentarze i oznaczenia dotyczące Twojej obserwacji!</item>
         <item><![CDATA[Obserwacje na <b>Poziomie Badawczym</b> są udostępniane naukowcom pracującym nad lepszym zrozumieniem i ochroną natury.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
@@ -348,8 +348,8 @@
     <string name="update_id_description">Zaktualizuj opis oznaczenia</string>
     <string name="your_identification">Twoje oznaczenie: %1$s</string>
     <string name="onboarding_species_name">Jeżeli jesteś w stanie, nazwij obiekt obserwacji, nawet ogólnie, np. \"owad\", \"ptak\", lub zostaw puste miejsce. Być może inni pomogą Ci to rozpoznać!</string>
-    <string name="upload_complete">Wysyłanie zakończone!</string>
-    <string name="onboarding_upload_description">Wróć wkrótce by sprawdzić rozpoznania i komentarze dotyczące Twoich obserwacji!</string>
+    <string name="upload_complete">Przesyłanie zakończone!</string>
+    <string name="onboarding_upload_description">Wróć wkrótce, aby sprawdzić oznaczenia i komentarze dotyczące Twoich obserwacji.</string>
     <string name="importing_photos">Importowanie zdjęcia/zdjęć...</string>
     <string name="multi_select_description">Importuj wiele zdjęć poprzez długie naciśnięcie pojedynczego zdjęcia</string>
     <string name="preparing_photo">Przygotowywanie zdjęcia...</string>
@@ -561,7 +561,7 @@
     <string name="no_identifications_found">Śledź sugerowane przez siebie identyfikacje dla obserwacji innych użytkowników.</string>
     <string name="no_species_found">To jest lista gatunków najczęściej obserwowanych przez Ciebie.\n\nUWAGA: Szacuje się, że na Ziemi istnieje 9 milionów gatunków. Wyjdź na zewnątrz i zaobserwuj je!</string>
     <string name="make_an_observation">Dodaj obserwację</string>
-    <string name="no_observations_found_new">Obserwacje są zapisami Twoich spotkań z poszczególnymi organizmami w określonych czasie i miejscu.</string>
+    <string name="no_observations_found_new">Obserwacje są zapisami Twoich spotkań z poszczególnymi organizmami w określonym czasie i miejscu.</string>
     <string name="discard_comment">Czy na pewno chcesz odrzucić ten komentarz?</string>
     <string name="leave_comment">Pozostaw komentarz...</string>
     <string name="swipe">Przesuń</string>
@@ -819,8 +819,8 @@
     <string name="third_party_data_sharing_notes2"><![CDATA[Informacje przekazywane partnerom obejmują:<br/><ul><li> adresy IP (które mogą zostać użyte do wskazania lokalizacji z dokładnością do miasta i śledzenia Twojej aktywności na innych stronach i usługach; zaznaczamy, że włączyliśmy <a href="https://support.google.com/analytics/answer/2763052">Anonimizację IP</a> w usłudze Google Analytics, natomiast według naszej wiedzy <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> nie rejestruje adresu IP)</li><li>Informacje o przeglądarce, takie jak producent, model czy wersja</li><li>Informacje o błędzie programu, np. problematyczna linia kodu</li><li>Informacje o urządzeniu, takie jak producent i model urządzenia mobilnego</li></ul>]]></string>
     <string name="third_party_data_sharing_notes3"><![CDATA[<b>Te usługi zewnętrzne niosą ogromną pomoc</b> naszemu względnie małemu zespołowi w utrzymywaniu stabilności i użyteczności iNaturalist. W przypadku urządzeń mobilnych w praktyce nie ma innego sposobu na badanie występujących problemów, ponieważ oprogramowanie funkcjonuje na urządzeniach, których nie kontrolujemy. Czasami nie jesteśmy nawet świadomi istnienia błędów dopóki nie wskażą ich nam dane przesyłane przez te usługi. <b>Udostępniając te informacje, pomagasz nam świadczyć usługi Tobie i całej społeczności iNaturalist.</b>]]></string>
     <string name="third_party_data_sharing_notes4"><![CDATA[Podkreślamy, że ta opcja obejmuje wyłącznie te dane analityczne i informacje o błędach, które zdecydowaliśmy się przesłać tym firmom. Wszystkie serwery iNaturalist są obsługiwane przez Microsoft, wszystkie obrazy hostowane są przez Amazon, a usługodawcą niemal wszystkich map jest Google, co oznacza, że sprawdzając obserwację w bazie iNaturalist, za każdym razem łączysz się z usługami stworzonymi przez te firmy i udostępniasz im przynajmniej swój adres IP (w wersji aplikacji na iPhone korzystamy z map Apple). iNaturalist prawdopodobnie nie istniałby bez usług, które świadczą te firmy i pomimo, że możemy ograniczyć ilość danych, które im udostępniasz używając iNat, nie możemy całkowicie zatrzymać ich przepływu.]]></string>
-    <string name="common_names_place"><![CDATA[Nazwy typowe dla: <b>%1$s</b>]]></string>
-    <string name="tap_to_prioritize_common_names">Dotknij, by nadać priorytet nazwom powszechnym w konkretnym miejscu.</string>
+    <string name="common_names_place"><![CDATA[Nazwy zwyczajowe dla: <b>%1$s</b>]]></string>
+    <string name="tap_to_prioritize_common_names">Dotknij, by nadać priorytet nazwom zwyczajowym z określonego miejsca.</string>
     <string name="search_places">Przeszukaj Miejsca</string>
     <string name="restart_app">Zrestartuj aplikację</string>
     <string name="disable_third_party_sharing_restart">Aby natychmiast zatrzymać udostępnianie danych partnerom, aplikacja musi zostać uruchomiona ponownie.</string>
