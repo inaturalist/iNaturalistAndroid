@@ -435,7 +435,9 @@
     <string name="suggest_species_description">Sarankan spesies berdasarkan kesamaan visual dengan foto.</string>
     <string name="visually_similar">Serupa Secara Visual</string>
     <string name="visually_similar_seen_nearby">Serupa Secara Visual / Terlihat Di Sekitar</string>
+    <string name="visually_similar_expected_nearby">Serupa Secara Visual / Terlihat Di Sekitar</string>
     <string name="seen_nearby">Terlihat Di Sekitar</string>
+    <string name="expected_nearby">Terlihat Di Sekitar</string>
     <string name="enlarge">Perbesar</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Lihat Anak</string>
