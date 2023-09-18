@@ -1456,19 +1456,22 @@ public class ObservationEditor extends Fragment {
             mApp.requestExternalStoragePermission(getActivity(), new INaturalistApp.OnRequestPermissionResult() {
                 @Override
                 public void onPermissionGranted() {
+                    Logger.tag(TAG).debug("chooseSound - permission granted");
                     chooseSound();
                 }
 
                 @Override
                 public void onPermissionDenied() {
-
+                    Logger.tag(TAG).debug("chooseSound - permission denied");
                 }
             });
             return;
         }
 
-        mFileUri = getOutputMediaFileUri(); // create a file to save the sound file
-        mFileUri = getPath(getActivity(), mFileUri);
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            mFileUri = getOutputMediaFileUri(); // create a file to save the sound file
+            mFileUri = getPath(getActivity(), mFileUri);
+        }
 
         final Intent galleryIntent = new Intent();
         galleryIntent.setType("audio/*");
