@@ -1415,19 +1415,25 @@ public class ObservationEditor extends Fragment {
     }
 
     private void takePhoto() {
+        Logger.tag(TAG).debug("takePhoto");
+
         if (!mApp.isCameraPermissionGranted()) {
             mApp.requestCameraPermission(getActivity(), new INaturalistApp.OnRequestPermissionResult() {
                 @Override
                 public void onPermissionGranted() {
+                    Logger.tag(TAG).debug("takePhoto - onPermissionGranted");
                     takePhoto();
                 }
 
                 @Override
                 public void onPermissionDenied() {
+                    Logger.tag(TAG).debug("takePhoto - onPermissionDenied");
                 }
             });
             return;
         }
+
+        Logger.tag(TAG).debug("takePhoto - start");
 
         // Temp file for the photo
         // Huawei phones don't work with getExternalCacheDir (getUriForFile crashes)

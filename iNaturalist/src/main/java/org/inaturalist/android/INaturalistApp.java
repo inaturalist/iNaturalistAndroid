@@ -1295,8 +1295,6 @@ public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInit
     }
 
     private void requestPermissions(final Activity activity, final String[] permissions, OnRequestPermissionResult cb) {
-        mPermissionsCbByPermissionName.clear();
-
         for (String permission: permissions) {
             mPermissionsCbByPermissionName.put(permission, cb);
             mPrefs.edit().putBoolean(permission, true).commit();
@@ -1330,6 +1328,7 @@ public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInit
         }
 
 
+        Logger.tag(TAG).debug("onRequestPermissionsResult: " + String.join(",", permissions));
         for (String permission: permissions) {
             OnRequestPermissionResult cb = mPermissionsCbByPermissionName.get(permission);
             if (cb != null) {
@@ -1339,6 +1338,7 @@ public class INaturalistApp extends MultiDexApplication implements OnMapsSdkInit
                     cb.onPermissionDenied();
                 }
 
+                mPermissionsCbByPermissionName.remove(permission);
                 break;
             }
         }
