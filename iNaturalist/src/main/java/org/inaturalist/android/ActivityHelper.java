@@ -1,5 +1,6 @@
 package org.inaturalist.android;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -256,6 +257,13 @@ public class ActivityHelper {
     }
 
     public void confirm(View title, Object msg, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener, String okText, String cancelText) {
+        if (mContext instanceof Activity) {
+            if (((Activity)mContext).isFinishing()) {
+                // To prevent BadTokenException exception
+                return;
+            }
+        }
+
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
