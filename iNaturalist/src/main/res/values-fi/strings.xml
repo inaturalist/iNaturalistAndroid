@@ -444,7 +444,9 @@ Huomaa että kun lisäät havaintoja projekteihin, niiden kuraattorit näkevät 
     <string name="suggest_species_description">Ehdota lajia perustuen visuaaliseen samankaltaisuuteen valokuvissa.</string>
     <string name="visually_similar">Näyttää samanlaiselta</string>
     <string name="visually_similar_seen_nearby">Näyttää samanlaiselta / nähty lähistöllä</string>
+    <string name="visually_similar_expected_nearby">Näyttää samanlaiselta / odotettavissa lähistöllä</string>
     <string name="seen_nearby">Nähty lähistöllä</string>
+    <string name="expected_nearby">Odotettavissa lähistöllä</string>
     <string name="enlarge">Suurenna</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Näytä alemmat taksonit</string>
