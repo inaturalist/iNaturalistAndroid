@@ -3,8 +3,9 @@ name: Crowdin Download
 on:
   # Allow manually triggering as well
   workflow_dispatch:
+  # Run automatically in the middle of each month (we do it manually at the beginning)
   schedule:
-    - cron: '0 0 1,15 * *' # First and middle of the month
+    - cron: '0 0 15 * *'
 
 env:
   L10N_BRANCH_NAME: l10n_main
