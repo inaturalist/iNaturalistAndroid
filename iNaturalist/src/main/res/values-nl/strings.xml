@@ -439,7 +439,9 @@
     <string name="suggest_species_description">Stel soorten voor gebaseerd op visuele gelijkenis met andere foto\'s.</string>
     <string name="visually_similar">Op het oog vergelijkbaar</string>
     <string name="visually_similar_seen_nearby">Visueel vergelijkbaar / gezien in de buurt</string>
+    <string name="visually_similar_expected_nearby">Visueel vergelijkbaar / In de buurt verwacht</string>
     <string name="seen_nearby">In de buurt waargenomen</string>
+    <string name="expected_nearby">In de buurt verwacht</string>
     <string name="enlarge">Vergroten</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Toon kinderen</string>

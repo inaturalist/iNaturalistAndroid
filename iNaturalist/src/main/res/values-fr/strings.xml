@@ -439,7 +439,9 @@
     <string name="suggest_species_description">Suggérer des espèces à partir d\'une comparaison visuelle des photos.</string>
     <string name="visually_similar">Visuellement similaire</string>
     <string name="visually_similar_seen_nearby">Visuellement similaire / Vu à proximité</string>
+    <string name="visually_similar_expected_nearby">Visuellement similaire / présence attendue à proximité</string>
     <string name="seen_nearby">Vu à proximité</string>
+    <string name="expected_nearby">Présence attendue à proximité</string>
     <string name="enlarge">Agrandir</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Voir les enfants</string>

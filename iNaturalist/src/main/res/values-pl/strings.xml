@@ -445,7 +445,9 @@
     <string name="suggest_species_description">Podpowiada gatunki na podstawie wizualnego podobieństwa do zdjęć.</string>
     <string name="visually_similar">Wizualnie podobne</string>
     <string name="visually_similar_seen_nearby">Wizualnie podobne / Widziane w pobliżu</string>
+    <string name="visually_similar_expected_nearby">Wizualnie podobne / Spodziewane w pobliżu</string>
     <string name="seen_nearby">Widziane w pobliżu</string>
+    <string name="expected_nearby">Spodziewane w pobliżu</string>
     <string name="enlarge">Powiększ</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Zobacz taksony podrzędne</string>
@@ -715,6 +717,7 @@
     <string name="evidence_of_organism">Ślad organizmu</string>
     <string name="recent_evidence_of_an_organism">Dowód na obecność organizmu</string>
     <string name="community_id_at_species_level_or_lower">Oznaczenie społeczności na poziomie gatunku lub niższym</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Czy na podstawie dowodów oznaczenie społeczności wciąż może zostać potwierdzone lub ulepszone?</string>
     <string name="no_as_good_as_it_can_be">Nie, jest tak dobrze jak może być</string>
     <string name="seasonality">Sezonowość</string>
     <string name="verifiable">Weryfikowalne</string>
@@ -733,6 +736,8 @@
     <string name="network_credit_inaturalistecuador"><![CDATA[Ekwador: Instituto Nacional de Biodiversidad (INABIO) wspierający iNaturalist Ecuador (<a href="https://ecuador.inaturalist.org">ecuador.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistil"><![CDATA[Izrael: Uniwersytet Haifa wspierający iNaturalist Izrael (<a href="https://israel.inaturalist.org">israel.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistfi"><![CDATA[Finlandia: fińskie Muzeum Historii Naturalnej (LUOMUS) wspierające iNaturalist Finland (<a href="https://inaturalist.laji.fi/">inaturalist.laji.fi</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Urugwaj: JULANA i Biodiversidata wspierające Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Tajwan: National Chiayi University i Taiwan Forestry Research Institute wspierające iNaturalist Taiwan (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <string name="mark_all_as_viewed">Oznacz wszystkie jako przejrzane</string>
     <string name="content_hidden">Zawartość ukryta</string>
     <string name="show_hidden_content">Pokaż ukrytą zawartość</string>
@@ -1113,6 +1118,7 @@
     <string name="license_name_cc_by_sa">Uznanie autorstwa - Na tych samych warunkach</string>
     <string name="license_name_no_license">Wszelkie prawa zastrzeżone</string>
     <!-- License Descriptions -->
+    <string name="license_description_no_license">Zachowujesz pełne prawa autorskie do swoich treści niezależnie od tych zagwarantowanych iNaturalist w naszych Warunkach użytkowania.</string>
     <string name="invalid_photo">Format zdjęcia nie jest obsługiwany</string>
     <!-- Text attributing observers and identifiers alongside automated identification suggestions -->
     <string name="suggestions_based_on">Sugestie oparte na obserwacjach i identyfikacjach dostarczonych przez społeczność iNaturalist w tym %1$s, %2$s, %3$s, i wielu innych.</string>

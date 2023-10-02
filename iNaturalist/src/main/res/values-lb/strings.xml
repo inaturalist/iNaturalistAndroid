@@ -904,6 +904,7 @@
     <string name="clear_text">Text läschen</string>
     <string name="active_filters">Aktiv Filteren</string>
     <string name="observation_selected">Observatioun ausgewielt</string>
+    <string name="share_observation">Observatioun deelen</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
     <string name="close">Zoumaachen</string>
     <string name="set_date2">Datum definéieren</string>
