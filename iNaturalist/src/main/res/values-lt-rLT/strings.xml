@@ -442,7 +442,9 @@
     <string name="suggest_species_description">Siūlyti rūšį pagal vizualinius panašumus nuotraukose.</string>
     <string name="visually_similar">Vizualiai panašus</string>
     <string name="visually_similar_seen_nearby">Vizualiai panašus / pastebėtas netoliese</string>
+    <string name="visually_similar_expected_nearby">Vizualiai panašus / tikimasi netoliese</string>
     <string name="seen_nearby">Pastebėtas netoliese</string>
+    <string name="expected_nearby">Tikimasi netoliese</string>
     <string name="enlarge">Padidinti</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Žiūrėti žemesnius taksonus</string>

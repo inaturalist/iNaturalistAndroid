@@ -439,7 +439,9 @@
     <string name="suggest_species_description">Soovita fotode visuaalse sarnasuse põhjal liike</string>
     <string name="visually_similar">Visuaalselt sarnane</string>
     <string name="visually_similar_seen_nearby">Visuaalselt sarnane / Läheduses nähtud</string>
+    <string name="visually_similar_expected_nearby">Visuaalselt sarnane / Läheduses eeldatav</string>
     <string name="seen_nearby">Läheduses nähtud</string>
+    <string name="expected_nearby">Läheduses eeldatav</string>
     <string name="enlarge">Suurenda</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Vaata alamtaksoneid</string>
