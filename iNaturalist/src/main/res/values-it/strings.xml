@@ -439,7 +439,9 @@
     <string name="suggest_species_description">Suggerisci una specie basandoti sulla somiglianza visiva delle foto.</string>
     <string name="visually_similar">Visivamente simili</string>
     <string name="visually_similar_seen_nearby">Visivamente simili / visti nelle vicinanze</string>
+    <string name="visually_similar_expected_nearby">Visivamente simili / Attese nelle vicinanze</string>
     <string name="seen_nearby">Visto nelle vicinanze</string>
+    <string name="expected_nearby">Attese Nelle Vicinanze</string>
     <string name="enlarge">Ingrandisci</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Vedi figli</string>
@@ -569,6 +571,7 @@
     <string name="change_password">Modifica password</string>
     <string name="search_projects_youve_joined">Progetti di ricerca a cui hai aderito...</string>
     <string name="must_be_connected_to_load_more_obs">È necessario essere connessi a Internet per caricare più osservazioni</string>
+    <string name="inat_about_title_new">iNaturalist è un indipendente 501(c)(3) senza scopo di lucro con sede negli Stati Uniti (EIN 92-1296468)</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -1194,4 +1197,5 @@ le <a href="https://www.inaturalist.org/pages/community+guidelines">Linee Guida 
     <string name="couldnt_upload_file_too_large">Non è possibile caricare il file - è più grande di 20MB</string>
     <string name="you_have_been_signed_out_please_sign_in_again">Sei stato disconnesso. Effettua nuovamente l\'accesso.</string>
     <!-- Accessibility label for a button that closes an announcement -->
+    <string name="close_announcement">Chiudi Annuncio</string>
 </resources>

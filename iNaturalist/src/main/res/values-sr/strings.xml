@@ -53,7 +53,7 @@
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">Slažeš se?</string>
     <string name="no_comments">Nema komentara/identifikacija</string>
-    <string name="add_comment">Dodaj komentar</string>
+    <string name="add_comment">Komentar</string>
     <string name="add_id">Dodaj identifikaciju</string>
     <string name="remarks">Napomene...</string>
     <string name="enter_taxon_name">Naziv vrste</string>
@@ -769,6 +769,7 @@
     <string name="enabled">Omogućeno</string>
     <string name="disabled">Onemogućeno</string>
     <string name="common_names_place"><![CDATA[Lokacija narodnih naziva: <b>%1$s</b>]]></string>
+    <string name="tap_to_prioritize_common_names">Dodirni da dodeliš prioritet narodnim nazivima iz nekog konkretnog mesta.</string>
     <string name="search_places">Pretraži mesta</string>
     <string name="restart_app">Restartuj aplikaciju</string>
     <string name="disable_third_party_sharing_restart">Da bi se onemogućilo deljenje podataka sa trećim stranama, aplikacija se mora restartovati.</string>

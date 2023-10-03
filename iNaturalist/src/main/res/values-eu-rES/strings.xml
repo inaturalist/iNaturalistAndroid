@@ -116,6 +116,7 @@
     <string name="refreshing">Kargatzen...</string>
     <string name="sync_observations">Behaketak sinkronizatzen</string>
     <string name="lets_get_started">Has gaitezen!</string>
+    <string name="view_nearby_observations">Ikusi Inguruko Behaketak</string>
     <string name="skip_for_now">Paso egin momentuz</string>
     <string-array name="tutorial_titles">
         <item></item>
@@ -124,13 +125,23 @@
         <item>Ikasi!</item>
         <item>Hartu parte</item>
     </string-array>
+    <string-array name="tutorial_descriptions">
+        <item>Esploratu eta konektatu naturarekin</item>
+        <item>Atera kanpora! Bilatu zerbait basatia, eta atera argazki garbi eta bete bat.</item>
+        <item>Partekatu zure behaketa iNaturalisteko komunitatearekin.</item>
+        <item>Begiratu zure behaketari buruzko iruzkinak eta identifikazioak!</item>
+        <item><![CDATA[<b>Ikerketa Maila</b> duten behaketek natura hobeto ulertzeko eta babesteko lan egiten duten zientzialariekin partekatzen dira.]]></item>
+    </string-array>
     <string-array name="geoprivacy_items">
         <item>Open</item>
         <item>Obscured</item>
         <item>Private</item>
     </string-array>
+    <string name="alert_sign_out">Ziur zaude kontua ezabatu nahi duzula? Behahketa guztiak ezabatuko dira gailu honetan. Ez du eraginik izango iNaturalisten egindako behaketetan.</string>
+    <string name="alert_unsupported_media_type">Barkatu, baina iturri honetatik argazkia kargatzeko arazo bat dago.</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
     <string name="explore">Esploratu</string>
+    <string name="restricted_to_current_map_area">Oraingo mapa-eremura mugatuta</string>
     <string name="search">Bilatu</string>
     <string name="details">Xehetasunak</string>
     <string name="observation_photos">Behaketa argazkiak</string>
@@ -176,6 +187,7 @@
     <string name="no_thanks">Ez, Mila esker</string>
     <string name="turn_on">Aktibatu</string>
     <string name="introducing_auto_sync">Sinkronizazio automatikoa aurezten!</string>
+    <string name="research_grade">Ikerketa Maila</string>
     <string name="delete_comment">Ezabatu iruzkina</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <!--  Label for a button to add an observation without a photo or a sound  -->
