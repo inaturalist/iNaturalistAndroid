@@ -1532,9 +1532,13 @@ public class ObservationEditor extends Fragment {
         galleryIntent.setAction(Intent.ACTION_OPEN_DOCUMENT);
         galleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
 
+        Intent pickIntent = new Intent(Intent.ACTION_PICK);
+        pickIntent.setType("image/*");
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             // Multi-photo picking is supported
             galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+            pickIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
 
             final SharedPreferences prefs = getActivity().getSharedPreferences("iNaturalistPreferences", Activity.MODE_PRIVATE);
             if (!prefs.getBoolean("shown_multi_select_toast", false)) {
@@ -1544,7 +1548,13 @@ public class ObservationEditor extends Fragment {
             }
         }
 
-        this.startActivityForResult(galleryIntent, CHOOSE_IMAGES_REQUEST_CODE);
+
+        Intent chooserIntent = Intent.createChooser(pickIntent, getString(R.string.photo));
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{galleryIntent});
+        startActivityForResult(chooserIntent, CHOOSE_IMAGES_REQUEST_CODE);
+
+        //startActivityForResult(Intent.createChooser(targetIntent , getString(R.string.photo)), CHOOSE_IMAGES_REQUEST_CODE);
+        //this.startActivityForResult(galleryIntent, CHOOSE_IMAGES_REQUEST_CODE);
 
         // In case a new/existing photo was taken - make sure we won't retake it in case the activity pauses/resumes.
         mPictureTaken = true;
