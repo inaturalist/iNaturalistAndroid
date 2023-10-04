@@ -38,7 +38,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.TimeZone;
 import java.util.UUID;
 
@@ -66,8 +65,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -90,7 +87,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.Parcelable;
 import android.os.StrictMode;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
@@ -102,7 +98,6 @@ import androidx.core.content.FileProvider;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.exifinterface.media.ExifInterface;
-import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -130,7 +125,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -1549,12 +1543,9 @@ public class ObservationEditor extends Fragment {
         }
 
 
-        Intent chooserIntent = Intent.createChooser(pickIntent, getString(R.string.photo));
+        Intent chooserIntent = Intent.createChooser(pickIntent, getString(R.string.import_photos_from));
         chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{galleryIntent});
         startActivityForResult(chooserIntent, CHOOSE_IMAGES_REQUEST_CODE);
-
-        //startActivityForResult(Intent.createChooser(targetIntent , getString(R.string.photo)), CHOOSE_IMAGES_REQUEST_CODE);
-        //this.startActivityForResult(galleryIntent, CHOOSE_IMAGES_REQUEST_CODE);
 
         // In case a new/existing photo was taken - make sure we won't retake it in case the activity pauses/resumes.
         mPictureTaken = true;
