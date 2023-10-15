@@ -1206,4 +1206,5 @@ non, tant que le travail demeure inchangé et complet, et que vous êtes mention
     <string name="you_have_been_signed_out_please_sign_in_again">Vous avez été déconnecté·e. Veuillez vous reconnecter.</string>
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Fermer l\'annonce</string>
+    <string name="import_photos_from">Importer des photos depuis...</string>
 </resources>
