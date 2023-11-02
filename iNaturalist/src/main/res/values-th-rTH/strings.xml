@@ -47,7 +47,7 @@
     <string name="unknown">ไม่ทราบ</string>
     <string name="unknown_species">ไม่ทราบชนิด</string>
     <string name="edit_observation">แก้ไขการสังเกต</string>
-    <string name="discard_changes">แน่ใจไหมว่าต้องการยกเลิกการเปลี่ยนแปลงที่ยังไม่ได้บันทึก</string>
+    <string name="discard_changes">แน่ใจหรือไม่ว่าต้องการยกเลิกการเปลี่ยนแปลงที่ยังไม่ได้บันทึก</string>
     <string name="yes">ใช่</string>
     <string name="no">ไม่</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
@@ -267,9 +267,9 @@
     <string name="delete_comment_message">แน่ใจหรือไม่ว่าคุณต้องการลบความคิดเห็นนี้?</string>
     <string name="suggest_id">จำแนกชนิด</string>
     <string name="update_comment">อัปเดตความคิดเห็น</string>
-    <string name="fave_this_observation">บันทึกการสังเกตนี้</string>
+    <string name="fave_this_observation">ชอบการสังเกตนี้</string>
     <string name="faved">บันทึกแล้ว</string>
-    <string name="be_the_first_to_fave_this_obs">เป็นคนแรกที่บันทึกการสังเกตนี้ ...</string>
+    <string name="be_the_first_to_fave_this_obs">ชอบการสังเกตนี้เป็นคนแรก...</string>
     <string name="leave_a_comment">แสดงความคิดเห็นหรือจำแนกชนิด...</string>
     <string name="location_coords">Lat: %1$s Lon: %2$s Acc. %3$s</string>
     <string name="location_coords_no_acc">Lat: %1$s Lon: %2$s</string>
@@ -617,7 +617,7 @@
     <!-- Attribute that describes whether the organism is alive or dead -->
     <string name="annotation_name_alive_or_dead">มีชีวิตหรือตาย</string>
     <!-- Attribute that describes what kind of evidence of an organism's presence was recorded in this observation -->
-    <string name="annotation_name_evidence_of_presence">หลักฐานการปรากฏ</string>
+    <string name="annotation_name_evidence_of_presence">หลักฐานที่พบ</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">การออกดอก</string>
     <!-- Adjective, having fruit -->
@@ -627,7 +627,7 @@
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_flower_budding">การแตกหน่อของดอก</string>
     <!-- Observation presents no evidence of flowering phenology -->
-    <string name="annotation_value_no_evidence_of_flowering">ไม่มีหลักฐานถึงการสร้างดอก</string>
+    <string name="annotation_value_no_evidence_of_flowering">ไม่พบการออกดอก</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">วัยผู้ใหญ่</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -697,10 +697,10 @@
     <string name="date_is_accurate">วันที่ถูกต้อง</string>
     <string name="location_is_accurate">ตำแหน่งถูกต้อง</string>
     <string name="organism_is_wild">สิ่งมีชีวิตเป็นสัตว์ป่า</string>
-    <string name="evidence_of_organism">หลักฐานของสิ่งมีชีวิต</string>
-    <string name="recent_evidence_of_an_organism">หลักฐานล่าสุดของสิ่งมีชีวิต</string>
+    <string name="evidence_of_organism">มีหลักฐานของสิ่งมีชีวิต</string>
+    <string name="recent_evidence_of_an_organism">หลักฐานไม่เก่าเกินไป (ไม่เป็นซากดึกดำบรรพ์)</string>
     <string name="community_id_at_species_level_or_lower">เป็นหน่วยอนุกรมวิธานที่ชุมชนเห็นพ้องกันที่ระดับชนิดหรือต่ำกว่า</string>
-    <string name="based_on_evidence_can_community_id_be_confirmed">ตามหลักฐานการจำแนกระดับชุมชนจะยังคงได้รับการยืนยันหรือปรับปรุงอยู่หรือไม่?</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">จากหลักฐาน หน่วยฯ ที่เสนอโดยชุมชนยังยืนยันหรือจำแนกย่อยได้อีกหรือไม่?</string>
     <string name="no_as_good_as_it_can_be">ไม่มันดีเท่าที่ควร</string>
     <string name="seasonality">ตามฤดูกาล</string>
     <string name="verifiable">ยังพิสูจน์ได้</string>
@@ -1158,7 +1158,7 @@
     <plurals name="sync_x_selected_observations">
         <item quantity="other">ซิงก์ %1$d การสังเกตที่เลือก</item>
     </plurals>
-    <string name="add_media_evidence">เพิ่มหลักฐานรูปภาพหรือเสียง</string>
+    <string name="add_media_evidence">เพิ่มหลักฐานรูปถ่ายหรือเสียง</string>
     <string name="remove_identification">ลบการระบุ</string>
     <string name="app_version_copied_to_clipboard">คัดลอกเวอร์ชันแอปไปยังคลิปบอร์ดแล้ว</string>
     <string name="authentication_failed">การตรวจสอบสิทธิ์ล้มเหลว</string>

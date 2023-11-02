@@ -1200,4 +1200,5 @@ Más información de nuestra definición de \"contenido apropriado\" en las
     <string name="you_have_been_signed_out_please_sign_in_again">Has sido desconectado. Por favor, vuelve a iniciar sesión.</string>
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Cerrar anuncio</string>
+    <string name="import_photos_from">Importar fotos desde...</string>
 </resources>

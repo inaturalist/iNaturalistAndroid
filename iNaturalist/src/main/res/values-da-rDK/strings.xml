@@ -1200,4 +1200,5 @@ og <a href="https://www.inaturalist.org/terms">Tjenestevilkår</a>.]]></string>
     <string name="you_have_been_signed_out_please_sign_in_again">Du er blevet logget ud. Log ind igen. </string>
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Luk meddelelse</string>
+    <string name="import_photos_from">Importere fotos fra...</string>
 </resources>

@@ -746,7 +746,17 @@
     <!-- Label for image cropping mode that maintains the original aspect ratio -->
     <!-- Label for image cropping mode that has no limits on the aspect ratio -->
     <!-- Verb phrase, button label to edit an observation photo -->
+    <string name="ucrop_label_edit_photo">حرر الصورة</string>
+    <string name="please_try_again_in_a_few_hours">الرجاء المحاولة مرة أخرى خلال بضع ساعات.</string>
     <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
+    <string name="please_try_again_in_x">الرجاء المحاولة مرة أخرى في
+.%1$d %2$s</string>
+    <string name="hours">ساعات</string>
+    <string name="minutes">دقائق</string>
+    <string name="seconds_value">ثواني</string>
+    <string name="shop_the_inat_store">تسوق في متجر iNat</string>
+    <string name="delete_your_account">احذف حسابك</string>
+    <string name="delete_account_message"><![CDATA[بحذف حسابك سوف تقوم بإزالة:<br/><br/><ul><li> جميع ملاحظاتك، بما في ذلك عمل جميع الناس الذين ساعدوك في عمليات التحقق من الهوية.</li><li> وجميع عمليات التحقق من الهويات التي أضفتها إلى ملاحظات أشخاص آخرين، والتي من شأنها أن تؤثر على نوعية البيانات الخاصة بتلك الملاحظات.</li><li> وجميع التعليقات التي أضفتها.</li></ul><br/>علاوة على ذلك، لا يمكن التراجع عن هذا الإجراء. إذا غيرت رأيك في وقت لاحق، فإنك لن تستعيد أي من هذا المحتوى.<br/><br/>إذا كانت هذه الخدمة تولد إشعارات كثيرة جداً، فلتنظر في <a href="https://www.inaturalist.org/users/edit">تحرير الإعدادات الخاصة بك على الموقع</a> لإلغاء بعض الإشعارات أو التوقف عن تلقي البريد الإلكتروني منا. إذا كنت تواجه مشكلة مع شخص معين، فلتنظر إلى <a href="https://www.inaturalist.org/users/edit">كتم ذلك الشخص</a> بدلاً من حذف حسابك.<br/><br/>إذا كنت لا تزال متأكدا من أنك تريد حذف حسابك، أدخل <b>\"%1$s\"</b> في النموذج أدناه وانقر على الزر لحذف حسابك وجميع بياناتك.]]></string>
     <!-- Second person hint text asking the user to enter their username -->
     <string name="opt_in_to_community_taxon">اختيار الدخول إلى أصنوفة المجتمع</string>
     <string name="opt_out_message">اختيار الخروج من أصنوفة المجتمع يجبر هذه الملاحظة على الارتباط بالأصنوفة من التعريف الحالي الخاص بك، ليس أصنوفة مستمدة من جميع التعاريف التي أضيفت إلى هذه الملاحظة. إذا اختلفت معرفات كافية معك ، فإن ملاحظتك ستصبح عادية. يجب عليك أن تختار الخروج فقط إذا كنت متأكداً من صحة هويتك وأن الهويات الأخرى غير صحيحة.</string>
@@ -937,6 +947,17 @@
     <!-- Accessibility label for a button in the Data Quality Assessment to vote in favor of a specific assessment -->
     <!-- Accessibility label in the Data Quality Assessment showing that the observation passes a specific assessment, usually represented visually with a red X and a thumbs-down icon -->
     <!-- Accessibility label for a button in the Data Quality Assessment to vote against a specific assessment -->
+    <string name="remove_identification">أزل الهُويّة</string>
+    <string name="issue_with_updating_photos">كانت هناك مشكلة في تحديث الصور في هذه الملاحظة و قد تم إصلاحها مؤخّراً. الرجاء تسجيل الخروج وتسجيل الدخول مرة أخرى لحل هذه المشكلة.</string>
+    <string name="app_version_copied_to_clipboard">تم نسخ إصدار التطبيق إلى الحافظة</string>
+    <string name="authentication_failed">فشلت المصادقة</string>
+    <string name="please_try_again_soon">الرجاء المحاولة مرة أخرى قريبا.</string>
+    <string name="verify_your_email">قم بتأكيد عنوان بريدك الإلكتروني</string>
+    <string name="after_you_change_your_password">بعد تغيير كلمة المرور الخاصة بك، سيتم تسجيل خروجك وسوف تحتاج إلى تسجيل الدخول مرة أخرى باستخدام كلمة مرورك الجديدة. سيتم تسجيل خروجك أيضًا من تطبيقات الجوال التابعة ل iNaturalist وأي تطبيقات أخرى أو مواقع ويب تنشر على iNaturalist من قِبَلك، لذا تأكد من أنك قمت بتحميل أي ملاحظات معلّقة قبل القيام بذلك. سيتم فقدان أي ملاحظات لم يتم تحميلها.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
+    <string name="couldnt_upload_file_too_large">تعذّر تحميل الملف - أكبر من 20 ميغابايت</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">لقد تم تسجيل خروجك. الرجاء تسجيل الدخول مرة أخرى.</string>
     <!-- Accessibility label for a button that closes an announcement -->
+    <string name="close_announcement">أغلق الإعلان</string>
+    <string name="import_photos_from">قم باستيراد الصور من...</string>
 </resources>

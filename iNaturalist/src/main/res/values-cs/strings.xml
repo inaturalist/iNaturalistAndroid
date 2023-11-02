@@ -1215,4 +1215,5 @@ a naše <a href="https://www.inaturalist.org/terms">Smluvní podmínky</a>.]]></
     <string name="you_have_been_signed_out_please_sign_in_again">Byl jste odhlášen. Přihlaste se prosím znovu.</string>
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Zavřít oznámení</string>
+    <string name="import_photos_from">Importovat fotky z...</string>
 </resources>

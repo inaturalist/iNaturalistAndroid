@@ -1171,4 +1171,5 @@
     <string name="you_have_been_signed_out_please_sign_in_again">Ki lettél léptetve. Kérlek lépj be és próbáld újra.</string>
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Bejelentés bezárása</string>
+    <string name="import_photos_from">Fényképek importálása...</string>
 </resources>
