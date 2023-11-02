@@ -1201,4 +1201,5 @@ zonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van d
     <string name="you_have_been_signed_out_please_sign_in_again">Je bent uitgelogd. Log opnieuw in.</string>
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Aankondiging sluiten</string>
+    <string name="import_photos_from">Importeer foto\'s van...</string>
 </resources>

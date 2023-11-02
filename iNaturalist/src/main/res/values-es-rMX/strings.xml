@@ -1198,4 +1198,5 @@ Más información de nuestra definición de \"contenido apropiado\" en las
     <string name="you_have_been_signed_out_please_sign_in_again">Has cerrado sesión. Por favor, inicia sesión de nuevo.</string>
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Cerrar Notificación</string>
+    <string name="import_photos_from">Importar fotos desde...</string>
 </resources>

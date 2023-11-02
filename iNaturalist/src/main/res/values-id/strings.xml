@@ -1189,4 +1189,5 @@ rin, Carrie Seltzer, Alex Shepard, Angie Ta, dan Ken-ichi Ueda.<br/><br/> CalTec
     <string name="you_have_been_signed_out_please_sign_in_again">Anda telah keluar dari layanan. Silakan masuk kembali.</string>
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Tutup Pengumuman</string>
+    <string name="import_photos_from">Impor Gambar Dari...</string>
 </resources>

@@ -1213,4 +1213,5 @@
     <string name="you_have_been_signed_out_please_sign_in_again">Вы вышли из системы. Пожалуйста, войдите заново.</string>
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Объявление о закрытии</string>
+    <string name="import_photos_from">Импортировать фото из...</string>
 </resources>

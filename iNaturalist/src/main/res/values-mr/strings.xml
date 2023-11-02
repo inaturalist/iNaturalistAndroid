@@ -426,4 +426,5 @@
     <string name="couldnt_upload_file_too_large">फाइल अपलोड करू शकत नाही - 20MB पेक्षा मोठी</string>
     <string name="you_have_been_signed_out_please_sign_in_again">तुम्हाला साइन आउट केले गेले आहे. कृपया पुन्हा साइन इन करा.</string>
     <!-- Accessibility label for a button that closes an announcement -->
+    <string name="import_photos_from">येथून फोटो इंपोर्ट करा...</string>
 </resources>

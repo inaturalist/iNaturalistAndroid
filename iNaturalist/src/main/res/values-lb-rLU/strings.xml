@@ -918,4 +918,5 @@
     <string name="app_version_copied_to_clipboard">App Versioun an den Zweschenspäicher kopéiert</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
     <!-- Accessibility label for a button that closes an announcement -->
+    <string name="import_photos_from">Fotoen importéiere vun...</string>
 </resources>
