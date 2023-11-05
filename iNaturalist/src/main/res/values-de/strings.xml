@@ -1201,4 +1201,5 @@ Facility</a> (GBIF) generieren: eine internationale, zwischenstaatliche Organisa
     <string name="you_have_been_signed_out_please_sign_in_again">Du wurdest abgemeldet. Bitte erneut anmelden.</string>
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Ankündigung schließen</string>
+    <string name="import_photos_from">Fotos importieren von ...</string>
 </resources>

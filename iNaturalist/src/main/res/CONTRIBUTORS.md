@@ -90,6 +90,7 @@ Many people have contributed translations to the iNaturalist Android app over th
 * [KestrelLam](https://crowdin.com/profile/KestrelLam)
 * [Lin, Cheng-Tao (mutolisp)](https://crowdin.com/profile/mutolisp)
 * [skylarhoi](https://crowdin.com/profile/skylarhoi)
+* [何郁庭 (a22446810)](https://crowdin.com/profile/a22446810)
 * [李奕寯 (leeee)](https://crowdin.com/profile/leeee)
 
 ## Chinese Traditional, Hong Kong
@@ -151,6 +152,7 @@ Many people have contributed translations to the iNaturalist Android app over th
 
 ## Dutch (`nl`)
 * [Gerrit Kreeft (Gerruuuth)](https://crowdin.com/profile/Gerruuuth)
+* [Guusje (guusjewitkamp)](https://crowdin.com/profile/guusjewitkamp)
 * [Heimen Stoffels (Vistaus)](https://crowdin.com/profile/Vistaus)
 * [Hercules de Kruikhandelaar (mhjvandermeer)](https://crowdin.com/profile/mhjvandermeer)
 * [Marcel Hospers (marcelhospers)](https://crowdin.com/profile/marcelhospers)
@@ -261,6 +263,7 @@ Many people have contributed translations to the iNaturalist Android app over th
 * [James Page (james_p)](https://crowdin.com/profile/james_p)
 * [Jeanne Lavoie (JeLa)](https://crowdin.com/profile/JeLa)
 * [joyceeariel](https://crowdin.com/profile/joyceeariel)
+* [McAtam78](https://crowdin.com/profile/McAtam78)
 
 ## Galician (`gl`)
 * [martitchka](https://crowdin.com/profile/martitchka)
@@ -539,6 +542,7 @@ Many people have contributed translations to the iNaturalist Android app over th
 * [Marluci](https://crowdin.com/profile/Marluci)
 * [Mauricio Moura (thuco_05)](https://crowdin.com/profile/thuco_05)
 * [meiterer](https://crowdin.com/profile/meiterer)
+* [Michel_RS](https://crowdin.com/profile/Michel_RS)
 * [Nilo Dinis de Oliveira (nilodinis)](https://crowdin.com/profile/nilodinis)
 * [Paulo Gonçalves Carvalho (paulogcarvalhobhz)](https://crowdin.com/profile/paulogcarvalhobhz)
 * [Reginaldo Izidório (misteregis)](https://crowdin.com/profile/misteregis)
@@ -638,6 +642,7 @@ Many people have contributed translations to the iNaturalist Android app over th
 * [Marcel Hospers (optilete)](https://crowdin.com/profile/optilete)
 * [Marino Linic (MarinoLinic)](https://crowdin.com/profile/MarinoLinic)
 * [mertxe78](https://crowdin.com/profile/mertxe78)
+* [Montse_AR](https://crowdin.com/profile/Montse_AR)
 * [pdFuenteB](https://crowdin.com/profile/pdFuenteB)
 * [Richards bj (ricardobravomr)](https://crowdin.com/profile/ricardobravomr)
 * [RubenBenitez](https://crowdin.com/profile/RubenBenitez)
@@ -646,6 +651,7 @@ Many people have contributed translations to the iNaturalist Android app over th
 * [Tahura](https://crowdin.com/profile/Tahura)
 * [tiwane](https://crowdin.com/profile/tiwane)
 * [tytoalba](https://crowdin.com/profile/tytoalba)
+* [wilwarindi](https://crowdin.com/profile/wilwarindi)
 * [YosvanyHernandez](https://crowdin.com/profile/YosvanyHernandez)
 
 ## Spanish, Argentina (`es-AR`)

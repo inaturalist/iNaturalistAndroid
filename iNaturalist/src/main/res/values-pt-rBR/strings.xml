@@ -571,6 +571,7 @@
     <string name="change_password">Alterar senha</string>
     <string name="search_projects_youve_joined">Procurar projetos dos quais você faz parte...</string>
     <string name="must_be_connected_to_load_more_obs">Você precisa de conexão com a Internet para carregar mais observações</string>
+    <string name="inat_about_title_new">iNaturalist é uma organização independente sem fins lucrativos do tipo 501(c)(3) localizada nos Estados Unidos (EIN 92-1296468)</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -1195,4 +1196,5 @@
     <string name="you_have_been_signed_out_please_sign_in_again">A sessão foi encerrada. Por favor, inicie nova sessão.</string>
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Fechar aviso</string>
+    <string name="import_photos_from">Importar fotos de...</string>
 </resources>
