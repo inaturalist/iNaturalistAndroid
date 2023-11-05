@@ -28,6 +28,7 @@ public class ObservationSound implements BaseColumns, Serializable {
     public String observation_uuid;
     public Integer _observation_id;
     public Boolean is_deleted;
+    public Boolean hidden;
 
     public static final int OBSERVATION_SOUNDS_URI_CODE = 1802;
     public static final int OBSERVATION_SOUND_ID_URI_CODE = 1687;
@@ -114,6 +115,7 @@ public class ObservationSound implements BaseColumns, Serializable {
             this.attribution = sound.getString("attribution");
             this.file_content_type = sound.getString("file_content_type");
             this.subtype = sound.getString("subtype");
+            this.hidden = sound.getBoolean("hidden");
         } else {
             this.file_url = json.getString("file_url");
             this.attribution = json.getString("attribution");

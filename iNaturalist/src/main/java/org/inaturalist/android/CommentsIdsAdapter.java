@@ -270,7 +270,8 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				@Override
 				public void onClick(View view) {
 					comment.setTypeface(null, Typeface.NORMAL);
-					HtmlUtils.fromHtml(comment, item.getString("body"));
+					String body = item.getString("body");
+					HtmlUtils.fromHtml(comment, body != null ? body : "");
 					contentHidden.setVisibility(View.VISIBLE);
 					showHiddenContent.setVisibility(View.GONE);
 					userDetails.setVisibility(View.VISIBLE);
@@ -302,8 +303,19 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 
 			userDetails.setVisibility(View.VISIBLE);
 			contentHidden.setVisibility(View.GONE);
+			showHiddenContent.setVisibility(View.GONE);
 
-			if (item.getString("type").equals("comment")) {
+			if (item.has("hidden") && item.getBoolean("hidden")) {
+				// Hidden identification / comment
+				userDetails.setVisibility(View.INVISIBLE);
+				contentHidden.setVisibility(View.VISIBLE);
+				idLayout.setVisibility(View.GONE);
+				loading.setVisibility(View.GONE);
+				loading.setVisibility(View.GONE);
+				comment.setVisibility(View.GONE);
+				idAgreeLayout.setVisibility(View.GONE);
+
+			} else if (item.getString("type").equals("comment")) {
 				// Comment
 				comment.setVisibility(View.VISIBLE);
 				idLayout.setVisibility(View.GONE);
@@ -311,17 +323,8 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				if (moreMenu != null) moreMenu.setVisibility(View.VISIBLE);
                 idAgreeLayout.setVisibility(View.GONE);
 
-				if (item.has("hidden") && item.getBoolean("hidden")) {
-					// Hidden comment
-					comment.setText(Html.fromHtml(mContext.getString(R.string.content_hidden)));
-					comment.setTypeface(null, Typeface.ITALIC);
-					userDetails.setVisibility(View.INVISIBLE);
-					showHiddenContent.setVisibility(allowToShowHiddenContent(item) ? View.VISIBLE : View.GONE);
-                } else {
-					comment.setTypeface(null, Typeface.NORMAL);
-					HtmlUtils.fromHtml(comment, item.getString("body"));
-					showHiddenContent.setVisibility(View.GONE);
-				}
+				comment.setTypeface(null, Typeface.NORMAL);
+				HtmlUtils.fromHtml(comment, item.getString("body"));
 
 				postedOn.setTextColor(postedOn.getTextColors().withAlpha(255));
 				if (hasUserIcon) userPic.setAlpha(255);
@@ -330,24 +333,15 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				// Identification
 				idLayout.setVisibility(View.VISIBLE);
 				String body = item.getString("body");
-				if (item.has("hidden") && item.getBoolean("hidden")) {
-					// Hidden ID
-					comment.setText(Html.fromHtml(mContext.getString(R.string.content_hidden)));
-					comment.setVisibility(View.VISIBLE);
-					comment.setTypeface(null, Typeface.ITALIC);
-					contentHidden.setVisibility(View.VISIBLE);
-					showHiddenContent.setVisibility(allowToShowHiddenContent(item) ? View.VISIBLE : View.GONE);
-
-				} else if (body != null && body.length() > 0) {
+				if (body != null && body.length() > 0) {
 					comment.setTypeface(null, Typeface.NORMAL);
 					HtmlUtils.fromHtml(comment, body);
 
                     comment.setVisibility(View.VISIBLE);
-					showHiddenContent.setVisibility(View.GONE);
 				} else {
 					comment.setVisibility(View.GONE);
-					showHiddenContent.setVisibility(View.GONE);
 				}
+
 				ImageView idPic = (ImageView) view.findViewById(R.id.id_pic);
 				JSONObject taxonObject = item.getJSONObject("taxon");
 				JSONObject defaultPhoto = taxonObject != null ? taxonObject.optJSONObject("default_photo") : null;

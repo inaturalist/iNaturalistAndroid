@@ -8,6 +8,8 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
+
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -38,6 +40,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
     public Boolean is_deleted_was;
     public String license;
     public String license_was;
+    public Boolean hidden;
 
     public Timestamp _created_at_was;
     public Integer _observation_id_was;
@@ -223,6 +226,8 @@ public class ObservationPhoto implements BaseColumns, Serializable {
             this.license = photo.optString("license_code");
             if (this.license != null) this.license = this.license.toLowerCase();
             this.license_was = this.license;
+
+            this.hidden = photo.optBoolean("hidden");
         }
 
         if ((this.photo_url == null) && (o.has("url")) && (!o.isNull("url"))) {

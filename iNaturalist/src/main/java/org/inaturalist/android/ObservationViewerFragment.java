@@ -446,6 +446,8 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             String photoFilename = null;
             String imageUrl = null;
             ObservationSound sound = null;
+            boolean isHidden = false;
+            BetterJSONObject item = null;
 
             if (!mReadOnly) {
                 if (position >= mImageCursor.getCount()) {
@@ -469,9 +471,49 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                 if (position >= mObservation.photos.size()) {
                     // Show sound
                     sound = mObservation.sounds.get(position - mObservation.photos.size());
+                    isHidden = sound.hidden;
+                    try {
+                        item = new BetterJSONObject(new JSONObject(mObsJson).getJSONArray("observation_sounds").getJSONObject(position - mObservation.photos.size()).getJSONObject("sound"));
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
                 } else {
                     imageUrl = mObservation.photos.get(position).photo_url;
+                    isHidden = mObservation.photos.get(position).hidden;
+
+                    try {
+                        item = new BetterJSONObject(new JSONObject(mObsJson).getJSONArray("observation_photos").getJSONObject(position).getJSONObject("photo"));
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
+            }
+
+            if (isHidden) {
+                // Hidden media - show a notification for this
+                LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View view = inflater.inflate(R.layout.content_hidden, container, false);
+
+                SerializableJSONArray modActionsOuter = item.getJSONArray("moderator_actions");
+
+                if (modActionsOuter != null) {
+                    JSONArray modActions = modActionsOuter.getJSONArray();
+                    BetterJSONObject lastModAction = new BetterJSONObject(modActions.optJSONObject(modActions.length() - 1));
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTimeInMillis(lastModAction.getTimestamp("created_at").getTime());
+                    String date = DateFormat.format("MMM dd, yyyy", cal).toString();
+
+                    String message = String.format(getString(R.string.content_hidden_because),
+                            lastModAction.getJSONObject("user").optString("login"),
+                            date,
+                            lastModAction.getString("reason"));
+                    HtmlUtils.fromHtml(view.findViewById(R.id.hidden_by), message);
+                } else {
+                    ((TextView) view.findViewById(R.id.hidden_by)).setText("");
+                }
+
+                ((ViewPager)container).addView(view, 0);
+                return view;
             }
 
             if (sound != null) {

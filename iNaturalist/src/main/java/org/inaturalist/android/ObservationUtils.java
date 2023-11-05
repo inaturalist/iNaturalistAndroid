@@ -315,6 +315,10 @@ public class ObservationUtils {
             minimalSound.put("file_content_type", sound.optString("file_content_type"));
             minimalSound.put("attribution", sound.optString("attribution"));
             minimalSound.put("subtype", sound.optString("subtype"));
+            if (sound.optBoolean("hidden", true)) {
+                minimalSound.put("hidden", true);
+            }
+
         } catch (JSONException e) {
             Logger.tag(TAG).error(e);
             return null;
@@ -340,6 +344,10 @@ public class ObservationUtils {
             if (photo.has("photo") && !photo.isNull("photo")) {
                 JSONObject innerPhoto = new JSONObject();
                 innerPhoto.put("id", photo.optJSONObject("photo").optInt("id"));
+
+                if (photo.optBoolean("hidden", true)) {
+                    innerPhoto.put("hidden", true);
+                }
 
                 if (!returnMultiplePhotoSizes) {
                     innerPhoto.put("url", photo.optJSONObject("photo").optString("url"));
