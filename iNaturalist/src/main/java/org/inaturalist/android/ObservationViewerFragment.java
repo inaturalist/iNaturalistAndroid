@@ -452,12 +452,17 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             if (!mReadOnly) {
                 if (position >= mImageCursor.getCount()) {
                     // Sound
-                    mSoundCursor.moveToPosition(position - mImageCursor.getCount());
+                    int realPosition = position - mImageCursor.getCount();
+                    mSoundCursor.moveToPosition(realPosition);
 
                     sound = new ObservationSound(mSoundCursor);
 
                     Logger.tag(TAG).info("Observation: " + mObservation);
                     Logger.tag(TAG).info("Sound: " + sound);
+
+                    if (mObservation.sounds != null && mObservation.sounds.size() > realPosition) {
+                        isHidden = mObservation.sounds.get(realPosition).hidden;
+                    }
 
                 } else {
                     // Photo
@@ -465,6 +470,11 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
                     imageUrl = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
                     photoFilename = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
+
+                    if (mObservation.photos != null && mObservation.photos.size() > position) {
+                        isHidden = mObservation.photos.get(position).hidden;
+                    }
+
                 }
 
             } else {
