@@ -439,7 +439,9 @@
     <string name="suggest_species_description">Фотосуреттерге көрнекі ұқсастыққа негізделген түрлерді ұсыну.</string>
     <string name="visually_similar">Көрнекі ұқсас</string>
     <string name="visually_similar_seen_nearby">Көрнекі ұқсас / Жақын жерде көрген</string>
+    <string name="visually_similar_expected_nearby">Көрнекі ұқсас / Жақын жерде кездеседі</string>
     <string name="seen_nearby">Жақын жерде көрген</string>
+    <string name="expected_nearby">Жақын жерде кездеседі</string>
     <string name="enlarge">Үлкейту</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Төменгі таксондар</string>
@@ -1194,4 +1196,5 @@
     <string name="you_have_been_signed_out_please_sign_in_again">Сіз жүйеден шықтыңыз. Жүйеге қайта кіріңіз.</string>
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Хабарландыруды жабу</string>
+    <string name="import_photos_from">Фотосуреттерді импорттау...</string>
 </resources>

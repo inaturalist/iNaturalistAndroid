@@ -288,7 +288,7 @@
     <string name="view_on_wikipedia">Wikipedia-Artikel</string>
     <string name="photo"><![CDATA[Foto: <b><a href="%1$s">%2$s</a></b>]]></string>
     <string name="photo_attr"><![CDATA[Foto: <b>%1$s</b>]]></string>
-    <string name="finding_current_location">Suche nach aktuellen Standort...</string>
+    <string name="finding_current_location">Suche aktuellen Standort...</string>
     <string name="flag_as_captive">Als \"in Haltung/kultiviert\" markieren</string>
     <string name="observation_flagged_as_captive">Beobachtung wurde als \"in Haltung/kultiviert\" markiert</string>
     <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Bist du sicher, dass du diese Beobachtung als \"in Gefangenschaft/kultiviert\" markieren möchtest?</string>
