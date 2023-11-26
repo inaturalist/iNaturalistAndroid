@@ -460,7 +460,15 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                     Logger.tag(TAG).info("Observation: " + mObservation);
                     Logger.tag(TAG).info("Sound: " + sound);
 
-                    if (mObservation.sounds != null && mObservation.sounds.size() > realPosition) {
+                    if (mObsJson != null) {
+                        try {
+                            BetterJSONObject obsSound = new BetterJSONObject(new JSONObject(mObsJson).getJSONArray("observation_sounds").getJSONObject(position - mObservation.photos.size()));
+                            item = new BetterJSONObject(obsSound.getJSONObject("sound"));
+                            isHidden = new ObservationSound(obsSound).hidden;
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    } else if (mObservation.sounds != null && mObservation.sounds.size() > realPosition) {
                         isHidden = mObservation.sounds.get(realPosition).hidden;
                     }
 
@@ -471,7 +479,15 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                     imageUrl = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
                     photoFilename = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
 
-                    if (mObservation.photos != null && mObservation.photos.size() > position) {
+                    if (mObsJson != null) {
+                        try {
+                            BetterJSONObject obsPhoto = new BetterJSONObject(new JSONObject(mObsJson).getJSONArray("observation_photos").getJSONObject(position));
+                            item = new BetterJSONObject(obsPhoto.getJSONObject("photo"));
+                            isHidden = new ObservationPhoto(obsPhoto).hidden;
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    } else if (mObservation.photos != null && mObservation.photos.size() > position) {
                         isHidden = mObservation.photos.get(position).hidden;
                     }
 
@@ -481,18 +497,20 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                 if (position >= mObservation.photos.size()) {
                     // Show sound
                     sound = mObservation.sounds.get(position - mObservation.photos.size());
-                    isHidden = sound.hidden;
                     try {
-                        item = new BetterJSONObject(new JSONObject(mObsJson).getJSONArray("observation_sounds").getJSONObject(position - mObservation.photos.size()).getJSONObject("sound"));
+                        BetterJSONObject obsSound = new BetterJSONObject(new JSONObject(mObsJson).getJSONArray("observation_sounds").getJSONObject(position - mObservation.photos.size()));
+                        item = new BetterJSONObject(obsSound.getJSONObject("sound"));
+                        isHidden = new ObservationSound(obsSound).hidden;
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
                     }
                 } else {
                     imageUrl = mObservation.photos.get(position).photo_url;
-                    isHidden = mObservation.photos.get(position).hidden;
 
                     try {
-                        item = new BetterJSONObject(new JSONObject(mObsJson).getJSONArray("observation_photos").getJSONObject(position).getJSONObject("photo"));
+                        BetterJSONObject obsPhoto = new BetterJSONObject(new JSONObject(mObsJson).getJSONArray("observation_photos").getJSONObject(position));
+                        item = new BetterJSONObject(obsPhoto.getJSONObject("photo"));
+                        isHidden = new ObservationPhoto(obsPhoto).hidden;
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
                     }
@@ -504,9 +522,9 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                 LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View view = inflater.inflate(R.layout.content_hidden, container, false);
 
-                SerializableJSONArray modActionsOuter = item.getJSONArray("moderator_actions");
+                SerializableJSONArray modActionsOuter = item != null ? item.getJSONArray("moderator_actions") : null;
 
-                if (modActionsOuter != null) {
+                if ((modActionsOuter != null) && (modActionsOuter.getJSONArray().length() > 0)) {
                     JSONArray modActions = modActionsOuter.getJSONArray();
                     BetterJSONObject lastModAction = new BetterJSONObject(modActions.optJSONObject(modActions.length() - 1));
                     Calendar cal = Calendar.getInstance();
@@ -2838,7 +2856,6 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 		@Override
 	    public void onReceive(Context context, Intent intent) {
             Logger.tag(TAG).error("ObservationReceiver - OBSERVATION_RESULT");
-
             if (getActivity() == null) return;
 
             BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, getActivity());
@@ -2852,6 +2869,7 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
             } else {
                 observation = (Observation) intent.getSerializableExtra(INaturalistService.OBSERVATION_RESULT);
             }
+
 
             if (mObservation == null) {
                 reloadObservation(null, false);
