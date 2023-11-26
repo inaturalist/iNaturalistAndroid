@@ -524,7 +524,7 @@
     <string name="apply_filters">Aplicar filtros</string>
     <string name="remove_filters">Eliminar filtros</string>
     <string name="reset">Restablecer</string>
-    <string name="show_only_my_observations">Mostrar únicamente las propias observaciones</string>
+    <string name="show_only_my_observations">Mostrar únicamente mis observaciones</string>
     <string name="project">Proyecto</string>
     <string name="user">Usuario</string>
     <string name="search_users">Buscar Usuarios...</string>

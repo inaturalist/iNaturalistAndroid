@@ -439,7 +439,9 @@
     <string name="suggest_species_description">Suggerir altres espècies basats en la seva semblança visual a fotografies.</string>
     <string name="visually_similar">Visualment similar</string>
     <string name="visually_similar_seen_nearby">Visualment similar / vist a prop</string>
+    <string name="visually_similar_expected_nearby">Visualment similar/Esperable a prop</string>
     <string name="seen_nearby">Vist a prop</string>
+    <string name="expected_nearby">Esperable a prop</string>
     <string name="enlarge">Augmenta</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Veure fills</string>
@@ -569,6 +571,7 @@
     <string name="change_password">Canvieu contrasenya</string>
     <string name="search_projects_youve_joined">Cerca els projectes als que us heu unit...</string>
     <string name="must_be_connected_to_load_more_obs">Heu d\'estar connectat a internet per carregar més observacions</string>
+    <string name="inat_about_title_new">iNaturalist és una entitat independent sense ànim de lucre amb seu als Estats Units d\'Amèrica (EIN 92-1296468)</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -577,6 +580,7 @@
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
+    <string name="inat_credits2"><![CDATA[iNaturalist existeix gràcies a totes les persones que participen de la nostra comunitat. Les persones que desenvolupen el programari, dissenyen la interfície, mantenen la nostra infraestructura, donen suport a la comunitat i comparteixen les col·laboracions són Yaron Budowski, Amanda Bullington, Tony Iwane, Johannes Klein, Patrick Leary, Scott Loarie, Abhas Misraraj, Sylvain Morin, Carrie Seltzer, Alex Shepard, Angie Ta i Ken-ichi Ueda.<br/><br/> Caltech i Cornell Tech han ajudat a desenvolupar el sistema d\'identificació visual artificial que suggereig identificacions a partir de les fotografies. Agraïm Grant Van Horn, Serge Belongie i Pietro Perona pels avenços en la investigació en visió artificial. Podeu trobar més informació a <a href="http://www.visipedia.org">visipedia.org</a>. Un agraïment especial a NVIDIA pel seu suport addicional.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[La Xarxa Internacional iNaturalist dona suport a llocs web basats en iNaturalist, amb plena integració, en els països següents, gràcies pel suport de les organitzacions associades.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist està profundament agraïda als desenvolupadors Open Source que han proveït gran part del programari del qual depenem diàriament. Veieu <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> per les contribucions Open Source.<br/>Agram l\'ajut en la traducció oferta per voluntaris de la comunitat crowdin.com, especialment a Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie i katunchik. <br/>Els llocs UICN de categoria II han estat aportats per IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Disponible a: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Crèdits</string>
@@ -1186,6 +1190,11 @@
     <string name="authentication_failed">Autentificació fallida</string>
     <string name="please_try_again_soon">Si us plau, torneu-ho a intentar en breu</string>
     <string name="verify_your_email">Verifiqueu la vostra adreça electrònica</string>
+    <string name="after_you_change_your_password">Després de canviar la teva contrasenya, quedareu desconnectat i haureu de tornar a iniciar la sessió amb la nova contrasenya. També quedareu desconnectat de les aplicacions mòbils d\'iNaturalist i de qualsevol altra aplicació o lloc web que publiqui a iNaturalist en nom vostre, així que assegureu-vos d\'haver pujat qualsevol observació pendent. Tota observació que no s\'hagi pujat es perdrà.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
+    <string name="couldnt_upload_file_too_large">No s\'ha pogut pujar l\'arxiu - més gran de 20MB</string>
+    <string name="you_have_been_signed_out_please_sign_in_again">Heu tancat la sessió. Torneu a iniciar sessió.</string>
     <!-- Accessibility label for a button that closes an announcement -->
+    <string name="close_announcement">Tancar Anunci</string>
+    <string name="import_photos_from">Importar fotos des de...</string>
 </resources>
