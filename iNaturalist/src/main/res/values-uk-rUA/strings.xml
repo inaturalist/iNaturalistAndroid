@@ -188,6 +188,9 @@
     <string name="alert_message_use_inaturalistcr">Naturalista Costa Rica є частиною мережі iNaturalist у Коста Риці. Місцеві організації, що підтримують Naturalista Costa Rica, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які є публічно прихованими або приватними. Якщо у вас є понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. Чи хочете ви змінити вашу мережеву приналежність?</string>
     <string name="alert_message_use_inaturalistgt">iNaturalist Guatemala є частиною мережі iNaturalist у Гватемалі. Місцеві організації, що підтримують iNaturalist Guatemala, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які є публічно прихованими або приватними. Якщо у вас є понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. Чи хочете ви змінити вашу мережеву приналежність?</string>
     <string name="alert_message_use_inaturalistse">iNaturalist Sweden є частиною мережі iNaturalist у Швеції. Місцеві організації, що підтримують iNaturalist Sweden, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які є публічно прихованими або приватними. Якщо у вас є понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. Чи хочете ви змінити вашу мережеву приналежність?</string>
+    <string name="alert_message_use_naturalistauy">Naturalista є частиною мережі iNuturalist у Колумбії. Місцеві організації, що підтримують Naturalista, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є понад 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
+Чи хочете ви змінити вашу мережеву приналежність?</string>
+    <string name="alert_message_use_inaturalisttw">iNaturalist Тайвань є частиною мережі iNuturalist на Тайвані. Місцеві установи, що підтримують iNaturalist Тайвань, матимуть доступ до вашої адреси електронної пошти та доступ до справжніх координат для спостережень, які публічно приховані або приватні. Будь ласка, не змінюйте експериментально вашу належність, якщо у вас є більше 1000 спостережень. Ви бажаєте змінити партнерську належність?</string>
     <string name="editor">Редактор</string>
     <string name="license">Ліцензія</string>
     <string name="download_for_offline_use">Завантажено для використання в автономному режимі</string>
@@ -305,6 +308,7 @@
     <string name="finding_current_location">Пошук місцерозташування...</string>
     <string name="flag_as_captive">Позначити як Поневолений / Культивований</string>
     <string name="observation_flagged_as_captive">Спостереження було позначено як Поневолений / Культивований</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive_no_close">Ви дійсно бажаєте позначити це спостереження як Поневолений / Культивований?</string>
     <string name="do_you_agree_to_the_following">Чи згідні ви з наступним?</string>
     <string name="terms">Умови</string>
     <string name="observation_rules">Правила спостережень</string>
@@ -456,7 +460,9 @@
     <string name="suggest_species_description">Запропонувати вид на основі схожості з фото.</string>
     <string name="visually_similar">Візуально схожі</string>
     <string name="visually_similar_seen_nearby">Візуально схожі / Зустрічалися поблизу</string>
+    <string name="visually_similar_expected_nearby">Візуально схожий</string>
     <string name="seen_nearby">Зустрічалися поблизу</string>
+    <string name="expected_nearby">Очікується поблизу</string>
     <string name="enlarge">Збільшити</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Показати дочірні</string>
@@ -586,6 +592,7 @@
     <string name="change_password">Змінити пароль</string>
     <string name="search_projects_youve_joined">Пошук проектів, до яких ви приєдналися...</string>
     <string name="must_be_connected_to_load_more_obs">Щоб завантажити більше спостережень ви повинні підключитися до інтернету</string>
+    <string name="inat_about_title_new">iNaturalist незалежна та некомерційна 501(c)(3), розташована у Сполучених Штатах (EIN 92-1296468)</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
@@ -594,6 +601,7 @@
         Ken-ichi Ueda: ˌkɛˈniʧi weɪdɑ (http://ipa-reader.xyz/?text=%CB%8Ck%C9%9B%CB%88ni%CA%A7i%20we%C9%AAd%C9%91)
         Tony Iwane: ˈtoʊni ɪˈwɑneɪ (http://ipa-reader.xyz/?text=%CB%88to%CA%8Ani%20%C9%AA%CB%88w%C9%91ne%C9%AA)
     -->
+    <string name="inat_credits2"><![CDATA[iNaturalist існує завдяки кожній людині, яка бере участь у нашій спільноті. Люди, які розробляють програмне забезпечення, розробляють інтерфейси, підтримують нашу інфраструктуру, підтримують спільноту та сприяють співпраці, — це Ярон Будовскі, Аманда Буллінгтон, Тоні Айване, Йоганнес Кляйн, Патрік Лірі, Скотт Лоарі, Абхас Місрарадж, Сільвен Морін, Керрі Зельцер, Алекс Шепард, Енджі Та та Кен-Ічі Уеда.<br/><br/>CalTech і Cornell Tech допомогли розробити систему комп’ютерного зору, яка пропонує ідентифікацію за фотографіями. Ми дякуємо Гранту Ван Хорну, Сержу Белонгі та П’єтро Пероні за розвиток досліджень комп’ютерного зору. Більше інформації можна знайти на <a href="https://www.visipedia.org">visipedia.org</a>. Особлива подяка NVIDIA за додаткову допомогу.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[Міжнародна мережа iNaturalist підтримує локалізовані, повністю інтегровані, засновані на iNaturalist веб-сайти в наступних країнах, завдяки підтримці асоційованих організацій-партнерів.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist також глибоко вдячний розробникам програмного забезпечення з відкритим вихідним кодом, які надали так багато програмного забезпечення, на яке ми покладаємося кожен день. Див. Тут <a href="https://github.com/inaturalist/iNaturalistAndroid"> https://github.com/inaturalist/iNaturalistAndroid </a> внесок в програмне забезпечення. <br/> Ми вдячні за допомогу в перекладі, надану добровольцями із товариства crowdin.com, зокрема Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, і katunchik. <br/> Місця IUCN категорії II взяті з IUCN з UNEP-WCMC (2015), Всесвітня база даних по охоронюваним регіонах (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Доступно за адресою: <a href="http://www.protectedplanet.net"> www.protectedplanet.net </a>]]></string>
     <string name="credits_title">Подяка</string>
@@ -751,6 +759,8 @@
     <string name="network_credit_inaturalistcr"><![CDATA[Коста-Рика: Comisión Nacional para la Gestión de la Biodisidad (CONAGEBIO) підтримує Naturalista Costa Rica (<a href="https://costarica.inaturalist.org">costarica.inaturalist.org</a>]]></string>
     <string name="network_credit_inaturalistgt"><![CDATA[Гватемала: Consejo Nacional de Áreas Protegidas (CONAP) пітримує iNaturalist Guatemala (<a href="https://guatemala.inaturalist.org">guatemala.inaturalist.org</a>)]]></string>
     <string name="network_credit_inaturalistse"><![CDATA[Швеція: SLU Шведський центр інформації щодо видів підтримує iNaturalist Sweden (<a href="https://www.inaturalist.se">www.inaturalist.se</a>)]]></string>
+    <string name="network_credit_naturalistauy"><![CDATA[Уругвай: JULANA і біодиверсії, що підтримують Naturalista Uruguay (<a href="http://www.naturalista.uy/">www.naturalista.uy</a>)]]></string>
+    <string name="network_credit_inaturalisttw"><![CDATA[Тайвань: Національний інститут досліджень лісового господарства, що підтримує iNaturalist Тайвань (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>]]></string>
     <string name="mark_all_as_viewed">Помітити всі як переглянуті</string>
     <string name="content_hidden">Прихований вміст</string>
     <string name="show_hidden_content">Показувати прихований вміст</string>
@@ -1211,7 +1221,11 @@
     <string name="authentication_failed">Помилка автентифікації</string>
     <string name="please_try_again_soon">Будь ласка, спробуйте ще раз пізніше.</string>
     <string name="verify_your_email">Підтвердьте адресу електронної пошти</string>
+    <string name="after_you_change_your_password">Після того, як ви зміните свій пароль, ви вийдете з системи, і вам потрібно буде знову ввійти з новим паролем. Ви також вийдете з мобільних додатків iNaturalist та будь-яких інших додатків чи веб-сайтів, які публікують на iNaturalist від вашого імені, тому переконайтеся, що ви завантажили всі незавершені спостереження, перш ніж це зробити. Будь-які спостереження, які не завантажено, буде втрачено.</string>
     <!-- Error message when a user tries to add upload a photo or a sound that is larger than the allowed 20 MB -->
+    <string name="couldnt_upload_file_too_large">Не вдалося завантажити файл – розмір перевищує 20 МБ</string>
     <string name="you_have_been_signed_out_please_sign_in_again">Ви вийшли з системи. Будь ласка, увійдіть знову.</string>
     <!-- Accessibility label for a button that closes an announcement -->
+    <string name="close_announcement">Закрити оголошення</string>
+    <string name="import_photos_from">Завантажити фото з...</string>
 </resources>
