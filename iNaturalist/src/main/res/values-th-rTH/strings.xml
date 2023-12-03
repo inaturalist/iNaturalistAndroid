@@ -434,7 +434,9 @@
     <string name="suggest_species_description">แนะนำชนิดตามความคล้ายของรูปถ่าย</string>
     <string name="visually_similar">ภาพที่คล้ายกัน</string>
     <string name="visually_similar_seen_nearby">รูปคล้ายกัน / พบบริเวณใกล้เคียง</string>
+    <string name="visually_similar_expected_nearby">รูปคล้ายกัน / อาจพบในบริเวณนี้</string>
     <string name="seen_nearby">เห็นในบริเวณใกล้เคียง</string>
+    <string name="expected_nearby">อาจพบในบริเวณนี้</string>
     <string name="enlarge">ขยาย</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">ดูลำดับย่อย</string>
