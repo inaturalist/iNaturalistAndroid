@@ -345,7 +345,7 @@ public class ObservationUtils {
                 JSONObject innerPhoto = new JSONObject();
                 innerPhoto.put("id", photo.optJSONObject("photo").optInt("id"));
 
-                if (photo.optBoolean("hidden", true)) {
+                if (photo.optJSONObject("photo").optBoolean("hidden", false)) {
                     innerPhoto.put("hidden", true);
                 }
 
