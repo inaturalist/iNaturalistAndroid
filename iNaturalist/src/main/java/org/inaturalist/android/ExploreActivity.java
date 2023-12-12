@@ -508,6 +508,15 @@ public class ExploreActivity extends BaseFragmentActivity {
             @Override
             public void onPageSelected(int position) {
                 mActiveViewType = position;
+                if (mActiveViewType == VIEW_TYPE_IDENTIFIERS) {
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_EXPLORE_TAB_IDENTIFIERS);
+                } else if (mActiveViewType == VIEW_TYPE_OBSERVATIONS) {
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_EXPLORE_TAB_OBSERVATIONS);
+                } else if (mActiveViewType == VIEW_TYPE_OBSERVERS) {
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_EXPLORE_TAB_OBSERVERS);
+                } else if (mActiveViewType == VIEW_TYPE_SPECIES) {
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_EXPLORE_TAB_SPECIES);
+                }
             }
 
             @Override
@@ -1046,6 +1055,8 @@ public class ExploreActivity extends BaseFragmentActivity {
                     eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_EXPLORE_GRID);
 
                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
+
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_EXPLORE_VIEW_OBSERVATION);
                 } catch (JSONException e) {
                     Logger.tag(TAG).error(e);
                 }
@@ -1493,6 +1504,8 @@ public class ExploreActivity extends BaseFragmentActivity {
                                 intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(item));
                                 intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
                                 startActivity(intent);
+
+                                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_EXPLORE_VIEW_SPECIES);
                             }
                         };
 
@@ -1510,6 +1523,8 @@ public class ExploreActivity extends BaseFragmentActivity {
                                 Intent intent = new Intent(ExploreActivity.this, UserProfile.class);
                                 intent.putExtra("user", new BetterJSONObject(item));
                                 startActivity(intent);
+
+                                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_EXPLORE_VIEW_OBSERVER);
                             }
                         };
                         break;
@@ -1527,6 +1542,8 @@ public class ExploreActivity extends BaseFragmentActivity {
                                 Intent intent = new Intent(ExploreActivity.this, UserProfile.class);
                                 intent.putExtra("user", new BetterJSONObject(item));
                                 startActivity(intent);
+
+                                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_EXPLORE_VIEW_IDENTIFIER);
                             }
                         };
                         break;
@@ -1604,6 +1621,8 @@ public class ExploreActivity extends BaseFragmentActivity {
                         eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_EXPLORE_MAP);
 
                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
+
+                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_EXPLORE_VIEW_OBSERVATION);
                     }
                 } catch (IOException e) {
                     Logger.tag(TAG).error(e);

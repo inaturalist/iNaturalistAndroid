@@ -1,31 +1,35 @@
 package org.inaturalist.android;
 
 import android.app.Activity;
-import android.app.ActivityManager;
 import android.app.Application;
-import android.content.ComponentName;
-import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.tinylog.Logger;
+
+import java.util.UUID;
 
 /**
  * Encapsulates the analytics client and adds some extra functionality (singleton class)
  */
 public class AnalyticsClient {
 
+    public static final String EVENT_PARAM_CURRENT_USER = "Current User";
+
     public static final String EVENT_PARAM_VIA = "Via";
 
     public static final String EVENT_PARAM_VALUE_YES = "Yes";
     public static final String EVENT_PARAM_VALUE_NO = "No";
+    public static final String EVENT_PARAM_NEW_SCREEN = "New Screen";
 
     public static final String EVENT_NAME_APP_LAUNCH = "AppLaunch";
 
     public static final String EVENT_NAME_MENU = "Menu";
+
+    public static final String EVENT_NAME_CHANGED_SCREEN = "Changed Screen";
     public static final String EVENT_NAME_ME = "Me";
     public static final String EVENT_NAME_EXPLORE_MAP = "Explore - Map";
     public static final String EVENT_NAME_USER_ACTIVITY = "User Activity";
@@ -170,6 +174,10 @@ public class AnalyticsClient {
 
     // Viewing obs details
     public static final String EVENT_NAME_NAVIGATE_OBS_DETAILS = "Navigate - Observations - Details";
+    public static final String EVENT_NAME_EXPLORE_VIEW_SPECIES = "Explore - View - Species";
+    public static final String EVENT_NAME_EXPLORE_VIEW_OBSERVER = "Explore - View - Observer";
+    public static final String EVENT_NAME_EXPLORE_VIEW_IDENTIFIER = "Explore - View - Identifier";
+    public static final String EVENT_NAME_EXPLORE_VIEW_OBSERVATION = "Explore - View - Observation";
     public static final String EVENT_VALUE_EXPLORE_GRID = "Explore Grid";
     public static final String EVENT_VALUE_EXPLORE_LIST = "Explore List";
     public static final String EVENT_VALUE_UPDATES = "Updates";
@@ -177,18 +185,45 @@ public class AnalyticsClient {
     public static final String EVENT_VALUE_ME_TAB = "Me Tab";
     public static final String EVENT_VALUE_IDENTIFICATIONS_TAB = "Identifications Tab";
     public static final String EVENT_VALUE_PROJECT_DETAILS = "Project Details";
+    public static final String EVENT_NAME_EXPLORE_TAB_OBSERVATIONS = "Explore - Tab - Observations";
+    public static final String EVENT_NAME_EXPLORE_TAB_SPECIES = "Explore - Tab - Species";
+    public static final String EVENT_NAME_EXPLORE_TAB_OBSERVERS = "Explore - Tab - Observers";
+    public static final String EVENT_NAME_EXPLORE_TAB_IDENTIFIERS = "Explore - Tab - Identifiers";
+    public static final String EVENT_NAME_TAXON_VIEW_MAP = "Taxon - View Map";
+    public static final String EVENT_NAME_TAXON_VIEW_OBSERVATIONS = "Taxon - View Observations";
+    public static final String EVENT_NAME_TAXON_VIEW_ON_INAT = "Taxon - View On iNat";
+    public static final String EVENT_NAME_USER_PROFILE_SEND_MESSAGE = "User Profile - Send Message";
+    public static final String EVENT_NAME_USER_PROFILE_VIEW_SPECIES = "User Profile - View Species";
+    public static final String EVENT_NAME_USER_PROFILE_VIEW_TAXON = "User Profile - View Taxon";
+    public static final String EVENT_NAME_USER_PROFILE_VIEW_OBSERVATIONS = "User Profile - View Observations";
+    public static final String EVENT_NAME_USER_PROFILE_VIEW_IDENTIFICATIONS = "User Profile - View Identifications";
+    public static final String EVENT_NAME_USER_PROFILE_VIEW_OBSERVATION = "User Profile - View Observation";
+    public static final String EVENT_NAME_USER_PROFILE_VIEW_OBSERVATION_VIA_IDENTIFICATION = "User Profile - View Observation Via Identification";
+
     private static final String TAG = "AnalyticsClient";
 
     // Singleton instance
     private static AnalyticsClient mAnalyticsClient = null;
 
-    private Application mApplication;
+    private INaturalistApp mApplication;
     private Activity mCurrentActivity;
     private boolean mDisabled;
 
-    private AnalyticsClient(Application application, boolean disabled) {
+    private String mAnalyticsID;
+
+    private AnalyticsClient(INaturalistApp application, boolean disabled) {
         mApplication = application;
         mDisabled = disabled;
+
+        // Generate a random unique ID, to identify the user in an anonymous way
+        SharedPreferences settings = mApplication.getPrefs();
+        if (!settings.contains("analytics_id")) {
+            String analyticsID = UUID.randomUUID().toString();
+            settings.edit().putString("analytics_id", analyticsID).commit();
+        }
+
+        mAnalyticsID = settings.getString("analytics_id", null);
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
             // Modern way of getting current activity
@@ -205,6 +240,21 @@ public class AnalyticsClient {
 
                 @Override
                 public void onActivityResumed(Activity activity) {
+
+                    // Log every time the user switches screens (and log via which screen was it made)
+                    if (mCurrentActivity != null) {
+                        try {
+                            JSONObject params = new JSONObject();
+                            String prevActivityName = getActivityName(activity);
+                            String newActivityName = getActivityName(mCurrentActivity);
+                            params.put(EVENT_PARAM_NEW_SCREEN, newActivityName);
+                            params.put(EVENT_PARAM_VIA, prevActivityName);
+                            logEvent(EVENT_NAME_CHANGED_SCREEN, params);
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+
                     mCurrentActivity = activity;
                 }
 
@@ -232,7 +282,7 @@ public class AnalyticsClient {
     }
 
     // Initializes the analytics client - should be called from the main activity or application class
-    public static void initAnalyticsClient(Application application, boolean disabled) {
+    public static void initAnalyticsClient(INaturalistApp application, boolean disabled) {
         mAnalyticsClient = new AnalyticsClient(application, disabled);
     }
 
@@ -259,11 +309,15 @@ public class AnalyticsClient {
         try {
             if (mCurrentActivity != null) {
                 // Add the via parameter (which indicates the current screen the event was initiated from)
-                String currentActivityName = getCurrentActivityName();
+                String currentActivityName = getActivityName(mCurrentActivity);
                 if (!parameters.has(EVENT_PARAM_VIA)) parameters.put(EVENT_PARAM_VIA, currentActivityName);
             }
 
-            // Currently we've removed all analytics events (not using a tracker like Mixpanel, etc.)
+            parameters.put(EVENT_PARAM_CURRENT_USER, mAnalyticsID);
+
+            // TODO - in the future, send this event forward
+
+            Logger.tag(TAG).info(String.format("Event: %s - params: %s", eventName, parameters));
 
         } catch (JSONException e) {
             Logger.tag(TAG).error(e);
@@ -271,8 +325,8 @@ public class AnalyticsClient {
     }
 
     // Returns current activity name
-    private String getCurrentActivityName() {
-        String className = mCurrentActivity.getClass().getName();
+    private String getActivityName(Activity activity) {
+        String className = activity.getClass().getName();
 
         // Extract just the activity class name (not including the package namespace)
         String[] parts = className.split("\\.");

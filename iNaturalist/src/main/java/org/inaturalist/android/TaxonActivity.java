@@ -63,6 +63,7 @@ import com.squareup.picasso.Picasso;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.tinylog.Logger;
 
@@ -727,6 +728,8 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
                         intent.putExtra(TaxonMapActivity.MAP_ZOOM, position.zoom);
                         if (mObservation != null) intent.putExtra(TaxonMapActivity.OBSERVATION, new BetterJSONObject(ObservationUtils.getMinimalObservation(mObservation.getJSONObject())));
                         startActivity(intent);
+
+                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_TAXON_VIEW_MAP);
                     }
                 });
 
@@ -791,6 +794,8 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
             intent1.putExtra(ExploreActivity.SEARCH_FILTERS, searchFilters);
             intent1.putExtra(ExploreActivity.ACTIVE_TAB, ExploreActivity.VIEW_TYPE_OBSERVATIONS);
             startActivity(intent1);
+
+            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_TAXON_VIEW_OBSERVATIONS);
         });
 
 
@@ -804,6 +809,8 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(taxonUrl));
                 startActivity(i);
+
+                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_TAXON_VIEW_ON_INAT);
             }
         });
 

@@ -177,6 +177,8 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
             intent1.putExtra(NewMessageActivity.USER_ID, mUser.getInt("id"));
             intent1.putExtra(NewMessageActivity.USERNAME, mUser.getString("login"));
             startActivityForResult(intent1, NEW_MESSAGE_REQUEST_CODE);
+
+            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_USER_PROFILE_SEND_MESSAGE);
         });
 
         mSpeciesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -187,6 +189,8 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
                 intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(item));
                 intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
                 startActivity(intent);
+
+                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_USER_PROFILE_VIEW_TAXON);
             }
         });
 
@@ -205,6 +209,8 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
                 intent.putExtra("read_only", true);
                 intent.putExtra("reload", true);
                 startActivity(intent);
+
+                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_USER_PROFILE_VIEW_OBSERVATION);
             }
         });
 
@@ -259,10 +265,13 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
 
                 if (view == mShowMoreObservations) {
                     activeTab = ExploreActivity.VIEW_TYPE_OBSERVATIONS;
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_USER_PROFILE_VIEW_OBSERVATIONS);
                 } else if (view == mShowMoreSpecies) {
                     activeTab = ExploreActivity.VIEW_TYPE_SPECIES;
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_USER_PROFILE_VIEW_SPECIES);
                 } else if (view == mShowMoreIdentifications) {
                     activeTab = ExploreActivity.VIEW_TYPE_IDENTIFIERS;
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_USER_PROFILE_VIEW_IDENTIFICATIONS);
                 }
 
                 intent.putExtra(ExploreActivity.ACTIVE_TAB, activeTab);
@@ -714,6 +723,8 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
                         intent.putExtra("read_only", true);
                         intent.putExtra("reload", true);
                         startActivity(intent);
+
+                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_USER_PROFILE_VIEW_OBSERVATION_VIA_IDENTIFICATION);
                     }
                 });
 

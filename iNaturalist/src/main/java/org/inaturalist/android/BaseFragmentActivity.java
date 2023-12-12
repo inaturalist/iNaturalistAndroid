@@ -802,6 +802,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
         prefEditor.remove("user_unread_messages");
         prefEditor.remove("user_privileges");
         prefEditor.remove("muted_users");
+        prefEditor.remove("analytics_id");
         prefEditor.commit();
 
         shouldRestart = !prevLocale.equals("");
