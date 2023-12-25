@@ -61,6 +61,9 @@ jobs:
           sed -E 's/<!-- *</</' iNaturalist/src/main/res/values/config.example.xml | sed -E 's/> *-->/>/' > iNaturalist/src/main/res/values/config.xml
           cp iNaturalist/google-services.example.json iNaturalist/google-services.json
 
+      - name: Compile smoothrescale Library
+        run: ./gradlew :smoothrescale:assembleDebug
+
       - name: Run instrumented tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
