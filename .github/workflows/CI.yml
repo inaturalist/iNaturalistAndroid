@@ -70,7 +70,7 @@ jobs:
           disable-animations: true
           target: google_apis
           ndk: 22.1.7171670
-          script: ./gradlew connectedCheck -x :smoothrescale:connectedDebugAndroidTest
+          script: ./gradlew connectedCheck
   notify:
     name: Notify Slack
     needs: test
