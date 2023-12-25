@@ -49,7 +49,7 @@ jobs:
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
           target: google_apis
-          ndk: 22.1.7171670
+          ndk: 26.1.10909125
           # I think this might be a quick fix for intermittent build failures waiting for the emaultor to boot
           emulator-build: 7425822
           script: echo "Generated AVD snapshot for caching."
@@ -69,7 +69,7 @@ jobs:
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           target: google_apis
-          ndk: 22.1.7171670
+          ndk: 26.1.10909125
           script: ./gradlew connectedCheck
   notify:
     name: Notify Slack
