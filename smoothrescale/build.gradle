@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 
 android {
+    namespace 'com.schokoladenbrown'
     compileSdkVersion 29
 
     defaultConfig {
@@ -15,7 +16,11 @@ android {
         }
     }
 
-    sourceSets.main.jni.srcDirs = []
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 
     task ndkBuild(type: Exec, description: 'Compile JNI source via NDK') {
         def ndkDir = System.getenv('ANDROID_NDK_HOME')

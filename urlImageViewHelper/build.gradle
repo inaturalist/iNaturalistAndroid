@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 19
+    namespace 'com.koushikdutta.urlimageviewhelper'
 
     defaultConfig {
         minSdkVersion 8

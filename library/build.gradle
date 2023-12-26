@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 
 android {
+    namespace 'com.handmark.pulltorefresh.library'
     compileSdkVersion 29
 
     defaultConfig {
