@@ -8,16 +8,15 @@ on:
 jobs:
   test:
     name: Instrumented Tests, SDK ${{ matrix.api-level }}
-    runs-on: macos-11
+    runs-on: macos-12
     strategy:
       matrix:
         api-level:
           - 23 # Android 5, minSdkVersion
           - 27 # Android 8, has caused problems in the past
-          # SDK 29 causes frequent problems with the emulator, not sure why.
-          # Hoping SDK 30 is close enough
-          # - 29 # Android 10, targetSdkVersion
-          - 30 # Android 11, latest public release
+          - 33 # Android 10, targetSdkVersion
+          # Fails currently, need to debug before we can upgrade
+          # - 34 # Android 14, latest public release
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -31,6 +30,12 @@ jobs:
             ~/.gradle/wrapper
           key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
 
+      # You can use sdkmanager --list to locate available packages.
+      # In our case, API=27 with google_apis is only available with x86, but
+      # later APIs (33,34) do not have x86
+      - name: Set AVD Architecture Based on API Level
+        run: echo "ARCH=$(if [ ${{ matrix.api-level }} -eq 27 ]; then echo 'x86'; else echo 'x86_64'; fi)" >> $GITHUB_ENV
+
       - name: AVD cache
         uses: actions/cache@v3
         id: avd-cache
@@ -38,24 +43,29 @@ jobs:
           path: |
             ~/.android/avd/*
             ~/.android/adb*
-          key: avd-${{ matrix.api-level }}-20220105-1
+          key: avd-${{ matrix.api-level }}-${{ env.ARCH }}-20231227
 
       - name: Create AVD and generate snapshot for caching
         if: steps.avd-cache.outputs.cache-hit != 'true'
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
+          arch:  ${{ env.ARCH }}
+          cores: 3
           force-avd-creation: true
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
-          disable-animations: false
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -grpc 8554 -verbose -timezone America/New_York
+          disable-animations: true
           target: google_apis
           ndk: 26.1.10909125
-          # I think this might be a quick fix for intermittent build failures waiting for the emaultor to boot
-          emulator-build: 7425822
+          pre-emulator-launch-script: |
+            cat ~/.android/avd/test.avd/config.ini || true
+            cat ~/.android/avd/test.avd/hardware-qemu.ini || true
           script: echo "Generated AVD snapshot for caching."
+
       - name: Set Java 11
         run: |
           echo "JAVA_HOME=$JAVA_HOME_11_X64" >> $GITHUB_ENV
+
       - name: Copy iNat config files
         run: |
           sed -E 's/<!-- *</</' iNaturalist/src/main/res/values/config.example.xml | sed -E 's/> *-->/>/' > iNaturalist/src/main/res/values/config.xml
@@ -68,12 +78,18 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
+          arch: ${{ env.ARCH }}
+          cores: 3
           force-avd-creation: false
-          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -grpc 8554 -verbose -timezone America/New_York
           disable-animations: true
           target: google_apis
           ndk: 26.1.10909125
+          pre-emulator-launch-script: |
+            cat ~/.android/avd/test.avd/config.ini || true
+            cat ~/.android/avd/test.avd/hardware-qemu.ini || true
           script: ./gradlew connectedCheck
+
   notify:
     name: Notify Slack
     needs: test
