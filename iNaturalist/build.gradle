@@ -36,8 +36,7 @@ allprojects {
 android {
     namespace 'org.inaturalist.android'
 
-    compileSdkVersion 33
-    buildToolsVersion '34.0.0'
+    compileSdk rootProject.ext.compileSdkVersion
     useLibrary 'org.apache.http.legacy'
 
     buildFeatures {
@@ -60,10 +59,11 @@ android {
 
     defaultConfig {
         applicationId "org.inaturalist.android"
-        minSdkVersion 23
-        targetSdkVersion 33
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
         multiDexEnabled true
-        renderscriptTargetApi 33
+        renderscriptTargetApi rootProject.ext.targetSdkVersion
         renderscriptSupportModeEnabled true
         testInstrumentationRunner = "org.inaturalist.android.DefaultTestRunner"
         packagingOptions {

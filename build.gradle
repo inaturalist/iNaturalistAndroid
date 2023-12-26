@@ -9,8 +9,6 @@ buildscript {
         classpath 'com.google.gms:google-services:4.3.10'
         classpath 'com.google.firebase:firebase-crashlytics-gradle:2.5.2'
     }
-
-
 }
 
 allprojects {
@@ -24,3 +22,11 @@ allprojects {
         resolutionStrategy.force 'com.android.support:support-annotations:25.0.1'
     }
 }
+
+// Global properties used in all build.gradle files
+ext {
+    minSdkVersion = 23
+    targetSdkVersion = 33
+    compileSdkVersion = 33
+}
+

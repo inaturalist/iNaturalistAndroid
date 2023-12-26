@@ -2,11 +2,11 @@ apply plugin: 'com.android.library'
 
 android {
     namespace 'com.schokoladenbrown'
-    compileSdkVersion 29
+    compileSdk rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 29
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
