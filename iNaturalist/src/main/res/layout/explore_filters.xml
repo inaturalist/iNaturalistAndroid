@@ -135,7 +135,7 @@
 
                     <ImageButton
                         android:id="@+id/clear_project"
-                        bind:increaseTouch='@{80}'
+                        inat_increaseTouch='@{80}'
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/ic_clear_white_48dp"
@@ -191,7 +191,7 @@
 
                     <ImageButton
                         android:id="@+id/clear_user"
-                        bind:increaseTouch='@{80}'
+                        inat_increaseTouch='@{80}'
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/ic_clear_white_48dp"

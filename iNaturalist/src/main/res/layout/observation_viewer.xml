@@ -44,7 +44,7 @@
                     android:background="#EEEEEE">
                     <ImageView
                         android:id="@+id/user_pic"
-                        bind:increaseTouch='@{80}'
+                        inat_increaseTouch='@{80}'
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_alignParentStart="true"
@@ -129,7 +129,7 @@
                         android:layout_height="wrap_content">
                         <ImageView
                             android:id="@+id/id_icon_big"
-                            bind:increaseTouch='@{80}'
+                            inat_increaseTouch='@{80}'
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:importantForAccessibility="no"

@@ -22,7 +22,7 @@
             android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/user_pic"
-                bind:increaseTouch='@{80}'
+                inat_increaseTouch='@{80}'
                 android:layout_width="27dp"
                 android:layout_height="27dp"
                 android:scaleType="fitCenter"
@@ -57,7 +57,7 @@
             android:contentDescription="@string/open_menu_for_more_options"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            bind:increaseTouch='@{80}'
+            inat_increaseTouch='@{80}'
             />
 
         <LinearLayout
