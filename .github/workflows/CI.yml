@@ -10,21 +10,21 @@ jobs:
     name: Instrumented Tests, SDK ${{ matrix.api-level }}
     runs-on: macos-12
     strategy:
+      fail-fast: false
       matrix:
         api-level:
           - 23 # Android 5, minSdkVersion
           - 27 # Android 8, has caused problems in the past
           - 30 # Android 11 - latest where tests pass
-          # Flaky tests due to application focus issues
-          # - 33 # Android 13, targetSdkVersion
+          - 33 # Android 13 - targetSdkVersion
           # Fails currently, need to debug before we can upgrade
           # - 34 # Android 14, latest public release
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Cache steps all from the example at https://github.com/ReactiveCircus/android-emulator-runner
-      - name: Gradle cache
+      - name: Restore Gradle cache
         uses: actions/cache@v3
         with:
           path: |
@@ -38,7 +38,7 @@ jobs:
       - name: Set AVD Architecture Based on API Level
         run: echo "ARCH=$(if [ ${{ matrix.api-level }} -eq 27 ]; then echo 'x86'; else echo 'x86_64'; fi)" >> $GITHUB_ENV
 
-      - name: AVD cache
+      - name: Restore AVD cache
         uses: actions/cache@v3
         id: avd-cache
         with:
@@ -73,11 +73,13 @@ jobs:
           sed -E 's/<!-- *</</' iNaturalist/src/main/res/values/config.example.xml | sed -E 's/> *-->/>/' > iNaturalist/src/main/res/values/config.xml
           cp iNaturalist/google-services.example.json iNaturalist/google-services.json
 
-      - name: Compile smoothrescale Library
-        run: ./gradlew :smoothrescale:assembleDebug
+      # Do this in a distinct step so we get separate timing information
+      - name: Compile
+        run: ./gradlew assembleDebug assembleAndroidTest
 
       - name: Run instrumented tests
         uses: reactivecircus/android-emulator-runner@v2
+        timeout-minutes: 30
         with:
           api-level: ${{ matrix.api-level }}
           arch: ${{ env.ARCH }}
@@ -90,7 +92,35 @@ jobs:
           pre-emulator-launch-script: |
             cat ~/.android/avd/test.avd/config.ini || true
             cat ~/.android/avd/test.avd/hardware-qemu.ini || true
-          script: ./gradlew connectedCheck
+          script: |
+            mkdir screenshots
+            $ANDROID_HOME/platform-tools/adb exec-out screencap -p > screenshots/0-early-boot.png
+            sleep 120
+            $ANDROID_HOME/platform-tools/adb exec-out screencap -p > screenshots/1-late-boot.png
+            $ANDROID_HOME/platform-tools/adb shell am broadcast -a android.intent.action.CLOSE_SYSTEM_DIALOGS
+            sleep 30
+            $ANDROID_HOME/platform-tools/adb exec-out screencap -p > screenshots/2-pretest.png
+            ./gradlew connectedCheck
+            $ANDROID_HOME/platform-tools/adb exec-out screencap -p > screenshots/3-posttest.png
+
+      - name: Store Build Reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Build Reports - SDK ${{ matrix.api-level }} ${{ env.ARCH }}
+          path: |
+            iNaturalist/build/reports
+            smoothrescale/build/reports
+            library/build/reports
+            urlImageViewHelper/build/reports
+            screenshots
+
+      - name: Store APK
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: APK - SDK ${{ matrix.api-level }} ${{ env.ARCH }}
+          path: iNaturalist/build/outputs/apk
 
   notify:
     name: Notify Slack
