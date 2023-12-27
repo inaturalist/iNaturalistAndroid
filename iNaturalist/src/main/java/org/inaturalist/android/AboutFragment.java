@@ -123,28 +123,24 @@ public class AboutFragment extends PreferenceFragmentCompat {
         });
 
         mDonate.setOnPreferenceClickListener(preference -> {
-            // Open donation page
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(DONATION_URL));
             startActivity(browserIntent);
             return false;
         });
 
         mShop.setOnPreferenceClickListener(preference -> {
-            // Open donation page
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(SHOP_URL));
             startActivity(browserIntent);
             return false;
         });
 
         mPrivacyPolicy.setOnPreferenceClickListener(preference -> {
-            // Open donation page
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(PRIVACY_POLICY_URL));
             startActivity(browserIntent);
             return false;
         });
 
         mTOS.setOnPreferenceClickListener(preference -> {
-            // Open donation page
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(TOS_URL));
             startActivity(browserIntent);
             return false;
