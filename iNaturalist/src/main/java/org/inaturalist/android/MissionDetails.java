@@ -371,8 +371,14 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
                     public void onMapClick(LatLng latLng) {
                         // Show the map screen
                         Intent intent = new Intent(MissionDetails.this, MissionDetailsMapActivity.class);
-                        JSONArray arr = new JSONArray(mObservations);
-                        intent.putExtra(MissionDetailsMapActivity.OBSERVATIONS, arr.toString());
+
+                        JSONArray minimizedObservations = new JSONArray();
+                        for (int i = 0; i < mObservations.size(); i++) {
+                            JSONObject item = mObservations.get(i);
+                            minimizedObservations.put(ObservationUtils.getMinimalObservation(item));
+                        }
+
+                        intent.putExtra(MissionDetailsMapActivity.OBSERVATIONS, minimizedObservations.toString());
                         startActivity(intent);
                     }
                 });
