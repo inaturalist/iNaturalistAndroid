@@ -242,6 +242,7 @@
     <string name="suggest_id">ID virschloen</string>
     <string name="update_comment">Kommentar aktualiséieren</string>
     <string name="fave_this_observation">Dës Observatioun favoriseiren</string>
+    <string name="faved">Favoriséiert</string>
     <string name="be_the_first_to_fave_this_obs">Sidd deen éischten deen dësen Observatioun favoriséiert...</string>
     <string name="leave_a_comment">Hannerloosst ee Kommentar oder schlot eng Bestëmmung vir</string>
     <string name="location_coords">Lat: %1$s Lon: %2$s Acc. %3$s</string>

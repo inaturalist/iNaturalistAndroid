@@ -435,6 +435,7 @@
     <string name="suggest_species_description">針對照片中外觀相似度來建議物種。</string>
     <string name="visually_similar">外觀看起來很像</string>
     <string name="visually_similar_seen_nearby">視覺上相似/附近曾見過</string>
+    <string name="visually_similar_expected_nearby">外觀相似/附近可見</string>
     <string name="seen_nearby">附近曾見過</string>
     <string name="enlarge">放大</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
@@ -1186,4 +1187,5 @@
     <string name="you_have_been_signed_out_please_sign_in_again">您已登出。請再次登入。</string>
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">關閉公告</string>
+    <string name="import_photos_from">匯入照片從…</string>
 </resources>
