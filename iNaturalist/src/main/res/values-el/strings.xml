@@ -845,7 +845,16 @@
     <string name="search_for_inaturalist_users">Αναζήτηση για χρήστες iNaturalist</string>
     <string name="please_sign_in_for_messages">Πρέπει να συνδεθείτε για να δείτε τα μηνύματά σας.</string>
     <string name="sorry">Λυπούμαστε</string>
+    <string name="mute_this_user">Σίγαση χρήστη</string>
+    <string name="unmute_this_user">Αποσίγαση χρήστη</string>
+    <string name="flag_this_conversation">Αναφορά συζήτησης</string>
+    <string name="mute_this_user_question">Σίγαση χρήστη;</string>
     <string name="mute">Σίγαση</string>
+    <string name="muting_user">Σίγαση χρήστη...</string>
+    <string name="unmuting_user">Κατάργηση σίγασης χρήστη...</string>
+    <string name="failed_muting_user">Αποτυχία σίγασης χρήστη!</string>
+    <string name="failed_unmuting_user">Αποτυχία ακύρωσης σίγασης!</string>
+    <string name="flag_conversation">Αναφορά συζήτησης</string>
     <string name="spam">Ανεπιθύμητο</string>
     <string name="commercial_solicitation">Εμπορική παράκληση, συνδέσεις που δεν οδηγούν πουθενά, κτλ.</string>
     <string name="offensive_inappropriate">Προσβλητικό/Ακατάλληλο</string>
@@ -860,6 +869,7 @@
     <string name="rank_subphylum">Υποσυνομοταξία</string>
     <string name="rank_superclass">Υπερομοταξία</string>
     <string name="rank_class">Τάξη</string>
+    <string name="rank_order">Σειρά</string>
     <string name="rank_family">Οικογένεια</string>
     <string name="rank_subfamily">Υποοικογένεια</string>
     <string name="rank_tribe">Φυλή</string>
