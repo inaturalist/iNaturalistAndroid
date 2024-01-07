@@ -463,9 +463,13 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                     if (mObsJson != null) {
                         try {
                             int obsPhotoCount = mObservation.photos != null ? mObservation.photos.size() : 0;
-                            BetterJSONObject obsSound = new BetterJSONObject(new JSONObject(mObsJson).getJSONArray("observation_sounds").getJSONObject(position - obsPhotoCount));
-                            item = new BetterJSONObject(obsSound.getJSONObject("sound"));
-                            isHidden = new ObservationSound(obsSound).hidden;
+                            JSONArray obsSounds = new JSONObject(mObsJson).getJSONArray("observation_sounds");
+
+                            if ((position - obsPhotoCount < obsSounds.length()) && (position - obsPhotoCount >= 0)) {
+                                BetterJSONObject obsSound = new BetterJSONObject(obsSounds.getJSONObject(position - obsPhotoCount));
+                                item = new BetterJSONObject(obsSound.getJSONObject("sound"));
+                                isHidden = new ObservationSound(obsSound).hidden;
+                            }
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         }
