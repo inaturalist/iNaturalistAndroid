@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="email_address">E-mail-cím</string>
+    <string name="email_address">Email cím</string>
     <string name="delete_observation">Megfigyelés törlése</string>
     <string name="observation_deleted">Megfigyelés törölve</string>
     <string name="species_guess_hint">Faj neve...</string>
