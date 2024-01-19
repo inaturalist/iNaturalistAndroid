@@ -507,9 +507,11 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                     // Show sound
                     sound = mObservation.sounds.get(position - mObservation.photos.size());
                     try {
-                        BetterJSONObject obsSound = new BetterJSONObject(new JSONObject(mObsJson).getJSONArray("observation_sounds").getJSONObject(position - mObservation.photos.size()));
-                        item = new BetterJSONObject(obsSound.getJSONObject("sound"));
-                        isHidden = new ObservationSound(obsSound).hidden;
+                        if (mObsJson != null) {
+                            BetterJSONObject obsSound = new BetterJSONObject(new JSONObject(mObsJson).getJSONArray("observation_sounds").getJSONObject(position - mObservation.photos.size()));
+                            item = new BetterJSONObject(obsSound.getJSONObject("sound"));
+                            isHidden = new ObservationSound(obsSound).hidden;
+                        }
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
                     }
@@ -517,9 +519,11 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                     imageUrl = mObservation.photos.get(position).photo_url;
 
                     try {
-                        BetterJSONObject obsPhoto = new BetterJSONObject(new JSONObject(mObsJson).getJSONArray("observation_photos").getJSONObject(position));
-                        item = new BetterJSONObject(obsPhoto.getJSONObject("photo"));
-                        isHidden = new ObservationPhoto(obsPhoto).hidden;
+                        if (mObsJson != null) {
+                            BetterJSONObject obsPhoto = new BetterJSONObject(new JSONObject(mObsJson).getJSONArray("observation_photos").getJSONObject(position));
+                            item = new BetterJSONObject(obsPhoto.getJSONObject("photo"));
+                            isHidden = new ObservationPhoto(obsPhoto).hidden;
+                        }
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
                     }
