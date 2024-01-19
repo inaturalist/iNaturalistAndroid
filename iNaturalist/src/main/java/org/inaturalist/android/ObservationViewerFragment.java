@@ -463,12 +463,15 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
                     if (mObsJson != null) {
                         try {
                             int obsPhotoCount = mObservation.photos != null ? mObservation.photos.size() : 0;
-                            JSONArray obsSounds = new JSONObject(mObsJson).getJSONArray("observation_sounds");
+                            JSONObject json = new JSONObject(mObsJson);
+                            if (json.has("observation_sounds")) {
+                                JSONArray obsSounds = json.getJSONArray("observation_sounds");
 
-                            if ((position - obsPhotoCount < obsSounds.length()) && (position - obsPhotoCount >= 0)) {
-                                BetterJSONObject obsSound = new BetterJSONObject(obsSounds.getJSONObject(position - obsPhotoCount));
-                                item = new BetterJSONObject(obsSound.getJSONObject("sound"));
-                                isHidden = new ObservationSound(obsSound).hidden;
+                                if ((position - obsPhotoCount < obsSounds.length()) && (position - obsPhotoCount >= 0)) {
+                                    BetterJSONObject obsSound = new BetterJSONObject(obsSounds.getJSONObject(position - obsPhotoCount));
+                                    item = new BetterJSONObject(obsSound.getJSONObject("sound"));
+                                    isHidden = new ObservationSound(obsSound).hidden;
+                                }
                             }
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
@@ -486,12 +489,15 @@ public class ObservationViewerFragment extends Fragment implements AnnotationsAd
 
                     if (mObsJson != null) {
                         try {
-                            JSONArray obsPhotos = new JSONObject(mObsJson).getJSONArray("observation_photos");
+                            JSONObject json = new JSONObject(mObsJson);
+                            if (json.has("observation_photos")) {
+                                JSONArray obsPhotos = json.getJSONArray("observation_photos");
 
-                            if (position < obsPhotos.length()) {
-                                BetterJSONObject obsPhoto = new BetterJSONObject(obsPhotos.getJSONObject(position));
-                                item = new BetterJSONObject(obsPhoto.getJSONObject("photo"));
-                                isHidden = new ObservationPhoto(obsPhoto).hidden;
+                                if (position < obsPhotos.length()) {
+                                    BetterJSONObject obsPhoto = new BetterJSONObject(obsPhotos.getJSONObject(position));
+                                    item = new BetterJSONObject(obsPhoto.getJSONObject("photo"));
+                                    isHidden = new ObservationPhoto(obsPhoto).hidden;
+                                }
                             }
                         } catch (JSONException e) {
                             Logger.error(e);
