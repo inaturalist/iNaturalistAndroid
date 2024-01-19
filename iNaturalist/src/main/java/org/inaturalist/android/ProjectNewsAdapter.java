@@ -4,6 +4,7 @@ package org.inaturalist.android;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +44,7 @@ class ProjectNewsAdapter extends ArrayAdapter<String> {
                 BetterJSONObject news1json = new BetterJSONObject(news1);
                 BetterJSONObject news2json = new BetterJSONObject(news2);
 
-                return news2json.getTimestamp("updated_at").compareTo(news1json.getTimestamp("updated_at"));
+                return news2json.getTimestamp("published_at").compareTo(news1json.getTimestamp("published_at"));
             }
         });
         mProject = project;
@@ -82,7 +83,7 @@ class ProjectNewsAdapter extends ArrayAdapter<String> {
             String noHTMLDescription = newsContent.getText().toString();
             newsContent.setText(noHTMLDescription.replaceAll("[\\xa0]+", "").trim()); // Strip all HTML/Markdown formatting in the preview text
             BetterJSONObject newsItem = new BetterJSONObject(item);
-            newsDate.setText(CommentsIdsAdapter.formatIdDate(mContext, newsItem.getTimestamp("updated_at")));
+            newsDate.setText(CommentsIdsAdapter.formatIdDate(mContext, newsItem.getTimestamp("published_at")));
 
             if (firstPhotoUrl != null) {
                 // Set the article photo
