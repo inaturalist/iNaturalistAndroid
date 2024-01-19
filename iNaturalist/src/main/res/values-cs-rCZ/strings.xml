@@ -447,7 +447,9 @@
     <string name="suggest_species_description">Navrhovat druhy podle vizuální podobnosti s fotkami.</string>
     <string name="visually_similar">Vizuálně podobné</string>
     <string name="visually_similar_seen_nearby">Vizuálně podobné / viděno v okolí</string>
+    <string name="visually_similar_expected_nearby">Vizuálně podobné / očekáváno v okolí</string>
     <string name="seen_nearby">Viděno v okolí</string>
+    <string name="expected_nearby">Očekáváno v okolí</string>
     <string name="enlarge">Zvětšit</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Zobrazit děti</string>
@@ -577,6 +579,7 @@
     <string name="change_password">Změnit heslo</string>
     <string name="search_projects_youve_joined">Vyhledat projekty, ke kterým jste se připojili...</string>
     <string name="must_be_connected_to_load_more_obs">Pro nahrání více pozorování musíte být připojen/a k internetu</string>
+    <string name="inat_about_title_new">iNaturalist je nezávislý neziskový subjekt založený na 501(c)(3) ve Spojených státech (EIN 92-1296468)</string>
     <!--
         Pronunciation of people's names (as approved by the people in question):
 
