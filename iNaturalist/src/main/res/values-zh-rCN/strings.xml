@@ -226,7 +226,7 @@
     <string name="first">第一</string>
     <string name="make_first">设为第一</string>
     <string name="notes">备注</string>
-    <string name="is_captive">它是圈养或是栽培的</string>
+    <string name="is_captive">它是饲育或栽培的</string>
     <string name="location_visibility">位置可见度</string>
     <string name="set_location">位置</string>
     <string name="coordinates_lat">纬度:</string>
@@ -253,7 +253,7 @@
     <string name="casual_grade_add_location"><![CDATA[ 新增一个<b>位置</b>资讯，让此笔观察记录进展至「需要 ID」状态。 ]]></string>
     <string name="casual_grade_add_date"><![CDATA[ 新增一个<b>日期</b>资讯，让此笔观察记录进展至「需要 ID」状态。 ]]></string>
     <string name="casual_grade_add_photo"><![CDATA[ 新增一张<b>照片</b>，让此笔观察记录进展至「需要 ID」状态。 ]]></string>
-    <string name="casual_grade_captive"><![CDATA[ 观察记录列为一般等级因为它是圈养/栽培的。 ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ 观察记录列为一般等级因为它是饲育/栽培的。 ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ 观察记录需要从社群中取得<b>更多的鉴定</b>以成为「研究等级」。 ]]></string>
     <plurals name="included_in_projects">
         <item quantity="other">包含在 %1$d 个任务中</item>
@@ -287,8 +287,8 @@
     <string name="photo"><![CDATA[照片： <b><a href="%1$s">%2$s</a></b>]]></string>
     <string name="photo_attr"><![CDATA[照片： <b>%1$s</b>]]></string>
     <string name="finding_current_location">搜寻您所在的位置...</string>
-    <string name="flag_as_captive">设为圈养/栽培旗标</string>
-    <string name="observation_flagged_as_captive">观察记录被标记为圈养/栽培的</string>
+    <string name="flag_as_captive">标记为饲育/栽培的</string>
+    <string name="observation_flagged_as_captive">观察记录被标记为饲育/栽培的</string>
     <string name="are_you_sure_you_want_to_flag_as_captive_no_close">您确定要将此观察记录标记为饲育/栽培？</string>
     <string name="do_you_agree_to_the_following">你同意以下吗？</string>
     <string name="terms">使用条款</string>
