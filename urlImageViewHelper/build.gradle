@@ -1,11 +1,13 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 19
+    namespace 'com.koushikdutta.urlimageviewhelper'
+    compileSdk rootProject.ext.compileSdkVersion
+    useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
-        minSdkVersion 8
-        targetSdkVersion 29
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
     }
 
     buildTypes {

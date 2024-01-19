@@ -11,7 +11,7 @@ import androidx.databinding.BindingAdapter;
 import org.tinylog.Logger;
 
 public class BindingAdapterUtils {
-    @BindingAdapter("bind:increaseTouch")
+    @BindingAdapter("inat_increaseTouch")
     public static void increaseTouch(ImageView view, double value) {
 
         ActivityHelper helper = new ActivityHelper(view.getContext());

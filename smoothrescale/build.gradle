@@ -1,11 +1,13 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
+    namespace 'com.schokoladenbrown'
+    compileSdk rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 29
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -14,7 +16,11 @@ android {
         }
     }
 
-    sourceSets.main.jni.srcDirs = []
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 
     task ndkBuild(type: Exec, description: 'Compile JNI source via NDK') {
         def ndkDir = System.getenv('ANDROID_NDK_HOME')
@@ -25,7 +31,7 @@ android {
                 'APP_BUILD_SCRIPT=src/main/jni/Android.mk',
                 'NDK_APPLICATION_MK=src/main/jni/Application.mk'
     }
-    ndkVersion '22.1.7171670'
+    ndkVersion '26.1.10909125'
 
     tasks.withType(JavaCompile) {
         compileTask -> compileTask.dependsOn ndkBuild
@@ -33,6 +39,9 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.0.0'
+    testImplementation 'junit:junit:4.13.2'
+
+    androidTestImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test:runner:1.5.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
 }

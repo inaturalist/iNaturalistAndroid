@@ -42,7 +42,7 @@
                         android:id="@+id/expand"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        bind:increaseTouch='@{40}'
+                        inat_increaseTouch='@{40}'
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentTop="true"
                         android:clickable="true"
@@ -59,7 +59,7 @@
                         android:layout_height="wrap_content">
                         <ImageView
                             android:id="@+id/user_pic"
-                            bind:increaseTouch='@{80}'
+                            inat_increaseTouch='@{80}'
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:layout_gravity="top"
@@ -84,7 +84,7 @@
                             android:id="@+id/delete_attribute_value"
                             android:layout_width="22dp"
                             android:layout_height="22dp"
-                            bind:increaseTouch='@{80}'
+                            inat_increaseTouch='@{80}'
                             android:layout_gravity="top"
                             android:layout_marginStart="5dp"
                             android:layout_alignParentEnd="true"

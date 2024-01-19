@@ -1,11 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
+    namespace 'com.handmark.pulltorefresh.library'
+    compileSdk rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion 4
-        targetSdkVersion 29
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
     }
 
     buildTypes {
