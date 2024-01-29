@@ -120,6 +120,104 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 			final String username = item.getJSONObject("user").getString("login");
             Timestamp postDate = item.getTimestamp("updated_at");
             if (postDate == null) postDate = item.getTimestamp("created_at");
+			final View loading = view.findViewById(R.id.loading);
+			final boolean isComment = item.getString("type").equals("comment");
+			final View moreMenu = view.findViewById(R.id.more_menu);
+
+			final DialogInterface.OnClickListener onClick = new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialogInterface, int which) {
+					switch (which) {
+                        case R.id.restore:
+                            loading.setVisibility(View.VISIBLE);
+                            mOnIDAddedCb.onIdentificationRestored(item);
+
+                            break;
+
+						case R.id.delete:
+							// Display deletion confirmation dialog
+							mHelper.confirm(mContext.getString(isComment ? R.string.delete_comment : R.string.delete_id),
+									isComment ? R.string.delete_comment_message : R.string.delete_id_message,
+									new DialogInterface.OnClickListener() {
+										@Override
+										public void onClick(DialogInterface dialogInterface, int i) {
+											loading.setVisibility(View.VISIBLE);
+
+											if (isComment) {
+												mOnIDAddedCb.onCommentRemoved(item);
+											} else {
+												mOnIDAddedCb.onIdentificationRemoved(item);
+											}
+										}
+									}, new DialogInterface.OnClickListener() {
+										@Override
+										public void onClick(DialogInterface dialogInterface, int i) {
+										}
+									}, R.string.yes, R.string.no);
+
+							break;
+						case R.id.edit:
+							if (isComment) {
+								mOnIDAddedCb.onCommentUpdated(item);
+							} else {
+                                mOnIDAddedCb.onIdentificationUpdated(item);
+							}
+					}
+				}
+			};
+
+			OnClickListener popupMenuListener = new OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					if (loading.getVisibility() == View.VISIBLE) {
+						return;
+					}
+
+					int menuResource = isComment && username.equalsIgnoreCase(mLogin) ? R.menu.comment_menu : R.menu.id_menu;
+
+					boolean restoreId = false;
+					if (menuResource == R.menu.id_menu) {
+						Boolean isCurrent = item.getBoolean("current");
+						if (((isCurrent == null) || (!isCurrent)) && (username.equalsIgnoreCase(mLogin)))  {
+							restoreId = true;
+						}
+					}
+
+					Menu popupMenu;
+
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+						PopupMenu popup = new PopupMenu(getContext(), moreMenu);
+						popup.getMenuInflater().inflate(menuResource, popup.getMenu());
+						popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+							@Override
+							public boolean onMenuItemClick(android.view.MenuItem menuItem) {
+								onClick.onClick(null, menuItem.getItemId());
+								return true;
+							}
+						});
+
+						popupMenu = popup.getMenu();
+						popup.show();
+					} else {
+						BottomSheet sheet = new BottomSheet.Builder((Activity) mContext).sheet(menuResource).listener(onClick).show();
+						popupMenu = sheet.getMenu();
+					}
+
+					if (!isComment) {
+						if (restoreId) {
+							// Show restore ID menu option
+							popupMenu.getItem(0).setVisible(false);
+							popupMenu.getItem(1).setVisible(true);
+						} else {
+							// Show withdraw ID menu option
+							popupMenu.getItem(0).setVisible(true);
+							popupMenu.getItem(1).setVisible(false);
+						}
+					}
+
+				}
+			};
+
 
 			postedOn.setText(String.format(res.getString(item.getString("type").equals("comment") ? R.string.comment_title : R.string.id_title),
 					username, formatIdDate(mContext, postDate)));
@@ -165,105 +263,10 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				userPic.setAlpha(100);
             }
 
-			final View moreMenu = view.findViewById(R.id.more_menu);
-			final boolean isComment = item.getString("type").equals("comment");
-			final View loading = view.findViewById(R.id.loading);
-
-			final DialogInterface.OnClickListener onClick = new DialogInterface.OnClickListener() {
-				@Override
-				public void onClick(DialogInterface dialogInterface, int which) {
-					switch (which) {
-                        case R.id.restore:
-                            loading.setVisibility(View.VISIBLE);
-                            mOnIDAddedCb.onIdentificationRestored(item);
-
-                            break;
-
-						case R.id.delete:
-							// Display deletion confirmation dialog
-							mHelper.confirm(mContext.getString(isComment ? R.string.delete_comment : R.string.delete_id),
-									isComment ? R.string.delete_comment_message : R.string.delete_id_message,
-									new DialogInterface.OnClickListener() {
-										@Override
-										public void onClick(DialogInterface dialogInterface, int i) {
-											loading.setVisibility(View.VISIBLE);
-
-											if (isComment) {
-												mOnIDAddedCb.onCommentRemoved(item);
-											} else {
-												mOnIDAddedCb.onIdentificationRemoved(item);
-											}
-										}
-									}, new DialogInterface.OnClickListener() {
-										@Override
-										public void onClick(DialogInterface dialogInterface, int i) {
-										}
-									}, R.string.yes, R.string.no);
-
-							break;
-						case R.id.edit:
-							if (isComment) {
-								mOnIDAddedCb.onCommentUpdated(item);
-							} else {
-                                mOnIDAddedCb.onIdentificationUpdated(item);
-							}
-					}
-				}
-			};
 
 			if (moreMenu != null) {
 				moreMenu.setVisibility(View.GONE);
-				moreMenu.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View view) {
-						if (loading.getVisibility() == View.VISIBLE) {
-							return;
-						}
-
-						int menuResource = isComment && username.equalsIgnoreCase(mLogin) ? R.menu.comment_menu : R.menu.id_menu;
-
-                        boolean restoreId = false;
-                        if (menuResource == R.menu.id_menu) {
-                            Boolean isCurrent = item.getBoolean("current");
-                            if (((isCurrent == null) || (!isCurrent)) && (username.equalsIgnoreCase(mLogin)))  {
-                                restoreId = true;
-                            }
-                        }
-
-                        Menu popupMenu;
-
-						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-							PopupMenu popup = new PopupMenu(getContext(), moreMenu);
-							popup.getMenuInflater().inflate(menuResource, popup.getMenu());
-							popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-								@Override
-								public boolean onMenuItemClick(android.view.MenuItem menuItem) {
-									onClick.onClick(null, menuItem.getItemId());
-									return true;
-								}
-							});
-
-                            popupMenu = popup.getMenu();
-                            popup.show();
-						} else {
-							BottomSheet sheet = new BottomSheet.Builder((Activity) mContext).sheet(menuResource).listener(onClick).show();
-                            popupMenu = sheet.getMenu();
-						}
-
-						if (!isComment) {
-							if (restoreId) {
-								// Show restore ID menu option
-								popupMenu.getItem(0).setVisible(false);
-								popupMenu.getItem(1).setVisible(true);
-							} else {
-								// Show withdraw ID menu option
-								popupMenu.getItem(0).setVisible(true);
-								popupMenu.getItem(1).setVisible(false);
-							}
-						}
-
-					}
-				});
+				moreMenu.setOnClickListener(null);
 			}
 
 			showHiddenContent.setOnClickListener(new OnClickListener() {
@@ -320,7 +323,10 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				comment.setVisibility(View.VISIBLE);
 				idLayout.setVisibility(View.GONE);
                 loading.setVisibility(View.GONE);
-				if (moreMenu != null) moreMenu.setVisibility(View.VISIBLE);
+				if (moreMenu != null) {
+					moreMenu.setVisibility(View.VISIBLE);
+					moreMenu.setOnClickListener(popupMenuListener);
+				}
                 idAgreeLayout.setVisibility(View.GONE);
 
 				comment.setTypeface(null, Typeface.NORMAL);
@@ -434,11 +440,17 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 					idAgreeLayout.setVisibility(View.GONE);
 				}
 
-                if (moreMenu != null) moreMenu.setVisibility(View.GONE);
+                if (moreMenu != null) {
+					moreMenu.setVisibility(View.GONE);
+					moreMenu.setOnClickListener(null);
+				}
 
 				if ((mLogin != null) && (username.equalsIgnoreCase(mLogin))) {
 					idAgreeLayout.setVisibility(View.GONE);
-					if (moreMenu != null) moreMenu.setVisibility(View.VISIBLE);
+					if (moreMenu != null) {
+						moreMenu.setVisibility(View.VISIBLE);
+						moreMenu.setOnClickListener(popupMenuListener);
+					}
 
 					if ((isCurrent == null) || (!isCurrent)) {
 						// Faded IDs should not have a "Remove" button
@@ -501,6 +513,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
             if (moreMenu != null) {
                 if ((mLogin == null) || ((mLogin != null) && (!username.equalsIgnoreCase(mLogin)))) {
                     moreMenu.setVisibility(View.GONE);
+					moreMenu.setOnClickListener(null);
                 }
             }
         } catch (JSONException e) {
