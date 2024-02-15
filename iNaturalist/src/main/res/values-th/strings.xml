@@ -253,7 +253,7 @@
     <string name="casual_grade_add_date"><![CDATA[ เพิ่ม <b>วันที่</b> เพื่อเลื่อนการสังเกตนี้ไปสู่สถานะ "ต้องการ ID"]]></string>
     <string name="casual_grade_add_photo"><![CDATA[เพิ่ม <b>รูปภาพ</b> เพื่อเลื่อนการสังเกตนี้ไปสู่สถานะ "ต้องการ ID"]]></string>
     <string name="casual_grade_captive"><![CDATA[ การสังเกตไม่เป็นทางการเพราะ<b>ถูกจับมา/เพาะปลูก</b> ]]></string>
-    <string name="needs_id_more_ids"><![CDATA[จะต้องมี<b>การระบุเพิ่มเติม</b>จากชุมชนเพื่อให้การสังเกตนี้เป็น "ระดับงานวิจัย"]]></string>
+    <string name="needs_id_more_ids"><![CDATA[จะต้องมี<b>การจำแนกเพิ่มเติม</b>จากชุมชนเพื่อให้การสังเกตนี้เป็น "ระดับงานวิจัย"]]></string>
     <plurals name="included_in_projects">
         <item quantity="other">รวมอยู่ใน %1$d โครงการ</item>
     </plurals>
@@ -692,18 +692,18 @@
     <string name="observations_regular">การสังเกต</string>
     <string name="data_quality_assessment">การประเมินคุณภาพข้อมูล</string>
     <string name="research_grade_qualification">คุณสมบัติระดับงานวิจัย</string>
-    <string name="date_specified">วันที่ระบุ</string>
-    <string name="location_specified">ระบุสถานที่</string>
+    <string name="date_specified">มีการระบุวันที่สังเกต</string>
+    <string name="location_specified">มีการระบุตำแหน่ง</string>
     <string name="has_photos_or_sounds">มีรูปถ่ายหรือเสียง</string>
-    <string name="has_id_supported_by_two_or_more">มี ID ที่รองรับสองตัวขึ้นไป</string>
-    <string name="date_is_accurate">วันที่ถูกต้อง</string>
+    <string name="has_id_supported_by_two_or_more">ได้รับการจำแนกจากสองคนขึ้นไป</string>
+    <string name="date_is_accurate">วันที่สังเกตถูกต้อง</string>
     <string name="location_is_accurate">ตำแหน่งถูกต้อง</string>
-    <string name="organism_is_wild">สิ่งมีชีวิตเป็นสัตว์ป่า</string>
+    <string name="organism_is_wild">สิ่งมีชีวิตพบตามธรรมชาติ</string>
     <string name="evidence_of_organism">มีหลักฐานของสิ่งมีชีวิต</string>
-    <string name="recent_evidence_of_an_organism">หลักฐานไม่เก่าเกินไป (ไม่เป็นซากดึกดำบรรพ์)</string>
+    <string name="recent_evidence_of_an_organism">หลักฐานไม่เก่าเกินไป</string>
     <string name="community_id_at_species_level_or_lower">เป็นหน่วยอนุกรมวิธานที่ชุมชนเห็นพ้องกันที่ระดับชนิดหรือต่ำกว่า</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">จากหลักฐาน หน่วยฯ ที่เสนอโดยชุมชนยังยืนยันหรือจำแนกย่อยได้อีกหรือไม่?</string>
-    <string name="no_as_good_as_it_can_be">ไม่มันดีเท่าที่ควร</string>
+    <string name="no_as_good_as_it_can_be">ไม่ เท่านี้เพียงพอแล้ว</string>
     <string name="seasonality">ตามฤดูกาล</string>
     <string name="verifiable">ยังพิสูจน์ได้</string>
     <string name="no_annotation">ไม่มีคำอธิบายประกอบ</string>
@@ -1138,6 +1138,7 @@
     <string name="delete_observations">ลบการสังเกต</string>
     <string name="comment_count">จำนวนความคิดเห็น</string>
     <string name="id_count">จำนวนการจำแนก</string>
+    <string name="observation_selected">การสังเกตที่ถูกเลือก</string>
     <string name="share_observation">แชร์การสังเกต</string>
     <string name="unknown_location">ไม่ทราบตำแหน่ง</string>
     <!-- Verb, used as an accessibility label for closing a view, e.g. a popup -->
@@ -1171,4 +1172,5 @@
     <string name="couldnt_upload_file_too_large">อัปโหลดไฟล์ที่มีขนาดใหญ่เกิน 20MB ไม่ได้</string>
     <string name="you_have_been_signed_out_please_sign_in_again">คุณออกจากระบบแล้ว กรุณาลงชื่อเข้าใหม่อีกครั้ง</string>
     <!-- Accessibility label for a button that closes an announcement -->
+    <string name="import_photos_from">นำเข้ารูปภาพจาก...</string>
 </resources>

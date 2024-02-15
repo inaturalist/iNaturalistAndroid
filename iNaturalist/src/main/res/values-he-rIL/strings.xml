@@ -447,7 +447,9 @@
     <string name="suggest_species_description">הצעת מינים על בסיס דמיון חזותי לתמונות.</string>
     <string name="visually_similar">דומה חזותית</string>
     <string name="visually_similar_seen_nearby">דומה חזותית / נראה בקרבת מקום</string>
+    <string name="visually_similar_expected_nearby">דומה חזותית / צפוי בסביבה</string>
     <string name="seen_nearby">נצפה בקרבת מקום</string>
+    <string name="expected_nearby">צפוי בסביבה</string>
     <string name="enlarge">הגדלה</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">הצגת צאצאים</string>
@@ -1210,4 +1212,5 @@
     <string name="you_have_been_signed_out_please_sign_in_again">נותקת מהחשבון. נא להתחבר מחדש.</string>
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">סגירת הודעה</string>
+    <string name="import_photos_from">ייבוא תמונות מ...</string>
 </resources>
