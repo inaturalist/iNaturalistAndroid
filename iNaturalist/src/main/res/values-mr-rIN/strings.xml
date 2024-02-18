@@ -156,8 +156,10 @@
     <string name="text"><![CDATA[<b>मजकूर:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalisttw">iNaturalist तैवान तैवानमधील iNaturalist नेटवर्कचा सदस्य आहे. iNaturalist तैवानचे समर्थन करणार्‍या स्थानिक संस्थांना तुमच्या ईमेल पत्त्यावर प्रवेश असेल आणि सार्वजनिकरित्या अस्पष्ट किंवा खाजगी असलेल्या निरीक्षणांसाठी खर्‍या समन्वयांमध्ये प्रवेश असेल. तुमच्याकडे 1000 पेक्षा जास्त निरीक्षणे असल्यास कृपया प्रायोगिकपणे तुमची संलग्नता बदलू नका. तुम्ही तुमची संलग्नता बदलू इच्छिता?</string>
+    <string name="editor">संपादक</string>
     <string name="license">परवाना</string>
     <string name="are_you_sure">नक्की ?</string>
+    <string name="internet_connection_seems_to_be_offline">बहुतेक इंटरेनट कनेक्शन चालत नाही</string>
     <string name="send_email">ईमेल पाठवा</string>
     <string name="login_with">यासह लॉगइन करा</string>
     <string name="gplus">गुगल</string>
@@ -211,6 +213,7 @@
     <string name="delete_comment_message">आपण खरंच ही टिप्पणी हटवू इच्छिता?</string>
     <string name="suggest_id">ओळख सुचवा</string>
     <string name="update_comment">टिप्पणी बदल</string>
+    <string name="faved">आवडते</string>
     <string name="location_coords">अक्षांश: %1$s रेखांश: %2$s अचूकता. %3$s</string>
     <string name="location_coords_no_acc">अक्षांश: %1$s रेखांश: %2$s</string>
     <string name="location">ठिकाण </string>
@@ -218,6 +221,11 @@
     <!--  Label for a button to add an observation without a photo or a sound  -->
     <string name="photo"><![CDATA[फोटो: <b><a href="%1$s">%2$s</a></b>]]></string>
     <string name="photo_attr"><![CDATA[फोटो: <b>%1$s</b>]]></string>
+    <string name="rank">क्रमांक</string>
+    <string name="identifications">ओळखलेली निरीक्षणे</string>
+    <string name="no_news_found">नवीन बातम्या नाहीत </string>
+    <string name="news">बातम्या</string>
+    <string name="article">लेख</string>
     <string name="name">नाव</string>
     <string name="view_profile">प्रोफाइल बघा</string>
     <string name="updating_profile">प्रोफाइल अपडेट करत आहे..</string>
@@ -236,12 +244,24 @@
     <string name="resume">पुन्हा करा</string>
     <string name="syncing_paused">विराम</string>
     <!-- Dialog title for when you are updating the description of an identification -->
+    <string name="insects">कीटक</string>
+    <string name="reptiles">सरपटणारे प्राणी</string>
+    <string name="animals">प्राणी</string>
+    <string name="fish">मासे </string>
+    <string name="amphibians">उभयचर</string>
+    <string name="fungi">कवक</string>
+    <string name="birds">पक्षी</string>
+    <string name="arachnids">अष्टपाद</string>
+    <string name="observe">निरीक्षण करा</string>
     <string name="could_not_download_observations">नवीनतम निरीक्षणे डाउनलोड करू शकत नाही - कनेक्शनमध्ये अडचण. थोड्यावेळाने पुन्हा प्रयत्न करा.</string>
     <!--
         Label for the number of new notifications you might have. This specific string is used in
         the side drawer next to the Activity menu item when you have new activity on your own
         content.
     -->
+    <string name="compare">तुलना</string>
+    <string name="map_of_observations">निरीक्षणांचा नकाशा </string>
+    <string name="taxonomy">वर्गीकरण</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
     <!-- Header for a list of suggested taxa based on observation frequency (i.e. not incorporating visual similarity) -->
     <!-- Header for a list of suggested taxa -->
@@ -249,12 +269,19 @@
     <string name="terrain">भूभाग</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <!-- As in a political administrative area, e.g. Hawaii in the United States -->
+    <string name="state">राज्य</string>
+    <string name="county">जिल्हा</string>
+    <string name="country">देश</string>
+    <string name="island">बेट</string>
+    <string name="airport">विमानतळ</string>
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <!-- Place type for a place like https://en.wikipedia.org/wiki/Region -->
+    <string name="region">विभाग</string>
     <!-- Place type for a place without much of a formal definition, e.g. the San Francisco Bay Area -->
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
     <!-- Vestigial place type from the defunct Yahoo GeoPlanet API. Please just do your best to translate it or leave it in English -->
+    <string name="open_space">मोकळी जागा </string>
     <!-- Added by mistake with some GADM place types, but subsequently used by some of our users. Assume it's a type of place contained within a "department" -->
     <!-- https://gadm.org place type, presumably describing an area larger than an individual property but smaller than a neighborhood -->
     <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
@@ -321,6 +348,8 @@
     <!-- Evidence of Presence value when for discarded reptile skins and arthropod exoskeletons -->
     <!-- Text for a label for a list of projects the viewer has joined -->
     <!-- Text for a button or label that allows someone to join a project -->
+    <string name="verifiable">सत्यापित</string>
+    <string name="donate_to_inaturalist">iNaturalist ला देणगी द्या</string>
     <string name="network_credit_inaturalisttw"><![CDATA[तैवान: नॅशनल चियाई युनिव्हर्सिटी आणि तैवान फॉरेस्ट्री रिसर्च इन्स्टिट्यूट iNaturalist तैवानला समर्थन देत आहे (<a href="https://taiwan.inaturalist.org/">https://taiwan.inaturalist.org/</a>)]]></string>
     <!-- Label for a button to open a sound recorder to record a new sound for an observation -->
     <!-- Label for a button to import an existing sound for an observation -->
