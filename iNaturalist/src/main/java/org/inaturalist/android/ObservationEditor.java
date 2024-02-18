@@ -1445,7 +1445,14 @@ public class ObservationEditor extends Fragment {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             galleryIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
         }
-        this.startActivityForResult(galleryIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+        try {
+            this.startActivityForResult(galleryIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+        } catch (ActivityNotFoundException exc) {
+            // If not default camera is found
+            Logger.tag(TAG).error(exc);
+            Toast.makeText(getActivity(), R.string.cannot_find_default_camera, Toast.LENGTH_LONG).show();
+            return;
+        }
 
         // In case a new/existing photo was taken - make sure we won't retake it in case the activity pauses/resumes.
         mPictureTaken = true;

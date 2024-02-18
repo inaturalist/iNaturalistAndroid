@@ -1227,4 +1227,5 @@
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Close Announcement</string>
     <string name="import_photos_from">Import Photos From...</string>
+    <string name="cannot_find_default_camera">Couldn\'t find a default camera to take photos with - please contact support</string>
 </resources>
