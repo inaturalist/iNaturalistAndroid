@@ -316,8 +316,10 @@ public class DataQualityAssessment extends AppCompatActivity implements DataQual
         metrics.add(new DataQualityItem(R.drawable.wild, R.string.organism_is_wild, "wild", true));
         metrics.add(new DataQualityItem(R.drawable.magnifying_glass, R.string.evidence_of_organism, "evidence", true));
         metrics.add(new DataQualityItem(R.drawable.clock_o, R.string.recent_evidence_of_an_organism, "recent", true));
+        metrics.add(new DataQualityItem(R.drawable.subject, R.string.evidence_related_to_single_subject, "subject", true));
         metrics.add(new DataQualityItem(R.drawable.leaf, R.string.community_id_at_species_level_or_lower, "community_id", false));
 
+        Logger.tag("AAA").error(mMetricsVotes);
         for (int i = 0; i < mMetricsVotes.length(); i++) {
             JSONObject vote = mMetricsVotes.optJSONObject(i);
 
@@ -337,6 +339,9 @@ public class DataQualityAssessment extends AppCompatActivity implements DataQual
                     break;
                 case "recent":
                     index = 8;
+                    break;
+                case "subject":
+                    index = 9;
                     break;
             }
 
@@ -389,9 +394,9 @@ public class DataQualityAssessment extends AppCompatActivity implements DataQual
         }
 
         if ((mObservation.getJSONObject("community_taxon") != null) && (mObservation.getJSONObject("community_taxon").optInt("rank_level") <= 10)) {
-            metrics.get(9).agreeCount = 1;
+            metrics.get(10).agreeCount = 1;
         } else {
-            metrics.get(9).disagreeCount = 1;
+            metrics.get(10).disagreeCount = 1;
         }
 
         mDataQualityList.setAdapter(new DataQualityAdapter(this, this, metrics));
