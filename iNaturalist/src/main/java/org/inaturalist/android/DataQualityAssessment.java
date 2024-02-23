@@ -319,7 +319,6 @@ public class DataQualityAssessment extends AppCompatActivity implements DataQual
         metrics.add(new DataQualityItem(R.drawable.subject, R.string.evidence_related_to_single_subject, "subject", true));
         metrics.add(new DataQualityItem(R.drawable.leaf, R.string.community_id_at_species_level_or_lower, "community_id", false));
 
-        Logger.tag("AAA").error(mMetricsVotes);
         for (int i = 0; i < mMetricsVotes.length(); i++) {
             JSONObject vote = mMetricsVotes.optJSONObject(i);
 
