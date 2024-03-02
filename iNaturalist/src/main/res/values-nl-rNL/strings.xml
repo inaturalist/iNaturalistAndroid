@@ -712,6 +712,7 @@
     <string name="community_id_at_species_level_or_lower">Community-ID op de soortsniveau of lager</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Op basis van het bewijs, kan de Community-ID nog worden bevestigd of verbeterd?</string>
     <string name="no_as_good_as_it_can_be">Nee, het kan niet beter</string>
+    <string name="evidence_related_to_single_subject">Bewijs gerelateerd aan één onderwerp</string>
     <string name="seasonality">Seizoensgebonden</string>
     <string name="verifiable">Controleerbare</string>
     <string name="no_annotation">Geen aantekeningen</string>
@@ -1202,4 +1203,5 @@ zonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van d
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Aankondiging sluiten</string>
     <string name="import_photos_from">Importeer foto\'s van...</string>
+    <string name="cannot_find_default_camera">Kan geen standaard camera vinden om foto\'s mee te nemen - neem contact op met support</string>
 </resources>

@@ -712,6 +712,7 @@
     <string name="community_id_at_species_level_or_lower">Identificação pela Comunidade ao nível da espécie ou inferior</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Com base nas evidências, pode a Identificação pela Comunidade ser confirmada ou melhorada?</string>
     <string name="no_as_good_as_it_can_be">Não, está tão bom quanto pode ser</string>
+    <string name="evidence_related_to_single_subject">Evidencia relacionada a um único assunto</string>
     <string name="seasonality">Sazonalidade</string>
     <string name="verifiable">Verificável</string>
     <string name="no_annotation">Sem Anotação</string>
@@ -1197,4 +1198,5 @@
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Fechar aviso</string>
     <string name="import_photos_from">Importar fotos de...</string>
+    <string name="cannot_find_default_camera">Não encontrada uma câmera padrão para tirar fotos — por favor, contate o suporte</string>
 </resources>

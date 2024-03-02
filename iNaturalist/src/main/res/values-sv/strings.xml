@@ -712,6 +712,7 @@
     <string name="community_id_at_species_level_or_lower">Gemensamhetsbestämning på artnivå eller lägre</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Kan gemensamhetsbestämningen ytterligare bekräftas eller förbättras utifrån belägget?</string>
     <string name="no_as_good_as_it_can_be">Nej, den är så bra som den kan bli</string>
+    <string name="evidence_related_to_single_subject">Stöd kopplat till ett enstaka område</string>
     <string name="seasonality">Säsongsvariation</string>
     <string name="verifiable">Verifierbar</string>
     <string name="no_annotation">Ingen anteckning</string>
@@ -1197,4 +1198,5 @@
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Stäng meddelande</string>
     <string name="import_photos_from">Importera bilder från...</string>
+    <string name="cannot_find_default_camera">Kunde inte hitta en standardkamera att ta bilder med - kontakta supporten</string>
 </resources>

@@ -439,7 +439,9 @@
     <string name="suggest_species_description">گونه ها را بر اساس شباهت بصری به عکس ها پیشنهاد کنید.</string>
     <string name="visually_similar">از لحاظ بصری مشابه</string>
     <string name="visually_similar_seen_nearby">بصری مشابه / در نزدیکی دیده می شود</string>
+    <string name="visually_similar_expected_nearby">از نظر بصری مشابه / قابل مشاهده در نزدیکی</string>
     <string name="seen_nearby">در نزدیکی دیده می شود</string>
+    <string name="expected_nearby">مورد انتظار در نزدیکی</string>
     <string name="enlarge">بزرگنمایی کنید</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">مشاهده کودکان</string>
@@ -1194,4 +1196,5 @@
     <string name="you_have_been_signed_out_please_sign_in_again">شما خارج شده اید.  لطفاً دوباره وارد شوید.</string>
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">بستن اعلامیه</string>
+    <string name="import_photos_from">وارد کردن عکس ها از...</string>
 </resources>

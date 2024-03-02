@@ -708,6 +708,7 @@ rin, Carrie Seltzer, Alex Shepard, Angie Ta, dan Ken-ichi Ueda.<br/><br/> CalTec
     <string name="community_id_at_species_level_or_lower">ID komunitas di tingkat spesies atau lebih rendah</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Berdasarkan bukti, apakah ID Komunitas masih dapat dikonfirmasi atau ditingkatkan?</string>
     <string name="no_as_good_as_it_can_be">Tidak, ini sudah yang terbaik</string>
+    <string name="evidence_related_to_single_subject">Bukti terkait satu subjek</string>
     <string name="seasonality">Musim</string>
     <string name="verifiable">Dapat Diverifikasi</string>
     <string name="no_annotation">Tidak Ada Catatan</string>
@@ -1190,4 +1191,5 @@ rin, Carrie Seltzer, Alex Shepard, Angie Ta, dan Ken-ichi Ueda.<br/><br/> CalTec
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Tutup Pengumuman</string>
     <string name="import_photos_from">Impor Gambar Dari...</string>
+    <string name="cannot_find_default_camera">Tidak bisa menemukan kamera untuk mengambil gambar - silakan menghubungi bantuan</string>
 </resources>

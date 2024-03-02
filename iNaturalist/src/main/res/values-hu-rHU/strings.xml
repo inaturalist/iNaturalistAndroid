@@ -1172,4 +1172,5 @@
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Bejelentés bezárása</string>
     <string name="import_photos_from">Fényképek importálása...</string>
+    <string name="cannot_find_default_camera">Nem találtunk elérhető fényképezőalkalmazást. Kérjük, vedd fel a kapcsolatot az ügyfélszolgálattal.</string>
 </resources>
