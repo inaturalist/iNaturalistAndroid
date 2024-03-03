@@ -1157,4 +1157,5 @@ hvordan vi bruker det, vennligst se vår <a href="https://www.inaturalist.org/pr
     <string name="you_have_been_signed_out_please_sign_in_again">Du har blitt logget ut. Vennligst logg inn på nytt.</string>
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Lukk kunngjøring</string>
+    <string name="cannot_find_default_camera">Kunne ikke finne et standard kamera for å ta bilder med - vennligst kontakt kundestøtte</string>
 </resources>

@@ -1197,4 +1197,5 @@
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Хабарландыруды жабу</string>
     <string name="import_photos_from">Фотосуреттерді импорттау...</string>
+    <string name="cannot_find_default_camera">Суретке түсіру үшін әдепкі камера табылмады - қолдау көрсету қызметіне хабарласыңыз</string>
 </resources>

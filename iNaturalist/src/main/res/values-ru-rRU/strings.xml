@@ -723,6 +723,7 @@
     <string name="community_id_at_species_level_or_lower">Идентификация сообществом на уровне вида или ниже</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Основываясь на свидетельствах, можно ли подтвердить или улучшить идентификатор сообщества?</string>
     <string name="no_as_good_as_it_can_be">Нет, это хорошо, насколько возможно</string>
+    <string name="evidence_related_to_single_subject">Свидетельства, связанные с отдельным объектом </string>
     <string name="seasonality">Сезонность</string>
     <string name="verifiable">Проверяемый</string>
     <string name="no_annotation">Нет значения</string>
@@ -1214,4 +1215,5 @@
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Объявление о закрытии</string>
     <string name="import_photos_from">Импортировать фото из...</string>
+    <string name="cannot_find_default_camera">Не удалось найти камеру по умолчанию - обратитесь в службу поддержки</string>
 </resources>
