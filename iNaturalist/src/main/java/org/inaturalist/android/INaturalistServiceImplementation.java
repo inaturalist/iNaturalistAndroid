@@ -4385,7 +4385,7 @@ public class INaturalistServiceImplementation {
 
         String url;
         if (command == null) {
-            url = String.format(Locale.ENGLISH, "%s/observations%s?locale=%s&page=%d&per_page=%d&ordered_by=%s&return_bounds=true&%s",
+            url = String.format(Locale.ENGLISH, "%s/observations%s?locale=%s&page=%d&per_page=%d&ordered_by=%s&%s",
                     API_HOST,
                     command == null ? "" : "/" + command,
                     mApp.getPrefLocale(),
