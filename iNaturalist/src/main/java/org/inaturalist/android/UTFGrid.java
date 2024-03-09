@@ -32,15 +32,11 @@ public class UTFGrid {
         return id;
     }
 
-    public String getKeyForPixel(int x, int y) {
+    public String getKeyForPixel(int row, int col) {
         int id = 0;
 
-        if ((x >= 0) && (y >= 0) &&
-                (x < TILE_SIZE) && (y < TILE_SIZE)) {
-            int factor = TILE_SIZE / mGrid.length();
-            int row = y / factor;
-            int col = x / factor;
-
+        if ((row >= 0) && (col >= 0) &&
+                (row < mGrid.length()) && (col < mGrid.length())) {
             id = Character.codePointAt(mGrid.optString(row), col);
             id = decodeId(id);
 
@@ -53,38 +49,37 @@ public class UTFGrid {
     }
 
     public String getKeyForPixelExpansive(int x, int y) {
-        String key = getKeyForPixel(x, y);
+        int factor = TILE_SIZE / mGrid.length();
+
+        // Convert x/y to row/column, while making sure it's within the bounds of the grid
+        int initialRow = Math.min(Math.max(y / factor, 0), mGrid.length() - 1);
+        int initialCol = Math.min(Math.max(x / factor, 0), mGrid.length() - 1);
+
+        String key = getKeyForPixel(initialRow, initialCol);
         if (!key.equals(EMPTY_KEY)) return key;
 
         // Search nearby pixels
-        int factor = TILE_SIZE / mGrid.length();
-        int expansionFactor = EXPANSION_PIXELS * factor; // Search up to EXPANSION_PIXELS pixels away from all directions
 
+        // Search up to EXPANSION_PIXELS pixels away from all directions -
         // Slowly expand the search grid around the current pixel
-        for (int expansion = factor; expansion <= expansionFactor; expansion += factor) {
-            key = getKeyForPixel(x - expansion, y - expansion);
-            if (!key.equals(EMPTY_KEY)) return key;
-            key = getKeyForPixel(x, y - expansion);
-            if (!key.equals(EMPTY_KEY)) return key;
-            key = getKeyForPixel(x + expansion, y - expansion);
-            if (!key.equals(EMPTY_KEY)) return key;
-            key = getKeyForPixel(x + expansion, y);
-            if (!key.equals(EMPTY_KEY)) return key;
-            key = getKeyForPixel(x + expansion, y + expansion);
-            if (!key.equals(EMPTY_KEY)) return key;
-            key = getKeyForPixel(x, y + expansion);
-            if (!key.equals(EMPTY_KEY)) return key;
-            key = getKeyForPixel(x - expansion, y + expansion);
-            if (!key.equals(EMPTY_KEY)) return key;
-            key = getKeyForPixel(x - expansion, y);
-            if (!key.equals(EMPTY_KEY)) return key;
+        for (int radius = 1; radius <= EXPANSION_PIXELS; radius++) {
+            for (int row = initialRow - radius; row <= initialRow + radius; row++) {
+                for (int col = initialCol - radius; col <= initialCol + radius; col++) {
+                    // Skip the iteration for points that are not on the perimeter of the current square
+                    if (row != initialRow - radius && row != initialRow + radius &&
+                            col != initialCol - radius && col != initialCol + radius) {
+                        continue;
+                    }
+                    key = getKeyForPixel(row, col);
+                    if (!key.equals(EMPTY_KEY)) {
+                        return key;
+                    }
+                }
+            }
         }
 
         return EMPTY_KEY;
     }
-
-
-
 
 
     /** Returns the data object corresponding to the given tile position
