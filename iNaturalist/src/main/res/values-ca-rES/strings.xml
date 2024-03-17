@@ -712,6 +712,7 @@
     <string name="community_id_at_species_level_or_lower">ID de la comunitat a nivell específic o inferior</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Basat en l\'evidència, pot confirmar o millorar la ID de la Comunitat?</string>
     <string name="no_as_good_as_it_can_be">No, és el millor que pot ser</string>
+    <string name="evidence_related_to_single_subject">Evidència relacionada amb un únic individu</string>
     <string name="seasonality">Estacionalitat</string>
     <string name="verifiable">Verificable</string>
     <string name="no_annotation">Sense Anotacions</string>
@@ -1197,4 +1198,5 @@
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Tancar Anunci</string>
     <string name="import_photos_from">Importar fotos des de...</string>
+    <string name="cannot_find_default_camera">No hem pogut trobar una càmera per defecte per fer les fotos -contacteu amb el suport</string>
 </resources>

@@ -712,6 +712,7 @@
     <string name="community_id_at_species_level_or_lower">ID de la comunidad a nivel específico o inferior</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Basado en la evidencia, ¿Puede confirmar o mejorar la ID de la Comunidad?</string>
     <string name="no_as_good_as_it_can_be">No, es tan buena como puede ser</string>
+    <string name="evidence_related_to_single_subject">Evidencia relativa a un único individuo</string>
     <string name="seasonality">Estacionalidad</string>
     <string name="verifiable">Verificable</string>
     <string name="no_annotation">Sin anotación</string>
@@ -1199,4 +1200,5 @@ Más información de nuestra definición de \"contenido apropiado\" en las
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Cerrar Notificación</string>
     <string name="import_photos_from">Importar fotos desde...</string>
+    <string name="cannot_find_default_camera">No se pudo encontrar una cámara predeterminada con la que tomar fotos - por favor, contacte con su soporte técnico</string>
 </resources>
