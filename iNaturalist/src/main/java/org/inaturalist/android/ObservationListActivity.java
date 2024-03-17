@@ -12,6 +12,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -80,10 +81,13 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     @State public boolean[] mIsGrid = new boolean[] { false, false, false };
 
     private NewsReceiver mNewsReceiver;
+    private RefreshUserDetailsReceiver mRefreshUserDetailsReceiver;
+    private ResendConfirmationReceiver mResendConfirmationReceiver;
 
 	private SyncCompleteReceiver mSyncCompleteReceiver;
 
     private ViewGroup mAnnouncementContainer;
+    private ViewGroup mConfirmEmailContainer;
 
 	private int mLastIndex;
 	private int mLastTop;
@@ -96,6 +100,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 	private ActivityHelper mHelper;
 
 	@State public String mLastMessage;
+
+    @State public boolean mIsUnconfirmed;
 
     private INaturalistApp mApp;
     private TextView mSyncingStatus;
@@ -781,6 +787,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         safeUnregisterReceiver(mUserDetailsReceiver);
         safeUnregisterReceiver(mSyncCompleteReceiver);
         safeUnregisterReceiver(mConnectivityListener);
+        safeUnregisterReceiver(mRefreshUserDetailsReceiver);
+        safeUnregisterReceiver(mRefreshUserDetailsReceiver);
 
         mSyncRequested = false;
     }
@@ -847,6 +855,17 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         IntentFilter filter5 = new IntentFilter();
         filter5.addAction(INaturalistService.UPDATES_RESULT);
         safeRegisterReceiver(mNewsReceiver, filter5);
+
+        mRefreshUserDetailsReceiver = new RefreshUserDetailsReceiver();
+        IntentFilter filter6 = new IntentFilter();
+        filter6.addAction(INaturalistService.REFRESH_CURRENT_USER_SETTINGS_RESULT);
+        safeRegisterReceiver(mRefreshUserDetailsReceiver, filter6);
+
+        mResendConfirmationReceiver = new ResendConfirmationReceiver();
+        IntentFilter filter7 = new IntentFilter();
+        filter7.addAction(INaturalistService.ACTION_RESEND_EMAIL_CONFIRMATION);
+        safeRegisterReceiver(mResendConfirmationReceiver, filter7);
+
 
         if (mLoadingObservations != null) {
             if (mIsGrid[0]) {
@@ -1324,6 +1343,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mLoadingMoreResults = layout.findViewById(R.id.loading_more_results);
 
                     mAnnouncementContainer = layout.findViewById(R.id.announcement);
+                    mConfirmEmailContainer = layout.findViewById(R.id.confirm_email);
 
                     if (mIsGrid[0]) {
                         mListSwipeContainer.setEnabled(false);
@@ -1922,6 +1942,29 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         INaturalistService.callService(this, serviceIntent);
     }
 
+    private void refreshConfirmEmail() {
+        if (!mIsUnconfirmed || !mApp.loggedIn()) {
+            mConfirmEmailContainer.setVisibility(View.GONE);
+            return;
+        }
+
+        mConfirmEmailContainer.setVisibility(View.VISIBLE);
+
+        TextView confirmEmailLink = mConfirmEmailContainer.findViewById(R.id.resend_confirmation_email);
+        confirmEmailLink.setPaintFlags(confirmEmailLink.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
+        confirmEmailLink.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Resend email confirmation
+                mHelper.loading();
+
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_RESEND_EMAIL_CONFIRMATION, null, ObservationListActivity.this, INaturalistService.class);
+                INaturalistService.callService(ObservationListActivity.this, serviceIntent);
+            }
+        });
+    }
+
     private void refreshAnnouncements() {
         Logger.tag(TAG).info("refreshAnnouncements: " + mAnnouncements);
 
@@ -1987,6 +2030,43 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             });
         } else {
             closeAnnouncement.setVisibility(View.GONE);
+        }
+    }
+
+    private class ResendConfirmationReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction() == null ||
+                    !intent.getAction().equals(INaturalistService.ACTION_RESEND_EMAIL_CONFIRMATION)) {
+                return;
+            }
+            mHelper.stopLoading();
+        }
+    }
+
+    private class RefreshUserDetailsReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction() == null ||
+                    !intent.getAction().equals(INaturalistService.REFRESH_CURRENT_USER_SETTINGS_RESULT)) {
+                return;
+            }
+
+            Bundle extras = intent.getExtras();
+            if (extras == null || extras.getString("error") != null) {
+                return;
+            }
+
+            boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
+            BetterJSONObject user = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.USER);
+
+            if (user == null) {
+                return;
+            }
+
+            mIsUnconfirmed = user.getString("confirmed_at") == null;
+            refreshConfirmEmail();
         }
     }
 

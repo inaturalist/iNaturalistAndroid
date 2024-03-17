@@ -713,6 +713,13 @@ public class INaturalistServiceImplementation {
                 reply.putExtra(USER, user);
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(reply);
 
+            } else if (action.equals(ACTION_RESEND_EMAIL_CONFIRMATION)) {
+                Boolean success = resendEmailConfirmation();
+
+                Intent reply = new Intent(ACTION_RESEND_EMAIL_CONFIRMATION);
+                reply.putExtra(SUCCESS, success);
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(reply);
+
             } else if (action.equals(ACTION_REFRESH_CURRENT_USER_SETTINGS)) {
                 BetterJSONObject user = getCurrentUserDetails();
 
@@ -4211,6 +4218,25 @@ public class INaturalistServiceImplementation {
             Logger.tag(TAG).error(e);
             return null;
         }
+    }
+
+    private boolean resendEmailConfirmation() throws AuthenticationException {
+
+        try {
+            JSONArray json = request(API_HOST + "/users/resend_confirmation", "post", null, null, true, true, false);
+
+            if (json == null) return false;
+            if (json.length() == 0) return false;
+            JSONObject response = json.getJSONObject(0);
+            if (response.has("errors")) {
+                return false;
+            }
+        } catch (JSONException e) {
+            Logger.tag(TAG).error(e);
+            return false;
+        }
+
+        return true;
     }
 
     private BetterJSONObject updateCurrentUserDetails(JSONObject params) throws AuthenticationException {

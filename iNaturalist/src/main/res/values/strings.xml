@@ -1229,4 +1229,6 @@
     <string name="close_announcement">Close Announcement</string>
     <string name="import_photos_from">Import Photos From...</string>
     <string name="cannot_find_default_camera">Couldn\'t find a default camera to take photos with - please contact support</string>
+    <string name="please_click_link_to_confirm_email">Please click the link in your email to confirm your email on iNaturalist.</string>
+    <string name="click_to_resend_confirmation_email">Click here to resend a confirmation email.</string>
 </resources>

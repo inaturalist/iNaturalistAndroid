@@ -559,6 +559,7 @@ public class INaturalistService extends IntentService {
     public static String ACTION_PIN_LOCATION = "pin_location";
     public static String ACTION_DELETE_PINNED_LOCATION = "delete_pinned_location";
     public static String ACTION_REFRESH_CURRENT_USER_SETTINGS = "refresh_current_user_settings";
+    public static String ACTION_RESEND_EMAIL_CONFIRMATION = "resend_email_confirmation";
     public static String ACTION_UPDATE_CURRENT_USER_DETAILS = "update_current_user_details";
     public static String ACTION_GET_CURRENT_LOCATION = "get_current_location";
     public static String ACTION_GET_USER_SPECIES_COUNT = "get_species_count";

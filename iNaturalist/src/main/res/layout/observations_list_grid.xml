@@ -13,17 +13,27 @@
         android:background="#F5F5F5"
         >
 
-        <include
-            android:id="@+id/announcement"
-            layout="@layout/announcement"
-            android:visibility="gone"
-            />
+        <LinearLayout
+            android:id="@+id/top_part_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include
+                android:id="@+id/announcement"
+                layout="@layout/announcement"
+                android:visibility="gone"
+                />
+            <include
+                android:id="@+id/confirm_email"
+                layout="@layout/confirm_email"
+                android:visibility="gone"
+                />
+        </LinearLayout>
 
 
         <RelativeLayout
             android:id="@+id/syncing_top_bar"
             android:visibility="gone"
-            android:layout_below="@id/announcement"
+            android:layout_below="@id/top_part_container"
             android:layout_width="fill_parent"
             android:background="#74AC00"
             android:padding="10dp"

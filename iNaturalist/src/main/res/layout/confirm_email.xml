@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#80AB33"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_notification" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/logo"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+        <TextView
+            android:text="@string/please_click_link_to_confirm_email"
+            android:textColor="#FFFFFF"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textAlignment="center"
+            />
+
+        <TextView
+            android:id="@+id/resend_confirmation_email"
+            android:text="@string/click_to_resend_confirmation_email"
+            android:textColor="#FFFFFF"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textAlignment="center"
+            />
+    </LinearLayout>
+</RelativeLayout>
