@@ -674,6 +674,7 @@
     <string name="community_id_at_species_level_or_lower">Takson zajednice na nivou vrste ili niže</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Na osnovu priloženih dokaza, može li se takson zajednice potvrditi ili unaprediti?</string>
     <string name="no_as_good_as_it_can_be">Ne, najbolji je što može</string>
+    <string name="evidence_related_to_single_subject">Dokaz se odnosi na jedan organizam</string>
     <string name="seasonality">Sezonalnost</string>
     <string name="verifiable">Argumentovano</string>
     <string name="no_annotation">Nema pribeleške</string>

@@ -1204,4 +1204,6 @@ Facility</a> (GBIF) generieren: eine internationale, zwischenstaatliche Organisa
     <string name="close_announcement">Ankündigung schließen</string>
     <string name="import_photos_from">Fotos importieren von ...</string>
     <string name="cannot_find_default_camera">Keine Standardkamera zum Fotografieren gefunden - bitte Support kontaktieren</string>
+    <string name="please_click_link_to_confirm_email">Bitte klicke auf den Link in deiner E-Mail, um deine E-Mail-Adresse auf iNaturalist zu bestätigen.</string>
+    <string name="click_to_resend_confirmation_email">Klicke hier, um erneut eine Bestätigungs-E-Mail zu senden.</string>
 </resources>

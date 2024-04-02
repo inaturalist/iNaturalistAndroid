@@ -1203,4 +1203,6 @@ og <a href="https://www.inaturalist.org/terms">Tjenestevilkår</a>.]]></string>
     <string name="close_announcement">Luk meddelelse</string>
     <string name="import_photos_from">Importere fotos fra...</string>
     <string name="cannot_find_default_camera">Standardkamera til at tage fotos med ikke fundet — kontakt supporten</string>
+    <string name="please_click_link_to_confirm_email">Klik på linket i e-mailen for at bekræfte din e-mailadresse på iNaturalist.</string>
+    <string name="click_to_resend_confirmation_email">Klik hér for at sende en bekræftelsesmail.</string>
 </resources>

@@ -1158,4 +1158,6 @@ hvordan vi bruker det, vennligst se vår <a href="https://www.inaturalist.org/pr
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Lukk kunngjøring</string>
     <string name="cannot_find_default_camera">Kunne ikke finne et standard kamera for å ta bilder med - vennligst kontakt kundestøtte</string>
+    <string name="please_click_link_to_confirm_email">Vennligst trykk på lenken i e-posten din for å bekrefte e-postadressen din på iNaturalist.</string>
+    <string name="click_to_resend_confirmation_email">Klikk her for å sende en e-postbekreftelse på nytt.</string>
 </resources>

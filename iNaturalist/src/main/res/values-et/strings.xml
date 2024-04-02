@@ -1197,4 +1197,6 @@
     <string name="you_have_been_signed_out_please_sign_in_again">Olete välja logitud. Palun logige uuesti sisse.</string>
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">Sulge teade</string>
+    <string name="please_click_link_to_confirm_email">Palun vajuta e-postiga saadetud lingile, et oma aadressi iNaturalisti jaoks kinnitada.</string>
+    <string name="click_to_resend_confirmation_email">Vajuta siia, et kinnituskiri uuesti saata.</string>
 </resources>

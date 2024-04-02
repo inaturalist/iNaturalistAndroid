@@ -1199,4 +1199,6 @@
     <string name="close_announcement">Tancar Anunci</string>
     <string name="import_photos_from">Importar fotos des de...</string>
     <string name="cannot_find_default_camera">No hem pogut trobar una càmera per defecte per fer les fotos -contacteu amb el suport</string>
+    <string name="please_click_link_to_confirm_email">Feu clic a l\'enllaç del vostre correu electrònic per confirmar la vostra adreça electrònica a iNaturalist.</string>
+    <string name="click_to_resend_confirmation_email">Feu clic per tornar a enviar un correu electrònic de confirmació.</string>
 </resources>

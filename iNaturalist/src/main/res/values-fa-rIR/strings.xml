@@ -712,6 +712,7 @@
     <string name="community_id_at_species_level_or_lower">شناسه جامعه در سطح گونه یا کمتر</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">بر اساس شواهد، آیا هنوز هم می توان شناسه انجمن را تأیید یا بهبود بخشید؟</string>
     <string name="no_as_good_as_it_can_be">نه، آنقدر که می تواند خوب است</string>
+    <string name="evidence_related_to_single_subject">شواهد مربوط به یک موضوع واحد</string>
     <string name="seasonality">فصلی بودن</string>
     <string name="verifiable">قابل تایید</string>
     <string name="no_annotation">بدون حاشیه نویسی</string>
@@ -1197,4 +1198,7 @@
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="close_announcement">بستن اعلامیه</string>
     <string name="import_photos_from">وارد کردن عکس ها از...</string>
+    <string name="cannot_find_default_camera">دوربین پیش‌فرض برای گرفتن عکس پیدا نشد - لطفاً با پشتیبانی تماس بگیرید</string>
+    <string name="please_click_link_to_confirm_email">لطفاً برای تأیید ایمیل خود در iNaturalist روی پیوند موجود در ایمیل خود کلیک کنید.</string>
+    <string name="click_to_resend_confirmation_email">برای ارسال مجدد ایمیل تایید اینجا را کلیک کنید.</string>
 </resources>

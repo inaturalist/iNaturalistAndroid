@@ -1199,4 +1199,6 @@
     <string name="close_announcement">Fechar aviso</string>
     <string name="import_photos_from">Importar fotos de...</string>
     <string name="cannot_find_default_camera">Não encontrada uma câmera padrão para tirar fotos — por favor, contate o suporte</string>
+    <string name="please_click_link_to_confirm_email">Por favor, clique no link apresentado nessa mensagem para confirmar o seu endereço eletronico no iNaturalist.</string>
+    <string name="click_to_resend_confirmation_email">Clique aqui para reenviar um e-mail de confirmação.</string>
 </resources>

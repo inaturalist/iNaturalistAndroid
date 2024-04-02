@@ -1216,4 +1216,6 @@
     <string name="close_announcement">Объявление о закрытии</string>
     <string name="import_photos_from">Импортировать фото из...</string>
     <string name="cannot_find_default_camera">Не удалось найти камеру по умолчанию - обратитесь в службу поддержки</string>
+    <string name="please_click_link_to_confirm_email">Перейдите по ссылке в этом письме, чтобы подтвердить Ваш адрес электронной почты.</string>
+    <string name="click_to_resend_confirmation_email">Нажмите для повторной отправки письма подтверждения e-mail</string>
 </resources>

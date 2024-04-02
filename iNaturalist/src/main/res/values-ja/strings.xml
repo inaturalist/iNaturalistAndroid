@@ -918,4 +918,6 @@
     <string name="you_have_been_signed_out_please_sign_in_again">サインアウトされています。もう一度サインインしてください。</string>
     <!-- Accessibility label for a button that closes an announcement -->
     <string name="cannot_find_default_camera">写真を撮るためのデフォルトのカメラが見つかりませんでした - サポートにお問い合わせください</string>
+    <string name="please_click_link_to_confirm_email">iNaturalistでメールを確認するには、メール内のリンクをクリックしてください。</string>
+    <string name="click_to_resend_confirmation_email">確認メールを再送信するにはここをクリックしてください。</string>
 </resources>

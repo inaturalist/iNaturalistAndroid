@@ -1200,4 +1200,6 @@ Ticari Olmayan Atfetme (CC BY-NC), gibi kayıtların  biyolojik çeşitlilik bil
     <string name="close_announcement">Duyuruyu Kapat</string>
     <string name="import_photos_from">Fotoğrafları Şuradan İçe Aktar:</string>
     <string name="cannot_find_default_camera">Varsayılan bir kamera bulunamadı - lütfen destek ile iletişime geçin</string>
+    <string name="please_click_link_to_confirm_email">E-posta adresinizi doğrulamak için lütfen e-postanıza gönderilen bağlantıya tıklayın.</string>
+    <string name="click_to_resend_confirmation_email">Doğrulama e-postasını tekrar almak için buraya tıklayın.</string>
 </resources>
